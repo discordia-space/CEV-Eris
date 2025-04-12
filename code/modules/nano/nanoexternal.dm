@@ -70,3 +70,7 @@
 
 // Used by SSnano (/datum/controller/subsystem/processing/nano) to track UIs opened by this mob
 /mob/var/list/open_uis
+
+/datum/proc/CanUseTopic(mob/user, datum/ui_state/state = GLOB.default_state)
+	var/datum/src_object = ui_host(user)
+	return state.can_use_topic(src_object, user)

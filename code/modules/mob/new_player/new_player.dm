@@ -205,7 +205,7 @@
 		LateChoices()
 
 	if(href_list["manifest"])
-		show_manifest(src, nano_state = GLOB.always_state)
+		show_manifest(src, nano_state = GLOB.new_player_state)
 
 	if(href_list["SelectedJob"])
 

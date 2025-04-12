@@ -25,9 +25,9 @@
 	QDEL_NULL(topic_manager)
 	. = ..()
 
-/datum/nano_module/nano_host()
+/datum/nano_module/ui_host(mob/user)
 	RETURN_TYPE(/datum)
-	return host ? host.nano_host() : src
+	return host ? host.ui_host(user) : src
 
 /datum/nano_module/proc/can_still_topic(var/datum/ui_state/state = GLOB.default_state)
 	return CanUseTopic(usr, state) == UI_INTERACTIVE
@@ -150,11 +150,11 @@
 	. = ..()
 
 /datum/nano_module/proc/get_host_z()
-	var/atom/host = nano_host()
+	var/atom/host = ui_host()
 	return istype(host) ? get_z(host) : 0
 
 /datum/nano_module/proc/print_text(var/text, var/mob/user)
-	var/obj/item/modular_computer/MC = nano_host()
+	var/obj/item/modular_computer/MC = ui_host()
 	if(istype(MC))
 		if(!MC.printer)
 			to_chat(user, "Error: No printer detected. Unable to print document.")
@@ -174,7 +174,7 @@
 
 //Allows computer programs to play sounds from the console
 /datum/nano_module/proc/playsound_host(soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/use_pressure = TRUE)
-	var/atom/nhost = nano_host()
+	var/atom/nhost = ui_host()
 	if (!nhost)
 		return FALSE
 

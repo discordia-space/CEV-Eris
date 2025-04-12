@@ -60,7 +60,7 @@
 /obj/machinery/sleeper/mounted/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/ui_state/state = GLOB.mech_state)
 	. = ..()
 
-/obj/machinery/sleeper/mounted/nano_host()
+/obj/machinery/sleeper/mounted/ui_host(mob/user)
 	var/obj/item/mech_equipment/sleeper/S = loc
 	if(istype(S))
 		return S.owner

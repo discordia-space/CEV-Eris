@@ -66,7 +66,7 @@
 /datum/nano_module/bounty_board/proc/get_record_access(var/mob/user)
 	var/list/user_access = using_access || user.GetAccess()
 
-	var/obj/item/modular_computer/PC = nano_host()
+	var/obj/item/modular_computer/PC = ui_host()
 	if(istype(PC) && PC.computer_emagged)
 		user_access = user_access.Copy()
 		user_access |= access_syndicate

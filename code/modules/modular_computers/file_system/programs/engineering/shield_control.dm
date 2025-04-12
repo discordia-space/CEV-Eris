@@ -38,7 +38,7 @@
 	for (var/obj/machinery/power/shipside/shield_generator/hull/G in world)
 		//Check that the generator is on the same vessel as us.
 		//This allows antag ships/stations to have their own shield generators and consoles
-		if (is_matching_vessel(G, nano_host()))
+		if (is_matching_vessel(G, ui_host()))
 			if (G.anchored && G.tendrils_deployed && !G.ai_control_disabled) //Only look at those that are wrenched in and setup
 				gen = G //It's a good enough candidate, we're connected!
 				n++
@@ -100,7 +100,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 600, 800, state = state)
-		if(nano_host().update_layout()) // This is necessary to ensure the status bar remains updated along with rest of the UI.
+		if(ui_host().update_layout()) // This is necessary to ensure the status bar remains updated along with rest of the UI.
 			ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()
@@ -134,7 +134,7 @@
 		if(gen.running != SHIELD_RUNNING)
 			return
 		gen.running = SHIELD_DISCHARGING
-		gen.log_event(EVENT_DISABLED, nano_host())
+		gen.log_event(EVENT_DISABLED, ui_host())
 		gen.offline_for += 30 //It'll take one minute to shut down
 		. = 1
 
@@ -142,7 +142,7 @@
 		if(gen.offline_for)
 			return
 		gen.running = SHIELD_RUNNING
-		gen.log_event(EVENT_ENABLED, nano_host())
+		gen.log_event(EVENT_ENABLED, ui_host())
 		gen.regenerate_field()
 		gen.offline_for = 3 //This is to prevent cases where you startup the shield and then turn it off again immediately while spamclicking
 
@@ -162,7 +162,7 @@
 		gen.offline_for += 300 //5 minutes, given that procs happen every 2 seconds
 		gen.shutdown_machine()
 		gen.emergency_shutdown = TRUE
-		gen.log_event(EVENT_DISABLED, nano_host())
+		gen.log_event(EVENT_DISABLED, ui_host())
 		if(prob(temp_integrity - 50) * 1.75)
 			spawn()
 				empulse(gen, 7, 14)
@@ -177,7 +177,7 @@
 			return
 		gen.field_radius = between(1, new_range, world.maxx)
 		gen.regenerate_field()
-		gen.log_event(EVENT_RECONFIGURED, nano_host())
+		gen.log_event(EVENT_RECONFIGURED, ui_host())
 		. = 1
 
 	if(href_list["set_input_cap"])
@@ -185,11 +185,11 @@
 		if(!new_cap)
 			return
 		gen.input_cap = between(1, new_cap, gen.input_maxcap / 1000) * 1000
-		gen.log_event(EVENT_RECONFIGURED, nano_host())
+		gen.log_event(EVENT_RECONFIGURED, ui_host())
 		. = 1
 
 	if(href_list["toggle_mode"])
-		gen.log_event(EVENT_RECONFIGURED, nano_host())
+		gen.log_event(EVENT_RECONFIGURED, ui_host())
 		gen.toggle_flag(text2num(href_list["toggle_mode"]))
 		. = 1
 

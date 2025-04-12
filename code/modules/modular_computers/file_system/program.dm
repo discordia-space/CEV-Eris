@@ -206,12 +206,10 @@
 		return UI_CLOSE
 	return computer.CanUseTopic(user, state)
 
-// A lot of MPC apps use nano_host() as a way to get the MPC object
+// A lot of MPC apps use ui_host() as a way to get the MPC object
 // We return the MPC for most calls, but
-/datum/computer_file/program/nano_host(ui_status_check=FALSE)
-	if(ui_status_check)
-		return src
-	return computer.nano_host()
+/datum/computer_file/program/ui_host(mob/user)
+	return computer.ui_host(user)
 
 // CONVENTIONS, READ THIS WHEN CREATING NEW PROGRAM AND OVERRIDING THIS PROC:
 // Topic calls are automagically forwarded from NanoModule this program contains.

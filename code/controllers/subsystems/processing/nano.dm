@@ -78,7 +78,7 @@ PROCESSING_SUBSYSTEM_DEF(nano)
 
 	for (var/ui_key in open_uis[src_object_key])
 		for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
-			if(ui.src_object && ui.user && ui.src_object.nano_host())
+			if(ui.src_object && ui.user && ui.src_object.ui_host())
 				ui.try_update(1)
 				.++
 			else

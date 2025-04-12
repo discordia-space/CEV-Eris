@@ -248,7 +248,7 @@
 		))
 
 /datum/nano_module/supply/proc/can_print()
-	var/obj/item/modular_computer/MC = nano_host()
+	var/obj/item/modular_computer/MC = ui_host()
 	if(!istype(MC) || !istype(MC.nano_printer))
 		return 0
 	return 1

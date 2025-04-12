@@ -5,7 +5,7 @@
 	if(..())
 		return 1
 	// TODO: Allow setting any config.contact_levels from the interface.
-	if(!isOnPlayerLevel(nano_host()))
+	if(!isOnPlayerLevel(ui_host()))
 		usr << "<span class='warning'>Unable to establish a connection</span>: You're too far away from the station!"
 		return 0
 	if(href_list["track"])
@@ -18,7 +18,7 @@
 
 /datum/nano_module/crew_monitor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/list/data = host.initial_data()
-	var/turf/T = get_turf(nano_host())
+	var/turf/T = get_turf(ui_host())
 
 	data["isAI"] = isAI(user)
 	data["crewmembers"] = crew_repository.health_data(T)

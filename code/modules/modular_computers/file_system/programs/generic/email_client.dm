@@ -119,9 +119,9 @@
 
 
 /datum/nano_module/email_client/proc/mail_received(datum/computer_file/data/email_message/received_message)
-	var/mob/living/L = get(nano_host(), /mob/living)
+	var/mob/living/L = get(ui_host(), /mob/living)
 	if(L)
-		received_message.notify_mob(L, nano_host(), "<a href='?src=\ref[src];open;reply=[received_message.uid]'>Reply</a>")
+		received_message.notify_mob(L, ui_host(), "<a href='?src=\ref[src];open;reply=[received_message.uid]'>Reply</a>")
 		log_and_message_admins("[usr] received email from [received_message.source]. \n Message title: [received_message.title]. \n [received_message.stored_data]")
 
 /datum/nano_module/email_client/Destroy()
@@ -132,7 +132,7 @@
 	var/list/id_login
 
 	if(istype(host, /obj/item/modular_computer))
-		var/obj/item/modular_computer/computer = nano_host()
+		var/obj/item/modular_computer/computer = ui_host()
 		var/obj/item/card/id/id = computer.GetIdCard()
 		if(!id && ismob(computer.loc))
 			var/mob/M = computer.loc
@@ -230,7 +230,7 @@
 			var/mob/living/silicon/S = host
 			data["ringtone"] = S.email_ringtone
 		else if (istype(host,/obj/item/modular_computer))
-			var/obj/item/modular_computer/computer = nano_host()
+			var/obj/item/modular_computer/computer = ui_host()
 			var/datum/computer_file/program/email_client/PRG = computer.active_program
 			if (istype(PRG))
 				data["ringtone"] = PRG.ringtone
@@ -338,7 +338,7 @@
 		return
 	download_progress = min(download_progress + netspeed, downloading.size)
 	if(download_progress >= downloading.size)
-		var/obj/item/modular_computer/MC = nano_host()
+		var/obj/item/modular_computer/MC = ui_host()
 		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
 			error = "Error uploading file. Are you using a functional and NTOSv2-compliant device?"
 			downloading = null
@@ -376,7 +376,7 @@
 			var/mob/living/silicon/S = host
 			S.email_ringtone = !S.email_ringtone
 		else if (istype(host,/obj/item/modular_computer))
-			var/obj/item/modular_computer/computer = nano_host()
+			var/obj/item/modular_computer/computer = ui_host()
 			var/datum/computer_file/program/email_client/PRG = computer.active_program
 			if (istype(PRG))
 				PRG.ringtone = !PRG.ringtone
@@ -548,7 +548,7 @@
 
 	if(href_list["save"])
 		// Fully dependant on modular computers here.
-		var/obj/item/modular_computer/MC = nano_host()
+		var/obj/item/modular_computer/MC = ui_host()
 
 		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
 			error = "Error exporting file. Are you using a functional and NTOS-compliant device?"
@@ -570,7 +570,7 @@
 		return 1
 
 	if(href_list["addattachment"])
-		var/obj/item/modular_computer/MC = nano_host()
+		var/obj/item/modular_computer/MC = ui_host()
 		msg_attachment = null
 
 		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
@@ -612,7 +612,7 @@
 	if(href_list["downloadattachment"])
 		if(!current_account || !current_message || !current_message.attachment)
 			return 1
-		var/obj/item/modular_computer/MC = nano_host()
+		var/obj/item/modular_computer/MC = ui_host()
 		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
 			error = "Error downloading file. Are you using a functional and NTOSv2-compliant device?"
 			return 1

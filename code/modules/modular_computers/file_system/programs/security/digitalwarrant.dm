@@ -120,7 +120,7 @@ LEGACY_RECORD_STRUCTURE(all_warrants, warrant)
 
 	if(href_list["savewarrant"])
 		. = 1
-		broadcast_security_hud_message("\A [activewarrant.fields["arrestsearch"]] warrant for <b>[activewarrant.fields["namewarrant"]]</b> has been [(activewarrant in GLOB.all_warrants) ? "edited" : "uploaded"].", nano_host())
+		broadcast_security_hud_message("\A [activewarrant.fields["arrestsearch"]] warrant for <b>[activewarrant.fields["namewarrant"]]</b> has been [(activewarrant in GLOB.all_warrants) ? "edited" : "uploaded"].", ui_host())
 		GLOB.all_warrants |= activewarrant
 		activewarrant = null
 

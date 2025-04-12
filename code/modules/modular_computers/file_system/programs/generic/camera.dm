@@ -101,7 +101,7 @@
 		if(can_access_network(usr, get_camera_access(href_list["switch_network"])))
 			current_network = href_list["switch_network"]
 		else
-			to_chat(usr, "\The [nano_host()] shows an \"Network Access Denied\" error message.")
+			to_chat(usr, "\The [ui_host()] shows an \"Network Access Denied\" error message.")
 		return 1
 
 	else if(href_list["reset"])
@@ -122,7 +122,7 @@
 		return 1
 
 	set_current(C)
-	user.machine = nano_host()
+	user.machine = ui_host()
 	user.reset_view(C)
 	return 1
 

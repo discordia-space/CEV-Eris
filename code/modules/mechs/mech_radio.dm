@@ -8,7 +8,7 @@
 		var/mob/living/exosuit/E = loc
 		if(istype(E)) return E.get_cell()
 
-/obj/item/device/radio/exosuit/nano_host()
+/obj/item/device/radio/exosuit/ui_host(mob/user)
 	var/mob/living/exosuit/E = loc
 	if(istype(E))
 		return E

@@ -23,7 +23,7 @@
 		NMD.refresh_docks()
 
 /datum/nano_module/docking/proc/refresh_docks()
-	var/atom/movable/AM = nano_host()
+	var/atom/movable/AM = ui_host()
 	if(!istype(AM))
 		return
 	docking_controllers.Cut()

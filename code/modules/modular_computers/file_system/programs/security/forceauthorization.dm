@@ -19,7 +19,7 @@
 	data["is_silicon_usr"] = issilicon(user)
 
 	data["guns"] = list()
-	var/atom/movable/AM = nano_host()
+	var/atom/movable/AM = ui_host()
 	if(!istype(AM))
 		return
 	//var/list/zlevels = GetConnectedZlevels(AM.z)

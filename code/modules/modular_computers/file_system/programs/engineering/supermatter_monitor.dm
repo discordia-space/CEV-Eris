@@ -41,7 +41,7 @@
 // Refreshes list of active supermatter crystals
 /datum/nano_module/supermatter_monitor/proc/refresh()
 	supermatters = list()
-	var/turf/T = get_turf(nano_host())
+	var/turf/T = get_turf(ui_host())
 	if(!T)
 		return
 	var/valid_z_levels = (GetConnectedZlevels(T.z) & GLOB.maps_data.station_levels)
