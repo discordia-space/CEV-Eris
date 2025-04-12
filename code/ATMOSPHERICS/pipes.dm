@@ -72,8 +72,6 @@
 	return QDEL_HINT_QUEUE
 
 /obj/machinery/atmospherics/pipe/attackby(obj/item/I, mob/user)
-	if (istype(src, /obj/machinery/atmospherics/tank))
-		return ..()
 	if (istype(src, /obj/machinery/atmospherics/pipe/vent))
 		return ..()
 
@@ -114,25 +112,7 @@
 	pipe_color = new_color
 	update_icon()
 
-/*
-/obj/machinery/atmospherics/pipe/add_underlay(var/obj/machinery/atmospherics/node, var/direction)
-	if(istype(src, /obj/machinery/atmospherics/tank))	//todo: move tanks to unary devices
-		return ..()
-
-	if(node)
-		var/temp_dir = get_dir(src, node)
-		underlays += icon_manager.get_atmos_icon("pipe_underlay_intact", temp_dir, color_cache_name(node))
-		return temp_dir
-	else if(direction)
-		underlays += icon_manager.get_atmos_icon("pipe_underlay_exposed", direction, pipe_color)
-	else
-		return null
-*/
-
 /obj/machinery/atmospherics/pipe/color_cache_name(var/obj/machinery/atmospherics/node)
-	if(istype(src, /obj/machinery/atmospherics/tank))
-		return ..()
-
 	if(istype(node, /obj/machinery/atmospherics/pipe/manifold) || istype(node, /obj/machinery/atmospherics/pipe/manifold4w))
 		if(pipe_color == node.pipe_color)
 			return node.pipe_color
