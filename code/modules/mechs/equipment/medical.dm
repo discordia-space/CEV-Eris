@@ -57,7 +57,7 @@
 	use_power = NO_POWER_USE
 	spawn_blacklisted = TRUE
 
-/obj/machinery/sleeper/mounted/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.mech_state)
+/obj/machinery/sleeper/mounted/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/ui_state/state = GLOB.mech_state)
 	. = ..()
 
 /obj/machinery/sleeper/mounted/nano_host()

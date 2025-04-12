@@ -153,7 +153,7 @@
 		return TOPIC_REFRESH
 
 
-/obj/machinery/dna/moeballs_printer/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
+/obj/machinery/dna/moeballs_printer/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/ui_state/state = GLOB.default_state)
 	var/list/data = nano_ui_data()
 
 	data["log"] = action_log

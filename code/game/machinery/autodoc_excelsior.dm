@@ -187,7 +187,7 @@
 		autodoc_processor.stop()
 		update_icon()
 
-/obj/machinery/excelsior_autodoc/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FORCE_OPEN, datum/nano_topic_state/state = GLOB.default_state)
+/obj/machinery/excelsior_autodoc/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FORCE_OPEN, datum/ui_state/state = GLOB.default_state)
 	autodoc_processor.nano_ui_interact(user, ui_key, ui, force_open, state)
 
 /obj/machinery/excelsior_autodoc/Topic(href, href_list)

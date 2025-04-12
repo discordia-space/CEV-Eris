@@ -24,7 +24,7 @@
 	nano_ui_interact(user)
 
 
-/obj/item/electronics/airlock/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, datum/nano_topic_state/state = GLOB.hands_state)
+/obj/item/electronics/airlock/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, datum/ui_state/state = GLOB.hands_state)
 	var/list/data = nano_ui_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)

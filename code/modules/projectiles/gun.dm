@@ -958,7 +958,7 @@
 
 	return data
 
-/obj/item/gun/Topic(href, href_list, datum/nano_topic_state/state)
+/obj/item/gun/Topic(href, href_list, datum/ui_state/state)
 	if(..(href, href_list, state))
 		return 1
 

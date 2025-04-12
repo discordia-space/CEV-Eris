@@ -27,7 +27,7 @@
 	SSnano.close_uis(src)
 	. = ..()
 
-/obj/Topic(href, href_list, var/datum/nano_topic_state/state = GLOB.default_state)
+/obj/Topic(href, href_list, var/datum/ui_state/state = GLOB.default_state)
 	if(..())
 		return 1
 
@@ -40,10 +40,10 @@
 	CouldNotUseTopic(usr)
 	return 1
 
-/obj/proc/OnTopic(mob/user, href_list, datum/nano_topic_state/state)
+/obj/proc/OnTopic(mob/user, href_list, datum/ui_state/state)
 	return TOPIC_NOACTION
 
-/obj/CanUseTopic(mob/user, datum/nano_topic_state/state)
+/obj/CanUseTopic(mob/user, datum/ui_state/state)
 	if(user.CanUseObjTopic(src))
 		return ..()
 	return UI_CLOSE

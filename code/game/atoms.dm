@@ -858,6 +858,14 @@ its easier to just keep the beam vertical.
 		var/mouseparams = list2params(paramslist)
 		usr_client.Click(src, loc, null, mouseparams)
 
+/atom/proc/contains(atom/location)
+	if(!location)
+		return FALSE
+	if(location == src)
+		return TRUE
+
+	return contains(location.loc)
+
 // Called after we wrench/unwrench this object
 /obj/proc/wrenched_change()
 	return

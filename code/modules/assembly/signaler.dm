@@ -207,7 +207,7 @@
 	radio_connection = SSradio.add_object(src, BLAST_DOOR_FREQ, RADIO_BLASTDOORS)
 
 // No nanoUI for u
-/obj/item/device/assembly/signaler/door_controller/nano_ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nano_topic_state/state)
+/obj/item/device/assembly/signaler/door_controller/nano_ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/ui_state/state)
 	return FALSE
 
 // No TGui for u

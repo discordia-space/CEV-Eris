@@ -51,9 +51,6 @@
 	if(alarm_monitor)
 		alarm_monitor.nano_ui_interact(user)
 
-/obj/machinery/computer/station_alert/nano_container()
-	return alarm_monitor
-
 /obj/machinery/computer/station_alert/update_icon()
 	icon_screen = initial(icon_screen)
 	if(!(stat & (BROKEN|NOPOWER)))

@@ -1,7 +1,0 @@
-/*
-	This state only checks if user is conscious.
-*/
-GLOBAL_DATUM_INIT(conscious_state, /datum/nano_topic_state/conscious_state, new)
-
-/datum/nano_topic_state/conscious_state/can_use_topic(var/src_object, var/mob/user)
-	return user.stat == CONSCIOUS ? UI_INTERACTIVE : UI_CLOSE

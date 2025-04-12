@@ -80,7 +80,7 @@
 		return UI_CLOSE
 	return ..()
 
-/obj/item/card/id/syndicate/Topic(href, href_list, var/datum/nano_topic_state/state)
+/obj/item/card/id/syndicate/Topic(href, href_list, var/datum/ui_state/state)
 	if(..())
 		return 1
 

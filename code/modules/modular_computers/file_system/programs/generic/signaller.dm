@@ -43,7 +43,7 @@
 	return data
 
 
-/datum/computer_file/program/signaller/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
+/datum/computer_file/program/signaller/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS, datum/ui_state/state = GLOB.default_state)
 	var/list/data = nano_ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)

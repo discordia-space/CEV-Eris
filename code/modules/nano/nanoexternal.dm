@@ -53,7 +53,7 @@
   *
   * @return nothing
   */
-/datum/proc/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nanoui/master_ui = null, datum/nano_topic_state/state = GLOB.default_state)
+/datum/proc/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nanoui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	return
 
  /**

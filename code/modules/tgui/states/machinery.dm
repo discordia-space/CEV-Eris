@@ -4,6 +4,6 @@ GLOBAL_DATUM_INIT(machinery_state, /datum/ui_state/machinery, new)
 	ASSERT(istype(src_object))
 
 	if(src_object.stat & (BROKEN | NOPOWER))
-		return FALSE
+		return UI_DISABLED
 
 	return user.default_can_use_topic(src_object)

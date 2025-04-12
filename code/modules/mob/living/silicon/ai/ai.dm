@@ -793,3 +793,11 @@ var/list/ai_verbs_default = list(
 		bound_drone.death(TRUE)
 	else
 		to_chat(src, SPAN_WARNING("You have no active AI-bound maintenance drone."))
+
+/// Checks whether AI can see via cameranet if it's loc is /turf, via view distance otherwise.
+/mob/living/silicon/ai/proc/can_see(atom/source)
+	if (is_in_chassis())
+		return cameranet?.is_turf_visible(get_turf(source))
+
+	var/list/clientviewlist = getviewsize(client.view)
+	return get_dist(src, source) <= min(clientviewlist[1], clientviewlist[2])

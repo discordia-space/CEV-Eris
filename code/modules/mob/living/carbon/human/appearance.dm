@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/change_appearance(var/flags = APPEARANCE_ALL_HAIR, var/location = src, var/mob/user = src, var/check_species_whitelist = 1, var/list/species_whitelist = list(), var/list/species_blacklist = list(), var/datum/nano_topic_state/state =GLOB.default_state)
+/mob/living/carbon/human/proc/change_appearance(var/flags = APPEARANCE_ALL_HAIR, var/location = src, var/mob/user = src, var/check_species_whitelist = 1, var/list/species_whitelist = list(), var/list/species_blacklist = list(), var/datum/ui_state/state =GLOB.default_state)
 	var/datum/nano_module/appearance_changer/AC = new(location, src, check_species_whitelist, species_whitelist, species_blacklist)
 	AC.flags = flags
 	AC.nano_ui_interact(user, state = state)
@@ -185,7 +185,7 @@
 	var/gender = pick(MALE, FEMALE)
 	var/list/tts_voices = new()
 	if(gender == FEMALE) //defaults are MALE so check for FEMALE first, use MALE as default case
-		change_gender(gender) 
+		change_gender(gender)
 		tts_voices += TTS_SEED_DEFAULT_FEMALE //Failsafe voice
 	else
 		change_facial_hair(pick(GLOB.facial_hair_styles_list)) //pick a random facial hair

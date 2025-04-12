@@ -22,7 +22,7 @@ GLOBAL_DATUM_INIT(default_state, /datum/ui_state/default, new)
 	. = shared_ui_interaction(src_object)
 	if(. > UI_CLOSE && loc) //must not be in nullspace.
 		. = min(., shared_living_ui_distance(src_object)) // Check the distance...
-	if(. == UI_INTERACTIVE && !ISADVANCEDTOOLUSER(src)) // unhandy living mobs can only look, not touch.
+	if(. == UI_INTERACTIVE && !IsAdvancedToolUser()) // unhandy living mobs can only look, not touch.
 		return UI_UPDATE
 
 /mob/living/silicon/robot/default_can_use_topic(src_object)
@@ -32,7 +32,7 @@ GLOBAL_DATUM_INIT(default_state, /datum/ui_state/default, new)
 
 	// Robots can interact with anything they can see.
 	var/list/clientviewlist = getviewsize(client.view)
-	if(get_dist(src, src_object) <= min(clientviewlist[1],clientviewlist[2]))
+	if(get_dist(src, src_object) <= min(clientviewlist[1], clientviewlist[2]))
 		return UI_INTERACTIVE
 	return UI_DISABLED // Otherwise they can keep the UI open.
 
@@ -41,9 +41,14 @@ GLOBAL_DATUM_INIT(default_state, /datum/ui_state/default, new)
 	if(. < UI_INTERACTIVE)
 		return
 
-	// The AI can interact with anything it can see nearby, or with cameras while wireless control is enabled.
+	// Prevents the AI from interacting with admin level UIs, unless it's on the same level as the object it's interacting with.
+	var/turf/T = get_turf(src_object)
+	if(!T || !(z == T.z || isPlayerLevel(T.z)))
+		return UI_CLOSE
+
 	if(!control_disabled && can_see(src_object))
 		return UI_INTERACTIVE
+
 	return UI_CLOSE
 
 /mob/living/silicon/pai/default_can_use_topic(src_object)

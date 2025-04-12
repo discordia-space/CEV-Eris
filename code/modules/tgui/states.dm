@@ -24,7 +24,7 @@
 
 	if(isobserver(user))
 		// If they turn on ghost AI control, admins can always interact.
-		if(isghost(user) && is_admin(user))
+		if(user.can_admin_interact())
 			. = max(., UI_INTERACTIVE)
 
 		// Regular ghosts can always at least view if in range.
@@ -36,6 +36,16 @@
 	// Check if the state allows interaction
 	var/result = state.can_use_topic(src_object, user)
 	. = max(., result)
+
+/**
+ * public
+ *
+ * DEPRECATED! Carries extra href data to ve used in alarm.dm.
+ *
+ * return list of href data.
+ */
+/datum/ui_state/proc/href_list(mob/user)
+	return list()
 
 /**
  * private
@@ -116,6 +126,6 @@
 	return UI_CLOSE
 
 /mob/living/carbon/human/shared_living_ui_distance(atom/movable/src_object, viewcheck = TRUE, allow_tk = TRUE)
-	if(allow_tk && get_dist(src, src_object) > tk_maxrange)
+	if(allow_tk && get_active_mutation(src, MUTATION_TELEKINESIS) && get_dist(src, src_object) <= tk_maxrange)
 		return UI_INTERACTIVE
 	return ..()
