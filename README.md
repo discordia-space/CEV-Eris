@@ -6,4 +6,6 @@
 
 ## CONTRIBUTING
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md)
+For contribution guidelines refer to [CONTRIBUTING.md](CONTRIBUTING.md).
+
+For profiling instructions see [PROFILING.md](PROFILING.md).
