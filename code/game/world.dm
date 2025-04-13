@@ -54,6 +54,21 @@ var/game_id
 
 #define RECOMMENDED_VERSION 512
 
+/world/proc/init_prof()
+#ifdef PROFILER
+	var/lib
+	if (world.system_type == MS_WINDOWS)
+		lib = "prof.dll"
+	else
+		CRASH("[UNIX] not supported")
+
+	var/init = call_ext(lib, "init")()
+	if (init != "0")
+		CRASH("[lib] init error: [init]")
+#else
+	return
+#endif
+
 /**
  * World creation
  *
@@ -80,6 +95,8 @@ var/game_id
  * All atoms in both compiled and uncompiled maps are initialized()
  */
 /world/New()
+	init_prof()
+
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
