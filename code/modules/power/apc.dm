@@ -751,7 +751,7 @@
 		var/mob/living/carbon/human/H = user
 
 		if(H.species.can_shred(H))
-			user.visible_message("\red [user.name] slashes at the [name]!", "\blue You slash at the [name]!")
+			user.visible_message(span_danger("[user.name] slashes at the [name]!"), span_danger("You slash at the [name]!"))
 			playsound(loc, 'sound/weapons/slash.ogg', 100, 1)
 
 			var/allcut = wires.IsAllCut()
@@ -759,12 +759,12 @@
 			if(beenhit >= pick(3, 4) && wiresexposed != 1)
 				wiresexposed = 1
 				update_icon()
-				visible_message("\red The [name]'s cover flies open, exposing the wires!")
+				visible_message(span_red("The [name]'s cover flies open, exposing the wires!"))
 
 			else if(wiresexposed == 1 && allcut == 0)
 				wires.CutAll()
 				update_icon()
-				visible_message("\red The [name]'s wires are shredded!")
+				visible_message(span_red("The [name]'s wires are shredded!"))
 			else
 				beenhit += 1
 			return

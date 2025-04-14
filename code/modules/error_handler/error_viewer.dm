@@ -8,10 +8,10 @@
 //   right here:
 
 #ifdef DEBUG
-var/global/datum/ErrorViewer/ErrorCache/error_cache = new()
+GLOBAL_DATUM_INIT(error_cache, /datum/ErrorViewer/ErrorCache, new)
 #else
 // If debugging is disabled, there's nothing useful to log, so don't bother.
-var/global/datum/ErrorViewer/ErrorCache/error_cache = null
+GLOBAL_DATUM(error_cache, /datum/ErrorViewer/ErrorCache)
 #endif
 
 // - ErrorSource datums exist for each line (of code) that generates an error,
@@ -71,7 +71,7 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 		back_to_param = ";viewruntime_backto=\ref[back_to]"
 	if(linear)
 		back_to_param += ";viewruntime_linear=1"
-	return "<A href='byond://?_src_=holder;viewruntime=\ref[src][back_to_param]'>[html_encode(linktext)]</A>"
+	return "<A href='byond://?_src_=holder;[HrefToken()];viewruntime=\ref[src][back_to_param]'>[html_encode(linktext)]</A>"
 
 /datum/ErrorViewer/ErrorCache
 	var/list/errors = list()
@@ -80,7 +80,7 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 
 /datum/ErrorViewer/ErrorCache/showTo(var/user, var/datum/ErrorViewer/back_to, var/linear)
 	var/html = buildHeader(null, linear, refreshable=1)
-	html += "[total_runtimes] runtimes, [total_runtimes_skipped] skipped<br><br>"
+	html += "[GLOB.total_runtimes] runtimes, [GLOB.total_runtimes_skipped] skipped<br><br>"
 	if(!linear)
 		html += "organized | [makeLink("linear", null, 1)]<hr>"
 		var/datum/ErrorViewer/ErrorSource/error_source
@@ -129,7 +129,7 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 
 /datum/ErrorViewer/ErrorSource/showTo(var/user, var/datum/ErrorViewer/back_to, var/linear)
 	if(!istype(back_to))
-		back_to = error_cache
+		back_to = GLOB.error_cache
 	var/html = buildHeader(back_to, refreshable=1)
 	for(var/datum/ErrorViewer/ErrorEntry/error_entry in errors)
 		html += "<p class='runtime_list'>[error_entry.makeLink(null, src)]<br></p>"
@@ -174,20 +174,20 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 	var/html = buildHeader(back_to, linear)
 	html += "<div class='runtime'>[html_encode(name)]<br>[desc]</div>"
 	if(srcRef)
-		html += "<br>src: <a href='byond://?_src_=vars;Vars=[srcRef]'>VV</a>"
+		html += "<br>src: <a href='byond://?_src_=vars;[HrefToken()];Vars=[srcRef]'>VV</a>"
 		if(ispath(srcType, /mob))
-			html += " <a href='byond://?_src_=holder;adminplayeropts=[srcRef]'>PP</a>"
-			html += " <a href='byond://?_src_=holder;adminplayerobservefollow=[srcRef]'>Follow</a>"
+			html += " [ADMIN_PP(srcRef)]"
+			html += " [ADMIN_FLW(srcRef)]"
 		if(istype(srcLoc))
-			html += "<br>src.loc: <a href='byond://?_src_=vars;Vars=\ref[srcLoc]'>VV</a>"
-			html += " <a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[srcLoc.x];Y=[srcLoc.y];Z=[srcLoc.z]'>JMP</a>"
+			html += "<br>src.loc: [ADMIN_VV(srcLoc)]"
+			html += " [ADMIN_JMP(srcLoc)]"
 	if(usrRef)
-		html += "<br>usr: <a href='byond://?_src_=vars;Vars=[usrRef]'>VV</a>"
-		html += " <a href='byond://?_src_=holder;adminplayeropts=[usrRef]'>PP</a>"
-		html += " <a href='byond://?_src_=holder;adminplayerobservefollow=[usrRef]'>Follow</a>"
+		html += "<br>usr: [ADMIN_VV(usrRef)]"
+		html += " [ADMIN_PP(usrRef)]"
+		html += " [ADMIN_FLW(usrRef)]"
 		if(istype(usrLoc))
-			html += "<br>usr.loc: <a href='byond://?_src_=vars;Vars=\ref[usrLoc]'>VV</a>"
-			html += " <a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[usrLoc.x];Y=[usrLoc.y];Z=[usrLoc.z]'>JMP</a>"
+			html += "<br>usr.loc: <a href='byond://?_src_=vars;[HrefToken()];Vars=\ref[usrLoc]'>VV</a>"
+			html += " [ADMIN_JMP(usrLoc)]"
 	browseTo(user, html)
 
 /datum/ErrorViewer/ErrorEntry/makeLink(var/linktext, var/datum/ErrorViewer/back_to, var/linear)

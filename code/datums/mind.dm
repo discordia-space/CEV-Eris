@@ -321,7 +321,7 @@
 	brigged_since =   -1
 
 //Antagonist role check
-/mob/living/proc/check_special_role(role)
+/mob/proc/check_special_role(role)
 	return role && mind && player_is_antag_id(mind, role)
 
 //Initialisation procs

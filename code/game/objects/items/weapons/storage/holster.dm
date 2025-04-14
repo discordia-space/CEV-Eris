@@ -332,9 +332,9 @@
 
 	var/holster_handled = FALSE
 	for(var/obj/item/storage/pouch/holster/holster in holster_priority)
-		if(H.get_active_hand())
+		if(H.get_active_held_item())
 			if(holster.contents.len < holster.storage_slots)//putting items in holsters
-				holster.attackby(H.get_active_hand(), H)
+				holster.attackby(H.get_active_held_item(), H)
 				holster_handled = TRUE
 				break
 		else
@@ -344,7 +344,7 @@
 				break
 
 	if(!holster_handled)
-		to_chat(H, span_notice(!H.get_active_hand() ? "You don't have any occupied pouch holsters." : "All your pouch holsters are occupied."))
+		to_chat(H, span_notice(!H.get_active_held_item() ? "You don't have any occupied pouch holsters." : "All your pouch holsters are occupied."))
 		return FALSE
 	else
 		return TRUE

@@ -60,7 +60,7 @@
 	data += "<br>Debug mode: <b><a href='byond://?src=\ref[src];toggle_debug=1'>\[[debug_mode?"ON":"OFF"]\]</a></b>"
 	data += "<br>One role per player: <b><a href='byond://?src=\ref[src];toggle_orpp=1'>\[[one_role_per_player?"YES":"NO"]\]</a></b>"
 	data += "<br>Chaos Level: <a href='byond://?src=\ref[src];edit_chaos=1'>\[[GLOB.chaos_level]\]</a>"
-	data += "</td><td style=\"padding-left: 40px\">"
+	data += "</td><td style='padding-left: 40px'>"
 
 	data += "Heads: [heads] "
 	if(debug_mode)
@@ -82,7 +82,7 @@
 	if(debug_mode)
 		data += "<a href='byond://?src=\ref[src];edit_crew=1'>\[EDIT\]</a>"
 
-	data += "</td><td style=\"padding-left: 40px\">"
+	data += "</td><td style='padding-left: 40px'>"
 
 	data += "<b>Event Pool Points:</b>"
 	data += "<br>Mundane: [round(points[EVENT_LEVEL_MUNDANE], 0.1)] / [POOL_THRESHOLD_MUNDANE]   <a href='byond://?src=\ref[src];modify_points=[EVENT_LEVEL_MUNDANE]'>\[ADD\]</a>"
@@ -107,7 +107,7 @@
 			data += "<a href='byond://?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
 	data += "<br><a href='byond://?src=\ref[src];delay_round_end=1'>[SSticker.delay_end ? "End Round Normally" : "Delay Round End"]</a>"
 
-	data += "<hr><b>Current antags:</b><div style=\"border:1px solid black;\"><ul>"
+	data += "<hr><b>Current antags:</b><div style='border:1px solid black;'><ul>"
 
 	if (GLOB.current_antags.len)
 		for(var/datum/antagonist/A in GLOB.current_antags)
@@ -126,7 +126,7 @@
 
 	data += "</ul></div><hr>"
 	data += "<br>Calculate weight: <b><a href='byond://?src=\ref[src];toggle_weight_calc=1'>[calculate_weights?"\[AUTO\]":"\[MANUAL\]"]</a></b>"
-	data += "<br><b>Events: <a href='byond://?src=\ref[src];update_weights=1'>\[UPDATE WEIGHTS\]</a></b><div style=\"border:1px solid black;\">"
+	data += "<br><b>Events: <a href='byond://?src=\ref[src];update_weights=1'>\[UPDATE WEIGHTS\]</a></b><div style='border:1px solid black;'>"
 
 
 	//This complex block will print out all the events with various info
@@ -210,15 +210,15 @@
 			if("1")
 				if (evacuation_controller.call_evacuation(usr, TRUE))
 					log_admin("[key_name(usr)] started the evacuation")
-					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
+					message_admins(span_blue("[key_name_admin(usr)] started the evacuation"), 1)
 			if("2")
 				if (evacuation_controller.call_evacuation(usr, TRUE))
 					log_admin("[key_name(usr)] started the evacuation")
-					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
+					message_admins(span_blue("[key_name_admin(usr)] started the evacuation"), 1)
 
 				else if (evacuation_controller.cancel_evacuation())
 					log_admin("[key_name(usr)] cancelled the evacuation")
-					message_admins("\blue [key_name_admin(usr)] cancelled the evacuation", 1)
+					message_admins(span_blue("[key_name_admin(usr)] cancelled the evacuation"), 1)
 
 	if(href_list["delay_round_end"])
 		if(!check_rights(R_SERVER))
@@ -226,7 +226,7 @@
 		if (SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_STARTUP)
 			SSticker.delay_end = !SSticker.delay_end
 			log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-			message_admins("\blue [key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+			message_admins(span_blue("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"]."), 1)
 			return
 
 	topic_extra(href,href_list)

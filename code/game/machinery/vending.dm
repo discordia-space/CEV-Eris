@@ -239,6 +239,7 @@
 	spawn_money(buying_price,loc,usr)
 
 	to_chat(user, span_notice("[src] accepts the sale of [W] and dispenses [buying_price] credits."))
+	log_econ("[src] accepted sale of [W] from [user] and dispensed [buying_price] credits.")
 
 /**
  *  Build src.produdct_records from the products lists
@@ -302,6 +303,7 @@
 /obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
 	if(machine_vendor_account || vendor_department || earnings_account)
 		to_chat(user, "You override the ownership protocols on \the [src] and unlock it. You can now register it in your name.")
+		log_econ("[user] has overridden the ownership protocols on [src]")
 		machine_vendor_account = null
 		vendor_department = null
 		earnings_account = null
@@ -309,6 +311,7 @@
 	if(!emagged)
 		emagged = 1
 		to_chat(user, "You short out the product lock on \the [src]")
+		log_econ("[user] has overridden the ownership protocols on [src] via emag")
 		return 1
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user)
@@ -336,6 +339,7 @@
 					return
 				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					visible_message(span_warning("\The [src] has been dismantled by [user]!"),"You hear welding.")
+					log_econ("[src] has been dismantled by [user]")
 					new /obj/item/stack/material/steel(loc, 8)
 					for(var/datum/data/vending_product/R in product_records)
 						for(var/obj/O in R.instances)
@@ -367,10 +371,12 @@
 				var/obj/item/spacecash/ewallet/C = I
 				paid = pay_with_ewallet(C)
 				handled = TRUE
+				log_econ("[paid] credits were inserted into [src] by [user] to buy [currently_vending].")
 				playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
 			else if(istype(I, /obj/item/spacecash/bundle))
 				var/obj/item/spacecash/bundle/C = I
 				paid = pay_with_cash(C)
+				log_econ("[paid] cashmoneys were inserted into [src] by [user] to buy [currently_vending].")
 				handled = TRUE
 
 		if(paid)
@@ -397,8 +403,10 @@
 				if(userjob.department == vendor_department)
 					locked = !locked
 					to_chat(user, span_notice("\The [src] has been [locked ? "" : "un"]locked."))
+					log_econ("[src] was [locked ? "" : "un"]locked by [user] (samedept).")
 				else
 					to_chat(user, span_notice("You are not authorized to manage \the [src]."))
+					log_econ("[user] failed to [locked ? "" : "un"]lock \the [src].")
 				return
 
 			// Enter PIN, so you can't loot a vending machine with only the owner's ID card (as long as they increased the sec level)
@@ -415,6 +423,7 @@
 			locked = !locked
 			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 60, 1)
 			to_chat(user, span_notice("You [locked ? "" : "un"]lock \the [src]."))
+			log_econ("[src] was [locked ? "" : "un"]locked by [user].")
 			visible_message(span_info("\The [usr] swipes \the [ID] through \the [src], [locked ? "" : "un"]locking it."))
 			return
 
@@ -431,6 +440,7 @@
 		coin = I
 		categories |= CAT_COIN
 		to_chat(user, span_notice("You insert \the [I] into \the [src]."))
+		log_econ("[user] inserted [I] into \the [src].")
 		return
 	else if(istype(I, /obj/item/device/spy_bug))
 		user.drop_item()
@@ -459,10 +469,11 @@
 	if(currently_vending.price > cashmoney.worth)
 		// This is not a status display message, since it's something the character
 		// themselves is meant to see BEFORE putting the money in
-		to_chat(usr, "\icon[cashmoney] [span_warning("That is not enough money.")]")
+		to_chat(usr, "[icon2html(cashmoney, usr)] [span_warning("That is not enough money.")]")
 		return 0
 
 	visible_message(span_info("\The [usr] inserts some cash into \the [src]."))
+
 	cashmoney.worth -= currently_vending.price
 
 	if(cashmoney.worth <= 0)
@@ -554,7 +565,7 @@
 			if(S.amount)
 				should_qdel = FALSE		// Don't qdel a stack with remaining charges
 		else
-			to_chat(user, span_warning("\icon[I] That is not enough money."))
+			to_chat(user, span_warning("[icon2html(I, user)] That is not enough money."))
 			return FALSE
 	else
 		return FALSE
@@ -797,6 +808,8 @@
 			speak(vend_reply)
 			last_reply = world.time
 
+	log_econ("[user] has bought [R] from [src]")
+
 	use_power(vend_power_usage)	//actuators and stuff
 	if(icon_vend) //Show the vending animation if needed
 		flick(icon_vend,src)
@@ -827,7 +840,7 @@
 		else if(custom_vendor && product_records.len)
 			var/datum/data/vending_product/advertised = pick(product_records)
 			if(advertised)
-				var/advertisement = "[pick("Come get","Come buy","Buy","Sale on","We have")] \an [advertised.product_name], [pick("for only","only","priced at")] [advertised.price] credits![pick(" What a deal!"," Can you believe it?","")]"
+				var/advertisement = "[pick("Come get","Come buy","Buy","Sale on","We have")] \an [advertised.product_name], [pick("for only","only","priced at", "just")] [advertised.price] credits![pick(" What a deal!"," Can you believe it?","")]"
 				speak(advertisement)
 				last_slogan = world.time
 
@@ -843,7 +856,7 @@
 	if(!message)
 		return
 
-	for(var/mob/O in hearers(src, null))
+	for(var/mob/O in hearers(get_turf(src)))
 		O.show_message("<span class='game say'>[span_name("\The [src]")] beeps, \"[message]\"</span>",2)
 	return
 
@@ -1517,7 +1530,7 @@
 		else if(is_neotheology_disciple(H))
 			bingo = TRUE
 
-		else if(istype(H.get_active_hand(), /obj/item/clothing/accessory/cross))
+		else if(istype(H.get_active_held_item(), /obj/item/clothing/accessory/cross))
 			bingo = TRUE
 
 		else if(istype(H.wear_mask, /obj/item/clothing/accessory/cross))

@@ -69,7 +69,7 @@
 		{{:helper.link(data.id_email_password, 'pencil', {'action' : 'edit', 'epswd' : 1})}}
 	  </div>
 	</div>
-	
+
 
 	<div class='item'>
 	  <div class='itemLabel'>
@@ -86,7 +86,7 @@
 		{{:helper.link(data.assignments ? "Hide assignments" : "Show assignments", 'gear', {'action' : 'togglea'})}}
 	<div class='item'>
 	  <span id='allvalue.jobsslot'>
-		
+
 	  </span>
 	</div>
 	<div class='item'>
@@ -109,7 +109,7 @@
 				{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
 			  {{/for}}
 			</td>
-		  </tr>  
+		  </tr>
 		  <tr>
 			<th style="color: '#FFA500';">Engineering</th>
 			<td>
@@ -199,7 +199,7 @@
 	  </div>
 	{{else}}
 	  <div class='item'>
-		<h2>{{:data.station_name}}</h2>
+		<h2>{{:data.station_name()}}</h2>
 	  </div>
 
 	  <div class='item' style='width: 100%'>

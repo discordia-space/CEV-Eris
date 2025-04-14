@@ -52,31 +52,35 @@
 /mob/GenerateTag()
 	tag = "mob_[next_mob_id++]"
 
-/mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlighting = FALSE)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 	if(!client)
 		return
 
-	if(type)
-		if(type & 1 && (sdisabilities & BLIND || blinded || paralysis)) //Vision related
-			if(!alt)
-				return
-			else
-				msg = alt
-				type = alt_type
-		if(type & 2 && (sdisabilities & DEAF || ear_deaf)) //Hearing related
-			if(!alt)
-				return
-			else
-				msg = alt
-				type = alt_type
-				if((type & 1 && sdisabilities & BLIND))
-					return
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
-	// Added voice muffling for Issue 41.
-	if(stat == UNCONSCIOUS || sleeping > 0)
-		to_chat(src, "<I>... You can almost hear someone talking ...</I>")
-	else
-		to_chat(src, msg)
+	if(type)
+		if(type & MSG_VISUAL && is_blind())//Vision related
+			if(!alt_msg)
+				return
+			else
+				msg = alt_msg
+				type = alt_type
+
+		if(type & MSG_AUDIBLE && ear_deaf)//Hearing related
+			if(!alt_msg)
+				return
+			else
+				msg = alt_msg
+				type = alt_type
+				if(type & MSG_VISUAL && is_blind())
+					return
+	// voice muffling
+	if(stat == UNCONSCIOUS || stat == HARDCRIT)
+		if(type & MSG_AUDIBLE) //audio
+			to_chat(src, "<I>... You can almost hear something ...</I>")
+		return
+	to_chat(src, msg, avoid_highlighting = avoid_highlighting)
+
 
 // Show a message to all mobs and objects in sight of this one
 // This would be for visible actions by the src mob
@@ -364,7 +368,7 @@
 	if(incapacitated())
 		return
 
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 	if (W)
 		W.attack_self(src)
 
@@ -376,7 +380,7 @@
 	if(incapacitated())
 		return
 
-	var/obj/item/item = get_active_hand()
+	var/obj/item/item = get_active_held_item()
 	if(!item)
 		return
 
@@ -442,7 +446,7 @@
 	if(msg != null)
 		flavor_text = msg
 
-/mob/proc/print_flavor_text()
+/mob/proc/get_flavor_text()
 	if (flavor_text && flavor_text != "")
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
@@ -466,7 +470,7 @@
 	if(client.holder && (client.holder.rights & R_ADMIN))
 		is_admin = 1
 	else if(stat != DEAD || isnewplayer(src))
-		to_chat(usr, "\blue You must be observing to use this!")
+		to_chat(usr, span_blue("You must be observing to use this!"))
 		return
 
 	if(is_admin && stat == DEAD)
@@ -566,7 +570,7 @@
 /mob/proc/pull_damage()
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.health - H.halloss <= HEALTH_THRESHOLD_SOFTCRIT)
+		if(H.health - H.halloss <= CONFIG_GET(number/health_threshold_softcrit))
 			for(var/name in H.organs_by_name)
 				var/obj/item/organ/external/e = H.organs_by_name[name]
 				if(e && H.lying)
@@ -589,6 +593,7 @@
 	set category = "IC"
 
 	if(pulling)
+		animate_interact(pulling, INTERACT_UNPULL)
 		pulling.pulledby = null
 		pulling = null
 		if(HUDneed.Find("pull"))
@@ -654,13 +659,12 @@
 	src.pulling = AM
 	AM.pulledby = src
 
-	/*if(pullin)
-		pullin.icon_state = "pull1"*/
+	animate_interact(AM, INTERACT_PULL)
 
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.pull_damage())
-			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
+			to_chat(src, span_boldwarning("Pulling \the [H] in their current condition would probably be a bad idea."))
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -1272,6 +1276,12 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		return
 	var/obj/screen/zone_sel/selector = mob.HUDneed["damage zone"]
 	selector.set_selected_zone(next_list_item(mob.targeted_organ,zones))
+	logger.Log(
+		LOG_CATEGORY_TARGET_ZONE_SWITCH,
+		"[key_name(src)] manually changed selected zone",
+		data = zones
+	)
+
 /mob/proc/set_stat(var/new_stat)
 	. = stat != new_stat
 	stat = new_stat

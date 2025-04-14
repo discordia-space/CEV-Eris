@@ -111,6 +111,6 @@
 
 /datum/uplink_item/abstract/announcements/fake_serb/get_goods(var/obj/item/device/uplink/U, var/loc)
 	var/datum/shuttle/autodock/multi/antag/mercenary/merc = /datum/shuttle/autodock/multi/antag/mercenary
-	command_announcement.Announce(initial(merc.arrival_message), initial(merc.announcer) || "[boss_name]")
+	command_announcement.Announce(initial(merc.arrival_message), initial(merc.announcer) || "[GLOB.boss_name]")
 	qdel(merc)
 	return 1

@@ -103,7 +103,7 @@
 	var/list/data = ..()
 	data["name"] = recipe.name
 	data["id"] = recipe.type
-	data["icon"] = SSassets.transport.get_asset_url(sanitizeFileName(recipe.icon_image_file))
+	data["icon"] = SSassets.transport.get_asset_url(SANITIZE_FILENAME(recipe.icon_image_file))
 	data["product_is_reagent"] = 0
 	if(recipe.product_name)
 		data["product_name"] = recipe.product_name
@@ -133,7 +133,7 @@
 	data["name"] = recipe.name
 	data["id"] = recipe.type
 
-	var/url = SSassets.transport.get_asset_url(sanitizeFileName(recipe.icon_image_file))
+	var/url = SSassets.transport.get_asset_url(SANITIZE_FILENAME(recipe.icon_image_file))
 	#ifdef CWJ_DEBUG
 	log_debug("Retrieved [url] for [recipe.icon_image_file]")
 	#endif
@@ -197,12 +197,12 @@
 		var/icon/I = null
 		var/filename = null
 		if(our_recipe.product_type)
-			filename = sanitizeFileName("[our_recipe.product_type].png")
+			filename = SANITIZE_FILENAME("[our_recipe.product_type].png")
 			I = getFlatTypeIcon(our_recipe.product_type)
 		else if(our_recipe.reagent_id)
 			var/obj/item/reagent_containers/food/snacks/dollop/test_dollop = new(null, our_recipe.reagent_id, 1)
 
-			filename = sanitizeFileName("[test_dollop.type][test_dollop.color].png")
+			filename = SANITIZE_FILENAME("[test_dollop.type][test_dollop.color].png")
 			I = getFlatIcon(test_dollop)
 			//I.Blend(test_dollop.color) --might not be needed
 		if(I)

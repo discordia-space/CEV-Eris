@@ -1,5 +1,5 @@
-import { useBackend } from '../backend';
-import { Box, Button, Section, Stack } from '../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
 import { Window } from '../layouts';
 
 interface ProximitySensorData {

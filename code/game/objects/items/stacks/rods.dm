@@ -44,11 +44,11 @@
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 			var/obj/item/stack/material/steel/new_item = new (usr.loc)
 			new_item.add_to_stacks(usr)
-			for (var/mob/M in viewers(src))
+			for (var/mob/M in viewers(get_turf(src)))
 				M.show_message(span_notice("[src] is shaped into metal by [user.name] with the [I.name]."), 3, span_notice("You hear welding."), 2)
 			var/obj/item/stack/rods/R = src
 			src = null
-			var/replace = (user.get_inactive_hand() == R)
+			var/replace = (user.get_inactive_held_item() == R)
 			R.use(2)
 			if(!R && replace)
 				user.put_in_hands(new_item)

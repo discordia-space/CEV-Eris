@@ -235,7 +235,7 @@
 
 		user.visible_message("\The [user] begins attaching [I] to \the [src].", "You begin attaching [I] to \the [src]")
 		if(do_after(user, 20, src))
-			user.visible_message(span_notice("The [user] attach [I] to \the [src].", "\blue  You attach [I] to \the [src]."))
+			user.visible_message(span_notice("The [user] attach [I] to \the [src].", span_blue(" You attach [I] to \the [src].")))
 
 			detonator = I
 			user.unEquip(I,src)

@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(atoms)
 	name = "Atoms"
 	init_order = INIT_ORDER_ATOMS
 	flags = SS_NO_FIRE
+	init_time_threshold = 1 MINUTE
 
 	var/old_initialized
 

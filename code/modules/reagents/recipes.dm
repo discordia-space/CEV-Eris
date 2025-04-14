@@ -1,38 +1,4 @@
 
-//Chemical Reactions - Initialises all /datum/chemical_reaction into a list
-// It is filtered into multiple lists within a list.
-// For example:
-// chemical_reaction_list["plasma"] is a list of all reactions relating to plasma
-// Note that entries in the list are NOT duplicated. So if a reaction pertains to
-// more than one chemical it will still only appear in only one of the sublists.
-/proc/initialize_chemical_reactions()
-	var/paths = typesof(/datum/chemical_reaction) - /datum/chemical_reaction
-	GLOB.chemical_reactions_list = list()
-
-	for(var/path in paths)
-		var/datum/chemical_reaction/D = new path()
-		for(var/id in D.required_reagents)
-			if(!is_reagent_with_id_exist(id))
-				error("recipe [D.type] created incorectly,\[required_reagents\] reagent with id \"[id]\" does not exist.")
-		for(var/id in D.catalysts)
-			if(!is_reagent_with_id_exist(id))
-				error("recipe [D.type] created incorectly,\[catalysts\] reagent with id [id] does not exist.")
-		for(var/id in D.inhibitors)
-			if(!is_reagent_with_id_exist(id))
-				error("recipe [D.type] created incorectly,\[inhibitors\] reagent with id [id] does not exist.")
-		for(var/id in D.byproducts)
-			if(!is_reagent_with_id_exist(id))
-				error("recipe [D.type] created incorectly,\[byproducts\] reagent with id [id] does not exist.")
-		if(D.required_reagents && D.required_reagents.len)
-			if(D.result)
-				if(!GLOB.chemical_reactions_list_by_result[D.result])
-					GLOB.chemical_reactions_list_by_result[D.result] = list()
-				GLOB.chemical_reactions_list_by_result[D.result] += D
-			var/reagent_id = D.required_reagents[1]
-			if(!GLOB.chemical_reactions_list[reagent_id])
-				GLOB.chemical_reactions_list[reagent_id] = list()
-			GLOB.chemical_reactions_list[reagent_id] += D
-
 //helper that ensures the reaction rate holds after iterating
 //Ex. REACTION_RATE(0.3) means that 30% of the reagents will react each chemistry tick (~2 seconds by default).
 #define REACTION_RATE(rate) (1 - (1-rate)**(1/PROCESS_REACTION_ITER))
@@ -208,8 +174,9 @@
 	if(mix_message && container && !ismob(container))
 		var/turf/T = get_turf(container)
 		var/list/seen = viewers(4, T)
+		var/htmlicon = icon2html(container, seen)
 		for(var/mob/M in seen)
-			M.show_message(span_notice("\icon[container] [mix_message]"), 1)
+			M.show_message(span_notice("[htmlicon] [mix_message]"), 1)
 		playsound(T, reaction_sound, 80, 1)
 
 //obtains any special data that will be provided to the reaction products
@@ -799,7 +766,7 @@
 	var/obj/item/slime_extract/T = holder.my_atom
 	T.Uses--
 	if(T.Uses <= 0)
-		T.visible_message("\icon[T][span_notice("\The [T]'s power is consumed in the reaction.")]")
+		T.visible_message("[icon2html(T, viewers(T))][span_notice("\The [T]'s power is consumed in the reaction.")]")
 		T.name = "used slime extract"
 		T.desc = "This extract has been used up."
 

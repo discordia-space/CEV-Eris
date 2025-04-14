@@ -167,7 +167,7 @@
 						continue
 					if(M == user)
 						continue
-					for(var/mob/O in viewers(world.view, D))
+					for(var/mob/O in viewers(get_turf(D)))
 						O.show_message(span_warning("\The [M] was hit by the foam dart!"), 1)
 					new /obj/item/toy/ammo/crossbow(M.loc)
 					qdel(D)
@@ -189,7 +189,7 @@
 		return
 	else if (bullets == 0)
 		user.Weaken(5)
-		for(var/mob/O in viewers(world.view, user))
+		for(var/mob/O in viewers(get_turf(user)))
 			O.show_message(span_warning("\The [user] realized they were out of ammo and starting scrounging for some!"), 1)
 
 
@@ -200,7 +200,7 @@
 
 	if (src.bullets > 0 && M.lying)
 
-		for(var/mob/O in viewers(M, null))
+		for(var/mob/O in viewers(get_turf(M), null))
 			if(O.client)
 				O.show_message(span_danger("\The [user] casually lines up a shot with [M]'s head and pulls the trigger!"), 1, span_warning("You hear the sound of foam against skull"), 2)
 				O.show_message(span_warning("\The [M] was hit in the head by the foam dart!"), 1)
@@ -209,7 +209,7 @@
 		new /obj/item/toy/ammo/crossbow(M.loc)
 		src.bullets--
 	else if (M.lying && src.bullets == 0)
-		for(var/mob/O in viewers(M, null))
+		for(var/mob/O in viewers(get_turf(M), null))
 			if (O.client)
 				O.show_message(span_danger("\The [user] casually lines up a shot with [M]'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!"), 1, span_warning("You hear someone fall"), 2)
 		user.Weaken(5)
@@ -374,7 +374,7 @@
 
 /obj/item/toy/waterflower/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
-		extra_description += "\icon[src] [reagents.total_volume] units of water left!"
+		extra_description += "[icon2html(src, user)] [reagents.total_volume] units of water left!"
 	..(user, extra_description)
 
 /*

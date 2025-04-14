@@ -23,7 +23,7 @@
 		if(get_dist(user, src) < 2)
 			extra_description += span_notice("\nClick any cell below to remove them from \the [src]:")
 			for(var/obj/item/cell/battery in component_parts)
-				extra_description += span_notice("\n<a href='byond://?src=\ref[src];remove_cell_in_hand=\ref[battery];user=\ref[user]'>\icon[battery] [battery.name]</a>")
+				extra_description += span_notice("\n<a href='byond://?src=\ref[src];remove_cell_in_hand=\ref[battery];user=\ref[user]'>[icon2html(battery, user)] [battery.name]</a>")
 	else
 		extra_description += span_notice("\nThe hatch needs to be opened with a screwdriver to interact with the cells inside!")
 	extra_description += span_notice("\nIt currently has [capacitors_amount] capacitors installed.")

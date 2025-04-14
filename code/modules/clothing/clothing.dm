@@ -353,7 +353,7 @@ BLIND     // can't see anything
 			return
 
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
-		user.visible_message("\red [user] cuts the fingertips off of the [src].","\red You cut the fingertips off of the [src].")
+		user.visible_message(span_red("[user] cuts the fingertips off of the [src]."), span_red("You cut the fingertips off of the [src]."))
 
 		clipped = 1
 		name = "modified [name]"
@@ -674,7 +674,7 @@ BLIND     // can't see anything
 		switch(sensor_mode)
 			if(0)
 				for(var/mob/V in viewers(usr, 1))
-					V.show_message("\red [usr] disables [src.loc]'s remote sensing equipment.", 1)
+					V.show_message(span_red("[usr] disables [src.loc]'s remote sensing equipment."), 1)
 			if(1)
 				for(var/mob/V in viewers(usr, 1))
 					V.show_message("[usr] turns [src.loc]'s remote sensors to binary.", 1)

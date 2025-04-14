@@ -23,7 +23,12 @@ em						{font-style: normal;font-weight: bold;}
 .ooc .elevated			{color: #2e78d9;}
 .ooc .moderator			{color: #184880;}
 .ooc .developer			{color: #1b521f;}
-.ooc .admin				{color: #b82e00;}
+.ooc					{color: #b82e00;}
+.adminobserverooc		{color: #0099cc;	font-weight: bold;}
+.adminooc				{color: #700038;	font-weight: bold;}
+
+.adminsay				{color:	#FF4500;	font-weight: bold;}
+.admin					{color: #386aff;	font-weight: bold;}
 
 /* Admin: Private Messages */
 .pm  .howto				{color: #ff0000;	font-weight: bold;		font-size: 200%;}
@@ -65,7 +70,7 @@ em						{font-style: normal;font-weight: bold;}
 .alert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
 
-.emote					{font-style: italic;}
+.emote					{}
 
 /* Game Messages */
 

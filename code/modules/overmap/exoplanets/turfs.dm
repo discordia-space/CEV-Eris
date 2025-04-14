@@ -11,7 +11,7 @@
 	return FALSE
 */
 /turf/floor/exoplanet/New()
-	if(config.use_overmap)
+	if(CONFIG_GET(flag/use_overmap))
 		var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
 		if(istype(E))
 			if(E.atmosphere)

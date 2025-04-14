@@ -387,7 +387,7 @@
 		return 0
 	if(user)
 		visible_message(span_notice("\The [user] begins installing \the [I] into \the [src]."))
-		if(!user.canUnEquip(I) || !do_after(user, 30) || user.get_active_hand() != I)
+		if(!user.canUnEquip(I) || !do_after(user, 30) || user.get_active_held_item() != I)
 			return
 		if(!user.unEquip(I))
 			return

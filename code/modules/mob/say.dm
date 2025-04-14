@@ -6,7 +6,7 @@
 	set category = "IC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "\red Speech is currently admin-disabled.")
+		to_chat(usr, span_red("Speech is currently admin-disabled."))
 		return
 
 	if(ishuman(src))
@@ -30,7 +30,7 @@
 	set category = "IC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "\red Speech is currently admin-disabled.")
+		to_chat(usr, span_red("Speech is currently admin-disabled."))
 		return
 
 	if(ishuman(src))
@@ -57,7 +57,7 @@
 	if(say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
-	if(src.client && !src.client.holder && !config.dsay_allowed)
+	if(src.client && !src.client.holder && !GLOB.dsay_allowed)
 		to_chat(src, span_danger("Deadchat is globally muted."))
 		return
 
@@ -157,11 +157,11 @@
 	var/prefix = copytext(message, 1, 2)
 
 	if(length(message) >= 1 && prefix == get_prefix_key(/decl/prefix/audible_emote))
-		return all_languages["Noise"]
+		return GLOB.all_languages["Noise"]
 
 	if(length(message) >= 2 && is_language_prefix(prefix))
 		var/language_prefix = copytext(message, 2, 3)
-		var/datum/language/L = language_keys[language_prefix]
+		var/datum/language/L = GLOB.language_keys[language_prefix]
 		if(can_speak(L))
 			return L
 

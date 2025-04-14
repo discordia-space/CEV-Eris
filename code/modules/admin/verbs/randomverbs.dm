@@ -33,10 +33,10 @@
 	if(usr)
 		if(usr.client)
 			if(usr.client.holder)
-				to_chat(M, "\bold You hear a voice in your head... \italic [msg]")
+				to_chat(M, span_bold("You hear a voice in your head... \italic [msg]"))
 
 	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
-	message_admins("\blue \bold SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]", 1)
+	message_admins(span_blue("\bold SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]"), 1)
 
 
 //sends text to all players with no padding
@@ -54,7 +54,7 @@
 		return
 	to_chat(world, "[msg]")
 	log_admin("GlobalNarrate: [key_name(usr)] : [msg]")
-	message_admins("\blue \bold GlobalNarrate: [key_name_admin(usr)] : [msg]<BR>", 1)
+	message_admins(span_blue("\bold GlobalNarrate: [key_name_admin(usr)] : [msg]<BR>"), 1)
 
 
 //send text directly to a player with no padding. Useful for narratives and fluff-text
@@ -79,7 +79,7 @@
 
 	to_chat(M, msg)
 	log_admin("DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]")
-	message_admins("\blue \bold DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]<BR>", 1)
+	message_admins(span_blue("\bold DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]<BR>"), 1)
 
 
 /client/proc/cmd_admin_godmode(mob/M as mob in SSmobs.mob_list | SShumans.mob_list)
@@ -89,7 +89,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 	M.status_flags ^= GODMODE
-	to_chat(usr, "\blue Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]")
+	to_chat(usr, span_blue("Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]"))
 
 	log_admin("[key_name(usr)] has toggled [key_name(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]")
 	message_admins("[key_name_admin(usr)] has toggled [key_name_admin(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]", 1)
@@ -98,7 +98,7 @@
 
 /proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	if(automute)
-		if(!config.automute_on)	return
+		if(!CONFIG_GET(flag/automute_on))	return
 	else
 		if(!usr || !usr.client)
 			return
@@ -206,7 +206,7 @@ Ccomp's first proc.
 		return
 
 	var/mob/observer/ghost/G = ghosts[target]
-	if(G.has_enabled_antagHUD && config.antag_hud_restricted)
+	if(G.has_enabled_antagHUD && CONFIG_GET(flag/antag_hud_restricted))
 		var/response = alert(src, "Are you sure you wish to allow this individual to play?","Ghost has used AntagHUD","Yes","No")
 		if(response == "No")
 			return
@@ -231,7 +231,7 @@ Ccomp's first proc.
 	G.has_enabled_antagHUD = 2
 	G.can_reenter_corpse = 1
 	G << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
-	G:show_message(text("\blue <B>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</B>"), 1)
+	G.show_message(span_blue("<B>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</B>"), 1)
 	log_admin("[key_name(usr)] allowed [key_name(G)] to bypass the 30 minute respawn limit")
 	message_admins("Admin [key_name_admin(usr)] allowed [key_name_admin(G)] to bypass the 30 minute respawn limit", 1)
 
@@ -243,25 +243,25 @@ Ccomp's first proc.
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.")
 	var/action=""
-	if(config.antag_hud_allowed)
+	if(CONFIG_GET(flag/antag_hud_allowed))
 		for(var/mob/observer/ghost/g in get_ghosts())
 			if(!g.client.holder)						//Remove the verb from non-admin ghosts
 				remove_verb(g, /mob/observer/ghost/verb/toggle_antagHUD)
 			if(g.antagHUD)
 				g.antagHUD = 0						// Disable it on those that have it enabled
 				g.has_enabled_antagHUD = 2				// We'll allow them to respawn
-				to_chat(g, "\red <B>The Administrator has disabled AntagHUD </B>")
-		config.antag_hud_allowed = 0
-		to_chat(src, "\red <B>AntagHUD usage has been disabled</B>")
+				to_chat(g, span_red("<B>The Administrator has disabled AntagHUD </B>"))
+		CONFIG_SET(flag/antag_hud_allowed, 0)
+		to_chat(src, span_red("<B>AntagHUD usage has been disabled</B>"))
 		action = "disabled"
 	else
 		for(var/mob/observer/ghost/g in get_ghosts())
 			if(!g.client.holder)						// Add the verb back for all non-admin ghosts
 				add_verb(g, /mob/observer/ghost/verb/toggle_antagHUD)
-			to_chat(g, "\blue <B>The Administrator has enabled AntagHUD </B>"	) // Notify all observers they can now use AntagHUD
-		config.antag_hud_allowed = 1
+			to_chat(g, span_blue("<B>The Administrator has enabled AntagHUD </B>")	) // Notify all observers they can now use AntagHUD
+		CONFIG_SET(flag/antag_hud_allowed, 1)
 		action = "enabled"
-		to_chat(src, "\blue <B>AntagHUD usage has been enabled</B>")
+		to_chat(src, span_blue("<B>AntagHUD usage has been enabled</B>"))
 
 
 	log_admin("[key_name(usr)] has [action] antagHUD usage for observers")
@@ -274,21 +274,21 @@ Ccomp's first proc.
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.")
 	var/action=""
-	if(config.antag_hud_restricted)
+	if(CONFIG_GET(flag/antag_hud_restricted))
 		for(var/mob/observer/ghost/g in get_ghosts())
-			to_chat(g, "\blue <B>The administrator has lifted restrictions on joining the round if you use AntagHUD</B>")
+			to_chat(g, span_blue("<B>The administrator has lifted restrictions on joining the round if you use AntagHUD</B>"))
 		action = "lifted restrictions"
-		config.antag_hud_restricted = 0
-		to_chat(src, "\blue <B>AntagHUD restrictions have been lifted</B>")
+		CONFIG_SET(flag/antag_hud_restricted, 0)
+		to_chat(src, span_blue("<B>AntagHUD restrictions have been lifted</B>"))
 	else
 		for(var/mob/observer/ghost/g in get_ghosts())
-			to_chat(g, "\red <B>The administrator has placed restrictions on joining the round if you use AntagHUD</B>")
-			to_chat(g, "\red <B>Your AntagHUD has been disabled, you may choose to re-enabled it but will be under restrictions </B>")
+			to_chat(g, span_red("<B>The administrator has placed restrictions on joining the round if you use AntagHUD</B>"))
+			to_chat(g, span_red("<B>Your AntagHUD has been disabled, you may choose to re-enabled it but will be under restrictions </B>"))
 			g.antagHUD = 0
 			g.has_enabled_antagHUD = 0
 		action = "placed restrictions"
-		config.antag_hud_restricted = 1
-		to_chat(src, "\red <B>AntagHUD restrictions have been enabled</B>")
+		CONFIG_SET(flag/antag_hud_restricted, 1)
+		to_chat(src, span_red("<B>AntagHUD restrictions have been enabled</B>"))
 
 	log_admin("[key_name(usr)] has [action] on joining the round if they use AntagHUD")
 	message_admins("Admin [key_name_admin(usr)] has [action] on joining the round if they use AntagHUD", 1)
@@ -372,7 +372,7 @@ Contractors and the like can also be revived with the previous role mostly intac
 
 	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(new_character.client, new_character.mind.assigned_role)
 	if(!spawnpoint.put_mob(new_character))
-		message_admins("\blue [admin] has tried to respawn [player_key] as [new_character.real_name] but they declined to spawn in harmful environment.", 1)
+		message_admins(span_blue("[admin] has tried to respawn [player_key] as [new_character.real_name] but they declined to spawn in harmful environment."), 1)
 		return
 
 	//Now for special roles and equipment.
@@ -388,7 +388,7 @@ Contractors and the like can also be revived with the previous role mostly intac
 			if(alert(new_character,"Would you like an active AI to announce this character?",,"No","Yes")=="Yes")
 				call(/proc/AnnounceArrival)(new_character, new_character.mind.assigned_role)
 
-	message_admins("\blue [admin] has respawned [player_key] as [new_character.real_name].", 1)
+	message_admins(span_blue("[admin] has respawned [player_key] as [new_character.real_name]."), 1)
 
 	to_chat(new_character, "You have been fully respawned. Enjoy the game.")
 	AnnounceArrival(new_character, new_character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
@@ -411,7 +411,7 @@ Contractors and the like can also be revived with the previous role mostly intac
 		else
 			M.add_ion_law(input)
 			for(var/mob/living/silicon/ai/O in SSmobs.mob_list)
-				to_chat(O, "\red " + input + "\red...LAWS UPDATED")
+				to_chat(O, span_red("" + input + "\red...LAWS UPDATED"))
 				O.show_laws()
 
 	log_admin("Admin [key_name(usr)] has added a new AI law - [input]")
@@ -436,7 +436,7 @@ Contractors and the like can also be revived with the previous role mostly intac
 	M.revive()
 
 	log_admin("[key_name(usr)] healed / revived [key_name(M)]")
-	message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(M)]!", 1)
+	message_admins(span_red("Admin [key_name_admin(usr)] healed / revived [key_name_admin(M)]!"), 1)
 
 /client/proc/cmd_admin_create_centcom_report()
 	set category = "Special Verbs"
@@ -458,7 +458,7 @@ Contractors and the like can also be revived with the previous role mostly intac
 		if("Yes")
 			command_announcement.Announce(input, customname, msg_sanitized = 1, use_text_to_speech = TRUE)
 		if("No")
-			to_chat(world, "\red New [company_name] Update available at all communication consoles.")
+			to_chat(world, span_red("New [GLOB.company_name] Update available at all communication consoles."))
 			world << sound('sound/AI/commandreport.ogg')
 
 	log_admin("[key_name(src)] has created a command report: [input]")
@@ -561,7 +561,7 @@ Contractors and the like can also be revived with the previous role mostly intac
 			mob.gib()
 
 		log_admin("[key_name(usr)] used gibself.")
-		message_admins("\blue [key_name_admin(usr)] used gibself.", 1)
+		message_admins(span_blue("[key_name_admin(usr)] used gibself."), 1)
 
 /client/proc/update_world()
 	// If I see anyone granting powers to specific keys like the code that was here,
@@ -590,7 +590,7 @@ Contractors and the like can also be revived with the previous role mostly intac
 	if(mob)
 		mob.parallax.update()
 	log_admin("[key_name(usr)] changed their view range to [view].")
-	//message_admins("\blue [key_name_admin(usr)] changed their view range to [view].", 1)	//why? removed by order of XSI
+	//message_admins(span_blue("[key_name_admin(usr)] changed their view range to [view]."), 1)	//why? removed by order of XSI
 
 //allows us to call the emergency shuttle
 /client/proc/admin_call_shuttle()
@@ -611,7 +611,7 @@ Contractors and the like can also be revived with the previous role mostly intac
 	evacuation_controller.call_evacuation(usr, (choice == "Emergency"))
 
 	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
-	message_admins("\blue [key_name_admin(usr)] admin-called the emergency shuttle.", 1)
+	message_admins(span_blue("[key_name_admin(usr)] admin-called the emergency shuttle."), 1)
 
 //allows us to cancel the emergency shuttle, sending it back to centcom
 /client/proc/admin_cancel_shuttle()
@@ -630,7 +630,7 @@ Contractors and the like can also be revived with the previous role mostly intac
 	evacuation_controller.cancel_evacuation()
 
 	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
-	message_admins("\blue [key_name_admin(usr)] admin-recalled the emergency shuttle.", 1)
+	message_admins(span_blue("[key_name_admin(usr)] admin-recalled the emergency shuttle."), 1)
 
 /client/proc/admin_deny_shuttle()
 	set category = "Admin"
@@ -650,7 +650,7 @@ Contractors and the like can also be revived with the previous role mostly intac
 	set category = "Special Verbs"
 	set name = "Attack Log"
 
-	to_chat(usr, text("\red <b>Attack Log for []</b>", mob))
+	to_chat(usr, span_red(text("<b>Attack Log for []</b>", mob)))
 	for(var/t in M.attack_log)
 		to_chat(usr, t)
 
@@ -681,7 +681,7 @@ Contractors and the like can also be revived with the previous role mostly intac
 	message_admins("Admin [key_name_admin(usr)] has forced the players to have random appearances.", 1)
 
 	if(notifyplayers == "Yes")
-		to_chat(world, "\blue <b>Admin [usr.key] has forced the players to have completely random identities!</b>")
+		to_chat(world, span_blue("<b>Admin [usr.key] has forced the players to have completely random identities!</b>"))
 
 	to_chat(usr, "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>.")
 

@@ -146,9 +146,9 @@
 	while(locid < MAX_FIELDS)
 		var/istart = 0
 		if(links)
-			istart = findtext(info_links, "<span class=\"paper_field\">", laststart)
+			istart = findtext(info_links, "<span class='paper_field'>", laststart)
 		else
-			istart = findtext(info, "<span class=\"paper_field\">", laststart)
+			istart = findtext(info, "<span class='paper_field'>", laststart)
 
 		if(istart == 0)
 			return // No field found with matching id
@@ -229,7 +229,7 @@
 	//Count the fields
 	var/laststart = 1
 	while(fields < MAX_FIELDS)
-		var/i = findtext(t, "<span class=\"paper_field\">", laststart)	//</span>
+		var/i = findtext(t, "<span class='paper_field'>", laststart)	//</span>
 		if(i == 0)
 			break
 		laststart = i + 1
@@ -248,18 +248,18 @@
 		"<span class='[class]'>You hold \the [P] up to \the [src], burning it slowly.</span>")
 
 		spawn(20)
-			if(get_dist(src, user) < 2 && user.get_active_hand() == P && P.lit)
+			if(get_dist(src, user) < 2 && user.get_active_held_item() == P && P.lit)
 				user.visible_message("<span class='[class]'>[user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
 				"<span class='[class]'>You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 
-				if(user.get_inactive_hand() == src)
+				if(user.get_inactive_held_item() == src)
 					user.drop_from_inventory(src)
 
 				new /obj/effect/decal/cleanable/ash(src.loc)
 				qdel(src)
 
 			else
-				to_chat(user, "\red You must hold \the [P] steady to burn \the [src].")
+				to_chat(user, span_red("You must hold \the [P] steady to burn \the [src]."))
 
 
 /obj/item/paper/Topic(href, href_list)
@@ -268,7 +268,7 @@
 		return
 
 	if(href_list["write"])
-		if(!config.paper_input)
+		if(!CONFIG_GET(flag/paper_input))
 			to_chat(usr, span_warning("No matter how hard you try to write on \the [src], nothing shows up! (Paper input disabled in config.)"))
 			return
 
@@ -284,7 +284,7 @@
 		if(!t)
 			return
 
-		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
+		var/obj/item/i = usr.get_active_held_item() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
 		var/iscrayon = 0
 		if(!istype(i, /obj/item/pen))
 			return
@@ -393,7 +393,7 @@
 		return
 
 	else if(istype(P, /obj/item/stamp))
-		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/clipboard) ) && loc.loc != user && user.get_active_hand() != P))
+		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/clipboard) ) && loc.loc != user && user.get_active_held_item() != P))
 			return
 		playsound(src,'sound/effects/Stamp.ogg',40,1)
 		stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [P.name].</i>"

@@ -574,7 +574,7 @@ There are 9 wires.
 	if(!isliving(usr))
 		to_chat(usr, span_warning("You can't do this."))
 		return
-	var/obj/item/tool/T = usr.get_active_hand()
+	var/obj/item/tool/T = usr.get_active_held_item()
 	if(istype(T) && T.w_class >= ITEM_SIZE_NORMAL) // We do the checks before proc call, because see "proc overhead".
 		if(!density)
 			usr.drop_item()
@@ -613,7 +613,7 @@ There are 9 wires.
 
 /obj/machinery/door/airlock/examine(mob/user, extra_description = "")
 	if(wedged_item)
-		extra_description += "You can see \icon[wedged_item] [wedged_item] wedged into it."
+		extra_description += "You can see [icon2html(wedged_item, user)] [wedged_item] wedged into it."
 	..(user, extra_description)
 
 /obj/machinery/door/airlock/proc/generate_wedge_overlay()
@@ -848,7 +848,7 @@ There are 9 wires.
 			return
 
 
-	if(user.a_intent == I_GRAB && wedged_item && !user.get_active_hand())
+	if(user.a_intent == I_GRAB && wedged_item && !user.get_active_held_item())
 		take_out_wedged_item(user)
 		return
 
@@ -1061,7 +1061,7 @@ There are 9 wires.
 	else if (secured_wires)
 		lock()
 
-	for (var/mob/O in viewers(src, null))
+	for (var/mob/O in viewers(get_turf(src)))
 		if ((O.client && !( O.blinded )))
 			O.show_message("[name]'s control panel bursts open, sparks spewing out!")
 

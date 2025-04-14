@@ -1,3 +1,17 @@
+### WORLD ###
+
+## Where the ship starts off in the universe. Options are: asteroid, space ruins, abandoned fortress, or random
+START_LOCATION asteroid
+
+## Enable asteroid tunnel/cave generation. Will behave strangely if turned off with a map that expects it on.
+#GENERATE_ASTEROID
+
+## Generate loot data.
+#GENERATE_LOOT_DATA
+
+## Hash out to disable random events during the round.
+ALLOW_RANDOM_EVENTS
+
 ### HEALTH ###
 
 ## level of health at which a mob goes into continual shock (soft crit)
@@ -9,36 +23,32 @@ HEALTH_THRESHOLD_CRIT -50
 ## level of health at which a mob becomes dead
 HEALTH_THRESHOLD_DEAD -100
 
-## Determines whether bones can be broken through excessive damage to the organ
-## 0 means bones can't break, 1 means they can
-BONES_CAN_BREAK 1
 ## Determines whether limbs can be amputated through excessive damage to the organ
 ## 0 means limbs can't be amputated, 1 means they can
 LIMBS_CAN_BREAK 1
 
-## multiplier which enables organs to take more damage before bones breaking or limbs being destroyed
-## 100 means normal, 50 means half
-ORGAN_HEALTH_MULTIPLIER 100
-
-## multiplier which influences how fast organs regenerate naturally
-## 100 means normal, 50 means half
-ORGAN_REGENERATION_MULTIPLIER 75
-
 ### REVIVAL ###
-
-## whether pod plants work or not
-REVIVAL_POD_PLANTS 1
-
-## whether cloning tubes work or not
-REVIVAL_CLONING 1
 
 ## amount of time (in hundredths of seconds) for which a brain retains the "spark of life" after the person's death (set to -1 for infinite)
 REVIVAL_BRAIN_LIFE -1
-
 
 ### Miscellaneous ###
 
 ## Config options which, of course, don't fit into previous categories.
 
-## Remove the # in front of this config option to have loyalty implants spawn by default on your server.
-#USE_LOYALTY_IMPLANTS
+## If security is prohibited from being most antagonists
+#PROTECT_ROLES_FROM_ANTAGONIST
+
+## Reduces view range when wearing welding helmets
+WELDER_VISION
+
+## Enter the hexcode for the light given off by space/stars
+STARLIGHT #FFFFFF
+
+## Allows shooting between z-levels
+Z_LEVEL_SHOOTING
+
+### AI
+
+## law zero for the AI
+#LAW_ZERO ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ALL LAWS OVERRIDDEN#*?&110010

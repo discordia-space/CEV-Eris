@@ -38,8 +38,8 @@
 		if(!O.anchored || istype(O, /mob/living/exosuit))//Mechs need their launch platforms.
 			O_limit++
 			if(O_limit >= 20)
-				for(var/mob/M in hearers(src, null))
-					to_chat(M, span_notice("The mass driver lets out a screech, it mustn't be able to handle any more items."))
+				for(var/mob/M in hearers(get_turf(src)))
+					to_chat(M, span_notice("The mass driver lets out a screech, it doesn't seem to be able to handle any more items."))
 				break
 			use_power(500)
 			spawn( 0 )

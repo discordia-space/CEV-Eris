@@ -282,8 +282,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	update_gravity(gravity_is_on)
 	priority_announcement.Announce("The gravity generator was brought fully operational.")
 	investigate_log("was brought full online and is now producing gravity.", "gravity")
-	var/area/area = get_area(src)
-	message_admins("The gravity generator was brought fully online. (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>[area.name]</a>)")
+	message_admins("The gravity generator was brought fully online. [ADMIN_JMP(src)]")
 
 /obj/machinery/gravity_generator/main/proc/grav_off()
 	if(!GLOB.maps_data.station_levels.len)
@@ -294,8 +293,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	update_gravity(gravity_is_on)
 	priority_announcement.Announce("The gravity generator was brought offline.")
 	investigate_log("was brought offline and there is now no gravity.", "gravity")
-	var/area/area = get_area(src)
-	message_admins("The gravity generator was brought offline with no backup generator. (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>[area.name]</a>)")
+	message_admins("The gravity generator was brought offline with no backup generator. [ADMIN_JMP(src)]")
 	shake_everyone()
 
 /obj/machinery/gravity_generator/main/proc/update_gravity(var/is_on)
@@ -340,7 +338,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 /obj/machinery/gravity_generator/main/proc/shake_everyone()
 	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 		var/turf/our_turf = get_turf(src.loc)
-		if(M.client)
+		if(M.client && !isnewplayer(M))
 			shake_camera(M, 15, 1)
 			M.playsound_local(our_turf, 'sound/effects/alert.ogg', 100, 1, 0.5)
 

@@ -7,18 +7,8 @@
  *
  **/
 
-//Init the debugger datum first so we can debug Master
-//You might wonder why not just create the debugger datum global in its own file, since its loaded way earlier than this DM file
-//Well for whatever reason then the Master gets created first and then the debugger when doing that
-//So thats why this code lives here now, until someone finds out how Byond inits globals
-GLOBAL_REAL(Debugger, /datum/debugger) = new
-//This is the ABSOLUTE ONLY THING that should init globally like this
-//2019 update: the failsafe,config and Global controllers also do it
-GLOBAL_REAL(Master, /datum/controller/master) = new
-
-//THIS IS THE INIT ORDER
-//Master -> SSPreInit -> GLOB -> world -> config -> SSInit -> Failsafe
-//GOT IT MEMORIZED?
+// See initialization order in /code/game/world.dm
+GLOBAL_REAL(Master, /datum/controller/master)
 
 /datum/controller/master
 	name = "Master"
@@ -82,8 +72,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/static/current_ticklimit = TICK_LIMIT_RUNNING
 
 /datum/controller/master/New()
-	// if(!config)
-	// 	config = new
+	if(!config)
+		config = new
 	// Highlander-style: there can only be one! Kill off the old and replace it with the new.
 
 	if(!random_seed)
@@ -123,6 +113,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	if(!GLOB)
 		new /datum/controller/global_vars
+
+	// new /datum/global_init
 
 /datum/controller/master/Destroy()
 	..()
@@ -215,7 +207,9 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	init_stage_completed = 0
 	var/mc_started = FALSE
 
-	to_chat(world, span_boldannounce("Initializing subsystems..."))
+	var/msg = "Initializing subsystems..."
+	to_chat(world, span_boldannounce(msg))
+	log_world(msg)
 
 	var/list/stage_sorted_subsystems = new(INITSTAGE_MAX)
 	for (var/i in 1 to INITSTAGE_MAX)
@@ -258,9 +252,10 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 
 
+	var/msg_fancy = "Initializations complete within [get_colored_thresh_text("[time] second[time == 1 ? "" : "s"]!", time, 200 SECONDS / 10)]!"
+	msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
 
-	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
-	to_chat(world, span_boldannounce("[msg]"))
+	to_chat(world, span_boldannounce(msg_fancy))
 	log_world(msg)
 
 
@@ -268,7 +263,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		world.TgsInitializationComplete()
 
 	// Set world options.
-	world.change_fps(config.fps)
+	world.change_fps(CONFIG_GET(number/fps))
 	var/initialized_tod = REALTIMEOFDAY
 
 	// if(sleep_offline_after_initializations)

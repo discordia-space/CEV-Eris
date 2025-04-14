@@ -1,5 +1,5 @@
-import { BooleanLike } from 'common/react';
-import { useBackend, sendAct, useLocalState } from '../backend';
+import { BooleanLike } from 'tgui-core/react';
+import { useBackend, sendAct, useLocalState } from 'tgui/backend';
 import {
   Button,
   Box,
@@ -7,7 +7,7 @@ import {
   Divider,
   Dropdown,
   NumberInput,
-} from '../components';
+} from 'tgui-core/components';
 import { GameIcon } from '../components/GameIcon';
 import { Window } from '../layouts';
 
@@ -114,7 +114,7 @@ const recycling = (props, context) => {
 
 const displaythreestats = (name, value, icon, context) => {
   return (
-    <Box inline:true>
+    <Box inline>
       {icon && <GameIcon html={icon} className="game-icon" />}
       <Divider hidden />
       {name}
@@ -174,7 +174,7 @@ const exchange = (props, context) => {
           }}
         />
       )}
-      <Divider hidden:true />
+      <Divider hidden />
       {dosh && 'Money:'}
       {dosh}
       {dosh && (
@@ -186,7 +186,7 @@ const exchange = (props, context) => {
 
 const displayfourstats = (name, _number, value, icon, context) => {
   return (
-    <Box inline:true>
+    <Box inline>
       {icon && <GameIcon html={icon} className="game-icon" />}
       <Divider hidden />
       {name}

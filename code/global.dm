@@ -8,28 +8,12 @@ var/runtime_diary
 var/diary
 var/world_qdel_log
 var/href_logfile
-var/station_name        = "CEV Eris"
-var/station_short       = "Eris"
-var/const/dock_name     = "NTV Faith"
-var/const/boss_name     = "Hansa Trade Union"
-var/const/boss_short    = "Hansa"
-var/const/company_name  = "CEV Eris"
-var/const/company_short = "Eris"
-var/game_version        = "Discordia"
-var/changelog_hash      = ""
-var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 319)
 
 var/master_storyteller       = "shitgenerator"
 
 var/host	//only here until check @ code\modules\ghosttrap\trap.dm:112 is fixed
 
-var/list/bombers       = list()
 var/list/admin_log     = list()
-
-
-var/datum/configuration/config
-
-var/Debug2 = 0
 
 var/gravity_is_on = 1
 

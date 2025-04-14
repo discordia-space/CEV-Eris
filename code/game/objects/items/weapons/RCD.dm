@@ -29,7 +29,7 @@
 	return 0
 
 /obj/item/rcd/proc/can_use(var/mob/user,var/turf/T)
-	return (user.Adjacent(T) && user.get_active_hand() == src && !user.stat && !user.restrained())
+	return (user.Adjacent(T) && user.get_active_held_item() == src && !user.stat && !user.restrained())
 
 /obj/item/rcd/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)

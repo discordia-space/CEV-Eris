@@ -56,7 +56,7 @@
 	purpose = sanitizeSafe(_purpose, MAX_NAME_LEN,TRUE)
 	source_terminal = _source_terminal
 
-	if(istype(_source_terminal, /atom))
+	if(isatom(_source_terminal))
 		var/atom/terminal_atom = _source_terminal
 		source_terminal = "[terminal_atom.name] at [get_area(terminal_atom)]"
 

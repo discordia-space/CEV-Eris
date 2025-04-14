@@ -57,7 +57,7 @@
 		if(CI && CI.security_clearance >= minimal_holiness)
 			return TRUE
 
-		if(istype(H.get_active_hand(), /obj/item/clothing/accessory/cross))
+		if(istype(H.get_active_held_item(), /obj/item/clothing/accessory/cross))
 			return TRUE
 
 		if(istype(H.wear_mask, /obj/item/clothing/accessory/cross))
@@ -345,7 +345,7 @@
 
 // Wedge_item copypaste from airlock.dm
 /obj/machinery/door/holy/attack_hand(mob/user as mob)
-	if(user.a_intent == I_GRAB && wedged_item && !user.get_active_hand())
+	if(user.a_intent == I_GRAB && wedged_item && !user.get_active_held_item())
 		take_out_wedged_item(user)
 		return
 
@@ -367,7 +367,7 @@
 	if(!isliving(usr))
 		to_chat(usr, span_warning("You can't do this."))
 		return
-	var/obj/item/tool/T = usr.get_active_hand()
+	var/obj/item/tool/T = usr.get_active_held_item()
 	if(istype(T) && T.w_class >= ITEM_SIZE_NORMAL)
 		if(!density)
 			usr.drop_item()
@@ -421,5 +421,5 @@
 
 /obj/machinery/door/holy/examine(mob/user, extra_description = "")
 	if(wedged_item)
-		extra_description += "You can see \icon[wedged_item] [wedged_item] wedged into it."
+		extra_description += "You can see [icon2html(wedged_item, user)] [wedged_item] wedged into it."
 	..(user, extra_description)

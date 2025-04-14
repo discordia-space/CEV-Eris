@@ -25,17 +25,19 @@ var/const/WIRE_BEACON_RX = 256	// beacon ping recv
 		M.interact(user)
 
 /datum/wires/mulebot/UpdatePulsed(var/index)
+	var/listeners = hearers(get_turf(src))
+	var/htmlicon = icon2html(holder, listeners)
 	switch(index)
 		if(WIRE_POWER1, WIRE_POWER2)
-			holder.visible_message(span_notice("\icon[holder] The charge light flickers."))
+			holder.visible_message(span_notice("[htmlicon] The charge light flickers."))
 		if(WIRE_AVOIDANCE)
-			holder.visible_message(span_notice("\icon[holder] The external warning lights flash briefly."))
+			holder.visible_message(span_notice("[htmlicon] The external warning lights flash briefly."))
 		if(WIRE_LOADCHECK)
-			holder.visible_message(span_notice("\icon[holder] The load platform clunks."))
+			holder.visible_message(span_notice("[htmlicon] The load platform clunks."))
 		if(WIRE_MOTOR1, WIRE_MOTOR2)
-			holder.visible_message(span_notice("\icon[holder] The drive motor whines briefly."))
+			holder.visible_message(span_notice("[htmlicon] The drive motor whines briefly."))
 		else
-			holder.visible_message(span_notice("\icon[holder] You hear a radio crackle."))
+			holder.visible_message(span_notice("[htmlicon] You hear a radio crackle."))
 
 // HELPER PROCS
 

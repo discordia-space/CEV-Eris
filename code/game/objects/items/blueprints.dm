@@ -29,7 +29,7 @@
 
 /obj/item/blueprints/Topic(href, href_list)
 	..()
-	if ((usr.restrained() || usr.stat || usr.get_active_hand() != src))
+	if ((usr.restrained() || usr.stat || usr.get_active_held_item() != src))
 		return
 	if (!href_list["action"])
 		return
@@ -48,8 +48,8 @@
 /obj/item/blueprints/interact()
 	var/area/A = get_area(usr)
 	var/text = {"
-<h2>[station_name] blueprints</h2>
-<small>Property of [company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
+<h2>[station_name()] blueprints</h2>
+<small>Property of [GLOB.company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
 "}
 	switch (get_area_type())
 		if (AREA_SPACE)

@@ -170,7 +170,7 @@ default behaviour is:
 	if (health < 0)
 		adjustOxyLoss(health + maxHealth * 2) // Deal 2x health in OxyLoss damage, as before but variable.
 		health = -maxHealth
-		to_chat(src, "\blue You have given up life and succumbed to death.")
+		to_chat(src, span_blue("You have given up life and succumbed to death."))
 
 
 /mob/living/proc/updatehealth()
@@ -561,7 +561,7 @@ default behaviour is:
 							var/obj/item/grab/G = pick(M.grabbed_by)
 							if (istype(G, /obj/item/grab))
 								for(var/mob/O in viewers(M, null))
-									O.show_message(text("\red [] has been pulled from []'s grip by []", G.affecting, G.assailant, src), 1)
+									O.show_message(span_red(text("[] has been pulled from []'s grip by []", G.affecting, G.assailant, src)), 1)
 								//G = null
 								qdel(G)
 						else
@@ -834,7 +834,7 @@ default behaviour is:
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.pull_damage())
-			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
+			to_chat(src, span_red("<B>Pulling \the [H] in their current condition would probably be a bad idea.</B>"))
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))

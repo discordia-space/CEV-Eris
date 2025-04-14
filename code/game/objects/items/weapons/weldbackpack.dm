@@ -36,7 +36,7 @@
 		return
 
 /obj/item/weldpack/examine(mob/user, extra_description = "")
-	extra_description += "\icon[src] [reagents.total_volume] units of fuel left!"
+	extra_description += "[icon2html(src, user)] [reagents.total_volume] units of fuel left!"
 	..(user, extra_description)
 
 /obj/item/weldpack/proc/explode()

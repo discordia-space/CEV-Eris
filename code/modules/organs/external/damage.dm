@@ -72,7 +72,7 @@
 
 //If limb took enough damage and is broken, try to cut or tear it off
 	if(owner && loc == owner && !is_stump())
-		if(!cannot_amputate && config.limbs_can_break && (brute_dam + burn_dam) >= (max_damage * ORGAN_HEALTH_MULTIPLIER))
+		if(!cannot_amputate && CONFIG_GET(flag/limbs_can_break) && (brute_dam + burn_dam) >= (max_damage * ORGAN_HEALTH_MULTIPLIER))
             //organs can come off in four cases
             //1. If the damage source is edge_eligible and the brute damage dealt exceeds the edge threshold, then the organ is cut off.
             //2. If the damage amount dealt exceeds the disintegrate threshold, the organ is completely obliterated.

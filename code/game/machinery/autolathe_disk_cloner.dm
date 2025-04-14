@@ -145,7 +145,7 @@
 		var/obj/item/computer_hardware/hard_drive/portable/D = null
 		if(ishuman(usr))
 			H = usr
-			D = H.get_active_hand()
+			D = H.get_active_held_item()
 
 		if(href_list["eject"] == "f")
 			if(original)

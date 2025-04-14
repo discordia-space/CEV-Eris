@@ -3348,7 +3348,7 @@
 		return
 
 	if(boxes.len > 0 )
-		if(user.get_inactive_hand() != src )
+		if(user.get_inactive_held_item() != src )
 			..()
 			return
 

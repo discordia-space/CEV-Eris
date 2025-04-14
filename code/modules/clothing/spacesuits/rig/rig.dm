@@ -129,7 +129,7 @@
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
 			if(!piece || piece.loc != wearer)
 				continue
-			extra_description += "\n\icon[piece] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
+			extra_description += "\n[icon2html(piece, user)] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
 
 	if(loc == usr)
 		extra_description += "\nThe maintenance panel is [open ? "open" : "closed"]."

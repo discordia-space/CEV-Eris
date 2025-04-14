@@ -3,7 +3,7 @@
 	set name = "Advanced ProcCall"
 
 	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
+	if(CONFIG_GET(flag/debugparanoid) && !check_rights(R_ADMIN)) return
 
 	var/target = null
 	var/targetselected = 0
@@ -37,7 +37,7 @@
 	set name = "Advanced ProcCall Target"
 
 	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
+	if(CONFIG_GET(flag/debugparanoid) && !check_rights(R_ADMIN)) return
 
 	callproc_targetpicked(1, A)
 
@@ -45,7 +45,7 @@
 
 	// this needs checking again here because VV's 'Call Proc' option directly calls this proc with the target datum
 	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
+	if(CONFIG_GET(flag/debugparanoid) && !check_rights(R_ADMIN)) return
 
 	var/returnval
 
@@ -149,3 +149,21 @@
 
 	to_chat(usr, span_info("[procname]() returned: [isnull(returnval) ? "null" : returnval]"))
 
+GLOBAL_VAR(AdminProcCaller)
+GLOBAL_PROTECT(AdminProcCaller)
+GLOBAL_VAR_INIT(AdminProcCallCount, 0)
+GLOBAL_PROTECT(AdminProcCallCount)
+GLOBAL_VAR(LastAdminCalledTargetRef)
+GLOBAL_PROTECT(LastAdminCalledTargetRef)
+GLOBAL_VAR(LastAdminCalledTarget)
+GLOBAL_PROTECT(LastAdminCalledTarget)
+GLOBAL_VAR(LastAdminCalledProc)
+GLOBAL_PROTECT(LastAdminCalledProc)
+
+// TODO: IMPLEMENT THIS/PORT THIS
+/proc/IsAdminAdvancedProcCall()
+// #ifdef TESTING
+	return FALSE
+// #else
+// 	return (GLOB.AdminProcCaller && GLOB.AdminProcCaller == usr?.client?.ckey) || (GLOB.AdminProcCallHandler && usr == GLOB.AdminProcCallHandler)
+// #endif

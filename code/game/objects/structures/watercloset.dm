@@ -72,9 +72,9 @@
 /obj/structure/toilet/AltClick(var/mob/living/user)
 	if(!open)
 		return
-	var/H = user.get_active_hand()
+	var/H = user.get_active_held_item()
 	if(istype(H,/obj/item/reagent_containers/glass) || istype(H,/obj/item/reagent_containers/food/drinks))
-		var/obj/item/reagent_containers/O = user.get_active_hand()
+		var/obj/item/reagent_containers/O = user.get_active_held_item()
 		if(O.reagents && O.reagents.total_volume)
 			O.reagents.clear_reagents()
 			to_chat(user, span_notice("You empty the [O] into the [src]."))
@@ -415,7 +415,7 @@
 	user.clean_blood()
 	if(ishuman(user))
 		user:update_inv_gloves()
-	for(var/mob/V in viewers(src, null))
+	for(var/mob/V in viewers(get_turf(src)))
 		V.show_message(span_notice("[user] washes their hands using \the [src]."))
 
 
@@ -466,7 +466,7 @@
 
 	if(user.loc != location) return				//User has moved
 	if(!I) return 								//Item's been destroyed while washing
-	if(user.get_active_hand() != I) return		//Person has switched hands or the item in their hands
+	if(user.get_active_held_item() != I) return		//Person has switched hands or the item in their hands
 
 	O.clean_blood()
 	user.visible_message( \
@@ -474,9 +474,9 @@
 		span_notice("You wash \a [I] using \the [src]."))
 
 /obj/structure/sink/AltClick(var/mob/living/user)
-	var/H = user.get_active_hand()
+	var/H = user.get_active_held_item()
 	if(istype(H,/obj/item/reagent_containers/glass) || istype(H,/obj/item/reagent_containers/food/drinks))
-		var/obj/item/reagent_containers/O = user.get_active_hand()
+		var/obj/item/reagent_containers/O = user.get_active_held_item()
 		if(O.reagents && O.reagents.total_volume)
 			O.reagents.clear_reagents()
 			to_chat(user, span_notice("You empty the [O] into the [src]."))

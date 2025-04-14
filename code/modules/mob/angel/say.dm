@@ -8,7 +8,7 @@
 
 	if (src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			to_chat(src, "\red You cannot talk in deadchat and ANGEL chat (muted).")
+			to_chat(src, span_red("You cannot talk in deadchat and ANGEL chat (muted)."))
 			return
 
 		if (src.client.handle_spam_prevention(message,MUTE_DEADCHAT))
@@ -19,7 +19,7 @@
 		return
 
 	if(!src.client.holder)
-		if(!config.dsay_allowed)
+		if(!GLOB.dsay_allowed)
 			to_chat(src, span_danger("Deadchat and ANGEL chat are globally muted."))
 			return
 
@@ -43,7 +43,7 @@
 
 	if(src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			to_chat(src, "\red You cannot emote in deadchat and ANGEL chat (muted).")
+			to_chat(src, span_red("You cannot emote in deadchat and ANGEL chat (muted)."))
 			return
 
 		if(src.client.handle_spam_prevention(message, MUTE_DEADCHAT))
@@ -58,7 +58,7 @@
 		return
 
 	if(!src.client.holder)
-		if(!config.dsay_allowed)
+		if(!GLOB.dsay_allowed)
 			to_chat(src, span_danger("Deadchat and ANGEL chat are globally muted."))
 			return
 

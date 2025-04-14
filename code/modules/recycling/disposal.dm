@@ -63,7 +63,7 @@
 		visible_message(span_notice("[target] has been placed in the [src] by [user]."))
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [target] ([target.ckey]) in disposals.</font>")
 		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user.name] ([user.ckey])</font>")
-		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
+		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. [ADMIN_JMP(usr)]")
 		return TRUE
 
 /obj/machinery/disposal/MouseDrop_T(var/obj/item/I, mob/user, src_location, over_location, src_control, over_control, params)
@@ -131,7 +131,7 @@
 
 	if(istype(I, /obj/item/storage/bag))
 		var/obj/item/storage/bag/T = I
-		to_chat(user, "\blue You empty the bag.")
+		to_chat(user, span_blue("You empty the bag."))
 		for(var/obj/item/O in T.contents)
 			T.remove_from_storage(O,src)
 		T.update_icon()
@@ -190,7 +190,7 @@
 
 			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [target.name] ([target.ckey]) in disposals.</font>")
 			target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user.name] ([user.ckey])</font>")
-			msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+			msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. [ADMIN_JMP(user)]")
 		else
 			return
 		if (target.client)
@@ -200,7 +200,7 @@
 		target.simple_move_animation(src)
 		target.forceMove(src)
 
-		for (var/mob/C in viewers(src))
+		for (var/mob/C in viewers(get_turf(src)))
 			if(C == user)
 				continue
 			C.show_message(msg, 3)
@@ -615,27 +615,16 @@
 
 	// called when player tries to move while in a pipe
 /obj/structure/disposalholder/relaymove(mob/user as mob)
-
-	if(!isliving(user))
+	if(!isliving(user) || user.incapacitated())
 		return
 
-	var/mob/living/U = user
-
-	if (U.stat || U.last_special <= world.time)
-		return
-
-	U.last_special = world.time+100
-
-	if (src.loc)
-		for (var/mob/M in hearers(src.loc.loc))
-			to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>")
-
-	playsound(src.loc, 'sound/effects/clang.ogg', 50, 0, 0)
+	for(var/mob/M in range(5, get_turf(src)))
+		M.show_message("<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>", MSG_AUDIBLE)
+	playsound(src.loc, 'sound/effects/clang.ogg', 50, FALSE, FALSE)
 
 	// called to vent all gas in holder to a location
 /obj/structure/disposalholder/proc/vent_gas(var/atom/location)
 	location.assume_air(gas)  // vent all gas to turf
-	return
 
 /obj/structure/disposalholder/Destroy()
 	qdel(gas)
@@ -1201,7 +1190,7 @@
 		if(O.currTag)// Tag set
 			sortType = O.currTag
 			playsound(src.loc, 'sound/machines/twobeep.ogg', 100, 1)
-			to_chat(user, "\blue Changed filter to '[sortType]'.")
+			to_chat(user, span_blue("Changed filter to '[sortType]'."))
 			updatename()
 			updatedesc()
 

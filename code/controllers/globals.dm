@@ -12,6 +12,10 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 		CRASH("Multiple instances of global variable controller created")
 	GLOB = src
 
+	config.Load(world.params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
+
+	generate_gameid()
+
 	var/datum/controller/exclude_these = new
 	gvars_datum_in_built_vars = exclude_these.vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
 	QDEL_IN(exclude_these, 0) //signal logging isn't ready
@@ -19,6 +23,8 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	log_world("[vars.len - gvars_datum_in_built_vars.len] global variables")
 
 	Initialize()
+
+	makeDatumRefLists()
 
 /datum/controller/global_vars/Destroy(force)
 	// This is done to prevent an exploit where admins can get around protected vars

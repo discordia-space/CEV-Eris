@@ -340,7 +340,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 		return "00:00"
 
 	var/numseconds = cell.charge / get_power_cost()
-	return time2text(numseconds*10, "mm:ss") //time2text takes deciseconds, so the amounts are tenfold
+	return time2text(numseconds*10, "mm:ss", NO_TIMEZONE) //time2text takes deciseconds, so the amounts are tenfold
 
 
 //Whenever the scanner is equipped to a slot or dropped on the ground or deleted, set the user appropriately

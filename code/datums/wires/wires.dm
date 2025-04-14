@@ -146,12 +146,12 @@ GLOBAL_LIST_INIT(wire_colours, list("red", "blue", "green", "darkred", "orange",
 
 		var/mob/living/L = usr
 		if(CanUse(L) && href_list["action"])
-			var/obj/item/I = L.get_active_hand()
+			var/obj/item/I = L.get_active_held_item()
 			if(!ismech(L.loc))
 				holder.add_hiddenprint(L)
 			else
 				var/mob/living/exosuit/mech = L.loc
-				I = mech.get_active_hand()
+				I = mech.get_active_held_item()
 			if(href_list["cut"]) // Toggles the cut/mend status
 				if (!istype(I))
 					return

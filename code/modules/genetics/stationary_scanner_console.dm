@@ -47,7 +47,7 @@
 	var/wires_state = "console_wires"
 
 	if(!(stat & (NOPOWER|BROKEN)) && use_power)
-		if(SSnano.open_uis["\ref[src]"])
+		if(SSnano._open_uis["\ref[src]"])
 			screen_state += "_on"
 			spawn(1.5 SECONDS)
 			.() // If UI is open - run check every 1.5 seconds until it's closed

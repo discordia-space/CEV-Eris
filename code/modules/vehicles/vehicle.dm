@@ -118,7 +118,7 @@
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 				health = min(maxhealth, health+10)
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-				user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")
+				user.visible_message(span_red("[user] repairs [src]!"), span_blue("You repair [src]!"))
 			return
 
 		if(ABORT_CHECK)

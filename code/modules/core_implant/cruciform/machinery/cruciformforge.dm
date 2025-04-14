@@ -75,7 +75,7 @@
 /obj/machinery/neotheology/cruciformforge/proc/eat(mob/living/user, obj/item/eating)
 
 	if(!eating && istype(user))
-		eating = user.get_active_hand()
+		eating = user.get_active_held_item()
 
 	if(!istype(eating))
 		return FALSE

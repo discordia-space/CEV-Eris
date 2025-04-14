@@ -29,7 +29,7 @@
 		return
 
 	if(!( connected ))
-		to_chat(viewers(null, null), "Cannot locate mass driver connector. Cancelling firing sequence!")
+		to_chat(viewers(get_turf(src)), "Cannot locate mass driver connector. Cancelling firing sequence!")
 		return
 
 	for(var/obj/machinery/door/blast/M in world)
@@ -129,10 +129,10 @@
 			if(t == connected.power)
 				temp += "[t] "
 			else
-				temp += "<A href = '?src=\ref[src];power=[t]'>[t]</A> "
-		dat += "<HR>\nPower Level: [temp]<BR>\n<A href = '?src=\ref[src];alarm=1'>Firing Sequence</A><BR>\n<A href = '?src=\ref[src];drive=1'>Test Fire Driver</A><BR>\n<A href = '?src=\ref[src];door=1'>Toggle Outer Door</A><BR>"
+				temp += "<A href='byond://?src=\ref[src];power=[t]'>[t]</A> "
+		dat += "<HR>\nPower Level: [temp]<BR>\n<A href='byond://?src=\ref[src];alarm=1'>Firing Sequence</A><BR>\n<A href='byond://?src=\ref[src];drive=1'>Test Fire Driver</A><BR>\n<A href='?src=\ref[src];door=1'>Toggle Outer Door</A><BR>"
 	else
-		dat += "<BR>\n<A href = '?src=\ref[src];door=1'>Toggle Outer Door</A><BR>"
+		dat += "<BR>\n<A href='byond://?src=\ref[src];door=1'>Toggle Outer Door</A><BR>"
 	dat += "<BR><BR><A href='byond://?src=\ref[user];mach_close=computer'>Close</A></TT>"
 	user << browse(HTML_SKELETON_TITLE("Pod", dat), "window=computer;size=400x500")
 	add_fingerprint(usr)

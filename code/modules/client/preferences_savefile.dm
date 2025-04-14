@@ -52,7 +52,7 @@
 	if(!slot)	slot = default_slot
 
 	if(slot != SAVE_RESET) // SAVE_RESET will reset the slot as though it does not exist, but keep the current slot for saving purposes.
-		slot = sanitize_integer(slot, 1, config.character_slots, initial(default_slot))
+		slot = sanitize_integer(slot, 1, CONFIG_GET(number/character_slots), initial(default_slot))
 		if(slot != default_slot)
 			default_slot = slot
 			S["default_slot"] << slot

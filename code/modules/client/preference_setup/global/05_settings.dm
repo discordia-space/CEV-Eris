@@ -59,7 +59,7 @@
 			pref.preference_values -= key
 
 	pref.lastchangelog	= sanitize_text(pref.lastchangelog, initial(pref.lastchangelog))
-	pref.default_slot	= sanitize_integer(pref.default_slot, 1, config.character_slots, initial(pref.default_slot))
+	pref.default_slot	= sanitize_integer(pref.default_slot, 1, CONFIG_GET(number/character_slots), initial(pref.default_slot))
 
 /datum/category_item/player_setup_item/player_global/settings/content(var/mob/user)
 	. = list()

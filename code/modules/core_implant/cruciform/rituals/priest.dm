@@ -331,7 +331,7 @@
 
 
 /datum/ritual/cruciform/priest/divine_blessing/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
-	var/obj/item/I = user.get_active_hand()
+	var/obj/item/I = user.get_active_held_item()
 	if(!I)
 		fail("You have nothing in your active hand.", user, C)
 		return FALSE

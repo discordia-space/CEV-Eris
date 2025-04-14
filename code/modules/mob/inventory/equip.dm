@@ -126,7 +126,7 @@ var/list/slot_equipment_priority = list(
 			return backpack
 	return ..()
 /mob/living/carbon/human/proc/quick_equip_storage(obj/item/Item)
-	var/potential = src.get_inactive_hand()
+	var/potential = src.get_inactive_held_item()
 	if(istype(src.back,/obj/item/storage))
 		var/obj/item/storage/backpack = src.back
 		if(backpack.attackby(Item,src))

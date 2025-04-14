@@ -2,6 +2,7 @@ SUBSYSTEM_DEF(mapping)
 	name = "Mapping"
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
+	init_time_threshold = 1 MINUTE
 
 	var/list/map_templates = list()
 	var/dmm_suite/maploader = null
@@ -10,7 +11,7 @@ SUBSYSTEM_DEF(mapping)
 	var/cave_ore_count = 0
 
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
-	if(config.generate_asteroid)
+	if(CONFIG_GET(flag/generate_asteroid))
 		// These values determine the specific area that the map is applied to.
 		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
 		if(GLOB.maps_data.asteroid_levels)
@@ -23,7 +24,7 @@ SUBSYSTEM_DEF(mapping)
 		else
 			admin_notice(span_danger("Error: No asteroid z-levels defined in config!"))
 
-	if(config.use_overmap)
+	if(CONFIG_GET(flag/use_overmap))
 		if(!GLOB.maps_data.overmap_z)
 			build_overmap()
 		else
@@ -143,7 +144,7 @@ SUBSYSTEM_DEF(mapping)
 	flags |= SS_NO_INIT
 
 /hook/roundstart/proc/init_overmap_events()
-	if(config.use_overmap)
+	if(CONFIG_GET(flag/use_overmap))
 		if(GLOB.maps_data.overmap_z)
 			testing("Creating overmap events...")
 			testing_variable(t1, world.tick_usage)

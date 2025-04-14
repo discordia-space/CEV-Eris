@@ -28,7 +28,7 @@
 	var/list/data = host.initial_data()
 
 	data["src"] = "\ref[src]"
-	data["station_name"] = station_name
+	data["station_name()"] = station_name()
 	data["manifest"] = html_crew_manifest()
 	data["assignments"] = show_assignments
 	if(program && program.computer)
@@ -187,7 +187,7 @@
 				if(computer.card_slot && computer.card_slot.stored_card)
 					computer.proc_eject_id(user)
 				else
-					computer.attackby(user.get_active_hand(), user)
+					computer.attackby(user.get_active_held_item(), user)
 		if("terminate")
 			if(!authorized(user_id_card, ACCESS_REGION_COMMAND))
 				to_chat(user, span_warning("Access denied."))

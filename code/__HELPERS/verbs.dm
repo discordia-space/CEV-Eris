@@ -41,7 +41,7 @@
 	if(ismob(target))
 		mob_target = target
 		target = mob_target.client
-	else if(!istype(target, /client))
+	else if(!isclient(target))
 		CRASH("add_verb called on a non-mob and non-client")
 
 	var/list/verbs_list = list()
@@ -86,7 +86,7 @@
 	if(ismob(target))
 		mob_target = target
 		target = mob_target.client
-	else if(!istype(target, /client))
+	else if(!isclient(target))
 		CRASH("remove_verb called on a non-mob and non-client")
 
 	var/list/verbs_list = list()

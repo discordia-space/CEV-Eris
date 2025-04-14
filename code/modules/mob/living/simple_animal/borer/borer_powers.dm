@@ -238,7 +238,7 @@
 		return
 
 	if(world.time - used_dominate < 1 MINUTE) // a one minutes cooldown.
-		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds.")
+		to_chat(src, span_red("<B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds."))
 		return
 
 	if(is_ventcrawling)
@@ -263,7 +263,7 @@
 	var/mob/living/carbon/M = input(src,"Who do you wish to dominate?") in null|choices
 
 	if(world.time - used_dominate < 1 MINUTE)
-		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds.")
+		to_chat(src, span_red("<B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds."))
 		return
 
 	if(!M || !Adjacent(M)) return
@@ -503,7 +503,7 @@
 		return
 
 	if(!host)
-		to_chat(src, "\red <B>You cannot do this without a host.</B>")
+		to_chat(src, span_red("<B>You cannot do this without a host.</B>"))
 		return
 
 	if(docile)
@@ -541,11 +541,11 @@
 		return
 
 	if(world.time - used_dominate < 1 MINUTE)
-		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds.</B>")
+		to_chat(src, span_red("<B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds.</B>"))
 		return
 
 	if(host)
-		to_chat(src, "\red <B>You cannot do this inside a host.</B>")
+		to_chat(src, span_red("<B>You cannot do this inside a host.</B>"))
 		return
 
 	if(invisibility)
@@ -592,12 +592,12 @@
 		return
 
 	if(!host)
-		to_chat(src, "\red <B>You cannot do this without a host.</B>")
+		to_chat(src, span_red("<B>You cannot do this without a host.</B>"))
 		return
 	var/reproduce_cost = (round(max_chemicals_inhost * 0.75)) // literally max chems but 75% of it
 	if(chemicals >= reproduce_cost)
-		to_chat(host, "\red <B>Your host twitches and quivers as you rapidly excrete a larva from your sluglike body.</B>")
-		visible_message("\red <B>[host.name] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</B>")
+		to_chat(host, span_red("<B>Your host twitches and quivers as you rapidly excrete a larva from your sluglike body.</B>"))
+		visible_message(span_red("<B>[host.name] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</B>"))
 		has_reproduced = TRUE
 		chemicals -= reproduce_cost
 		if(istype(host, /mob/living/carbon/human/) && !host.isMonkey())
@@ -645,7 +645,7 @@
 
 	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
 
-	to_chat(M, "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]")
+	to_chat(M, span_blue("Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"))
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 

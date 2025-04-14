@@ -44,7 +44,7 @@
 	set category = "Exploration"
 	set src in view()
 
-	if(!config.use_overmap)
+	if(!CONFIG_GET(flag/use_overmap))
 		return
 	if(!CanInteract(usr, GLOB.conscious_state))
 		return

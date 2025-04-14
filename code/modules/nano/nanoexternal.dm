@@ -69,4 +69,4 @@
 	return list() // Not implemented.
 
 // Used by SSnano (/datum/controller/subsystem/processing/nano) to track UIs opened by this mob
-/mob/var/list/open_uis
+// /mob/var/list/open_uis

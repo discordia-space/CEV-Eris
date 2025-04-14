@@ -31,7 +31,7 @@
 			to_chat(user, span_warning("You need two hands to pick this up!"))
 			return
 
-	if(user.get_inactive_hand())
+	if(user.get_inactive_held_item())
 		to_chat(user, span_warning("You need your other hand to be empty"))
 		return
 	return ..()

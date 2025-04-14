@@ -1,12 +1,14 @@
 ///Protects a datum from being VV'd or spawned through admin manipulation
-#ifndef TESTING
-#define GENERAL_PROTECT_DATUM(Path)\
+// TODO: REENABLE WHEN NEW VV IS IMPLEMENTED
+/*
 ##Path/can_vv_get(var_name){\
-	return FALSE;\
+ 	return FALSE;\
 }\
 ##Path/vv_edit_var(var_name, var_value){\
 	return FALSE;\
-}\
+} */
+#ifndef TESTING
+#define GENERAL_PROTECT_DATUM(Path)\
 ##Path/CanProcCall(procname){\
 	return FALSE;\
 }\

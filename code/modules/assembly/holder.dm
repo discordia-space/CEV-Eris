@@ -155,7 +155,7 @@
 /obj/item/device/assembly_holder/process_activation(var/obj/D, var/normal = 1, var/special = 1)
 	if(!D)	return 0
 	if(!secured)
-		visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
+		visible_message("[icon2html(src, hearers(get_turf(src)))] *beep* *beep*", "*beep* *beep*")
 	if(normal && right_assembly && left_assembly)
 		if(right_assembly != D)
 			right_assembly.pulsed(0)

@@ -27,7 +27,7 @@
 	return 0
 
 /obj/item/rpd/proc/can_use(var/mob/user,var/turf/T)
-	return (user.Adjacent(T) && user.get_active_hand() == src && !user.stat && !user.restrained())
+	return (user.Adjacent(T) && user.get_active_held_item() == src && !user.stat && !user.restrained())
 
 /obj/item/rpd/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))

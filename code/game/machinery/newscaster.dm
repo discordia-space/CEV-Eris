@@ -294,7 +294,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 					dat+="<HR><B>Feed Security functions:</B><BR>"
 					dat+="<BR><A href='byond://?src=[REF(src)];menu_wanted=1'>[(wanted_already) ? ("Manage") : ("Publish")] \"Wanted\" Issue</A>"
 					dat+="<BR><A href='byond://?src=[REF(src)];menu_censor_story=1'>Censor Feed Stories</A>"
-					dat+="<BR><A href='byond://?src=[REF(src)];menu_censor_channel=1'>Mark Feed Channel with [company_name] D-Notice</A>"
+					dat+="<BR><A href='byond://?src=[REF(src)];menu_censor_channel=1'>Mark Feed Channel with [GLOB.company_name] D-Notice</A>"
 				dat+="<BR><HR>The newscaster recognises you as: <FONT COLOR='green'>[src.scanned_user]</FONT>"
 			if(1)
 				dat+= "Station Feed Channels<HR>"
@@ -375,7 +375,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 			if(9)
 				dat+="<B>[viewing_channel.channel_name]: </B><FONT SIZE=1>\[created by: <FONT COLOR='maroon'>[viewing_channel.author]</FONT>\]</FONT><HR>"
 				if(viewing_channel.censored)
-					dat+="<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a [company_name] D-Notice.<BR>"
+					dat+="<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a [GLOB.company_name] D-Notice.<BR>"
 					dat+="No further feed story additions are allowed while the D-Notice is in effect.</FONT><BR><BR>"
 				else
 					if( !length(viewing_channel.messages) )
@@ -395,7 +395,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 				dat+="<BR><HR><A href='byond://?src=[REF(src)];refresh=1'>Refresh</A>"
 				dat+="<BR><A href='byond://?src=[REF(src)];setScreen=[1]'>Back</A>"
 			if(10)
-				dat+="<B>[company_name] Feed Censorship Tool</B><BR>"
+				dat+="<B>[GLOB.company_name] Feed Censorship Tool</B><BR>"
 				dat+="<FONT SIZE=1>NOTE: Due to the nature of news Feeds, total deletion of a Feed Story is not possible.<BR>"
 				dat+="Keep in mind that users attempting to view a censored feed will instead see the \[REDACTED\] tag above it.</FONT>"
 				dat+="<HR>Select Feed channel to get Stories from:<BR>"
@@ -406,7 +406,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 						dat+="<A href='byond://?src=[REF(src)];pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>"
 				dat+="<BR><A href='byond://?src=[REF(src)];setScreen=[0]'>Cancel</A>"
 			if(11)
-				dat+="<B>[company_name] D-Notice Handler</B><HR>"
+				dat+="<B>[GLOB.company_name] D-Notice Handler</B><HR>"
 				dat+="<FONT SIZE=1>A D-Notice is to be bestowed upon the channel if the handling Authority deems it as harmful for the station's"
 				dat+="morale, integrity or disciplinary behaviour. A D-Notice will render a channel unable to be updated by anyone, without deleting any feed"
 				dat+="stories it might contain at the time. You can lift a D-Notice if you have the required access at any time.</FONT><HR>"
@@ -433,7 +433,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 				dat+="<B>[src.viewing_channel.channel_name]: </B><FONT SIZE=1>\[ created by: <FONT COLOR='maroon'>[src.viewing_channel.author]</FONT> \]</FONT><BR>"
 				dat+="Channel messages listed below. If you deem them dangerous to the station, you can <A href='byond://?src=[REF(src)];toggle_d_notice=\ref[src.viewing_channel]'>Bestow a D-Notice upon the channel</A>.<HR>"
 				if(src.viewing_channel.censored)
-					dat+="<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a [company_name] D-Notice.<BR>"
+					dat+="<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a [GLOB.company_name] D-Notice.<BR>"
 					dat+="No further feed story additions are allowed while the D-Notice is in effect.<BR><BR>"
 				else
 					if( isemptylist(src.viewing_channel.messages) )
@@ -630,7 +630,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 						screen = 15
 					else
 						if(news_network.wanted_issue.is_admin_message)
-							alert("The wanted issue has been distributed by a [company_name] higherup. You cannot edit it.","Ok")
+							alert("The wanted issue has been distributed by a [GLOB.company_name] higherup. You cannot edit it.","Ok")
 							return
 						news_network.submitWanted(channel_name, msg, scanned_user, photo_data)
 						screen = 19
@@ -638,7 +638,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 
 		else if(href_list["cancel_wanted"])
 			if(news_network.wanted_issue.is_admin_message)
-				alert("The wanted issue has been distributed by a [company_name] higherup. You cannot take it down.","Ok")
+				alert("The wanted issue has been distributed by a [GLOB.company_name] higherup. You cannot take it down.","Ok")
 				return
 			var/choice = alert("Please confirm Wanted Issue removal","Network Security Handler","Confirm","Cancel")
 			if(choice=="Confirm")
@@ -654,7 +654,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 		else if(href_list["censor_channel_author"])
 			var/datum/feed_channel/FC = locate(href_list["censor_channel_author"])
 			if(FC.is_admin_channel)
-				alert("This channel was created by a [company_name] Officer. You cannot censor it.","Ok")
+				alert("This channel was created by a [GLOB.company_name] Officer. You cannot censor it.","Ok")
 				return
 			if(FC.author != "<B>\[REDACTED\]</B>")
 				FC.backup_author = FC.author
@@ -667,7 +667,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 		else if(href_list["censor_channel_story_author"])
 			var/datum/feed_message/MSG = locate(href_list["censor_channel_story_author"])
 			if(MSG.is_admin_message)
-				alert("This message was created by a [company_name] Officer. You cannot censor its author.","Ok")
+				alert("This message was created by a [GLOB.company_name] Officer. You cannot censor its author.","Ok")
 				return
 			if(MSG.author != "<B>\[REDACTED\]</B>")
 				MSG.backup_author = MSG.author
@@ -680,7 +680,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 		else if(href_list["censor_channel_story_body"])
 			var/datum/feed_message/MSG = locate(href_list["censor_channel_story_body"])
 			if(MSG.is_admin_message)
-				alert("This channel was created by a [company_name] Officer. You cannot censor it.","Ok")
+				alert("This channel was created by a [GLOB.company_name] Officer. You cannot censor it.","Ok")
 				return
 			if(MSG.body != "<B>\[REDACTED\]</B>")
 				MSG.backup_body = MSG.body
@@ -706,7 +706,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 		else if(href_list["toggle_d_notice"])
 			var/datum/feed_channel/FC = locate(href_list["toggle_d_notice"])
 			if(FC.is_admin_channel)
-				alert("This channel was created by a [company_name] Officer. You cannot place a D-Notice upon it.","Ok")
+				alert("This channel was created by a [GLOB.company_name] Officer. You cannot place a D-Notice upon it.","Ok")
 				return
 			FC.censored = !FC.censored
 			FC.update()
@@ -787,8 +787,8 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 				user.put_in_inactive_hand(photo_data.photo)
 		qdel(photo_data)
 
-	if(istype(user.get_active_hand(), /obj/item/photo))
-		var/obj/item/photo = user.get_active_hand()
+	if(istype(user.get_active_held_item(), /obj/item/photo))
+		var/obj/item/photo = user.get_active_held_item()
 		user.drop_item()
 		photo.loc = src
 		photo_data = new(photo, 0)
@@ -831,7 +831,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 		switch(screen)
 			if(0) //Cover
 				dat+="<DIV ALIGN='center'><B><FONT SIZE=6>The Griffon</FONT></B></div>"
-				dat+="<DIV ALIGN='center'><FONT SIZE=2>[company_name]-standard newspaper, for use on [company_name]© Space Facilities</FONT></div><HR>"
+				dat+="<DIV ALIGN='center'><FONT SIZE=2>[GLOB.company_name]-standard newspaper, for use on [GLOB.company_name]© Space Facilities</FONT></div><HR>"
 				if(!length(news_content))
 					if(important_message)
 						dat+="Contents:<BR><ul><B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [src.pages+2]\]</FONT><BR></ul>"

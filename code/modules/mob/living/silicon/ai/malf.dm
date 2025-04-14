@@ -112,7 +112,7 @@
 
 // Returns percentage of AI's remaining hardware integrity (maxhealth - (bruteloss + fireloss))
 /mob/living/silicon/ai/proc/hardware_integrity()
-	return max(0,(health-HEALTH_THRESHOLD_DEAD)/2)
+	return max(0,(health-CONFIG_GET(number/health_threshold_dead))/2)
 
 // Cleaner proc for creating powersupply for an AI.
 /mob/living/silicon/ai/proc/create_powersupply()

@@ -62,7 +62,7 @@
 	set src in view(1)
 
 	if(!ishuman(usr)) //Only living, intelligent creatures with hands can empty ore boxes.
-		to_chat(usr, "\red You are physically incapable of emptying the ore box.")
+		to_chat(usr, span_red("You are physically incapable of emptying the ore box."))
 		return
 
 	if( usr.stat || usr.restrained() )
@@ -75,7 +75,7 @@
 	add_fingerprint(usr)
 
 	if(contents.len < 1)
-		to_chat(usr, "\red The ore box is empty")
+		to_chat(usr, span_red("The ore box is empty"))
 		return
 
 	for (var/obj/item/ore/O in contents)
@@ -84,7 +84,7 @@
 		O.layer = initial(O.layer)
 		O.set_plane(initial(O.plane))
 
-	to_chat(usr, "\blue You empty the ore box")
+	to_chat(usr, span_blue("You empty the ore box"))
 
 	return
 

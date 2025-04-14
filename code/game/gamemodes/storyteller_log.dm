@@ -1,6 +1,6 @@
+// TODO: just remove this and rename story_debug calls to log_storyteller
 /datum/storyteller/proc/story_debug(var/message)
-	log_debug("STORYTELLER: [message]")
-
+	log_storyteller(message)
 /*
 /datum/storyteller/proc/log_spawn(var/list/spawned)
 	var/list/log = list()

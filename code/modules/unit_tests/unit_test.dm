@@ -142,7 +142,7 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 		var/annotation_text = replacetext(text, "%", "%25")
 		annotation_text = replacetext(annotation_text, "\n", "%0A")
 
-		log_world("::error file=[file],line=[line],title=[station_name]: [test_path]::[annotation_text]")
+		log_world("::error file=[file],line=[line],title=[station_name()]: [test_path]::[annotation_text]")
 
 		// Normal log message
 		log_entry += "\tREASON #[reasonID]: [text] at [file]:[line]"

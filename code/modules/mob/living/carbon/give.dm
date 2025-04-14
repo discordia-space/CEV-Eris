@@ -7,9 +7,9 @@
 	if(!istype(target) || target.incapacitated() || target.client == null)
 		return
 
-	var/obj/item/I = usr.get_active_hand()
+	var/obj/item/I = usr.get_active_held_item()
 	if(!I)
-		I = usr.get_inactive_hand()
+		I = usr.get_inactive_held_item()
 	if(!I)
 		to_chat(usr, span_warning("You don't have anything in your hands to give to \the [target]."))
 		return

@@ -1,5 +1,5 @@
-import { useBackend } from '../../backend';
-import { Icon, LabeledList, NoticeBox, Section, Stack } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Icon, LabeledList, NoticeBox, Section, Stack } from 'tgui-core/components';
 
 type UserDetailsData = {
   user: UserData;

@@ -45,7 +45,7 @@
 
 /obj/effect/plant/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
-	plant_controller.add_plant(src)
+	SSplants.add_plant(src)
 	if(istype(W, /obj/item/reagent_containers/syringe))
 		return
 

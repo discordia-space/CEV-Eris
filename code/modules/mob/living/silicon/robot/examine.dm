@@ -29,10 +29,10 @@
 		if(DEAD)
 			extra_description += "[span_deadsay("It's completely broken, but looks repairable.")]\n" //TODO: add no_soul status or flag
 	if(module_active)
-		extra_description += "It is wielding \icon[module_active] [module_active].\n"
+		extra_description += "It is wielding [icon2html(module_active, user)] [module_active].\n"
 	extra_description += "*---------*"
 
-	if(print_flavor_text()) extra_description += "\n[print_flavor_text()]\n"
+	if(get_flavor_text()) extra_description += "\n[get_flavor_text()]\n"
 
 	if(pose)
 		if( findtext(pose,".",length(pose)) == 0 && findtext(pose,"!",length(pose)) == 0 && findtext(pose,"?",length(pose)) == 0 )

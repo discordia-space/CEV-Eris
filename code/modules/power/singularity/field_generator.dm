@@ -205,8 +205,8 @@ field_generator power level display
 	if(draw_power(round(power_draw)) >= power_draw)
 		return 1
 	else
-		for(var/mob/M in viewers(src))
-			M.show_message("\red \The [src] shuts down!")
+		for(var/mob/M in viewers(get_turf(src)))
+			M.show_message(span_red("\The [src] shuts down!"))
 		turn_off()
 		investigate_log("ran out of power and <font color='red'>deactivated</font>","singulo")
 		src.power = 0

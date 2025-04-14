@@ -49,6 +49,8 @@ SUBSYSTEM_DEF(explosions)
 	priority = FIRE_PRIORITY_EXPLOSIONS
 	init_order = INIT_ORDER_EXPLOSIONS
 	flags = SS_KEEP_TIMING
+	init_time_threshold = 0.5 SECONDS
+
 	var/list/explode_queue = list()
 	var/list/current_run = list()
 	var/list/throwing_queue = list()

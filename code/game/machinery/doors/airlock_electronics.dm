@@ -64,7 +64,7 @@
 				locked = FALSE
 				last_configurator = user.name
 			else
-				var/obj/item/card/id/I = user.get_active_hand()
+				var/obj/item/card/id/I = user.get_active_held_item()
 				I = I ? I.GetIdCard() : null
 				if(!istype(I, /obj/item/card/id))
 					to_chat(user, span_warning("[\src] flashes a yellow LED near the ID scanner. Did you remember to scan your ID or PDA?"))

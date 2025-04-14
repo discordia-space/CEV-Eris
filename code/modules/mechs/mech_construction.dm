@@ -87,7 +87,7 @@
 		var/delay = 30 - sqrt(mech_skill * 3)
 		if(delay > 0)
 			user.visible_message(span_notice("\The [user] begins trying to install \the [system] into \the [src]."))
-			if(!do_after(user, delay, src) || user.get_active_hand() != system) return FALSE
+			if(!do_after(user, delay, src) || user.get_active_held_item() != system) return FALSE
 			if(user.unEquip(system))
 				to_chat(user, span_notice("You install \the [system] in \the [src]'s [system_hardpoint]."))
 				playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)

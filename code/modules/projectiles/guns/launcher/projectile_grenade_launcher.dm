@@ -114,7 +114,7 @@
 		..()
 
 /obj/item/gun/projectile/shotgun/pump/grenade/makeshift/attack_hand(mob/user)
-	if(user.get_inactive_hand() == src)
+	if(user.get_inactive_held_item() == src)
 		unload_underslung(user)
 	else
 		..()

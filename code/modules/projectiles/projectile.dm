@@ -247,7 +247,7 @@
 				loc = get_turf(H.client.eye)
 				if(!(loc.Adjacent(target)))
 					loc = get_turf(H)
-			if(config.z_level_shooting && H.client.eye == H.shadow && !height) // Player is watching a higher zlevel
+			if(CONFIG_GET(flag/z_level_shooting) && H.client.eye == H.shadow && !height) // Player is watching a higher zlevel
 				var/newTurf = get_turf(H.shadow)
 				if(!(locate(/obj/structure/catwalk) in newTurf)) // Can't shoot through catwalks
 					loc = newTurf
@@ -309,7 +309,7 @@
 
 	var/result = PROJECTILE_CONTINUE
 
-	if(config.z_level_shooting && height == HEIGHT_HIGH)
+	if(CONFIG_GET(flag/z_level_shooting) && height == HEIGHT_HIGH)
 		if(target_mob.resting == TRUE || target_mob.stat == TRUE)
 			return FALSE // Bullet flies overhead
 
@@ -372,7 +372,7 @@
 			admin_attack_log(firer, target_mob, attacker_message, victim_message, admin_message)
 		else
 			target_mob.attack_log += "\[[time_stamp()]\] <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[target_mob]/[target_mob.ckey]</b> with <b>\a [src]</b>"
-			msg_admin_attack("UNKNOWN shot [target_mob] ([target_mob.ckey]) with \a [src] (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[target_mob.x];Y=[target_mob.y];Z=[target_mob.z]'>JMP</a>)")
+			msg_admin_attack("UNKNOWN shot [target_mob] ([target_mob.ckey]) with \a [src] [ADMIN_JMP(target_mob)]")
 
 	if(target_mob.mob_classification & CLASSIFICATION_ORGANIC)
 		var/turf/target_loca = get_turf(target_mob)

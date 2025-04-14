@@ -10,7 +10,7 @@
 	var/mob/living/simple_animal/borer/B = get_brain_worms()
 
 	if(B && B.host_brain)
-		to_chat(src, "\red <B>You withdraw your probosci, releasing control of [B.host_brain]</B>")
+		to_chat(src, span_red("<B>You withdraw your probosci, releasing control of [B.host_brain]</B>"))
 
 		B.detach()
 
@@ -22,7 +22,7 @@
 			/mob/living/carbon/proc/talk_host))
 
 	else
-		to_chat(src, "\red <B>ERROR NO BORER OR BRAINMOB DETECTED IN THIS MOB, THIS IS A BUG !</B>")
+		to_chat(src, span_red("<B>ERROR NO BORER OR BRAINMOB DETECTED IN THIS MOB, THIS IS A BUG !</B>"))
 
 //Brain slug proc for talking to the host.
 /mob/living/carbon/proc/talk_host()
@@ -39,7 +39,7 @@
 	if(B.host_brain.ckey)
 		text = input("What would you like to say?", "Speak to captive host", null, null)
 		text = capitalize(sanitize(text))
-		if(!text) 
+		if(!text)
 			return
 		log_say("Borer said to its host [text]")
 
@@ -57,8 +57,8 @@
 		return
 
 	if(B.chemicals >= reproduce_cost)
-		to_chat(src, "\red <B>Your host twitches and quivers as you rapidly excrete a larva from your sluglike body.</B>")
-		visible_message("\red <B>[src] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</B>")
+		to_chat(src, span_red("<B>Your host twitches and quivers as you rapidly excrete a larva from your sluglike body.</B>"))
+		visible_message(span_red("<B>[src] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</B>"))
 		B.chemicals -= reproduce_cost
 		B.has_reproduced = 1
 		if(istype(B.host, /mob/living/carbon/human/) && !B.host.isMonkey())// this is a mess but host's var grabs "[human_name] (mob/living/carbon/human/)"

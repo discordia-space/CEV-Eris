@@ -76,18 +76,18 @@
 
 					body += "</td><td align='center'>";
 
-					body += "<a href='byond://?src=\ref[src];adminplayeropts="+ref+"'>PP</a> - "
-					body += "<a href='byond://?src=\ref[src];notes=show;mob="+ref+"'>N</a> - "
-					body += "<a href='byond://?_src_=vars;Vars="+ref+"'>VV</a> - "
-					body += "<a href='byond://?src=\ref[src];contractor="+ref+"'>TP</a> - "
-					body += "<a href='byond://?src=\ref[usr];priv_msg=\ref"+ref+"'>PM</a> - "
-					body += "<a href='byond://?src=\ref[src];subtlemessage="+ref+"'>SM</a> - "
-					body += "<a href='byond://?src=\ref[src];manup="+ref+"'>MAN_UP</a> - "
-					body += "<a href='byond://?src=\ref[src];viewlogs="+ref+"'>LOGS</a> - "
-					body += "<a href='byond://?src=\ref[src];paralyze="+ref+"'>PARA</a> - "
-					body += "<a href='byond://?src=\ref[src];adminobservejump="+ref+"'>JMP</a><br>"
+					body += "<a href='byond://?_src_=holder;[HrefToken()];adminplayeropts="+ref+"'>PP</a> - "
+					body += "<a href='byond://?_src_=holder;[HrefToken()];notes=show;mob="+ref+"'>N</a> - "
+					body += "<a href='byond://?_src_=vars[HrefToken()];Vars="+ref+"'>VV</a> - "
+					body += "<a href='byond://?_src_=holder;[HrefToken()];contractor="+ref+"'>TP</a> - "
+					body += "<a href='byond://?src=\ref[usr];[HrefToken()]priv_msg=\ref"+ref+"'>PM</a> - "
+					body += "<a href='byond://?_src_=holder;[HrefToken()];subtlemessage="+ref+"'>SM</a> - "
+					body += "<a href='byond://?_src_=holder;[HrefToken()];manup="+ref+"'>MAN_UP</a> - "
+					body += "<a href='byond://?_src_=holder;[HrefToken()];viewlogs="+ref+"'>LOGS</a> - "
+					body += "<a href='byond://?_src_=holder;[HrefToken()];paralyze="+ref+"'>PARA</a> - "
+					body += "<a href='byond://?_src_=holder;[HrefToken()];adminobservejump="+ref+"'>JMP</a><br>"
 					if(antagonist > 1)
-						body += "<font size='2'><a href='byond://?src=\ref[src];check_antagonist=1'><font color='red'><b>Antagonist</b></font></a></font>";
+						body += "<font size='2'><a href='byond://?_src_=holder;[HrefToken()];check_antagonist=1'><font color='red'><b>Antagonist</b></font></a></font>";
 					else if(antagonist > 0)
 						body += "<font size='2'><font color='red'><b>Limited Antagonist</b></font></font>";
 					body += "</td></tr></table>";
@@ -199,7 +199,7 @@
 			<tr id='title_tr'>
 				<td align='center'>
 					<font size='5'><b>Player panel</b></font><br>
-					Hover over a line to see more information - <a href='byond://?src=\ref[src];check_antagonist=1'>Storyteller Panel</a>
+					Hover over a line to see more information - <a href='byond://?_src_=holder;[HrefToken()];check_antagonist=1'>Storyteller Panel</a>
 					<p>
 				</td>
 			</tr>

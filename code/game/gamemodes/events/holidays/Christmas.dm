@@ -13,7 +13,7 @@
 	..()
 
 /obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
-	if( !cracked && ishuman(target) && (target.stat == CONSCIOUS) && !target.get_active_hand() )
+	if( !cracked && ishuman(target) && (target.stat == CONSCIOUS) && !target.get_active_held_item() )
 		target.visible_message(span_notice("[user] and [target] pop \an [src]! *pop*"), span_notice("You pull \an [src] with [target]! *pop*"), span_notice("You hear a *pop*."))
 		var/obj/item/paper/Joke = new /obj/item/paper(user.loc)
 		Joke.name = "[pick("awful","terrible","unfunny")] joke"

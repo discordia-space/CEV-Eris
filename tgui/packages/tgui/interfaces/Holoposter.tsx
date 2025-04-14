@@ -1,6 +1,6 @@
-import { capitalize } from '../../common/string';
-import { useBackend } from '../backend';
-import { Button, Section, Stack } from '../components';
+import { capitalize } from 'tgui-core/string';
+import { useBackend } from 'tgui/backend';
+import { Button, Section, Stack } from 'tgui-core/components';
 import { GameIcon } from '../components/GameIcon';
 import { Window } from '../layouts';
 

@@ -242,8 +242,8 @@
 	var/organ_multiplier = ((S.max_damage - S.damage) / S.max_damage)
 
 	var/list/input = list()
-	var/active_hand_held = owner.get_active_hand()
-	var/inactive_hand_held = owner.get_inactive_hand()
+	var/active_hand_held = owner.get_active_held_item()
+	var/inactive_hand_held = owner.get_inactive_held_item()
 
 	for(var/digestable in accepted_inputs)
 		var/obj/O
@@ -355,8 +355,8 @@
 		return
 
 	var/list/input = list()
-	var/active_hand_held = owner.get_active_hand()
-	var/inactive_hand_held = owner.get_inactive_hand()
+	var/active_hand_held = owner.get_active_held_item()
+	var/inactive_hand_held = owner.get_inactive_held_item()
 
 	for(var/power_source in accepted_inputs)
 		var/atom/movable/AM

@@ -29,7 +29,7 @@
 		return
 
 	var/client/target = input(src,"Choose somebody to grant access to the server's runtime logs (permissions expire at the end of each round):","Grant Permissions",null) as null|anything in GLOB.clients
-	if(!istype(target,/client))
+	if(!isclient(target))
 		to_chat(src, "<font color='red'>Error: giveruntimelog(): Client not found.</font>")
 		return
 

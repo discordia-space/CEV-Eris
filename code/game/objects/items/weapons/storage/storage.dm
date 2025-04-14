@@ -58,7 +58,7 @@
 /obj/item/storage/proc/storageBackgroundClick(HUD_element/sourceElement, mob/clientMob, location, control, params)
 	var/atom/A = sourceElement.getData("item")
 	if(A)
-		var/obj/item/I = clientMob.get_active_hand()
+		var/obj/item/I = clientMob.get_active_held_item()
 		if(I)
 			clientMob.ClickOn(A)
 
@@ -562,7 +562,7 @@
 	..()
 
 /obj/item/storage/attack_self(mob/user)
-	if(user.get_active_hand() == src && user.get_inactive_hand() == null)
+	if(user.get_active_held_item() == src && user.get_inactive_held_item() == null)
 		if(user.swap_hand())
 			open(user)
 			. = TRUE

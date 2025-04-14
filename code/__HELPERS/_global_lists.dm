@@ -34,7 +34,7 @@ GLOBAL_LIST_EMPTY(superior_animal_list)		//A list of all superior animals; for t
 GLOBAL_LIST_EMPTY(cable_list)					//Index for all cables, so that powernets don't have to look through the entire world all the time
 GLOBAL_LIST_EMPTY(chemical_reactions_list)				//list of all /datum/chemical_reaction datums. Used during chemical reactions
 GLOBAL_LIST_EMPTY(chemical_reactions_list_by_result)					//list of all /datum/chemical_reaction datums. But this one indexed by chemical result instead of reagents
-GLOBAL_LIST_EMPTY(chemical_reagents_list)				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
+GLOBAL_LIST_INIT(chemical_reagents_list, initialize_chemical_reagents())				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 GLOBAL_LIST_EMPTY(landmarks_list)				//list of all landmarks created
 GLOBAL_LIST_EMPTY(shuttle_landmarks_list)		//list of all /obj/effect/shuttle_landmark.
 GLOBAL_LIST_EMPTY(old_surgery_steps)			//list of all old-style (not bound to organs) surgery steps
@@ -82,9 +82,11 @@ GLOBAL_LIST_EMPTY(turfs)			//list of all turfs
 GLOBAL_LIST_EMPTY(mannequins_)
 
 //Languages/species/whitelist.
-var/global/list/all_species[0]
-var/global/list/all_languages[0]
-var/global/list/language_keys[0]					// Table of say codes for all languages
+GLOBAL_LIST_EMPTY(all_species)
+GLOBAL_LIST_EMPTY(all_languages)
+GLOBAL_LIST_EMPTY(language_keys)					// Table of say codes for all languages
+var/global/list/storyteller_cache = list()
+
 GLOBAL_LIST_INIT(whitelisted_species, list(SPECIES_HUMAN)) // Species that require a whitelist check.
 GLOBAL_LIST_INIT(playable_species, list(SPECIES_HUMAN))    // A list of ALL playable species, whitelisted, latejoin or otherwise.
 
@@ -104,7 +106,6 @@ GLOBAL_LIST_EMPTY_TYPED(krabin_linked, /mob/living/carbon/human)
 GLOBAL_DATUM(announcer, /obj/item/device/radio/intercom)
 
 GLOBAL_LIST_EMPTY(lastsignalers) // Keeps last 100 signals here in format: "[src] used \ref[src] @ location [src.loc]: [freq]/[code]"
-GLOBAL_LIST_EMPTY(lawchanges) // Stores who uploaded laws to which silicon-based lifeform, and what the law was.
 
 // Loot stash datums
 GLOBAL_LIST_EMPTY(stash_categories) //An associative list in the format category_type = weight
@@ -220,6 +221,7 @@ GLOBAL_LIST_INIT(scary_sounds, list(
 //////////////////////////
 /////Initial Building/////
 //////////////////////////
+#define INIT_EMPTY_GLOBLIST(var_name) if (isnull(GLOB.var_name)) GLOB.var_name = list();
 
 /proc/makeDatumRefLists()
 
@@ -296,12 +298,12 @@ GLOBAL_LIST_INIT(scary_sounds, list(
 	paths = subtypesof(/datum/language)
 	for(var/T in paths)
 		var/datum/language/L = new T
-		all_languages[L.name] = L
+		GLOB.all_languages[L.name] = L
 
-	for (var/language_name in all_languages)
-		var/datum/language/L = all_languages[language_name]
+	for (var/language_name in GLOB.all_languages)
+		var/datum/language/L = GLOB.all_languages[language_name]
 		if(!(L.flags & NONGLOBAL))
-			language_keys[lowertext(L.key)] = L
+			GLOB.language_keys[lowertext(L.key)] = L
 
 	var/rkey = 0
 	paths = subtypesof(/datum/species)
@@ -309,7 +311,7 @@ GLOBAL_LIST_INIT(scary_sounds, list(
 		rkey++
 		var/datum/species/S = new T
 		S.race_key = rkey //Used in mob icon caching.
-		all_species[S.name] = S
+		GLOB.all_species[S.name] = S
 
 		if(!(S.spawn_flags & IS_RESTRICTED))
 			GLOB.playable_species += S.name

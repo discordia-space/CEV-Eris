@@ -8,62 +8,88 @@
 	4. tgstation's MC runs initialization for various subsystems (refer to its own defines for the load order).
 
 */
-var/global/datum/global_init/init = new ()
 
-/*
-	Pre-map initialization stuff should go here.
-*/
+#define RESTART_COUNTER_PATH "data/round_counter.txt"
+/// Load byond-tracy. If USE_BYOND_TRACY is defined, then this is ignored and byond-tracy is always loaded.
+#define USE_TRACY_PARAMETER "tracy"
+/// Force the log directory to be something specific in the data/logs folder
+#define OVERRIDE_LOG_DIRECTORY_PARAMETER "log-directory"
+/// Prevent the master controller from starting automatically
+#define NO_INIT_PARAMETER "no-init"
 
-/datum/global_init/New()
-	generate_gameid()
-	load_configuration()
-	makeDatumRefLists()
+GLOBAL_VAR(restart_counter)
 
-	initialize_chemical_reagents()
-	initialize_chemical_reactions()
+/**
+ * THIS !!!SINGLE!!! PROC IS WHERE ANY FORM OF INIITIALIZATION THAT CAN'T BE PERFORMED IN SUBSYSTEMS OR WORLD/NEW IS DONE
+ * NOWHERE THE FUCK ELSE
+ * I DON'T CARE HOW MANY LAYERS OF DEBUG/PROFILE/TRACE WE HAVE, YOU JUST HAVE TO DEAL WITH THIS PROC EXISTING
+ * I'M NOT EVEN GOING TO TELL YOU WHERE IT'S CALLED FROM BECAUSE I'M DECLARING THAT FORBIDDEN KNOWLEDGE
+ * SO HELP ME GOD IF I FIND ABSTRACTION LAYERS OVER THIS!
+ */
+/world/proc/Genesis(tracy_initialized = FALSE)
+	RETURN_TYPE(/datum/controller/master)
+
+	if(!tracy_initialized)
+		Tracy = new
+#ifdef USE_BYOND_TRACY
+		if(Tracy.enable("USE_BYOND_TRACY defined"))
+			Genesis(tracy_initialized = TRUE)
+			return
+#else
+		var/tracy_enable_reason
+		if(USE_TRACY_PARAMETER in params)
+			tracy_enable_reason = "world.params"
+		if(fexists(TRACY_ENABLE_PATH))
+			tracy_enable_reason ||= "enabled for round"
+			SEND_TEXT(world.log, "[TRACY_ENABLE_PATH] exists, initializing byond-tracy!")
+			fdel(TRACY_ENABLE_PATH)
+		if(!isnull(tracy_enable_reason) && Tracy.enable(tracy_enable_reason))
+			Genesis(tracy_initialized = TRUE)
+			return
+#endif
+
+	Profile(PROFILE_RESTART)
+	Profile(PROFILE_RESTART, type = "sendmaps")
+
+	// Write everything to this log file until we get to SetupLogs() later
+	// _initialize_log_files("data/logs/config_error.[GUID()].log")
+
+	// Init the debugger first so we can debug Master
+	Debugger = new
+
+	// Create the logger
+	logger = new
+
+	// THAT'S IT, WE'RE DONE, THE. FUCKING. END.
+	Master = new
+
+// /*
+// 	Pre-map initialization stuff should go here.
+// */
+
+// /datum/global_init/New()
 
 
-	// Set up roundstart seed list.
-	plant_controller = new()
+// /datum/global_init/Destroy()
+// 	return 1
 
-	initialize_cooking_recipes()
-
-	qdel(src) //we're done
-
-/datum/global_init/Destroy()
-	return 1
-
-var/game_id
 /proc/generate_gameid()
-	if(game_id != null)
+	if(GLOB.game_id != null)
 		return
-	game_id = ""
+	GLOB.game_id = ""
 
 	var/list/c = list("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
 	var/l = c.len
 
 	var/t = world.timeofday
 	for(var/_ = 1 to 4)
-		game_id = "[c[(t % l) + 1]][game_id]"
+		GLOB.game_id = "[c[(t % l) + 1]][GLOB.game_id]"
 		t = round(t / l)
-	game_id = "-[game_id]"
+	GLOB.game_id = "-[GLOB.game_id]"
 	t = round(world.realtime / (10 * 60 * 60 * 24))
 	for(var/_ = 1 to 3)
-		game_id = "[c[(t % l) + 1]][game_id]"
+		GLOB.game_id = "[c[(t % l) + 1]][GLOB.game_id]"
 		t = round(t / l)
-
-#define RECOMMENDED_VERSION 512
-
-#define USE_TRACY_PARAMETER "tracy"
-
-GLOBAL_VAR(tracy_log)
-GLOBAL_PROTECT(tracy_log)
-GLOBAL_VAR(tracy_initialized)
-GLOBAL_PROTECT(tracy_initialized)
-GLOBAL_VAR(tracy_init_error)
-GLOBAL_PROTECT(tracy_init_error)
-GLOBAL_VAR(tracy_init_reason)
-GLOBAL_PROTECT(tracy_init_reason)
 
 
 // something something port genesis
@@ -95,66 +121,23 @@ GLOBAL_PROTECT(tracy_init_reason)
  * All atoms in both compiled and uncompiled maps are initialized()
  */
 /world/New()
-
-#ifndef OPENDREAM
-	if(!GLOB.tracy_initialized)
-#ifdef USE_BYOND_TRACY
-#warn USE_BYOND_TRACY is enabled
-		var/should_init_tracy = TRUE
-		GLOB.tracy_init_reason = "USE_BYOND_TRACY defined"
-#else
-		var/should_init_tracy = FALSE
-		if(USE_TRACY_PARAMETER in params)
-			should_init_tracy = TRUE
-			GLOB.tracy_init_reason = "world.params"
-		if(fexists(TRACY_ENABLE_PATH))
-			GLOB.tracy_init_reason ||= "enabled for round"
-			SEND_TEXT(world.log, "[TRACY_ENABLE_PATH] exists, initializing byond-tracy!")
-			should_init_tracy = TRUE
-			fdel(TRACY_ENABLE_PATH)
-#endif
-		if(should_init_tracy)
-			init_byond_tracy()
-#endif
-
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
-	href_logfile = file("data/logs/[date_string] hrefs.htm")
-	diary = file("data/logs/[date_string].log")
-	diary << "[log_end]\n[log_end]\nStarting up. (ID: [game_id]) [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	href_logfile = file("[GLOB.log_directory]/hrefs.htm")
+	// diary = file("data/logs/[date_string].log")
+	// diary << "[log_end]\n[log_end]\nStarting up. (ID: [GLOB.game_id]) [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
 
 	InitTgs()
 
-	// TODO: globalize me
-	var/latest_changelog = file("html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
-	changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
+	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
+	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
 
 	world_qdel_log = file("data/logs/[date_string] qdel.log")	// GC Shutdown log
 
-	if(byond_version < RECOMMENDED_VERSION)
+	if(byond_version < MIN_COMPILER_VERSION)
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
-	config.post_load()
-
-	if(config && config.server_name != null && config.server_suffix && world.port > 0)
-		// dumb and hardcoded but I don't care~
-		config.server_name += " #[(world.port % 1000) / 100]"
-
-	callHook("startup")
-	//Emergency Fix
-	load_mods()
-	//end-emergency fix
-
-	generate_body_modification_lists()
-
-	update_status()
-
-	. = ..()
-
-	LoadVerbs(/datum/verbs/menu)
-
-	// This is kinda important. Set up details of what the hell things are made of.
-	populate_material_list()
+	ConfigLoaded()
 
 	if(NO_INIT_PARAMETER in params)
 		return
@@ -165,23 +148,58 @@ GLOBAL_PROTECT(tracy_init_reason)
 	HandleTestRun()
 	#endif
 
-	if(config.ToRban)
+	if(CONFIG_GET(flag/tor_ban))
 		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(ToRban_autoupdate)))
 
 	call_restart_webhook()
 	TgsInitializationComplete()
 
+/world/proc/ConfigLoaded()
+	//apply a default value to CONFIG_GET(string/python_path), if needed
+	if (!CONFIG_GET(string/python_path))
+		if(world.system_type == UNIX)
+			CONFIG_SET(string/python_path, "/usr/bin/env python2")
+		else //probably windows, if not this should work anyway
+			CONFIG_SET(string/python_path, "python")
+
+	SetupLogs()
+
+	world.name = station_name()
+
+	if(config && CONFIG_GET(string/servername) != null && CONFIG_GET(string/server_suffix) && world.port > 0)
+		// dumb and hardcoded but I don't care~
+		CONFIG_SET(string/servername, CONFIG_GET(string/servername) + " #[(world.port % 1000) / 100]")
+
+	callHook("startup")
+	//Emergency Fix
+	load_mods()
+	//end-emergency fix
+
+	generate_body_modification_lists()
+
+	update_status()
+
+	LoadVerbs(/datum/verbs/menu)
+
+	// This is kinda important. Set up details of what the hell things are made of.
+	populate_material_list()
+
+
+	if(fexists(RESTART_COUNTER_PATH))
+		GLOB.restart_counter = text2num(trim(file2text(RESTART_COUNTER_PATH)))
+		fdel(RESTART_COUNTER_PATH)
+
 /world/proc/InitTgs()
 	TgsNew(new /datum/tgs_event_handler/impl, TGS_SECURITY_TRUSTED)
-	revdata.load_tgs_info()
+	GLOB.revdata.load_tgs_info()
 
 /world/proc/HandleTestRun()
 	//trigger things to run the whole process
 	Master.sleep_offline_after_initializations = FALSE
 	SSticker.start_immediately = TRUE
 	// config hacks
-	config.empty_server_restart_time = 0
-	config.vote_autogamemode_timeleft = 0
+	CONFIG_SET(number/empty_server_restart_time, 0)
+	CONFIG_SET(number/vote_autogamemode_timeleft, 0)
 	// CONFIG_SET(number/round_end_countdown, 0)
 	var/datum/callback/cb
 #ifdef UNIT_TESTS
@@ -195,15 +213,56 @@ GLOBAL_PROTECT(tracy_init_reason)
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
 	if(!override_dir)
 		var/realtime = world.realtime
-		var/texttime = time2text(realtime, "YYYY/MM/DD")
+		var/texttime = time2text(realtime, "YYYY/MM/DD", TIMEZONE_UTC)
 		GLOB.log_directory = "data/logs/[texttime]/round-"
-		if(game_id)
-			GLOB.log_directory += "[game_id]"
+		// GLOB.picture_logging_prefix = "L_[time2text(realtime, "YYYYMMDD", TIMEZONE_UTC)]_"
+		// GLOB.picture_log_directory = "data/picture_logs/[texttime]/round-"
+		if(GLOB.game_id)
+			GLOB.log_directory += "[GLOB.game_id]"
+			// GLOB.picture_logging_prefix += "R_[GLOB.game_id]_"
+			// GLOB.picture_log_directory += "[GLOB.game_id]"
 		else
 			var/timestamp = replacetext(time_stamp(), ":", ".")
 			GLOB.log_directory += "[timestamp]"
+			// GLOB.picture_log_directory += "[timestamp]"
+			// GLOB.picture_logging_prefix += "T_[timestamp]_"
 	else
 		GLOB.log_directory = "data/logs/[override_dir]"
+		// GLOB.picture_logging_prefix = "O_[override_dir]_"
+		// GLOB.picture_log_directory = "data/picture_logs/[override_dir]"
+
+	logger.init_logging()
+
+	if(Tracy.trace_path)
+		rustg_file_write("[Tracy.trace_path]", "[GLOB.log_directory]/tracy.loc")
+
+	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM", TIMEZONE_UTC) + ".yml")
+	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
+
+	if(GLOB.game_id)
+		log_game("Round ID: [GLOB.game_id]")
+
+	// This was printed early in startup to the world log and config_error.log,
+	// but those are both private, so let's put the commit info in the runtime
+	// log which is ultimately public.
+	log_runtime(GLOB.revdata.get_log_message())
+
+	#ifndef USE_CUSTOM_ERROR_HANDLER
+	world.log = file("[GLOB.log_directory]/dd.log")
+#else
+	if (TgsAvailable()) // why
+		world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
+#endif
+
+
+/// Returns a list of data about the world state, don't clutter
+/world/proc/get_world_state_for_logging()
+	var/data = list()
+	data["tick_usage"] = world.tick_usage
+	data["tick_lag"] = world.tick_lag
+	data["time"] = world.time
+	data["timestamp"] = logger.unix_timestamp_string()
+	return data
 
 var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
@@ -219,8 +278,8 @@ var/world_topic_spam_protect_time = world.timeofday
 			handler = topic_handlers[I]
 			break
 
-	if(!handler || initial(handler.log))
-		diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+	if((!handler || initial(handler.log)) && config && CONFIG_GET(flag/log_world_topic))
+		log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
 	if(!handler)
 		return
@@ -232,8 +291,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	set waitfor = FALSE
 	var/list/fail_reasons
 	if(GLOB)
-		if(total_runtimes != 0)
-			fail_reasons = list("Total runtimes: [total_runtimes]")
+		if(GLOB.total_runtimes != 0)
+			fail_reasons = list("Total runtimes: [GLOB.total_runtimes]")
 #ifdef UNIT_TESTS
 		if(GLOB.failed_any_test)
 			LAZYADD(fail_reasons, "Unit Tests failed!")
@@ -249,8 +308,28 @@ var/world_topic_spam_protect_time = world.timeofday
 	sleep(0) //yes, 0, this'll let Reboot finish and prevent byond memes
 	qdel(src) //shut it down
 
+/// Returns TRUE if the world should do a TGS hard reboot.
+/world/proc/check_hard_reboot()
+	if(!TgsAvailable())
+		return FALSE
+	// byond-tracy can't clean up itself, and thus we should always hard reboot if its enabled, to avoid an infinitely growing trace.
+	if(Tracy?.enabled)
+		return TRUE
+	var/ruhr = CONFIG_GET(number/rounds_until_hard_restart)
+	switch(ruhr)
+		if(-1)
+			return FALSE
+		if(0)
+			return TRUE
+		else
+			if(GLOB.restart_counter >= ruhr)
+				return TRUE
+			else
+				text2file("[++GLOB.restart_counter]", RESTART_COUNTER_PATH)
+				return FALSE
+
 /world/Reboot(reason = 0, fast_track = FALSE)
-	if(!config.tts_cache)
+	if(!CONFIG_GET(flag/tts_cache))
 		for(var/i in GLOB.tts_death_row)
 			fdel(i)
 
@@ -264,16 +343,32 @@ var/world_topic_spam_protect_time = world.timeofday
 		Master.Shutdown() //run SS shutdowns
 
 	for(var/client/C in GLOB.clients)
-		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-			C << link("byond://[config.server]")
+		if(CONFIG_GET(string/server))	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+			C << link("byond://[CONFIG_GET(string/server)]")
 
-	TgsReboot()
 
 	#ifdef UNIT_TESTS
 	FinishTestRun()
 	#else
 	..()
 	#endif
+
+	if(check_hard_reboot())
+		log_world("World hard rebooted at [time_stamp()]")
+		// shutdown_logging() // See comment below.
+		QDEL_NULL(Tracy)
+		QDEL_NULL(Debugger)
+		TgsEndProcess()
+		return ..()
+
+	log_world("World rebooted at [time_stamp()]")
+
+	// shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
+	QDEL_NULL(Tracy)
+	QDEL_NULL(Debugger)
+
+	TgsReboot()
+
 
 
 /hook/startup/proc/loadMode()
@@ -285,26 +380,15 @@ var/world_topic_spam_protect_time = world.timeofday
 	if(Lines.len)
 		if(Lines[1])
 			master_storyteller = Lines[1]
-			log_misc("Saved storyteller is '[master_storyteller]'")
+			log_game("Saved storyteller is '[master_storyteller]'")
 
 /world/proc/save_storyteller(the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
 	F << the_mode
 
-/hook/startup/proc/loadMOTD()
-	world.load_motd()
-	return 1
-
-/world/proc/load_motd()
-	join_motd = file2text("config/motd.txt")
-
-
-/proc/load_configuration()
-	config = new /datum/configuration()
-	config.load("config/config.txt")
-	config.load("config/game_options.txt", "game_options")
-	config.loadsql("config/dbconfig.txt")
+// /world/proc/load_motd()
+// 	join_motd = file2text("config/motd.txt")
 
 /hook/startup/proc/loadMods()
 	world.load_mods()
@@ -312,7 +396,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	return 1
 
 /world/proc/load_mods()
-	if(config.admin_legacy_system)
+	if(CONFIG_GET(flag/admin_legacy_system))
 		var/text = file2text("config/moderators.txt")
 		if (!text)
 			error("Failed to load config/mods.txt")
@@ -333,7 +417,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				D.associate(GLOB.directory[ckey])
 
 /world/proc/load_mentors()
-	if(config.admin_legacy_system)
+	if(CONFIG_GET(flag/admin_legacy_system))
 		var/text = file2text("config/mentors.txt")
 		if (!text)
 			error("Failed to load config/mentors.txt")
@@ -355,13 +439,13 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/proc/update_status()
 	var/s = ""
 
-	if (config && config.server_name)
-		s += "<b>[config.server_name]</b> &#8212; "
+	if (config && CONFIG_GET(string/servername))
+		s += "<b>[CONFIG_GET(string/servername)]</b> &#8212; "
 
-	s += "<b>[station_name]</b>";
+	s += "<b>[station_name()]</b>";
 	s += " ("
 	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
-//	s += "[game_version]"
+//	s += "[GLOB.game_version]"
 	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
 	s += "</a>"
 	s += ")"
@@ -374,15 +458,15 @@ var/world_topic_spam_protect_time = world.timeofday
 	else
 		features += "<b>STARTING</b>"
 
-	if (!config.enter_allowed)
+	if (!CONFIG_GET(flag/enter_allowed))
 		features += "closed"
 
-	features += config.abandon_allowed ? "respawn" : "no respawn"
+	features += CONFIG_GET(flag/abandon_allowed) ? "respawn" : "no respawn"
 
-	if (config && config.allow_vote_mode)
+	if (config && CONFIG_GET(flag/allow_vote_mode))
 		features += "vote"
 
-	if (config && config.allow_ai)
+	if (config && CONFIG_GET(flag/allow_ai))
 		features += "AI allowed"
 
 	var/n = 0
@@ -396,8 +480,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		features += "~[n] player"
 
 
-	if (config && config.hostedby)
-		features += "hosted by <b>[config.hostedby]</b>"
+	if (config && CONFIG_GET(string/hostedby))
+		features += "hosted by <b>[CONFIG_GET(string/hostedby)]</b>"
 
 	if (features)
 		s += ": [jointext(features, ", ")]"
@@ -464,44 +548,12 @@ var/failed_old_db_connections = 0
 
 	fps = new_value
 
-/** For initializing and starting byond-tracy when USE_BYOND_TRACY is defined
- *	byond-tracy is a useful profiling tool that allows the user to view the CPU usage and execution time of procs as they run.
-*/
-/world/proc/init_byond_tracy()
-	if(!fexists(TRACY_DLL_PATH))
-		SEND_TEXT(world.log, "Error initializing byond-tracy: [TRACY_DLL_PATH] not found!")
-		CRASH("Error initializing byond-tracy: [TRACY_DLL_PATH] not found!")
 
-	var/init_result = call_ext(TRACY_DLL_PATH, "init")("block")
-	if(length(init_result) != 0 && init_result[1] == ".") // if first character is ., then it returned the output filename
-		SEND_TEXT(world.log, "byond-tracy initialized (logfile: [init_result])")
-		GLOB.tracy_initialized = TRUE
-		return GLOB.tracy_log = init_result
-	else if(init_result == "already initialized")
-		GLOB.tracy_initialized = TRUE
-		SEND_TEXT(world.log, "byond-tracy already initialized ([GLOB.tracy_log ? "logfile: [GLOB.tracy_log]" : "no logfile"])")
-	else if(init_result != "0")
-		GLOB.tracy_init_error = init_result // monkestation edit: log tracy errors
-		SEND_TEXT(world.log, "Error initializing byond-tracy: [init_result]")
-		CRASH("Error initializing byond-tracy: [init_result]")
-	else
-		GLOB.tracy_initialized = TRUE
-		SEND_TEXT(world.log, "byond-tracy initialized (no logfile)")
-
-/world/proc/shutdown_byond_tracy()
-	if(GLOB.tracy_initialized)
-		SEND_TEXT(world.log, "Shutting down byond-tracy")
-		GLOB.tracy_initialized = FALSE
-		call_ext(TRACY_DLL_PATH, "destroy")()
-
-/world/proc/flush_byond_tracy()
-	// if GLOB.tracy_log is set, that means we're using para-tracy, which should have this.
-	if(GLOB.tracy_initialized && GLOB.tracy_log)
-		SEND_TEXT(world.log, "Flushing byond-tracy log")
-		var/flush_result = call_ext(TRACY_DLL_PATH, "flush")()
-		if(flush_result != "0")
-			SEND_TEXT(world.log, "Error flushing byond-tracy log: [flush_result]")
-			CRASH("Error flushing byond-tracy log: [flush_result]")
-		SEND_TEXT(world.log, "Flushed byond-tracy log")
+/world/Profile(command, type, format)
+	if((command & PROFILE_STOP) || !global.config?.loaded || !CONFIG_GET(flag/forbid_all_profiling))
+		. = ..()
 
 #undef USE_TRACY_PARAMETER
+#undef NO_INIT_PARAMETER
+#undef OVERRIDE_LOG_DIRECTORY_PARAMETER
+#undef RESTART_COUNTER_PATH

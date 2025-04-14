@@ -435,7 +435,7 @@
 		if(prob(1+I.force * 5))
 
 			to_chat(user, "You hit the light, and it smashes!")
-			for(var/mob/M in viewers(src))
+			for(var/mob/M in viewers(get_turf(src)))
 				if(M == user)
 					continue
 				M.show_message("[user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
@@ -526,8 +526,8 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
-			for(var/mob/M in viewers(src))
-				M.show_message("\red [user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
+			for(var/mob/M in viewers(get_turf(src)))
+				M.show_message(span_danger("[user.name] smashed the light!"), 3, span_warning("You hear a tinkle of breaking glass"), 2)
 			broken()
 			return
 
@@ -766,7 +766,7 @@
 
 /obj/item/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		src.visible_message("\red [name] shatters.","\red You hear a small glass object shatter.")
+		src.visible_message(span_red("[name] shatters."), span_red("You hear a small glass object shatter."))
 		status = LIGHT_BROKEN
 		force = WEAPON_FORCE_WEAK
 		sharp = TRUE

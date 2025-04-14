@@ -29,12 +29,12 @@
 		if(M.ear_deaf <= 0 || !M.ear_deaf) if(!istype(M.loc,/turf/space))
 			M << 'sound/effects/explosionfar.ogg'
 	if(adminlog)
-		message_admins("Explosion with power:[power] and falloff:[falloff] in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
+		message_admins("Explosion with power:[power] and falloff:[falloff] in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) [ADMIN_JMP(epicenter)]")
 		log_game("Explosion with size power:[power] and falloff:[falloff] in area [epicenter.loc.name] ")
 
 	/*
 	spawn(0)
-		if(config.use_recursive_explosions)
+		if(CONFIG_GET(flag/use_recursive_explosions))
 			var/power = devastation_range * 2 + heavy_impact_range + light_impact_range //The ranges add up, ie light 14 includes both heavy 7 and devestation 3. So this calculation means devestation counts for 4, heavy for 2 and light for 1 power, giving us a cap of 27 power.
 			explosion_rec(epicenter, power)
 			return
@@ -88,7 +88,7 @@
 			if(M.ear_deaf <= 0 || !M.ear_deaf) if(!istype(M.loc,/turf/space))
 				M << 'sound/effects/explosionfar.ogg'
 		if(adminlog)
-			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [singe_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
+			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [singe_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) [ADMIN_JMP(epicenter)]")
 			log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [singe_impact_range]) in area [epicenter.loc.name] ")
 
 		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range + round(singe_impact_range / 2)
@@ -124,7 +124,7 @@
 
 		var/took = (world.timeofday-start)/10
 		//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes  to explosion code using this please so we can compare
-		if(Debug2)	log_world("## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds.")
+		if(GLOB.Debug2)	log_world("## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds.")
 
 		//Machines which report explosions.
 		for(var/i,i<=doppler_arrays.len,i++)

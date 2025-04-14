@@ -65,8 +65,8 @@
 
 	free_languages[LANGUAGE_COMMON] = TRUE
 
-	for(var/thing in all_languages)
-		var/datum/language/lang = all_languages[thing]
+	for(var/thing in GLOB.all_languages)
+		var/datum/language/lang = GLOB.all_languages[thing]
 		if(!(lang.flags & RESTRICTED))
 			allowed_languages[thing] = TRUE
 
@@ -83,7 +83,7 @@
 	var/preference_mob = preference_mob()
 	rebuild_language_cache(preference_mob)
 	for(var/L in pref.alternate_languages)
-		var/datum/language/lang = all_languages[L]
+		var/datum/language/lang = GLOB.all_languages[L]
 		if(!lang || !is_allowed_language(preference_mob, lang))
 			pref.alternate_languages -= L
 	if(LAZYLEN(free_languages))

@@ -134,3 +134,12 @@
 	icon_state = "metal_left_leg"
 	nature = MODIFICATION_SILICON
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+
+/mob/living/carbon/human/has_hand_for_held_index(i)
+	var/hand_bodyparts = get_hand_organs()
+	if(!length(hand_bodyparts))
+		return FALSE
+	var/obj/item/organ/external/hand_instance = hand_bodyparts[i + 1]
+	if(hand_instance && !(hand_instance.status & ORGAN_DEAD))
+		return hand_instance
+	return FALSE

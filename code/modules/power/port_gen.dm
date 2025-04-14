@@ -281,9 +281,9 @@
 		var/obj/item/stack/addstack = I
 		var/amount = min((max_fuel_volume - sheets), addstack.amount)
 		if(amount < 1)
-			to_chat(user, "\blue The [src.name] is full!")
+			to_chat(user, span_blue("The [src.name] is full!"))
 			return
-		to_chat(user, "\blue You add [amount] sheet\s to the [src.name].")
+		to_chat(user, span_blue("You add [amount] sheet\s to the [src.name]."))
 		sheets += amount
 		addstack.use(amount)
 		updateUsrDialog()

@@ -9,10 +9,10 @@
 		if(!istext(newST)) //Welp that failed
 			return
 
-		if(!GLOB.storyteller_cache[newST])
+		if(!storyteller_cache[newST])
 			return
 		else
-			newST = GLOB.storyteller_cache[newST]
+			newST = storyteller_cache[newST]
 
 	if (get_storyteller() == newST)
 		return //Nothing happens if we try to set to the storyteller we already have

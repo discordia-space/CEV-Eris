@@ -68,7 +68,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/can_be_possessed_by(var/mob/observer/ghost/possessor)
 	if(!istype(possessor) || !possessor.client || !possessor.ckey)
 		return 0
-	if(!config.allow_drone_spawn)
+	if(!CONFIG_GET(flag/allow_drone_spawn))
 		to_chat(src, span_danger("Playing as drones is not currently permitted."))
 		return 0
 	if(too_many_active_drones())
@@ -134,7 +134,7 @@ var/list/mob_hat_cache = list()
 	additional_law_channels["Drone"] = "d"
 	if(!laws) laws = new law_type
 
-	flavor_text = "A tiny little repair drone. The casing is stamped with an corporate logo and the subscript: '[company_name] Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
+	flavor_text = "A tiny little repair drone. The casing is stamped with an corporate logo and the subscript: '[GLOB.company_name] Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
 	playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 0)
 
 //Redefining some robot procs...
@@ -191,7 +191,7 @@ var/list/mob_hat_cache = list()
 
 		if(stat == 2)
 
-			if(!config.allow_drone_spawn || HasTrait(CYBORG_TRAIT_EMAGGED) || health < -35) //It's dead, Dave.
+			if(!CONFIG_GET(flag/allow_drone_spawn) || HasTrait(CYBORG_TRAIT_EMAGGED) || health < -35) //It's dead, Dave.
 				to_chat(user, span_danger("The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one."))
 				return
 
@@ -337,7 +337,7 @@ var/list/mob_hat_cache = list()
 	for(var/mob/living/silicon/robot/drone/D in SSmobs.mob_list)
 		if(D.key && D.client)
 			drones++
-	return drones >= config.max_maint_drones
+	return drones >= CONFIG_GET(number/max_maint_drones)
 
 /mob/living/silicon/robot/drone/verb/choose_eyecolor()
 	set name = "Choose Light Color"

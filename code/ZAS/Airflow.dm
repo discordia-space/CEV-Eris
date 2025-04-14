@@ -201,7 +201,7 @@ Contains helper procs for airflow, handled in /connection_group.
 	airflow_dest = null
 
 /mob/airflow_hit(atom/A)
-	for(var/mob/M in hearers(src))
+	for(var/mob/M in hearers(get_turf(src)))
 		M.show_message(span_danger("\The [src] slams into \a [A]!"),1,span_danger("You hear a loud slam!"),2)
 	playsound(src.loc, "smash.ogg", 25, 1, -1)
 	var/weak_amt = istype(A,/obj/item) ? A:w_class : rand(ITEM_SIZE_TINY,ITEM_SIZE_HUGE) //Heheheh
@@ -209,7 +209,7 @@ Contains helper procs for airflow, handled in /connection_group.
 	. = ..()
 
 /obj/airflow_hit(atom/A)
-	for(var/mob/M in hearers(src))
+	for(var/mob/M in hearers(get_turf(src)))
 		M.show_message(span_danger("\The [src] slams into \a [A]!"),1,span_danger("You hear a loud slam!"),2)
 	playsound(src.loc, "smash.ogg", 25, 1, -1)
 	. = ..()
@@ -219,7 +219,7 @@ Contains helper procs for airflow, handled in /connection_group.
 	airflow_dest = null
 
 /mob/living/carbon/human/airflow_hit(atom/A)
-//	for(var/mob/M in hearers(src))
+//	for(var/mob/M in hearers(get_turf(src)))
 //		M.show_message(span_danger("[src] slams into [A]!"),1,span_danger("You hear a loud slam!"),2)
 	playsound(src.loc, "punch", 25, 1, -1)
 	if (prob(33))

@@ -84,7 +84,7 @@
 	if(open && cell)
 		cell.forceMove(get_turf(src))
 		if(ishuman(user))
-			if(!user.get_active_hand())
+			if(!user.get_active_held_item())
 				user.put_in_hands(cell)
 
 		cell.add_fingerprint(user)

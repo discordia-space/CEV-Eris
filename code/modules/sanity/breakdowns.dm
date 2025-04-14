@@ -175,7 +175,7 @@
 			))
 			holder.owner.custom_emote(message=emote)
 		else if(!holder.owner.incapacitated())
-			var/obj/item/W = holder.owner.get_active_hand()
+			var/obj/item/W = holder.owner.get_active_held_item()
 			if(W)
 				W.attack(holder.owner, holder.owner, ran_zone())
 			else
@@ -649,7 +649,7 @@
 				candidates -= I
 				continue
 			if(!holder.owner.put_in_hands(I) && prob(50))
-				holder.owner.unEquip(holder.owner.get_inactive_hand())
+				holder.owner.unEquip(holder.owner.get_inactive_held_item())
 				holder.owner.put_in_hands(I)
 			break
 

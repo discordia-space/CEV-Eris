@@ -93,7 +93,7 @@
 					nverb = verb
 			message = language.format_message_radio(message, nverb)
 	else
-		message = "[verb], <span class=\"body\">\"[message]\"</span>"
+		message = "[verb], <span class='body'>\"[message]\"</span>"
 
 	on_hear_radio(part_a, speaker_name, part_b, message)
 

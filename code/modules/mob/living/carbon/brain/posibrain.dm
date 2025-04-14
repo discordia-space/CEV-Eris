@@ -48,7 +48,7 @@
 
 /obj/item/device/mmi/digital/posibrain/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
-		var/msg = "[span_info("*---------*")]\nThis is \icon[src] \a <EM>[src]</EM>!\n[desc]\n"
+		var/msg = "[span_info("*---------*")]\nThis is [icon2html(src, user)] \a <EM>[src]</EM>!\n[desc]\n"
 		msg += "<span class='warning'>"
 
 		if(brainmob && brainmob.key)

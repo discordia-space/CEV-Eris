@@ -10,7 +10,7 @@
 	if(species == new_species)
 		return
 
-	if(!(new_species in all_species))
+	if(!(new_species in GLOB.all_species))
 		return
 
 	set_species(new_species)
@@ -136,7 +136,7 @@
 	return 1
 
 /mob/living/carbon/human/proc/generate_valid_species()
-	return all_species
+	return GLOB.all_species
 
 /mob/living/carbon/human/proc/generate_valid_hairstyles(var/check_gender = 1)
 	. = list()

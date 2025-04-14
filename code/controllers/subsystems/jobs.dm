@@ -247,7 +247,7 @@ SUBSYSTEM_DEF(job)
 	return TRUE
 
 /datum/controller/subsystem/job/proc/Debug(text)
-	if(!Debug2)
+	if(!GLOB.Debug2)
 		return FALSE
 	job_debug.Add(text)
 	return TRUE
@@ -665,7 +665,7 @@ SUBSYSTEM_DEF(job)
 	return spawn_in_storage
 
 /datum/controller/subsystem/job/proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
-	if(!config.load_jobs_from_txt)
+	if(!CONFIG_GET(flag/load_jobs_from_txt))
 		return FALSE
 
 	var/list/jobEntries = file2list(jobsfile)

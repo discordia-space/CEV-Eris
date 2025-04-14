@@ -53,7 +53,7 @@
 
 
 		//We enable it if the gun is held in the user's active hand and the safety is off or if they are doing this from inside a mech
-		if (L.get_active_hand() == gun || ismech(L.loc))
+		if (L.get_active_held_item() == gun || ismech(L.loc))
 			//Lets also make sure it can fire
 			var/can_fire = TRUE
 

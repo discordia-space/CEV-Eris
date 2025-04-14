@@ -91,17 +91,21 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(config.ghost_interaction)
+	doRotate(usr)
+
+/obj/structure/bed/chair/AltClick(mob/user, params)
+	doRotate(user)
+
+/obj/structure/bed/chair/proc/doRotate(mob/user)
+	if(CONFIG_GET(flag/ghost_interaction))
 		src.set_dir(turn(src.dir, 90))
-
 		return
-
 	else
-		if(ismouse(usr))
+		if(ismouse(user))
 			return
-		if(!usr || !isturf(usr.loc))
+		if(!user || !isturf(user.loc))
 			return
-		if(usr.stat || usr.restrained())
+		if(user.stat || user.restrained())
 			return
 
 		src.set_dir(turn(src.dir, 90))

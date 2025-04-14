@@ -34,7 +34,7 @@
 	var/material/A = get_material_by_name(MATERIAL_VOXALLOY)
 	if(A)
 		color = A.icon_colour
-	if(config.use_overmap)
+	if(CONFIG_GET(flag/use_overmap))
 		var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
 		if(istype(E))
 			desc += "\nThere are images on it: [E.get_engravings()]"
@@ -52,7 +52,7 @@
 
 /obj/structure/monolith/attack_hand(mob/user)
 	visible_message("[user] touches \the [src].")
-	if(config.use_overmap && istype(user,/mob/living/carbon/human))
+	if(CONFIG_GET(flag/use_overmap) && istype(user,/mob/living/carbon/human))
 		var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
 		if(istype(E))
 			var/mob/living/carbon/human/H = user

@@ -33,7 +33,7 @@
 /obj/item/melee/toolbox_maul/proc/break_apart(var/mob/living/user)
 	qdel(src)
 	var/obj/item/mop/mop = new(user.loc)
-	if(!user.get_active_hand())
+	if(!user.get_active_held_item())
 		user.put_in_active_hand(mop)
 	else
 		user.put_in_inactive_hand(mop)

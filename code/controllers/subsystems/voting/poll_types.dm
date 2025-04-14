@@ -59,9 +59,9 @@
 /datum/poll/storyteller/init_choices()
 	master_storyteller = null
 	var/datum/vote_choice/storyteller/base = null
-	for(var/ch in GLOB.storyteller_cache)
+	for(var/ch in storyteller_cache)
 		var/datum/vote_choice/storyteller/CS = new
-		var/datum/storyteller/S = GLOB.storyteller_cache[ch]
+		var/datum/storyteller/S = storyteller_cache[ch]
 		CS.text = S.name
 		CS.desc = S.description
 		CS.new_storyteller = ch
@@ -131,7 +131,7 @@
 					var/tipsAndTricks/jobs/JT = T
 					var/datum/job/J = pick(JT.jobs_list)
 					typeText = initial(J.title)
-				to_chat(world, SStips.formatTip(T, "Random Tip \[[typeText]\]: "))
+				to_chat(world, SStips.formatTip(T, "Random Tip \[[typeText]\]"))
 	pregame = FALSE
 
 /datum/vote_choice/storyteller

@@ -104,7 +104,7 @@
 
 //returns a list of everybody we wanna do stuff with.
 /mob/living/simple_animal/hostile/commanded/proc/get_targets_by_name(var/text, var/filter_friendlies = 0)
-	var/list/possible_targets = hearers(src,10)
+	var/list/possible_targets = hearers(10, get_turf(src))
 	. = list()
 	for(var/mob/M in possible_targets)
 		if(filter_friendlies && ((M in friends) || M.faction == faction || M == master))

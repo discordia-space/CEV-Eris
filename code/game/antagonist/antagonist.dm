@@ -53,7 +53,7 @@
 	..()
 	if(!role_text_plural)
 		role_text_plural = role_text
-	if(config.protect_roles_from_antagonist)
+	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs |= protected_jobs
 
 	if(antaghud_indicator)

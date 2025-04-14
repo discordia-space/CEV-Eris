@@ -416,8 +416,8 @@
 /obj/machinery/power/smes/proc/ion_act()
 	if(isStationLevel(src.z))
 		if(prob(1)) //explosion
-			for(var/mob/M in viewers(src))
-				M.show_message("\red The [src.name] is making strange noises!", 3, "\red You hear sizzling electronics.", 2)
+			for(var/mob/M in viewers(get_turf(src)))
+				M.show_message(span_warning("The [src.name] is making strange noises!"), 3, span_warning("You hear sizzling electronics."), 2)
 			sleep(10*pick(4,5,6,7,10,14))
 			var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
 			smoke.set_up(3, 0, loc)

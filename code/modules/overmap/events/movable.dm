@@ -106,7 +106,7 @@
 		start_y = rand(2, GLOB.maps_data.overmap_size - rand(5,10))
 		moving_vector = pick(NORTH, WEST, NORTHWEST)
 
-	if(!config.use_overmap)
+	if(!CONFIG_GET(flag/use_overmap))
 		return
 
 	start_x = start_x || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
@@ -165,7 +165,7 @@
 
 	icon_stages[1] = pick(list("meteors0", "meteors1", "meteors2", "meteors3"))
 
-	if(!config.use_overmap)
+	if(!CONFIG_GET(flag/use_overmap))
 		return
 	walk(src,turn(moving_vector, pick(45,-45,90,-90)),rand(100,160),0)
 
@@ -198,7 +198,7 @@
 
 	icon_stages[1] = pick(list("dust0", "dust1", "dust2", "dust3"))
 
-	if(!config.use_overmap)
+	if(!CONFIG_GET(flag/use_overmap))
 		return
 	spawn(450)
 		del_event()

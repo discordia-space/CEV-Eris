@@ -143,7 +143,7 @@
 /client/proc/SDQL2_query(query_text as message)
 	set category = "Debug"
 	if(!check_rights(R_DEBUG))  //Shouldn't happen... but just to be safe.
-		message_admins("\red ERROR: Non-admin [usr.key] attempted to execute a SDQL query!")
+		message_admins(span_red("ERROR: Non-admin [usr.key] attempted to execute a SDQL query!"))
 		log_admin("Non-admin [usr.key] attempted to execute a SDQL query!")
 
 	if(!query_text || length(query_text) < 1)
@@ -695,12 +695,12 @@
 
 
 /proc/is_proper_datum(object)
-	return istype(object, /datum) || istype(object, /client)
+	return isdatum(object) || isclient(object)
 
 /proc/SDQL_print(object, list/text_list)
 	if (is_proper_datum(object))
-		text_list += "<A href='byond://?_src_=vars;Vars=\ref[object]'>\ref[object]</A>"
-		if(istype(object, /atom))
+		text_list += "<A href='byond://?_src_=vars;[HrefToken()];Vars=\ref[object]'>\ref[object]</A>"
+		if(isatom(object))
 			var/atom/a = object
 
 			if(a.x)

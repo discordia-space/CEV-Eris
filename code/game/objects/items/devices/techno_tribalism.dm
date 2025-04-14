@@ -213,9 +213,9 @@
 			else
 				to_chat(src.loc, span_warning("The [src] is too complicated to use!"))
 		else
-			visible_message("\icon The [src] beeps, \"The [src] is not full enough to produce.\".")
+			visible_message("[icon2html(src, hearers(get_turf(src)))] The [src] beeps, \"The [src] is not full enough to produce.\".")
 	else
-		visible_message("\icon The [src] beeps, \"The [src] needs time to cooldown.\".")
+		visible_message("[icon2html(src, hearers(get_turf(src)))] The [src] beeps, \"The [src] needs time to cooldown.\".")
 
 /obj/item/device/techno_tribalism/proc/alert_technomancers()
 	if(radio_broadcasting)

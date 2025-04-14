@@ -328,10 +328,11 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 
 /proc/broadcast_hud_message(var/message, var/broadcast_source, var/list/targets, var/icon)
 	var/turf/sourceturf = get_turf(broadcast_source)
+	var/htmlicon = icon2html(icon, targets)
 	for(var/mob/M in targets)
 		var/turf/targetturf = get_turf(M)
 		if((targetturf.z == sourceturf.z))
-			M.show_message(span_info("\icon[icon] [message]"), 1)
+			M.show_message(span_info("[htmlicon] [message]"), 1)
 
 /proc/mobs_in_area(var/area/A)
 	var/list/mobs = new
@@ -383,7 +384,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 					else										// Everyone else (dead people who didn't ghost yet, etc.)
 						lname = name
 				lname = "[span_name("[lname]")] "
-			to_chat(M, span_deadsay("" + create_text_tag("dead", "DEAD:", M.client) + " [lname][follow][message]"))
+			to_chat(M, span_deadsay("DEAD: [lname][follow][message]"))
 
 //Announces that a ghost has joined/left, mainly for use with wizards
 /proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
@@ -393,7 +394,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		var/mob/M = O
 		if(M.client)
 			C = M.client
-	else if(istype(O, /client))
+	else if(isclient(O))
 		C = O
 	else if(istype(O, /datum/mind))
 		var/datum/mind/M = O
@@ -521,10 +522,10 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 	return can_admin_interact() && ..(ghost_multitool)
 
 /mob/living/carbon/human/get_multitool()
-	return ..(get_active_hand())
+	return ..(get_active_held_item())
 
 /mob/living/silicon/robot/get_multitool()
-	return ..(get_active_hand())
+	return ..(get_active_held_item())
 
 /mob/living/silicon/ai/get_multitool()
 	return ..(aiMulti)

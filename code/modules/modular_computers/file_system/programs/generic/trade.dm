@@ -68,13 +68,13 @@
 	var/list/category_list = list()
 	var/list/inventory_list = list()
 
-	LAZYDISTINCTADD(shoppinglist, station)				// Add the station reference to the shopping list if it doesn't already exist
+	shoppinglist |= station				// Add the station reference to the shopping list if it doesn't already exist
 
 	if(!islist(shoppinglist[station]))					// If nothing has been added under this station, create an empty list
 		shoppinglist[station] = list()
 
 	category_list = shoppinglist[station]				// Make the category list point to the current station's category list
-	LAZYDISTINCTADD(category_list, chosen_category)		// Add the category to the shopping list if it doesn't already exist
+	category_list |= chosen_category		// Add the category to the shopping list if it doesn't already exist
 
 	if(!islist(category_list[chosen_category]))			// If nothing has been added under this category, create an empty list
 		category_list[chosen_category] = list()
@@ -103,7 +103,7 @@
 	if(!path)
 		return
 	var/list/inventory_list = open_shop_list()		// Get reference to inventory list
-	LAZYDISTINCTADD(inventory_list, path)
+	inventory_list |= path
 	LAZYAPLUS(inventory_list, path, max(0, amount))
 
 	if(inventory_list[path] > limit)
@@ -143,7 +143,7 @@
 
 	var/list_name = name ? name : "Saved Cart #[++saved_cart_id]"
 
-	LAZYDISTINCTADD(saved_shopping_lists, list_name)
+	saved_shopping_lists |= list_name
 	LAZYSET(saved_shopping_lists, list_name, list_to_save)
 
 /datum/computer_file/program/trade/proc/load_shop_list(name)
@@ -609,7 +609,7 @@
 	.["sending_index"] = SStrade.beacons_sending.Find(PRG.sending)
 
 	if(PRG.station)
-		.["station_name"] = PRG.station.name
+		.["station_name()"] = PRG.station.name
 		.["station_desc"] = PRG.station.desc
 		.["station_id"] = PRG.station.uid
 		.["station_index"] = SStrade.discovered_stations.Find(PRG.station)

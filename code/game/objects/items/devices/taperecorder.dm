@@ -82,16 +82,16 @@
 		audio_file.timestamp += audio_file.used_capacity
 
 		if(speaking)
-			audio_file.storedinfo += "\[[time2text(audio_file.used_capacity*10,"mm:ss")]\] [M.name] [speaking.format_message_plain(msg, verb)]"
+			audio_file.storedinfo += "\[[time2text(audio_file.used_capacity*10,"mm:ss",NO_TIMEZONE)]\] [M.name] [speaking.format_message_plain(msg, verb)]"
 		else
-			audio_file.storedinfo += "\[[time2text(audio_file.used_capacity*10,"mm:ss")]\] [M.name] [verb], \"[msg]\""
+			audio_file.storedinfo += "\[[time2text(audio_file.used_capacity*10,"mm:ss",NO_TIMEZONE)]\] [M.name] [verb], \"[msg]\""
 
 /obj/item/device/taperecorder/see_emote(mob/M as mob, text, var/emote_type)
 	if(emote_type != 2) //only hearable emotes
 		return
 	if(audio_file && recording)
 		audio_file.timestamp += audio_file.used_capacity
-		audio_file.storedinfo += "\[[time2text(audio_file.used_capacity*10,"mm:ss")]\] [strip_html_properly(text)]"
+		audio_file.storedinfo += "\[[time2text(audio_file.used_capacity*10,"mm:ss",NO_TIMEZONE)]\] [strip_html_properly(text)]"
 
 /obj/item/device/taperecorder/show_message(msg, type, alt, alt_type)
 	var/recordedtext
@@ -103,7 +103,7 @@
 		return
 	if(audio_file && recording)
 		audio_file.timestamp += audio_file.used_capacity
-		audio_file.storedinfo += "*\[[time2text(audio_file.used_capacity*10,"mm:ss")]\] *[strip_html_properly(recordedtext)]*" //"*" at front as a marker
+		audio_file.storedinfo += "*\[[time2text(audio_file.used_capacity*10,"mm:ss",NO_TIMEZONE)]\] *[strip_html_properly(recordedtext)]*" //"*" at front as a marker
 
 /obj/item/device/taperecorder/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
@@ -196,7 +196,7 @@
 			to_chat(usr, span_notice("Recording started."))
 		recording = 1
 		audio_file.timestamp += audio_file.used_capacity
-		audio_file.storedinfo += "\[[time2text(audio_file.used_capacity * 10,"mm:ss")]\] Recording started."
+		audio_file.storedinfo += "\[[time2text(audio_file.used_capacity * 10,"mm:ss",NO_TIMEZONE)]\] Recording started."
 		var/used = audio_file.used_capacity	//to stop runtimes when you eject the drive
 		var/max = audio_file.max_capacity
 		for(used, used < max)
@@ -224,7 +224,7 @@
 	if(recording)
 		recording = 0
 		audio_file.timestamp += audio_file.used_capacity
-		audio_file.storedinfo += "\[[time2text(audio_file.used_capacity*10,"mm:ss")]\] Recording stopped."
+		audio_file.storedinfo += "\[[time2text(audio_file.used_capacity*10,"mm:ss",NO_TIMEZONE)]\] Recording stopped."
 		audio_file.stored_data = null
 		for(var/entry in audio_file.storedinfo)
 			audio_file.stored_data += "[entry]<br>"

@@ -62,7 +62,7 @@
 			if("Description")
 				var/str = sanitize(input(usr,"Label text?","Set label",""))
 				if(!str || !length(str))
-					to_chat(usr, "\red Invalid text.")
+					to_chat(usr, span_red("Invalid text."))
 					return
 				if(!examtext && !nameset)
 					examtext = str
@@ -173,7 +173,7 @@
 			if("Description")
 				var/str = sanitize(input(usr,"Label text?","Set label",""))
 				if(!str || !length(str))
-					to_chat(usr, "\red Invalid text.")
+					to_chat(usr, span_red("Invalid text."))
 					return
 				if(!examtext && !nameset)
 					examtext = str
@@ -305,7 +305,7 @@
 		else if(src.amount < 3)
 			to_chat(user, span_warning("You need more paper."))
 	else
-		to_chat(user, "\blue The object you are trying to wrap is unsuitable for the sorting machinery!")
+		to_chat(user, span_blue("The object you are trying to wrap is unsuitable for the sorting machinery!"))
 	if (src.amount <= 0)
 		new /obj/item/c_tube( src.loc )
 		qdel(src)

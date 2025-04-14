@@ -221,6 +221,11 @@ libaux*.so
 !libmariadb.so
 aux*.pdb
 
+# byond-tracy, we intentionally do not ship this and do not want to maintain it
+# https://github.com/mafemergency/byond-tracy/
+prof.dll
+libprof.so
+
 # JavaScript tools
 **/node_modules
 

@@ -219,9 +219,9 @@
 
 //For those pesky items which incur effects on the rigsuit, an altclick will force them to go in if possible
 /obj/item/rig/AltClick(var/mob/user)
-	if (storage && user.get_active_hand())
+	if (storage && user.get_active_held_item())
 		if (user == loc || Adjacent(user)) //Rig must be on or near you
-			storage.accepts_item(user.get_active_hand())
+			storage.accepts_item(user.get_active_held_item())
 			return
 	.=..()
 

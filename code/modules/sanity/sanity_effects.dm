@@ -2,7 +2,7 @@
 	owner.custom_emote(message = level < 20 ? pick_emote_20() : pick_emote_40())
 
 /datum/sanity/proc/effect_quote()
-	to_chat(owner, span_danger(level < 20 ? "\icon['icons/effects/fabric_symbols_20.dmi'][pick_quote_20()]" : "\icon['icons/effects/fabric_symbols_40.dmi'][pick_quote_40()]"))
+	to_chat(owner, span_danger(level < 20 ? "[icon2html('icons/effects/fabric_symbols_20.dmi', owner)][pick_quote_20()]" : "[icon2html('icons/effects/fabric_symbols_40.dmi', owner)][pick_quote_40()]"))
 
 /datum/sanity/proc/effect_sound()
 	var/sound/S = pick_sound()

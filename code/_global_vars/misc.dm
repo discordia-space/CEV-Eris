@@ -27,9 +27,7 @@ GLOBAL_LIST_INIT(custom_kits, list(
 		/obj/item/ammo_magazine/ihclrifle,
 		/obj/item/ammo_magazine/ihclrifle)))
 
-// LOGGING  MOVE ME //
-GLOBAL_VAR(log_directory)
-GLOBAL_PROTECT(log_directory)
-
 // TGUI MOVE ME //
 GLOBAL_DATUM(changelog_tgui, /datum/changelog)
+
+GLOBAL_VAR_INIT(Debug2, 0)

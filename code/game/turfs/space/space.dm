@@ -37,11 +37,11 @@
 	return locate(/obj/structure/lattice, src) //counts as solid structure if it has a lattice
 
 /turf/space/proc/update_starlight()
-	if(!config.starlight)
+	if(!CONFIG_GET(string/starlight))
 		return
 	for(var/turf/turf in RANGE_TURFS(1, src))
 		if(istype(turf) && turf.is_simulated) // RANGE_TURFS() can give 'null' type objects; the loop doesn't type check a thing
-			set_light(2, 1, config.starlight)
+			set_light(2, 1, CONFIG_GET(string/starlight))
 			return
 	set_light(0)
 

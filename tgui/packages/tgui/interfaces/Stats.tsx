@@ -1,8 +1,8 @@
-import { useBackend, useLocalState } from '../backend';
-import { Box, Section, Stack, Tabs, Tooltip } from '../components';
+import { useBackend, useLocalState } from 'tgui/backend';
+import { Box, Section, Stack, Tabs, Tooltip } from 'tgui-core/components';
 import { Window } from '../layouts';
-import { capitalize } from 'common/string';
-import { classes } from 'common/react';
+import { capitalize } from 'tgui-core/string';
+import { classes } from 'tgui-core/react';
 
 enum TABS {
   stats,

@@ -238,7 +238,7 @@ var/list/possible_cable_coil_colours = list(
 	else
 		new/obj/item/stack/cable_coil(T, 1, color)
 
-	for(var/mob/O in viewers(src, null))
+	for(var/mob/O in viewers(get_turf(src)))
 		O.show_message(span_warning("[user] cuts the cable."), 1)
 
 	if(d1 == DOWN || d2 == DOWN)
@@ -642,14 +642,14 @@ var/list/possible_cable_coil_colours = list(
 	if(ishuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)
 		if(!istype(usr.loc,/turf)) return
 		if(src.amount <= 14)
-			to_chat(usr, "\red You need at least 15 lengths to make restraints!")
+			to_chat(usr, span_red("You need at least 15 lengths to make restraints!"))
 			return
 		var/obj/item/handcuffs/cable/B = new /obj/item/handcuffs/cable(usr.loc)
 		B.color = color
 		to_chat(usr, span_notice("You wind some cable together to make some restraints."))
 		src.use(15)
 	else
-		to_chat(usr, "\blue You cannot do that.")
+		to_chat(usr, span_blue("You cannot do that."))
 
 /obj/item/stack/cable_coil/cyborg/verb/set_colour()
 	set name = "Change Colour"

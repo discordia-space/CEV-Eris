@@ -17,6 +17,10 @@
 	  */
 	var/gc_destroyed
 
+	/// Open tguis owned by this datum
+	/// Lazy, since this case is semi rare
+	var/list/open_uis
+
 	/// Active timers with this datum as the target
 	var/list/active_timers
 
@@ -75,6 +79,7 @@
 			continue
 		qdel(timer)
 	SSnano.close_uis(src)
+	SStgui.close_uis(src)
 
 	//BEGIN: ECS SHIT
 	signal_enabled = FALSE
@@ -110,3 +115,47 @@
 
 	return QDEL_HINT_QUEUE
 
+/datum/proc/CanProcCall(procname)
+	return TRUE
+
+/datum/proc/can_vv_get(var_name)
+	return TRUE
+
+/// Return a list of data which can be used to investigate the datum, also ensure that you set the semver in the options list
+/datum/proc/serialize_list(list/options, list/semvers)
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = list()
+	.["tag"] = tag
+
+	SET_SERIALIZATION_SEMVER(semvers, "1.0.0")
+	return .
+
+///Accepts a LIST from deserialize_datum. Should return whether or not the deserialization was successful.
+/datum/proc/deserialize_list(json, list/options)
+	SHOULD_CALL_PARENT(TRUE)
+	return TRUE
+
+///Serializes into JSON. Does not encode type.
+/datum/proc/serialize_json(list/options)
+	. = serialize_list(options, list())
+	if(!islist(.))
+		. = null
+	else
+		. = json_encode(.)
+
+///Deserializes from JSON. Does not parse type.
+/datum/proc/deserialize_json(list/input, list/options)
+	var/list/jsonlist = json_decode(input)
+	. = deserialize_list(jsonlist)
+	if(!istype(., /datum))
+		. = null
+
+///Convert a datum into a json blob
+/proc/json_serialize_datum(datum/D, list/options)
+	if(!istype(D))
+		return
+	var/list/jsonlist = D.serialize_list(options)
+	if(islist(jsonlist))
+		jsonlist["DATUM_TYPE"] = D.type
+	return json_encode(jsonlist)

@@ -22,7 +22,7 @@
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)
 
-	if(config.z_level_shooting)
+	if(CONFIG_GET(flag/z_level_shooting))
 		if(P.height == HEIGHT_HIGH)
 			return TRUE // Bullet is too high to hit
 		P.height = (P.height == HEIGHT_LOW) ? HEIGHT_LOW : HEIGHT_CENTER
@@ -50,7 +50,7 @@
 			valid = FALSE					//But only from one side
 
 	// Bullet is low enough to hit the table
-	if(config.z_level_shooting && P.height == HEIGHT_LOW)
+	if(CONFIG_GET(flag/z_level_shooting) && P.height == HEIGHT_LOW)
 		valid = TRUE
 
 	if(valid)

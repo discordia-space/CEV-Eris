@@ -275,7 +275,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 	desires.Cut()
 	if(!rest_timer_active)
 		to_chat(owner, "<font color='purple'>[owner.stats.getPerk(PERK_ARTIST) ? "You have created art." : "You have rested well."]\
-					<br>Select what you wish to do with your fulfilled insight <a HREF=?src=\ref[src];here_and_now=TRUE>here and now</a> or get to safety first if you are in danger.\
+					<br>Select what you wish to do with your fulfilled insight <a HREF='byond://?src=\ref[src];here_and_now=TRUE'>here and now</a> or get to safety first if you are in danger.\
 					<br>The prompt will appear in one minute.</font>")
 		rest_timer_active = TRUE
 		rest_timer_time = 60 SECONDS

@@ -137,7 +137,7 @@ var/list/channel_to_radio_key = new
 /mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="")
 	if(client)
 		if(client.prefs.muted&MUTE_IC)
-			to_chat(src, "\red You cannot speak in IC (Muted).")
+			to_chat(src, span_red("You cannot speak in IC (Muted)."))
 			return
 
 	if(stat)
@@ -298,7 +298,7 @@ var/list/channel_to_radio_key = new
 
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(animate_speechbubble), speech_bubble, speech_bubble_recipients, 30)
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, animate_chat), message, speaking, italics, speech_bubble_recipients, 40, verb)
-	if(config.tts_enabled && !message_mode && (!client || !BITTEST(client.prefs.muted, MUTE_TTS)) && (tts_seed || ishuman(src)))
+	if(CONFIG_GET(flag/tts_enabled) && !message_mode && (!client || !BITTEST(client.prefs.muted, MUTE_TTS)) && (tts_seed || ishuman(src)))
 		//TO DO: Remove need for that damn copypasta
 		var/seed = tts_seed
 		if(istype(back, /obj/item/rig))
@@ -339,7 +339,7 @@ var/list/channel_to_radio_key = new
 
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
-	for (var/mob/O in viewers(src, null))
+	for (var/mob/O in viewers(get_turf(src)))
 		O.hear_signlang(message, verb, language, src)
 	return 1
 

@@ -72,13 +72,13 @@
 
 		if (I_DISARM)
 			if (!weakened && prob(30))
-				M.visible_message("\red [M] has shoved \the [src]")
+				M.visible_message(span_red("[M] has shoved \the [src]"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 				Weaken(3)
 
 				return 1
 			else
-				M.visible_message("\red [M] failed to shove \the [src]")
+				M.visible_message(span_red("[M] failed to shove \the [src]"))
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 			M.do_attack_animation(src)
@@ -87,7 +87,7 @@
 			var/damage = 3
 			if ((stat == CONSCIOUS) && prob(10))
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				M.visible_message("\red [M] missed \the [src]")
+				M.visible_message(span_red("[M] missed \the [src]"))
 			else
 				if (istype(H))
 					damage += max(0, (H.stats.getStat(STAT_ROB) / 10))
@@ -95,7 +95,7 @@
 //						damage *= 2
 
 				playsound(loc, "punch", 25, 1, -1)
-				M.visible_message("\red [M] has punched \the [src]")
+				M.visible_message(span_red("[M] has punched \the [src]"))
 
 				adjustBruteLoss(damage)
 				updatehealth()

@@ -1,5 +1,5 @@
-/datum/asset/spritesheet/perks
+/datum/asset/spritesheet_batched/perks
 	name = "perks"
 
-/datum/asset/spritesheet/perks/create_spritesheets()
-	InsertAll("", 'icons/effects/perks.dmi')
+/datum/asset/spritesheet_batched/perks/create_spritesheets()
+	insert_all_icons("", 'icons/effects/perks.dmi')

@@ -38,7 +38,7 @@
 					skip_hand_check = TRUE
 
 		//We enable it if the gun is held in the user's active hand and the safety is off
-		if (skip_hand_check || L.get_active_hand() == gun)
+		if (skip_hand_check || L.get_active_held_item() == gun)
 			//Lets also make sure it can fire
 			var/can_fire = TRUE
 

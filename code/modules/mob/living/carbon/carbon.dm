@@ -45,7 +45,7 @@
 		if(user.last_special <= world.time)
 			user.last_special = world.time + 50
 			src.visible_message(span_danger("You hear something rumbling inside [src]'s stomach..."))
-			var/obj/item/I = user.get_active_hand()
+			var/obj/item/I = user.get_active_held_item()
 			if(I && I.force)
 				var/d = rand(round(I.force / 4), I.force)
 				if(ishuman(src))
@@ -71,9 +71,9 @@
 		if(M in src.stomach_contents)
 			src.stomach_contents.Remove(M)
 		M.loc = src.loc
-		for(var/mob/N in viewers(src, null))
+		for(var/mob/N in viewers(get_turf(src)))
 			if(N.client)
-				N.show_message(text("\red <B>[M] bursts out of [src]!</B>"), 2)
+				N.show_message(span_red("<B>[M] bursts out of [src]!</B>"), 2)
 	..()
 
 /mob/living/carbon/attack_hand(mob/M as mob)
@@ -83,7 +83,7 @@
 		if (H.hand)
 			temp = H.organs_by_name[BP_L_ARM]
 		if(temp && !temp.is_usable())
-			to_chat(H, "\red You can't use your [temp.name]")
+			to_chat(H, span_red("You can't use your [temp.name]"))
 			return
 
 
@@ -97,17 +97,17 @@
 	playsound(loc, "sparks", 50, 1, -1)
 	if (shock_damage > 15)
 		src.visible_message(
-			"\red [src] was shocked by the [source]!", \
-			"\red <B>You feel a powerful shock course through your body!</B>", \
-			"\red You hear a heavy electrical crack." \
+			span_red("[src] was shocked by the [source]!"), \
+			span_red("<B>You feel a powerful shock course through your body!</B>"), \
+			span_red("You hear a heavy electrical crack.") \
 		)
 		SEND_SIGNAL_OLD(src, COMSIG_CARBON_ELECTROCTE)
 		Weaken(max(min(10,round(shock_damage / 10 )), 2) SECONDS)
 	else
 		src.visible_message(
-			"\red [src] was mildly shocked by the [source].", \
-			"\red You feel a mild shock course through your body.", \
-			"\red You hear a light zapping." \
+			span_red("[src] was mildly shocked by the [source]."), \
+			span_red("You feel a mild shock course through your body."), \
+			span_red("You hear a light zapping.") \
 		)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -120,7 +120,7 @@
 
 	//We cache the held items before and after swapping using get active hand.
 	//This approach is future proof and will support people who possibly have >2 hands
-	var/obj/item/prev_held = get_active_hand()
+	var/obj/item/prev_held = get_active_held_item()
 
 	if(prev_held)
 		if(prev_held.wielded)
@@ -131,7 +131,7 @@
 	for (var/obj/screen/inventory/hand/H in src.HUDinventory)
 		H.update_icon()
 
-	var/obj/item/new_held = get_active_hand()
+	var/obj/item/new_held = get_active_held_item()
 
 	//Tell the old and new held items that they've been swapped
 
@@ -157,7 +157,7 @@
 		swap_hand()
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if (src.health >= HEALTH_THRESHOLD_CRIT)
+	if (src.health >= CONFIG_GET(number/health_threshold_crit))
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.check_self_for_injuries()
@@ -204,12 +204,14 @@
 			if(show_ssd && !client && !teleop)
 				M.visible_message(span_notice("[M] shakes [src] trying to wake [t_him] up!"), \
 				span_notice("You shake [src], but they do not respond... Maybe they have S.S.D?"))
+				jiggle()
 			else if(lying || src.sleeping)
 				src.sleeping = max(0,src.sleeping-5)
 				if(src.sleeping == 0)
 					src.resting = 0
 				M.visible_message(span_notice("[M] shakes [src] trying to wake [t_him] up!"), \
 									span_notice("You shake [src] trying to wake [t_him] up!"))
+				jiggle()
 			else if((M.targeted_organ == BP_HEAD) && target_organ_exists)
 				M.visible_message(span_notice("[M] pats [src]'s head."), \
 									span_notice("You pat [src]'s head."))
@@ -217,6 +219,7 @@
 				if(target_organ_exists)
 					M.visible_message(span_notice("[M] shakes hands with [src]."), \
 										span_notice("You shake hands with [src]."))
+					animate_interact(src, INTERACT_GENERIC)
 				else
 					M.visible_message(span_notice("[M] holds out \his hand to [src]."), \
 										span_notice("You hold out your hand to [src]."))
@@ -227,6 +230,7 @@
 				else
 					M.visible_message(span_notice("[M] hugs [src] to make [t_him] feel better!"), \
 								span_notice("You hug [src] to make [t_him] feel better!"))
+					animate_interact(src, INTERACT_HELP)
 				if(M.fire_stacks >= (src.fire_stacks + 3))
 					src.fire_stacks += 1
 					M.fire_stacks -= 1
@@ -261,7 +265,7 @@
 		return
 	if(target.type == /obj/screen) return
 
-	var/atom/movable/item = src.get_active_hand()
+	var/atom/movable/item = src.get_active_held_item()
 
 	if(!item) return
 
@@ -285,7 +289,7 @@
 
 				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been thrown by [usr.name] ([usr.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
 				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
-				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
+				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] [ADMIN_JMP(usr)]")
 				item.throw_at(target, item.throw_range, item.throw_speed, src)
 				return
 
@@ -350,7 +354,7 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		to_chat(usr, "\red You are already sleeping")
+		to_chat(usr, span_red("You are already sleeping"))
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap
@@ -391,7 +395,7 @@
 
 	if(!species)
 		return null
-	return species.default_language ? all_languages[species.default_language] : null
+	return species.default_language ? GLOB.all_languages[species.default_language] : null
 
 /mob/living/carbon/show_inv(mob/user as mob)
 	user.set_machine(src)

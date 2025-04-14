@@ -195,7 +195,7 @@
 				var/target_stat = BP_IS_ROBOTIC(src) ? STAT_MEC : STAT_BIO
 				var/removal_time = 70 * usr.stats.getMult(target_stat, STAT_LEVEL_PROF)
 				var/target = get_surgery_target()
-				var/obj/item/I = user.get_active_hand()
+				var/obj/item/I = user.get_active_held_item()
 
 				if(!I || !(QUALITY_CLAMPING in I.tool_qualities))
 					to_chat(user, span_warning("You need a tool with [QUALITY_CLAMPING] quality"))
@@ -222,7 +222,7 @@
 
 		if("treat_wound")
 			var/mob/living/user = usr
-			var/obj/item/I = user.get_active_hand()
+			var/obj/item/I = user.get_active_held_item()
 
 			if(!user || !I)
 				return

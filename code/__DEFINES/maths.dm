@@ -33,6 +33,9 @@
 // Real modulus that handles decimals
 #define MODULUS(x, y) ( (x) - (y) * round((x) / (y)) )
 
+
+#define ROUND_UP(x) ( -round(-(x)))
+
 // Tangent
 #define TAN(x) (sin(x) / cos(x))
 

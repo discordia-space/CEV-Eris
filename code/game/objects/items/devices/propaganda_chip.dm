@@ -91,7 +91,7 @@
 	var/message_text = pick(messages)
 	var/message = " <b>[crew_name]</b> says,<FONT SIZE =-2>  \"[message_text]\"</FONT>"
 
-	for (var/mob/living/M in viewers(src))
+	for (var/mob/living/M in viewers(get_turf(src)))
 		to_chat(M, "[message]")
 	last_talk_time = world.time
 

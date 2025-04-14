@@ -240,7 +240,7 @@
 		var/obj/item/barcodescanner/scanner = W
 		scanner.computer = src
 		to_chat(user, "[scanner]'s associated machine has been set to [src].")
-		for (var/mob/V in hearers(src))
+		for (var/mob/V in hearers(get_turf(src)))
 			V.show_message("[src] lets out a low, short blip.", 2)
 	else
 		..()
@@ -275,7 +275,7 @@
 						bibledelay = 0
 
 				else
-					for (var/mob/V in hearers(src))
+					for (var/mob/V in hearers(get_turf(src)))
 						V.show_message("<b>[src]</b>'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\"")
 
 			if("7")
@@ -354,7 +354,7 @@
 		if(!dbcon.IsConnected())
 			alert("Connection to Archive has been severed. Aborting.")
 		if(bibledelay)
-			for (var/mob/V in hearers(src))
+			for (var/mob/V in hearers(get_turf(src)))
 				V.show_message("<b>[src]</b>'s monitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\"")
 		else
 			bibledelay = 1

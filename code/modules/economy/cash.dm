@@ -170,7 +170,7 @@
 	var/obj/item/spacecash/bundle/bundle = new(spawnloc)
 	bundle.worth = sum
 	bundle.update_icon()
-	if(istype(H) && !H.get_active_hand())
+	if(istype(H) && !H.get_active_held_item())
 		H.put_in_hands(bundle)
 
 

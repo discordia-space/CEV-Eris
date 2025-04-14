@@ -2,7 +2,8 @@ SUBSYSTEM_DEF(statpanels)
 	name = "Stat Panels"
 	wait = 4
 	init_order = INIT_ORDER_STATPANELS
-	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
+	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY | RUNLEVEL_INIT
+	priority = INIT_ORDER_STATPANELS
 	var/list/currentrun = list()
 	var/encoded_global_data
 	var/encoded_ready_data
@@ -77,22 +78,24 @@ SUBSYSTEM_DEF(statpanels)
 			list("Failsafe Controller:", Failsafe ? "Defcon: [Failsafe.defcon_pretty()] (Interval: [Failsafe.processing_interval] | Iteration: [Failsafe.master_iteration])" : "ERROR", "\ref[Failsafe]"),
 			list("","")
 		)
+#if defined(MC_TAB_TRACY_INFO) || defined(SPACEMAN_DMM)
 		var/static/tracy_dll
 		var/static/tracy_present
 		if(isnull(tracy_dll))
 			tracy_dll = TRACY_DLL_PATH
 			tracy_present = fexists(tracy_dll)
 		if(tracy_present)
-			if(GLOB.tracy_initialized)
-				mc_data.Insert(2, list(list("byond-tracy:", "Active (reason: [GLOB.tracy_init_reason || "N/A"])")))
-			else if(GLOB.tracy_init_error)
-				mc_data.Insert(2, list(list("byond-tracy:", "Errored ([GLOB.tracy_init_error])")))
+			if(Tracy.enabled)
+				mc_data.Insert(2, list(list("byond-tracy:", "Active (reason: [Tracy.init_reason || "N/A"])")))
+			else if(Tracy.error)
+				mc_data.Insert(2, list(list("byond-tracy:", "Errored ([Tracy.error])")))
 			else if(fexists(TRACY_ENABLE_PATH))
 				mc_data.Insert(2, list(list("byond-tracy:", "Queued for next round")))
 			else
 				mc_data.Insert(2, list(list("byond-tracy:", "Inactive")))
 		else
 			mc_data.Insert(2, list(list("byond-tracy:", "[tracy_dll] not present")))
+#endif
 		for(var/ss in Master.subsystems)
 			var/datum/controller/subsystem/sub_system = ss
 			mc_data[++mc_data.len] = list("\[[sub_system.state_letter()]][sub_system.name]", sub_system.stat_entry(), "\ref[sub_system]")
@@ -118,7 +121,7 @@ SUBSYSTEM_DEF(statpanels)
 		else
 			var/turf/eye_turf = get_turf(target.eye)
 			var/coord_entry = url_encode(COORD(eye_turf))
-			target << output("[mc_data_encoded];[coord_entry]", "statbrowser:update_mc")
+			target << output("[mc_data_encoded];[coord_entry];[HrefToken()]", "statbrowser:update_mc")
 
 		if(target.mob?.listed_turf)
 			var/mob/target_mob = target.mob

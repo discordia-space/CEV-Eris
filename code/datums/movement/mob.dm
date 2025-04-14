@@ -6,9 +6,9 @@
 /datum/movement_handler/mob/relayed_movement/MayMove(var/mob/mover, var/is_external)
 	if(is_external)
 		return MOVEMENT_PROCEED
-	if(mover == mob && !(prevent_host_move && LAZYLEN(allowed_movers) && !LAZYISIN(allowed_movers, mover)))
+	if(mover == mob && !(prevent_host_move && LAZYLEN(allowed_movers) && !(allowed_movers in mover)))
 		return MOVEMENT_PROCEED
-	if(LAZYISIN(allowed_movers, mover))
+	if(!(allowed_movers in mover))
 		return MOVEMENT_PROCEED
 
 	return MOVEMENT_STOP

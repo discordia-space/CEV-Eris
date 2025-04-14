@@ -16,7 +16,7 @@
 		if(H.hand)
 			temp = H.organs_by_name[BP_L_ARM]
 		if(!temp || !temp.is_usable())
-			to_chat(H, "\red You can't use your hand.")
+			to_chat(H, span_red("You can't use your hand."))
 			return
 		H.stop_blocking()
 
@@ -33,7 +33,7 @@
 			var/damage = rand(0, 9)
 			if(!damage)
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				visible_message("\red <B>[H] has attempted to punch [src]!</B>")
+				visible_message(span_red("<B>[H] has attempted to punch [src]!</B>"))
 				return 0
 			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.targeted_organ))
 
@@ -42,11 +42,11 @@
 
 			playsound(loc, "punch", 25, 1, -1)
 
-			visible_message("\red <B>[H] has punched [src]!</B>")
+			visible_message(span_red("<B>[H] has punched [src]!</B>"))
 
 			damage_through_armor(damage, HALLOSS, affecting, ARMOR_MELEE)
 			if(damage >= 9)
-				visible_message("\red <B>[H] has weakened [src]!</B>")
+				visible_message(span_red("<B>[H] has weakened [src]!</B>"))
 				apply_effect(4, WEAKEN, getarmor(affecting, ARMOR_MELEE))
 
 			return
@@ -55,7 +55,7 @@
 		if(I_HELP)
 			if(can_operate(src, M) == CAN_OPERATE_ALL && do_surgery(src, M, null, TRUE))
 				return 1
-			else if(istype(H) && health < HEALTH_THRESHOLD_CRIT && health > HEALTH_THRESHOLD_DEAD)
+			else if(istype(H) && health < CONFIG_GET(number/health_threshold_crit) && health > CONFIG_GET(number/health_threshold_dead))
 				if(H == src)
 					to_chat(H, span_notice("You can't perform CPR on yourself."))
 					return
@@ -215,8 +215,8 @@
 
 			//Try to reduce damage by blocking
 			if(blocking)
-				if(istype(get_active_hand(), /obj/item/grab))//we are blocking with a human shield! We redirect the attack. You know, because grab doesn't exist as an item.
-					var/obj/item/grab/G = get_active_hand()
+				if(istype(get_active_held_item(), /obj/item/grab))//we are blocking with a human shield! We redirect the attack. You know, because grab doesn't exist as an item.
+					var/obj/item/grab/G = get_active_held_item()
 					grab_redirect_attack(M, G)
 					return
 				else
@@ -247,7 +247,7 @@
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
 
-			var/list/holding = list(get_active_hand() = 40, get_inactive_hand = 20)
+			var/list/holding = list(get_active_held_item() = 40, get_inactive_held_item = 20)
 
 			//See if they have any guns that might go off
 			for(var/obj/item/gun/W in holding)
@@ -277,7 +277,7 @@
 							visible_message(span_warning("[M] attempted to disarm [src]"))
 							return
 					if(istype(I, /obj/item/twohanded/offhand)) //did someone dare to switch to offhand to not get disarmed?
-						unEquip(src.get_inactive_hand())
+						unEquip(src.get_inactive_held_item())
 						visible_message(span_danger("[M] has disarmed [src]!"))
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return

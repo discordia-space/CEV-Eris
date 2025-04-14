@@ -83,7 +83,7 @@
 
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
-	if(user.client && (target in user.client.screen) && !(target == user.get_inactive_hand())) // being unable to clean an item because you're holding it is silly -vode
+	if(user.client && (target in user.client.screen) && !(target == user.get_inactive_held_item())) // being unable to clean an item because you're holding it is silly -vode
 		to_chat(user, span_notice("You need to take that [target.name] off before cleaning it."))
 		return
 	else

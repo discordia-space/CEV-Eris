@@ -59,14 +59,14 @@
 	if(cloaked || isnull(departure_message))
 		return
 
-	command_announcement.Announce(departure_message,(announcer ? announcer : "[boss_name]"))
+	command_announcement.Announce(departure_message,(announcer ? announcer : "[GLOB.boss_name]"))
 
 /datum/shuttle/multi_shuttle/proc/announce_arrival()
 
 	if(cloaked || isnull(arrival_message))
 		return
 
-	command_announcement.Announce(arrival_message,(announcer ? announcer : "[boss_name]"))
+	command_announcement.Announce(arrival_message,(announcer ? announcer : "[GLOB.boss_name]"))
 
 
 /obj/machinery/computer/shuttle_control/multi
@@ -165,7 +165,7 @@
 		return
 
 	if (MS.moving_status != SHUTTLE_IDLE)
-		usr << "\blue [shuttle_tag] vessel is moving."
+		usr << span_blue("[shuttle_tag] vessel is moving.")
 		return
 
 	if(href_list["dock_command"])
@@ -178,11 +178,11 @@
 
 	if(href_list["start"])
 		if(MS.at_origin)
-			usr << "\red You are already at your home base."
+			usr << span_red("You are already at your home base.")
 			return
 
 		if((MS.last_move + MS.cooldown*10) > world.time)
-			usr << "\red The ship's drive is inoperable while the engines are charging."
+			usr << span_red("The ship's drive is inoperable while the engines are charging.")
 			return
 
 		if(!check_docking(MS))
@@ -190,7 +190,7 @@
 			return
 
 		if(!MS.return_warning)
-			usr << "\red Returning to your home base will end your mission. If you are sure, press the button again."
+			usr << span_red("Returning to your home base will end your mission. If you are sure, press the button again.")
 			//TODO: Actually end the mission.
 			MS.return_warning = 1
 			return
@@ -203,11 +203,11 @@
 	if(href_list["toggle_cloak"])
 
 		MS.cloaked = !MS.cloaked
-		usr << "\red Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival."
+		usr << span_red("Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival.")
 
 	if(href_list["move_multi"])
 		if((MS.last_move + MS.cooldown*10) > world.time)
-			usr << "\red The ship's drive is inoperable while the engines are charging."
+			usr << span_red("The ship's drive is inoperable while the engines are charging.")
 			return
 
 		if(!check_docking(MS))
@@ -217,7 +217,7 @@
 		var/choice = input("Select a destination.") as null|anything in MS.destinations
 		if(!choice) return
 
-		usr << "\blue [shuttle_tag] main computer recieved message."
+		usr << span_blue("[shuttle_tag] main computer recieved message.")
 
 		if(MS.at_origin)
 			MS.announce_arrival()

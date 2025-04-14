@@ -75,13 +75,13 @@
 		var/absorb_burn_cost = (burn*shield.shield_level)*100
 
 		if(cell.is_empty())
-			to_chat(src, "\red Your shield has overloaded!")
+			to_chat(src, span_red("Your shield has overloaded!"))
 		else
 			var/absorb_brute = cell.use(absorb_brute_cost)/100
 			var/absorb_burn = cell.use(absorb_burn_cost)/100
 			brute -= absorb_brute
 			burn -= absorb_burn
-			to_chat(src, "\red Your shield absorbs some of the impact!")
+			to_chat(src, span_red("Your shield absorbs some of the impact!"))
 
 	if(!emp)
 		var/datum/robot_component/armour/A = get_armour()
@@ -120,13 +120,13 @@
 		var/absorb_burn_cost = (burn*shield.shield_level)*100
 
 		if(cell.is_empty())
-			to_chat(src, "\red Your shield has overloaded!")
+			to_chat(src, span_red("Your shield has overloaded!"))
 		else
 			var/absorb_brute = cell.use(absorb_brute_cost)/100
 			var/absorb_burn = cell.use(absorb_burn_cost)/100
 			brute -= absorb_brute
 			burn -= absorb_burn
-			to_chat(src, "\red Your shield absorbs some of the impact!")
+			to_chat(src, span_red("Your shield absorbs some of the impact!"))
 
 	var/datum/robot_component/armour/A = get_armour()
 	if(A)

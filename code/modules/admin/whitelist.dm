@@ -3,7 +3,7 @@
 GLOBAL_LIST_EMPTY(whitelist)
 
 /hook/startup/proc/loadWhitelist()
-	if(config.usewhitelist)
+	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
 	return 1
 

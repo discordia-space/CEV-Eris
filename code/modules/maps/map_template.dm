@@ -218,7 +218,7 @@
 			specific_sanity--
 
 			var/orientation
-			if(chosen_template.fixed_orientation || !config.random_submap_orientation)
+			if(chosen_template.fixed_orientation || !CONFIG_GET(flag/random_submap_orientation))
 				orientation = 0
 			else
 				orientation = pick(list(0, 90, 180, 270))

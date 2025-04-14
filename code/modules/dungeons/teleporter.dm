@@ -207,7 +207,7 @@
 
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 
-	for (var/mob/living/O in viewers(src, null))
+	for (var/mob/living/O in viewers(get_turf(src)))
 		if (get_dist(src, O) > 8)
 			continue
 

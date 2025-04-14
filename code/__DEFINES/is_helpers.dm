@@ -26,6 +26,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define ismob(A) istype(A, /mob)
 
+#define isclient(A) istype(A, /client)
+
 #define isobserver(A) istype(A, /mob/observer)
 
 #define isghost(A) istype(A, /mob/observer/ghost)

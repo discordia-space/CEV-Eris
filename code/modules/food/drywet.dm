@@ -197,7 +197,7 @@
 
 /obj/item/reagent_containers/drywet/attack_hand(mob/user)
 	add_fingerprint(user)
-	if(user.get_inactive_hand() == src)
+	if(user.get_inactive_held_item() == src)
 		var/obj/item/taken = pickweight_n_take(solids)
 		if(taken)
 			untaken_capacity += taken.get_storage_cost() ** 2

@@ -38,7 +38,7 @@
 	..()
 
 /obj/item/stack/os_cash/attack_hand(mob/user)
-	if(user.get_inactive_hand() == src)
+	if(user.get_inactive_held_item() == src)
 		split_cash(user)
 	else
 		..()

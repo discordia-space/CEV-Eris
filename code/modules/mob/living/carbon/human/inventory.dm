@@ -7,7 +7,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	set name = "quick-equip"
 	set hidden = 1
 
-	var/obj/item/I = get_active_hand()
+	var/obj/item/I = get_active_held_item()
 	if(!I)
 		to_chat(src, span_notice("You are not holding anything to equip."))
 		return
@@ -33,7 +33,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	set name = "belt-equip"
 	set hidden = 1
 
-	var/obj/item/I = get_active_hand()
+	var/obj/item/I = get_active_held_item()
 	if(!I)
 		to_chat(src, span_notice("You are not holding anything to equip."))
 		return
@@ -43,7 +43,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	set name = "suit-storage-equip"
 	set hidden = 1
 
-	var/obj/item/I = get_active_hand()
+	var/obj/item/I = get_active_held_item()
 	if(I)
 		if(src.s_store)
 			to_chat(src, span_notice("You have no room to equip or draw."))
@@ -68,7 +68,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	var/obj/item/storage/S
 
-	for(var/i in list(get_inactive_hand(), back, get_active_hand()))
+	for(var/i in list(get_inactive_held_item(), back, get_active_held_item()))
 		if(istype(i, /obj/item/storage))
 			S = i
 			break
@@ -80,7 +80,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 				break
 
 	if(S && (!istype(S, /obj/item/storage/backpack) || S:worn_check()))
-		equip_to_from_bag(get_active_hand(), S)
+		equip_to_from_bag(get_active_held_item(), S)
 
 
 //Puts the item into our active hand if possible. returns 1 on success.
@@ -240,7 +240,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		update_action_buttons()
 	return 1
 
-/mob/living/carbon/human/proc/get_active_hand_organ()
+/mob/living/carbon/human/proc/get_active_held_item_organ()
 	if(hand)
 		return get_organ(BP_L_ARM)
 	else
@@ -257,7 +257,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	SEND_SIGNAL_OLD(src, COMSING_HUMAN_EQUITP, W)
 	switch(slot)
 		if(slot_in_backpack)
-			if(src.get_active_hand() == W)
+			if(src.get_active_held_item() == W)
 				src.remove_from_mob(W)
 			W.forceMove(src.back)
 

@@ -1,5 +1,5 @@
-import { useBackend } from '../backend';
-import { Box, Button, Flex, Knob, LabeledList, Section } from '../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Flex, Knob, LabeledList, Section } from 'tgui-core/components';
 import { Window } from '../layouts';
 
 export const Processor = (props, context) => {

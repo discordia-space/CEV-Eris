@@ -15,7 +15,7 @@
 	if(!stat || spent)
 		return
 
-	if(!istype(user) || !user.stats || user.incapacitated() || user.get_active_hand() != src || length(user.get_covering_equipped_items(EYES)))
+	if(!istype(user) || !user.stats || user.incapacitated() || user.get_active_held_item() != src || length(user.get_covering_equipped_items(EYES)))
 		return
 
 	// User gains more and loses less if the base stat is fairly low

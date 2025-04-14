@@ -29,23 +29,23 @@
 	if(burning)
 		switch(amount)
 			if(1 to 10)
-				msg = "\red <b>Your [partname] burns.</b>"
+				msg = span_warning("<b>Your [partname] burns.</b>")
 			if(11 to 90)
 				flash_weak_pain()
-				msg = "\red <b><font size=2>Your [partname] burns badly!</font></b>"
+				msg = span_warning("<b><font size=2>Your [partname] burns badly!</font></b>")
 			if(91 to 10000)
 				flash_pain()
-				msg = "\red <b><font size=3>OH GOD! Your [partname] is on fire!</font></b>"
+				msg = span_danger("<b><font size=3>OH GOD! Your [partname] is on fire!</font></b>")
 	else
 		switch(amount)
 			if(1 to 10)
-				msg = "<b>Your [partname] hurts.</b>"
+				msg = span_warning("Your [partname] hurts.")
 			if(11 to 90)
 				flash_weak_pain()
-				msg = "<b><font size=2>Your [partname] hurts badly.</font></b>"
+				msg = span_warning("<font size=2>Your [partname] hurts badly.</font>")
 			if(91 to 10000)
 				flash_pain()
-				msg = "<b><font size=3>OH GOD! Your [partname] is hurting terribly!</font></b>"
+				msg = span_danger("<font size=3>OH GOD! Your [partname] is hurting terribly!</font>")
 	if(msg && (msg != last_pain_message || prob(10)))
 		last_pain_message = msg
 		to_chat(src, msg)
@@ -67,9 +67,9 @@
 		if(flash_strength < 0)
 			return
 
-	var/msg = "\red <b>[message]</b>"
+	var/msg = span_warning("[message]")
 	if(flash_strength >= 1)
-		msg = "\red <font size=3><b>[message]</b></font>"
+		msg = span_danger("<font size=3>[message]</font>")
 
 	// Anti message spam checks
 	if(msg && ((msg != last_pain_message) || (world.time >= next_pain_time)))

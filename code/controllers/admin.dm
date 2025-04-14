@@ -9,7 +9,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 	. = ..()
 	name = text
 	src.target = target
-	if(istype(target, /datum)) //Harddel man bad
+	if(isdatum(target)) //Harddel man bad
 		RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(cleanup))
 
 /obj/effect/statclick/Destroy()
@@ -35,7 +35,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 			class = "subsystem"
 		else if(istype(target, /datum/controller))
 			class = "controller"
-		else if(istype(target, /datum))
+		else if(isdatum(target))
 			class = "datum"
 		else
 			class = "unknown"

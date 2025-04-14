@@ -491,7 +491,7 @@
 	if(active)
 		return
 	message_admins("[key_name_admin(usr)] primed an explosive Orion ship for detonation.")
-	log_game("[key_name(usr)] primed an explosive Orion ship for detonation.")
+	log_bomber(user, "[key_name(usr)] primed an explosive Orion ship for detonation.", src)
 	to_chat(user, span_warning("You flip the switch on the underside of [src]."))
 	active = 1
 	src.visible_message(span_notice("[src] softly beeps and whirs to life!"))

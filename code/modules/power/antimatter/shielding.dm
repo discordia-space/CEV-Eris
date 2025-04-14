@@ -66,7 +66,7 @@
 /obj/machinery/am_shielding/Destroy()
 	if(control_unit)	control_unit.remove_shielding(src)
 	if(processing)	shutdown_core()
-	visible_message("\red The [src.name] melts!")
+	visible_message(span_red("The [src.name] melts!"))
 	//Might want to have it leave a mess on the floor but no sprites for now
 	return ..()
 

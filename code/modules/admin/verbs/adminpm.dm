@@ -37,7 +37,7 @@
 		to_chat(src, span_danger("Error: Admin-PM: You are unable to use admin PM-s (muted)."))
 		return
 
-	if(!istype(C,/client))
+	if(!isclient(C))
 		if(holder)
 			to_chat(src, "<font color='red'>Error: Private-Message: Client not found.</font>")
 		else
@@ -87,7 +87,7 @@
 			C.adminhelped = 0
 
 		//AdminPM popup for ApocStation and anybody else who wants to use it. Set it with POPUP_ADMIN_PM in config.txt ~Carn
-		if(config.popup_admin_pm)
+		if(CONFIG_GET(flag/popup_admin_pm))
 			spawn(0)	//so we don't hold the requester proc up
 				var/sender = src
 				var/sendername = key

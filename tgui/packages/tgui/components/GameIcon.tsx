@@ -1,4 +1,4 @@
-import { Box } from './Box';
+import { Box } from 'tgui-core/components';
 
 type GameIconProps = {
   html: string;

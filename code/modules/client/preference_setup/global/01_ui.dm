@@ -1,7 +1,8 @@
 /datum/preferences
 	//var/clientfps = 0
 		//game-preferences
-	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
+	var/ooccolor			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
+	var/asaycolor			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/UI_style = "ErisStyle"
 	var/UI_useborder = 0
 	var/UI_style_color = "#ffffff"
@@ -17,6 +18,7 @@
 	S["UI_style_color"]	>> pref.UI_style_color
 	S["UI_style_alpha"]	>> pref.UI_style_alpha
 	S["ooccolor"]		>> pref.ooccolor
+	S["asaycolor"]		>> pref.asaycolor
 	//S["clientfps"]		>> pref.clientfps
 
 /datum/category_item/player_setup_item/player_global/ui/save_preferences(var/savefile/S)
@@ -24,13 +26,15 @@
 	S["UI_style_color"]	<< pref.UI_style_color
 	S["UI_style_alpha"]	<< pref.UI_style_alpha
 	S["ooccolor"]		<< pref.ooccolor
+	S["asaycolor"]		<< pref.asaycolor
 	//S["clientfps"]		<< pref.clientfps
 
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
 	pref.UI_style		= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
 	pref.UI_style_color	= sanitize_hexcolor(pref.UI_style_color, initial(pref.UI_style_color))
 	pref.UI_style_alpha	= sanitize_integer(pref.UI_style_alpha, 0, 255, initial(pref.UI_style_alpha))
-	pref.ooccolor		= sanitize_hexcolor(pref.ooccolor, initial(pref.ooccolor))
+	pref.ooccolor		= sanitize_hexcolor(pref.ooccolor, GLOB.OOC_COLOR)
+	pref.asaycolor		= sanitize_hexcolor(pref.asaycolor, DEFAULT_ASAY_COLOR)
 	//pref.clientfps	    = sanitize_integer(pref.clientfps, CLIENT_MIN_FPS, CLIENT_MAX_FPS, initial(pref.clientfps))
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
@@ -41,10 +45,17 @@
 	. += "-Alpha(transparency): <a href='byond://?src=\ref[src];select_alpha=1'><b>[pref.UI_style_alpha]</b></a> <a href='byond://?src=\ref[src];reset=alpha'>reset</a><br>"
 	if(can_select_ooc_color(user))
 		. += "<b>OOC Color:</b>"
-		if(pref.ooccolor == initial(pref.ooccolor))
+		if(pref.ooccolor == GLOB.OOC_COLOR)
 			. += "<a href='byond://?src=\ref[src];select_ooc_color=1'><b>Using Default</b></a><br>"
 		else
 			. += "<a href='byond://?src=\ref[src];select_ooc_color=1'><b>[pref.ooccolor]</b></a> <table style='display:inline;' bgcolor='[pref.ooccolor]'><tr><td>__</td></tr></table> <a href='byond://?src=\ref[src];reset=ooc'>reset</a><br>"
+	// Just use the same check
+	if(can_select_ooc_color(user))
+		. += "<b>ASAY Color:</b>"
+		if(pref.asaycolor == DEFAULT_ASAY_COLOR)
+			. += "<a href='byond://?src=\ref[src];select_asay_color=1'><b>Using Default</b></a><br>"
+		else
+			. += "<a href='byond://?src=\ref[src];select_asay_color=1'><b>[pref.asaycolor]</b></a> <table style='display:inline;' bgcolor='[pref.asaycolor]'><tr><td>__</td></tr></table> <a href='byond://?src=\ref[src];reset=asay'>reset</a><br>"
 	//. += "<b>Client FPS:</b> <a href='byond://?src=\ref[src];select_fps=1'><b>[pref.clientfps]</b></a><br>"
 
 
@@ -76,6 +87,12 @@
 			pref.ooccolor = new_ooccolor
 			return TOPIC_REFRESH
 
+	else if(href_list["select_asay_color"])
+		var/new_asaycolor = input(user, "Choose ASAY color:", "Global Preference") as color|null
+		if(new_asaycolor && can_select_asay_color(user) && CanUseTopic(user))
+			pref.asaycolor = new_asaycolor
+			return TOPIC_REFRESH
+
 	/*
 	else if(href_list["select_fps"])
 		var/version_message
@@ -99,11 +116,16 @@
 			if("alpha")
 				pref.UI_style_alpha = initial(pref.UI_style_alpha)
 			if("ooc")
-				pref.ooccolor = initial(pref.ooccolor)
+				pref.ooccolor = GLOB.OOC_COLOR
+			if("asay")
+				pref.ooccolor = DEFAULT_ASAY_COLOR
 		pref.client.create_UI()
 		return TOPIC_REFRESH
 
 	return ..()
 
 /proc/can_select_ooc_color(var/mob/user)
-	return config.allow_admin_ooccolor && check_rights(R_ADMIN, 0, user)
+	return CONFIG_GET(flag/allow_admin_ooccolor) && check_rights(R_ADMIN, 0, user)
+
+/proc/can_select_asay_color(var/mob/user)
+	return CONFIG_GET(flag/allow_admin_asaycolor) && check_rights(R_ADMIN, 0, user)

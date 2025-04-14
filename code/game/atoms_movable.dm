@@ -242,7 +242,7 @@
 	if(z in GLOB.maps_data.sealed_levels)
 		return
 
-	if(config.use_overmap)
+	if(CONFIG_GET(flag/use_overmap))
 		overmap_spacetravel(get_turf(src), src)
 		return
 

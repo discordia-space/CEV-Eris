@@ -158,7 +158,7 @@
 			sleep(duration/3)
 			if(!user || user.stat == DEAD)
 				return
-			command_announcement.Announce("Caution, [station_short]. Abnormal behaviour detected in network, initiating troubleshoot for more information.", "Network Monitoring")
+			command_announcement.Announce("Caution, [GLOB.station_short]. Abnormal behaviour detected in network, initiating troubleshoot for more information.", "Network Monitoring")
 			sleep(duration/3)
 			if(!user || user.stat == DEAD)
 				return

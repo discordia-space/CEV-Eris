@@ -158,7 +158,7 @@
 	if(invisibility)
 		chemicals -= invisibility_cost
 		if(chemicals <= max_chemicals/2 && (max_chemicals/2) - invisibility_cost <= chemicals)
-			to_chat(src, to_chat(src, "\red <B>Your invisibility will run out soon!</B>"))
+			to_chat(src, to_chat(src, span_red("<B>Your invisibility will run out soon!</B>")))
 		if(chemicals <= invisibility_cost + 1)
 			invisible() // Disable invisibility
 			chemicals = 0

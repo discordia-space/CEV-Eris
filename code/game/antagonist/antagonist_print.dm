@@ -39,7 +39,7 @@
 	var/tipsAndTricks/T = SStips.getRoleTip(src)
 	if(T)
 		var/mob/player = owner.current
-		to_chat(player, SStips.formatTip(T, "Tip for \a [role_text]: "))
+		to_chat(player, SStips.formatTip(T, "Tip for \a [role_text]"))
 
 /datum/antagonist/proc/get_special_objective_text()
 	return ""

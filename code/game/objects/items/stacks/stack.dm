@@ -200,7 +200,7 @@
 
 /obj/item/stack/Topic(href, href_list)
 	..()
-	if ((usr.restrained() || usr.stat || usr.get_active_hand() != src))
+	if ((usr.restrained() || usr.stat || usr.get_active_held_item() != src))
 		return
 
 	if (href_list["sublist"] && !href_list["make"])
@@ -358,7 +358,7 @@
 			break
 
 /obj/item/stack/attack_hand(mob/user as mob)
-	if (user.get_inactive_hand() == src)
+	if (user.get_inactive_held_item() == src)
 		var/obj/item/stack/F = src.split(1)
 		if (F)
 			user.put_in_hands(F)
@@ -374,7 +374,7 @@
 /obj/item/stack/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
-		if (user.get_inactive_hand()==src)
+		if (user.get_inactive_held_item()==src)
 			src.transfer_to(S, 1)
 		else
 			src.transfer_to(S)

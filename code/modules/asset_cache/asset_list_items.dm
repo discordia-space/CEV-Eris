@@ -159,39 +159,6 @@
 // 		"tgfont.css" = file("tgui/packages/tgfont/dist/tgfont.css"),
 // 	)
 
-/datum/asset/simple/goonchat
-	legacy = TRUE
-	assets = list(
-		"json2.min.js"             = 'code/modules/goonchat/browserassets/js/json2.min.js',
-		"browserOutput.js"         = 'code/modules/goonchat/browserassets/js/browserOutput.js',
-		"browserOutput.css"	       = 'code/modules/goonchat/browserassets/css/browserOutput.css',
-		"browserOutput_white.css"  = 'code/modules/goonchat/browserassets/css/browserOutput_white.css',
-		"browserOutput_override.css"  = 'code/modules/goonchat/browserassets/css/browserOutput_override.css',
-	)
-
-/datum/asset/group/goonchat
-	children = list(
-		/datum/asset/simple/jquery,
-		/datum/asset/simple/goonchat,
-		/datum/asset/simple/namespaced/fontawesome
-	)
-
-// /datum/asset/spritesheet/chat
-// 	name = "chat"
-
-// /datum/asset/spritesheet/chat/register()
-// 	InsertAll("emoji", EMOJI_SET)
-// 	// pre-loading all lanugage icons also helps to avoid meta
-// 	InsertAll("language", 'icons/misc/language.dmi')
-// 	// catch languages which are pulling icons from another file
-// 	for(var/path in typesof(/datum/language))
-// 		var/datum/language/L = path
-// 		var/icon = initial(L.icon)
-// 		if (icon != 'icons/misc/language.dmi')
-// 			var/icon_state = initial(L.icon_state)
-// 			Insert("language-[icon_state]", icon, icon_state=icon_state)
-// 	..()
-
 // /datum/asset/simple/lobby
 // 	assets = list(
 // 		"playeroptions.css" = 'html/browser/playeroptions.css'
@@ -396,7 +363,7 @@
 	for(var/D in SSresearch.all_designs)
 		var/datum/design/design = D
 
-		var/filename = sanitizeFileName("[design.build_path].png")
+		var/filename = SANITIZE_FILENAME("[design.build_path].png")
 
 		var/atom/item = design.build_path
 		var/icon_file = initial(item.icon)
@@ -418,11 +385,11 @@
 
 	for(var/D in SSresearch.all_designs)
 		var/datum/design/design = D
-		design.nano_ui_data["icon"] = SSassets.transport.get_asset_url(sanitizeFileName("[design.build_path].png"))
+		design.nano_ui_data["icon"] = SSassets.transport.get_asset_url(SANITIZE_FILENAME("[design.build_path].png"))
 
 /datum/asset/simple/materials/register()
 	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
-		var/filename = sanitizeFileName("[type].png")
+		var/filename = SANITIZE_FILENAME("[type].png")
 
 		var/atom/item = initial(type)
 		var/icon_file = initial(item.icon)
@@ -437,7 +404,7 @@
 	for(var/name in SScraft.categories)
 		for(var/datum/craft_recipe/CR in SScraft.categories[name])
 			if(CR.result)
-				var/filename = sanitizeFileName("[CR.result].png")
+				var/filename = SANITIZE_FILENAME("[CR.result].png")
 
 				var/atom/item = initial(CR.result)
 				var/icon_file = initial(item.icon)
@@ -458,7 +425,7 @@
 
 			for(var/datum/craft_step/CS in CR.steps)
 				if(CS.reqed_type)
-					var/filename = sanitizeFileName("[CS.reqed_type].png")
+					var/filename = SANITIZE_FILENAME("[CS.reqed_type].png")
 
 					var/atom/item = initial(CS.reqed_type)
 					var/icon_file = initial(item.icon)
@@ -478,12 +445,12 @@
 	for(var/datum/craft_step/CS as anything in craftStep)
 		if (!CS.reqed_material && !CS.reqed_type)
 			continue
-		CS.iconfile = SSassets.transport.get_asset_url(CS.reqed_material ? sanitizeFileName("[material_stack_type(CS.reqed_material)].png") : null, assets[sanitizeFileName("[CS.reqed_type].png")])
+		CS.iconfile = SSassets.transport.get_asset_url(CS.reqed_material ? SANITIZE_FILENAME("[material_stack_type(CS.reqed_material)].png") : null, assets[SANITIZE_FILENAME("[CS.reqed_type].png")])
 		CS.make_desc() // redo it
 
 /datum/asset/simple/tool_upgrades/register()
 	for(var/type in subtypesof(/obj/item/tool_upgrade))
-		var/filename = sanitizeFileName("[type].png")
+		var/filename = SANITIZE_FILENAME("[type].png")
 
 		var/obj/item/item = initial(type)
 		// no.
@@ -505,7 +472,7 @@
 
 /datum/asset/simple/perks/register()
 	for(var/type in subtypesof(/datum/perk))
-		var/filename = sanitizeFileName("[type].png")
+		var/filename = SANITIZE_FILENAME("[type].png")
 
 		var/datum/perk/item = initial(type)
 		var/icon_file = initial(item.icon)

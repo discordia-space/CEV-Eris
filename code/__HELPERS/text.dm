@@ -50,11 +50,6 @@
 
 	return input
 
-/proc/sanitizeFileName(var/input)
-	input = replace_characters(input, list(" "="_", "\\" = "_", "\""="'", "/" = "_", ":" = "_", "*" = "_", "?" = "_", "|" = "_", "<" = "_", ">" = "_", "#" = "_"))
-	if(findtext(input,"_") == 1)
-		input = copytext(input, 2)
-	return input
 //Run sanitize(), but remove <, >, " first to prevent displaying them as &gt; &lt; &34; in some places, after html_encode().
 //Best used for sanitize object names, window titles.
 //If you have a problem with sanitize() in chat, when quotes and >, < are displayed as html entites -
@@ -157,18 +152,16 @@
 /proc/sanitize_old(var/t, var/list/repl_chars = list("\n"="#", "\t"="#"))
 	return html_encode(replace_characters(t, repl_chars))
 
-//Removes a few problematic characters
-/proc/sanitize_simple(t,list/repl_chars = list("\n"="#","\t"="#"))
+/proc/sanitize_filename(text)
+	return hashtag_newlines_and_tabs(text, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
+
+/proc/hashtag_newlines_and_tabs(text, list/repl_chars = list("\n"="#","\t"="#"))
 	for(var/char in repl_chars)
-		var/index = findtext(t, char)
+		var/index = findtext(text, char)
 		while(index)
-			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index + length(char))
-			index = findtext(t, char, index + length(char))
-	return t
-
-/proc/sanitize_filename(t)
-	return sanitize_simple(t, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
-
+			text = copytext(text, 1, index) + repl_chars[char] + copytext(text, index + length(char))
+			index = findtext(text, char, index + length(char))
+	return text
 
 /*
  * Text searches
@@ -437,7 +430,7 @@ var/icon/text_tag_icons = new('./icons/chattags.dmi')
 	t = replacetext(t, "\[date\]", "[stationdate2text()]")
 	t = replacetext(t, "\[large\]", "<font size=\"4\">")
 	t = replacetext(t, "\[/large\]", "</font>")
-	t = replacetext(t, "\[field\]", "<span class=\"paper_field\"></span>")
+	t = replacetext(t, "\[field\]", "<span class='paper_field'></span>")
 	t = replacetext(t, "\[h1\]", "<H1>")
 	t = replacetext(t, "\[/h1\]", "</H1>")
 	t = replacetext(t, "\[h2\]", "<H2>")
@@ -490,7 +483,7 @@ var/icon/text_tag_icons = new('./icons/chattags.dmi')
 	t = replacetext(t, "<tr>", "\[row\]")
 	t = replacetext(t, "<td>", "\[cell\]")
 	t = replacetext(t, "<img src = ntlogo.png>", "\[logo\]")
-	t = replacetext(t, "<span class=\"paper_field\"></span>", "\[field\]")
+	t = replacetext(t, "<span class='paper_field'></span>", "\[field\]")
 	t = strip_html_properly(t)
 	return t
 
@@ -538,7 +531,7 @@ var/icon/text_tag_icons = new('./icons/chattags.dmi')
 	var/turf/T = get_turf(target)
 	var/area/A = get_area(target)
 	var/where = "[A? A.name : "Unknown Location"] | [T.x], [T.y], [T.z]"
-	var/whereLink = "<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>[where]</a>"
+	var/whereLink = "[where] [ADMIN_JMP(T)]"
 	return whereLink
 
 //Used for applying byonds text macros to strings that are loaded at runtime
@@ -602,3 +595,38 @@ var/icon/text_tag_icons = new('./icons/chattags.dmi')
 	. = ""
 	for(var/i=1, i<=times, i++)
 		. += string
+
+//json decode that will return null on parse error instead of runtiming.
+/proc/safe_json_decode(data)
+	try
+		return json_decode(data)
+	catch
+		return null
+
+/// Converts a semver string into a list of numbers
+/proc/semver_to_list(semver_string)
+	var/static/regex/semver_regex = regex(@"(\d+)\.(\d+)\.(\d+)", "")
+	if(!semver_regex.Find(semver_string))
+		return null
+
+	return list(
+		text2num(semver_regex.group[1]),
+		text2num(semver_regex.group[2]),
+		text2num(semver_regex.group[3]),
+	)
+
+
+/// Returns a message wrapped in a <font> tag, colored based on how close `number` is to `threshold`.
+/// Lower number = green. Approaching threshold = yellow/orange. Exceeding = red.
+/proc/get_colored_thresh_text(msg, number, threshold = 10)
+	if (threshold <= 0)
+		return "<font color='#ffffff'>[msg]</font>" // fallback
+
+	var/ratio = number / threshold
+	if (ratio > 1) ratio = 1
+
+	var/hue = round(120 * (1 - ratio))
+	var/saturation = 90
+	var/lightness = 60
+
+	return "<span style='color: hsl([hue],[saturation]%,[lightness]%);'>[msg]</span>"

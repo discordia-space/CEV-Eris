@@ -262,7 +262,7 @@
 
 	else if(href_list["job_wiki"])
 		var/rank = href_list["job_wiki"]
-		open_link(user,"[config.wikiurl][rank]_Eris[config.language]")
+		open_link(user,"[CONFIG_GET(string/wikiurl)][rank]_Eris[CONFIG_GET(string/language)]")
 
 	return ..()
 
@@ -361,7 +361,7 @@
 
 
 
-	if(config.wikiurl)
+	if(CONFIG_GET(string/wikiurl))
 		job_desc += "<a href='byond://?src=\ref[src];job_info_selected_rank_wiki=[job_info_selected_rank]'>Open wiki page in browser</a>"
 	var/description = job.get_description_blurb()
 	/*if(job.required_education)

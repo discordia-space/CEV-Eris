@@ -212,7 +212,7 @@ var/list/lost_cruciforms = list()
 				I.take_damage(rand(6,12), BRUTE)
 				if(I.parent)
 					I.parent.take_damage(rand(2,5))
-				wearer.visible_message(span_notice("<b>\The [AM]</b> rips through \the [wearer]'s flesh."), span_notice("<b>\The [AM]</b> rips through your flesh. Your [I.name] hurts."))
+				wearer.visible_message(span_danger("<b>\The [AM]</b> rips through \the [wearer]'s flesh."), span_danger("<b>\The [AM]</b> rips through your flesh. Your [I.name] hurts!"))
 	if(ishuman(wearer))
 		var/mob/living/carbon/human/H = wearer
 		H.update_implants()

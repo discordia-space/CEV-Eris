@@ -212,8 +212,8 @@ meteor_act
 	var/item_size_affect = 0 //the bigger the thing you hold is, the more damage you can block
 	var/toughness = max(1, stats.getStat(STAT_TGH))
 	//passive blocking with shields is handled differently(code is above this proc)
-	if(get_active_hand())//are we blocking with an item?
-		var/obj/item/I = get_active_hand()
+	if(get_active_held_item())//are we blocking with an item?
+		var/obj/item/I = get_active_held_item()
 		if(istype(I))
 			item_size_affect = I.w_class * 5
 			stat_affect = 0.2
@@ -281,8 +281,8 @@ meteor_act
 		return FALSE
 
 	if(blocking)
-		if(istype(get_active_hand(), /obj/item/grab))//we are blocking with a human shield! We redirect the attack. You know, because grab doesn't exist as an item.
-			var/obj/item/grab/G = get_active_hand()
+		if(istype(get_active_held_item(), /obj/item/grab))//we are blocking with a human shield! We redirect the attack. You know, because grab doesn't exist as an item.
+			var/obj/item/grab/G = get_active_held_item()
 			grab_redirect_attack(G, I)
 			return FALSE
 		else
@@ -379,7 +379,7 @@ meteor_act
 					visible_message(span_warning("[src] is winded!"), span_danger("You feel disoriented!"))
 					confused = max(confused, 2)
 					external_recoil(40)
-					var/obj/item/item_in_active_hand = get_active_hand()
+					var/obj/item/item_in_active_hand = get_active_held_item()
 					if(recoil >= 60 && item_in_active_hand)
 						if(istype(item_in_active_hand, /obj/item/grab))
 							break_all_grabs(user) //See about breaking grips or pulls
@@ -409,7 +409,7 @@ meteor_act
 	if(istype(AM,/obj/))
 		var/obj/O = AM
 
-		if(in_throw_mode && !get_active_hand() && speed <= THROWFORCE_SPEED_DIVISOR)	//empty active hand and we're in throw mode
+		if(in_throw_mode && !get_active_held_item() && speed <= THROWFORCE_SPEED_DIVISOR)	//empty active hand and we're in throw mode
 			if(canmove && !restrained())
 				if(isturf(O.loc))
 					put_in_active_hand(O)
@@ -447,7 +447,7 @@ meteor_act
 		if (O.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 			IgniteMob()
 
-		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")
+		src.visible_message(span_red("[src] has been hit in the [hit_area] by [O]."))
 
 		damage_through_armor(throw_damage, dtype, null, ARMOR_MELEE, null, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
 
@@ -458,7 +458,7 @@ meteor_act
 				src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been hit with a [O], thrown by [M.name] ([assailant.ckey])</font>")
 				M.attack_log += text("\[[time_stamp()]\] <font color='red'>Hit [src.name] ([src.ckey]) with a thrown [O]</font>")
 				if(!ismouse(src))
-					msg_admin_attack("[src.name] ([src.ckey]) was hit by a [O], thrown by [M.name] ([assailant.ckey]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
+					msg_admin_attack("[src.name] ([src.ckey]) was hit by a [O], thrown by [M.name] ([assailant.ckey]) [ADMIN_JMP(src)]")
 
 		//thrown weapon embedded object code.
 		if(istype(O,/obj/item))
@@ -486,7 +486,7 @@ meteor_act
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!")
+			visible_message(span_red("[src] staggers under the impact!"), span_red("You stagger under the impact!"))
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!O || !src) return

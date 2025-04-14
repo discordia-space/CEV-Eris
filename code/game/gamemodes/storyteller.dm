@@ -66,6 +66,9 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 	//Time is random between 1 decisecond to this
 
 	var/votable = TRUE
+
+	/// Is storyteller secret or not
+	var/secret_storyteller = FALSE
 	//whether or not the players can vote for it. If this is set to false, it can only be activated by being forced by admins.
 
 
@@ -87,17 +90,17 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 			if(command && engineer)
 				return TRUE
 
-	var/tcol = "red"
+	var/tcol = COLOR_RED
 	if(GLOB.player_list.len <= 10)
-		tcol = "black"
+		tcol = COLOR_RED_GRAY
 
 	if(announce)
 		if(!engineer && !command)
-			to_chat(world, "<b><font color='[tcol]'>A command officer and technomancer are required to start round.</font></b>")
+			to_chat(world, span_bold("<font color='[tcol]'>A command officer and technomancer are required to start round.</font>"))
 		else if(!engineer)
-			to_chat(world, "<b><font color='[tcol]'>Technomancer is required to start round.</font></b>")
+			to_chat(world, span_bold("<font color='[tcol]'>Technomancer is required to start round.</font>"))
 		else if(!command)
-			to_chat(world, "<b><font color='[tcol]'>A command officer is required to start round.</font></b>")
+			to_chat(world, span_bold("<font color='[tcol]'>A command officer is required to start round.</font>"))
 
 	if(GLOB.player_list.len <= 10)
 		to_chat(world, "<i>But there's less than 10 players, so this requirement will be ignored.</i>")
@@ -106,7 +109,11 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 	return FALSE
 
 /datum/storyteller/proc/announce()
-	to_chat(world, "<b><font size=3>Storyteller is [name].</font> <br>[welcome]</b>")
+	if(!secret_storyteller)
+		send_to_playing_players(span_notice("<b>Storyteller is [name]!</b>"))
+		send_to_playing_players(span_notice("[welcome]"))
+	else
+		send_to_observers(span_boldbig("<b>Storyteller is [name]!</b>")) //observers still get to know
 
 /datum/storyteller/proc/set_up()
 	build_event_pools()

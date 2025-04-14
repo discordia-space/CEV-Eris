@@ -91,7 +91,7 @@
 			blood_DNA = list()
 		blood_DNA.Cut()
 		blood_DNA[C.dna_trace] = C.b_type
-		species = all_species[C.species.name]
+		species = GLOB.all_species[C.species.name]
 
 /obj/item/organ/proc/die()
 	if(BP_IS_ROBOTIC(src) || status & ORGAN_DEAD)
@@ -106,7 +106,7 @@
 		owner.death()
 
 /obj/item/organ/get_item_cost()
-	if((status & ORGAN_DEAD) || species != all_species[SPECIES_HUMAN]) //No dead or monkey organs!
+	if((status & ORGAN_DEAD) || species != GLOB.all_species[SPECIES_HUMAN]) //No dead or monkey organs!
 		return FALSE
 	return ..()
 
@@ -154,7 +154,7 @@
 			if(B && prob(40))
 				reagents.remove_reagent("blood",0.1)
 				blood_splatter(src,B,1)
-		if(config.organs_decay)
+		if(CONFIG_GET(flag/organs_can_decay))
 			if(prob(5))
 				take_damage(12, TOX)	// Will cause toxin accumulation wounds
 	else

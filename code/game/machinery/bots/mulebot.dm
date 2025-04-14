@@ -277,7 +277,7 @@
 
 
 			if("cellremove")
-				if(open && cell && !usr.get_active_hand())
+				if(open && cell && !usr.get_active_held_item())
 					cell.update_icon()
 					usr.put_in_active_hand(cell)
 					cell.add_fingerprint(usr)
@@ -288,7 +288,7 @@
 
 			if("cellinsert")
 				if(open && !cell)
-					var/obj/item/cell/large/C = usr.get_active_hand()
+					var/obj/item/cell/large/C = usr.get_active_held_item()
 					if(istype(C))
 						usr.drop_item()
 						src.cell = C

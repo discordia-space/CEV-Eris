@@ -1,5 +1,5 @@
 import { resolveAsset } from '../../assets';
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   BlockQuote,
   Box,
@@ -7,7 +7,7 @@ import {
   ProgressBar,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
 import { Window } from '../../layouts';
 import {
   TRAIT_ASSET,

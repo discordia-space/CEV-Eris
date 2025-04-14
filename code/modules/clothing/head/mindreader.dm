@@ -27,7 +27,7 @@
 			var/mob/user = loc
 			extract_memory(user)
 		else
-			visible_message("\icon The [src] beeps, \"The [src] is not ready for manual use.\".")
+			visible_message("[icon2html(src, hearers(get_turf(src)))] The [src] beeps, \"The [src] is not ready for manual use.\".")
 	else
 		return
 

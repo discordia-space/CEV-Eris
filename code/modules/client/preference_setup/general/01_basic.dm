@@ -33,8 +33,8 @@
 	to_file(S["tts_seed"],                pref.tts_seed)
 
 /datum/category_item/player_setup_item/physical/basic/sanitize_character()
-	var/datum/species/S = all_species[pref.species ? pref.species : SPECIES_HUMAN]
-	if(!S) S = all_species[SPECIES_HUMAN]
+	var/datum/species/S = GLOB.all_species[pref.species ? pref.species : SPECIES_HUMAN]
+	if(!S) S = GLOB.all_species[SPECIES_HUMAN]
 	pref.age                = sanitize_integer(pref.age, S.min_age, S.max_age, initial(pref.age))
 	pref.gender             = sanitize_inlist(pref.gender, S.genders, pick(S.genders))
 	pref.spawnpoint         = sanitize_inlist(pref.spawnpoint, get_late_spawntypes(), initial(pref.spawnpoint))
@@ -57,7 +57,7 @@
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/physical/basic/OnTopic(href, href_list, mob/user)
-	var/datum/species/S = all_species[pref.species]
+	var/datum/species/S = GLOB.all_species[pref.species]
 
 	if(href_list["fname"])
 		var/raw_first_name = input(user, "Choose your character's first name:", "Character First Name", pref.real_first_name)  as text|null
@@ -107,7 +107,7 @@
 
 	else if(href_list["gender"])
 		var/new_gender = input(user, "Choose your character's gender:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.gender) as null|anything in S.genders
-		S = all_species[pref.species]
+		S = GLOB.all_species[pref.species]
 		if(new_gender && CanUseTopic(user) && (new_gender in S.genders))
 			pref.gender = new_gender
 			var/list/seeds = new()

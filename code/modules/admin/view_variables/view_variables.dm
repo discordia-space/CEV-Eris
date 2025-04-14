@@ -25,7 +25,7 @@ var/list/view_variables_no_assoc = list("verbs", "contents","screen","images", "
 
 	var/no_icon = FALSE
 
-	if(istype(D, /atom))
+	if(isatom(D))
 		sprite = getFlatIcon(D)
 		if(sprite)
 			hash = md5(sprite)
@@ -60,7 +60,7 @@ var/list/view_variables_no_assoc = list("verbs", "contents","screen","images", "
 					</td>
 					<td width='50%'>
 						<div align='center'>
-							<a href='byond://?_src_=vars;datumrefresh=\ref[D]'>Refresh</a>
+							<a href='byond://?_src_=vars;[HrefToken()];datumrefresh=\ref[D]'>Refresh</a>
 							<form>
 								<select name='file'
 								        size='1'
@@ -70,8 +70,8 @@ var/list/view_variables_no_assoc = list("verbs", "contents","screen","images", "
 								        style='background-color:#ffffff'>
 									<option>Select option</option>
 									<option />
-									<option value='?_src_=vars;mark_object=\ref[D]'>Mark Object</option>
-									<option value='?_src_=vars;call_proc=\ref[D]'>Call Proc</option>
+									<option value='?_src_=vars;[HrefToken()];mark_object=\ref[D]'>Mark Object</option>
+									<option value='?_src_=vars;[HrefToken()];call_proc=\ref[D]'>Call Proc</option>
 									[D.get_view_variables_options()]
 								</select>
 							</form>
@@ -133,15 +133,15 @@ var/list/view_variables_no_assoc = list("verbs", "contents","screen","images", "
 		vtext = "[value]"
 	else if(isfile(value))
 		vtext = "'[value]'"
-	else if(istype(value, /datum))
+	else if(isdatum(value))
 		var/datum/DA = value
 		if("[DA]" == "[DA.type]" || !"[DA]")
-			vtext = "<a href='byond://?_src_=vars;Vars=\ref[DA]'>\ref[DA]</a> - [DA.type]"
+			vtext = "<a href='byond://?_src_=vars;[HrefToken()];Vars=\ref[DA]'>\ref[DA]</a> - [DA.type]"
 		else
-			vtext = "<a href='byond://?_src_=vars;Vars=\ref[DA]'>\ref[DA]</a> - [DA] ([DA.type])"
-	else if(istype(value, /client))
+			vtext = "<a href='byond://?_src_=vars;[HrefToken()];Vars=\ref[DA]'>\ref[DA]</a> - [DA] ([DA.type])"
+	else if(isclient(value))
 		var/client/C = value
-		vtext = "<a href='byond://?_src_=vars;Vars=\ref[C]'>\ref[C]</a> - [C] ([C.type])"
+		vtext = "<a href='byond://?_src_=vars;[HrefToken()];Vars=\ref[C]'>\ref[C]</a> - [C] ([C.type])"
 	else if(islist(value))
 		var/list/L = value
 		vtext = "/list ([L.len])"
@@ -164,9 +164,9 @@ var/list/view_variables_no_assoc = list("verbs", "contents","screen","images", "
 
 	if(D)
 		ecm = {"
-			(<a href='byond://?_src_=vars;datumedit=\ref[D];varnameedit=[varname]'>E</a>)
-			(<a href='byond://?_src_=vars;datumchange=\ref[D];varnamechange=[varname]'>C</a>)
-			(<a href='byond://?_src_=vars;datummass=\ref[D];varnamemass=[varname]'>M</a>)
+			(<a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[D];varnameedit=[varname]'>E</a>)
+			(<a href='byond://?_src_=vars;[HrefToken()];datumchange=\ref[D];varnamechange=[varname]'>C</a>)
+			(<a href='byond://?_src_=vars;[HrefToken()];datummass=\ref[D];varnamemass=[varname]'>M</a>)
 			"}
 
 	var/valuestr = make_view_variables_value(value, varname)

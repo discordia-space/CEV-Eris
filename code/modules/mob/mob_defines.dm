@@ -48,7 +48,7 @@
 	var/other_mobs
 	var/next_move
 	var/transforming	//Carbon
-	var/hand
+	var/hand = 0
 	var/real_name
 
 	var/bhunger = 0			//Carbon

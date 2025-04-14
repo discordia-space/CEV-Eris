@@ -37,7 +37,7 @@
 				// I think rig is advanced enough for this, and people will learn what causes this error
 				if(RIG)
 					playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1, -3)
-					RIG.visible_message("\icon[RIG]\The [RIG] states \"Attention: User of this suit appears to be synthetic origin\".")
+					RIG.visible_message("[icon2html(RIG, hearers(RIG))]\The [RIG] states \"Attention: User of this suit appears to be synthetic origin\".")
 				return
 		// check without message
 		else if(!H.can_inject(user, FALSE))

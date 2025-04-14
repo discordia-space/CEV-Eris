@@ -9,9 +9,10 @@ var/global/datum/alarm_handler/power/power_alarm
 SUBSYSTEM_DEF(alarm)
 	name = "Alarm"
 	wait = 2 SECONDS
-	priority = SS_PRIORITY_ALARM
+	priority = FIRE_PRIORITY_ALARM
 	init_order = INIT_ORDER_ALARM
 
+	init_time_threshold = 1 SECONDS
 	var/list/datum/alarm/all_handlers
 	var/tmp/list/current = list()
 	var/tmp/list/active_alarm_cache = list()

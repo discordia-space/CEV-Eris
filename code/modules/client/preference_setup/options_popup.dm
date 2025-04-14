@@ -102,7 +102,7 @@
 		for(var/perk in selected_option.perks)
 			var/datum/perk/P = perk
 			if(initial(P.icon))
-				dat += "<img style='vertical-align: middle;width=18px;height=18px;' src='[SSassets.transport.get_asset_url(sanitizeFileName("[P].png"))]'/>"
+				dat += "<img style='vertical-align: middle;width=18px;height=18px;' src='[SSassets.transport.get_asset_url(SANITIZE_FILENAME("[P].png"))]'/>"
 			dat += " [initial(P.name)]<br>"
 		dat += "<br>"
 

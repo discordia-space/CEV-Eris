@@ -35,7 +35,7 @@
 		var/obj/machinery/computer/C = user
 
 		if(world.time <= reset_time)
-			C.visible_message(span_notice("[boss_name] will not allow the Special Operations shuttle to launch yet."))
+			C.visible_message(span_notice("[GLOB.boss_name] will not allow the Special Operations shuttle to launch yet."))
 			if (((world.time - reset_time)/10) > 60)
 				C.visible_message(span_notice("[-((world.time - reset_time)/10)/60] minutes remain!"))
 			else
@@ -66,12 +66,12 @@
 		if (!location)	//just arrived home
 			for(var/turf/T in get_area_turfs(shuttle_area))
 				var/mob/M = locate(/mob) in T
-				to_chat(M, span_danger("You have arrived at [boss_name]. Operation has ended!"))
+				to_chat(M, span_danger("You have arrived at [GLOB.boss_name]. Operation has ended!"))
 		else	//just left for the station
 			launch_mauraders()
 			for(var/turf/T in get_area_turfs(shuttle_area))
 				var/mob/M = locate(/mob) in T
-				to_chat(M, span_danger("You have arrived at [station_name]. Commence operation!"))
+				to_chat(M, span_danger("You have arrived at [station_name()]. Commence operation!"))
 
 //				var/obj/machinery/light/small/readylight/light = locate() in T
 //				if(light) light.set_state(1)

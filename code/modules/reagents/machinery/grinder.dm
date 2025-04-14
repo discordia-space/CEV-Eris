@@ -401,7 +401,7 @@
 		var/obj/item/reagent_containers/container = I
 		if(!container.standard_pour_into(user, src)) . = ..()
 	else if (LAZYLEN(I.reagents)) . = ..()
-	else to_chat(user, span_notice("\icon[I] \the [I] seems that it is not suitable for a \icon[src] [src]."))
+	else to_chat(user, span_notice("[icon2html(I, user)] \the [I] seems that it is not suitable for a [icon2html(src, user)] [src]."))
 	update_icon()
 
 /obj/item/storage/makeshift_grinder/afterattack(atom/target, mob/user, flag)

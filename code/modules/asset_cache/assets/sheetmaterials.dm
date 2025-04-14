@@ -1,7 +1,7 @@
-/datum/asset/spritesheet/sheetmaterials
+/datum/asset/spritesheet_batched/sheetmaterials
 	name = "sheetmaterials"
 
-/datum/asset/spritesheet/sheetmaterials/create_spritesheets()
-	InsertAll("", 'icons/obj/stack/material.dmi')
+/datum/asset/spritesheet_batched/sheetmaterials/create_spritesheets()
+	insert_all_icons("", 'icons/obj/stack/material.dmi')
 	// Special case on RCD objects
-	Insert("rcd", 'icons/obj/ammo.dmi', "rcd")
+	insert_icon("rcd", 'icons/obj/ammo.dmi', "rcd")

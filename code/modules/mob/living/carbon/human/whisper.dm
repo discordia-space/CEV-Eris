@@ -6,7 +6,7 @@
 	var/alt_name = ""
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "\red Speech is currently admin-disabled.")
+		to_chat(usr, span_red("Speech is currently admin-disabled."))
 		return
 
 	message = sanitize(message)
@@ -14,7 +14,7 @@
 
 	if (src.client)
 		if (src.client.prefs.muted & MUTE_IC)
-			to_chat(src, "\red You cannot whisper (muted).")
+			to_chat(src, span_red("You cannot whisper (muted)."))
 			return
 
 		if (src.client.handle_spam_prevention(message,MUTE_IC))
@@ -112,7 +112,7 @@
 			message = replacetext(message, "u", "�")
 			message = replacetext(message, "b", "�")
 
-	var/list/listening = hearers(message_range, src)
+	var/list/listening = hearers(message_range, get_turf(src))
 	listening |= src
 
 	//ghosts
@@ -134,11 +134,11 @@
 			if (O)
 				O.hear_talk(src, message, verb, speaking, 1)
 
-	var/list/eavesdropping = hearers(eavesdropping_range, src)
+	var/list/eavesdropping = hearers(eavesdropping_range, get_turf(src))
 	eavesdropping -= src
 	eavesdropping -= listening
 
-	var/list/watching  = hearers(watching_range, src)
+	var/list/watching  = hearers(watching_range, get_turf(src))
 	watching  -= src
 	watching  -= listening
 	watching  -= eavesdropping

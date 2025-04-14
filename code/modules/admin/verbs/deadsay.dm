@@ -22,6 +22,7 @@
 
 	msg = sanitize(msg)
 	log_admin("DSAY: [key_name(src)] : [msg]")
+	mob.log_talk(msg, LOG_DSAY)
 
 	if(!msg)
 		return

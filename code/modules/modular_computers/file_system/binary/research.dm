@@ -11,7 +11,7 @@
 
 /datum/computer_file/binary/tech/proc/set_tech(datum/technology/new_tech)
 	node = new_tech
-	filename = sanitizeFileName(lowertext(node.name))
+	filename = SANITIZE_FILENAME(lowertext(node.name))
 
 
 // R&D research points file

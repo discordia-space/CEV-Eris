@@ -31,7 +31,7 @@
 			user.drop_item()
 			item.loc = src
 			to_chat(user, span_notice("You attach the tank to the transfer valve."))
-			message_admins("[key_name_admin(user)] attached both tanks to a transfer valve. (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
+			message_admins("[key_name_admin(user)] attached both tanks to a transfer valve. [ADMIN_JMP(location)]")
 			log_game("[key_name_admin(user)] attached both tanks to a transfer valve.")
 
 		update_icon()
@@ -51,8 +51,7 @@
 		A.holder = src
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
 
-		bombers += "[key_name(user)] attached a [item] to a transfer valve."
-		message_admins("[key_name_admin(user)] attached a [item] to a transfer valve. (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
+		message_admins("[key_name_admin(user)] attached a [item] to a transfer valve. [ADMIN_JMP(location)]")
 		log_game("[key_name_admin(user)] attached a [item] to a transfer valve.")
 		attacher = user
 	return
@@ -195,19 +194,19 @@
 		else
 			attacher_name = "[attacher.name]([attacher.ckey])"
 
-		var/log_str = "Bomb valve opened in <A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[bombturf.x];Y=[bombturf.y];Z=[bombturf.z]'>[A.name]</a> "
+		var/log_str = "Bomb valve opened in [A.name] [ADMIN_JMP(bombturf)]"
 		log_str += "with [attached_device ? attached_device : "no device"] attacher: [attacher_name]"
 
 		if(attacher)
-			log_str += "(<A href='byond://?_src_=holder;adminmoreinfo=\ref[attacher]'>?</A>)"
+			log_str += "[ADMIN_QUE(attacher)]"
 
 		var/mob/mob = get_mob_by_key(src.fingerprintslast)
 		var/last_touch_info = ""
 		if(mob)
-			last_touch_info = "(<A href='byond://?_src_=holder;adminmoreinfo=\ref[mob]'>?</A>)"
+			last_touch_info = "[ADMIN_QUE(mob)]"
 
 		log_str += " Last touched by: [src.fingerprintslast][last_touch_info]"
-		bombers += log_str
+		GLOB.bombers += log_str
 		message_admins(log_str, 0, 1)
 		log_game(log_str)
 		merge_gases()

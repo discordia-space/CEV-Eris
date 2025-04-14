@@ -21,13 +21,13 @@
 	if(!cell_use_check(5, user))
 		return
 /*	if((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, text("\red You try to analyze the floor's vitals!"))
+		to_chat(user, text(span_red("You try to analyze the floor's vitals!")))
 		for(var/mob/O in viewers(M, null))
-			O.show_message(text("\red [user] has analyzed the floor's vitals!"), 1)
-		user.show_message(text("\blue Analyzing Results for The floor:\n\t Overall Status: Healthy"), 1)
-		user.show_message(text("\blue \t Damage Specifics: [0]-[0]-[0]-[0]"), 1)
-		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
-		user.show_message("\blue Body Temperature: ???", 1)
+			O.show_message(text(span_red("[user] has analyzed the floor's vitals!")), 1)
+		user.show_message(text(span_blue("Analyzing Results for The floor:\n\t Overall Status: Healthy")), 1)
+		user.show_message(text(span_blue("\t Damage Specifics: [0]-[0]-[0]-[0]")), 1)
+		user.show_message(span_blue("Key: Suffocation/Toxin/Burns/Brute"), 1)
+		user.show_message(span_blue("Body Temperature: ???"), 1)
 		return
 */
 	var/scan_type
@@ -36,7 +36,7 @@
 	else if(ishuman(M))
 		scan_type = "prosthetics"
 	else
-		to_chat(user, "\red You can't analyze non-robotic things!")
+		to_chat(user, span_red("You can't analyze non-robotic things!"))
 		return
 
 	user.visible_message(span_notice("\The [user] has analyzed [M]'s components."),span_notice("You have analyzed [M]'s components."))
@@ -44,28 +44,28 @@
 		if("robot")
 			var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
 			var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
-			user.show_message("\blue Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "fully disabled" : "[M.health - M.halloss]% functional"]")
+			user.show_message(span_blue("Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "fully disabled" : "[M.health - M.halloss]% functional"]"))
 			user.show_message("\t Key: <font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>", 1)
 			user.show_message("\t Damage Specifics: <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font>")
 			if(M.timeofdeath && M.stat == DEAD)
-				user.show_message("\blue Time of Disable: [worldtime2stationtime(M.timeofdeath)]")
+				user.show_message(span_blue("Time of Disable: [worldtime2stationtime(M.timeofdeath)]"))
 			var/mob/living/silicon/robot/H = M
 			var/list/damaged = H.get_damaged_components(1,1,1)
-			user.show_message("\blue Localized Damage:",1)
+			user.show_message(span_blue("Localized Damage:"),1)
 			if(length(damaged)>0)
 				for(var/datum/robot_component/org in damaged)
-					user.show_message(text("\blue \t []: [][] - [] - [] - []",	\
+					user.show_message(span_blue(text("\t []: [][] - [] - [] - []",	\
 					capitalize(org.name),					\
 					(org.installed == -1)	?	"<font color='red'><b>DESTROYED</b></font> "							:"",\
 					(org.electronics_damage > 0)	?	"<font color='#FFA500'>[org.electronics_damage]</font>"	:0,	\
 					(org.brute_damage > 0)	?	"<font color='red'>[org.brute_damage]</font>"							:0,		\
 					(org.toggled)	?	"Toggled ON"	:	"<font color='red'>Toggled OFF</font>",\
-					(org.powered)	?	"Power ON"		:	"<font color='red'>Power OFF</font>"),1)
+					(org.powered)	?	"Power ON"		:	"<font color='red'>Power OFF</font>")),1)
 			else
-				user.show_message("\blue \t Components are OK.",1)
+				user.show_message(span_blue("\t Components are OK."),1)
 			if(H.HasTrait(CYBORG_TRAIT_EMAGGED) && prob(5))
-				user.show_message("\red \t ERROR: INTERNAL SYSTEMS COMPROMISED",1)
-			user.show_message("\blue Operating Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)", 1)
+				user.show_message(span_red("\t ERROR: INTERNAL SYSTEMS COMPROMISED"),1)
+			user.show_message(span_blue("Operating Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)"), 1)
 
 		if("prosthetics")
 			var/mob/living/carbon/human/H = M

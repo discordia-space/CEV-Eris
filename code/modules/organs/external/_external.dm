@@ -20,7 +20,7 @@
 
 	// Strings
 	var/damage_state = "00"				// Modifier used for generating the on-mob damage overlay for this limb.
-	var/damage_msg = "\red You feel an intense pain"
+	var/damage_msg = span_red("You feel an intense pain")
 
 	// Damage vars.
 	var/brute_mod = 1                  // Multiplier for incoming brute damage.

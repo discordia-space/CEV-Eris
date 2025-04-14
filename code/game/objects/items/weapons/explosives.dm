@@ -36,7 +36,7 @@
 
 /obj/item/plastique/attack_self(mob/user as mob)
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
-	if(user.get_active_hand() == src)
+	if(user.get_active_held_item() == src)
 		newtime = CLAMP(newtime, 2, 60000)
 		timer = newtime
 		to_chat(user, "Timer set for [timer] seconds.")
@@ -61,11 +61,11 @@
 		if (ismob(target))
 			add_logs(user, target, "planted [name] on")
 			user.visible_message(span_danger("[user.name] finished planting the explosive on [target.name]!"))
-			message_admins("[key_name(user, user.client)](<A href='byond://?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [key_name(target)](<A href='byond://?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) with [timer] second fuse",0,1)
+			message_admins("[key_name(user, user.client)][ADMIN_QUE(user)]] planted [src.name] on [key_name(target)][ADMIN_QUE(target)] with [timer] second fuse",0,1)
 			log_game("[key_name(user)] planted [src.name] on [key_name(target)] with [timer] second fuse")
 
 		else
-			message_admins("[key_name(user, user.client)](<A href='byond://?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
+			message_admins("[key_name(user, user.client)][ADMIN_QUE(user)]] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - [ADMIN_JMP(target)] with [timer] second fuse",0,1)
 			log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
 
 		target.overlays += image_overlay

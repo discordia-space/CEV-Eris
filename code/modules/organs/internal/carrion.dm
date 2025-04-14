@@ -370,7 +370,7 @@
 		return
 	src = maw
 
-	var/food = owner.get_active_hand()
+	var/food = owner.get_active_held_item()
 
 	if(!food)
 		to_chat(owner, span_warning("You can't eat nothing."))
@@ -446,7 +446,7 @@
 				var/organ_rotten = FALSE
 				if (O.status & ORGAN_DEAD)
 					organ_rotten = TRUE
-				if(O.species != all_species[SPECIES_HUMAN])
+				if(O.species != GLOB.all_species[SPECIES_HUMAN])
 					chemgain = 5
 					taste_description = "this non-human organ is very bland." // no removal of hunger here, getting and storing a ton of monkey organs isn't too easy, and 5 chem points isn't terribly much.
 				else

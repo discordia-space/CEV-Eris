@@ -33,13 +33,13 @@
 
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
-		to_chat(user, "\red \The [src] needs to be firmly secured to the floor first.")
+		to_chat(user, span_red("\The [src] needs to be firmly secured to the floor first."))
 		return 1
 	if(src.locked && !issilicon(user))
-		to_chat(user, "\red The controls are locked!")
+		to_chat(user, span_red("The controls are locked!"))
 		return 1
 	if(power != 1)
-		to_chat(user, "\red \The [src] needs to be powered by wire underneath.")
+		to_chat(user, span_red("\The [src] needs to be powered by wire underneath."))
 		return 1
 
 	if(src.active >= 1)
@@ -122,7 +122,7 @@
 
 
 		if(!power)
-			visible_message("\red The [src.name] shuts down due to lack of power!", \
+			visible_message(span_red("The [src.name] shuts down due to lack of power!"), \
 				"You hear heavy droning fade out")
 			active = FALSE
 			for(var/fdir in GLOB.cardinal)
@@ -229,11 +229,11 @@
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, span_red("Access denied."))
 
 	else
 		src.add_fingerprint(user)
-		visible_message("\red The [src.name] has been hit with \the [I.name] by [user.name]!")
+		visible_message(span_red("The [src.name] has been hit with \the [I.name] by [user.name]!"))
 
 
 /obj/machinery/shieldwallgen/emag_act()

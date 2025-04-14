@@ -8,7 +8,7 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/New(turf/newLoc,_amount=1,nologs=0)
 	if(usr && usr.client && !nologs)
-		message_admins("Liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[newLoc.x];Y=[newLoc.y];Z=[newLoc.z]'>JMP</a>)")
+		message_admins("Liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z]) [ADMIN_JMP(newLoc)]")
 		log_game("Liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z])")
 	amount = _amount
 

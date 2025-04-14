@@ -88,7 +88,7 @@
 	tag = landmark_tag+"-[x]-[y]"
 	. = ..()
 	base_area = get_area(src)
-	if(!config.use_overmap)
+	if(!CONFIG_GET(flag/use_overmap))
 		return
 	add_to_sector(map_sectors["[z]"])
 

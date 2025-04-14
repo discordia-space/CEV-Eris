@@ -476,3 +476,16 @@ steam.start() -- spawns the effect
 			to_chat(M, span_warning("The solution violently explodes."))
 
 		explosion(get_turf(location), explosion_power, explosion_power / 10)
+
+///The abstract effect ignores even more effects and is often typechecked for atoms that should truly not be fucked with.
+/obj/effect/abstract/singularity_pull()
+	return
+
+/obj/effect/abstract/singularity_act()
+	return
+
+/obj/effect/dummy/singularity_pull()
+	return
+
+/obj/effect/dummy/singularity_act()
+	return

@@ -61,7 +61,7 @@
 
 	if(istype(wearer, /mob/))
 		var/mob/T = wearer
-		message_admins("Explosive implant triggered in [T] ([T.key]). (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>) ")
+		message_admins("Explosive implant triggered in [T] ([T.key]). [ADMIN_JMP(T)] ")
 		log_game("Explosive implant triggered in [T] ([T.key]).")
 
 		if(ishuman(wearer))

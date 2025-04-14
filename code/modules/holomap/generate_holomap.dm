@@ -24,7 +24,7 @@
 
 /// Generates all the holo minimaps, initializing it all nicely, probably.
 /datum/controller/subsystem/holomaps/proc/generateHoloMinimaps()
-	var/start_time = world.timeofday
+	rustg_time_reset(SS_HOLOMAPS_TIMER_KEY)
 	// Build the base map for each z level
 	for (var/z = 1 to GLOB.maps_data.station_levels.len)
 		holoMiniMaps |= z // hack, todo fix
@@ -38,8 +38,13 @@
 		for(var/smoosh_list in GLOB.maps_data.holomap_smoosh)
 			smooshTetherHolomaps(smoosh_list)
 
+	var/time = rustg_time_milliseconds(SS_HOLOMAPS_TIMER_KEY)
+	var/seconds = round(time / 1000, 0.01)
+
 	holomaps_initialized = TRUE
-	admin_notice(span_danger("Holomaps initialized in [round(0.1*(world.timeofday-start_time),0.1)] seconds."), R_DEBUG)
+	var/msg = "Generated Holomaps within [seconds] second[seconds == 1 ? "" : "s"]!"
+	to_chat(world, span_boldannounce(msg))
+	log_world(msg)
 
 	// TODO - Check - They had a delayed init perhaps?
 	for (var/obj/machinery/holomap/S in station_holomaps)

@@ -35,7 +35,7 @@ log transactions
 
 /obj/machinery/atm/Initialize()
 	. = ..()
-	machine_id = "[station_name] RT #[num_financial_terminals++]"
+	machine_id = "[station_name()] RT #[num_financial_terminals++]"
 	spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -90,7 +90,7 @@ log transactions
 
 	//display a message to the user
 	var/response = pick("Initiating withdraw. Have a nice day!", "CRITICAL ERROR: Activating cash chamber panic siphon.","PIN Code accepted! Emptying account balance.", "Jackpot!")
-	to_chat(user, span_warning("\icon[src] The [src] beeps: \"[response]\""))
+	to_chat(user, span_warning("[icon2html(src, user)] The [src] beeps: \"[response]\""))
 	return 1
 
 /obj/machinery/atm/attackby(obj/item/I as obj, mob/user as mob)
@@ -99,7 +99,7 @@ log transactions
 			return
 		if(emagged)
 			//prevent inserting id into an emagged ATM
-			to_chat(user, "\red \icon[src] CARD READER ERROR. This system has been compromised!")
+			to_chat(user, span_red("[icon2html(src, user)] CARD READER ERROR. This system has been compromised!"))
 			return
 		else if(istype(I,/obj/item/card/emag))
 			I.resolve_attackby(src, user)
@@ -134,7 +134,7 @@ log transactions
 
 /obj/machinery/atm/attack_hand(mob/user)
 	if(issilicon(user))
-		to_chat(user, "\red \icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per system banking regulation #1005.")
+		to_chat(user, span_red("[icon2html(src, user)] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per system banking regulation #1005."))
 		return
 	if (..())
 		return
@@ -154,7 +154,7 @@ log transactions
 				dat += span_alert("Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.")
 			else if(authenticated_account)
 				if(authenticated_account.suspended)
-					dat += "\red<b>Access to this account has been suspended, and the funds within frozen.</b>"
+					dat += span_red(span_bold("Access to this account has been suspended, and the funds within frozen."))
 				else
 					switch(view_screen)
 						if(CHANGE_SECURITY_LEVEL)
@@ -256,9 +256,9 @@ log transactions
 						var/target_account_number = text2num(href_list["target_acc_number"])
 						var/transfer_purpose = href_list["purpose"]
 						if(transfer_funds(authenticated_account.account_number, target_account_number, transfer_purpose, machine_id, transfer_amount))
-							to_chat(usr, "\icon[src][span_info("Funds transfer successful.")]")
+							to_chat(usr, "[icon2html(src, usr)][span_info("Funds transfer successful.")]")
 						else
-							to_chat(usr, "\icon[src][span_warning("Funds transfer failed.")]")
+							to_chat(usr, "[icon2html(src, usr)][span_warning("Funds transfer failed.")]")
 
 					else
 						to_chat(usr, span_warning("You don't have enough funds to do that!"))
@@ -291,11 +291,11 @@ log transactions
 									var/datum/transaction/T = new(0, failed_account.owner_name, "Unauthorised login attempt", machine_id)
 									T.apply_to(failed_account)
 							else
-								to_chat(usr, "\red \icon[src] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining.")
+								to_chat(usr, span_red("[icon2html(src, usr)] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."))
 								previous_account_number = tried_account_num
 								playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 						else
-							to_chat(usr, "\red \icon[src] incorrect pin/account combination entered.")
+							to_chat(usr, span_red("[icon2html(src, usr)] incorrect pin/account combination entered."))
 							number_incorrect_tries = 0
 					else
 						playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
@@ -409,9 +409,9 @@ log transactions
 				if(!held_card)
 					//this might happen if the user had the browser window open when somebody emagged it
 					if(emagged > 0)
-						to_chat(usr, "\red \icon[src] The ATM card reader rejected your ID because this machine has been sabotaged!")
+						to_chat(usr, span_red("[icon2html(src, usr)] The ATM card reader rejected your ID because this machine has been sabotaged!"))
 					else
-						var/obj/item/I = usr.get_active_hand()
+						var/obj/item/I = usr.get_active_held_item()
 						if (istype(I, /obj/item/card/id))
 							usr.drop_item()
 							I.loc = src
@@ -432,14 +432,14 @@ log transactions
 	held_card.forceMove(get_turf(src))
 	authenticated_account = null
 
-	if(ishuman(human_user) && !human_user.get_active_hand())
+	if(ishuman(human_user) && !human_user.get_active_held_item())
 		human_user.put_in_hands(held_card)
 	held_card = null
 	update_icon()
 
 /obj/machinery/atm/proc/spawn_ewallet(var/sum, loc, mob/living/carbon/human/human_user as mob)
 	var/obj/item/spacecash/ewallet/E = new /obj/item/spacecash/ewallet(loc)
-	if(ishuman(human_user) && !human_user.get_active_hand())
+	if(ishuman(human_user) && !human_user.get_active_held_item())
 		human_user.put_in_hands(E)
 	E.worth = sum
 	E.owner_name = authenticated_account.owner_name

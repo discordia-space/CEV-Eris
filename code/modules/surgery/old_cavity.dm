@@ -16,8 +16,8 @@
 /datum/old_surgery_step/cavity/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"\red [user]'s hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!",
-		"\red Your hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!"
+		span_red("[user]'s hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!"),
+		span_red("Your hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!")
 	)
 	affected.createwound(CUT, 20)
 
@@ -43,8 +43,8 @@
 /datum/old_surgery_step/cavity/make_space/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"\blue [user] makes some space inside [target]'s [affected.cavity_name] with \the [tool].",
-		"\blue You make some space inside [target]'s [affected.cavity_name] with \the [tool]."
+		span_blue("[user] makes some space inside [target]'s [affected.cavity_name] with \the [tool]."),
+		span_blue("You make some space inside [target]'s [affected.cavity_name] with \the [tool].")
 	)
 
 /datum/old_surgery_step/cavity/close_space
@@ -70,6 +70,6 @@
 /datum/old_surgery_step/cavity/close_space/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"\blue [user] mends [target]'s [affected.cavity_name] walls with \the [tool].",
-		"\blue You mend [target]'s [affected.cavity_name] walls with \the [tool]."
+		span_blue("[user] mends [target]'s [affected.cavity_name] walls with \the [tool]."),
+		span_blue("You mend [target]'s [affected.cavity_name] walls with \the [tool].")
 	)

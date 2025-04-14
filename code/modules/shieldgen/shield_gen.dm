@@ -63,12 +63,12 @@
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 			updateDialog()
 		else
-			user << "\red Access denied."
+			user << span_red("Access denied.")
 
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			src.anchored = !src.anchored
-			src.visible_message("\blue \icon[src] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user].")
+			src.visible_message(span_blue("[icon2html(src, viewers(get_turf(src)))] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user]."))
 
 			if(active)
 				toggle()
@@ -189,7 +189,7 @@
 		return
 	else if( href_list["toggle"] )
 		if (!active && !anchored)
-			usr << "\red The [src] needs to be firmly secured to the floor first."
+			usr << span_red("The [src] needs to be firmly secured to the floor first.")
 			return
 		toggle()
 	else if( href_list["change_radius"] )
@@ -210,6 +210,8 @@
 	set background = 1
 	active = !active
 	update_icon()
+	var/our_viewers = viewers(5,src)
+	var/htmlicon = icon2html(src, our_viewers)
 	if(active)
 		var/list/covered_turfs = get_shielded_turfs()
 		var/turf/T = get_turf(src)
@@ -220,15 +222,15 @@
 			field.Add(E)
 		covered_turfs = null
 
-		for(var/mob/M in view(5,src))
-			M << "\icon[src] You hear heavy droning start up."
+		for(var/mob/M in our_viewers)
+			to_chat(M, "[htmlicon] You hear heavy droning start up.")
 	else
 		for(var/obj/effect/energy_field/D in field)
 			field.Remove(D)
 			D.loc = null
 
-		for(var/mob/M in view(5,src))
-			M << "\icon[src] You hear heavy droning fade out."
+		for(var/mob/M in our_viewers)
+			to_chat(M, "[htmlicon] You hear heavy droning fade out.")
 
 /obj/machinery/shield_gen/update_icon()
 	if(stat & BROKEN)

@@ -155,11 +155,11 @@
 		var/mob/living/carbon/human/H = user
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if(user.a_intent == I_HURT)
+			user.animate_interact(src, INTERACT_HARM)
 			if(H.species.can_shred(H))
 				playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
 				visible_message(span_danger("[user] smashes against the [src.name]."), 1)
 				take_damage(25)
-				return
 
 			playsound(src.loc, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
 			user.do_attack_animation(src)
@@ -167,6 +167,7 @@
 								span_danger("You bang against \the [src]!"),
 								"You hear a banging sound.")
 		else
+			user.animate_interact(src, INTERACT_GENERIC)
 			playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
 			usr.visible_message("[usr.name] knocks on the [src.name].",
 								"You knock on the [src.name].",

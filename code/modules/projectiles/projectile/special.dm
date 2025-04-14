@@ -164,13 +164,13 @@
 			if(prob(15))
 				H.apply_effect((rand(30,80)),IRRADIATE)
 				H.Weaken(5)
-				for (var/mob/V in viewers(src))
-					V.show_message("\red [M] writhes in pain as \his vacuoles boil.", 3, "\red You hear the crunching of leaves.", 2)
+				for (var/mob/V in viewers(get_turf(src)))
+					V.show_message(span_danger("[M] writhes in pain as \his vacuoles boil."), 3, span_warning("You hear the crunching of leaves."), 2)
 			else
 				M.adjustFireLoss(rand(5,15))
-				M.show_message("\red The radiation beam singes you!")
+				M.show_message(span_red("The radiation beam singes you!"))
 	else if(istype(target, /mob/living/carbon/))
-		M.show_message("\blue The radiation beam dissipates harmlessly through your body.")
+		M.show_message(span_blue("The radiation beam dissipates harmlessly through your body."))
 	else
 		return 1
 
@@ -188,7 +188,7 @@
 		if((H.species.flags & IS_PLANT) && (H.nutrition < 500))
 			H.adjustNutrition(30)
 	else if (istype(target, /mob/living/carbon/))
-		M.show_message("\blue The radiation beam dissipates harmlessly through your body.")
+		M.show_message(span_blue("The radiation beam dissipates harmlessly through your body."))
 	else
 		return 1
 

@@ -174,12 +174,12 @@
 		var/obj/item/device/assembly/signaler/signaler = I
 		if((signaler.code == code) && (signaler.frequency == frequency)) // Linked signaler is used, break the link
 			update_wifi_password()
-			signaler.audible_message("\icon[signaler] *beep*")
+			signaler.audible_message("[icon2html(signaler, hearers(get_turf(src)))] *beep*")
 		else if(!frequency || !code) // There is no link, establish one
 			update_wifi_password(signaler.code, signaler.frequency)
-			signaler.audible_message("\icon[signaler] *beep* *beep*")
+			signaler.audible_message("[icon2html(signaler, hearers(get_turf(src)))] *beep* *beep*")
 		else // Access denied
-			signaler.audible_message("\icon[signaler] *beep* *beep* *beep*") // Silly and cryptic, yet authentic signaler feedback
+			signaler.audible_message("[icon2html(signaler, hearers(get_turf(src)))] *beep* *beep* *beep*") // Silly and cryptic, yet authentic signaler feedback
 		return
 
 	var/list/usable_qualities = list(QUALITY_BOLT_TURNING)

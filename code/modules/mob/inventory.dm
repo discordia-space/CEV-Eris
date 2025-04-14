@@ -1,6 +1,6 @@
 //This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(slot)
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 	var/obj/item/E = get_equipped_item(slot)
 	if (istype(E))
 		if(istype(W))
@@ -14,14 +14,22 @@
 //as they handle all relevant stuff like adding it to the player's screen and updating their overlays.
 
 //Returns the thing in our active hand
-/mob/proc/get_active_hand()
+/mob/proc/get_active_held_item()
 	if(hand)	return l_hand
 	else		return r_hand
 
 //Returns the thing in our inactive hand
-/mob/proc/get_inactive_hand()
+/mob/proc/get_inactive_held_item()
 	if(hand)	return r_hand
 	else		return l_hand
+
+//Check we have an organ for this hand slot (Dismemberment), Only relevant for humans
+/mob/proc/has_hand_for_held_index(i)
+	return TRUE
+
+//Check we have an organ for our active hand slot (Dismemberment),Only relevant for humans
+/mob/proc/has_active_hand()
+	return has_hand_for_held_index(hand)
 
 //Declarations. Overrided in human/robots subtypes
 //Puts the Item into your l_hand/r_hand if possible and calls all necessary triggers/updates. returns TRUE on success.
@@ -76,11 +84,11 @@
 
 //Drops the item in our active hand. TODO: rename this to drop_active_hand or something
 /mob/proc/drop_item(atom/Target)
-	var/obj/item/I = get_active_hand()
+	var/obj/item/I = get_active_held_item()
 	unEquip(I = I, Target = Target, force = TRUE)
 
 /mob/proc/drop_offhand(atom/Target)
-	var/obj/item/I = get_inactive_hand()
+	var/obj/item/I = get_inactive_held_item()
 	unEquip(I = I, Target = Target, force = TRUE)
 
 /*
@@ -184,7 +192,7 @@
 	return 0 //zero
 
 //Returns the inventory slot for the current hand
-/mob/proc/get_active_hand_slot()
+/mob/proc/get_active_held_item_slot()
 	if (hand)
 		return slot_l_hand
 	return slot_r_hand

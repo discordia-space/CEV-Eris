@@ -208,21 +208,21 @@
 
 /obj/machinery/attack_hand(mob/user as mob)
 	if(inoperable(MAINT))
-		return 1
+		return
 	if(user.lying || user.stat)
-		return 1
+		return
 	if(!user.IsAdvancedToolUser())
 		to_chat(usr, span_warning("You don't have the dexterity to do this!"))
-		return 1
+		return FALSE
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 55)
 			visible_message(span_warning("[H] stares cluelessly at [src]."))
-			return 1
+			return FALSE
 		else if(prob(H.getBrainLoss()))
 			to_chat(user, span_warning("You momentarily forget how to use \the [src]."))
-			return 1
+			return FALSE
 
 	src.add_fingerprint(user)
 
@@ -277,8 +277,9 @@
 	gl_uid++
 
 /obj/machinery/proc/state(var/msg)
-	for(var/mob/O in hearers(src, null))
-		O.show_message("\icon[src] <span class = 'notice'>[msg]</span>", 2)
+	var/listeners = hearers(get_turf(src))
+	for(var/mob/O in listeners)
+		O.show_message("[icon2html(src, listeners)] <span class = 'notice'>[msg]</span>", 2)
 
 /obj/machinery/proc/ping(text="\The [src] pings.")
 	state(text, "blue")

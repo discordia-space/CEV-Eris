@@ -121,7 +121,7 @@
 			var/obj/item/secbot_assembly/ed209_assembly/B = new(loc)
 			B.forceMove(get_turf(src))
 			to_chat(user, span_notice("You armed the robot frame."))
-			if (user.get_inactive_hand() == src)
+			if (user.get_inactive_held_item() == src)
 				user.remove_from_mob(src)
 				user.put_in_inactive_hand(B)
 			qdel(src)
@@ -290,7 +290,7 @@
 	..()
 	if(istype(W, /obj/item/device/flash))
 		if(isrobot(user))
-			var/current_module = user.get_active_hand()
+			var/current_module = user.get_active_held_item()
 			if(current_module == W)
 				to_chat(user, span_warning("How do you propose to do that?"))
 				return

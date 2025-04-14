@@ -360,8 +360,7 @@ its easier to just keep the beam vertical.
 		else
 			full_name += "oil-stained [name]."
 
-	output += "<div id='examine'>"
-	output += "\icon[src] This is [full_name]"
+	output += "[icon2html(src, user)] This is [full_name]"
 	if(desc)
 		output += "\n[desc]"
 	if(extra_description)
@@ -383,24 +382,24 @@ its easier to just keep the beam vertical.
 
 	var/desc_info = get_description_info()
 	if(desc_info)
-		output += "\n<font color='#084b8a'><b>[desc_info]</b></font>"
+		output += "\n[FONT_COLORED(COLOR_CYAN_BLUE, span_bold(desc_info))]"
 
 	var/desc_fluff = get_description_fluff()
 	if(desc_fluff)
-		output += "\n<font color='#298a08'><b>[desc_fluff]</b></font>"
+		output += "\n[FONT_COLORED("#298a08", span_bold(desc_fluff))]"
 
 	var/desc_antag = (isghost(user) || player_is_antag(user.mind)) ? get_description_antag() : null
 	if(desc_antag)
-		output += "\n<font color='#8a0808'><b>[desc_antag]</b></font>"
+		output += "\n[FONT_COLORED("#8a0808", span_bold(desc_antag))]"
 
-	output += "</div>"
+	var/statverbs = show_stat_verbs() //rewrite to show_stat_verbs(user)?
+	if (statverbs)
+		output += "\n[statverbs]"
 
 	if(isobserver(user))
-		to_chat(user, output)
+		to_chat(user, boxed_message("[span_infoplain(output)]"))
 	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", output)
-
-	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", boxed_message("[span_infoplain(output)]"))
 
 	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)

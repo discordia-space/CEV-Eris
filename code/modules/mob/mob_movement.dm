@@ -67,12 +67,12 @@
 	to_chat(usr, span_warning("This mob type cannot drop items."))
 
 /mob/living/carbon/hotkey_drop()
-	if(!get_active_hand())
+	if(!get_active_held_item())
 		to_chat(usr, span_warning("You have nothing to drop in your hand."))
 	if (!isturf(loc))
 		return
 	else
-		unEquip(get_active_hand(), loc)
+		unEquip(get_active_held_item(), loc)
 
 //This gets called when you press the delete button.
 /client/verb/delete_key_pressed()

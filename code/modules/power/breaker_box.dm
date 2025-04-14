@@ -51,10 +51,10 @@
 		return
 
 	busy = 1
-	to_chat(user, "\green Updating power settings..")
+	to_chat(user, span_green("Updating power settings.."))
 	if(do_after(user, 50, src))
 		set_state(!on)
-		to_chat(user, "\green Update Completed. New setting:[on ? "on": "off"]")
+		to_chat(user, span_green("Update Completed. New setting:[on ? "on": "off"]"))
 		update_locked = 1
 		spawn(600)
 			update_locked = 0
@@ -72,7 +72,7 @@
 
 	busy = 1
 	for(var/mob/O in viewers(user))
-		O.show_message(text("\red [user] started reprogramming [src]!"), 1)
+		O.show_message(span_red("[user] started reprogramming [src]!"), 1)
 
 	if(do_after(user, 50,src))
 		set_state(!on)

@@ -81,15 +81,16 @@
 		return
 	if(on && beaker && beaker.reagents.total_volume)
 		var/state = electrolysis(beaker, separation_beaker, convertion_coefficient)
+		update_icon()
+		var/htmlicon = icon2html(src, hearers(get_turf(src)))
 		if(!state)
 			on = FALSE
 			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1, -3)
-			visible_message("\icon[src]\The [src] buzzes indicating that error has occured.")
+			visible_message("[htmlicon] \The [src] buzzes indicating that error has occured.")
 		else if(state == -1)
 			on = FALSE
 			playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
-			visible_message("\icon[src]\The [src] pings indicating that process is complete.")
-		update_icon()
+			visible_message("[htmlicon] \The [src] pings indicating that process is complete.")
 		SSnano.update_uis(src)
 
 

@@ -277,7 +277,7 @@
 
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		var/obj/item/organ/external/active_hand = H.get_active_hand_organ()
+		var/obj/item/organ/external/active_hand = H.get_active_held_item_organ()
 		if(BP_IS_ROBOTIC(active_hand))
 			return
 		if(istype(holder, /obj/item/organ/internal))

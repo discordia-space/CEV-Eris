@@ -13,10 +13,11 @@ SUBSYSTEM_DEF(air)
 	name = "Air"
 
 	init_order    = INIT_ORDER_AIR
-	priority      = SS_PRIORITY_AIR
+	priority      = FIRE_PRIORITY_AIR
 	wait          = 10
 
 	flags = SS_POST_FIRE_TIMING
+	init_time_threshold = 30 SECONDS
 
 	var/next_id       = 1 // Used to keep track of zone UIDs.
 

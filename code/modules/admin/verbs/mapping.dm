@@ -164,7 +164,7 @@ var/intercom_range_display_status = 0
 	var/turf/location = get_turf(usr)
 
 	if(!istype(location, /turf)) // We're in space, let's not cause runtimes.
-		to_chat(usr, "\red this debug tool cannot be used from space")
+		to_chat(usr, span_red("this debug tool cannot be used from space"))
 		return
 
 	var/icon/red = new('icons/misc/debug_group.dmi', "red")		//created here so we don't have to make thousands of these.
@@ -299,7 +299,7 @@ var/global/prevent_airgroup_regroup = 0
 	set category = "Mapping"
 	set name = "Regroup All Airgroups Attempt"
 
-	to_chat(usr, "\red Proc disabled.")
+	to_chat(usr, span_red("Proc disabled."))
 
 	/*prevent_airgroup_regroup = 0
 	for(var/datum/air_group/AG in SSair.air_groups)
@@ -310,7 +310,7 @@ var/global/prevent_airgroup_regroup = 0
 	set category = "Mapping"
 	set name = "Kill pipe processing"
 
-	to_chat(usr, "\red Proc disabled.")
+	to_chat(usr, span_red("Proc disabled."))
 
 	/*pipe_processing_killed = !pipe_processing_killed
 	if(pipe_processing_killed)
@@ -322,7 +322,7 @@ var/global/prevent_airgroup_regroup = 0
 	set category = "Mapping"
 	set name = "Kill air processing"
 
-	to_chat(usr, "\red Proc disabled.")
+	to_chat(usr, span_red("Proc disabled."))
 
 	/*air_processing_killed = !air_processing_killed
 	if(air_processing_killed)
@@ -336,7 +336,7 @@ var/global/say_disabled = 0
 	set category = "Mapping"
 	set name = "Disable all communication verbs"
 
-	to_chat(usr, "\red Proc disabled.")
+	to_chat(usr, span_red("Proc disabled."))
 
 	/*say_disabled = !say_disabled
 	if(say_disabled)
@@ -351,7 +351,7 @@ var/global/movement_disabled_exception //This is the client that calls the proc,
 	set category = "Mapping"
 	set name = "Disable all movement"
 
-	to_chat(usr, "\red Proc disabled.")
+	to_chat(usr, span_red("Proc disabled."))
 
 	/*movement_disabled = !movement_disabled
 	if(movement_disabled)

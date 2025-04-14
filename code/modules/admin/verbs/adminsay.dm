@@ -14,10 +14,30 @@
 
 	msg = emoji_parse(msg)
 
-	if(check_rights(R_ADMIN,0))
-		for(var/client/C in GLOB.admins)
-			if(R_ADMIN & C.holder.rights)
-				to_chat(C, "<span class='admin_channel'>" + create_text_tag("admin", "ADMIN:", C) + " [span_name("[key_name(usr, 1)]")]([admin_jump_link(mob, src)]): <span class='message linkify'>[msg]</span></span>")
+	// if(check_rights(R_ADMIN,0))
+
+
+	if(findtext(msg, "@") || findtext(msg, "#"))
+		var/list/link_results = check_asay_links(msg)
+		if(length(link_results))
+			msg = link_results[ASAY_LINK_NEW_MESSAGE_INDEX]
+			link_results[ASAY_LINK_NEW_MESSAGE_INDEX] = null
+			var/list/pinged_admin_clients = link_results[ASAY_LINK_PINGED_ADMINS_INDEX]
+			for(var/iter_ckey in pinged_admin_clients)
+				var/client/iter_admin_client = pinged_admin_clients[iter_ckey]
+				if(!iter_admin_client?.holder)
+					continue
+				window_flash(iter_admin_client)
+				SEND_SOUND(iter_admin_client.mob, sound('sound/misc/asay_ping.ogg'))
+
+	msg = keywords_lookup(msg)
+	var/asay_color = prefs.asaycolor
+	var/custom_asay_color = (CONFIG_GET(flag/allow_admin_asaycolor) && asay_color) ? "<font color=[asay_color]>" : "<font color='[DEFAULT_ASAY_COLOR]'>"
+	msg = "[span_adminsay("[span_prefix("ADMIN:")] <EM>[key_name(usr, 1)]</EM> [ADMIN_FLW(mob)]: [custom_asay_color]<span class='message linkify'>[msg]")]</span>[custom_asay_color ? "</font>":null]"
+	to_chat(GLOB.admins,
+		type = MESSAGE_TYPE_ADMINCHAT,
+		html = msg,
+		confidential = TRUE)
 
 /client/proc/cmd_mod_say(msg as text)
 	set category = "Special Verbs"
@@ -37,4 +57,4 @@
 	if(check_rights(R_ADMIN, 0))
 		sender_name = span_admin("[sender_name]")
 	for(var/client/C in GLOB.admins)
-		to_chat(C, "<span class='mod_channel'>" + create_text_tag("mod", "MOD:", C) + " [span_name("[sender_name]")]([admin_jump_link(mob, C.holder)]): <span class='message linkify'>[msg]</span></span>")
+		to_chat(C, "<span class='mod_channel'> MOD: [span_name("[sender_name]")]([admin_jump_link(mob, C.holder)]): <span class='message linkify'>[msg]</span></span>")

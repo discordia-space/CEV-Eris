@@ -103,7 +103,7 @@
 		var/slotID = get_inventory_slot(I)
 		I.screen_loc = find_inv_position(slotID)
 
-	var/obj/item/I = get_active_hand()
+	var/obj/item/I = get_active_held_item()
 	if(I)
 		I.update_hud_actions()
 /*	update_inv_w_uniform(0)

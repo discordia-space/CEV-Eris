@@ -214,7 +214,7 @@ var/obj/item/card/id/all_access/ghost_all_access
 /mob/living/bot/GetIdCard()
 	return botcard
 
-#define HUMAN_ID_CARDS list(get_active_hand(), wear_id, get_inactive_hand())
+#define HUMAN_ID_CARDS list(get_active_held_item(), wear_id, get_inactive_held_item())
 /mob/living/carbon/human/GetIdCard()
 	for(var/obj/item/I in HUMAN_ID_CARDS)
 		var/obj/item/card/id = I.GetIdCard()

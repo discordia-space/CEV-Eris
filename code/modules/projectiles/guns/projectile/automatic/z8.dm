@@ -50,7 +50,7 @@
 /obj/item/gun/projectile/automatic/z8/attack_hand(mob/user)
 	var/datum/firemode/cur_mode = firemodes[sel_mode]
 
-	if(user.get_inactive_hand() == src && cur_mode.settings["use_launcher"])
+	if(user.get_inactive_held_item() == src && cur_mode.settings["use_launcher"])
 		launcher.unload_underslung(user)
 	else
 		..()

@@ -3,7 +3,7 @@
 #define MAPTICK_LAST_INTERNAL_TICK_USAGE (world.map_cpu)
 
 #define TICK_CHECK ( TICK_USAGE > Master.current_ticklimit )
-#define CHECK_TICK if TICK_CHECK stoplag()
+#define CHECK_TICK ( TICK_CHECK ? stoplag() : 0 )
 
 #define TICKS_IN_DAY 		24*60*60*10
 #define TICKS_IN_SECOND 	10
@@ -25,5 +25,3 @@
 #define TICK_LIMIT_TO_RUN 70
 /// Tick limit for MC while running
 #define TICK_LIMIT_MC 70
-/// Tick limit while initializing
-#define TICK_LIMIT_MC_INIT_DEFAULT (100 - TICK_BYOND_RESERVE)

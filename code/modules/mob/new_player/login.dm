@@ -17,8 +17,8 @@
 	// 	return FALSE
 
 	if(join_motd)
-		to_chat(src, "<div class=\"motd\">[join_motd]</div>")
-	to_chat(src, "<div class='info'>Game ID: <div class='danger'>[game_id]</div></div>")
+		to_chat(src, "<div class='motd'>[join_motd]</div>")
+	to_chat(src, "<div class='info'>Game ID: <div class='danger'>[GLOB.game_id]</div></div>")
 
 	loc = null
 	my_client = client

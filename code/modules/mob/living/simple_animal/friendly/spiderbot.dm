@@ -45,7 +45,7 @@
 /mob/living/simple_animal/spiderbot/New()
 	..()
 	add_language(LANGUAGE_COMMON)
-	default_language = all_languages[LANGUAGE_COMMON]
+	default_language = GLOB.all_languages[LANGUAGE_COMMON]
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
 
@@ -218,7 +218,7 @@
 		return
 
 	if(!held_item)
-		to_chat(usr, "\red You have nothing to drop!")
+		to_chat(usr, span_red("You have nothing to drop!"))
 		return 0
 
 	if(istype(held_item, /obj/item/grenade))
@@ -275,7 +275,7 @@
 
 /mob/living/simple_animal/spiderbot/examine(mob/user, extra_description = "")
 	if(held_item)
-		extra_description += "\nIt is carrying \icon[src.held_item] \a [src.held_item]."
+		extra_description += "\nIt is carrying [icon2html(src.held_item, user)] \a [src.held_item]."
 	..(user, extra_description)
 
 /mob/living/simple_animal/spiderbot/cannot_use_vents()

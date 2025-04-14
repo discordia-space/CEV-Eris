@@ -75,7 +75,7 @@
 			if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 				return
 			if(ishuman(user))
-				if(!user.get_active_hand())
+				if(!user.get_active_held_item())
 					user.put_in_hands(choice)
 			else
 				choice.loc = get_turf(src)

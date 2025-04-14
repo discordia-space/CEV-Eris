@@ -92,7 +92,7 @@
 		return FALSE
 
 	if(!tool)
-		tool = user.get_active_hand()
+		tool = user.get_active_held_item()
 
 	var/quality = S.tool_quality(tool)
 	if(!quality)

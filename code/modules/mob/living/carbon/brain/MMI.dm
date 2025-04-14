@@ -40,10 +40,10 @@
 
 		var/obj/item/organ/internal/vital/brain/B = O
 		if(B.health <= 0)
-			to_chat(user, "\red That brain is well and truly dead.")
+			to_chat(user, span_red("That brain is well and truly dead."))
 			return
 		else if(!B.brainmob)
-			to_chat(user, "\red You aren't sure where this brain came from, but you're pretty sure it's a useless brain.")
+			to_chat(user, span_red("You aren't sure where this brain came from, but you're pretty sure it's a useless brain."))
 			return
 		var/mob/living/carbon/brain/BM = B.brainmob
 		if(!BM.client)
@@ -55,8 +55,8 @@
 				to_chat(user, span_warning("\The [src] indicates that \the [B] is unresponsive."))
 				return
 
-		for(var/mob/V in viewers(src, null))
-			V.show_message(text("\blue [user] sticks \a [O] into \the [src]."))
+		for(var/mob/V in viewers(get_turf(src)))
+			V.show_message(span_blue("[user] sticks \a [O] into \the [src]."))
 
 		brainmob = B.brainmob
 		brainmob.loc = src
@@ -81,9 +81,9 @@
 	if((istype(O,/obj/item/card/id)||istype(O,/obj/item/modular_computer/pda)) && brainmob)
 		if(allowed(user))
 			locked = !locked
-			to_chat(user, "\blue You [locked ? "lock" : "unlock"] the brain holder.")
+			to_chat(user, span_blue("You [locked ? "lock" : "unlock"] the brain holder."))
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, span_red("Access denied."))
 		return
 	if(brainmob)
 		O.attack(brainmob, user)//Oh noooeeeee
@@ -93,11 +93,11 @@
 	//TODO: ORGAN REMOVAL UPDATE. Make the brain remain in the MMI so it doesn't lose organ data.
 /obj/item/device/mmi/attack_self(mob/user as mob)
 	if(!brainmob)
-		to_chat(user, "\red You upend the MMI, but there's nothing in it.")
+		to_chat(user, span_red("You upend the MMI, but there's nothing in it."))
 	else if(locked)
-		to_chat(user, "\red You upend the MMI, but the brain is clamped into place.")
+		to_chat(user, span_red("You upend the MMI, but the brain is clamped into place."))
 	else
-		to_chat(user, "\blue You upend the MMI, spilling the brain onto the floor.")
+		to_chat(user, span_blue("You upend the MMI, spilling the brain onto the floor."))
 		var/obj/item/organ/internal/vital/brain/brain
 		if (brainobj)	//Pull brain organ out of MMI.
 			brainobj.loc = user.loc
@@ -168,7 +168,7 @@
 		to_chat(brainmob, "Can't do that while incapacitated or dead.")
 
 	radio.broadcasting = radio.broadcasting==1 ? 0 : 1
-	to_chat(brainmob, "\blue Radio is [radio.broadcasting==1 ? "now" : "no longer"] broadcasting.")
+	to_chat(brainmob, span_blue("Radio is [radio.broadcasting==1 ? "now" : "no longer"] broadcasting."))
 
 /obj/item/device/mmi/radio_enabled/verb/Toggle_Listening()
 	set name = "Toggle Listening"
@@ -181,7 +181,7 @@
 		to_chat(brainmob, "Can't do that while incapacitated or dead.")
 
 	radio.listening = radio.listening==1 ? 0 : 1
-	to_chat(brainmob, "\blue Radio is [radio.listening==1 ? "now" : "no longer"] receiving broadcast.")
+	to_chat(brainmob, span_blue("Radio is [radio.listening==1 ? "now" : "no longer"] receiving broadcast."))
 
 /obj/item/device/mmi/emp_act(severity)
 	if(!brainmob)

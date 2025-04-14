@@ -166,7 +166,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	// What icon do we use for the attack?
 	var/image/I
-	var/obj/item/T = get_active_hand()
+	var/obj/item/T = get_active_held_item()
 	if (T && T.icon)
 		I = image(T.icon, A, T.icon_state, A.layer + 1)
 	else // Attacked with a fist?

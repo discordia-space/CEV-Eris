@@ -26,8 +26,8 @@
 		tally += 1
 
 	if(recoil)
-		var/obj/item/gun/GA = get_active_hand()
-		var/obj/item/gun/GI = get_inactive_hand()
+		var/obj/item/gun/GA = get_active_held_item()
+		var/obj/item/gun/GI = get_inactive_held_item()
 
 		var/brace_recoil = 0
 		if(istype(GA))

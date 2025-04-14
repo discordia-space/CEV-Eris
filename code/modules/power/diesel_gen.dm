@@ -170,9 +170,9 @@
 		var/obj/item/stack/addstack = I
 		var/amount = min((max_sheets - sheets), addstack.amount)
 		if(amount < 1)
-			user << "\blue The [src.name] is full!"
+			user << span_blue("The [src.name] is full!")
 			return
-		user << "\blue You add [amount] sheet\s to the [src.name]."
+		user << span_blue("You add [amount] sheet\s to the [src.name].")
 		sheets += amount
 		addstack.use(amount)
 		updateUsrDialog()

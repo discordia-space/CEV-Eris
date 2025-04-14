@@ -19,8 +19,10 @@
 	if(triggered) return
 
 	if(ishuman(M))
-		for(var/mob/O in viewers(world.view, src.loc))
-			to_chat(O, "<font color='red'>[M] triggered the \icon[src] [src]</font>")
+		var/our_viewers = viewers(get_turf(src))
+		var/htmlicon = icon2html(src, our_viewers)
+		for(var/mob/O in our_viewers)
+			to_chat(O, "<font color='red'>[M] triggered the [htmlicon] [src]</font>")
 		triggered = 1
 		call(src,triggerproc)(M)
 

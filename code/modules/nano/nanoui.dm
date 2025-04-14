@@ -232,7 +232,7 @@ nanoui is used to open and update nano browser uis
 
 		var/list/potential_catalog_data = list()
 		for(var/type in types)
-			var/datum/catalog_entry/E = get_catalog_entry(type)
+			var/datum/catalog_entry/E = SScwj.get_catalog_entry(type)
 			if(E)
 				potential_catalog_data.Add(list(list("entry_name" = E.title, "entry_img_path" = E.image_path, "entry_type" = E.thing_type)))
 
@@ -393,7 +393,7 @@ nanoui is used to open and update nano browser uis
 	initial_data_json = strip_improper(initial_data_json);
 
 	var/url_parameters_json = json_encode(list("src" = "\ref[src]"))
-	
+
 	// This prevents the so-called white screens
 	spawn(1)
 		retrieving_html = FALSE

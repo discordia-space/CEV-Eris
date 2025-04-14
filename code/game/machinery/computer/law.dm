@@ -9,6 +9,12 @@
 	var/mob/living/silicon/ai/current
 	var/opened = 0
 
+/obj/machinery/computer/aiupload/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_silicon("\A [name] was created at [loc_name(src)].")
+		message_admins("\A [name] was created at [ADMIN_VERBOSEJMP(src)].")
+
 
 /obj/machinery/computer/aiupload/verb/AccessInternals()
 	set category = "Object"
@@ -62,6 +68,11 @@
 	circuit = /obj/item/electronics/circuitboard/borgupload
 	var/mob/living/silicon/robot/current = null
 
+/obj/machinery/computer/borgupload/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_silicon("\A [name] was created at [loc_name(src)].")
+		message_admins("\A [name] was created at [ADMIN_VERBOSEJMP(src)].")
 
 /obj/machinery/computer/borgupload/attackby(obj/item/electronics/ai_module/module as obj, mob/user as mob)
 	if(istype(module, /obj/item/electronics/ai_module))

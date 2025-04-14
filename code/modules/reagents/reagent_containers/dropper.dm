@@ -66,7 +66,7 @@
 			var/contained = reagents.log_list()
 			M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been squirted with [name] by [user.name] ([user.ckey]). Reagents: [contained]</font>"
 			user.attack_log += "\[[time_stamp()]\] <font color='red'>Used the [name] to squirt [M.name] ([M.key]). Reagents: [contained]</font>"
-			msg_admin_attack("[user.name] ([user.ckey]) squirted [M.name] ([M.key]) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+			msg_admin_attack("[user.name] ([user.ckey]) squirted [M.name] ([M.key]) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) [ADMIN_JMP(user)]")
 
 			trans = reagents.trans_to_mob(target, reagents.total_volume, CHEM_BLOOD)
 			user.visible_message(
@@ -98,7 +98,7 @@
 
 /obj/item/reagent_containers/dropper/update_icon()
 	cut_overlays()
-	if(reagents.total_volume)
+	if(reagents?.total_volume)
 		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "dropper")
 		filling.color = reagents.get_color()
 		add_overlay(filling)

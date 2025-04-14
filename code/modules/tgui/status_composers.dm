@@ -57,7 +57,7 @@
 /// Returns a UI status such that advanced tool users will be able to interact,
 /// but everyone else can only watch.
 /proc/ui_status_user_is_advanced_tool_user(mob/user)
-	return user.IsAdvancedToolUser() ? UI_INTERACTIVE : UI_UPDATE
+	return ISADVANCEDTOOLUSER(user) ? UI_INTERACTIVE : UI_UPDATE
 
 /// Returns a UI status such that silicons will be able to interact with whatever
 /// they would have access to if this was a machine. For example, AIs can
@@ -111,3 +111,11 @@
 		return UI_CLOSE
 
 	return UI_INTERACTIVE
+
+/// Return UI_INTERACTIVE if the user is inside the target atom, whether they can see it or not.
+/// Return UI_CLOSE otherwise.
+/proc/ui_status_user_inside(mob/user, atom/target)
+	if(target.contains(user))
+		return UI_INTERACTIVE
+
+	return UI_CLOSE

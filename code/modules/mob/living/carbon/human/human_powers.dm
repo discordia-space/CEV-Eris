@@ -45,9 +45,9 @@
 	if(failed)
 		src.Weaken(rand(2,4))
 
-	for(var/mob/O in viewers(src, null))
+	for(var/mob/O in viewers(get_turf(src)))
 		if ((O.client && !( O.blinded )))
-			O.show_message(text("\red <B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T), 1)
+			O.show_message(span_red(text("<B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T)), 1)
 
 /mob/living/carbon/human/proc/leap(mob/living/carbon/human/T)
 	if(last_special > world.time)
@@ -87,16 +87,16 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying)
-		to_chat(src, "\red You cannot do that in your current state.")
+		to_chat(src, span_red("You cannot do that in your current state."))
 		return
 
 	var/obj/item/grab/G = locate() in src
 	if(!G || !istype(G))
-		to_chat(src, "\red You are not grabbing anyone.")
+		to_chat(src, span_red("You are not grabbing anyone."))
 		return
 
 	if(G.state < GRAB_AGGRESSIVE)
-		to_chat(src, "\red You must have an aggressive grab to gut your prey!")
+		to_chat(src, span_red("You must have an aggressive grab to gut your prey!"))
 		return
 
 	last_special = world.time + 50
@@ -143,7 +143,7 @@
 
 	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
 
-	to_chat(M, "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]")
+	to_chat(M, span_blue("Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"))
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == src.species.name)
@@ -163,7 +163,7 @@
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
 				M.loc = loc
-		src.visible_message("\red <B>[src] hurls out the contents of their stomach!</B>")
+		src.visible_message(span_red("<B>[src] hurls out the contents of their stomach!</B>"))
 	return
 
 /mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
@@ -174,8 +174,8 @@
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
 		log_say("PsychicWhisper: [key_name(src)]->[M.key] : [msg]")
-		to_chat(M, "\green You hear a strange, alien voice in your head... \italic [msg]")
-		to_chat(src, "\green You said: \"[msg]\" to [M]")
+		to_chat(M, span_green("You hear a strange, alien voice in your head... \italic [msg]"))
+		to_chat(src, span_green("You said: \"[msg]\" to [M]"))
 	return
 
 
@@ -249,7 +249,11 @@
 			gender = FEMALE
 	regenerate_icons()
 
-	visible_message("\blue \The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!", "\blue You change your appearance!", "\red Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")
+	visible_message(
+		span_blue("\The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!"),
+		span_blue("You change your appearance!"),
+		span_red("Oh, god! What the hell was that? It sounded like flesh getting squished and bone ground into a different shape!")
+		)
 
 /mob/living/carbon/human/proc/phaze_trough()
 	set name = "Phaze"
@@ -344,10 +348,10 @@
 
 	var/say = sanitize(input("What do you wish to say"))
 	if(get_active_mutation(target, MUTATION_REMOTESAY))
-		target.show_message("\blue You hear [real_name]'s voice: [say]")
+		target.show_message(span_blue("You hear [real_name]'s voice: [say]"))
 	else
-		target.show_message("\blue You hear a voice that seems to echo around the room: [say]")
-	show_message("\blue You project your mind into [target.real_name]: [say]")
+		target.show_message(span_blue("You hear a voice that seems to echo around the room: [say]"))
+	show_message(span_blue("You project your mind into [target.real_name]: [say]"))
 	log_say("[key_name(usr)] sent a telepathic message to [key_name(target)]: [say]")
 	for(var/mob/observer/ghost/G in world)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")

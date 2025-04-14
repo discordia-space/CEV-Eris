@@ -23,7 +23,7 @@
 			sandwich_limit += 4
 
 	if(src.contents.len > sandwich_limit)
-		to_chat(user, "\red If you put anything else on \the [src] it's going to collapse.")
+		to_chat(user, span_red("If you put anything else on \the [src] it's going to collapse."))
 		return
 	else if(istype(W,/obj/item/material/shard))
 		to_chat(user, span_notice("You hide [W] in \the [src]."))

@@ -33,16 +33,19 @@
 /datum/tgui_say/proc/delegate_speech(entry, channel)
 	switch(channel)
 		if(SAY_CHANNEL)
-			client.mob.say(entry)
+			client.mob.say_verb(entry)
 			return TRUE
 		if(RADIO_CHANNEL)
-			client.mob.say(";" + entry)
+			client.mob.say_verb(";" + entry)
 			return TRUE
 		if(ME_CHANNEL)
-			client.mob.me(entry)
+			client.mob.me_verb(entry)
 			return TRUE
 		if(OOC_CHANNEL)
 			client.ooc(entry)
+			return TRUE
+		if(ADMIN_CHANNEL)
+			SSadmin_verbs.dynamic_invoke_verb(client, /datum/admin_verb/cmd_admin_say, entry)
 			return TRUE
 	return FALSE
 
@@ -65,6 +68,7 @@
 		log_speech_indicators("[key_name(client)] FORCED to stop typing, indicators enabled.")
 	else
 		log_speech_indicators("[key_name(client)] FORCED to stop typing, indicators DISABLED.")
+	SEND_SIGNAL(src, COMSIG_HUMAN_FORCESAY)
 
 /**
  * Handles text entry and forced speech.

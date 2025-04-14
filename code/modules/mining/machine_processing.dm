@@ -108,7 +108,7 @@
 	if(..())
 		return
 	if(!allowed(user))
-		to_chat(user, "\red Access denied.")
+		to_chat(user, span_red("Access denied."))
 		return
 	ui_interact(user)
 

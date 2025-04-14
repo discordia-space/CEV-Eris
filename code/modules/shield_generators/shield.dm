@@ -351,7 +351,7 @@ Like for example singulo act and whatever.
 	if (istype(hit_location))
 		var/area/A = get_area(hit_location)
 		var/where = "[A? A.name : "Unknown Location"] | [hit_location.x], [hit_location.y]"
-		var/whereLink = "<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[hit_location.x];Y=[hit_location.y];Z=[hit_location.z]'>[where]</a>"
+		var/whereLink = ADMIN_JMP(hit_location)
 		message_admins("A meteor has impacted shields at ([whereLink])", 0, 1)
 		log_game("A meteor has impacted shields at ([where]).")
 	*/

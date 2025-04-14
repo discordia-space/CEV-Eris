@@ -393,11 +393,11 @@ var/list/ai_verbs_default = list(
 	if(emergency_message_cooldown)
 		to_chat(usr, span_warning("Arrays recycling. Please stand by."))
 		return
-	var/input = sanitize(input(usr, "Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
+	var/input = sanitize(input(usr, "Please choose a message to transmit to [GLOB.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 	if(!input)
 		return
 	to_chat(usr, span_notice("No response from the remote server. Please, contact your system administrator."))
-	log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
+	log_say("[key_name(usr)] has made an IA [GLOB.boss_short] announcement: [input]")
 	emergency_message_cooldown = 1
 	spawn(300)
 		emergency_message_cooldown = 0
@@ -445,7 +445,7 @@ var/list/ai_verbs_default = list(
 		if(target && (!ishuman(target) || target.real_name == target.get_face_name()))
 			ai_actual_track(target)
 		else
-			to_chat(src, "\red System error. Cannot locate [href_list["trackname"]].")
+			to_chat(src, span_red("System error. Cannot locate [href_list["trackname"]]."))
 		return
 
 	return

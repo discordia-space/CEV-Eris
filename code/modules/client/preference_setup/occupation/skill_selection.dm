@@ -82,7 +82,7 @@
 //Sets up skills_allocated
 /datum/preferences/proc/sanitize_skills(var/list/input)
 	. = list()
-	var/datum/species/S = all_species[species]
+	var/datum/species/S = GLOB.all_species[species]
 	var/jobs_by_type = decls_repository.get_decls(GLOB.using_map.allowed_jobs)
 	for(var/job_type in jobs_by_type)
 		var/datum/job/job = jobs_by_type[job_type]

@@ -4,7 +4,7 @@
 
 	. = FALSE
 	..()
-	if(config.enable_mob_sleep)
+	if(CONFIG_GET(flag/enable_mob_sleep))
 		if(stat != DEAD && !mind)	// Check for mind so player-driven, nonhuman mobs don't sleep
 			if(life_cycles_before_scan > 0)
 				life_cycles_before_scan--

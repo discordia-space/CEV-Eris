@@ -214,12 +214,14 @@
 		return
 	if(window_type)
 		if(user.a_intent == I_HURT)
+			user.animate_interact(src, INTERACT_HARM)
 			playsound(src, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
 			user.do_attack_animation(src)
 			user.visible_message(span_danger("\The [user] bangs against \the [src]!"),
 								span_danger("You bang against \the [src]!"),
 								"You hear a banging sound.")
 		else
+			user.animate_interact(src, INTERACT_GENERIC)
 			playsound(src, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
 			user.visible_message("[user.name] knocks on the [name].",
 								"You knock on the [name].",

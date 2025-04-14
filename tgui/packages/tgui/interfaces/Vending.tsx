@@ -1,5 +1,5 @@
-import { capitalize } from '../../common/string';
-import { useBackend } from '../backend';
+import { capitalize } from 'tgui-core/string';
+import { useBackend } from 'tgui/backend';
 import {
   BlockQuote,
   Box,
@@ -10,7 +10,7 @@ import {
   NoticeBox,
   Section,
   Stack,
-} from '../components';
+} from 'tgui-core/components';
 import { GameIcon } from '../components/GameIcon';
 import { Window } from '../layouts';
 

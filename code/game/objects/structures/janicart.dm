@@ -33,9 +33,9 @@
 	if(get_dist(user, src) < 2)
 		if(mybucket)
 			var/contains = mybucket.reagents.total_volume
-			to_chat(user, "\icon[src] The bucket contains [contains] unit\s of liquid!")
+			to_chat(user, "[icon2html(src, user)] The bucket contains [contains] unit\s of liquid!")
 		else
-			to_chat(user, "\icon[src] There is no bucket mounted on it!")
+			to_chat(user, "[icon2html(src, user)] There is no bucket mounted on it!")
 	..(user, extra_description)
 
 /obj/structure/janitorialcart/MouseDrop_T(atom/movable/O as mob|obj, mob/living/user as mob)
@@ -121,7 +121,7 @@
 //Altclick the cart with a reagent container to pour things into the bucket without putting the bottle in trash
 /obj/structure/janitorialcart/AltClick(mob/living/user)
 	if(user.incapacitated() || !Adjacent(user))	return
-	var/obj/I = usr.get_active_hand()
+	var/obj/I = usr.get_active_held_item()
 	if(istype(I, /obj/item/mop))
 		if(!mymop)
 			usr.drop_from_inventory(I,src)

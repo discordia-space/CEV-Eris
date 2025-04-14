@@ -8,10 +8,10 @@ ADDRESS localhost
 PORT 3306
 
 # Database the population, death, karma, etc. tables may be found in
-DATABASE ceveris
+FEEDBACK_DATABASE ceveris
 
 # Username/Login used to access the database
-LOGIN mylogin
+FEEDBACK_LOGIN mylogin
 
 # Password used to access the database
-PASSWORD mypassword
+FEEDBACK_PASSWORD mypassword

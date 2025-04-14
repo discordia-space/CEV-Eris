@@ -3,7 +3,7 @@
 	set name = "wiki"
 	set desc = "Visit the wiki."
 	set hidden = TRUE
-	var/wikiurl = config.wikiurl
+	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(wikiurl)
 		src << link(wikiurl)
 	else
@@ -13,7 +13,7 @@
 	set name = "forum"
 	set desc = "Visit the forum."
 	set hidden = TRUE
-	var/forumurl = config.forumurl
+	var/forumurl = CONFIG_GET(string/forumurl)
 	if(forumurl)
 		src << link(forumurl)
 	else
@@ -33,7 +33,7 @@
 	set name = "github"
 	set desc = "Visit Github"
 	set hidden = TRUE
-	var/githuburl = config.githuburl
+	var/githuburl = CONFIG_GET(string/githuburl)
 	if(githuburl)
 		src << link(githuburl)
 	else
@@ -43,7 +43,7 @@
 	set name = "discord"
 	set desc = "Visit Discord"
 	set hidden = TRUE
-	var/discordurl = config.discordurl
+	var/discordurl = CONFIG_GET(string/discordurl)
 	if(discordurl)
 		src << link(discordurl)
 	else
@@ -57,10 +57,10 @@
 		GLOB.changelog_tgui = new /datum/changelog()
 
 	GLOB.changelog_tgui.ui_interact(mob)
-	if(prefs.lastchangelog != changelog_hash)
-		prefs.lastchangelog = changelog_hash
+	if(prefs.lastchangelog != GLOB.changelog_hash)
+		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
-		winset(src, "infowindow.changelog", "font-style=;")
+		winset(src, "infobuttons.changelog", "font-style=;")
 
 /client/verb/tickets()
 	set name = "tickets"

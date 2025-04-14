@@ -154,7 +154,7 @@
 		return
 
 	var/mob/living/M = owner.loc
-	if(M.client && M.get_active_hand() == owner)
+	if(M.client && M.get_active_held_item() == owner)
 		if(M.client.prefs.UI_compact_style)
 			screen_loc = minloc
 		else
@@ -235,6 +235,11 @@
 						if(icon_x in 14 to 18)
 							selecting = BP_EYES
 
+	logger.Log(
+		LOG_CATEGORY_TARGET_ZONE_SWITCH,
+		"[key_name(src)] manually changed selected zone (UI)",
+		data = selecting
+	)
 	set_selected_zone(selecting)
 	return TRUE
 
@@ -273,7 +278,7 @@
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
 		return TRUE
 	if(master)
-		var/obj/item/I = usr.get_active_hand()
+		var/obj/item/I = usr.get_active_held_item()
 		if(I)
 			usr.ClickOn(master)
 	return TRUE

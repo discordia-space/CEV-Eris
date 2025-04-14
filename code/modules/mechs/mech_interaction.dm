@@ -181,7 +181,7 @@
 		systm.on_unselect()
 		selected_hardpoint = null
 
-/mob/living/exosuit/get_active_hand()
+/mob/living/exosuit/get_active_held_item()
 	var/obj/item/mech_equipment/ME = selected_system
 	if(istype(ME))
 		return ME.get_effective_obj()

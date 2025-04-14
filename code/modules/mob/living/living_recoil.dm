@@ -34,7 +34,7 @@
 
 //Called after setting recoil
 /mob/living/proc/update_recoil()
-	var/obj/item/gun/G = get_active_hand()
+	var/obj/item/gun/G = get_active_held_item()
 	if(istype(G) && G)
 		G.check_safety_cursor(src)
 
@@ -48,7 +48,7 @@
 	return
 
 /mob/living/update_cursor()
-	var/obj/item/gun/G = get_active_hand()
+	var/obj/item/gun/G = get_active_held_item()
 	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES || (!istype(G, /obj/item/gun) || G.safety))
 		remove_cursor()
 		return

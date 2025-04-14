@@ -224,7 +224,7 @@
 
  // Cyborg tile stack can copy steel tiles by clicking on them (for easy reconstruction)
 /obj/item/stack/tile/floor/steel/AltClick(var/mob/living/user)
-	var/obj/item/I = user.get_active_hand()
+	var/obj/item/I = user.get_active_held_item()
 	if(istype(I, /obj/item/stack/tile/floor/cyborg))
 		var/obj/item/stack/tile/floor/cyborg/C = I
 		C.stacktype = src.type

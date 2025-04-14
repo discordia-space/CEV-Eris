@@ -91,7 +91,6 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 		admin_ranks[rank] = rights
 		previous_rights = rights
 
-
 /proc/clear_admin_datums()
 	GLOB.admin_datums.Cut()
 	for(var/client/C in GLOB.admins)
@@ -103,14 +102,13 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 /hook/startup/proc/loadAdmins()
 	clear_admin_datums()
 
-	if(config.admin_legacy_system)
+	if(CONFIG_GET(flag/admin_legacy_system))
 		load_admins_legacy()
 		return TRUE
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
-		error("Failed to connect to database in load_admins(). Reverting to legacy system.")
-		log_misc("Failed to connect to database in load_admins(). Reverting to legacy system.")
+		warning("Failed to connect to database in load_admins(). Reverting to legacy system.")
 		load_admins_legacy()
 		return FALSE
 
@@ -118,9 +116,8 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 		load_admins()
 
 		if(!LAZYLEN(GLOB.admin_datums))
-			error("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
-			log_misc("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
-			config.admin_legacy_system = 1
+			warning("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
+			CONFIG_SET(flag/admin_legacy_system, 1)
 			load_admins_legacy()
 			return FALSE
 

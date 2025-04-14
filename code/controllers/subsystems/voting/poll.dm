@@ -74,14 +74,17 @@
 	return
 
 
-/datum/poll/proc/vote(datum/vote_choice/choice, client/CL)
-	var/key = CL.key
+/datum/poll/proc/vote(datum/vote_choice/choice, client/voter)
+	if(CONFIG_GET(flag/vote_no_dead) && voter.mob.stat == DEAD && !voter?.holder)
+		return
+
+	var/key = voter.key
 	if(key in choice.voters)
 		if(can_revote && can_unvote)
 			choice.voters.Remove(key)
 	else
 		if(multiple_votes)
-			choice.voters[key] = get_vote_power(CL)
+			choice.voters[key] = get_vote_power(voter)
 		else
 			var/already_voted = FALSE
 			for(var/datum/vote_choice/C in choices)
@@ -91,7 +94,7 @@
 						C.voters.Remove(key)
 
 			if(can_revote || !already_voted)
-				choice.voters[key] = get_vote_power(CL)
+				choice.voters[key] = get_vote_power(voter)
 
 
 //How much does this person's vote count for?

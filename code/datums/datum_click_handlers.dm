@@ -63,7 +63,7 @@
 	if (istype(a, /turf))
 		return a
 
-	else if (istype(a, /atom))
+	else if (isatom(a))
 		var/atom/A = a
 		if (istype(A.loc, /turf))
 			return A

@@ -117,10 +117,10 @@
 		if(M.client)
 			spawn(0)
 				if(M.buckled)
-					M << "\red Sudden acceleration presses you into your chair!"
+					M << span_red("Sudden acceleration presses you into your chair!")
 					shake_camera(M, 3, 1)
 				else
-					M << "\red The floor lurches beneath you!"
+					M << span_red("The floor lurches beneath you!")
 					shake_camera(M, 10, 1)
 		if(iscarbon(M))
 			if(!M.buckled)
@@ -136,7 +136,7 @@
 		break
 
 	for(var/obj/structure/plasticflaps/mining/F in destination)
-		F.update_turf_underneath(1)	
+		F.update_turf_underneath(1)
 
 	if(update_power)
 		makepowernets()

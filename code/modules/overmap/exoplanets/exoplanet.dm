@@ -58,7 +58,7 @@
 			habitability_class = HABITABILITY_BAD
 
 /obj/effect/overmap/sector/exoplanet/New(nloc, max_x, max_y)
-	if(!config.use_overmap)
+	if(!CONFIG_GET(flag/use_overmap))
 		return
 
 	maxx = max_x ? max_x : world.maxx

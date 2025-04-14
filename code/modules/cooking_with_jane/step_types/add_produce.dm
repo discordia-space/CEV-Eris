@@ -9,18 +9,18 @@
 	var/list/exclude_reagents = list()
 
 /datum/cooking_with_jane/recipe_step/add_produce/New(var/produce, var/datum/cooking_with_jane/recipe/our_recipe)
-	if(!plant_controller)
+	if(!SSplants)
 		CRASH("/datum/cooking_with_jane/recipe_step/add_produce/New: Plant controller not initialized! Exiting.")
-	if(produce && plant_controller && plant_controller.seeds[produce])
+	if(produce && SSplants && SSplants.seeds[produce])
 		desc = "Add \a [produce] into the recipe."
 		required_produce_type = produce
 		group_identifier = produce
 
 		//Get tooltip image for plants
-		var/datum/seed/seed = plant_controller.seeds[produce]
+		var/datum/seed/seed = SSplants.seeds[produce]
 		var/icon_key = "fruit-[seed.get_trait(TRAIT_PRODUCT_ICON)]-[seed.get_trait(TRAIT_PRODUCT_COLOUR)]-[seed.get_trait(TRAIT_PLANT_COLOUR)]"
-		if(plant_controller.plant_icon_cache[icon_key])
-			tooltip_image = plant_controller.plant_icon_cache[icon_key]
+		if(SSplants.plant_icon_cache[icon_key])
+			tooltip_image = SSplants.plant_icon_cache[icon_key]
 		else
 			log_debug("[seed] is missing it's icon to add to tooltip_image")
 		base_potency = seed.get_trait(TRAIT_POTENCY)

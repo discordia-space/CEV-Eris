@@ -50,7 +50,7 @@ DEBUG
 	return 1
 
 /proc/jobban_loadbanfile()
-	if(config.ban_legacy_system)
+	if(CONFIG_GET(flag/ban_legacy_system))
 		var/savefile/S=new("data/job_full.ban")
 		S["keys[0]"] >> jobban_keylist
 		log_admin("Loading jobban_rank")
@@ -61,9 +61,8 @@ DEBUG
 			log_admin("jobban_keylist was empty")
 	else
 		if(!establish_db_connection())
-			error("Database connection failed. Reverting to the legacy ban system.")
-			log_misc("Database connection failed. Reverting to the legacy ban system.")
-			config.ban_legacy_system = 1
+			log_runtime("Database connection failed. Reverting to the legacy ban system.")
+			CONFIG_SET(flag/ban_legacy_system, 1)
 			jobban_loadbanfile()
 			return
 

@@ -21,7 +21,7 @@
 
 /proc/ToRban_update()
 	set waitfor = FALSE
-	log_misc("Downloading updated ToR data...")
+	log_admin("Downloading updated ToR data...")
 	var/list/http = world.Export("https://check.torproject.org/exit-addresses")
 
 	var/list/rawlist = file2list(http["CONTENT"])
@@ -37,11 +37,11 @@
 					continue
 				F[cleaned] << 1
 		F["last_update"] << world.realtime
-		log_misc("ToR data updated!")
+		log_admin("ToR data updated!")
 		if(usr)
 			to_chat(usr, "ToRban updated.")
 		return
-	log_misc("ToR data update aborted: no data.")
+	log_admin("ToR data update aborted: no data.")
 
 /client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
 	set name = "ToRban"
@@ -53,11 +53,11 @@
 			ToRban_update()
 		if("toggle")
 			if(config)
-				if(config.ToRban)
-					config.ToRban = 0
+				if(CONFIG_GET(flag/tor_ban))
+					CONFIG_SET(flag/tor_ban, FALSE)
 					message_admins("<font color='red'>ToR banning disabled.</font>")
 				else
-					config.ToRban = 1
+					CONFIG_SET(flag/tor_ban, TRUE)
 					message_admins("<font colot='green'>ToR banning enabled.</font>")
 		if("show")
 			var/savefile/F = new(TORFILE)

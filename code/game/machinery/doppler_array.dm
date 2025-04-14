@@ -39,7 +39,7 @@ var/list/doppler_arrays = list()
 
 	var/message = "Explosive disturbance detected - Epicenter at: grid ([x0],[y0]). Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range] to [light_impact_range]. Shockwave radius: [singe_impact_range]. Temporal displacement of tachyons: [took] seconds."
 
-	for(var/mob/O in hearers(src, null))
+	for(var/mob/O in hearers(get_turf(src)))
 		O.show_message("<span class='game say'>[span_name("[src]")] states coldly, \"[message]\"</span>",2)
 
 

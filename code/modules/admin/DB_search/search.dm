@@ -46,7 +46,7 @@
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
-		to_chat(usr, "\red Failed to establish database connection")
+		to_chat(usr, span_red("Failed to establish database connection"))
 		return
 
 	var/output = {"

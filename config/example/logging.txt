@@ -1,0 +1,87 @@
+### Config Flags for logging, compatibility flags are at the top
+
+## Whether or not admin/adminprivate logging is also sent to LOG_CATEGORY_GAME for legacy log parsers
+LOGGING_COMPAT_ADMINPRIVATE
+
+## Should we also log entries as human readable
+LOG_AS_HUMAN_READABLE
+
+
+## log OOC channel
+LOG_OOC
+
+## log client Say
+LOG_SAY
+
+## log admin actions
+LOG_ADMIN
+
+## log admin warning messages
+##LOG_ADMINWARN  ## Also duplicates a bunch of other messages.
+
+## Log admin chat
+LOG_ADMINCHAT
+
+## log client access (logon/logoff)
+LOG_ACCESS
+
+## log crew manifest to separate file
+LOG_MANIFEST
+
+## log game actions (start of round, results, etc.)
+LOG_GAME
+
+## log player votes
+LOG_VOTE
+
+## log manual target zone switching
+LOG_ZONE_SWITCH
+
+## log debug messages
+##LOG_DEBUG
+
+## log client Whisper
+LOG_WHISPER
+
+## log emotes
+LOG_EMOTE
+
+## log attack messages
+LOG_ATTACK
+
+## log economy actions
+LOG_ECON
+
+## log pda messages
+LOG_PDA
+
+## log prayers
+LOG_PRAYER
+
+## log world.log and runtime errors to a file
+LOG_RUNTIME
+
+## log asset debug logs
+# LOG_ASSET
+
+## log uplink purchases
+LOG_UPLINK
+
+## Enables log entries for logins that failed due to suspicious circumstances (banned player, CID randomiser, spoofed BYOND version, etc.) to a dedicated file.
+LOG_SUSPICIOUS_LOGIN
+
+## log silicons
+LOG_SILICON
+
+## log telecomms messages
+LOG_TELECOMMS
+
+## log speech indicators
+LOG_SPEECH_INDICATORS
+
+## log all world.Topic() calls
+# LOG_WORLD_TOPIC
+
+## Logs all links clicked in-game. Could be used for debugging and tracking down exploits.
+## Should be used in conjunction with DEBUG_ADMIN_HREFS in config.txt
+LOG_HREFS

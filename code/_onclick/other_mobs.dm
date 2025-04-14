@@ -8,7 +8,7 @@
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity, params)
+/mob/living/carbon/human/UnarmedAttack(atom/A, var/proximity, params)
 
 	if(!..())
 		return
@@ -20,7 +20,9 @@
 	if(istype(G) && G.Touch(A, 1))
 		return
 
-	A.attack_hand(src, params)
+	. = A.attack_hand(src, params)
+	if (.)
+		animate_interact(A, INTERACT_GENERIC)
 
 /atom/proc/attack_hand(mob/user as mob, params)
 	. = FALSE

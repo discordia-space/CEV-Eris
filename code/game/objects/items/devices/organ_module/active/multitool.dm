@@ -18,7 +18,7 @@
 
 /obj/item/organ_module/active/multitool/activate(mob/living/carbon/human/H, obj/item/organ/external/E)
 	var/target_hand = E.organ_tag == BP_L_ARM ? slot_l_hand : slot_r_hand
-	var/obj/I = H.get_active_hand()
+	var/obj/I = H.get_active_held_item()
 	if(I)
 		if(I in items)
 			H.drop_from_inventory(I, src)

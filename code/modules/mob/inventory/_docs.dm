@@ -65,7 +65,7 @@ Ovverided for human proc check "slot_back" first.
 This proc is called whenever someone clicks an inventory ui slot.
 If smth occupy slot, then reslolve_attack/attackhand will be called, else equip_to_slot_if_possible()
 It calls:
-	- Mob.get_active_hand()
+	- Mob.get_active_held_item()
 	- Mob.get_equipped_item(slot)
 	- Mob.equip_to_slot_if_possible(Item, slot)
 	- or Mob.attackhand(equippedItem)

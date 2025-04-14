@@ -28,7 +28,7 @@
 	if(scan)
 		to_chat(usr, "You remove \the [scan] from \the [src].")
 		scan.loc = get_turf(src)
-		if(!usr.get_active_hand() && ishuman(usr))
+		if(!usr.get_active_held_item() && ishuman(usr))
 			usr.put_in_hands(scan)
 		scan = null
 	else
@@ -152,7 +152,7 @@
 				if(ishuman(usr))
 					scan.loc = usr.loc
 
-					if(!usr.get_active_hand())
+					if(!usr.get_active_held_item())
 						usr.put_in_hands(scan)
 
 					scan = null
@@ -162,7 +162,7 @@
 					src.scan = null
 
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/card/id))
 					usr.drop_item()
 					I.loc = src
@@ -418,7 +418,7 @@
 				var/counter = 1
 				while(src.active2.fields[text("com_[]", counter)])
 					counter++
-				src.active2.fields[text("com_[counter]")] = text("Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD")] [stationtime2text()], [game_year]<BR>[t1]")
+				src.active2.fields[text("com_[counter]")] = text("Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD")] [stationtime2text()], [CURRENT_SHIP_YEAR]<BR>[t1]")
 
 			if (href_list["del_c"])
 				if ((istype(src.active2, /datum/data/record) && src.active2.fields[text("com_[]", href_list["del_c"])]))

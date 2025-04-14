@@ -174,7 +174,7 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 
 
 /mob/living/simple_animal/hostile/proc/ListTargets(var/dist = 7)
-	var/list/L = hearers(src, dist)
+	var/list/L = hearers(dist, get_turf(src))
 
 	for (var/mob/living/exosuit/M in GLOB.mechas_list)
 		if (M.z == z && get_dist(src, M) <= dist)
@@ -209,7 +209,7 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 
 /mob/living/simple_animal/hostile/proc/OpenFire(target_mob)
 	var/target = target_mob
-	visible_message("\red <b>[src]</b> [fire_verb] at [target]!", 1)
+	visible_message(span_danger("<b>[src]</b> [fire_verb] at [target]!"), 1)
 
 	if(rapid)
 		spawn(1)

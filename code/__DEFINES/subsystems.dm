@@ -91,6 +91,8 @@
 #define INIT_ORDER_CHUNKS 98
 #define INIT_ORDER_EXPLOSIONS 97
 #define INIT_ORDER_STATPANELS 96
+#define INIT_ORDER_REAGENTS 26
+#define INIT_ORDER_PLANTS 24
 #define INIT_ORDER_SKYBOX 20
 #define INIT_ORDER_DBCORE 19
 #define INIT_ORDER_BLACKBOX 18
@@ -111,13 +113,14 @@
 #define INIT_ORDER_ALARM -2
 #define INIT_ORDER_MINIMAP -3
 #define INIT_ORDER_HOLOMAPS -4
-#define INIT_ORDER_CRAFT -4 // DO NOT INIT THIS AFTER ASSETS
-#define INIT_ORDER_ASSETS -5
-#define INIT_ORDER_ICON_SMOOTHING -6
-#define INIT_ORDER_OVERLAY -7
+#define INIT_ORDER_CRAFT -5 // DO NOT INIT THIS AFTER ASSETS
+#define INIT_ORDER_CWJ -6
+#define INIT_ORDER_ASSETS -7
+#define INIT_ORDER_ICON_SMOOTHING -8
+#define INIT_ORDER_OVERLAY -9
 #define INIT_ORDER_XKEYSCORE -10
-#define INIT_ORDER_STICKY_BAN -10
-#define INIT_ORDER_TICKETS -10
+#define INIT_ORDER_STICKY_BAN -11
+#define INIT_ORDER_TICKETS -12
 #define INIT_ORDER_LIGHTING -20
 #define INIT_ORDER_SHUTTLE -21
 #define INIT_ORDER_JAMMING -22
@@ -167,6 +170,8 @@ if(Datum.is_processing) {\
 
 /// The timer key used to know how long subsystem initialization takes
 #define SS_INIT_TIMER_KEY "ss_init"
+
+#define SS_HOLOMAPS_TIMER_KEY "ss_holomaps"
 
 /**
 	Create a new timer and add it to the queue.

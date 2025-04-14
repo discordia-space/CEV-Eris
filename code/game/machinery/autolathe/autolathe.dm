@@ -427,7 +427,7 @@
 
 /obj/machinery/autolathe/proc/insert_disk(mob/living/user, obj/item/computer_hardware/hard_drive/portable/inserted_disk)
 	if(!inserted_disk && istype(user))
-		inserted_disk = user.get_active_hand()
+		inserted_disk = user.get_active_held_item()
 
 	if(!istype(inserted_disk))
 		return
@@ -454,7 +454,7 @@
 
 /obj/machinery/autolathe/proc/insert_beaker(mob/living/user, obj/item/reagent_containers/glass/beaker)
 	if(!beaker && istype(user))
-		beaker = user.get_active_hand()
+		beaker = user.get_active_held_item()
 
 	if(!istype(beaker))
 		return
@@ -533,7 +533,7 @@
 
 /obj/machinery/autolathe/proc/eat(mob/living/user, obj/item/eating)
 	if(!eating && istype(user))
-		eating = user.get_active_hand()
+		eating = user.get_active_held_item()
 
 	if(!istype(eating))
 		return FALSE
@@ -974,7 +974,7 @@
 		return
 
 	if(!inserted_oddity && istype(user))
-		inserted_oddity = user.get_active_hand()
+		inserted_oddity = user.get_active_held_item()
 
 	if(!istype(inserted_oddity))
 		return

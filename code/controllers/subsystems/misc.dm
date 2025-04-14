@@ -4,6 +4,7 @@ SUBSYSTEM_DEF(misc)
 	flags = SS_NO_FIRE
 	var/num_exoplanets = 2
 	var/list/planet_size  //dimensions of planet zlevel, defaults to world size. Due to how maps are generated, must be (2^n+1) e.g. 17,33,65,129 etc. Map will just round up to those if set to anything other.
+	init_time_threshold = 20 SECONDS
 
 /datum/controller/subsystem/misc/Initialize(timeofday)
 	if(!LAZYLEN(planet_size))
@@ -20,7 +21,7 @@ GLOBAL_LIST_INIT(cursor_icons, list()) //list of icon files, which point to list
 		make_cursor_icon('icons/obj/gun_cursors/standard/standard.dmi', i)
 
 /datum/controller/subsystem/misc/proc/build_exoplanets()
-	if(!config.use_overmap)
+	if(!CONFIG_GET(flag/use_overmap))
 		return
 	for(var/i = 0, i < num_exoplanets, i++)
 		var/exoplanet_type = pick(subtypesof(/obj/effect/overmap/sector/exoplanet))

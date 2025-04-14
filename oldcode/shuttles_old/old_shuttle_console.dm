@@ -14,7 +14,7 @@
 		return
 	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
 	if(!allowed(user))
-		user << "\red Access Denied."
+		user << span_red("Access Denied.")
 		return 1
 
 	nano_ui_interact(user)

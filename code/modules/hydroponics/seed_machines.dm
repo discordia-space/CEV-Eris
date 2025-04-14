@@ -102,10 +102,10 @@
 		if(!seed)
 			return 1
 
-		if(seed.seed.name == "new line" || isnull(plant_controller.seeds[seed.seed.name]))
-			seed.seed.uid = plant_controller.seeds.len + 1
+		if(seed.seed.name == "new line" || isnull(SSplants.seeds[seed.seed.name]))
+			seed.seed.uid = SSplants.seeds.len + 1
 			seed.seed.name = "[seed.seed.uid]"
-			plant_controller.seeds[seed.seed.name] = seed.seed
+			SSplants.seeds[seed.seed.name] = seed.seed
 
 		seed.update_seed()
 
@@ -170,8 +170,8 @@
 	var/list/data = ..()
 
 	var/list/geneMasks = list()
-	for(var/gene_tag in plant_controller.gene_tag_masks)
-		geneMasks.Add(list(list("tag" = gene_tag, "mask" = plant_controller.gene_tag_masks[gene_tag])))
+	for(var/gene_tag in SSplants.gene_tag_masks)
+		geneMasks.Add(list(list("tag" = gene_tag, "mask" = SSplants.gene_tag_masks[gene_tag])))
 	data["geneMasks"] = geneMasks
 
 	if(seed && genes_processed)
@@ -266,7 +266,7 @@
 			stat_multiplier = min(usr.stats.getMult(STAT_BIO, STAT_LEVEL_GODLIKE), usr.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE))
 
 		seed.modified += round(rand(30, 50) * stat_multiplier)
-		if(!isnull(plant_controller.seeds[seed.seed.name]))
+		if(!isnull(SSplants.seeds[seed.seed.name]))
 			seed.seed = seed.seed.diverge(1)
 			seed.seed_type = seed.seed.name
 			seed.update_seed()

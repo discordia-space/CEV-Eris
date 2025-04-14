@@ -817,7 +817,7 @@
 		to_chat(user, span_notice("\The [src] is now set to [new_mode.name]."))
 
 /obj/item/gun/proc/toggle_safety(mob/living/user)
-	if(restrict_safety || src != user.get_active_hand())
+	if(restrict_safety || src != user.get_active_held_item())
 		return
 
 	safety = !safety

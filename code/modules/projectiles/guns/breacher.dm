@@ -100,7 +100,7 @@
 		return
 	/*if(ishuman(user))
 		if(user.dna && user.dna.mutantrace == "adamantine")
-			to_chat(user, "\red Your metal fingers don't fit in the trigger guard!")
+			to_chat(user, span_red("Your metal fingers don't fit in the trigger guard!"))
 			return*/
 
 	add_fingerprint(user)

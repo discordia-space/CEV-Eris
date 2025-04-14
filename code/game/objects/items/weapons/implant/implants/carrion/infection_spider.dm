@@ -59,7 +59,7 @@
 				"You feel weak, like something is growing inside of your body!"
 			))
 			wearer.adjustHalLoss(10) //Flat 10 agony damage
-			to_chat(wearer, "\red <font size=3><b>[pain_message]</b></font>")
+			to_chat(wearer, span_red("<font size=3><b>[pain_message]</b></font>"))
 		if(prob(1)) //around 0.75 limbs per transformation
 			if(prob(50))
 				var/obj/item/organ/external/E = wearer.get_organ(pick(list(BP_L_ARM, BP_L_LEG, BP_R_ARM, BP_R_LEG)))

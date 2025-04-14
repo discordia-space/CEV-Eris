@@ -45,11 +45,11 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 			index++
 			var/datum/H = handler
 			if(H.type == handler_path_to_add_before)
-				LAZYINSERT(movement_handlers, ., index)
+				movement_handlers.Insert(index, .)
 				return
 
 	// If no handler_path_to_add_after was given or found, add first
-	LAZYINSERT(movement_handlers, ., 1)
+	movement_handlers.Insert(1, .)
 
 /atom/movable/proc/RemoveMovementHandler(var/handler_path)
 	INIT_MOVEMENT_HANDLERS

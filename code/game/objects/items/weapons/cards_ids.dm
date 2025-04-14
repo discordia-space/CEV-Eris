@@ -125,7 +125,7 @@ var/const/NO_EMAG_ACT = -50
 	if(get_dist(user, src) < 2)
 		show(user)
 		extra_description += desc
-		extra_description += text("\n\icon[src] [name]: The current assignment on the card is [assignment].")
+		extra_description += text("\n[icon2html(src, user)] [name]: The current assignment on the card is [assignment].")
 		extra_description += "\nThe blood type on the card is [blood_type]."
 		extra_description += "\nThe DNA hash on the card is [dna_hash]."
 		extra_description += "\nThe fingerprint hash on the card is [fingerprint_hash]."
@@ -180,8 +180,9 @@ var/const/NO_EMAG_ACT = -50
 	return dat
 
 /obj/item/card/id/attack_self(mob/user as mob)
-	user.visible_message("\The [user] shows you: \icon[src] [src.name]. The assignment on the card: [src.assignment]",\
-		"You flash your ID card: \icon[src] [src.name]. The assignment on the card: [src.assignment]")
+	var/visible_to = viewers(get_turf(src))
+	user.visible_message("\The [user] shows you: [icon2html(src, visible_to)] [src.name]. The assignment on the card: [src.assignment]",\
+		"You flash your ID card: [icon2html(src, visible_to)] [src.name]. The assignment on the card: [src.assignment]")
 
 	src.add_fingerprint(user)
 	return

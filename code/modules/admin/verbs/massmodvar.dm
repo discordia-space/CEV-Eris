@@ -32,7 +32,7 @@
 
 	for(var/p in forbidden_varedit_object_types)
 		if( istype(O,p) )
-			to_chat(usr, "\red It is forbidden to edit this object's variables.")
+			to_chat(usr, span_red("It is forbidden to edit this object's variables."))
 			return
 
 	var/list/names = list()
@@ -74,10 +74,10 @@
 
 	else if(isicon(var_value))
 		to_chat(usr, "Variable appears to be <b>ICON</b>.")
-		var_value = "\icon[var_value]"
+		var_value = "[icon2html(var_value, usr)]"
 		default = "icon"
 
-	else if(istype(var_value,/atom) || istype(var_value,/datum))
+	else if(isatom(var_value) || isdatum(var_value))
 		to_chat(usr, "Variable appears to be <b>TYPE</b>.")
 		default = "type"
 
@@ -85,7 +85,7 @@
 		to_chat(usr, "Variable appears to be <b>LIST</b>.")
 		default = "list"
 
-	else if(istype(var_value,/client))
+	else if(isclient(var_value))
 		to_chat(usr, "Variable appears to be <b>CLIENT</b>.")
 		default = "cancel"
 
@@ -125,7 +125,7 @@
 
 	var/original_name
 
-	if (!istype(O, /atom))
+	if (!isatom(O))
 		original_name = "\ref[O] ([O])"
 	else
 		original_name = O:name

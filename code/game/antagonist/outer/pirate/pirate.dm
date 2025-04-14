@@ -50,7 +50,7 @@
 	L.set_default_language(LANGUAGE_COMMON)
 
 	// And we'll give them a random serbian name to start off with
-	var/datum/language/lang = all_languages[LANGUAGE_COMMON]
+	var/datum/language/lang = GLOB.all_languages[LANGUAGE_COMMON]
 	lang.set_random_name(L)
 
 	// The missing part was antag's stats!

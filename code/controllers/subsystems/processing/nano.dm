@@ -1,10 +1,11 @@
 PROCESSING_SUBSYSTEM_DEF(nano)
 	name = "NanoUI"
-	priority = SS_PRIORITY_NANO
+	priority = FIRE_PRIORITY_NANO
 	wait = 2 SECONDS
 
 	// a list of current open /nanoui UIs, grouped by src_object and ui_key
-	var/list/open_uis = list()
+	// Renamed to _open_uis to avoid conflict with Tgui
+	var/list/_open_uis = list()
 
  /**
   * Get an open /nanoui ui for the current user, src_object and ui_key and try to update it with data
@@ -51,10 +52,10 @@ PROCESSING_SUBSYSTEM_DEF(nano)
   */
 /datum/controller/subsystem/processing/nano/proc/get_open_ui(mob/user, src_object, ui_key)
 	var/src_object_key = "\ref[src_object]"
-	if (!open_uis[src_object_key] || !open_uis[src_object_key][ui_key])
+	if (!_open_uis[src_object_key] || !_open_uis[src_object_key][ui_key])
 		return
 
-	for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
+	for (var/datum/nanoui/ui in _open_uis[src_object_key][ui_key])
 		if (ui.user == user)
 			// This fixes the UI being broken when it's registred as open on serverside, but is actually closed on client.
 			// We check if the UI is actually open on client, and force it to re-open if it isn't.
@@ -73,11 +74,11 @@ PROCESSING_SUBSYSTEM_DEF(nano)
 /datum/controller/subsystem/processing/nano/proc/update_uis(src_object)
 	. = 0
 	var/src_object_key = "\ref[src_object]"
-	if (!open_uis[src_object_key])
+	if (!_open_uis[src_object_key])
 		return
 
-	for (var/ui_key in open_uis[src_object_key])
-		for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
+	for (var/ui_key in _open_uis[src_object_key])
+		for (var/datum/nanoui/ui in _open_uis[src_object_key][ui_key])
 			if(ui.src_object && ui.user && ui.src_object.nano_host())
 				ui.try_update(1)
 				.++
@@ -94,11 +95,11 @@ PROCESSING_SUBSYSTEM_DEF(nano)
 /datum/controller/subsystem/processing/nano/proc/close_uis(src_object)
 	. = 0
 	var/src_object_key = "\ref[src_object]"
-	if (!open_uis[src_object_key])
+	if (!_open_uis[src_object_key])
 		return
 
-	for (var/ui_key in open_uis[src_object_key])
-		for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
+	for (var/ui_key in _open_uis[src_object_key])
+		for (var/datum/nanoui/ui in _open_uis[src_object_key][ui_key])
 			ui.close() // If it's missing src_object or user, we want to close it even more.
 			.++
 
@@ -150,8 +151,8 @@ PROCESSING_SUBSYSTEM_DEF(nano)
   */
 /datum/controller/subsystem/processing/nano/proc/ui_opened(datum/nanoui/ui)
 	var/src_object_key = "\ref[ui.src_object]"
-	LAZYINITLIST(open_uis[src_object_key])
-	LAZYOR(open_uis[src_object_key][ui.ui_key], ui)
+	LAZYINITLIST(_open_uis[src_object_key])
+	LAZYOR(_open_uis[src_object_key][ui.ui_key], ui)
 	LAZYOR(ui.user.open_uis, ui)
 	START_PROCESSING(SSnano, ui)
 
@@ -165,17 +166,17 @@ PROCESSING_SUBSYSTEM_DEF(nano)
   */
 /datum/controller/subsystem/processing/nano/proc/ui_closed(var/datum/nanoui/ui)
 	var/src_object_key = "\ref[ui.src_object]"
-	if (!open_uis[src_object_key] || !open_uis[src_object_key][ui.ui_key])
+	if (!_open_uis[src_object_key] || !_open_uis[src_object_key][ui.ui_key])
 		return 0 // wasn't open
 
 	STOP_PROCESSING(SSnano, ui)
 	if(ui.user)	// Sanity check in case a user has been deleted (say a blown up borg watching the alarm interface)
 		LAZYREMOVE(ui.user.open_uis, ui)
-	open_uis[src_object_key][ui.ui_key] -= ui
-	if(!length(open_uis[src_object_key][ui.ui_key]))
-		open_uis[src_object_key] -= ui.ui_key
-		if(!length(open_uis[src_object_key]))
-			open_uis -= src_object_key
+	_open_uis[src_object_key][ui.ui_key] -= ui
+	if(!length(_open_uis[src_object_key][ui.ui_key]))
+		_open_uis[src_object_key] -= ui.ui_key
+		if(!length(_open_uis[src_object_key]))
+			_open_uis -= src_object_key
 	return 1
 
  /**

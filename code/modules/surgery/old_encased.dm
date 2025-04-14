@@ -43,8 +43,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	user.visible_message("\blue [user] has cut [target]'s [affected.encased] open with \the [tool].",		\
-	"\blue You have cut [target]'s [affected.encased] open with \the [tool].")
+	user.visible_message(span_blue("[user] has cut [target]'s [affected.encased] open with \the [tool]."),		\
+	span_blue("You have cut [target]'s [affected.encased] open with \the [tool]."))
 	affected.open = 2.5
 
 /datum/old_surgery_step/open_encased/saw/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -53,8 +53,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	user.visible_message("\red [user]'s hand slips, cracking [target]'s [affected.encased] with \the [tool]!" , \
-	"\red Your hand slips, cracking [target]'s [affected.encased] with \the [tool]!" )
+	user.visible_message(span_red("[user]'s hand slips, cracking [target]'s [affected.encased] with \the [tool]!") , \
+	span_red("Your hand slips, cracking [target]'s [affected.encased] with \the [tool]!") )
 
 	affected.createwound(CUT, 20)
 	affected.fracture()
@@ -89,8 +89,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	var/msg = "\blue [user] forces open [target]'s [affected.encased] with \the [tool]."
-	var/self_msg = "\blue You force open [target]'s [affected.encased] with \the [tool]."
+	var/msg = span_blue("[user] forces open [target]'s [affected.encased] with \the [tool].")
+	var/self_msg = span_blue("You force open [target]'s [affected.encased] with \the [tool].")
 	user.visible_message(msg, self_msg)
 
 	affected.open = 3
@@ -101,8 +101,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	var/msg = "\red [user]'s hand slips, cracking [target]'s [affected.encased]!"
-	var/self_msg = "\red Your hand slips, cracking [target]'s  [affected.encased]!"
+	var/msg = span_red("[user]'s hand slips, cracking [target]'s [affected.encased]!")
+	var/self_msg = span_red("Your hand slips, cracking [target]'s  [affected.encased]!")
 	user.visible_message(msg, self_msg)
 
 	affected.createwound(BRUISE, 20)
@@ -138,8 +138,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	var/msg = "\blue [user] bends [target]'s [affected.encased] back into place with \the [tool]."
-	var/self_msg = "\blue You bend [target]'s [affected.encased] back into place with \the [tool]."
+	var/msg = span_blue("[user] bends [target]'s [affected.encased] back into place with \the [tool].")
+	var/self_msg = span_blue("You bend [target]'s [affected.encased] back into place with \the [tool].")
 	user.visible_message(msg, self_msg)
 
 	affected.open = 2.5
@@ -150,8 +150,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	var/msg = "\red [user]'s hand slips, bending [target]'s [affected.encased] the wrong way!"
-	var/self_msg = "\red Your hand slips, bending [target]'s [affected.encased] the wrong way!"
+	var/msg = span_red("[user]'s hand slips, bending [target]'s [affected.encased] the wrong way!")
+	var/self_msg = span_red("Your hand slips, bending [target]'s [affected.encased] the wrong way!")
 	user.visible_message(msg, self_msg)
 
 	affected.createwound(BRUISE, 20)
@@ -193,8 +193,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	var/msg = "\blue [user] finish mending back [target]'s bones on [affected.encased] with \the [tool]."
-	var/self_msg = "\blue You finish mending back [target]'s bones on [affected.encased] with \the [tool]."
+	var/msg = span_blue("[user] finish mending back [target]'s bones on [affected.encased] with \the [tool].")
+	var/self_msg = span_blue("You finish mending back [target]'s bones on [affected.encased] with \the [tool].")
 	user.visible_message(msg, self_msg)
 
 	affected.open = 2

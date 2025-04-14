@@ -168,7 +168,7 @@ var/global/excelsior_last_draft = 0
 
 	var/list/data = nano_ui_data()
 
-	time_until_scan = time2text((30 MINUTES - ((world.time - SSticker.round_start_time) % (30 MINUTES))), "mm:ss")
+	time_until_scan = time2text((30 MINUTES - ((world.time - SSticker.round_start_time) % (30 MINUTES))), "mm:ss", NO_TIMEZONE)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)

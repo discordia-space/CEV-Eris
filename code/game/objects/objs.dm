@@ -25,6 +25,7 @@
 	if(!ismachinery(src))
 		STOP_PROCESSING(SSobj, src) // TODO: Have a processing bitflag to reduce on unnecessary loops through the processing lists
 	SSnano.close_uis(src)
+	SStgui.close_uis(src)
 	. = ..()
 
 /obj/Topic(href, href_list, var/datum/nano_topic_state/state = GLOB.default_state)

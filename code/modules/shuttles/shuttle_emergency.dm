@@ -28,7 +28,7 @@
 /datum/shuttle/autodock/ferry/emergency/shuttle_moved()
 	if(next_location != waypoint_station)
 		emergency_controller.shuttle_leaving() // This is a hell of a line. v
-		priority_announcement.Announce(replacetext(replacetext((emergency_controller.emergency_evacuation ? GLOB.maps_data.emergency_shuttle_leaving_dock : GLOB.maps_data.shuttle_leaving_dock), "%dock_name%", "[dock_name]"),  "%ETA%", "[round(emergency_controller.get_eta()/60,1)] minute\s"))
+		priority_announcement.Announce(replacetext(replacetext((emergency_controller.emergency_evacuation ? GLOB.maps_data.emergency_shuttle_leaving_dock : GLOB.maps_data.shuttle_leaving_dock), "%dock_name%", "[GLOB.dock_name]"),  "%ETA%", "[round(emergency_controller.get_eta()/60,1)] minute\s"))
 	else if(next_location == waypoint_offsite && emergency_controller.has_evacuated())
 		emergency_controller.shuttle_evacuated()
 	..()
@@ -195,9 +195,9 @@
 			if (shuttle.in_use)
 				shuttle_status = "Busy."
 			else if (!shuttle.location)
-				shuttle_status = "Standing-by at [station_name]."
+				shuttle_status = "Standing-by at [station_name()]."
 			else
-				shuttle_status = "Standing-by at [dock_name]."
+				shuttle_status = "Standing-by at [GLOB.dock_name]."
 		if(WAIT_LAUNCH, FORCE_LAUNCH)
 			shuttle_status = "Shuttle has recieved command and will depart shortly."
 		if(WAIT_ARRIVE)
@@ -253,6 +253,6 @@
 		//They selected an empty entry. Try to scan their id.
 		var/mob/living/carbon/human/H = user
 		if (istype(H))
-			if (!read_authorization(H.get_active_hand()))	//try to read what's in their hand first
+			if (!read_authorization(H.get_active_held_item()))	//try to read what's in their hand first
 				read_authorization(H.wear_id)
 				. = TOPIC_REFRESH

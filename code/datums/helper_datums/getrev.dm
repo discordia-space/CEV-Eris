@@ -1,4 +1,4 @@
-var/global/datum/getrev/revdata = new()
+GLOBAL_DATUM_INIT(revdata,/datum/getrev, new)
 
 /datum/getrev
 	var/commit  // git rev-parse HEAD
@@ -51,7 +51,7 @@ var/global/datum/getrev/revdata = new()
 		var/datum/tgs_revision_information/test_merge/tm = line
 		var/cm = tm.head_commit
 		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext_char(cm, 1, 11))
-		. += "<a href=\"[config.githuburl]/pull/[tm.number]\">#[tm.number][details]</a><br>"
+		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a><br>"
 
 /client/verb/showrevinfo()
 	set category = "OOC"
@@ -60,22 +60,22 @@ var/global/datum/getrev/revdata = new()
 
 	var/list/msg = list()
 	// Round ID
-	if(game_id)
-		msg += "<b>Round ID:</b> [game_id]"
+	if(GLOB.game_id)
+		msg += "<b>Round ID:</b> [GLOB.game_id]"
 
 	msg += "<b>BYOND Version:</b> [world.byond_version].[world.byond_build]"
 	if(DM_VERSION != world.byond_version || DM_BUILD != world.byond_build)
 		msg += "<b>Compiled with BYOND Version:</b> [DM_VERSION].[DM_BUILD]"
 
 	// Revision information
-	msg += "<b>Server revision compiled on:</b> [revdata.date]"
-	var/pc = revdata.originmastercommit
+	msg += "<b>Server revision compiled on:</b> [GLOB.revdata.date]"
+	var/pc = GLOB.revdata.originmastercommit
 	if(pc)
-		msg += "<b>Master commit:</b> <a href=\"[config.githuburl]/commit/[pc]\">[pc]</a>"
-	if(length(revdata.testmerge))
-		msg += revdata.GetTestMergeInfo()
-	if(revdata.commit && revdata.commit != revdata.originmastercommit)
-		msg += "<b>Local commit:</b> [revdata.commit]"
+		msg += "<b>Master commit:</b> <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
+	if(length(GLOB.revdata.testmerge))
+		msg += GLOB.revdata.GetTestMergeInfo()
+	if(GLOB.revdata.commit && GLOB.revdata.commit != GLOB.revdata.originmastercommit)
+		msg += "<b>Local commit:</b> [GLOB.revdata.commit]"
 	else if(!pc)
 		msg += "No commit information"
 	if(world.TgsAvailable())
@@ -86,7 +86,7 @@ var/global/datum/getrev/revdata = new()
 
 	// Game mode odds
 	msg += "<br><b>Current Informational Settings:</b>"
-	msg += "<b>Protect Authority Roles From Traitor:</b> [config.protect_roles_from_antagonist ? "Yes" : "No"]"
+	msg += "<b>Protect Authority Roles From Traitor:</b> [CONFIG_GET(flag/protect_roles_from_antagonist) ? "Yes" : "No"]"
 	// msg += "<b>Protect Assistant Role From Traitor:</b> [config.protect_assistant_from_antagonist ? "Yes" : "No"]"
 	// msg += "<b>Enforce Human Authority:</b> [config.enforce_human_authority ? "Yes" : "No"]"
 	// msg += "<b>Allow Latejoin Antagonists:</b> [config.allow_latejoin_antagonists ? "Yes" : "No"]"

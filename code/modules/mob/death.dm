@@ -68,7 +68,7 @@
 			O.forceMove(loc)
 		embedded = list()
 
-	for(var/mob/living/carbon/human/H in oviewers(src))
+	for(var/mob/living/carbon/human/H in oviewers(get_turf(src)))
 		H.sanity.onSeeDeath(src)
 		SEND_SIGNAL_OLD(H, COMSIG_MOB_DEATH, src)
 

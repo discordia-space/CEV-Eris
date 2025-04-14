@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(rolesTips)
 GLOBAL_LIST_EMPTY(jobsTips)
 SUBSYSTEM_DEF(tips)
 	name = "Tips and Tricks"
-	priority = SS_PRIORITY_TIPS
+	priority = FIRE_PRIORITY_TIPS
 	wait = 60 MINUTES //Ticks once per 60 minute
 
 /client/verb/showRandomTip()
@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(tips)
 					var/tipsAndTricks/jobs/JT = T
 					var/datum/job/J = pick(JT.jobs_list)
 					typeText = initial(J.title)
-				to_chat(mob, SStips.formatTip(T, "Random Tip \[[typeText]\]: "))
+				to_chat(mob, SStips.formatTip(T, "Random Tip \[[typeText]\]"))
 
 /client/verb/showSmartTip()
 	set name = "Show Smart Tip"
@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(tips)
 		if(mob)
 			var/tipsAndTricks/T = SStips.getSmartTip(mob)
 			if(T)
-				to_chat(mob, SStips.formatTip(T, "Tip for your character: "))
+				to_chat(mob, SStips.formatTip(T, "Tip for your character"))
 
 /datum/controller/subsystem/tips/fire()
 	for(var/mob/living/L in SSmobs.mob_list | SShumans.mob_list)
@@ -126,7 +126,7 @@ SUBSYSTEM_DEF(tips)
 	if(plainText)
 		return "[startText ? "<b>[startText]</b>" : ""][T.getText()]"
 	else
-		return "<font color='[T.textColor]'>[startText ? "<b>[startText]</b>" : ""][T.getText()]</font>"
+		return custom_boxed_message("blue_box", span_blue("<span class='oocplain'><b>[startText ? "[startText]: " : ""]</b>[T.getText()]</span>"))
 
 /datum/controller/subsystem/tips/proc/getGameplayTip(var/startText)
 	if(GLOB.gameplayTips)

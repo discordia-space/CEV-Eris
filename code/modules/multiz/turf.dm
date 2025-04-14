@@ -107,7 +107,7 @@ see multiz/movement.dm for some info.
 /turf/open/fallThrough(var/atom/movable/mover)
 
 	// If the target is open space or a shadow, the projectile traverses down
-	if( config.z_level_shooting && istype(mover,/obj/item/projectile) )
+	if( CONFIG_GET(flag/z_level_shooting) && istype(mover,/obj/item/projectile) )
 		var/obj/item/projectile/P = mover
 		if(isnull(P.height) && ( istype(P.original, /turf/open) || (istype(mover, /mob/shadow)) ) && get_dist(P.starting, P.original) <= get_dist(P.starting, src))
 			P.Move(below) // We want proc/Enter to get called on the turf, so we can't use forcemove()

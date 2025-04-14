@@ -89,7 +89,7 @@
 /datum/reagent/stim/pro_surgeon/overdose(mob/living/carbon/M, alien)
 	var/inverse_tough_mult = 1 - M.stats.getMult(STAT_TGH)
 	if(prob(5 - (5 * inverse_tough_mult)))
-		M.custom_emote(1,"twitches and drops [M.gender == MALE ? "his" : "her"] [M.get_active_hand()].") // there is only two genders, male and others
+		M.custom_emote(1,"twitches and drops [M.gender == MALE ? "his" : "her"] [M.get_active_held_item()].") // there is only two genders, male and others
 		M.drop_item()
 	if(prob(80 - (20 * inverse_tough_mult)))
 		M.add_chemical_effect(CE_TOXIN, 5)
@@ -286,7 +286,7 @@
 	if(prob(80 - (20 * inverse_tough_mult)))
 		M.add_chemical_effect(CE_TOXIN, 10)
 	if(prob(10 - (5 * inverse_tough_mult)))
-		M.custom_emote(1,"twitches and drops [M.gender == MALE ? "his" : "her"] [M.get_active_hand()].") // there is only two genders, male and others
+		M.custom_emote(1,"twitches and drops [M.gender == MALE ? "his" : "her"] [M.get_active_held_item()].") // there is only two genders, male and others
 		M.drop_item()
 	if(ishuman(M) && prob(80 - (60 * inverse_tough_mult)))
 		var/mob/living/carbon/human/H = M

@@ -48,7 +48,7 @@
 		if(reagent_count > 10)
 			var/amount_to_spawn = round(reagent_count/10)
 			for(var/i = 0 to amount_to_spawn)
-				var/datum/seed/S = plant_controller.seeds[pick(
+				var/datum/seed/S = SSplants.seeds[pick(
 					"tomato",
 					"carrot",
 					"corn",

@@ -150,9 +150,12 @@
 
 /obj/machinery/reagentgrinder/industrial/disgorger/grind()
 	if(has_brain && prob(1))
-		if(prob(1))									// If I did my calc right, this should happen once every 2 hours
-			for(var/mob/O in hearers(src, null))
-				O.show_message("\icon[src] <b>\The [src]</b> says, \"You s-s-saved me... w-why?\"", 2)
+		if(prob(1))
+			// If I did my calc right, this should happen once every 2 hours
+			var/our_hearers = hearers(get_turf(src), null)
+			var/htmlicon = icon2html(src, our_hearers)
+			for(var/mob/O in our_hearers)
+				O.show_message("[htmlicon] <b>\The [src]</b> says, \"You s-s-saved me... w-why?\"", 2)
 			flick("[initial(icon_state)]_spit", src)
 
 	if(current_tick >= grind_rate)
@@ -204,8 +207,9 @@
 		"...!" = 31
 		))
 
-	for(var/mob/O as anything in hearers(src, null))
-		O.show_message("\icon[src] <b>\The [src]</b> says, \"[message]\"", 2)
+	var/our_hearers = hearers(get_turf(src))
+	for(var/mob/O as anything in our_hearers)
+		O.show_message("[icon2html(src, our_hearers)] <b>\The [src]</b> says, \"[message]\"", 2)
 
 	for(var/obj/machinery/autolathe/organ_fabricator/OF in get_area_all_atoms(get_area(src)))
 		OF.files.AddDesign2Known(D)

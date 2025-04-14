@@ -200,7 +200,7 @@
 				to_chat(src, span_warning("It becomes hard to see for some reason."))
 				eye_blurry = 10
 		if(getBrainLoss() >= 35)
-			if(7 <= rn && rn <= 9) if(get_active_hand())
+			if(7 <= rn && rn <= 9) if(get_active_held_item())
 				to_chat(src, span_danger("Your hand won't respond properly, you drop what you're holding!"))
 				drop_item()
 		if(getBrainLoss() >= 45)
@@ -329,7 +329,7 @@
 		failed_last_breath = 1
 		if(prob(20))
 			emote("gasp")
-		if(health > HEALTH_THRESHOLD_CRIT)
+		if(health > CONFIG_GET(number/health_threshold_crit))
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
@@ -791,7 +791,7 @@
 			blinded = TRUE
 			silent = 0
 			return 1
-		if(health <= HEALTH_THRESHOLD_DEAD) //No health = death
+		if(health <= CONFIG_GET(number/health_threshold_dead)) //No health = death
 			if(stats.getPerk(PERK_UNFINISHED_DELIVERY) && prob(33)) //Unless you have this perk
 				heal_organ_damage(20, 20)
 				adjustOxyLoss(-100)
@@ -968,7 +968,7 @@
 			var/external_health = (1 - (limb_health ? limb_damage / limb_health : 0)) * 100
 			var/internal_health = (1 - (organ_health ? organ_damage / organ_health : 0)) * 100
 
-			var/percentage_health = RoundHealth(min(crit_health, external_health, internal_health))	// Old: RoundHealth((health-HEALTH_THRESHOLD_CRIT)/(maxHealth-HEALTH_THRESHOLD_CRIT)*100)
+			var/percentage_health = RoundHealth(min(crit_health, external_health, internal_health))	// Old: RoundHealth((health-CONFIG_GET(number/health_threshold_crit))/(maxHealth-CONFIG_GET(number/health_threshold_crit))*100)
 
 			holder.icon_state = "hud[percentage_health]"
 		hud_list[HEALTH_HUD] = holder

@@ -31,19 +31,29 @@
 /mob/new_player/proc/new_player_panel_proc()
 	var/output = "<div align='center'><B>New Player Options</B>"
 	output +="<hr>"
-	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</A></p>"
+	output += "<p><a href='byond://?src=[REF(src)];show_preferences=1'>Setup Character</A></p>"
 
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
 		if(ready)
-			output += "<p>\[ [span_linkOn("<b>Ready</b>")] | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
+			output += "<p>\[ [span_linkOn("<b>Ready</b>")] | <a href='byond://?src=[REF(src)];ready=0'>Not Ready</a> \]</p>"
 		else
-			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | [span_linkOn("<b>Not Ready</b>")] \]</p>"
+			output += "<p>\[ <a href='byond://?src=[REF(src)];ready=1'>Ready</a> | [span_linkOn("<b>Not Ready</b>")] \]</p>"
 
 	else
-		output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
-		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</A></p>"
+		output += "<a href='byond://?src=[REF(src)];manifest=1'>View the Crew Manifest</A><br><br>"
+		output += "<p><a href='byond://?src=[REF(src)];late_join=1'>Join Game!</A></p>"
 
-	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
+	output += "<p><a href='byond://?src=[REF(src)];observe=1'>Observe</A></p>"
+
+	if (src.client.holder)
+		output += "<hr>"
+		output += "<div align='center'>[span_bold("Admin Quick Verbs")]"
+		if (SSticker.state <= GAME_STATE_PREGAME)
+			output += "<p>\[<a href='byond://?src=[REF(src)];[HrefToken()];startnow=1'>Start Now</a>\]</p>"
+		else
+			output += "<p>\[<a href='byond://?src=[REF(src)];[HrefToken()];endround=1'>End Round</a>\]</p>"
+		output += "<p>\[<a href='byond://?src=[REF(src)];[HrefToken()];restart=1'>Restart</a>\]</p>"
+		output += "<p>\[<a href='byond://?src=[REF(src)];[HrefToken()];runtimes=1'>View Runtimes</a>\]</p>"
 
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
@@ -60,13 +70,17 @@
 				break
 
 			if(newpoll)
-				output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+				output += "<p><b><a href='byond://?src=[REF(src)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
 			else
-				output += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A></p>"
+				output += "<p><a href='byond://?src=[REF(src)];showpoll=1'>Show Player Polls</A></p>"
 
 	output += "</div>"
 
-	panel = new(src, "Welcome","Welcome", 210, 280, src)
+	if (src.client.holder)
+		panel = new(src, "Welcome","Welcome", 230, 330, src)
+	else
+		panel = new(src, "Welcome","Welcome", 210, 280, src)
+
 	panel.set_window_options("can_close=0")
 	panel.set_content(output)
 	panel.open()
@@ -77,11 +91,11 @@
 
 /mob/new_player/Topic(href, href_list[])
 	if(src != usr || !client)
-		return 0
+		return FALSE
 
 	if(href_list["show_preferences"])
 		client.prefs.ShowChoices(src)
-		return 1
+		return TRUE
 
 	if(href_list["ready"])
 		if(SSticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
@@ -114,7 +128,7 @@
 	if(href_list["observe"])
 
 		if(alert(src,"Are you sure you wish to observe? You will have to wait 30 minutes before being able join the crew! But you can play as a mouse or drone immediately.","Player Setup","Yes","No") == "Yes")
-			if(!client)	return 1
+			if(!client)	return TRUE
 			var/mob/observer/ghost/observer = new()
 
 			spawning = 1
@@ -138,7 +152,7 @@
 				client.prefs.real_name = random_name(client.prefs.gender)
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
-			if(!client.holder && !config.antag_hud_allowed) // For new ghosts we remove the verb from even showing up if it's not allowed.
+			if(!client.holder && !CONFIG_GET(flag/antag_hud_allowed)) // For new ghosts we remove the verb from even showing up if it's not allowed.
 				remove_verb(observer, /mob/observer/ghost/verb/toggle_antagHUD)
 			//observer.key = key
 			observer.ckey = ckey
@@ -153,7 +167,7 @@
 	if(href_list["late_join"])
 
 		if(SSticker.current_state != GAME_STATE_PLAYING)
-			to_chat(usr, "\red The round is either not ready, or has already finished...")
+			to_chat(usr, span_red("The round is either not ready, or has already finished..."))
 			return
 
 		// Warn the player if they are trying to spawn without a brain
@@ -162,7 +176,7 @@
 			if(alert(src,"Are you sure you wish to spawn without a brain? This will likely cause you to do die immediately. \
 			              If not, go to the Augmentation section of Setup Character and change the \"brain\" slot from Removed to the desired kind of brain.", \
 						  "Player Setup", "Yes", "No") == "No")
-				return 0
+				return FALSE
 
 		// Warn the player if they are trying to spawn without eyes
 		mod = client.prefs.get_modification(BP_EYES)
@@ -170,13 +184,13 @@
 			if(alert(src,"Are you sure you wish to spawn without eyes? It will likely be difficult to see without them. \
 			              If not, go to the Augmentation section of Setup Character and change the \"eyes\" slot from Removed to the desired kind of eyes.", \
 						  "Player Setup", "Yes", "No") == "No")
-				return 0
+				return FALSE
 
 		if(!check_rights(R_ADMIN, 0))
-			var/datum/species/S = all_species[client.prefs.species]
+			var/datum/species/S = GLOB.all_species[client.prefs.species]
 			if(!(S.spawn_flags & CAN_JOIN))
 				src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
-				return 0
+				return FALSE
 
 		LateChoices()
 
@@ -185,18 +199,18 @@
 
 	if(href_list["SelectedJob"])
 
-		if(!config.enter_allowed)
+		if(!CONFIG_GET(flag/enter_allowed))
 			to_chat(usr, span_notice("There is an administrative lock on entering the game!"))
 			return
 		else if(SSticker.nuke_in_progress)
 			to_chat(usr, span_danger("The station is currently exploding. Joining would go poorly."))
 			return
 
-		var/datum/species/S = all_species[client.prefs.species]
+		var/datum/species/S = GLOB.all_species[client.prefs.species]
 
 		if(!(S.spawn_flags & CAN_JOIN))
 			src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
-			return 0
+			return FALSE
 
 		AttemptLateSpawn(href_list["SelectedJob"], client.prefs.spawnpoint)
 		return
@@ -229,6 +243,26 @@
 			if("TEXT")
 				var/reply_text = href_list["reply_text"]
 				log_text_poll_reply(poll_id, reply_text)
+		return
+
+	if (!src.client.holder)
+		return
+
+	if (href_list["startnow"])
+		src.client.holder.startnow()
+		return
+
+	if (href_list["endround"])
+		src.client.holder.end_round()
+		return
+
+	if (href_list["restart"])
+		src.client.holder.restart()
+		return
+
+	if (href_list["runtimes"])
+		src.client.view_runtimes()
+		return
 
 
 /mob/new_player/proc/IsJobAvailable(rank)
@@ -247,16 +281,16 @@
 
 /mob/new_player/proc/AttemptLateSpawn(rank, var/spawning_at)
 	if(src != usr)
-		return 0
+		return FALSE
 	if(SSticker.current_state != GAME_STATE_PLAYING)
-		to_chat(usr, "\red The round is either not ready, or has already finished...")
-		return 0
-	if(!config.enter_allowed)
+		to_chat(usr, span_red("The round is either not ready, or has already finished..."))
+		return FALSE
+	if(!CONFIG_GET(flag/enter_allowed))
 		to_chat(usr, span_notice("There is an administrative lock on entering the game!"))
-		return 0
+		return FALSE
 	if(!IsJobAvailable(rank))
 		src << alert("[rank] is not available. Please try another.")
-		return 0
+		return FALSE
 
 	spawning = 1
 	close_spawn_windows()
@@ -264,6 +298,7 @@
 	SSjob.AssignRole(src, rank, 1)
 	var/datum/job/job = src.mind.assigned_job
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
+
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(rank == "AI")
@@ -277,6 +312,7 @@
 		character.forceMove(C.loc)
 
 		AnnounceArrival(character, rank, "has been downloaded to the empty core in \the [character.loc.loc]")
+		log_manifest(character.mind.key, character.mind, character, latejoin = TRUE)
 
 		qdel(C)
 		qdel(src)
@@ -298,8 +334,7 @@
 			//Grab some data from the character prefs for use in random news procs.
 
 	AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
-
-
+	log_manifest(character.mind.key, character.mind, character, latejoin = TRUE)
 
 	qdel(src)
 
@@ -328,7 +363,7 @@
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
 			for(var/mob/M in GLOB.player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 				active++
-			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+			dat += "<a href='byond://?src=[REF(src)];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
 
 	dat += "</center>"
 	src << browse(HTML_SKELETON_TITLE("Late join", dat), "window=latechoices;size=400x640;can_close=1")
@@ -343,7 +378,7 @@
 	var/use_species_name
 	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = all_species[client.prefs.species]
+		chosen_species = GLOB.all_species[client.prefs.species]
 		use_species_name = chosen_species.get_station_variant() //Only used by pariahs atm.
 
 	if(chosen_species && use_species_name)
@@ -355,7 +390,7 @@
 	new_character.lastarea = get_area(NULLSPACE)
 
 	for(var/lang in client.prefs.alternate_languages)
-		var/datum/language/chosen_language = all_languages[lang]
+		var/datum/language/chosen_language = GLOB.all_languages[lang]
 		if(chosen_language)
 			if(!(chosen_language.flags & WHITELISTED) || has_admin_rights() \
 				|| (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
@@ -401,7 +436,7 @@
 	return new_character
 
 /mob/new_player/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
-	return 0
+	return FALSE
 
 /mob/new_player/proc/close_spawn_windows()
 	src << browse(null, "window=latechoices") //closes late choices window
@@ -410,7 +445,7 @@
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = all_species[client.prefs.species]
+		chosen_species = GLOB.all_species[client.prefs.species]
 
 	if(!chosen_species)
 		return SPECIES_HUMAN

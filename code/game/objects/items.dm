@@ -357,7 +357,7 @@
 
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>"
 	M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>"
-	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)") //BS12 EDIT ALG
+	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)]) [ADMIN_JMP(user)]") //BS12 EDIT ALG
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(M)
@@ -465,13 +465,13 @@ var/global/list/items_blood_overlay_by_type = list()
 
 /obj/item/proc/showoff(mob/user)
 	for (var/mob/M in view(user))
-		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>",1)
+		M.show_message("[user] holds up [src]. <a HREF='byond://?src=\ref[M];lookitem=\ref[src]'>Take a closer look.</a>",1)
 
 /mob/living/carbon/verb/showoff()
 	set name = "Show Held Item"
 	set category = "Object"
 
-	var/obj/item/I = get_active_hand()
+	var/obj/item/I = get_active_held_item()
 	if(I && !I.abstract)
 		I.showoff(src)
 
@@ -479,7 +479,7 @@ var/global/list/items_blood_overlay_by_type = list()
 	set name = "Spin Held Item"
 	set category = "Object"
 
-	var/obj/item/I = get_active_hand()
+	var/obj/item/I = get_active_held_item()
 	if (istype(I, /obj/item/grab)) // a grab signifies that it's another mob that should be spun
 		var/obj/item/grab/inhand_grab = I
 		var/mob/living/grabbed = inhand_grab.throw_held()
@@ -541,7 +541,7 @@ var/global/list/items_blood_overlay_by_type = list()
 		else
 			to_chat(src, span_warning("You do not have a firm enough grip to forcibly spin [inhand_grab.affecting]."))
 
-	else if (I && !I.abstract && I.mob_can_unequip(src, get_active_hand_slot())) // being unable to unequip normally means
+	else if (I && !I.abstract && I.mob_can_unequip(src, get_active_held_item_slot())) // being unable to unequip normally means
 		I.SpinAnimation(5,1) // that the item is stuck on or in, and so cannot spin
 		external_recoil(50)
 		visible_message("[src] spins [I.name] in \his hand.") // had to mess with the macros a bit to get
@@ -580,7 +580,7 @@ mech zooming.
 	else if(!zoom && (global_hud.darkMask[1] in usr.client.screen))
 		to_chat(targetMob, "Your visor gets in the way of looking through the [devicename]")
 		cannotzoom = 1
-	else if(!zoom && targetMob.get_active_hand() != src && !ismech(targetMob.loc))
+	else if(!zoom && targetMob.get_active_held_item() != src && !ismech(targetMob.loc))
 		to_chat(targetMob, "You are too distracted to look through the [devicename]. Perhaps if it was in your active hand you could look through it.")
 		cannotzoom = 1
 

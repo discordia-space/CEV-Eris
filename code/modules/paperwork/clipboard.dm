@@ -82,7 +82,7 @@
 
 		else if(href_list["addpen"])
 			if(!haspen)
-				var/obj/item/pen/W = usr.get_active_hand()
+				var/obj/item/pen/W = usr.get_active_held_item()
 				if(istype(W, /obj/item/pen))
 					usr.drop_item()
 					W.loc = src
@@ -94,7 +94,7 @@
 
 			if(P && (P.loc == src) && istype(P, /obj/item/paper) && (P == toppaper) )
 
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 
 				if(istype(I, /obj/item/pen))
 

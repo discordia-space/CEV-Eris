@@ -1,4 +1,6 @@
 
+#define SHAKE_ANIMATION_OFFSET 4
+
 //Called when the mob is hit with an item in combat.
 /mob/living/carbon/resolve_item_attack(obj/item/I, mob/living/user, var/hit_zone)
 	if(check_attack_throat(I, user))
@@ -72,7 +74,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 			return 0
 
 		damage_through_armor(W.force, W.damtype, BP_HEAD, wounding_multiplier = 2, sharp = W.sharp, edge = W.edge, used_weapon = W)
-		
+
 		user.visible_message(span_danger("\The [user] cuts [src]'s neck with \the [W]!"), span_danger("You cut [src]'s neck with \the [W]!"))
 
 		if(W.hitsound)
@@ -88,3 +90,12 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 
 	else
 		return 0
+
+/mob/living/carbon/proc/jiggle()
+	if (incapacitated())
+		var/direction = prob(50) ? -1 : 1
+		animate(src, pixel_x = pixel_x + SHAKE_ANIMATION_OFFSET * direction, time = 1, easing = QUAD_EASING | EASE_OUT, flags = ANIMATION_PARALLEL)
+		animate(pixel_x = pixel_x - (SHAKE_ANIMATION_OFFSET * 2 * direction), time = 1)
+		animate(pixel_x = pixel_x + SHAKE_ANIMATION_OFFSET * direction, time = 1, easing = QUAD_EASING | EASE_IN)
+
+#undef SHAKE_ANIMATION_OFFSET

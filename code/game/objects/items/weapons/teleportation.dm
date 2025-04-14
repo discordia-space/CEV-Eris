@@ -70,7 +70,7 @@
 	if(turfs.len)
 		L["None (Dangerous)"] = pick(turfs)
 	var/t1 = input(user, "Please select a teleporter to lock in on.", "Hand Teleporter") in L
-	if ((user.get_active_hand() != src || user.stat || user.restrained()))
+	if ((user.get_active_held_item() != src || user.stat || user.restrained()))
 		return
 	var/T = L[t1]
 	to_chat(user, span_notice("Portal locked in."))
@@ -113,8 +113,8 @@
 		if(user.a_intent == I_HURT)
 			if(prob(5))
 				var/turf/teleport_location = pick( getcircle(user.loc, 3) )
-				user.drop_from_inventory(user.get_active_hand())
-				user.drop_from_inventory(user.get_inactive_hand())
+				user.drop_from_inventory(user.get_active_held_item())
+				user.drop_from_inventory(user.get_inactive_held_item())
 				if(teleport_location)
 					go_to_bluespace(get_turf(src), entropy_value, TRUE, user, teleport_location, 1)
 					return

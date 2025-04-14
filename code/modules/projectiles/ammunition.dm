@@ -67,7 +67,7 @@
 
 
 /obj/item/ammo_casing/attack_hand(mob/user)
-	if((src.amount > 1) && (src == user.get_inactive_hand()))
+	if((src.amount > 1) && (src == user.get_inactive_held_item()))
 		src.amount -= 1
 		var/obj/item/ammo_casing/new_casing = new src.type(src)
 		new_casing.forceMove(get_turf(user))
@@ -271,7 +271,7 @@
 			visible_message("[user] tactically reloads [W] using only one hand!")
 
 /obj/item/ammo_magazine/attack_hand(mob/user)
-	if(user.get_inactive_hand() == src && stored_ammo.len)
+	if(user.get_inactive_held_item() == src && stored_ammo.len)
 		var/obj/item/ammo_casing/stack = removeCasing()
 		if(stack)
 			if(stored_ammo.len)
@@ -289,7 +289,7 @@
 	..()
 
 /obj/item/ammo_magazine/AltClick(var/mob/living/user)
-	var/obj/item/W = user.get_active_hand()
+	var/obj/item/W = user.get_active_held_item()
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(stored_ammo.len >= max_ammo)
@@ -304,7 +304,7 @@
 				if(!C.mergeCasing(T, null, user))
 					insertCasing(T)
 	else if(!W)
-		if(user.get_inactive_hand() == src && stored_ammo.len)
+		if(user.get_inactive_held_item() == src && stored_ammo.len)
 			var/obj/item/ammo_casing/AC = removeCasing()
 			if(AC)
 				user.put_in_active_hand(AC)

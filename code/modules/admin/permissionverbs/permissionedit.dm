@@ -22,7 +22,7 @@
 		<body onload='selectTextField();updateSearch();'>
 		<div id='main'><table id='searchable' cellspacing='0'>
 		<tr class='title'>
-		<th style='width:125px;text-align:right;'>CKEY <a class='small' href='byond://?src=\ref[src];editrights=add'>\[+\]</a></th>
+		<th style='width:125px;text-align:right;'>CKEY <a class='small' href='byond://?src=\ref[src];[HrefToken()];editrights=add'>\[+\]</a></th>
 		<th style='width:125px;'>RANK</th><th style='width:100%;'>PERMISSIONS</th>
 		</tr>
 		"}
@@ -37,9 +37,9 @@
 			rights = "*none*"
 
 		output += "<tr>"
-		output += "<td style='text-align:right;'>[admin_ckey] <a class='small' href='byond://?src=\ref[src];editrights=remove;ckey=[admin_ckey]'>\[-\]</a></td>"
-		output += "<td><a href='byond://?src=\ref[src];editrights=rank;ckey=[admin_ckey]'>[rank]</a></td>"
-		output += "<td><a class='small' href='byond://?src=\ref[src];editrights=permissions;ckey=[admin_ckey]'>[rights]</a></td>"
+		output += "<td style='text-align:right;'>[admin_ckey] <a class='small' href='byond://?src=\ref[src];[HrefToken()];editrights=remove;ckey=[admin_ckey]'>\[-\]</a></td>"
+		output += "<td><a href='byond://?src=\ref[src];[HrefToken()];editrights=rank;ckey=[admin_ckey]'>[rank]</a></td>"
+		output += "<td><a class='small' href='byond://?src=\ref[src];[HrefToken()];editrights=permissions;ckey=[admin_ckey]'>[rights]</a></td>"
 		output += "</tr>"
 
 	output += {"
@@ -51,7 +51,7 @@
 	usr << browse(output,"window=editrights;size=600x500")
 
 /datum/admins/proc/log_admin_rank_modification(var/admin_ckey, var/new_rank)
-	if(config.admin_legacy_system)
+	if(CONFIG_GET(flag/admin_legacy_system))
 		return
 
 	if(!usr.client)
@@ -99,7 +99,7 @@
 		to_chat(usr, span_notice("Admin rank changed."))
 
 /datum/admins/proc/log_admin_permission_modification(var/admin_ckey, var/new_permission, var/nominal)
-	if(config.admin_legacy_system)
+	if(CONFIG_GET(flag/admin_legacy_system))
 		return
 
 	if(!usr.client)

@@ -67,7 +67,7 @@
 		var/obj/structure/largecrate/C = /obj/structure/largecrate
 		icon = image(initial(C.icon), initial(C.icon_state))
 
-	return "\icon[icon]"
+	return "[icon2html(icon, world)]"
 
 /datum/uplink_item/item/badassery/marshallbadge
 	name = "Marshal's Badge"

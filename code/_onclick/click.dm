@@ -129,7 +129,7 @@
 			return 1
 		throw_mode_off()
 
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 
 	if(W == A) // Handle attack_self
 		W.attack_self(src)
@@ -295,6 +295,7 @@
 /atom/movable/CtrlClick(mob/user, params)
 	if(Adjacent(user))
 		user.start_pulling(src)
+		user.animate_interact(src, INTERACT_GRAB)
 
 /*
 	Alt click

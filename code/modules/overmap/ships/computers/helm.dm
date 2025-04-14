@@ -85,7 +85,7 @@
 		user.reset_view(linked)
 		user.client.view = "[2*NAVIGATION_VIEW_RANGE+1]x[2*NAVIGATION_VIEW_RANGE+1]"
 
-	else if(!config.use_overmap && user?.client?.holder)
+	else if(!CONFIG_GET(flag/use_overmap) && user?.client?.holder)
 		// Let the new developers know why the helm console is unresponsive
 		// (it's disabled by default on local server to make it start a bit faster)
 		to_chat(user, "NOTE: overmap generation is disabled in server configuration.")

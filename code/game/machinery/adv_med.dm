@@ -177,17 +177,17 @@
 /obj/machinery/body_scanconsole/Topic(href, href_list)
 	if (..())
 		return
-
+	var/htmlicon = icon2html(src, usr)
 	if (href_list["print"])
 		if (!src.connected)
-			to_chat(usr, "\icon[src][span_warning("Error: No body scanner connected.")]")
+			to_chat(usr, "[htmlicon][span_warning("Error: No body scanner connected.")]")
 			return
 		var/mob/living/carbon/human/occupant = src.connected.occupant
 		if (!src.connected.occupant)
-			to_chat(usr, "\icon[src][span_warning("The body scanner is empty.")]")
+			to_chat(usr, "[htmlicon][span_warning("The body scanner is empty.")]")
 			return
 		if (!ishuman(occupant))
-			to_chat(usr, "\icon[src][span_warning("The body scanner cannot scan that lifeform.")]")
+			to_chat(usr, "[htmlicon][span_warning("The body scanner cannot scan that lifeform.")]")
 			return
 		var/obj/item/paper/R = new(src.loc)
 		R.name = "[occupant.get_visible_name()] scan report"

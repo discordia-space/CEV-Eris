@@ -51,10 +51,10 @@
 	var/near_external = FALSE
 
 /obj/effect/plant/Destroy()
-	if(plant_controller)
-		plant_controller.remove_plant(src)
+	if(SSplants)
+		SSplants.remove_plant(src)
 	for(var/obj/effect/plant/neighbor in range(1,src))
-		plant_controller.add_plant(neighbor)
+		SSplants.add_plant(neighbor)
 	if(seed.type == /datum/seed/mushroom/maintshroom)
 		GLOB.all_maintshrooms -= src
 	. = ..()
@@ -71,15 +71,15 @@
 	else
 		parent = newparent
 
-	if(!plant_controller)
+	if(!SSplants)
 		sleep(250) // ugly hack, should mean roundstart plants are fine.
-	if(!plant_controller)
+	if(!SSplants)
 		to_chat(world, span_danger("Plant controller does not exist and [src] requires it. Aborting."))
 		qdel(src)
 		return
 
 	if(!istype(newseed))
-		newseed = plant_controller.seeds[DEFAULT_SEED]
+		newseed = SSplants.seeds[DEFAULT_SEED]
 	seed = newseed
 	if(!seed)
 		qdel(src)
@@ -134,7 +134,7 @@
 		if(seed.get_trait(TRAIT_WALL_HUGGER))
 			set_dir(calc_dir())
 		update_icon()
-		plant_controller.add_plant(src)
+		SSplants.add_plant(src)
 
 		// Some plants eat through plating.
 		if(islist(seed.chems) && !isnull(seed.chems["pacid"]))

@@ -5,7 +5,7 @@
 	var/require_comms_key = FALSE
 
 /datum/world_topic/proc/TryRun(list/input)
-	key_valid = !config || config.comms_password != input["key"]
+	key_valid = !config || CONFIG_GET(string/comms_key) != input["key"]
 	if(require_comms_key && !key_valid)
 		return "Bad Key"
 	input -= "key"
@@ -41,18 +41,18 @@
 			return GLOB.topic_status_cache
 		GLOB.topic_status_lastcache = world.time + 5
 	var/list/s = list()
-	s["version"] = game_version
+	s["version"] = GLOB.game_version
 	s["storyteller"] = master_storyteller
-	s["respawn"] = config.abandon_allowed
-	s["enter"] = config.enter_allowed
-	s["vote"] = config.allow_vote_mode
-	s["ai"] = config.allow_ai
+	s["respawn"] = CONFIG_GET(flag/abandon_allowed)
+	s["enter"] = CONFIG_GET(flag/enter_allowed)
+	s["vote"] = CONFIG_GET(flag/allow_vote_mode)
+	s["ai"] = CONFIG_GET(flag/allow_ai)
 	s["host"] = host ? host : null
 
 	// This is dumb, but spacestation13.com's banners break if player count isn't the 8th field of the reply, so... this has to go here.
 	s["players"] = 0
 	s["shiptime"] = stationtime2text()
-	s["roundduration"] = SSticker ? round((world.time-SSticker.round_start_time)/10) : 0
+	s["roundduration"] = SSticker ? round((world.time-(SSticker.round_start_time || 0))/10) : 0
 
 	if(input["status"] == "2")
 		var/list/players = list()
@@ -133,8 +133,8 @@
 	keyword = "revision"
 
 /datum/world_topic/revision/Run(list/input)
-	if(revdata.commit)
-		return list(commit = revdata.commit, originmastercommit = revdata.originmastercommit, date = revdata.date, testmerge = revdata.testmerge)
+	if(GLOB.revdata.commit)
+		return list(commit = GLOB.revdata.commit, originmastercommit = GLOB.revdata.originmastercommit, date = GLOB.revdata.date, testmerge = GLOB.revdata.testmerge)
 	else
 		return "unknown"
 

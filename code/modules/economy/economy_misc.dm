@@ -98,7 +98,7 @@ var/global/datum/computer_file/data/email_account/service/payroll/payroll_mailer
 		if(V.vendor_department)
 			V.earnings_account = department_accounts[V.vendor_department]
 
-	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [game_year]"
+	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [CURRENT_SHIP_YEAR]"
 
 	economy_init = 1
 	return 1

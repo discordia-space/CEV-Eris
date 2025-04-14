@@ -9,8 +9,8 @@
 
 
 /mob/living/proc/do_wield()//The proc we actually care about.
-	var/obj/item/I = get_active_hand()
-	var/obj/item/O = get_inactive_hand()
+	var/obj/item/I = get_active_held_item()
+	var/obj/item/O = get_inactive_held_item()
 	if(!I)
 		if(!O)
 			return
@@ -42,7 +42,7 @@
 	user.visible_message(span_warning("[user] lets go of their other hand."))
 	if(unwieldsound)
 		playsound(loc, unwieldsound, 50, 1)
-	var/obj/item/twohanded/offhand/O = user.get_inactive_hand()
+	var/obj/item/twohanded/offhand/O = user.get_inactive_held_item()
 	if(O && istype(O))
 		user.drop_from_inventory(O)
 	return
@@ -52,7 +52,7 @@
 		return
 	if(!is_held_twohanded(user))
 		return
-	var/obj/item/X = user.get_inactive_hand()
+	var/obj/item/X = user.get_inactive_held_item()
 	if(X)
 		if(!X.canremove)
 			return
@@ -149,8 +149,8 @@
 
 /obj/item/twohanded/offhand/dropped(mob/living/user)
 	..()
-	var/obj/item/I = user.get_active_hand()
-	var/obj/item/II = user.get_inactive_hand()
+	var/obj/item/I = user.get_active_held_item()
+	var/obj/item/II = user.get_inactive_held_item()
 	if(I)
 		I.unwield(user)
 	if(II)

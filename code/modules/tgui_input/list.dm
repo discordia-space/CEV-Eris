@@ -16,7 +16,7 @@
 	if(!length(items))
 		return
 	if (!istype(user))
-		if (istype(user, /client))
+		if (isclient(user))
 			var/client/client = user
 			user = client.mob
 		else

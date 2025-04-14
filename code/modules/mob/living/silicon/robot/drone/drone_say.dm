@@ -16,7 +16,7 @@
 			return emote(copytext(message,2))
 
 		if(copytext(message,1,2) == ";")
-			var/datum/language/L = all_languages[communication_channel]
+			var/datum/language/L = GLOB.all_languages[communication_channel]
 			if(istype(L))
 				return L.broadcast(src,trim(copytext(message,2)))
 
@@ -24,7 +24,7 @@
 		if (stat)
 			return 0
 
-		var/list/listeners = hearers(5,src)
+		var/list/listeners = hearers(5, get_turf(src))
 		listeners |= src
 
 		for(var/mob/living/silicon/D in listeners)

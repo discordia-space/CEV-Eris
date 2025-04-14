@@ -61,7 +61,7 @@
 	if(Adjacent(user))
 		return attack_hand(user)
 	else
-		to_chat(user, "<span class = \"warning\">What the fuck are you doing?</span>")
+		to_chat(user, "<span class='warning'>What the fuck are you doing?</span>")
 	return
 
 // /vg/: Don't let ghosts fuck with this.
@@ -72,18 +72,18 @@
 	return user.examinate(src)
 
 /turf/wall/dummy/supermatter/attack_hand(mob/user as mob)
-	user.visible_message("<span class=\"warning\">\The [user] reaches out and touches \the [src]... And then blinks out of existance.</span>",\
-		"<span class=\"danger\">You reach out and touch \the [src]. Everything immediately goes quiet. Your last thought is \"That was not a wise decision.\"</span>",\
-		"<span class=\"warning\">You hear an unearthly noise.</span>")
+	user.visible_message("<span class='warning'>\The [user] reaches out and touches \the [src]... And then blinks out of existance.</span>",\
+		"<span class='danger'>You reach out and touch \the [src]. Everything immediately goes quiet. Your last thought is \"That was not a wise decision.\"</span>",\
+		"<span class='warning'>You hear an unearthly noise.</span>")
 
 	playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
 
 	Consume(user)
 
 /turf/wall/dummy/supermatter/attackby(obj/item/W as obj, mob/living/user as mob)
-	user.visible_message("<span class=\"warning\">\The [user] touches \a [W] to \the [src] as a silence fills the room...</span>",\
-		"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>",\
-		"<span class=\"warning\">Everything suddenly goes silent.</span>")
+	user.visible_message("<span class='warning'>\The [user] touches \a [W] to \the [src] as a silence fills the room...</span>",\
+		"<span class='danger'>You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class='notice'>\The [W] flashes into dust as you flinch away from \the [src].</span>",\
+		"<span class='warning'>Everything suddenly goes silent.</span>")
 
 	playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
 
@@ -93,12 +93,12 @@
 
 /turf/wall/dummy/supermatter/Bumped(atom/AM as mob|obj)
 	if(isliving(AM))
-		AM.visible_message("<span class=\"warning\">\The [AM] slams into \the [src] inducing a resonance... \his body starts to glow and catch flame before flashing into ash.</span>",\
-		"<span class=\"danger\">You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\"</span>",\
-		"<span class=\"warning\">You hear an unearthly noise as a wave of heat washes over you.</span>")
+		AM.visible_message("<span class='warning'>\The [AM] slams into \the [src] inducing a resonance... \his body starts to glow and catch flame before flashing into ash.</span>",\
+		"<span class='danger'>You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\"</span>",\
+		"<span class='warning'>You hear an unearthly noise as a wave of heat washes over you.</span>")
 	else
-		AM.visible_message("<span class=\"warning\">\The [AM] smacks into \the [src] and rapidly flashes to ash.</span>",\
-		"<span class=\"warning\">You hear a loud crack as you are washed with a wave of heat.</span>")
+		AM.visible_message("<span class='warning'>\The [AM] smacks into \the [src] and rapidly flashes to ash.</span>",\
+		"<span class='warning'>You hear a loud crack as you are washed with a wave of heat.</span>")
 
 	playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
 

@@ -149,7 +149,7 @@ for reference:
 
 /obj/structure/barricade/proc/check_cover(obj/item/projectile/P, turf/from)
 
-	if(config.z_level_shooting)
+	if(CONFIG_GET(flag/z_level_shooting))
 		if(P.height == HEIGHT_HIGH)
 			return TRUE // Bullet is too high to hit
 		P.height = (P.height == HEIGHT_LOW) ? HEIGHT_LOW : HEIGHT_CENTER
@@ -171,7 +171,7 @@ for reference:
 			valid = TRUE			//Lying down covers your whole body
 
 	// Bullet is low enough to hit the wall
-	if(config.z_level_shooting && P.height == HEIGHT_LOW)
+	if(CONFIG_GET(flag/z_level_shooting) && P.height == HEIGHT_LOW)
 		valid = TRUE
 
 	if(valid)
@@ -325,7 +325,7 @@ for reference:
 
 /obj/machinery/deployable/barrier/proc/check_cover(obj/item/projectile/P, turf/from)
 
-	if(config.z_level_shooting)
+	if(CONFIG_GET(flag/z_level_shooting))
 		if(P.height == HEIGHT_HIGH)
 			return TRUE // Bullet is too high to hit
 		P.height = (P.height == HEIGHT_LOW) ? HEIGHT_LOW : HEIGHT_CENTER
@@ -347,7 +347,7 @@ for reference:
 			valid = TRUE			//Lying down covers your whole body
 
 	// Bullet is low enough to hit the wall
-	if(config.z_level_shooting && P.height == HEIGHT_LOW)
+	if(CONFIG_GET(flag/z_level_shooting) && P.height == HEIGHT_LOW)
 		valid = TRUE
 
 	if(valid)

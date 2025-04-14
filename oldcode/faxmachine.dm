@@ -1,5 +1,5 @@
 var/list/obj/machinery/photocopier/faxmachine/allfaxes = list()
-var/list/admin_departments = list("[boss_name]", "Sol Government", "Supply")
+var/list/admin_departments = list("[GLOB.boss_name]", "Sol Government", "Supply")
 var/list/alldepartments = list()
 
 var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
@@ -25,7 +25,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 /obj/machinery/photocopier/faxmachine/New()
 	..()
 	allfaxes += src
-	if(!destination) destination = "[boss_name]"
+	if(!destination) destination = "[GLOB.boss_name]"
 	if( !(("[department]" in alldepartments) || ("[department]" in admin_departments)) )
 		alldepartments |= department
 
@@ -50,7 +50,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	dat += "<hr>"
 
 	if(authenticated)
-		dat += "<b>Logged in to:</b> [boss_name] Quantum Entanglement Network<br><br>"
+		dat += "<b>Logged in to:</b> [GLOB.boss_name] Quantum Entanglement Network<br><br>"
 
 		if(copyitem)
 			dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Item</a><br><br>"
@@ -75,7 +75,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		dat += "Proper authentication is required to use this device.<br><br>"
 
 		if(copyitem)
-			dat += "<a href ='byond://?src=\ref[src];remove=1'>Remove Item</a><br>"
+			dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Item</a><br>"
 
 	user << browse(HTML_SKELETON_TITLE("Fax Machine", dat), "window=copier")
 	onclose(user, "copier")
@@ -105,14 +105,14 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		if (scan)
 			if(ishuman(usr))
 				scan.loc = usr.loc
-				if(!usr.get_active_hand())
+				if(!usr.get_active_held_item())
 					usr.put_in_hands(scan)
 				scan = null
 			else
 				scan.loc = src.loc
 				scan = null
 		else
-			var/obj/item/I = usr.get_active_hand()
+			var/obj/item/I = usr.get_active_held_item()
 			if (istype(I, /obj/item/card/id) && usr.unEquip(I))
 				I.loc = src
 				scan = I
@@ -197,7 +197,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	//message badmins that a fax has arrived
 	switch(destination)
-		if (boss_name)
+		if (GLOB.boss_name)
 			message_admins(sender, "[uppertext(boss_short)] FAX", rcvdcopy, "CentcomFaxReply", "#006100")
 		if ("Sol Government")
 			message_admins(sender, "SOL GOVERNMENT FAX", rcvdcopy, "CentcomFaxReply", "#1F66A0")
@@ -211,7 +211,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 
 /obj/machinery/photocopier/faxmachine/proc/message_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
-	var/msg = "\blue <b><font color='[font_colour]'>[faxname]: </font>[key_name(sender, 1)] (<A href='byond://?_src_=holder;adminplayeropts=\ref[sender]'>PP</A>) (<A href='byond://?_src_=vars;Vars=\ref[sender]'>VV</A>) (<A href='byond://?_src_=holder;subtlemessage=\ref[sender]'>SM</A>) ([admin_jump_link(sender, src)]) (<A href='byond://?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='byond://?_src_=holder;[reply_type]=\ref[sender];originfax=\ref[src]'>REPLY</a>)</b>: Receiving '[sent.name]' via secure connection ... <a href='byond://?_src_=holder;AdminFaxView=\ref[sent]'>view message</a>"
+	var/msg = span_blue("<b><font color='[font_colour]'>[faxname]: </font>[key_name(sender, 1)] [ADMIN_PP(sender)] [ADMIN_VV(sender)] [ADMIN_SM(sender)] ([admin_jump_link(sender, src)]) (<A href='byond://?_src_=holder;[HrefToken()];secretsadmin=check_antagonist'>CA</A>) (<a href='byond://?_src_=holder;[HrefToken()];[reply_type]=\ref[sender];originfax=\ref[src]'>REPLY</a>)</b>: Receiving '[sent.name]' via secure connection ... <a href='byond://?_src_=holder;[HrefToken()];AdminFaxView=\ref[sent]'>view message</a>")
 
 	for(var/client/C in GLOB.admins)
 		if(R_ADMIN & C.holder.rights)

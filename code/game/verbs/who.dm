@@ -1,143 +1,191 @@
+#define DEFAULT_WHO_CELLS_PER_ROW 4
+#define NO_ADMINS_ONLINE_MESSAGE "Adminhelps are also sent through TGS to services like IRC and Discord. If no admins are available in game, sending an adminhelp might still be noticed and responded to."
+
 /client/verb/who()
 	set name = "Who"
 	set category = "OOC"
 
-	var/msg = "<b>Current Players:</b>\n"
+	var/msg = ""
 
 	var/list/Lines = list()
+	var/columns_per_row = DEFAULT_WHO_CELLS_PER_ROW
 
-	if(holder && (R_ADMIN & holder.rights || R_MOD & holder.rights))
-		for(var/client/C in GLOB.clients)
-			var/entry = "\t[C.key]"
-			if(C.holder && C.holder.fakekey)
-				entry += " <i>(as [C.holder.fakekey])</i>"
-			if(SSticker.current_state == GAME_STATE_PREGAME)
-				entry += " - Ready as [C.prefs.real_name]"
-			else
-				entry += " - Playing as [C.mob.real_name]"
-			if (!istype(C.mob, /mob/new_player)) // /mob/new_player has no stat (happens if client is a new player)
-				switch(C.mob.stat)
-					if(UNCONSCIOUS)
-						entry += " - <font color='darkgray'><b>Unconscious</b></font>"
-					if(DEAD)
-						if(isghost(C.mob))
-							var/mob/observer/ghost/O = C.mob
-							if(O.started_as_observer)
-								entry += " - <font color='gray'>Observing</font>"
+	if(holder)
+		if (check_rights(R_ADMIN, FALSE) && isobserver(src.mob))//If they have +ADMIN and are a ghost they can see players IC names and statuses.
+			columns_per_row = 1
+			var/mob/observer/ghost/G = src.mob
+			if(!G.started_as_observer)//If you aghost to do this, KorPhaeron will deadmin you in your sleep.
+				log_admin("[key_name(usr)] checked advanced who in-round")
+			for(var/client/client in GLOB.clients)
+				var/entry = "\t[client.key]"
+				if(client.holder && client.holder.fakekey)
+					entry += " <i>(as [client.holder.fakekey])</i>"
+				if (isnewplayer(client.mob))
+					entry += " - <font color='darkgray'><b>In Lobby</b></font>"
+				else
+					entry += " - Playing as [client.mob.real_name]"
+					switch(client.mob.stat)
+						if(UNCONSCIOUS, HARDCRIT)
+							entry += " - <font color='darkgray'><b>Unconscious</b></font>"
+						if(DEAD)
+							if(isobserver(client.mob))
+								var/mob/observer/ghost/O = client.mob
+								if(O.started_as_observer)
+									entry += " - <font color='gray'>Observing</font>"
+								else
+									entry += " - <font color='black'><b>DEAD</b></font>"
 							else
 								entry += " - <font color='black'><b>DEAD</b></font>"
-						else
-							entry += " - <font color='black'><b>DEAD</b></font>"
-			else
-				entry += " - <font color='gray'>In Lobby</font>"
-			if(is_limited_antag(C.mob))
-				entry += " - <b><font color='red'>Limited Antagonist</font></b>"
-
-			else if(is_special_character(C.mob))
-				entry += " - <b><font color='red'>Antagonist</font></b>"
-
-			if(C.is_afk())
-				entry += " (AFK - [C.inactivity2text()])"
-
-			entry += " (<A href='byond://?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
-			Lines += entry
+					if(is_special_character(client.mob))
+						entry += " - <b><font color='red'>Antagonist</font></b>"
+				entry += " [ADMIN_QUE(client.mob)]"
+				entry += " ([round(client.avgping, 1)]ms)"
+				Lines += entry
+		else//If they don't have +ADMIN, only show hidden admins
+			for(var/client/client in GLOB.clients)
+				var/entry = "[client.key]"
+				if(client.holder && client.holder.fakekey)
+					entry += " <i>(as [client.holder.fakekey])</i>"
+				entry += " ([round(client.avgping, 1)]ms)"
+				Lines += entry
 	else
-		for(var/client/C in GLOB.clients)
-			if(C.holder && C.holder.fakekey)
-				Lines += C.holder.fakekey
+		for(var/client/client in GLOB.clients)
+			if(client.holder && client.holder.fakekey)
+				Lines += "[client.holder.fakekey] ([round(client.avgping, 1)]ms)"
 			else
-				Lines += C.key
+				Lines += "[client.key] ([round(client.avgping, 1)]ms)"
 
+	var/num_lines = 0
+	msg += "<table style='width: 100%; table-layout: fixed'><tr>"
 	for(var/line in sortList(Lines))
-		msg += "[line]\n"
+		msg += "<td>[line]</td>"
+
+		num_lines += 1
+		if (num_lines == columns_per_row)
+			num_lines = 0
+			msg += "</tr><tr>"
+	msg += "</tr></table>"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
-	to_chat(src, msg)
+	to_chat(src, fieldset_block(span_bold("Current Players"), span_infoplain(msg), "boxed_message"), type = MESSAGE_TYPE_OOC)
 
 /client/verb/adminwho()
 	set category = "Admin"
 	set name = "Adminwho"
 
-	var/msg = ""
-	var/modmsg = ""
-	var/mentmsg = ""
-	var/num_mods_online = 0
-	var/num_admins_online = 0
-	var/num_mentors_online = 0
-	if(holder)
-		for(var/client/C in GLOB.admins)
-			if(R_ADMIN & C.holder.rights || (!(R_MOD & C.holder.rights) && !(R_MENTOR & C.holder.rights)))	//Used to determine who shows up in admin rows
+	var/list/lines = list()
+	var/payload_string = generate_adminwho_string()
+	var/header = (payload_string == NO_ADMINS_ONLINE_MESSAGE) ? "No Admins Currently Online" : "Current Admins"
 
-				if(C.holder.fakekey && (!(R_ADMIN & holder.rights) && !(R_MOD & holder.rights)))		//Mentors can't see stealthmins
-					continue
+	lines += payload_string
 
-				msg += "\t[C] is a [C.holder.rank]"
+	var/codermonkey_string = generate_codemonkey_string()
+	if(!isnull(codermonkey_string))
+		lines += span_bold("Current Non-Admin Staff:")
+		lines += span_boldnotice("Non-admin staff are unable to handle adminhelp tickets.")
+		lines += codermonkey_string
 
-				if(C.holder.fakekey)
-					msg += " <i>(as [C.holder.fakekey])</i>"
+	to_chat(src, fieldset_block(span_bold(header), jointext(lines, "\n"), "boxed_message"), type = MESSAGE_TYPE_OOC)
 
-				if(isobserver(C.mob))
-					msg += " - Observing"
-				else if(isnewplayer(C.mob))
-					msg += " - Lobby"
-				else
-					msg += " - Playing"
+/// Proc that generates the applicable string to dispatch to the client for adminwho.
+/client/proc/generate_adminwho_string()
+	var/list/list_of_admins = get_list_of_admins()
+	if(isnull(list_of_admins))
+		return NO_ADMINS_ONLINE_MESSAGE
 
-				if(C.is_afk())
-					msg += " (AFK - [C.inactivity2text()])"
-				msg += "\n"
-
-				num_admins_online++
-			else if(R_MOD & C.holder.rights)				//Who shows up in mod/mentor rows.
-				modmsg += "\t[C] is a [C.holder.rank]"
-
-				if(isobserver(C.mob))
-					modmsg += " - Observing"
-				else if(isnewplayer(C.mob))
-					modmsg += " - Lobby"
-				else
-					modmsg += " - Playing"
-
-				if(C.is_afk())
-					modmsg += " (AFK - [C.inactivity2text()])"
-				modmsg += "\n"
-				num_mods_online++
-
-			else if(R_MENTOR & C.holder.rights)
-				mentmsg += "\t[C] is a [C.holder.rank]"
-				if(isobserver(C.mob))
-					mentmsg += " - Observing"
-				else if(isnewplayer(C.mob))
-					mentmsg += " - Lobby"
-				else
-					mentmsg += " - Playing"
-
-				if(C.is_afk())
-					mentmsg += " (AFK - [C.inactivity2text()])"
-				mentmsg += "\n"
-				num_mentors_online++
-
+	var/list/message_strings = list()
+	if(isnull(holder))
+		message_strings += get_general_adminwho_information(list_of_admins)
+		message_strings += NO_ADMINS_ONLINE_MESSAGE
 	else
-		for(var/client/C in GLOB.admins)
-			if(R_ADMIN & C.holder.rights || (!(R_MOD & C.holder.rights) && !(R_MENTOR & C.holder.rights)))
-				if(!C.holder.fakekey)
-					msg += "\t[C] is a [C.holder.rank]\n"
-					num_admins_online++
-			else if (R_MOD & C.holder.rights)
-				modmsg += "\t[C] is a [C.holder.rank]\n"
-				num_mods_online++
-			else if (R_MENTOR & C.holder.rights)
-				mentmsg += "\t[C] is a [C.holder.rank]\n"
-				num_mentors_online++
+		message_strings += get_sensitive_adminwho_information(list_of_admins)
 
-	if(config.admin_irc)
-		to_chat(src, span_info("Adminhelps are also sent to IRC. If no admins are available in game try anyway and an admin on IRC may see it and respond."))
-	msg = "<b>Current Admins ([num_admins_online]):</b>\n" + msg
+	return jointext(message_strings, "\n")
 
-	if(config.show_mods)
-		msg += "\n<b> Current Moderators ([num_mods_online]):</b>\n" + modmsg
+/// Proc that generates the applicable string to dispatch to the client for adminwho,
+/// but only for maintainers/debuggers/etc without R_ADMIN.
+/client/proc/generate_codemonkey_string()
+	var/list/list_of_admins = get_list_of_admins(coders = TRUE)
+	if(isnull(list_of_admins))
+		return
+	return jointext(get_codermonkey_adminwho_information(list_of_admins), "\n")
 
-	if(config.show_mentors)
-		msg += "\n<b> Current Mentors ([num_mentors_online]):</b>\n" + mentmsg
+/// Proc that returns a list of cliented admins. Remember that this list can contain nulls!
+/// Also, will return null if we don't have any admins.
+/proc/get_list_of_admins(coders = FALSE)
+	var/returnable_list = list()
 
-	to_chat(src, msg)
+	for(var/client/admin in GLOB.admins)
+		var/okay = check_rights_for(admin, R_ADMIN)
+		if(coders)
+			okay = !okay
+		if(!okay)
+			continue
+		returnable_list += admin
+
+	if(length(returnable_list) == 0)
+		return null
+
+	return returnable_list
+
+/// Proc that gathers adminwho information for a general player, which will only give information if an admin isn't AFK, and handles potential fakekeying.
+/// Will return a list of strings.
+/proc/get_general_adminwho_information(list/checkable_admins)
+	var/returnable_list = list()
+
+	for(var/client/admin in checkable_admins)
+		if(admin.is_afk() || !isnull(admin.holder.fakekey))
+			continue //Don't show afk or fakekeyed admins to adminwho
+
+		returnable_list += "• [admin] is a [admin.holder.rank]"
+
+	return returnable_list
+
+/// Proc that gathers adminwho information for a general player, but only returns "adminless" admins, usually coders/debuggers and such.
+/proc/get_codermonkey_adminwho_information(list/checkable_admins)
+	var/returnable_list = list()
+
+	for(var/client/admin in checkable_admins)
+		if(check_rights_for(admin, R_ADMIN))
+			continue //Don't show afk or fakekeyed admins to adminwho
+
+		returnable_list += "• [admin] is a [admin.holder.rank]"
+
+	return returnable_list
+
+/// Proc that gathers adminwho information for admins, which will contain information on if the admin is AFK, readied to join, etc. Only arg is a list of clients to use.
+/// Will return a list of strings.
+/proc/get_sensitive_adminwho_information(list/checkable_admins)
+	var/returnable_list = list()
+
+	for(var/client/admin in checkable_admins)
+		var/list/admin_strings = list()
+
+		admin_strings += "• [admin] is a [admin.holder.rank]"
+
+		if(admin.holder.fakekey)
+			admin_strings += "<i>(as [admin.holder.fakekey])</i>"
+
+		if(isobserver(admin.mob))
+			admin_strings += "- Observing"
+		else if(isnewplayer(admin.mob))
+			if(SSticker.current_state <= GAME_STATE_PREGAME)
+				var/mob/new_player/lobbied_admin = admin.mob
+				if(lobbied_admin.ready)
+					admin_strings += "- Lobby (Readied)"
+				else
+					admin_strings += "- Lobby (Not Readied)"
+			else
+				admin_strings += "- Lobby"
+		else
+			admin_strings += "- Playing"
+
+		if(admin.is_afk())
+			admin_strings += "(AFK)"
+
+		returnable_list += jointext(admin_strings, " ")
+
+	return returnable_list
+
+#undef DEFAULT_WHO_CELLS_PER_ROW
+#undef NO_ADMINS_ONLINE_MESSAGE

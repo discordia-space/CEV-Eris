@@ -352,10 +352,10 @@
 
 		if(I_HELP)
 			if (health > 0)
-				M.visible_message("\blue [M] [response_help] \the [src]")
+				M.visible_message(span_blue("[M] [response_help] \the [src]"))
 
 		if(I_DISARM)
-			M.visible_message("\blue [M] [response_disarm] \the [src]")
+			M.visible_message(span_blue("[M] [response_disarm] \the [src]"))
 			M.do_attack_animation(src)
 			//TODO: Push the mob away or something
 
@@ -373,13 +373,13 @@
 			G.affecting = src
 			LAssailant = M
 
-			M.visible_message("\red [M] has grabbed [src] passively!")
+			M.visible_message(span_red("[M] has grabbed [src] passively!"))
 			M.do_attack_animation(src)
 
 		if(I_HURT)
 			adjustBruteLoss(harm_intent_damage)
 			playsound(src, pick(punch_sound),60,1)
-			M.visible_message("\red [M] [response_harm] \the [src]")
+			M.visible_message(span_red("[M] [response_harm] \the [src]"))
 			M.do_attack_animation(src)
 
 	return
@@ -450,7 +450,7 @@
 			var/mob/living/exosuit/M = _target_mob
 			if(length(M.pilots))
 				return FALSE
-		else if(!L.stat || L.health >= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0))
+		else if(!L.stat || L.health >= (ishuman(L) ? CONFIG_GET(number/health_threshold_crit) : 0))
 			return FALSE
 
 	if(istype(_target_mob, /obj/machinery/bot))

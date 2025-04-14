@@ -37,7 +37,7 @@
 
 		S.show_message("[message_start] [message_body]", 2)
 
-	var/list/listening = hearers(1, src)
+	var/list/listening = hearers(1, get_turf(src))
 	listening -= src
 
 	for (var/mob/living/M in listening)

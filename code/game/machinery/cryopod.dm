@@ -419,7 +419,7 @@
 
 		// Book keeping!
 		var/turf/location = get_turf(src)
-		log_admin("[key_name_admin(affecting)] has entered a stasis pod. (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
+		log_admin("[key_name_admin(affecting)] has entered a stasis pod. [ADMIN_JMP(location)]")
 		message_admins(span_notice("[key_name_admin(affecting)] has entered a stasis pod."))
 		if(user == affecting)
 			src.add_fingerprint(affecting)

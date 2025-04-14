@@ -1,5 +1,5 @@
-import { BooleanLike } from 'common/react';
-import { useBackend, sendAct, useLocalState } from '../backend';
+import { BooleanLike } from 'tgui-core/react';
+import { useBackend, sendAct, useLocalState } from 'tgui/backend';
 import {
   Button,
   Box,
@@ -8,7 +8,7 @@ import {
   Dropdown,
   NumberInput,
   Collapsible,
-} from '../components';
+} from 'tgui-core/components';
 import { GameIcon } from '../components/GameIcon';
 import { Window } from '../layouts';
 
@@ -74,7 +74,7 @@ const exchange = (props, context) => {
           }}
         />
       )}
-      <Divider hidden:true />
+      <Divider hidden />
       {dosh && 'Card:'}
       {dosh}
       {dosh !== null && (
@@ -170,7 +170,7 @@ const sale = (props, context) => {
 
 const displayfourstats = (name, _number, value, icon, context) => {
   return (
-    <Box inline:true>
+    <Box inline>
       {icon && <GameIcon html={icon} className="game-icon" />}
       <Divider hidden />
       {name}

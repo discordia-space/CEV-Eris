@@ -115,7 +115,7 @@
 				usr = L
 				usr << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
 				to_chat(usr, "<font color='purple'>You are a candidate for [temp.role_text].\
-								<br><a HREF=?src=\ref[src];opt_out=\ref[candidate.key]>Opt out</a> or <a HREF=?src=\ref[src];opt_in=\ref[candidate.key]>opt in</a> to the candidate pool.\
+								<br><a HREF='byond://?src=\ref[src];opt_out=\ref[candidate.key]'>Opt out</a> or <a HREF='byond://?src=\ref[src];opt_in=\ref[candidate.key]'>opt in</a> to the candidate pool.\
 								<br>By default, you are already in the candidate pool.</font>")
 				sleep(60 SECONDS)
 				if(opt_out_log.Find(L.key))
