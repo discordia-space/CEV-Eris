@@ -186,11 +186,9 @@
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
-
 	air_temporary.adjust_gas("plasma", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-
-	..()
 	icon_state = "plasma"
+	..()
 
 /obj/machinery/atmospherics/tank/nitrous_oxide
 	name = "Pressure Tank (Nitrous Oxide)"
