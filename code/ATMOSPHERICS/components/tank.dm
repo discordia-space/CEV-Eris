@@ -80,8 +80,6 @@
 
 	update_underlays()
 
-	return null
-
 // Housekeeping and pipe network stuff below
 /obj/machinery/atmospherics/tank/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	if(reference == node)
