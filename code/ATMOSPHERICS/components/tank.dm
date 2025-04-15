@@ -102,12 +102,8 @@
 
 /obj/machinery/atmospherics/tank/return_network(obj/machinery/atmospherics/reference)
 	build_network()
-
-	if(reference==node)
+	if(reference == node)
 		return network
-
-
-	return null
 
 /obj/machinery/atmospherics/tank/reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
 	if(network == old_network)
