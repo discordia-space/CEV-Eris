@@ -120,11 +120,9 @@
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
-
 	air_temporary.adjust_gas("oxygen", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-
-	..()
 	icon_state = "o2"
+	..()
 
 /obj/machinery/atmospherics/tank/nitrogen
 	name = "Pressure Tank (Nitrogen)"
