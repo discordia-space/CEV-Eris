@@ -284,7 +284,7 @@ var/bomb_set
 					log_and_message_admins("engaged a nuclear bomb")
 					bomb_set++ //There can still be issues with this resetting when there are multiple bombs. Not a big deal though for Nuke/N
 					if(eris_ship_bomb)
-						var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
+						var/decl/security_state/security_state = decls_repository.get_decl(SSmapping.security_state)
 						previous_level = security_state.current_security_level
 						security_state.set_security_level(security_state.severe_security_level)
 					update_icon()
@@ -324,7 +324,7 @@ var/bomb_set
 	bomb_set--
 	timing = 0
 	timeleft = CLAMP(timeleft, 120, 600)
-	var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
+	var/decl/security_state/security_state = decls_repository.get_decl(SSmapping.security_state)
 	security_state.set_security_level(previous_level)
 	update_icon()
 
@@ -346,7 +346,7 @@ var/bomb_set
 
 	var/off_station = 0
 	var/turf/bomb_location = get_turf(src)
-	if(bomb_location && isStationLevel(bomb_location.z))
+	if(bomb_location && IS_SHIP_LEVEL(bomb_location.z))
 		if( (bomb_location.x < (128-NUKERANGE)) || (bomb_location.x > (128+NUKERANGE)) || (bomb_location.y < (128-NUKERANGE)) || (bomb_location.y > (128+NUKERANGE)) )
 			off_station = 1
 	else

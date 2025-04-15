@@ -4,45 +4,133 @@ SUBSYSTEM_DEF(mapping)
 	flags = SS_NO_FIRE
 
 	var/list/map_templates = list()
-	var/dmm_suite/maploader = null
+	var/dmm_suite/maploader
 	var/list/teleportlocs = list()
 	var/list/ghostteleportlocs = list()
 
+
+	var/current_map_config
+	var/next_map_config
+
+	var/list/loaded_map_paths = list() // Keep track of submaps that were or currently are loading
+	var/list/map_loading_queue = list()
+
+	var/list/all_areas = list()
+
+	// Lists of numbers corresponding to certain Z-levels
+	var/list/playable_z_levels = list() // Places where players are typically allowed to be in; everything excluduing overmap, pulsar, and admin level
+	var/list/main_ship_z_levels = list() // Decks of CEV Eris, deep maintenance not included
+	var/list/sealed_z_levels = list() // Levels that do NOT allow transit at map edge, e.g. not located in space or otherwise restricted
+
+	var/list/z_level_info_decoded = list() // Contains associative lists
+	var/list/z_level_info_encoded = list() // Contains JSON files
+
+	var/security_state = /decl/security_state/default // The default security state system to use.
+
+	var/default_spawn = "Aft Cryogenic Storage"
+
+	var/allowed_jobs = list(/datum/job/captain, /datum/job/rd, /datum/job/hop, /datum/job/cmo, /datum/job/chief_engineer, /datum/job/ihc,
+						/datum/job/gunserg, /datum/job/inspector, /datum/job/medspec, /datum/job/ihoper,
+						/datum/job/doctor, /datum/job/chemist, /datum/job/paramedic, /datum/job/bioengineer,
+						/datum/job/technomancer,
+						/datum/job/cargo_tech, /datum/job/mining, /datum/job/merchant,
+						/datum/job/clubworker, /datum/job/clubmanager, /datum/job/artist,
+						/datum/job/chaplain, /datum/job/acolyte, /datum/job/janitor, /datum/job/hydro,
+						/datum/job/scientist, /datum/job/roboticist, /datum/job/psychiatrist,
+						/datum/job/ai, /datum/job/cyborg,
+						/datum/job/assistant
+
+						)
+	var/pulsar_z
+	var/pulsar_size = 20  //Should be an even number, to place the pulsar in the middle
+	var/obj/effect/pulsar/pulsar_star
+
+	var/overmap_z
+	var/overmap_size = 50 * 4
+	var/overmap_event_areas = 40 * 16
+
+	var/emergency_shuttle_docked_message = "The escape pods are now armed. You have approximately %ETD% to board the escape pods."
+	var/emergency_shuttle_leaving_dock = "The escape pods have been launched, arriving at rendezvous point in %ETA%."
+	var/emergency_shuttle_called_message = "The emergency evacuation procedures are now in effect. Escape pods will be armed in %ETA%"
+	var/emergency_shuttle_recall_message = "Emergency evacuation sequence aborted. Return to normal operating conditions."
+
+	var/shuttle_docked_message = "Jump preparation complete. The bluespace drive is now spooling up, secure all stations for departure. Time to jump: approximately %ETD%."
+	var/shuttle_leaving_dock = "Jump initiated, exiting bluespace in %ETA%."
+	var/shuttle_called_message = "Jump sequence initiated. Transit procedures are now in effect. Jump in %ETA%."
+	var/shuttle_recall_message = "Jump sequence aborted, return to normal operating conditions."
+
+	var/list/usable_email_tlds = list("cev_eris.hanza","eris.scg","eris.net")
+	var/path = "eris"
+
+	var/access_modify_region = list(
+		ACCESS_REGION_SECURITY = list(access_hos, access_change_ids, access_change_sec),
+		ACCESS_REGION_MEDBAY = list(access_cmo, access_change_ids, access_change_medbay),
+		ACCESS_REGION_RESEARCH = list(access_rd, access_change_ids, access_change_research),
+		ACCESS_REGION_ENGINEERING = list(access_ce, access_change_ids, access_change_engineering),
+		ACCESS_REGION_COMMAND = list(access_change_ids),
+		ACCESS_REGION_GENERAL = list(access_change_ids,
+										access_change_cargo,
+										access_change_club,
+										access_change_engineering,
+										access_change_medbay,
+										access_change_nt,
+										access_change_research,
+										access_change_sec),
+		ACCESS_REGION_SUPPLY = list(access_change_ids, access_change_cargo),
+		ACCESS_REGION_CHURCH = list(access_nt_preacher, access_change_ids, access_change_nt),
+		ACCESS_REGION_CLUB = list(access_change_ids, access_change_club)
+	)
+
+	//HOLOMAP
+	var/list/holomap_smoosh // List of lists of zlevels to smoosh into single icons
+	var/list/holomap_offset_x = list()
+	var/list/holomap_offset_y = list()
+	var/list/holomap_legend_x = list()
+	var/list/holomap_legend_y = list()
+
+
+
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
-	if(config.generate_asteroid)
-		// These values determine the specific area that the map is applied to.
-		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
-		if(GLOB.maps_data.asteroid_levels)
-			for(var/z_level in GLOB.maps_data.asteroid_levels)
-				if(!isnum(z_level))
-					// If it's still not a number, we probably got fed some nonsense string.
-					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
-				// Now for the actual map generating.  This occurs for every z-level defined in the config.
-				new /datum/random_map/automata/cave_system(null, 1, 1, z_level, 300, 300)
-				// Let's add ore too.
-				new /datum/random_map/noise/ore(null, 1, 1, z_level, 64, 64)
-		else
-			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
-
-	if(config.use_overmap)
-		if(!GLOB.maps_data.overmap_z)
-			build_overmap()
-		else
-			testing("Overmap already exist in GLOB.maps_data for [GLOB.maps_data.overmap_z].")
-	else
-		testing("Overmap generation disabled in config.")
-
-//	world.max_z_changed() // This is to set up the player z-level list, maxz hasn't actually changed (probably)
 	maploader = new()
+
+
+// Identify which map config should be used now
+// If there isn't one already
+
+
+// Queue main map and proc into implementing other config stuff
+// If pulsar is in the config - queue it as well
+
+// load_map_from_json("pulsar")
+// build_pulsar()
+
+
+	load_map_from_json("eris_smol")
+	load_map_from_json("technical_level")
+	// load_map_from_json("junk_field")
+
+	// load_map_from_json("crawler")
+	// load_map_from_json("deepmaint")
+	// load_map_from_json("asteroid")
+	// load_map_from_json("blacksite_small")
+	// load_map_from_json("blacksite_medium")
+	// load_map_from_json("blacksite_large")
+	// load_map_from_json("fortress")
+	// load_map_from_json("ruins")
+
+	if(!SSmapping.overmap_z)
+		build_overmap()
+	else
+		testing("Overmap already exist in SSmapping for [SSmapping.overmap_z].")
+
 	load_map_templates()
-	build_pulsar()
 
 	// Generate cache of all areas in world. This cache allows world areas to be looked up on a list instead of being searched for EACH time
 	for(var/area/A in world)
 		GLOB.map_areas += A
 
 	// Do the same for teleport locs
-	for(var/area/AR in world)
+	for(var/area/AR in GLOB.map_areas)
 		if(istype(AR, /area/shuttle) ||  istype(AR, /area/wizard_station)) continue
 		if(teleportlocs.Find(AR.name)) continue
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
@@ -52,10 +140,8 @@ SUBSYSTEM_DEF(mapping)
 
 	teleportlocs = sortAssoc(teleportlocs)
 
-	// And the same for ghost teleport locs
 
-
-	for(var/area/AR in world)
+	for(var/area/AR in GLOB.map_areas)
 		if(ghostteleportlocs.Find(AR.name)) continue
 		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/derelict) || istype(AR, /area/shuttle/specops/centcom))
 			ghostteleportlocs += AR.name
@@ -69,13 +155,108 @@ SUBSYSTEM_DEF(mapping)
 
 	return ..()
 
+
+/datum/controller/subsystem/mapping/proc/MaxZChanged(z_level_info) // Expecting JSON-formatted text string or null
+	if(!z_level_info)
+		z_level_info = file('maps/json/default.json')
+		z_level_info = file2text(z_level_info)
+
+	var/current_z = world.maxz
+	z_level_info_encoded.Add(list(z_level_info))
+	var/list/decoded_json = json_decode(z_level_info)
+
+	// Build a list of connected Z-levels, if any
+	decoded_json["connected_z"] = list(current_z)
+	decoded_json["bottom_z"] = current_z
+	if(decoded_json["map_size"] > 1)
+		var/num_of_connected_levels = decoded_json["map_size"] - 1
+		for(var/downward_offset in 1 to num_of_connected_levels)
+			var/z_level_to_check = current_z - downward_offset
+			if(z_level_to_check < 1)
+				break
+			var/list/below_z_json = z_level_info_decoded[z_level_to_check]
+			var/list/below_z_connections = below_z_json["connected_z"]
+			if(current_z in below_z_connections)
+				num_of_connected_levels--
+				decoded_json["bottom_z"] = z_level_to_check
+				decoded_json["connected_z"] += z_level_to_check
+			else
+				break
+
+		for(var/upward_offset in 1 to num_of_connected_levels)
+			var/z_level_to_check = current_z + upward_offset
+			num_of_connected_levels--
+			decoded_json["connected_z"] += z_level_to_check
+
+	z_level_info_decoded.Add(list(decoded_json))
+
+	if(decoded_json["is_main_ship_level"])
+		main_ship_z_levels += current_z
+
+	if(decoded_json["is_playable_level"])
+		playable_z_levels += current_z
+
+	if(decoded_json["is_sealed_level"])
+		sealed_z_levels += current_z
+
+
+
+	// if(map_data.generate_asteroid)
+	// 	new /datum/random_map/automata/cave_system(null, 1, 1,  map_data.z_level, map_data.size, map_data.size)
+	// 	new /datum/random_map/noise/ore(null, 1, 1,  map_data.z_level, map_data.size, map_data.size)
+
+
+/*
+
+	if(MD.is_station_level)
+		var/max_holo_per_colum_l = MD.height/2 + 0.5
+		var/max_holo_per_colum_r = MD.height/2 - 0.5
+		var/even_mult = (0.15*level-0.3)*level+0.4
+		var/odd_mult = (level-1)/2
+		if(ISEVEN(MD.height))
+			max_holo_per_colum_l -= 0.5
+			max_holo_per_colum_r = max_holo_per_colum_l
+			even_mult = (level-1)/2 - 0.5
+			odd_mult = level/2 - 0.5
+		MD.holomap_legend_x = HOLOMAP_ICON_SIZE - world.maxx - MD.legend_size
+		MD.holomap_legend_y = HOLOMAP_ICON_SIZE - world.maxy - MD.legend_size - ERIS_HOLOMAP_CENTER_GUTTER
+		if(ISODD(level))
+			MD.holomap_offset_x = HOLOMAP_ICON_SIZE - world.maxx - ERIS_HOLOMAP_CENTER_GUTTER - MD.size - MD.legend_size
+			if(!odd_mult)
+				MD.holomap_offset_y = 0
+			else
+				MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y(MD.size, max_holo_per_colum_l, 0) + MD.size*odd_mult
+		else
+			MD.holomap_offset_x = HOLOMAP_ICON_SIZE - world.maxx
+			if(!even_mult && max_holo_per_colum_l == max_holo_per_colum_r)
+				MD.holomap_offset_y = 0
+			else
+				MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y(MD.size, max_holo_per_colum_r, 0) + MD.size*even_mult
+
+	// Auto-center the map if needed (Guess based on maxx/maxy)
+	if (MD.holomap_offset_x < 0)
+		MD.holomap_offset_x = ((HOLOMAP_ICON_SIZE - world.maxx) / 2)
+	if (MD.holomap_offset_y < 0)
+		MD.holomap_offset_y = ((HOLOMAP_ICON_SIZE - world.maxy) / 2)
+	// Assign them to the map lists
+
+	LIST_NUMERIC_SET(holomap_offset_x, level, MD.holomap_offset_x)
+	LIST_NUMERIC_SET(holomap_offset_y, level, MD.holomap_offset_y)
+	LIST_NUMERIC_SET(holomap_legend_x, level, MD.holomap_legend_x)
+	LIST_NUMERIC_SET(holomap_legend_y, level, MD.holomap_legend_y)
+
+*/
+
+
+
+
 /datum/controller/subsystem/mapping/proc/build_pulsar()
 	world.incrementMaxZ()
-	GLOB.maps_data.pulsar_z = world.maxz
-	add_z_level(GLOB.maps_data.pulsar_z, GLOB.maps_data.pulsar_z, 1)
-	maploader.load_map(file("maps/submaps/pulsar.dmm"), z_offset = GLOB.maps_data.pulsar_z)
+	SSmapping.pulsar_z = world.maxz
+//	add_z_level(SSmapping.pulsar_z, SSmapping.pulsar_z, 1)
+	maploader.load_map(file("maps/submaps/pulsar.dmm"), z_offset = SSmapping.pulsar_z)
 	var/list/turfs = list()
-	for(var/square in block(locate(1, 1, GLOB.maps_data.pulsar_z), locate(GLOB.maps_data.pulsar_size, GLOB.maps_data.pulsar_size, GLOB.maps_data.pulsar_z)))
+	for(var/square in block(locate(1, 1, SSmapping.pulsar_z), locate(SSmapping.pulsar_size, SSmapping.pulsar_size, SSmapping.pulsar_z)))
 		// Switch to space turf with green grid overlay
 		var/turf/space/T = square
 		T.name = "[T.x]-[T.y]"
@@ -87,28 +268,27 @@ SUBSYSTEM_DEF(mapping)
 	var/area/pulsar/A = new
 	A.contents.Add(turfs)
 
-	for(var/i in 1 to GLOB.maps_data.pulsar_size)
-		var/turf/beam_loc = locate(i, i, GLOB.maps_data.pulsar_z)
+	for(var/i in 1 to SSmapping.pulsar_size)
+		var/turf/beam_loc = locate(i, i, SSmapping.pulsar_z)
 		new /obj/effect/pulsar_beam(beam_loc)
 
-		var/turf/beam_right = locate(i + 1, i, GLOB.maps_data.pulsar_z)
+		var/turf/beam_right = locate(i + 1, i, SSmapping.pulsar_z)
 		new /obj/effect/pulsar_beam/ul(beam_right)
 
-		var/turf/beam_left = locate(i - 1, i, GLOB.maps_data.pulsar_z)
+		var/turf/beam_left = locate(i - 1, i, SSmapping.pulsar_z)
 		new /obj/effect/pulsar_beam/dr(beam_left)
 
-	var/turf/satellite_loc = locate(round((GLOB.maps_data.pulsar_size)/2 + (GLOB.maps_data.pulsar_size)/4), round((GLOB.maps_data.pulsar_size)/2 - (GLOB.maps_data.pulsar_size)/4), GLOB.maps_data.pulsar_z)
-	var/turf/shadow_loc = locate(round((GLOB.maps_data.pulsar_size)/2 - (GLOB.maps_data.pulsar_size)/4), round((GLOB.maps_data.pulsar_size)/2 + (GLOB.maps_data.pulsar_size)/4), GLOB.maps_data.pulsar_z)
+	var/turf/satellite_loc = locate(round((SSmapping.pulsar_size)/2 + (SSmapping.pulsar_size)/4), round((SSmapping.pulsar_size)/2 - (SSmapping.pulsar_size)/4), SSmapping.pulsar_z)
+	var/turf/shadow_loc = locate(round((SSmapping.pulsar_size)/2 - (SSmapping.pulsar_size)/4), round((SSmapping.pulsar_size)/2 + (SSmapping.pulsar_size)/4), SSmapping.pulsar_z)
 
 	var/obj/effect/pulsar_ship/ship = new /obj/effect/pulsar_ship(satellite_loc)
 	var/newshadow = new /obj/effect/pulsar_ship_shadow(shadow_loc)
 	ship.shadow = newshadow
 
-	if(!GLOB.maps_data.pulsar_star)
-		var/turf/T = locate(round((GLOB.maps_data.pulsar_size - 1)/2), round((GLOB.maps_data.pulsar_size - 1)/2), GLOB.maps_data.pulsar_z)
-		GLOB.maps_data.pulsar_star = new /obj/effect/pulsar(T)
+	if(!SSmapping.pulsar_star)
+		var/turf/T = locate(round((SSmapping.pulsar_size - 1)/2), round((SSmapping.pulsar_size - 1)/2), SSmapping.pulsar_z)
+		SSmapping.pulsar_star = new /obj/effect/pulsar(T)
 
-	GLOB.maps_data.sealed_levels |= GLOB.maps_data.pulsar_z
 	generate_pulsar_events()
 
 /datum/controller/subsystem/mapping/proc/generate_pulsar_events()
@@ -119,9 +299,9 @@ SUBSYSTEM_DEF(mapping)
 /datum/controller/subsystem/mapping/proc/build_overmap()
 	testing("Building overmap...")
 	world.incrementMaxZ()
-	GLOB.maps_data.overmap_z = world.maxz
+	SSmapping.overmap_z = world.maxz
 	var/list/turfs = list()
-	for (var/square in block(locate(1,1,GLOB.maps_data.overmap_z), locate(GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_z)))
+	for (var/square in block(locate(1,1,SSmapping.overmap_z), locate(SSmapping.overmap_size, SSmapping.overmap_size, SSmapping.overmap_z)))
 		// Switch to space turf with green grid overlay
 		var/turf/space/T = square
 		T.icon_state = "grid"
@@ -133,26 +313,24 @@ SUBSYSTEM_DEF(mapping)
 	A.contents.Add(turfs)
 
     // Spawn star at the center of the overmap
-	var/turf/T = locate(round(GLOB.maps_data.overmap_size/2),round(GLOB.maps_data.overmap_size/2),GLOB.maps_data.overmap_z)
+	var/turf/T = locate(round(SSmapping.overmap_size/2),round(SSmapping.overmap_size/2),SSmapping.overmap_z)
 	new /obj/effect/star(T)
 
-	GLOB.maps_data.sealed_levels |= GLOB.maps_data.overmap_z
 	testing("Overmap build complete.")
 
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT
 
 /hook/roundstart/proc/init_overmap_events()
-	if(config.use_overmap)
-		if(GLOB.maps_data.overmap_z)
-			testing("Creating overmap events...")
-			testing_variable(t1, world.tick_usage)
-			overmap_event_handler.create_events(GLOB.maps_data.overmap_z, GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_event_areas)
-			testing("Overmap events created in [(world.tick_usage-t1)*0.01*world.tick_lag] seconds")
-		else
-			testing("Overmap failed to create events.")
-			return FALSE
-	return TRUE
+	if(SSmapping.overmap_z)
+		testing("Creating overmap events...")
+		testing_variable(t1, world.tick_usage)
+		overmap_event_handler.create_events(SSmapping.overmap_z, SSmapping.overmap_size, SSmapping.overmap_event_areas)
+		testing("Overmap events created in [(world.tick_usage-t1)*0.01*world.tick_lag] seconds")
+		return TRUE
+	else
+		testing("Overmap failed to create events.")
+		return FALSE
 
 /datum/controller/subsystem/mapping/proc/load_map_templates()
 	for(var/T in subtypesof(/datum/map_template))
@@ -162,3 +340,78 @@ SUBSYSTEM_DEF(mapping)
 		template = new T()
 		map_templates[template.name] = template
 	return TRUE
+
+/datum/controller/subsystem/mapping/proc/load_map_from_json(json as text)
+	json = file("maps/json/[json].json")
+	json = file2text(json)
+	var/decoded_json = json_decode(json)
+	var/dmm_file_path = decoded_json["map_file"]
+	maploader.load_map(dmm_file = file(dmm_file_path), z_level_info = json)
+
+// Moved two following procs from /datum/maps_data as-is just to be safe
+/datum/controller/subsystem/mapping/proc/character_load_path(savefile/S, slot)
+	var/original_cd = S.cd
+	S.cd = "/"
+	. = private_use_legacy_saves(S, slot) ? "/character[slot]" : "/eris/character[slot]"
+	S.cd = original_cd // Attempting to make this call as side-effect free as possible
+
+/datum/controller/subsystem/mapping/proc/private_use_legacy_saves(savefile/S, slot)
+	if(!S.dir.Find(path)) // If we cannot find the map path folder, load the legacy save
+		return TRUE
+	S.cd = "/eris" // Finally, if we cannot find the character slot in the map path folder, load the legacy save
+	return !S.dir.Find("character[slot]")
+
+
+
+/datum/controller/subsystem/mapping/proc/HasAbove(z_level_of_origin)
+	if(z_level_of_origin < 1) // Objects at 0,0,0 occasionally call this proc too
+		return FALSE
+
+	var/z_level_to_check = z_level_of_origin + 1
+	// if(z_level_to_check >= world.maxz) // It's the highest level, nothing can be above it
+	// 	return FALSE
+
+	var/list/above_z_json = z_level_info_decoded[z_level_of_origin]
+	var/list/above_z_connections = above_z_json["connected_z"]
+	if(z_level_to_check in above_z_connections)
+		return TRUE
+	return FALSE
+
+
+/datum/controller/subsystem/mapping/proc/HasBelow(z_level_of_origin)
+	if(z_level_of_origin < 2)
+		return FALSE
+
+	var/z_level_to_check = z_level_of_origin - 1
+	var/list/below_z_json = z_level_info_decoded[z_level_of_origin]
+	var/list/below_z_connections = below_z_json["connected_z"]
+	if(z_level_to_check in below_z_connections)
+		return TRUE
+	return FALSE
+
+
+/datum/controller/subsystem/mapping/proc/GetAbove(atom/atom)
+	return HasAbove(atom.z) ? get_step(atom, UP) : null
+
+
+/datum/controller/subsystem/mapping/proc/GetBelow(atom/atom)
+	return HasBelow(atom.z) ? get_step(atom, DOWN) : null
+
+
+/datum/controller/subsystem/mapping/proc/GetConnectedZlevels(z_level_to_check)
+	if(z_level_to_check < 1)
+		return
+	var/list/decoded_json = z_level_info_decoded[z_level_to_check]
+	return decoded_json["connected_z"]
+
+
+/datum/controller/subsystem/mapping/proc/get_zstep(ref, dir)
+	if(dir == UP)
+		. = GetAbove(ref)
+	else if (dir == DOWN)
+		. = GetBelow(ref)
+	else
+		. = get_step(ref, dir)
+
+/datum/controller/subsystem/mapping/proc/AreConnectedZLevels(zA, zB)
+	return zA == zB || (zB in GetConnectedZlevels(zA))

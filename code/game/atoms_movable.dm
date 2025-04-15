@@ -239,48 +239,23 @@
 	return
 
 /atom/movable/proc/touch_map_edge()
-	if(z in GLOB.maps_data.sealed_levels)
+	if(z in SSmapping.sealed_z_levels)
 		return
+	overmap_spacetravel(get_turf(src), src)
 
-	if(config.use_overmap)
-		overmap_spacetravel(get_turf(src), src)
-		return
-
-	var/move_to_z = src.get_transit_zlevel()
-	var/move_to_x = x
-	var/move_to_y = y
-	if(move_to_z)
-		if(x <= TRANSITIONEDGE)
-			move_to_x = world.maxx - TRANSITIONEDGE - 2
-			move_to_y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
-
-		else if (x >= (world.maxx - TRANSITIONEDGE + 1))
-			move_to_x = TRANSITIONEDGE + 1
-			move_to_y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
-
-		else if (y <= TRANSITIONEDGE)
-			move_to_y = world.maxy - TRANSITIONEDGE -2
-			move_to_x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
-
-		else if (y >= (world.maxy - TRANSITIONEDGE + 1))
-			move_to_y = TRANSITIONEDGE + 1
-			move_to_x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
-
-		forceMove(locate(move_to_x, move_to_y, move_to_z))
 
 //by default, transition randomly to another zlevel
 /atom/movable/proc/get_transit_zlevel()
-	var/list/candidates = GLOB.maps_data.accessable_levels.Copy()
-	candidates.Remove("[src.z]")
+	var/list/candidates = SSmapping.playable_z_levels.Copy()
+	candidates.Remove(z)
 
 	//If something was ejected from the ship, it does not end up on another part of the ship.
-	if (z in GLOB.maps_data.station_levels)
-		for (var/n in GLOB.maps_data.station_levels)
-			candidates.Remove("[n]")
+	if(IS_SHIP_LEVEL(z))
+		for(var/n in SSmapping.main_ship_z_levels)
+			candidates.Remove(n)
 
-	if(!candidates.len)
-		return null
-	return text2num(pickweight(candidates))
+	if(LAZYLEN(candidates))
+		return text2num(pickweight(candidates))
 
 
 /atom/movable/proc/set_glide_size(glide_size_override = 0, var/min = 0.2, var/max = world.icon_size/2)

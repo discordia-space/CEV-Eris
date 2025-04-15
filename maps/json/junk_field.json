@@ -1,0 +1,10 @@
+{
+	"map_name": "Junk Field",
+	"map_desc": "Procedurally generated field of space debris.",
+	"map_file": "maps/encounters/junk_tractor_beam/junk_tractor_beam.dmm",
+	"map_size": 1,
+
+	"is_playable_level": true,
+	"is_main_ship_level": false,
+	"is_sealed_level": true
+}

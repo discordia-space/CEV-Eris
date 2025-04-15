@@ -35,7 +35,7 @@ var/global/use_preloader = FALSE
  * 2) Read the map line by line, parsing the result (using parse_grid)
  *
  */
-/dmm_suite/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num, orientation as num)
+/dmm_suite/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num, orientation as num, z_level_info as file)
 	//How I wish for RAII
 	if(!measureOnly)
 		Master.StartLoadingMap()
@@ -43,7 +43,7 @@ var/global/use_preloader = FALSE
 	#ifdef TESTING
 	turfsSkipped = 0
 	#endif
-	. = load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation)
+	. = load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation, z_level_info)
 	#ifdef TESTING
 	if(turfsSkipped)
 		testing("Skipped loading [turfsSkipped] default turfs")
@@ -51,7 +51,7 @@ var/global/use_preloader = FALSE
 	if(!measureOnly)
 		Master.StopLoadingMap()
 
-/dmm_suite/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation)
+/dmm_suite/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation, z_level_info)
 	var/tfile = dmm_file//the map file we're creating
 	if(isfile(tfile))
 		tfile = file2text(tfile)
@@ -112,7 +112,7 @@ var/global/use_preloader = FALSE
 					continue
 				else
 					while(world.maxz < zcrd) //create a new z_level if needed
-						world.incrementMaxZ()
+						world.incrementMaxZ(z_level_info)
 				if(!no_changeturf)
 					WARNING("Z-level expansion occurred without no_changeturf set, this may cause problems")
 
@@ -165,7 +165,7 @@ var/global/use_preloader = FALSE
 					else
 						++turfsSkipped
 						#endif
-						CHECK_TICK
+						//CHECK_TICK
 					maxx = max(maxx, xcrd++)
 				key_list[++key_list.len] = line_keys
 
@@ -226,14 +226,14 @@ var/global/use_preloader = FALSE
 								else
 									++turfsSkipped
 								#endif
-								CHECK_TICK
+								//CHECK_TICK
 							maxx = max(maxx, xcrd)
 							++xcrd
 					--ycrd
 
 			bounds[MAP_MAXX] = max(bounds[MAP_MAXX], cropMap ? min(maxx, world.maxx) : maxx)
 
-		CHECK_TICK
+		//CHECK_TICK
 
 	if(bounds[1] == 1.#INF) // Shouldn't need to check every item
 		return null
@@ -320,16 +320,16 @@ var/global/use_preloader = FALSE
 							fields[I] = apply_text_macros(value)
 
 			// Rotate dir if orientation isn't south (default)
-			if(fields["dir"])
-				fields["dir"] = turn(fields["dir"], dir2angle(orientation) + 180)
-			else
-				fields["dir"] = turn(SOUTH, dir2angle(orientation) + 180)
+			// if(fields["dir"])
+				// fields["dir"] = turn(fields["dir"], dir2angle(orientation) + 180)
+			// else
+				// fields["dir"] = turn(SOUTH, dir2angle(orientation) + 180)
 
 			//then fill the members_attributes list with the corresponding variables
 			members_attributes.len++
 			members_attributes[index++] = fields
 
-			CHECK_TICK
+			//CHECK_TICK
 		while(dpos != 0)
 
 		//check and see if we can just skip this turf
@@ -420,10 +420,10 @@ var/global/use_preloader = FALSE
 		_preloader.load(.)
 
 	//custom CHECK_TICK here because we don't want things created while we're sleeping to not initialize
-	if(TICK_CHECK)
-		SSatoms.map_loader_stop()
-		stoplag()
-		SSatoms.map_loader_begin()
+	// if(TICK_CHECK)
+	// 	SSatoms.map_loader_stop()
+	// 	stoplag()
+	// 	SSatoms.map_loader_begin()
 
 /dmm_suite/proc/create_atom(path, crds)
 	set waitfor = FALSE

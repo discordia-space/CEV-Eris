@@ -1,5 +1,3 @@
-#include "asteroid.dmm"
-
 //MINING-1 // CLUSTER
 /obj/effect/overmap/sector/asteroid
 	name = "unknown spatial phenomenon"
@@ -10,7 +8,7 @@
 	)
 	known = 1
 	in_space = 0
-	
+
 	name_stages = list("asteroid", "unknown object", "unknown spatial phenomenon")
 
 /obj/effect/overmap/sector/asteroid/Initialize()

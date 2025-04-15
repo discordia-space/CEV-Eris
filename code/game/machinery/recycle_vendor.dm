@@ -162,7 +162,7 @@
 
 	flick("recycle_vend", src)
 	update_icon()
-	
+
 
 /obj/machinery/amerecycler/emag_act(remaining_charges, mob/user, emag_source)
 	. = ..()
@@ -197,7 +197,7 @@
 	var/list/stufftorecycle = list()
 	if(silo.stat & NOPOWER)
 		flick("recycle_screen_red", overlays[1])
-		return	
+		return
 	else if(itemtorecycle)
 		stufftorecycle.Add(itemtorecycle)
 	else
@@ -304,7 +304,7 @@
 				stackspawned = new materialfound.stack_type(get_turf(src))
 				stackspawned.amount = remainder
 				stackspawned.update_strings()
-				stackspawned.update_icon()		
+				stackspawned.update_icon()
 	flick("recycle_vend", src)
 
 /obj/machinery/amerecycler/Process()
@@ -340,7 +340,7 @@
 	var/list/data = list()
 	var/access = BITTEST(wire_flags, WIRE_ID_SCAN) ? list() : user.GetAccess() // grab the access if the scanner works
 
-	data["salesactive"] = sales_paused ? null :TRUE 
+	data["salesactive"] = sales_paused ? null :TRUE
 	data["budget"] = silo?.my_account?.money
 	data["siloactive"] = (isnull(silo) || silo.stat & NOPOWER) ? null :TRUE // TGUI does not use FALSE as its boolean false
 
@@ -350,7 +350,7 @@
 	var/list/itemiconarray = list()
 	for(var/obj/data2do in saleworthy_items)
 		itemnamearray.Add(data2do.name) // string as item name
-		itempricearray.Add(saleworthy_items[data2do]) 
+		itempricearray.Add(saleworthy_items[data2do])
 		itemiconarray.Add(icon2base64html(data2do.type)) // whatever html formatted images are
 	data["itemnames"] = itemnamearray
 	data["icons"] = itemiconarray
@@ -372,7 +372,7 @@
 		data["matnums"] = matnumarray
 		data["matnames"] = matnamearray
 		data["matvalues"] = matvaluearray
-		data["maticons"] = maticonarray	
+		data["maticons"] = maticonarray
 
 	return data
 
@@ -427,14 +427,14 @@
 				sales_paused = !sales_paused
 			else
 				return TRUE
-		
+
 		if("eject_item")
 			if(params["chosen"] > length(saleworthy_items))
 				return FALSE
 			eject_stored_item(saleworthy_items[params["chosen"]])
 			flick("recycle_vend", src)
 			return TRUE
-		
+
 		if("ejectdosh")
 			if(moneyinput <= 0)
 				return FALSE
@@ -520,7 +520,7 @@
 		var/hash = md5("AME"+hashfodder.time) // hash the account name and the creation time of the account
 		var/list/fullpin = list()
 		var/texttoadd
-		for(var/incrementor = 1, length(fullpin) < 6 && incrementor < 99, incrementor++) 
+		for(var/incrementor = 1, length(fullpin) < 6 && incrementor < 99, incrementor++)
 			if(length(fullpin) > 3 && prob(10)) // pins can be up to six in length, but also down to four. due to rand(1111, 111111) generation, 4 is <1% and 6 is ~90%.
 				break
 			texttoadd = copytext("[text2ascii(hash,incrementor)]", 2, 3) // grabs the second digit of the byte of the hash corresponding to incrementor
@@ -561,7 +561,7 @@
 					PakKash.forceMove(get_turf(src))
 					visible_message("[PakKash] falls out of [src].", "You hear a mute impact with the floor alongside quiet clinking.")
 	if(istype(I, /obj/item/card/id))
-		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")		
+		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
 		var/obj/item/card/id/swiped = I
 		if(!required_access)
 			if(!length(swiped.access) > 0)
@@ -691,7 +691,7 @@
 		materials_stored[matname] += processthis[matname]
 		if(materials_stored[matname] > sellthreshold)
 			sellonething(matname, materials_stored[matname] - sellthreshold) // sell excess
-		
+
 /obj/machinery/amesilo/proc/updatesubsidy()
 	if(my_account.money <= 400)
 		if(department_accounts[DEPARTMENT_COMMAND])
@@ -802,12 +802,7 @@
 		if(istype(otherprime))
 			var/area/A = get_area(otherprime)
 			var/displayed_area = A ? " - [strip_improper(A.name)]" : ""
-			var/obj/map_data/M = GLOB.maps_data.all_levels[otherprime.z]
-			if(M.custom_z_names)
-				data["otherprimeloc"] = "[otherprime.x]:[otherprime.y], [M.custom_z_name(otherprime.z)][displayed_area]"
-			else
-				data["otherprimeloc"] = "[otherprime.x]:[otherprime.y], [otherprime.z][displayed_area]"
-	
+			data["otherprimeloc"] = "[otherprime.x]:[otherprime.y], [otherprime.z][displayed_area]"
 		else if(isnull(otherprime))
 			data["otherprimeloc"] = "Prime does not exist, please reset to set Prime."
 		else
@@ -870,7 +865,7 @@
 			if("setID")
 				if(params["newID"] in IDToCheck.access)
 					required_access = params["newID"]
-				
+
 			if("setbudget")
 				if(!isnum(params["newbudget"]))
 					return FALSE
@@ -1004,6 +999,6 @@
 			else
 				return FALSE
 
-	
+
 #undef MINIMUM_BUDGET
 #undef SPRITECAPACITY

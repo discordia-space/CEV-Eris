@@ -85,7 +85,7 @@ AUTOMATED ALERT: Link to [command_name()] lost.
 /datum/universal_state/supermatter_cascade/OverlayAndAmbientSet()
 	spawn(0)
 		for(var/atom/movable/lighting_overlay/L in world)
-			if(isAdminLevel(L.z))
+			if(IS_TECHNICAL_LEVEL(L.z))
 				L.update_overlay(1,1,1)
 			else
 				L.update_overlay(0, 0.4, 1)

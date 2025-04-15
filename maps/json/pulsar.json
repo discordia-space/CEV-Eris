@@ -1,0 +1,10 @@
+{
+	"map_name": "Pulsar",
+	"map_desc": "Technomancer's Wi-Fi gas station.",
+	"map_file": "maps/submaps/pulsar.dmm",
+	"map_size": 1,
+
+	"is_playable_level": false,
+	"is_main_ship_level": false,
+	"is_sealed_level": true
+}

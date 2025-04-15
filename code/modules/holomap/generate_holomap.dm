@@ -26,16 +26,16 @@
 /datum/controller/subsystem/holomaps/proc/generateHoloMinimaps()
 	var/start_time = world.timeofday
 	// Build the base map for each z level
-	for (var/z = 1 to GLOB.maps_data.station_levels.len)
+	for (var/z = 1 to LAZYLEN(SSmapping.main_ship_z_levels))
 		holoMiniMaps |= z // hack, todo fix
 		holoMiniMaps[z] = generateHoloMinimap(z)
 
 	// Generate the area overlays, small maps, etc for the station levels.
-	for (var/level in GLOB.maps_data.station_levels)
+	for (var/level in 1 to LAZYLEN(SSmapping.main_ship_z_levels))
 		generateStationMinimap(level)
 
-	if(GLOB.maps_data.holomap_smoosh)
-		for(var/smoosh_list in GLOB.maps_data.holomap_smoosh)
+	if(SSmapping.holomap_smoosh)
+		for(var/smoosh_list in SSmapping.holomap_smoosh)
 			smooshTetherHolomaps(smoosh_list)
 
 	holomaps_initialized = TRUE

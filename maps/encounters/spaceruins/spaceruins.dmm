@@ -23,7 +23,6 @@
 /area/asteroid/rogue)
 "g" = (
 /obj/effect/overmap/sector/spaceruins,
-/obj/map_data/spaceruins,
 /turf/space,
 /area/asteroid/rogue)
 "h" = (

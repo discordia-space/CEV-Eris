@@ -648,10 +648,6 @@ proc/GaussRandRound(var/sigma, var/roundto)
 	if(A.vars.Find(lowertext(varname))) return 1
 	else return 0
 
-//Returns: all the areas in the world, sorted.
-/proc/return_sorted_areas()
-	return sortNames(GLOB.map_areas)
-
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all areas of that type in the world.
 /proc/get_areas(var/areatype)
@@ -701,10 +697,6 @@ proc/GaussRandRound(var/sigma, var/roundto)
 	var/displayed_x = "[x_pos]"
 	var/displayed_y = "[y_pos]"
 	var/displayed_z = "[z_pos]"
-
-	var/obj/map_data/M = GLOB.maps_data.all_levels[z_pos]
-	if(M.custom_z_names)
-		return "[displayed_x]:[displayed_y], [M.custom_z_name(z_pos)][displayed_area]"
 
 	return "[displayed_x]:[displayed_y]:[displayed_z][displayed_area]"
 

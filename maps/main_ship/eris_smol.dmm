@@ -50697,7 +50697,6 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4port)
 "crJ" = (
-/obj/map_data/eris/smol,
 /turf/space,
 /area/space)
 "crK" = (

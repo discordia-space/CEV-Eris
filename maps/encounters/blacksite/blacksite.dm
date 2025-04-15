@@ -1,27 +1,3 @@
-#include "blacksite_small.dmm"
-#include "blacksite_medium.dmm"
-#include "blacksite_large.dmm"
-
-/////
-// Map data
-/////
-/obj/map_data/blacksite
-	name = "Blacksite Level"
-	is_player_level = TRUE
-	is_contact_level = TRUE
-	is_accessable_level = TRUE
-	is_sealed = TRUE
-	height = 1
-
-/obj/map_data/blacksite/small
-	name = "Small Blacksite Level"
-
-/obj/map_data/blacksite/medium
-	name = "Medium Blacksite Level"
-
-/obj/map_data/blacksite/large
-	name = "Large Blacksite Level"
-
 /////
 // Map templates
 /////

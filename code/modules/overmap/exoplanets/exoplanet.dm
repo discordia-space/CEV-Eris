@@ -58,9 +58,6 @@
 			habitability_class = HABITABILITY_BAD
 
 /obj/effect/overmap/sector/exoplanet/New(nloc, max_x, max_y)
-	if(!config.use_overmap)
-		return
-
 	maxx = max_x ? max_x : world.maxx
 	maxy = max_y ? max_y : world.maxy
 	planetary_area = new planetary_area()
@@ -76,8 +73,6 @@
 	while(SSmobs.mob_living_by_zlevel.len < world.maxz)
 		SSmobs.mob_living_by_zlevel.len++
 		SSmobs.mob_living_by_zlevel[SSmobs.mob_living_by_zlevel.len] = list()
-
-	new /obj/map_data/exoplanet(src)
 
 	if(LAZYLEN(possible_themes))
 		var/datum/exoplanet_theme/T = pick(possible_themes)

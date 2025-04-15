@@ -12,10 +12,10 @@
 		cursor = image('icons/holomap_markers.dmi', "you")
 	if(!legend || reinit)
 		legend = image('icons/effects/64x64.dmi', "legend")
-	if(isStationLevel(T.z))
+	if(IS_SHIP_LEVEL(T.z))
 		if(!deck_name || reinit)
 			deck_name = image(HOLO_DECK_NAME, "deck")
-			for(var/level in GLOB.maps_data.station_levels)
+			for(var/level in SSmapping.main_ship_z_levels)
 				deck_name = image(HOLO_DECK_NAME, "deck[level]")
 				if(ISODD(level))
 					deck_name.pixel_x = HOLOMAP_LEGEND_X(level) - 2*ERIS_HOLOMAP_CENTER_GUTTER

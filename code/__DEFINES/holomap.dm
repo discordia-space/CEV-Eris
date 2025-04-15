@@ -28,10 +28,10 @@
 #define LIST_NUMERIC_SET(L, I, V) if(!L) { L = list(); } if (L.len < I) { L.len = I; } L[I] = V
 
 // Handy defines to lookup the pixel offsets for this Z-level.  Cache these if you use them in a loop tho.
-#define HOLOMAP_PIXEL_OFFSET_X(zLevel) ((GLOB.maps_data.holomap_offset_x.len >= zLevel) ? GLOB.maps_data.holomap_offset_x[zLevel] : 0)
-#define HOLOMAP_PIXEL_OFFSET_Y(zLevel) ((GLOB.maps_data.holomap_offset_y.len >= zLevel) ? GLOB.maps_data.holomap_offset_y[zLevel] : 0)
-#define HOLOMAP_LEGEND_X(zLevel) ((GLOB.maps_data.holomap_legend_x.len >= zLevel) ? GLOB.maps_data.holomap_legend_x[zLevel] : 96)
-#define HOLOMAP_LEGEND_Y(zLevel) ((GLOB.maps_data.holomap_legend_y.len >= zLevel) ? GLOB.maps_data.holomap_legend_y[zLevel] : 96)
+#define HOLOMAP_PIXEL_OFFSET_X(zLevel) ((SSmapping.holomap_offset_x.len >= zLevel) ? SSmapping.holomap_offset_x[zLevel] : 0)
+#define HOLOMAP_PIXEL_OFFSET_Y(zLevel) ((SSmapping.holomap_offset_y.len >= zLevel) ? SSmapping.holomap_offset_y[zLevel] : 0)
+#define HOLOMAP_LEGEND_X(zLevel) ((SSmapping.holomap_legend_x.len >= zLevel) ? SSmapping.holomap_legend_x[zLevel] : 96)
+#define HOLOMAP_LEGEND_Y(zLevel) ((SSmapping.holomap_legend_y.len >= zLevel) ? SSmapping.holomap_legend_y[zLevel] : 96)
 
 // For making the 5-in-1  Eris holomap, we calculate some offsets
 #define ERIS_MAP_SIZE 135 // Width and height of compiled in ERIS z levels.

@@ -187,7 +187,7 @@
 /datum/event/micro_debris/tick()
 	if(!(activeFor % 3))	// Every 3rd tick
 		for(var/i in 0 to rand(1,3))
-			spawn_debris(pickweight(debris_types), pick(cardinal), pick(GLOB.maps_data.station_levels))
+			spawn_debris(pickweight(debris_types), pick(cardinal), pick(SSmapping.main_ship_z_levels))
 
 /datum/event/micro_debris/proc/spawn_debris(debris, start_side, zlevel)
 	var/turf/start_turf = spaceDebrisStartLoc(start_side, zlevel)

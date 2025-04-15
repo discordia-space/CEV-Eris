@@ -71,10 +71,9 @@
 
 /turf/floor/exoplanet/grass/Initialize()
 	. = ..()
-	if(config.use_overmap)
-		var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
-		if(istype(E) && E.grass_color)
-			color = E.grass_color
+	var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
+	if(istype(E) && E.grass_color)
+		color = E.grass_color
 
 /turf/floor/exoplanet/grass/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if((temperature > T0C + 200 && prob(5)) || temperature > T0C + 1000)

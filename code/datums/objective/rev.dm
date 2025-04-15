@@ -13,7 +13,7 @@
 		explanation_text = "Hm-m-m... Viva la revolucion!"
 
 /datum/objective/faction/excelsior/check_completion()
-	if (failed)
+	if(failed)
 		return FALSE
 	if(faction && target && target.current)
 		var/mob/living/carbon/human/H = target.current
@@ -26,7 +26,7 @@
 		if(player_is_antag_faction(target, ROLE_EXCELSIOR_REV, faction))
 			return TRUE
 
-		if(!isOnStationLevel(target.current) && !isOnAdminLevel(target.current))
+		if(!IS_SHIP_LEVEL(target.current.z) && !IS_TECHNICAL_LEVEL(target.current.z))
 			return TRUE
 
 	if(!target)

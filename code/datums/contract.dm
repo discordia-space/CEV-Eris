@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 
 		// No check for cruciform because the spying implant can bypass it
 		var/mob/living/carbon/human/H = candidate_mind.current
-		if(!istype(H) || H.stat == DEAD || !isOnStationLevel(H))
+		if(!istype(H) || H.stat == DEAD || !IS_SHIP_LEVEL(H.z))
 			continue
 
 		target_mind = candidate_mind
@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	while(candidates.len)
 		target_mind = pick(candidates)
 		var/mob/living/carbon/human/H = target_mind.current
-		if(!istype(H) || H.stat == DEAD || !isOnStationLevel(H))
+		if(!istype(H) || H.stat == DEAD || !IS_SHIP_LEVEL(H.z))
 			candidates -= target_mind
 			continue
 		target = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
@@ -387,7 +387,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 			continue
 
 		var/mob/living/carbon/human/H = candidate_mind.current
-		if(!istype(H) || H.stat == DEAD || !isOnStationLevel(H))
+		if(!istype(H) || H.stat == DEAD || !IS_SHIP_LEVEL(H.z))
 			continue
 
 		if (targets_command)

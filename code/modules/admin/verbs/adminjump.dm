@@ -9,7 +9,7 @@
 	stop_following()
 	..()
 
-/client/proc/Jump(var/area/A in return_sorted_areas())
+/client/proc/Jump(area/A in sortNames(GLOB.map_areas))
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
 	set category = "Admin"

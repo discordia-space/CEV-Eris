@@ -19,7 +19,6 @@
 /area/outpost/abandoned_fortress)
 "ag" = (
 /obj/effect/overmap/sector/fortress,
-/obj/map_data/spacefortress,
 /turf/space,
 /area/space)
 "ai" = (

@@ -15,7 +15,6 @@
 	var/start_x			//coordinates on the
 	var/start_y			//overmap zlevel
 
-	var/base = 0		//starting sector, counts as station_levels
 	var/known = 1		//shows up on nav computers automatically
 	var/in_space = 1	//can be accessed via lucky EVA
 
@@ -30,17 +29,14 @@
 /obj/effect/overmap/Initialize()
 	. = ..()
 
-	if(!config.use_overmap)
-		return
-
-	map_z = GetConnectedZlevels(z)
+	map_z = SSmapping.GetConnectedZlevels(z)
 	for(var/zlevel in map_z)
 		map_sectors["[zlevel]"] = src
 
 	// Spawning location of area is randomized or default values, but can be changed to the Eris Coordinates in the code below.
 	// This provides a random starting location for Eris.
-	start_x = start_x || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
-	start_y = start_y || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
+	start_x = start_x || rand(OVERMAP_EDGE, SSmapping.overmap_size - OVERMAP_EDGE)
+	start_y = start_y || rand(OVERMAP_EDGE, SSmapping.overmap_size - OVERMAP_EDGE)
 
 	if ((!eris_start_set) && (name == config.start_location))
 		var/obj/effect/overmap/ship/eris/E = (locate(/obj/effect/overmap/ship/eris) in GLOB.ships)
@@ -48,18 +44,8 @@
 		start_y = E.start_y
 		eris_start_set = TRUE
 
-	forceMove(locate(start_x, start_y, GLOB.maps_data.overmap_z))
+	forceMove(locate(start_x, start_y, SSmapping.overmap_z))
 	testing("Located sector \"[name_stages[1]]\" at [start_x],[start_y], containing Z [english_list(map_z)]")
-
-	GLOB.maps_data.player_levels |= map_z
-
-	if(!in_space)
-		GLOB.maps_data.sealed_levels |= map_z
-
-	if(base)
-		GLOB.maps_data.station_levels |= map_z
-		GLOB.maps_data.contact_levels |= map_z
-
 
 	//handle automatic waypoints that spawned before us
 	for(var/obj/effect/shuttle_landmark/automatic/L in GLOB.shuttle_landmarks_list)

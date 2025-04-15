@@ -46,7 +46,8 @@ SUBSYSTEM_DEF(migration)
 	for (var/i = 0; i < roundstart_burrows; i++)
 		var/area/A = random_ship_area(FALSE, FALSE, FALSE)
 		var/turf/T = A.random_space() //Lets make sure the selected area is valid
-		create_burrow(T)
+		if(T)
+			create_burrow(T)
 
 
 
@@ -54,8 +55,8 @@ SUBSYSTEM_DEF(migration)
 Called by roaches when they spawn.
 This proc will attempt to create a burrow against a wall, within view of the target location
 */
-/proc/create_burrow(var/turf/target)
-	if (!isOnShipLevel(target))
+/proc/create_burrow(turf/target)
+	if(!IS_SHIP_LEVEL(target.z))
 		return
 
 	//First of all lets get a list of everything in dview.

@@ -17,7 +17,7 @@
 	var/turf/location = get_area(owner.current)
 	if(!location)
 		return FALSE
-	if(isOnAdminLevel(owner.current))
+	if(IS_TECHNICAL_LEVEL(owner.current.z))
 		if(ishuman(owner.current))
 			var/mob/living/carbon/human/H = owner.current
 			if(!H.handcuffed)

@@ -22,7 +22,7 @@
 		//We require a found location
 		return INITIALIZE_HINT_QDEL
 
-	if(!isStationLevel(z))
+	if(!IS_SHIP_LEVEL(z))
 		//We wont spawn that on derelicts, because it makes no sense to spawn those notes there
 		return INITIALIZE_HINT_QDEL
 

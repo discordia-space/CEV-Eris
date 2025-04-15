@@ -1,0 +1,10 @@
+{
+	"map_name": "UNKNOWN",
+	"map_desc": "Z-level created without a valid config!",
+	"map_file": "maps/main_ship/eris_classic.dmm",
+	"map_size": 1,
+
+	"is_playable_level": false,
+	"is_main_ship_level": false,
+	"is_sealed_level": true
+}

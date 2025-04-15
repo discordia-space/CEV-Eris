@@ -7,7 +7,6 @@
 /turf/space,
 /area/junk_tractor_beam)
 "c" = (
-/obj/map_data/junk_tractor_beam,
 /turf/space,
 /area/junk_tractor_beam)
 

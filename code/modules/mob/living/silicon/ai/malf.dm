@@ -69,7 +69,7 @@
 
 	// Off-Station APCs should not count towards CPU generation.
 	for(var/obj/machinery/power/apc/A in hacked_apcs)
-		if(isOnStationLevel(A))
+		if(IS_SHIP_LEVEL(A.z))
 			cpu_gain += 0.08
 			cpu_storage += 10
 

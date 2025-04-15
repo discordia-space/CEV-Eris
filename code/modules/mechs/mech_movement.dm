@@ -19,7 +19,7 @@
 		// Check for stomping people
 		if(legs)
 			var/blocked = FALSE
-			var/turf/theDepths = GetBelow(src)
+			var/turf/theDepths = SSmapping.GetBelow(src)
 			if(isinspace())
 				if(theDepths)
 					for(var/obj/thing in theDepths.contents)

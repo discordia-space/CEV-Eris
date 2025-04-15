@@ -1,14 +1,3 @@
-#include "spaceruins.dmm"
-
-/obj/map_data/spaceruins
-	name = "Space ruins Level"
-	is_player_level = TRUE
-	is_contact_level = TRUE
-	is_accessable_level = TRUE
-	height = 1
-	is_sealed = TRUE
-
-
 /obj/effect/overmap/sector/spaceruins
 	name = "unknown spatial phenomenon"
 	desc = "An assorted clutter of small asteroids and space trash, seems to be long abandoned."

@@ -9,7 +9,6 @@
 /turf/space,
 /area/space)
 "d" = (
-/obj/map_data/crawler,
 /turf/wall/dummy,
 /area/crawler)
 "e" = (

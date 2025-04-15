@@ -66,10 +66,8 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	attack_animation(user)
 
-/obj/machinery/door/New()
-	. = ..()
-	layer = density ? closed_layer : open_layer
 
+/obj/machinery/door/LateInitialize()
 	if(width > 1)
 		if(dir in list(EAST, WEST))
 			bound_width = width * world.icon_size
@@ -78,10 +76,11 @@
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
 
+	layer = density ? closed_layer : open_layer
 	health = maxHealth
+	update_nearby_tiles(need_rebuild = TRUE)
+	power_change()
 
-	update_nearby_tiles(need_rebuild=1)
-	return
 
 /obj/machinery/door/Destroy()
 	density = FALSE

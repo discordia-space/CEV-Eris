@@ -39,7 +39,7 @@
 /obj/machinery/computer/helm/Process()
 	..()
 	if (autopilot && dx && dy)
-		var/turf/T = locate(dx,dy,GLOB.maps_data.overmap_z)
+		var/turf/T = locate(dx,dy,SSmapping.overmap_z)
 		if(linked.loc == T)
 			if(linked.is_still())
 				autopilot = 0
@@ -84,12 +84,6 @@
 	if(linked && manual_control)
 		user.reset_view(linked)
 		user.client.view = "[2*NAVIGATION_VIEW_RANGE+1]x[2*NAVIGATION_VIEW_RANGE+1]"
-
-	else if(!config.use_overmap && user?.client?.holder)
-		// Let the new developers know why the helm console is unresponsive
-		// (it's disabled by default on local server to make it start a bit faster)
-		to_chat(user, "NOTE: overmap generation is disabled in server configuration.")
-		to_chat(user, "To use overmap, make sure that \"config.txt\" file is present in the server config folder and \"USE_OVERMAP\" is uncommented.")
 
 	nano_ui_interact(user)
 

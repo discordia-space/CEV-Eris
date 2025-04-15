@@ -291,7 +291,7 @@
 
 	//Grab processing has a chance of returning null
 	if(item)
-		if((target.z > src.z) && istype(get_turf(GetAbove(src)), /turf/open))
+		if((target.z > src.z) && istype(get_turf(SSmapping.GetAbove(src)), /turf/open))
 			var/obj/item/I = item
 			var/robust = stats.getStat(STAT_ROB)
 			var/timer = ((5 * I.w_class) - (robust * 0.1)) //(W_CLASS * 5) - (STR * 0.1)
@@ -299,7 +299,7 @@
 			if((I.w_class < ITEM_SIZE_GARGANTUAN) && do_after(src, timer))
 				item.throwing = TRUE
 				unEquip(item, loc)
-				item.forceMove(get_turf(GetAbove(src)))
+				item.forceMove(get_turf(SSmapping.GetAbove(src)))
 			else
 				to_chat(src, SPAN_WARNING("You were interrupted!"))
 				return

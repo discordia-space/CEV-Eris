@@ -24,31 +24,26 @@
 	//Will also leave this type of turf behind if set.
 	var/turf/base_turf
 	var/shuttle_restricted
-	//If set, will set base area and turf type to same as where it was spawned at
-	var/autoset
 
-/obj/effect/shuttle_landmark/New()
+
+/obj/effect/shuttle_landmark/Initialize()
 	..()
 	GLOB.shuttle_landmarks_list += src
 	tag = copytext(landmark_tag, 1) //since tags cannot be set at compile time
-	if(autoset)
-		base_area = get_area(src)
-		var/turf/T = get_turf(src)
-		if(T)
-			base_turf = T.type
-	else
-		base_area = locate(base_area || world.area)
+	base_area = locate(base_area || world.area)
 	name = name + " ([x],[y])"
+	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/shuttle_landmark/Initialize()
-	. = ..()
-	spawn(10)
-		if(docking_controller)
-			var/docking_tag = docking_controller
-			docking_controller = locate(docking_tag)
-			if(!istype(docking_controller))
-				admin_notice("Could not find docking controller for shuttle waypoint '[name]', docking tag was '[docking_tag]'.")
-		SSshuttle.register_landmark(tag, src)
+// /obj/machinery/embedded_controller/radio/airlock/docking_port
+// /datum/computer/file/embedded_program/docking
+
+/obj/effect/shuttle_landmark/LateInitialize()
+	if(docking_controller)
+		var/docking_tag = docking_controller
+		docking_controller = locate(docking_tag)
+		if(!istype(docking_controller))
+			admin_notice("Could not find docking controller for shuttle waypoint '[name]', docking tag was '[docking_tag]'.")
+	SSshuttle.register_landmark(tag, src)
 
 /obj/effect/shuttle_landmark/proc/is_valid(var/datum/shuttle/shuttle)
 	if(shuttle.current_location == src)
@@ -82,14 +77,14 @@
 /obj/effect/shuttle_landmark/automatic
 	name = "Navpoint"
 	landmark_tag = "navpoint"
-	autoset = 1
 
 /obj/effect/shuttle_landmark/automatic/Initialize()
 	tag = landmark_tag+"-[x]-[y]"
 	. = ..()
 	base_area = get_area(src)
-	if(!config.use_overmap)
-		return
+	var/turf/T = get_turf(src)
+	if(T)
+		base_turf = T.type
 	add_to_sector(map_sectors["[z]"])
 
 /obj/effect/shuttle_landmark/automatic/proc/add_to_sector(var/obj/effect/overmap/O, var/tag_only)

@@ -38,7 +38,7 @@
 	var/search = ""
 
 /datum/nano_module/crew_monitor/proc/has_alerts()
-	for(var/z_level in GLOB.maps_data.station_levels)
+	for(var/z_level in SSmapping.main_ship_z_levels)
 		if(crew_repository.has_health_alert(z_level))
 			return TRUE
 	return FALSE
@@ -76,7 +76,7 @@
 		if(H)
 			GLOB.ignore_health_alerts_from.Add(H.name)
 			// Run that so UI updates right after button is pressed, without 5 second delay
-			for(var/z_level in GLOB.maps_data.station_levels)
+			for(var/z_level in SSmapping.main_ship_z_levels)
 				// Forced update, we don't want cached entry to be returned
 				crew_repository.health_data(z_level, TRUE)
 		return TOPIC_HANDLED
@@ -85,7 +85,7 @@
 		var/mob/living/carbon/human/H = locate(href_list["unmute"]) in SShumans.mob_list
 		if(H)
 			GLOB.ignore_health_alerts_from.Remove(H.name)
-			for(var/z_level in GLOB.maps_data.station_levels)
+			for(var/z_level in SSmapping.main_ship_z_levels)
 				crew_repository.health_data(z_level, TRUE)
 		return TOPIC_HANDLED
 
@@ -96,7 +96,7 @@
 	data["can_mute"] = tracking_tablet_used
 	data["can_track"] = (isAI(user) || tracking_tablet_used)
 	var/list/crewmembers = list()
-	for(var/z_level in GLOB.maps_data.station_levels)
+	for(var/z_level in SSmapping.main_ship_z_levels)
 		crewmembers += crew_repository.health_data(z_level)
 	crewmembers = sortNames(crewmembers)
 	//now lets get problematic crewmembers in separate list so they could be shown first

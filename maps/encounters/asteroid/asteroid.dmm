@@ -634,7 +634,6 @@
 /turf/floor/reinforced,
 /area/outpost/abandoned)
 "cN" = (
-/obj/map_data/asteroid,
 /turf/mineral_unsimulated,
 /area/mine/unexplored)
 "cO" = (

@@ -142,7 +142,7 @@ obj/machinery/atmospherics/pipe/zpipe/up/atmos_init()
 				node1 = target
 				break
 
-	var/turf/above = GetAbove(src)
+	var/turf/above = SSmapping.GetAbove(src)
 	if(above)
 		for(var/obj/machinery/atmospherics/target in above)
 			if(target.initialize_directions && istype(target, /obj/machinery/atmospherics/pipe/zpipe/down))
@@ -183,7 +183,7 @@ obj/machinery/atmospherics/pipe/zpipe/down/atmos_init()
 				node1 = target
 				break
 
-	var/turf/below = GetBelow(src)
+	var/turf/below = SSmapping.GetBelow(src)
 	if(below)
 		for(var/obj/machinery/atmospherics/target in below)
 			if(target.initialize_directions && istype(target, /obj/machinery/atmospherics/pipe/zpipe/up))

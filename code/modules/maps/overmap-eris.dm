@@ -4,7 +4,6 @@
 	vessel_mass = 300
 	default_delay = 20 SECONDS
 	speed_mod = 5 SECONDS
-	base = 1
 
 	name_stages = list("CEV Eris", "unknown vessel", "unknown spatial phenomenon")
 	icon_stages = list("eris", "ship", "poi")

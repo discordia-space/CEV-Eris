@@ -1,0 +1,10 @@
+{
+	"map_name": "Space Fortress",
+	"map_desc": "A dungeon with loot and some enemies.",
+	"map_file": "maps/encounters/spacefortress/spacefortress.dmm",
+	"map_size": 1,
+
+	"is_playable_level": true,
+	"is_main_ship_level": false,
+	"is_sealed_level": false
+}

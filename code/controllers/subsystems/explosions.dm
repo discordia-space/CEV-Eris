@@ -131,7 +131,7 @@ SUBSYSTEM_DEF(explosions)
 				// For Up and Down , we use the turf  key since its valid
 				target_power -= EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD
 				if(target_power > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
-					var/turf/checking = GetAbove(target)
+					var/turf/checking = SSmapping.GetAbove(target)
 					if(!QDELETED(checking) && istype(checking, /turf/open))
 						// Startup for first time, kind of ineefficient , but better than distributing the lists willy nilly
 						if(explodey.hashed_visited[checking.z] == null)
@@ -145,7 +145,7 @@ SUBSYSTEM_DEF(explosions)
 							explodey.hashed_power[checking.z][turf_key] = target_power
 							explodey.turf_queue += checking
 					if(istype(target, /turf/open))
-						checking = GetBelow(target)
+						checking = SSmapping.GetBelow(target)
 						if(!QDELETED(checking))
 							// Startup for first time
 							if(explodey.hashed_visited[checking.z] == null)
@@ -203,7 +203,7 @@ SUBSYSTEM_DEF(explosions)
 			power_reduction += thing.explosion_act(target_power, handler)
 			if(!QDELETED(thing) && isobj(thing) && !thing.anchored)
 				thing.throw_at(get_turf_away_from_target_simple(src, islist(handler.epicenter ? handler.epicenter[1] : handler.epicenter)), round(target_power / 30))
-	var/turf/to_propagate = GetAbove(src)
+	var/turf/to_propagate = SSmapping.GetAbove(src)
 	if(to_propagate && target_power - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
 		to_propagate.take_damage(target_power - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD, BLAST)
 

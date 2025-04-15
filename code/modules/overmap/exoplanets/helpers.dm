@@ -2,8 +2,6 @@
 #define SKILL_EXPERT  1
 #define SKILL_ADEPT   1
 #define SKILL_BASIC   1
-var/list/exoplanet_map_data = list()
-
 
 //TODO - sort this into their own files
 
@@ -16,22 +14,6 @@ var/list/exoplanet_map_data = list()
 	ret.color = color
 	ret.appearance_flags = flags
 	return ret
-
-/obj/map_data/exoplanet
-	name = "Exoplanet Map Data"
-	is_player_level = TRUE
-	is_contact_level = TRUE
-	is_accessable_level = TRUE
-	is_sealed = TRUE
-	height = 1
-
-
-/obj/map_data/exoplanet/New()
-	var/obj/map_data/exoplanet/E = src
-	exoplanet_map_data += E
-	name = "Exoplanet Map Data [exoplanet_map_data.len]"
-	..()
-
 
 GLOBAL_LIST_EMPTY(banned_ruin_ids)
 
@@ -153,7 +135,7 @@ GLOBAL_LIST_EMPTY(banned_ruin_ids)
 
 /obj/effect/landmark/ruin/automatic/clearing/New(loc, my_ruin_template, ruin_radius)
 	. = ..(loc, my_ruin_template)
-	radius = ruin_radius	
+	radius = ruin_radius
 
 /obj/effect/landmark/ruin/automatic/clearing/Initialize()
 	..()

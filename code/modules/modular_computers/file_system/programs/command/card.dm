@@ -294,6 +294,6 @@
 /datum/computer_file/program/card_mod/proc/check_modify(var/obj/item/card/id/id_card, var/access_requested)
 	for(var/access in id_card.access)
 		var/region_type = get_access_region_by_id(access_requested)
-		if(access in GLOB.maps_data.access_modify_region[region_type])
+		if(access in SSmapping.access_modify_region[region_type])
 			return TRUE
 	return FALSE

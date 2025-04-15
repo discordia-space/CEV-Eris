@@ -17,7 +17,7 @@
 /obj/machinery/atmospherics/pipe/drain_power()
 	return -1
 
-/obj/machinery/atmospherics/pipe/New()
+/obj/machinery/atmospherics/pipe/LateInitialize()
 	if(istype(get_turf(src), /turf/wall) || istype(get_turf(src), /turf/shuttle/wall) || istype(get_turf(src), /turf/wall))
 		level = BELOW_PLATING_LEVEL
 	..()
@@ -164,7 +164,7 @@
 
 	level = BELOW_PLATING_LEVEL
 
-/obj/machinery/atmospherics/pipe/simple/New()
+/obj/machinery/atmospherics/pipe/simple/LateInitialize()
 	..()
 
 	// Pipe colors and icon states are handled by an image cache - so color and icon should
@@ -427,7 +427,7 @@
 	level = BELOW_PLATING_LEVEL
 	layer = GAS_PIPE_VISIBLE_LAYER
 
-/obj/machinery/atmospherics/pipe/manifold/New()
+/obj/machinery/atmospherics/pipe/manifold/LateInitialize()
 	..()
 	alpha = 255
 	icon = null
@@ -681,7 +681,7 @@
 	level = BELOW_PLATING_LEVEL
 	layer = GAS_PIPE_VISIBLE_LAYER
 
-/obj/machinery/atmospherics/pipe/manifold4w/New()
+/obj/machinery/atmospherics/pipe/manifold4w/LateInitialize()
 	..()
 	alpha = 255
 	icon = null
@@ -934,7 +934,7 @@
 
 	var/obj/machinery/atmospherics/node
 
-/obj/machinery/atmospherics/pipe/cap/New()
+/obj/machinery/atmospherics/pipe/cap/LateInitialize()
 	..()
 	initialize_directions = dir
 
@@ -1051,7 +1051,7 @@
 	density = TRUE
 	layer = ABOVE_WINDOW_LAYER
 
-/obj/machinery/atmospherics/pipe/tank/New()
+/obj/machinery/atmospherics/pipe/tank/LateInitialize()
 	icon_state = "air"
 	initialize_directions = dir
 	..()
@@ -1111,7 +1111,7 @@
 	name = "Pressure Tank (Air)"
 	icon_state = "air_map"
 
-/obj/machinery/atmospherics/pipe/tank/air/New()
+/obj/machinery/atmospherics/pipe/tank/air/LateInitialize()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -1127,7 +1127,7 @@
 	name = "Pressure Tank (Oxygen)"
 	icon_state = "o2_map"
 
-/obj/machinery/atmospherics/pipe/tank/oxygen/New()
+/obj/machinery/atmospherics/pipe/tank/oxygen/LateInitialize()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -1141,7 +1141,7 @@
 	name = "Pressure Tank (Nitrogen)"
 	icon_state = "n2_map"
 
-/obj/machinery/atmospherics/pipe/tank/nitrogen/New()
+/obj/machinery/atmospherics/pipe/tank/nitrogen/LateInitialize()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -1155,7 +1155,7 @@
 	name = "Pressure Tank (Carbon Dioxide)"
 	icon_state = "co2_map"
 
-/obj/machinery/atmospherics/pipe/tank/carbon_dioxide/New()
+/obj/machinery/atmospherics/pipe/tank/carbon_dioxide/LateInitialize()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -1170,7 +1170,7 @@
 	description_antag = "Will blind people if they do not wear face-covering gear"
 	icon_state = "plasma_map"
 
-/obj/machinery/atmospherics/pipe/tank/plasma/New()
+/obj/machinery/atmospherics/pipe/tank/plasma/LateInitialize()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -1184,7 +1184,7 @@
 	name = "Pressure Tank (Nitrous Oxide)"
 	icon_state = "n2o_map"
 
-/obj/machinery/atmospherics/pipe/tank/nitrous_oxide/New()
+/obj/machinery/atmospherics/pipe/tank/nitrous_oxide/LateInitialize()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T0C
@@ -1211,7 +1211,7 @@
 	var/build_killswitch = 1
 
 
-/obj/machinery/atmospherics/pipe/vent/New()
+/obj/machinery/atmospherics/pipe/vent/LateInitialize()
 	initialize_directions = dir
 	..()
 

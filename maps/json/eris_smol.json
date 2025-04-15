@@ -1,6 +1,10 @@
 {
 	"map_name": "Small Eris",
 	"map_desc": "Smaller version of the original ship designed for low or medium population.",
-	"map_file": "eris_smol.dmm",
-	"map_size": 4
+	"map_file": "maps/main_ship/eris_smol.dmm",
+	"map_size": 4,
+
+	"is_playable_level": true,
+	"is_main_ship_level": true,
+	"is_sealed_level": false
 }

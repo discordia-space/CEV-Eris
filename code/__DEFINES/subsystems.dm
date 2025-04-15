@@ -88,7 +88,6 @@
 // The numbers just define the ordering, they are meaningless otherwise.
 
 #define INIT_ORDER_GARBAGE 99
-#define INIT_ORDER_CHUNKS 98
 #define INIT_ORDER_EXPLOSIONS 97
 #define INIT_ORDER_STATPANELS 96
 #define INIT_ORDER_SKYBOX 20
@@ -105,6 +104,7 @@
 #define INIT_ORDER_CHAR_SETUP 9
 #define INIT_ORDER_ATOMS 8
 #define INIT_ORDER_MACHINES 7
+#define INIT_ORDER_CHUNKS 6
 #define INIT_ORDER_TIMER 1
 #define INIT_ORDER_DEFAULT 0
 #define INIT_ORDER_AIR -1

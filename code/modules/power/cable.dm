@@ -243,7 +243,7 @@ var/list/possible_cable_coil_colours = list(
 		O.show_message(SPAN_WARNING("[user] cuts the cable."), 1)
 
 	if(d1 == DOWN || d2 == DOWN)
-		var/turf/turf = GetBelow(src)
+		var/turf/turf = SSmapping.GetBelow(src)
 		if(turf)
 			for(var/obj/structure/cable/c in turf)
 				if(c.d1 == UP || c.d2 == UP)
@@ -417,7 +417,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		if(cable_dir == 0)
 			continue
 		var/reverse = reverse_dir[cable_dir]
-		T = get_zstep(src, cable_dir)
+		T = SSmapping.get_zstep(src, cable_dir)
 		if(T)
 			for(var/obj/structure/cable/C in T)
 				if(C.d1 == reverse || C.d2 == reverse)
@@ -728,7 +728,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 	put_cable(F, user, end_dir, dirn)
 	if(end_dir == DOWN)
-		put_cable(GetBelow(F), user, UP, 0)
+		put_cable(SSmapping.GetBelow(F), user, UP, 0)
 		to_chat(user, "You slide some cable downward.")
 
 

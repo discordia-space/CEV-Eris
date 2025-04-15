@@ -20,7 +20,7 @@
 		/area/eris/medical/genetics)
 
 	for(var/area/A in GLOB.map_areas)
-		if((A.z in GLOB.maps_data.station_levels) && !(A.type in exempt_areas))
+		if(IS_SHIP_LEVEL(A.z) && !(A.type in exempt_areas))
 			if (isnull(A.apc) && !(A.type in exempt_from_apc))
 				TEST_FAIL("[A.name]([A.type]) lacks an APC Z: [A.z].")
 			if (!((LAZYLEN(A.air_scrub_info) && LAZYLEN(A.air_vent_info)) || (A.type in exempt_from_atmos)))
@@ -64,7 +64,7 @@ Uncommented , replaced by GREP, doensn't full work properly
 		if(!test_areacoord_regex.Find(log_entry))
 			continue
 		var/z = text2num(test_areacoord_regex.group[1])
-		if(!(z in GLOB.maps_data.station_levels)) // station only
+		if(!IS_SHIP_LEVEL(z)) // Ship only
 			continue
 
 		TEST_FAIL(log_entry)

@@ -4,7 +4,6 @@
 /area/space)
 "ag" = (
 /obj/effect/overmap/sector/blacksite/medium,
-/obj/map_data/blacksite/medium,
 /turf/space,
 /area/space)
 "cb" = (
