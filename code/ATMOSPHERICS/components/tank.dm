@@ -139,7 +139,7 @@
 	name = "Pressure Tank (Oxygen)"
 	icon_state = "o2_map"
 
-/obj/machinery/atmospherics/tank/oxygen/New()
+/obj/machinery/atmospherics/tank/oxygen/LateInitialize()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
