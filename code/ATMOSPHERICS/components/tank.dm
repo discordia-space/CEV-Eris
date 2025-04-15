@@ -1,26 +1,18 @@
 /obj/machinery/atmospherics/tank
-	icon = 'icons/atmos/tank.dmi'
-	icon_state = "air_map"
-
 	name = "Pressure Tank"
 	desc = "A large vessel containing pressurized gas."
-
-	var/datum/gas_mixture/air_temporary // used when reconstructing a pipeline that broke
-	var/volume = 10000 //in liters, 1 meters by 1 meters by 2 meters ~tweaked it a little to simulate a pressure tank without needing to recode them yet
-	var/start_pressure = 25*ONE_ATMOSPHERE
-
-	level = BELOW_PLATING_LEVEL
+	icon = 'icons/atmos/tank.dmi'
+	icon_state = "air_map"
 	dir = SOUTH
-	initialize_directions = SOUTH
 	density = TRUE
 	layer = ABOVE_WINDOW_LAYER
-
-	var/obj/machinery/atmospherics/node
-
-	var/datum/pipe_network/network
-
-	var/on = FALSE
 	use_power = NO_POWER_USE
+
+	var/volume = 10000 //in liters, 1 meters by 1 meters by 2 meters ~tweaked it a little to simulate a pressure tank without needing to recode them yet
+	var/start_pressure = 25*ONE_ATMOSPHERE
+	var/obj/machinery/atmospherics/node
+	var/datum/gas_mixture/air_temporary // used when reconstructing a pipeline that broke
+	var/datum/pipe_network/network
 
 /obj/machinery/atmospherics/tank/LateInitialize()
 	icon_state = "air"
