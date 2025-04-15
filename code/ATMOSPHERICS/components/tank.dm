@@ -50,12 +50,11 @@
     return QDEL_HINT_QUEUE
 
 /obj/machinery/atmospherics/tank/update_underlays()
-	if(..())
+	if(check_icon_cache())
 		underlays.Cut()
 		var/turf/T = get_turf(src)
-		if(!istype(T))
-			return
-		add_underlay(T, node, dir)
+		if(stype(T))
+			add_underlay(T, node, dir)
 
 /obj/machinery/atmospherics/tank/hide()
 	update_underlays()
