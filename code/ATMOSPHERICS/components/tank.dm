@@ -178,7 +178,7 @@
 	description_antag = "Will blind people if they do not wear face-covering gear"
 	icon_state = "plasma_map"
 
-/obj/machinery/atmospherics/tank/plasma/New()
+/obj/machinery/atmospherics/tank/plasma/LateInitialize()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
