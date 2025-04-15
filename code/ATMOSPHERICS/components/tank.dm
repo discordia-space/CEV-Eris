@@ -153,7 +153,7 @@
 	name = "Pressure Tank (Nitrogen)"
 	icon_state = "n2_map"
 
-/obj/machinery/atmospherics/tank/nitrogen/New()
+/obj/machinery/atmospherics/tank/nitrogen/LateInitialize()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
