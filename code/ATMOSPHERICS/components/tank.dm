@@ -30,8 +30,8 @@
 /obj/machinery/atmospherics/tank/Process()
 	..()
 	if(network)
-		network.update = 1
-	return 1
+		network.update = TRUE
+	return TRUE
 
 /obj/machinery/atmospherics/tank/Destroy()
 	..()
