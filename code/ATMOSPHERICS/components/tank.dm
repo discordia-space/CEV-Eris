@@ -113,8 +113,6 @@
 	if(network == old_network)
 		network = new_network
 
-	return 1
-
 /obj/machinery/atmospherics/tank/return_network_air(datum/pipe_network/reference)
 	return air_temporary
 
