@@ -165,7 +165,7 @@
 	name = "Pressure Tank (Carbon Dioxide)"
 	icon_state = "co2_map"
 
-/obj/machinery/atmospherics/tank/carbon_dioxide/New()
+/obj/machinery/atmospherics/tank/carbon_dioxide/LateInitialize()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
