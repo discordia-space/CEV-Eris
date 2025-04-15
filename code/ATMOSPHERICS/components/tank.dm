@@ -22,7 +22,7 @@
 	var/on = FALSE
 	use_power = NO_POWER_USE
 
-/obj/machinery/atmospherics/tank/New()
+/obj/machinery/atmospherics/tank/LateInitialize()
 	icon_state = "air"
 	initialize_directions = dir
 	..()
