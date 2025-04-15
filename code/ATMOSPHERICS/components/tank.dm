@@ -34,20 +34,18 @@
 	return 1
 
 /obj/machinery/atmospherics/tank/Destroy()
-    if(air_temporary)
-        loc.assume_air(air_temporary)
-        QDEL_NULL(air_temporary)
+	..()
+	if(air_temporary)
+		loc.assume_air(air_temporary)
+		QDEL_NULL(air_temporary)
 
-    ..()
-    loc = null
+	loc = null
+	if(node)
+		node.disconnect(src)
+		qdel(network)
+		node = null
 
-    if(node)
-        node.disconnect(src)
-        qdel(network)
-
-    node = null
-
-    return QDEL_HINT_QUEUE
+	return QDEL_HINT_QUEUE
 
 /obj/machinery/atmospherics/tank/update_underlays()
 	if(check_icon_cache())
