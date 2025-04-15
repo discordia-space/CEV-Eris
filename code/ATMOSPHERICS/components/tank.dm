@@ -190,7 +190,7 @@
 	name = "Pressure Tank (Nitrous Oxide)"
 	icon_state = "n2o_map"
 
-/obj/machinery/atmospherics/tank/nitrous_oxide/New()
+/obj/machinery/atmospherics/tank/nitrous_oxide/LateInitialize()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T0C
