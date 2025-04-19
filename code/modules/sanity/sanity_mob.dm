@@ -181,6 +181,8 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		. *= owner.stats.getStat(STAT_VIG) / STAT_LEVEL_MAX
 
 /datum/sanity/proc/handle_breakdowns()
+	if(owner.stat == DEAD)
+		return
 	for(var/datum/breakdown/B in breakdowns)
 		if(!B.update())
 			breakdowns -= B

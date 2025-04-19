@@ -55,7 +55,7 @@
 		var/obj/item/clothing/head/mindreader/MR = holder.owner.head
 		MR.extract_memory(holder.owner)
 	if(start_messages)
-		log_and_message_admins("[holder.owner] is affected by breakdown [name] with duration [duration/10] seconds.")
+		log_and_message_admins("[holder.owner] is affected by breakdown [name] with duration [duration/10] seconds. [ADMIN_JMP(holder.owner.loc)]")
 		to_chat(holder.owner, span(start_message_span, pick(start_messages)))
 	if(restore_sanity_pre)
 		holder.restoreLevel(restore_sanity_pre)
