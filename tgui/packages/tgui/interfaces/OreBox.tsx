@@ -1,6 +1,8 @@
-import { toTitleCase } from 'tgui-core/string';
+import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
 import { Box, Button, NumberInput, Section, Stack } from 'tgui-core/components';
-import { useBackend, useLocalState } from 'tgui/backend';
+import { toTitleCase } from 'tgui-core/string';
+
 import { Window } from '../layouts';
 
 type Data = {
@@ -13,8 +15,8 @@ type Material = {
   amount: number;
 };
 
-export const OreBox = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const OreBox = (props) => {
+  const { act, data } = useBackend<Data>();
   const { materials } = data;
 
   return (
@@ -72,14 +74,10 @@ export const OreBox = (props, context) => {
   );
 };
 
-const OreRow = (props, context) => {
+const OreRow = (props) => {
   const { material, onRelease, onReleaseAll } = props;
 
-  const [amount, setAmount] = useLocalState(
-    context,
-    'amount' + material.name,
-    1,
-  );
+  const [amount, setAmount] = useState(1);
 
   const amountAvailable = Math.floor(material.amount);
   return (
@@ -101,7 +99,7 @@ const OreRow = (props, context) => {
             minValue={1}
             maxValue={100}
             value={amount}
-            onChange={(e, value) => setAmount(value)}
+            onChange={(value: number) => setAmount(value)}
           />
           <Button
             content="Eject Amount"

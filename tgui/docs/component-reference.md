@@ -1068,7 +1068,7 @@ a lot of `Button` props.
 
 ### `Tooltip`
 
-A boxy tooltip from 'tgui 1. It is very hacky in its current state, and
+A boxy tooltip from tgui 1. It is very hacky in its current state, and
 requires setting `position: relative` on the container.
 
 Please note, that [Button](#button) component has a `tooltip` prop, and

@@ -598,6 +598,9 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING
 
+/datum/controller/subsystem/ticker/proc/IsRoundInProgress()
+	return current_state == GAME_STATE_PLAYING
+
 /datum/controller/subsystem/ticker/proc/standard_reboot()
 	if(ready_for_reboot)
 		if(universe_has_ended)
@@ -656,9 +659,6 @@ SUBSYSTEM_DEF(ticker)
 	deltimer(reboot_timer)
 	reboot_timer = null
 	return TRUE
-
-// /datum/controller/subsystem/ticker/proc/IsRoundInProgress()
-// 	return current_state == GAME_STATE_PLAYING
 
 // expand me pls
 /datum/controller/subsystem/ticker/Recover()

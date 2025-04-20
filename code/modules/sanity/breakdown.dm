@@ -29,9 +29,11 @@
 	return ..()
 
 /datum/breakdown/proc/can_occur()
-	return !!name
+	return !!name && !!holder
 
 /datum/breakdown/proc/update()
+	if (!holder.owner)
+		qdel(src)
 	if(finished || (duration && world.time > end_time) || holder.owner.stat == DEAD)
 		conclude()
 		return FALSE

@@ -17,7 +17,7 @@ import { UI_DISABLED, UI_INTERACTIVE } from 'tgui-core/constants';
 import { BooleanLike, classes } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { backendSuspendStart, globalStore, useBackend } from 'tgui/backend';
+import { backendSuspendStart, globalStore, useBackend } from '../backend';
 import { useDebug } from '../debug';
 import {
   dragStartHandler,

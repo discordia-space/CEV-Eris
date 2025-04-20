@@ -609,7 +609,7 @@
 	.["sending_index"] = SStrade.beacons_sending.Find(PRG.sending)
 
 	if(PRG.station)
-		.["station_name()"] = PRG.station.name
+		.["station_name"] = PRG.station.name
 		.["station_desc"] = PRG.station.desc
 		.["station_id"] = PRG.station.uid
 		.["station_index"] = SStrade.discovered_stations.Find(PRG.station)

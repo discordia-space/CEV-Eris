@@ -14,9 +14,9 @@ const COLORS = {
     TEXT: '#A6A6A6',
   },
   LIGHT: {
-    BG_BASE: '#EFEEEE',
+    BG_BASE: '#EEEEEE',
     BG_SECOND: '#FFFFFF',
-    BUTTON: '#FFFEFE',
+    BUTTON: '#FFFFFF',
     TEXT: '#000000',
   },
 };

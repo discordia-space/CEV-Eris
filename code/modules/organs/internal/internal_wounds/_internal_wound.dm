@@ -117,8 +117,9 @@
 	if(characteristic_flag & IWOUND_SPREAD)
 		if(severity == spread_threshold)
 			var/list/internal_organs_sans_parent = H.internal_organs.Copy() - O
-			var/obj/item/organ/next_organ = pick(internal_organs_sans_parent)
-			SEND_SIGNAL_OLD(next_organ, COMSIG_IORGAN_ADD_WOUND, type)
+			var/obj/item/organ/next_organ = safepick(internal_organs_sans_parent)
+			if (next_organ)
+				SEND_SIGNAL_OLD(next_organ, COMSIG_IORGAN_ADD_WOUND, type)
 
 	// Deal damage - halloss is handled in shock.dm
 	if(psy_damage)

@@ -1,8 +1,14 @@
 /datum/sanity/proc/effect_emote()
-	owner.custom_emote(message = level < 20 ? pick_emote_20() : pick_emote_40())
+	var/message	= level < 20 ? pick_emote_20() : pick_emote_40()
+	owner.custom_emote(message = message)
 
 /datum/sanity/proc/effect_quote()
-	to_chat(owner, span_danger(level < 20 ? "[icon2html('icons/effects/fabric_symbols_20.dmi', owner)][pick_quote_20()]" : "[icon2html('icons/effects/fabric_symbols_40.dmi', owner)][pick_quote_40()]"))
+	var/message
+	if(level < 20)
+		message = "[icon2html('icons/effects/fabric_symbols_20.dmi', owner)][pick_quote_20()]"
+	else
+		message ="[icon2html('icons/effects/fabric_symbols_40.dmi', owner)][pick_quote_40()]"
+	to_chat(owner, span_danger(message))
 
 /datum/sanity/proc/effect_sound()
 	var/sound/S = pick_sound()

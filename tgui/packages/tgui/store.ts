@@ -15,7 +15,7 @@ import {
 import { flow } from 'tgui-core/fp';
 
 import { assetMiddleware } from './assets';
-import { backendMiddleware, backendReducer } from 'tgui/backend';
+import { backendMiddleware, backendReducer } from './backend';
 import { debugMiddleware, debugReducer, relayMiddleware } from './debug';
 import { createLogger } from './logging';
 

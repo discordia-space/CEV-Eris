@@ -44,7 +44,7 @@
 	s["version"] = GLOB.game_version
 	s["storyteller"] = master_storyteller
 	s["respawn"] = CONFIG_GET(flag/abandon_allowed)
-	s["enter"] = CONFIG_GET(flag/enter_allowed)
+	s["enter"] = GLOB.enter_allowed
 	s["vote"] = CONFIG_GET(flag/allow_vote_mode)
 	s["ai"] = CONFIG_GET(flag/allow_ai)
 	s["host"] = host ? host : null

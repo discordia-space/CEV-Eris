@@ -187,7 +187,7 @@
 
 /mob/observer/ghost/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
 	if(speaker.name == speaker_name || antagHUD)
-		to_chat(src, "<i><span class='game say'>[language.name], [span_name("[speaker_name]")] ([ghost_follow_link(speaker, src)]) [message]</span></i>")
+		to_chat(src, "<i><span class='game say'>[language.name], [span_name("[speaker_name]")] [ghost_follow_link(speaker, src)] [message]</span></i>")
 	else
 		to_chat(src, "<i><span class='game say'>[language.name], [span_name("[speaker_name]")] [message]</span></i>")
 

@@ -35,7 +35,6 @@ GLOBAL_LIST_INIT(admin_verbs_server, list(
 	/datum/admins/proc/toggleRespawn,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/delay_round_end,
-	/datum/admins/proc/immreboot,
 	/datum/admins/proc/toggle_tts,
 	/datum/admins/proc/toggle_tts_cache,
 	/datum/admins/proc/check_tts_stat,
@@ -500,9 +499,9 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
-	var/turf/epicenter = mob.loc
+	var/turf/epicenter = get_turf(mob)
 	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
-	var/choice = input("What size explosion would you like to produce?") in choices
+	var/choice = tgui_input_list(usr, "What size explosion would you like to produce?", "Drop Bomb", choices)
 	switch(choice)
 		if(null)
 			return 0
@@ -519,7 +518,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 			var/multiplicative_falloff = input("Multiplicative falloff for this explosion?") as num
 			var/eflags = additive_falloff ? EFLAG_ADDITIVEFALLOFF : 0 | multiplicative_falloff ? EFLAG_EXPONENTIALFALLOFF : 0
 			explosion(epicenter, explosion_power, explosion_falloff, eflags)
-	message_admins(span_blue("[ckey] created an admin explosion at [epicenter.loc]."))
+	message_admins(span_blue("[key_name_admin(usr)] created an admin explosion at [epicenter.loc]. [ADMIN_JMP(epicenter)]"))
 
 /client/proc/make_sound(obj/O in range(world.view))
 	set category = "Special Verbs"
@@ -567,7 +566,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 
 	// Give profiler access
 	world.SetConfig("APP/admin", ckey, "role=admin")
-	to_chat(src, "Press <a href='byond://?debug=profile'>here</a> to access profiler panel. It will replace verb panel, and you may have to wait a couple of seconds for it to display.")
+	to_chat(src, "Press <a href='byond://?[HrefToken()]debug=profile'>here</a> to access profiler panel. It will replace verb panel, and you may have to wait a couple of seconds for it to display.")
 
 /client/proc/kill_air()
 	set category = "Debug"

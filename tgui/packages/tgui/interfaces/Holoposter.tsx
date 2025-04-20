@@ -1,6 +1,7 @@
-import { capitalize } from 'tgui-core/string';
 import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack } from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
+
 import { GameIcon } from '../components/GameIcon';
 import { Window } from '../layouts';
 
@@ -11,8 +12,8 @@ interface HoloposterProps {
   icon: string;
 }
 
-const HoloposterContent = (props: any, context: any) => {
-  const { act, data } = useBackend<HoloposterProps>(context);
+const HoloposterContent = (props: any) => {
+  const { act, data } = useBackend<HoloposterProps>();
   const { posterTypes, isRandom, selected, icon } = data;
 
   return (
@@ -21,8 +22,8 @@ const HoloposterContent = (props: any, context: any) => {
         grow
         style={{
           display: 'flex',
-          'align-items': 'center',
-          'justify-content': 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <GameIcon

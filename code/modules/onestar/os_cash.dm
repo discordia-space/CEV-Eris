@@ -47,7 +47,7 @@
 	split_cash(user)
 
 /obj/item/stack/os_cash/proc/split_cash(mob/user)
-	var/count = input(user, "How many coins do you want to take? (0 to [amount])", "Take Money") as num
+	var/count = tgui_input_number(user, "How many coins do you want to take? (0 to [amount])", "Take Money")
 	count = round(CLAMP(count, 0, max_amount))
 
 	if(!count)

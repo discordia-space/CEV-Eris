@@ -25,7 +25,7 @@
 		else
 			return
 	// Client does NOT have tgui_input on: Returns regular input
-	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
+	if(!user.client.get_preference_value(/datum/client_preference/tgui_fancy) == GLOB.PREF_YES)
 		if(encode)
 			if(multiline)
 				return stripped_multiline_input(user, message, title, default, max_length)
@@ -110,12 +110,14 @@
 
 /datum/tgui_input_text/ui_static_data(mob/user)
 	var/list/data = list()
-	data["large_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
+	// data["large_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
+	data["large_buttons"] = TRUE
 	data["max_length"] = max_length
 	data["message"] = message
 	data["multiline"] = multiline
 	data["placeholder"] = default // Default is a reserved keyword
-	data["swapped_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
+	// data["swapped_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
+	data["swapped_buttons"] = FALSE
 	data["title"] = title
 	return data
 

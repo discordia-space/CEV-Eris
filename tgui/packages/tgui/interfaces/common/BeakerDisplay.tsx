@@ -1,3 +1,4 @@
+import { useBackend } from 'tgui/backend';
 import {
   AnimatedNumber,
   Box,
@@ -6,8 +7,6 @@ import {
   Section,
 } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
-
-import { useBackend } from 'tgui/backend';
 
 export type BeakerReagent = {
   name: string;

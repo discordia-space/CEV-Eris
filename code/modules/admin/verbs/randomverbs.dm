@@ -48,7 +48,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	var/msg = sanitize(input("Message:", text("Enter the text you wish to appear to everyone:")) as text)
+	var/msg = input("Message:", text("Enter the text you wish to appear to everyone:")) as text
 
 	if(!msg)
 		return

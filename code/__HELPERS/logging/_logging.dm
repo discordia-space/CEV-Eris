@@ -318,7 +318,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 
 // LEGACY ERROR LOG
 /proc/error(msg)
-	log_world("## ERROR: [msg][log_end]")
+	log_runtime("## ERROR: [msg][log_end]")
 
 /proc/log_debug(text)
 	log_runtime("DEBUG: [text]")

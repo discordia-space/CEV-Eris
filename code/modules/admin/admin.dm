@@ -547,20 +547,57 @@ var/global/floorIsLava = 0
 
 /datum/admins/proc/restart()
 	set category = "Server"
-	set name = "Restart"
-	set desc="Restarts the world"
+	set name = "Reboot World"
+	set desc = "Restarts the world immediately"
 	if (!usr.client.holder)
 		return
-	var/confirm = alert("Restart the game world?", "Restart", "Yes", "Cancel")
-	if(confirm == "Cancel")
-		return
-	if(confirm == "Yes")
-		to_chat(world, span_danger("Restarting world!</span> <span class='notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!"))
-		log_admin("[key_name(usr)] initiated a reboot.")
 
+	var/localhost_addresses = list("127.0.0.1", "::1")
+	var/list/options = list("Regular Restart", "Regular Restart (with delay)", "Hard Restart (No Delay/Feedback Reason)", "Hardest Restart (No actions, just reboot)")
+	if(world.TgsAvailable())
+		options += "Server Restart (Kill and restart DD)";
 
-		sleep(50)
-		world.Reboot()
+	if(SSticker.admin_delay_notice)
+		if(alert(usr, "Are you sure? An admin has already delayed the round end for the following reason: [SSticker.admin_delay_notice]", "Confirmation", "Yes", "No") != "Yes")
+			return FALSE
+
+	var/result = input(usr, "Select reboot method", "World Reboot", options[1]) as null|anything in options
+	if(result)
+		// SSblackbox.record_feedback("tally", "admin_verb", 1, "Reboot World") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		var/init_by = "Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]."
+		switch(result)
+			if("Regular Restart")
+				if(!(isnull(usr.client.address) || (usr.client.address in localhost_addresses)))
+					if(alert(usr, "Are you sure you want to restart the server?","This server is live", "Restart", "Cancel") != "Restart")
+						return FALSE
+				// SSplexora.restart_requester = usr
+				// SSplexora.restart_type = PLEXORA_SHUTDOWN_NORMAL
+				SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", 10)
+			if("Regular Restart (with delay)")
+				var/delay = input("What delay should the restart have (in seconds)?", "Restart Delay", 5) as num|null
+				if(!delay)
+					return FALSE
+				if(!(isnull(usr.client.address) || (usr.client.address in localhost_addresses)))
+					if(alert(usr,"Are you sure you want to restart the server?","This server is live", "Restart", "Cancel") != "Restart")
+						return FALSE
+				// SSplexora.restart_requester = usr
+				// SSplexora.restart_type = PLEXORA_SHUTDOWN_NORMAL
+				SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", delay * 10)
+			if("Hard Restart (No Delay, No Feedback Reason)")
+				// SSplexora.restart_type = PLEXORA_SHUTDOWN_HARD
+				// SSplexora.restart_requester = usr
+				to_chat(world, "World reboot - [init_by]")
+				world.Reboot()
+			if("Hardest Restart (No actions, just reboot)")
+				// SSplexora.restart_type = PLEXORA_SHUTDOWN_HARDEST
+				// SSplexora.restart_requester = usr
+				to_chat(world, "Hard world reboot - [init_by]")
+				world.Reboot(fast_track = TRUE)
+			if("Server Restart (Kill and restart DD)")
+				// SSplexora.restart_type = PLEXORA_SHUTDOWN_KILLDD
+				// SSplexora.restart_requester = usr
+				to_chat(world, "Server restart - [init_by]")
+				world.TgsEndProcess()
 
 //priority announce something to all clients.
 /datum/admins/proc/announce()
@@ -702,13 +739,14 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="People can't enter"
 	set name="Toggle Entering"
-	CONFIG_SET(flag/enter_allowed, !CONFIG_GET(flag/enter_allowed))
-	if (!CONFIG_GET(flag/enter_allowed))
+
+	GLOB.enter_allowed = !GLOB.enter_allowed
+	if (!GLOB.enter_allowed)
 		to_chat(world, "<B>New players may no longer enter the game.</B>")
 	else
 		to_chat(world, "<B>New players may now enter the game.</B>")
-	log_admin("[key_name(usr)] toggled new player game entering.")
-	message_admins(span_blue("[key_name_admin(usr)] toggled new player game entering."), 1)
+	log_admin("[key_name(usr)] toggled new player game entering. ([GLOB.enter_allowed ? "Allowed" : "Disabled"])")
+	message_admins(span_blue("[key_name_admin(usr)] toggled new player game entering.  ([GLOB.enter_allowed ? "Allowed" : "Disabled"])"), 1)
 	world.update_status()
 
 /datum/admins/proc/toggleAI()
@@ -793,18 +831,6 @@ var/global/floorIsLava = 0
 	log_admin("[key_name(usr)] delayed the round end for reason: [SSticker.admin_delay_notice]")
 	message_admins("[key_name_admin(usr)] delayed the round end for reason: [SSticker.admin_delay_notice]")
 
-
-/datum/admins/proc/immreboot()
-	set category = "Server"
-	set desc="Reboots the server post haste"
-	set name="Immediate Reboot"
-	if(!usr.client.holder)
-		return
-	if( alert("Reboot server?",,"Yes","No") == "No")
-		return
-	to_chat(world, span_red("<b>Rebooting world!</b> \blue Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!"))
-	log_admin("[key_name(usr)] initiated an immediate reboot.")
-	world.Reboot()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
@@ -1194,3 +1220,18 @@ var/global/floorIsLava = 0
 	else
 		to_chat(world, "<B>Shooting between z-levels has been globally disabled!</B>")
 	log_and_message_admins("toggled z_level_shooting.")
+
+/// Sends a message to adminchat when anyone with a holder logs in or logs out.
+/// TODO: Add player/admin prefs for this.
+/client/proc/adminGreet(logout = FALSE)
+	if(!SSticker.HasRoundStarted())
+		return
+
+	if(logout)
+		message_admins("Admin logout: [key_name(src)]")
+		return
+
+	if(!logout)
+		message_admins("Admin login: [key_name(src)]")
+		return
+

@@ -312,7 +312,7 @@
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
 	var/dam = damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE, penetration, sharp=is_sharp, edge=is_edge, wounding_multiplier = wounding)
-	if(dam > 0)
+	if(dam > 0 && !isnull(affecting))
 		affecting.add_autopsy_data("[attack_message] by \a [user]", dam)
 	updatehealth()
 	hit_impact(damage, get_step(user, src))

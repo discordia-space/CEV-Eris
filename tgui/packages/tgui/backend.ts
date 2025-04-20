@@ -425,7 +425,7 @@ export const selectBackend = <TData>(state: any): BackendState<TData> =>
   state.backend || {};
 
 /**
- * Get data from 'tgui backend.
+ * Get data from tgui backend.
  *
  * Includes the `act` function for performing DM actions.
  */

@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack } from 'tgui-core/components';
+
 import { Window } from '../layouts';
 
 interface TimerData {
@@ -8,8 +9,8 @@ interface TimerData {
   seconds: number;
 }
 
-export const Timer = (props: any, context: any) => {
-  const { act, data } = useBackend<TimerData>(context);
+export const Timer = (props: any) => {
+  const { act, data } = useBackend<TimerData>();
   const { isTiming } = data;
 
   return (
@@ -20,10 +21,11 @@ export const Timer = (props: any, context: any) => {
           buttons={
             <Button
               icon={'clock-o'}
-              content={isTiming ? 'Stop' : 'Start'}
               selected={isTiming}
               onClick={() => act('time')}
-            />
+            >
+              {isTiming ? 'Stop' : 'Start'}
+            </Button>
           }
         >
           <TimerContent />
@@ -33,8 +35,8 @@ export const Timer = (props: any, context: any) => {
   );
 };
 
-const TimerContent = (props: any, context: any) => {
-  const { act, data } = useBackend<TimerData>(context);
+const TimerContent = (props: any) => {
+  const { act, data } = useBackend<TimerData>();
   const { minutes, seconds, isTiming } = data;
 
   return (

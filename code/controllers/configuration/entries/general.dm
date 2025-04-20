@@ -19,8 +19,6 @@
 
 /datum/config_entry/flag/paranoia_logging //Log new byond accounts and first-time joins
 
-/datum/config_entry/flag/enter_allowed
-
 /datum/config_entry/flag/guests_allowed
 
 /datum/config_entry/flag/debugparanoid

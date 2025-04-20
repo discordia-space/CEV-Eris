@@ -123,8 +123,8 @@ So let's create our first React Component. Create a file with a name
 snippet (make sure component name matches the file name):
 
 ```jsx
-import { useBackend } from 'tgui/backend';
-import { Button, LabeledList, Section } from 'tgui-core/components';
+import { useBackend } from '../backend';
+import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 export const SampleInterface = (props, context) => {
@@ -255,8 +255,8 @@ you can do in this situation, is divide and conquer. Grab a chunk of your
 JSX code, and wrap it into a second, smaller React component:
 
 ```jsx
-import { useBackend } from 'tgui/backend';
-import { Button, LabeledList, Section } from 'tgui-core/components';
+import { useBackend } from '../backend';
+import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 export const SampleInterface = (props, context) => {
@@ -326,8 +326,8 @@ upon code review):
 And the template:
 
 ```jsx
-import { useBackend } from 'tgui/backend';
-import { Button, LabeledList, Section } from 'tgui-core/components';
+import { useBackend } from '../backend';
+import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 export const SampleInterface = (props, context) => {

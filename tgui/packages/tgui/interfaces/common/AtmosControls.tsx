@@ -1,3 +1,4 @@
+import { useBackend } from 'tgui/backend';
 import {
   Button,
   LabeledList,
@@ -7,7 +8,6 @@ import {
 import { BooleanLike } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { useBackend } from 'tgui/backend';
 import { getGasLabel } from '../../constants';
 
 export type VentProps = {

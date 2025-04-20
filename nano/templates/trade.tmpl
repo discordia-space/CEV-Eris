@@ -66,7 +66,7 @@
 	{{:helper.link("Logs", 'note', {'PRG_trade_screen' : "logs"}, data.tradescreen == "logs" ? 'selected' : null)}}
 	<br>
 	<hr>
-	{{if data.station_name() && (data.tradescreen == "goods" || data.tradescreen == "offers")}}
+	{{if data.station_name && (data.tradescreen == "goods" || data.tradescreen == "offers")}}
 		<div class="item" style="margin: 0px 0 0 0">
 			<table class="fixed" style="width: 60%; margin-left: 20%; background: #000000; border: 1px solid #40628a">
 				<tr>
@@ -131,9 +131,9 @@
 				</div>
 			</td>
 			<td style="width: 25%" valign="top">
-				{{if data.station_name()}}
+				{{if data.station_name}}
 					<b>Name</b><br>
-					{{:data.station_name()}}
+					{{:data.station_name}}
 					<br><br>
 					{{if data.station_recommendations_needed < 1}}
 						<b>Description</b><br>

@@ -1,39 +1,22 @@
-import { BooleanLike } from 'tgui-core/react';
-import { useBackend, sendAct, useLocalState } from 'tgui/backend';
+import { useState } from 'react';
+import { sendAct, useBackend } from 'tgui/backend';
 import {
-  Button,
   Box,
-  LabeledList,
+  Button,
   Divider,
   Dropdown,
+  LabeledList,
   NumberInput,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+
 import { GameIcon } from '../components/GameIcon';
 import { Window } from '../layouts';
 
-interface FrontNodeInterface {
-  dosh: number;
-  authorization: BooleanLike;
-  budget: number;
-  siloactive: BooleanLike;
-  matnums: number[];
-  matnames: string[];
-  maticons: string[];
-  matvalues: number[];
-  salesactive: BooleanLike;
-  itemnames: string[];
-  icons: string[];
-  itemprices: number[];
-}
-
-const recycling = (props, context) => {
+const Recycling = (props) => {
   const act = sendAct;
   const { budget, dosh, siloactive, itemnames, icons, itemprices } = props;
-  const [selection, setSelection] = useLocalState(
-    context,
-    'recyclingSelection',
-    -1,
-  );
+  const [selection, setSelection] = useState<number>(-1);
   return (
     <>
       {siloactive ? (
@@ -49,56 +32,62 @@ const recycling = (props, context) => {
           <Dropdown
             options={itemnames}
             onSelected={(value) => setSelection(itemnames.indexOf(value))}
+            selected={selection !== -1 ? itemnames[selection] : ''}
           />
         )}
         {itemnames[0] && (
-          <Button content="Eject Items" onClick={() => act('eject_item')} />
+          <Button onClick={() => act('eject_item')}>Eject Items</Button>
         )}
         {itemnames[0] && siloactive && (
-          <Button content="Sell Items" onClick={() => act('sell_item')} />
+          <Button onClick={() => act('sell_item')}>Sell Items</Button>
         )}
 
         {itemnames[0] && siloactive && (
-          <Button content="Recycle Items" onClick={() => act('recycle_item')} />
+          <Button onClick={() => act('recycle_item')}>Recycle Items</Button>
         )}
         {siloactive &&
           icons.map((mapped, count: number) => {
-            return displaythreestats(
-              itemnames[count],
-              itemprices[count],
-              icons[count],
-              context,
+            return (
+              <DisplayThreeStats
+                key={count}
+                name={itemnames[count]}
+                value={itemprices[count]}
+                icon={icons[count]}
+              />
             );
           })}
 
         {selection !== -1 && (
           <Button
-            content="Eject Selected"
             onClick={() => {
               setSelection(-1);
               act('eject_item', { chosen: selection + 1 });
             }}
-          />
+          >
+            Eject Selected
+          </Button>
         )}
 
         {selection !== -1 && siloactive && (
           <Button
-            content="Sell Selected"
             onClick={() => {
               setSelection(-1);
               act('sell_item', { chosen: selection + 1 });
             }}
-          />
+          >
+            Sell Selected
+          </Button>
         )}
 
         {selection !== -1 && siloactive && (
           <Button
-            content="Recycle Selected"
             onClick={() => {
               setSelection(-1);
               act('recycle_item', { chosen: selection + 1 });
             }}
-          />
+          >
+            Recycle Selected
+          </Button>
         )}
       </LabeledList>
       <Box>
@@ -112,7 +101,14 @@ const recycling = (props, context) => {
   );
 };
 
-const displaythreestats = (name, value, icon, context) => {
+interface DisplayThreeStatsProps {
+  name: string;
+  value: number;
+  icon: string;
+}
+
+const DisplayThreeStats = (props: DisplayThreeStatsProps) => {
+  const { name, value, icon } = props;
   return (
     <Box inline>
       {icon && <GameIcon html={icon} className="game-icon" />}
@@ -126,25 +122,32 @@ const displaythreestats = (name, value, icon, context) => {
   );
 };
 
-const exchange = (props, context) => {
+interface ExchangeProps {
+  matnames: string[];
+  matnums: number[];
+  matvalues: number[];
+  dosh: number;
+  maticons: string[];
+  siloactive: BooleanLike;
+}
+
+const Exchange = (props: ExchangeProps) => {
   const { matnames, matnums, matvalues, dosh, maticons, siloactive } = props;
-  const [selection, setSelection] = useLocalState(
-    context,
-    'exchangeSelection',
-    -1,
-  );
-  const [amt, setAmt] = useLocalState(context, 'exchangeAmt', 0);
+  const [selection, setSelection] = useState<number>(-1);
+  const [amt, setAmt] = useState(0);
   const act = sendAct;
   return (
     <>
       {siloactive ? (
         maticons.map((mapped, count: number) => {
-          return displayfourstats(
-            matnames[count],
-            matnums[count],
-            matvalues[count],
-            maticons[count],
-            context,
+          return (
+            <DisplayFourStats
+              key={count}
+              name={matnames[count]}
+              number={matnums[count]}
+              value={matvalues[count]}
+              icon={maticons[count]}
+            />
           );
         })
       ) : (
@@ -156,23 +159,27 @@ const exchange = (props, context) => {
       <Dropdown
         options={matnames}
         onSelected={(value) => setSelection(matnames.indexOf(value))}
+        selected={selection !== -1 ? matnames[selection] : ''}
       />
       <NumberInput
         value={amt}
-        maxValue={selection !== -1 ? matnums[matnames.indexOf(selection)] : 0}
-        onChange={(e, value) => setAmt(value)}
+        maxValue={selection !== -1 ? matnums[matnames[selection]] : 0}
+        onChange={(value: number) => setAmt(value)}
+        minValue={0}
+        step={1}
       />
       {selection !== -1 && 'price of selection:'}
       {selection !== -1 && amt * matvalues[selection] * 1.2}
       {selection !== -1 && (
         <Button
-          content="Buy Selected"
           onClick={() => {
             setSelection(-1);
             setAmt(0);
             act('buy_mat', { matselected: selection + 1, amount: amt });
           }}
-        />
+        >
+          Buy Selected
+        </Button>
       )}
       <Divider hidden />
       {dosh && 'Money:'}
@@ -184,14 +191,21 @@ const exchange = (props, context) => {
   );
 };
 
-const displayfourstats = (name, _number, value, icon, context) => {
+interface DisplayFourStatsProps {
+  name: string;
+  number: number;
+  value: number;
+  icon: string;
+}
+const DisplayFourStats = (props: DisplayFourStatsProps) => {
+  const { name, number, value, icon } = props;
   return (
     <Box inline>
       {icon && <GameIcon html={icon} className="game-icon" />}
       <Divider hidden />
       {name}
       {' available: '}
-      {_number}
+      {number}
       <Divider hidden />
       {'price per unit '}
       {value * 1.2}
@@ -199,7 +213,13 @@ const displayfourstats = (name, _number, value, icon, context) => {
   );
 };
 
-const administration = (props, context) => {
+interface AdministrationProps {
+  budget: number;
+  authorization: BooleanLike;
+  siloactive: BooleanLike;
+}
+
+const Administration = (props: AdministrationProps) => {
   const { budget, authorization, siloactive } = props;
   const act = sendAct;
   return (
@@ -219,8 +239,23 @@ const administration = (props, context) => {
   );
 };
 
-export const FrontNode = (props, context) => {
-  const { act, data } = useBackend<FrontNodeInterface>(context);
+interface FrontNodeInterface {
+  dosh: number;
+  authorization: BooleanLike;
+  budget: number;
+  siloactive: BooleanLike;
+  matnums: number[];
+  matnames: string[];
+  maticons: string[];
+  matvalues: number[];
+  salesactive: BooleanLike;
+  itemnames: string[];
+  icons: string[];
+  itemprices: number[];
+}
+
+export const FrontNode = (props) => {
+  const { act, data } = useBackend<FrontNodeInterface>();
   const {
     dosh,
     budget,
@@ -235,48 +270,61 @@ export const FrontNode = (props, context) => {
     icons,
     itemprices,
   } = data;
-  const [menu, setMenu] = useLocalState(
-    context,
-    'FrontNodeMenu',
+  const [menu, setMenu] = useState(
     itemnames[0] ? 'recycling' : 'materialexchange',
   );
   return (
-    <Window resizable>
+    <Window>
       <Window.Content scrollable>
         <Button
-          content="Administration"
           disabled={authorization ? false : true}
           selected={menu === 'administration'}
           onClick={() => setMenu('administration')}
-        />
+        >
+          Administration
+        </Button>
         <Button
-          content="Recycling"
           disabled={salesactive ? false : true}
           selected={menu === 'recycling'}
           onClick={() => setMenu('recycling')}
-        />
+        >
+          Recycling
+        </Button>
         <Button
-          content="Exchange"
           disabled={siloactive ? false : true}
           selected={menu === 'materialexchange'}
           onClick={() => setMenu('materialexchange')}
-        />
+        >
+          Exchange
+        </Button>
         <Divider />
-        {menu === 'administration' &&
-          authorization &&
-          administration({ budget, authorization, siloactive }, context)}
-        {menu === 'recycling' &&
-          salesactive &&
-          recycling(
-            { budget, dosh, siloactive, itemnames, icons, itemprices },
-            context,
-          )}
-        {menu === 'materialexchange' &&
-          siloactive &&
-          exchange(
-            { matnames, matnums, matvalues, dosh, maticons, siloactive },
-            context,
-          )}
+        {menu === 'administration' && authorization && (
+          <Administration
+            budget={budget}
+            authorization={authorization}
+            siloactive={siloactive}
+          />
+        )}
+        {menu === 'recycling' && salesactive && (
+          <Recycling
+            budget={budget}
+            dosh={dosh}
+            siloactive={siloactive}
+            itemnames={itemnames}
+            icons={icons}
+            itemprices={itemprices}
+          />
+        )}
+        {menu === 'materialexchange' && siloactive && (
+          <Exchange
+            matnames={matnames}
+            matnums={matnums}
+            matvalues={matvalues}
+            dosh={dosh}
+            maticons={maticons}
+            siloactive={siloactive}
+          />
+        )}
       </Window.Content>
     </Window>
   );

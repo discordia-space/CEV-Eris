@@ -1,4 +1,4 @@
-import { globalStore } from 'tgui/backend';
+import { globalStore } from './backend';
 import { IconProvider } from './Icons';
 
 export function App() {

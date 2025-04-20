@@ -1,6 +1,7 @@
-import { toFixed } from 'tgui-core/math';
-import { useBackend } from '../backend';
 import { Box, Button, NumberInput, Section, Stack } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 interface SignalerData {
@@ -24,7 +25,7 @@ export const SignalerContent = (props: any) => {
   const { act } = useBackend<SignalerData>();
 
   return (
-    <Section fill vertical>
+    <Section fill verticalAlign>
       <Stack vertical justify="space-between">
         <Stack.Item>
           <FrequencyContent />
@@ -76,7 +77,7 @@ const FrequencyContent = (props: any) => {
           }
         />
         <NumberInput
-          animate
+          animated
           width="80px"
           unit="kHz"
           step={3}
@@ -85,7 +86,7 @@ const FrequencyContent = (props: any) => {
           maxValue={maxFrequency}
           value={frequency}
           format={(value: number) => toFixed(value / 10, 1)}
-          onChange={(e: any, value: number) =>
+          onChange={(value: number) =>
             act('adjust', { freq: -frequency + value })
           }
         />
@@ -135,16 +136,14 @@ const CodeContent = (props: any) => {
         />
         <Button icon="backward" onClick={() => act('adjust', { code: -1 })} />
         <NumberInput
-          animate
+          animated
           step={1}
           stepPixelSize={6}
           minValue={1}
           maxValue={100}
           value={code}
           width="80px"
-          onDrag={(e: any, value: number) =>
-            act('adjust', { code: -code + value })
-          }
+          onDrag={(value: number) => act('adjust', { code: -code + value })}
         />
         <Button icon="forward" onClick={() => act('adjust', { code: 1 })} />
         <Button

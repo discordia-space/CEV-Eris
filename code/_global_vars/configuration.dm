@@ -6,4 +6,5 @@ GLOBAL_VAR_INIT(ooc_allowed, TRUE) // used with admin verbs to disable ooc - not
 GLOBAL_VAR_INIT(looc_allowed, TRUE)
 GLOBAL_VAR_INIT(dooc_allowed, TRUE)
 GLOBAL_VAR_INIT(dsay_allowed, TRUE)
+GLOBAL_VAR_INIT(enter_allowed, TRUE)
 

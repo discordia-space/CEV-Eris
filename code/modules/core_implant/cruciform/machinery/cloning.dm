@@ -345,7 +345,7 @@
 /obj/machinery/neotheology/biomass_container/Initialize(mapload, d, bolt=TRUE)
 	. = ..()
 	create_reagents(biomass_capacity)
-	if(SSticker.current_state != GAME_STATE_PLAYING)
+	if(!SSticker.IsRoundInProgress())
 		reagents.add_reagent("biomatter", 300)
 	anchored = bolt
 	var/turf/T = get_turf(src)

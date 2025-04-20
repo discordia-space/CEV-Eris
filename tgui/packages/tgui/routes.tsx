@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { useBackend } from 'tgui/backend';
+import { useBackend } from './backend';
 import { useDebug } from './debug';
 import { LoadingScreen } from './interfaces/common/LoadingScreen';
 import { Window } from './layouts';

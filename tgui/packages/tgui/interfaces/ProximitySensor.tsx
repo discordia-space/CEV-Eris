@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
+
 import { Window } from '../layouts';
 
 interface ProximitySensorData {
@@ -10,7 +11,7 @@ interface ProximitySensorData {
   range: number;
 }
 
-export const ProximitySensor = (props: any, context: any) => {
+export const ProximitySensor = (props: any) => {
   return (
     <Window width={230} height={190}>
       <Window.Content>
@@ -20,8 +21,8 @@ export const ProximitySensor = (props: any, context: any) => {
   );
 };
 
-const ProximitySensorContent = (props: any, context: any) => {
-  const { act, data } = useBackend<ProximitySensorData>(context);
+const ProximitySensorContent = (props: any) => {
+  const { act, data } = useBackend<ProximitySensorData>();
   const { isScanning, isTiming, minutes, seconds, range } = data;
 
   return (
@@ -57,8 +58,8 @@ const ProximitySensorContent = (props: any, context: any) => {
   );
 };
 
-const RangeContent = (props: any, context: any) => {
-  const { act, data } = useBackend<ProximitySensorData>(context);
+const RangeContent = (props: any) => {
+  const { act, data } = useBackend<ProximitySensorData>();
   const { isScanning, range } = data;
 
   return (
@@ -83,8 +84,8 @@ const RangeContent = (props: any, context: any) => {
   );
 };
 
-const TimeContent = (props: any, context: any) => {
-  const { act, data } = useBackend<ProximitySensorData>(context);
+const TimeContent = (props: any) => {
+  const { act, data } = useBackend<ProximitySensorData>();
   const { isScanning, isTiming, minutes, seconds } = data;
 
   return (

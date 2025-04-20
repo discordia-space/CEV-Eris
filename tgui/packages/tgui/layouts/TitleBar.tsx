@@ -4,7 +4,7 @@ import { UI_DISABLED, UI_INTERACTIVE, UI_UPDATE } from 'tgui-core/constants';
 import { BooleanLike, classes } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
 
-import { globalStore } from 'tgui/backend';
+import { globalStore } from '../backend';
 import { toggleKitchenSink } from '../debug/actions';
 
 type TitleBarProps = Partial<{

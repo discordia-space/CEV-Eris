@@ -1,11 +1,11 @@
 type TraitProps = {
-  fluff: JSX.Element;
+  fluff: React.ReactElement;
   title: string;
   img: string;
 };
 
 type TraitFluffProps = {
-  bar?: JSX.Element;
+  bar?: React.ReactElement;
   desc: string;
 };
 

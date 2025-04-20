@@ -1,4 +1,3 @@
-import { capitalize } from 'tgui-core/string';
 import { useBackend } from 'tgui/backend';
 import {
   BlockQuote,
@@ -11,6 +10,8 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
+
 import { GameIcon } from '../components/GameIcon';
 import { Window } from '../layouts';
 
@@ -54,8 +55,8 @@ interface VendingData {
   advertisement?: string;
 }
 
-const managing = (managingData: ErrorData, context: any) => {
-  const { act } = useBackend<VendingData>(context);
+const managing = (managingData: ErrorData) => {
+  const { act } = useBackend<VendingData>();
 
   return (
     <>
@@ -64,7 +65,7 @@ const managing = (managingData: ErrorData, context: any) => {
           <NoticeBox
             style={{
               overflow: 'hidden',
-              'word-break': 'break-all',
+              wordBreak: 'break-all',
             }}
           >
             {managingData.message}
@@ -78,27 +79,25 @@ const managing = (managingData: ErrorData, context: any) => {
               fluid
               ellipsis
               icon="building"
-              content="Organization"
               onClick={() => act('setdepartment')}
-            />
+            >
+              Organization
+            </Button>
           </Stack.Item>
           <Stack.Item grow>
             <Button
               fluid
               ellipsis
               icon="id-card"
-              content="Account"
               onClick={() => act('setaccount')}
-            />
+            >
+              Account
+            </Button>
           </Stack.Item>
           <Stack.Item grow>
-            <Button
-              fluid
-              ellipsis
-              icon="tags"
-              content="Markup"
-              onClick={() => act('markup')}
-            />
+            <Button fluid ellipsis icon="tags" onClick={() => act('markup')}>
+              Markup
+            </Button>
           </Stack.Item>
         </Stack>
       </Stack.Item>
@@ -106,8 +105,8 @@ const managing = (managingData: ErrorData, context: any) => {
   );
 };
 
-const custom = (props: any, context: any) => {
-  const { act, data } = useBackend<VendingData>(context);
+const custom = (props: any) => {
+  const { act, data } = useBackend<VendingData>();
   const { ownerData } = data;
 
   return (
@@ -134,14 +133,14 @@ const custom = (props: any, context: any) => {
             </LabeledList>
           </Stack.Item>
         </Stack>
-        {(data.isManaging && managing(data.managingData, context)) || null}
+        {(data.isManaging && managing(data.managingData)) || null}
       </Stack>
     </Section>
   );
 };
 
-const product = (product: ProductData, context: any) => {
-  const { act, data } = useBackend<VendingData>(context);
+const product = (product: ProductData) => {
+  const { act, data } = useBackend<VendingData>();
 
   return (
     <Stack.Item>
@@ -156,8 +155,8 @@ const product = (product: ProductData, context: any) => {
                 <Stack.Item
                   style={{
                     display: 'flex',
-                    'align-items': 'center',
-                    'justify-content': 'center',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                 >
                   <GameIcon
@@ -186,25 +185,27 @@ const product = (product: ProductData, context: any) => {
         </Stack.Item>
         {(data.isManaging && (
           <>
-            <Stack.Item fill>
+            <Stack.Item grow>
               <Button
                 icon="tag"
                 color="yellow"
-                title="Change Price"
                 className="Vending--icon"
                 verticalAlignContent="middle"
                 onClick={() => act('setprice', { key: product.key })}
-              />
+              >
+                Change Price
+              </Button>
             </Stack.Item>
             <Stack.Item>
               <Button
                 icon="eject"
                 color="red"
-                title="Remove"
                 className="Vending--icon"
                 verticalAlignContent="middle"
                 onClick={() => act('remove', { key: product.key })}
-              />
+              >
+                Remove
+              </Button>
             </Stack.Item>
           </>
         )) ||
@@ -214,8 +215,8 @@ const product = (product: ProductData, context: any) => {
   );
 };
 
-const pay = (vendingProduct: VendingProductData, context: any) => {
-  const { act } = useBackend<VendingData>(context);
+const pay = (vendingProduct: VendingProductData) => {
+  const { act } = useBackend<VendingData>();
 
   return (
     <Modal className="Vending--modal">
@@ -254,17 +255,14 @@ const pay = (vendingProduct: VendingProductData, context: any) => {
   );
 };
 
-export const Vending = (props: any, context: any) => {
-  const { act, data } = useBackend<VendingData>(context);
+export const Vending = (props: any) => {
+  const { act, data } = useBackend<VendingData>();
 
   return (
     <Window width={450} height={600} title={`Vending Machine - ${data.name}`}>
       <Window.Content>
         <Stack fill vertical>
-          {(data.isCustom && (
-            <Stack.Item>{custom(data, context)}</Stack.Item>
-          )) ||
-            null}
+          {(data.isCustom && <Stack.Item>{custom(data)}</Stack.Item>) || null}
           {(data.panel && (
             <Stack.Item>
               <Button
@@ -293,13 +291,13 @@ export const Vending = (props: any, context: any) => {
             <Section scrollable fill title="Products">
               <Stack fill vertical>
                 {data.products &&
-                  data.products.map((value, i) => product(value, context))}
+                  data.products.map((value, i) => product(value))}
               </Stack>
             </Section>
           </Stack.Item>
         </Stack>
       </Window.Content>
-      {(data.isVending && pay(data.vendingData, context)) || null}
+      {(data.isVending && pay(data.vendingData)) || null}
     </Window>
   );
 };

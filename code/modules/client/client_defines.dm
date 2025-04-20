@@ -62,6 +62,8 @@
 
 	var/adminhelped = 0
 
+	var/fullscreen = FALSE
+
 	/// List of Stat Panel tabs
 	var/list/verb_tabs = list()
 

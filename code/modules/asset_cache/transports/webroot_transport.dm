@@ -16,7 +16,7 @@
 /// We also save it to the CDN webroot at this step instead of waiting for send_assets()
 /// asset_name - the identifier of the asset
 /// asset - the actual asset file or an asset_cache_item datum.
-/datum/asset_transport/webroot/register_asset(asset_name, asset, file_hash, dmi_file_path)
+/datum/asset_transport/webroot/register_asset(asset_name, asset, file_hash, dmi_path)
 	. = ..()
 	var/datum/asset_cache_item/ACI = .
 

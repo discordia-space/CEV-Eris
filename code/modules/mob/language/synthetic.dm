@@ -24,7 +24,7 @@
 		if (isangel(M))
 			M.show_message("[message_start] [message_body]", 2)
 		if(!isnewplayer(M) && !isbrain(M)) //No meta-evesdropping
-			M.show_message("[message_start] ([ghost_follow_link(speaker, M)]) [message_body]", 2)
+			M.show_message("[message_start] [ghost_follow_link(speaker, M)] [message_body]", 2)
 
 	for (var/mob/living/S in GLOB.living_mob_list)
 

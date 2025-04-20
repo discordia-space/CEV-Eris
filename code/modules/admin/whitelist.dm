@@ -1,11 +1,6 @@
-#define WHITELISTFILE "data/whitelist.txt"
+#define WHITELISTFILE "[global.config.directory]/whitelist.txt"
 
-GLOBAL_LIST_EMPTY(whitelist)
-
-/hook/startup/proc/loadWhitelist()
-	if(CONFIG_GET(flag/usewhitelist))
-		load_whitelist()
-	return 1
+GLOBAL_LIST(whitelist)
 
 /proc/load_whitelist()
 	GLOB.whitelist = list()

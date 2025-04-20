@@ -458,7 +458,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	else
 		features += "<b>STARTING</b>"
 
-	if (!CONFIG_GET(flag/enter_allowed))
+	if (!GLOB.enter_allowed)
 		features += "closed"
 
 	features += CONFIG_GET(flag/abandon_allowed) ? "respawn" : "no respawn"

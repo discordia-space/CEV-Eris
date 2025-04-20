@@ -142,7 +142,7 @@
 	panel.open()
 
 /datum/mind/proc/edit_memory()
-	if(SSticker.current_state != GAME_STATE_PLAYING)
+	if(!SSticker.IsRoundInProgress())
 		alert("Not before round-start!", "Alert")
 		return
 

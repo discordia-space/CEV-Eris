@@ -1,6 +1,5 @@
-import { Button, Stack } from 'tgui-core/components';
-
 import { useBackend } from 'tgui/backend';
+import { Button, Stack } from 'tgui-core/components';
 
 type Props = {
   /** Current layout state, which will be passed. */

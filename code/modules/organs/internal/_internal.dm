@@ -111,6 +111,8 @@
 	SEND_SIGNAL(src, COMSIG_ADDVAL)
 
 /obj/item/organ/internal/proc/handle_organ_eff()
+	if (!owner)
+		return
 	for(var/process in organ_efficiency)
 		if(is_usable())
 			owner.internal_organs_by_efficiency[process] |= src

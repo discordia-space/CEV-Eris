@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
+
 import { Window } from '../layouts';
 
 interface TransferValveData {
@@ -9,7 +10,7 @@ interface TransferValveData {
   isOpen: boolean;
 }
 
-export const TransferValve = (props: any, context: any) => {
+export const TransferValve = (props: any) => {
   return (
     <Window width={310} height={300}>
       <Window.Content>
@@ -19,8 +20,8 @@ export const TransferValve = (props: any, context: any) => {
   );
 };
 
-const TransferValveContent = (props: any, context: any) => {
-  const { act, data } = useBackend<TransferValveData>(context);
+const TransferValveContent = (props: any) => {
+  const { act, data } = useBackend<TransferValveData>();
   const { attachmentOne, attachmentTwo, attachment, isOpen } = data;
 
   return (
@@ -31,10 +32,11 @@ const TransferValveContent = (props: any, context: any) => {
             <LabeledList.Item label="Valve Status">
               <Button
                 icon={isOpen ? 'unlock' : 'lock'}
-                content={isOpen ? 'Opened' : 'Closed'}
                 disabled={!attachmentOne || !attachmentTwo}
                 onClick={() => act('toggle')}
-              />
+              >
+                {isOpen ? 'Opened' : 'Closed'}
+              </Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -44,11 +46,12 @@ const TransferValveContent = (props: any, context: any) => {
           title="Valve Attachment"
           buttons={
             <Button
-              content="Configure"
               icon={'cog'}
               disabled={!attachment}
               onClick={() => act('device')}
-            />
+            >
+              Configure
+            </Button>
           }
         >
           <LabeledList>
@@ -56,10 +59,11 @@ const TransferValveContent = (props: any, context: any) => {
               {attachment ? (
                 <Button
                   icon={'eject'}
-                  content={attachment}
                   disabled={!attachment}
                   onClick={() => act('remove_device')}
-                />
+                >
+                  {attachment}
+                </Button>
               ) : (
                 <Box color="average">No Assembly</Box>
               )}
@@ -74,10 +78,11 @@ const TransferValveContent = (props: any, context: any) => {
               {attachmentOne ? (
                 <Button
                   icon={'eject'}
-                  content={attachmentOne}
                   disabled={!attachmentOne}
                   onClick={() => act('tankone')}
-                />
+                >
+                  {attachmentOne}
+                </Button>
               ) : (
                 <Box color="average">No Tank</Box>
               )}
@@ -92,10 +97,11 @@ const TransferValveContent = (props: any, context: any) => {
               {attachmentTwo ? (
                 <Button
                   icon={'eject'}
-                  content={attachmentTwo}
                   disabled={!attachmentTwo}
                   onClick={() => act('tanktwo')}
-                />
+                >
+                  {attachmentTwo}
+                </Button>
               ) : (
                 <Box color="average">No Tank</Box>
               )}

@@ -201,9 +201,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(byond_version >= 516)
 		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
 
-	// Instantiate ~~tgui~~ goonchat panel
-	// tgui_panel = new(src)
-	// tgui_panel = new /datum/tgui_panel(src)
+	// Instantiate tgui panel
+	tgui_panel = new(src, "browseroutput")
+
+	// tgui_say = new(src, "tgui_say")
+
+	initialize_commandbar_spy()
 
 	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like admins.
 	//Admin Authorisation
@@ -240,15 +243,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
 	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[full_version]")
 
-	// // Change the way they should download resources.
-	// if(CONFIG_GET(string/resource_urls))
-	// 	src.preload_rsc = pick(CONFIG_GET(string/resource_urls))
-	// else src.preload_rsc = 1 // If resource_urls is not set, preload like normal.
-	src.preload_rsc = 1
-
 	. = ..() //calls mob.Login()
 
-	to_chat(src, span_red("If the title screen is black, resources are still downloading. Please be patient until the title screen appears."))
+	to_chat_immediate(src, span_red("If the title screen is black, resources are still downloading. Please be patient until the title screen appears."))
 
 	if (byond_version >= 512)
 		if (!byond_build || byond_build < 1386)
@@ -259,11 +256,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 		if (num2text(byond_build) in GLOB.blacklisted_builds)
 			log_access("Failed login: [key] - blacklisted byond version - [byond_version].[byond_build]")
-			to_chat(src, span_userdanger("Your version of byond is blacklisted."))
-			to_chat(src, span_danger("Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]]."))
-			to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
+			to_chat_immediate(src, span_userdanger("Your version of byond is blacklisted."))
+			to_chat_immediate(src, span_danger("Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]]."))
+			to_chat_immediate(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
 			if(connecting_admin)
-				to_chat(src, "As an admin, you are being allowed to continue using this version, but please consider changing byond versions")
+				to_chat_immediate(src, "As an admin, you are being allowed to continue using this version, but please consider changing byond versions")
 			else
 				qdel(src)
 				return
@@ -271,7 +268,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/bad_version = CONFIG_GET(number/minimum_byond_version) && byond_version < CONFIG_GET(number/minimum_byond_version)
 		var/bad_build = CONFIG_GET(number/minimum_byond_build) && byond_build < CONFIG_GET(number/minimum_byond_build)
 		if (bad_build || bad_version)
-			to_chat(src, "You are attempting to connect with a out of date version of BYOND. Please update to the latest version at http://www.byond.com/ before trying again.")
+			to_chat_immediate(src, "You are attempting to connect with a out of date version of BYOND. Please update to the latest version at http://www.byond.com/ before trying again.")
 			log_access("Failed login: [key] - out of date version - [byond_version].[byond_build]")
 			qdel(src)
 			return
@@ -279,14 +276,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
 	// addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 30 SECONDS)
-	// Starts the chat
-
-	// Instantiate tgui panel
-	tgui_panel = new(src, "browseroutput")
-
-	// tgui_say = new(src, "tgui_say")
-	initialize_commandbar_spy()
-
 
 	connection_time = world.time
 	connection_realtime = world.realtime
@@ -317,6 +306,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(holder)
 		add_admin_verbs()
 		admin_memo_show()
+		adminGreet()
 
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
@@ -364,6 +354,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(holder)
 		holder.owner = null
 		GLOB.admins -= src
+		handle_admin_logout()
 	QDEL_NULL(tooltips)
 	if(dbcon.IsConnected())
 		var/DBQuery/query = dbcon.NewQuery("UPDATE players SET last_seen = Now() WHERE id = [src.id]")
@@ -586,34 +577,27 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
+/// Send resources to the client.
+/// Sends both game resources and browser assets.
 /client/proc/send_resources()
-// #if (PRELOAD_RSC == 0)
-// 	var/static/next_external_rsc = 0
-// 	var/list/external_rsc_urls = CONFIG_GET(keyed_list/external_rsc_urls)
-// 	if(length(external_rsc_urls))
-// 		next_external_rsc = WRAP(next_external_rsc+1, 1, external_rsc_urls.len+1)
-// 		preload_rsc = external_rsc_urls[next_external_rsc]
-// #endif
+#if (PRELOAD_RSC == 0)
+	var/static/next_external_rsc = 0
+	var/list/external_rsc_urls = CONFIG_GET(keyed_list/external_rsc_urls)
+	if(length(external_rsc_urls))
+		next_external_rsc = WRAP(next_external_rsc+1, 1, external_rsc_urls.len+1)
+		preload_rsc = external_rsc_urls[next_external_rsc]
+#endif
 
-	spawn (10) //removing this spawn causes all clients to not get verbs.
+	spawn (10) //removing this spawn causes all clients to not get verbs. (this can't be addtimer because these assets may be needed before the mc inits)
 
 		//load info on what assets the client has
 		src << browse('code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
 
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
-		// if (CONFIG_GET(flag/asset_simple_preload))
-		addtimer(CALLBACK(SSassets.transport, TYPE_PROC_REF(/datum/asset_transport, send_assets_slow), src, SSassets.transport.preload), 5 SECONDS)
+		if (CONFIG_GET(flag/asset_simple_preload))
+			addtimer(CALLBACK(SSassets.transport, TYPE_PROC_REF(/datum/asset_transport, send_assets_slow), src, SSassets.transport.preload), 5 SECONDS)
 
-		// #if (PRELOAD_RSC == 0)
-		// for (var/name in GLOB.vox_sounds)
-		// 	var/file = GLOB.vox_sounds[name]
-		// 	Export("##action=load_rsc", file)
-		// 	stoplag()
-		// #endif
-
-		// ???
 		send_all_cursor_icons(src)
-
 
 //Hook, override it to run code when dir changes
 //Like for /atoms, but clients are their own snowflake FUCK
@@ -817,25 +801,63 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	init_verbs()
 
+// /client/verb/enable_fullscreen()
+// 	set hidden = TRUE
+// 	winset(usr, "mainwindow", "titlebar=false")
+// 	winset(usr, "mainwindow", "menu=")
+// 	winset(usr, "mainwindow", "is-maximized=false")
+// 	winset(usr, "mainwindow", "is-maximized=true")
+// 	fit_viewport()
 
-/client/verb/toggle_fullscreen() // F11 hotkey
+// /client/verb/disable_fullscreen()
+// 	set hidden = TRUE
+// 	winset(usr, "mainwindow", "titlebar=true")
+// 	winset(usr, "mainwindow", "menu=menu")
+// 	winset(usr, "mainwindow", "is-maximized=false")
+// 	fit_viewport()
+
+/client/verb/toggle_fullscreen()
 	set name = "Toogle Fullscreen"
 	set category = "OOC"
 
-	src << output("", "browseroutput:fullscreen_check")
+	fullscreen = !fullscreen
 
-
-/client/verb/enable_fullscreen()
-	set hidden = TRUE
-	winset(usr, "mainwindow", "titlebar=false")
-	winset(usr, "mainwindow", "menu=")
-	winset(usr, "mainwindow", "is-maximized=false")
-	winset(usr, "mainwindow", "is-maximized=true")
+	if(fullscreen)
+		winset(usr, "mainwindow", "titlebar=false")
+		winset(usr, "mainwindow", "menu=")
+		winset(usr, "mainwindow", "is-maximized=false")
+		winset(usr, "mainwindow", "is-maximized=true")
+	else
+		winset(usr, "mainwindow", "titlebar=true")
+		winset(usr, "mainwindow", "menu=menu")
+		winset(usr, "mainwindow", "is-maximized=false")
 	fit_viewport()
 
-/client/verb/disable_fullscreen()
-	set hidden = TRUE
-	winset(usr, "mainwindow", "titlebar=true")
-	winset(usr, "mainwindow", "menu=menu")
-	winset(usr, "mainwindow", "is-maximized=false")
-	fit_viewport()
+/// Handles any "fluff" or supplementary procedures related to an admin logout event. Should not have anything critically related cleaning up an admin's logout.
+/client/proc/handle_admin_logout()
+	adminGreet(logout = TRUE)
+	if(length(GLOB.admins) > 0 || !SSticker.IsRoundInProgress()) // We only want to report this stuff if we are currently playing.
+		return
+
+	var/list/message_to_send = list()
+	var/static/list/cheesy_messages = null
+
+	cheesy_messages ||= list(
+		"Forever alone :(",
+		"I have no admins online!",
+		"I need a hug :(",
+		"I need someone on me :(",
+		"I want a man :(",
+		"I'm all alone :(",
+		"I'm feeling lonely :(",
+		"I'm so lonely :(",
+		"Someone come hold me :(",
+		"What happened? Where has everyone gone?",
+		"Where has everyone gone?",
+		"Why does nobody love me? :(",
+	)
+
+	message_to_send += pick(cheesy_messages)
+	message_to_send += "(No admins online)"
+
+	send2adminchat("Server", jointext(message_to_send, " "))

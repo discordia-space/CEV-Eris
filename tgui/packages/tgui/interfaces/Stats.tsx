@@ -1,8 +1,10 @@
-import { useBackend, useLocalState } from 'tgui/backend';
+import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
 import { Box, Section, Stack, Tabs, Tooltip } from 'tgui-core/components';
-import { Window } from '../layouts';
-import { capitalize } from 'tgui-core/string';
 import { classes } from 'tgui-core/react';
+import { capitalize } from 'tgui-core/string';
+
+import { Window } from '../layouts';
 
 enum TABS {
   stats,
@@ -51,8 +53,8 @@ const perk = (perk: PerkData) => {
   );
 };
 
-const PerksTab = (props: any, context: any) => {
-  const { data } = useBackend<StatsData>(context);
+const PerksTab = (props: any) => {
+  const { data } = useBackend<StatsData>();
   const { perks } = data;
 
   return (
@@ -85,8 +87,8 @@ const stat = (stat: StatData) => {
   );
 };
 
-const StatsTab = (props: any, context: any) => {
-  const { data } = useBackend<StatsData>(context);
+const StatsTab = (props: any) => {
+  const { data } = useBackend<StatsData>();
   const { stats } = data;
 
   return (
@@ -97,18 +99,14 @@ const StatsTab = (props: any, context: any) => {
 };
 
 export const Stats = (props: any, context: any) => {
-  const { data } = useBackend<StatsData>(context);
+  const { data } = useBackend<StatsData>();
   const { name, hasPerks } = data;
 
-  const [currentTab, setCurrentTab] = useLocalState(
-    context,
-    'stats_tab',
-    TABS.stats,
-  );
+  const [currentTab, setCurrentTab] = useState(TABS.stats);
 
   return (
     <Window width={285} height={295} title={`${name}'s Stats`}>
-      <Window.Content style={{ 'background-image': 'none' }}>
+      <Window.Content style={{ backgroundImage: 'none' }}>
         <Stack fill vertical>
           {(hasPerks && (
             <Stack.Item>

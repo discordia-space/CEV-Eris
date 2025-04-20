@@ -115,7 +115,7 @@ var/datum/announcement/priority/command/command_announcement = new(do_log = 0, d
 	command_announcement.Announce("It has come to our attention that the ship passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 /proc/AnnounceArrival(var/mob/living/character, var/rank, var/join_message)
-	if (join_message && SSticker.current_state == GAME_STATE_PLAYING && SSjob.ShouldCreateRecords(rank))
+	if (join_message && SSticker.IsRoundInProgress() && SSjob.ShouldCreateRecords(rank))
 		if(issilicon(character))
 			GLOB.announcer.autosay("A new [rank] [join_message].", ANNOUNCER_NAME, use_text_to_speech = TRUE)
 		else

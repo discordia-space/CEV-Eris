@@ -710,9 +710,25 @@
 				(QUALITY_CUTTING in I.tool_qualities) || \
 				istype(I, /obj/item/device/assembly/signaler)))
 				return attack_hand(user)
-			user.visible_message(span_danger("The [name] has been hit with the [I.name] by [user.name]!"), \
+
+			if (!istype(I, /obj/item/material/kitchen/utensil/fork))
+				user.visible_message(span_danger("The [name] has been hit with the [I.name] by [user.name]!"), \
 				span_danger("You hit the [name] with your [I.name]!"), \
-				"You hear bang")
+				"You hear a bang")
+				return
+
+			to_chat(user, span_warning("You start looking around for a socket on \the [src]..."))
+			if (!do_after(user, 1 SECOND, src))
+				to_chat(user, span_notice("You reconsider your life choices."))
+				return
+			if (istype(I, /obj/item/material/kitchen/utensil/fork/plastic))
+				to_chat(user, span_warning("You stick \the [I] into a small socket below the APC but nothing happens. Maybe it's for the best. "))
+				return
+
+			user.visible_message(span_danger("[user.name] shocks themself by putting \a [I] into \the [src]!"), \
+				span_danger("You stick \the [I] into \the [src] and shock yourself! Oh god!"), \
+				"You hear a loud electrical BZZZT.")
+			electrocute_mob(user, get_area(src), src)
 
 // attack with hand - remove cell (if cover open) or interact with the APC
 

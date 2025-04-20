@@ -1223,7 +1223,7 @@ non_blocking var, if true, will allow sleeping to prevent server freeze, at the 
 				SSassets.transport.send_assets(thing2, name)
 			if(sourceonly)
 				return SSassets.transport.get_asset_url(name)
-			return "<img class='[extra_classes] icon icon-misc' src='[SSassets.transport.get_asset_url(name)]'>"
+			return "<img class='[extra_classes] icon icon-misc' src='[SSassets.transport.get_asset_url(name)]'/>"
 
 		//its either an atom, image, or mutable_appearance, we want its icon var
 		icon2collapse = thing.icon
@@ -1264,7 +1264,7 @@ non_blocking var, if true, will allow sleeping to prevent server freeze, at the 
 		SSassets.transport.send_assets(client_target, key)
 	if(sourceonly)
 		return SSassets.transport.get_asset_url(key)
-	return "<img class='[extra_classes] icon icon-[icon_state]' src='[SSassets.transport.get_asset_url(key)]'>"
+	return "<img class='[extra_classes] icon icon-[icon_state]' src='[SSassets.transport.get_asset_url(key)]'/>"
 
 /proc/icon2base64html(thing)
 	var/static/list/bicon_cache = list()
@@ -1279,7 +1279,7 @@ non_blocking var, if true, will allow sleeping to prevent server freeze, at the 
 		if(!cached)
 			bicon_cache[key] = cached = icon2base64(path2icon(A))
 
-		return "<img class='game-icon' src='data:image/png;base64,[cached]'>"
+		return "<img class='game-icon' src='data:image/png;base64,[cached]'/>"
 
 	if(isicon(thing))
 		var/key = REF(thing)
@@ -1288,7 +1288,7 @@ non_blocking var, if true, will allow sleeping to prevent server freeze, at the 
 		if(!cached)
 			bicon_cache[key] = cached = icon2base64(thing)
 
-		return "<img class='game-icon' src='data:image/png;base64,[cached]'>"
+		return "<img class='game-icon' src='data:image/png;base64,[cached]'/>"
 
 	CRASH("[thing] must be a path or an icon")
 

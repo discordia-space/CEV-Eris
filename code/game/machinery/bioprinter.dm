@@ -33,7 +33,7 @@
 
 /obj/machinery/bioprinter/New()
 	..()
-	if(SSticker.current_state != GAME_STATE_PLAYING)
+	if(!SSticker.IsRoundInProgress())
 		stored_matter = 200
 
 

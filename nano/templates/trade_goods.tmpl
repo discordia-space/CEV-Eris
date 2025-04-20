@@ -1,4 +1,4 @@
-{{if data.station_name()}}
+{{if data.station_name}}
 	<div class='nanoMap' style='padding: 25px 50px;'>
 		{{for data.categories}}
 			{{:helper.link(value.name, (data.current_category == value.index ? 'folder-open' : 'folder-collapsed'), {'PRG_goods_category': value.index}, (data.current_category == value.index ? 'selected' : null))}}

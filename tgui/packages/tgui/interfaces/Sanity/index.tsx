@@ -1,4 +1,3 @@
-import { resolveAsset } from '../../assets';
 import { useBackend } from 'tgui/backend';
 import {
   BlockQuote,
@@ -8,6 +7,8 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+
+import { resolveAsset } from '../../assets';
 import { Window } from '../../layouts';
 import {
   TRAIT_ASSET,
@@ -45,8 +46,8 @@ export const TraitFluff = (props: TraitFluffProps) => {
         grow
         style={{
           overflow: 'hidden',
-          'white-space': 'wrap',
-          'text-overflow': 'ellipsis',
+          whiteSpace: 'wrap',
+          textOverflow: 'ellipsis',
         }}
       >
         <BlockQuote>{desc}</BlockQuote>
@@ -64,8 +65,8 @@ export const DesiresTraitFluff = (props: DesiresTraitFluffProps) => {
         grow
         style={{
           overflow: 'hidden',
-          'white-space': 'wrap',
-          'text-overflow': 'ellipsis',
+          whiteSpace: 'wrap',
+          textOverflow: 'ellipsis',
         }}
       >
         <BlockQuote>{desc}</BlockQuote>
@@ -93,6 +94,7 @@ export const Trait = (props: TraitProps) => {
     <Section title={title}>
       <Stack height="100px" fill>
         <Stack.Item shrink>
+          {/* TODO: Replace this wiht an actual image element */}
           <Box as="img" width="100px" src={resolveAsset(img)} />
         </Stack.Item>
         <Stack.Item grow basis={0}>
@@ -103,13 +105,13 @@ export const Trait = (props: TraitProps) => {
   );
 };
 
-export const Sanity = (props: any, context: any) => {
-  const { data } = useBackend<SanityData>(context);
+export const Sanity = (props: any) => {
+  const { data } = useBackend<SanityData>();
   const { style, sanity, desires, righteous, insight } = data;
 
   return (
     <Window width={650} height={righteous.present ? 802 : 650}>
-      <Window.Content style={{ 'background-image': 'none' }} scrollable>
+      <Window.Content style={{ backgroundImage: 'none' }} scrollable>
         <Stack vertical>
           <Stack.Item>
             <Trait

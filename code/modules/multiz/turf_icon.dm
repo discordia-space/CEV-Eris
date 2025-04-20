@@ -5,7 +5,7 @@
 	is_transparent = TRUE
 
 /turf/open/update_icon(var/update_neighbors, var/roundstart_update = FALSE)
-	if (SSticker.current_state != GAME_STATE_PLAYING)
+	if (!SSticker.IsRoundInProgress())
 		return
 
 	if (roundstart_update)

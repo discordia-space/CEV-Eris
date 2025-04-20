@@ -8,7 +8,7 @@ import { Box, Button } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
 
 import { resolveAsset } from '../assets';
-import { useBackend } from 'tgui/backend';
+import { useBackend } from '../backend';
 import { Window } from './Window';
 
 export type NTOSData = {

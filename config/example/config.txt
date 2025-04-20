@@ -19,7 +19,7 @@ $include logging.txt
 # If you include a hashtag in a setting like so: MYHEXCOLORCONFIG #FF73D2
 # It will still be parsed
 
-## Server name: This appears at the top of the screen in-game. In this case it will read "tgstation: station_name()" where station_name() is the randomly generated name of the station for the round. Remove the # infront of SERVERNAME and replace 'spacestation13' with the name of your choice
+## Server name: This appears at the top of the screen in-game. In this case it will read "tgstation: station_name" where station_name is the randomly generated name of the station for the round. Remove the # infront of SERVERNAME and replace 'spacestation13' with the name of your choice
 SERVERNAME CEV Eris: Endless Horizon
 
 ## set a hosted by name for unix platforms
@@ -47,10 +47,10 @@ MODS_CAN_TEMPBAN
 MODS_CAN_JOB_TEMPBAN
 
 ## Max amount of time mods can tempban for, in minutes
-MOD_TEMPBAN_MAX
+MOD_TEMPBAN_MAX 1440
 
 ## Max amount of time mods can tempban for, in minutes
-MOD_JOB_TEMPBAN_MAX
+MOD_JOB_TEMPBAN_MAX 1440
 
 ## Uncomment to set the number of /world/Reboot()s before the DreamDaemon restarts itself. 0 means restart every round. Requires tgstation server tools.
 #ROUNDS_UNTIL_HARD_RESTART 10

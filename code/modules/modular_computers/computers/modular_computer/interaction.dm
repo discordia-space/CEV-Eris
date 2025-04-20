@@ -164,15 +164,15 @@
 	else if(!enabled && screen_on)
 		turn_on(user)
 
-/obj/item/modular_computer/attackby(obj/item/W, mob/user, sound_mute = FALSE)
+/obj/item/modular_computer/attackby(obj/item/W, mob/user, params, sound_mute = FALSE)
 	if(istype(W, /obj/item/card/id)) // ID Card, try to insert it.
 		var/obj/item/card/id/I = W
 		if(!card_slot)
-			to_chat(user, "You try to insert [I] into [src], but it does not have an ID card slot installed.")
+			to_chat(user, span_notice("You try to insert [I] into [src], but it does not have an ID card slot installed."))
 			return
 
 		if(card_slot.stored_card)
-			to_chat(user, "You try to insert [I] into [src], but its ID card slot is occupied.")
+			to_chat(user, span_notice("You try to insert [I] into [src], but its ID card slot is occupied."))
 			return
 
 		if(!user.unEquip(I, src))
@@ -184,7 +184,7 @@
 		update_verbs()
 		if(sound_mute == FALSE) // This is here so that the sound doesn't play every time you spawn in because ID's now get moved in to PDA's on spawn.
 			playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
-		to_chat(user, "You insert [I] into [src].")
+		to_chat(user, span_notice("You insert [I] into [src]."))
 
 		return
 	if(istype(W, /obj/item/pen) && stores_pen)

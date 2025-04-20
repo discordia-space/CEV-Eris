@@ -1,6 +1,5 @@
-import { Box, Button, Flex } from 'tgui-core/components';
-
 import { useBackend } from 'tgui/backend';
+import { Box, Button, Flex } from 'tgui-core/components';
 
 type InputButtonsData = {
   large_buttons: boolean;

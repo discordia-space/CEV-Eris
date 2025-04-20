@@ -2844,6 +2844,8 @@
 #include "code\modules\tgui\states\notcontained.dm"
 #include "code\modules\tgui_input\alert.dm"
 #include "code\modules\tgui_input\list.dm"
+#include "code\modules\tgui_input\number.dm"
+#include "code\modules\tgui_input\text.dm"
 #include "code\modules\tgui_panel\audio.dm"
 #include "code\modules\tgui_panel\external.dm"
 #include "code\modules\tgui_panel\telemetry.dm"
