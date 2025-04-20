@@ -48,15 +48,27 @@
  * Generate the tag for this mob
  *
  * This is simply "mob_"+ a global incrementing counter that goes up for every mob
+
  */
 /mob/GenerateTag()
 	tag = "mob_[next_mob_id++]"
 
-/mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlighting = FALSE)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/**
+ * Show a message to the src mob
+ * Arguments:
+ * * msg - message output to the src mob
+ * * type - type of message - MSG_VISUAL | MSG_AUDIBLE
+ * * alt_msg - alternative message for when the src mob is blind
+ * * alt_type - type of alternative message MSG_VISUAL | MSG_AUDIBLE
+ * * avoid_highlighting - flag to avoid highlighting the message in the tgui panel
+ * * no_text_limit - flag to avoid limiting the text length
+ */
+/mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlighting = FALSE, no_text_limit = FALSE)
 	if(!client)
 		return
 
-	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
+	if (!no_text_limit)
+		msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
 		if(type & MSG_VISUAL && is_blind())//Vision related
@@ -88,7 +100,7 @@
 // self_message (optional) is what the src mob sees  e.g. "You do something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
 
-/mob/visible_message(var/message, var/self_message, var/blind_message, var/range = world.view)
+/mob/visible_message(message, self_message, blind_message, range = world.view, no_text_limit = FALSE)
 	var/list/messageturfs = list()//List of turfs we broadcast to.
 	var/list/messagemobs = list()//List of living mobs nearby who can hear it, and distant ghosts who've chosen to hear it
 	for (var/turf in view(range, get_turf(src)))
@@ -109,12 +121,12 @@
 	for(var/A in messagemobs)
 		var/mob/M = A
 		if(self_message && M==src)
-			M.show_message(self_message, 1, blind_message, 2)
+			M.show_message(self_message, 1, blind_message, 2, no_text_limit = no_text_limit)
 		else if(M.see_invisible < invisibility)  // Cannot view the invisible, but you can hear it.
 			if(blind_message)
-				M.show_message(blind_message, 2)
+				M.show_message(blind_message, 2, no_text_limit = no_text_limit)
 		else
-			M.show_message(message, 1, blind_message, 2)
+			M.show_message(message, 1, blind_message, 2, no_text_limit = no_text_limit)
 
 
 // Returns an amount of power drawn from the object (-1 if it's not viable).

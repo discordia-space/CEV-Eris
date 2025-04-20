@@ -343,7 +343,7 @@
 	if(isobserver(user))
 		to_chat(user, boxed_message("[span_infoplain(msg)]"))
 	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", boxed_message("[span_infoplain(msg)]"))
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", boxed_message("[span_infoplain(msg)]"), no_text_limit = TRUE)
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M as mob, hudtype)

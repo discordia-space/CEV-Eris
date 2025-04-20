@@ -54,7 +54,7 @@
 			O.icon_state = "[O.icon_state]_robotic"
 			O.name = "robotic [O.name]"
 		else if(loaded_dna)
-			visible_message("[span_notice("The printer injects the stored DNA into the biomass.")].")
+			visible_message(span_notice("The printer injects the stored DNA into the biomass."))
 			O.transplant_data = list()
 			var/mob/living/carbon/C = loaded_dna["donor"]
 			O.transplant_data["species"] =    C.species.name

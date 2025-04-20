@@ -399,7 +399,7 @@ its easier to just keep the beam vertical.
 	if(isobserver(user))
 		to_chat(user, boxed_message("[span_infoplain(output)]"))
 	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", boxed_message("[span_infoplain(output)]"))
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", boxed_message("[span_infoplain(output)]"), no_text_limit = TRUE)
 
 	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
