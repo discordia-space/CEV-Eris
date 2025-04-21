@@ -123,7 +123,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/blood_vessel/user_vessel = H.random_organ_by_process(OP_BLOOD_VESSEL)
-		create_overdose_wound(user_vessel, H, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+		create_overdose_wound(user_vessel, H, /datum/internal_wound/organic/heavy_poisoning, "accumulation")
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
@@ -378,7 +378,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/E = H.random_organ_by_process(OP_EYES)
 		if(E && istype(E))
-			var/list/current_wounds = E.GetComponents(/datum/component/internal_wound)
+			var/list/current_wounds = E.wounddatums
 			if(LAZYLEN(current_wounds) && prob(75))
 				M.add_chemical_effect(CE_EYEHEAL, 1)
 
@@ -388,7 +388,7 @@
 		var/mob/living/carbon/human/H = M
 		var/list/eye_organs = H.internal_organs_by_efficiency[OP_EYES]
 		if(LAZYLEN(eye_organs))
-			create_overdose_wound(pick(eye_organs), H, /datum/component/internal_wound/organic/heavy_poisoning)
+			create_overdose_wound(pick(eye_organs), H, /datum/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/medicine/peridaxon
 	name = "Peridaxon"
@@ -404,9 +404,8 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/list/organs_sans_brain_and_bones = H.internal_organs - H.internal_organs_by_efficiency[BP_BRAIN] - H.internal_organs_by_efficiency[OP_BONE] // Peridaxon shouldn't heal brain or bones
-		for(var/obj/item/organ/I in organs_sans_brain_and_bones)
-			var/list/current_wounds = I.GetComponents(/datum/component/internal_wound)
-			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I) && prob(75)) //Peridaxon heals only non-robotic organs
+		for(var/obj/item/organ/internal/I in organs_sans_brain_and_bones)
+			if(LAZYLEN(I.wounddatums) && !BP_IS_ROBOTIC(I) && prob(75)) //Peridaxon heals only non-robotic organs
 				M.add_chemical_effect(CE_ONCOCIDAL, 1)
 				M.add_chemical_effect(CE_BLOODCLOT, 1)
 				M.add_chemical_effect(CE_ANTITOX, 2)
@@ -417,7 +416,7 @@
 		var/mob/living/carbon/human/H = M
 		var/list/organs_sans_brain_and_bones = H.internal_organs - H.internal_organs_by_efficiency[BP_BRAIN] - H.internal_organs_by_efficiency[OP_BONE] // Since it doesn't heal brain/bones it shouldn't damage them too
 		if(LAZYLEN(organs_sans_brain_and_bones))
-			create_overdose_wound(pick(organs_sans_brain_and_bones), H, /datum/component/internal_wound/organic/heavy_poisoning)
+			create_overdose_wound(pick(organs_sans_brain_and_bones), H, /datum/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/medicine/ryetalyn
 	name = "Ryetalyn"
