@@ -1,11 +1,11 @@
-/datum/component/internal_wound
+/datum/internal_wound
 	var/name = "internal injury"
-	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
+	var/obj/item/organ/internal/parent
 
 	var/list/treatments_item = list()	// list(/obj/item = amount)
 	var/list/treatments_tool = list()	// list(QUALITY_TOOL = FAILCHANCE)
 	var/list/treatments_chem = list()	// list(CE_CHEMEFFECT = strength)
-	var/datum/component/scar			// If defined, applies this wound type when successfully treated
+	var/datum/internal_wound/scar			// If defined, applies this wound type when successfully treated
 
 	var/diagnosis_stat					// BIO for organic, MEC for robotic
 	var/diagnosis_difficulty			// basic - 25, adv - 40
@@ -22,7 +22,7 @@
 	var/severity = 0					// How much the wound contributes to internal organ damage
 	var/severity_max = 3				// How far the wound can progress, default is 2
 
-	var/datum/component/next_wound					// If defined, applies a wound of this type when severity is at max
+	var/datum/internal_wound/next_wound					// If defined, applies a wound of this type when severity is at max
 	var/progression_threshold = IWOUND_4_MINUTES	// How many ticks until the wound progresses, default is 3 minutes
 	var/current_progression_tick					// Current tick towards progression
 
@@ -50,7 +50,7 @@
 	// Parent organ adjustments
 	var/status_flag = ORGAN_WOUNDED		// Causes the parent limb to start processing
 
-/datum/component/internal_wound/RegisterWithParent()
+/datum/internal_wound/proc/Finalize()
 	// Internal organ parent
 	RegisterSignal(parent, COMSIG_IWOUND_EFFECTS, PROC_REF(apply_effects))
 	RegisterSignal(parent, COMSIG_IWOUND_LIMB_EFFECTS, PROC_REF(apply_limb_effects))
@@ -70,7 +70,7 @@
 	if(((characteristic_flag & IWOUND_CAN_DAMAGE) || hal_damage) && H)
 		H.custom_pain("Something inside your [E.name] hurts a lot.", 0)
 
-/datum/component/internal_wound/UnregisterFromParent()
+/datum/internal_wound/Destroy()
 	UnregisterSignal(parent, COMSIG_IWOUND_EFFECTS)
 	UnregisterSignal(parent, COMSIG_IWOUND_LIMB_EFFECTS)
 	UnregisterSignal(parent, COMSIG_IWOUND_FLAGS_ADD)
@@ -81,11 +81,10 @@
 
 	if(LAZYACCESS(SSinternal_wounds.processing, src))
 		STOP_PROCESSING(SSinternal_wounds, src)
+	. = ..()
 
-/datum/component/internal_wound/InheritComponent()	// Getting a new wound of the same type as an existing wound will progress it
-	progress()
 
-/datum/component/internal_wound/Process(delta_time)
+/datum/internal_wound/Process(delta_time)
 	var/obj/item/organ/O = parent
 	var/obj/item/organ/external/E = parent ? O.parent : null
 	var/mob/living/carbon/human/H = parent ? O.owner : null
@@ -140,7 +139,7 @@
 					H.sanity.effect_hallucination()
 			current_hallucination_tick = 0
 
-/datum/component/internal_wound/proc/progress()
+/datum/internal_wound/proc/progress()
 	if(!((characteristic_flag & IWOUND_PROGRESS) || (characteristic_flag & IWOUND_AGGRAVATION)))
 		return
 	var/obj/item/organ/O = parent
@@ -158,7 +157,7 @@
 
 	SEND_SIGNAL(parent, COMSIG_IORGAN_REFRESH_SELF)
 
-/datum/component/internal_wound/proc/apply_tool(obj/item/I, mob/user)
+/datum/internal_wound/proc/apply_tool(obj/item/I, mob/user)
 	var/success = FALSE
 	var/obj/item/organ/internal/organ = parent
 	var/obj/item/organ/limb = organ.parent
@@ -216,7 +215,7 @@
 
 	return success
 
-/datum/component/internal_wound/proc/treatment(used_tool, used_autodoc = FALSE)
+/datum/internal_wound/proc/treatment(used_tool, used_autodoc = FALSE)
 	if(severity > 0 && !used_tool)
 		--severity
 		// If it was turned off by reaching the max, turn it on again.
@@ -227,7 +226,7 @@
 			SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_ADD_WOUND, pick(subtypesof(scar)))
 		SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_REMOVE_WOUND, src)
 
-/datum/component/internal_wound/proc/apply_effects()
+/datum/internal_wound/proc/apply_effects()
 	var/obj/item/organ/internal/O = parent
 
 	if(!islist(O.organ_efficiency))
@@ -264,7 +263,7 @@
 	if(oxygen_req_multiplier)
 		O.oxygen_req *= 1 + round(oxygen_req_multiplier, 0.01)
 
-/datum/component/internal_wound/proc/apply_limb_effects()
+/datum/internal_wound/proc/apply_limb_effects()
 	var/obj/item/organ/internal/O = parent
 
 	if(!O.parent)
@@ -273,7 +272,7 @@
 	if(hal_damage)
 		O.parent.internal_wound_hal_dam += hal_damage * severity
 
-/datum/component/internal_wound/proc/apply_flags()
+/datum/internal_wound/proc/apply_flags()
 	var/obj/item/organ/internal/O = parent
 
 	if(!O.parent)
@@ -282,7 +281,7 @@
 	if(status_flag)
 		O.parent.status |= status_flag
 
-/datum/component/internal_wound/proc/remove_flags()
+/datum/internal_wound/proc/remove_flags()
 	var/obj/item/organ/internal/O = parent
 
 	if(!O.parent)
@@ -291,7 +290,7 @@
 	if(status_flag)
 		O.parent.status &= ~status_flag
 
-/datum/component/internal_wound/proc/apply_damage()
+/datum/internal_wound/proc/apply_damage()
 	if(!(characteristic_flag & IWOUND_CAN_DAMAGE))
 		return
 

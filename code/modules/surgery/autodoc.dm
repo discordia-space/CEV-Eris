@@ -73,7 +73,7 @@
 		for(var/obj/item/organ/external/external in patient.organs)
 			if(external.number_internal_wounds)
 				for(var/obj/item/organ/internal/internal in external.internal_organs)
-					if(internal.GetComponent(/datum/component/internal_wound))
+					if(LAZYLEN(internal.wounddatums))
 						var/datum/autodoc_patchnote/patchnote = new()
 						patchnote.organ = internal
 						patchnote.surgery_operations |= AUTODOC_INTERNAL_WOUNDS

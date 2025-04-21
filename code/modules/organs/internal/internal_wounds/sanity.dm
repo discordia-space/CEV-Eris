@@ -1,5 +1,5 @@
 // Placeholder for disorders in sanity/psionics rework
-/datum/component/internal_wound/organic/sanity
+/datum/internal_wound/organic/sanity
 	treatments_chem = list(CE_MIND = 2)
 	diagnosis_stat = STAT_COG
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
@@ -8,10 +8,10 @@
 	severity_max = 1
 	psy_damage = IWOUND_MEDIUM_DAMAGE
 
-/datum/component/internal_wound/organic/sanity/twitch
+/datum/internal_wound/organic/sanity/twitch
 	name = "twitching tissue"
 
-/datum/component/internal_wound/robotic/sanity
+/datum/internal_wound/robotic/sanity
 	treatments_chem = list(CE_MIND = 2)
 	diagnosis_stat = STAT_COG
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
@@ -21,5 +21,5 @@
 	severity_max = 1
 	psy_damage = IWOUND_MEDIUM_DAMAGE
 
-/datum/component/internal_wound/robotic/sanity/volt
+/datum/internal_wound/robotic/sanity/volt
 	name = "anomalous voltage accumulation"

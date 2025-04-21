@@ -33,7 +33,7 @@
 	if(ishuman(M) && prob(80 - (60 * (1 - M.stats.getMult(STAT_TGH)))))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/L = H.random_organ_by_process(OP_LIVER)
-		create_overdose_wound(L, M, /datum/component/internal_wound/organic/heavy_poisoning)
+		create_overdose_wound(L, M, /datum/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/stim/cherrydrops
 	name = "Cherry Drops"
@@ -62,7 +62,7 @@
 	if(ishuman(M) && prob(80 - (60 * (1 - M.stats.getMult(STAT_TGH)))))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/B = H.random_organ_by_process(OP_BLOOD_VESSEL)
-		create_overdose_wound(B, M, /datum/component/internal_wound/organic/heavy_poisoning)
+		create_overdose_wound(B, M, /datum/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/stim/pro_surgeon
 	name = "ProSurgeon"
@@ -96,7 +96,7 @@
 	if(ishuman(M)&& prob(80 - (60 * inverse_tough_mult)))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/N = H.random_organ_by_process(OP_NERVE)
-		create_overdose_wound(N, M, /datum/component/internal_wound/organic/heavy_poisoning)
+		create_overdose_wound(N, M, /datum/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/stim/violence
 	name = "Violence"
@@ -130,7 +130,7 @@
 	if(ishuman(M) && prob(80 - (60 * inverse_tough_mult)))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/I = H.random_organ_by_process(OP_MUSCLE)
-		create_overdose_wound(I, M, /datum/component/internal_wound/organic/heavy_poisoning)
+		create_overdose_wound(I, M, /datum/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/stim/bouncer
 	name = "Bouncer"
@@ -161,7 +161,7 @@
 	if(ishuman(M) && prob(80 - (60 * inverse_tough_mult)))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/L = H.random_organ_by_process(OP_LUNGS)
-		create_overdose_wound(L, M, /datum/component/internal_wound/organic/heavy_poisoning)
+		create_overdose_wound(L, M, /datum/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/stim/steady
 	name = "Steady"
@@ -190,7 +190,7 @@
 	if(ishuman(M) && prob(80 - (60 * (1 - M.stats.getMult(STAT_TGH)))))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/I = H.random_organ_by_process(OP_HEART)
-		create_overdose_wound(I, M, /datum/component/internal_wound/organic/heavy_poisoning)
+		create_overdose_wound(I, M, /datum/internal_wound/organic/heavy_poisoning)
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
 
 /datum/reagent/stim/machine_spirit
@@ -222,7 +222,7 @@
 	if(ishuman(M) && prob(80 - (60 * (1 - M.stats.getMult(STAT_TGH)))))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
-		create_overdose_wound(L, M, /datum/component/internal_wound/organic/necrosis_start, "rot")
+		create_overdose_wound(L, M, /datum/internal_wound/organic/necrosis_start, "rot")
 
 /datum/reagent/stim/grape_drops
 	name = "Grape Drops"
@@ -254,7 +254,7 @@
 	if(ishuman(M) && prob(80 - (60 * (1 - M.stats.getMult(STAT_TGH)))))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/B = H.random_organ_by_process(OP_BLOOD_VESSEL)
-		create_overdose_wound(B, M, /datum/component/internal_wound/organic/necrosis_start, "rot")
+		create_overdose_wound(B, M, /datum/internal_wound/organic/necrosis_start, "rot")
 
 /datum/reagent/stim/ultra_surgeon
 	name = "UltraSurgeon"
@@ -291,7 +291,7 @@
 	if(ishuman(M) && prob(80 - (60 * inverse_tough_mult)))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/N = H.random_organ_by_process(OP_NERVE)
-		create_overdose_wound(N, M, /datum/component/internal_wound/organic/necrosis_start, "rot")
+		create_overdose_wound(N, M, /datum/internal_wound/organic/necrosis_start, "rot")
 
 /datum/reagent/stim/violence_ultra
 	name = "Violence Ultra"
@@ -328,7 +328,7 @@
 	if(ishuman(M) && prob(80 - (60 * inverse_tough_mult)))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/I = H.random_organ_by_process(OP_MUSCLE)
-		create_overdose_wound(I, M, /datum/component/internal_wound/organic/necrosis_start, "rot")
+		create_overdose_wound(I, M, /datum/internal_wound/organic/necrosis_start, "rot")
 
 /datum/reagent/stim/boxer
 	name = "Boxer"
@@ -360,7 +360,7 @@
 	if(ishuman(M) && prob(80 - (60 * inverse_tough_mult)))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/L = H.random_organ_by_process(OP_LUNGS)
-		create_overdose_wound(L, M, /datum/component/internal_wound/organic/necrosis_start, "rot")
+		create_overdose_wound(L, M, /datum/internal_wound/organic/necrosis_start, "rot")
 
 /datum/reagent/stim/turbo
 	name = "TURBO"
@@ -391,7 +391,7 @@
 	if(ishuman(M) && prob(80 - (60 * inverse_tough_mult)))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/vital/heart/L = H.random_organ_by_process(OP_HEART)
-		create_overdose_wound(L, M, /datum/component/internal_wound/organic/necrosis_start, "rot")
+		create_overdose_wound(L, M, /datum/internal_wound/organic/necrosis_start, "rot")
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
 	if(prob(5 - (2 * inverse_tough_mult)))
 		M.paralysis = max(M.paralysis, 20)
@@ -434,15 +434,15 @@
 		if(prob(wound_chance))
 			var/mob/living/carbon/human/H = M
 			var/obj/item/organ/internal/B = H.random_organ_by_process(OP_BLOOD_VESSEL)
-			create_overdose_wound(B, M, /datum/component/internal_wound/organic/permanent, "scar")
+			create_overdose_wound(B, M, /datum/internal_wound/organic/permanent, "scar")
 		if(prob(wound_chance))
 			var/mob/living/carbon/human/H = M
 			var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
-			create_overdose_wound(L, M, /datum/component/internal_wound/organic/permanent, "scar")
+			create_overdose_wound(L, M, /datum/internal_wound/organic/permanent, "scar")
 		if(prob(wound_chance))
 			var/mob/living/carbon/human/H = M
 			var/obj/item/organ/internal/N = H.random_organ_by_process(OP_NERVE)
-			create_overdose_wound(N, M, /datum/component/internal_wound/organic/permanent, "scar")
+			create_overdose_wound(N, M, /datum/internal_wound/organic/permanent, "scar")
 
 
 /datum/reagent/stim/menace
@@ -486,12 +486,12 @@
 		if(prob(wound_chance))
 			var/mob/living/carbon/human/H = M
 			var/obj/item/organ/internal/I = H.random_organ_by_process(OP_MUSCLE)
-			create_overdose_wound(I, M, /datum/component/internal_wound/organic/permanent, "scar")
+			create_overdose_wound(I, M, /datum/internal_wound/organic/permanent, "scar")
 		if(prob(wound_chance))
 			var/mob/living/carbon/human/H = M
 			var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LUNGS)
-			create_overdose_wound(L, M, /datum/component/internal_wound/organic/permanent, "scar")
+			create_overdose_wound(L, M, /datum/internal_wound/organic/permanent, "scar")
 		if(prob(wound_chance))
 			var/mob/living/carbon/human/H = M
 			var/obj/item/organ/internal/O = H.random_organ_by_process(OP_HEART)
-			create_overdose_wound(O, M, /datum/component/internal_wound/organic/permanent, "scar")
+			create_overdose_wound(O, M, /datum/internal_wound/organic/permanent, "scar")

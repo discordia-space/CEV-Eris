@@ -67,7 +67,7 @@
 		var/mob/living/carbon/human/poorsap = M
 		if(REALTIMEOFDAY > (data["timestart"] + (data["effectcount"] * 5 MINUTES)))
 			for(var/obj/item/organ/internal/tokill in poorsap.organ_list_by_process(OP_LIVER) | poorsap.organ_list_by_process(OP_KIDNEYS)) // amanitin is slow but it kills HARD.
-				tokill.add_wound(/datum/component/internal_wound/organic/genedamage)
+				tokill.add_wound(/datum/internal_wound/organic/genedamage)
 			data["effectcount"] += 1
 
 /datum/reagent/toxin/amatoxin/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
@@ -159,10 +159,10 @@
 		M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
 		M.AdjustSleeping(20)
 	if(istype(O)) //STAGE 1: CRUSH LUNGS
-		create_overdose_wound(O, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+		create_overdose_wound(O, M, /datum/internal_wound/organic/heavy_poisoning, "accumulation")
 		M.adjustOxyLoss(5)
 	if(istype(S) && (!istype(O) || (O.status & ORGAN_DEAD))) //STAGE 2: NO LUNGS? FUCK YOUR HEART
-		create_overdose_wound(S, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+		create_overdose_wound(S, M, /datum/internal_wound/organic/heavy_poisoning, "accumulation")
 		M.adjustHalLoss(20)
 		M.vomit()
 
@@ -673,7 +673,7 @@
 		if(LAZYLEN(C.internal_organs) && C.bloodstr && C.bloodstr.has_reagent("pararein"))
 			var/obj/item/organ/internal/I = pick(C.internal_organs)
 			to_chat(C, "Something burns inside your [I.parent.name]...")
-			create_overdose_wound(I, C, /datum/component/internal_wound/organic/heavy_poisoning, "rot", TRUE)
+			create_overdose_wound(I, C, /datum/internal_wound/organic/heavy_poisoning, "rot", TRUE)
 
 /datum/reagent/toxin/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
