@@ -469,9 +469,7 @@
 
 /obj/item/organ/internal/proc/add_wound(datum/internal_wound/IW, wound_name = null)
 	if(!IW || initial(IW.wound_nature) != nature || status & ORGAN_DEAD)
-		owner.visible_message("wound failure")
 		return
-	owner.visible_message("wound attempt")
 	if(IW in wounddatums)
 		var/datum/internal_wound/old_wound = wounddatums[IW]
 		old_wound.progress()	// Getting a new wound of the same type as an existing wound will progress it
