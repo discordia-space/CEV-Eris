@@ -175,19 +175,19 @@ macro "robot"
 		command = ".southwest"
 	elem
 		name = "T"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Say%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Say%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "Y"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Radio%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Radio%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "U"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22LOOC%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22LOOC%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "O"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22OOC%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22OOC%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "M"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Me%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Me%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "X"
 		command = ".northeast"
@@ -220,10 +220,10 @@ macro "robot"
 		command = ".screenshot"
 	elem
 		name = "F3"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Admin%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Admin%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "F4"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Mentor%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Mentor%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "F5"
 		command = "Aghost"
@@ -465,19 +465,19 @@ macro "default"
 		command = ".southwest"
 	elem
 		name = "T"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Say%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Say%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "Y"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Radio%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Radio%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "U"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22LOOC%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22LOOC%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "O"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22OOC%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22OOC%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "M"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Me%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Me%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "X"
 		command = ".northeast"
@@ -534,10 +534,10 @@ macro "default"
 		command = ".screenshot"
 	elem
 		name = "F3"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Admin%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Admin%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "F4"
-		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Mentor%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Mentor%22%7D%7D\"\n.winset \"tgui_say.browser.focus=true\""
 	elem
 		name = "F5"
 		command = "Aghost"
