@@ -332,10 +332,10 @@ var/list/channel_to_radio_key = new
 	for(var/client/C in show_to)
 		C.images += I
 	animate(I, transform = 0, alpha = 255, time = 5, easing = ELASTIC_EASING)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_speechbubble), I), duration-5)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_speechbubble), I), duration-3)
 
 /proc/fade_speechbubble(image/I)
-	animate(I, alpha = 0, time = 5, easing = EASE_IN)
+	animate(I, alpha = 0, time = 1, easing = EASE_IN)
 
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)

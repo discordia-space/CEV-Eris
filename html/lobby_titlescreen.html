@@ -34,6 +34,49 @@
 				height: max-content;
 			}
 		</style>
+		<script>
+			// IDK. i cant find the right event(s) for focusing or mousedown or whatever
+			document.addEventListener('click', function () {
+				window.location.href = "byond://winset?map.focus=true";
+			});
+
+			document.addEventListener('keydown', function (event) {
+				const keyMap = {
+					O: "OOC",
+					U: "LOOC",
+					T: "Say",
+					Y: "Radio",
+					M: "Me",
+					F3: "Admin",
+					F4: "Mentor"
+				};
+
+				let channel = null;
+
+				if (event.code === "F3") {
+					channel = keyMap.F3;
+				} else if (event.code === "F4") {
+					channel = keyMap.F4;
+				} else {
+					const key = event.key.toUpperCase();
+					if (keyMap[key]) {
+						channel = keyMap[key];
+					}
+				}
+
+				if (channel) {
+					const payload = JSON.stringify({
+						type: "open",
+						payload: {
+							channel: channel
+						}
+					});
+
+					const loc = `byond://winset?command=` + encodeURIComponent(`.output tgui_say.browser:update \"${encodeURI(payload)}\"`)
+					window.location.href = loc;
+				}
+			});
+		</script>
 	</head>
 
 	<body>

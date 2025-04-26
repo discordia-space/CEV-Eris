@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// Instantiate tgui panel
 	tgui_panel = new(src, "browseroutput")
 
-	// tgui_say = new(src, "tgui_say")
+	tgui_say = new(src, "tgui_say")
 
 	initialize_commandbar_spy()
 
@@ -285,7 +285,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// Initialize tgui panel
 	tgui_panel.initialize()
 
-	// tgui_say.initialize()
+	tgui_say.initialize()
 
 	/* byond err version check here (configurable) */
 

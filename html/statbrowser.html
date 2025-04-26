@@ -248,7 +248,6 @@ img {
 <script>
 // Polyfills and compatibility ------------------------------------------------
 var decoder = decodeURIComponent || unescape;
-var addEventListenerKey = (document.addEventListener ? 'addEventListener' : 'attachEvent'); // IE8 handling for Wine users
 var textContentKey = (typeof document.body.textContent != 'undefined') ? 'textContent' : 'innerText';
 if(!Array.prototype.includes) {
 	Array.prototype.includes = function(thing) {
@@ -267,7 +266,7 @@ if (!String.prototype.trim) {
 // Browser passthrough code ---------------------------------------------------
 if (window.location) {
 	var anti_spam = []; // wow I wish I could use e.repeat but IE is dumb and doesn't have it.
-	document[addEventListenerKey]("keydown", function(e) {
+	document.addEventListener("keydown", function(e) {
 		if(e.target && (e.target.localName == "input" || e.target.localName == "textarea"))
 			return;
 		if(e.defaultPrevented)
@@ -282,7 +281,7 @@ if (window.location) {
 			}
 		}
 	});
-	document[addEventListenerKey]("keyup", function(e) {
+	document.addEventListener("keyup", function(e) {
 		if(e.target && (e.target.localName == "input" || e.target.localName == "textarea"))
 			return;
 		if(e.defaultPrevented)
@@ -954,7 +953,7 @@ function set_style_sheet(sheet) {
 	head.appendChild(sheetElement);
 }
 
-document[addEventListenerKey]("click", function(e) {
+document.addEventListener("click", function(e) {
 	window.location.href = "byond://winset?map.focus=true";
 });
 

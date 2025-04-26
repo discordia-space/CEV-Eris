@@ -48,12 +48,6 @@ macro "robot"
 		name = "S+UP"
 		command = "MoveKey 2 0"
 	elem
-		name = "U"
-		command = "looc"
-	elem
-		name = "O"
-		command = "ooc"
-	elem
 		name = "TAB"
 		command = ".winset \"input.focus=true ? input.focus=false mapwindow.map.focus=true : mapwindow.map.focus=false input.focus=true""
 	elem
@@ -150,9 +144,6 @@ macro "robot"
 		name = "CTRL+4"
 		command = "a-intent 1"
 	elem
-		name = "5"
-		command = "Emote"
-	elem
 		name = "F"
 		command = "a-intent left"
 	elem
@@ -184,16 +175,25 @@ macro "robot"
 		command = ".southwest"
 	elem
 		name = "T"
-		command = "Say"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Say%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+	elem
+		name = "Y"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Radio%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+	elem
+		name = "U"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22LOOC%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+	elem
+		name = "O"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22OOC%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+	elem
+		name = "M"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Me%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
 	elem
 		name = "X"
 		command = ".northeast"
 	elem
 		name = "CTRL+X"
 		command = ".northeast"
-	elem
-		name = "Y"
-		command = "Activate-Held-Object"
 	elem
 		name = "CTRL+Y"
 		command = "Activate-Held-Object"
@@ -213,9 +213,6 @@ macro "robot"
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
 	elem
-		name = "F2"
-		command = "ooc"
-	elem
 		name = "F2+REP"
 		command = ".screenshot auto"
 	elem
@@ -223,10 +220,10 @@ macro "robot"
 		command = ".screenshot"
 	elem
 		name = "F3"
-		command = "asay"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Admin%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
 	elem
-		name = "M"
-		command = "Emote"
+		name = "F4"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Mentor%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
 	elem
 		name = "F5"
 		command = "Aghost"
@@ -316,12 +313,6 @@ macro "default"
 	elem
 		name = "S+UP"
 		command = "MoveKey 2 0"
-	elem
-		name = "U"
-		command = "looc"
-	elem
-		name = "O"
-		command = "ooc"
 	elem
 		name = "SHIFT+X"
 		command = ".wield"
@@ -422,9 +413,6 @@ macro "default"
 		name = "CTRL+4"
 		command = "a-intent harm"
 	elem
-		name = "5"
-		command = "Emote"
-	elem
 		name = "E"
 		command = "quick-equip"
 	elem
@@ -477,16 +465,25 @@ macro "default"
 		command = ".southwest"
 	elem
 		name = "T"
-		command = "Say"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Say%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+	elem
+		name = "Y"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Radio%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+	elem
+		name = "U"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22LOOC%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+	elem
+		name = "O"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22OOC%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
+	elem
+		name = "M"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Me%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
 	elem
 		name = "X"
 		command = ".northeast"
 	elem
 		name = "CTRL+X"
 		command = ".northeast"
-	elem
-		name = "Y"
-		command = "Activate-Held-Object"
 	elem
 		name = "CTRL+Y"
 		command = "Activate-Held-Object"
@@ -537,10 +534,10 @@ macro "default"
 		command = ".screenshot"
 	elem
 		name = "F3"
-		command = "Asay"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Admin%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
 	elem
-		name = "M"
-		command = "Emote"
+		name = "F4"
+		command = ".output tgui_say.browser:update \"%7B%22type%22:%22open%22,%22payload%22:%7B%22channel%22:%22Mentor%22%7D%7D\"\n.winset tgui_say.browser.focus=true"
 	elem
 		name = "F5"
 		command = "Aghost"

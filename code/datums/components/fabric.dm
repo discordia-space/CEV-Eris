@@ -24,7 +24,12 @@ GLOBAL_LIST_EMPTY(fabric_list)
 
 /datum/component/fabric/proc/onLife()
 	SIGNAL_HANDLER
-	fabric_image.icon_state = pick(icon_states('icons/effects/fabric_symbols.dmi', 2))
+	var/list/states = icon_states('icons/effects/fabric_symbols.dmi', 2)
+
+	// Why this is happening?
+	if (!states.len)
+		return
+	fabric_image.icon_state = pick(states)
 	fabric_image.pixel_x = rand(-1,1)
 	fabric_image.pixel_y = rand(-1,1)
 	fabric_image.color = RANDOM_RGB

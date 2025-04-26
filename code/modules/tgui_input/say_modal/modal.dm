@@ -67,8 +67,11 @@
 	winset(client, "tgui_say", "pos=848,500;is-visible=0;")
 
 	window.send_message("props", list(
-		"lightMode" = client.prefs?.read_preference(/datum/preference/toggle/tgui_say_light_mode),
-		"scale" = client.prefs?.read_preference(/datum/preference/toggle/ui_scale),
+		// "lightMode" = client.prefs?.read_preference(/datum/preference/toggle/tgui_say_light_mode),
+		// TODO: make it read theme from localstorage
+		"lightMode" = FALSE,
+		// "scale" = client.prefs?.read_preference(/datum/preference/toggle/ui_scale),
+		"scale" = TRUE,
 		"maxLength" = max_length,
 	))
 
@@ -87,9 +90,9 @@
 	if(!payload?["channel"])
 		CRASH("No channel provided to an open TGUI-Say")
 	window_open = TRUE
-	if(payload["channel"] != OOC_CHANNEL && payload["channel"] != ADMIN_CHANNEL)
+	if(payload["channel"] != OOC_CHANNEL && payload["channel"] != ADMIN_CHANNEL && payload["channel"] != MENTOR_CHANNEL && payload["channel"] != LOOC_CHANNEL)
 		start_thinking()
-	if(!client.typing_indicators)
+	if(client.get_preference_value(/datum/client_preference/show_typing_indicator) == GLOB.PREF_HIDE)
 		log_speech_indicators("[key_name(client)] started typing at [loc_name(client.mob)], indicators DISABLED.")
 	return TRUE
 
@@ -100,7 +103,7 @@
 /datum/tgui_say/proc/close()
 	window_open = FALSE
 	stop_thinking()
-	if(!client.typing_indicators)
+	if(client.get_preference_value(/datum/client_preference/show_typing_indicator) == GLOB.PREF_HIDE)
 		log_speech_indicators("[key_name(client)] stopped typing at [loc_name(client.mob)], indicators DISABLED.")
 
 /**

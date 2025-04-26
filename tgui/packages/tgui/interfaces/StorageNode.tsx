@@ -87,7 +87,7 @@ const Exchange = (props: ExchangeProps) => {
       />
       <NumberInput
         value={amt}
-        maxValue={selection !== -1 ? matnums[matnames.indexOf(selection)] : 0}
+        maxValue={selection !== -1 ? matnums[matnames[selection]] : 0}
         onChange={(value: number) => setAmt(value)}
         minValue={0}
         step={1}

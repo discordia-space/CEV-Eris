@@ -19,10 +19,6 @@
 /mob/new_player/New()
 	mob_list += src*/
 
-/mob/new_player/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="")
-	if (client)
-		client.ooc(message)
-
 /mob/new_player/verb/new_player_panel()
 	set src = usr
 	new_player_panel_proc()

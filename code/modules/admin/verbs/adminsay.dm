@@ -14,9 +14,6 @@
 
 	msg = emoji_parse(msg)
 
-	// if(check_rights(R_ADMIN,0))
-
-
 	if(findtext(msg, "@") || findtext(msg, "#"))
 		var/list/link_results = check_asay_links(msg)
 		if(length(link_results))

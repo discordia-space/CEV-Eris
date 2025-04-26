@@ -78,6 +78,8 @@
 
 	var/static/admin = {"<font color='purple'>
 	Admin:
+	\tF3 = Asay
+	\tF4 = Msay
 	\tF5 = Aghost (admin-ghost)
 	\tF6 = player-panel
 	\tF7 = admin-pm
@@ -103,9 +105,12 @@
 	\tShift+b = bag-equip
 	\tr = throw
 	\tt = say
-	\t5 = emote
+	\ty = radio
+	\tm = emote
+	\tu = LOOC
+	\to = OOC
 	\tx = swap-hand
-	\tz = activate held object (or y)
+	\tz = activate held object
 	\tl = toogle flashlight
 	\tj = toggle-aiming-mode
 	\tf = cycle-intents-left
@@ -127,15 +132,18 @@
 	\tw = up
 	\tq = unequip active module
 	\tt = say
+	\ty = radio
+	\tm = emote
+	\tu = LOOC
+	\to = OOC
 	\tx = cycle active modules
-	\tz = activate held object (or y)
+	\tz = activate held object
 	\tf = cycle-intents-left
 	\tg = cycle-intents-right
 	\t1 = activate module 1
 	\t2 = activate module 2
 	\t3 = activate module 3
 	\t4 = toggle intents
-	\t5 = emote
 	\tCtrl = drag
 	\tShift = examine
 	\tF11 = toggle fullscreen

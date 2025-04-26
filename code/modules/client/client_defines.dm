@@ -127,5 +127,3 @@
 	var/last_asset_job = 0
 	var/last_completed_asset_job = 0
 
-	/// Does this client have typing indicators enabled?
-	var/typing_indicators = FALSE

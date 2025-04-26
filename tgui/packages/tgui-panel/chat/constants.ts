@@ -29,6 +29,7 @@ export const MESSAGE_TYPE_INFO = 'info';
 export const MESSAGE_TYPE_WARNING = 'warning';
 export const MESSAGE_TYPE_DEADCHAT = 'deadchat';
 export const MESSAGE_TYPE_OOC = 'ooc';
+export const MESSAGE_TYPE_LOOC = 'looc'; // eris edit: looc
 export const MESSAGE_TYPE_ADMINPM = 'adminpm';
 export const MESSAGE_TYPE_COMBAT = 'combat';
 export const MESSAGE_TYPE_ADMINCHAT = 'adminchat';
@@ -94,6 +95,20 @@ export const MESSAGE_TYPES = [
     name: 'OOC',
     description: 'The bluewall of global OOC messages',
     selector: '.ooc, .adminooc, .adminobserverooc, .oocplain',
+  },
+  // eris edit: looc
+  {
+    type: MESSAGE_TYPE_LOOC, // eris edit: looc
+    name: 'LOOC',
+    description: 'Local Out Of Character',
+    selector: '.looc',
+  },
+  // eris edit: mentors/mods
+  {
+    type: MESSAGE_TYPE_MODCHAT,
+    name: 'Mentor/Mod Chat',
+    description: 'MSAY (Mentor/Mod) chat',
+    selector: '.modchat',
   },
   {
     type: MESSAGE_TYPE_ADMINPM,

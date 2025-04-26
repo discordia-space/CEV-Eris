@@ -7,7 +7,7 @@
 	src << output('html/typing_indicator.html', "commandbar_spy")
 
 /client/proc/handle_commandbar_typing(href_list)
-	if (!typing_indicators) //check pref
+	if (get_preference_value(/datum/client_preference/show_typing_indicator) == GLOB.PREF_HIDE) //check pref
 		return
 	if (length(href_list["verb"]) < 1 || !(LOWER_TEXT(href_list["verb"]) in IC_VERBS) || text2num(href_list["argument_length"]) < 1)
 		if (commandbar_typing)
@@ -30,10 +30,10 @@
 
 /** Sets the mob as "thinking" - with indicator and the TRAIT_THINKING_IN_CHARACTER trait */
 /client/proc/start_thinking()
-	if(!typing_indicators)
+	if(get_preference_value(/datum/client_preference/show_typing_indicator) == GLOB.PREF_HIDE)
 		return FALSE
 	// ADD_TRAIT(mob, TRAIT_THINKING_IN_CHARACTER, CURRENTLY_TYPING_TRAIT)
-	mob.set_typing_indicator(TRUE)
+	mob?.set_typing_indicator(TRUE)
 
 /** Removes typing/thinking indicators and flags the mob as not thinking */
 /client/proc/stop_thinking()
@@ -46,7 +46,7 @@
 /client/proc/start_typing()
 	var/mob/client_mob = mob
 	client_mob.set_typing_indicator(FALSE)
-	if(!typing_indicators /*|| !HAS_TRAIT(client_mob, TRAIT_THINKING_IN_CHARACTER)*/)
+	if(get_preference_value(/datum/client_preference/show_typing_indicator) == GLOB.PREF_HIDE)
 		return FALSE
 	client_mob.set_typing_indicator(TRUE)
 	addtimer(CALLBACK(src, PROC_REF(stop_typing)), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
@@ -60,7 +60,7 @@
 		return FALSE
 	var/mob/client_mob = mob
 	client_mob.set_typing_indicator(FALSE)
-	if(!typing_indicators /*|| !HAS_TRAIT(client_mob, TRAIT_THINKING_IN_CHARACTER)*/)
+	if(get_preference_value(/datum/client_preference/show_typing_indicator) == GLOB.PREF_HIDE)
 		return FALSE
 	client_mob.set_typing_indicator(TRUE)
 
