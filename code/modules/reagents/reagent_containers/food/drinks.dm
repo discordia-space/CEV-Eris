@@ -233,6 +233,7 @@
 	possible_transfer_amounts = null
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
+	matter = list(MATERIAL_BIOMATTER = 0.1)
 
 /obj/item/reagent_containers/food/drinks/sillycup/update_icon()
 	if(reagents && reagents.total_volume)

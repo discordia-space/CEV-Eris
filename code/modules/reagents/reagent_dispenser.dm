@@ -256,6 +256,28 @@
 	volume = 500
 	starting_reagent = "water"
 	spawn_blacklisted = TRUE
+	var/paper_cups = 420 //Paper cups left from the cooler
+
+/obj/structure/reagent_dispensers/water_cooler/examine(mob/user, extra_description = "")
+	if (paper_cups > 1)
+		extra_description += "There are [paper_cups] paper cups left."
+	else if (paper_cups == 1)
+		extra_description += "There is one paper cup left."
+	else
+		extra_description += "There are no paper cups left."
+	..(user, extra_description)
+
+/obj/structure/reagent_dispensers/water_cooler/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	if(!paper_cups)
+		to_chat(user, span_warning("There aren't any cups left!"))
+		return
+	user.visible_message(span_notice("[user] takes a cup from [src]."), span_notice("You take a paper cup from [src]."))
+	var/obj/item/reagent_containers/food/drinks/sillycup/S = new(get_turf(src))
+	user.put_in_hands(S)
+	paper_cups--
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"

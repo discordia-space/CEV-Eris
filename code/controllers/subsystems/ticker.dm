@@ -280,7 +280,7 @@ SUBSYSTEM_DEF(ticker)
 	GLOB.storyteller.set_up()
 	to_chat(world, span_notice("<B>Welcome to [station_name()], enjoy your stay!</B>"))
 
-	SEND_SOUND(world, sound('sound/AI/welcome.ogg')) // Skie
+	SEND_SOUND(world, sound('sound/AI/welcome.ogg', volume = 50)) // Skie
 
 	for(var/mob/new_player/N in SSmobs.mob_list)
 		N.new_player_panel_proc()
