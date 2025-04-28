@@ -8,6 +8,11 @@
 /// How many resends to allow before giving up
 #define CHAT_RELIABILITY_MAX_RESENDS 3
 
+//the define for visible message range in combat
+#define SAMETILE_MESSAGE_RANGE 1
+#define COMBAT_MESSAGE_RANGE 3
+#define DEFAULT_MESSAGE_RANGE 7
+
 #define MESSAGE_TYPE_SYSTEM "system"
 #define MESSAGE_TYPE_LOCALCHAT "localchat"
 #define MESSAGE_TYPE_RADIO "radio"

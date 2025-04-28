@@ -54,6 +54,8 @@
 
 
 /mob/proc/say_dead(message)
+	var/name = real_name
+	var/alt_name = ""
 	if(say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
@@ -65,7 +67,36 @@
 		to_chat(usr, span_danger("You have deadchat muted."))
 		return
 
-	say_dead_direct("[pick("complains", "moans", "whines", "laments", "blubbers")], [span_message("\"[emoji_parse(message)]\"")]", src)
+	if (usr.client.prefs.muted & MUTE_DEADCHAT)
+		to_chat(src, span_danger("You are muted from deadchat."))
+		return
+
+	if (src.client && src.client.handle_spam_prevention(message, MUTE_DEADCHAT))
+		return
+
+	if (mind?.name)
+		name = "[mind.name]"
+	else
+		name = real_name
+	if (name != real_name)
+		alt_name = " (died as [real_name])"
+
+	var/spanned = say_quote(say_emphasis(message))
+	var/source = "<span class='game'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name]"
+	var/rendered = " <span class='message'>[emoji_parse(spanned)]</span></span>"
+	log_talk(message, LOG_SAY, tag="DEAD")
+	var/displayed_key = key
+	if(client?.holder?.fakekey)
+		displayed_key = null
+	deadchat_broadcast(rendered, source, follow_target = src, speaker_key = displayed_key)
+	create_chat_message(src, /datum/language/common, message)
+	for(var/mob/M in GLOB.player_list)
+		if(M == src)
+			continue
+		if(SSticker.current_state != GAME_STATE_FINISHED && (M.see_invisible < invisibility))
+			continue
+		if (M.client.prefs.RC_enabled)
+			M.create_chat_message(src, /datum/language/common, message)
 
 /mob/proc/say_understands(mob/other, datum/language/speaking = null)
 
@@ -99,25 +130,36 @@
 
 	return FALSE
 
-/*
-   ***Deprecated***
-   let this be handled at the hear_say or hear_radio proc
-   This is left in for robot speaking when humans gain binary channel access until I get around to rewriting
-   robot_talk() proc.
-   There is no language handling build into it however there is at the /mob level so we accept the call
-   for it but just ignore it.
-*/
+/atom/movable/proc/say_mod(input, list/message_mods = list())
+	var/ending = copytext_char(input, -1)
+	if(copytext_char(input, -2) == "!!")
+		return verb_yell
+	else if(message_mods[MODE_SING])
+		. = verb_sing
+	else if(message_mods[WHISPER_MODE])
+		. = verb_whisper
+	else if(ending == "?")
+		return verb_ask
+	else if(ending == "!")
+		return verb_exclaim
+	else
+		return verb_say
 
-/mob/proc/say_quote(message, datum/language/speaking = null)
-	var/verb = "says"
-	var/ending = copytext(message, length(message))
-	if(ending=="!")
-		verb=pick("exclaims", "shouts", "yells")
-	else if(ending=="?")
-		verb="asks"
+/atom/movable/proc/say_quote(input, list/spans=list(speech_span), list/message_mods = list())
+	if(!input)
+		input = "..."
 
-	return verb
+	var/say_mod = message_mods[MODE_CUSTOM_SAY_EMOTE]
+	if (!say_mod)
+		say_mod = say_mod(input, message_mods)
 
+	SEND_SIGNAL(src, COMSIG_MOVABLE_SAY_QUOTE, args)
+
+	if(copytext_char(input, -2) == "!!")
+		spans |= SPAN_YELL
+
+	var/spanned = attach_spans(input, spans)
+	return "[say_mod], \"[spanned]\""
 
 /mob/proc/emote(act, type, message)
 	if(act == "me")
@@ -166,3 +208,13 @@
 			return L
 
 	return null
+
+/proc/attach_spans(input, list/spans)
+	return "[message_spans_start(spans)][input]</span>"
+
+/proc/message_spans_start(list/spans)
+	var/output = "<span class='"
+	for(var/S in spans)
+		output = "[output][S] "
+	output = "[output]'>"
+	return output

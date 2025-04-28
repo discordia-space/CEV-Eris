@@ -270,7 +270,7 @@
 /obj/item/device/makeshift_electrolyser/Process()
 	if(on)
 		if(!cell_use_check(tick_cost))
-			visible_message(span_notice("[src]'s electrodes stopped bubbling."), range = 4)
+			visible_message(span_notice("[src]'s electrodes stopped bubbling."), vision_distance = 4)
 			turn_off()
 		if(beaker && beaker.reagents.total_volume)
 			var/state = electrolysis(beaker, separation_beaker, 2)

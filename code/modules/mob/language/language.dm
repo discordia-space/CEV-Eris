@@ -7,11 +7,11 @@
 /datum/language
 	var/name = "an unknown language"  			// Fluff name of language if any.
 	var/desc = "A language."          			// Short description for 'Check Languages'.
-	var/list/speech_verb = list("says")	   		// 'says', 'hisses', 'farts'.
-	var/list/ask_verb = list("asks")       		// Used when sentence ends in a ?
-	var/list/exclaim_verb = list("exclaims")	// Used when sentence ends in a !
-	var/list/whisper_verb = list("whispers")	// Optional. When not specified speech_verb + quietly/softly is used instead.
-	var/list/signlang_verb = list("signs") 		// list of emotes that might be displayed if this language has NONVERBAL or SIGNLANG flags
+	// var/list/speech_verb = list("says")	   		// 'says', 'hisses', 'farts'.
+	// var/list/ask_verb = list("asks")       		// Used when sentence ends in a ?
+	// var/list/exclaim_verb = list("exclaims")	// Used when sentence ends in a !
+	// var/list/whisper_verb = list("whispers")	// Optional. When not specified speech_verb + quietly/softly is used instead.
+	// var/list/signlang_verb = list("signs") 		// list of emotes that might be displayed if this language has NONVERBAL or SIGNLANG flags
 	var/colour = "body"               			// CSS style to use for strings in this language.
 	var/key = "x"                     			// Character used to speak in language eg. :o for Unathi.
 	var/flags = 0                     			// Various language flags.
@@ -21,13 +21,28 @@
 	var/machine_understands = 1 		  		// Whether machines can parse and understand this language
 	var/shorthand = "CO"						// Shorthand that shows up in chat for this language.
 
+	var/icon = 'icons/misc/language.dmi'
+	var/icon_state = "popcorn"
+
 	//Random name lists
 	var/name_lists = FALSE
 	var/first_names_male = list()
 	var/first_names_female = list()
 	var/last_names = list()
 
-/datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
+/datum/language/proc/display_icon(atom/movable/hearer)
+	var/understands = (src in hearer.languages)
+	if(flags & LANGUAGE_HIDE_ICON_IF_UNDERSTOOD && understands)
+		return FALSE
+	if(flags & LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD && !understands)
+		return FALSE
+	return TRUE
+
+/datum/language/proc/get_icon()
+	var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet_batched/chat)
+	return sheet.icon_tag("language-[icon_state]")
+
+/datum/language/proc/get_random_name(gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	//This language has its own name lists
 	if (name_lists)
 		if(gender==FEMALE)
@@ -172,7 +187,7 @@
 	log_say("[key_name(speaker)] : ([name]) [message]")
 
 	if(!speaker_mask) speaker_mask = speaker.name
-	message = format_message(message, get_spoken_verb(message))
+	message = format_message(message, speaker.get_spoken_verb(message))
 
 	for(var/mob/player in GLOB.player_list)
 		player.hear_broadcast(src, speaker, speaker_mask, message)
@@ -194,17 +209,17 @@
 /datum/language/proc/check_special_condition(var/mob/other)
 	return 1
 
-/datum/language/proc/get_spoken_verb(var/msg_end)
+/atom/movable/proc/get_spoken_verb(var/msg_end)
 	switch(msg_end)
 		if("!")
-			return pick(exclaim_verb)
+			return pick(verb_exclaim, verb_yell)
 		if("?")
-			return pick(ask_verb)
+			return pick(verb_ask)
 
-	return pick(speech_verb)
+	return verb_say
 
 // Language handling.
-/mob/proc/add_language(var/language)
+/atom/movable/proc/add_language(var/language)
 
 	var/datum/language/new_language = GLOB.all_languages[language]
 
@@ -214,19 +229,12 @@
 	languages.Add(new_language)
 	return 1
 
-/mob/proc/remove_language(var/rem_language)
+/atom/movable/proc/remove_language(var/rem_language)
 	var/datum/language/L = GLOB.all_languages[rem_language]
 	. = (L in languages)
-	languages.Remove(L)
-
-/mob/living/remove_language(rem_language)
-	var/datum/language/L = GLOB.all_languages[rem_language]
 	if(default_language == L)
 		default_language = null
-	return ..()
-
-
-
+	languages.Remove(L)
 
 // Can we speak this language, as opposed to just understanding it?
 /mob/proc/can_speak(datum/language/speaking)

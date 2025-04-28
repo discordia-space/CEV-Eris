@@ -186,14 +186,16 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 				prefix = "(Eye) "
 			else
 				prefix = "(Core) "
+		if(hearer.prefs.RC_see_looc_on_map)
+			hearer.mob?.create_chat_message(mob, /datum/language/common, "\[LOOC: [msg]\]", runechat_flags = LOOC_MESSAGE)
 		to_chat(hearer, span_looc("[span_prefix("LOOC:")] [span_prefix(prefix)]<EM>[span_name("[mob.name]")][admin_stuff]:</EM> <span class='message linkify'>[msg]</span>"), type = MESSAGE_TYPE_LOOC, avoid_highlighting = (hearer == mob))
 
 	for(var/client/client in GLOB.admins)	//Now send to all admins that weren't in range.
 		if(!(client in listening) && client.get_preference_value(/datum/client_preference/staff/show_rlooc) == GLOB.PREF_SHOW)
 			var/admin_stuff = "/([key])([admin_jump_link(client, client.holder)])"
 			var/prefix = "[listening[client] ? "" : "(R)"]LOOC"
-			// if(client.prefs.read_preference(/datum/preference/toggle/enable_runechat_looc))
-				// client.mob?.create_chat_message(mob, /datum/language/common, "\[LOOC: [raw_msg]\]", runechat_flags = LOOC_MESSAGE)
+			if(client.prefs.RC_see_looc_on_map)
+				client.mob?.create_chat_message(mob, /datum/language/common, "\[LOOC: [msg]\]", runechat_flags = LOOC_MESSAGE)
 			to_chat(client, span_looc("[span_prefix("[prefix]:")] <EM>[admin_stuff]:</EM> <span class='message linkify'>[msg]</span>"), type = MESSAGE_TYPE_LOOC, avoid_highlighting = (client == src))
 
 /mob/proc/get_looc_source()

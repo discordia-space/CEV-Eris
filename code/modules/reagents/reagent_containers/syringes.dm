@@ -192,7 +192,7 @@
 					else
 						return
 				else
-					user.visible_message(span_warning("[user] injects \himself with [src]!"), span_warning("You inject yourself with [src]."), range = 3)
+					user.visible_message(span_warning("[user] injects \himself with [src]!"), span_warning("You inject yourself with [src]."), vision_distance = 3)
 			var/trans
 			if(ismob(target))
 				trans = reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)

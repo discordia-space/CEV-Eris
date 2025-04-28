@@ -362,7 +362,7 @@ var/list/rummage_sound = list(\
 		return
 
 	soundin = get_sfx(soundin) // same sound for everyone
-	frequency = vary && isnull(frequency) ? get_rand_frequency() : frequency // Same frequency for everybody
+	// frequency = vary && isnull(frequency) ? get_rand_frequency() : frequency // Same frequency for everybody
 
 	var/turf/turf_source = get_turf(source)
 	var/maxdistance = (world.view + extrarange) * 2
@@ -401,14 +401,15 @@ var/const/FALLOFF_SOUNDS = 0.5
 		S.channel = 0 //Any channel
 		S.volume = vol
 		S.environment = -1
-		if(frequency)
-			S.frequency = frequency
-		else if (vary)
-			S.frequency = get_rand_frequency()
+
+	if(frequency)
+		S.frequency = frequency
+	else if (vary)
+		S.frequency = get_rand_frequency()
 
 	//sound volume falloff with pressure
 	var/pressure_factor = 1
-	
+
 	var/turf/T = get_turf(src)
 	// 3D sounds, the technology is here!
 	if(T && isturf(turf_source))
@@ -433,7 +434,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 				pressure_factor = max(pressure_factor, 0.15)	//hearing through contact
 
 			S.volume *= pressure_factor
-		
+
 		if (S.volume <= 0)
 			return //no volume means no sound
 

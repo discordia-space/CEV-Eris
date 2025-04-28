@@ -151,7 +151,7 @@
 	if(islist(message))
 		message = safepick(message)
 	if(message)
-		visible_message("[span_name("[src]")] [message]")
+		visible_message("[span_name("[src]")] [message]", visible_message_flags = EMOTE_MESSAGE)
 
 /mob/living/carbon/superior_animal/update_icons()
 	. = ..()

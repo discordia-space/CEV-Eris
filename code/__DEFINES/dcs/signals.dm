@@ -99,6 +99,8 @@
 #define COMSIG_SHIFTCLICK "shiftclick" // used for ai_like_control component
 #define COMSIG_CTRLCLICK "ctrlclick" // used for ai_like_control component
 #define COMSIG_ALTCLICK "altclick" // used for ai_like_control component
+/// Sent from /atom/movable/proc/say_quote() after say verb is chosen and before spans are applied.
+#define COMSIG_MOVABLE_SAY_QUOTE "movable_say_quote"
 
 // /mob/living signals
 #define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"			 //mob/living/proc/stun_effect_act()

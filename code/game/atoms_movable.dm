@@ -20,6 +20,15 @@
 	var/inertia_dir = 0
 	var/can_anchor = TRUE
 
+	var/verb_say = "says"
+	var/verb_ask = "asks"
+	var/verb_exclaim = "exclaims"
+	var/verb_whisper = "whispers"
+	var/verb_sing = "sings"
+	var/verb_yell = "yells"
+
+	var/speech_span
+
 	//spawn_values
 	var/price_tag = 0 // The item price in credits. atom/movable so we can also assign a price to animals and other things.
 	var/surplus_tag = FALSE //If true, attempting to export this will net you a greatly reduced amount of credits, but we don't want to affect the actual price tag for selling to others.
@@ -217,6 +226,11 @@
 	SSthrowing.throwing_queue[src] = tl
 	return TRUE
 
+/atom/movable/proc/GetJob() //Get a job, you lazy butte
+
+/atom/movable/proc/GetSource()
+
+/atom/movable/proc/GetRadio()
 
 //Overlays
 /atom/movable/overlay

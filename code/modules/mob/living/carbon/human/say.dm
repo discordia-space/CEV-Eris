@@ -145,16 +145,16 @@
 */
 
 /mob/living/carbon/human/say_quote(var/message, var/datum/language/speaking = null)
-	var/verb = "says"
+	var/verb = verb_say
 	var/ending = copytext(message, length(message))
 
 	if(speaking)
-		verb = speaking.get_spoken_verb(ending)
+		verb = get_spoken_verb(ending)
 	else
 		if(ending == "!")
-			verb=pick("exclaims", "shouts", "yells")
+			verb=pick(verb_exclaim, verb_yell)
 		else if(ending == "?")
-			verb="asks"
+			verb=verb_ask
 
 	return verb
 
@@ -178,9 +178,9 @@
 			speech_problem_flag = 1
 
 	var/list/returns[3]
-	returns[1] = message
-	returns[2] = verb
-	returns[3] = speech_problem_flag
+	returns[SPEECHPROBLEM_R_MESSAGE] = message
+	returns[SPEECHPROBLEM_R_VERB] = verb
+	returns[SPEECHPROBLEM_R_FLAG] = speech_problem_flag
 	return returns
 
 /mob/living/carbon/human/handle_message_mode(message_mode, message, verb, speaking, list/used_radios, alt_name, speech_volume)

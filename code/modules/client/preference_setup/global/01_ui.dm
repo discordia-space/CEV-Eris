@@ -8,34 +8,55 @@
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
 	var/UI_compact_style = 0
+	var/RC_enabled = TRUE
+	var/RC_max_length = 110
+	var/RC_see_rc_emotes = TRUE
+	var/RC_see_chat_non_mob = TRUE
+	var/RC_see_looc_on_map = TRUE
 
 /datum/category_item/player_setup_item/player_global/ui
 	name = "UI"
 	sort_order = 1
 
 /datum/category_item/player_setup_item/player_global/ui/load_preferences(var/savefile/S)
-	S["UI_style"]		>> pref.UI_style
-	S["UI_style_color"]	>> pref.UI_style_color
-	S["UI_style_alpha"]	>> pref.UI_style_alpha
-	S["ooccolor"]		>> pref.ooccolor
-	S["asaycolor"]		>> pref.asaycolor
+	S["UI_style"]				>> pref.UI_style
+	S["UI_style_color"]			>> pref.UI_style_color
+	S["UI_style_alpha"]			>> pref.UI_style_alpha
+	S["RC_enabled"]				>> pref.RC_enabled
+	S["RC_max_length"]			>> pref.RC_max_length
+	S["RC_see_rc_emotes"]		>> pref.RC_see_rc_emotes
+	S["RC_see_chat_non_mob"]	>> pref.RC_see_chat_non_mob
+	S["RC_see_looc_on_map"]		>> pref.RC_see_looc_on_map
+	S["ooccolor"]				>> pref.ooccolor
+	S["asaycolor"]				>> pref.asaycolor
 	//S["clientfps"]		>> pref.clientfps
 
+
 /datum/category_item/player_setup_item/player_global/ui/save_preferences(var/savefile/S)
-	S["UI_style"]		<< pref.UI_style
-	S["UI_style_color"]	<< pref.UI_style_color
-	S["UI_style_alpha"]	<< pref.UI_style_alpha
-	S["ooccolor"]		<< pref.ooccolor
-	S["asaycolor"]		<< pref.asaycolor
+	S["UI_style"]				<< pref.UI_style
+	S["UI_style_color"]			<< pref.UI_style_color
+	S["UI_style_alpha"]			<< pref.UI_style_alpha
+	S["RC_enabled"]				<< pref.RC_enabled
+	S["RC_max_length"]			<< pref.RC_max_length
+	S["RC_see_rc_emotes"]		<< pref.RC_see_rc_emotes
+	S["RC_see_chat_non_mob"]	<< pref.RC_see_chat_non_mob
+	S["RC_see_looc_on_map"]		<< pref.RC_see_looc_on_map
+	S["ooccolor"]				<< pref.ooccolor
+	S["asaycolor"]				<< pref.asaycolor
 	//S["clientfps"]		<< pref.clientfps
 
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
-	pref.UI_style		= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
-	pref.UI_style_color	= sanitize_hexcolor(pref.UI_style_color, initial(pref.UI_style_color))
-	pref.UI_style_alpha	= sanitize_integer(pref.UI_style_alpha, 0, 255, initial(pref.UI_style_alpha))
-	pref.ooccolor		= sanitize_hexcolor(pref.ooccolor, GLOB.OOC_COLOR)
-	pref.asaycolor		= sanitize_hexcolor(pref.asaycolor, DEFAULT_ASAY_COLOR)
-	//pref.clientfps	    = sanitize_integer(pref.clientfps, CLIENT_MIN_FPS, CLIENT_MAX_FPS, initial(pref.clientfps))
+	pref.UI_style				= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
+	pref.UI_style_color			= sanitize_hexcolor(pref.UI_style_color, initial(pref.UI_style_color))
+	pref.UI_style_alpha			= sanitize_integer(pref.UI_style_alpha, 0, 255, initial(pref.UI_style_alpha))
+	pref.RC_enabled				= sanitize_bool(pref.RC_enabled, TRUE)
+	pref.RC_max_length			= sanitize_integer(pref.RC_max_length, 0, 110, initial(pref.RC_max_length))
+	pref.RC_see_rc_emotes		= sanitize_bool(pref.RC_see_rc_emotes, TRUE)
+	pref.RC_see_chat_non_mob	= sanitize_bool(pref.RC_see_chat_non_mob, TRUE)
+	pref.RC_see_looc_on_map		= sanitize_bool(pref.RC_see_looc_on_map, TRUE)
+	pref.ooccolor				= sanitize_hexcolor(pref.ooccolor, GLOB.OOC_COLOR)
+	pref.asaycolor				= sanitize_hexcolor(pref.asaycolor, DEFAULT_ASAY_COLOR)
+	//pref.clientfps			= sanitize_integer(pref.clientfps, CLIENT_MIN_FPS, CLIENT_MAX_FPS, initial(pref.clientfps))
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
 	. += "<b>UI Settings</b><br>"
@@ -57,6 +78,12 @@
 		else
 			. += "<a href='byond://?src=\ref[src];select_asay_color=1'><b>[pref.asaycolor]</b></a> <table style='display:inline;' bgcolor='[pref.asaycolor]'><tr><td>__</td></tr></table> <a href='byond://?src=\ref[src];reset=asay'>reset</a><br>"
 	//. += "<b>Client FPS:</b> <a href='byond://?src=\ref[src];select_fps=1'><b>[pref.clientfps]</b></a><br>"
+	. += "<br><b>Runechat:</b><br>"
+	. += "<a href='byond://?src=\ref[src];select_rc=1'><b>[pref.RC_enabled ? "Enabled" : "Disabled"]</b></a><br>"
+	. += "<b>Max Length:</b> <a href='byond://?src=\ref[src];select_rc_max_length=1'><b>[pref.RC_max_length]</b></a><br>"
+	. += "<b>Show Emotes:</b> <a href='byond://?src=\ref[src];select_rc_emotes=1'><b>[pref.RC_see_rc_emotes ? "Enabled" : "Disabled"]</b></a><br>"
+	. += "<b>Show on Non-Mob:</b> <a href='byond://?src=\ref[src];select_rc_non_mob=1'><b>[pref.RC_see_chat_non_mob ? "Enabled" : "Disabled"]</b></a><br>"
+	. += "<b>Show LOOC on Map:</b> <a href='byond://?src=\ref[src];select_rc_looc_on_map=1'><b>[pref.RC_see_looc_on_map ? "Enabled" : "Disabled"]</b></a><br>"
 
 
 /datum/category_item/player_setup_item/player_global/ui/OnTopic(var/href,var/list/href_list, var/mob/user)
@@ -93,6 +120,27 @@
 			pref.asaycolor = new_asaycolor
 			return TOPIC_REFRESH
 
+	else if(href_list["select_rc"])
+		pref.RC_enabled = !pref.RC_enabled
+		return TOPIC_REFRESH
+
+	else if(href_list["select_rc_max_length"])
+		var/new_rc_max_length = input(user, "Choose Runechat max length:", "Global Preference") as num|null
+		if(new_rc_max_length && CanUseTopic(user))
+			pref.RC_max_length = CLAMP(new_rc_max_length, 0, 110)
+			return TOPIC_REFRESH
+
+	else if(href_list["select_rc_emotes"])
+		pref.RC_see_rc_emotes = !pref.RC_see_rc_emotes
+		return TOPIC_REFRESH
+
+	else if(href_list["select_rc_non_mob"])
+		pref.RC_see_chat_non_mob = !pref.RC_see_chat_non_mob
+		return TOPIC_REFRESH
+
+	else if(href_list["select_rc_looc_on_map"])
+		pref.RC_see_looc_on_map = !pref.RC_see_looc_on_map
+		return TOPIC_REFRESH
 	/*
 	else if(href_list["select_fps"])
 		var/version_message
@@ -118,7 +166,7 @@
 			if("ooc")
 				pref.ooccolor = GLOB.OOC_COLOR
 			if("asay")
-				pref.ooccolor = DEFAULT_ASAY_COLOR
+				pref.asaycolor = DEFAULT_ASAY_COLOR
 		pref.client.create_UI()
 		return TOPIC_REFRESH
 

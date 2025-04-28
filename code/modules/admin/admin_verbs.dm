@@ -142,6 +142,7 @@ GLOBAL_LIST_INIT(admin_verbs_mod, list(
 
 GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	/client/proc/cmd_dev_bst,
+	/client/proc/dsay,
 	/client/proc/Jump,
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
@@ -529,7 +530,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 		if(!message)
 			return
 		for (var/mob/V in hearers(O))
-			V.show_message(message, 2)
+			V.show_message(message, MSG_AUDIBLE)
 		log_admin("[key_name(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound")
 		message_admins(span_blue("[key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound"), 1)
 
@@ -566,7 +567,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 
 	// Give profiler access
 	world.SetConfig("APP/admin", ckey, "role=admin")
-	to_chat(src, "Press <a href='byond://?[HrefToken()]debug=profile'>here</a> to access profiler panel. It will replace verb panel, and you may have to wait a couple of seconds for it to display.")
+	to_chat(src, "Press <a href='byond://?debug=profile;[HrefToken()]'>here</a> to access profiler panel. It will replace verb panel, and you may have to wait a couple of seconds for it to display.")
 
 /client/proc/kill_air()
 	set category = "Debug"

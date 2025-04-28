@@ -24,7 +24,7 @@ var/global/list/robot_modules = list(
 	var/hide_on_manifest = FALSE
 	var/channels = list()
 	var/networks = list()
-	var/languages = list(							//Any listed language will be understandable. Any set to 1 will be speakable
+	var/understood_languages = list(							//Any listed language will be understandable. Any set to 1 will be speakable
 					LANGUAGE_COMMON = 1,
 					LANGUAGE_GERMAN = 1,
 					LANGUAGE_CYRILLIC = 1,
@@ -190,7 +190,7 @@ var/global/list/robot_modules = list(
 	for(var/datum/language/language_datum in R.languages)
 		original_languages[language_datum] = (language_datum in R.speech_synthesizer_langs)
 
-	for(var/language in languages)
+	for(var/language in understood_languages)
 		R.add_language(language, languages[language])
 
 /obj/item/robot_module/proc/remove_languages(var/mob/living/silicon/robot/R)

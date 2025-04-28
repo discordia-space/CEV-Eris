@@ -84,6 +84,7 @@ GLOBAL_LIST_EMPTY(mannequins_)
 //Languages/species/whitelist.
 GLOBAL_LIST_EMPTY(all_species)
 GLOBAL_LIST_EMPTY(all_languages)
+GLOBAL_LIST_EMPTY(language_types_by_name)
 GLOBAL_LIST_EMPTY(language_keys)					// Table of say codes for all languages
 var/global/list/storyteller_cache = list()
 
@@ -293,17 +294,6 @@ GLOBAL_LIST_INIT(scary_sounds, list(
 			//This is a specific stash datum, add it to the appropriate sublist
 			GLOB.all_stash_datums[L.base_type][L] = L.weight
 
-
-	//Languages and species.
-	paths = subtypesof(/datum/language)
-	for(var/T in paths)
-		var/datum/language/L = new T
-		GLOB.all_languages[L.name] = L
-
-	for (var/language_name in GLOB.all_languages)
-		var/datum/language/L = GLOB.all_languages[language_name]
-		if(!(L.flags & NONGLOBAL))
-			GLOB.language_keys[lowertext(L.key)] = L
 
 	var/rkey = 0
 	paths = subtypesof(/datum/species)

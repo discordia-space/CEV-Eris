@@ -71,6 +71,7 @@
 #define span_infoplain(str) ("<span class='infoplain'>" + str + "</span>")
 #define span_interface(str) ("<span class='interface'>" + str + "</span>")
 #define span_italics(str) ("<span class='italics'>" + str + "</span>")
+#define span_linkify(str) ("<span class='linkify'>" + str + "</span>")
 #define span_linkOff(str) ("<span class='linkOff'>" + str + "</span>")
 #define span_linkOn(str) ("<span class='linkOn'>" + str + "</span>")
 #define span_looc(str) ("<span class='looc'>" + str + "</span>")
@@ -141,3 +142,7 @@
 #define span_yell(str) ("<span class='yell'>" + str + "</span>")
 #define span_yellow(str) ("<span class='yellow'>" + str + "</span>")
 #define span_yellowteamradio(str) ("<span class='yellowteamradio'>" + str + "</span>")
+
+// Spans that use embedded tgui components:
+// Sorted alphabetically
+#define span_tooltip(tip, main_text) ("<span data-component=\"Tooltip\" data-content=\"" + tip + "\" class=\"tooltip\">" + main_text + "</span>")

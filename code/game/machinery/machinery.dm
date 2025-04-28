@@ -91,6 +91,9 @@
 
 	price_tag = 100
 
+	verb_say = "beeps"
+	verb_yell = "blares"
+
 	var/stat = 0
 	var/emagged = 0
 	var/use_power = IDLE_POWER_USE
@@ -112,6 +115,7 @@
 	var/frame_type = FRAME_DEFAULT
 	var/health = 100
 	var/maxHealth = 100
+
 
 	var/current_power_usage = 0 // How much power are we currently using, dont change by hand, change power_usage vars and then use set_power_use
 	var/area/current_power_area // What area are we powering currently

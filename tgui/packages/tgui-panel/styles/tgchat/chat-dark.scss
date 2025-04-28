@@ -416,6 +416,10 @@ em {
   color: hsl(300, 100%, 50%);
 }
 
+.angelsay {
+  color: hsl(40, 100%, 50%);
+}
+
 .alert {
   color: hsl(0, 74.2%, 48.6%);
 }
@@ -1275,7 +1279,43 @@ $border-width-px: $border-width * 1px;
   }
 }
 
+// More eris styles
+
 .looc {
   color: #ffde5c;
   font-weight: bold;
+}
+
+.alien {
+  color: #543354;
+}
+.monkey {
+  color: #22228b;
+}
+.rough {
+  font-family:
+    Trebuchet MS,
+    cursive,
+    sans-serif;
+}
+.say_quote {
+  font-family: Georgia, Verdana, sans-serif;
+}
+.russian {
+  color: #635d17;
+}
+.serbian {
+  color: #ad6f1d;
+}
+.jive {
+  color: #666666;
+}
+.german {
+  color: #001fff;
+}
+.neohongo {
+  color: #993399;
+}
+.latin {
+  color: #deb63d;
 }

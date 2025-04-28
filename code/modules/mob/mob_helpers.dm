@@ -341,50 +341,65 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			mobs += M
 	return mobs
 
-//Direct dead say used both by emote and say
-//It is somewhat messy. I don't know what to do.
-//I know you can't see the change, but I rewrote the name code. It is significantly less messy now
-/proc/say_dead_direct(var/message, var/mob/subject = null)
-	var/name
-	var/keyname
-	if(subject && subject.client)
-		var/client/C = subject.client
-		keyname = (C.holder && C.holder.fakekey) ? C.holder.fakekey : C.key
-		if(C.mob) //Most of the time this is the dead/observer mob; we can totally use him if there is no better name
-			var/mindname
-			var/realname = C.mob.real_name
-			if(C.mob.mind)
-				mindname = C.mob.mind.name
-				if(C.mob.mind.original && C.mob.mind.original.real_name)
-					realname = C.mob.mind.original.real_name
-			if(mindname && mindname != realname)
-				name = "[realname] died as [mindname]"
-			else
-				name = realname
+// Displays a message in deadchat, sent by source. source is not linkified, message is, to avoid stuff like character names to be linkified.
+// Automatically gives the class deadsay to the whole message (message + source)
+/proc/deadchat_broadcast(message, source=null, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR, admin_only=FALSE)
+	message = span_deadsay("[source][span_linkify(message)]")
 
 	for(var/mob/M in GLOB.player_list)
-		if(M.client && (isghost(M) || (M.client.holder && !is_mentor(M.client))) && M.get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_SHOW)
-			var/follow
-			var/lname
-			if(subject)
-				if(subject != M)
-					follow = "[ghost_follow_link(subject, M)] "
-				if(M.stat != DEAD && M.client.holder)
-					follow = "([admin_jump_link(subject, M.client.holder)]) "
-				var/mob/observer/ghost/DM
-				if(isghost(subject))
-					DM = subject
-				if(M.client.holder) 							// What admins see
-					lname = "[keyname][(DM && DM.anonsay) ? "*" : (DM ? "" : "^")] ([name])"
+		// var/chat_toggles = TOGGLES_DEFAULT_CHAT
+		// var/toggles = TOGGLES_DEFAULT
+		var/list/ignoring
+		// if(M.client?.prefs)
+		// 	var/datum/preferences/prefs = M.client?.prefs
+		// 	chat_toggles = prefs.chat_toggles
+		// 	toggles = prefs.toggles
+		// 	ignoring = prefs.ignored_players
+		if(admin_only)
+
+			if (check_rights(R_ADMIN, FALSE, M))
+				return
+			else
+				message += span_deadsay(" (This is viewable to admins only).")
+		var/override = FALSE
+		// if(M.client?.holder?.check_for_rights(R_ADMIN) && (chat_toggles & CHAT_DEAD))
+		// 	override = TRUE
+		// if(HAS_TRAIT(M, TRAIT_SIXTHSENSE) && message_type == DEADCHAT_REGULAR)
+		// 	override = TRUE
+		if(SSticker.current_state == GAME_STATE_FINISHED)
+			override = TRUE
+		if(isnewplayer(M) && !override)
+			continue
+		if(M.stat != DEAD && !override)
+			continue
+		if(speaker_key && (speaker_key in ignoring))
+			continue
+
+		// switch(message_type)
+		// 	if(DEADCHAT_LAWCHANGE)
+		// 		if(!(chat_toggles & CHAT_GHOSTLAWS))
+		// 			continue
+		// 	if(DEADCHAT_LOGIN_LOGOUT)
+		// 		if(!(chat_toggles & CHAT_LOGIN_LOGOUT))
+		// 			continue
+
+		if(isobserver(M))
+			var/rendered_message = message
+
+			if(follow_target)
+				var/F
+				if(turf_target)
+					F = FOLLOW_OR_TURF_LINK(M, follow_target, turf_target)
 				else
-					if(DM && DM.anonsay)						// If the person is actually observer they have the option to be anonymous
-						lname = "Ghost of [name]"
-					else if(DM)									// Non-anons
-						lname = "[keyname] ([name])"
-					else										// Everyone else (dead people who didn't ghost yet, etc.)
-						lname = name
-				lname = "[span_name("[lname]")] "
-			to_chat(M, span_deadsay("DEAD: [lname][follow][message]"))
+					F = FOLLOW_LINK(M, follow_target)
+				rendered_message = "[F] [message]"
+			else if(turf_target)
+				var/turf_link = TURF_LINK(M, turf_target)
+				rendered_message = "[turf_link] [message]"
+
+			to_chat(M, rendered_message, avoid_highlighting = speaker_key == M.key)
+		else
+			to_chat(M, message, avoid_highlighting = speaker_key == M.key)
 
 //Announces that a ghost has joined/left, mainly for use with wizards
 /proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
@@ -417,9 +432,15 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		if(!name)
 			name = (C.holder && C.holder.fakekey) ? C.holder.fakekey : C.key
 		if(joined_ghosts)
-			say_dead_direct("The ghost of [span_name("[name]")] now [pick("skulks","lurks","prowls","creeps","stalks")] among the dead. [message]")
+			deadchat_broadcast("The ghost of [span_name("[name]")] now [pick("skulks","lurks","prowls","creeps","stalks")] among the dead. [message]")
 		else
-			say_dead_direct("[span_name("[name]")] no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
+			deadchat_broadcast("[span_name("[name]")] no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
+
+///Returns a mob's real name between brackets. Useful when you want to display a mob's name alongside their real name
+/mob/proc/get_realname_string()
+	if(real_name && real_name != name)
+		return " \[[real_name]\]"
+	return ""
 
 /mob/proc/switch_to_camera(var/obj/machinery/camera/C)
 	if (!C.can_use() || stat || (get_dist(C, src) > 1 || machine != src || blinded || !canmove))

@@ -49,7 +49,7 @@
 
 	if(input)
 		log_emote("Ghost/[src.key] : [input]")
-		say_dead_direct(input, src)
+		deadchat_broadcast(input, src)
 
 //This is a central proc that all emotes are run through. This handles sending the messages to living mobs
 /mob/proc/send_emote(var/message, var/type)
@@ -73,10 +73,14 @@
 				messagemobs += M
 				continue
 
+	create_chat_message(src, raw_message = message, runechat_flags = EMOTE_MESSAGE)
+
 	for (var/mob/N in messagemobs)
+		if(runechat_prefs_check(N, EMOTE_MESSAGE) && (N.ear_deaf || N.disabilities & DEAF) && get_turf(N) in messageturfs)
+			N.create_chat_message(src, raw_message = message, runechat_flags = EMOTE_MESSAGE)
 		N.show_message(message, type)
 
-	message = "<B>[message]</B>"
-
 	for (var/mob/O in messagemobs_neardead)
-		O.show_message(message, type)
+		if(runechat_prefs_check(O, EMOTE_MESSAGE) && get_turf(O) in messageturfs)
+			O.create_chat_message(src, raw_message = message, runechat_flags = EMOTE_MESSAGE)
+		O.show_message("<B>[message]</B>", type)

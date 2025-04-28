@@ -16,7 +16,7 @@
 
 	. = src.say_dead(message)
 
-/mob/observer/ghost/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",
+/mob/observer/ghost/hear_say(var/message, var/verb = src.verb_say, var/datum/language/language = null, var/alt_name = "",
 		var/italics = FALSE, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	if(!client)
 		return

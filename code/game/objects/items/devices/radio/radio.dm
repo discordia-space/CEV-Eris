@@ -52,6 +52,7 @@ var/global/list/default_medbay_channels = list(
 	var/syndie = FALSE//Holder to see if it's a syndicate encrypted radio
 	var/merc = FALSE  //Holder to see if it's a mercenary encrypted radio
 	var/pirate = FALSE  //Holder to see if it's a pirate encrypted radio
+	var/anonymize = FALSE
 	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 
@@ -280,7 +281,7 @@ var/global/list/default_medbay_channels = list(
 	// If we were to send to a channel we don't have, drop it.
 	return null
 
-/obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, var/verb = "says", var/datum/language/speaking = null, var/speech_volume)
+/obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, var/verb = src.verb_say, var/datum/language/speaking = null, var/speech_volume)
 	if(!on) return 0 // the device has to be on
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
 	if(!M || !message) return 0
@@ -484,8 +485,7 @@ var/global/list/default_medbay_channels = list(
 					  filter_type, signal.data["compression"], list(position.z), connection.frequency,verb,speaking, speech_volume)
 
 
-/obj/item/device/radio/hear_talk(mob/M as mob, msg, var/verb = "says", var/datum/language/speaking = null, speech_volume)
-
+/obj/item/device/radio/hear_talk(mob/M as mob, msg, var/verb = src.verb_say, var/datum/language/speaking = null, speech_volume)
 	if (broadcasting)
 		if(get_dist(src, M) <= canhear_range)
 			talk_into(M, msg,null,verb,speaking, speech_volume)
@@ -592,7 +592,7 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/borg/list_channels(mob/user)
 	return list_secure_channels(user)
 
-/obj/item/device/radio/borg/talk_into(mob/living/M, message, channel, var/verb = "says", var/datum/language/speaking = null, var/speech_volume)
+/obj/item/device/radio/borg/talk_into(mob/living/M, message, channel, var/verb = src.verb_say, var/datum/language/speaking = null, var/speech_volume)
 	. = ..()
 	if (isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc

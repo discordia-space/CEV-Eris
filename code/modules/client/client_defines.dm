@@ -62,6 +62,9 @@
 
 	var/adminhelped = 0
 
+	/// Messages currently seen by this client
+	var/list/seen_messages
+
 	var/fullscreen = FALSE
 
 	/// List of Stat Panel tabs

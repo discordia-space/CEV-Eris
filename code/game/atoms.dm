@@ -17,6 +17,13 @@
 	var/initialized = FALSE
 	var/sanity_damage = 0
 
+	/// Last name used to calculate a color for the chatmessage overlays
+	var/chat_color_name
+	/// Last color calculated for the the chatmessage overlays
+	var/chat_color
+	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
+	var/chat_color_darkened
+
 	var/light_power = 1 // Intensity of the light.
 	var/light_range = 0 // Range in tiles of the light.
 	var/light_color     // Hexadecimal RGB string representing the colour of the light.
@@ -344,6 +351,12 @@ its easier to just keep the beam vertical.
 					//I've found that 3 ticks provided a nice balance for my use.
 	for(var/obj/effect/overlay/beam/O in orange(10, src)) if(O.BeamSource==src) qdel(O)
 
+/// Used by mobs to determine the name for someone wearing a mask, or with a disfigured or missing face. By default just returns the atom's name. add_id_name will control whether or not we append "(as [id_name])".
+/atom/proc/get_visible_name(add_id_name)
+	return name
+
+/atom/proc/GetVoice()
+	return "[src]" //Returns the atom's name, prepended with 'The' if it's not a proper noun
 
 //All atoms
 /atom/proc/examine(mob/user, extra_description = "")
@@ -670,22 +683,61 @@ its easier to just keep the beam vertical.
 // Use for objects performing visible actions
 // message is output to anyone who can see, e.g. "The [src] does something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-/atom/proc/visible_message(message, blind_message, range = world.view)
+
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, atom/push_appearance)
 	var/turf/T = get_turf(src)
-	var/list/mobs = list()
-	var/list/objs = list()
-	get_mobs_and_objs_in_view_fast(T,range, mobs, objs, ONLY_GHOSTS_IN_VIEW)
+	if(!T)
+		return
 
-	for(var/obj/O as anything in objs)
-		if(!QDELETED(O))
-			O.show_message(message,1,blind_message,2)
+	if(!isnull(push_appearance) && !isatom(push_appearance))
+		stack_trace("push_appearance must be an atom, but got [push_appearance] instead")
 
-	for(var/m in mobs)
-		var/mob/M = m
-		if(M.see_invisible >= invisibility)
-			M.show_message(message,1,blind_message,2)
-		else if(blind_message)
-			M.show_message(blind_message, 2)
+	if(!islist(ignored_mobs))
+		ignored_mobs = list(ignored_mobs)
+	var/list/hearers = hearers(vision_distance, src) //caches the hearers and then removes ignored mobs.
+	hearers -= ignored_mobs
+
+	if(istext(self_message))
+		// Putting this here because there's a lot of visible_message calls
+		// and it would be pain to go through them all so ill just do this to make note of for the future
+		// stack_trace("ATOM/VISIBLE_MESSAGE_ALERT: [src] passed a string self_message on proc visible_message, when self_message should be a boolean! fix this!")
+		blind_message = self_message
+	else
+		hearers -= src
+
+	var/raw_msg = message
+	if(visible_message_flags & EMOTE_MESSAGE)
+		message = "<span class='emote'><b>[src]</b> [message]</span>"
+
+
+	for(var/mob/M in hearers)
+		if(!M.client)
+			continue
+
+		//This entire if/else chain could be in two lines but isn't for readibilties sake.
+		var/msg = message
+		var/msg_type = MSG_VISUAL
+
+		if(M.see_invisible < invisibility)//if src is invisible to M
+			msg = blind_message
+			msg_type = MSG_AUDIBLE
+		else if(T != loc && T != src) //if src is inside something and not a turf.
+			if(M != loc) // Only give the blind message to hearers that aren't the location
+				msg = blind_message
+				msg_type = MSG_AUDIBLE
+		else if( T.is_softly_lit() && !in_range(T,M)) //if it is too dark, unless we're right next to them.
+			msg = blind_message
+			msg_type = MSG_AUDIBLE
+		if(!msg)
+			continue
+
+		if(push_appearance)
+			M << output(push_appearance, "push_appearance_placeholder_id")
+
+		if(visible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, visible_message_flags) && !(M.blinded || M.disabilities & BLIND))
+			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = visible_message_flags)
+
+		M.show_message(msg, msg_type, blind_message, MSG_AUDIBLE)
 
 
 // Show a message to all mobs and objects in earshot of this atom
@@ -693,7 +745,7 @@ its easier to just keep the beam vertical.
 // message is the message output to anyone who can hear.
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
-/atom/proc/audible_message(message, deaf_message, hearing_distance)
+/atom/proc/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE)
 
 	var/range = world.view
 	if(hearing_distance)
@@ -705,6 +757,8 @@ its easier to just keep the beam vertical.
 
 	for(var/m in mobs)
 		var/mob/M = m
+		if(audible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, audible_message_flags) && (M.ear_deaf || M.disabilities & DEAF))
+			M.create_chat_message(src, raw_message = message, runechat_flags = audible_message_flags)
 		M.show_message(message,2,deaf_message,1)
 	for(var/o in objs)
 		var/obj/O = o

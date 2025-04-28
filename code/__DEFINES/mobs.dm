@@ -229,3 +229,29 @@
 #define CAN_OPERATE_ALL 1 //All possible surgery types are available
 #define CAN_OPERATE_STANDING -1 //Only limited surgery types are available (gouging out shrapnel, for instance)
 
+
+GLOBAL_REAL_VAR(list/voice_type2sound = list(
+	"1" = list(
+		"1" = sound('goon/sound/speak_1.ogg'),
+		"!" = sound('goon/sound/speak_1_exclaim.ogg'),
+		"?" = sound('goon/sound/speak_1_ask.ogg')
+	),
+	"2" = list(
+		"2" = sound('goon/sound/speak_2.ogg'),
+		"!" = sound('goon/sound/speak_2_exclaim.ogg'),
+		"?" = sound('goon/sound/speak_2_ask.ogg')
+	),
+	"3" = list(
+		"3" = sound('goon/sound/speak_3.ogg'),
+		"!" = sound('goon/sound/speak_3_exclaim.ogg'),
+		"?" = sound('goon/sound/speak_3_ask.ogg')
+	),
+	"4" = list(
+		"4" = sound('goon/sound/speak_4.ogg'),
+		"!" = sound('goon/sound/speak_4_exclaim.ogg'),
+		"?" = sound('goon/sound/speak_4_ask.ogg')
+	),
+))
+
+///Managed global that is a reference to the real global
+GLOBAL_LIST_INIT(voice_type2sound_ref, voice_type2sound)

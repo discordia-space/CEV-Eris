@@ -204,11 +204,6 @@ var/list/_client_preferences_by_type
 	key = "SHOW_PROGRESS"
 	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
 
-/datum/client_preference/floating_messages
-	description ="Floating chat messages"
-	key = "FLOATING_CHAT"
-	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
-
 /datum/client_preference/browser_style
 	description = "Fake NanoUI Browser Style"
 	key = "BROWSER_STYLED"

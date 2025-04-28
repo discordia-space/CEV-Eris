@@ -95,38 +95,27 @@
 
 
 // Show a message to all mobs and objects in sight of this one
-// This would be for visible actions by the src mob
-// message is the message output to anyone who can see e.g. "[src] does something!"
-// self_message (optional) is what the src mob sees  e.g. "You do something!"
-// blind_message (optional) is what blind people will hear e.g. "You hear something!"
+/mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, atom/push_appearance, no_text_limit = FALSE)
+	. = ..()
+	if(self_message)
+		show_message(self_message, MSG_VISUAL, blind_message, MSG_AUDIBLE, no_text_limit = no_text_limit)
 
-/mob/visible_message(message, self_message, blind_message, range = world.view, no_text_limit = FALSE)
-	var/list/messageturfs = list()//List of turfs we broadcast to.
-	var/list/messagemobs = list()//List of living mobs nearby who can hear it, and distant ghosts who've chosen to hear it
-	for (var/turf in view(range, get_turf(src)))
+///Returns the client runechat visible messages preference according to the message type.
+/atom/proc/runechat_prefs_check(mob/target, visible_message_flags = NONE)
+	if(!target.client?.prefs.RC_enabled)
+		return FALSE
+	if (!target.client?.prefs.RC_see_chat_non_mob)
+		return FALSE
+	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.RC_see_rc_emotes)
+		return FALSE
+	return TRUE
 
-		messageturfs += turf
-
-
-
-	for(var/mob/M in getMobsInRangeChunked(get_turf(src), range, FALSE, TRUE))
-		if(!M.client)
-			continue
-		messagemobs += M
-
-	for(var/mob/ghosty in GLOB.player_ghost_list)
-		if(ghosty.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_EMOTES)
-			messagemobs |= ghosty
-
-	for(var/A in messagemobs)
-		var/mob/M = A
-		if(self_message && M==src)
-			M.show_message(self_message, 1, blind_message, 2, no_text_limit = no_text_limit)
-		else if(M.see_invisible < invisibility)  // Cannot view the invisible, but you can hear it.
-			if(blind_message)
-				M.show_message(blind_message, 2, no_text_limit = no_text_limit)
-		else
-			M.show_message(message, 1, blind_message, 2, no_text_limit = no_text_limit)
+/mob/runechat_prefs_check(mob/target, visible_message_flags = NONE)
+	if(!target.client?.prefs.RC_enabled)
+		return FALSE
+	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.RC_see_rc_emotes)
+		return FALSE
+	return TRUE
 
 
 // Returns an amount of power drawn from the object (-1 if it's not viable).

@@ -1,9 +1,10 @@
 /datum/language/corticalborer
 	name = LANGUAGE_CORTICAL
 	desc = "Cortical borers possess a strange link between their tiny minds."
-	speech_verb = list("sings")
-	ask_verb = list("sings")
-	exclaim_verb = list("sings")
+	// speech_verb = list("sings")
+	// ask_verb = list("sings")
+	// exclaim_verb = list("sings")
+	icon_state = "cortical"
 	colour = "alien"
 	key = "x"
 	flags = RESTRICTED | HIVEMIND
@@ -26,9 +27,10 @@
 /datum/language/cultcommon
 	name = LANGUAGE_CULT
 	desc = "The chants of the occult, the incomprehensible."
-	speech_verb = list("intones")
-	ask_verb = list("intones")
-	exclaim_verb = list("chants")
+	icon_state = "cult"
+	// speech_verb = list("intones")
+	// ask_verb = list("intones")
+	// exclaim_verb = list("chants")
 	colour = "cult"
 	key = "f"
 	flags = RESTRICTED
@@ -45,9 +47,10 @@
 /datum/language/cult
 	name = LANGUAGE_OCCULT
 	desc = "The initiated can share their thoughts by means defying all reason."
-	speech_verb = list("intones")
-	ask_verb = list("intones")
-	exclaim_verb = list("chants")
+	icon_state = "cult"
+	// speech_verb = list("intones")
+	// ask_verb = list("intones")
+	// exclaim_verb = list("chants")
 	colour = "cult"
 	key = "y"
 	flags = RESTRICTED | HIVEMIND

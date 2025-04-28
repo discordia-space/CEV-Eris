@@ -2,6 +2,7 @@
 	name = LANGUAGE_NEOHONGO
 	desc = "The language widely used by Frozen Star"
 	colour = "neohongo"
+	icon_state = "neohongo"
 	key = "j"
 	space_chance = 80
 	shorthand = "NEO"

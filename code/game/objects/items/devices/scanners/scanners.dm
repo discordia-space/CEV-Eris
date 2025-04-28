@@ -70,11 +70,11 @@
 
 	if(is_valid_scan_target(A) && A.simulated)
 		if(!is_virtual)
-			user.visible_message(span_notice("[user] runs \the [src] over \the [A]."), range = 2)
+			user.visible_message(span_notice("[user] runs \the [src] over \the [A]."), vision_distance = 2)
 			if(scan_sound)
 				playsound(src, scan_sound, 30)
 		else
-			user.visible_message(span_notice("[user] focuses on \the [A] for a moment."), range = 2)
+			user.visible_message(span_notice("[user] focuses on \the [A] for a moment."), vision_distance = 2)
 		if(use_delay && !do_after(user, use_delay, A))
 			if(!is_virtual)
 				to_chat(user, "You stop scanning \the [A] with \the [src].")

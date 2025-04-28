@@ -19,6 +19,10 @@
 	name = "Emote, audible"
 	default_key = "!"
 
+/decl/prefix/whisper
+	name = "Whisper"
+	default_key = "#"
+
 /decl/prefix/visible_emote
 	name = "Emote, visible"
 	default_key = "^"

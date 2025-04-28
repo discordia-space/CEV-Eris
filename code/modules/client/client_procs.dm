@@ -308,6 +308,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		admin_memo_show()
 		adminGreet()
 
+	if (mob)
+		var/stealth_admin = mob.client?.holder?.fakekey
+		// var/announce_leave = mob.client?.prefs?.read_preference(/datum/preference/toggle/broadcast_login_logout)
+		if (!stealth_admin)
+			deadchat_broadcast(" has reconnected.", "<b>[mob][mob.get_realname_string()]</b>", follow_target = mob, turf_target = get_turf(mob), message_type = DEADCHAT_LOGIN_LOGOUT/*, admin_only=!announce_leave*/)
+
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
 		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
@@ -348,6 +354,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	return ..()
 
 /client/Destroy()
+	if(mob)
+		var/stealth_admin = mob.client?.holder?.fakekey
+		// var/announce_join = mob.client?.prefs?.read_preference(/datum/preference/toggle/broadcast_login_logout)
+		if (!stealth_admin)
+			deadchat_broadcast(" has disconnected.", "<b>[mob][mob.get_realname_string()]</b>", follow_target = mob, turf_target = get_turf(mob), message_type = DEADCHAT_LOGIN_LOGOUT/*, admin_only=!announce_join*/)
+
 	GLOB.clients -= src
 	GLOB.directory -= ckey
 	log_access("Logout: [key_name(src)]")

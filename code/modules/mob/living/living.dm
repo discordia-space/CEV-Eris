@@ -649,6 +649,7 @@ default behaviour is:
 	else
 		resting = TRUE
 		to_chat(src, span_notice("You are now resting."))
+		playsound(loc, 'goon/sound/body_thud.ogg', ishuman(src) ? 40 : 15, 1, 0.3)
 		update_lying_buckled_and_verb_status()
 
 
@@ -682,6 +683,7 @@ default behaviour is:
 		if(momentum_speed > 4)
 			range++
 		throw_at(get_edge_target_turf(src, _dir), range, 1, src, PASSTABLE) // If you dive over a table, your momentum is set to 0. If you dive over space, you are thrown 1 tile further.
+		playsound(loc, 'goon/sound/body_thud.ogg', ishuman(src) ? 40 : 15, 1, 0.3)
 		update_lying_buckled_and_verb_status()
 		allow_spin = TRUE
 
@@ -869,6 +871,8 @@ default behaviour is:
 	var/turf/T = get_turf(src)
 	if(T)
 		update_z(T.z)
+
+	voice_type = pick(voice_type2sound)
 
 /mob/living/Destroy()
 	if(registered_z)

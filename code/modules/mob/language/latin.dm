@@ -2,6 +2,7 @@
 	name = LANGUAGE_LATIN
 	desc = "An ancient language once used by most of europe but now only followers of Neotheology speak and understand"
 	colour = "latin"
+	icon_state = "latin"
 	key = "l"
 	space_chance = 80
 	shorthand = "LA"

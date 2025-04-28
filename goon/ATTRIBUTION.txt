@@ -1,0 +1,281 @@
+openlootcrate.ogg - 
+	Compressed in 2023 by virvatuli sound/misc/openlootcrate.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/openlootcrate.ogg
+
+openlootcrate2.ogg  - 
+	Compressed in 2023 by virvatuli sound/misc/openlootcrate2.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/openlootcrate2.ogg
+
+ArtifactAnc1.ogg - 
+	OG Commit sound/machines/ArtifactAnc1.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/ArtifactAnc1.ogg
+
+ArtifactEld1.ogg - 
+	OG Commit sound/machines/ArtifactEld1.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/ArtifactEld1.ogg
+
+ArtifactEld2.ogg - 
+	OG Commit sound/machines/ArtifactEld2.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/ArtifactEld2.ogg
+
+ArtifactMar1.ogg - 
+	OG Commit sound/machines/ArtifactMar1.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/ArtifactMar1.ogg
+
+ArtifactMar2.ogg - 
+	OG Commit sound/machines/ArtifactMar2.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/ArtifactMar2.ogg
+
+ArtifactPre1.ogg - 
+	OG Commit sound/machines/ArtifactPre1.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/ArtifactPre1.ogg
+
+ArtifactWiz1.ogg - 
+	OG Commit sound/machines/ArtifactWiz1.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/ArtifactWiz1.ogg
+
+elec_bzzz.ogg - 
+	OG Commit sound/effects/elec_bzzz.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/effects/elec_bzzz.ogg
+
+electric_shock.ogg - 
+	OG Commit sound/effects/electric_shock.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/effects/electric_shock.ogg
+
+electric_shock_short.ogg - 
+	OG Commit sound/effects/electric_shock_short.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/effects/electric_shock_short.ogg
+
+bellalert.ogg - 
+	OG Commit sound/machines/bellalert.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/bellalert.ogg
+
+engine_alert1.ogg - 
+	OG Commit sound/machines/engine_alert1.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/engine_alert1.ogg
+
+engine_alert2.ogg - 
+	OG Commit sound/machines/engine_alert2.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/engine_alert2.ogg
+
+engine_alert3.ogg - 
+	OG Commit sound/machines/engine_alert3.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/engine_alert3.ogg
+
+engine_grump1.ogg - 
+	OG Commit sound/machines/engine_grump1.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/engine_grump1.ogg
+
+engine_grump2.ogg - 
+	OG Commit sound/machines/engine_grump2.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/engine_grump2.ogg
+
+engine_grump3.ogg - 
+	OG Commit sound/machines/engine_grump3.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/engine_grump3.ogg
+
+engine_grump4.ogg - 
+	OG Commit sound/machines/engine_grump4.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/engine_grump4.ogg
+
+engine_highpower.ogg - 
+	OG Commit sound/machines/engine_highpower.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/engine_highpower.ogg
+
+tractor_running.ogg - 
+	OG Commit sound/machines/tractor_running1.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/tractor_running.ogg
+
+tractor_running2.ogg - 
+	OG Commit sound/machines/tractor_running2.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/tractor_running2.ogg
+
+tractor_running3.ogg - 
+	OG Commit sound/machines/tractor_running3.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/tractor_running3.ogg
+
+tractorrev.ogg - 
+	OG Commit sound/machines/tractorrev.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/machines/tractorrev.ogg
+
+
+babynoise.ogg - 
+	OG Commit goonstation/sound/babynoise.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/voice/babynoise.ogg
+
+body_thud.ogg - 
+	OG Commit goonstation/sound/misc/body_thud.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/body_thud.ogg
+
+
+speak_1.ogg - 
+	OG Commit  goonstation/sound/misc/talk/speak_1.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/talk/speak_1.ogg
+
+speak_1_exclaim.ogg - 
+	OG Commit goonstation/sound/misc/talk/speak_1_exclaim.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/talk/speak_1_exclaim.ogg
+
+speak_1_ask.ogg - 
+	OG Commit goonstation/sound/misc/talk/speak_1_ask.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/talk/speak_1_ask.ogg
+
+speak_2.ogg - 
+	OG Commit  goonstation/sound/misc/talk/speak_2.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/talk/speak_2.ogg
+
+speak_2_exclaim.ogg - 
+	OG Commit goonstation/sound/misc/talk/speak_2_exclaim.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/talk/speak_2_exclaim.ogg
+
+speak_2_ask.ogg - 
+	OG Commit goonstation/sound/misc/talk/speak_2_ask.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/talk/speak_2_ask.ogg
+
+speak_3.ogg - 
+	OG Commit  goonstation/sound/misc/talk/speak_3.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/talk/speak_3.ogg
+
+speak_3_exclaim.ogg - 
+	OG Commit goonstation/sound/misc/talk/speak_3_exclaim.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/talk/speak_3_exclaim.ogg
+
+speak_3_ask.ogg - 
+	OG Commit goonstation/sound/misc/talk/speak_3_ask.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/talk/speak_3_ask.ogg
+
+speak_4.ogg - 
+	OG Commit  goonstation/sound/misc/talk/speak_4.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/talk/speak_4.ogg
+
+speak_4_exclaim.ogg - 
+	OG Commit goonstation/sound/misc/talk/speak_4_exclaim.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/talk/speak_4_exclaim.ogg
+
+speak_4_ask.ogg - 
+	OG Commit goonstation/sound/misc/talk/speak_4_ask.ogg
+https://github.com/goonstation/goonstation/blob/master/sound/misc/talk/speak_4_ask.ogg
+
+
+
+radio_ai.ogg
+	mybluecorners (8ec37f12e282492a5e7aeb4ec1d5cfa2f1df7460 
+https://github.com/goonstation/goonstation/blob/master/sound/misc/talk/radio_ai.ogg
+
+
+neon_lining.dmi
+	Nebulacrity https://github.com/goonstation/goonstation/pull/1731
+https://github.com/goonstation/goonstation/blob/9470d5bbb76afa2ffdee6bddf8b97a68092d8b01/icons/obj/decals/neon_lining.dmi
+
+pt_laser.dmi
+	gannets
+https://github.com/goonstation/goonstation/blob/master/icons/obj/pt_laser.dmi
+
+
+teg.dmi - https://github.com/goonstation/goonstation/pull/3408 Azrun blower indication, Inital Commit (circulator's 
+	Azrun https://github.com/goonstation/goonstation/pull/3408 blower indication
+	gannets - main teg sprite
+	Azrun https://github.com/goonstation/goonstation/pull/2902, open states
+https://github.com/goonstation/goonstation/blob/master/icons/obj/power.dmi
+https://github.com/goonstation/goonstation/blob/master/icons/obj/atmospherics/atmos.dmi
+
+slasher.dmi 
+	Zonespace27 https://github.com/goonstation/goonstation/pull/6094
+https://github.com/Zonespace27/goonstation/blob/d9a36b8ae0203788683a38c0b8546c14b0e0f656/icons/mob/slasher.dmi
+
+electile.dmi 
+	mybluecorners https://github.com/goonstation/goonstation/pull/1425/files#diff-cc282396fd85af02912a95be13420419cc7a433cfb2280c362f3c3cf4451ad2c
+https://github.com/goonstation/goonstation/blob/master/icons/effects/electile.dmi
+
+320x320.dmi 
+	goonstation/icons/effect/320x320.dmi (lootbox sprites), 
+https://github.com/goonstation/goonstation/blob/master/icons/effects/320x320.dmi
+
+displacements.dmi 
+	pali6   (inital commit) 
+https://github.com/goonstation/goonstation/blob/master/icons/effects/distort.dmi
+
+particle.dmi
+    Azrun - https://github.com/goonstation/goonstation/commit/0f11103f910db33e05482a21f567ae8ef01237f1
+    flrsh - https://github.com/goonstation/goonstation/commit/9ffc312e1b66aad4810dbf449c60b2b027b38898
+    Sovexe - https://github.com/goonstation/goonstation/commit/ad6e662ae7547efff964ff6b39085621162761d8
+    TobleroneSwordfish - https://github.com/goonstation/goonstation/commit/01f361fc560da88ab6cca050dd265bac420658f4
+https://github.com/goonstation/goonstation/blame/master/icons/effects/particles.dmi
+
+
+multi_hit.dmi
+	goonstation/icons/effects/96x96 - swipe
+	goonstation/icons/effects/96x96 - stab
+https://github.com/goonstation/goonstation/blob/master/icons/effects/96x96.dmi
+
+
+networked.dmi
+	 binarysudoku https://github.com/goonstation/goonstation/pull/750
+https://github.com/goonstation/goonstation/blob/master/icons/obj/networked.dmi
+
+
+plants_alien.dmi
+	binarysudoku https://github.com/goonstation/goonstation/commit/9fb6d4c8df6ca51bbd6178cc703ffbeb5ae64be7
+	sovexe https://github.com/goonstation/goonstation/commit/54f6c5b1b825ebf65647a510195e8ec93154b7a1
+	sovexe https://github.com/goonstation/goonstation/commit/b5145abcde8113ce371f842ed4c12c6e2e7944c7
+	azrun https://github.com/goonstation/goonstation/commit/3100dbc7c3d69f4d1744d9ffa1b9ded1e9f2c126
+	m-earthfire, tobleroneswordfish https://github.com/goonstation/goonstation/commit/08c48c389012d17c8bbf735a6bc0f0fec684dd54
+https://github.com/goonstation/goonstation/blob/master/icons/obj/hydroponics/plants_alien.dmi
+
+plants_crop.dmi
+	binarysudoku https://github.com/goonstation/goonstation/commit/9fb6d4c8df6ca51bbd6178cc703ffbeb5ae64be7
+	binarysudoku https://github.com/goonstation/goonstation/commit/a2bfa53e05fd18fd44d5d8bf9f8c3e4261e10fe6
+	emily https://github.com/goonstation/goonstation/commit/6dde7025cf5ffaabc47f264638f90f92b116fbd7
+	yellow-mushroom https://github.com/goonstation/goonstation/commit/df3347bf103e30354e1b45f5cea888d5c433be34
+	DimWhat https://github.com/goonstation/goonstation/commit/306343902279aad64147a7d95fcb405ca95989af
+	sovexe https://github.com/goonstation/goonstation/commit/d3e97cde29fef8047983b66c09f6bf5a62449a20
+	crackaduck https://github.com/goonstation/goonstation/commit/32e09c6a1834f1042cf49571476117e38c680cdc
+	crackaduck https://github.com/goonstation/goonstation/commit/350bf56e85732399329d9631485c45519951cf10
+	wolfolotl https://github.com/goonstation/goonstation/commit/c0a09331cb7a3841030cd7991144cf92a826b5e1
+	tobleroneswordfish https://github.com/goonstation/goonstation/commit/524eaf8aaf84b00920c7013fc5c6385f47b09be5
+	flappybatpal https://github.com/goonstation/goonstation/commit/c09ca907184df4861b23a0df5df917d6505ea684
+	tobleroneswordfish https://github.com/goonstation/goonstation/commit/1aa16631c7443140fdcf427bb9a04df5eeff8663
+	sovexe https://github.com/goonstation/goonstation/commit/d3e97cde29fef8047983b66c09f6bf5a62449a20
+https://github.com/goonstation/goonstation/blob/master/icons/obj/hydroponics/plants_crop.dmi
+
+plants_flower.dmi
+	binarysudoku https://github.com/goonstation/goonstation/commit/9fb6d4c8df6ca51bbd6178cc703ffbeb5ae64be7
+	janonas, jigjagboi45 tarmunora https://github.com/goonstation/goonstation/commit/243d0bfade03e14829d3c50fee5d09c938f97d41
+	munien7 https://github.com/goonstation/goonstation/commit/5b27507352cb4f2c5988018c04e47f26f09ab116
+	flrsh https://github.com/goonstation/goonstation/commit/9ffc312e1b66aad4810dbf449c60b2b027b38898
+	eggcereal https://github.com/goonstation/goonstation/commit/9198822090a3dad530df408d6cc77b7e77406551
+https://github.com/goonstation/goonstation/blob/master/icons/obj/hydroponics/plants_flower.dmi
+
+plants_fruit.dmi
+	binarysudoku https://github.com/goonstation/goonstation/commit/9fb6d4c8df6ca51bbd6178cc703ffbeb5ae64be7
+	jan-antilles https://github.com/goonstation/goonstation/commit/85c5d02771d900f72e32cd1ec9b5a85a7f01b9d1
+	t-toasted https://github.com/goonstation/goonstation/commit/de386a2b86395f445c7a6ddba7cda039635c2605
+	flappybatpal https://github.com/goonstation/goonstation/commit/c09ca907184df4861b23a0df5df917d6505ea684
+	tanker4390 https://github.com/goonstation/goonstation/commit/4691dabb8b940bbd9c441af1e6916bd9f0bcd32c
+https://github.com/goonstation/goonstation/blob/master/icons/obj/hydroponics/plants_fruit.dmi
+
+plant_herb.dmi
+	binarysudoku https://github.com/goonstation/goonstation/commit/9fb6d4c8df6ca51bbd6178cc703ffbeb5ae64be7
+	mordent-goonstation https://github.com/goonstation/goonstation/commit/fdf70ea6bbcbde998d616b431328cb6770035524
+	binarysudoku https://github.com/goonstation/goonstation/commit/a2bfa53e05fd18fd44d5d8bf9f8c3e4261e10fe6
+	Janonas https://github.com/goonstation/goonstation/commit/a6291454d8210c29939c812a432b72f4aa394e62
+	WALPVRGIS https://github.com/goonstation/goonstation/commit/4dc053670dc868888030d440feb4b3050370da00
+	avimour, tobleroneswordfish https://github.com/goonstation/goonstation/commit/6a5b97afb44e2da544fffe2126e6cf9640089ee8
+	colossusqw https://github.com/goonstation/goonstation/commit/114f0262462c4247578b308a4fba04e9350aa4ce
+	flrsh https://github.com/goonstation/goonstation/commit/9ffc312e1b66aad4810dbf449c60b2b027b38898
+	temthrush https://github.com/goonstation/goonstation/commit/a2d3c6262172fa44eafd9071bba0364cf90cac09
+	colossusqw https://github.com/goonstation/goonstation/commit/530ef545c793232ba2a57832f17c8deaf6a3cbfb
+https://github.com/goonstation/goonstation/blob/master/icons/obj/hydroponics/plants_herb.dmi
+
+plant_veg.dmi
+	binarysudoku https://github.com/goonstation/goonstation/commit/9fb6d4c8df6ca51bbd6178cc703ffbeb5ae64be7
+	wolfolotl, tarmunora, zewaka, mordent-goonstation https://github.com/goonstation/goonstation/commit/a941272744132922382940516cd83af2259f1ed9
+	flappybatpal https://github.com/goonstation/goonstation/commit/c09ca907184df4861b23a0df5df917d6505ea684
+	M-Earthfire https://github.com/goonstation/goonstation/commit/8ea2eb4b124dd7bd2c4a689e0bd1895dbe55d024
+	Glamurio https://github.com/goonstation/goonstation/commit/d62440d0ecf4bb6380e2484f9ffc0251b2f31bf5
+https://github.com/goonstation/goonstation/blob/master/icons/obj/hydroponics/plants_veg.dmi
+
+plant_weed.dmi
+	binarysudoku https://github.com/goonstation/goonstation/commit/9fb6d4c8df6ca51bbd6178cc703ffbeb5ae64be7
+	M-earthfire, tobleroneswordfish https://github.com/goonstation/goonstation/commit/08c48c389012d17c8bbf735a6bc0f0fec684dd54
+https://github.com/goonstation/goonstation/blob/master/icons/obj/hydroponics/plants_weed.dmi

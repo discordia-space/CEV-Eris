@@ -18,8 +18,6 @@
 	if(handle_spam_prevention(msg,MUTE_DEADCHAT))
 		return
 
-	var/stafftype = uppertext(holder.rank)
-
 	msg = sanitize(msg)
 	log_admin("DSAY: [key_name(src)] : [msg]")
 	mob.log_talk(msg, LOG_DSAY)
@@ -27,4 +25,10 @@
 	if(!msg)
 		return
 
-	say_dead_direct(span_name("[stafftype]([holder.fakekey ? holder.fakekey : key])</span> says, <span class='message linkify'>\"[msg]\""))
+	var/rank_name = holder.rank
+	var/admin_name = key
+
+	var/name_and_rank = "[span_tooltip(rank_name, "STAFF")] ([admin_name])"
+
+	deadchat_broadcast("[span_prefix("DEAD:")] [name_and_rank] says, <span class='message'>\"[emoji_parse(msg)]\"</span>")
+	// say_dead_direct(span_name("[stafftype]([holder.fakekey ? holder.fakekey : key])</span> says, <span class='message linkify'>\"[msg]\""))

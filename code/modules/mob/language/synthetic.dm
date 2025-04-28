@@ -1,10 +1,13 @@
 /datum/language/binary
 	name = LANGUAGE_ROBOT
 	desc = "Most human stations support free-use communications protocols and routing hubs for synthetic use."
+	icon = 'icons/misc/language.dmi'
+	icon_state = "eal"
+
 	colour = "say_quote"
-	speech_verb = list("states")
-	ask_verb = list("queries")
-	exclaim_verb = list("declares")
+	// speech_verb = list("states")
+	// ask_verb = list("queries")
+	// exclaim_verb = list("declares")
 	key = "b"
 	flags = RESTRICTED | HIVEMIND
 	var/drone_only
@@ -54,9 +57,10 @@
 /datum/language/binary/drone
 	name = LANGUAGE_DRONE
 	desc = "A heavily encoded damage control coordination stream."
-	speech_verb = list("transmits")
-	ask_verb = list("transmits")
-	exclaim_verb = list("transmits")
+	icon_state = "drone"
+	// speech_verb = list("transmits")
+	// ask_verb = list("transmits")
+	// exclaim_verb = list("transmits")
 	colour = "say_quote"
 	key = "d"
 	flags = RESTRICTED | HIVEMIND
@@ -65,9 +69,10 @@
 /datum/language/binary/blitz
 	name = LANGUAGE_BLITZ
 	desc = "An encrypted binary-stream language used for agent co-ordination."
-	speech_verb = list("transmits")
-	ask_verb = list("transmits")
-	exclaim_verb = list("transmits")
+	icon_state = "blitz"
+	// speech_verb = list("transmits")
+	// ask_verb = list("transmits")
+	// exclaim_verb = list("transmits")
 	colour = "say_quote"
 	key = "d"
 	flags = RESTRICTED | HIVEMIND

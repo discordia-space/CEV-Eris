@@ -145,7 +145,7 @@
 			returnval = call(target, procname)()
 	else
 		log_admin("[key_name(src)] called [procname]() with [arguments.len ? "the arguments [list2params(arguments)]" : "no arguments"].")
-		returnval = call(procname)(arglist(arguments))
+		returnval = call("/proc/[procname]")(arglist(arguments))
 
 	to_chat(usr, span_info("[procname]() returned: [isnull(returnval) ? "null" : returnval]"))
 
