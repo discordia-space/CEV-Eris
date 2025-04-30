@@ -318,7 +318,7 @@ There are important things regarding this file:
 	armor_divisor = 1
 	pellets = 6
 	range_step = 1
-	spread_step = 10
+	entropy = 10
 	pellet_to_knockback_ratio = 2
 	recoil = 5
 	matter = list(MATERIAL_STEEL = 0.6)
