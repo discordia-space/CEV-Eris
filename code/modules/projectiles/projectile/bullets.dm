@@ -162,6 +162,7 @@
 				newbullet.original = original
 				newbullet.def_zone = def_zone
 				newbullet.kill_count = kill_count // they all hit the floor
+				newbullet.muzzle_type = null //fixes redundant muzzle flare
 				var/newoffset = rand(1,8) * (num == 1 ? 1 : -1) // up to 8 degrees in both directions, applied randomly each time
 				newbullet.setup_trajectory(get_turf(src), get_turf(original), 0, 0, newoffset)
 				newbullet.Process()
