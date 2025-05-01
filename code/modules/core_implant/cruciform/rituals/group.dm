@@ -172,10 +172,39 @@
 	stat_buff = STAT_TGH
 	stat_message = "You feel like you're getting sturdier."
 
+/datum/ritual/group/cruciform/sanctify
+	name = "Sanctify"
+	desc = "Sanctify the land you tread. Available to anyone who knows the words."
+	phrase = "Benedicite loco isto."
+	phrases = list(
+		"Benedicite loco isto.",
+		"Benedic hoc petimus Patris.",
+		"Nos obsecro te removere percula huius loci.",
+		"Ne malorum tangere terram",
+		"Frase quinta",
+		"Frase sexta",
+		"Frase septima"
+	)
+	effect_type = /datum/group_ritual_effect/cruciform/sanctify
+	high_ritual = FALSE
+
+/datum/ritual/group/cruciform/sanctify/step_check(mob/living/carbon/human/H)
+	return TRUE
+
+/datum/group_ritual_effect/cruciform/sanctify/trigger_success(mob/starter, list/participants)
+	..()
+	var/area/A = get_area(starter)
+	A?.sanctify()
+	for(var/obj/machinery/power/nt_obelisk/O in GLOB.all_obelisk)
+		O.force_active = max(60, O.force_active)
+
+/area/proc/sanctify()
+	SEND_SIGNAL_OLD(src, COMSIG_AREA_SANCTIFY)
+	return
 
 /datum/ritual/group/cruciform/crusade
 	name = "Crusade"
-	desc = "Reveal crusade litanies to disciples. Depends on participants amount."
+	desc = "Reveal crusade litanies to disciples. Requires at least six participants."
 	phrase = "Locutus est Dominus ad Mosen dicens."
 	phrases = list(
 		"Locutus est Dominus ad Mosen dicens.",
@@ -214,33 +243,3 @@
 		CI.known_rituals |= initial(C.name)
 		C = /datum/ritual/cruciform/crusader/flash
 		CI.known_rituals |= initial(C.name)
-
-/datum/ritual/group/cruciform/sanctify
-	name = "Sanctify"
-	desc = "Sanctify the land you tread."
-	phrase = "Benedicite loco isto."
-	phrases = list(
-		"Benedicite loco isto.",
-		"Benedic hoc petimus Patris.",
-		"Nos obsecro te removere percula huius loci.",
-		"Ne malorum tangere terram",
-		"Frase quinta",
-		"Frase sexta",
-		"Frase septima"
-	)
-	effect_type = /datum/group_ritual_effect/cruciform/sanctify
-	high_ritual = FALSE
-
-/datum/ritual/group/cruciform/sanctify/step_check(mob/living/carbon/human/H)
-	return TRUE
-
-/datum/group_ritual_effect/cruciform/sanctify/trigger_success(mob/starter, list/participants)
-	..()
-	var/area/A = get_area(starter)
-	A?.sanctify()
-	for(var/obj/machinery/power/nt_obelisk/O in GLOB.all_obelisk)
-		O.force_active = max(60, O.force_active)
-
-/area/proc/sanctify()
-	SEND_SIGNAL_OLD(src, COMSIG_AREA_SANCTIFY)
-	return
