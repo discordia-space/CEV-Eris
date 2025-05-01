@@ -24,6 +24,7 @@
 	damage_types = list(BRUTE = 8, HALLOSS = 12)
 	embed = FALSE
 	sharp = FALSE
+	matter = list(MATERIAL_PLASTIC = 0.1)
 
 /obj/item/projectile/bullet/pellet/fragment/rubber/weak
 	icon_state = "rubber"

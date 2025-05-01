@@ -100,12 +100,12 @@
 	var/entropy = 10	//higher means the pellets divide more across body parts with distance
 	var/pellet_to_knockback_ratio = 0
 	wounding_mult = WOUNDING_SMALL
-	matter = list(MATERIAL_STEEL = 0.4)
+	matter = list(MATERIAL_STEEL = 0.1)
 
-/obj/item/projectile/bullet/pellet/launch_from_gun(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
-	for(var/entry in matter) // this allows for the projectile in the casing having the correct matter
-		matter[entry] /= pellets // yet disallows for pellet shrapnel created on impact multiplying the matter count
+/obj/item/projectile/bullet/pellet/get_matter()
 	. = ..()
+	for(var/entry in matter) // this results in the projectile in the casing sending correct data
+		.[entry] *= pellets
 
 /obj/item/projectile/bullet/pellet/Bumped()
 	. = ..()
@@ -158,6 +158,12 @@
 			for(var/num in 1 to 2)
 				var/obj/item/projectile/bullet/pellet/newbullet = new type(loc)
 				newbullet.pellets = dividedpellets
+				for(var/i in newbullet.damage_types)
+					newbullet.damage_types[i] = damage_types[i]
+				newbullet.armor_divisor = armor_divisor
+				newbullet.penetrating = penetrating
+				newbullet.ricochet_ability = ricochet_ability
+				newbullet.step_delay = step_delay
 				newbullet.location = trajectory.return_location() // will produce pixel loc datum
 				newbullet.original = original
 				newbullet.def_zone = def_zone

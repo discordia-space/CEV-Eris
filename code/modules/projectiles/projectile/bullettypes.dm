@@ -321,7 +321,6 @@ There are important things regarding this file:
 	entropy = 10
 	pellet_to_knockback_ratio = 2
 	recoil = 5
-	matter = list(MATERIAL_STEEL = 0.6)
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()
