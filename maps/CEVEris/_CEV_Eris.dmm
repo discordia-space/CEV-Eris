@@ -45184,10 +45184,14 @@
 /area/eris/rnd/server)
 "cfR" = (
 /obj/structure/table/rack,
-/obj/item/electronics/circuitboard/secure_data{
-	pixel_x = -2;
-	pixel_y = 2
-	},
+/obj/item/computer_hardware/hard_drive/portable/advanced/setup/security,
+/obj/item/cell/medium,
+/obj/item/computer_hardware/processor_unit,
+/obj/item/computer_hardware/tesla_link,
+/obj/item/computer_hardware/hard_drive/advanced,
+/obj/item/computer_hardware/network_card/wired,
+/obj/item/computer_hardware/scanner/paper,
+/obj/item/computer_hardware/printer,
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/storage/tech)
 "cfS" = (
@@ -45304,11 +45308,15 @@
 /area/eris/command/meeting_room)
 "cgd" = (
 /obj/structure/table/rack,
-/obj/item/electronics/circuitboard/med_data{
-	pixel_x = 3;
-	pixel_y = -3
-	},
+/obj/item/computer_hardware/hard_drive/portable/advanced/setup/medical,
 /obj/spawner/junkfood,
+/obj/item/cell/medium,
+/obj/item/computer_hardware/processor_unit,
+/obj/item/computer_hardware/tesla_link,
+/obj/item/computer_hardware/hard_drive/advanced,
+/obj/item/computer_hardware/network_card/wired,
+/obj/item/computer_hardware/scanner/paper,
+/obj/item/computer_hardware/printer,
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/storage/tech)
 "cge" = (
@@ -54700,6 +54708,8 @@
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk,
 /obj/spawner/flora/low_chance,
+/obj/item/computer_hardware/tesla_link,
+/obj/item/computer_hardware/network_card/wired,
 /turf/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
 "cEB" = (
@@ -98970,6 +98980,15 @@
 /obj/structure/multiz/ladder/up,
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/engineering/foyer)
+"iEk" = (
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/junk,
+/obj/item/cell/medium,
+/obj/item/computer_hardware/processor_unit,
+/obj/item/computer_hardware/hard_drive/advanced,
+/obj/item/computer_hardware/scanner/paper,
+/turf/floor/plating/under,
+/area/eris/maintenance/section4deck3port)
 "iFm" = (
 /turf/wall,
 /area/eris/maintenance/section3deck4central)
@@ -205261,7 +205280,7 @@ wsA
 abF
 cwU
 cos
-cos
+iEk
 cBO
 cwU
 abF
