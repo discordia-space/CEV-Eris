@@ -1,0 +1,9 @@
+2025-05-02:
+  Mycah142:
+  - bugfix: Parenchyma no longer bugs out when multiple types are applied to the same
+      organ
+  - refactor: Internal Wounds no longer use Component code.
+  - rscadd: Added setup disks, the hot old thing!
+  - tweak: Techno Storage no longer contains setup boards for the medical or security
+      records. These have been replaced with appropriate setup disks.
+  - bugfix: fixed Sanctify group litany
