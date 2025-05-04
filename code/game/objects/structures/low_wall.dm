@@ -265,7 +265,7 @@
 		to_chat(user, SPAN_DANGER("There's a window in the way."))
 		return
 	if(state < GRAB_AGGRESSIVE || target.loc == loc)
-		if(user.a_intent == I_HURT)
+		if(user.a_intent == I_HURT && state == GRAB_FIRM)
 			if(prob(15))
 				target.Weaken(5)
 			target.damage_through_armor(12, BRUTE, BP_HEAD, ARMOR_MELEE)

@@ -19,10 +19,9 @@
 
 // Grab levels.
 #define GRAB_PASSIVE    1
-#define GRAB_AGGRESSIVE 2
-#define GRAB_PRENECK 2.5
-#define GRAB_NECK       3
-#define GRAB_UPGRADING  4
+#define GRAB_FIRM 2
+#define GRAB_AGGRESSIVE 3
+#define GRAB_NECK       4
 #define GRAB_KILL       5
 
 #define BORGMESON 0x1

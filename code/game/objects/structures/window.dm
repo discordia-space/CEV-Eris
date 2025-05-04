@@ -264,7 +264,7 @@
 	var/skillRatio = clamp(grabberRob  / targetTgh , 0.3 , 3)
 	var/toughTarget = target.stats.getPerk(PERK_ASS_OF_CONCRETE) ? TRUE : FALSE
 	switch(state)
-		if(GRAB_PASSIVE)
+		if(GRAB_PASSIVE, GRAB_FIRM)
 			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
 			// having ass of concrete divides damage by 3
 			// max damage can be 30 without armor, and gets mitigated by having 15 melee armor
