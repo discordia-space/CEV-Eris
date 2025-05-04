@@ -327,7 +327,7 @@
 				msg_admin_attack("[key_name(assailant)] grabbed the neck of [key_name(affecting)]")
 				hud.name = "choke"
 		if(GRAB_NECK)
-			assailant.visible_message(SPAN_DANGER("[assailant] starts to tighten \his grip on [affecting]'s neck!"), SPAN_WARNING("You begin tightening your grip on [affected]'s neck!"))
+			assailant.visible_message(SPAN_DANGER("[assailant] starts to tighten \his grip on [affecting]'s neck!"), SPAN_WARNING("You begin tightening your grip on [affecting]'s neck!"))
 			if(upgrade_grab(total_warmup, "choke", GRAB_KILL))
 				icon_state = "kill_hand" // because there is no choke hand available
 				hud.name = "Kill"
