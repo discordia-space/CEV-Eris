@@ -89,7 +89,7 @@
 
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
 //This proc auto corrects the grass tiles' siding.
-/turf/floor/proc/make_plating(var/place_product, var/defer_icon_update)
+/turf/floor/proc/make_plating(var/place_product, var/defer_icon_update, var/scraped)
 
 	overlays.Cut()
 	if(islist(decals))
@@ -104,7 +104,16 @@
 
 	if(flooring)
 		if(flooring.build_type && place_product)
-			new flooring.build_type(src)
+			var/obj/temp_tile = new flooring.build_type(src)
+			if(scraped && temp_tile)
+				var/materials = temp_tile.get_matter()
+				for(var/mat_name in materials)
+					var/material/material = get_material_by_name(mat_name)
+					if(!material)
+						continue
+
+					material.place_shard(src, materials[mat_name])
+				qdel(temp_tile)
 
 	//We attempt to get whatever should be under this floor
 	if(flooring)

@@ -333,7 +333,7 @@
 // charge the gas reservoir and perform flush if ready
 /obj/machinery/disposal/Process()
 	if(!air_contents || (stat & BROKEN))			// nothing can happen if broken
-		update_use_power(0)
+		set_power_use(NO_POWER_USE)
 		return
 
 	flush_count++
@@ -350,7 +350,7 @@
 		flush()
 
 	if(mode != DISPOSALS_CHARGING)
-		update_use_power(1)
+		set_power_use(IDLE_POWER_USE)
 	else if(air_contents.return_pressure() >= SEND_PRESSURE)
 		mode = DISPOSALS_CHARGED
 		update()
@@ -359,7 +359,7 @@
 
 /obj/machinery/disposal/proc/pressurize()
 	if(stat & NOPOWER)			// won't charge if no power
-		update_use_power(0)
+		set_power_use(NO_POWER_USE)
 		return
 
 	var/atom/L = loc						// recharging from loc turf

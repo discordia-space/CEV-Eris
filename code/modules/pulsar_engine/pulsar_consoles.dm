@@ -193,6 +193,8 @@
 		console_area = get_area(pulsar_console) //Area stored so reconnections are cheaper.
 
 	portal = locate() in get_area(src)
+	if(portal)
+		portal_active = TRUE
 
 /obj/machinery/power/pulsar_power_bridge/Process()
 	if(powernet && pulsar_console)

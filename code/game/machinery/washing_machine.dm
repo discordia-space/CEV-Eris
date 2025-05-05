@@ -42,14 +42,10 @@
 
 //A washing machine cleans away most of the bad effects of old clothes
 //Armor penalties and name/desc changes are left
-/obj/machinery/washing_machine/proc/wash(atom/A)
-	A.clean_blood()
-	if(isobj(A))
-		var/obj/O = A
-		if(istype(A, /obj/item))
-			var/obj/item/I = A
-			I.decontaminate()
-		O.make_young()
+/obj/machinery/washing_machine/proc/wash(obj/laundry)
+	laundry.clean_blood()
+	if(istype(laundry))
+		laundry.make_young()
 
 /obj/machinery/washing_machine/Process()
 	if(tick > 0 && (state == WASHSTATE_RUNNING))
@@ -72,7 +68,7 @@
 				qdel(HH)
 
 			state = WASHSTATE_FULLCLOSEDDOOR
-			use_power = IDLE_POWER_USE
+			set_power_use(IDLE_POWER_USE)
 			update_icon()
 
 /obj/machinery/washing_machine/examine(mob/user, extra_description = "")
@@ -97,7 +93,7 @@
 	tick = WASH_BASETIME
 	for(var/atom/A in contents)
 		tick += WASH_ADDTIME
-	use_power = ACTIVE_POWER_USE
+	set_power_use(ACTIVE_POWER_USE)
 	update_icon()
 
 /obj/machinery/washing_machine/verb/climb_out()

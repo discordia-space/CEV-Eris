@@ -28,8 +28,6 @@
 	var/needs_air_update = FALSE
 	var/datum/gas_mixture/air
 
-	var/has_resources
-	var/list/resources // Mining resources (for the large drills)
 	var/list/initial_gas
 	var/list/decals
 	var/list/affecting_lights // List of light sources affecting this turf
@@ -240,18 +238,6 @@
 						for(var/i = 0;i<slip_dist;i++)
 							step(M, M.dir)
 							sleep(1)
-
-		// TODO: Contamination is ancient and utterly useless mechanic, remove in a separate PR --KIROV
-		else if(isitem(Obj) && vsc.plc.CLOTH_CONTAMINATION)
-			var/obj/item/I = Obj
-			if(I.can_contaminate())
-				var/datum/gas_mixture/env = return_air(1)
-				if(!env)
-					return
-				for(var/g in env.gas)
-					if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && env.gas[g] > gas_data.overlay_limit[g] + 1)
-						I.contaminate()
-						break
 
 	// If an opaque movable atom moves around we need to potentially update visibility.
 		if(Obj && Obj.opacity)

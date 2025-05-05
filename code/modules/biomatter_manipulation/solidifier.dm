@@ -17,6 +17,7 @@
 	idle_power_usage = 5
 	active_power_usage = 300
 	reagent_flags = TRANSPARENT
+	panel_open = -1
 
 	var/active = FALSE
 	var/port_dir = SOUTH
@@ -52,6 +53,7 @@
 				container.reagents.trans_id_to(src, MATERIAL_BIOMATTER, quantity, TRUE)
 		if(reagents.get_reagent_amount(MATERIAL_BIOMATTER) >= BIOMATTER_PER_SHEET)
 			process_biomatter()
+			use_power(active_power_usage)
 		else
 			abort("Insufficient amount of biomatter.")
 

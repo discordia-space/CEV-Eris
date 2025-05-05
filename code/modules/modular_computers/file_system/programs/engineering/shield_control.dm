@@ -23,7 +23,7 @@
 
 /datum/nano_module/shield_control
 	name = "Shield control"
-	var/obj/machinery/power/shield_generator/hull/gen = null
+	var/obj/machinery/power/shipside/shield_generator/hull/gen = null
 	var/multigen = FALSE //Set true if multiple active hull shield generators are detected onstation
 	var/genloc = ""//A string that describes the location of our connected shield generator
 
@@ -35,11 +35,11 @@
 /datum/nano_module/shield_control/proc/connect_to_generator()
 	var/n = 0
 	gen = null
-	for (var/obj/machinery/power/shield_generator/hull/G in world)
+	for (var/obj/machinery/power/shipside/shield_generator/hull/G in world)
 		//Check that the generator is on the same vessel as us.
 		//This allows antag ships/stations to have their own shield generators and consoles
 		if (is_matching_vessel(G, nano_host()))
-			if (G.anchored && G.tendrils_deployed) //Only look at those that are wrenched in and setup
+			if (G.anchored && G.tendrils_deployed && !G.ai_control_disabled) //Only look at those that are wrenched in and setup
 				gen = G //It's a good enough candidate, we're connected!
 				n++
 
@@ -121,6 +121,7 @@
 		//If the generator has been unwrenched we also lose connection
 		playsound_host('sound/machines/buzz-two.ogg', 50)
 		gen = null //Cut our connection, and we'll be unable to reconnect
+		genloc = "" //Clear the location too!
 		return
 
 
@@ -159,7 +160,7 @@
 		var/temp_integrity = gen.field_integrity()
 
 		gen.offline_for += 300 //5 minutes, given that procs happen every 2 seconds
-		gen.shutdown_field()
+		gen.shutdown_machine()
 		gen.emergency_shutdown = TRUE
 		gen.log_event(EVENT_DISABLED, nano_host())
 		if(prob(temp_integrity - 50) * 1.75)
@@ -180,11 +181,10 @@
 		. = 1
 
 	if(href_list["set_input_cap"])
-		var/new_cap = round(input(usr, "Enter new input cap (in kW). Enter 0 or nothing to disable input cap.", "Generator Power Control", round(gen.input_cap / 1000)) as num)
+		var/new_cap = round(input(usr, "Enter new input cap (in kW). Current maximal input cap is [gen.input_maxcap / 1000] kW", "Generator Power Control", round(gen.input_cap / 1000)) as num)
 		if(!new_cap)
-			gen.input_cap = 0
 			return
-		gen.input_cap = max(0, new_cap) * 1000
+		gen.input_cap = between(1, new_cap, gen.input_maxcap / 1000) * 1000
 		gen.log_event(EVENT_RECONFIGURED, nano_host())
 		. = 1
 

@@ -329,6 +329,8 @@ SUBSYSTEM_DEF(air)
 	#ifdef ZASDBG
 	ASSERT(isturf(A))
 	ASSERT(isturf(B))
+	if(istype(B, /turf/space))
+		return FALSE
 	#endif
 
 	var/ablock = A.c_airblock(B)

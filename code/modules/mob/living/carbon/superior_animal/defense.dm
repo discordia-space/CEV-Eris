@@ -177,6 +177,8 @@
 	. = ..() //health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 	if (health <= 0 && stat != DEAD)
 		death()
+	else if(stat != DEAD && AI_inactive)
+		activate_ai()
 
 /mob/living/carbon/superior_animal/gib(var/anim = icon_gib, var/do_gibs = 1)
 	if (!anim)

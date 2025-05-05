@@ -45,11 +45,11 @@
 			return TRUE
 	if(ismob(A))
 		return ..()
-	var/obj/O = A
-	if((!istype(O) && !istype(O, /turf/wall/low)) || get_dist(O, affecting) > 1)
+	if(get_dist(O, affecting) > 1)
 		return TRUE
-	if(O.affect_grab(assailant, affecting, state))
-		qdel(src)
+	if(istype(O, /obj) || istype(O, /turf/wall/low))
+		if(O.affect_grab(assailant, affecting, state))
+			qdel(src)
 	return TRUE
 
 /obj/item/grab/New(mob/user, mob/victim)

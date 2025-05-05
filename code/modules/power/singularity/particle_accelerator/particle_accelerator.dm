@@ -349,7 +349,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 					user.visible_message("[user.name] closes the [src.name]'s access panel.", \
 						"You close the access panel.")
 					construction_state = 3
-					use_power = IDLE_POWER_USE
+					set_power_use(IDLE_POWER_USE)
 					update_icon()
 					return
 			if(construction_state == 3)
@@ -357,7 +357,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 					user.visible_message("[user.name] closes the [src.name]'s access panel.", \
 						"You close the access panel.")
 					construction_state = 2
-					use_power = NO_POWER_USE
+					set_power_use(NO_POWER_USE)
 					update_state()
 					update_icon()
 					return

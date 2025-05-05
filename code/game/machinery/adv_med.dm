@@ -57,7 +57,7 @@
 	src.occupant.forceMove(loc)
 	src.occupant.reset_view()
 	src.occupant = null
-	update_use_power(1)
+	set_power_use(IDLE_POWER_USE)
 	update_icon()
 
 /obj/machinery/bodyscanner/AltClick(mob/user)
@@ -67,7 +67,7 @@
 /obj/machinery/bodyscanner/proc/set_occupant(var/mob/living/L)
 	L.forceMove(src)
 	src.occupant = L
-	update_use_power(2)
+	set_power_use(ACTIVE_POWER_USE)
 	update_icon()
 	src.add_fingerprint(usr)
 

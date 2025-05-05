@@ -4,6 +4,9 @@
 	anchored = TRUE
 	density = TRUE
 	var/entropy_value = 2
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 500
+	active_power_usage = 5000
 
 /obj/machinery/trade_beacon/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
@@ -19,6 +22,7 @@
 	do_sparks(5, 0, loc)
 	bluespace_entropy(entropy_value, get_turf(src))
 	playsound(loc, "sparks", 50, 1)
+	use_power(active_power_usage)
 
 /obj/machinery/trade_beacon/sending
 	name = "sending trade beacon"

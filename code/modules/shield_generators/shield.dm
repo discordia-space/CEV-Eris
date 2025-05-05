@@ -27,7 +27,7 @@
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
 	invisibility = 0
-	var/obj/machinery/power/shield_generator/gen = null
+	var/obj/machinery/power/shipside/shield_generator/gen = null
 	var/disabled_for = 0
 	var/diffused_for = 0
 	var/floorOnly = FALSE
@@ -308,31 +308,31 @@ Like for example singulo act and whatever.
 
 // Shield collision checks below
 
-/atom/movable/proc/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
+/atom/movable/proc/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
 	return 1
 
 
 // Other mobs
-/mob/living/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
+/mob/living/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_NONHUMANS)
 
 // Human mobs
-/mob/living/carbon/human/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
+/mob/living/carbon/human/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
 	if(isSynthetic())
 		return !gen.check_flag(MODEFLAG_ANORGANIC)
 	return !gen.check_flag(MODEFLAG_HUMANOIDS)
 
 // Silicon mobs
-/mob/living/silicon/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
+/mob/living/silicon/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_ANORGANIC)
 
 
 // Generic objects. Also applies to bullets and meteors.
-/obj/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
+/obj/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_HYPERKINETIC)
 
 // Beams
-/obj/item/projectile/beam/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
+/obj/item/projectile/beam/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_PHOTONIC)
 
 

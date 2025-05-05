@@ -73,7 +73,7 @@
 	occupant.unset_machine()
 	occupant = null
 	autodoc_processor.set_patient(null)
-	update_use_power(1)
+	set_power_use(IDLE_POWER_USE)
 	update_icon()
 
 /obj/machinery/autodoc/proc/set_occupant(var/mob/living/L)
@@ -86,7 +86,7 @@
 	else
 		autodoc_processor.set_patient(L)
 		nano_ui_interact(L)
-		update_use_power(2)
+		set_power_use(ACTIVE_POWER_USE)
 		L.set_machine(src)
 	update_icon()
 

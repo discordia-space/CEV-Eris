@@ -20,10 +20,10 @@
 
 /obj/machinery/multistructure/bioreactor_part/platform/Process()
 	if(!MS)
-		use_power(1)
+		use_power(idle_power_usage)
 		return
 	if((!is_breached() || MS_bioreactor.is_operational()) && MS_bioreactor.chamber_solution)
-		use_power(2)
+		use_power(active_power_usage)
 		for(var/atom/movable/M in loc)
 
 			//mob processing
@@ -36,7 +36,7 @@
 				//if our target has hazard protection, apply damage based on the protection percentage.
 				var/hazard_protection = victim.getarmor(null, ARMOR_BIO)
 				var/damage = BIOREACTOR_DAMAGE_PER_TICK - (BIOREACTOR_DAMAGE_PER_TICK * (hazard_protection/100))
-				victim.apply_damage(damage, BRUTE, used_weapon = "Biological")
+				victim.apply_damage(damage, BURN, used_weapon = "Biological") // Before ErisMed 4 damage type was CLONE until some CLOWN changed it to simply BRUTE for no reason. TODO: change to better damage type when possible
 				victim.adjustOxyLoss(BIOREACTOR_DAMAGE_PER_TICK / 2)	// Snowflake shit, but we need the mob to die within a reasonable time frame
 
 				if(prob(10))
@@ -77,9 +77,9 @@
 					target.forceMove(MS_bioreactor.misc_output)
 	else
 		//if our machine is non operational, let's go idle powermode and pump out solution
-		use_power(1)
+		use_power(idle_power_usage)
 		if(MS_bioreactor.chamber_solution)
-			MS_bioreactor.pump_solution()
+			MS_bioreactor.pump_solution(forced = 1)
 
 
 /obj/machinery/multistructure/bioreactor_part/platform/attackby(var/obj/item/I, var/mob/user)
@@ -169,13 +169,12 @@
 //Here we go through our windows and check it for breach. If somewhere glass will be missing, we return TRUE and turn our bioreactor var
 /obj/machinery/multistructure/bioreactor_part/platform/proc/is_breached()
 	var/list/glass_dirs = get_opened_dirs()
-	for(var/obj/structure/window/reinforced/glass in loc)
+	for(var/obj/structure/window/reinforced/bioreactor/glass in loc)
 		if(glass.dir in glass_dirs)
 			glass_dirs -= glass.dir
 	if(glass_dirs.len)
 		MS_bioreactor.chamber_breached = TRUE
 		return TRUE
-	MS_bioreactor.chamber_breached = FALSE
 	return FALSE
 
 
@@ -223,10 +222,10 @@
 	contamination_level += amount
 	if(contamination_level >= max_contamination_lvl)
 		contamination_level = max_contamination_lvl
-		opacity = FALSE
+		opacity = TRUE
 	if(contamination_level <= 0)
 		contamination_level = 0
-		opacity = TRUE
+		opacity = FALSE
 	update_icon()
 
 

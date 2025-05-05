@@ -61,7 +61,7 @@
 			if(!istype(AM, /obj/effect/effect/smoke/chem))
 				reagents.splash(AM, splash_amount, copy = 1)
 
-
+/obj/effect/effect/smoke/chem/roach // made by a roach, used for chemsmoke IFF
 
 /////////////////////////////////////////////
 // Chem Smoke Effect System
@@ -85,6 +85,8 @@
 	if(!seed)
 		qdel(src)
 	..()
+
+/datum/effect/effect/system/smoke_spread/chem/roach
 
 /datum/effect/effect/system/smoke_spread/chem/New()
 	..()
@@ -242,6 +244,10 @@
 	spores.name = "cloud of [seed.seed_name] [seed.seed_noun]"
 	..(T, I, smoke_duration, dist, spores)
 
+/datum/effect/effect/system/smoke_spread/chem/roach/spawnSmoke(turf/T, icon/I, smoke_duration, dist)
+	var/obj/effect/effect/smoke/chem/roach/roachy = new(location, smoke_duration + rand(0, 20), T, I)
+	..(T, I, smoke_duration, dist, roachy)
+	
 
 /datum/effect/effect/system/smoke_spread/chem/proc/smokeFlow() // Smoke pathfinder. Uses a flood fill method based on zones to quickly check what turfs the smoke (airflow) can actually reach.
 

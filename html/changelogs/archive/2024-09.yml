@@ -1,0 +1,51 @@
+2024-09-07:
+  AltHit:
+  - bugfix: repair nanites for FBP now work correctly and heal
+  SirRichardFrancis:
+  - bugfix: Fixed several interactions with windows.
+  SirRichardFrancis, MLGTASTICa:
+  - bugfix: Fixed clothing-related case of 515 incompatibility.
+  Wrill:
+  - tweak: satchels will gather as many items as they can store, instead of up to
+      15.
+2024-09-15:
+  AltHit:
+  - tweak: Tweaked light power consumption
+  - bugfix: 'Fixed everything not consuming power when it should have consumed it
+      (notably: sleepers, AI, operating table and many others)'
+  - bugfix: Fixed Excelsior boombox working without power
+  - bugfix: Fixed gym machines not updating their sprites when powered back up
+  - bugfix: Fixed Pulsar power bridge incorrectly showing status of Pulsar portal
+  - bugfix: Rewrote some gravity generator code to show it's status correctly, pulse-glow
+      more consistently and consume power
+  Deal5:
+  - spellcheck: Theo-Mat now has a bit more clear messaging.
+  TheLeopold:
+  - bugfix: channeling perk boosts the effect of rituals
+  - refactor: defined channeling perk
+2024-09-24:
+  AltHit:
+  - rscadd: Added ability to construct conduits for Shield generator and Long range
+      scanner
+  - rscadd: Added ability to connect/disconnect conduits for Shield generator and
+      Long range scanner with enough MEC skill
+  - rscadd: Conduit circuit board designs to RnD
+  - tweak: Now conduits for shieldgen and scanner have parts inside of them and they
+      can be upgraded to improve efficiency
+  - tweak: Changed parts that are used in construction of Shield generator and Long
+      range scanner
+  - tweak: Bioreactor now deals burn damage instead of brute
+  - bugfix: Corrected start-up and shut down animations for Long range scanner
+  - bugfix: Fixed Bioreactor breaking after clicking it with a screwdriver
+  - bugfix: Fixed Bioreactor working with broken glass walls
+  - bugfix: Fixed Bioreactor glass being inversed transparent (it was see-through
+      when it should have blocked view and vice versa)
+  - bugfix: Fixed consoles not making sounds when they were supposed to make it
+  - bugfix: Cahors wine now actually cures poisoning
+  - refactor: Now Shield generator and Long range scanner have shared parent object
+  - config: Changed long range scanner power consumption
+2024-09-25:
+  TheLeopold:
+  - tweak: removed cell from svalinn disk
+  - balance: now svalinn is disposable
+  - balance: reduced the price of NT energy pack crate

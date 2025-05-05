@@ -74,11 +74,13 @@
 
 #define ISODD(x) (x % 2 != 0)
 
+#define NFRACT(tofract) (tofract - round(tofract)) // I live in agony
+
 //Probability based rounding that makes whole numbers out of decimals based on luck.
 //The decimal value is the probability to be rounded up.
 //Eg a value of 1.37 has a 37% chance to become 2, otherwise it is 1
 //Useful for game balance matters where the gulf caused by consistent rounding is too much
-#define ROUND_PROB(val) (val - (val % 1) + prob((val % 1) * 100))
+#define ROUND_PROB(val) (val - (NFRACT(val)) + prob(NFRACT(val) * 100))
 
 #define RAND_DECIMAL(lower, upper) (rand(0, upper - lower) + lower)
 

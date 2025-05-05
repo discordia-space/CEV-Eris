@@ -175,7 +175,7 @@
 		return
 	if(!use_power) //need some juice to kickstart
 		use_power(idle_power_usage*5)
-	use_power = !use_power
+	set_power_use(use_power ? IDLE_POWER_USE : NO_POWER_USE)
 	update_icon()
 
 /obj/machinery/shipsensors/Process()

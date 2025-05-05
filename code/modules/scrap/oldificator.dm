@@ -297,8 +297,6 @@
 			cold_protection = rand(0, round(cold_protection * 0.5))
 
 		if(!low_quality_oldification)
-			if(prob(20))
-				contaminate()
 			if(prob(15))
 				add_blood()
 		if(prob(60)) // I mean, the thing is ew gross.

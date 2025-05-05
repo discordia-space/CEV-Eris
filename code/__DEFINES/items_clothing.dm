@@ -64,7 +64,7 @@
 #define CONDUCT					0x2   	// Conducts electricity. (metal etc.)
 #define ON_BORDER				0x4   	// Item has priority to check when entering or leaving.
 #define NOBLOODY				0x8   	// Used for items if they don't want to get a blood overlay.
-#define PLASMAGUARD				0x10 	// Does not get contaminated by plasma.
+//#define VACANT				0x10 	// Free Real Estate, uncomment and use for whatever
 #define PROXMOVE				0x20  	// Does this object require proximity checking in Enter()?
 #define SILENT					0x40 	// Sneaky shoes and silenced tools
 #define LOUD					0x80 	// Loud as hell tools

@@ -100,8 +100,8 @@
 	if(powered(power_channel))
 		stat &= ~NOPOWER
 	else
-
 		stat |= NOPOWER
+	update_power_use()
 	return
 
 // connect the machine to a powernet if a node cable is present on the turf

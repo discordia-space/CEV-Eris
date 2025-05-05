@@ -94,12 +94,12 @@ SUBSYSTEM_DEF(statverbs)
 			SPAN_DANGER("[user] grabbed the edges of [target] with their hands!"),
 			"You grab the edges of [target] with your hands"
 		)
-		if(do_mob(user, target, target.flooring.removal_time * 3))
+		if(do_mob(user, target, target.flooring.removal_time * 3) && target.flooring.flags & TURF_REMOVE_CROWBAR)
 			user.visible_message(
 				SPAN_DANGER("[user] roughly tore plating off from [target]!"),
 				"You tore the plating off from [target]"
 			)
-			target.make_plating(FALSE)
+			target.make_plating(TRUE, null, TRUE)
 		else
 			var/target_name = target ? "[target]" : "the floor"
 			user.visible_message(
@@ -180,3 +180,53 @@ SUBSYSTEM_DEF(statverbs)
 			user.visible_message(
 				SPAN_NOTICE("You stop repairing [target_name]."),
 			)
+
+/datum/statverb/connect_conduit //Connects or disconnects conduits of a shield generator or long range scanner
+	name = "Connect conduit"
+	required_stat = STAT_MEC
+	minimal_stat  = STAT_LEVEL_ADEPT
+
+/datum/statverb/connect_conduit/action(mob/user, obj/machinery/power/conduit/conduit)
+	var/timer = 30 * (1 - user.stats.getStat(STAT_MEC) / 100) SECONDS
+	if(!conduit.base) //we try to connect it
+		var/turf/T = get_step(conduit, conduit.dir)
+		var/obj/machinery/power/shipside/target = locate(/obj/machinery/power/shipside/) in T
+		if(!target)
+			user.visible_message(self_message = SPAN_NOTICE("There is nothing to [conduit] to."))
+			return FALSE
+		else
+			if(!target.tendrils_deployed && target.tendrils.len > 0)
+				if(!target.toggle_tendrils(TRUE)) //fail if conduits are not deployed and can not be deployed
+					return
+			if(target.tendrils.len < 1) //no conduits?
+				target.tendrils_deployed = TRUE
+			var/datum/repeating_sound/wrenchsound = new(30, timer, 0.15, conduit, 'sound/items/Ratchet.ogg', 80, 1)
+			user.visible_message(SPAN_NOTICE("[user] starts to connect various pipes and wires between [conduit] and [target]."), 
+			"You start to connect various pipes and wires between [conduit] and [target].")
+			if(do_mob(user, conduit, timer))
+				wrenchsound.stop()
+				qdel(wrenchsound)
+				conduit.connect(target)
+				user.visible_message(SPAN_NOTICE("[user] successfully connected [conduit] to the [target]!"), 
+				"You successfully conneced [conduit] to the [target]!")
+			else
+				wrenchsound.stop()
+				qdel(wrenchsound)
+				user.visible_message(SPAN_NOTICE("[user] stopped connecting [conduit] and [target]."), 
+				"You stopped connecting [conduit] and [target].")
+	else //disconnection
+		var/datum/repeating_sound/wrenchsound = new(30, timer, 0.15, conduit, 'sound/items/Ratchet.ogg', 80, 1)
+		user.visible_message(SPAN_NOTICE("[user] attempts to disconnect [conduit] from the [conduit.base]."), 
+		"You attempt to disconnect [conduit] from the [conduit.base].")
+		if(do_mob(user, conduit, timer))
+			wrenchsound.stop()
+			qdel(wrenchsound)
+			user.visible_message(SPAN_NOTICE("[user] successfully disconnected [conduit] from the [conduit.base]!"), 
+			"You successfully disconneced [conduit] from the [conduit.base]!")
+			if(conduit.base.tendrils_deployed == TRUE)
+				conduit.disconnect()
+		else
+			wrenchsound.stop()
+			qdel(wrenchsound)
+			user.visible_message(SPAN_NOTICE("[user] stopped connecting [conduit] and [conduit.base]."), 
+			"You stopped connecting [conduit] and [conduit.base].")

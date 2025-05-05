@@ -18,6 +18,7 @@
 	var/max_health = 300
 	var/hardness = 60
 	var/ricochet_id = 0
+	var/window_alpha = 180 // If the wall gets a window, it will be this transparent
 	var/any_wall_connections[10] // List of booleans. 8 total directions, 10 is maximum value, 7 and 3 aren't used
 	var/full_wall_connections[10] // Used for adding extra overlays in cases when low and full walls meet
 	var/wall_style = "default" // Affects how the wall sprite is composed. Different styles have different levels of complexity, see update_icon() for details

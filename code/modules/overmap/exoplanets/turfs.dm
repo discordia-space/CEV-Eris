@@ -3,7 +3,6 @@
 	name = "space land"
 	icon = 'icons/turf/desert.dmi'
 	icon_state = "desert"
-	has_resources = 1
 	var/diggable = 1
 	var/dirt_color = "#7c5e42"
 	initial_flooring = null
@@ -24,6 +23,8 @@
 			//Must be done here, as light data is not fully carried over by ChangeTurf (but overlays are).
 			if(E.planetary_area && istype(loc, world.area))
 				ChangeArea(src, E.planetary_area)
+
+	seismic_activity = rand(1,6)
 	..()
 
 /turf/floor/exoplanet/attackby(obj/item/C, mob/user)

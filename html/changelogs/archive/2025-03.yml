@@ -1,0 +1,48 @@
+2025-03-01:
+  Chickenish:
+  - bugfix: loading guns by hand from ammo groups now works again.
+  VmpOS2NHSkhkejA9:
+  - tweak: Things that affect your screen color no longer affect your HUD
+  - balance: Oborin syndrome no longer affects your HUD
+2025-03-17:
+  Chickenish:
+  - balance: did something with poison
+  - code_imp: added means for external progression of wounds
+  - rscadd: Improved Roach AI
+  - balance: Kaiser now smokes more often
+  - bugfix: Sleeping Creatures should now wake up when they take damage.
+  Mycah142:
+  - bugfix: Mannequins no longer process Life() or sanity, nor appear on Baptismal
+      record
+  VmpOS2NHSkhkejA9:
+  - rscadd: Gold golems; lethal ranged enemies that summon spikes under their target
+  - balance: massive difficulty increase for cave mining; Spawns have been reworked
+      to spawn golems in groups with types dependent on seismic level. Additionally,
+      new types have been added, some have been reworked and their AI has been tuned
+      up to let them see further and attack in coordinated groups, making it far more
+      difficult to pick them off alone.
+  - rscdel: Miner's shotgun and jackhammer.
+  - imageadd: added icons for gold golem spikes
+  - code_imp: Basic grab functionality for superior animals; their AI still isn't
+      set to do this, so it must be trigged externally by each mob that intends to
+      grab.
+  - rscdel: Tile-based resources. Nothing actually used them, anyway.
+  - tweak: Ammo is compressed into stacks when dumped from boxes and magazines.
+  - tweak: Material stacks merge when moving over each other and when created.
+  - balance: Ammo piles deal no fall damage unless there's 10 or more casings in the
+      pile.
+  - balance: Stacks deal fall damage based on the number of sheets in the stack.
+  - balance: Osmium deals 2.5x more fall damage than other stack types.
+2025-03-22:
+  Chickenish:
+  - balance: eating toxic mushrooms is now a bad idea.
+  - bugfix: fixed damage, probably.
+  Mycah142:
+  - rscdel: Removed roach hats
+2025-03-30:
+  Chickenish:
+  - rscadd: Added setup disks, the hot old thing!
+  - tweak: Techno Storage no longer contains setup boards for the medical or security
+      records. These have been replaced with appropriate setup disks.
+  - balance: Groin efficiency now affects your getting up speed. If you have none,
+      you can't do it!

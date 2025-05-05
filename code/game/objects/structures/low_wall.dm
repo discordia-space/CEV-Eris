@@ -2,7 +2,7 @@
 // It goes over a turf, can have items and a full tile window on it, blocks movement, can be climbed over, and provides cover
 /turf/wall/low
 	name = "low wall"
-	desc = "" // TODO --KIROV
+	desc = "A waist-height wall, provides decent enough cover."
 	icon = 'icons/walls.dmi'
 	icon_state = "eris_low"
 	opacity = FALSE
@@ -116,12 +116,14 @@
 
 
 /turf/wall/low/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(window_type) // Full-tile glass blocks everything
-		return FALSE
 	if(isnull(mover)) // Air, fire, and flamethorower spread
-		if(blocks_air || (target && target.blocks_air))
+		if(window_type || blocks_air || (target && target.blocks_air))
 			return FALSE
 		return TRUE
+	if(window_type) // Full-tile glass blocks everything
+		if(mover.checkpass(PASSGLASS)) // Except for when it doesn't
+			return TRUE
+		return FALSE
 	if(istype(mover.loc, /turf/wall/low)) // Mover is located on a connected low wall
 		return TRUE
 	if(istype(mover, /obj/item/projectile))

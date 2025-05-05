@@ -34,7 +34,7 @@
 		start_anim()
 
 	on = TRUE
-	use_power = ACTIVE_POWER_USE
+	set_power_use(ACTIVE_POWER_USE)
 	update_icon()
 
 /obj/machinery/antigrav/examine(mob/user, extra_description = "")
@@ -53,7 +53,7 @@
 		stop_anim()
 
 	on = FALSE
-	use_power = IDLE_POWER_USE
+	set_power_use(IDLE_POWER_USE)
 	update_icon()
 
 /obj/machinery/antigrav/Process()
