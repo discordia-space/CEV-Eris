@@ -173,6 +173,7 @@
 #include "code\ATMOSPHERICS\mainspipe.dm"
 #include "code\ATMOSPHERICS\pipes.dm"
 #include "code\ATMOSPHERICS\components\portables_connector.dm"
+#include "code\ATMOSPHERICS\components\tank.dm"
 #include "code\ATMOSPHERICS\components\tvalve.dm"
 #include "code\ATMOSPHERICS\components\valve.dm"
 #include "code\ATMOSPHERICS\components\binary_devices\binary_atmos_base.dm"
