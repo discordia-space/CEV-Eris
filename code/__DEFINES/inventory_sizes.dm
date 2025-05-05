@@ -16,7 +16,8 @@
 #define ITEM_SIZE_COLOSSAL       7
 /// Something so large that it extends beyond the confines of its tile, (e.g. scrap beacon)
 #define ITEM_SIZE_TITANIC        8
-
+/// Use this to forbid item from being placed in a container.
+#define ITEM_SIZE_NO_CONTAINER INFINITY
 
 
 #define BASE_STORAGE_COST(w_class) (2**(w_class-1)) //1,2,4,8,16,...

@@ -185,6 +185,11 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		if(!B.update())
 			breakdowns -= B
 
+/datum/sanity/proc/fix_breakdowns(positives_too = FALSE)
+	for(var/datum/breakdown/B in breakdowns)
+		if(positives_too || !istype(B, /datum/breakdown/positive))
+			B.conclude()
+
 /datum/sanity/proc/handle_Insight()
 	var/moralist_factor = 1
 	var/style_factor = owner.get_style_factor()
@@ -437,8 +442,9 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		return
 	updateLevel(amount)
 
+// This is most likely meant to raise your sanity to a minimum - before Psionics update this did the opposite, lowering you to a maximum. Not sure why it was like that when this is a reward for completing breakdowns - Humon
 /datum/sanity/proc/restoreLevel(amount)
-	if(level <= amount)
+	if(level >= amount)
 		return
 	updateLevel(amount)
 
