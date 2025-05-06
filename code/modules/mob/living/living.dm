@@ -432,6 +432,7 @@ default behaviour is:
 	setToxLoss(0)
 	setOxyLoss(0)
 	setCloneLoss(0)
+	setHalLoss(0)
 	setBrainLoss(0)
 	SetParalysis(0)
 	SetStunned(0)
