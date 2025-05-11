@@ -39,7 +39,7 @@
 	if (amt_silver)
 		dat += text("Silver coins: [amt_silver] <A href='?src=\ref[src];remove=silver'>Remove one</A><br>")
 	if (amt_plasteel)
-		dat += text("Metal coins: [amt_plasteel] <A href='?src=\ref[src];remove=plasteel'>Remove one</A><br>")
+		dat += text("Plasteel coins: [amt_plasteel] <A href='?src=\ref[src];remove=plasteel'>Remove one</A><br>")
 	if (amt_diamond)
 		dat += text("Diamond coins: [amt_diamond] <A href='?src=\ref[src];remove=diamond'>Remove one</A><br>")
 	if (amt_plasma)
@@ -83,7 +83,7 @@
 				COIN = locate(/obj/item/coin/uranium,src.contents)
 		if(!COIN)
 			return
-		COIN.loc = src.loc
+		COIN.forceMove(get_turf(src))
 	return
 
 
