@@ -53,7 +53,7 @@
 	var/list/decoded_json = SSmapping.z_level_info_decoded[z]
 	var/lowest_connected_z = decoded_json["bottom_z"]
 
-	var/local_z = z - lowest_connected_z - 1
+	var/local_z = z - lowest_connected_z + 1
 	for(var/zi in 1 to local_z)
 		for(var/mytype in subtypesof(/obj/screen/plane_master))
 			var/obj/screen/plane_master/instance = new mytype()

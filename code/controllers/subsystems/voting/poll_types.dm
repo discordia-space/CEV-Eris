@@ -311,7 +311,7 @@
 /datum/vote_choice/custom
 	text = "Vote choice"
 
-/*
+
 /*********************
 		Map
 **********************/
@@ -320,25 +320,27 @@
 	question = "Choose map"
 	time = 120
 	choice_types = list()
-	minimum_voters = 0
 	only_admin = FALSE
-	multiple_votes = FALSE
-	can_revote = TRUE
 	can_unvote = TRUE
-	cooldown = 30 MINUTES
-	see_votes = TRUE
+
+/datum/vote_choice/map
+	var/map_config_name
 
 /datum/poll/map/init_choices()
 	choices = list()
-	for(var/list/map in SSmapping.maplist)
-		var/datum/vote_choice/map/candidate = new
-		candidate.text = map["map_name"]
-		candidate.desc = map["map_desc"]
-		candidate.file = map["map_file"]
-		choices.Add(candidate)
-
-/datum/vote_choice/map
-	var/file
+	for(var/json in flist("maps/json/"))
+		// Counter here comes with ".json", we won't need it for a variable below
+		var/json_file_name = copytext(json, 1, findtext(json, "."))
+		json = file("maps/json/[json]")
+		json = file2text(json)
+		json = json_decode(json)
+		if(json["is_main_ship_level"] == TRUE)
+			var/datum/vote_choice/map/choice = new(src)
+			choice.text = json["map_name"]
+			choice.desc = json["map_desc"]
+			choice.map_config_name = json_file_name
+			choices += choice
 
 /datum/vote_choice/map/on_win()
-*/
+	SSmapping.set_next_map_to(map_config_name, text)
+

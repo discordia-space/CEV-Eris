@@ -76,7 +76,7 @@ AUTOMATED ALERT: Link to [command_name()] lost.
 		return
 
 /datum/universal_state/supermatter_cascade/proc/AreaSet()
-	for(var/area/A in all_areas)
+	for(var/area/A as anything in SSmapping.all_areas)
 		if(!istype(A,/area) || istype(A, /area/space))
 			continue
 

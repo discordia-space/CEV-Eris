@@ -9,11 +9,8 @@
 	var/state = "status"
 	var/obj/effect/overmap/ship/linked
 
-/obj/machinery/computer/engines/Initialize()
-	. = ..()
-	linked = map_sectors["[z]"]
 
-/obj/machinery/computer/engines/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/engines/attack_hand(mob/user)
 	if(..())
 		user.unset_machine()
 		return
@@ -25,7 +22,10 @@
 
 /obj/machinery/computer/engines/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!linked)
-		to_chat(user, "<span class='warning'>Unable to connect to ship control systems.</span>")
+		linked = map_sectors["[z]"]
+
+	if(!linked)
+		to_chat(user, SPAN_WARNING("Unable to connect to ship control systems."))
 		return
 
 	var/data[0]

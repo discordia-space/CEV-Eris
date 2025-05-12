@@ -1,127 +1,29 @@
-/////
-// Map templates
-/////
-/datum/map_template/blacksite
-	template_flags = 0
-	var/prefix = "maps/encounters/blacksite/blacksite_"
-	var/suffix = null
-
-/datum/map_template/blacksite/New()
-	mappath += (prefix + suffix)
-	..()
-
-/datum/map_template/blacksite/small
-	name = "blacksite_small"
-	id = "blacksite_small"
-	suffix = "small_chunk.dmm"
-
-/datum/map_template/blacksite/medium
-	name = "blacksite_medium"
-	id = "blacksite_medium"
-	suffix = "medium_chunk.dmm"
-
-/datum/map_template/blacksite/large
-	name = "blacksite_large"
-	id = "blacksite_large"
-	suffix = "large_chunk.dmm"
-
-/////
-// Overmap effects
-/////
-/obj/effect/overmap/sector/blacksite
+/obj/effect/overmap/sector/map_spawner/blacksite
 	name = "unknown spatial phenomenon"
 	desc = "An abandoned blacksite, carved inside an asteroid. Might be a hundred years old."
 	generic_waypoints = list(
-		"nav_blacksite_1",
-		"nav_blacksite_2"
-	)
-	known = 0
-	invisibility = 101
-
+		"nav_blacksite_small_1",
+		"nav_blacksite_small_2")
 	name_stages = list("abandoned blacksite", "unknown object", "unknown spatial phenomenon")
 	icon_stages = list("ring_destroyed", "object", "poi")
 
-/obj/effect/overmap/sector/blacksite/Initialize()
-	. = ..()
-	new /obj/effect/overmap_event/poi/blacksite(loc, src)
 
-/obj/effect/overmap/sector/blacksite/small
-	generic_waypoints = list(
-		"nav_blacksite_small_1",
-		"nav_blacksite_small_2"
-	)
-
-/obj/effect/overmap/sector/blacksite/medium
+/obj/effect/overmap/sector/map_spawner/blacksite/medium
 	generic_waypoints = list(
 		"nav_blacksite_medium_1",
-		"nav_blacksite_medium_2"
-	)
+		"nav_blacksite_medium_2")
+	map_to_load = "blacksite_medium"
 
-/obj/effect/overmap/sector/blacksite/large
-	generic_waypoints = list(
-		"nav_blacksite_large_1",
-		"nav_blacksite_large_2"
-	)
-
-/////
-// Shuttle landmarks
-/////
 /obj/effect/shuttle_landmark/blacksite
 	name = "Abandoned Blacksite Navpoint"
 	icon_state = "shuttle-green"
 	base_turf = /turf/space
-	var/x_corner
-	var/y_corner
-	var/datum/map_template/chunk_template
-	var/is_loaded = FALSE
 
-/obj/effect/shuttle_landmark/blacksite/trigger_landmark()
-	if(is_loaded)
-		return
-
-	var/turf/T = get_turf(locate(x_corner, y_corner, z))  // Bottom left corner turf
-	load_chunk(T, chunk_template, SOUTH)  // Load chunk
-	is_loaded = TRUE
-
-	// Wake up all mobs because roombas are spawning in stasis
-	for(var/mob/living/A in SSmobs.mob_living_by_zlevel[z])
-		spawn(1)
-			if(A)
-				A.stasis = FALSE
-				A.try_activate_ai()
-
-/obj/effect/shuttle_landmark/blacksite/small
-	x_corner = 44
-	y_corner = 78
-
-// Set chunk_template in Initialize and not New because otherwise it causes a map preloading
-// that runtimes because the shuttle_landmark is created before the SSmapping system is launched
-/obj/effect/shuttle_landmark/blacksite/small/Initialize()
-	..()
-	chunk_template = new /datum/map_template/blacksite/small
-
-/obj/effect/shuttle_landmark/blacksite/medium
-	x_corner = 83
-	y_corner = 80
-
-/obj/effect/shuttle_landmark/blacksite/medium/Initialize()
-	..()
-	chunk_template = new /datum/map_template/blacksite/medium
-
-/obj/effect/shuttle_landmark/blacksite/large
-	x_corner = 83
-	y_corner = 80
-
-/obj/effect/shuttle_landmark/blacksite/large/Initialize()
-	..()
-	chunk_template = new /datum/map_template/blacksite/medium
-
-// Navigation points for shuttle travel
-/obj/effect/shuttle_landmark/blacksite/small/nav1
+/obj/effect/shuttle_landmark/blacksite/nav1
 	name = "Abandoned Small Blacksite Navpoint #1"
 	landmark_tag = "nav_blacksite_small_1"
 
-/obj/effect/shuttle_landmark/blacksite/small/nav2
+/obj/effect/shuttle_landmark/blacksite/nav2
 	name = "Abandoned Small Blacksite Navpoint #2"
 	landmark_tag = "nav_blacksite_small_2"
 
@@ -133,17 +35,7 @@
 	name = "Abandoned Medium Blacksite Navpoint #2"
 	landmark_tag = "nav_blacksite_medium_2"
 
-/obj/effect/shuttle_landmark/blacksite/large/nav1
-	name = "Abandoned Large Blacksite Navpoint #1"
-	landmark_tag = "nav_blacksite_large_1"
 
-/obj/effect/shuttle_landmark/blacksite/large/nav2
-	name = "Abandoned Large Blacksite Navpoint #2"
-	landmark_tag = "nav_blacksite_large_2"
-
-/////
-// Custom paper notes
-/////
 /obj/item/paper/blacksite/medium
 	name = "incident log"
 	spawn_blacklisted = TRUE

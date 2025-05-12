@@ -12,6 +12,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 */
 
+// Special area for use in .dmm chunks that compose randomly generated maps
+/area/template_noop
+	name = "Area Passthrough"
+
+
 /area/space
 	name = "\improper Space"
 	icon_state = "space"

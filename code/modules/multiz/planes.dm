@@ -15,7 +15,7 @@
 	var/list/decoded_json = SSmapping.z_level_info_decoded[current_z]
 	var/lowest_connected_z = decoded_json["bottom_z"]
 
-	var/z_diff = current_z - lowest_connected_z
+	var/z_diff = current_z - lowest_connected_z + 1
 	var/plane1 = z_diff * PLANES_PER_Z_LEVEL
 	var/plane2 = plane1 + original_plane
 

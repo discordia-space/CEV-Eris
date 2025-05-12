@@ -1,29 +1,29 @@
+#define DEFAULT_MAP_CONFIG_PATH ""
+
 SUBSYSTEM_DEF(mapping)
 	name = "Mapping"
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
 
 	var/list/map_templates = list()
-	var/dmm_suite/maploader
 	var/list/teleportlocs = list()
 	var/list/ghostteleportlocs = list()
 
+	var/next_map_name
 
-	var/current_map_config
-	var/next_map_config
-
-	var/list/loaded_map_paths = list() // Keep track of submaps that were or currently are loading
+	var/currently_loading_map
 	var/list/map_loading_queue = list()
+	var/list/loaded_map_names = list() // Keep track of submaps that were or currently are loading
 
 	var/list/all_areas = list()
+	var/list/main_ship_areas = list()
 
 	// Lists of numbers corresponding to certain Z-levels
 	var/list/playable_z_levels = list() // Places where players are typically allowed to be in; everything excluduing overmap, pulsar, and admin level
 	var/list/main_ship_z_levels = list() // Decks of CEV Eris, deep maintenance not included
 	var/list/sealed_z_levels = list() // Levels that do NOT allow transit at map edge, e.g. not located in space or otherwise restricted
 
-	var/list/z_level_info_decoded = list() // Contains associative lists
-	var/list/z_level_info_encoded = list() // Contains JSON files
+	var/list/z_level_info_decoded = list() // Contains associative lists with that are configs of individual Z-levels
 
 	var/security_state = /decl/security_state/default // The default security state system to use.
 
@@ -62,6 +62,8 @@ SUBSYSTEM_DEF(mapping)
 	var/list/usable_email_tlds = list("cev_eris.hanza","eris.scg","eris.net")
 	var/path = "eris"
 
+	// Moved here from a deprecated datum along with code related to mapping
+	// Gonna be removed later
 	var/access_modify_region = list(
 		ACCESS_REGION_SECURITY = list(access_hos, access_change_ids, access_change_sec),
 		ACCESS_REGION_MEDBAY = list(access_cmo, access_change_ids, access_change_medbay),
@@ -88,42 +90,47 @@ SUBSYSTEM_DEF(mapping)
 	var/list/holomap_legend_x = list()
 	var/list/holomap_legend_y = list()
 
+	var/static/regex/dmmRegex = new/regex({""(\[a-zA-Z]+)" = \\(((?:.|\n)*?)\\)\n(?!\t)|\\((\\d+),(\\d+),(\\d+)\\) = \\{"(\[a-zA-Z\n]*)"\\}"}, "g")
+	var/static/regex/trimQuotesRegex = new/regex({"^\[\\s\n]+"?|"?\[\\s\n]+$|^"|"$"}, "g")
+	var/static/regex/trimRegex = new/regex("^\[\\s\n]+|\[\\s\n]+$", "g")
+	var/static/list/modelCache = list()
+	var/static/space_key
+	#ifdef TESTING
+	var/static/turfsSkipped
+	#endif
 
 
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
-	maploader = new()
+	var/primary_map_to_load
 
+	if(fexists("config/next_map.txt"))
+		primary_map_to_load = file2text("config/next_map.txt")
 
-// Identify which map config should be used now
-// If there isn't one already
+	if(!istext(primary_map_to_load) || !LAZYLEN(primary_map_to_load))
+		primary_map_to_load = "eris_classic"
 
 
 // Queue main map and proc into implementing other config stuff
 // If pulsar is in the config - queue it as well
 
-// load_map_from_json("pulsar")
+// queue_map_loading("pulsar")
 // build_pulsar()
 
 
-	load_map_from_json("eris_smol")
-	load_map_from_json("technical_level")
-	// load_map_from_json("junk_field")
+	queue_map_loading(primary_map_to_load)
+	queue_map_loading("technical_level")
+	// queue_map_loading("junk_field")
 
-	// load_map_from_json("crawler")
-	// load_map_from_json("deepmaint")
-	// load_map_from_json("asteroid")
-	// load_map_from_json("blacksite_small")
-	// load_map_from_json("blacksite_medium")
-	// load_map_from_json("blacksite_large")
-	// load_map_from_json("fortress")
-	// load_map_from_json("ruins")
+	// queue_map_loading("deepmaint")
+	queue_map_loading("asteroid")
+
 
 	if(!SSmapping.overmap_z)
 		build_overmap()
 	else
 		testing("Overmap already exist in SSmapping for [SSmapping.overmap_z].")
 
-	load_map_templates()
+	// load_map_templates()
 
 	// Generate cache of all areas in world. This cache allows world areas to be looked up on a list instead of being searched for EACH time
 	for(var/area/A in world)
@@ -160,16 +167,14 @@ SUBSYSTEM_DEF(mapping)
 	if(!z_level_info)
 		z_level_info = file('maps/json/default.json')
 		z_level_info = file2text(z_level_info)
+		z_level_info = json_decode(z_level_info)
 
 	var/current_z = world.maxz
-	z_level_info_encoded.Add(list(z_level_info))
-	var/list/decoded_json = json_decode(z_level_info)
-
 	// Build a list of connected Z-levels, if any
-	decoded_json["connected_z"] = list(current_z)
-	decoded_json["bottom_z"] = current_z
-	if(decoded_json["map_size"] > 1)
-		var/num_of_connected_levels = decoded_json["map_size"] - 1
+	z_level_info["connected_z"] = list(current_z)
+	z_level_info["bottom_z"] = current_z
+	if(z_level_info["map_size"] > 1)
+		var/num_of_connected_levels = z_level_info["map_size"] - 1
 		for(var/downward_offset in 1 to num_of_connected_levels)
 			var/z_level_to_check = current_z - downward_offset
 			if(z_level_to_check < 1)
@@ -178,32 +183,31 @@ SUBSYSTEM_DEF(mapping)
 			var/list/below_z_connections = below_z_json["connected_z"]
 			if(current_z in below_z_connections)
 				num_of_connected_levels--
-				decoded_json["bottom_z"] = z_level_to_check
-				decoded_json["connected_z"] += z_level_to_check
+				z_level_info["bottom_z"] = z_level_to_check
+				z_level_info["connected_z"] += z_level_to_check
 			else
 				break
 
 		for(var/upward_offset in 1 to num_of_connected_levels)
 			var/z_level_to_check = current_z + upward_offset
 			num_of_connected_levels--
-			decoded_json["connected_z"] += z_level_to_check
+			z_level_info["connected_z"] += z_level_to_check
 
-	z_level_info_decoded.Add(list(decoded_json))
+	z_level_info_decoded.Add(list(z_level_info))
 
-	if(decoded_json["is_main_ship_level"])
+	if(z_level_info["is_main_ship_level"])
 		main_ship_z_levels += current_z
 
-	if(decoded_json["is_playable_level"])
+	if(z_level_info["is_playable_level"])
 		playable_z_levels += current_z
 
-	if(decoded_json["is_sealed_level"])
+	if(z_level_info["is_sealed_level"])
 		sealed_z_levels += current_z
 
+	// if(z_level_info["call_proc_on_load"])
+	// 	return
 
 
-	// if(map_data.generate_asteroid)
-	// 	new /datum/random_map/automata/cave_system(null, 1, 1,  map_data.z_level, map_data.size, map_data.size)
-	// 	new /datum/random_map/noise/ore(null, 1, 1,  map_data.z_level, map_data.size, map_data.size)
 
 
 /*
@@ -247,90 +251,18 @@ SUBSYSTEM_DEF(mapping)
 
 */
 
-
-
-
-/datum/controller/subsystem/mapping/proc/build_pulsar()
-	world.incrementMaxZ()
-	SSmapping.pulsar_z = world.maxz
-//	add_z_level(SSmapping.pulsar_z, SSmapping.pulsar_z, 1)
-	maploader.load_map(file("maps/submaps/pulsar.dmm"), z_offset = SSmapping.pulsar_z)
-	var/list/turfs = list()
-	for(var/square in block(locate(1, 1, SSmapping.pulsar_z), locate(SSmapping.pulsar_size, SSmapping.pulsar_size, SSmapping.pulsar_z)))
-		// Switch to space turf with green grid overlay
-		var/turf/space/T = square
-		T.name = "[T.x]-[T.y]"
-		T.icon_state = "grid"
-		T.update_starlight()
-		turfs += T
-		CHECK_TICK
-
-	var/area/pulsar/A = new
-	A.contents.Add(turfs)
-
-	for(var/i in 1 to SSmapping.pulsar_size)
-		var/turf/beam_loc = locate(i, i, SSmapping.pulsar_z)
-		new /obj/effect/pulsar_beam(beam_loc)
-
-		var/turf/beam_right = locate(i + 1, i, SSmapping.pulsar_z)
-		new /obj/effect/pulsar_beam/ul(beam_right)
-
-		var/turf/beam_left = locate(i - 1, i, SSmapping.pulsar_z)
-		new /obj/effect/pulsar_beam/dr(beam_left)
-
-	var/turf/satellite_loc = locate(round((SSmapping.pulsar_size)/2 + (SSmapping.pulsar_size)/4), round((SSmapping.pulsar_size)/2 - (SSmapping.pulsar_size)/4), SSmapping.pulsar_z)
-	var/turf/shadow_loc = locate(round((SSmapping.pulsar_size)/2 - (SSmapping.pulsar_size)/4), round((SSmapping.pulsar_size)/2 + (SSmapping.pulsar_size)/4), SSmapping.pulsar_z)
-
-	var/obj/effect/pulsar_ship/ship = new /obj/effect/pulsar_ship(satellite_loc)
-	var/newshadow = new /obj/effect/pulsar_ship_shadow(shadow_loc)
-	ship.shadow = newshadow
-
-	if(!SSmapping.pulsar_star)
-		var/turf/T = locate(round((SSmapping.pulsar_size - 1)/2), round((SSmapping.pulsar_size - 1)/2), SSmapping.pulsar_z)
-		SSmapping.pulsar_star = new /obj/effect/pulsar(T)
-
-	generate_pulsar_events()
-
-/datum/controller/subsystem/mapping/proc/generate_pulsar_events()
-	var/event_type = pick(subtypesof(/datum/pulsar_event))
-	var/datum/pulsar_event/event = new event_type
-	event.on_trigger()
-
-/datum/controller/subsystem/mapping/proc/build_overmap()
-	testing("Building overmap...")
-	world.incrementMaxZ()
-	SSmapping.overmap_z = world.maxz
-	var/list/turfs = list()
-	for (var/square in block(locate(1,1,SSmapping.overmap_z), locate(SSmapping.overmap_size, SSmapping.overmap_size, SSmapping.overmap_z)))
-		// Switch to space turf with green grid overlay
-		var/turf/space/T = square
-		T.icon_state = "grid"
-		T.update_starlight()
-		turfs += T
-		CHECK_TICK
-
-	var/area/overmap/A = new
-	A.contents.Add(turfs)
-
-    // Spawn star at the center of the overmap
-	var/turf/T = locate(round(SSmapping.overmap_size/2),round(SSmapping.overmap_size/2),SSmapping.overmap_z)
-	new /obj/effect/star(T)
-
-	testing("Overmap build complete.")
-
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT
 
-/hook/roundstart/proc/init_overmap_events()
-	if(SSmapping.overmap_z)
-		testing("Creating overmap events...")
-		testing_variable(t1, world.tick_usage)
-		overmap_event_handler.create_events(SSmapping.overmap_z, SSmapping.overmap_size, SSmapping.overmap_event_areas)
-		testing("Overmap events created in [(world.tick_usage-t1)*0.01*world.tick_lag] seconds")
-		return TRUE
-	else
-		testing("Overmap failed to create events.")
-		return FALSE
+
+/datum/controller/subsystem/mapping/proc/set_next_map_to(map_path, map_name)
+	if(fexists("config/next_map.txt"))
+		fdel("config/next_map.txt")
+
+	next_map_name = map_name
+	LIBCALL(RUST_G, "file_write")("[map_path]", "config/next_map.txt")
+
+
 
 /datum/controller/subsystem/mapping/proc/load_map_templates()
 	for(var/T in subtypesof(/datum/map_template))
@@ -341,12 +273,6 @@ SUBSYSTEM_DEF(mapping)
 		map_templates[template.name] = template
 	return TRUE
 
-/datum/controller/subsystem/mapping/proc/load_map_from_json(json as text)
-	json = file("maps/json/[json].json")
-	json = file2text(json)
-	var/decoded_json = json_decode(json)
-	var/dmm_file_path = decoded_json["map_file"]
-	maploader.load_map(dmm_file = file(dmm_file_path), z_level_info = json)
 
 // Moved two following procs from /datum/maps_data as-is just to be safe
 /datum/controller/subsystem/mapping/proc/character_load_path(savefile/S, slot)

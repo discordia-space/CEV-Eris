@@ -7,6 +7,8 @@ SUBSYSTEM_DEF(shuttle)
 	var/list/shuttles = list()                     // maps shuttle tags to shuttle datums, so that they can be looked up.
 	var/list/process_shuttles = list()             // simple list of shuttles, for processing
 	var/list/registered_shuttle_landmarks = list()
+	var/list/sleeper_landmarks = list() // Landmarks for shuttles that are not on the map yet. Contains: shuttle_tag = list(landmark_datum_reference, landmark_datum_reference, ...), ...
+	var/list/expected_transition_landmarks = list() // Similar to above, but for shuttles expecting their transit areas
 	var/last_landmark_registration_time
 
 	var/tmp/list/working_shuttles
@@ -29,10 +31,11 @@ SUBSYSTEM_DEF(shuttle)
 		if (MC_TICK_CHECK)
 			return
 
+
 /datum/controller/subsystem/shuttle/proc/register_landmark(shuttle_landmark_tag, obj/effect/shuttle_landmark/shuttle_landmark)
 	if(istype(shuttle_landmark, /obj/effect/shuttle_landmark/automatic))
 		var/obj/effect/overmap/O = map_sectors["[shuttle_landmark.z]"]
-		O.add_landmark(shuttle_landmark)
+		O.update_waypoints()
 		last_landmark_registration_time = world.time
 		return
 
@@ -44,6 +47,11 @@ SUBSYSTEM_DEF(shuttle)
 		last_landmark_registration_time = world.time
 
 
+// Same as above, but for cases when landmark belongs to a shuttle that have not yet loaded
+/datum/controller/subsystem/shuttle/proc/register_sleeper_landmark(shuttle_landmark_tag, obj/effect/shuttle_landmark/shuttle_landmark)
+	if(!islist(sleeper_landmarks[shuttle_landmark_tag]))
+		sleeper_landmarks[shuttle_landmark_tag] = list()
+	sleeper_landmarks[shuttle_landmark_tag] += shuttle_landmark
 
 
 /datum/controller/subsystem/shuttle/proc/get_landmark(shuttle_landmark_tag)

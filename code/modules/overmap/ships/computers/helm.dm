@@ -17,14 +17,8 @@
 
 /obj/machinery/computer/helm/Initialize()
 	. = ..()
-	linked = map_sectors["[z]"]
 	get_known_sectors()
 	new /obj/effect/overmap_event/movable/comet()
-
-	if (isnull(linked))
-		error("There are no map_sectors on [src]'s z.")
-		return
-	linked.check_link()
 
 /obj/machinery/computer/helm/proc/get_known_sectors()
 	var/area/overmap/map = locate() in world
@@ -72,11 +66,15 @@
 	return 0
 
 /obj/machinery/computer/helm/attack_hand(mob/user)
-
 	if(..())
 		user.unset_machine()
 		manual_control = 0
 		return
+
+	if(!linked)
+		linked = map_sectors["[z]"]
+		if(linked)
+			linked.check_link()
 
 	if(!isAI(user))
 		user.set_machine(src)
@@ -89,6 +87,7 @@
 
 /obj/machinery/computer/helm/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!linked)
+		to_chat(user, SPAN_WARNING("Unable to connect to ship control systems."))
 		return
 
 	var/data[0]
@@ -241,6 +240,7 @@
 
 /obj/machinery/computer/navigation/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!linked)
+		to_chat(user, SPAN_WARNING("Unable to connect to ship control systems."))
 		return
 
 	var/data[0]
@@ -270,7 +270,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/computer/navigation/check_eye(var/mob/user as mob)
+/obj/machinery/computer/navigation/check_eye(mob/user)
 	if (isAI(user))
 		user.unset_machine()
 		if (!viewing)
@@ -283,11 +283,16 @@
 		return -1
 	return 0
 
-/obj/machinery/computer/navigation/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/navigation/attack_hand(mob/user)
 	if(..())
 		user.unset_machine()
 		viewing = 0
 		return
+
+	if(!linked)
+		linked = map_sectors["[z]"]
+		if(linked)
+			linked.check_link()
 
 	if(viewing && linked)
 		if (!isAI(user))

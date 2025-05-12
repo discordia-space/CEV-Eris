@@ -1,57 +1,46 @@
-///////////////////////////////////////////////////////////////
-//SS13 Optimized Map loader
-//////////////////////////////////////////////////////////////
+/datum/controller/subsystem/mapping/proc/queue_map_loading(map_name as text)
+	if(currently_loading_map)
+		map_loading_queue |= map_name
+	else
+		currently_loading_map = map_name
+		load_map_from_name(map_name)
 
-/*
-//global datum that will preload variables on atoms instanciation
-GLOBAL_VAR_INIT(use_preloader, FALSE)
-GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
-*/
 
-//global datum that will preload variables on atoms instanciation
-var/global/dmm_suite/preloader/_preloader = new()
-var/global/use_preloader = FALSE
+/datum/controller/subsystem/mapping/proc/load_map_from_name(map_name as text)
+	var/json_file
+	if(findtext(map_name, ".")) // map_name contains the entire path to .json
+		json_file = file(map_name)
+	else
+		json_file = file("maps/json/[map_name].json")
 
-/dmm_suite
-		// /"([a-zA-Z]+)" = \(((?:.|\n)*?)\)\n(?!\t)|\((\d+),(\d+),(\d+)\) = \{"([a-zA-Z\n]*)"\}/g
-	var/static/regex/dmmRegex = new/regex({""(\[a-zA-Z]+)" = \\(((?:.|\n)*?)\\)\n(?!\t)|\\((\\d+),(\\d+),(\\d+)\\) = \\{"(\[a-zA-Z\n]*)"\\}"}, "g")
-		// /^[\s\n]+"?|"?[\s\n]+$|^"|"$/g
-	var/static/regex/trimQuotesRegex = new/regex({"^\[\\s\n]+"?|"?\[\\s\n]+$|^"|"$"}, "g")
-		// /^[\s\n]+|[\s\n]+$/
-	var/static/regex/trimRegex = new/regex("^\[\\s\n]+|\[\\s\n]+$", "g")
-	var/static/list/modelCache = list()
-	var/static/space_key
-	#ifdef TESTING
-	var/static/turfsSkipped
-	#endif
+	var/json_text = file2text(json_file)
+	var/json_list = json_decode(json_text)
+	var/dmm_file_path = json_list["map_file"]
+	if(!dmm_file_path) // Overmap Z-level
+		on_map_loaded()
+		return
+	load_map(dmm_file = file(dmm_file_path), z_level_info = json_list)
 
-/**
- * Construct the model map and control the loading process
- *
- * WORKING :
- *
- * 1) Makes an associative mapping of model_keys with model
- *		e.g aa = /turf/wall/dummy{icon_state = "rock"}
- * 2) Read the map line by line, parsing the result (using parse_grid)
- *
- */
-/dmm_suite/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num, orientation as num, z_level_info as file)
-	space_key = null
 
+/datum/controller/subsystem/mapping/proc/on_map_loaded()
+	loaded_map_names |= currently_loading_map
+	currently_loading_map = null
+
+	var/call_proc_on_load = z_level_info_decoded[world.maxz]["call_proc_on_load"]
+	if(call_proc_on_load)
+		call(src, call_proc_on_load)()
+
+	if(LAZYLEN(map_loading_queue))
+		currently_loading_map = map_loading_queue[1]
+		map_loading_queue.RemoveAll(currently_loading_map)
+		load_map_from_name(currently_loading_map)
+
+
+/datum/controller/subsystem/mapping/proc/load_map(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation, z_level_info)
 	#ifdef TESTING
 	turfsSkipped = 0
 	#endif
-	. = load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation, z_level_info)
-	#ifdef TESTING
-	if(turfsSkipped)
-		testing("Skipped loading [turfsSkipped] default turfs")
-	#endif
-
-	if(!measureOnly)
-		SSmapping.on_map_loaded()
-		SSair.on_map_loaded()
-
-/dmm_suite/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation, z_level_info)
+	space_key = null
 	var/tfile = dmm_file//the map file we're creating
 	if(isfile(tfile))
 		tfile = file2text(tfile)
@@ -237,14 +226,17 @@ var/global/use_preloader = FALSE
 
 	if(bounds[1] == 1.#INF) // Shouldn't need to check every item
 		return null
-	else
-	//	if(!measureOnly)
-	//		if(!no_changeturf)
-	//			for(var/t in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]), locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])))
-	//				var/turf/T = t
-	//				//we do this after we load everything in. if we don't; we'll have weird atmos bugs regarding atmos adjacent turfs
-	//				T.post_change()
-		return bounds
+
+	#ifdef TESTING
+	if(turfsSkipped)
+		testing("Skipped loading [turfsSkipped] default turfs")
+	#endif
+
+	if(!measureOnly)
+		SSmapping.on_map_loaded()
+		SSair.on_map_loaded()
+
+	return bounds
 
 /**
  * Fill a given tile with its area/turf/objects/mobs
@@ -263,7 +255,7 @@ var/global/use_preloader = FALSE
  * 4) Instanciates the atom with its variables
  *
  */
-/dmm_suite/proc/parse_grid(model as text, model_key as text, xcrd as num,ycrd as num,zcrd as num, no_changeturf as num, orientation as num)
+/datum/controller/subsystem/mapping/proc/parse_grid(model as text, model_key as text, xcrd as num,ycrd as num,zcrd as num, no_changeturf as num, orientation as num)
 	/*Method parse_grid()
 	- Accepts a text string containing a comma separated list of type paths of the
 		same construction as those contained in a .dmm file, and instantiates them.
@@ -357,22 +349,28 @@ var/global/use_preloader = FALSE
 	var/turf/crds = locate(xcrd,ycrd,zcrd)
 
 	//first instance the /area and remove it from the members list
-	index = members.len
+	index = LAZYLEN(members)
 	if(members[index] != /area/template_noop)
 		var/atom/instance
-		_preloader.setup(members_attributes[index])//preloader for assigning  set variables on atom creation
+
 		var/atype = members[index]
-		for(var/area/A in SSmapping.all_areas)
+		for(var/area/A as anything in all_areas)
 			if(A.type == atype)
 				instance = A
 				break
 		if(!instance)
 			instance = new atype(null)
+
 		if(crds)
 			instance.contents.Add(crds)
 
-		if(use_preloader && instance)
-			_preloader.load(instance)
+		if(LAZYLEN(members_attributes[index]))
+			for(var/attribute in members_attributes[index])
+				var/value = members_attributes[index][attribute]
+				if(islist(value))
+					value = deepCopyList(value)
+				instance.vars[attribute] = value
+
 
 	//then instance the /turf and, if multiple tiles are presents, simulates the DMM underlays piling effect
 
@@ -407,17 +405,25 @@ var/global/use_preloader = FALSE
 ////////////////
 
 //Instance an atom at (x,y,z) and gives it the variables in attributes
-/dmm_suite/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf)
-	_preloader.setup(attributes, path)
-
+/datum/controller/subsystem/mapping/proc/instance_atom(path, list/attributes, turf/crds, no_changeturf)
+	var/atom/atom
 	if(crds)
 		if(!no_changeturf && ispath(path, /turf))
-			. = crds.ChangeTurf(path, FALSE, TRUE)
+			atom = crds.ChangeTurf(path, FALSE, TRUE)
 		else
-			. = create_atom(path, crds)//first preloader pass
+			atom = new path (crds)//first preloader pass
 
-	if(use_preloader && .)//second preloader pass, for those atoms that don't ..() in New()
-		_preloader.load(.)
+//	if(use_preloader && .)//second preloader pass, for those atoms that don't ..() in New()
+
+	for(var/attribute in attributes)
+		var/value = attributes[attribute]
+		if(islist(value))
+			value = deepCopyList(value)
+		if(value == "Waste to Wasting")
+			value = value
+		atom.vars[attribute] = value
+
+	return atom
 
 	//custom CHECK_TICK here because we don't want things created while we're sleeping to not initialize
 	// if(TICK_CHECK)
@@ -425,13 +431,10 @@ var/global/use_preloader = FALSE
 	// 	stoplag()
 	// 	SSatoms.map_loader_begin()
 
-/dmm_suite/proc/create_atom(path, crds)
-	set waitfor = FALSE
-	. = new path (crds)
 
 //text trimming (both directions) helper proc
 //optionally removes quotes before and after the text (for variable name)
-/dmm_suite/proc/trim_text(what as text,trim_quotes=0)
+/datum/controller/subsystem/mapping/proc/trim_text(what as text,trim_quotes=0)
 	if(trim_quotes)
 		return trimQuotesRegex.Replace(what, "")
 	else
@@ -440,7 +443,7 @@ var/global/use_preloader = FALSE
 
 //find the position of the next delimiter,skipping whatever is comprised between opening_escape and closing_escape
 //returns 0 if reached the last delimiter
-/dmm_suite/proc/find_next_delimiter_position(text as text,initial_position as num, delimiter=",",opening_escape="\"",closing_escape="\"")
+/datum/controller/subsystem/mapping/proc/find_next_delimiter_position(text as text,initial_position as num, delimiter=",",opening_escape="\"",closing_escape="\"")
 	var/position = initial_position
 	var/next_delimiter = findtext(text,delimiter,position,0)
 	var/next_opening = findtext(text,opening_escape,position,0)
@@ -459,7 +462,7 @@ var/global/use_preloader = FALSE
 // keys_only_string - If true, text that looks like an associative list has its keys treated as var names,
 //                    otherwise they are parsed as valid associative list keys.
 //return the filled list
-/dmm_suite/proc/readlist(text as text, delimiter=",", keys_only_string = FALSE)
+/datum/controller/subsystem/mapping/proc/readlist(text as text, delimiter=",", keys_only_string = FALSE)
 
 	var/list/to_return = list()
 	if(text == "")
@@ -520,31 +523,3 @@ var/global/use_preloader = FALSE
 	while(position != 0)
 
 	return to_return
-
-/dmm_suite/Destroy()
-	..()
-	return QDEL_HINT_HARDDEL_NOW
-
-//////////////////
-//Preloader datum
-//////////////////
-
-/dmm_suite/preloader
-	parent_type = /datum
-	var/list/attributes
-	var/target_path
-
-/dmm_suite/preloader/proc/setup(list/the_attributes, path)
-	if(the_attributes.len)
-		use_preloader = TRUE
-		attributes = the_attributes
-		target_path = path
-
-/dmm_suite/preloader/proc/load(atom/what)
-	for(var/attribute in attributes)
-		var/value = attributes[attribute]
-		if(islist(value))
-			value = deepCopyList(value)
-		what.vars[attribute] = value
-	use_preloader = FALSE
-

@@ -3,20 +3,1890 @@
 /turf/space,
 /area/space)
 "ag" = (
-/obj/effect/overmap/sector/blacksite/small,
 /turf/space,
 /area/space)
-"bq" = (
+"aj" = (
+/obj/structure/salvageable/os/console_broken{
+	dir = 1
+	},
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"an" = (
+/obj/structure/table/bar_special,
+/obj/spawner/soda/low_chance,
+/turf/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"ay" = (
+/obj/structure/bed/padded,
+/obj/item/bedsheet,
+/obj/spawner/medical/low_chance,
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"aW" = (
+/obj/structure/salvageable/os/console_broken{
+	dir = 1
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"aY" = (
+/obj/machinery/centrifuge,
+/obj/structure/table/onestar,
+/turf/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"ba" = (
+/obj/structure/table/onestar,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper{
+	pixel_y = -4
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"bt" = (
+/obj/structure/table/onestar,
+/obj/item/deck/cards,
+/turf/floor/dirt,
+/area/outpost/blacksite/medium)
+"bA" = (
+/obj/structure/bed/chair/comfy/beige{
+	dir = 4
+	},
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"bG" = (
+/obj/item/stool/custom/bar_special,
+/turf/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"bY" = (
+/obj/machinery/light/floor,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"cb" = (
 /turf/mineral,
 /area/space)
-"ci" = (
-/obj/effect/shuttle_landmark/blacksite/small/nav1,
+"cg" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"cE" = (
+/obj/structure/table/rack/shelf,
+/obj/item/storage/box/gloves{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"cJ" = (
+/obj/machinery/vending/cola,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"cL" = (
+/obj/machinery/light,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"dA" = (
+/obj/structure/table/standard,
+/obj/item/packageWrap,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/spawner/booze/low_chance,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"dD" = (
+/obj/machinery/suit_storage_unit/standard_unit,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"dG" = (
+/obj/spawner/junk,
+/obj/structure/table/onestar,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"dI" = (
+/obj/structure/salvageable/os/implant_container,
+/turf/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"dJ" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
 /turf/space,
 /area/space)
-"cj" = (
-/obj/effect/shuttle_landmark/blacksite/small/nav2,
+"dN" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"dX" = (
+/turf/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"ea" = (
+/obj/structure/table/bar_special,
+/obj/machinery/chemical_dispenser/soda,
+/turf/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"es" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"eu" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"eE" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/spawner/junk/low_chance,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"eQ" = (
+/obj/spawner/pack/tech_loot/low_chance,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"eV" = (
+/obj/spawner/pack/tech_loot,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"eX" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"ft" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"fC" = (
+/obj/structure/table/bar_special,
+/obj/spawner/booze/low_chance,
+/obj/spawner/soda/low_chance,
+/turf/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"fH" = (
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"fI" = (
+/obj/structure/table/onestar,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"fK" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/door/window/eastleft,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"fL" = (
+/obj/spawner/junk/low_chance,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"fN" = (
+/obj/spawner/junkfood/rotten,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"gx" = (
+/obj/structure/sign/faction/one_star,
+/turf/wall/untinted/onestar,
+/area/outpost/blacksite/medium)
+"gP" = (
+/obj/spawner/junk/low_chance,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"gQ" = (
+/obj/structure/closet/onestar/tier2/normal,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"gV" = (
+/obj/effect/shuttle_landmark/blacksite/medium/nav2,
 /turf/space,
 /area/space)
+"gZ" = (
+/obj/spawner/junk,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"hm" = (
+/obj/structure/bed/chair/custom/onestar/red,
+/obj/spawner/booze/low_chance,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"hn" = (
+/obj/structure/bed/chair/comfy/black,
+/obj/spawner/booze/low_chance,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"hC" = (
+/obj/structure/salvageable/os/machine,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"hD" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/onestar,
+/obj/spawner/junk,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"hM" = (
+/obj/machinery/vending/boozeomat,
+/obj/structure/sign/faction/one_star_sign{
+	pixel_x = 32
+	},
+/turf/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"hN" = (
+/obj/machinery/vending/dinnerware,
+/turf/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"hY" = (
+/obj/structure/table/bar_special,
+/obj/spawner/booze/low_chance,
+/turf/floor/tiled/steel/bar_dance,
+/area/outpost/blacksite/medium)
+"hZ" = (
+/obj/structure/table/rack,
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/flashbangs,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"im" = (
+/obj/machinery/cryo_slab,
+/turf/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"iz" = (
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"iD" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4
+	},
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"iH" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"iJ" = (
+/obj/structure/sign/derelict2{
+	pixel_x = -32
+	},
+/obj/spawner/mob/roomba,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"jA" = (
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"jL" = (
+/obj/spawner/mob/roomba,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"jN" = (
+/obj/structure/salvageable/os/computer,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"kw" = (
+/obj/landmark/corpse/one_star,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"kC" = (
+/obj/structure/table/onestar,
+/obj/spawner/medical,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"kD" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/bed/chair/office/dark,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"kH" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/obj/item/device/taperecorder,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"kK" = (
+/obj/machinery/slotmachine,
+/turf/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"la" = (
+/obj/machinery/door/window/brigdoor/northright{
+	dir = 4;
+	req_access = null
+	},
+/obj/structure/table/onestar,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"le" = (
+/obj/structure/salvageable/os/console_broken{
+	dir = 4
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"lD" = (
+/obj/structure/bed,
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"lG" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/area/space)
+"lL" = (
+/obj/item/remains/human,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"lQ" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"mi" = (
+/obj/structure/table/onestar,
+/obj/item/folder/red,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"mp" = (
+/obj/spawner/junk,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"ms" = (
+/obj/spawner/junk,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"mv" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"mw" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"mz" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/obj/item/tool/knife/butch,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"mA" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"mO" = (
+/obj/machinery/vending/assist{
+	dir = 4
+	},
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"mW" = (
+/obj/spawner/mob/roomba,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"na" = (
+/turf/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"ng" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4
+	},
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"nm" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/spawner/medical_lowcost/low_chance,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"np" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"ns" = (
+/obj/structure/sign/faction/one_star{
+	pixel_x = 32
+	},
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"nt" = (
+/obj/landmark/corpse/skeleton,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"nz" = (
+/obj/structure/table/onestar,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot/onestar,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"nK" = (
+/obj/structure/sign/derelict1{
+	pixel_x = 32
+	},
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"of" = (
+/obj/spawner/junk/low_chance,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"ow" = (
+/obj/structure/table/rack,
+/obj/spawner/medical,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"oB" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"oT" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/spawner/junk,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"pq" = (
+/obj/machinery/vending,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"pF" = (
+/obj/structure/table/onestar,
+/obj/item/board,
+/obj/spawner/toy/figure,
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"pL" = (
+/obj/machinery/door/window/brigdoor/northleft{
+	dir = 2
+	},
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"pT" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/pack/rare/low_chance,
+/obj/spawner/lathe_disk,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"qa" = (
+/obj/structure/bed,
+/obj/spawner/toy/plushie,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"qn" = (
+/obj/structure/table/rack,
+/obj/spawner/medical_lowcost/low_chance,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"qo" = (
+/obj/spawner/mob/roomba,
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"qq" = (
+/turf/floor/reinforced,
+/area/outpost/blacksite/medium)
+"qz" = (
+/obj/structure/sign/derelict1{
+	pixel_x = 32
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"qY" = (
+/obj/structure/table/bar_special,
+/obj/item/reagent_containers/food/drinks/shaker,
+/turf/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"rp" = (
+/obj/structure/salvageable/os/console,
+/turf/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"rx" = (
+/obj/spawner/traps/low_chance,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"rN" = (
+/obj/machinery/power/port_gen/os_generator,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"rO" = (
+/obj/structure/closet/onestar/tier2,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"sa" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/curtain/open/shower,
+/turf/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"sf" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/obj/spawner/junk,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"si" = (
+/obj/structure/table/standard,
+/obj/item/tool/saw/circular,
+/turf/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"sm" = (
+/obj/structure/table/standard,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"so" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/soap,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"sr" = (
+/obj/spawner/mob/roomba,
+/turf/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"sw" = (
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"sy" = (
+/mob/living/carbon/superior_animal/stalker,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"sF" = (
+/obj/structure/closet/emcloset,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"sJ" = (
+/obj/structure/window/reinforced,
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"sL" = (
+/obj/structure/table/bar_special,
+/obj/spawner/booze/low_chance,
+/turf/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"sQ" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 4
+	},
+/obj/structure/window/reinforced/crescent{
+	dir = 1
+	},
+/obj/structure/window/reinforced/crescent{
+	dir = 8
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"ta" = (
+/obj/machinery/computer/arcade,
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"tg" = (
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"tm" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/device/lighting/toggleable/lamp,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"to" = (
+/obj/item/storage/toolbox/mechanical,
+/obj/item/handcuffs,
+/obj/item/melee/baton,
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"tz" = (
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"tP" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/turf/floor/tiled/white/techfloor_grid,
+/area/outpost/blacksite/medium)
+"ud" = (
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"ut" = (
+/obj/spawner/scrap/sparse,
+/obj/structure/sign/derelict3{
+	pixel_x = 32
+	},
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"ux" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost,
+/obj/spawner/tool_upgrade/rare/onestar,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"uU" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/paper_bin,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"uV" = (
+/obj/machinery/vending/coffee,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"vk" = (
+/obj/machinery/door/airlock/sandstone{
+	icon_state = "door_locked";
+	locked = 1;
+	name = "OneStar Airlock"
+	},
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"vR" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -11
+	},
+/obj/structure/mirror{
+	dir = 8;
+	pixel_x = -28
+	},
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"vV" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"vY" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/door/window/eastright,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"wa" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/floor/tiled/steel/bar_dance,
+/area/outpost/blacksite/medium)
+"wc" = (
+/obj/structure/table/onestar,
+/obj/spawner/junk,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"we" = (
+/turf/wall/untinted/onestar_reinforced,
+/area/outpost/blacksite/medium)
+"wh" = (
+/obj/structure/table/bar_special,
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"wl" = (
+/obj/structure/sign/derelict3{
+	pixel_x = 32
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"wt" = (
+/obj/structure/bed/chair/comfy/beige{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"wu" = (
+/obj/structure/bed/chair/custom/bar_special{
+	dir = 8
+	},
+/turf/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"wF" = (
+/obj/structure/table/rack,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"xb" = (
+/obj/effect/shuttle_landmark/blacksite/medium/nav1,
+/turf/space,
+/area/space)
+"xe" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/structure/closet/chefcloset,
+/obj/item/tool/knife,
+/obj/item/tool/knife,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"xn" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/lowkeyrandom,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"xF" = (
+/obj/machinery/vending/cigarette,
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"xN" = (
+/obj/structure/table/rack,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"xV" = (
+/obj/landmark/corpse/one_star,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"xX" = (
+/turf/wall/low/onestar,
+/area/outpost/blacksite/medium)
+"xY" = (
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/floor/dirt,
+/area/outpost/blacksite/medium)
+"yD" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"yE" = (
+/obj/spawner/junkfood/rotten,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"yU" = (
+/obj/spawner/mob/roomba,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"zc" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 26
+	},
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"zp" = (
+/obj/structure/table/rack,
+/obj/spawner/ammo,
+/obj/item/storage/belt/holding,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"zu" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/space,
+/area/space)
+"zM" = (
+/turf/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"zN" = (
+/obj/structure/table/onestar,
+/obj/item/newspaper,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"zO" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"zR" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/stamp/denied,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Aj" = (
+/obj/structure/table/onestar,
+/obj/spawner/lowkeyrandom,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Ay" = (
+/obj/structure/dispenser,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"AB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/door/airlock/external{
+	frequency = null;
+	icon_state = "door_locked";
+	id_tag = null;
+	locked = 1
+	},
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"AG" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor/reinforced,
+/area/outpost/blacksite/medium)
+"AH" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/stamp/chameleon,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"AO" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/spawner/cloth/under/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/helmet/low_chance,
+/obj/spawner/cloth/onestar/low_chance,
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"AY" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/salvageable/os/computer,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Bi" = (
+/obj/structure/salvageable/os/server,
+/turf/floor/tiled/derelict/red_white_edges,
+/area/outpost/blacksite/medium)
+"Bu" = (
+/obj/structure/closet/l3closet/scientist,
+/obj/spawner/cloth/onestar,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"BZ" = (
+/obj/structure/window/reinforced,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Ce" = (
+/obj/structure/morgue{
+	dir = 8
+	},
+/obj/machinery/camera/network/security{
+	dir = 1
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Ci" = (
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Cq" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"CF" = (
+/obj/machinery/door/airlock/sandstone{
+	icon_state = "door_locked";
+	locked = 1;
+	name = "OneStar Airlock"
+	},
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"CL" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/turf/floor/dirt,
+/area/outpost/blacksite/medium)
+"CO" = (
+/obj/structure/window/reinforced,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"CV" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/door/window/westright,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Dk" = (
+/obj/machinery/chem_heater,
+/obj/structure/table/onestar,
+/turf/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"Dm" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/pen,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Dq" = (
+/mob/living/carbon/superior_animal/stalker/dual,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Ds" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/door/airlock/external{
+	frequency = null;
+	icon_state = "door_locked";
+	id_tag = null;
+	locked = 1
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"DG" = (
+/turf/wall/untinted/onestar,
+/area/outpost/blacksite/medium)
+"DN" = (
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/obj/structure/table/rack,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"DQ" = (
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"DR" = (
+/obj/machinery/door/window/northleft,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Ea" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Ei" = (
+/obj/structure/table/rack/shelf,
+/obj/item/storage/box/bodybags{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/spawner/prothesis_one_star,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Ev" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"EI" = (
+/obj/item/storage/box/syringes{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/beakers,
+/obj/structure/table/onestar,
+/turf/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"EQ" = (
+/obj/machinery/media/jukebox,
+/turf/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"EW" = (
+/obj/landmark/corpse/one_star,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"EX" = (
+/obj/structure/table/rack,
+/obj/spawner/rations,
+/obj/spawner/rations,
+/obj/spawner/rations,
+/obj/spawner/rations,
+/obj/spawner/rations,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"EY" = (
+/obj/structure/salvageable/os/server,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Fa" = (
+/obj/structure/table/woodentable,
+/obj/spawner/junkfood,
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"Fb" = (
+/obj/machinery/light,
+/obj/structure/salvageable/os/console_broken{
+	dir = 1
+	},
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Fh" = (
+/obj/item/clothing/accessory/blue,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"FO" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/phone,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"FW" = (
+/obj/structure/table/bar_special,
+/obj/spawner/pizza/low_chance,
+/turf/floor/tiled/steel/bar_dance,
+/area/outpost/blacksite/medium)
+"FY" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 1
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Ga" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 1
+	},
+/obj/structure/window/reinforced/crescent,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Gi" = (
+/obj/structure/railing,
+/turf/space,
+/area/space)
+"Gm" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = -13
+	},
+/obj/structure/mirror{
+	dir = 8;
+	pixel_y = -30
+	},
+/obj/spawner/medical_lowcost/low_chance,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"Gq" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/landmark/corpse/skeleton,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Gy" = (
+/obj/structure/bed/chair/comfy/black,
+/obj/item/paper/blacksite/medium/note03{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/obj/item/paper/blacksite/medium/note06{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"GB" = (
+/turf/floor/dirt,
+/area/outpost/blacksite/medium)
+"GK" = (
+/obj/machinery/chemical_dispenser,
+/turf/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"GW" = (
+/obj/structure/table/rack,
+/obj/spawner/tank,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Hg" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Hr" = (
+/obj/spawner/junk/low_chance,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"HH" = (
+/obj/landmark/corpse/skeleton,
+/turf/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"HJ" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/area/space)
+"HQ" = (
+/obj/structure/noticeboard{
+	pixel_y = 32
+	},
+/obj/spawner/soda,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"It" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/obj/landmark/corpse/one_star/void,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"IP" = (
+/obj/spawner/mob/roomba,
+/turf/floor/tiled/steel/bar_dance,
+/area/outpost/blacksite/medium)
+"IR" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Jd" = (
+/obj/structure/table/onestar,
+/obj/spawner/firstaid,
+/obj/spawner/gun/onestar/low_chance,
+/turf/floor/tiled/derelict/red_white_edges,
+/area/outpost/blacksite/medium)
+"Jh" = (
+/obj/landmark/corpse/skeleton,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"Jj" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4
+	},
+/turf/floor/dirt,
+/area/outpost/blacksite/medium)
+"Jz" = (
+/obj/structure/closet/onestar/tier1,
+/obj/spawner/cloth/onestar/low_chance,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"JK" = (
+/obj/structure/table/onestar,
+/obj/spawner/gun/onestar,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Ke" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Ki" = (
+/obj/machinery/door/airlock/centcom{
+	icon_state = "door_locked";
+	locked = 1
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Ko" = (
+/obj/structure/sign/derelict3{
+	pixel_y = 32
+	},
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"KB" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/wall/low/onestar,
+/area/outpost/blacksite/medium)
+"KF" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"KL" = (
+/obj/structure/sign/derelict1{
+	pixel_x = 32
+	},
+/obj/spawner/mob/roomba,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"KO" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"KX" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced/crescent{
+	dir = 1
+	},
+/obj/structure/window/reinforced/crescent{
+	dir = 4
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"KZ" = (
+/obj/spawner/toy/plushie,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Lj" = (
+/obj/spawner/mob/roomba,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Lq" = (
+/mob/living/simple_animal/hostile/roomba,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Lu" = (
+/obj/structure/table/standard,
+/obj/item/storage/freezer/medical,
+/turf/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"LF" = (
+/obj/structure/sign/derelict3{
+	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"LV" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"Mk" = (
+/obj/structure/closet,
+/obj/spawner/lowkeyrandom,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Mq" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Mr" = (
+/obj/structure/table/rack,
+/obj/spawner/pack/rare/low_chance,
+/obj/spawner/electronics,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"Mt" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/camera/network/third_section{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/drinks/soymilk,
+/obj/item/reagent_containers/food/drinks/soymilk,
+/obj/item/reagent_containers/food/drinks/soymilk,
+/obj/item/reagent_containers/food/drinks/milk,
+/obj/item/reagent_containers/food/drinks/milk,
+/obj/item/reagent_containers/food/drinks/milk,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"Mu" = (
+/obj/structure/curtain/open/shower,
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"MA" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/door/window/westleft,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"MM" = (
+/obj/spawner/mob/roomba,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"MO" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"MW" = (
+/obj/structure/cyberplant,
+/turf/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"MZ" = (
+/obj/item/soap,
+/turf/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"Nf" = (
+/obj/item/stool/custom/bar_special,
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"Nr" = (
+/obj/structure/table/bar_special,
+/obj/spawner/pizza/low_chance,
+/turf/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"NA" = (
+/obj/structure/table/rack,
+/obj/spawner/tank,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"NG" = (
+/obj/structure/closet/crate,
+/obj/item/storage/freezer,
+/obj/item/storage/freezer,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"NJ" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"NM" = (
+/obj/machinery/door/window/southleft,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"NV" = (
+/obj/structure/table/onestar,
+/obj/spawner/material/resources/rare,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot/low_chance,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Oa" = (
+/obj/machinery/door/window/westright,
+/obj/landmark/corpse/skeleton,
+/turf/floor/tiled/white/techfloor_grid,
+/area/outpost/blacksite/medium)
+"Oj" = (
+/obj/structure/table/standard,
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/obj/machinery/light,
+/obj/item/material/kitchen/rollingpin,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"On" = (
+/obj/structure/closet,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Pa" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Pj" = (
+/obj/structure/bed/chair/custom/bar_special,
+/turf/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"Pr" = (
+/obj/structure/salvageable/os/console{
+	dir = 1
+	},
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Py" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"PB" = (
+/obj/spawner/cloth/onestar,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"PM" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/spawner/credits/low_chance,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"PW" = (
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
+	},
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Qh" = (
+/obj/structure/table/rack,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/spawner/gun/onestar,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Qj" = (
+/obj/structure/table/woodentable,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"Qr" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/spawner/cloth/under/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/shoes/low_chance,
+/obj/spawner/cloth/onestar/low_chance,
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"QB" = (
+/obj/machinery/chem_master/condimaster,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"QG" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/spawner/soda,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"QY" = (
+/obj/structure/table/rack,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/medium,
+/obj/spawner/powercell/small,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"Rj" = (
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
+/obj/structure/closet/crate,
+/obj/spawner/booze/low_chance,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"Rt" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/tool_upgrade/rare/onestar,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"Rv" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"RB" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/spawner/junk/low_chance,
+/turf/floor/tiled/dark/techfloor,
+/area/outpost/blacksite/medium)
+"RO" = (
+/obj/structure/salvageable/os/computer,
+/turf/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"RV" = (
+/obj/spawner/junk/low_chance,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Sa" = (
+/obj/structure/sign/derelict2{
+	pixel_x = -32
+	},
+/obj/spawner/mob/roomba,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Sd" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Se" = (
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Sh" = (
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
+	},
+/obj/structure/bed/chair/custom/onestar,
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Sm" = (
+/obj/structure/catwalk,
+/turf/space,
+/area/space)
+"SC" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/spawner/cloth/under/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/onestar/low_chance,
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"SD" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/floor/plating/under,
+/area/outpost/blacksite/medium)
+"SH" = (
+/obj/spawner/junk,
+/turf/floor/dirt,
+/area/outpost/blacksite/medium)
+"SI" = (
+/obj/structure/salvageable/os/data,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Tj" = (
+/obj/spawner/soda,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Tu" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Tz" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/disposaloutlet{
+	dir = 1
+	},
+/turf/floor/reinforced,
+/area/outpost/blacksite/medium)
+"TF" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"TH" = (
+/obj/item/stool/custom/bar_special,
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/floor/tiled/steel/bar_dance,
+/area/outpost/blacksite/medium)
+"TK" = (
+/obj/structure/table/rack,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/large,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"Ud" = (
+/obj/structure/bed/chair/custom/onestar/red,
+/obj/spawner/soda/low_chance,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Uj" = (
+/obj/item/paper/blacksite/medium/note01{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/paper/blacksite/medium/note04{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Uk" = (
+/obj/spawner/mob/roomba,
+/turf/floor/tiled/derelict/red_white_edges,
+/area/outpost/blacksite/medium)
+"UD" = (
+/obj/structure/table/onestar,
+/obj/item/storage/lunchbox/rainbow,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"UE" = (
+/obj/item/paper/blacksite/medium/note02{
+	pixel_x = 6;
+	pixel_y = 7
+	},
+/obj/item/paper/blacksite/medium/note05{
+	pixel_x = -5
+	},
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"UF" = (
+/obj/structure/table/standard,
+/obj/machinery/reagentgrinder/portable,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"UO" = (
+/obj/structure/table/onestar,
+/obj/spawner/soda,
+/obj/spawner/soda,
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"Va" = (
+/obj/structure/table/onestar,
+/obj/item/newspaper,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Vc" = (
+/obj/structure/sign/derelict2{
+	pixel_x = -32
+	},
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Vi" = (
+/obj/structure/table/rack,
+/obj/spawner/gun/onestar,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Vw" = (
+/obj/spawner/pack/tech_loot/onestar,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"VP" = (
+/obj/structure/table/woodentable,
+/obj/spawner/toy/plushie,
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"Wh" = (
+/obj/machinery/optable,
+/turf/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"WI" = (
+/turf/floor/tiled/derelict/red_white_edges,
+/area/outpost/blacksite/medium)
+"Xa" = (
+/obj/structure/closet/onestar/tier2/normal,
+/turf/floor/tiled/derelict/red_white_edges,
+/area/outpost/blacksite/medium)
+"Xh" = (
+/obj/structure/sign/faction/one_star_sign{
+	pixel_y = 32
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Xi" = (
+/obj/structure/morgue,
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"XG" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"XH" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/railing/grey,
+/turf/floor/plating/under,
+/area/outpost/blacksite/medium)
+"XO" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/device/lighting/toggleable/lamp,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Ym" = (
+/turf/floor/tiled/steel/bar_dance,
+/area/outpost/blacksite/medium)
+"Yr" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Yv" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/material/resources,
+/obj/spawner/material/resources,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"Yw" = (
+/obj/structure/bed/padded,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/floor/reinforced,
+/area/outpost/blacksite/medium)
+"Yy" = (
+/obj/structure/closet/onestar/tier1,
+/turf/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"YI" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/floor/reinforced,
+/area/outpost/blacksite/medium)
+"YM" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"YQ" = (
+/obj/structure/urinal{
+	pixel_y = 32
+	},
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"YY" = (
+/turf/floor/plating/under,
+/area/outpost/blacksite/medium)
+"Zm" = (
+/obj/structure/table/standard,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
+	},
+/obj/spawner/booze/low_chance,
+/turf/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"Zr" = (
+/obj/structure/morgue{
+	dir = 8
+	},
+/turf/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Zv" = (
+/obj/landmark/corpse/skeleton,
+/turf/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Zy" = (
+/turf/floor/tiled/white/techfloor_grid,
+/area/outpost/blacksite/medium)
+"ZO" = (
+/obj/spawner/junk/low_chance,
+/turf/floor/carpet,
+/area/outpost/blacksite/medium)
+"ZW" = (
+/obj/structure/closet/l3closet/scientist,
+/turf/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
 
 (1,1,1) = {"
 aa
@@ -7208,9 +9078,9 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
+aa
+aa
+aa
 aa
 aa
 aa
@@ -7408,13 +9278,13 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -7610,14 +9480,14 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -7812,16 +9682,16 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -8015,15 +9885,15 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -8217,15 +10087,15 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -8419,15 +10289,15 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -8621,16 +10491,16 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -8828,11 +10698,11 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -9031,9 +10901,9 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
+aa
+aa
+aa
 aa
 aa
 aa
@@ -9842,8 +11712,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+cb
+cb
 aa
 aa
 aa
@@ -10043,9 +11913,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+cb
+cb
+cb
 aa
 aa
 aa
@@ -10243,12 +12113,12 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -10445,12 +12315,12 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -10647,14 +12517,14 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -10849,15 +12719,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -11050,16 +12920,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -11251,17 +13121,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -11451,20 +13321,20 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -11653,21 +13523,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -11855,21 +13725,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -12055,23 +13925,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -12257,23 +14127,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -12423,6 +14293,9 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
 aa
 aa
 aa
@@ -12456,26 +14329,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -12623,6 +14493,13 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -12654,33 +14531,26 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+xb
 aa
 aa
 aa
@@ -12825,6 +14695,14 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -12855,30 +14733,22 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -13027,6 +14897,16 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -13055,29 +14935,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -13230,6 +15100,15 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -13260,25 +15139,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -13432,6 +15302,15 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -13462,25 +15341,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -13634,6 +15504,15 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -13666,19 +15545,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -13836,6 +15706,16 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -13867,20 +15747,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -14039,6 +15909,15 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -14070,18 +15949,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
 aa
 aa
 aa
@@ -14241,14 +16111,14 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
 aa
 aa
 aa
@@ -14444,9 +16314,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+cb
+cb
+cb
 aa
 aa
 aa
@@ -14647,7 +16517,7 @@ aa
 aa
 aa
 aa
-aa
+cb
 aa
 aa
 aa
@@ -15850,10 +17720,10 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -16052,10 +17922,10 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -16254,10 +18124,10 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -16456,10 +18326,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -16531,7 +18397,11 @@ aa
 aa
 aa
 aa
-ci
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -16657,11 +18527,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -16669,39 +18534,44 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+we
+we
+we
+xX
+we
+xX
+we
+we
+we
+xX
+xX
+we
+xX
+xX
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+xX
+we
+Gi
+Sm
+zu
+we
+xX
+we
+we
 aa
 aa
 aa
@@ -16859,52 +18729,52 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+we
+we
+we
+ud
+vR
+gP
+vR
+gP
+vR
+kC
+we
+RV
+RV
+we
+pq
+cJ
+AH
+Ea
+Rv
+wc
+oT
+sJ
+Va
+wc
+UD
+we
+hZ
+Jz
+gQ
+zp
+we
+YY
+we
+we
+AB
+we
+we
+YY
+we
+we
+dJ
 aa
 aa
 aa
@@ -17062,52 +18932,52 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+we
+we
+we
+YQ
+ud
+ud
+yU
+gZ
+ud
+yU
+cL
+we
+jA
+jA
+we
+HQ
+Tj
+uU
+nt
+kD
+Dm
+FO
+BZ
+Se
+Gq
+Ci
+we
+Qh
+kw
+Dq
+Vi
+we
+RB
+XH
+jA
+jA
+jA
+SD
+RB
+we
+SI
+KX
+we
 aa
 aa
 aa
@@ -17264,52 +19134,52 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+lG
+Ga
+eV
+we
+YQ
+ud
+eE
+ud
+ut
+ud
+gP
+ud
+LV
+jA
+jA
+Ev
+DQ
+DQ
+DQ
+dN
+dN
+DQ
+Hr
+dN
+dN
+AY
+mv
+we
+Vi
+Se
+Se
+ow
+we
+RV
+jA
+jA
+jA
+Lj
+jA
+jA
+we
+Se
+fL
+we
 aa
 aa
 aa
@@ -17466,52 +19336,52 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+lG
+Ga
+eQ
+we
+Oa
+Mu
+we
+vk
+DG
+vk
+DG
+vk
+we
+Lj
+jA
+we
+LF
+DQ
+DQ
+jL
+DQ
+DQ
+DQ
+DQ
+DQ
+tm
+mp
+we
+we
+we
+Ki
+we
+we
+bY
+jA
+jA
+jA
+jA
+jA
+bY
+we
+fL
+Se
+we
 aa
 aa
 aa
@@ -17668,10 +19538,52 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
+aa
+aa
+lG
+Ga
+rx
+we
+MZ
+sa
+we
+YM
+DG
+PM
+DG
+PM
+we
+jA
+jA
+we
+vV
+mA
+Hr
+mA
+mA
+DQ
+DQ
+jL
+DQ
+DQ
+Sd
+we
+mW
+Se
+Se
+mp
+we
+uV
+fN
+jA
+jA
+nK
+RV
+sF
+we
+Se
+nz
+we
 aa
 aa
 aa
@@ -17692,48 +19604,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -17871,9 +19741,51 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
+aa
+aa
+we
+eu
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+jA
+jA
+we
+XO
+nt
+zR
+Fh
+kD
+sf
+DQ
+DQ
+DQ
+np
+nt
+we
+Se
+mw
+yE
+Fb
+we
+DG
+DG
+xX
+Mq
+DG
+DG
+DG
+we
+fL
+nz
+we
 aa
 aa
 aa
@@ -17894,48 +19806,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -18073,9 +19943,51 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
+aa
+we
+we
+sw
+ZO
+Fa
+ay
+VP
+ay
+Qj
+ay
+VP
+ay
+we
+RV
+jA
+we
+jN
+Cq
+hD
+Ea
+oB
+kH
+DQ
+DQ
+qz
+oT
+QG
+we
+Se
+cg
+ng
+aj
+we
+zN
+iD
+jA
+jA
+jA
+Pa
+uV
+we
+Se
+nz
+we
 aa
 aa
 aa
@@ -18100,48 +20012,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -18275,9 +20145,51 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
+aa
+xX
+bA
+sw
+sw
+sw
+sw
+sw
+sw
+ZO
+qo
+sw
+sw
+we
+PW
+jA
+we
+we
+we
+we
+we
+we
+we
+we
+Ev
+we
+we
+we
+we
+eu
+xX
+la
+xX
+we
+Sh
+jA
+jA
+Lj
+jA
+fN
+jA
+eu
+rx
+hC
+we
 aa
 aa
 aa
@@ -18302,48 +20214,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -18478,6 +20348,50 @@ aa
 aa
 aa
 aa
+xX
+pF
+sw
+qo
+sw
+ZO
+sw
+sw
+sw
+sw
+sw
+sw
+TF
+jA
+jA
+Vc
+RV
+jA
+Lj
+jA
+jA
+RV
+jA
+jA
+jA
+jA
+jA
+Yr
+jA
+pL
+Ke
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+we
+xN
+we
+we
 aa
 aa
 aa
@@ -18502,50 +20416,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -18679,6 +20549,50 @@ aa
 aa
 aa
 aa
+we
+we
+ta
+ZO
+UO
+mO
+xF
+Qr
+AO
+Qr
+AO
+SC
+ZO
+we
+jA
+jA
+jA
+jA
+jA
+sy
+jA
+jA
+jA
+jA
+jA
+Lj
+jA
+RV
+jA
+jA
+CO
+jA
+jA
+jA
+jA
+Lj
+jA
+jA
+jA
+wt
+dG
+we
+we
+we
 aa
 aa
 aa
@@ -18704,50 +20618,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -18880,6 +20750,50 @@ aa
 aa
 aa
 aa
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+jA
+Lq
+we
+xX
+xX
+we
+we
+we
+we
+xX
+xX
+xX
+we
+we
+we
+xX
+we
+we
+xX
+we
+we
+we
+xX
+xX
+xX
+we
+we
+we
+we
 aa
 aa
 aa
@@ -18906,50 +20820,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -19081,6 +20951,25 @@ aa
 aa
 aa
 aa
+lG
+Ga
+Vw
+DG
+lD
+nt
+DG
+iz
+qa
+DG
+Se
+lD
+DG
+Zy
+sa
+we
+jA
+jA
+xX
 aa
 aa
 aa
@@ -19133,25 +21022,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -19283,6 +21153,25 @@ aa
 aa
 aa
 aa
+lG
+Ga
+eQ
+DG
+yD
+vY
+DG
+fK
+yD
+DG
+fK
+yD
+DG
+so
+Gm
+we
+jA
+jA
+xX
 aa
 aa
 aa
@@ -19316,6 +21205,7 @@ aa
 aa
 aa
 aa
+gV
 aa
 aa
 aa
@@ -19337,26 +21227,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -19485,6 +21355,26 @@ aa
 aa
 aa
 aa
+lG
+Ga
+mp
+DG
+ms
+DQ
+iJ
+DQ
+DQ
+lL
+jL
+DQ
+Ev
+ud
+nm
+we
+jA
+jA
+we
+we
 aa
 aa
 aa
@@ -19539,26 +21429,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -19688,6 +21558,29 @@ aa
 aa
 aa
 aa
+we
+rx
+DG
+ms
+xV
+DQ
+DQ
+DQ
+DQ
+DQ
+DQ
+DG
+DG
+DG
+we
+jA
+jA
+we
+we
+we
+we
+xX
+xX
 aa
 aa
 aa
@@ -19738,29 +21631,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -19890,6 +21760,30 @@ aa
 aa
 aa
 aa
+we
+eu
+gx
+DG
+xX
+xX
+xX
+DG
+gx
+DQ
+DQ
+DG
+Mk
+Mk
+we
+Lj
+jA
+we
+Xa
+WI
+hn
+aj
+xX
+xX
 aa
 aa
 aa
@@ -19939,30 +21833,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -20092,6 +21962,30 @@ aa
 aa
 aa
 aa
+xX
+Se
+rO
+Aj
+mp
+Se
+hm
+aj
+DG
+eX
+MO
+DG
+mp
+Se
+we
+PW
+jA
+we
+Jd
+Uk
+tz
+Uj
+aj
+xX
 aa
 aa
 aa
@@ -20141,30 +22035,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -20294,6 +22164,30 @@ aa
 aa
 aa
 aa
+DG
+IR
+kw
+Se
+Se
+mW
+Dq
+Se
+Ev
+KF
+zO
+Ki
+mW
+Se
+eu
+jA
+jA
+CF
+WI
+WI
+EW
+Gy
+Pr
+xX
 aa
 aa
 aa
@@ -20343,30 +22237,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -20496,6 +22366,30 @@ aa
 aa
 aa
 aa
+xX
+Se
+rO
+JK
+Se
+mp
+Ud
+aj
+DG
+KO
+Py
+DG
+Xh
+Se
+we
+PW
+sy
+we
+Bi
+Uk
+tz
+UE
+aj
+xX
 aa
 aa
 aa
@@ -20545,30 +22439,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -20698,6 +22568,30 @@ aa
 aa
 aa
 aa
+we
+eu
+gx
+DG
+xX
+xX
+xX
+DG
+gx
+DQ
+DQ
+DG
+qn
+qn
+we
+jA
+jA
+we
+Xa
+WI
+hn
+aj
+xX
+xX
 aa
 aa
 aa
@@ -20747,30 +22641,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -20900,6 +22770,29 @@ aa
 aa
 aa
 aa
+we
+rx
+DG
+ms
+DQ
+DQ
+DQ
+DQ
+DQ
+jL
+DQ
+DG
+DG
+DG
+we
+jA
+jA
+we
+we
+we
+we
+xX
+xX
 aa
 aa
 aa
@@ -20950,29 +22843,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -21101,6 +22971,26 @@ aa
 aa
 aa
 aa
+lG
+Ga
+Vw
+DG
+ms
+Zv
+wl
+DQ
+DQ
+MO
+mA
+eX
+GB
+SH
+Jj
+we
+RV
+jA
+we
+we
 aa
 aa
 aa
@@ -21155,26 +23045,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -21303,6 +23173,25 @@ aa
 aa
 aa
 aa
+lG
+Ga
+eQ
+DG
+ft
+MA
+DG
+CV
+ft
+DG
+Zy
+DG
+GB
+GB
+bt
+we
+jA
+jA
+xX
 aa
 aa
 aa
@@ -21358,25 +23247,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -21505,6 +23375,25 @@ aa
 aa
 aa
 aa
+lG
+Ga
+mp
+DG
+lD
+Se
+DG
+KZ
+lD
+DG
+es
+DG
+xY
+GB
+CL
+we
+jA
+jA
+xX
 aa
 aa
 aa
@@ -21560,25 +23449,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -21708,6 +23578,50 @@ aa
 aa
 aa
 aa
+we
+we
+we
+we
+we
+we
+we
+we
+we
+Ki
+we
+we
+we
+we
+we
+Ko
+jA
+we
+xX
+xX
+we
+we
+we
+we
+xX
+xX
+xX
+we
+we
+we
+xX
+we
+we
+xX
+we
+we
+we
+xX
+xX
+xX
+we
+we
+we
+we
 aa
 aa
 aa
@@ -21737,50 +23651,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -21911,6 +23781,50 @@ aa
 aa
 aa
 aa
+we
+we
+si
+Lu
+DQ
+zO
+DR
+NM
+YI
+qq
+qq
+qq
+Tz
+we
+jA
+jA
+jA
+jA
+jA
+sy
+RV
+jA
+jA
+jA
+jA
+Lj
+jA
+jA
+jA
+jA
+jA
+RV
+jA
+jA
+Sa
+jA
+jA
+jA
+jA
+RV
+RV
+we
+we
+we
 aa
 aa
 aa
@@ -21939,50 +23853,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -22114,6 +23984,50 @@ aa
 aa
 aa
 aa
+xX
+Wh
+dX
+DQ
+DQ
+to
+xX
+qq
+qq
+Yw
+qq
+AG
+we
+jA
+jA
+jA
+jA
+jA
+jA
+KL
+jA
+jA
+jA
+jA
+RV
+ns
+jA
+Lj
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+RV
+ns
+jA
+jA
+jA
+eu
+rx
+we
+we
 aa
 aa
 aa
@@ -22141,50 +24055,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -22316,6 +24186,50 @@ aa
 aa
 aa
 aa
+xX
+rp
+dX
+jL
+DQ
+NV
+xX
+qq
+qq
+qq
+qq
+AG
+we
+Lj
+jA
+we
+we
+we
+we
+we
+we
+we
+CF
+we
+we
+we
+xX
+xX
+wa
+wa
+xX
+xX
+we
+we
+xX
+we
+we
+we
+eu
+we
+we
+Se
+nz
+we
 aa
 aa
 aa
@@ -22343,50 +24257,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -22518,50 +24388,50 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+we
+we
+dX
+NJ
+DQ
+DQ
+xX
+xX
+xX
+xX
+xX
+KB
+we
+jA
+jA
+we
+Xi
+Xi
+Xi
+we
+ux
+fH
+fH
+fH
+iH
+we
+kK
+TH
+Ym
+Ym
+Pj
+an
+we
+UF
+ud
+mz
+we
+dD
+mW
+GW
+we
+fL
+nz
+we
 aa
 aa
 aa
@@ -22721,49 +24591,49 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+we
+eu
+we
+DQ
+DQ
+ba
+mi
+le
+le
+fI
+Hg
+we
+jA
+RV
+we
+nt
+Se
+nt
+we
+lQ
+fH
+QY
+MM
+Rt
+we
+EQ
+Ym
+IP
+Ym
+na
+wu
+we
+dA
+ud
+Zm
+we
+dD
+fL
+Ay
+we
+Se
+nz
+we
 aa
 aa
 aa
@@ -22922,50 +24792,50 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+lG
+Ga
+mp
+we
+im
+DQ
+DQ
+jL
+XG
+It
+DQ
+tg
+we
+jA
+jA
+we
+DQ
+DQ
+Ei
+we
+lQ
+fH
+TK
+fH
+iH
+we
+MW
+Ym
+Ym
+Ym
+Ym
+Ym
+we
+QB
+ud
+Oj
+we
+dD
+Se
+PB
+we
+fL
+EY
+we
 aa
 aa
 aa
@@ -23124,50 +24994,50 @@ aa
 aa
 aa
 aa
-bq
-bq
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+lG
+Ga
+eQ
+we
+RO
+FY
+DQ
+DQ
+qz
+DQ
+DQ
+DQ
+we
+jA
+jA
+Ev
+DQ
+jL
+On
+we
+xn
+fH
+NA
+fH
+Yv
+we
+bG
+Nf
+bG
+bG
+Nf
+zM
+we
+sm
+Jh
+EX
+we
+we
+Ds
+xX
+we
+fL
+DN
+we
 aa
 aa
 aa
@@ -23325,10 +25195,51 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
 aa
+lG
+Ga
+eV
+we
+dI
+DQ
+DQ
+DQ
+DG
+DG
+DG
+DG
+we
+PW
+jA
+we
+DQ
+DQ
+cE
+we
+pT
+MM
+wF
+fH
+iH
+we
+Nr
+sL
+wh
+fC
+wh
+zM
+we
+zc
+yU
+Mt
+we
+of
+Se
+tz
+we
+Se
+aW
+we
 aa
 aa
 aa
@@ -23359,47 +25270,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-cj
 aa
 aa
 aa
@@ -23525,53 +25395,53 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+we
+we
+we
+aY
+Tu
+jL
+DQ
+Ev
+tz
+tz
+tz
+CF
+jA
+jA
+we
+Se
+nt
+Se
+we
+Yy
+fH
+Mr
+fH
+Yy
+we
+zM
+zM
+HH
+zM
+sr
+zM
+Ev
+ud
+ud
+xe
+we
+tz
+Se
+of
+we
+rN
+sQ
+we
 aa
 aa
 aa
@@ -23727,11 +25597,52 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
+aa
+we
+we
+we
+GK
+EI
+Dk
+DG
+tP
+Bu
+ZW
+we
+RV
+RV
+we
+Zr
+Zr
+Ce
+we
+Yy
+fH
+fH
+fH
+Yy
+we
+hM
+hN
+ea
+qY
+FW
+hY
+we
+Rj
+ud
+NG
+we
+xX
+Ds
+we
+we
+we
+HJ
 aa
 aa
 aa
@@ -23748,50 +25659,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
 aa
 aa
 aa
@@ -23929,11 +25799,51 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+we
+xX
+xX
+xX
+we
+we
+we
+we
+we
+xX
+xX
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+xX
+xX
+xX
+xX
+we
+we
+we
+xX
+we
+we
+Gi
+Sm
+zu
+we
+we
 aa
 aa
 aa
@@ -23948,55 +25858,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -24131,11 +26001,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -24194,11 +26059,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -24333,11 +26203,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -24396,13 +26261,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -24535,11 +26405,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -24598,13 +26463,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -24733,15 +26603,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -24803,10 +26664,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -24935,15 +26805,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -25005,10 +26866,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -25137,15 +27007,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -25155,6 +27016,11 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -25203,14 +27069,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -25337,17 +27207,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -25357,6 +27216,15 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -25403,16 +27271,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -25539,17 +27409,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -25559,6 +27418,15 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -25605,16 +27473,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -25741,17 +27611,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -25760,6 +27619,18 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -25804,19 +27675,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -25943,17 +27813,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -25962,6 +27821,18 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -26007,17 +27878,16 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
 aa
 aa
 aa
@@ -26145,17 +28015,27 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -26200,22 +28080,12 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -26347,17 +28217,28 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -26402,21 +28283,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -26551,15 +28421,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -26567,10 +28428,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -26753,15 +28623,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -26771,8 +28632,17 @@ aa
 aa
 aa
 aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -26957,10 +28827,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -26968,13 +28834,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -27159,10 +29029,6 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
 aa
 aa
 aa
@@ -27170,13 +29036,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -27361,23 +29231,23 @@ aa
 aa
 aa
 aa
-bq
-bq
-bq
-bq
 aa
 aa
 aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -27569,17 +29439,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -27770,18 +29640,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -27972,20 +29842,20 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -28175,20 +30045,20 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -28379,18 +30249,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -28582,17 +30452,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -28784,16 +30654,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -28986,16 +30856,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -29189,16 +31059,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -29393,15 +31263,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -29596,14 +31466,14 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -29800,11 +31670,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -30003,9 +31873,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+cb
+cb
+cb
 aa
 aa
 aa

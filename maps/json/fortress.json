@@ -1,7 +1,7 @@
 {
 	"map_name": "Space Fortress",
 	"map_desc": "A dungeon with loot and some enemies.",
-	"map_file": "maps/encounters/spacefortress/spacefortress.dmm",
+	"map_file": "maps/points_of_interest/spacefortress.dmm",
 	"map_size": 1,
 
 	"is_playable_level": true,

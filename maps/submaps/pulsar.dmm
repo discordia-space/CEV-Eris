@@ -3,7 +3,6 @@
 /turf/space,
 /area/space)
 "ag" = (
-/obj/effect/overmap/sector/fortress,
 /turf/space,
 /area/space)
 "al" = (

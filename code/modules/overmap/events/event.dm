@@ -50,14 +50,21 @@
 
 	spawn_points_of_interest(candidate_turfs)
 
-/decl/overmap_event_handler/proc/spawn_points_of_interest(var/list/candidate_turfs)
-	var/list/pois = list(/obj/effect/overmap_event/poi/debris, /obj/effect/overmap_event/poi/station)
-	for(var/path in pois)
-		if(!candidate_turfs.len)
+/decl/overmap_event_handler/proc/spawn_points_of_interest(list/candidate_turfs)
+	var/list/points_of_interest_to_spawn = list(
+		/obj/effect/overmap_event/poi/debris,
+		/obj/effect/overmap_event/poi/station,
+		/obj/effect/overmap_event/poi/map_spawner,
+		/obj/effect/overmap_event/poi/map_spawner/medium_blacksite,
+		/obj/effect/overmap_event/poi/map_spawner/spaceruins,
+		/obj/effect/overmap_event/poi/map_spawner/fortress)
+
+	for(var/poi_typepath in points_of_interest_to_spawn)
+		if(!LAZYLEN(candidate_turfs))
 			break
 		var/turf/poi_turf = pick(candidate_turfs)
 		candidate_turfs -= poi_turf
-		new path(poi_turf)
+		new poi_typepath(poi_turf)
 
 /decl/overmap_event_handler/proc/get_event_turfs_by_z_level(var/z_level)
 	var/z_level_text = num2text(z_level)
@@ -383,39 +390,40 @@
 /obj/effect/overmap_event/poi/station/reveal()
 	if(revealed)
 		return
-	else
-		revealed = TRUE
+	revealed = TRUE
 
 	log_game("Trading station point of interest has been scanned and revealed.")
 	SStrade.AddStation(loc)  // Add a new random station at this location
 	qdel(src)  // Clear the POI effect since there is a trading station at that location now
-	return
 
-/obj/effect/overmap_event/poi/blacksite
-	var/obj/effect/overmap/sector/blacksite/linked  // Linked blacksite sector
 
-/obj/effect/overmap_event/poi/blacksite/New(loc, var/obj/effect/overmap/sector/linked_sector)
-	..(loc)
-	linked = linked_sector
+/obj/effect/overmap_event/poi/map_spawner
+	var/sector_to_create_when_discovered = /obj/effect/overmap/sector/map_spawner/blacksite
+	var/obj/effect/overmap/sector/map_spawner/sector
 
-/obj/effect/overmap_event/poi/blacksite/Destroy()
-	linked = null
-	. = ..()
-
-/obj/effect/overmap_event/poi/blacksite/reveal()
+/obj/effect/overmap_event/poi/map_spawner/reveal()
 	if(revealed)
 		return
-	else
-		revealed = TRUE
+	revealed = TRUE
 
-	// Blacksite sector is now known and no longer hidden
-	if(linked)
-		linked.known = 1
-		linked.invisibility = 0
-		linked.update_known()
-		log_game("Blacksite point of interest has been scanned and revealed.")
-	else
-		log_world("## ERROR: Blacksite point of interest was not linked to a sector.")
+	// Unlike regular /sector/ objects, this one is not created by a map being loaded,
+	// but instead loads a map when created
+	// Here we use roundstart-generated /poi/ objects to trigger new Z-level creation
+	sector = new sector_to_create_when_discovered(loc)
+	sector.loc = loc // Sectors are forced to spawn at random coordinates, because of course they are
+	sector.update_known()
+	var/new_sector_name = LAZYLEN(sector.name_stages) ? sector.name_stages[1] : "UNKNOWN"
+	log_and_message_admins("[new_sector_name] have been scanned and revealed.")
+	sector = null
+	qdel(src)  // Clear the POI effect since there is a sector revealed at that location now
 
-	qdel(src)  // Clear the POI effect since there is a blacksite revealed at that location now
-	return
+
+/obj/effect/overmap_event/poi/map_spawner/medium_blacksite
+	sector_to_create_when_discovered = /obj/effect/overmap/sector/map_spawner/blacksite/medium
+
+/obj/effect/overmap_event/poi/map_spawner/fortress
+	sector_to_create_when_discovered = /obj/effect/overmap/sector/map_spawner/fortress
+
+/obj/effect/overmap_event/poi/map_spawner/spaceruins
+	sector_to_create_when_discovered = /obj/effect/overmap/sector/map_spawner/spaceruins
+

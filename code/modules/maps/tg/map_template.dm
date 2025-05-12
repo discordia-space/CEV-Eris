@@ -17,8 +17,6 @@
 
 	var/template_flags = TEMPLATE_FLAG_ALLOW_DUPLICATES
 
-	var/static/dmm_suite/maploader = new
-
 	///if true, creates a list of all atoms created by this template loading, defaults to FALSE
 	var/returns_created_atoms = FALSE
 
@@ -36,7 +34,7 @@
 		name = rename
 
 /datum/map_template/proc/preload_size(path, orientation = SOUTH)
-	var/bounds = SSmapping.maploader.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
+	var/bounds = SSmapping.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
 	if(bounds)
 		if(orientation & (90 | 270))
 			width = bounds[MAP_MAXY]
@@ -109,7 +107,7 @@
 		x = round((world.maxx - width)/2)
 		y = round((world.maxy - height)/2)
 
-	var/list/bounds = SSmapping.maploader.load_map(file(mappath), x, y, no_changeturf = TRUE, orientation=orientation)
+	var/list/bounds = SSmapping.load_map(file(mappath), x, y, no_changeturf = TRUE, orientation=orientation)
 	if(!bounds)
 		return FALSE
 
@@ -134,7 +132,7 @@
 	if(annihilate)
 		annihilate_bounds(old_T, centered, orientation)
 
-	var/list/bounds = SSmapping.maploader.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE, orientation = orientation)
+	var/list/bounds = SSmapping.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE, orientation = orientation)
 	if(!bounds)
 		return
 

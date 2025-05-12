@@ -172,7 +172,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	var/list/area/targets = list()
 
 /datum/antag_contract/recon/New()
-	var/list/candidates = ship_areas.Copy()
+	var/list/candidates = SSmapping.main_ship_areas.Copy()
 	for(var/datum/antag_contract/recon/C in GLOB.various_antag_contracts)
 		if(C.completed)
 			continue
@@ -431,7 +431,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	var/list/area/targets = list()
 
 /datum/antag_contract/excel/propaganda/New()
-	var/list/candidates = ship_areas.Copy()
+	var/list/candidates = SSmapping.main_ship_areas.Copy()
 	for(var/datum/antag_contract/excel/propaganda/M in GLOB.excel_antag_contracts)
 		if(M.completed)
 			continue

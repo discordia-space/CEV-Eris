@@ -1,10 +1,12 @@
 {
 	"map_name": "Asteroid",
 	"map_desc": "Diggy diggy hole.",
-	"map_file": "maps/encounters/asteroid/asteroid.dmm",
+	"map_file": "maps/points_of_interest/asteroid.dmm",
 	"map_size": 1,
 
 	"is_playable_level": true,
 	"is_main_ship_level": false,
-	"is_sealed": false
+	"is_sealed": false,
+
+	"call_proc_on_load": "build_asteroid"
 }

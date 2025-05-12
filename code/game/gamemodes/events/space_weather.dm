@@ -92,7 +92,7 @@
 	for(var/obj/item/device/lighting/L in world)
 		L.brightness_on = L.brightness_on / 4
 		L.update_icon()
-	for(var/area/area as anything in ship_areas)
+	for(var/area/area as anything in SSmapping.main_ship_areas)
 		for(var/obj/structure/cyberplant/c in area)
 			c.brightness_on = c.brightness_on / 2
 			c.doInterference()
@@ -110,7 +110,7 @@
 	for(var/obj/item/device/lighting/L in world)
 		L.brightness_on = initial(L.brightness_on)
 		L.update_icon()
-	for(var/area/area as anything in ship_areas)
+	for(var/area/area as anything in SSmapping.main_ship_areas)
 		for(var/obj/structure/cyberplant/c in area)
 			c.brightness_on = initial(c.brightness_on)
 			c.doInterference()

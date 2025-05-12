@@ -1,7 +1,7 @@
 {
 	"map_name": "Blacksite",
 	"map_desc": "Abandoned OneStar facility full of enemies and loot.",
-	"map_file": "maps/encounters/blacksite/blacksite_medium.dmm",
+	"map_file": "maps/points_of_interest/blacksite_medium.dmm",
 	"map_size": 1,
 
 	"is_playable_level": true,

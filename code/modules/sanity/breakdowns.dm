@@ -502,7 +502,7 @@
 	end_messages = list("Just like you remembered it.")
 
 /datum/breakdown/common/false_nostalgy/occur()
-	var/list/candidates = ship_areas.Copy()
+	var/list/candidates = SSmapping.main_ship_areas.Copy()
 	message_time = world.time + BREAKDOWN_ALERT_COOLDOWN
 	for(var/area/A in candidates)
 		if(A.is_maintenance)

@@ -27,11 +27,11 @@
 
 
 /obj/effect/shuttle_landmark/Initialize()
-	..()
-	GLOB.shuttle_landmarks_list += src
 	tag = copytext(landmark_tag, 1) //since tags cannot be set at compile time
+	GLOB.shuttle_landmarks_list += src
 	base_area = locate(base_area || world.area)
 	name = name + " ([x],[y])"
+	..()
 	return INITIALIZE_HINT_LATELOAD
 
 // /obj/machinery/embedded_controller/radio/airlock/docking_port
@@ -41,9 +41,10 @@
 	if(docking_controller)
 		var/docking_tag = docking_controller
 		docking_controller = locate(docking_tag)
-		if(!istype(docking_controller))
-			admin_notice("Could not find docking controller for shuttle waypoint '[name]', docking tag was '[docking_tag]'.")
-	SSshuttle.register_landmark(tag, src)
+		if(istype(docking_controller)) // Shuttle we're expecting have already loaded
+			SSshuttle.register_landmark(tag, src)
+		else // Or maybe not, in which case we wait for it
+			SSshuttle.register_sleeper_landmark(tag, src)
 
 /obj/effect/shuttle_landmark/proc/is_valid(var/datum/shuttle/shuttle)
 	if(shuttle.current_location == src)

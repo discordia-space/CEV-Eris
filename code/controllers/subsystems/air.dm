@@ -46,9 +46,8 @@ SUBSYSTEM_DEF(air)
 	var/list/currentrun = list()
 	var/currentpart = SSAIR_PIPENETS
 
-	var/map_loading = TRUE
 	var/map_init_levels = 0 // number of z-levels initialized under this type of SS.
-	var/list/queued_for_update
+	var/list/queued_for_update = list()
 
 /datum/controller/subsystem/air/stat_entry(msg)
 	msg += "\nC:{"
@@ -75,7 +74,6 @@ SUBSYSTEM_DEF(air)
 
 
 /datum/controller/subsystem/air/Initialize(timeofday)
-	map_loading = FALSE
 	setup_allturfs()
 	setup_atmos_machinery()
 	setup_pipenets()
@@ -415,7 +413,7 @@ SUBSYSTEM_DEF(air)
 	if(T.needs_air_update)
 		return
 
-	if(map_loading && T.z > map_init_levels) // we don't want to interupt SS process on other levels
+	if(T.z > map_init_levels) // we don't want to interupt SS process on other levels
 		if(queued_for_update)
 			queued_for_update[T] = T
 	else
@@ -425,18 +423,14 @@ SUBSYSTEM_DEF(air)
 		T.add_ZAS_debug_overlay(ZAS_DEBUG_OVERLAY_MARKED_FOR_UPDATE)
 		#endif
 
-/datum/controller/subsystem/air/StartLoadingMap()
-	LAZYINITLIST(queued_for_update)
-	map_loading = TRUE
 
-/datum/controller/subsystem/air/StopLoadingMap()
-	map_loading = FALSE
+/datum/controller/subsystem/air/proc/on_map_loaded()
 	map_init_levels = world.maxz // update z level counting, so air start to work on added levels.
-
 	for(var/T in queued_for_update)
 		mark_for_update(T)
 
 	queued_for_update.Cut()
+
 
 /datum/controller/subsystem/air/proc/mark_zone_update(zone/Z)
 	#ifdef ZASDBG

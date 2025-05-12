@@ -27,8 +27,10 @@
 	var/list/icon_stages = list("generic", "object", "poi")
 
 /obj/effect/overmap/Initialize()
-	. = ..()
+	..()
+	return INITIALIZE_HINT_LATELOAD
 
+/obj/effect/overmap/LateInitialize()
 	map_z = SSmapping.GetConnectedZlevels(z)
 	for(var/zlevel in map_z)
 		map_sectors["[zlevel]"] = src
@@ -46,7 +48,10 @@
 
 	forceMove(locate(start_x, start_y, SSmapping.overmap_z))
 	testing("Located sector \"[name_stages[1]]\" at [start_x],[start_y], containing Z [english_list(map_z)]")
+	update_waypoints()
 
+
+/obj/effect/overmap/proc/update_waypoints()
 	//handle automatic waypoints that spawned before us
 	for(var/obj/effect/shuttle_landmark/automatic/L in GLOB.shuttle_landmarks_list)
 		if(L.z in map_z)
@@ -58,8 +63,6 @@
 		var/obj/effect/shuttle_landmark/WP = locate(waypoint_tag)
 		if(WP)
 			found_waypoints += WP
-		else
-			admin_notice("Sector \"[name_stages[1]]\" containing Z [english_list(map_z)] could not find waypoint with tag [waypoint_tag]!")
 	generic_waypoints = found_waypoints
 
 	for(var/shuttle_name in restricted_waypoints)
@@ -68,8 +71,6 @@
 			var/obj/effect/shuttle_landmark/WP = locate(waypoint_tag)
 			if(WP)
 				found_waypoints += WP
-			else
-				admin_notice("Sector \"[name_stages[1]]\" containing Z [english_list(map_z)] could not find waypoint with tag [waypoint_tag]!")
 		restricted_waypoints[shuttle_name] = found_waypoints
 
 	for(var/obj/machinery/computer/sensors/S in GLOB.computer_list)
@@ -97,6 +98,3 @@
 	set_plane(-1)
 	for(var/obj/machinery/computer/helm/H in GLOB.computer_list)
 		H.get_known_sectors()
-
-/obj/effect/overmap/proc/add_landmark(obj/effect/shuttle_landmark/landmark)
-	generic_waypoints += landmark

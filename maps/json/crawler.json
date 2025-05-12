@@ -6,5 +6,7 @@
 
 	"is_playable_level": true,
 	"is_main_ship_level": false,
-	"is_sealed_level": true
+	"is_sealed_level": true,
+
+	"call_proc_on_load": "build_crawler"
 }
