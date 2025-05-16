@@ -649,3 +649,14 @@
 
 /obj/item/ammo_casing/crossbow/bolt/prespawned
 	amount = 5
+
+/obj/item/ammo_casing/crossbow/foam
+	name = "foam dart"
+	desc = "It's nerf or nothing! Ages 8 and up."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "foamdart"
+	projectile_type = /obj/item/projectile/foam_dart
+	is_caseless = TRUE
+	caliber = CAL_DART
+	maxamount = 5
+

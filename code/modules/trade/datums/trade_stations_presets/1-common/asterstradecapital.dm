@@ -61,7 +61,7 @@
 		"Toys" = list(
 			/obj/item/toy/balloon = good_data("Water Balloon", list(1, 50), null),
 			/obj/item/toy/blink,
-			/obj/item/toy/crossbow,
+			/obj/item/gun/projectile/foamcrossbow,
 			/obj/item/toy/ammo/crossbow,
 			/obj/item/toy/sword,
 			/obj/item/toy/katana,
