@@ -86,7 +86,6 @@
 
 /datum/internal_wound/Process(delta_time)
 	var/obj/item/organ/O = parent
-	var/obj/item/organ/external/E = parent ? O.parent : null
 	var/mob/living/carbon/human/H = parent ? O.owner : null
 
 	// Don't process when the parent limb or owner is dead. Organs don't process in corpses and won't die from wounds.
