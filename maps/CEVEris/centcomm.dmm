@@ -3670,7 +3670,7 @@
 	},
 /area/centcom/raider_base)
 "oz" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/tank/air{
 	dir = 4;
 	start_pressure = 740.5
 	},
