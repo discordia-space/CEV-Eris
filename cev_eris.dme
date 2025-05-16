@@ -2456,6 +2456,7 @@
 #include "code\modules\projectiles\guns\projectile\automatic.dm"
 #include "code\modules\projectiles\guns\projectile\dartgun.dm"
 #include "code\modules\projectiles\guns\projectile\flaregun.dm"
+#include "code\modules\projectiles\guns\projectile\foamdart.dm"
 #include "code\modules\projectiles\guns\projectile\modular.dm"
 #include "code\modules\projectiles\guns\projectile\shotgun.dm"
 #include "code\modules\projectiles\guns\projectile\sniper.dm"
