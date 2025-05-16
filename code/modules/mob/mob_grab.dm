@@ -60,8 +60,8 @@
 	affecting.grabbed_by += src
 
 	hud = new /obj/screen/grab(src)
-	hud.icon_state = "reinforce"
-	icon_state = "grabbed"
+	hud.icon_state = "passive"
+	icon_state = "passive_hand"
 	hud.name = "reinforce grab"
 	hud.master = src
 
@@ -81,7 +81,7 @@
 	if(confirm())
 		if(affecting.buckled)
 			return null
-		if(state >= GRAB_AGGRESSIVE)
+		if(state >= GRAB_AGGRESSIVE || !affecting.check_gravity())
 			animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1)
 			return affecting
 	return null
@@ -110,34 +110,38 @@
 	if(assailant.pulling == affecting)
 		assailant.stop_pulling()
 
-	if(state <= GRAB_AGGRESSIVE)
-		allow_upgrade = 1
+	if(state <= GRAB_FIRM)
+		allow_upgrade = TRUE
 		//disallow upgrading if we're grabbing more than one person
 		if((assailant.l_hand && assailant.l_hand != src && istype(assailant.l_hand, /obj/item/grab)))
 			var/obj/item/grab/G = assailant.l_hand
 			if(G.affecting != affecting)
-				allow_upgrade = 0
+				allow_upgrade = FALSE
 		if((assailant.r_hand && assailant.r_hand != src && istype(assailant.r_hand, /obj/item/grab)))
 			var/obj/item/grab/G = assailant.r_hand
 			if(G.affecting != affecting)
-				allow_upgrade = 0
+				allow_upgrade = FALSE
 
 		//disallow upgrading past aggressive if we're being grabbed aggressively
 		for(var/obj/item/grab/G in affecting.grabbed_by)
 			if(G == src) continue
 			if(G.state >= GRAB_AGGRESSIVE)
-				allow_upgrade = 0
+				allow_upgrade = FALSE
 
 		if(allow_upgrade)
-			if(state < GRAB_AGGRESSIVE)
+			if(state <= GRAB_FIRM)
 				if(state == GRAB_PASSIVE)
-					hud.icon_state = "reinforce"
-			else
-				hud.icon_state = "reinforce_final"
+					hud.icon_state = "passive"
+				else
+					hud.icon_state = "firm"
 		else
-			hud.icon_state = "!reinforce"
+			if(state == GRAB_PASSIVE)
+				hud.icon_state = "passive-denied"
+			else if(state == GRAB_FIRM)
+				hud.icon_state = "firm-denied"
 
 	if(state >= GRAB_AGGRESSIVE)
+		allow_upgrade = TRUE
 		affecting.drop_l_hand()
 		affecting.drop_r_hand()
 
@@ -146,7 +150,7 @@
 
 		if(force_down)
 			if(affecting.loc != assailant.loc)
-				force_down = 0
+				force_down = FALSE
 			else
 				affecting.Weaken(2)
 
@@ -206,14 +210,14 @@
 	var/adir = get_dir(assailant, affecting)
 	affecting.layer = 4
 	switch(state)
-		if(GRAB_PASSIVE)
+		if(GRAB_PASSIVE, GRAB_FIRM)
 			shift = 8
 			if(dancing) //look at partner
 				shift = 10
 				assailant.set_dir(get_dir(assailant, affecting))
 		if(GRAB_AGGRESSIVE)
 			shift = 12
-		if(GRAB_NECK, GRAB_UPGRADING)
+		if(GRAB_NECK)
 			shift = -10
 			adir = assailant.dir
 			affecting.set_dir(assailant.dir)
@@ -235,7 +239,7 @@
 		if(EAST)
 			animate(affecting, pixel_x =-shift, pixel_y = 0, 5, 1, LINEAR_EASING)
 
-/obj/item/grab/proc/upgrade_grab(delay_time, hud_icon_state_after, state_after)
+/obj/item/grab/proc/upgrade_grab(delay_time, icon_state_after, state_after)
 	if(!allow_upgrade)
 		return // upgrading now is not allowed!
 	delay_time = round(delay_time / 8) // the sprites have eight configurations for timer
@@ -243,6 +247,7 @@
 	var/original_loc = get_turf(assailant) // used to see if the assailant moved and thus disrupted the upgrade
 	var/original_time = world.time
 	for(var/counter in 1 to 8)
+		allow_upgrade = FALSE
 		sleep(delay_time)
 		if(QDELING(src) || !hud)
 			break // hud is null after dropped and sleep does not care so we check manually
@@ -250,17 +255,17 @@
 			hud.icon_state = original_icon //  or move and upgrade a grab or keep upgrading it when the grab is escaped.
 			break
 		else
-			hud.icon_state = "[original_icon][counter]"
+			hud.icon_state = "[original_icon]-[counter]"
 			if(counter == 8)
-				hud.icon_state = hud_icon_state_after
+				hud.icon_state = icon_state_after
+				icon_state = jointext(list(icon_state_after, "hand"), "_")
 				state = state_after
 				return TRUE
+	hud?.icon_state = original_icon
 	to_chat(assailant, SPAN_WARNING("You failed to upgrade your grab."))
 
 /obj/item/grab/proc/s_click(obj/screen/S)
 	if(!confirm())
-		return
-	if(state == GRAB_UPGRADING || state == GRAB_PRENECK)
 		return
 	if(!assailant.can_click())
 		return
@@ -285,63 +290,56 @@
 
 	var/total_warmup = max(0, UPGRADE_WARMUP + round(warmup_increase))
 
-	if(state < GRAB_AGGRESSIVE)
-		if(!allow_upgrade)
-			return
-		icon_state = "grabbed1"
-		hud.icon_state = "reinforce_final"
-		state = GRAB_AGGRESSIVE
-		if(!affecting.lying)
-			assailant.visible_message(SPAN_WARNING("[assailant] has grabbed [affecting] aggressively!"))
-			affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been grabbed by [assailant.name] ([assailant.ckey])</font>"
-			assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed [affecting.name] ([affecting.ckey])</font>"
-			msg_admin_attack("[assailant] grabbed a [affecting].")
-		else
-			assailant.visible_message(SPAN_WARNING("[assailant] pins [affecting] down to the ground!"))
-			affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been pinned by [assailant.name] ([assailant.ckey])</font>"
-			assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Pinned [affecting.name] ([affecting.ckey])</font>"
-			msg_admin_attack("[assailant] pinned down [affecting].")
-			apply_pinning(affecting, assailant)
+	switch(state)
+		if(GRAB_PASSIVE)
+			if(!allow_upgrade)
+				return
+			assailant.visible_message(SPAN_WARNING("[assailant] secures \his grip on [affecting]!"))
+			icon_state = "firm_hand"
+			hud.icon_state = "firm"
+			state = GRAB_FIRM
+		if(GRAB_FIRM)
+			assailant.visible_message(SPAN_WARNING("[assailant] attempts to grasp [affecting] in an aggressive manner!"), SPAN_NOTICE("You attempt to grasp [affecting] aggressively."))
+			if(upgrade_grab(total_warmup, "aggressive", GRAB_AGGRESSIVE)) // handles the stage transition as well as the timer
+				if(!affecting.lying)
+					assailant.visible_message(SPAN_WARNING("[assailant] has grabbed [affecting] aggressively!"))
+					affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been grabbed by [assailant.name] ([assailant.ckey])</font>"
+					assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed [affecting.name] ([affecting.ckey])</font>"
+					msg_admin_attack("[assailant] grabbed a [affecting].")
+				else
+					assailant.visible_message(SPAN_WARNING("[assailant] pins [affecting] down to the ground!"))
+					affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been pinned by [assailant.name] ([assailant.ckey])</font>"
+					assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Pinned [affecting.name] ([affecting.ckey])</font>"
+					msg_admin_attack("[assailant] pinned down [affecting].")
+					apply_pinning(affecting, assailant)
 
 
-	else if(state < GRAB_NECK)
-		if(isslime(affecting))
-			to_chat(assailant, SPAN_NOTICE("You squeeze [affecting], but nothing interesting happens."))
-			return
-		assailant.visible_message(SPAN_WARNING("[assailant] starts grabbing [affecting] by the neck!"))
-		state = GRAB_PRENECK
-		hud.icon_state = "reinforce"
-		if(upgrade_grab(total_warmup, "kill", GRAB_NECK))
-			assailant.visible_message(SPAN_WARNING("[assailant] grabs [affecting] by the neck!"))
-			icon_state = "grabbed+1"
-			assailant.set_dir(get_dir(assailant, affecting))
-			affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their neck grabbed by [assailant.name] ([assailant.ckey])</font>"
-			assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed the neck of [affecting.name] ([affecting.ckey])</font>"
-			msg_admin_attack("[key_name(assailant)] grabbed the neck of [key_name(affecting)]")
-			hud.icon_state = "kill"
-			hud.name = "choke"
-		else if(!QDELETED(src))
-			state = GRAB_AGGRESSIVE
-			if(hud)
-				hud.icon_state = "reinforce_final"
+		if(GRAB_AGGRESSIVE)
+			if(isslime(affecting))
+				to_chat(assailant, SPAN_NOTICE("You squeeze [affecting], but nothing interesting happens."))
+				return
+			assailant.visible_message(SPAN_WARNING("[assailant] starts grabbing [affecting] by the neck!"), SPAN_WARNING("You start to grab [affecting] by the neck!")) // might not want to choke them
+			if(upgrade_grab(total_warmup, "kill", GRAB_NECK))
+				assailant.visible_message(SPAN_WARNING("[assailant] grabs [affecting] by the neck!"))
+				assailant.set_dir(get_dir(assailant, affecting))
+				affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their neck grabbed by [assailant.name] ([assailant.ckey])</font>"
+				assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed the neck of [affecting.name] ([affecting.ckey])</font>"
+				msg_admin_attack("[key_name(assailant)] grabbed the neck of [key_name(affecting)]")
+				hud.name = "choke"
+		if(GRAB_NECK)
+			assailant.visible_message(SPAN_DANGER("[assailant] starts to tighten \his grip on [affecting]'s neck!"), SPAN_WARNING("You begin tightening your grip on [affecting]'s neck!"))
+			if(upgrade_grab(total_warmup, "choke", GRAB_KILL))
+				icon_state = "kill_hand" // because there is no choke hand available
+				hud.name = "Kill"
+				assailant.visible_message(SPAN_DANGER("[assailant] has tightened \his grip on [affecting]'s neck!"))
+				affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been strangled (kill intent) by [assailant.name] ([assailant.ckey])</font>"
+				assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Strangled (kill intent) [affecting.name] ([affecting.ckey])</font>"
+				msg_admin_attack("[key_name(assailant)] strangled (kill intent) [key_name(affecting)]")
 
-	else if(state < GRAB_UPGRADING)
-		assailant.visible_message(SPAN_DANGER("[assailant] starts to tighten \his grip on [affecting]'s neck!"))
-		hud.icon_state = "kill"
-		hud.name = "Kill"
-		state = GRAB_UPGRADING
-		if(upgrade_grab(total_warmup, "kill_final", GRAB_KILL))
-			assailant.visible_message(SPAN_DANGER("[assailant] has tightened \his grip on [affecting]'s neck!"))
-			affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been strangled (kill intent) by [assailant.name] ([assailant.ckey])</font>"
-			assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Strangled (kill intent) [affecting.name] ([affecting.ckey])</font>"
-			msg_admin_attack("[key_name(assailant)] strangled (kill intent) [key_name(affecting)]")
-
-			affecting.set_dir(WEST)
-			if(iscarbon(affecting))
-				var/mob/living/carbon/C = affecting
-				C.losebreath += 1
-		else
-			state = GRAB_NECK
+				affecting.set_dir(WEST)
+				if(iscarbon(affecting))
+					var/mob/living/carbon/C = affecting
+					C.losebreath += 1
 	update_slowdown()
 	adjust_position()
 
@@ -349,12 +347,12 @@
 /obj/item/grab/proc/confirm()
 	if(!assailant || !affecting)
 		qdel(src)
-		return 0
+		return FALSE
 
 	else
 		if(!isturf(assailant.loc) || !isturf(affecting.loc) || get_dist(assailant, affecting) > 1)
 			qdel(src)
-			return 0
+			return FALSE
 
 	return 1
 
@@ -414,7 +412,7 @@
 						affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>No longer pinned down by [assailant.name] ([assailant.ckey])</font>"
 						assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Released from pin [affecting.name] ([affecting.ckey])</font>"
 						msg_admin_attack("[key_name(assailant)] Released from pin [key_name(affecting)]")
-						force_down = 0
+						force_down = FALSE
 						return
 					else if(hit_zone == BP_MOUTH)
 						force_vomit(affecting, assailant)
