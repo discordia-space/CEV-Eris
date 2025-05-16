@@ -372,7 +372,6 @@ There are important things regarding this file:
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "foamdart"
 	damage_types = list(HALLOSS = 0)
-	nodamage = TRUE
 	mob_hit_sound = list('sound/weapons/pinground.ogg')
 	hitsound_wall = "hitobject"
 
