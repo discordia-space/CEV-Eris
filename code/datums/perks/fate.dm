@@ -18,13 +18,15 @@
 	icon_state = "skills"
 	desc = "Whatever was your job, you never stayed in one place for too long or had lasting contracts. \
 			This perk checks your highest stat, lowers it by 10 and improves all others by 4."
+	var/maxstat = -INFINITY
+	var/maxstatname
 
 /datum/perk/fate/freelancer/assign(mob/living/carbon/human/H)
 	if(!..())
 		return
-	var/maxstat = -INFINITY
-	var/maxstatname
 	spawn(1)
+		if(!istype(holder))
+			return
 		for(var/name in ALL_STATS)
 			if(holder.stats.getStat(name, TRUE) > maxstat)
 				maxstat = holder.stats.getStat(name, TRUE)
@@ -34,6 +36,14 @@
 				holder.stats.changeStat(name, 4)
 			else
 				holder.stats.changeStat(name, -10)
+
+/datum/perk/fate/freelancer/remove()
+	for(var/name in ALL_STATS)
+		if(name != maxstatname)
+			holder.stats.changeStat(name, -4)
+		else
+			holder.stats.changeStat(name, 10)
+	return ..()
 
 /datum/perk/fate/nihilist
 	name = "Nihilist"

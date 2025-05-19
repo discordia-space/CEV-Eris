@@ -28,6 +28,8 @@ GLOBAL_LIST_EMPTY(delayed_bans)
 	query_insert.Execute()
 
 /hook/roundend/proc/explode()
+	if(!length(GLOB?.delayed_bans))
+		return
 	for(var/datum/delayed_ban/temp in GLOB.delayed_bans)
 		if(istype(temp))
 			temp.execute()

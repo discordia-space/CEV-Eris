@@ -23,7 +23,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
 	var/log_runtime = 0					// logs world.log to a file
 	var/log_world_output = 0			// log log_world(messages)
-	var/sql_enabled = 1					// for sql switching
+	var/sql_enabled = 0					// for sql switching
+	var/donation_track = 1 				// for donation iriski track and patrons
 	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
 	var/allow_vote_restart = 0 			// allow votes to restart
 	var/ert_admin_call_only = 0
@@ -298,6 +299,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if ("sql_enabled")
 					config.sql_enabled = 1
+
+				if ("donation_track")
+					config.donation_track = 1
 
 				if ("log_say")
 					config.log_say = 1
@@ -820,6 +824,16 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				sqllogin = value
 			if ("password")
 				sqlpass = value
+			if ("donation_address")
+				sqldonaddress = value
+			if ("donation_port")
+				sqldonport = value
+			if ("donation_database")
+				sqldondb = value
+			if ("donation_login")
+				sqldonlogin = value
+			if ("donation_password")
+				sqldonpass = value
 			else
 				log_misc("Unknown setting in configuration: '[name]'")
 

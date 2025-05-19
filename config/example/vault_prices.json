@@ -1,0 +1,13 @@
+{
+    "$schema": "../schema/vault_prices.schema.json",
+    "vault": [
+        {
+            "item_type": "/datum/perk/iriski",
+            "cost": 4,
+            "generate_subtypes": true,
+            "loadout_type": "/datum/gear/vault_item/perk",
+            "exclude_base": true,
+            "subtypes_share_cost": true
+        }
+    ]
+}

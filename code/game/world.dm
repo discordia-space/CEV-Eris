@@ -214,6 +214,9 @@ var/world_topic_spam_protect_time = world.timeofday
 		to_chat(world, "<span class='boldannounce'>Rebooting World immediately due to host request.</span>")
 	else
 		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
+		for(var/ckey in SSpersistence.vault_accounts)
+			var/datum/player_vault/PV = SSpersistence.vault_accounts[ckey]
+			PV.save_items()
 		Master.Shutdown() //run SS shutdowns
 
 	for(var/client/C in clients)
@@ -359,6 +362,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 #define FAILED_DB_CONNECTION_CUTOFF 5
 var/failed_db_connections = 0
+var/failed_don_db_connections = 0
 var/failed_old_db_connections = 0
 
 /hook/startup/proc/connectDB()
@@ -392,6 +396,41 @@ proc/setup_database_connection()
 
 	return .
 
+/hook/startup/proc/connectDonDB()
+	if(!config.donation_track)
+		log_to_dd("SQL disabled. Your server will not use Donations database.")
+	else if(!setup_don_database_connection())
+		log_to_dd("Your server failed to establish a connection with the Donations database.")
+	else
+		log_to_dd("Donations database connection established.")
+	return TRUE
+
+//If you don't know what any of this do, look at the same code above
+proc/setup_don_database_connection()
+
+	if(failed_don_db_connections > FAILED_DB_CONNECTION_CUTOFF)
+		return 0
+
+	if(!dbcon_don)
+		dbcon_don = new()
+
+	var/user = sqldonlogin
+	var/pass = sqldonpass
+	var/db = sqldondb
+	var/address = sqldonaddress
+	var/port = sqldonport
+	dbcon_don.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
+	log_debug("Connecting to donationsDB")
+
+	. = dbcon_don.IsConnected()
+	if ( . )
+		failed_don_db_connections = 0
+	else
+		failed_don_db_connections++
+		log_to_dd(dbcon.ErrorMsg())
+
+	return .
+
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
 proc/establish_db_connection()
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
@@ -401,6 +440,18 @@ proc/establish_db_connection()
 		return setup_database_connection()
 	else
 		return 1
+
+/proc/establish_don_db_connection()
+	if(!config.donation_track)
+		return FALSE
+
+	if(failed_don_db_connections > FAILED_DB_CONNECTION_CUTOFF)
+		return FALSE
+
+	if(!dbcon_don || !dbcon_don.IsConnected())
+		return setup_don_database_connection()
+	else
+		return TRUE
 
 /world/proc/incrementMaxZ()
 	SEND_SIGNAL(SSdcs, COMSIG_WORLD_MAXZ_INCREMENTING)
