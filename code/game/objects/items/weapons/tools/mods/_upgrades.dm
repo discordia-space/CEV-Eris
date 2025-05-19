@@ -255,6 +255,7 @@
 	P.forceMove(get_turf(I))
 	UnregisterSignal(I, COMSIG_ADDVAL)
 	UnregisterSignal(I, COMSIG_APPVAL)
+	reset_owner()
 
 /datum/component/item_upgrade/proc/apply_values(atom/holder)
 	//SIGNAL_HANDLER
@@ -327,7 +328,7 @@
 		G.pierce_multiplier += weapon_upgrades[GUN_UPGRADE_PIERC_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_RICO_MULT])
 		G.ricochet_multiplier += weapon_upgrades[GUN_UPGRADE_RICO_MULT]
-	if(weapon_upgrades[GUN_UPGRADE_STEPDELAY_MULT])
+	if(!isnull(weapon_upgrades[GUN_UPGRADE_STEPDELAY_MULT])) // so AMR barrel can 0x
 		G.proj_step_multiplier *= weapon_upgrades[GUN_UPGRADE_STEPDELAY_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT])
 		G.fire_delay *= weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT]
@@ -375,6 +376,12 @@
 		if(ismob(G.loc))
 			var/mob/user = G.loc
 			user.update_action_buttons()
+	if(weapon_upgrades[GUN_UPGRADE_SCOPEVISION])
+		G.see_invisible_gun = max(G.see_invisible_gun, weapon_upgrades[GUN_UPGRADE_SCOPEVISION]) // scope stats should take best of class
+	if(weapon_upgrades[GUN_UPGRADE_SCOPECORRECTION])
+		G.scoped_offset_reduction = max(G.scoped_offset_reduction, weapon_upgrades[GUN_UPGRADE_SCOPECORRECTION])
+	if(weapon_upgrades[GUN_UPGRADE_DARKSCOPE])
+		G.darkness_view = max(G.darkness_view, weapon_upgrades[GUN_UPGRADE_DARKSCOPE])
 	if(weapon_upgrades[GUN_UPGRADE_THERMAL])
 		G.vision_flags = SEE_MOBS
 	if(weapon_upgrades[GUN_UPGRADE_GILDED])
@@ -388,6 +395,11 @@
 		G.armor_divisor += weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION]
 	if(weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])
 		G.recoil = G.recoil.modifyRating(_one_hand_penalty = weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])
+	if(weapon_upgrades[GUN_UPGRADE_MOVEPENALTY])
+		G.recoil = G.recoil.modifyRating(_brace_penalty = weapon_upgrades[GUN_UPGRADE_MOVEPENALTY])
+	if(weapon_upgrades[GUN_UPGRADE_RECOILBUILDUP])
+		G.recoil = G.recoil.modifyRating(_recoil_buildup = weapon_upgrades[GUN_UPGRADE_RECOILBUILDUP])
+
 
 	if(weapon_upgrades[GUN_UPGRADE_DNALOCK])
 		G.dna_compare_samples = TRUE
@@ -430,6 +442,14 @@
 				M.verbs += /obj/item/gun/projectile/automatic/modular/proc/quick_fold // Grant the verb for folding stocks
 			if(weapon_upgrades[GUN_UPGRADE_DEFINE_GRIP])
 				M.grip_type = weapon_upgrades[GUN_UPGRADE_DEFINE_GRIP]
+			if(weapon_upgrades[GUN_UPGRADE_DEFINE_LOADER])
+				M.load_method = weapon_upgrades[GUN_UPGRADE_DEFINE_LOADER]
+			if(weapon_upgrades[GUN_UPGRADE_DENY_MAG])
+				M.no_internal_mag = TRUE
+			if(weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS])
+				M.w_class += weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS]
+			if(weapon_upgrades[GUN_UPGRADE_SCOPE_POWER])
+				M.scope_damage_adds.Add(weapon_upgrades[GUN_UPGRADE_SCOPE_POWER])
 
 	for(var/datum/firemode/F in G.firemodes)
 		apply_values_firemode(F)
@@ -440,6 +460,29 @@
 	if(weapon_upgrades[GUN_UPGRADE_FIREMODES])
 		for(var/FM in weapon_upgrades[GUN_UPGRADE_FIREMODES])
 			G.add_firemode(FM)
+	if(istype(G, /obj/item/gun/projectile/automatic/modular))
+		if(weapon_upgrades[GUN_UPGRADE_REPLACE_INTERACTIONS])
+			var/obj/item/gun/projectile/automatic/modular/interactive = G
+			var/datum/gunoverrides/overrided = interactive.overridedatum
+			if(overrided)
+				var/datum/guninteraction/interaction = weapon_upgrades[GUN_UPGRADE_REPLACE_INTERACTIONS]
+				interaction.parentgun = G
+				if(islist(overrided.priorities["[interaction.priority]"]))
+					var/list/currentpriority = overrided.priorities["[interaction.priority]"]
+					currentpriority.Add(interaction)
+				else
+					overrided.priorities["[interaction.priority]"] = list(interaction)
+
+/datum/component/item_upgrade/proc/reset_owner()
+	if(weapon_upgrades[GUN_UPGRADE_REPLACE_INTERACTIONS])
+		var/datum/guninteraction/interaction = weapon_upgrades[GUN_UPGRADE_REPLACE_INTERACTIONS]
+		if(istype(interaction))
+			interaction.parentgun = null
+	if(weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS])
+		if(istype(parent, /obj/item/part/gun/modular/stock))
+			var/obj/item/part/gun/modular/stock/base = parent
+			weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS] = base.wclassmod
+
 
 /datum/component/item_upgrade/proc/apply_values_firemode(datum/firemode/F)
 	for(var/i in F.settings)
