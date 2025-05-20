@@ -141,6 +141,7 @@
 	severity_max = 4
 	hal_damage = IWOUND_LIGHT_DAMAGE
 	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_AGGRAVATION
+	progression_threshold = IWOUND_HALF_MINUTE
 
 /datum/internal_wound/organic/poisoning/pustule
 	name = "pustule"
@@ -359,12 +360,14 @@
 	name = "genetic damage"
 	treatments_chem = list(CE_GENEHEAL = 1)
 	characteristic_flag = IWOUND_AGGRAVATION // this wound is hidden
+	progression_threshold = IWOUND_5_MINUTES
 	next_wound = /datum/internal_wound/organic/catastrophicgenedamage
 
 /datum/internal_wound/organic/catastrophicgenedamage
 	name = "catastrophic genetic damage"
 	severity_max = IORGAN_STANDARD_HEALTH
 	characteristic_flag = IWOUND_AGGRAVATION | IWOUND_CAN_DAMAGE
+	progression_threshold = IWOUND_5_MINUTES
 	hal_damage = IWOUND_HEAVY_DAMAGE
 	treatments_chem = list(CE_GENEHEAL = 2)
 

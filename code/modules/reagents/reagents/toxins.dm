@@ -57,18 +57,12 @@
 	heating_point = 723 // supposedly amatoxin is heat resistant so I raised its heat temp by 200 - vode-code
 	heating_products = list("toxin")
 
-/datum/reagent/toxin/amatoxin/on_mob_add(mob/living/L)
-	data["timestart"] = REALTIMEOFDAY
-	data["effectcount"] = 0
-
 /datum/reagent/toxin/amatoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	. = ..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/poorsap = M
-		if(REALTIMEOFDAY > (data["timestart"] + (data["effectcount"] * 5 MINUTES)))
-			for(var/obj/item/organ/internal/tokill in poorsap.organ_list_by_process(OP_LIVER) | poorsap.organ_list_by_process(OP_KIDNEYS)) // amanitin is slow but it kills HARD.
-				tokill.add_wound(/datum/internal_wound/organic/genedamage)
-			data["effectcount"] += 1
+		for(var/obj/item/organ/internal/tokill in poorsap.organ_list_by_process(OP_LIVER) | poorsap.organ_list_by_process(OP_KIDNEYS)) // amanitin is slow but it kills HARD.
+			tokill.add_wound(/datum/internal_wound/organic/genedamage)
 
 /datum/reagent/toxin/amatoxin/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	affect_blood(M, alien, effect_multiplier)	// amanitin doesn't metabolize in the digestive tract, instead absorbing nearly perfectly.
