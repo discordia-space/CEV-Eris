@@ -369,12 +369,12 @@
 		if(prob(60))
 			vend_power_usage *= pick(1, 1.3, 1.5, 1.7, 2)
 		if(prob(60))
-			seconds_electrified = -1
+			electrified = -1
 		if(prob(60))
-			shut_up = FALSE
+			update_state(null, FALSE, null)
 			slogan_delay = rand(round(slogan_delay * 0.5), slogan_delay)
 		if(prob(60))
-			shoot_inventory = TRUE
+			update_state(null, null, TRUE)
 
 		var/del_count = rand(0, product_records.len)
 		for(var/i in 1 to del_count)
