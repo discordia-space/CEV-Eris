@@ -10,7 +10,7 @@
 		/obj/item/clothing/under/syndicate				= 2,
 		/obj/item/toy/sword								= 2,
 		/obj/item/gun/projectile/revolver/capgun	= 2,
-		/obj/item/toy/crossbow							= 2,
+		/obj/item/gun/projectile/foamcrossbow		= 2,
 		/obj/item/clothing/suit/syndicatefake			= 2,
 		/obj/item/storage/fancy/crayons			= 2,
 		/obj/item/toy/spinningtoy						= 2,

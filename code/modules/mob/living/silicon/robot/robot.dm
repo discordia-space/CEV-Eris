@@ -590,8 +590,7 @@
 					adjustBruteLoss(-30)
 					updatehealth()
 					add_fingerprint(user)
-					for(var/mob/O in viewers(user, null))
-						O.show_message(text(SPAN_DANGER("[user] has fixed some of the dents on [src]!")), 1)
+					user.visible_message(SPAN_DANGER("[user] has fixed some of the dents on [src]!"))
 					return
 				return
 
@@ -711,8 +710,7 @@
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			adjustFireLoss(-30)
 			updatehealth()
-			for(var/mob/O in viewers(user, null))
-				O.show_message(text(SPAN_DANGER("[user] has fixed some of the burnt wires on [src]!")), 1)
+			user.visible_message(SPAN_DANGER("[user] has fixed some of the burnt wires on [src]!"))
 
 	else if (istype(I, /obj/item/stock_parts/matter_bin) && opened) // Installing/swapping a matter bin
 		if(storage)
