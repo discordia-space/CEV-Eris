@@ -660,3 +660,10 @@
 	caliber = CAL_DART
 	maxamount = 5
 
+/obj/item/ammo_casing/crossbow/foam/prespawned
+	name = "foam dart stack"
+	amount = 5
+/obj/item/ammo_casing/crossbow/foam/prespawned/Initialize()
+	. = ..()
+	name = "foam dart"
+
