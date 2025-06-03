@@ -374,6 +374,7 @@ There are important things regarding this file:
 	damage_types = list(HALLOSS = 0)
 	mob_hit_sound = list('sound/weapons/pinground.ogg')
 	hitsound_wall = "hitobject"
+	matter = list(MATERIAL_PLASTIC = 0.1)
 
 /obj/item/projectile/foam_dart/on_impact(atom/A)
 	. = ..()
