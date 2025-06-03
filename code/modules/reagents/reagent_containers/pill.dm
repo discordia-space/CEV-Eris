@@ -47,9 +47,8 @@
 		msg_admin_attack("[user.name] ([user.ckey]) spiked \a [target] with a pill. Reagents: [reagents.log_list()] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 		reagents.trans_to(target, reagents.total_volume)
-		for(var/mob/O in viewers(2, user))
-			if(!user.stats.getPerk(PERK_FAST_FINGERS))
-				O.show_message(SPAN_WARNING("[user] puts something in \the [target]."), 1)
+		if(!user.stats.getPerk(PERK_FAST_FINGERS))
+			user.visible_message(SPAN_WARNING("[user] puts something in \the [target]."), range = 2)
 
 		qdel(src)
 

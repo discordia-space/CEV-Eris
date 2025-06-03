@@ -149,7 +149,7 @@
 	..(user, extra_description)
 
 /obj/item/ammo_casing/get_item_cost(export)
-	. = round(..() * amount)
+	. = round(..() * amount, 0.1)
 	if(BB)
 		. *= 2 // being loaded increases the value by 100%
 
