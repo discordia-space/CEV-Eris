@@ -249,7 +249,7 @@
 
 // Recalculates and updates the upkeep star multiplier
 /obj/machinery/power/shipside/shield_generator/proc/update_upkeep_star_multiplier()
-	var/distance = sqrt((linked_ship.x - SSmapping.overmap_size/2)**2 + (linked_ship.y - SSmapping.overmap_size/2)**2) // Distance from star
+	var/distance = sqrt((linked_ship.x - OVERMAP_SIZE/2)**2 + (linked_ship.y - OVERMAP_SIZE/2)**2) // Distance from star
 	if(distance>upkeep_star_multiplier_safe) // Above safe distance, no impact on shields
 		upkeep_star_multiplier = 1
 	else // Otherwise shields are impacted depending on proximity to the star

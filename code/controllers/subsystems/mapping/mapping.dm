@@ -1,13 +1,10 @@
 #define DEFAULT_MAP_CONFIG_PATH ""
+#define PULSAR_SIZE 20
 
 SUBSYSTEM_DEF(mapping)
 	name = "Mapping"
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
-
-	var/list/map_templates = list()
-	var/list/teleportlocs = list()
-	var/list/ghostteleportlocs = list()
 
 	var/next_map_name
 
@@ -15,8 +12,13 @@ SUBSYSTEM_DEF(mapping)
 	var/list/map_loading_queue = list()
 	var/list/loaded_map_names = list() // Keep track of submaps that were or currently are loading
 
-	var/list/all_areas = list()
-	var/list/main_ship_areas = list()
+	// Stores area references
+	var/list/all_areas = list() // Literally every area that was instantiated
+	var/list/main_ship_areas = list() // Only areas on the main map Z-levels, mostly used to get locations for events
+
+	// Like above, but stores key-value pairs of area names and area references
+	var/list/all_areas_by_name = list()
+	var/list/main_ship_areas_by_name = list()
 
 	// Lists of numbers corresponding to certain Z-levels
 	var/list/playable_z_levels = list() // Places where players are typically allowed to be in; everything excluduing overmap, pulsar, and admin level
@@ -41,13 +43,8 @@ SUBSYSTEM_DEF(mapping)
 						/datum/job/assistant
 
 						)
-	var/pulsar_z
-	var/pulsar_size = 20  //Should be an even number, to place the pulsar in the middle
-	var/obj/effect/pulsar/pulsar_star
 
 	var/overmap_z
-	var/overmap_size = 50 * 4
-	var/overmap_event_areas = 40 * 16
 
 	var/emergency_shuttle_docked_message = "The escape pods are now armed. You have approximately %ETD% to board the escape pods."
 	var/emergency_shuttle_leaving_dock = "The escape pods have been launched, arriving at rendezvous point in %ETA%."
@@ -83,13 +80,6 @@ SUBSYSTEM_DEF(mapping)
 		ACCESS_REGION_CLUB = list(access_change_ids, access_change_club)
 	)
 
-	//HOLOMAP
-	var/list/holomap_smoosh // List of lists of zlevels to smoosh into single icons
-	var/list/holomap_offset_x = list()
-	var/list/holomap_offset_y = list()
-	var/list/holomap_legend_x = list()
-	var/list/holomap_legend_y = list()
-
 	var/static/regex/dmmRegex = new/regex({""(\[a-zA-Z]+)" = \\(((?:.|\n)*?)\\)\n(?!\t)|\\((\\d+),(\\d+),(\\d+)\\) = \\{"(\[a-zA-Z\n]*)"\\}"}, "g")
 	var/static/regex/trimQuotesRegex = new/regex({"^\[\\s\n]+"?|"?\[\\s\n]+$|^"|"$"}, "g")
 	var/static/regex/trimRegex = new/regex("^\[\\s\n]+|\[\\s\n]+$", "g")
@@ -99,6 +89,14 @@ SUBSYSTEM_DEF(mapping)
 	var/static/turfsSkipped
 	#endif
 
+	var/list/holomap_machinery = list()
+	// Holds pixel offset lists formatted as "Z-level number as text" = list(pixel_x, pixel_y)
+	// these point to the bottom left corner of appropriate Z-level's map on /image/holomap
+	// So displaying an object on the holomap is as simple as adding an /image that represents it to
+	// holomap.overlays, pixel-shifting it with offsets from this list plus object's local XY coordinates
+	// ..that said, account for pixel_x and pixel_y pointing to /image's bottom left corner
+	var/list/holomap_offsets_per_z_level = list()
+	var/image/holomap
 
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
 	var/primary_map_to_load
@@ -118,47 +116,13 @@ SUBSYSTEM_DEF(mapping)
 
 
 	queue_map_loading(primary_map_to_load)
+	generate_holomaps()
+
 	queue_map_loading("technical_level")
-	// queue_map_loading("junk_field")
-
-	// queue_map_loading("deepmaint")
+	queue_map_loading("overmap")
 	queue_map_loading("asteroid")
-
-
-	if(!SSmapping.overmap_z)
-		build_overmap()
-	else
-		testing("Overmap already exist in SSmapping for [SSmapping.overmap_z].")
-
-	// load_map_templates()
-
-	// Generate cache of all areas in world. This cache allows world areas to be looked up on a list instead of being searched for EACH time
-	for(var/area/A in world)
-		GLOB.map_areas += A
-
-	// Do the same for teleport locs
-	for(var/area/AR in GLOB.map_areas)
-		if(istype(AR, /area/shuttle) ||  istype(AR, /area/wizard_station)) continue
-		if(teleportlocs.Find(AR.name)) continue
-		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
-		if (picked)
-			teleportlocs += AR.name
-			teleportlocs[AR.name] = AR
-
-	teleportlocs = sortAssoc(teleportlocs)
-
-
-	for(var/area/AR in GLOB.map_areas)
-		if(ghostteleportlocs.Find(AR.name)) continue
-		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/derelict) || istype(AR, /area/shuttle/specops/centcom))
-			ghostteleportlocs += AR.name
-			ghostteleportlocs[AR.name] = AR
-		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
-		if (picked)
-			ghostteleportlocs += AR.name
-			ghostteleportlocs[AR.name] = AR
-
-	ghostteleportlocs = sortAssoc(ghostteleportlocs)
+	// queue_map_loading("junk_field")
+	// queue_map_loading("deepmaint")
 
 	return ..()
 
@@ -173,8 +137,8 @@ SUBSYSTEM_DEF(mapping)
 	// Build a list of connected Z-levels, if any
 	z_level_info["connected_z"] = list(current_z)
 	z_level_info["bottom_z"] = current_z
-	if(z_level_info["map_size"] > 1)
-		var/num_of_connected_levels = z_level_info["map_size"] - 1
+	if(z_level_info["map_size_z"] > 1)
+		var/num_of_connected_levels = z_level_info["map_size_z"] - 1
 		for(var/downward_offset in 1 to num_of_connected_levels)
 			var/z_level_to_check = current_z - downward_offset
 			if(z_level_to_check < 1)
@@ -204,52 +168,6 @@ SUBSYSTEM_DEF(mapping)
 	if(z_level_info["is_sealed_level"])
 		sealed_z_levels += current_z
 
-	// if(z_level_info["call_proc_on_load"])
-	// 	return
-
-
-
-
-/*
-
-	if(MD.is_station_level)
-		var/max_holo_per_colum_l = MD.height/2 + 0.5
-		var/max_holo_per_colum_r = MD.height/2 - 0.5
-		var/even_mult = (0.15*level-0.3)*level+0.4
-		var/odd_mult = (level-1)/2
-		if(ISEVEN(MD.height))
-			max_holo_per_colum_l -= 0.5
-			max_holo_per_colum_r = max_holo_per_colum_l
-			even_mult = (level-1)/2 - 0.5
-			odd_mult = level/2 - 0.5
-		MD.holomap_legend_x = HOLOMAP_ICON_SIZE - world.maxx - MD.legend_size
-		MD.holomap_legend_y = HOLOMAP_ICON_SIZE - world.maxy - MD.legend_size - ERIS_HOLOMAP_CENTER_GUTTER
-		if(ISODD(level))
-			MD.holomap_offset_x = HOLOMAP_ICON_SIZE - world.maxx - ERIS_HOLOMAP_CENTER_GUTTER - MD.size - MD.legend_size
-			if(!odd_mult)
-				MD.holomap_offset_y = 0
-			else
-				MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y(MD.size, max_holo_per_colum_l, 0) + MD.size*odd_mult
-		else
-			MD.holomap_offset_x = HOLOMAP_ICON_SIZE - world.maxx
-			if(!even_mult && max_holo_per_colum_l == max_holo_per_colum_r)
-				MD.holomap_offset_y = 0
-			else
-				MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y(MD.size, max_holo_per_colum_r, 0) + MD.size*even_mult
-
-	// Auto-center the map if needed (Guess based on maxx/maxy)
-	if (MD.holomap_offset_x < 0)
-		MD.holomap_offset_x = ((HOLOMAP_ICON_SIZE - world.maxx) / 2)
-	if (MD.holomap_offset_y < 0)
-		MD.holomap_offset_y = ((HOLOMAP_ICON_SIZE - world.maxy) / 2)
-	// Assign them to the map lists
-
-	LIST_NUMERIC_SET(holomap_offset_x, level, MD.holomap_offset_x)
-	LIST_NUMERIC_SET(holomap_offset_y, level, MD.holomap_offset_y)
-	LIST_NUMERIC_SET(holomap_legend_x, level, MD.holomap_legend_x)
-	LIST_NUMERIC_SET(holomap_legend_y, level, MD.holomap_legend_y)
-
-*/
 
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT
@@ -261,17 +179,6 @@ SUBSYSTEM_DEF(mapping)
 
 	next_map_name = map_name
 	LIBCALL(RUST_G, "file_write")("[map_path]", "config/next_map.txt")
-
-
-
-/datum/controller/subsystem/mapping/proc/load_map_templates()
-	for(var/T in subtypesof(/datum/map_template))
-		var/datum/map_template/template = T
-		if(!(initial(template.mappath))) // If it's missing the actual path its probably a base type or being used for inheritence.
-			continue
-		template = new T()
-		map_templates[template.name] = template
-	return TRUE
 
 
 // Moved two following procs from /datum/maps_data as-is just to be safe

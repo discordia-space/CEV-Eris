@@ -24,7 +24,6 @@ GLOBAL_LIST_EMPTY(chemical_reactions_list)				//list of all /datum/chemical_reac
 GLOBAL_LIST_EMPTY(chemical_reactions_list_by_result)					//list of all /datum/chemical_reaction datums. But this one indexed by chemical result instead of reagents
 GLOBAL_LIST_EMPTY(chemical_reagents_list)				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 GLOBAL_LIST_EMPTY(landmarks_list)				//list of all landmarks created
-GLOBAL_LIST_EMPTY(shuttle_landmarks_list)		//list of all /obj/effect/shuttle_landmark.
 GLOBAL_LIST_EMPTY(old_surgery_steps)			//list of all old-style (not bound to organs) surgery steps
 GLOBAL_LIST_EMPTY(surgery_steps)					//list of all new organ-based surgery steps
 GLOBAL_LIST_EMPTY(mechas_list)				//list of all mechs. Used by hostile mobs target tracking. Not sure this is used anymore

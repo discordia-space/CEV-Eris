@@ -221,7 +221,7 @@
     var/nx = x
     var/ny = y
     var/low_edge = 1
-    var/high_edge = SSmapping.overmap_size
+    var/high_edge = OVERMAP_SIZE
 
     if(x <= low_edge)
         nx = high_edge

@@ -169,6 +169,7 @@
 		return 0
 
 	var/power_draw = 0
+	var/transfer_happened = FALSE
 
 	for(var/e in environments)
 		var/datum/gas_mixture/environment = e
@@ -192,12 +193,13 @@
 				//limit flow rate from turfs
 				transfer_moles = min(transfer_moles, environment.total_moles*air_contents.volume/environment.volume)	//group_multiplier gets divided out here
 				power_draw = pump_gas(src, environment, air_contents, transfer_moles, power_rating)
+			transfer_happened = TRUE
 		else
 			if(pump_direction && pressure_checks == PRESSURE_CHECK_EXTERNAL) //99% of all vents
 				hibernate = world.time + (rand(100,200))
 
 
-	if(power_draw > 0)
+	if(transfer_happened)
 		last_power_draw = power_draw
 		use_power(power_draw)
 		if(network)

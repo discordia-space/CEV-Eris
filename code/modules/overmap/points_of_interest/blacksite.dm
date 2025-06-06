@@ -1,23 +1,18 @@
 /obj/effect/overmap/sector/map_spawner/blacksite
 	name = "unknown spatial phenomenon"
 	desc = "An abandoned blacksite, carved inside an asteroid. Might be a hundred years old."
-	generic_waypoints = list(
-		"nav_blacksite_small_1",
-		"nav_blacksite_small_2")
 	name_stages = list("abandoned blacksite", "unknown object", "unknown spatial phenomenon")
 	icon_stages = list("ring_destroyed", "object", "poi")
 
 
 /obj/effect/overmap/sector/map_spawner/blacksite/medium
-	generic_waypoints = list(
-		"nav_blacksite_medium_1",
-		"nav_blacksite_medium_2")
 	map_to_load = "blacksite_medium"
 
 /obj/effect/shuttle_landmark/blacksite
 	name = "Abandoned Blacksite Navpoint"
 	icon_state = "shuttle-green"
 	base_turf = /turf/space
+	exploration_landmark = TRUE
 
 /obj/effect/shuttle_landmark/blacksite/nav1
 	name = "Abandoned Small Blacksite Navpoint #1"

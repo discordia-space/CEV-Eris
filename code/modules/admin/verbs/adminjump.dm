@@ -9,7 +9,7 @@
 	stop_following()
 	..()
 
-/client/proc/Jump(area/A in sortNames(GLOB.map_areas))
+/client/proc/Jump(area/A in sortNames(SSmapping.all_areas_by_name))
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
 	set category = "Admin"

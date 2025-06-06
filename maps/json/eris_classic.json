@@ -2,7 +2,9 @@
 	"map_name": "Classic Eris",
 	"map_desc": "Five decks tall, space hulk of a ship for medium or large population.",
 	"map_file": "maps/main_ship/eris_classic.dmm",
-	"map_size": 5,
+	"map_size_x": 200,
+	"map_size_y": 200,
+	"map_size_z": 5,
 
 	"is_playable_level": true,
 	"is_main_ship_level": true,

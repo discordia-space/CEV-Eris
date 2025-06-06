@@ -79,11 +79,6 @@
 
 	tag = id_tag //Greatly simplifies shuttle initialization
 
-	// We're late for our landmarks to automatically detect us, let's grab 'em
-	if(tag in SSshuttle.sleeper_landmarks)
-		for(var/obj/effect/shuttle_landmark/automatic/landmark in SSshuttle.sleeper_landmarks[tag])
-			landmark.docking_controller = src
-
 
 /datum/computer/file/embedded_program/docking/receive_signal(datum/signal/signal, receive_method, receive_param)
 	var/receive_tag = signal.data["tag"]		//for docking signals, this is the sender id

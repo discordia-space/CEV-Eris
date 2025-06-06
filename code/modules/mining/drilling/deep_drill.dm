@@ -196,9 +196,6 @@
 		else if (check_surroundings())
 			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
 			return
-		else if(!(istype(loc, /turf/floor/asteroid) || istype(loc, /turf/floor/exoplanet)))
-			to_chat(user, SPAN_WARNING("\The [src] cannot dig that kind of ground!"))
-			return
 
 		anchored = !anchored
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
@@ -264,7 +261,7 @@
 		else if(world.time - last_use < DRILL_COOLDOWN)
 			to_chat(user, SPAN_WARNING("\The [src] needs some time to cool down! [round((last_use + DRILL_COOLDOWN - world.time) / 10)] seconds remaining."))
 		else if(use_cell_power())
-			
+
 			if(!cave_connected)
 				if(cave_gen.is_generating())
 					to_chat(user, SPAN_WARNING("A cave system is already being dug."))

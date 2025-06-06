@@ -42,14 +42,7 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 	return initial(a.priority) - initial(b.priority)
 
 /datum/unit_test/New()
-	// due to this coderbase being unpog we wont be having automatic space allocation for testing.
-	// if (isnull(reservation))
-	// 	var/datum/map_template/unit_tests/template = new
-	// 	reservation = template.load_new_z()
-
 	allocated = new
-	// run_loc_floor_bottom_left = get_turf(locate(/obj/effect/landmark/unit_test_bottom_left) in GLOB.landmarks_list)
-	// run_loc_floor_top_right = get_turf(locate(/obj/effect/landmark/unit_test_top_right) in GLOB.landmarks_list)
 
 	run_loc_floor_bottom_left = get_turf(locate(20,20,6))
 	run_loc_floor_top_right = get_turf(locate(20,21,6))

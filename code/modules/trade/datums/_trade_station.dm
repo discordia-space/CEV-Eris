@@ -80,9 +80,9 @@
 		x = rand(forced_overmap_zone[1][1], forced_overmap_zone[1][2])
 		y = rand(forced_overmap_zone[2][1], forced_overmap_zone[2][2])
 	else
-		x = rand(OVERMAP_EDGE, SSmapping.overmap_size)
-		y = rand(OVERMAP_EDGE, SSmapping.overmap_size)
-	place_overmap(min(x, SSmapping.overmap_size - OVERMAP_EDGE), min(y, SSmapping.overmap_size - OVERMAP_EDGE))
+		x = rand(OVERMAP_EDGE, OVERMAP_SIZE)
+		y = rand(OVERMAP_EDGE, OVERMAP_SIZE)
+	place_overmap(min(x, OVERMAP_SIZE - OVERMAP_EDGE), min(y, OVERMAP_SIZE - OVERMAP_EDGE))
 
 	SStrade.all_stations += src
 	if(start_discovered)

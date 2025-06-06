@@ -83,7 +83,7 @@ var/datum/evacuation_controller/evacuation_controller
 	state = EVAC_PREPPING
 
 	if(emergency_evacuation)
-		for(var/area/A in GLOB.map_areas)
+		for(var/area/A in SSmapping.all_areas)
 			if(istype(A, /area/eris/hallway))
 				A.readyalert()
 		if(!skip_announce)
@@ -111,7 +111,7 @@ var/datum/evacuation_controller/evacuation_controller
 
 	if(emergency_evacuation)
 		evac_recalled.Announce(SSmapping.emergency_shuttle_recall_message)
-		for(var/area/A in GLOB.map_areas)
+		for(var/area/A in SSmapping.all_areas)
 			if(istype(A, /area/eris/hallway))
 				A.readyreset()
 		emergency_evacuation = 0

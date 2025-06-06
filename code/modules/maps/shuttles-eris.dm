@@ -17,7 +17,8 @@
 	waypoint_offsite = "escape_pod_[number]_out"
 	..()
 
-/obj/effect/shuttle_landmark/escape_pod/
+/obj/effect/shuttle_landmark/escape_pod
+	is_valid_destination = FALSE
 	var/number
 
 /obj/effect/shuttle_landmark/escape_pod/start
@@ -78,6 +79,7 @@
 	landmark_transition = "nav_transit_expl"
 	range = INFINITY  // Can go anywhere on overmap to avoidance depending on the jobs with bridge access to direct the ship
 	fuel_consumption = 3
+	can_do_exploration = TRUE
 
 /obj/effect/shuttle_landmark/eris/dock/exploration_shuttle
 	name = "Vasiliy Dokuchaev Dock"
@@ -85,13 +87,14 @@
 	dock_target = "research_dock_airlock"
 	docking_controller = "vasiliy_dokuchaev_shuttle"
 	base_turf = /turf/space
+	shuttle_restricted = "Vasiliy Dokuchaev"
 
 /obj/effect/shuttle_landmark/eris/transit/exploration_shuttle
 	name = "In transit"
 	landmark_tag = "nav_transit_expl"
 	base_turf = /turf/space
-
-
+	shuttle_restricted = "Vasiliy Dokuchaev"
+	is_valid_destination = FALSE
 
 
 /datum/shuttle/autodock/overmap/hulk
@@ -103,6 +106,7 @@
 	landmark_transition = "nav_transit_hulk"
 	range = INFINITY  // Can go anywhere on overmap to avoidance depending on the jobs with bridge access to direct the ship
 	fuel_consumption = 4
+	can_do_exploration = TRUE
 
 /obj/effect/shuttle_landmark/eris/dock/hulk
 	name = "Hulk Dock"
@@ -110,60 +114,45 @@
 	dock_target = "mining_dock_airlock"
 	docking_controller = "hulk_shuttle"
 	base_turf = /turf/space
+	shuttle_restricted = "Hulk"
 
 /obj/effect/shuttle_landmark/eris/transit/hulk
 	name = "In transit"
 	landmark_tag = "nav_transit_hulk"
 	base_turf = /turf/space
+	is_valid_destination = FALSE
 
-//Skipjack
-//antag Shuttles disabled by nanako, 2018-09-15
-//These shuttles are created with a subtypesof loop at runtime. Starting points for the skipjack and merc shuttle are not currentl mapped in
-/*
-/datum/shuttle/autodock/multi/antag/skipjack
-	name = "Skipjack"
-	warmup_time = 0
-	destination_tags = list(
-		"nav_skipjack_northwest",
-		"nav_skipjack_southeast",
-//		"nav_skipjack_dock",
-		"nav_skipjack_start",
-		)
-	shuttle_area =  /area/skipjack_station/start
-	dock_target = "skipjack_shuttle"
-	current_location = "nav_skipjack_start"
-	landmark_transition = "nav_skipjack_transition"
-	announcer = "CEV Eris Sensor Array"
-	home_waypoint = "nav_skipjack_start"
-	arrival_message = "Attention, vessel detected entering vessel proximity."
-	departure_message = "Attention, vessel detected leaving vessel proximity."
-*/
 /obj/effect/shuttle_landmark/skipjack/start
 	name = "Raider Outpost"
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_skipjack_start"
 	docking_controller = "skipjack_base"
+	is_valid_destination = FALSE
 
 /obj/effect/shuttle_landmark/skipjack/internim
 	name = "In transit"
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_skipjack_transition"
+	is_valid_destination = FALSE
 /*
 /obj/effect/shuttle_landmark/skipjack/dock
 	name = "Docking Port"
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_skipjack_dock"
 	docking_controller = "skipjack_shuttle_dock_airlock"
+	is_valid_destination = FALSE
 */
 /obj/effect/shuttle_landmark/skipjack/northwest
 	name = "Northwest of the Vessel"
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_skipjack_northwest"
+	is_valid_destination = FALSE
 
 /obj/effect/shuttle_landmark/skipjack/southeast
 	name = "Southeast of the Vessel"
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_skipjack_southeast"
+	is_valid_destination = FALSE
 
 
 //Merc
@@ -173,23 +162,6 @@
 	warmup_time = 0
 	move_time = 180
 	cloaked = 0
-	destination_tags = list(
-		"nav_merc_northeast",
-		"nav_merc_southwest",
-		"nav_merc_dock",
-		"nav_merc_start",
-		"nav_merc_atmos",
-		"nav_merc_sec2west",
-		"nav_merc_sec2east",
-		"nav_merc_junk",
-		"nav_merc_armory",
-		"nav_merc_engieva",
-		"nav_merc_mining",
-		"nav_merc_medbay",
-		"nav_merc_engine",
-		"nav_merc_sec3east4",
-		"nav_merc_sec3east5"
-		)
 	shuttle_area = /area/shuttle/mercenary
 	default_docking_controller = "merc_shuttle"
 	current_location = "nav_merc_start"
@@ -219,6 +191,7 @@
 //Merc ship has only one airlock, so set that here
 /obj/effect/shuttle_landmark/merc
 	docking_controller = "merc_shuttle"
+	shuttle_restricted = "Mercenary"
 
 /obj/effect/shuttle_landmark/merc/start
 	name = "Mercenary Base"
@@ -230,6 +203,7 @@
 	name = "In transit"
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_transition"
+	is_valid_destination = FALSE
 
 /obj/effect/shuttle_landmark/merc/dock
 	name = "Docking Port Deck 5"
@@ -305,11 +279,13 @@
 /obj/effect/shuttle_landmark/supply/centcom
 	name = "Centcom"
 	landmark_tag = "nav_cargo_start"
+	is_valid_destination = FALSE
 
 /obj/effect/shuttle_landmark/supply/station
 	name = "Dock"
 	landmark_tag = "nav_cargo_vessel"
 	dock_target = "cargo_bay"
+	is_valid_destination = FALSE
 
 // Pirate shuttle
 // Docking controller chooses which of our airlocks should open onto the target location.
@@ -320,18 +296,6 @@
 	warmup_time = 0
 	move_time = 100
 	cloaked = 0
-	destination_tags = list(
-		"nav_pirate_start",
-		"nav_pirate_deck5_brig",
-		"nav_pirate_deck5_dorms",
-	 	"nav_pirate_deck5_moebius",
-		"nav_pirate_deck5_cargo",
-	 	"nav_pirate_deck5_engine",
-		"nav_pirate_deck3_cargo",
-	 	"nav_pirate_deck3_engine",
-		"nav_pirate_deck2_medical",
- 		"nav_pirate_deck2_bar",
-	)
 	shuttle_area = /area/shuttle/pirate
 	// default_docking_controller = "pirate_shuttle"  // No need for docking controller (no two-stages airlock)
 	current_location = "nav_pirate_start"
@@ -387,6 +351,7 @@
 // Navigation landmarks
 /obj/effect/shuttle_landmark/pirate
 	icon_state = "shuttle-green"
+	shuttle_restricted = "Pirate"
 
 /obj/effect/shuttle_landmark/pirate/start
 	name = "Pirate Base"
@@ -395,6 +360,7 @@
 /obj/effect/shuttle_landmark/pirate/internim
 	name = "In transit"
 	landmark_tag = "nav_pirate_transition"
+	is_valid_destination = FALSE
 
 /obj/effect/shuttle_landmark/pirate/deck5_brig
 	name = "Section I of the Vessel Deck 5"

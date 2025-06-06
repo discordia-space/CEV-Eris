@@ -650,33 +650,38 @@ proc/GaussRandRound(var/sigma, var/roundto)
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all areas of that type in the world.
-/proc/get_areas(var/areatype)
-	if(!areatype) return null
-	if(istext(areatype)) areatype = text2path(areatype)
+/proc/get_areas(areatype)
+	if(!areatype)
+		return
+	if(istext(areatype))
+		areatype = text2path(areatype)
 	if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
 
-	var/list/areas = new/list()
-	for(var/area/N in GLOB.map_areas)
-		if(istype(N, areatype)) areas += N
-	return areas
+	. = list()
+	for(var/area/area as anything in SSmapping.all_areas)
+		if(istype(area, areatype))
+			. += area
+
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all atoms	(objs, turfs, mobs) in areas of that type of that type in the world.
-/proc/get_area_all_atoms(var/areatype)
-	if(!areatype) return null
-	if(istext(areatype)) areatype = text2path(areatype)
+/proc/get_area_all_atoms(areatype)
+	if(!areatype)
+		return
+	if(istext(areatype))
+		areatype = text2path(areatype)
 	if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
 
-	var/list/atoms = new/list()
-	for(var/area/N in GLOB.map_areas)
-		if(istype(N, areatype))
-			for(var/atom/A in N)
-				atoms += A
-	return atoms
+	. = list()
+	for(var/area/area in SSmapping.all_areas)
+		if(istype(area, areatype))
+			for(var/atom/atom in area)
+				. += atom
+
 
 /datum/coords //Simple datum for storing coordinates.
 	var/x_pos

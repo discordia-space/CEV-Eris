@@ -172,10 +172,7 @@
 					E.icon_state = E.icon_stages[1] + "_g"  // Green outline
 			for(var/obj/effect/overmap/E in T)
 				E.name = E.name_stages[1]
-				if((!passive_scan) || istype(E, /obj/effect/overmap/sector/exoplanet))
-					E.icon_state = E.icon_stages[1]  // No outline
-				else
-					E.icon_state = E.icon_stages[1] + "_g"  // Green outline
+				E.icon_state = E.icon_stages[1] + "_g"  // Green outline
 
 		// Stage 1 (limit range)
 		for(var/turf/T in getcircle(new_loc, S.scan_range))

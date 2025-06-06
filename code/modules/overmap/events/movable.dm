@@ -10,7 +10,7 @@
 
 /obj/effect/overmap_event/proc/handle_wraparound()
 	var/low_edge = 1
-	var/high_edge = SSmapping.overmap_size - 1
+	var/high_edge = OVERMAP_SIZE - 1
 
 	if(dir == WEST && x == low_edge)
 		del_event()
@@ -87,27 +87,27 @@
 /obj/effect/overmap_event/movable/Initialize()
 	. = ..()
 	moving_vector = NORTH
-	start_x = pick(2, SSmapping.overmap_size - 1)
-	start_y = pick(2, SSmapping.overmap_size - 1)
+	start_x = pick(2, OVERMAP_SIZE - 1)
+	start_y = pick(2, OVERMAP_SIZE - 1)
 
 	if(start_x == 2 && start_y == 2)
-		start_x = rand(2, SSmapping.overmap_size - rand(5,10))
-		start_y = rand(2, SSmapping.overmap_size - rand(5,10))
+		start_x = rand(2, OVERMAP_SIZE - rand(5,10))
+		start_y = rand(2, OVERMAP_SIZE - rand(5,10))
 		moving_vector = pick(NORTH, EAST, NORTHEAST)
 
-	if(start_x == 2 && start_y == SSmapping.overmap_size - 1)
-		start_x = rand(2, SSmapping.overmap_size - rand(5,10))
+	if(start_x == 2 && start_y == OVERMAP_SIZE - 1)
+		start_x = rand(2, OVERMAP_SIZE - rand(5,10))
 		moving_vector = pick(SOUTH, EAST, SOUTHEAST)
 
-	if(start_x == SSmapping.overmap_size - 1 && start_y == SSmapping.overmap_size - 1)
+	if(start_x == OVERMAP_SIZE - 1 && start_y == OVERMAP_SIZE - 1)
 		moving_vector = pick(SOUTH, WEST, SOUTHWEST)
 
-	if(start_x == SSmapping.overmap_size - 1 && start_y == 2)
-		start_y = rand(2, SSmapping.overmap_size - rand(5,10))
+	if(start_x == OVERMAP_SIZE - 1 && start_y == 2)
+		start_y = rand(2, OVERMAP_SIZE - rand(5,10))
 		moving_vector = pick(NORTH, WEST, NORTHWEST)
 
-	start_x = start_x || rand(OVERMAP_EDGE, SSmapping.overmap_size - OVERMAP_EDGE)
-	start_y = start_y || rand(OVERMAP_EDGE, SSmapping.overmap_size - OVERMAP_EDGE)
+	start_x = start_x || rand(OVERMAP_EDGE, OVERMAP_SIZE - OVERMAP_EDGE)
+	start_y = start_y || rand(OVERMAP_EDGE, OVERMAP_SIZE - OVERMAP_EDGE)
 
 	map_z = SSmapping.GetConnectedZlevels(z)
 	for(var/zlevel in map_z)

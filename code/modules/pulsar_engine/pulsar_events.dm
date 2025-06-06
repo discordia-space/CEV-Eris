@@ -17,11 +17,22 @@
 	return TRUE
 
 /datum/pulsar_event/proc/get_valid_tile()
-	var/tile_x = rand(2, SSmapping.pulsar_size - 2)
-	var/tile_y = rand(2, SSmapping.pulsar_size - 2)
-	var/turf/T = locate(tile_x, tile_y, SSmapping.pulsar_z)
+	var/pulsar_z
+	for(var/list/z_level_data in SSmapping.z_level_info_decoded)
+		if(z_level_data["map_name"] == "Pulsar")
+			pulsar_z = z_level_data["bottom_z"]
+			break
+
+	if(!pulsar_z)
+		return
+
+	var/tile_x = rand(2, PULSAR_SIZE - 2)
+	var/tile_y = rand(2, PULSAR_SIZE - 2)
+	var/turf/T = locate(tile_x, tile_y, pulsar_z)
+
 	if(istype(T) && check_tile(T))
 		return T
+
 	return get_valid_tile() //Infinite reccurson highly improabable
 
 /datum/pulsar_event/proc/on_trigger()
@@ -37,8 +48,8 @@
 	portal_1.set_target(portal_2_turf)
 	portal_2.set_target(portal_1_turf)
 	//Shadows for the map
-	var/turf/mirror_tile_1 = locate(SSmapping.pulsar_size - portal_1_turf.x, SSmapping.pulsar_size - portal_1_turf.y, portal_1_turf.z)
-	var/turf/mirror_tile_2 = locate(SSmapping.pulsar_size - portal_2_turf.x, SSmapping.pulsar_size - portal_2_turf.y, portal_2_turf.z)
+	var/turf/mirror_tile_1 = locate(PULSAR_SIZE - portal_1_turf.x, PULSAR_SIZE - portal_1_turf.y, portal_1_turf.z)
+	var/turf/mirror_tile_2 = locate(PULSAR_SIZE - portal_2_turf.x, PULSAR_SIZE - portal_2_turf.y, portal_2_turf.z)
 	var/obj/effect/portal/perfect/portal_1_shadow = new /obj/effect/portal/perfect(mirror_tile_1)
 	var/obj/effect/portal/perfect/portal_2_shadow = new /obj/effect/portal/perfect(mirror_tile_2)
 	portal_1_shadow.set_target(mirror_tile_2)

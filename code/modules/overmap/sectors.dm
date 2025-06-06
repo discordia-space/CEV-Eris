@@ -9,9 +9,6 @@
 	spawn_tags = null
 	var/list/map_z = list()
 
-	var/list/generic_waypoints = list()    //waypoints that any shuttle can use
-	var/list/restricted_waypoints = list() //waypoints for specific shuttles
-
 	var/start_x			//coordinates on the
 	var/start_y			//overmap zlevel
 
@@ -37,8 +34,8 @@
 
 	// Spawning location of area is randomized or default values, but can be changed to the Eris Coordinates in the code below.
 	// This provides a random starting location for Eris.
-	start_x = start_x || rand(OVERMAP_EDGE, SSmapping.overmap_size - OVERMAP_EDGE)
-	start_y = start_y || rand(OVERMAP_EDGE, SSmapping.overmap_size - OVERMAP_EDGE)
+	start_x = start_x || rand(OVERMAP_EDGE, OVERMAP_SIZE - OVERMAP_EDGE)
+	start_y = start_y || rand(OVERMAP_EDGE, OVERMAP_SIZE - OVERMAP_EDGE)
 
 	if ((!eris_start_set) && (name == config.start_location))
 		var/obj/effect/overmap/ship/eris/E = (locate(/obj/effect/overmap/ship/eris) in GLOB.ships)
@@ -48,39 +45,6 @@
 
 	forceMove(locate(start_x, start_y, SSmapping.overmap_z))
 	testing("Located sector \"[name_stages[1]]\" at [start_x],[start_y], containing Z [english_list(map_z)]")
-	update_waypoints()
-
-
-/obj/effect/overmap/proc/update_waypoints()
-	//handle automatic waypoints that spawned before us
-	for(var/obj/effect/shuttle_landmark/automatic/L in GLOB.shuttle_landmarks_list)
-		if(L.z in map_z)
-			L.add_to_sector(src, 1)
-
-	//find shuttle waypoints
-	var/list/found_waypoints = list()
-	for(var/waypoint_tag in generic_waypoints)
-		var/obj/effect/shuttle_landmark/WP = locate(waypoint_tag)
-		if(WP)
-			found_waypoints += WP
-	generic_waypoints = found_waypoints
-
-	for(var/shuttle_name in restricted_waypoints)
-		found_waypoints = list()
-		for(var/waypoint_tag in restricted_waypoints[shuttle_name])
-			var/obj/effect/shuttle_landmark/WP = locate(waypoint_tag)
-			if(WP)
-				found_waypoints += WP
-		restricted_waypoints[shuttle_name] = found_waypoints
-
-	for(var/obj/machinery/computer/sensors/S in GLOB.computer_list)
-		if (S.z in map_z)
-			S.linked = src
-
-/obj/effect/overmap/proc/get_waypoints(var/shuttle_name)
-	. = generic_waypoints.Copy()
-	if(shuttle_name in restricted_waypoints)
-		. += restricted_waypoints[shuttle_name]
 
 /obj/effect/overmap/sector
 	name = "generic sector"

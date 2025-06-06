@@ -165,7 +165,7 @@ var/list/flooring_cache = list()
 
 
 		//If we get here then its a normal floor
-		else if (istype(T, /turf/floor) && !istype(T, /turf/floor/exoplanet))
+		else if (istype(T, /turf/floor))
 			var/turf/floor/t = T
 			//If the floor is the same as us,then we're linked,
 			if (t.flooring?.type == type) // Because it can , and will be null

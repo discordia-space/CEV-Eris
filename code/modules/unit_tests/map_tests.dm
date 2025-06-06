@@ -19,7 +19,7 @@
 		/area/eris/engineering/construction,
 		/area/eris/medical/genetics)
 
-	for(var/area/A in GLOB.map_areas)
+	for(var/area/A in SSmapping.all_areas)
 		if(IS_SHIP_LEVEL(A.z) && !(A.type in exempt_areas))
 			if (isnull(A.apc) && !(A.type in exempt_from_apc))
 				TEST_FAIL("[A.name]([A.type]) lacks an APC Z: [A.z].")

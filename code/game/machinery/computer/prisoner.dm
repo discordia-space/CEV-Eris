@@ -40,7 +40,7 @@
 				var/turf/mob_loc = get_turf(M)
 				loc_display = mob_loc.loc
 			if(T.malfunction)
-				loc_display = pick(SSmapping.teleportlocs)
+				loc_display = pick(SSmapping.main_ship_areas_by_name)
 			dat += "ID: [T.gps.serial_number] | Location: [loc_display]<BR>"
 			dat += "<A href='?src=\ref[src];warn=\ref[T]'>(<font color=red><i>Message Holder</i></font>)</A> |<BR>"
 			dat += "********************************<BR>"

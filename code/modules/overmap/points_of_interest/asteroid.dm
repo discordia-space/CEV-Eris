@@ -2,10 +2,6 @@
 /obj/effect/overmap/sector/asteroid
 	name = "unknown spatial phenomenon"
 	desc = "A large asteroid. Mineral content detected."
-	generic_waypoints = list(
-		"nav_asteroid_1",
-		"nav_asteroid_2"
-	)
 	known = 1
 	in_space = 0
 
@@ -21,6 +17,7 @@
 	landmark_tag = "nav_asteroid_1"
 	base_area = /area/mine/explored
 	base_turf = /turf/floor/asteroid
+	exploration_landmark = TRUE
 
 /obj/effect/shuttle_landmark/asteroid/nav2
 	name = "Asteroid Landing zone #2"
@@ -28,3 +25,4 @@
 	landmark_tag = "nav_asteroid_2"
 	base_area = /area/mine/explored
 	base_turf = /turf/floor/asteroid
+	exploration_landmark = TRUE
