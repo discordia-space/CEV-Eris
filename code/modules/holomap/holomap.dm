@@ -32,13 +32,11 @@
 /obj/machinery/holomap/Initialize()
 	. = ..()
 	original_zLevel = loc.z
-	SSmapping.holomap_machinery += src
 	flags |= ON_BORDER // Why? It doesn't help if its not density
 	setup_holomap()
 
 
 /obj/machinery/holomap/Destroy()
-	SSmapping.holomap_machinery -= src
 	stopWatching()
 	. = ..()
 

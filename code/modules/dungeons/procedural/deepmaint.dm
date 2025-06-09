@@ -215,7 +215,7 @@ var/global/list/big_deepmaint_room_templates = list()
 	generate.setRoomMaxSize(10)
 	generate.setPathWidth(1)
 	generate.generate()
-	TICK_CHECK
+
 	generate.setArea(locate(20, 20, z), locate(150, 150, z))
 	generate.setAllowedRooms(list(/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint))
 	generate.setNumRooms(15)

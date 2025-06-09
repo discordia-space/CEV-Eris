@@ -106,7 +106,7 @@ SUBSYSTEM_DEF(explosions)
 				if(!target || QDELETED(target))
 					explodey.current_turf_queue -= target
 					continue
-				turf_key = EXPLO_HASH(target.x, target.y)
+				turf_key = "[target.x]_[target.y]"
 				target_power = explodey.hashed_power[target.z][turf_key]
 				explodey.current_turf_queue -= target
 				explodey.hashed_visited[target.z][turf_key] = TRUE
@@ -122,7 +122,7 @@ SUBSYSTEM_DEF(explosions)
 						var/turf/next = get_step(target,dir)
 						if(QDELETED(next))
 							continue
-						var/temp_key = EXPLO_HASH(next.x, next.y)
+						var/temp_key = "[next.x]_[next.y]"
 						if(explodey.hashed_visited[next.z][temp_key])
 							continue
 						explodey.turf_queue += next
@@ -167,15 +167,9 @@ SUBSYSTEM_DEF(explosions)
 
 			// Explosion is done , nothing else left to iterate , cleanup and etc.
 			if(!length(explodey.turf_queue))
-
 				explode_queue -= explodey
-				for(var/cleaner = 1; cleaner <= HASH_MODULO; cleaner++)
-					for(var/cur_z = explodey.minimum_z , cur_z <= explodey.maximum_z, cur_z++)
-						explodey.hashed_visited[cur_z][cleaner] = 0
-						explodey.hashed_power[cur_z][cleaner] = 0
-				for(var/cur_z = explodey.minimum_z , cur_z <= explodey.maximum_z, cur_z++)
-					SSexplosions.returnHashList(explodey.hashed_visited[cur_z])
-					SSexplosions.returnHashList(explodey.hashed_power[cur_z])
+				explodey.hashed_visited = null
+				explodey.hashed_power = null
 				qdel(explodey)
 				break
 			// If explosion is not done , just copy the turf queue , and keep it for the next run.
@@ -247,7 +241,7 @@ explosion_handler/New(turf/loc, power, falloff, flags)
 		turf_queue += loc
 		hashed_power[loc.z] = SSexplosions.retrieveHashList()
 		hashed_visited[loc.z] = SSexplosions.retrieveHashList()
-		hashed_power[loc.z][EXPLO_HASH(loc.x, loc.y)] = power
+		hashed_power[loc.z]["[loc.x]_[loc.y]"] = power
 	else
 		var/list/locations = loc
 		for(var/turf/target in locations)
@@ -256,7 +250,7 @@ explosion_handler/New(turf/loc, power, falloff, flags)
 				hashed_power[target.z] = SSexplosions.retrieveHashList()
 			if(hashed_visited[target.z] == null)
 				hashed_visited[target.z] = SSexplosions.retrieveHashList()
-			hashed_power[target.z][EXPLO_HASH(target.x, target.y)] = power
+			hashed_power[target.z]["[target.x]_[target.y]"] = power
 	maximum_z = minimum_z = loc.z
 
 /turf/proc/test_explosion()

@@ -81,7 +81,6 @@ SUBSYSTEM_DEF(mapping)
 	var/static/turfsSkipped
 	#endif
 
-	var/list/holomap_machinery = list()
 	// Holds pixel offset lists formatted as "Z-level number as text" = list(pixel_x, pixel_y)
 	// these point to the bottom left corner of appropriate Z-level's map on /image/holomap
 	// So displaying an object on the holomap is as simple as adding an /image that represents it to

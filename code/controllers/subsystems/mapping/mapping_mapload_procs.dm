@@ -19,7 +19,7 @@
 	var/json_text = file2text(json_file)
 	var/json_list = json_decode(json_text)
 	var/dmm_file_path = json_list["map_file"]
-	if(!dmm_file_path) // Overmap Z-level
+	if(!dmm_file_path)
 		on_map_loaded(is_failed_to_load = TRUE)
 		return
 	load_map(dmm_file = file(dmm_file_path), z_level_info = json_list, delayed_loading = delayed_loading)

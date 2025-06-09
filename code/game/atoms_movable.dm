@@ -280,7 +280,7 @@
 	if(!LAZYLEN(candidates))
 		// Fallback in case we somehow got no valid transit Z-levels
 		candidates = SSmapping.main_ship_z_levels
-	return text2num(pickweight(candidates))
+	return pick(candidates)
 
 
 /atom/movable/proc/set_glide_size(glide_size_override = 0, var/min = 0.2, var/max = world.icon_size/2)
