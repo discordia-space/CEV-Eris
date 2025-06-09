@@ -78218,7 +78218,7 @@
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/propulsion/left)
 "dKi" = (
-/obj/structure/jtb_pillar,
+/obj/machinery/constructable_frame/machine_frame/vertical,
 /turf/floor/reinforced,
 /area/eris/engineering/engine_room)
 "dKj" = (
@@ -105862,7 +105862,7 @@
 /turf/floor/tiled/dark/golden,
 /area/eris/neotheology/altar)
 "vBC" = (
-/obj/structure/jtb_pillar,
+/obj/machinery/constructable_frame/machine_frame/vertical,
 /turf/floor/tiled/dark/danger,
 /area/eris/maintenance/junk)
 "vGh" = (
@@ -106726,7 +106726,7 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "xoj" = (
-/obj/machinery/computer/jtb_console,
+/obj/structure/computerframe,
 /turf/floor/tiled/dark/gray_perforated,
 /area/eris/maintenance/junk)
 "xoq" = (

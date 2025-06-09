@@ -60374,7 +60374,7 @@
 /turf/space,
 /area/shuttle/mining/station)
 "cPK" = (
-/obj/structure/jtb_pillar,
+/obj/machinery/constructable_frame/machine_frame/vertical,
 /turf/floor/tiled/dark/danger,
 /area/eris/maintenance/junk)
 "cPL" = (
@@ -86906,9 +86906,7 @@
 /area/eris/maintenance/section2deck3port)
 "xrk" = (
 /obj/machinery/light,
-/obj/machinery/computer/jtb_console{
-	dir = 1
-	},
+/obj/structure/computerframe,
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/maintenance/junk)
 "xtI" = (

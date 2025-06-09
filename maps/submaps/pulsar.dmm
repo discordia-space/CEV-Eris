@@ -502,7 +502,7 @@
 /turf/floor/wood,
 /area/outpost/pulsar)
 "tq" = (
-/obj/structure/jtb_pillar,
+/obj/machinery/constructable_frame/machine_frame/vertical,
 /turf/floor/reinforced,
 /area/outpost/pulsar)
 "ty" = (

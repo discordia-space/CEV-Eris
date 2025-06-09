@@ -3,7 +3,6 @@
 /decl/overmap_event_handler
 	var/list/event_turfs_by_z_level
 	var/last_tick = 0
-	var/obj/jtb_generator/jtb_gen  // jtb generator
 
 /decl/overmap_event_handler/New()
 	..()
@@ -379,7 +378,6 @@
 	icon_stages = list("spacehulk", "ship", "poi")
 
 	log_game("Space wrecks point of interest has been scanned and revealed.")
-	overmap_event_handler.jtb_gen.add_specific_junk_field("SpaceWrecks")
 	return
 
 /obj/effect/overmap_event/poi/station
