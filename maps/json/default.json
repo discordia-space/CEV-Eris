@@ -10,5 +10,7 @@
 	"is_main_ship_level": false,
 	"is_sealed_level": true,
 
-	"call_proc_on_load": ""
+	"call_proc_on_load": "",
+
+	"add_jobs":[]
 }

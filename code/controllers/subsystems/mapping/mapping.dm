@@ -31,18 +31,6 @@ SUBSYSTEM_DEF(mapping)
 
 	var/default_spawn = "Aft Cryogenic Storage"
 
-	var/allowed_jobs = list(/datum/job/captain, /datum/job/rd, /datum/job/hop, /datum/job/cmo, /datum/job/chief_engineer, /datum/job/ihc,
-						/datum/job/gunserg, /datum/job/inspector, /datum/job/medspec, /datum/job/ihoper,
-						/datum/job/doctor, /datum/job/chemist, /datum/job/paramedic, /datum/job/bioengineer,
-						/datum/job/technomancer,
-						/datum/job/cargo_tech, /datum/job/mining, /datum/job/merchant,
-						/datum/job/clubworker, /datum/job/clubmanager, /datum/job/artist,
-						/datum/job/chaplain, /datum/job/acolyte, /datum/job/janitor, /datum/job/hydro,
-						/datum/job/scientist, /datum/job/roboticist, /datum/job/psychiatrist,
-						/datum/job/ai, /datum/job/cyborg,
-						/datum/job/assistant
-
-						)
 
 	var/overmap_z
 
@@ -97,6 +85,9 @@ SUBSYSTEM_DEF(mapping)
 	// ..that said, account for pixel_x and pixel_y pointing to /image's bottom left corner
 	var/list/holomap_offsets_per_z_level = list()
 	var/image/holomap
+
+	var/list/allowed_jobs = list() // Job name = job slots as number
+
 
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
 	var/primary_map_to_load
@@ -167,6 +158,13 @@ SUBSYSTEM_DEF(mapping)
 
 	if(z_level_info["is_sealed_level"])
 		sealed_z_levels += current_z
+
+	if(z_level_info["add_jobs"] && LAZYLEN(z_level_info["add_jobs"]))
+		var/list/job_list = z_level_info["add_jobs"]
+		for(var/list/job as anything in job_list)
+			var/job_name = job[1]
+			var/job_count = job[job_name]
+			allowed_jobs[job_name] = job_count
 
 
 /datum/controller/subsystem/mapping/Recover()

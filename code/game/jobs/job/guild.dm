@@ -8,7 +8,6 @@
 	department_flag = GUILD | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
-	spawn_positions = 1
 	supervisors = "your greed"
 	selection_color = "#b3a68c"
 	wage = WAGE_NONE	//Guild merchant draws a salary from the guild account
@@ -72,7 +71,6 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 	department_flag = GUILD
 	faction = "CEV Eris"
 	total_positions = 2
-	spawn_positions = 2
 	supervisors = "the Guild Merchant"
 	selection_color = "#c3b9a6"
 	also_known_languages = list(LANGUAGE_JIVE = 100)
@@ -125,7 +123,6 @@ Your main duties are to keep the local guild branch operational and profitable. 
 	department_flag = GUILD
 	faction = "CEV Eris"
 	total_positions = 2
-	spawn_positions = 2
 	supervisors = "the Guild Merchant"
 	selection_color = "#c3b9a6"
 	wage = WAGE_LABOUR_HAZARD //The miners union is stubborn
