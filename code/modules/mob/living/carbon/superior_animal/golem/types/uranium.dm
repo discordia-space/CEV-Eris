@@ -1,6 +1,8 @@
+#define GOLEM_URANIUM_HEAL_RANGE 7
+
 /mob/living/carbon/superior_animal/golem/uranium
 	name = "uranium golem"
-	desc = "A moving pile of rocks with uranium specks in it."
+	desc = "A moving pile of rocks with uranium branches growing of it."
 	icon_state = "golem_uranium_idle"
 	icon_living = "golem_uranium_idle"
 
@@ -27,12 +29,12 @@
 	)
 
 	// Loot related variables
-	ore = /obj/item/ore/uranium
+	mineral_name = ORE_URANIUM
 
-	// Uranium golem does not attack
-	viewRange = 0  // Cannot attack if it cannot see
+	kept_distance = 3
+	retreat_on_too_close = TRUE
 
-/mob/living/carbon/superior_animal/golem/uranium/New(loc, obj/machinery/mining/deep_drill/drill, datum/golem_controller/parent)
+/mob/living/carbon/superior_animal/golem/uranium/New()
 	..()
 	set_light(3, 3, "#8AD55D")
 
@@ -40,10 +42,10 @@
 	set_light(0)
 	. = ..()
 
-// Special capacity of uranium golem: quickly repair all nearby golems.
 /mob/living/carbon/superior_animal/golem/uranium/handle_ai()
-	if(controller)
-		for(var/mob/living/carbon/superior_animal/golem/GO in controller.golems)
-			if(!istype(GO, /mob/living/carbon/superior_animal/golem/uranium))  // Uraniums do not regen
-				GO.adjustBruteLoss(-GOLEM_REGENERATION) // Regeneration
 	. = ..()
+	if(target_mob)
+		for(var/mob/living/carbon/superior_animal/golem/ally in getMobsInRangeChunked(src, GOLEM_URANIUM_HEAL_RANGE, TRUE))
+			if((ally != src))
+				ally.adjustBruteLoss(-GOLEM_REGENERATION)
+				ally.adjustFireLoss(-GOLEM_REGENERATION)

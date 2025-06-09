@@ -27,9 +27,6 @@
 	var/distress_calls = 1 //Each fuhrer can only call for help once in its life
 	var/retreat_calls = 1 //Can call for retreat once too
 
-	hats4roaches = list(/obj/item/clothing/head/collectable/captain,
-			/obj/item/clothing/head/collectable/tophat)
-
 	// Armor related variables
 	armor = list(
 		melee = 10,
@@ -89,7 +86,7 @@ reinforcements left it will attempt to evacuate*/
 			//Add all nearby burrows to the distressed burrows list
 			//for (var/obj/structure/burrow/B in range(20, loc))
 			for (var/obj/structure/burrow/B in find_nearby_burrows())
-				B.distress(TRUE)
+				B.distress(TRUE, src)
 
 
 
@@ -105,6 +102,29 @@ reinforcements left it will attempt to evacuate*/
 			visible_message(SPAN_DANGER("[src] emits a haunting scream as it turns to flee, taking the nearby horde with it...."))
 			for (var/obj/structure/burrow/B in find_nearby_burrows())
 				B.evacuate()
+
+/mob/living/carbon/superior_animal/roach/fuhrer/leaveOvermind()
+	if(overseer?.leader == src && !QDELETED(overseer)) // this gets called once by dying and another time by the destruction of the overseer, and it doesn't need to delete the second time.
+		qdel(overseer) // disband
+	. = ..()
+
+
+
+/mob/living/carbon/superior_animal/roach/fuhrer/findTarget()
+	. = ..() // do we have a target?
+	if(overseer && .) // are we in an overmind?
+		overseer.targetEnemy(.) // direct an attack on target.
+
+/mob/living/carbon/superior_animal/roach/fuhrer/updatehealth()
+	. = ..()
+	if(health < maxHealth/2)
+		if(overseer)
+			overseer.casualties |= src
+			overseer.updateHealing()
+	else if(health >= maxHealth * 0.75)
+		if(overseer)
+			overseer.casualties.Remove(src)
+
 
 // Fuhrers won't slip over on water or soap.
 /mob/living/carbon/superior_animal/roach/fuhrer/slip(var/slipped_on,stun_duration=8)

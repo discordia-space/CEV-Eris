@@ -28,8 +28,6 @@
 	var/needs_air_update = FALSE
 	var/datum/gas_mixture/air
 
-	var/has_resources
-	var/list/resources // Mining resources (for the large drills)
 	var/list/initial_gas
 	var/list/decals
 	var/list/affecting_lights // List of light sources affecting this turf

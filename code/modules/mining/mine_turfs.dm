@@ -35,8 +35,6 @@
 	var/obj/item/last_find
 	var/datum/artifact_find/artifact_find
 
-	has_resources = 1
-
 /turf/mineral/Initialize()
 	.=..()
 	icon_state = "rock[rand(0,4)]"
@@ -171,8 +169,8 @@
 
 /turf/mineral/random
 	name = "Mineral deposit"
-	var/mineralSpawnChanceList = list(ORE_URANIUM = 5, ORE_PLATINUM = 5, ORE_IRON = 35, ORE_CARBON = 35, ORE_DIAMOND = 1, ORE_GOLD = 5, ORE_SILVER = 5, ORE_PLASMA = 10, ORE_HYDROGEN = 1)
-	var/mineralChance = 100 //10 //means 10% chance of this plot changing to a mineral deposit
+	var/mineralSpawnChanceList = list(ORE_URANIUM = 5, ORE_PLATINUM = 5, ORE_IRON = 35, ORE_CARBON = 35, ORE_DIAMOND = 1, ORE_GOLD = 5, ORE_SILVER = 5, ORE_PLASMA = 10)
+	var/mineralChance = 50 //%
 
 /turf/mineral/random/New()
 	if (prob(mineralChance) && !mineral)
@@ -188,8 +186,8 @@
 	return TRUE
 
 /turf/mineral/random/high_chance
-	mineralChance = 100 //25
-	mineralSpawnChanceList = list(ORE_URANIUM = 10, ORE_PLATINUM = 10, ORE_IRON = 20, ORE_CARBON = 20, ORE_DIAMOND = 2, ORE_GOLD = 10, ORE_SILVER = 10, ORE_PLASMA = 20, ORE_HYDROGEN = 1)
+	mineralChance = 75 //%
+	mineralSpawnChanceList = list(ORE_URANIUM = 10, ORE_PLATINUM = 10, ORE_IRON = 20, ORE_CARBON = 20, ORE_DIAMOND = 2, ORE_GOLD = 10, ORE_SILVER = 10, ORE_PLASMA = 20)
 
 
 /**********************Asteroid**************************/
@@ -207,7 +205,6 @@
 	temperature = TCMB
 	var/dug = 0       //0 = has not yet been dug, 1 = has already been dug
 	var/overlay_detail
-	has_resources = 1
 
 /turf/floor/asteroid/New()
 	..()
@@ -215,6 +212,7 @@
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,8)]"
 		updateMineralOverlays(1)
+	seismic_activity = rand(1,6)
 
 /turf/floor/asteroid/explosion_act(target_power, explosion_handler/handler)
 	. = ..()

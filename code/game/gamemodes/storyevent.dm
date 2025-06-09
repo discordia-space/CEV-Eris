@@ -159,4 +159,4 @@
 	return max(mod-(abs(val-req)**2),0)/mod
 
 /datum/storyevent/proc/get_cost(var/event_type)
-	return event_pools[event_type] * GLOB.storyteller.repetition_multiplier ** occurrences
+	return max(event_pools[event_type] * GLOB.storyteller.repetition_multiplier ** occurrences, 1)

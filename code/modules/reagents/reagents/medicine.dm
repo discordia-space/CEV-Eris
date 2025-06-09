@@ -41,24 +41,26 @@
 	M.heal_organ_damage(0.6 * effect_multiplier, 0, 5 * effect_multiplier)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.15)
 
-/datum/reagent/medicine/bicaridine/overdose(mob/living/carbon/human/user, alien)
-	var/obj/item/organ/internal/muscle/user_muscle = user.random_organ_by_process(OP_MUSCLE)
-	var/obj/item/organ/internal/nerve/user_nerve = user.random_organ_by_process(OP_NERVE)
-	if(!user_muscle)
-		return FALSE
-	user_muscle.take_damage(dose/3, FALSE, TOX)
-	if(!user_nerve)
-		return FALSE
-	user_nerve.take_damage(dose/3, FALSE, TOX)
-	if(prob(3))
-		to_chat(user, span_danger("Your muscles ache with agonizing pain!"))
-		user.Weaken(2)
-	if(volume > 100 && prob(1))
-		var/obj/item/organ/internal/vital/heart/user_heart = user.random_organ_by_process(OP_HEART)
-		if(!user_heart || BP_IS_ROBOTIC(user_heart))
+/datum/reagent/medicine/bicaridine/overdose(mob/living/carbon/M, alien)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/muscle/user_muscle = H.random_organ_by_process(OP_MUSCLE)
+		var/obj/item/organ/internal/nerve/user_nerve = H.random_organ_by_process(OP_NERVE)
+		if(!user_muscle)
 			return FALSE
-		to_chat(user, span_danger("You feel like your heart just exploded!"))
-		user_heart.take_damage(15, FALSE, TOX)
+		user_muscle.take_damage(dose/3, FALSE, TOX)
+		if(!user_nerve)
+			return FALSE
+		user_nerve.take_damage(dose/3, FALSE, TOX)
+		if(prob(3))
+			to_chat(H, span_danger("Your muscles ache with agonizing pain!"))
+			H.Weaken(2)
+		if(volume > 100 && prob(1))
+			var/obj/item/organ/internal/vital/heart/user_heart = H.random_organ_by_process(OP_HEART)
+			if(!user_heart || BP_IS_ROBOTIC(user_heart))
+				return FALSE
+			to_chat(H, span_danger("You feel like your heart just exploded!"))
+			user_heart.take_damage(15, FALSE, TOX)
 
 /datum/reagent/medicine/meralyne
 	name = "Meralyne"
@@ -117,9 +119,11 @@
 	holder.remove_reagent("pararein", 0.2)
 	holder.remove_reagent("blattedin", 0.2)
 
-/datum/reagent/medicine/dylovene/overdose(mob/living/carbon/human/user, alien)
-	var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
-	create_overdose_wound(user_vessel, user, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+/datum/reagent/medicine/dylovene/overdose(mob/living/carbon/M, alien)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/blood_vessel/user_vessel = H.random_organ_by_process(OP_BLOOD_VESSEL)
+		create_overdose_wound(user_vessel, H, /datum/internal_wound/organic/heavy_poisoning, "accumulation")
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
@@ -174,19 +178,21 @@
 	M.add_chemical_effect(CE_ANTITOX, 1)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.1)
 
-/datum/reagent/medicine/tricordrazine/overdose(mob/living/carbon/human/user, alien)
-	var/obj/item/organ/internal/liver/user_liver = user.random_organ_by_process(OP_LIVER)
-	if(!user_liver)
-		return FALSE
-	user_liver.take_damage(dose/3, FALSE, TOX)
-	// For those special people
-	if(volume > 300 && prob(10))
-		var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
-		if(!user_vessel)
+/datum/reagent/medicine/tricordrazine/overdose(mob/living/carbon/M, alien)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/liver/user_liver = H.random_organ_by_process(OP_LIVER)
+		if(!user_liver)
 			return FALSE
-		to_chat(user, "You feel intense swelling in your [user_vessel.loc?.name], and you notice it going numb and red!")
-		user.AdjustParalysis(5)
-		user_vessel.take_damage(15, FALSE, TOX)
+		user_liver.take_damage(dose/3, FALSE, TOX)
+		// For those special people
+		if(volume > 300 && prob(10))
+			var/obj/item/organ/internal/blood_vessel/user_vessel = H.random_organ_by_process(OP_BLOOD_VESSEL)
+			if(!user_vessel)
+				return FALSE
+			to_chat(H, "You feel intense swelling in your [user_vessel.loc?.name], and you notice it going numb and red!")
+			H.AdjustParalysis(5)
+			user_vessel.take_damage(15, FALSE, TOX)
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"
@@ -201,6 +207,7 @@
 /datum/reagent/medicine/cryoxadone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.bodytemperature < 170)
 		M.add_chemical_effect(CE_ONCOCIDAL, 1)
+		M.add_chemical_effect(CE_GENEHEAL, 1)
 		M.add_chemical_effect(CE_OXYGENATED, 1)
 		M.add_chemical_effect(CE_BLOODCLOT, 0.50)
 		M.add_chemical_effect(CE_ANTITOX, 2)
@@ -222,6 +229,7 @@
 /datum/reagent/medicine/clonexadone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.bodytemperature < 170)
 		M.add_chemical_effect(CE_ONCOCIDAL, 1)
+		M.add_chemical_effect(CE_GENEHEAL, 2)
 		M.add_chemical_effect(CE_OXYGENATED, 1)
 		M.add_chemical_effect(CE_BLOODCLOT, 0.50)
 		M.add_chemical_effect(CE_ANTITOX, 2)
@@ -370,7 +378,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/E = H.random_organ_by_process(OP_EYES)
 		if(E && istype(E))
-			var/list/current_wounds = E.GetComponents(/datum/component/internal_wound)
+			var/list/current_wounds = E.wounddatums
 			if(LAZYLEN(current_wounds) && prob(75))
 				M.add_chemical_effect(CE_EYEHEAL, 1)
 
@@ -380,7 +388,7 @@
 		var/mob/living/carbon/human/H = M
 		var/list/eye_organs = H.internal_organs_by_efficiency[OP_EYES]
 		if(LAZYLEN(eye_organs))
-			create_overdose_wound(pick(eye_organs), H, /datum/component/internal_wound/organic/heavy_poisoning)
+			create_overdose_wound(pick(eye_organs), H, /datum/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/medicine/peridaxon
 	name = "Peridaxon"
@@ -396,9 +404,8 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/list/organs_sans_brain_and_bones = H.internal_organs - H.internal_organs_by_efficiency[BP_BRAIN] - H.internal_organs_by_efficiency[OP_BONE] // Peridaxon shouldn't heal brain or bones
-		for(var/obj/item/organ/I in organs_sans_brain_and_bones)
-			var/list/current_wounds = I.GetComponents(/datum/component/internal_wound)
-			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I) && prob(75)) //Peridaxon heals only non-robotic organs
+		for(var/obj/item/organ/internal/I in organs_sans_brain_and_bones)
+			if(LAZYLEN(I.wounddatums) && !BP_IS_ROBOTIC(I) && prob(75)) //Peridaxon heals only non-robotic organs
 				M.add_chemical_effect(CE_ONCOCIDAL, 1)
 				M.add_chemical_effect(CE_BLOODCLOT, 1)
 				M.add_chemical_effect(CE_ANTITOX, 2)
@@ -409,7 +416,7 @@
 		var/mob/living/carbon/human/H = M
 		var/list/organs_sans_brain_and_bones = H.internal_organs - H.internal_organs_by_efficiency[BP_BRAIN] - H.internal_organs_by_efficiency[OP_BONE] // Since it doesn't heal brain/bones it shouldn't damage them too
 		if(LAZYLEN(organs_sans_brain_and_bones))
-			create_overdose_wound(pick(organs_sans_brain_and_bones), H, /datum/component/internal_wound/organic/heavy_poisoning)
+			create_overdose_wound(pick(organs_sans_brain_and_bones), H, /datum/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/medicine/ryetalyn
 	name = "Ryetalyn"
@@ -422,6 +429,7 @@
 
 /datum/reagent/medicine/ryetalyn/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_ONCOCIDAL, 2)
+	M.add_chemical_effect(CE_GENEHEAL, 1)
 /*
 	var/needs_update = M.mutations.len > 0
 
@@ -652,6 +660,7 @@
 	M.heal_organ_damage(2 * effect_multiplier, 2 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
 	M.add_chemical_effect(CE_TOXIN, -(2 + (M.chem_effects[CE_TOXIN] * 0.05)) * effect_multiplier)
 	M.add_chemical_effect(CE_ONCOCIDAL, 2)
+	M.add_chemical_effect(CE_GENEHEAL, 2)
 	if(dose > 3)
 		M.status_flags &= ~DISFIGURED
 	if(dose > 10)

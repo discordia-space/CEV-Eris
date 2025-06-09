@@ -34,3 +34,7 @@
 	if(set_dir)
 		dir = set_dir
 	. = ..()
+
+/obj/effect/temp_visual/long //temp visual with longer duration
+	randomdir = FALSE
+	duration = 25

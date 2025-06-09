@@ -54,8 +54,26 @@
 	strength = 1
 	nerve_system_accumulations = 60
 	addiction_chance = 20
-	heating_point = 523
+	heating_point = 723 // supposedly amatoxin is heat resistant so I raised its heat temp by 200 - vode-code
 	heating_products = list("toxin")
+
+/datum/reagent/toxin/amatoxin/on_mob_add(mob/living/L)
+	data["timestart"] = REALTIMEOFDAY
+	data["effectcount"] = 0
+
+/datum/reagent/toxin/amatoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/poorsap = M
+		if(REALTIMEOFDAY > (data["timestart"] + (data["effectcount"] * 5 MINUTES)))
+			for(var/obj/item/organ/internal/tokill in poorsap.organ_list_by_process(OP_LIVER) | poorsap.organ_list_by_process(OP_KIDNEYS)) // amanitin is slow but it kills HARD.
+				tokill.add_wound(/datum/internal_wound/organic/genedamage)
+			data["effectcount"] += 1
+
+/datum/reagent/toxin/amatoxin/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	affect_blood(M, alien, effect_multiplier)	// amanitin doesn't metabolize in the digestive tract, instead absorbing nearly perfectly.
+
+	apply_sanity_effect(M, effect_multiplier)
 
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
@@ -141,10 +159,10 @@
 		M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
 		M.AdjustSleeping(20)
 	if(istype(O)) //STAGE 1: CRUSH LUNGS
-		create_overdose_wound(O, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+		create_overdose_wound(O, M, /datum/internal_wound/organic/heavy_poisoning, "accumulation")
 		M.adjustOxyLoss(5)
 	if(istype(S) && (!istype(O) || (O.status & ORGAN_DEAD))) //STAGE 2: NO LUNGS? FUCK YOUR HEART
-		create_overdose_wound(S, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+		create_overdose_wound(S, M, /datum/internal_wound/organic/heavy_poisoning, "accumulation")
 		M.adjustHalLoss(20)
 		M.vomit()
 
@@ -655,7 +673,7 @@
 		if(LAZYLEN(C.internal_organs) && C.bloodstr && C.bloodstr.has_reagent("pararein"))
 			var/obj/item/organ/internal/I = pick(C.internal_organs)
 			to_chat(C, "Something burns inside your [I.parent.name]...")
-			create_overdose_wound(I, C, /datum/component/internal_wound/organic/heavy_poisoning, "rot", TRUE)
+			create_overdose_wound(I, C, /datum/internal_wound/organic/heavy_poisoning, "rot", TRUE)
 
 /datum/reagent/toxin/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()

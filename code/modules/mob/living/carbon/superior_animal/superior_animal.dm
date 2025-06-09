@@ -96,9 +96,12 @@
 	var/ranged_cooldown
 	var/fire_verb //what does it do when it shoots?
 	var/kept_distance //how far away will it be before it stops moving closer
+	var/retreat_on_too_close = FALSE // if this is enabled avoid using very high kept_distance values, byond's pathfinding can get very upset if it can't get far enough away
 
 	var/grabbed_by_friend = FALSE //is this superior_animal being wrangled?
 	var/ticks_processed = 0
+
+	var/mob/living/grabbing // the currently grabbed mob
 
 	// Armor related datum
 	var/datum/armor/armor
@@ -228,6 +231,8 @@
 	else
 		canmove = TRUE
 		set_density(initial(density))
+	if(!lying && grabbing)
+		canmove = FALSE // don't move if we're grabbing someone
 
 /mob/living/carbon/superior_animal/proc/handle_ai()
 
@@ -255,12 +260,19 @@
 			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 			if(!kept_distance)
 				walk_to(src, target_mob, 1, move_to_delay)
-			else
+			else if (kept_distance && retreat_on_too_close && (get_dist(loc, target_mob.loc) < kept_distance))
+				walk_away(src,target_mob,kept_distance,move_to_delay) // warning: mobs will strafe nonstop if they can't get far enough away
+			else if(kept_distance)
 				step_to(src, target_mob, kept_distance)
 
 		if(HOSTILE_STANCE_ATTACKING)
 			if(destroy_surroundings)
 				destroySurroundings()
+
+			if(kept_distance && retreat_on_too_close && (get_dist(loc, target_mob.loc) < kept_distance))
+				walk_away(src,target_mob,kept_distance,move_to_delay) // warning: mobs will strafe nonstop if they can't get far enough away
+			else if(kept_distance)
+				step_to(src, target_mob, kept_distance)
 
 			prepareAttackOnTarget()
 
@@ -343,6 +355,8 @@
 		handle_cheap_environment(environment)
 		updateicon()
 		ticks_processed = 0
+	if(grabbing && !Adjacent(grabbing))
+		breakgrab()
 	if(handle_cheap_regular_status_updates()) // They have died after all of this, do not scan or do not handle AI anymore.
 		return PROCESS_KILL
 
@@ -374,3 +388,34 @@
 	if(istype(mover, /obj/item/projectile))
 		return stat ? TRUE : FALSE
 	. = ..()
+
+/mob/living/carbon/superior_animal/proc/commandchain(mob/potentialally)
+	if(faction != potentialally?.faction) // it isn't an ally?
+		if(isValidAttackTarget(potentialally)) // is it an enemy?
+			target_mob = potentialally // THEN KILL IT!
+			stance = HOSTILE_STANCE_ATTACK
+	else
+		return TRUE
+/mob/living/carbon/superior_animal/death()
+	breakgrab()
+	. = ..()
+
+/mob/living/carbon/superior_animal/proc/simplegrab(mob/living/target) // superior animals won't do this naturally, but this proc makes it easy to implement such behaviour in specific mobs
+	if(!target && target_mob)
+		target = target_mob // if no target was specified, but we have a target, default to them
+	else if(!target || !Adjacent(target))
+		return
+
+	visible_message(SPAN_WARNING("[src] grabs [target]!"))
+	target.grabbed_by += src
+	grabbing = target
+	cheap_update_lying_buckled_and_verb_status_()
+
+
+/mob/living/carbon/superior_animal/proc/breakgrab()
+	if(grabbing)
+		grabbing.grabbed_by -= src
+		grabbing = null
+		cheap_update_lying_buckled_and_verb_status_()
+
+
