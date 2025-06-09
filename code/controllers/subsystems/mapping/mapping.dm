@@ -91,6 +91,8 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/allowed_jobs = list() // Job name = job slots as number
 
+	var/cave_ore_count = 0
+
 
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
 	var/primary_map_to_load

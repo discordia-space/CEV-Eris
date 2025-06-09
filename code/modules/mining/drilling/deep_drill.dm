@@ -164,53 +164,6 @@
 			else if(!cave_gen.check_cooldown())
 				to_chat(user, SPAN_WARNING("The asteroid structure is too unstable for now to open a new cave system. Best to take your current haul to the ship, miner!\nYou have to wait [cave_gen.remaining_cooldown()] minutes."))
 			else //if we've gotten this far all the checks have succeeded so we can turn it on and gen a cave
-	if (panel_open && cell)
-		to_chat(user, "You take out \the [cell].")
-		cell.loc = get_turf(user)
-		component_parts -= cell
-		cell = null
-		return
-	else if(need_player_check)
-		to_chat(user, "You hit the manual override and reset the drill's error checking.")
-		need_player_check = FALSE
-		if(anchored)
-			get_resource_field()
-		update_icon()
-		return
-	else if(!panel_open)
-		if(health == 0)
-			to_chat(user, SPAN_NOTICE("The drill is too damaged to be turned on."))
-		else if(!anchored)
-			to_chat(user, SPAN_NOTICE("The drill needs to be anchored to be turned on."))
-		else if(!active && check_surroundings())
-			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
-		else if(world.time - last_use < DRILL_COOLDOWN)
-			to_chat(user, SPAN_WARNING("\The [src] needs some time to cool down! [round((last_use + DRILL_COOLDOWN - world.time) / 10)] seconds remaining."))
-		else if(use_cell_power())
-
-			if(!cave_connected)
-				if(cave_gen.is_generating())
-					to_chat(user, SPAN_WARNING("A cave system is already being dug."))
-				else if(cave_gen.is_opened())
-					to_chat(user, SPAN_WARNING("A cave system is already being explored."))
-				else if(cave_gen.is_collapsing() || cave_gen.is_cleaning())
-					to_chat(user, SPAN_WARNING("The cave system is being collapsed!"))
-				else if(!cave_gen.check_cooldown())
-					to_chat(user, SPAN_WARNING("The asteroid structure is too unstable for now to open a new cave system. Best to take your current haul to the ship, miner!\nYou have to wait [cave_gen.remaining_cooldown()] minutes."))
-				else
-					var/turf/T = get_turf(loc)
-					cave_connected = cave_gen.place_ladders(loc.x, loc.y, loc.z, T.seismic_activity)
-					update_icon()
-			else
-				if(!cave_gen.is_closed())  // If cave is already closed, something went wrong
-					log_and_message_admins("[key_name(user)] has collapsed an active cave system.")
-					cave_gen.initiate_collapse()
-				cave_connected = FALSE
-				update_icon()
-
-			/* // Only if on mother load
-			active = !active
-			if(active)
 				var/turf/T = get_turf(loc)
 				cave_connected = cave_gen.place_ladders(loc.x, loc.y, loc.z, T.seismic_activity)
 	else

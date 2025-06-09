@@ -81,7 +81,6 @@
 /datum/controller/subsystem/mapping/proc/build_asteroid()
 	var/asteroid_z = world.maxz
 	new /datum/random_map/automata/cave_system(null, 1, 1, asteroid_z, ASTEROID_SIZE, ASTEROID_SIZE)
-	new /datum/random_map/noise/ore(null, 1, 1, asteroid_z, ASTEROID_SIZE, ASTEROID_SIZE)
 
 #undef ASTEROID_SIZE
 

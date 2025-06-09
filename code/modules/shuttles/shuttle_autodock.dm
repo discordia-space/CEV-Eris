@@ -69,6 +69,7 @@
 	if(active_docking_controller)
 		active_docking_controller.initiate_docking(current_dock_target)
 		last_dock_attempt_time = world.time
+		build_destinations_cache()
 
 /datum/shuttle/autodock/proc/undock()
 	if(active_docking_controller)
@@ -194,7 +195,7 @@
 //This can be used by subtypes to do things when the shuttle arrives.
 //Note that this is called when the shuttle leaves the WAIT_FINISHED state, the proc name is a little misleading
 /datum/shuttle/autodock/proc/arrived()
-	return	//do nothing for now
+	build_destinations_cache()
 
 
 /datum/shuttle/autodock/proc/get_possible_destinations()
