@@ -189,11 +189,6 @@
 			return MOVEMENT_STOP
 	return MOVEMENT_PROCEED
 
-/mob/living/exosuit/lost_in_space()
-	for(var/atom/movable/AM in contents)
-		if(!AM.lost_in_space())
-			return FALSE
-	return !pilots.len
 
 /mob/living/exosuit/get_fall_damage(var/turf/from, var/turf/dest)
 	//Exosuits are big and heavy, but one z level can't damage them

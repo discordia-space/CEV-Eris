@@ -245,7 +245,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 			continue
 
 		// if burrow was closed before it has chance to be ignored
-		if (candidate.isSealed && candidate.isRevealed && prob(reroll_prob/3))
+		if (candidate.is_sealed && candidate.is_revealed && prob(reroll_prob/3))
 			continue
 
 		break
@@ -280,7 +280,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 			continue
 
 		// Burrow is closed
-		if(candidate.isSealed)
+		if(candidate.is_sealed)
 			continue
 
 		//Lets not take mobs away from a burrow that's requesting more

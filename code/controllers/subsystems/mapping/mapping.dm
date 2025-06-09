@@ -8,9 +8,13 @@ SUBSYSTEM_DEF(mapping)
 
 	var/next_map_name
 
+	// Keeping track of maps that were or currently are loading
 	var/currently_loading_map
 	var/list/map_loading_queue = list()
-	var/list/loaded_map_names = list() // Keep track of submaps that were or currently are loading
+	var/list/loaded_map_names = list()
+	// For maps that were queued for loading, but failed to actually load due to some technical issue
+	var/list/failed_map_names = list()
+
 
 	// Stores area references
 	var/list/all_areas = list() // Literally every area that was instantiated
@@ -113,7 +117,6 @@ SUBSYSTEM_DEF(mapping)
 	queue_map_loading("overmap")
 	queue_map_loading("asteroid")
 	// queue_map_loading("junk_field")
-	// queue_map_loading("deepmaint")
 
 	return ..()
 
@@ -246,3 +249,34 @@ SUBSYSTEM_DEF(mapping)
 
 /datum/controller/subsystem/mapping/proc/AreConnectedZLevels(zA, zB)
 	return zA == zB || (zB in GetConnectedZlevels(zA))
+
+
+// Readable return messages could be useful for manual proc calls
+#define MAP_STATUS_READY "Map is fully loaded."
+#define MAP_STATUS_LOADING_NOW "Map is currently loading..."
+#define MAP_STATUS_LOADING_QUEUED "Map is queued for loading."
+#define MAP_STATUS_ADDED_TO_QUEUE "Map is scheduled to load soon."
+#define MAP_STATUS_FAILED_TO_LOAD "Map is failed to load, files for requested name are missing."
+#define MAP_STATUS_NOT_WANTED_YET "Map with this name was not requested yet."
+
+/datum/controller/subsystem/mapping/proc/check_map_status(map_name, load_if_not_present, delayed_loading)
+	if(!map_name || !istext(map_name))
+		return "ERROR: No map name given as first argument."
+
+	if(map_name in loaded_map_names)
+		return MAP_STATUS_READY
+
+	if(map_name == currently_loading_map)
+		return MAP_STATUS_LOADING_NOW
+
+	if(map_name in map_loading_queue)
+		return MAP_STATUS_LOADING_QUEUED
+
+	if(map_name in failed_map_names)
+		return MAP_STATUS_FAILED_TO_LOAD
+
+	if(load_if_not_present)
+		queue_map_loading(map_name, delayed_loading)
+		return MAP_STATUS_ADDED_TO_QUEUE
+	else
+		return MAP_STATUS_NOT_WANTED_YET

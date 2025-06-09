@@ -1,42 +1,48 @@
-/datum/controller/subsystem/mapping/proc/queue_map_loading(map_name as text)
+/datum/controller/subsystem/mapping/proc/queue_map_loading(map_name as text, delayed_loading)
 	if(currently_loading_map)
 		map_loading_queue |= map_name
 	else
 		currently_loading_map = map_name
-		load_map_from_name(map_name)
+		load_map_from_name(map_name, delayed_loading)
 
 
-/datum/controller/subsystem/mapping/proc/load_map_from_name(map_name as text)
+/datum/controller/subsystem/mapping/proc/load_map_from_name(map_name as text, delayed_loading)
 	var/json_file
 	if(findtext(map_name, ".")) // map_name contains the entire path to .json
 		json_file = file(map_name)
 	else
 		json_file = file("maps/json/[map_name].json")
 
+	if(!isfile(json_file))
+		on_map_loaded(is_failed_to_load = TRUE)
+		return
 	var/json_text = file2text(json_file)
 	var/json_list = json_decode(json_text)
 	var/dmm_file_path = json_list["map_file"]
 	if(!dmm_file_path) // Overmap Z-level
-		on_map_loaded()
+		on_map_loaded(is_failed_to_load = TRUE)
 		return
-	load_map(dmm_file = file(dmm_file_path), z_level_info = json_list)
+	load_map(dmm_file = file(dmm_file_path), z_level_info = json_list, delayed_loading = delayed_loading)
 
 
-/datum/controller/subsystem/mapping/proc/on_map_loaded()
-	loaded_map_names |= currently_loading_map
-	currently_loading_map = null
+/datum/controller/subsystem/mapping/proc/on_map_loaded(is_failed_to_load = FALSE)
+	if(is_failed_to_load)
+		failed_map_names |= currently_loading_map
+	else
+		loaded_map_names |= currently_loading_map
 
 	var/call_proc_on_load = z_level_info_decoded[world.maxz]["call_proc_on_load"]
 	if(call_proc_on_load)
 		call(src, call_proc_on_load)()
 
+	currently_loading_map = null
 	if(LAZYLEN(map_loading_queue))
 		currently_loading_map = map_loading_queue[1]
 		map_loading_queue.RemoveAll(currently_loading_map)
 		load_map_from_name(currently_loading_map)
 
 
-/datum/controller/subsystem/mapping/proc/load_map(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation, z_level_info)
+/datum/controller/subsystem/mapping/proc/load_map(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation, z_level_info, delayed_loading)
 	#ifdef TESTING
 	turfsSkipped = 0
 	#endif
@@ -222,7 +228,7 @@
 
 			bounds[MAP_MAXX] = max(bounds[MAP_MAXX], cropMap ? min(maxx, world.maxx) : maxx)
 
-		//CHECK_TICK
+		CHECK_TICK
 
 	if(bounds[1] == 1.#INF) // Shouldn't need to check every item
 		return null
@@ -232,7 +238,9 @@
 		testing("Skipped loading [turfsSkipped] default turfs")
 	#endif
 
-	if(!measureOnly)
+	// If delayed_loading is true, then we'just loaded procedurally generating map that needs time to process itself
+	// It must call on_map_loaded() manually when done generating
+	if(!measureOnly && !delayed_loading)
 		SSmapping.on_map_loaded()
 		SSair.on_map_loaded()
 
@@ -379,7 +387,7 @@
 		first_turf_index++
 
 	//turn off base new Initialization until the whole thing is loaded
-	SSatoms.map_loader_begin()
+	// SSatoms.map_loader_begin()
 	//instanciate the first /turf
 	var/turf/T
 	if(members[first_turf_index] != /turf/template_noop)
@@ -398,7 +406,7 @@
 	for(index in 1 to first_turf_index-1)
 		instance_atom(members[index],members_attributes[index],crds,no_changeturf)
 	//Restore initialization to the previous value
-	SSatoms.map_loader_stop()
+	// SSatoms.map_loader_stop()
 
 ////////////////
 //Helpers procs
@@ -425,7 +433,7 @@
 
 	return atom
 
-	//custom CHECK_TICK here because we don't want things created while we're sleeping to not initialize
+	// Custom CHECK_TICK here because we don't want things created while we're sleeping to not initialize
 	// if(TICK_CHECK)
 	// 	SSatoms.map_loader_stop()
 	// 	stoplag()

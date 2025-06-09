@@ -34,7 +34,7 @@
 		name = rename
 
 /datum/map_template/proc/preload_size(path, orientation = SOUTH)
-	var/bounds = SSmapping.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
+	var/bounds = SSmapping.load_map(file(path), 1, 1, 1, cropMap = FALSE, measureOnly = TRUE, orientation = orientation, delayed_loading = TRUE)
 	if(bounds)
 		if(orientation & (90 | 270))
 			width = bounds[MAP_MAXY]
@@ -113,7 +113,7 @@
 	if(annihilate)
 		annihilate_bounds(old_T, centered, orientation)
 
-	var/list/bounds = SSmapping.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE, orientation = orientation)
+	var/list/bounds = SSmapping.load_map(file(mappath), T.x, T.y, T.z, cropMap = TRUE, orientation = orientation, delayed_loading = TRUE)
 	if(!bounds)
 		return
 
