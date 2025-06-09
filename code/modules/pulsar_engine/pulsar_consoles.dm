@@ -13,18 +13,14 @@
 	var/shield_power = 45
 	var/last_light_lvl = 0
 
-/obj/machinery/pulsar/Initialize(mapload, d)
+/obj/machinery/pulsar/LateInitialize()
 	linked = locate()
 	if(linked)
 		ship = locate() in get_area(linked)
 		if(ship)
 			RegisterSignal(ship, COMSIG_MOVABLE_MOVED, PROC_REF(onShipMoved))
-	. = ..()
-
-/obj/machinery/pulsar/LateInitialize()
 	scan_for_fuel()
 	. = ..()
-
 
 /obj/machinery/pulsar/relaymove(mob/user, direction)
 	if(map_active && linked)
@@ -182,12 +178,13 @@
 
 /obj/machinery/power/pulsar_power_bridge/Initialize(mapload, d)
 	. = ..()
+	SSmapping.check_map_status("pulsar", load_if_not_present = TRUE)
 	connect_to_network()
-	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/power/pulsar_power_bridge/LateInitialize()
-	. = ..()
-	pulsar_console = locate() in world //I can get away with it once, right?
+	..()
+	// pulsar_console = locate() in world //I can get away with it once, right?
+	pulsar_console = locate() in SSmachines.processing // Nope
 	if(pulsar_console)
 		pulsar_console.set_block_events(FALSE)
 		console_area = get_area(pulsar_console) //Area stored so reconnections are cheaper.

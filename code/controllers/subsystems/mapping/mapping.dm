@@ -101,21 +101,12 @@ SUBSYSTEM_DEF(mapping)
 	if(!istext(primary_map_to_load) || !LAZYLEN(primary_map_to_load))
 		primary_map_to_load = "eris_classic"
 
-
-// Queue main map and proc into implementing other config stuff
-// If pulsar is in the config - queue it as well
-
-// queue_map_loading("pulsar")
-// build_pulsar()
-
-
 	queue_map_loading(primary_map_to_load)
 	generate_holomaps()
 
 	queue_map_loading("technical_level")
 	queue_map_loading("overmap")
 	queue_map_loading("asteroid")
-	// queue_map_loading("junk_field")
 
 	return ..()
 
