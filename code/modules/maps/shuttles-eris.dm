@@ -122,40 +122,6 @@
 	base_turf = /turf/space
 	is_valid_destination = FALSE
 
-/obj/effect/shuttle_landmark/skipjack/start
-	name = "Raider Outpost"
-	icon_state = "shuttle-red"
-	landmark_tag = "nav_skipjack_start"
-	docking_controller = "skipjack_base"
-	is_valid_destination = FALSE
-
-/obj/effect/shuttle_landmark/skipjack/internim
-	name = "In transit"
-	icon_state = "shuttle-red"
-	landmark_tag = "nav_skipjack_transition"
-	is_valid_destination = FALSE
-/*
-/obj/effect/shuttle_landmark/skipjack/dock
-	name = "Docking Port"
-	icon_state = "shuttle-red"
-	landmark_tag = "nav_skipjack_dock"
-	docking_controller = "skipjack_shuttle_dock_airlock"
-	is_valid_destination = FALSE
-*/
-/obj/effect/shuttle_landmark/skipjack/northwest
-	name = "Northwest of the Vessel"
-	icon_state = "shuttle-red"
-	landmark_tag = "nav_skipjack_northwest"
-	is_valid_destination = FALSE
-
-/obj/effect/shuttle_landmark/skipjack/southeast
-	name = "Southeast of the Vessel"
-	icon_state = "shuttle-red"
-	landmark_tag = "nav_skipjack_southeast"
-	is_valid_destination = FALSE
-
-
-//Merc
 
 /datum/shuttle/autodock/multi/antag/mercenary
 	name = "Mercenary"

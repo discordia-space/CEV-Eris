@@ -16539,9 +16539,6 @@
 	},
 /turf/floor/hull,
 /area/space)
-"aQH" = (
-/turf/space,
-/area/space)
 "aQI" = (
 /obj/effect/overmap/ship/eris,
 /turf/space,
@@ -82474,10 +82471,6 @@
 	},
 /turf/floor/tiled/dark,
 /area/eris/command/meeting_room)
-"dWU" = (
-/obj/effect/shuttle_landmark/skipjack/northwest,
-/turf/space,
-/area/space)
 "dWV" = (
 /obj/machinery/shower{
 	dir = 4
@@ -93219,10 +93212,6 @@
 	},
 /turf/floor/tiled/steel/gray_perforated,
 /area/eris/storage/primary)
-"exR" = (
-/obj/effect/shuttle_landmark/skipjack/southeast,
-/turf/space,
-/area/space)
 "exS" = (
 /obj/structure/table/standard,
 /obj/item/storage/box/lights/bulbs,
@@ -107579,7 +107568,7 @@ aaa
 aaa
 aaa
 aaa
-aQH
+aaa
 "}
 (2,1,1) = {"
 aaa
@@ -276706,7 +276695,7 @@ aaa
 aaa
 aaa
 aaa
-dWU
+aaa
 aaa
 aaa
 aaa
@@ -303242,7 +303231,7 @@ aaa
 aaa
 aaa
 aaa
-exR
+aaa
 aaa
 aaa
 aaa

@@ -108,7 +108,7 @@ SUBSYSTEM_DEF(mapping)
 
 	queue_map_loading("technical_level")
 	queue_map_loading("overmap")
-	queue_map_loadint("transit")
+	queue_map_loading("transit")
 	queue_map_loading("asteroid")
 
 	return ..()
