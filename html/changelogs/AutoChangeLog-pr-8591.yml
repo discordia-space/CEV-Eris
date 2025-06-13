@@ -1,0 +1,11 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscadd: Added an alternative, smaller map of CEV Eris
+  - rscdel: Removed junk tractor beam
+  - rscdel: Removed unused shuttles such as Skipjack
+  - bugfix: Fixed airlocks not pressurizing sometimes
+  - bugfix: Fixed engine nozzles not using gas from connected pipes
+  - code_imp: Made it possible to load maps at runtime
+  - config: Added .json config files for all maps, these govern job slots and 
+      more
