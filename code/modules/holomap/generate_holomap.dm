@@ -76,7 +76,7 @@
 
 	for(var/current_section in 1 to section_count)
 		// How many sections we've processed before this one / by how many sections there are in each column
-		var/rows_complete = floor((current_section - 1) / column_count)
+		var/rows_complete = round((current_section - 1) / column_count)
 		// We're at least at row 1, offset by however many already filled out
 		var/current_row = 1 + rows_complete
 		var/current_column = current_section - (rows_complete * column_count)
