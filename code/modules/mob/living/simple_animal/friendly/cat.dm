@@ -311,7 +311,7 @@ var/cat_number = 0
 
 /mob/living/simple_animal/cat/runtime/Destroy()
 	// We teleport Dusty in the corner of one of the ship zlevel for stylish disparition
-	do_teleport(src, get_turf(locate(1, 1, pick(GLOB.maps_data.station_levels))), 2, 0, null, null, 'sound/effects/teleport.ogg', 'sound/effects/teleport.ogg')
+	do_teleport(src, get_turf(locate(1, 1, pick(SSmapping.main_ship_z_levels))), 2, 0, null, null, 'sound/effects/teleport.ogg', 'sound/effects/teleport.ogg')
 	cat_number -= 1
 	return ..()
 

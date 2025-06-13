@@ -130,7 +130,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/use_loyalty_implants = 0
 
 	var/welder_vision = 1
-	var/generate_asteroid = 0
 	var/no_click_cooldown = 0
 	var/z_level_shooting = TRUE
 
@@ -162,7 +161,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/announce_shuttle_dock_to_irc = FALSE
 	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
-	var/use_overmap = 0
 
 	var/start_location = "asteroid" // Start location defaults to asteroid.
 
@@ -347,9 +345,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					if(runtime_diary != newlog)
 						world.log << "Now logging runtimes to data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log"
 						runtime_diary = newlog
-
-				if ("generate_asteroid")
-					config.generate_asteroid = 1
 
 				if ("no_click_cooldown")
 					config.no_click_cooldown = 1
@@ -629,9 +624,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("max_maint_drones")
 					config.max_maint_drones = text2num(value)
-
-				if("use_overmap")
-					config.use_overmap = 1
 
 				if("expected_round_length")
 					config.expected_round_length = MinutesToTicks(text2num(value))

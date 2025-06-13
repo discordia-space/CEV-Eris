@@ -30,7 +30,7 @@
 
 	// 100 attempts
 	for(var/i=0, i<100, i++)
-		var/turf/candidate = locate(rand(1, world.maxx), rand(1, world.maxy), pick(GLOB.maps_data.station_levels))
+		var/turf/candidate = locate(rand(1, world.maxx), rand(1, world.maxy), pick(SSmapping.main_ship_z_levels))
 		if(istype(candidate, /turf/wall))
 			center = candidate //If necessary we'll settle for any wall
 			var/area/A = get_area(center)

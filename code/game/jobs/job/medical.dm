@@ -6,7 +6,6 @@
 	department_flag = MEDICAL | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
-	spawn_positions = 1
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#94a87f"
 	req_admin_notify = 1
@@ -65,8 +64,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL
 	faction = "CEV Eris"
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 2
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	wage = WAGE_PROFESSIONAL
@@ -126,8 +124,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 1
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	wage = WAGE_PROFESSIONAL
@@ -178,8 +175,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL
 	faction = "CEV Eris"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 1
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	wage = WAGE_LABOUR_HAZARD
@@ -247,8 +243,7 @@ Remember that you are a noncombatant. Any weapons you carry should be used for b
 	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 1
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	wage = WAGE_PROFESSIONAL

@@ -308,7 +308,7 @@ SUBSYSTEM_DEF(ticker)
 	cinematic.screen_loc = "1,0"
 
 	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
-		if(isOnStationLevel(M))
+		if(IS_SHIP_LEVEL(M.z))
 			if(M.client)
 				M.client.screen += cinematic
 			if(isliving(M))
@@ -483,11 +483,11 @@ SUBSYSTEM_DEF(ticker)
 			if(Player.stat != DEAD)
 				var/turf/playerTurf = get_turf(Player)
 				if(evacuation_controller.round_over() && evacuation_controller.emergency_evacuation)
-					if(isNotAdminLevel(playerTurf.z))
+					if(!IS_TECHNICAL_LEVEL(playerTurf.z)) // Escape pods and some other shuttles go to a normally inacessible Z-level
 						to_chat(Player, "<font color='blue'><b>You managed to survive, but were marooned on [station_name] as [Player.real_name]...</b></font>")
 					else
 						to_chat(Player, "<font color='green'><b>You managed to survive the events on [station_name] as [Player.real_name].</b></font>")
-				else if(isAdminLevel(playerTurf.z))
+				else if(IS_TECHNICAL_LEVEL(playerTurf.z))
 					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on [station_name] as [Player.real_name].</b></font>")
 				else if(issilicon(Player))
 					to_chat(Player, "<font color='green'><b>You remain operational after the events on [station_name] as [Player.real_name].</b></font>")

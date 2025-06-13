@@ -5,7 +5,7 @@
 	var/initialized = FALSE
 	var/uid 						// Needed for unlocking via recommendations since names are selected from a pool
 
-	var/tree_x = 0.1				// Position on the trade tree map, 0 - left, 1 - right                 
+	var/tree_x = 0.1				// Position on the trade tree map, 0 - left, 1 - right
 	var/tree_y = 0.1				// 0 - down, 1 - top
 
 	var/update_time = 0				// For displaying the time remaining on the UI
@@ -80,9 +80,9 @@
 		x = rand(forced_overmap_zone[1][1], forced_overmap_zone[1][2])
 		y = rand(forced_overmap_zone[2][1], forced_overmap_zone[2][2])
 	else
-		x = rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size)
-		y = rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size)
-	place_overmap(min(x, GLOB.maps_data.overmap_size - OVERMAP_EDGE), min(y, GLOB.maps_data.overmap_size - OVERMAP_EDGE))
+		x = rand(OVERMAP_EDGE, OVERMAP_SIZE)
+		y = rand(OVERMAP_EDGE, OVERMAP_SIZE)
+	place_overmap(min(x, OVERMAP_SIZE - OVERMAP_EDGE), min(y, OVERMAP_SIZE - OVERMAP_EDGE))
 
 	SStrade.all_stations += src
 	if(start_discovered)
@@ -196,7 +196,7 @@
 
 	if(!recommendation_unlocked)
 		try_recommendation()
-	
+
 /datum/trade_station/proc/try_unlock_hidden_inv()
 	if(favor >= hidden_inv_threshold)
 		hidden_inv_unlocked = TRUE
@@ -290,7 +290,7 @@
 	qdel(overmap_location)
 	return ..()
 
-/datum/trade_station/proc/place_overmap(x, y, z = GLOB.maps_data.overmap_z)
+/datum/trade_station/proc/place_overmap(x, y, z = SSmapping.overmap_z)
 	overmap_location = locate(x, y, z)
 
 	overmap_object = new(overmap_location)
@@ -304,7 +304,7 @@
 		GLOB.entered_event.register(overmap_location, src, PROC_REF(discovered))
 
 /datum/trade_station/proc/discovered(_, obj/effect/overmap/ship/ship)
-	if(!istype(ship) || !ship.base)
+	if(!istype(ship))
 		return
 
 	SStrade.discovered_stations |= src

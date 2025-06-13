@@ -33,7 +33,7 @@ Pipelines + Other Objects -> Pipe network
 	var/obj/machinery/atmospherics/node1
 	var/obj/machinery/atmospherics/node2
 
-/obj/machinery/atmospherics/New()
+/obj/machinery/atmospherics/LateInitialize()
 	if(!icon_manager)
 		icon_manager = new()
 

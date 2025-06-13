@@ -20,7 +20,7 @@
 	layer = GAS_FILTER_LAYER
 
 
-/obj/machinery/atmospherics/portables_connector/New()
+/obj/machinery/atmospherics/portables_connector/LateInitialize()
 	initialize_directions = dir
 	..()
 

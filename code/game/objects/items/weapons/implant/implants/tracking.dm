@@ -72,7 +72,7 @@
 
 	// EMPed - pick a fake location
 	if(I.malfunction)
-		var/area/A = SSmapping.teleportlocs[pick(SSmapping.teleportlocs)]
+		var/area/A = pick(SSmapping.main_ship_areas)
 		var/turf/T = get_turf(pick(A.contents))
 		if(istype(T))
 			return new /datum/coords(T)

@@ -229,8 +229,8 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	for(var/thing in portal_lines + src)
 		var/obj/effect/map_effect/portal/P = thing
 
-		P.pixel_x = WORLD_ICON_SIZE * P.portal_distance_x
-		P.pixel_y = WORLD_ICON_SIZE * P.portal_distance_y
+		P.pixel_x = world.icon_size * P.portal_distance_x
+		P.pixel_y = world.icon_size * P.portal_distance_y
 
 // Allows portals to transfer emotes.
 // Only portal masters do this to avoid flooding the other side with duplicate messages.

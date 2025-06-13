@@ -238,17 +238,20 @@ SUBSYSTEM_DEF(job)
 	for(var/datum/job/occupation in occupations)
 		file << "[occupation.title]=0"
 
-/datum/controller/subsystem/job/proc/SetupOccupations(faction = "CEV Eris")
+/datum/controller/subsystem/job/proc/SetupOccupations()
 	occupations.Cut()
 	occupations_by_name.Cut()
 	for(var/J in subtypesof(/datum/job))
 		var/datum/job/job = new J()
-		if(job.faction != faction)
-			continue
+		if(SSmapping.allowed_jobs && LAZYLEN(SSmapping.allowed_jobs))
+			if(job.title in SSmapping.allowed_jobs)
+				job.total_positions = SSmapping.allowed_jobs[job.title]
+			else
+				continue
 		occupations += job
 		occupations_by_name[job.title] = job
 
-	if(!occupations.len)
+	if(!LAZYLEN(occupations))
 		to_chat(world, SPAN_WARNING("Error setting up jobs, no job datums found!"))
 		return FALSE
 
@@ -275,8 +278,6 @@ SUBSYSTEM_DEF(job)
 			return FALSE
 
 		var/position_limit = job.total_positions
-		if(!latejoin)
-			position_limit = job.spawn_positions
 		if((job.current_positions < position_limit) || position_limit == -1)
 			Debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
 			player.mind.assigned_role = rank
@@ -345,7 +346,7 @@ SUBSYSTEM_DEF(job)
 		// cant be Neotheology without a cruciform
 		if(job.department == DEPARTMENT_CHURCH && istype(I.implant_type,/obj/item/implant/core_implant/cruciform))
 			continue
-		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
+		if((job.current_positions < job.total_positions) || job.total_positions == -1)
 			Debug("GRJ Random job given, Player: [player], Job: [job]")
 			AssignRole(player, job.title)
 			unassigned -= player
@@ -421,13 +422,6 @@ SUBSYSTEM_DEF(job)
 	Debug("Running DO")
 	SetupOccupations()
 
-	//Holder for Triumvirate is stored in the ticker, this just processes it
-	if(SSticker.triai)
-		for(var/datum/job/A in occupations)
-			if(A.title == "AI")
-				A.spawn_positions = 3
-				break
-
 	//Get the players who are ready
 	for(var/mob/new_player/player in GLOB.player_list)
 		if(player.ready && player.mind && !player.mind.assigned_role)
@@ -489,7 +483,7 @@ SUBSYSTEM_DEF(job)
 				if(player.client.prefs.CorrectLevel(job,level))
 
 					// If the job isn't filled
-					if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
+					if((job.current_positions < job.total_positions) || job.total_positions == -1)
 						Debug("DO pass, Player: [player], Level:[level], Job:[job.title]")
 						AssignRole(player, job.title)
 						unassigned -= player
@@ -560,7 +554,7 @@ SUBSYSTEM_DEF(job)
 
 		// EMAIL GENERATION
 		if(rank != "Robot" && rank != "AI")		//These guys get their emails later.
-			ntnet_global.create_email(H, H.real_name, pick(GLOB.maps_data.usable_email_tlds))
+			ntnet_global.create_email(H, H.real_name, pick(SSmapping.usable_email_tlds))
 
 	else
 		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
@@ -700,7 +694,6 @@ SUBSYSTEM_DEF(job)
 			var/datum/job/J = GetJob(name)
 			if(!J)	continue
 			J.total_positions = text2num(value)
-			J.spawn_positions = text2num(value)
 			if(name == "AI" || name == "Robot")//I dont like this here but it will do for now
 				J.total_positions = 0
 
@@ -757,7 +750,7 @@ SUBSYSTEM_DEF(job)
 		if(pref_spawn)
 			SP = get_spawn_point(pref_spawn, late = TRUE)
 		else
-			SP = get_spawn_point(GLOB.maps_data.default_spawn, late = TRUE)
+			SP = get_spawn_point(SSmapping.default_spawn, late = TRUE)
 			to_chat(H, SPAN_WARNING("You have not selected spawnpoint in preference menu."))
 	else
 		SP = get_spawn_point(rank)

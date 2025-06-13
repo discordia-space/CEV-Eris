@@ -42,26 +42,6 @@
 /datum/shuttle/autodock/overmap/can_force()
 	return ..() && can_go()
 
-/datum/shuttle/autodock/overmap/proc/set_destination(var/obj/effect/shuttle_landmark/A)
-	if(A != current_location)
-		next_location = A
-		move_time = initial(move_time) * (1 + 0.01 * get_dist(waypoint_sector(current_location),waypoint_sector(next_location)))
-
-/datum/shuttle/autodock/overmap/proc/get_possible_destinations()
-	var/list/res = list()
-	var/area/overmap/map = locate() in world
-	for(var/obj/effect/overmap/sector/S in map) // Infinite range to avoid depending on ship position
-		if(S.known)
-			for(var/obj/effect/shuttle_landmark/LZ in S.get_waypoints(src.name))
-				if(LZ.is_valid(src))
-					res["[S.name_stages[1]] - [LZ.name]"] = LZ
-
-	for(var/obj/effect/overmap/ship/eris/S in map)
-		for(var/obj/effect/shuttle_landmark/LZ in S.get_waypoints(src.name))
-			if(LZ.is_valid(src))
-				res["[S.name_stages[1]] - [LZ.name]"] = LZ
-	return res
-
 /datum/shuttle/autodock/overmap/proc/get_location_name()
 	if(moving_status == SHUTTLE_INTRANSIT)
 		return "In transit"

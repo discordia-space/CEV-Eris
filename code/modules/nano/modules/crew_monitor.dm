@@ -4,9 +4,9 @@
 /datum/nano_module/crew_monitor/Topic(href, href_list)
 	if(..())
 		return 1
-	// TODO: Allow setting any config.contact_levels from the interface.
-	if(!isOnPlayerLevel(nano_host()))
-		usr << "<span class='warning'>Unable to establish a connection</span>: You're too far away from the station!"
+	var/atom/host_atom = nano_host()
+	if(host_atom && !IS_PLAYABLE_LEVEL(host_atom.z))
+		usr << SPAN_WARNING("Unable to establish a connection: You're too far away from the ship!")
 		return 0
 	if(href_list["track"])
 		if(isAI(usr))

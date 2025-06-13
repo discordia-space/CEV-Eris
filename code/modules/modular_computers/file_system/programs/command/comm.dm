@@ -63,9 +63,9 @@
 	data["state"] = current_status
 	data["isAI"] = issilicon(usr)
 	data["authenticated"] = is_autenthicated(user)
-	//data["boss_short"] = GLOB.maps_data.boss_short
+	//data["boss_short"] = SSmapping.boss_short
 
-	var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
+	var/decl/security_state/security_state = decls_repository.get_decl(SSmapping.security_state)
 	data["current_security_level_ref"] = any2ref(security_state.current_security_level)
 	data["current_security_level_title"] = security_state.current_security_level.name
 
@@ -144,11 +144,7 @@
 						to_chat(usr, SPAN_WARNING("You think better of announcing something so foolish."))
 						return 1
 
-				var/affected_zlevels = GLOB.maps_data.contact_levels
-				var/atom/A = host
-				if(istype(A))
-					affected_zlevels = GetConnectedZlevels(A.z)
-				crew_announcement.Announce(input, zlevels = affected_zlevels, use_text_to_speech = TRUE)
+				crew_announcement.Announce(input, use_text_to_speech = TRUE)
 				announcment_cooldown = 1
 				spawn(600)//One minute cooldown
 					announcment_cooldown = 0
@@ -182,12 +178,12 @@
 						to_chat(usr, "<span class='warning'>No Emergency Bluespace Relay detected. Unable to transmit message.</span>")
 						return 1
 
-					var/input = sanitize(input("Please choose a message to transmit to [GLOB.maps_data.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
+					var/input = sanitize(input("Please choose a message to transmit to [SSmapping.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
 					if(!input || !can_still_topic())
 						return 1
 					Centcom_announce(input, usr)
 					to_chat(usr, "<span class='notice'>Message transmitted.</span>")
-					log_say("[key_name(usr)] has made an IA [GLOB.maps_data.boss_short] announcement: [input]")
+					log_say("[key_name(usr)] has made an IA [SSmapping.boss_short] announcement: [input]")
 					centcom_message_cooldown = 1
 					spawn(300) //30 second cooldown
 						centcom_message_cooldown = 0
@@ -227,7 +223,7 @@
 		if("setalert")
 			. = 1
 			if(is_autenthicated(user) && !issilicon(usr) && ntn_cont && ntn_comm)
-				var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
+				var/decl/security_state/security_state = decls_repository.get_decl(SSmapping.security_state)
 				var/decl/security_level/target_level = locate(href_list["target"]) in security_state.comm_console_security_levels
 				if(target_level && security_state.can_switch_to(target_level))
 					var/confirm = alert("Are you sure you want to change the alert level to [target_level.name]?", name, "No", "Yes")
@@ -348,7 +344,7 @@ var/last_message_id = 0
 		return
 /*
 	if(GLOB.deathsquad.deployed)
-		to_chat(user, "[GLOB.maps_data.boss_short] will not allow an evacuation to take place. Consider all contracts terminated.")
+		to_chat(user, "[SSmapping.boss_short] will not allow an evacuation to take place. Consider all contracts terminated.")
 		return
 */
 	if(evacuation_controller.deny)

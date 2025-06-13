@@ -248,7 +248,7 @@
 			qdel(plant)
 		plant.update_neighbors()
 	clear_bulletholes()
-	..() // Call /turf/proc/ChangeTurf()
+	. = ..() // Call /turf/proc/ChangeTurf()
 
 
 /turf/wall/examine(mob/user, extra_description = "")

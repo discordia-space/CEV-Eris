@@ -22,158 +22,119 @@
 					|| istype(tile, /turf/shuttle/floor) \
 					|| (locate(/obj/structure/catwalk) in tile))
 
-/// Generates all the holo minimaps, initializing it all nicely, probably.
-/datum/controller/subsystem/holomaps/proc/generateHoloMinimaps()
-	var/start_time = world.timeofday
-	// Build the base map for each z level
-	for (var/z = 1 to GLOB.maps_data.station_levels.len)
-		holoMiniMaps |= z // hack, todo fix
-		holoMiniMaps[z] = generateHoloMinimap(z)
 
-	// Generate the area overlays, small maps, etc for the station levels.
-	for (var/level in GLOB.maps_data.station_levels)
-		generateStationMinimap(level)
+/datum/controller/subsystem/mapping/proc/generate_holomaps()
+	var/list/levels_to_map = SSmapping.main_ship_z_levels
+	if(!LAZYLEN(levels_to_map))
+		return
 
-	if(GLOB.maps_data.holomap_smoosh)
-		for(var/smoosh_list in GLOB.maps_data.holomap_smoosh)
-			smooshTetherHolomaps(smoosh_list)
+	// One section per Z-level plus the map legend
+	var/section_count = LAZYLEN(levels_to_map) + 1
+	var/row_count = 1
+	var/column_count = 3 // We always have 3 columns on the holomap unless the map is not multi-Z
+	switch(section_count)
+		if(2) // If we only have a single Z-level to draw + holomap legend
+			column_count = 2
+		if(4 to 6) // Each row fits up to 3 sections
+			row_count = 2
+		if(6 to 9)
+			row_count = 3
 
-	holomaps_initialized = TRUE
-	admin_notice(SPAN_DANGER("Holomaps initialized in [round(0.1*(world.timeofday-start_time),0.1)] seconds."), R_DEBUG)
+	// Multi-Z maps use the same X and Y dimensions for each individual Z-level, so look up the first one
+	var/list/z_level_info = SSmapping.z_level_info_decoded[levels_to_map[1]]
+	if(!z_level_info)
+		return
+	var/map_size_x = z_level_info["map_size_x"]
+	var/map_size_y = z_level_info["map_size_y"]
 
-	// TODO - Check - They had a delayed init perhaps?
-	for (var/obj/machinery/holomap/S in station_holomaps)
-		S.setup_holomap()
+	var/row_offset = 0
+	var/column_offset = 0
 
-// Generates the "base" holomap for one z-level, showing only the physical structure of walls and paths.
-/datum/controller/subsystem/holomaps/proc/generateHoloMinimap(zLevel)
-	// Save these values now to avoid a bazillion array lookups
-	var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel)
-	var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel)
+	// How many pixels it would take to represent every tile from every Z-level with one pixel
+	// map_size typically would be 150 or 200; row_count would be 2
+	row_offset = map_size_y * row_count
+	// How many pixels we have leftover (or missing, if the map is large enough) on the canvas
+	row_offset = 480 - row_offset
+	// By how many pixels on Y we pad or shrink the map
+	row_offset = row_offset / row_count
 
-	// Sanity checks - Better to generate a helpful error message now than have DrawBox() runtime
-	var/icon/canvas = icon(HOLOMAP_ICON, "blank")
-	if(world.maxx + offset_x > canvas.Width())
-		CRASH("Minimap for z=[zLevel] : world.maxx ([world.maxx]) + holomap_offset_x ([offset_x]) must be <= [canvas.Width()]")
-	if(world.maxy + offset_y > canvas.Height())
-		CRASH("Minimap for z=[zLevel] : world.maxy ([world.maxy]) + holomap_offset_y ([offset_y]) must be <= [canvas.Height()]")
+	// Same as with rows, but here we expect offset to be negative a lot of the time
+	// which is fine, because normally decks are much more tall than they are wide,
+	// they usually fit in 100x150 dimensions regardless of the actual X and Y bounds
+	// So skipping empty space (that we don't draw on the holomap anyway) on the edges is inconsequential
+	column_offset = map_size_x * column_count
+	column_offset = 480 - column_offset
+	column_offset = column_offset / column_count
 
-	for(var/x = 1 to world.maxx)
-		for(var/y = 1 to world.maxy)
-			var/turf/tile = locate(x, y, zLevel)
-			if(tile && tile.loc:holomapAlwaysDraw())
+	// Drawing on two separate icons just to layer them together later
+	// Otherwise area's DrawBox() would completely cover that of turf
+	var/icon/turf_icon = icon('icons/480x480.dmi', "blank")
+	var/icon/area_icon = icon('icons/480x480.dmi', "blank")
+	var/icon/holomap = icon('icons/480x480.dmi', "stationmap")
+	var/image/legend = image('icons/effects/64x64.dmi', "legend")
+	var/list/deck_numbers = list()
+
+	for(var/current_section in 1 to section_count)
+		// How many sections we've processed before this one / by how many sections there are in each column
+		var/rows_complete = floor((current_section - 1) / column_count)
+		// We're at least at row 1, offset by however many already filled out
+		var/current_row = 1 + rows_complete
+		var/current_column = current_section - (rows_complete * column_count)
+
+		var/offset_x = (current_column - 1) * (map_size_x + column_offset)
+		if(!offset_x && (column_offset > 0))
+			offset_x = column_offset
+
+		var/offset_y = (current_row - 1) * (map_size_y + row_offset)
+		if(!offset_y && (row_offset > 0))
+			offset_y = row_offset
+
+		// Either reached the last section, which is holomap legend, or our map is
+		// comically tall and we need to bail while there is still space on the canvas
+		if(current_section > LAZYLEN(levels_to_map) || (current_section > 8))
+			legend.pixel_x = offset_x
+			legend.pixel_y = offset_y
+			// Legend itself is 64x64, but our holomap sections could be of various sizes
+			// So we calculate how off-center legend is relatively to other sections and move it by that much
+			var/extra_legend_offset_x = (map_size_x - 64) / 2
+			var/extra_legend_offset_y = (map_size_y - 64) / 2
+			legend.pixel_x += extra_legend_offset_x
+			legend.pixel_y += extra_legend_offset_y
+			break
+
+		var/z_level = levels_to_map[current_section]
+
+		holomap_offsets_per_z_level["[z_level]"] = list(offset_x, offset_y)
+
+		for(var/x = 1 to map_size_x)
+			for(var/y = 1 to map_size_y)
+				var/turf/tile = locate(x, y, z_level)
+				if(!tile)
+					continue
 				if(IS_ROCK(tile))
-					canvas.DrawBox(HOLOMAP_ROCK, x + offset_x, y + offset_y)
-				if(IS_OBSTACLE(tile))
-					canvas.DrawBox(HOLOMAP_OBSTACLE, x + offset_x, y + offset_y)
+					turf_icon.DrawBox(HOLOMAP_ROCK, x + offset_x, y + offset_y)
+				else if(IS_OBSTACLE(tile))
+					turf_icon.DrawBox(HOLOMAP_OBSTACLE, x + offset_x, y + offset_y)
 				else if(IS_PATH(tile))
-					canvas.DrawBox(HOLOMAP_PATH, x + offset_x, y + offset_y)
-		// Check sleeping after each row to avoid *completely* destroying the server
-		CHECK_TICK
-	return canvas
+					turf_icon.DrawBox(HOLOMAP_PATH, x + offset_x, y + offset_y)
 
-// Okay, what does this one do?
-// This seems to do the drawing thing, but draws only the areas, having nothing to do with the tiles.
-// Leshana: I'm guessing this map will get overlayed on top of the base map at runtime? We'll see.
-// Wait, seems we actually blend the area map on top of it right now! Huh.
-/datum/controller/subsystem/holomaps/proc/generateStationMinimap(zLevel)
-	// Save these values now to avoid a bazillion array lookups
-	var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel)
-	var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel)
+				var/area/area = tile.loc // .loc of a /turf is /area on the same coordinates, m'kay?
+				if(istype(area) && area.holomap_color)
+					area_icon.DrawBox(area.holomap_color, x + offset_x, y + offset_y)
 
-	// Sanity checks - Better to generate a helpful error message now than have DrawBox() runtime
-	var/icon/canvas = icon(HOLOMAP_ICON, "blank")
-	if(world.maxx + offset_x > canvas.Width())
-		CRASH("Minimap for z=[zLevel] : world.maxx ([world.maxx]) + holomap_offset_x ([offset_x]) must be <= [canvas.Width()]")
-	if(world.maxy + offset_y > canvas.Height())
-		CRASH("Minimap for z=[zLevel] : world.maxy ([world.maxy]) + holomap_offset_y ([offset_y]) must be <= [canvas.Height()]")
-
-	for(var/x = 1 to world.maxx)
-		for(var/y = 1 to world.maxy)
-			var/turf/tile = locate(x, y, zLevel)
-			if(tile && tile.loc)
-				var/area/areaToPaint = tile.loc
-				if(areaToPaint.holomap_color)
-					canvas.DrawBox(areaToPaint.holomap_color, x + offset_x, y + offset_y)
-
-	// Save this nice area-colored canvas in case we want to layer it or something I guess
-	extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPAREAS]_[zLevel]"] = canvas
-
-	var/icon/map_base = icon(holoMiniMaps[zLevel])
-	map_base.Blend(HOLOMAP_HOLOFIER, ICON_MULTIPLY)
+		var/icon/deck_number = icon('icons/480x480.dmi', "deck[current_section]")
+		deck_number.Shift(EAST, offset_x)
+		deck_number.Shift(NORTH, offset_y)
+		deck_numbers += deck_number
 
 
-	// Generate the full sized map by blending the base and areas onto the backdrop
-	var/icon/big_map = icon(HOLOMAP_ICON, "stationmap")
-	var/icon/deck_name = icon(HOLO_DECK_NAME, "deck")
-	deck_name.Blend(deck_name, ICON_OVERLAY, zLevel)
-	big_map.Blend(map_base, ICON_OVERLAY)
-	big_map.Blend(canvas, ICON_OVERLAY)
-
-	extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAP]_[zLevel]"] = big_map
-
-	// Generate the "small" map (I presume for putting on wall map things?)
-	var/icon/small_map = icon(HOLOMAP_ICON, "blank")
-	small_map.Blend(map_base, ICON_OVERLAY)
-	small_map.Blend(canvas, ICON_OVERLAY)
-	small_map.Scale(WORLD_ICON_SIZE, WORLD_ICON_SIZE)
-
-	// And rotate it in every direction of course!
-	var/icon/actual_small_map = icon(small_map)
-	actual_small_map.Insert(new_icon = small_map, dir = SOUTH)
-	actual_small_map.Insert(new_icon = turn(small_map, 90), dir = WEST)
-	actual_small_map.Insert(new_icon = turn(small_map, 180), dir = NORTH)
-	actual_small_map.Insert(new_icon = turn(small_map, 270), dir = EAST)
-	extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[zLevel]"] = actual_small_map
-
-// For tiny multi-z maps like the tether, we want to smoosh em together into a nice big one!
-/datum/controller/subsystem/holomaps/proc/smooshTetherHolomaps(list/zlevels)
-	var/icon/big_map = icon(HOLOMAP_ICON, "stationmap")
-	var/icon/small_map = icon(HOLOMAP_ICON, "blank")
-	// For each zlevel in turn, overlay them on top of each other
-	for(var/zLevel in zlevels)
-		var/icon/z_terrain = icon(holoMiniMaps[zLevel])
-		z_terrain.Blend(HOLOMAP_HOLOFIER, ICON_MULTIPLY)
-		big_map.Blend(z_terrain, ICON_OVERLAY)
-		small_map.Blend(z_terrain, ICON_OVERLAY)
-		var/icon/z_areas = extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPAREAS]_[zLevel]"]
-		big_map.Blend(z_areas, ICON_OVERLAY)
-		small_map.Blend(z_areas, ICON_OVERLAY)
-
-	// Then scale and rotate to make the actual small map we will use
-	small_map.Scale(WORLD_ICON_SIZE, WORLD_ICON_SIZE)
-	var/icon/actual_small_map = icon(small_map)
-	actual_small_map.Insert(new_icon = small_map, dir = SOUTH)
-	actual_small_map.Insert(new_icon = turn(small_map, 90), dir = WEST)
-	actual_small_map.Insert(new_icon = turn(small_map, 180), dir = NORTH)
-	actual_small_map.Insert(new_icon = turn(small_map, 270), dir = EAST)
-
-	// Then assign this icon as the icon for all those levels!
-	for(var/zLevel in zlevels)
-		extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAP]_[zLevel]"] = big_map
-		extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[zLevel]"] = actual_small_map
-
-// TODO - Holomap Markers!
-// /proc/generateMinimapMarkers(var/zLevel)
-// 	// Save these values now to avoid a bazillion array lookups
-// 	var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel)
-// 	var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel)
-
-// 	// TODO - Holomap markers
-// 	for(var/filter in list(HOLOMAP_FILTER_STATIONMAP))
-// 		var/icon/canvas = icon(HOLOMAP_ICON, "blank")
-// 		for(/datum/holomap_marker/holomarker in holomap_markers)
-// 			if(holomarker.z == zLevel && holomarker.filter & filter)
-// 				canvas.Blend(icon(holomarker.icon, holomarker.icon_state), ICON_OVERLAY, holomarker.x + offset_x, holomarker.y + offset_y)
-// 		extraMiniMaps["[HOLOMAP_EXTRA_MARKERS]_[filter]_[zLevel]"] = canvas
-
-// /datum/holomap_marker
-// 	var/x
-// 	var/y
-// 	var/z
-// 	var/filter
-// 	var/icon = 'icons/holomap_markers.dmi'
-// 	var/icon_state
+	turf_icon.Blend(HOLOMAP_HOLOFIER, ICON_MULTIPLY)
+	holomap.Blend(turf_icon, ICON_OVERLAY)
+	holomap.Blend(area_icon, ICON_OVERLAY)
+	for(var/icon/deck_number in deck_numbers)
+		holomap.Blend(deck_number, ICON_OVERLAY)
+	SSmapping.holomap = image(holomap)
+	SSmapping.holomap.overlays.Add(legend)
 
 #undef IS_ROCK
 #undef IS_OBSTACLE

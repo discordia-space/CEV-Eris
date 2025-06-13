@@ -105,7 +105,7 @@
 /datum/individual_objective/stripping/assign()
 	..()
 	var/list/valied_areas = list()
-	for(var/area/A in ship_areas)
+	for(var/area/A as anything in SSmapping.main_ship_areas)
 		var/current_price = 0
 		if(A in valied_areas)
 			continue

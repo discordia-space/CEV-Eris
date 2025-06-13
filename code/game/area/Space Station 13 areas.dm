@@ -12,6 +12,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 */
 
+// Special area for use in .dmm chunks that compose randomly generated maps
+/area/template_noop
+	name = "Area Passthrough"
+
+
 /area/space
 	name = "\improper Space"
 	icon_state = "space"
@@ -386,51 +391,11 @@ area/space/atmosalert()
 	icon_state = "cave"
 	sound_env = SMALL_ENCLOSED
 
-
-
 /area/wizard_station
 	name = "\improper Wizard's Den"
 	icon_state = "yellow"
 	requires_power = FALSE
 	dynamic_lighting = 0
-
-/area/skipjack_station
-	name = "\improper Skipjack"
-	icon_state = "yellow"
-	requires_power = FALSE
-
-/area/skipjack_station/start
-	name = "\improper Skipjack"
-	icon_state = "yellow"
-
-/area/skipjack_station/transit
-	name = "\improper hyperspace"
-	icon_state = "shuttle"
-
-/area/skipjack_station/southwest_solars
-	name = "\improper aft port solars"
-	icon_state = "southwest"
-
-/area/skipjack_station/northwest_solars
-	name = "\improper fore port solars"
-	icon_state = "northwest"
-
-/area/skipjack_station/northeast_solars
-	name = "\improper fore starboard solars"
-	icon_state = "northeast"
-
-/area/skipjack_station/southeast_solars
-	name = "\improper aft starboard solars"
-	icon_state = "southeast"
-
-/area/skipjack_station/mining
-	name = "\improper south of mining station"
-	icon_state = "north"
-	base_turf = /turf/floor/asteroid
-
-
-
-//Holodeck
 
 /area/holodeck
 	name = "\improper Holodeck"

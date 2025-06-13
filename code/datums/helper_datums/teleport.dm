@@ -159,7 +159,7 @@
 	   istype(teleatom, /obj/item/storage/bag/ore/holding))
 		precision = rand(1, 100)
 
-	var/ofholding = 0	
+	var/ofholding = 0
 	var/list/bagholding = teleatom.search_contents_for(/obj/item/storage/backpack/holding)
 	if(bagholding.len)
 		ofholding += bagholding.len
@@ -210,7 +210,7 @@
 			teleatom.visible_message(SPAN_DANGER("\The [teleatom] bounces off of the portal!"))
 		return 0
 
-	if(isAdminLevel(destination.z))
+	if(IS_TECHNICAL_LEVEL(destination.z))
 		if(istype(teleatom, /mob/living/exosuit))
 			var/mob/living/exosuit/MM = teleatom
 			MM.occupant_message(SPAN_DANGER("\The [MM.pilots.Join(" and ")] would not survive the jump to a location so far away!"))
@@ -219,7 +219,4 @@
 			teleatom.visible_message(SPAN_DANGER("\The [teleatom] bounces off of the portal!"))
 			return 0
 
-
-	if(destination.z > max_default_z_level()) //Away mission z-levels
-		return 0
 	return 1

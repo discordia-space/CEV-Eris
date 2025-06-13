@@ -10,7 +10,7 @@
 
 /obj/effect/overmap_event/proc/handle_wraparound()
 	var/low_edge = 1
-	var/high_edge = GLOB.maps_data.overmap_size - 1
+	var/high_edge = OVERMAP_SIZE - 1
 
 	if(dir == WEST && x == low_edge)
 		del_event()
@@ -87,44 +87,41 @@
 /obj/effect/overmap_event/movable/Initialize()
 	. = ..()
 	moving_vector = NORTH
-	start_x = pick(2, GLOB.maps_data.overmap_size - 1)
-	start_y = pick(2, GLOB.maps_data.overmap_size - 1)
+	start_x = pick(2, OVERMAP_SIZE - 1)
+	start_y = pick(2, OVERMAP_SIZE - 1)
 
 	if(start_x == 2 && start_y == 2)
-		start_x = rand(2, GLOB.maps_data.overmap_size - rand(5,10))
-		start_y = rand(2, GLOB.maps_data.overmap_size - rand(5,10))
+		start_x = rand(2, OVERMAP_SIZE - rand(5,10))
+		start_y = rand(2, OVERMAP_SIZE - rand(5,10))
 		moving_vector = pick(NORTH, EAST, NORTHEAST)
 
-	if(start_x == 2 && start_y == GLOB.maps_data.overmap_size - 1)
-		start_x = rand(2, GLOB.maps_data.overmap_size - rand(5,10))
+	if(start_x == 2 && start_y == OVERMAP_SIZE - 1)
+		start_x = rand(2, OVERMAP_SIZE - rand(5,10))
 		moving_vector = pick(SOUTH, EAST, SOUTHEAST)
 
-	if(start_x == GLOB.maps_data.overmap_size - 1 && start_y == GLOB.maps_data.overmap_size - 1)
+	if(start_x == OVERMAP_SIZE - 1 && start_y == OVERMAP_SIZE - 1)
 		moving_vector = pick(SOUTH, WEST, SOUTHWEST)
 
-	if(start_x == GLOB.maps_data.overmap_size - 1 && start_y == 2)
-		start_y = rand(2, GLOB.maps_data.overmap_size - rand(5,10))
+	if(start_x == OVERMAP_SIZE - 1 && start_y == 2)
+		start_y = rand(2, OVERMAP_SIZE - rand(5,10))
 		moving_vector = pick(NORTH, WEST, NORTHWEST)
 
-	if(!config.use_overmap)
-		return
+	start_x = start_x || rand(OVERMAP_EDGE, OVERMAP_SIZE - OVERMAP_EDGE)
+	start_y = start_y || rand(OVERMAP_EDGE, OVERMAP_SIZE - OVERMAP_EDGE)
 
-	start_x = start_x || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
-	start_y = start_y || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
-
-	map_z = GetConnectedZlevels(z)
+	map_z = SSmapping.GetConnectedZlevels(z)
 	for(var/zlevel in map_z)
 		map_sectors["[zlevel]"] = src
 
 
 	OE = new eventtype(null, difficulty)
 
-	forceMove(locate(start_x, start_y, GLOB.maps_data.overmap_z))
+	forceMove(locate(start_x, start_y, SSmapping.overmap_z))
 
 	for(var/obj/effect/overmap/ship/victim in src.loc)
 		OE:enter(victim)
 
-	GLOB.maps_data.player_levels |= map_z
+//	SSmapping.player_levels |= map_z
 
 	START_PROCESSING(SSobj, src)
 
@@ -165,8 +162,6 @@
 
 	icon_stages[1] = pick(list("meteors0", "meteors1", "meteors2", "meteors3"))
 
-	if(!config.use_overmap)
-		return
 	walk(src,turn(moving_vector, pick(45,-45,90,-90)),rand(100,160),0)
 
 	spawn(350)
@@ -198,8 +193,7 @@
 
 	icon_stages[1] = pick(list("dust0", "dust1", "dust2", "dust3"))
 
-	if(!config.use_overmap)
-		return
+	// Bruh
 	spawn(450)
 		del_event()
 		qdel(src)

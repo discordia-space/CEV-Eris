@@ -22,56 +22,33 @@
 	var/image/panel
 
 	var/original_zLevel = 1	// zLevel on which the station map was initialized.
-	var/bogus = TRUE		// set to 0 when you initialize the station map on a zLevel that has its own icon formatted for use by station holomaps.
-	var/datum/station_holomap/holomap_datum
 	var/buildstage = 2
 	var/wiresexposed = FALSE
 
-/obj/machinery/holomap/New(turf/loc, ndir, building)
-	..()
-	flags |= ON_BORDER // Why? It doesn't help if its not density
+	var/image/station_map
+	var/image/cursor
 
-	if(loc)
-		src.loc = loc
-
-	if(building)
-		if(ndir)
-			src.set_dir(ndir)
-		buildstage = 0
-		wiresexposed = TRUE
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -32 : 32)
-		pixel_y = (dir & 3)? (dir ==1 ? -32 : 32) : 0
-		update_icon()
-
-	if(!building)
-		if(SSholomaps.holomaps_initialized)
-			setup_holomap()
 
 /obj/machinery/holomap/Initialize()
 	. = ..()
-	holomap_datum = new()
 	original_zLevel = loc.z
-	SSholomaps.station_holomaps += src
+	flags |= ON_BORDER // Why? It doesn't help if its not density
+	setup_holomap()
+
 
 /obj/machinery/holomap/Destroy()
-	SSholomaps.station_holomaps -= src
 	stopWatching()
-	holomap_datum = null
 	. = ..()
 
 /obj/machinery/holomap/proc/setup_holomap()
-	bogus = FALSE
 	var/turf/T = get_turf(src)
 	original_zLevel = T.z
-	if(!("[HOLOMAP_EXTRA_STATIONMAP]_[original_zLevel]" in SSholomaps.extraMiniMaps))
-		bogus = TRUE
-		holomap_datum.initialize_holomap_bogus()
-		update_icon()
+	if(!SSmapping.holomap)
 		return
 
-	holomap_datum.initialize_holomap(T, reinit = TRUE)
+	initialize_holomap(T, reinit = TRUE)
 
-	small_station_map = image(SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"], dir = dir)
+//	small_station_map = image(SSmapping.holomaps_of_individual_z_levels["[HOLOMAP_DOWNSCALED_OVERLAY]_[original_zLevel]"])
 
 	spawn(1) //When built from frames, need to allow time for it to set pixel_x and pixel_y
 		update_icon()
@@ -84,6 +61,25 @@
 		to_chat(user, SPAN_WARNING("You need to stand in front of \the [src]."))
 		return
 	startWatching(user)
+
+
+/obj/machinery/holomap/proc/initialize_holomap(turf/T, reinit = FALSE)
+	if(!station_map || reinit)
+		station_map = image(SSmapping.holomap)
+	if(!cursor || reinit)
+		cursor = image('icons/holomap_markers.dmi', "you")
+
+		var/list/cursor_offsets = SSmapping.holomap_offsets_per_z_level["[T.z]"]
+		if(cursor_offsets && LAZYLEN(cursor_offsets)) // Holomaps can exist off-ship
+			// Offsets from the list above will get us to the bottom left corner of this Z-level
+			// on the station_map, from there it's one pixel for one tile, so we add local XY coordinates as is
+			// But wait, we also need to compensate for image's size to make it centered
+			// Cursor is 16x16, but getting that info from /image is inconvenient to say the least, hence the use of magic number
+			cursor.pixel_x = cursor_offsets[1] + T.x - 8
+			cursor.pixel_y = cursor_offsets[2] + T.y - 8
+
+	station_map.overlays |= cursor
+
 
 // Let people bump up against it to watch
 /obj/machinery/holomap/Bumped(var/atom/movable/AM)
@@ -117,22 +113,19 @@
 	// TODO - This part!!
 	if(isliving(user) && anchored && !(stat & (NOPOWER|BROKEN)) && buildstage == 2 && !wiresexposed)
 		if(user.client)
-			holomap_datum.station_map.loc = global_hud.holomap  // Put the image on the holomap hud
-			holomap_datum.station_map.alpha = 0 // Set to transparent so we can fade in
-			animate(holomap_datum.station_map, alpha = 255, time = 5, easing = LINEAR_EASING)
+			station_map.loc = global_hud.holomap  // Put the image on the holomap hud
+			station_map.alpha = 0 // Set to transparent so we can fade in
+			animate(station_map, alpha = 255, time = 5, easing = LINEAR_EASING)
 			flick("station_map_activate", src)
 			// Wait, if wea re not modifying the holomap_obj... can't it be part of the global hud?
 			user.client.screen |= global_hud.holomap // TODO - HACK! This should be there permenently really.
-			user.client.images |= holomap_datum.station_map
+			user.client.images |= station_map
 			watching_mob = user
 			GLOB.moved_event.register(watching_mob, src, /obj/machinery/holomap/proc/checkPosition)
 			GLOB.dir_set_event.register(watching_mob, src, /obj/machinery/holomap/proc/checkPosition)
 			GLOB.destroyed_event.register(watching_mob, src, /obj/machinery/holomap/proc/stopWatching)
 			set_power_use(ACTIVE_POWER_USE)
-			if(bogus)
-				to_chat(user, SPAN_WARNING("The holomap has failed to initialize. This area of space cannot be mapped."))
-			else
-				to_chat(user, SPAN_NOTICE("A hologram of CEV \"Eris\" appears before your eyes."))
+			to_chat(user, SPAN_NOTICE("A hologram of CEV \"Eris\" appears before your eyes."))
 
 /obj/machinery/holomap/attack_ai(mob/living/silicon/robot/user)
 	return // TODO
@@ -149,10 +142,10 @@
 /obj/machinery/holomap/proc/stopWatching()
 	if(watching_mob)
 		if(watching_mob.client)
-			animate(holomap_datum.station_map, alpha = 0, time = 5, easing = LINEAR_EASING)
+			animate(station_map, alpha = 0, time = 5, easing = LINEAR_EASING)
 			var/mob/M = watching_mob
 			spawn(5) //we give it time to fade out
-				M.client.images -= holomap_datum.station_map
+				M.client.images -= station_map
 		GLOB.moved_event.unregister(watching_mob, src)
 		GLOB.dir_set_event.unregister(watching_mob, src)
 		GLOB.destroyed_event.unregister(watching_mob, src)
@@ -173,9 +166,6 @@
 	update_icon()
 
 /obj/machinery/holomap/update_icon()
-	if(!holomap_datum)
-		return //Not yet.
-
 	overlays.Cut()
 
 	if(panel_open)
@@ -200,13 +190,10 @@
 		icon_state = "station_map0"
 	else
 		icon_state = "station_map"
-
-		if(bogus)
-			holomap_datum.initialize_holomap_bogus()
-		else
-			small_station_map.icon = SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"]
+		if(small_station_map)
+//			small_station_map.icon = SSmapping.holomaps_of_individual_z_levels["[HOLOMAP_DOWNSCALED_OVERLAY]_[original_zLevel]"]
 			overlays |= small_station_map
-			holomap_datum.initialize_holomap(get_turf(src))
+		initialize_holomap(get_turf(src))
 
 /obj/machinery/holomap/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)

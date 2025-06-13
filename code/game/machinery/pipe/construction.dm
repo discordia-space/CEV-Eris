@@ -13,7 +13,7 @@
 	level = ABOVE_PLATING_LEVEL
 
 /obj/item/pipe/can_fall()
-	var/turf/below = GetBelow(get_turf(src))
+	var/turf/below = SSmapping.GetBelow(get_turf(src))
 	var/pipe_below = istype(below)
 	if(pipe_below)
 		pipe_below = locate(/obj/machinery/atmospherics/pipe/zpipe/up) in below
