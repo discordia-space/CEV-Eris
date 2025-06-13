@@ -139,8 +139,17 @@
 			current_hallucination_tick = 0
 
 /datum/internal_wound/proc/progress()
-	if(!((characteristic_flag & IWOUND_PROGRESS) || (characteristic_flag & IWOUND_AGGRAVATION)))
-		return
+	if(!(characteristic_flag & IWOUND_AGGRAVATION) ) // if the aggravation flag is not present
+		if(!(characteristic_flag & IWOUND_PROGRESS)) // and the progress tag is not present
+			return // then return
+	else if(!(characteristic_flag & IWOUND_PROGRESS)) // but if the aggravation tag IS present, but progress tag isn't, then custom process
+		++current_progression_tick
+		if(current_progression_tick >= progression_threshold)
+			current_progression_tick = 0
+		else
+			return
+	// and if both are present, progress tag has priority.
+
 	var/obj/item/organ/O = parent
 	var/obj/item/organ/external/E = parent ? O.parent : null
 	var/mob/living/carbon/human/H = parent ? O.owner : null
@@ -150,7 +159,7 @@
 		++severity
 	else
 		characteristic_flag &= ~(IWOUND_PROGRESS|IWOUND_PROGRESS_DEATH)	// Lets us remove the wound from processing
-		if(next_wound && ispath(next_wound, /datum/component))
+		if(next_wound && ispath(next_wound, /datum/internal_wound))
 			var/chosen_wound_type = pick(subtypesof(next_wound))
 			SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_ADD_WOUND, chosen_wound_type)
 
