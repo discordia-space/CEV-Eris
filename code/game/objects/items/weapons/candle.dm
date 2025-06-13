@@ -45,8 +45,7 @@
 	if(!src.lit)
 		change_lit(TRUE)
 		//src.damtype = "fire"
-		for(var/mob/O in viewers(usr, null))
-			O.show_message(flavor_text, 1)
+		visible_message(flavor_text)
 
 
 /obj/item/flame/candle/Process()

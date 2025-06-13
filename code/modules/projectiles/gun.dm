@@ -663,6 +663,7 @@
 			return
 
 		in_chamber.on_hit(M)
+		in_chamber.on_impact(M)
 		if(!in_chamber.is_halloss())
 			log_and_message_admins("[key_name(user)] commited suicide using \a [src]")
 			for(var/damage_type in in_chamber.damage_types)
