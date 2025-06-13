@@ -44,8 +44,10 @@
 		if (G.loc == user)
 			if(G.state >= GRAB_PASSIVE)
 				cuff_delay -= 1 SECONDS //3
+			if(G.state >= GRAB_FIRM)
+				cuff_delay -= 0.5 // 2.5, still got it
 			if(G.state >= GRAB_AGGRESSIVE)
-				cuff_delay /= 2 //1.5
+				cuff_delay -= 1 //1.5
 			if(G.state >= GRAB_NECK)
 				cuff_delay /= 2 //0.75
 			if(G.state >= GRAB_KILL)
