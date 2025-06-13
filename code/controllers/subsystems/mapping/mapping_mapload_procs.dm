@@ -38,7 +38,7 @@
 	currently_loading_map = null
 	if(LAZYLEN(map_loading_queue))
 		currently_loading_map = map_loading_queue[1]
-		map_loading_queue.RemoveAll(currently_loading_map)
+		map_loading_queue.Remove(currently_loading_map)
 		load_map_from_name(currently_loading_map)
 
 
