@@ -36,44 +36,25 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-rust-
 
-      # - name: Install Tools
-      #   run: |
-      #     pip3 install setuptools
-      #     bash tools/ci/install_spaceman_dmm.sh dreamchecker
-      #     bash tools/ci/install_ripgrep.sh
-      #     tools/bootstrap/python -c ''
+      - name: Install Tools
+        run: |
+          pip3 install setuptools
+          bash tools/ci/install_spaceman_dmm.sh dreamchecker
+          bash tools/ci/install_ripgrep.sh
+          tools/bootstrap/python -c ''
       - name: Give Linters A Go
         id: linter-setup
         run: ":"
-      # - name: Run Grep Checks
-      #   if: steps.linter-setup.conclusion == 'success' && !cancelled()
-      #   run: bash tools/ci/check_grep.sh
-      # - name: Ticked File Enforcement
-      #   if: steps.linter-setup.conclusion == 'success' && !cancelled()
-      #   run: |
-      #     tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < tools/ticked_file_enforcement/schemas/tgstation_dme.json
-      #     tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < tools/ticked_file_enforcement/schemas/unit_tests.json
+      - name: Run Grep Checks
+        if: steps.linter-setup.conclusion == 'success' && !cancelled()
+        run: bash tools/ci/check_grep.sh
       # - name: Check Define Sanity
       #   if: steps.linter-setup.conclusion == 'success' && !cancelled()
       #   run: tools/bootstrap/python -m define_sanity.check
-      # - name: Check Trait Validity
-      #   if: steps.linter-setup.conclusion == 'success' && !cancelled()
-      #   run: tools/bootstrap/python -m trait_validity.check
       # - name: Run DreamChecker
       #   if: steps.linter-setup.conclusion == 'success' && !cancelled()
       #   shell: bash
       #   run: ~/dreamchecker 2>&1 | bash tools/ci/annotate_dm.sh
-      # - name: Run OpenDream
-      #   if: steps.linter-setup.conclusion == 'success' && !cancelled()
-      #   run: ./DMCompiler_linux-x64/DMCompiler tgstation.dme --suppress-unimplemented --define=CIBUILDING | bash tools/ci/annotate_od.sh
-      # - name: Run Map Checks
-      #   if: steps.linter-setup.conclusion == 'success' && !cancelled()
-      #   run: |
-      #     tools/bootstrap/python -m mapmerge2.dmm_test
-      #     tools/bootstrap/python -m tools.maplint.source
-      # - name: Check Cutter
-      #   if: steps.linter-setup.conclusion == 'success' && !cancelled()
-      #   run: tools/bootstrap/python -m dmi.test
       - name: Check File Directories
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: bash tools/ci/check_filedirs.sh cev_eris.dme
