@@ -8,16 +8,16 @@ var/global/list/power_update_requests_by_machine = list()
 var/global/list/power_update_requests_by_area = list()
 
 /proc/log_power_update_request(area/A, obj/machinery/M)
-	if (!enable_power_update_profiling)
+	if(!enable_power_update_profiling)
 		return
 
 	var/machine_type = "[M.type]"
-	if (machine_type in power_update_requests_by_machine)
+	if(machine_type in power_update_requests_by_machine)
 		power_update_requests_by_machine[machine_type] += 1
 	else
 		power_update_requests_by_machine[machine_type] = 1
 
-	if (A.name in power_update_requests_by_area)
+	if(A.name in power_update_requests_by_area)
 		power_update_requests_by_area[A.name] += 1
 	else
 		power_update_requests_by_area[A.name] = 1
@@ -55,7 +55,7 @@ var/global/list/power_update_requests_by_area = list()
 	if(!check_rights(R_DEBUG))	return
 
 	usr << "Total profiling time: [power_profiled_time] ticks"
-	for (var/M in power_update_requests_by_machine)
+	for(var/M in power_update_requests_by_machine)
 		usr << "[M] = [power_update_requests_by_machine[M]]"
 
 /client/proc/view_power_update_stats_area()
@@ -67,5 +67,5 @@ var/global/list/power_update_requests_by_area = list()
 
 	usr << "Total profiling time: [power_profiled_time] ticks"
 	usr << "Total profiling time: [power_profiled_time] ticks"
-	for (var/A in power_update_requests_by_area)
+	for(var/A in power_update_requests_by_area)
 		usr << "[A] = [power_update_requests_by_area[A]]"

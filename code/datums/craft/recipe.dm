@@ -63,7 +63,7 @@
 			//Prevent building dense things in turfs that already contain dense objects
 			var/atom/A = result
 			if(initial(A.density))
-				for (var/atom/movable/AM in T)
+				for(var/atom/movable/AM in T)
 					if(AM != user && AM.density)
 						to_chat(user, SPAN_WARNING("You can't build here, it's blocked by [AM]!"))
 						return FALSE

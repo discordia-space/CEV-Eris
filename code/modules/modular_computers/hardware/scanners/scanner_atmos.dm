@@ -17,7 +17,7 @@
 /obj/item/computer_hardware/scanner/atmos/do_on_afterattack(mob/user, atom/target, proximity)
 	if(!isobj(target))
 		return
-	if (!scan_power_use())
+	if(!scan_power_use())
 		return
 	if(driver && driver.using_scanner)
 		var/data = scan_data(user, target, proximity)

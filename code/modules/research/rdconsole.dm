@@ -670,7 +670,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			data["selected_technology"] = technology_data
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "rdconsole.tmpl", "R&D Console", 1000, 700)
 
 		ui.set_initial_data(data)

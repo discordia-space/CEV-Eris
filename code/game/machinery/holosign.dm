@@ -26,7 +26,7 @@
 	return ..()
 
 /obj/machinery/holosign/proc/toggle()
-	if (stat & (BROKEN|NOPOWER))
+	if(stat & (BROKEN|NOPOWER))
 		set_power_use(NO_POWER_USE)
 		return
 	lit = !lit
@@ -34,13 +34,13 @@
 	update_icon()
 
 /obj/machinery/holosign/update_icon()
-	if (!lit)
+	if(!lit)
 		icon_state = "sign_off"
 	else
 		icon_state = on_icon
 
 /obj/machinery/holosign/power_change()
-	if (stat & NOPOWER)
+	if(stat & NOPOWER)
 		lit = 0
 		set_power_use(NO_POWER_USE)
 	update_icon()
@@ -67,7 +67,7 @@
 	icon_state = "light[active]"
 
 	for(var/obj/machinery/holosign/M in GLOB.machines)
-		if (M.id == src.id)
+		if(M.id == src.id)
 			spawn( 0 )
 				M.toggle()
 				return

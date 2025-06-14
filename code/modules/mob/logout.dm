@@ -7,7 +7,7 @@
 	GLOB.player_list -= src
 
 	if(admin_datums[src.ckey])
-		if (SSticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
+		if(SSticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
 			message_admins("Admin logout: [key_name(src)]")
 
 	if(client && client.UI)

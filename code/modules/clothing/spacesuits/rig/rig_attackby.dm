@@ -37,7 +37,7 @@
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
-			if (is_worn())
+			if(is_worn())
 				to_chat(user, "You can't remove an installed device while the hardsuit is being worn.")
 				return 1
 
@@ -78,7 +78,7 @@
 							if(!removal_choice)
 								return
 
-							if (can_uninstall(possible_removals[removal_choice], user, TRUE))
+							if(can_uninstall(possible_removals[removal_choice], user, TRUE))
 								uninstall(possible_removals[removal_choice], user)
 							return TRUE
 			else
@@ -125,7 +125,7 @@
 					to_chat(user, "There is not tank to remove.")
 					return
 
-				if (is_worn())
+				if(is_worn())
 					to_chat(user, "You can't remove an installed tank while the hardsuit is being worn.")
 					return 1
 
@@ -148,11 +148,11 @@
 					to_chat(user, SPAN_NOTICE("Success! The tension in the panel loosens with a dull click"))
 					playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 				return
-			else if (user.a_intent == I_HURT)
+			else if(user.a_intent == I_HURT)
 				to_chat(user, "\The [src] access panel is not locked, there's no need to cut it.")
 				//No return here, incase they're trying to repair
 
-			if (ablative_max <= ablative_armor)
+			if(ablative_max <= ablative_armor)
 				to_chat(user, SPAN_WARNING("There is no damage on \the [src]'s armor layers to repair."))
 
 			else if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_WELDING, FAILCHANCE_ZERO, required_stat = STAT_MEC, instant_finish_tier = INFINITY)) // no instant repairs
@@ -183,7 +183,7 @@
 
 		// Check if this is a hardsuit upgrade or a modification.
 		else if(istype(I,/obj/item/rig_module))
-			if (can_install(I, user, TRUE))
+			if(can_install(I, user, TRUE))
 				install(I, user)
 			return TRUE
 		else if(!cell && istype(I,/obj/item/cell/large))
@@ -210,24 +210,24 @@
 			return
 
 	//If the rig has a storage module, we can attempt to access it
-	if (storage && (is_worn() || is_held()))
+	if(storage && (is_worn() || is_held()))
 		//This will return false if we're done, or true to tell us to keep going and call parent attackhand
-		if (!storage.handle_attack_hand(user))
+		if(!storage.handle_attack_hand(user))
 			return
 	.=..()
 
 
 //For those pesky items which incur effects on the rigsuit, an altclick will force them to go in if possible
 /obj/item/rig/AltClick(var/mob/user)
-	if (storage && user.get_active_hand())
-		if (user == loc || Adjacent(user)) //Rig must be on or near you
+	if(storage && user.get_active_hand())
+		if(user == loc || Adjacent(user)) //Rig must be on or near you
 			storage.accepts_item(user.get_active_hand())
 			return
 	.=..()
 
 //When not wearing a rig, you can drag it onto yourself to access the internal storage
 /obj/item/rig/MouseDrop(obj/over_object)
-	if (storage && storage.handle_mousedrop(usr, over_object))
+	if(storage && storage.handle_mousedrop(usr, over_object))
 		return TRUE
 	return ..()
 
@@ -235,7 +235,7 @@
 	if(!subverted)
 		req_access.Cut()
 		req_one_access.Cut()
-		if (locked != -1)
+		if(locked != -1)
 			locked = 0
 		subverted = 1
 		to_chat(user, SPAN_DANGER("You short out the access protocol for the suit."))

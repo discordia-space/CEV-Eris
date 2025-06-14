@@ -18,7 +18,7 @@
 	var/data = html2pencode(target.info)
 	if(!data)
 		return FALSE
-	if (!scan_power_use())
+	if(!scan_power_use())
 		return FALSE
 	to_chat(user, "You scan \the [target] with [src].")
 	driver.data_buffer = data

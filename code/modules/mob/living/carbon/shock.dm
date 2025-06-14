@@ -111,7 +111,7 @@
 	if(shock_stage == 80)
 		to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
 
-	if (shock_stage >= 100)
+	if(shock_stage >= 100)
 		if(shock_stage == 100)
 			emote("me",1,"'s body becomes limp.")
 		if(prob(2))

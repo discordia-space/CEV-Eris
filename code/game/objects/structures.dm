@@ -43,7 +43,7 @@
 /obj/structure/get_fall_damage(var/turf/from, var/turf/dest)
 	var/damage = w_class * 10 * get_health_ratio()
 
-	if (from && dest)
+	if(from && dest)
 		damage *= abs(from.z - dest.z)
 
 	return damage
@@ -100,7 +100,7 @@
 		return ..()
 
 /obj/structure/proc/can_climb(mob/living/user, post_climb_check=0)
-	if (!climbable || !can_touch(user) || (!post_climb_check && (user in climbers)))
+	if(!climbable || !can_touch(user) || (!post_climb_check && (user in climbers)))
 		return FALSE
 
 	if(ismech(user.loc))
@@ -108,7 +108,7 @@
 		if(!mech.Adjacent(src))
 			to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
 			return FALSE
-	else if (!user.Adjacent(src))
+	else if(!user.Adjacent(src))
 		to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
 		return FALSE
 
@@ -146,7 +146,7 @@
 	return 1
 
 /obj/structure/proc/do_climb(mob/living/user)
-	if (!can_climb(user))
+	if(!can_climb(user))
 		return
 
 	user.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
@@ -158,13 +158,13 @@
 		climbers -= user
 		return
 
-	if (!can_climb(user, post_climb_check=1))
+	if(!can_climb(user, post_climb_check=1))
 		climbers -= user
 		return
 
 	user.forceMove(get_turf(src))
 
-	if (get_turf(user) == get_turf(src))
+	if(get_turf(user) == get_turf(src))
 		user.visible_message(SPAN_WARNING("[user] climbs onto \the [src]!"))
 	climbers -= user
 	add_fingerprint(user)
@@ -214,17 +214,17 @@
 	return
 
 /obj/structure/proc/can_touch(var/mob/user)
-	if (!user)
+	if(!user)
 		return 0
 	if(!Adjacent(user))
 		return 0
 
-	if (!ismech(user) && (user.restrained() || user.buckled))
+	if(!ismech(user) && (user.restrained() || user.buckled))
 		to_chat(user, SPAN_NOTICE("You need your hands and legs free for this."))
 		return 0
-	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)
+	if(user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)
 		return 0
-	if (issilicon(user))
+	if(issilicon(user))
 		to_chat(user, SPAN_NOTICE("You need hands for this."))
 		return 0
 	return 1

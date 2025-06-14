@@ -33,7 +33,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /obj/item/proc/resolve_attackby(atom/A, mob/user, params)
 	if(item_flags & ABSTRACT)//Abstract items cannot be interacted with. They're not real.
 		return 1
-	if (pre_attack(A, user, params))
+	if(pre_attack(A, user, params))
 		return 1 //Returning 1 passes an abort signal upstream
 	add_fingerprint(user)
 	if(ishuman(user))//monkeys can use items, unfortunately
@@ -154,7 +154,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			return
 
 		user.do_attack_animation(src)
-		if (I.hitsound)
+		if(I.hitsound)
 			playsound(loc, I.hitsound, 50, 1, -1)
 		visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -177,7 +177,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		if(user.a_intent == I_HELP)
 			return FALSE
 		user.do_attack_animation(src)
-		if (NT.hitsound)
+		if(NT.hitsound)
 			playsound(loc, I.hitsound, 50, 1, -1)
 		visible_message(SPAN_DANGER("[src] has been hit by [user] with [NT]."))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -237,7 +237,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			return (modifier - swing_degradation) // We hit a static object, prevents hitting anything underneath
 	var/successful_hit = FALSE
 	for(var/obj/S in targetarea)
-		if ((S.density || istype(S, /obj/effect/plant)) && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
+		if((S.density || istype(S, /obj/effect/plant)) && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
 			if(attack_with_multiplier(user, S, modifier))
 				successful_hit = TRUE // Livings or targeted mobs can still be hit
 	if(successful_hit)
@@ -317,7 +317,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(hitsound)
 		playsound(loc, hitsound, 50, 1, -1)
 
-	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+	if(is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		target.IgniteMob()
 
 	var/power = force

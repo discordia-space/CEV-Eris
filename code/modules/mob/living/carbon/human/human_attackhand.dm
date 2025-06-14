@@ -72,7 +72,7 @@
 					to_chat(H, SPAN_NOTICE("Remove [src]'s mask!"))
 					return 0
 
-				if (!cpr_time)
+				if(!cpr_time)
 					return 0
 
 				cpr_time = 0
@@ -184,7 +184,7 @@
 				to_chat(M, SPAN_DANGER("They are missing that limb!"))
 				return 1
 
-			if (M.grabbed_by.len)
+			if(M.grabbed_by.len)
 				// Someone got a good grip on them, they won't be able to do much damage
 				stat_damage = max(1, stat_damage - 2)
 

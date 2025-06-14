@@ -30,11 +30,11 @@
 	req_access = list()
 
 /obj/item/electronics/circuitboard/security/construct(var/obj/machinery/computer/security/C)
-	if (..(C))
+	if(..(C))
 		C.network = network.Copy()
 
 /obj/item/electronics/circuitboard/security/deconstruct(var/obj/machinery/computer/security/C)
-	if (..(C))
+	if(..(C))
 		network = C.network.Copy()
 
 /obj/item/electronics/circuitboard/security/emag_act(var/remaining_charges, var/mob/user)

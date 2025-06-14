@@ -115,9 +115,9 @@
 //Delayed equipping
 /obj/item/clothing/pre_equip(mob/user, slot)
 	..(user, slot)
-	if (equip_delay > 0)
+	if(equip_delay > 0)
 		//If its currently worn, we must be taking it off
-		if (is_worn())
+		if(is_worn())
 			user.visible_message(
 				SPAN_NOTICE("[user] starts taking off \the [src]..."),
 				SPAN_NOTICE("You start taking off \the [src]...")
@@ -125,7 +125,7 @@
 			if(!do_after(user,equip_delay,src))
 				return TRUE //A nonzero return value will cause the equipping operation to fail
 
-		else if (is_held() && !(slot in unworn_slots))
+		else if(is_held() && !(slot in unworn_slots))
 			user.visible_message(
 				SPAN_NOTICE("[user] starts putting on \the [src]..."),
 				SPAN_NOTICE("You start putting on \the [src]...")
@@ -231,9 +231,9 @@
 	bad_type = /obj/item/clothing/ears
 
 /obj/item/clothing/ears/attack_hand(mob/user)
-	if (!user) return
+	if(!user) return
 
-	if (src.loc != user || !ishuman(user))
+	if(src.loc != user || !ishuman(user))
 		..()
 		return
 
@@ -257,7 +257,7 @@
 
 	user.u_equip(src)
 
-	if (O)
+	if(O)
 		user.put_in_hands(O)
 		O.add_fingerprint(user)
 
@@ -347,7 +347,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/wirecutters) || istype(W, /obj/item/tool/scalpel))
-		if (clipped)
+		if(clipped)
 			to_chat(user, SPAN_NOTICE("The [src] have already been clipped!"))
 			update_icon()
 			return
@@ -490,7 +490,7 @@ BLIND     // can't see anything
 /obj/item/clothing/shoes/attackby(obj/item/I, mob/user)
 	var/global/knifes
 	if(istype(I,/obj/item/noslipmodule))
-		if (item_flags != 0)
+		if(item_flags != 0)
 			noslip = item_flags
 		module_inside = 1
 		to_chat(user, "You attached no slip sole")
@@ -526,8 +526,8 @@ BLIND     // can't see anything
 	set category = "Object"
 	set src in view(1)
 
-	if (module_inside == 1 )
-		if (noslip != 0)
+	if(module_inside == 1 )
+		if(noslip != 0)
 			item_flags = noslip
 		var/obj/item/noslipmodule/NSM = new()
 		usr.put_in_hands(NSM)
@@ -627,7 +627,7 @@ BLIND     // can't see anything
 /obj/item/clothing/under/attack_hand(mob/user)
 	if(accessories && accessories.len)
 		..()
-	if ((ishuman(usr) || issmall(usr)) && src.loc == user)
+	if((ishuman(usr) || issmall(usr)) && src.loc == user)
 		return
 	..()
 
@@ -660,7 +660,7 @@ BLIND     // can't see anything
 	else
 		sensor_mode++
 
-	if (src.loc == usr)
+	if(src.loc == usr)
 		switch(sensor_mode)
 			if(0)
 				to_chat(usr, "You disable your suit's remote sensing equipment.")
@@ -670,7 +670,7 @@ BLIND     // can't see anything
 				to_chat(usr, "Your suit will now report your vital lifesigns.")
 			if(3)
 				to_chat(usr, "Your suit will now report your vital lifesigns as well as your coordinate position.")
-	else if (ismob(loc))
+	else if(ismob(loc))
 		switch(sensor_mode)
 			if(0)
 				for(var/mob/V in viewers(usr, 1))

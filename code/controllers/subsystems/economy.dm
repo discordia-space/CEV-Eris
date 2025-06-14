@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(economy)
 	.=..()
 
 /datum/controller/subsystem/economy/fire()
-	if (world.time >= next_payday)
+	if(world.time >= next_payday)
 		next_payday = world.time + payday_interval
 		//Its payday time!
 		do_payday()

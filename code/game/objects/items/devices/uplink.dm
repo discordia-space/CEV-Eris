@@ -149,8 +149,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)	// No auto-refresh
-		if (emplaced)
+	if(!ui)	// No auto-refresh
+		if(emplaced)
 			ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state =GLOB.default_state)
 		else
 			ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state =GLOB.inventory_state)

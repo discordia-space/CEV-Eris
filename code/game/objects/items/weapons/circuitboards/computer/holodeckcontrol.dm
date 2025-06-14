@@ -12,7 +12,7 @@
 	var/list/restricted_programs
 
 /obj/item/electronics/circuitboard/holodeckcontrol/construct(var/obj/machinery/computer/HolodeckControl/HC)
-	if (..(HC))
+	if(..(HC))
 		HC.supported_programs	= supported_programs.Copy()
 		HC.restricted_programs	= restricted_programs.Copy()
 		if(linkedholodeck_area)
@@ -23,7 +23,7 @@
 			HC.safety_disabled	= 1
 
 /obj/item/electronics/circuitboard/holodeckcontrol/deconstruct(var/obj/machinery/computer/HolodeckControl/HC)
-	if (..(HC))
+	if(..(HC))
 		linkedholodeck_area		= HC.linkedholodeck_area
 		supported_programs		= HC.supported_programs.Copy()
 		restricted_programs 	= HC.restricted_programs.Copy()

@@ -129,9 +129,9 @@
 
 	var/client/C = pref.client
 
-	if (C)
+	if(C)
 		var/datum/asset/simple/perkasset = get_asset_datum(/datum/asset/simple/perks)
-		if (perkasset.send(C))
+		if(perkasset.send(C))
 			C.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
 
 	var/datum/browser/popup = new(preference_mob(), name, get_title(), 640, 480, src)

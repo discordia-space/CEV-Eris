@@ -16,10 +16,10 @@
  * * timeout - The timeout of the textbox, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
 /proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, timeout = 0)
-	if (!user)
+	if(!user)
 		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
+	if(!istype(user))
+		if(istype(user, /client))
 			var/client/client = user
 			user = client.mob
 		else
@@ -39,7 +39,7 @@
 	var/datum/tgui_input_text/text_input = new(user, message, title, default, max_length, multiline, encode, timeout)
 	text_input.ui_interact(user)
 	text_input.wait()
-	if (text_input)
+	if(text_input)
 		. = text_input.entry
 		qdel(text_input)
 
@@ -78,7 +78,7 @@
 	src.message = message
 	src.multiline = multiline
 	src.title = title
-	if (timeout)
+	if(timeout)
 		src.timeout = timeout
 		start_time = world.time
 		QDEL_IN(src, timeout)
@@ -92,7 +92,7 @@
  * the window was closed by the user.
  */
 /datum/tgui_input_text/proc/wait()
-	while (!entry && !closed && !QDELETED(src))
+	while(!entry && !closed && !QDELETED(src))
 		stoplag(1)
 
 /datum/tgui_input_text/ui_interact(mob/user, datum/tgui/ui)
@@ -127,7 +127,7 @@
 
 /datum/tgui_input_text/ui_act(action, list/params)
 	. = ..()
-	if (.)
+	if(.)
 		return
 	switch(action)
 		if("submit")

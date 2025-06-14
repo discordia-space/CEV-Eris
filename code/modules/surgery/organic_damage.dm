@@ -14,9 +14,9 @@
 
 /datum/surgery_step/fix_organ/proc/get_tool_name(obj/item/stack/tool)
 	var/tool_name = "\the [tool]"
-	if (istype(tool, /obj/item/stack/medical/advanced/bruise_pack))
+	if(istype(tool, /obj/item/stack/medical/advanced/bruise_pack))
 		tool_name = "regenerative membrane"
-	if (istype(tool, /obj/item/stack/medical/bruise_pack))
+	if(istype(tool, /obj/item/stack/medical/bruise_pack))
 		tool_name = "the bandaid"
 	return tool_name
 
@@ -239,7 +239,7 @@
 			SPAN_NOTICE("You finish treating damage to [organ.get_surgery_name()] with \the [tool].")
 			)
 			organ.heal_damage(0, 25, TRUE)
-		else 
+		else
 			to_chat(user, SPAN_NOTICE("\The [tool] is used up."))
 
 /datum/surgery_step/fix_burn/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)

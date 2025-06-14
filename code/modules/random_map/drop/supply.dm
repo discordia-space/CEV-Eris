@@ -14,7 +14,7 @@
 	floor_tiles.Add(cardinal_turfs(T))
 
 	var/obj/structure/largecrate/C = locate(/obj/structure/largecrate) in T
-	if (!C)
+	if(!C)
 		C = new(T)
 	if(!drop_type) drop_type = pick(supply_drop_random_loot_types())
 

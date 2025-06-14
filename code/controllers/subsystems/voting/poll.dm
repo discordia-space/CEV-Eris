@@ -45,7 +45,7 @@
 	return TRUE
 
 /datum/poll/proc/can_start()
-	if (world.time >= next_vote)
+	if(world.time >= next_vote)
 		return TRUE
 
 	return FALSE
@@ -57,7 +57,7 @@
 	last_vote = world.time
 
 	//If this is false, the poll may have already set a custom next vote time
-	if (next_vote <= last_vote)
+	if(next_vote <= last_vote)
 		next_vote = last_vote + cooldown
 	return
 
@@ -85,7 +85,7 @@
 		else
 			var/already_voted = FALSE
 			for(var/datum/vote_choice/C in choices)
-				if (key in C.voters)
+				if(key in C.voters)
 					already_voted = TRUE
 					if(can_revote)
 						C.voters.Remove(key)
@@ -137,22 +137,22 @@
 	var/invalid = FALSE
 
 	//Need to pass the minimum threshold of voters
-	if (total_voters() < minimum_voters)
+	if(total_voters() < minimum_voters)
 		text += "<b>Vote Failed: Not enough voters.<b><br>"
 		text += "[total_voters()]/[minimum_voters] players voted.<br><br>"
 		invalid = TRUE
 
 	//Lets see if the max votes meets the minimum threshold
-	else if (total_votes() > 0) //Make sure we dont divide by zero
+	else if(total_votes() > 0) //Make sure we dont divide by zero
 		var/max_votepercent = max_votes / total_votes()
-		if (max_votepercent < minimum_win_percentage)
+		if(max_votepercent < minimum_win_percentage)
 			text += "<b>Vote Failed: Insufficient majority.<b><br>"
 			text += "No option achieved the required [minimum_win_percentage*100]% majority.<br>"
 			text += "The highest vote share was [max_votepercent*100]%<br><br>"
 			invalid = TRUE
 
 	var/datum/vote_choice/winner = null
-	if (!invalid)
+	if(!invalid)
 		var/list/winners = list()
 
 		for(var/datum/vote_choice/V in choice_votes)

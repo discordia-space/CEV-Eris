@@ -42,19 +42,19 @@
 	data["page_offset"] = GLOB.musical_config.song_editor_lines_per_page * (current_page-1)
 
 	ui =  SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new (user, src, ui_key, "song_editor.tmpl", "Song Editor", 550, 600)
 		ui.set_initial_data(data)
 		ui.open()
 
 
 /datum/nano_module/song_editor/Topic(href, href_list)
-	if (..())
+	if(..())
 		return 1
 
 	var/target = href_list["target"]
 	var/value = text2num(href_list["value"])
-	if (href_list["value"] && !isnum(value))
+	if(href_list["value"] && !isnum(value))
 		to_chat(usr, "Non-numeric value was supplied")
 		return 0
 
@@ -90,18 +90,18 @@
 				content = copytext(content, 1, GLOB.musical_config.max_line_length)
 			src.song.lines[num] = content
 
-		if ("help")
+		if("help")
 			src.show_help = value
 
-		if ("next_page")
+		if("next_page")
 			src.page = max(min(src.page + 1, src.pages()), 1)
 
-		if ("prev_page")
+		if("prev_page")
 			src.page = max(min(src.page - 1, src.pages()), 1)
 
-		if ("last_page")
+		if("last_page")
 			src.page = src.pages()
-		if ("first_page")
+		if("first_page")
 			src.page = 1
 
 	return 1

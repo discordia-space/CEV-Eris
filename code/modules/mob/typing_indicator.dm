@@ -33,11 +33,11 @@
 	if(get_preference_value(/datum/client_preference/show_typing_indicator) == GLOB.PREF_SHOW && !hud_typing)
 		var/temp = winget(client, "input", "text")
 
-		if (temp != last_typed)
+		if(temp != last_typed)
 			last_typed = temp
 			last_typed_time = world.time
 
-		if (world.time > last_typed_time + TYPING_INDICATOR_LIFETIME)
+		if(world.time > last_typed_time + TYPING_INDICATOR_LIFETIME)
 			set_typing_indicator(FALSE)
 			return
 		if(length(temp) > 5 && findtext(temp, "Say \"", 1, 7))

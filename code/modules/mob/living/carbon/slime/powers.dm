@@ -1,27 +1,27 @@
 /mob/living/carbon/slime/proc/Wrap(var/mob/living/M) // This is a proc for the clicks
-	if (Victim == M || src == M)
+	if(Victim == M || src == M)
 		Feedstop()
 		return
 
-	if (Victim)
+	if(Victim)
 		to_chat(src, "I am already feeding...")
 		return
 
 	var t = invalidFeedTarget(M)
-	if (t)
+	if(t)
 		to_chat(src, t)
 		return
 
 	Feedon(M)
 
 /mob/living/carbon/slime/proc/invalidFeedTarget(var/mob/living/M)
-	if (!M || !istype(M))
+	if(!M || !istype(M))
 		return "This subject is incomparable..."
-	if (isslime(M)) // No cannibalism... yet
+	if(isslime(M)) // No cannibalism... yet
 		return "I cannot feed on other slimes..."
-	if (!Adjacent(M))
+	if(!Adjacent(M))
 		return "This subject is too far away..."
-	if (iscarbon(M) && M.getFireLoss() >= M.maxHealth * 1.5 || isanimal(M) && M.stat == DEAD)
+	if(iscarbon(M) && M.getFireLoss() >= M.maxHealth * 1.5 || isanimal(M) && M.stat == DEAD)
 		return "This subject does not have an edible life energy..."
 	for(var/mob/living/carbon/slime/met in view())
 		if(met.Victim == M && met != src)
@@ -58,12 +58,12 @@
 
 			if(prob(15) && M.client && iscarbon(M))
 				var/painMes = pick("You can feel your body becoming weak!", "You feel like you're about to die!", "You feel every part of your body screaming in agony!", "A low, rolling pain passes through your body!", "Your body feels as if it's falling apart!", "You feel extremely weak!", "A sharp, deep pain bathes every inch of your body!")
-				if (ishuman(M))
+				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
 					H.custom_pain(painMes)
-				else if (iscarbon(M))
+				else if(iscarbon(M))
 					var/mob/living/carbon/C = M
-					if (!(C.species && (C.species.flags & NO_PAIN)))
+					if(!(C.species && (C.species.flags & NO_PAIN)))
 						to_chat(M, SPAN_DANGER("[painMes]"))
 
 			gain_nutrition(rand(20,25))

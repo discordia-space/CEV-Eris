@@ -363,7 +363,7 @@
 	if(stat == DEAD || eyeobj)
 		update_dead_sight()
 	else
-		if (is_ventcrawling)
+		if(is_ventcrawling)
 			sight |= SEE_TURFS|SEE_OBJS|BLIND
 		else
 			//sight = initial(sight)

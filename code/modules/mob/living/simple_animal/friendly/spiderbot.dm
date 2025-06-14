@@ -105,7 +105,7 @@
 		return
 
 	else if(istype(O, /obj/item/card/id)||istype(O, /obj/item/modular_computer/pda))
-		if (!mmi)
+		if(!mmi)
 			to_chat(user, SPAN_DANGER("There's no reason to swipe your ID - \the [src] has no brain to remove."))
 			return 0
 
@@ -131,7 +131,7 @@
 		O.attack(src, user, user.targeted_organ)
 
 /mob/living/simple_animal/spiderbot/emag_act(var/remaining_charges, var/mob/user)
-	if (emagged)
+	if(emagged)
 		to_chat(user, SPAN_WARNING("[src] is already overloaded - better run."))
 		return 0
 	else
@@ -200,7 +200,7 @@
 	if(camera)
 		camera.status = 0
 
-	if (held_item) // if the spiderbot is holding an item
+	if(held_item) // if the spiderbot is holding an item
 		held_item.loc = src.loc
 		held_item = null
 

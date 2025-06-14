@@ -11,7 +11,7 @@
 	update_antag_icons(mind)
 
 	var/turf/T = get_turf(src)
-	if (isturf(T))
+	if(isturf(T))
 		update_z(T.z)
 
 	client.showSmartTip()

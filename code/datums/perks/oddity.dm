@@ -470,7 +470,7 @@
 	var/i = rand(1, 3)
 
 	for(,i > 0,i--) //Pick a few words to screw up.
-		if (!unscrewed_words.len)
+		if(!unscrewed_words.len)
 			break
 		var/word = pick(unscrewed_words)
 		unscrewed_words -= word //Remove from unstuttered words so we don't stutter it again.

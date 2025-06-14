@@ -10,7 +10,7 @@
 	w_class = ITEM_SIZE_BULKY
 
 /obj/item/moneybag/attack_hand(user as mob)
-	if (!is_held())
+	if(!is_held())
 		return ..()
 	var/amt_gold = 0
 	var/amt_silver = 0
@@ -19,45 +19,45 @@
 	var/amt_plasma = 0
 	var/amt_uranium = 0
 
-	for (var/obj/item/coin/C in contents)
-		if (istype(C,/obj/item/coin/diamond))
+	for(var/obj/item/coin/C in contents)
+		if(istype(C,/obj/item/coin/diamond))
 			amt_diamond++;
-		if (istype(C,/obj/item/coin/plasma))
+		if(istype(C,/obj/item/coin/plasma))
 			amt_plasma++;
-		if (istype(C,/obj/item/coin/iron))
+		if(istype(C,/obj/item/coin/iron))
 			amt_iron++;
-		if (istype(C,/obj/item/coin/silver))
+		if(istype(C,/obj/item/coin/silver))
 			amt_silver++;
-		if (istype(C,/obj/item/coin/gold))
+		if(istype(C,/obj/item/coin/gold))
 			amt_gold++;
-		if (istype(C,/obj/item/coin/uranium))
+		if(istype(C,/obj/item/coin/uranium))
 			amt_uranium++;
 
 	var/dat = text("<b>The contents of the moneybag reveal...</b><br>")
-	if (amt_gold)
+	if(amt_gold)
 		dat += text("Gold coins: [amt_gold] <A href='?src=\ref[src];remove=gold'>Remove one</A><br>")
-	if (amt_silver)
+	if(amt_silver)
 		dat += text("Silver coins: [amt_silver] <A href='?src=\ref[src];remove=silver'>Remove one</A><br>")
-	if (amt_iron)
+	if(amt_iron)
 		dat += text("Metal coins: [amt_iron] <A href='?src=\ref[src];remove=iron'>Remove one</A><br>")
-	if (amt_diamond)
+	if(amt_diamond)
 		dat += text("Diamond coins: [amt_diamond] <A href='?src=\ref[src];remove=diamond'>Remove one</A><br>")
-	if (amt_plasma)
+	if(amt_plasma)
 		dat += text("Plasma coins: [amt_plasma] <A href='?src=\ref[src];remove=plasma'>Remove one</A><br>")
-	if (amt_uranium)
+	if(amt_uranium)
 		dat += text("Uranium coins: [amt_uranium] <A href='?src=\ref[src];remove=uranium'>Remove one</A><br>")
 	user << browse("[dat]", "window=moneybag")
 
 /obj/item/moneybag/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if (istype(W, /obj/item/coin))
+	if(istype(W, /obj/item/coin))
 		var/obj/item/coin/C = W
 		to_chat(user, "\blue You add the [C.name] into the bag.")
 		usr.drop_item()
 		contents += C
-	if (istype(W, /obj/item/moneybag))
+	if(istype(W, /obj/item/moneybag))
 		var/obj/item/moneybag/C = W
-		for (var/obj/O in C.contents)
+		for(var/obj/O in C.contents)
 			contents += O;
 		to_chat(user, "\blue You empty the [C.name] into the bag.")
 	return

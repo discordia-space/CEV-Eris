@@ -76,15 +76,15 @@
 //
 
 /mob/proc/update_music()
-	if (client && client.media && !client.media.forced)
+	if(client && client.media && !client.media.forced)
 		client.media.update_music()
 
 /mob/proc/stop_all_music()
-	if (client && client.media)
+	if(client && client.media)
 		client.media.stop_music()
 
 /mob/proc/force_music(var/url, var/start, var/volume=1)
-	if (client && client.media)
+	if(client && client.media)
 		if(url == "")
 			client.media.forced = 0
 			client.media.update_music()
@@ -139,7 +139,7 @@
 	owner << output(list2params(list(url, (world.time - start_time) / 10, volume * source_volume)), "[WINDOW_ID]:SetMusic")
 
 /datum/media_manager/proc/push_music(var/targetURL, var/targetStartTime, var/targetVolume)
-	if (url != targetURL || abs(targetStartTime - start_time) > 1 || abs(targetVolume - source_volume) > 0.1 /* 10% */)
+	if(url != targetURL || abs(targetStartTime - start_time) > 1 || abs(targetVolume - source_volume) > 0.1 /* 10% */)
 		url = targetURL
 		start_time = targetStartTime
 		source_volume = CLAMP(targetVolume, 0, 1)
@@ -158,7 +158,7 @@
 	var/targetStartTime = 0
 	var/targetVolume = 0
 
-	if (forced || !owner || !owner.mob)
+	if(forced || !owner || !owner.mob)
 		return
 
 	var/area/A = get_area_master(owner.mob)

@@ -134,7 +134,7 @@ update_flag
 32 = tank_pressure go boom.
 */
 
-	if (src.destroyed)
+	if(src.destroyed)
 		src.overlays = 0
 		src.icon_state = text("[]-1", src.canister_color)
 		return
@@ -170,7 +170,7 @@ update_flag
 	if(destroyed)
 		return 1
 
-	if (src.health <= 10)
+	if(src.health <= 10)
 		var/atom/location = src.loc
 		location.assume_air(air_contents)
 
@@ -179,7 +179,7 @@ update_flag
 		src.density = FALSE
 		update_icon()
 
-		if (src.holding)
+		if(src.holding)
 			src.holding.loc = src.loc
 			src.holding = null
 
@@ -188,7 +188,7 @@ update_flag
 		return 1
 
 /obj/machinery/portable_atmospherics/canister/Process()
-	if (destroyed)
+	if(destroyed)
 		return
 
 	..()
@@ -288,7 +288,7 @@ update_flag
 	return src.nano_ui_interact(user)
 
 /obj/machinery/portable_atmospherics/canister/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	if (src.destroyed)
+	if(src.destroyed)
 		return
 
 	// this is the data which will be sent to the ui
@@ -303,14 +303,14 @@ update_flag
 	data["valveOpen"] = valve_open ? 1 : 0
 
 	data["hasHoldingTank"] = holding ? 1 : 0
-	if (holding)
+	if(holding)
 		data["holdingTank"] = list("name" = holding.name, "tankPressure" = round(holding.air_contents.return_pressure()))
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "canister.tmpl", "Canister", 480, 400)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -323,7 +323,7 @@ update_flag
 
 	//Do not use "if(..()) return" here, canisters will stop working in unpowered areas like space or on the derelict. // yeah but without SOME sort of Topic check any dick can mess with them via exploits as he pleases -walter0o
 	//First comment might be outdated.
-	if (!istype(src.loc, /turf))
+	if(!istype(src.loc, /turf))
 		return 0
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr)) // exploit protection -walter0o
@@ -332,26 +332,26 @@ update_flag
 		return
 
 	if(href_list["toggle"])
-		if (sealed == TRUE)
+		if(sealed == TRUE)
 			to_chat(usr, SPAN_WARNING("You can't turn the valve while the gasket is sealed!"))
 			return
-		else if (sealed == FALSE)
-			if (valve_open)
-				if (holding)
+		else if(sealed == FALSE)
+			if(valve_open)
+				if(holding)
 					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
 				else
 					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
 			else
-				if (holding)
+				if(holding)
 					release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the [holding]<br>"
 				else
 					release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
 					log_open()
 			valve_open = !valve_open
 
-	if (href_list["remove_tank"])
+	if(href_list["remove_tank"])
 		if(holding)
-			if (valve_open)
+			if(valve_open)
 				valve_open = 0
 				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
 			if(istype(holding, /obj/item/tank))
@@ -360,15 +360,15 @@ update_flag
 			playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
 			holding = null
 
-	if (href_list["pressure_adj"])
+	if(href_list["pressure_adj"])
 		var/diff = text2num(href_list["pressure_adj"])
 		if(diff > 0)
 			release_pressure = min(10*ONE_ATMOSPHERE, release_pressure+diff)
 		else
 			release_pressure = max(ONE_ATMOSPHERE/10, release_pressure+diff)
 
-	if (href_list["relabel"])
-		if (can_label)
+	if(href_list["relabel"])
+		if(can_label)
 			var/list/colors = list(\
 				"\[N2O\]" = "redws", \
 				"\[N2\]" = "red", \
@@ -379,7 +379,7 @@ update_flag
 				"\[CAUTION\]" = "yellow", \
 			)
 			var/label = input("Choose canister label", "Gas canister") as null|anything in colors
-			if (label)
+			if(label)
 				src.canister_color = colors[label]
 				src.icon_state = colors[label]
 				src.name = "Canister: [label]"
@@ -423,8 +423,8 @@ update_flag
 	air_contents.gas["sleeping_agent"] = 9*4000
 	spawn(10)
 		var/turf/location = src.loc
-		if (istype(src.loc))
-			while (!location.air)
+		if(istype(src.loc))
+			while(!location.air)
 				sleep(10)
 			location.assume_air(air_contents)
 			air_contents = new

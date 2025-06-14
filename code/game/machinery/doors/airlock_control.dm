@@ -94,7 +94,7 @@
 		signal.data["door_status"] = density?("closed"):("open")
 		signal.data["lock_status"] = locked?("locked"):("unlocked")
 
-		if (bumped)
+		if(bumped)
 			signal.data["bumped_with_access"] = 1
 
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
@@ -235,11 +235,11 @@
 
 //Checks for walls and closed airlocks blocking the tile. Ignores other dense objects
 /obj/machinery/airlock_sensor/shuttle_exterior/proc/turf_open(var/turf/T)
-	if (T.is_wall)
+	if(T.is_wall)
 		return FALSE
 
-	for (var/obj/machinery/door/D in T)
-		if (D.density)
+	for(var/obj/machinery/door/D in T)
+		if(D.density)
 			return FALSE
 
 	return TRUE
@@ -247,15 +247,15 @@
 /obj/machinery/airlock_sensor/shuttle_exterior/return_air()
 	var/turf/T = loc
 	var/steps = 0
-	while (steps <= max_steps)
+	while(steps <= max_steps)
 		steps++
 		var/turf/U = get_step(T, sensor_dir)
 
 		//U could maybe be null if we're at the edge of a map boundary
-		if (U)
+		if(U)
 			T = U
 			//If T is open, grab air from there
-			if (turf_open(T))
+			if(turf_open(T))
 				return T.return_air()
 		else
 			break
@@ -290,7 +290,7 @@
 
 /obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
 	//Swiping ID on the access button
-	if (istype(I, /obj/item/card/id) || istype(I, /obj/item/modular_computer))
+	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/modular_computer))
 		attack_hand(user)
 		return
 	..()

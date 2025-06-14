@@ -79,7 +79,7 @@ export const inRange = (value, range) => {
  * Range is an array of two numbers, for example: [0, 15].
  */
 export const keyOfMatchingRange = (value, ranges) => {
-  for (let rangeName of Object.keys(ranges)) {
+  for(let rangeName of Object.keys(ranges)) {
     const range = ranges[rangeName];
     if (inRange(value, range)) {
       return rangeName;

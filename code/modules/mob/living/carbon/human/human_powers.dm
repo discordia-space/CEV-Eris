@@ -46,13 +46,13 @@
 		src.Weaken(rand(2,4))
 
 	for(var/mob/O in viewers(src, null))
-		if ((O.client && !( O.blinded )))
+		if((O.client && !( O.blinded )))
 			O.show_message(text("\red <B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T), 1)
 
 /mob/living/carbon/human/proc/leap(mob/living/carbon/human/T)
 	if(last_special > world.time)
 		return
-	if(!T || !src || src.stat) 
+	if(!T || !src || src.stat)
 		return
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
 		to_chat(src, "You cannot lunge in your current state.")

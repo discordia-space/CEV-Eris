@@ -132,9 +132,9 @@
 
 	.=..()
 
-	if (mapload && can_burrow)
+	if(mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
-		if (prob(extra_burrow_chance))
+		if(prob(extra_burrow_chance))
 			create_burrow(get_turf(src))
 
 /mob/living/carbon/superior_animal/Destroy()
@@ -156,19 +156,19 @@
 /mob/living/carbon/superior_animal/update_icons()
 	. = ..()
 	transform = null
-	if (stat == DEAD)
+	if(stat == DEAD)
 		icon_state = icon_dead
-	else if ((stat == UNCONSCIOUS) || resting || lying)
-		if (icon_rest)
+	else if((stat == UNCONSCIOUS) || resting || lying)
+		if(icon_rest)
 			icon_state = icon_rest
 		else
-			if (icon_living)
+			if(icon_living)
 				icon_state = icon_living
 			var/matrix/M = matrix()
 			M.Turn(180)
 			//M.Translate(1,-6)
 			transform = M
-	else if (icon_living)
+	else if(icon_living)
 		icon_state = icon_living
 
 
@@ -202,13 +202,13 @@
 		bad_environment = TRUE
 		return FALSE
 	bad_environment = FALSE
-	if (!contaminant_immunity)
+	if(!contaminant_immunity)
 		for(var/g in environment.gas)
 			if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > gas_data.overlay_limit[g] + 1)
 				pl_effects()
 				break
 
-	if (overkill_dust && (getFireLoss() >= maxHealth*2))
+	if(overkill_dust && (getFireLoss() >= maxHealth*2))
 		dust()
 		return FALSE
 
@@ -240,15 +240,15 @@
 
 	//CONSCIOUS UNCONSCIOUS DEAD
 
-	if (!check_AI_act())
+	if(!check_AI_act())
 		return FALSE
 
 	switch(stance)
 		if(HOSTILE_STANCE_IDLE)
-			if (!busy) // if not busy with a special task
+			if(!busy) // if not busy with a special task
 				stop_automated_movement = FALSE
 			target_mob = findTarget()
-			if (target_mob)
+			if(target_mob)
 				stance = HOSTILE_STANCE_ATTACK
 
 		if(HOSTILE_STANCE_ATTACK)
@@ -260,7 +260,7 @@
 			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 			if(!kept_distance)
 				walk_to(src, target_mob, 1, move_to_delay)
-			else if (kept_distance && retreat_on_too_close && (get_dist(loc, target_mob.loc) < kept_distance))
+			else if(kept_distance && retreat_on_too_close && (get_dist(loc, target_mob.loc) < kept_distance))
 				walk_away(src,target_mob,kept_distance,move_to_delay) // warning: mobs will strafe nonstop if they can't get far enough away
 			else if(kept_distance)
 				step_to(src, target_mob, kept_distance)
@@ -330,7 +330,7 @@
 			heal_overall_damage(1,1)
 
 	// nutrition decrease
-	if (hunger_factor && (nutrition > 0) && (stat != DEAD))
+	if(hunger_factor && (nutrition > 0) && (stat != DEAD))
 		nutrition = max (0, nutrition - hunger_factor)
 
 	updatehealth()
@@ -360,7 +360,7 @@
 	if(handle_cheap_regular_status_updates()) // They have died after all of this, do not scan or do not handle AI anymore.
 		return PROCESS_KILL
 
-	if (can_burrow && bad_environment)
+	if(can_burrow && bad_environment)
 		evacuate()
 
 	if(!AI_inactive)

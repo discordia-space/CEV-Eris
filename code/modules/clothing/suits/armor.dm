@@ -674,7 +674,7 @@
 
 /obj/item/clothing/suit/armor/reactive/attack_self(mob/user)
 	src.active = !( src.active )
-	if (src.active)
+	if(src.active)
 		to_chat(user, "\blue The reactive armor is now active.")
 		src.icon_state = "reactive"
 		src.item_state = "reactive"

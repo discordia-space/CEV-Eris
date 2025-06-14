@@ -20,7 +20,7 @@
 
 
 /obj/machinery/autodoc/relaymove(mob/user)
-	if (user.stat)
+	if(user.stat)
 		return
 	src.go_out()
 	return
@@ -37,7 +37,7 @@
 	set category = "Object"
 	set name = "Eject Autodoc"
 
-	if (usr.incapacitated())
+	if(usr.incapacitated())
 		return
 	src.go_out()
 	add_fingerprint(usr)
@@ -61,7 +61,7 @@
 	return
 
 /obj/machinery/autodoc/proc/go_out()
-	if (!occupant || locked)
+	if(!occupant || locked)
 		return
 	if(autodoc_processor.active)
 		to_chat(usr, SPAN_WARNING("Autodoc is locked down! Abort all oberations if you need to go out or wait until all operations would be done."))
@@ -91,7 +91,7 @@
 	update_icon()
 
 /obj/machinery/autodoc/affect_grab(var/mob/user, var/mob/target)
-	if (src.occupant)
+	if(src.occupant)
 		to_chat(user, SPAN_NOTICE("The autodoc is already occupied!"))
 		return
 	if(target.buckled)
@@ -107,13 +107,13 @@
 /obj/machinery/autodoc/MouseDrop_T(var/mob/target, var/mob/user)
 	if(!ismob(target))
 		return
-	if (src.occupant)
+	if(src.occupant)
 		to_chat(user, SPAN_WARNING("The autodoc is already occupied!"))
 		return
-	if (target.abiotic())
+	if(target.abiotic())
 		to_chat(user, SPAN_WARNING("Subject cannot have abiotic items on."))
 		return
-	if (target.buckled)
+	if(target.buckled)
 		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
 		return
 	user.visible_message(

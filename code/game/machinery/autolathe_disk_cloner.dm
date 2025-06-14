@@ -118,9 +118,9 @@
 	var/list/data = nano_ui_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "autolathe_disk_cloner.tmpl", "Autolathe disk cloner", 480, 555)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)

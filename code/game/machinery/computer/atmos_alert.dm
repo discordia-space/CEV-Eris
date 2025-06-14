@@ -50,7 +50,7 @@ var/global/list/minor_air_alarms = list()
 	if(!(stat & (NOPOWER|BROKEN)))
 		if(atmosphere_alarm.has_major_alarms(get_z(src)))
 			icon_screen = "alert:2"
-		else if (atmosphere_alarm.has_minor_alarms(get_z(src)))
+		else if(atmosphere_alarm.has_minor_alarms(get_z(src)))
 			icon_screen = "alert:1"
 		else
 			icon_screen = initial(icon_screen)

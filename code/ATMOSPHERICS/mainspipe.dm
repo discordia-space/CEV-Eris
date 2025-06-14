@@ -163,9 +163,9 @@
 
 		for(var/direction in cardinal)
 			if(direction&initialize_mains_directions)
-				if (!node1_dir)
+				if(!node1_dir)
 					node1_dir = direction
-				else if (!node2_dir)
+				else if(!node2_dir)
 					node2_dir = direction
 
 		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node1_dir))
@@ -214,7 +214,7 @@
 						nodes[1] = target
 						connect_directions &= ~direction
 						break
-				if (nodes[1])
+				if(nodes[1])
 					break
 
 
@@ -225,7 +225,7 @@
 						nodes[2] = target
 						connect_directions &= ~direction
 						break
-				if (nodes[2])
+				if(nodes[2])
 					break
 
 
@@ -236,7 +236,7 @@
 						nodes[3] = target
 						connect_directions &= ~direction
 						break
-				if (nodes[3])
+				if(nodes[3])
 					break
 
 		..() // initialize internal pipes
@@ -575,9 +575,9 @@ obj/machinery/atmospherics/mains_pipe/valve
 
 		for(var/direction in cardinal)
 			if(direction&initialize_mains_directions)
-				if (!node1_dir)
+				if(!node1_dir)
 					node1_dir = direction
-				else if (!node2_dir)
+				else if(!node2_dir)
 					node2_dir = direction
 
 		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node1_dir))
@@ -633,7 +633,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 		src.add_fingerprint(usr)
 		update_icon(1)
 		sleep(10)
-		if (open)
+		if(open)
 			close()
 		else
 			open()

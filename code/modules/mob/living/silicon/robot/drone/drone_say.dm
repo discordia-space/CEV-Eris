@@ -1,10 +1,10 @@
 /mob/living/silicon/robot/drone/say(var/message)
 	if(local_transmit)
-		if (src.client)
+		if(src.client)
 			if(client.prefs.muted & MUTE_IC)
 				to_chat(src, "You cannot send IC messages (muted).")
 				return 0
-			if (src.client.handle_spam_prevention(message,MUTE_IC))
+			if(src.client.handle_spam_prevention(message,MUTE_IC))
 				return 0
 
 		message = sanitize(message)
@@ -21,7 +21,7 @@
 				return L.broadcast(src,trim(copytext(message,2)))
 
 		//Must be concious to speak
-		if (stat)
+		if(stat)
 			return 0
 
 		var/list/listeners = hearers(5,src)
@@ -31,8 +31,8 @@
 			if(D.client && D.local_transmit)
 				to_chat(D, "<b>[src]</b> transmits, \"[message]\"")
 
-		for (var/mob/M in GLOB.player_list)
-			if (isnewplayer(M))
+		for(var/mob/M in GLOB.player_list)
+			if(isnewplayer(M))
 				continue
 			else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				if(M.client) M << "<b>[src]</b> transmits, \"[message]\""

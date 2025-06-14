@@ -71,10 +71,10 @@
 		return
 
 	//Handling using grippers
-	if (istype(W, /obj/item/gripper))
+	if(istype(W, /obj/item/gripper))
 		var/obj/item/gripper/G = W
 		//If the gripper contains something, then we will use its contents to attack
-		if (G.wrapped && (G.wrapped.loc == G))
+		if(G.wrapped && (G.wrapped.loc == G))
 			GripperClickOn(A, params, G)
 			return
 
@@ -95,7 +95,7 @@
 	var/sdepth = A.storage_depth_turf()
 	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
 		if(A.Adjacent(src)) // see adjacent.dm
-			if (W)
+			if(W)
 				var/resolved = (SEND_SIGNAL_OLD(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL_OLD(A, COMSIG_ATTACKBY, W, src, params)) || W.resolve_attackby(A, src, params)
 				if(!resolved && A && W)
 					W.afterattack(A, src, 1, params)
@@ -105,7 +105,7 @@
 				UnarmedAttack(A, 1)
 			return
 		else
-			if (W)
+			if(W)
 				W.afterattack(A, src, 0, params)
 			else
 				RangedAttack(A, params)
@@ -119,7 +119,7 @@
 /mob/living/silicon/robot/proc/GripperClickOn(var/atom/A, var/params, var/obj/item/gripper/G)
 
 	var/obj/item/W = G.wrapped
-	if (!grippersafety(G))return
+	if(!grippersafety(G))return
 
 
 	G.force_holder = W.force
@@ -129,10 +129,10 @@
 		// No adjacency checks
 
 		var/resolved = A.attackby(W,src,params)
-		if (!grippersafety(G))return
+		if(!grippersafety(G))return
 		if(!resolved && A && W)
 			W.afterattack(A,src,1,params)
-		if (!grippersafety(G))return
+		if(!grippersafety(G))return
 		W.force = G.force_holder
 		return
 	if(!isturf(loc))
@@ -143,10 +143,10 @@
 	if(isturf(A) || isturf(A.loc))
 		if(A.Adjacent(src)) // see adjacent.dm
 			var/resolved = A.attackby(W, src, params)
-			if (!grippersafety(G))return
+			if(!grippersafety(G))return
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, params)
-			if (!grippersafety(G))return
+			if(!grippersafety(G))return
 			W.force = G.force_holder
 			return
 		//No non-adjacent clicks. Can't fire guns

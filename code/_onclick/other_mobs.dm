@@ -158,20 +158,20 @@
 
 	// Eating
 	if(Victim)
-		if (Victim == A)
+		if(Victim == A)
 			Feedstop()
 		return
 
 	var/mob/living/M = A
-	if (istype(M))
+	if(istype(M))
 
 		switch(src.a_intent)
-			if (I_HELP) // We just poke the other
+			if(I_HELP) // We just poke the other
 				M.visible_message(SPAN_NOTICE("[src] gently pokes [M]!"), SPAN_NOTICE("[src] gently pokes you!"))
-			if (I_DISARM) // We stun the target, with the intention to feed
+			if(I_DISARM) // We stun the target, with the intention to feed
 				var/stunprob = 1
 				var/power = max(0, min(10, (powerlevel + rand(0, 3))))
-				if (powerlevel > 0 && !isslime(A))
+				if(powerlevel > 0 && !isslime(A))
 					if(ishuman(M))
 						var/mob/living/carbon/human/H = M
 						stunprob *= H.species.siemens_coefficient
@@ -205,9 +205,9 @@
 				else
 					M.visible_message(SPAN_DANGER("[src] has tried to pounce at [M]!"), SPAN_DANGER("[src] has tried to pounce at you!"))
 				M.updatehealth()
-			if (I_GRAB) // We feed
+			if(I_GRAB) // We feed
 				Wrap(M)
-			if (I_HURT) // Attacking
+			if(I_HURT) // Attacking
 				A.attack_generic(src, (is_adult ? rand(20, 40) : rand(5, 25)), "glomped")
 	else
 		A.attack_generic(src, (is_adult ? rand(20, 40) : rand(5, 25)), "glomped") // Basic attack.

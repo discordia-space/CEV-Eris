@@ -7,17 +7,17 @@
 
 //Called by spawnpoint landmarks. A landmark creates a new /datum/spawnpoint, or adds its own data to an existing one
 /proc/landmark_create_spawn_point(var/obj/landmark/join/LM, late = FALSE, silenced = FALSE)
-	if (!istype(LM))
+	if(!istype(LM))
 		return
 
 	//Spawnpoints are unique by name, try to find one with a matching name first
 	var/datum/spawnpoint/S = get_spawn_point(LM.name, late, silenced)
 
 	//If not, we create it
-	if (!S)
+	if(!S)
 		S = create_spawn_point(LM.name, late, LM.spawn_datum_type)
 		S.display_name = LM.name
-		if (late)
+		if(late)
 			var/obj/landmark/join/late/LM2 = LM
 			S.restrict_job = LM2.restrict_job
 			S.disallow_job = LM2.disallow_job
@@ -59,7 +59,7 @@
 
 /proc/get_datum_spawn_locations(name = SSmapping.default_spawn, free_only = TRUE, late = FALSE)
 	var/datum/spawnpoint/SP = get_spawn_point(name, late)
-	if (SP)
+	if(SP)
 		return SP.get_spawn_locations()
 
 /proc/pick_spawn_location(name, free_only = TRUE, late = FALSE)
@@ -90,25 +90,25 @@
 		return FALSE
 	if(disallow_job && (job in disallow_job))
 		return FALSE
-	for (var/turf/T in points)
-		if (!check_unsafe_spawn(M, T, report))
+	for(var/turf/T in points)
+		if(!check_unsafe_spawn(M, T, report))
 			return FALSE
 	return TRUE
 
 /datum/spawnpoint/proc/get_free_turfs(update = FALSE)
-	if (!update && turfs.len)
+	if(!update && turfs.len)
 		return turfs
 
 	turfs = list()
 	var/list/things = list()
-	for (var/turf/P in points)
-		if (search_type == "view")
+	for(var/turf/P in points)
+		if(search_type == "view")
 			things += dview(search_range, P)
-		else if (search_type == "range")
+		else if(search_type == "range")
 			things += range(search_range, P)
 
-	for (var/turf/T in things)
-		if (clear_interior(T))
+	for(var/turf/T in things)
+		if(clear_interior(T))
 			turfs |= T
 	return turfs
 
@@ -121,7 +121,7 @@
 		You may die shortly after spawning. \
 		Spawn anyway? More information: [airstatus] Radiation: [radlevel] Bq", "Atmosphere warning", "Abort", "Spawn anyway")
 		*/
-		if (!confirm)
+		if(!confirm)
 			return FALSE
 		var/reply = alert(spawner, "Warning. Your selected spawn location seems to have unfavorable conditions. \
 		You may die shortly after spawning. \
@@ -163,14 +163,14 @@
 /datum/spawnpoint/cryo/get_spawn_locations()
 	. = list()
 	var/list/things = list()
-	for (var/turf/P in points)
-		if (search_type == "view")
+	for(var/turf/P in points)
+		if(search_type == "view")
 			things += dview(search_range, P)
-		else if (search_type == "range")
+		else if(search_type == "range")
 			things += range(search_range, P)
 
-	for (var/obj/machinery/cryopod/C in things)
-		if (C.occupant)
+	for(var/obj/machinery/cryopod/C in things)
+		if(C.occupant)
 			continue
 
 		//TODO: Power checks here?
@@ -178,9 +178,9 @@
 
 /datum/spawnpoint/cryo/can_spawn(mob/M, job, report = FALSE)
 	. = ..()
-	if (.)
+	if(.)
 		var/list/cryopods = get_spawn_locations()
-		if (cryopods.len)
+		if(cryopods.len)
 			return TRUE
 	return FALSE
 
@@ -190,7 +190,7 @@
 
 /datum/spawnpoint/cryo/put_mob(mob/M, ignore_environment = FALSE, announce = TRUE)
 	var/list/cryopods = get_spawn_locations()
-	if (cryopods.len)
+	if(cryopods.len)
 		var/obj/machinery/cryopod/C = pick(cryopods)
 		C.set_occupant(M, FALSE)
 
@@ -199,7 +199,7 @@
 
 		//You can get yourself out of the cryopod, or it will auto-eject after one minute
 		spawn(600)
-			if (C && C.occupant == M)
+			if(C && C.occupant == M)
 				C.eject()
 		return TRUE
 	return FALSE
@@ -219,24 +219,24 @@
 /datum/spawnpoint/dormitory/get_spawn_locations()
 	. = list()
 	var/list/things = list()
-	for (var/turf/P in points)
-		if (search_type == "view")
+	for(var/turf/P in points)
+		if(search_type == "view")
 			things += dview(search_range, P)
-		else if (search_type == "range")
+		else if(search_type == "range")
 			things += range(search_range, P)
 
 	//We have to search specifically for padded subtype, because the main bed type is used for a lot of things, including chairs
-	for (var/obj/structure/bed/padded/C in things)
-		if (C.buckled_mob)
+	for(var/obj/structure/bed/padded/C in things)
+		if(C.buckled_mob)
 			continue
 
 		. |= C
 
 /datum/spawnpoint/dormitory/can_spawn(mob/M, job, report = FALSE)
 	. = ..()
-	if (.)
+	if(.)
 		var/list/cryopods = get_spawn_locations()
-		if (cryopods.len)
+		if(cryopods.len)
 			return TRUE
 	return FALSE
 
@@ -246,7 +246,7 @@
 
 /datum/spawnpoint/dormitory/put_mob(mob/M, ignore_environment = FALSE, announce = TRUE)
 	var/list/beds = get_spawn_locations()
-	if (beds.len)
+	if(beds.len)
 		var/obj/structure/bed/C = pick(beds)
 		M.forceMove(C.loc)
 		C.buckle_mob(M)

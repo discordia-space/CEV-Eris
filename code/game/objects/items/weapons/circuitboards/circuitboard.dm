@@ -37,14 +37,14 @@
 
 //Called when the circuitboard is used to contruct a new machine.
 /obj/item/electronics/circuitboard/proc/construct(obj/machinery/M)
-	if (istype(M, build_path))
+	if(istype(M, build_path))
 		return TRUE
 	return FALSE
 
 //Called when a computer is deconstructed to produce a circuitboard.
 //Only used by computers, as other machines store their circuitboard instance.
 /obj/item/electronics/circuitboard/proc/deconstruct(obj/machinery/M)
-	if (istype(M, build_path))
+	if(istype(M, build_path))
 		return TRUE
 	return FALSE
 

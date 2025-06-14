@@ -59,7 +59,7 @@ export const backendReducer = (state = initialState, action) => {
     // Merge shared states
     const shared = { ...state.shared };
     if (payload.shared) {
-      for (let key of Object.keys(payload.shared)) {
+      for(let key of Object.keys(payload.shared)) {
         const value = payload.shared[key];
         if (value === '') {
           shared[key] = undefined;
@@ -172,7 +172,7 @@ export const backendMiddleware = (store) => {
         fancyState = fancy;
       }
       // React to changes in fancy
-      else if (fancyState !== fancy) {
+      else if(fancyState !== fancy) {
         logger.log('changing fancy mode to', fancy);
         fancyState = fancy;
         Byond.winset(Byond.windowId, {

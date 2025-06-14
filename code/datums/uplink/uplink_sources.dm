@@ -47,11 +47,11 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 
 	var/freq = PUBLIC_LOW_FREQ
 	var/list/freqlist = list()
-	while (freq <= PUBLIC_HIGH_FREQ)
-		if (freq < 1451 || freq > PUB_FREQ)
+	while(freq <= PUBLIC_HIGH_FREQ)
+		if(freq < 1451 || freq > PUB_FREQ)
 			freqlist += freq
 		freq += 2
-		if ((freq % 2) == 0)
+		if((freq % 2) == 0)
 			freq += 1
 
 	freq = freqlist[rand(1, freqlist.len)]

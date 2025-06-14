@@ -235,7 +235,7 @@ SUBSYSTEM_DEF(mapping)
 /datum/controller/subsystem/mapping/proc/get_zstep(ref, dir)
 	if(dir == UP)
 		. = GetAbove(ref)
-	else if (dir == DOWN)
+	else if(dir == DOWN)
 		. = GetBelow(ref)
 	else
 		. = get_step(ref, dir)

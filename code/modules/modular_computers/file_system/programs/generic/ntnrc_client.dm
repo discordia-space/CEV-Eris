@@ -128,7 +128,7 @@
 
 			if(!computer.hard_drive)
 				computer.visible_message("\The [computer] shows an \"I/O Error - Hard drive connection error\" warning.")
-			else if (computer.hard_drive.used_capacity + logfile.size == computer.hard_drive.max_capacity)	// In 99.9% cases this will mean our HDD is full
+			else if(computer.hard_drive.used_capacity + logfile.size == computer.hard_drive.max_capacity)	// In 99.9% cases this will mean our HDD is full
 				computer.visible_message("\The [computer] shows an \"I/O Error - Hard drive may be full. Please free some space and try again. Required space: [logfile.size]GQ\" warning.")
 			else
 				computer.visible_message("\The [computer] shows an \"I/O Error - Unable to store log. Invalid name")
@@ -235,7 +235,7 @@
 		data["all_channels"] = all_channels
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "ntnet_chat.tmpl", "NTNet Relay Chat Client", 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)

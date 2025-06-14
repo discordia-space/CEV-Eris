@@ -22,7 +22,7 @@
 
 	if(ismob(mover))
 		var/mob/moving_mob = mover
-		if ((other_mobs && moving_mob.other_mobs))
+		if((other_mobs && moving_mob.other_mobs))
 			return 1
 		return (!mover.density || !density || lying)
 	else
@@ -69,7 +69,7 @@
 /mob/living/carbon/hotkey_drop()
 	if(!get_active_hand())
 		to_chat(usr, SPAN_WARNING("You have nothing to drop in your hand."))
-	if (!isturf(loc))
+	if(!isturf(loc))
 		return
 	else
 		unEquip(get_active_hand(), loc)
@@ -106,7 +106,7 @@
 	set hidden = 1
 	if(!istype(mob, /mob/living/carbon))
 		return
-	if (!mob.stat && isturf(mob.loc) && !mob.restrained())
+	if(!mob.stat && isturf(mob.loc) && !mob.restrained())
 		mob:toggle_throw_mode()
 	else
 		return
@@ -134,11 +134,11 @@
 /mob/proc/allow_spacemove()
 	//First up, check for magboots or other gripping capability
 	//If we have some, then check the ground under us
-	if (incorporeal_move)
+	if(incorporeal_move)
 		return TRUE
-	if (check_shoegrip() && check_solid_ground())
+	if(check_shoegrip() && check_solid_ground())
 		return TRUE
-	if (check_dense_object())
+	if(check_dense_object())
 		return -1
 	return FALSE
 
@@ -168,7 +168,7 @@
 //This proc specifically checks the floor under us. Both floor turfs and walkable objects like catwalk
 //This proc is only called if we have grip, ie magboots
 /mob/proc/check_solid_ground()
-	if (istype(loc, /turf))
+	if(istype(loc, /turf))
 		if(istype(loc, /turf/open))
 			return FALSE //open spess was fogotten
 		return TRUE //We're standing on a simulated floor
@@ -231,7 +231,7 @@
 /mob/total_movement_delay()
 	var/delay = 0
 
-	if (MOVING_QUICKLY(src))
+	if(MOVING_QUICKLY(src))
 		if(drowsyness > 0)
 			delay += 6
 		delay += 1
@@ -239,7 +239,7 @@
 		delay += 7
 	delay += movement_delay()
 
-	if (speed_factor && speed_factor != 1)
+	if(speed_factor && speed_factor != 1)
 		delay /= speed_factor
 
 	return delay

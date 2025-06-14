@@ -55,7 +55,7 @@
 
 //Newly manufactured cells start off empty, except for non-rechargeable ones.
 /obj/item/cell/Created()
-	if (spawn_charged == 1)
+	if(spawn_charged == 1)
 		charge = maxcharge
 	else
 		charge = 0
@@ -76,22 +76,22 @@
 /obj/item/cell/update_icon()
 	var/charge_status
 	var/c = charge/maxcharge
-	if (c >=0.95)
+	if(c >=0.95)
 		charge_status = 100
-	else if (c >=0.75)
+	else if(c >=0.75)
 		charge_status = 75
-	else if (c >=0.50)
+	else if(c >=0.50)
 		charge_status = 50
-	else if (c >=0.25)
+	else if(c >=0.25)
 		charge_status = 25
-	else if (c >=0.01)
+	else if(c >=0.01)
 		charge_status = 0
 
-	if (charge_status == last_charge_status)
+	if(charge_status == last_charge_status)
 		return
 
 	cut_overlays()
-	if (charge_status != null)
+	if(charge_status != null)
 		overlays += image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]")
 
 	last_charge_status = charge_status
@@ -183,7 +183,7 @@
 		return
 	var/explosion_power = round(sqrt(charge))
 	var/explosion_falloff = 50
-	if (explosion_power ==0)
+	if(explosion_power ==0)
 		rigged = FALSE
 		corrupt()
 		return
@@ -199,7 +199,7 @@
 /obj/item/cell/proc/corrupt()
 	charge /= 2
 	maxcharge /= 2
-	if (prob(10))
+	if(prob(10))
 		rigged = TRUE //broken batterys are dangerous
 
 /obj/item/cell/emp_act(severity)
@@ -210,7 +210,7 @@
 
 	// Lose 1/2, 1/4, 1/6 of the current charge per hit or 1/4, 1/8, 1/12 of the max charge per hit, whichever is highest
 	charge -= max(charge / (2 * severity), maxcharge/(4 * severity))
-	if (charge < 0)
+	if(charge < 0)
 		charge = 0
 	..()
 /obj/item/cell/explosion_act(target_power, explosion_handler/handle)
@@ -228,25 +228,25 @@
 // Also, even the most common gloves and boots have siemens_coefficent < 1, offering a degree of shock protection
 /obj/item/cell/proc/get_electrocute_damage()
 	switch (charge)
-		if (40000 to INFINITY) // Here in case some supercharged superscience cells pop up
+		if(40000 to INFINITY) // Here in case some supercharged superscience cells pop up
 			return min(rand(80,180),rand(80,180))
-		if (20000 to 40000) // Limit for L-class - only reached by rare Robustcell-X at full charge
+		if(20000 to 40000) // Limit for L-class - only reached by rare Robustcell-X at full charge
 			return min(rand(60,160),rand(60,160))
-		if (15000 to 20000) // High grade L-class
+		if(15000 to 20000) // High grade L-class
 			return min(rand(50,140),rand(50,140))
-		if (10000 to 15000)
+		if(10000 to 15000)
 			return min(rand(40,120),rand(40,120))
-		if (5000 to 10000) // Default APC cell that's fully charged
+		if(5000 to 10000) // Default APC cell that's fully charged
 			return min(rand(25,60),rand(25,60))
-		if (1000 to 5000) // Low grade L-class, high grade M-class, default APC cell that's not fully charged
+		if(1000 to 5000) // Low grade L-class, high grade M-class, default APC cell that's not fully charged
 			return min(rand(20,40),rand(20,40))
-		if (500 to 1000) // Usual M-class
+		if(500 to 1000) // Usual M-class
 			return min(rand(15,25),rand(15,25))
-		if (250 to 500) // Limit for S-class
+		if(250 to 500) // Limit for S-class
 			return min(rand(10,20),rand(10,20))
-		if (100 to 250) // Usual S-class
+		if(100 to 250) // Usual S-class
 			return min(rand(5,15),rand(5,15))
-		if (10 to 100) // Low S-class
+		if(10 to 100) // Low S-class
 			return min(rand(1,10),rand(1,10))
 		else
 			return FALSE

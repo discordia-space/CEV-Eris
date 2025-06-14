@@ -49,7 +49,7 @@
 
 
 /obj/item/gun/energy/temperature/Topic(href, href_list)
-	if (..())
+	if(..())
 		return 1
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
@@ -62,7 +62,7 @@
 			src.current_temperature = min(500, src.current_temperature+amount)
 		else
 			src.current_temperature = max(0, src.current_temperature+amount)
-	if (ismob(loc))
+	if(ismob(loc))
 		attack_self(loc)
 	src.add_fingerprint(usr)
 	return

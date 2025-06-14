@@ -5,7 +5,7 @@
 /obj/machinery/computer/shuttle_control/explore/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 	var/datum/shuttle/autodock/overmap/shuttle = SSshuttle.shuttles[shuttle_tag]
-	if (!istype(shuttle))
+	if(!istype(shuttle))
 		to_chat(usr, "<span class='warning'>Unable to establish link with the shuttle.</span>")
 		return
 
@@ -18,7 +18,7 @@
 	var/shuttle_status
 	switch (shuttle.process_state)
 		if(IDLE_STATE)
-			if (shuttle.in_use)
+			if(shuttle.in_use)
 				shuttle_status = "Busy."
 			else
 				shuttle_status = "Standing-by at [shuttle.get_location_name()]."
@@ -63,7 +63,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "shuttle_control_console_exploration.tmpl", "[shuttle_tag] Shuttle Control", 510, 340)
 		ui.set_initial_data(data)
 		ui.open()

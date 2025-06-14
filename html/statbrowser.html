@@ -156,14 +156,14 @@ if(!Array.prototype.includes) {
 		return false;
 	}
 }
-if (!String.prototype.trim) {
+if(!String.prototype.trim) {
 	String.prototype.trim = function () {
 		return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
 	};
 }
 
 // Browser passthrough code ---------------------------------------------------
-if (window.location) {
+if(window.location) {
 	var anti_spam = []; // wow I wish I could use e.repeat but IE is dumb and doesn't have it.
 	document[addEventListenerKey]("keydown", function(e) {
 		if(e.target && (e.target.localName == "input" || e.target.localName == "textarea"))
@@ -194,15 +194,6 @@ if (window.location) {
 		}
 	});
 }
-/* document.addEventListener("mousedown", function(e){
- var shiftPressed=0;
- var evt = e?e:window.event;
- shiftPressed=evt.shiftKey;
-  if (shiftPressed) {
-   return false;
-  }
- return true;
-}); */
 
 // Status panel implementation ------------------------------------------------
 var status_tab_parts = [["loading..."]];
@@ -244,8 +235,8 @@ function createStatusTab(name) {
 function removeStatusTab(name) {
 	if(!document.getElementById(name) || permanent_tabs.includes(name))
 		return;
-	for (var i = verb_tabs.length - 1; i >= 0; --i) {
-		if (verb_tabs[i] == name) {
+	for(var i = verb_tabs.length - 1; i >= 0; --i) {
+		if(verb_tabs[i] == name) {
 			verb_tabs.splice(i, 1);
 		}
 	}
@@ -261,8 +252,8 @@ function addPermanentTab(name) {
 }
 
 function removePermanentTab(name) {
-	for (var i = permanent_tabs.length - 1; i >= 0; --i) {
-		if (permanent_tabs[i] == name) {
+	for(var i = permanent_tabs.length - 1; i >= 0; --i) {
+		if(permanent_tabs[i] == name) {
 			permanent_tabs.splice(i, 1);
 		}
 	}
@@ -577,7 +568,7 @@ function draw_status() {
 						div[textContentKey] = current_module_data[0];
 						module_div.appendChild(div);
 					}
-					
+
 				}
 				document.getElementById("statcontent").appendChild(module_div);
 			}
@@ -775,10 +766,10 @@ function draw_verbs(cat){
 }
 
 function set_theme(which) {
-	if (which == "light") {
+	if(which == "light") {
 		document.body.className = "";
 		set_style_sheet("browserOutput_white");
-	} else if (which == "dark") {
+	} else if(which == "dark") {
 		document.body.className = "dark";
 		set_style_sheet("browserOutput");
 	}
@@ -821,8 +812,8 @@ function getCookie(cname) {
 	var ca = document.cookie.split(';');
 	for(var i=0; i < ca.length; i++) {
 	var c = ca[i];
-	while (c.charAt(0)==' ') c = c.substring(1);
-		if (c.indexOf(name) === 0) {
+	while(c.charAt(0)==' ') c = c.substring(1);
+		if(c.indexOf(name) === 0) {
 			return decoder(c.substring(name.length,c.length));
 		}
 	}

@@ -42,7 +42,7 @@
 	data["banned_nids"] = list(ntnet_global.banned_nids)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "ntnet_monitor.tmpl", "NTNet Diagnostics and Monitoring Tool", 575, 700, state = state)
 		if(host.update_layout())
 			ui.auto_update_layout = 1

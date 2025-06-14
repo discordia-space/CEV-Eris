@@ -306,7 +306,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 /obj/structure/scrap_spawner/proc/dig_out_lump(newloc = loc)
 	if(dig_amount > 0)
 		dig_amount--
-		for (var/a in matter)
+		for(var/a in matter)
 			matter[a] *=RAND_DECIMAL(0.6, 0.8)//remove some amount of matter from the pile
 		//new /obj/item/scrap_lump(src) //Todo: uncomment this once purposes and machinery for scrap are implemented
 		return TRUE
@@ -314,13 +314,13 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap_spawner/proc/clear_if_empty()
 	if(dig_amount <= 0)
-		for (var/obj/item/i in contents)
+		for(var/obj/item/i in contents)
 			if((i != big_item) && (i != loot)) //These two dont stop the pile from being cleared
 				return FALSE
 
 		//Anything in the internal storage prevents deletion
 		if(loot)
-			for (var/obj/item/i in loot.contents)
+			for(var/obj/item/i in loot.contents)
 				return FALSE
 
 		clear()

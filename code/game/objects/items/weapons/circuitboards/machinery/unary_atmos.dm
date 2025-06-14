@@ -5,7 +5,7 @@
 	//TODO: Move this stuff into the relevant constructor when pipe/construction.dm is cleaned up.
 	U.atmos_init()
 	U.build_network()
-	if (U.node1)
+	if(U.node1)
 		U.node1.atmos_init()
 		U.node1.build_network()
 

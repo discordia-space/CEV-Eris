@@ -95,7 +95,7 @@
 
 
 /obj/machinery/power/generator_type2/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) && (!isAI(user)))
+	if( (get_dist(src, user) > 1 ) && (!isAI(user)))
 		user.unset_machine()
 		user << browse(null, "window=teg")
 		return

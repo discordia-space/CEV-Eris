@@ -42,11 +42,11 @@
 	..(user, extra_description)
 
 /obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, message, channel)
-	if (channel == "special")
-		if (translate_binary)
+	if(channel == "special")
+		if(translate_binary)
 			var/datum/language/binary = all_languages[LANGUAGE_ROBOT]
 			binary.broadcast(M, message)
-		if (translate_hive)
+		if(translate_hive)
 			var/datum/language/hivemind = all_languages[LANGUAGE_HIVEMIND]
 			hivemind.broadcast(M, message)
 		return null
@@ -54,7 +54,7 @@
 	return ..()
 
 /obj/item/device/radio/headset/receive_range(freq, level, aiOverride = 0)
-	if (aiOverride)
+	if(aiOverride)
 		playsound(loc, 'sound/effects/radio_common.ogg', 25, 1, 1)
 		return ..(freq, level)
 	if(ishuman(src.loc))
@@ -148,7 +148,7 @@
 	var/disabledAi = 0 // Atlantis: Used to manually disable AI's integrated radio via intellicard menu.
 
 /obj/item/device/radio/headset/heads/ai_integrated/receive_range(freq, level)
-	if (disabledAi)
+	if(disabledAi)
 		return -1 //Transciever Disabled.
 	return ..(freq, level, 1)
 
@@ -323,7 +323,7 @@
 			src.pirate = TRUE
 
 
-	for (var/ch_name in channels)
+	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 	if(setDescription)

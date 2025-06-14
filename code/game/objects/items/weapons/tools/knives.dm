@@ -237,7 +237,7 @@
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
 	w_class = switched_on_w_class
-	if (!isnull(switched_on_force))
+	if(!isnull(switched_on_force))
 		force = switched_on_force
 	update_icon()
 	update_wear_icon()
@@ -286,7 +286,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
-	if (!isnull(switched_on_force))
+	if(!isnull(switched_on_force))
 		force = switched_on_force
 	w_class = switched_on_w_class
 	update_icon()

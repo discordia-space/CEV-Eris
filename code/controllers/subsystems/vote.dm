@@ -102,7 +102,7 @@ SUBSYSTEM_DEF(vote)
 		else
 			data += "You can't change your vote."
 
-		if (active_vote.description)
+		if(active_vote.description)
 			data += "<br>[active_vote.description]<br>"
 
 		data += "<hr>"
@@ -135,7 +135,7 @@ SUBSYSTEM_DEF(vote)
 				data += "<a href='?src=\ref[src];start_vote=\ref[poll]'>[poll.name]</a>"
 			else
 				data += "<s>[poll.name]</s>"
-				if (admin)
+				if(admin)
 					data += " <a href='?src=\ref[src];start_vote=\ref[poll]'>force</a> "
 
 			if(admin)

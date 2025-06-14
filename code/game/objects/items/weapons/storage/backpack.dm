@@ -20,19 +20,19 @@
 
 /obj/item/storage/backpack/Initialize()
 	. = ..()
-	if (!item_state)
+	if(!item_state)
 		item_state = icon_state
 
 /obj/item/storage/backpack/attackby(obj/item/W, mob/user)
-	if (!worn_check())
+	if(!worn_check())
 		return
 	..()
 
 /obj/item/storage/backpack/attack_hand(mob/user)
-	if (!worn_check(no_message = TRUE))
+	if(!worn_check(no_message = TRUE))
 		if(src.loc != user || user.incapacitated())
 			return
-		if (!user.unEquip(src))
+		if(!user.unEquip(src))
 			return
 		user.put_in_active_hand(src)
 		return
@@ -40,14 +40,14 @@
 
 /obj/item/storage/backpack/equipped(mob/user, slot)
 	..(user, slot)
-	if (use_sound)
+	if(use_sound)
 		playsound(loc, use_sound, 50, 1, -5)
 	if(!worn_access && is_worn()) //currently looking into the backpack
 		close(user)
 
 
 /obj/item/storage/backpack/open(mob/user)
-	if (!worn_check())
+	if(!worn_check())
 		return
 	..()
 
@@ -55,19 +55,19 @@
 /obj/item/storage/backpack/proc/worn_check(no_message = FALSE)
 	if(!equip_access && is_equipped())
 		var/mob/living/L = loc
-		if (istype(L))
+		if(istype(L))
 			if(!no_message)
 				to_chat(L, "<span class='warning'>The [src] is too cumbersome to handle with one hand, you're going to have to set it down somewhere!</span>")
-		if (!no_message && use_sound)
+		if(!no_message && use_sound)
 			playsound(loc, use_sound, 50, 1, -5)
 		return FALSE
 
 	else if(!worn_access && is_worn())
 		var/mob/living/L = loc
-		if (istype(L))
+		if(istype(L))
 			if(!no_message)
 				to_chat(L, "<span class='warning'>Oh no! Your arms are not long enough to open [src] while it is on your back!</span>")
-		if (!no_message && use_sound)
+		if(!no_message && use_sound)
 			playsound(loc, use_sound, 50, 1, -5)
 		return FALSE
 

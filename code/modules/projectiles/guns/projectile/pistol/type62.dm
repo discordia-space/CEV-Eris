@@ -23,8 +23,7 @@
 	init_firemodes = list(
 		FULL_AUTO_600,
 		FULL_AUTO_800,
-		SEMI_AUTO_300
-        )
+		SEMI_AUTO_300)
 	spawn_tags = SPAWN_TAG_GUN_OS
 	spawn_blacklisted = TRUE
 	price_tag = 2700

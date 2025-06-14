@@ -59,13 +59,13 @@ var/list/portal_cache = list()
 
 //Given an adjacent origin tile, finds a destination which is the opposite side of the target
 /obj/effect/portal/proc/get_destination(turf/origin)
-	if (!target)
+	if(!target)
 		return null
 		//Major error!
 	var/turf/T = get_turf(target)
 	. = T
 
-	if (origin && Adjacent(origin))
+	if(origin && Adjacent(origin))
 		var/dir = get_dir(origin, loc)
 		return get_step(T, dir)
 
@@ -73,20 +73,20 @@ var/list/portal_cache = list()
 	qdel(src)
 
 /obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
-	if (world.time < next_teleport)
+	if(world.time < next_teleport)
 		return
-	if (M == src)
+	if(M == src)
 		return
-	if (istype(M, /obj/effect/sparks)) //sparks don't teleport
+	if(istype(M, /obj/effect/sparks)) //sparks don't teleport
 		return
-	if (istype(M, /obj/effect/effect/light)) //lights from flashlights too.
+	if(istype(M, /obj/effect/effect/light)) //lights from flashlights too.
 		return
-	if (M.anchored && !istype(M, /mob/living/exosuit))
+	if(M.anchored && !istype(M, /mob/living/exosuit))
 		return
-	if (!( target ))
+	if(!( target ))
 		qdel(src)
 		return
-	if (istype(M, /atom/movable))
+	if(istype(M, /atom/movable))
 		if(prob(failchance)) //oh dear a problem, put em in deep space
 			on_fail(M)
 		else
@@ -122,10 +122,10 @@ var/list/portal_cache = list()
 	.=..(M)
 
 	//Parent returns true if someone was successfully teleported
-	if (.)
+	if(.)
 		//In that case, we'll gain some instability
 		failchance += 3.5
-		if (!processing)
+		if(!processing)
 			START_PROCESSING(SSobj, src)
 			processing = TRUE
 		update_icon()
@@ -136,13 +136,13 @@ var/list/portal_cache = list()
 	update_icon()
 
 	//If we become fully stable, we stop processing
-	if (failchance <= 0)
+	if(failchance <= 0)
 		failchance = 0
 		STOP_PROCESSING(SSobj, src)
 		processing = FALSE
 
 /obj/effect/portal/wormhole/update_icon()
-	if (failchance > 0)
+	if(failchance > 0)
 		icon_state = "wormhole_unstable"
 		desc = "It is whirling violently. Going into this thing might be a bad idea."
 	else
@@ -152,14 +152,14 @@ var/list/portal_cache = list()
 //Links this wormhole up with its target destination, creating another if necessary
 /obj/effect/portal/wormhole/proc/pair()
 	partner = null
-	if (!target)
+	if(!target)
 		return
 
 	var/turf/T = get_turf(target)
 	partner = (locate(/obj/effect/portal/wormhole) in T)
 
 	//There's no wormhole in the target tile yet. We shall make one
-	if (!partner)
+	if(!partner)
 		partner = new /obj/effect/portal/wormhole(T, lifetime, loc)
 
 
@@ -196,13 +196,13 @@ var/list/portal_cache = list()
 
 /obj/effect/portal/wormhole/rift/pair()
 	partner = null
-	if (!target)
+	if(!target)
 		return
 
 	var/turf/T = get_turf(target)
 	partner = (locate(/obj/effect/portal/wormhole/rift) in T)
 
-	if (!partner)
+	if(!partner)
 		partner = new /obj/effect/portal/wormhole/rift(T, loc, FALSE)
 	var/obj/effect/portal/wormhole/rift/P = partner
 	P.teleportations_left = teleportations_left

@@ -357,9 +357,9 @@ There are important things regarding this file:
 	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/projectile/bullet/bolt/on_hit(mob/living/target, def_zone = BP_CHEST)
-    if(istype(target))
-        var/obj/item/ammo_casing/crossbow/bolt/R = new(null)
-        target.embed(R, def_zone)
+	if(istype(target))
+		var/obj/item/ammo_casing/crossbow/bolt/R = new(null)
+		target.embed(R, def_zone)
 
 /obj/item/projectile/bullet/bolt/mech
 	name = "large bolt"

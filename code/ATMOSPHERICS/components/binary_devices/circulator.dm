@@ -79,12 +79,12 @@
 /obj/machinery/atmospherics/binary/circulator/update_icon()
 	icon_state = anchored ? "circ-assembled" : "circ-unassembled"
 	overlays.Cut()
-	if (stat & (BROKEN|NOPOWER) || !anchored)
+	if(stat & (BROKEN|NOPOWER) || !anchored)
 		return
-	if (last_pressure_delta > 0 && recent_moles_transferred > 0)
-		if (temperature_overlay)
+	if(last_pressure_delta > 0 && recent_moles_transferred > 0)
+		if(temperature_overlay)
 			overlays += temperature_overlay
-		if (last_pressure_delta > 5*ONE_ATMOSPHERE)
+		if(last_pressure_delta > 5*ONE_ATMOSPHERE)
 			overlays += "circ-run"
 		else
 			overlays += "circ-slow"
@@ -108,10 +108,10 @@
 
 			atmos_init()
 			build_network()
-			if (node1)
+			if(node1)
 				node1.atmos_init()
 				node1.build_network()
-			if (node2)
+			if(node2)
 				node2.atmos_init()
 				node2.build_network()
 		else
@@ -134,7 +134,7 @@
 	set name = "Rotate Circulator (Clockwise)"
 	set src in view(1)
 
-	if (usr.stat || usr.restrained() || anchored)
+	if(usr.stat || usr.restrained() || anchored)
 		return
 
 	src.set_dir(turn(src.dir, 90))
@@ -146,7 +146,7 @@
 	set name = "Rotate Circulator (Counterclockwise)"
 	set src in view(1)
 
-	if (usr.stat || usr.restrained() || anchored)
+	if(usr.stat || usr.restrained() || anchored)
 		return
 
 	src.set_dir(turn(src.dir, -90))

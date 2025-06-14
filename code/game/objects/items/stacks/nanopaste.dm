@@ -16,11 +16,11 @@
 /obj/item/stack/nanopaste/attack(mob/living/M, mob/user)
 	if(..())
 		return 1
-	if (!istype(M) || !istype(user))
+	if(!istype(M) || !istype(user))
 		return 0
-	if (isrobot(M))	//Repairing cyborgs
+	if(isrobot(M))	//Repairing cyborgs
 		var/mob/living/silicon/robot/R = M
-		if (R.getBruteLoss() || R.getFireLoss() )
+		if(R.getBruteLoss() || R.getFireLoss() )
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			R.adjustBruteLoss(-15)
 			R.adjustFireLoss(-15)
@@ -31,7 +31,7 @@
 		else
 			to_chat(user, SPAN_NOTICE("All [R]'s systems are nominal."))
 
-	if (ishuman(M))		//Repairing robolimbs
+	if(ishuman(M))		//Repairing robolimbs
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.get_organ(user.targeted_organ)
 
@@ -53,5 +53,5 @@
 			if(S.get_damage())
 				to_chat(user, SPAN_WARNING("\The [S] still needs further repair."))
 				return
-		if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+		if(can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
 			do_surgery(H,user,src, TRUE)

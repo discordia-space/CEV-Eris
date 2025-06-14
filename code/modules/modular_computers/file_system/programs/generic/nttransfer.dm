@@ -96,13 +96,13 @@ var/global/nttransfer_uid = 0
 		data["download_progress"] = PRG.download_completion
 		data["download_netspeed"] = PRG.actual_netspeed
 		data["download_name"] = "[PRG.downloaded_file.filename].[PRG.downloaded_file.filetype]"
-	else if (PRG.provided_file)
+	else if(PRG.provided_file)
 		data["uploading"] = 1
 		data["upload_uid"] = PRG.unique_token
 		data["upload_clients"] = PRG.connected_clients.len
 		data["upload_haspassword"] = PRG.server_password ? 1 : 0
 		data["upload_filename"] = "[PRG.provided_file.filename].[PRG.provided_file.filetype]"
-	else if (PRG.upload_menu)
+	else if(PRG.upload_menu)
 		var/list/all_files[0]
 		for(var/datum/computer_file/F in PRG.computer.hard_drive.stored_files)
 			all_files.Add(list(list(
@@ -125,7 +125,7 @@ var/global/nttransfer_uid = 0
 		data["servers"] = all_servers
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "mpc_transfer.tmpl", name, 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)

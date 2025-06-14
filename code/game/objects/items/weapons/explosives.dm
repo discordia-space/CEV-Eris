@@ -42,13 +42,13 @@
 		to_chat(user, "Timer set for [timer] seconds.")
 
 /obj/item/plastique/afterattack(atom/movable/target, mob/user, flag)
-	if (!flag)
+	if(!flag)
 		return
 	if(isturf(target))
 		var/turf/turf = target
 		if(!turf.is_simulated)
 			return
-	if (ismob(target) || istype(target, /turf/shuttle) || istype(target, /obj/item/storage/) || istype(target, /obj/item/clothing/under))
+	if(ismob(target) || istype(target, /turf/shuttle) || istype(target, /obj/item/storage/) || istype(target, /obj/item/clothing/under))
 		return
 	to_chat(user, "Planting the explosive charge...")
 	user.do_attack_animation(target)
@@ -58,7 +58,7 @@
 		src.target = target
 		loc = null
 
-		if (ismob(target))
+		if(ismob(target))
 			add_logs(user, target, "planted [name] on")
 			user.visible_message(SPAN_DANGER("[user.name] finished planting the explosive on [target.name]!"))
 			message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [key_name(target)](<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) with [timer] second fuse",0,1)
@@ -87,7 +87,7 @@
 	explosion(cur_turf, 400, 180)
 	/*
 	if(target)
-		if (istype(target, /turf/wall))
+		if(istype(target, /turf/wall))
 			var/turf/wall/W = target
 			W.dismantle_wall(no_product = TRUE)
 		else if(isliving(target))
@@ -97,7 +97,7 @@
 	*/
 
 	//Girders are a pain, just delete em
-	//for (var/obj/structure/girder/G in loc)
+	//for(var/obj/structure/girder/G in loc)
 	//	qdel(G)
 
 	if(target)

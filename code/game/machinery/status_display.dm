@@ -84,7 +84,7 @@
 		if(STATUS_DISPLAY_TRANSFER_SHUTTLE_TIME)				//emergency shuttle timer
 			if(evacuation_controller.is_prepared())
 				message1 = "-ETD-"
-				if (evacuation_controller.waiting_to_leave())
+				if(evacuation_controller.waiting_to_leave())
 					message2 = "Launch"
 				else
 					message2 = get_shuttle_timer()

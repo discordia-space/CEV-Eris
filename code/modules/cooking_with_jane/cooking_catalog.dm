@@ -16,11 +16,11 @@
 	var/list/data = nano_ui_data(user)
 
 	var/datum/asset/cooking_icons = get_asset_datum(/datum/asset/simple/cooking_icons)
-	if (cooking_icons.send(user.client))
+	if(cooking_icons.send(user.client))
 		user.client.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "cooking_catalog.tmpl", name, 640, 700, state = state)
 		ui.set_initial_data(data)
 		refresh_catalog_browsing(user, ui)

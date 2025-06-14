@@ -27,7 +27,7 @@
 
 	//unbuckling yourself
 	if(buckled)
-		if (buckled.resist_buckle(src))
+		if(buckled.resist_buckle(src))
 			spawn()
 				escape_buckle()
 			return TRUE

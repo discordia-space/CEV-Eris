@@ -15,7 +15,7 @@
 	name = "corneal erosion"
 	hal_damage = IWOUND_HEAVY_DAMAGE
 
-/datum/internal_wound/organic/eyes_blunt/iris //iris hehehehe 
+/datum/internal_wound/organic/eyes_blunt/iris //iris hehehehe
 	name = "iris tears"
 
 // Sharp
@@ -133,7 +133,7 @@
 	treatments_tool = list(QUALITY_CLAMPING = FAILCHANCE_HARD)
 
 /datum/internal_wound/robotic/eyes_blunt/jam
-    name = "jammed mechanics"
+	name = "jammed mechanics"
 
 /datum/internal_wound/robotic/eyes_blunt/matrix
 	name = "disconnected matrix"

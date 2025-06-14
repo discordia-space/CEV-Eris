@@ -123,7 +123,7 @@
 		var/obj/item/stack/stack = I
 		var/amount_needed = CEILING((maxHealth - health)/DOOR_REPAIR_AMOUNT, 1)
 		var/used = min(amount_needed,stack.amount)
-		if (used)
+		if(used)
 			to_chat(user, SPAN_NOTICE("You fit [used] [stack.singular_name]\s to damaged and broken parts on \the [src]."))
 			stack.use(used)
 			health = between(health, health + used*DOOR_REPAIR_AMOUNT, maxHealth)

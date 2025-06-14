@@ -73,7 +73,7 @@
 	return !!length(minor_alarms(z_level))
 
 /datum/alarm_handler/proc/check_alarm_cleared(var/datum/alarm/alarm)
-	if ((alarm.end_time && world.time > alarm.end_time) || !alarm.sources.len)
+	if((alarm.end_time && world.time > alarm.end_time) || !alarm.sources.len)
 		alarms -= alarm
 		alarms_assoc -= alarm.origin
 		alarms_by_z["[alarm.alarm_z()]"] -= alarm

@@ -30,7 +30,7 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 	updateallghostimages()
 
 /mob/observer/Destroy()
-	if (ghost_image)
+	if(ghost_image)
 		ghost_darkness_images -= ghost_image
 		ghost_sightless_images -= ghost_image
 		qdel(ghost_image)
@@ -51,5 +51,5 @@ mob/observer/check_airflow_movable()
 	return
 
 /proc/updateallghostimages()
-	for (var/mob/observer/ghost/O in GLOB.player_list)
+	for(var/mob/observer/ghost/O in GLOB.player_list)
 		O.updateghostimages()

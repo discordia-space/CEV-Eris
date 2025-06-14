@@ -12,30 +12,30 @@
 
 	var/obj/effect/shield/turf_shield = getEffectShield()
 
-	if (turf_shield && !turf_shield.CanActThrough(user))
+	if(turf_shield && !turf_shield.CanActThrough(user))
 		turf_shield.attackby(I, user)
 		return TRUE
 
 	//Flooring attackby may intercept the proc.
 	//If it has a nonzero return value, then we return too
-	if (flooring && flooring.attackby(I, user, src))
+	if(flooring && flooring.attackby(I, user, src))
 		return TRUE
 
 	//Attempting to damage floors with things
 	//This has a lot of potential to break things, so it's limited to harm intent.
 	//This supercedes all construction, deconstruction and similar actions. So change your intent out of harm if you don't want to smack the floor
-	if (usr.a_intent == I_HURT && user.Adjacent(src))
+	if(usr.a_intent == I_HURT && user.Adjacent(src))
 		if(!(I.flags & NOBLUDGEON))
 			user.do_attack_animation(src)
 			var/calc_damage = (I.force*I.structure_damage_factor) - flooring.resistance
 			var/volume = (calc_damage)*3.5
 			volume = min(volume, 15)
-			if (flooring.hit_sound)
+			if(flooring.hit_sound)
 				playsound(src, flooring.hit_sound, volume, 1, -1)
-			else if (I.hitsound)
+			else if(I.hitsound)
 				playsound(src, I.hitsound, volume, 1, -1)
 
-			if (calc_damage > 0)
+			if(calc_damage > 0)
 				visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
 				take_damage(I.force*I.structure_damage_factor, I.damtype)
 			else
@@ -60,7 +60,7 @@
 		F.try_floorbuild(src)
 		return
 
-	if (is_plating())
+	if(is_plating())
 		if(istype(I, /obj/item/stack))
 			if(is_damaged())
 				to_chat(user, SPAN_WARNING("This section is too damaged to support anything. Use a welder to fix the damage."))
@@ -72,13 +72,13 @@
 				if(!F.build_type)
 					continue
 				if((ispath(S.type, F.build_type) || ispath(S.build_type, F.build_type)) && ((S.type == F.build_type) || (S.build_type == F.build_type)))
-					if (flooring && flooring.can_build_floor(F))
+					if(flooring && flooring.can_build_floor(F))
 						use_flooring = F
 						break
-				else if (istype(S, /obj/item/stack/material))//Handling for material stacks
+				else if(istype(S, /obj/item/stack/material))//Handling for material stacks
 					var/obj/item/stack/material/M = S
-					if (F.build_type == M.material.name)
-						if (flooring && flooring.can_build_floor(F))
+					if(F.build_type == M.material.name)
+						if(flooring && flooring.can_build_floor(F))
 							use_flooring = F
 							break
 
@@ -117,7 +117,7 @@
 		switch(tool_type)
 			if(QUALITY_SEALING)
 				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
-				if (I.use_tool(user, src, 50 + ((maxHealth - health)*2), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
+				if(I.use_tool(user, src, 50 + ((maxHealth - health)*2), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
 					to_chat(user, SPAN_NOTICE("The [src] looks pretty solid now!"))
 					health = maxHealth
 					broken = FALSE
@@ -187,7 +187,7 @@
 		if(istype(I, /obj/item/stack/cable_coil) && (flooring.flags & TURF_HIDES_THINGS))
 			to_chat(user, SPAN_WARNING("You must remove the [flooring.descriptor] first."))
 			return
-		else if (istype(I, /obj/item/frame))
+		else if(istype(I, /obj/item/frame))
 			var/obj/item/frame/F = I
 			F.try_floorbuild(src)
 			return

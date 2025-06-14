@@ -9,7 +9,7 @@
 	//syllables are at the bottom of the file
 
 /datum/language/common/get_random_name(gender)
-	if (prob(80))
+	if(prob(80))
 		if(gender==FEMALE)
 			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 		else

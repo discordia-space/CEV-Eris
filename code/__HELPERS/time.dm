@@ -48,7 +48,7 @@ var/next_station_date_change = 1 DAYS
 	return timeshift ? time2text(time+(roundstart_hour HOURS), "hh:mm") : time2text(time, "hh:mm")
 
 /proc/worldtime2hours()
-	if (!roundstart_hour)
+	if(!roundstart_hour)
 		worldtime2text()
 	. = text2num(time2text(world.time + (roundstart_hour HOURS), "hh"))
 
@@ -99,7 +99,7 @@ var/global/midnight_rollovers = 0
 var/global/rollovercheck_last_timeofday = 0
 
 /proc/update_midnight_rollover()
-	if (world.timeofday < rollovercheck_last_timeofday) //TIME IS GOING BACKWARDS!
+	if(world.timeofday < rollovercheck_last_timeofday) //TIME IS GOING BACKWARDS!
 		return midnight_rollovers++
 	return midnight_rollovers
 
@@ -139,7 +139,7 @@ var/global/rollovercheck_last_timeofday = 0
 #define UNTIL(X) while(!X) stoplag()
 
 /proc/stoplag()
-	if (!Master || !(Master.current_runlevel & RUNLEVELS_DEFAULT))
+	if(!Master || !(Master.current_runlevel & RUNLEVELS_DEFAULT))
 		sleep(world.tick_lag)
 		return 1
 	. = 0
@@ -148,6 +148,6 @@ var/global/rollovercheck_last_timeofday = 0
 		. += round(i*DELTA_CALC)
 		sleep(i*world.tick_lag*DELTA_CALC)
 		i *= 2
-	while (world.tick_usage > min(TICK_LIMIT_TO_RUN, Master.current_ticklimit))
+	while(world.tick_usage > min(TICK_LIMIT_TO_RUN, Master.current_ticklimit))
 
 #undef DELTA_CALC

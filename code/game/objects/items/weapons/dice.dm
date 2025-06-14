@@ -64,9 +64,9 @@ Another builds like baystation12 also have a duplication.
 /obj/item/dice/attack_self(mob/user as mob)
 	var/result = rand(1, sides)
 	var/comment = ""
-	if (result == 1 && sides == 20)
+	if(result == 1 && sides == 20)
 		comment = "Ouch, bad luck."
-	else if (result == 20 && sides == 20)
+	else if(result == 20 && sides == 20)
 		comment = "Nat 20!"
 	icon_state = "[name][result]"
 	user.visible_message(SPAN_NOTICE("[user] has thrown [src]. It lands on [result]. [comment]"), \
@@ -77,9 +77,9 @@ Another builds like baystation12 also have a duplication.
 	..()
 	var/result = rand(1,sides)
 	var/comment = ""
-	if (result == 1 && sides == 20)
+	if(result == 1 && sides == 20)
 		comment = "Ouch, bad luck."
-	else if (result == 20 && sides == 20)
+	else if(result == 20 && sides == 20)
 		comment = "Nat 20!"
 	icon_state = "[name][result]"
 	src.visible_message(SPAN_NOTICE("\The [src] lands on [result]. [comment]"))

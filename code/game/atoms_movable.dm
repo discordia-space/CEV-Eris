@@ -51,8 +51,8 @@
 		loc.handle_atom_del(src)
 
 	forceMove(null)
-	if (pulledby)
-		if (pulledby.pulling == src)
+	if(pulledby)
+		if(pulledby.pulling == src)
 			pulledby.pulling = null
 		pulledby = null
 
@@ -62,7 +62,7 @@
 		src.throwing = 0
 
 
-	if (A && yes)
+	if(A && yes)
 		A.last_bumped = world.time
 		A.Bumped(src)
 	return ..()
@@ -229,12 +229,12 @@
 	..()
 
 /atom/movable/overlay/attackby(a, b)
-	if (src.master)
+	if(src.master)
 		return src.master.attackby(a, b)
 	return
 
 /atom/movable/overlay/attack_hand(a, b, c)
-	if (src.master)
+	if(src.master)
 		return src.master.attack_hand(a, b, c)
 	return
 
@@ -250,15 +250,15 @@
 			move_to_x = world.maxx - TRANSITIONEDGE - 2
 			move_to_y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
-		else if (x >= (world.maxx - TRANSITIONEDGE + 1))
+		else if(x >= (world.maxx - TRANSITIONEDGE + 1))
 			move_to_x = TRANSITIONEDGE + 1
 			move_to_y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
-		else if (y <= TRANSITIONEDGE)
+		else if(y <= TRANSITIONEDGE)
 			move_to_y = world.maxy - TRANSITIONEDGE -2
 			move_to_x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
-		else if (y >= (world.maxy - TRANSITIONEDGE + 1))
+		else if(y >= (world.maxy - TRANSITIONEDGE + 1))
 			move_to_y = TRANSITIONEDGE + 1
 			move_to_x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
@@ -284,55 +284,55 @@
 
 
 /atom/movable/proc/set_glide_size(glide_size_override = 0, var/min = 0.2, var/max = world.icon_size/2)
-	if (!glide_size_override || glide_size_override > max)
+	if(!glide_size_override || glide_size_override > max)
 		glide_size = 0
 	else
 		glide_size = max(min, glide_size_override)
 
-/*	for (var/atom/movable/AM in contents)
+/*	for(var/atom/movable/AM in contents)
 		AM.set_glide_size(glide_size, min, max)
 
 */
 //This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
 // Spoiler alert: it is, in moved.dm
 /atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
-	if (glide_size_override > 0)
+	if(glide_size_override > 0)
 		set_glide_size(glide_size_override)
 
 	// To prevent issues, diagonal movements are broken up into two cardinal movements.
 	// Is this a diagonal movement?
 	SEND_SIGNAL_OLD(src, COMSIG_MOVABLE_PREMOVE, src)
-	if (Dir & (Dir - 1))
-		if (Dir & NORTH)
-			if (Dir & EAST)
+	if(Dir & (Dir - 1))
+		if(Dir & NORTH)
+			if(Dir & EAST)
 				// Pretty simple really, try to move north -> east, else try east -> north
 				// Pretty much exactly the same for all the other cases here.
-				if (step(src, NORTH))
+				if(step(src, NORTH))
 					step(src, EAST)
 				else
-					if (step(src, EAST))
+					if(step(src, EAST))
 						step(src, NORTH)
 			else
-				if (Dir & WEST)
-					if (step(src, NORTH))
+				if(Dir & WEST)
+					if(step(src, NORTH))
 						step(src, WEST)
 					else
-						if (step(src, WEST))
+						if(step(src, WEST))
 							step(src, NORTH)
 		else
-			if (Dir & SOUTH)
-				if (Dir & EAST)
-					if (step(src, SOUTH))
+			if(Dir & SOUTH)
+				if(Dir & EAST)
+					if(step(src, SOUTH))
 						step(src, EAST)
 					else
-						if (step(src, EAST))
+						if(step(src, EAST))
 							step(src, SOUTH)
 				else
-					if (Dir & WEST)
-						if (step(src, SOUTH))
+					if(Dir & WEST)
+						if(step(src, SOUTH))
 							step(src, WEST)
 						else
-							if (step(src, WEST))
+							if(step(src, WEST))
 								step(src, SOUTH)
 	else
 		var/atom/oldloc = src.loc
@@ -352,7 +352,7 @@
 		src.l_move_time = world.time
 		src.m_flag = 1
 
-		if (oldloc != src.loc && oldloc && oldloc.z == src.z)
+		if(oldloc != src.loc && oldloc && oldloc.z == src.z)
 			src.last_move = get_dir(oldloc, src.loc)
 
 		// Only update plane if we're located on map
@@ -386,10 +386,10 @@
 */
 
 /mob/living/proc/update_z(new_z) // 1+ to register, null to unregister
-	if (registered_z != new_z)
-		if (registered_z)
+	if(registered_z != new_z)
+		if(registered_z)
 			SSmobs.mob_living_by_zlevel[registered_z] -= src
-		if (new_z)
+		if(new_z)
 			SSmobs.mob_living_by_zlevel[new_z] += src
 		registered_z = new_z
 

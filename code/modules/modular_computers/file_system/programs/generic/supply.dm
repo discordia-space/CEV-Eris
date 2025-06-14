@@ -81,7 +81,7 @@
 			data["done"] = done
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "supply.tmpl", name, 1050, 800, state = state)
 		ui.set_auto_update(1)
 		ui.set_initial_data(data)
@@ -151,7 +151,7 @@
 			to_chat(user, "<span class='warning'>Error connecting to the shuttle.</span>")
 			return
 		if(shuttle.at_station())
-			if (shuttle.forbidden_atoms_check())
+			if(shuttle.forbidden_atoms_check())
 				to_chat(usr, "<span class='warning'>For safety reasons the automated supply shuttle cannot transport live organisms, classified nuclear weaponry or homing beacons.</span>")
 			else
 				shuttle.launch(user)
@@ -234,7 +234,7 @@
 	if(shuttle.has_arrive_time())
 		return "In transit ([shuttle.eta_seconds()] s)"
 
-	if (shuttle.can_launch())
+	if(shuttle.can_launch())
 		return "Docked"
 	return "Docking/Undocking"
 

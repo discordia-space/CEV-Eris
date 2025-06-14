@@ -140,7 +140,7 @@
 	var/p_type
 	var/p_dir
 
-	if (fdirn!=old_dir)
+	if(fdirn!=old_dir)
 		p_type=1+P_type
 		p_dir=old_dir+M_Dir
 	else

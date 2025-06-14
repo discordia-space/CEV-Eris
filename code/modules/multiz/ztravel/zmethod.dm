@@ -88,7 +88,7 @@
 
 
 /datum/vertical_travel_method/New(mob/L)
-	if (istype(L.loc, /mob/living/exosuit)) //Add more vehicle related checks here in future
+	if(istype(L.loc, /mob/living/exosuit)) //Add more vehicle related checks here in future
 		M = L.loc
 	else
 		M = L
@@ -119,7 +119,7 @@
 	M.alpha = prev_alpha
 	M.layer = prev_layer
 	M.set_plane(prev_plane)
-	if (travelsound)
+	if(travelsound)
 		travelsound.stop()
 	M.used_now = FALSE
 
@@ -133,8 +133,8 @@
 
 
 /datum/vertical_travel_method/proc/calculate_time()
-	if (gravity)
-		if (direction == UP)
+	if(gravity)
+		if(direction == UP)
 			base_time *= 2
 		else
 			base_time *= 1.5
@@ -145,7 +145,7 @@
 //Combines testing and starting. Autostarts if possible
 /datum/vertical_travel_method/proc/attempt(var/dir)
 	.=can_perform(dir)
-	if (.)
+	if(.)
 		spawn()
 			start(dir)
 
@@ -163,10 +163,10 @@
 		to_chat(M, SPAN_NOTICE("You are busy at the moment."))
 		return FALSE
 
-	if (dir != direction)
+	if(dir != direction)
 		direction = dir
 
-	if (!get_destination())
+	if(!get_destination())
 		to_chat(M, SPAN_NOTICE("There is nothing in that direction."))
 		return FALSE
 
@@ -189,7 +189,7 @@
 
 	spawn()
 		handle_ticking()
-	if (!do_after(mob, duration, M, needs_hands))
+	if(!do_after(mob, duration, M, needs_hands))
 		abort()
 		return
 	finish()
@@ -198,10 +198,10 @@
 	animating = FALSE
 	reset_values()
 	//If you cancel late, you fall and get hurt
-	if (gravity && (progress() > 0.5))
+	if(gravity && (progress() > 0.5))
 		M.fall_impact()
 
-	if (prob(slip_chance))
+	if(prob(slip_chance))
 		slip()
 
 	delete_self()
@@ -219,7 +219,7 @@
 	// end_of_dirty_bullshit.dm
 
 	M.forceMove(destination)
-	if (prob(slip_chance))
+	if(prob(slip_chance))
 		slip()
 	announce_end()
 	delete_self()
@@ -252,7 +252,7 @@
 	string = replacetext(string, "%d2", direction == UP ? "above" : "below")
 	string = replacetext(string, "%-d2", direction == UP ? "below" : "above") //Inverted version for finishing message
 	string = replacetext(string, "%d", dir2text(direction))
-	if (subject)
+	if(subject)
 		string = replacetext(string, "%s", subject.name)
 	return string
 
@@ -276,12 +276,12 @@
 
 
 /datum/vertical_travel_method/proc/tick()
-	if (M.loc != origin)
+	if(M.loc != origin)
 		abort()
 		return
 
 	//Being incapacitated in a mech won't stop it from finishing the journey
-	else if (ismob(M) && mob.incapacitated())
+	else if(ismob(M) && mob.incapacitated())
 		abort()
 	return
 
@@ -290,22 +290,22 @@
 	var/list/spaces = list()
 
 	//We will first attempt to slip the user to a nearby empty space
-	for (var/turf/T in orange(1, M))
-		if (T.is_hole)
+	for(var/turf/T in orange(1, M))
+		if(T.is_hole)
 			spaces.Add(T)
 
-	if (!spaces.len)
+	if(!spaces.len)
 		//Welp we didn't find one. lets loop again, all floors are allowed now
-		for (var/turf/floor/T in orange(1, M))
+		for(var/turf/floor/T in orange(1, M))
 			spaces.Add(T)
 
-	if (!spaces.len)
+	if(!spaces.len)
 		//Still didn't find any? We must somehow be in a 1x1 room. Can't slip here
 		return
 
 	//Move to the target turf, and fall over
 	var/turf/target = pick(spaces)
 	M.Move(target)
-	if (ismob(M))
+	if(ismob(M))
 		mob.Weaken(2)
 	to_chat(mob, SPAN_DANGER("You lose control and slip into freefall"))

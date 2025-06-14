@@ -39,10 +39,10 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/holder/Initialize()
 	. = ..()
-	if (!unsafe_containers)
+	if(!unsafe_containers)
 		setup_unsafe_list()
 
-	if (!item_state)
+	if(!item_state)
 		item_state = icon_state
 
 	//flags_inv |= ALWAYSDRAW //Part of contained sprites overhaul, not ported yet
@@ -52,12 +52,12 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/holder/Destroy()
 	reagents = null
 	STOP_PROCESSING(SSprocessing, src)
-	if (contained)
+	if(contained)
 		release_mob(FALSE)
 	return ..()
 
 /obj/item/holder/examine(mob/user, extra_description = "")
-	if (contained)
+	if(contained)
 		contained.examine(user)
 
 /obj/item/holder/attack_self()
@@ -74,17 +74,17 @@ var/list/holder_mob_icon_cache = list()
 	origin_tech = list(TECH_BIO = 8)
 
 /obj/item/holder/Process()
-	if (!contained)
+	if(!contained)
 		qdel(src)
 
 	if(!get_holding_mob() || contained.loc != src)
-		if (is_unsafe_container(loc) && contained.loc == src)
+		if(is_unsafe_container(loc) && contained.loc == src)
 			return
 
 		release_mob()
 
 		return
-	if (isalive && contained.stat == DEAD)
+	if(isalive && contained.stat == DEAD)
 		held_death(1)//If we get here, it means the mob died sometime after we picked it up. We pass in 1 so that we can play its deathmessage
 
 
@@ -132,7 +132,7 @@ var/list/holder_mob_icon_cache = list()
 	///When an object is put into a container, drop fires twice.
 	//once with it on the floor, and then once in the container
 	//This conditional allows us to ignore that first one. Handling of mobs dropped on the floor is done in process
-	if (istype(loc, /turf))
+	if(istype(loc, /turf))
 		//Repeat this check
 		//If we're still on the turf a few frames later, then we have actually been dropped or thrown
 		//Release the mob accordingly
@@ -142,11 +142,11 @@ var/list/holder_mob_icon_cache = list()
 			post_drop()
 		return
 
-	if (istype(loc, /obj/item/storage))	//The second drop reads the container its placed into as the location
+	if(istype(loc, /obj/item/storage))	//The second drop reads the container its placed into as the location
 		update_location()
 
 /obj/item/holder/proc/post_drop()
-	if (isturf(loc))
+	if(isturf(loc))
 		release_mob()
 
 /obj/item/holder/equipped(var/mob/user, var/slot)
@@ -162,8 +162,8 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/holder/attack_self(mob/M)
 
-	if (contained && !(contained.stat & DEAD))
-		if (istype(M,/mob/living/carbon/human))
+	if(contained && !(contained.stat & DEAD))
+		if(istype(M,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
 			switch(H.a_intent)
 				if(I_HELP)
@@ -188,20 +188,20 @@ var/list/holder_mob_icon_cache = list()
 	//This function is called when the mob in the holder dies somehow.
 	isalive = 0
 
-	if (icon_state_dead)
+	if(icon_state_dead)
 		icon_state = icon_state_dead
 
-	if (desc_dead)
+	if(desc_dead)
 		desc = desc_dead
 
-	if (name_dead)
+	if(name_dead)
 		name = name_dead
 
 	slot_flags = 0
-	if (show_deathmessage)//Since we've just crushed a creature in our hands, we want everyone nearby to know that it died
+	if(show_deathmessage)//Since we've just crushed a creature in our hands, we want everyone nearby to know that it died
 		//We have to play it as a visible message on the grabber, because the normal death message played on the dying mob won't show if it's being held
 		var/mob/M = get_holding_mob()
-		if (M)
+		if(M)
 			M.visible_message("<b>[contained.name]</b> dies.")
 	//update_icon()
 
@@ -210,11 +210,11 @@ var/list/holder_mob_icon_cache = list()
 	if(!holder_type || buckled || pinned.len || !Adjacent(grabber))
 		return
 
-	if (user == src)
-		if (grabber.r_hand && grabber.l_hand)
+	if(user == src)
+		if(grabber.r_hand && grabber.l_hand)
 			to_chat(user, "<span class='warning'>They have no free hands!</span>")
 			return
-	else if ((grabber.hand == 0 && grabber.r_hand) || (grabber.hand == 1 && grabber.l_hand))//Checking if the hand is full
+	else if((grabber.hand == 0 && grabber.r_hand) || (grabber.hand == 1 && grabber.l_hand))//Checking if the hand is full
 		to_chat(grabber, "<span class='warning'>Your hand is full!</span>")
 		return
 
@@ -229,22 +229,22 @@ var/list/holder_mob_icon_cache = list()
 		src.forceMove(H)
 
 		H.contained = src
-		if (src.stat == DEAD)
+		if(src.stat == DEAD)
 			H.held_death()//We've scooped up an animal that's already dead. use the proper dead icons
 		else
 			H.isalive = 1//We note that the mob is alive when picked up. If it dies later, we can know that its death happened while held, and play its deathmessage for it
 
 		var/success = 0
-		if (src == user)
+		if(src == user)
 			success = grabber.put_in_hands(H)
 		else
 			H.attack_hand(grabber)//We put this last to prevent some race conditions
-			if (H.loc == grabber)
+			if(H.loc == grabber)
 				success = 1
-		if (success)
-			if (isturf(old_loc))
+		if(success)
+			if(isturf(old_loc))
 				src.do_pickup_animation(grabber,old_loc)
-			if (user == src)
+			if(user == src)
 				to_chat(grabber, "<span class='notice'>[src.name] climbs up onto you.</span>")
 				to_chat(src, "<span class='notice'>You climb up onto [grabber].</span>")
 			else
@@ -264,11 +264,11 @@ var/list/holder_mob_icon_cache = list()
 	set name = "Check held location"
 	set desc = "Find out where on their person, someone is holding you."
 
-	if (!usr.get_holding_mob())
+	if(!usr.get_holding_mob())
 		to_chat(src, "Nobody is holding you!")
 		return
 
-	if (istype(usr.loc, /obj/item/holder))
+	if(istype(usr.loc, /obj/item/holder))
 		var/obj/item/holder/H = usr.loc
 		H.report_onmob_location(0, H.get_equip_slot(), src)
 
@@ -312,50 +312,50 @@ var/list/holder_mob_icon_cache = list()
 	var/preposition= ""
 	var/action = ""
 	var/action3 = ""
-	if (!reportto)
+	if(!reportto)
 		return 0
 
-	if (istype(loc, /mob/living/carbon/human))//This function is for finding where we are on a human. not valid otherwise
+	if(istype(loc, /mob/living/carbon/human))//This function is for finding where we are on a human. not valid otherwise
 		H = loc
 
 	else
 		H = get_holding_mob()
 
 
-	if (slot != null)
+	if(slot != null)
 
-		if (slot_l_hand == slot)
-			if (justmoved)
+		if(slot_l_hand == slot)
+			if(justmoved)
 				action += "now "
 			preposition = "in"
 			action += "being held"
 			action3 = "holds"
 			newlocation = "left hand"
-		else if (slot_r_hand == slot)
-			if (justmoved)
+		else if(slot_r_hand == slot)
+			if(justmoved)
 				action += "now "
 			preposition = "in"
 			action += "being held"
 			action3 = "holds"
 			newlocation = "right hand"
-		else if (slot_l_store == slot)
-			if (justmoved)
+		else if(slot_l_store == slot)
+			if(justmoved)
 				preposition = "into"
 				action = "placed"
 				action3 = "places"
 			else
 				preposition = "inside"
 			newlocation = "left pocket"
-		else if (slot_r_store == slot)
-			if (justmoved)
+		else if(slot_r_store == slot)
+			if(justmoved)
 				preposition = "into"
 				action = "placed"
 				action3 = "places"
 			else
 				preposition = "inside"
 			newlocation = "right pocket"
-		else if (slot_s_store == slot)
-			if (justmoved)
+		else if(slot_s_store == slot)
+			if(justmoved)
 				preposition = "into"
 				action = "placed"
 				action3 = "places"
@@ -363,68 +363,68 @@ var/list/holder_mob_icon_cache = list()
 				preposition = "inside"
 			newlocation = "suit storage"
 		else
-			if (justmoved)
+			if(justmoved)
 				action += "now "
 			action += "being worn"
 
-			if (slot_head == slot)
+			if(slot_head == slot)
 				preposition = "as"
 				action3 = "wears"
 				newlocation = "hat"
-			else if (slot_wear_suit == slot)
+			else if(slot_wear_suit == slot)
 				preposition = "over"
 				action3 = "wears"
 				newlocation = "uniform"
-			else if (slot_wear_mask == slot)
+			else if(slot_wear_mask == slot)
 				preposition = "on"
 				action3 = "wears"
 				newlocation = "face"
-			else if (slot_wear_id == slot)
+			else if(slot_wear_id == slot)
 				preposition = "as"
 				action3 = "wears"
 				newlocation = "ID"
-			else if (slot_w_uniform == slot)
+			else if(slot_w_uniform == slot)
 				preposition = "on"
 				action3 = "wears"
 				newlocation = "body"
-			else if (slot_gloves == slot)
+			else if(slot_gloves == slot)
 				preposition = "on"
 				action3 = "wears"
 				newlocation = "hands"
-			else if (slot_belt == slot)
+			else if(slot_belt == slot)
 				preposition = "around"
 				action3 = "wears"
 				newlocation = "waist"
-			else if (slot_back == slot)
+			else if(slot_back == slot)
 				preposition = "on"
 				action3 = "wears"
 				newlocation = "back"
-			else if (slot_r_ear == slot)
+			else if(slot_r_ear == slot)
 				preposition = "on"
 				action3 = "wears"
 				newlocation = "right shoulder"//Ill use ear slots for wearing mobs on the shoulder in future
-			else if (slot_l_ear == slot)
+			else if(slot_l_ear == slot)
 				preposition = "on"
 				action3 = "wears"
 				newlocation = "left shoulder"
-			else if (slot_shoes == slot)
+			else if(slot_shoes == slot)
 				preposition = "on"
 				action3 = "wears"
 				newlocation = "feet"
-	else if (istype(loc,/obj/item/modular_computer/pda))
+	else if(istype(loc,/obj/item/modular_computer/pda))
 		var/obj/item/modular_computer/pda/S = loc
 		newlocation = S.name
-		if (justmoved)
+		if(justmoved)
 			preposition = "into"
 			action = "slotted"
 			action3 = "slots"
 		else
 			action = "installed"
 			preposition = "in"
-	else if (istype(loc,/obj/item/storage))
+	else if(istype(loc,/obj/item/storage))
 		var/obj/item/storage/S = loc
 		newlocation = S.name
-		if (justmoved)
+		if(justmoved)
 			preposition = "into"
 			action = "placed"
 			action3 = "places"
@@ -432,7 +432,7 @@ var/list/holder_mob_icon_cache = list()
 			action = "tucked"
 			preposition = "inside"
 
-	if (justmoved)
+	if(justmoved)
 		reportto.visible_message("<span class='notice'>[H] [action3] [reportto] [preposition] their [newlocation]</span>", "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>", "")
 	else
 		to_chat(reportto, "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>")
@@ -444,16 +444,16 @@ var/list/holder_mob_icon_cache = list()
 	//It recurses up the hierarchy out of containers until it reaches a mob, or a turf, or hits the limit
 	var/x = 0//As a safety, we'll crawl up a maximum of five layers
 	var/atom/A = src
-	while (x < 5)
+	while(x < 5)
 		x++
-		if (isnull(A))
+		if(isnull(A))
 			return null
 
 		A = A.loc
-		if (istype(A, /turf))
+		if(istype(A, /turf))
 			return null//We must be on a table or a floor, or maybe in a wall. Either way we're not held.
 
-		if (ismob(A))
+		if(ismob(A))
 			return A
 		//If none of the above are true, we must be inside a box or backpack or something. Keep recursing up.
 
@@ -746,11 +746,11 @@ var/list/holder_mob_icon_cache = list()
 
 			var/newstate
 			switch (cache_entry)
-				if (slot_l_hand_str)
+				if(slot_l_hand_str)
 					newstate = "[species_name]_lh"
-				if (slot_r_hand_str)
+				if(slot_r_hand_str)
 					newstate = "[species_name]_rh"
-				if (slot_back_str)
+				if(slot_back_str)
 					newstate = "[species_name]_ba"
 
 			I.Insert(holder_mob_icon_cache[cache_key], newstate)

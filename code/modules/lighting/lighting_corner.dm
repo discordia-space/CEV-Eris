@@ -46,7 +46,7 @@
 	// Diagonal one is easy.
 	T = get_step(new_turf, diagonal)
 	if(T) // In case we're on the map's border.
-		if (!T.corners)
+		if(!T.corners)
 			T.corners = list(null, null, null, null)
 
 		masters[T]   = diagonal
@@ -56,7 +56,7 @@
 	// Now the horizontal one.
 	T = get_step(new_turf, horizontal)
 	if(T) // Ditto.
-		if (!T.corners)
+		if(!T.corners)
 			T.corners = list(null, null, null, null)
 
 		masters[T]   = ((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH) // Get the dir based on coordinates.
@@ -66,7 +66,7 @@
 	// And finally the vertical one.
 	T = get_step(new_turf, vertical)
 	if(T)
-		if (!T.corners)
+		if(!T.corners)
 			T.corners = list(null, null, null, null)
 
 		masters[T]   = ((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH) // Get the dir based on coordinates.
@@ -77,9 +77,9 @@
 
 /datum/lighting_corner/proc/update_active()
 	active = FALSE
-	for (var/TT in masters)
+	for(var/TT in masters)
 		var/turf/T = TT
-		if (T.lighting_overlay)
+		if(T.lighting_overlay)
 			active = TRUE
 			return
 
@@ -89,7 +89,7 @@
 	lum_g += delta_g
 	lum_b += delta_b
 
-	if (!needs_update)
+	if(!needs_update)
 		needs_update = TRUE
 		global.lighting_update_corners += src
 
@@ -100,10 +100,10 @@
 	var/lum_b = src.lum_b
 	var/mx = max(lum_r, lum_g, lum_b) // Scale it so 1 is the strongest lum, if it is above 1.
 	. = 1 // factor
-	if (mx > 1)
+	if(mx > 1)
 		. = 1 / mx
 
-	else if (mx < LIGHTING_SOFT_THRESHOLD)
+	else if(mx < LIGHTING_SOFT_THRESHOLD)
 		. = 0 // 0 means soft lighting.
 
 	cache_r  = lum_r * . || LIGHTING_SOFT_THRESHOLD
@@ -111,10 +111,10 @@
 	cache_b  = lum_b * . || LIGHTING_SOFT_THRESHOLD
 	cache_mx = mx
 
-	for (var/TT in masters)
+	for(var/TT in masters)
 		var/turf/T = TT
 		var/atom/movable/lighting_overlay/O = T.lighting_overlay
-		if (O && !O.needs_update)
+		if(O && !O.needs_update)
 			O.needs_update = TRUE
 			global.lighting_update_overlays += O
 

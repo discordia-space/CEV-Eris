@@ -40,7 +40,7 @@ var/global/photo_count = 0
 /obj/item/photo/update_icon()
 	.=..()
 	//When the photo updates, update its container too. This will often be an album or paper bundle
-	if (istype(loc, /obj))
+	if(istype(loc, /obj))
 		var/obj/O = loc
 		O.update_icon()
 
@@ -250,7 +250,7 @@ var/global/photo_count = 0
 		tiny_img.Scale(4, 4)
 		ic.Blend(small_img,ICON_OVERLAY, 10, 13)
 		pc.Blend(tiny_img,ICON_OVERLAY, 12, 19)
-		if (!QDELETED(p))
+		if(!QDELETED(p))
 			p.img = photoimage
 			p.icon = ic
 			p.tiny = pc
@@ -260,7 +260,7 @@ var/global/photo_count = 0
 	return p
 
 /obj/item/device/camera/proc/printpicture(mob/user, obj/item/photo/p)
-	if (user)
+	if(user)
 		user.put_in_hands(p)
 	else
 		p.forceMove(get_turf(src))

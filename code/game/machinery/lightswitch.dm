@@ -144,7 +144,7 @@
 		return TRUE
 
 	usr.set_machine(src)
-	if (href_list["on"])
+	if(href_list["on"])
 		forceful_toggle = TRUE
 		set_on(!on)
 		. = TRUE

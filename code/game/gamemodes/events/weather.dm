@@ -164,7 +164,7 @@ SUBSYSTEM_DEF(weather)
 		var/probability = initial(W.probability)
 
 		// any weather with a probability set may occur at random
-		if (probability)
+		if(probability)
 			var/list/levels_by_trait = list(1,2,3,4)
 			for(var/z in levels_by_trait)
 				LAZYINITLIST(eligible_zlevels["[z]"])
@@ -172,13 +172,13 @@ SUBSYSTEM_DEF(weather)
 	return ..()
 
 /datum/controller/subsystem/weather/proc/run_weather(datum/weather/weather_datum_type)
-	if (istext(weather_datum_type))
-		for (var/V in subtypesof(/datum/weather))
+	if(istext(weather_datum_type))
+		for(var/V in subtypesof(/datum/weather))
 			var/datum/weather/W = V
-			if (initial(W.name) == weather_datum_type)
+			if(initial(W.name) == weather_datum_type)
 				weather_datum_type = V
 				break
-	if (!ispath(weather_datum_type, /datum/weather))
+	if(!ispath(weather_datum_type, /datum/weather))
 		CRASH("run_weather called with invalid weather_datum_type: [weather_datum_type || "null"]")
 
 	var/datum/weather/W = new weather_datum_type()

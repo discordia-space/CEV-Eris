@@ -35,7 +35,7 @@
 
 	var/iconstring = initial(icon_state)
 
-	if (loaded.len)
+	if(loaded.len)
 		iconstring += "_he"
 
 	overlays += iconstring

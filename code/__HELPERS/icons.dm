@@ -55,22 +55,22 @@ COLOR MANAGEMENT AND HSV
 
 RGB isn't the only way to represent color. Sometimes it's more useful to work with a model called HSV, which stands for hue, saturation, and value.
 
-    * The hue of a color describes where it is along the color wheel. It goes from red to yellow to green to
-    cyan to blue to magenta and back to red.
-    * The saturation of a color is how much color is in it. A color with low saturation will be more gray,
-    and with no saturation at all it is a shade of gray.
-    * The value of a color determines how bright it is. A high-value color is vivid, moderate value is dark,
-    and no value at all is black.
+	* The hue of a color describes where it is along the color wheel. It goes from red to yellow to green to
+	cyan to blue to magenta and back to red.
+	* The saturation of a color is how much color is in it. A color with low saturation will be more gray,
+	and with no saturation at all it is a shade of gray.
+	* The value of a color determines how bright it is. A high-value color is vivid, moderate value is dark,
+	and no value at all is black.
 
 Just as BYOND uses "#rrggbb" to represent RGB values, a similar format is used for HSV: "#hhhssvv". The hue is three
 hex digits because it ranges from 0 to 0x5FF.
 
-    * 0 to 0xFF - red to yellow
-    * 0x100 to 0x1FF - yellow to green
-    * 0x200 to 0x2FF - green to cyan
-    * 0x300 to 0x3FF - cyan to blue
-    * 0x400 to 0x4FF - blue to magenta
-    * 0x500 to 0x5FF - magenta to red
+	* 0 to 0xFF - red to yellow
+	* 0x100 to 0x1FF - yellow to green
+	* 0x200 to 0x2FF - green to cyan
+	* 0x300 to 0x3FF - cyan to blue
+	* 0x400 to 0x4FF - blue to magenta
+	* 0x500 to 0x5FF - magenta to red
 
 Knowing this, you can figure out that red is "#000ffff" in HSV format, which is hue 0 (red), saturation 255 (as colorful as possible),
 value 255 (as bright as possible). Green is "#200ffff" and blue is "#400ffff".
@@ -667,24 +667,24 @@ The _flatIcons list is a cache for generated icon files.
 /proc/getFlatIcon(image/appearance, defdir, deficon, defstate, defblend, start = TRUE, no_anim = FALSE)
 	// Loop through the underlays, then overlays, sorting them into the layers list
 	#define PROCESS_OVERLAYS_OR_UNDERLAYS(flat, process, base_layer) \
-		for (var/i in 1 to process.len) { \
+		for(var/i in 1 to process.len) { \
 			var/image/current = process[i]; \
-			if (!current) { \
+			if(!current) { \
 				continue; \
 			} \
-			if (current.plane != FLOAT_PLANE && current.plane != appearance.plane) { \
+			if(current.plane != FLOAT_PLANE && current.plane != appearance.plane) { \
 				continue; \
 			} \
 			var/current_layer = current.layer; \
-			if (current_layer < 0) { \
-				if (current_layer <= -1000) { \
+			if(current_layer < 0) { \
+				if(current_layer <= -1000) { \
 					return flat; \
 				} \
 				current_layer = base_layer + appearance.layer + current_layer / 1000; \
 			} \
-			for (var/index_to_compare_to in 1 to layers.len) { \
+			for(var/index_to_compare_to in 1 to layers.len) { \
 				var/compare_to = layers[index_to_compare_to]; \
-				if (current_layer < layers[compare_to]) { \
+				if(current_layer < layers[compare_to]) { \
 					layers.Insert(index_to_compare_to, current); \
 					break; \
 				} \
@@ -713,10 +713,10 @@ The _flatIcons list is a cache for generated icon files.
 
 	var/render_icon = curicon
 
-	if (render_icon)
+	if(render_icon)
 		var/curstates = icon_states(curicon)
 		if(!(curstate in curstates))
-			if ("" in curstates)
+			if("" in curstates)
 				curstate = ""
 			else
 				render_icon = FALSE
@@ -726,7 +726,7 @@ The _flatIcons list is a cache for generated icon files.
 	//Try to remove/optimize this section ASAP, CPU hog.
 	//Determines if there's directionals.
 	if(render_icon && curdir != SOUTH)
-		if (
+		if(
 			!length(icon_states(icon(curicon, curstate, NORTH))) \
 			&& !length(icon_states(icon(curicon, curstate, EAST))) \
 			&& !length(icon_states(icon(curicon, curstate, WEST))) \
@@ -784,7 +784,7 @@ The _flatIcons list is a cache for generated icon files.
 			addY1 = min(flatY1, layer_image.pixel_y + 1)
 			addY2 = max(flatY2, layer_image.pixel_y + add.Height())
 
-			if (
+			if(
 				addX1 != flatX1 \
 				&& addX2 != flatX2 \
 				&& addY1 != flatY1 \
@@ -822,14 +822,14 @@ The _flatIcons list is a cache for generated icon files.
 			return cleaned
 		else
 			return icon(flat, "", SOUTH)
-	else if (render_icon) // There's no overlays.
+	else if(render_icon) // There's no overlays.
 		var/icon/final_icon = icon(icon(curicon, curstate, base_icon_dir), "", SOUTH, no_anim ? TRUE : null)
 
-		if (appearance.alpha < 255)
+		if(appearance.alpha < 255)
 			final_icon.Blend(rgb(255,255,255, appearance.alpha), ICON_MULTIPLY)
 
-		if (appearance.color)
-			if (islist(appearance.color))
+		if(appearance.color)
+			if(islist(appearance.color))
 				final_icon.MapColors(arglist(appearance.color))
 			else
 				final_icon.Blend(appearance.color, ICON_MULTIPLY)
@@ -887,8 +887,8 @@ The _flatIcons list is a cache for generated icon files.
 	return composite
 
 proc/adjust_brightness(var/color, var/value)
-	if (!color) return "#FFFFFF"
-	if (!value) return color
+	if(!color) return "#FFFFFF"
+	if(!value) return color
 
 	var/list/RGB = ReadRGB(color)
 	RGB[1] = CLAMP(RGB[1]+value, 0, 255)
@@ -899,8 +899,8 @@ proc/adjust_brightness(var/color, var/value)
 
 //Adds a list of values to the HSV of a color
 proc/adjust_HSV(var/color, var/list/values)
-	if (!color) return "#FFFFFF"
-	if (!values || !values.len) return color
+	if(!color) return "#FFFFFF"
+	if(!values || !values.len) return color
 
 	var/hsv_string = RGBtoHSV(color)
 	var/list/HSV = ReadHSV(hsv_string)
@@ -912,16 +912,16 @@ proc/adjust_HSV(var/color, var/list/values)
 //Uses a list of values to overwrite HSV components of a color
 //A null entry won't overwrite anything
 proc/set_HSV(var/color, var/list/values)
-	if (!color) return "#FFFFFF"
-	if (!values || !values.len) return color
+	if(!color) return "#FFFFFF"
+	if(!values || !values.len) return color
 
 	var/hsv_string = RGBtoHSV(color)
 	var/list/HSV = ReadHSV(hsv_string)
-	if (!isnull(values[1]))
+	if(!isnull(values[1]))
 		HSV[1] = CLAMP(values[1], 0, 255)
-	if (!isnull(values[2]))
+	if(!isnull(values[2]))
 		HSV[2] = CLAMP(values[2], 0, 255)
-	if (!isnull(values[3]))
+	if(!isnull(values[3]))
 		HSV[3] = CLAMP(values[3], 0, 255)
 	return HSVtoRGB(hsv(HSV[1],HSV[2],HSV[3], null))
 
@@ -930,7 +930,7 @@ proc/sort_atoms_by_layer(var/list/atoms)
 	var/list/result = atoms.Copy()
 	var/gap = result.len
 	var/swapped = 1
-	while (gap > 1 || swapped)
+	while(gap > 1 || swapped)
 		swapped = 0
 		if(gap > 1)
 			gap = round(gap / 1.3) // 1.3 is the emperic comb sort coefficient
@@ -974,10 +974,10 @@ proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as nu
 		for(var/atom/movable/A in T)
 			if(A.invisibility)
 				continue
-			if (cap_mode == CAPTURE_MODE_HISTORICAL && !A.anchored)
+			if(cap_mode == CAPTURE_MODE_HISTORICAL && !A.anchored)
 				continue
 			atoms.Add(A)
-		if (non_blocking)
+		if(non_blocking)
 			CHECK_TICK
 	//Lines below actually render all colected data
 	atoms = sort_atoms_by_layer(atoms)
@@ -993,7 +993,7 @@ proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as nu
 				var/xoff = (A.x - tx) * 32
 				var/yoff = (A.y - ty) * 32
 				cap.Blend(img, blendMode2iconMode(A.blend_mode),  A.pixel_x + xoff, A.pixel_y + yoff)
-			if (non_blocking)
+			if(non_blocking)
 				CHECK_TICK
 
 	return cap
@@ -1012,7 +1012,7 @@ proc/set_pixel_click_offset(var/atom/A, var/params, var/animate = FALSE)
 
 
 	//We really need vector math, this will do for now ~Nanako
-	if (animate)
+	if(animate)
 		var/target_x = CLAMP(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
 		var/target_y = CLAMP(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 
@@ -1033,9 +1033,9 @@ proc/set_pixel_click_offset(var/atom/A, var/params, var/animate = FALSE)
 //Calculate average color of an icon and store it in global list for future use
 proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	var/icon/I = icon(icon, icon_state, image_dir)
-	if (!istype(I))
+	if(!istype(I))
 		return
-	if (!I.Width() || !I.Height())
+	if(!I.Width() || !I.Height())
 		error("proc/get_average_color: Image has wrong dimensions")
 		return
 
@@ -1044,9 +1044,9 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 	var/list/average_rgb = list(0,0,0)
 	var/pixel_count = 0
-	for (var/x = 1, x <= I.Width(), x++)
-		for (var/y = 1, y <= I.Height(), y++)
-			if (!I.GetPixel(x, y, dir = image_dir))
+	for(var/x = 1, x <= I.Width(), x++)
+		for(var/y = 1, y <= I.Height(), y++)
+			if(!I.GetPixel(x, y, dir = image_dir))
 				continue
 			pixel_count++
 			var/list/rgb = ReadRGB(I.GetPixel(x, y, dir = image_dir))
@@ -1076,7 +1076,7 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
  * (This relies on byond automatically storing icons in savefiles as base64)
  */
 /proc/icon2base64(icon/icon)
-	if (!isicon(icon))
+	if(!isicon(icon))
 		return FALSE
 	var/savefile/dummySave = new("tmp/dummySave.sav")
 	WRITE_FILE(dummySave["dummy"], icon)
@@ -1088,30 +1088,30 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	fdel("tmp/dummySave.sav") //if you get the idea to try and make this more optimized, make sure to still call unlock on the savefile after every write to unlock it.
 
 /proc/icon2html(thing, target, icon_state, dir = SOUTH, frame = 1, moving = FALSE, sourceonly = FALSE, extra_classes = null)
-	if (!thing)
+	if(!thing)
 		return
 
 	var/key
 	var/icon/I = thing
 
-	if (!target)
+	if(!target)
 		return
-	if (target == world)
+	if(target == world)
 		target = clients
 
 	var/list/targets
-	if (!islist(target))
+	if(!islist(target))
 		targets = list(target)
 	else
 		targets = target
-		if (!targets.len)
+		if(!targets.len)
 			return
-	if (!isicon(I))
-		if (isfile(thing)) //special snowflake
+	if(!isicon(I))
+		if(isfile(thing)) //special snowflake
 			var/name = sanitize_filename("[generate_asset_name(thing)].png")
-			if (!SSassets.cache[name])
+			if(!SSassets.cache[name])
 				SSassets.transport.register_asset(name, thing)
-			for (var/thing2 in targets)
+			for(var/thing2 in targets)
 				SSassets.transport.send_assets(thing2, name)
 			if(sourceonly)
 				return SSassets.transport.get_asset_url(name)
@@ -1120,26 +1120,26 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 		I = A.icon
 
-		if (isnull(icon_state))
+		if(isnull(icon_state))
 			icon_state = A.icon_state
 			//Despite casting to atom, this code path supports mutable appearances, so let's be nice to them
 			if(isnull(icon_state) || (isatom(thing) /* && A.flags_1 & HTML_USE_INITAL_ICON_1 */))
 				icon_state = initial(A.icon_state)
-				if (isnull(dir))
+				if(isnull(dir))
 					dir = initial(A.dir)
 
-		if (isnull(dir))
+		if(isnull(dir))
 			dir = A.dir
 
-		if (ishuman(thing)) // Shitty workaround for a BYOND issue.
+		if(ishuman(thing)) // Shitty workaround for a BYOND issue.
 			var/icon/temp = I
 			I = icon()
 			I.Insert(temp, dir = SOUTH)
 			dir = SOUTH
 	else
-		if (isnull(dir))
+		if(isnull(dir))
 			dir = SOUTH
-		if (isnull(icon_state))
+		if(isnull(icon_state))
 			icon_state = ""
 
 	I = icon(I, icon_state, dir, frame, moving)
@@ -1147,7 +1147,7 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	key = "[generate_asset_name(I)].png"
 	if(!SSassets.cache[key])
 		SSassets.transport.register_asset(key, I)
-	for (var/thing2 in targets)
+	for(var/thing2 in targets)
 		SSassets.transport.send_assets(thing2, key)
 	if(sourceonly)
 		return SSassets.transport.get_asset_url(key)
@@ -1181,10 +1181,10 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 //Costlier version of icon2html() that uses getFlatIcon() to account for overlays, underlays, etc. Use with extreme moderation, ESPECIALLY on mobs.
 /proc/costly_icon2html(thing, target, sourceonly = FALSE)
-	if (!thing)
+	if(!thing)
 		return
 
-	if (isicon(thing))
+	if(isicon(thing))
 		return icon2html(thing, target)
 
 	var/icon/I = getFlatIcon(thing)

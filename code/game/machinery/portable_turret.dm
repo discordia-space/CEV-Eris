@@ -221,7 +221,7 @@ var/list/turret_icons
 		data["settings"] = settings
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "turret_control.tmpl", "Turret Controls", 500, 300)
 		ui.set_initial_data(data)
 		ui.open()
@@ -286,7 +286,7 @@ var/list/turret_icons
 
 	var/obj/item/card/id/ID = I.GetIdCard()
 
-	if (user.a_intent == I_HELP)
+	if(user.a_intent == I_HELP)
 		if(stat & BROKEN)
 			if(QUALITY_PRYING in I.tool_qualities)
 				//If the turret is destroyed, you can remove it with a crowbar to
@@ -423,12 +423,12 @@ var/list/turret_icons
 						hackfail = 0
 			return 1 //No whacking the turret with tools on help intent
 
-	if (!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
+	if(!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
 		//if the turret was attacked with the intention of harming it:
 		user.do_attack_animation(src)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-		if (take_damage(I.force * I.structure_damage_factor))
+		if(take_damage(I.force * I.structure_damage_factor))
 			playsound(src, 'sound/weapons/smash.ogg', 70, 1)
 		else
 			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
@@ -461,12 +461,12 @@ var/list/turret_icons
 
 
 	force -= resistance
-	if (force <= 0)
+	if(force <= 0)
 		return FALSE
 
 	.=TRUE //Some damage was done
 	health -= force
-	if (force > 5 && prob(45))
+	if(force > 5 && prob(45))
 		spark_system.start()
 	if(health <= 0)
 		die()	//the death process :(
@@ -613,7 +613,7 @@ var/list/turret_icons
 /obj/machinery/porta_turret/One_star/assess_living(var/mob/living/L)
 	if(L.faction == "onestar")
 		return TURRET_NOT_TARGET
-	return 	..()
+	return ..()
 
 /obj/machinery/porta_turret/proc/assess_perp(var/mob/living/carbon/human/H)
 	if(!H || !istype(H))

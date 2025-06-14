@@ -48,9 +48,9 @@
 	return "<a href='?src=\ref[src];print=1'>Print Report</a><a href='?src=\ref[src];clear=1'>Clear data</a>"
 
 /obj/item/device/scanner/proc/can_use(mob/user)
-	if (user.incapacitated())
+	if(user.incapacitated())
 		return
-	if (!user.IsAdvancedToolUser())
+	if(!user.IsAdvancedToolUser())
 		return
 	if(!is_virtual)
 		if(!cell_use_check(charge_per_use, user))
@@ -93,7 +93,7 @@
 	var/mob/user = usr
 	if(!istype(user))
 		return
-	if (user.incapacitated())
+	if(user.incapacitated())
 		return
 	print_report(user)
 

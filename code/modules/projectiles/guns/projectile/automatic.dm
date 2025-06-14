@@ -36,7 +36,7 @@
 
 /datum/firemode/automatic/update(force_state = null)
 	var/mob/living/L
-	if (gun && gun.is_held())
+	if(gun && gun.is_held())
 		L = gun.loc
 	else if(ismech(gun.loc?.loc))
 		// location inception
@@ -45,15 +45,15 @@
 
 	var/enable = FALSE
 	//Force state is used for forcing it to be disabled in circumstances where it'd normally be valid
-	if (!isnull(force_state))
+	if(!isnull(force_state))
 		enable = force_state
-	else if (L && L.client)
+	else if(L && L.client)
 
 		//First of all, lets determine whether we're enabling or disabling the click handler
 
 
 		//We enable it if the gun is held in the user's active hand and the safety is off or if they are doing this from inside a mech
-		if (L.get_active_hand() == gun || ismech(L.loc))
+		if(L.get_active_hand() == gun || ismech(L.loc))
 			//Lets also make sure it can fire
 			var/can_fire = TRUE
 
@@ -71,36 +71,36 @@
 
 
 			//Safety stops it
-			if (gun.safety)
+			if(gun.safety)
 				can_fire = FALSE
 
 			//Projectile weapons need to have enough ammo to fire
 			if(istype(gun, /obj/item/gun/projectile))
 				var/obj/item/gun/projectile/P = gun
-				if (!P.get_ammo())
+				if(!P.get_ammo())
 					can_fire = FALSE
 
 			//TODO: Centralise all this into some can_fire proc
-			if (can_fire)
+			if(can_fire)
 				enable = TRUE
 		else
 			enable = FALSE
 
 	//Ok now lets set the desired state
-	if (!enable)
-		if (!CH)
+	if(!enable)
+		if(!CH)
 			//If we're turning it off, but the click handler doesn't exist, then we have nothing to do
 			return
 
 		//Todo: make client click handlers into a list
-		if (CH.owner) //Remove our handler from the client
+		if(CH.owner) //Remove our handler from the client
 			CH.owner.CH = null //wew
 		QDEL_NULL(CH) //And delete it
 		return
 
 	else
 		//We're trying to turn things on
-		if (CH)
+		if(CH)
 			return //The click handler exists, we dont need to do anything
 
 

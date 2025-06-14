@@ -144,7 +144,7 @@
 		data["beaker"] = beaker
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "biogenerator.tmpl", "Biogenerator", 550, 655)
@@ -161,9 +161,9 @@
 	nano_ui_interact(user)
 
 /obj/machinery/biogenerator/proc/activate()
-	if (usr.stat)
+	if(usr.stat)
 		return
-	if (stat) //NOPOWER etc
+	if(stat) //NOPOWER etc
 		return
 	if(processing)
 		to_chat(usr, SPAN_NOTICE("The biogenerator is in the process of working."))

@@ -486,14 +486,14 @@
 		if(ABORT_CHECK)
 			return
 
-	if (I.is_drainable())
+	if(I.is_drainable())
 		return 0
 
 	else if(istype(I, /obj/item/reagent_containers/syringe))
 
 		var/obj/item/reagent_containers/syringe/S = I
 
-		if (S.mode == 1)
+		if(S.mode == 1)
 			if(seed)
 				return ..()
 			else
@@ -507,7 +507,7 @@
 				to_chat(user, "There's nothing to draw something from.")
 			return 1
 
-	else if (istype(I, /obj/item/seeds))
+	else if(istype(I, /obj/item/seeds))
 
 		if(!seed)
 
@@ -535,17 +535,17 @@
 		else
 			to_chat(user, SPAN_DANGER("\The [src] already has seeds in it!"))
 
-	else if (istype(I, /obj/item/storage/bag/produce))
+	else if(istype(I, /obj/item/storage/bag/produce))
 
 		attack_hand(user)
 
 		var/obj/item/storage/bag/produce/S = I
-		for (var/obj/item/reagent_containers/food/snacks/grown/G in locate(user.x,user.y,user.z))
+		for(var/obj/item/reagent_containers/food/snacks/grown/G in locate(user.x,user.y,user.z))
 			if(!S.can_be_inserted(G))
 				return
 			S.handle_item_insertion(G, 1)
 
-	else if ( istype(I, /obj/item/plantspray) )
+	else if( istype(I, /obj/item/plantspray) )
 
 		var/obj/item/plantspray/spray = I
 		user.remove_from_mob(I)
@@ -624,7 +624,7 @@
 			extra_description += "\nThe tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K."
 	else
 		extra_description += "[src] is empty."
-	
+
 	..(user, extra_description)
 
 

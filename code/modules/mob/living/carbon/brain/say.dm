@@ -1,6 +1,6 @@
 //TODO: Convert this over for languages.
 /mob/living/carbon/brain/say(var/message)
-	if (silent)
+	if(silent)
 		return
 
 	message = sanitize(message)
@@ -13,7 +13,7 @@
 			message = copytext(message, 2+length(speaking.key))
 		var/verb = "says"
 		var/ending = copytext(message, length(message))
-		if (speaking)
+		if(speaking)
 			verb = speaking.get_spoken_verb(ending)
 		else
 			if(ending=="!")

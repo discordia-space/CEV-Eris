@@ -11,24 +11,24 @@ A small pool of thematically appropriate religious items that are generally chea
 //We do this by setting canview conditions on the individual items like this.
 //These are checked by the category, and also in other places
 /datum/uplink_item/item/neotheology/can_view(obj/item/device/uplink/U)
-	if (!U || !U.uplink_owner || !U.uplink_owner.current)
+	if(!U || !U.uplink_owner || !U.uplink_owner.current)
 		return FALSE
 
 	//Get the mob and their cruciform implant
 	var/mob/living/L = U.uplink_owner.current
 	var/obj/item/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/implant/core_implant/cruciform)
 
-	if (!C)
+	if(!C)
 		return FALSE
 
 	//Now lets check that cruciform for modules that indicate rank
 
 	//Inquisitor is okay
-	if (C.get_module(CRUCIFORM_INQUISITOR))
+	if(C.get_module(CRUCIFORM_INQUISITOR))
 		return TRUE
 
 	//Crusader is fine too
-	if (C.get_module(/datum/core_module/rituals/cruciform/crusader))
+	if(C.get_module(/datum/core_module/rituals/cruciform/crusader))
 		return TRUE
 
 	return FALSE

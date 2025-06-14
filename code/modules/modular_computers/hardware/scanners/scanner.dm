@@ -46,7 +46,7 @@
 		driver = null
 
 /obj/item/computer_hardware/scanner/proc/run_scan(mob/user, datum/computer_file/program/scanner/program) //For scans done from the software.
-	if (!scan_power_use())
+	if(!scan_power_use())
 		return FALSE
 
 /obj/item/computer_hardware/scanner/proc/do_on_afterattack(mob/user, atom/target, proximity)
@@ -66,7 +66,7 @@
 	return 1
 
 /obj/item/computer_hardware/scanner/proc/scan_power_use()
-	if (!holder2)
+	if(!holder2)
 		return FALSE
 	if(holder2.apc_power(active_power_usage))
 		return TRUE

@@ -93,7 +93,7 @@
 			SPAN_NOTICE("You start to give [target] a swirlie!")
 		)
 		swirlie = target
-		if (do_after(user, 30, src) || !Adjacent(target))
+		if(do_after(user, 30, src) || !Adjacent(target))
 			user.visible_message(
 				SPAN_DANGER("[user] gives [target] a swirlie!"),
 				SPAN_NOTICE("You give [target] a swirlie!"),
@@ -178,10 +178,10 @@
 	on = !on
 	update_icon()
 	if(on)
-		if (M.loc == loc)
+		if(M.loc == loc)
 			wash(M)
 			process_heat(M)
-		for (var/atom/movable/G in loc)
+		for(var/atom/movable/G in loc)
 			G.clean_blood()
 
 /obj/machinery/shower/attackby(obj/item/I, mob/user)
@@ -261,9 +261,9 @@
 				washears = !(H.head.flags_inv & HIDEEARS)
 
 			if(H.wear_mask)
-				if (washears)
+				if(washears)
 					washears = !(H.wear_mask.flags_inv & HIDEEARS)
-				if (washglasses)
+				if(washglasses)
 					washglasses = !(H.wear_mask.flags_inv & HIDEEYES)
 
 			if(H.head)
@@ -383,10 +383,10 @@
 	thing.reagents.clear_reagents()
 
 /obj/structure/sink/attack_hand(mob/user as mob)
-	if (ishuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_ARM]
-		if (user.hand)
+		if(user.hand)
 			temp = H.organs_by_name[BP_L_ARM]
 		if(temp && !temp.is_usable())
 			to_chat(user, SPAN_NOTICE("You try to move your [temp.name], but cannot!"))
@@ -425,13 +425,13 @@
 		return
 
 	var/obj/item/reagent_containers/RG = O
-	if (istype(RG) && RG.is_refillable())
+	if(istype(RG) && RG.is_refillable())
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message(SPAN_NOTICE("[user] fills \the [RG] using \the [src]."),SPAN_NOTICE("You fill \the [RG] using \the [src]."))
 		playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)
 		return 1
 
-	else if (istype(O, /obj/item/melee/baton))
+	else if(istype(O, /obj/item/melee/baton))
 		var/obj/item/melee/baton/B = O
 		if(B.cell)
 			if(B.cell.charge > 0 && B.status == 1)

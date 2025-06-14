@@ -15,7 +15,7 @@
 				entry += " - Ready as [C.prefs.real_name]"
 			else
 				entry += " - Playing as [C.mob.real_name]"
-			if (!istype(C.mob, /mob/new_player)) // /mob/new_player has no stat (happens if client is a new player)
+			if(!istype(C.mob, /mob/new_player)) // /mob/new_player has no stat (happens if client is a new player)
 				switch(C.mob.stat)
 					if(UNCONSCIOUS)
 						entry += " - <font color='darkgray'><b>Unconscious</b></font>"
@@ -123,10 +123,10 @@
 				if(!C.holder.fakekey)
 					msg += "\t[C] is a [C.holder.rank]\n"
 					num_admins_online++
-			else if (R_MOD & C.holder.rights)
+			else if(R_MOD & C.holder.rights)
 				modmsg += "\t[C] is a [C.holder.rank]\n"
 				num_mods_online++
-			else if (R_MENTOR & C.holder.rights)
+			else if(R_MENTOR & C.holder.rights)
 				mentmsg += "\t[C] is a [C.holder.rank]\n"
 				num_mentors_online++
 

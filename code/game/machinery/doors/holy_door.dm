@@ -39,7 +39,7 @@
 	..()
 
 /obj/machinery/door/holy/take_damage(damage)
-	if (isnum(damage) && locked)
+	if(isnum(damage) && locked)
 		damage *= 0.66 //The bolts reinforce the door, reducing damage taken
 
 	return ..(damage)
@@ -127,7 +127,7 @@
 		return TRUE
 
 /obj/machinery/door/holy/set_broken()
-	if (!locked && !welded)
+	if(!locked && !welded)
 		visible_message(SPAN_WARNING("\The [src] breaks open!"))
 		open()
 		lock()
@@ -245,11 +245,11 @@
 
 	if(stat & BROKEN)
 		var/obj/item/tool/T = forced
-		if (istype(T) && T.item_flags & HONKING)
+		if(istype(T) && T.item_flags & HONKING)
 			playsound(loc, WORKSOUND_HONK, 70, 1, -2)
-		else if (istype(T) && T.item_flags & SILENT)
+		else if(istype(T) && T.item_flags & SILENT)
 			playsound(loc, open_sound_unpowered, 3, 1, -5)
-		else if (istype(T) && T.item_flags & LOUD)
+		else if(istype(T) && T.item_flags & LOUD)
 			playsound(loc, open_sound_unpowered, 500, 1, 10)
 		else
 			playsound(loc, open_sound_unpowered, 70, 1, -1)
@@ -306,11 +306,11 @@
 
 	if(stat & BROKEN)
 		var/obj/item/tool/T = forced
-		if (istype(T) && T.item_flags & HONKING)
+		if(istype(T) && T.item_flags & HONKING)
 			playsound(loc, WORKSOUND_HONK, 70, 1, -2)
-		else if (istype(T) && T.item_flags & SILENT)
+		else if(istype(T) && T.item_flags & SILENT)
 			playsound(loc, open_sound_unpowered, 3, 1, -5)
-		else if (istype(T) && T.item_flags & LOUD)
+		else if(istype(T) && T.item_flags & LOUD)
 			playsound(loc, open_sound_unpowered, 500, 1, 10)
 		else
 			playsound(loc, open_sound_unpowered, 70, 1, -1)

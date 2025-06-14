@@ -56,9 +56,9 @@
 	updateinfolinks()
 
 /obj/item/paper/update_icon()
-	if (icon_state == "paper_talisman")
+	if(icon_state == "paper_talisman")
 		return
-	else if (info)
+	else if(info)
 		icon_state = "paper_words"
 	else
 		icon_state = "paper"
@@ -101,8 +101,8 @@
 		add_fingerprint(usr)
 
 /obj/item/paper/attack_self(mob/living/user as mob)
-	if (user.a_intent == I_HURT)
-		if (crumpled)
+	if(user.a_intent == I_HURT)
+		if(crumpled)
 			user.show_message(SPAN_WARNING("\The [src] is already crumpled."))
 			return
 		//crumple dat paper
@@ -165,7 +165,7 @@
 			textindex = iend
 			break
 
-	if (links)
+	if(links)
 		var/before = copytext(info_links, 1, textindex)
 		var/after = copytext(info_links, textindex)
 		info_links = before + text + after
@@ -193,18 +193,18 @@
 	update_icon()
 
 /obj/item/paper/proc/get_signature(var/obj/item/pen/P, mob/user as mob)
-	if (P && istype(P, /obj/item/pen))
+	if(P && istype(P, /obj/item/pen))
 		return P.get_signature(user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
 
 /obj/item/paper/proc/parsepencode(t, obj/item/pen/P, mob/user, iscrayon)
-	if (length(t) == 0)
+	if(length(t) == 0)
 		return ""
 
-	if (findtext(t, "\[sign\]"))
+	if(findtext(t, "\[sign\]"))
 		t = replacetext(t, "\[sign\]", "<font face=\"[signfont]\"><i>[get_signature(P, user)]</i></font>")
 
-	if (iscrayon) // If it is a crayon, and he still tries to use these, make them empty!
+	if(iscrayon) // If it is a crayon, and he still tries to use these, make them empty!
 		t = replacetext(t, "\[*\]", "")
 		t = replacetext(t, "\[hr\]", "")
 		t = replacetext(t, "\[small\]", "")
@@ -219,7 +219,7 @@
 		t = replacetext(t, "\[cell\]", "")
 		t = replacetext(t, "\[logo\]", "")
 
-	if (iscrayon)
+	if(iscrayon)
 		t = "<font face=\"[crayonfont]\" color=[P ? P.colour : "black"]><b>[t]</b></font>"
 	else
 		t = "<font face=\"[deffont]\" color=[P ? P.colour : "black"]>[t]</font>"
@@ -331,43 +331,43 @@
 		return //The tool's afterattack will handle this
 
 	if(istype(P, /obj/item/paper) || istype(P, /obj/item/photo))
-		if (istype(P, /obj/item/paper/carbon))
+		if(istype(P, /obj/item/paper/carbon))
 			var/obj/item/paper/carbon/C = P
-			if (!C.iscopy && !C.copied)
+			if(!C.iscopy && !C.copied)
 				to_chat(user, SPAN_NOTICE("Take off the carbon copy first."))
 				add_fingerprint(user)
 				return
 		var/obj/item/paper_bundle/B = new(src.loc)
-		if (name != "paper")
+		if(name != "paper")
 			B.name = name
-		else if (P.name != "paper" && P.name != "photo")
+		else if(P.name != "paper" && P.name != "photo")
 			B.name = P.name
-		if (user)
+		if(user)
 			user.drop_from_inventory(P)
-			if (ishuman(user))
+			if(ishuman(user))
 				var/mob/living/carbon/human/h_user = user
-				if (h_user.r_hand == src)
+				if(h_user.r_hand == src)
 					h_user.drop_from_inventory(src)
 					h_user.put_in_r_hand(B)
-				else if (h_user.l_hand == src)
+				else if(h_user.l_hand == src)
 					h_user.drop_from_inventory(src)
 					h_user.put_in_l_hand(B)
-				else if (h_user.l_store == src)
+				else if(h_user.l_store == src)
 					h_user.drop_from_inventory(src)
 					B.loc = h_user
 					B.layer = 20
 					h_user.l_store = B
 					h_user.update_inv_pockets()
-				else if (h_user.r_store == src)
+				else if(h_user.r_store == src)
 					h_user.drop_from_inventory(src)
 					B.loc = h_user
 					B.layer = 20
 					h_user.r_store = B
 					h_user.update_inv_pockets()
-				else if (h_user.head == src)
+				else if(h_user.head == src)
 					h_user.u_equip(src)
 					h_user.put_in_hands(B)
-				else if (!istype(src.loc, /turf))
+				else if(!istype(src.loc, /turf))
 					src.loc = get_turf(h_user)
 					if(h_user.client)	h_user.client.screen -= src
 					h_user.put_in_hands(B)
@@ -386,7 +386,7 @@
 			return
 
 		var/obj/item/pen/robopen/RP = P
-		if ( istype(RP) && RP.mode == 2 )
+		if( istype(RP) && RP.mode == 2 )
 			RP.RenamePaper(user,src)
 		else
 			user << browse("<HTML><meta charset=\"utf-8\"><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[info_links][stamps]</BODY></HTML>", "window=[name]")
@@ -437,9 +437,9 @@
 	crumpled = TRUE
 
 /obj/item/paper/crumpled/update_icon()
-	if (icon_state == "paper_crumpled_bloodied")
+	if(icon_state == "paper_crumpled_bloodied")
 		return
-	else if (info)
+	else if(info)
 		icon_state = "paper_words_crumpled"
 	else
 		icon_state = "paper_crumpled"
@@ -464,9 +464,9 @@
 	icon_state = "paper_neo_crumpled"
 
 /obj/item/paper/crumpled/neo/update_icon()
-	if (icon_state == "paper_neo_words_crumpled_bloodied")
+	if(icon_state == "paper_neo_words_crumpled_bloodied")
 		return
-	else if (info)
+	else if(info)
 		icon_state = "paper_neo_words_crumpled"
 	else
 		icon_state = "paper_neo_crumpled"

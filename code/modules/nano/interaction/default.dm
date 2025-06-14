@@ -63,17 +63,17 @@ GLOBAL_DATUM_INIT(default_state, /datum/nano_topic_state/default, new)
 	return user.shared_living_nano_distance(src_object)
 
 /mob/living/proc/shared_living_nano_distance(var/atom/movable/src_object)
-	if (!(src_object in view(4, src))) 	// If the src object is not visable, disable updates
+	if(!(src_object in view(4, src))) 	// If the src object is not visable, disable updates
 		return STATUS_CLOSE
 
 	var/dist = get_dist(src_object, src)
-	if (dist <= 1) // interactive (green visibility)
+	if(dist <= 1) // interactive (green visibility)
 		// Checking adjacency even when distance is 0 because get_dist() doesn't include Z-level differences and
 		// the client might have its eye shifted up/down thus putting src_object in view.
 		return Adjacent(src_object) ? STATUS_INTERACTIVE : STATUS_UPDATE
-	else if (dist <= 2)
+	else if(dist <= 2)
 		return STATUS_UPDATE 		// update only (orange visibility)
-	else if (dist <= 4)
+	else if(dist <= 4)
 		return STATUS_DISABLED 		// no updates, completely disabled (red visibility)
 	return STATUS_CLOSE
 

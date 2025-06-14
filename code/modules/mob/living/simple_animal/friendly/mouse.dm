@@ -77,24 +77,24 @@
 
 			//Player-animals don't do random speech normally, so this is here
 			//Player-controlled mice will still squeak, but less often than NPC mice
-			if (stat == CONSCIOUS && prob(speak_chance*0.05))
+			if(stat == CONSCIOUS && prob(speak_chance*0.05))
 				squeak_soft(0)
 
-			if (squeals < maxSqueals)
+			if(squeals < maxSqueals)
 				var/diff = world.time - last_squealgain
-				if (diff > 600)
+				if(diff > 600)
 					squeals++
 					last_squealgain = world.time
 
 	else
-		if ((world.time - timeofdeath) > decompose_time)
+		if((world.time - timeofdeath) > decompose_time)
 			dust()
 
 
 //Pixel offsetting as they scamper around
 /mob/living/simple_animal/mouse/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	if((. = ..()))
-		if (prob(50))
+		if(prob(50))
 			var/new_pixelx = pixel_x
 			new_pixelx += rand(-2,2)
 			new_pixelx = CLAMP(new_pixelx, -10, 10)
@@ -121,11 +121,11 @@
 	icon_living = "mouse_[body_color]"
 	icon_rest = "mouse_[body_color]_sleep"
 	icon_dead = "mouse_[body_color]_dead"
-	if (body_color == "brown")
+	if(body_color == "brown")
 		holder_type = /obj/item/holder/mouse/brown
-	if (body_color == "gray")
+	if(body_color == "gray")
 		holder_type = /obj/item/holder/mouse/gray
-	if (body_color == "white")
+	if(body_color == "white")
 		holder_type = /obj/item/holder/mouse/white
 
 	//verbs += /mob/living/simple_animal/mouse/proc/squeak
@@ -141,7 +141,7 @@
 	visible_emote("squeaks timidly, sniffs the air and gazes longingly up at \the [thing.name].",0)
 
 /mob/living/simple_animal/mouse/attack_hand(mob/living/carbon/human/M as mob)
-	if (src.stat == DEAD)//If the mouse is dead, we don't pet it, we just pickup the corpse on click
+	if(src.stat == DEAD)//If the mouse is dead, we don't pet it, we just pickup the corpse on click
 		get_scooped(M, usr)
 		return
 	else
@@ -156,32 +156,32 @@
 //Plays a sound.
 //This is triggered when a mob steps on an NPC mouse, or manually by a playermouse
 /mob/living/simple_animal/mouse/proc/squeak(var/manual = 1)
-	if (stat == CONSCIOUS)
+	if(stat == CONSCIOUS)
 		playsound(src, 'sound/effects/mousesqueek.ogg', 70, 1)
-		if (manual)
+		if(manual)
 			log_say("[key_name(src)] squeaks! ")
 
 
 //Plays a random selection of four sounds, at a low volume
 //This is triggered randomly periodically by any mouse, or manually
 /mob/living/simple_animal/mouse/proc/squeak_soft(var/manual = 1)
-	if (stat != DEAD) //Soft squeaks are allowed while sleeping
+	if(stat != DEAD) //Soft squeaks are allowed while sleeping
 		var/list/new_squeaks = last_softsqueak ? soft_squeaks - last_softsqueak : soft_squeaks
 		var/sound = pick(new_squeaks)
 
 		last_softsqueak = sound
 		playsound(src, sound, 5, 1, -4.6)
 
-		if (manual)
+		if(manual)
 			log_say("[key_name(src)] squeaks softly! ")
 
 
 //Plays a loud sound
 //Triggered manually, when a mouse dies, or rarely when its stepped on
 /mob/living/simple_animal/mouse/proc/squeak_loud(var/manual = 0)
-	if (stat == CONSCIOUS)
+	if(stat == CONSCIOUS)
 
-		if (squeals > 0 || !manual)
+		if(squeals > 0 || !manual)
 			playsound(src, 'sound/effects/creatures/mouse_squeak_loud.ogg', 40, 1)
 			squeals --
 			log_say("[key_name(src)] squeals! ")
@@ -194,7 +194,7 @@
 	set name = "Squeal!"
 	set category = "Abilities"
 
-	if (usr.client.prefs.muted & MUTE_IC)
+	if(usr.client.prefs.muted & MUTE_IC)
 		to_chat(usr, "<span class='danger'>You are muted from IC emotes.</span>")
 		return
 
@@ -204,7 +204,7 @@
 	set name = "Soft Squeaking"
 	set category = "Abilities"
 
-	if (usr.client.prefs.muted & MUTE_IC)
+	if(usr.client.prefs.muted & MUTE_IC)
 		to_chat(usr, "<span class='danger'>You are muted from IC emotes.</span>")
 		return
 
@@ -214,7 +214,7 @@
 	set name = "Squeak"
 	set category = "Abilities"
 
-	if (usr.client.prefs.muted & MUTE_IC)
+	if(usr.client.prefs.muted & MUTE_IC)
 		to_chat(usr, "<span class='danger'>You are muted from IC emotes.</span>")
 		return
 
@@ -227,7 +227,7 @@
 			var/mob/M = AM
 			to_chat(M, "<span class='notice'>\icon[src] Squeek!</span>")
 			poke(1) //Wake up if stepped on
-			if (prob(95))
+			if(prob(95))
 				squeak(0)
 			else
 				squeak_loud(0)//You trod on its tail
@@ -240,7 +240,7 @@
 
 /mob/living/simple_animal/mouse/death()
 	layer = MOB_LAYER
-	if (stat != DEAD)
+	if(stat != DEAD)
 		if(ckey || prob(35))
 			squeak_loud(0)//deathgasp
 
@@ -253,7 +253,7 @@
 
 //Mice can bite mobs, deals 1 damage, and stuns the mouse for a second
 /mob/living/simple_animal/mouse/AltClickOn(A)
-	if (!can_click()) //This has to be here because anything but normal leftclicks doesn't use a click cooldown. It would be easy to fix, but there may be unintended consequences
+	if(!can_click()) //This has to be here because anything but normal leftclicks doesn't use a click cooldown. It would be easy to fix, but there may be unintended consequences
 		return
 	melee_damage_upper = melee_damage_lower //We set the damage to 1 so we can hurt things
 	attack_sound = pick(list('sound/effects/creatures/nibble1.ogg', 'sound/effects/creatures/nibble2.ogg'))

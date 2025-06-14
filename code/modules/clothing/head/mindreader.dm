@@ -32,9 +32,9 @@
 		return
 
 /obj/item/clothing/head/mindreader/proc/extract_memory(var/user)
-	if (!user) return
+	if(!user) return
 
-	if (src.loc != user || !ishuman(user))
+	if(src.loc != user || !ishuman(user))
 		return
 
 	var/mob/living/carbon/human/H = user

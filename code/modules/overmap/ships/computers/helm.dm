@@ -23,7 +23,7 @@
 /obj/machinery/computer/helm/proc/get_known_sectors()
 	var/area/overmap/map = locate() in world
 	for(var/obj/effect/overmap/sector/S in map)
-		if (S.known)
+		if(S.known)
 			var/datum/data/record/R = new()
 			R.fields["name"] = S.name_stages[1]
 			R.fields["x"] = S.x
@@ -32,7 +32,7 @@
 
 /obj/machinery/computer/helm/Process()
 	..()
-	if (autopilot && dx && dy)
+	if(autopilot && dx && dy)
 		var/turf/T = locate(dx,dy,SSmapping.overmap_z)
 		if(linked.loc == T)
 			if(linked.is_still())
@@ -55,12 +55,12 @@
 		return 1
 
 /obj/machinery/computer/helm/check_eye(var/mob/user as mob)
-	if (isAI(user))
+	if(isAI(user))
 		user.unset_machine()
-		if (!manual_control)
+		if(!manual_control)
 			user.reset_view(user.eyeobj)
 		return 0
-	if (!manual_control || (!get_dist(user, src) > 1) || user.blinded || !linked )
+	if(!manual_control || (!get_dist(user, src) > 1) || user.blinded || !linked )
 		user.unset_machine()
 		return -1
 	return 0
@@ -118,7 +118,7 @@
 		data["ETAnext"] = "N/A"
 
 	var/list/locations[0]
-	for (var/key in known_sectors)
+	for(var/key in known_sectors)
 		var/datum/data/record/R = known_sectors[key]
 		var/list/rdata[0]
 		rdata["name"] = R.fields["name"]
@@ -130,7 +130,7 @@
 	data["locations"] = locations
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "helm.tmpl", "[linked.name] Helm Control", 380, 530)
 		ui.set_initial_data(data)
 		ui.open()
@@ -140,10 +140,10 @@
 	if(..())
 		return 1
 
-	if (!linked)
+	if(!linked)
 		return
 
-	if (href_list["add"])
+	if(href_list["add"])
 		var/datum/data/record/R = new()
 		var/sec_name = sanitize(input("Input naviation entry name", "New navigation entry", "Sector #[known_sectors.len]") as text)
 		if(!CanInteract(usr,state))
@@ -169,62 +169,62 @@
 				R.fields["y"] = CLAMP(newy, 1, world.maxy)
 		known_sectors[sec_name] = R
 
-	if (href_list["remove"])
+	if(href_list["remove"])
 		var/datum/data/record/R = locate(href_list["remove"])
 		if(R)
 			known_sectors.Remove(R.fields["name"])
 			qdel(R)
 
-	if (href_list["setx"])
+	if(href_list["setx"])
 		var/newx = input("Input new destiniation x coordinate", "Coordinate input", dx) as num|null
 		if(!CanInteract(usr,state))
 			return
-		if (newx)
+		if(newx)
 			dx = CLAMP(newx, 1, world.maxx)
 
-	if (href_list["sety"])
+	if(href_list["sety"])
 		var/newy = input("Input new destiniation y coordinate", "Coordinate input", dy) as num|null
 		if(!CanInteract(usr,state))
 			return
-		if (newy)
+		if(newy)
 			dy = CLAMP(newy, 1, world.maxy)
 
-	if (href_list["x"] && href_list["y"])
+	if(href_list["x"] && href_list["y"])
 		dx = text2num(href_list["x"])
 		dy = text2num(href_list["y"])
 
-	if (href_list["reset"])
+	if(href_list["reset"])
 		dx = 0
 		dy = 0
 
-	if (href_list["speedlimit"])
+	if(href_list["speedlimit"])
 		var/newlimit = input("Input new speed limit for autopilot (0 to disable)", "Autopilot speed limit", speedlimit) as num|null
 		if(newlimit)
 			speedlimit = CLAMP(newlimit, 0, 100)
 
-	if (href_list["move"])
+	if(href_list["move"])
 		var/ndir = text2num(href_list["move"])
 		linked.relaymove(usr, ndir)
 
-	if (href_list["brake"])
+	if(href_list["brake"])
 		linked.decelerate()
 
-	if (href_list["apilot"])
+	if(href_list["apilot"])
 		autopilot = !autopilot
 
-	if (href_list["manual"])
+	if(href_list["manual"])
 		manual_control = !manual_control
 		if(manual_control)
 			usr.reset_view(linked)
 			usr.client.view = "[2*NAVIGATION_VIEW_RANGE+1]x[2*NAVIGATION_VIEW_RANGE+1]"
 		else
-			if (isAI(usr))
+			if(isAI(usr))
 				usr.reset_view(usr.eyeobj)
 
-	if (href_list["pulse"])
+	if(href_list["pulse"])
 		linked.pulse()
 
-	if (href_list["scanpoi"])
+	if(href_list["scanpoi"])
 		linked.scan_poi()
 
 	updateUsrDialog()
@@ -264,21 +264,21 @@
 		data["ETAnext"] = "N/A"
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "nav.tmpl", "[linked.name] Navigation Screen", 380, 530)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
 
 /obj/machinery/computer/navigation/check_eye(mob/user)
-	if (isAI(user))
+	if(isAI(user))
 		user.unset_machine()
-		if (!viewing)
+		if(!viewing)
 			user.reset_view(user.eyeobj)
 		return 0
-	if (!viewing)
+	if(!viewing)
 		return -1
-	if (!get_dist(user, src) > 1 || user.blinded || !linked )
+	if(!get_dist(user, src) > 1 || user.blinded || !linked )
 		viewing = 0
 		return -1
 	return 0
@@ -295,7 +295,7 @@
 			linked.check_link()
 
 	if(viewing && linked)
-		if (!isAI(user))
+		if(!isAI(user))
 			user.set_machine(src)
 		user.reset_view(linked)
 		user.client.view = "[2*NAVIGATION_VIEW_RANGE+1]x[2*NAVIGATION_VIEW_RANGE+1]"
@@ -306,15 +306,15 @@
 	if(..())
 		return 1
 
-	if (!linked)
+	if(!linked)
 		return
 
-	if (href_list["viewing"])
+	if(href_list["viewing"])
 		viewing = !viewing
 		if(viewing)
 			usr.reset_view(linked)
 			usr.client.view = "[2*NAVIGATION_VIEW_RANGE+1]x[2*NAVIGATION_VIEW_RANGE+1]"
 		else
-			if (isAI(usr))
+			if(isAI(usr))
 				usr.reset_view(usr.eyeobj)
 		return 1

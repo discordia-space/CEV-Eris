@@ -3,7 +3,7 @@
 	return ..()
 
 /mob/proc/AIize(move=1)
-	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
+	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	if(client)
@@ -23,12 +23,12 @@
 			if(locate(/obj/structure/AIcore) in sloc)
 				continue
 			new_location = sloc
-		if (!new_location)
+		if(!new_location)
 			for(var/turf/sloc in get_datum_spawn_locations("triai"))
 				if(locate(/obj/structure/AIcore) in sloc)
 					continue
 				new_location = sloc
-		if (!new_location)
+		if(!new_location)
 			to_chat(O, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
 			new_location = pick_spawn_location("AI")
 
@@ -44,7 +44,7 @@
 
 //human -> robot
 /mob/living/proc/Robotize()
-	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
+	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot( loc )
@@ -71,7 +71,7 @@
 	return O
 
 /mob/living/proc/slimeize(adult as num, reproduce as num)
-	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
+	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	var/mob/living/carbon/slime/new_slime

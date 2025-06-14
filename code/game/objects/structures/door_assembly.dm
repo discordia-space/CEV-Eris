@@ -92,7 +92,7 @@
 					var/path
 					if(istext(glass))
 						path = text2path("/obj/machinery/door/airlock/[glass]")
-					else if (glass == 1)
+					else if(glass == 1)
 						path = text2path("/obj/machinery/door/airlock[glass_type]")
 					else
 						path = text2path("/obj/machinery/door/airlock[airlock_type]")
@@ -106,12 +106,12 @@
 
 	if(istype(I, /obj/item/stack/cable_coil) && state == 0 && anchored)
 		var/obj/item/stack/cable_coil/C = I
-		if (C.get_amount() < 1)
+		if(C.get_amount() < 1)
 			to_chat(user, SPAN_WARNING("You need one length of coil to wire the airlock assembly."))
 			return
 		user.visible_message("[user] wires the airlock assembly.", "You start to wire the airlock assembly.")
 		if(do_after(user, 40,src) && state == 0 && anchored)
-			if (C.use(1))
+			if(C.use(1))
 				src.state = 1
 				to_chat(user, SPAN_NOTICE("You wire the airlock."))
 
@@ -131,13 +131,13 @@
 	else if(istype(I, /obj/item/stack/material) && !glass)
 		var/obj/item/stack/S = I
 		var/material_name = S.get_material_name()
-		if (S)
-			if (S.get_amount() >= 1)
+		if(S)
+			if(S.get_amount() >= 1)
 				if(material_name == MATERIAL_RGLASS)
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 					user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
 					if(do_after(user, 40,src) && !glass)
-						if (S.use(1))
+						if(S.use(1))
 							to_chat(user, SPAN_NOTICE("You installed reinforced glass windows into the airlock assembly."))
 							glass = 1
 				else if(material_name)
@@ -149,7 +149,7 @@
 						playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 						user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
 						if(do_after(user, 40,src) && !glass)
-							if (S.use(2))
+							if(S.use(2))
 								to_chat(user, SPAN_NOTICE("You installed [material_display_name(material_name)] plating into the airlock assembly."))
 								glass = material_name
 
@@ -170,7 +170,7 @@
 	name = ""
 	switch (state)
 		if(0)
-			if (anchored)
+			if(anchored)
 				name = "Secured "
 		if(1)
 			name = "Wired "

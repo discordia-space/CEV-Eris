@@ -13,7 +13,7 @@
 			icon_state = "cpaper_words"
 			return
 		icon_state = "cpaper"
-	else if (copied)
+	else if(copied)
 		if(info)
 			icon_state = "paper_words"
 			return
@@ -31,13 +31,13 @@
 	set category = "Object"
 	set src in usr
 
-	if (crumpled)
-		if (copied == 0)
+	if(crumpled)
+		if(copied == 0)
 			to_chat(usr, "The carbon copies are crushed together with the paper, you can't remove them!")
 		else
 			to_chat(usr, "There are no more carbon copies attached to this paper!")
 		return
-	if (copied == 0)
+	if(copied == 0)
 		var/obj/item/paper/carbon/c = src
 		var/copycontents = html_decode(c.info)
 		var/obj/item/paper/carbon/copy = new /obj/item/paper/carbon (usr.loc)

@@ -182,7 +182,7 @@
 	..()
 
 /obj/item/stool/holostool/attack(mob/M as mob, mob/user as mob)
-	if (prob(5) && isliving(M))
+	if(prob(5) && isliving(M))
 		user.visible_message(SPAN_DANGER("[user] breaks [src] over [M]'s back, disappearing into mist!"))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(M)
@@ -260,7 +260,7 @@
 
 /obj/machinery/door/window/holowindoor/attackby(obj/item/I as obj, mob/user as mob)
 
-	if (src.operating == 1)
+	if(src.operating == 1)
 		return
 
 	if(src.density && istype(I, /obj/item) && !istype(I, /obj/item/card))
@@ -272,16 +272,16 @@
 		return
 
 	src.add_fingerprint(user)
-	if (!src.requiresID())
+	if(!src.requiresID())
 		user = null
 
-	if (src.allowed(user))
-		if (src.density)
+	if(src.allowed(user))
+		if(src.density)
 			open()
 		else
 			close()
 
-	else if (src.density)
+	else if(src.density)
 		flick(text("[]deny", src.base_state), src)
 
 	return
@@ -336,7 +336,7 @@
 
 /obj/item/holo/esword/attack_self(mob/living/user as mob)
 	active = !active
-	if (active)
+	if(active)
 		force = 30
 		icon_state = "sword[item_color]"
 		w_class = ITEM_SIZE_BULKY
@@ -382,13 +382,13 @@
 	return TRUE
 
 /obj/structure/holohoop/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item) && get_dist(src,user)<2)
+	if(istype(W, /obj/item) && get_dist(src,user)<2)
 		user.drop_item(src.loc)
 		visible_message(SPAN_NOTICE("[user] dunks [W] into the [src]!"), 3)
 		return
 
 /obj/structure/holohoop/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (istype(mover,/obj/item) && mover.throwing)
+	if(istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(istype(I, /obj/item/projectile))
 			return
@@ -453,7 +453,7 @@
 	var/numready = 0
 	for(var/obj/machinery/readybutton/button in currentarea)
 		numbuttons++
-		if (button.ready)
+		if(button.ready)
 			numready++
 
 	if(numbuttons == numready)
@@ -491,7 +491,7 @@
 	set_light(2) //hologram lighting
 
 /mob/living/simple_animal/hostile/carp/holodeck/proc/set_safety(var/safe)
-	if (safe)
+	if(safe)
 		faction = "neutral"
 		melee_damage_lower = 0
 		melee_damage_upper = 0

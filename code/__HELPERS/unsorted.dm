@@ -1300,7 +1300,7 @@ var/list/FLOORITEMS = list(
 /world/proc/PushUsr(mob/M, datum/callback/CB, ...)
 	var/temp = usr
 	usr = M
-	if (length(args) > 2)
+	if(length(args) > 2)
 		. = CB.Invoke(arglist(args.Copy(3)))
 	else
 		. = CB.Invoke()

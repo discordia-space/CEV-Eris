@@ -52,7 +52,7 @@
 	proc/interact(var/mob/user, var/ai=0)
 		if(secured)
 			return
-		if (!ishuman(user))
+		if(!ishuman(user))
 			return ..(user)
 		var/t = "<B>Circuitboard Console - Camera Monitoring Computer</B><BR>"
 		t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
@@ -87,12 +87,12 @@
 		else if( href_list["auth"] )
 			var/mob/M = usr
 			var/obj/item/card/id/I = M.equipped()
-			if (istype(I, /obj/item/modular_computer))
+			if(istype(I, /obj/item/modular_computer))
 				I = I.GetIdCard()
-			if (I && istype(I))
+			if(I && istype(I))
 				if(access_captain in I.access)
 					authorised = 1
-				else if (possibleNets[network] in I.access)
+				else if(possibleNets[network] in I.access)
 					authorised = 1
 			if(istype(I,/obj/item/card/emag))
 				I.resolve_attackby(src, usr)

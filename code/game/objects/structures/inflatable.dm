@@ -85,7 +85,7 @@
 /obj/structure/inflatable/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W) || istype(W, /obj/item/inflatable_dispenser)) return
 
-	if (can_puncture(W))
+	if(can_puncture(W))
 		visible_message(SPAN_DANGER("[user] pierces [src] with [W]!"))
 		deflate(TRUE)
 	if(W.damtype == BRUTE || W.damtype == BURN)

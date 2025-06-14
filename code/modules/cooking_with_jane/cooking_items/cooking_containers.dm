@@ -104,7 +104,7 @@
 	//OK, time to load the tracker
 	if(!tracker)
 		if(lower_quality_on_fail)
-			for (var/obj/item/contained in contents)
+			for(var/obj/item/contained in contents)
 				contained?:food_quality -= lower_quality_on_fail
 		else
 			tracker = new /datum/cooking_with_jane/recipe_tracker(src)
@@ -115,7 +115,7 @@
 			if(send_message)
 				to_chat(user, "It doesn't seem like you can create a meal from that. Yet.")
 			if(lower_quality_on_fail)
-				for (var/datum/cooking_with_jane/recipe_pointer/pointer in tracker.active_recipe_pointers)
+				for(var/datum/cooking_with_jane/recipe_pointer/pointer in tracker.active_recipe_pointers)
 					pointer?:tracked_quality -= lower_quality_on_fail
 		if(CWJ_CHOICE_CANCEL)
 			if(send_message)
@@ -168,7 +168,7 @@
 
 	if(contents.len != 0)
 		if(tracker && removal_penalty)
-			for (var/obj/item/contained in contents)
+			for(var/obj/item/contained in contents)
 				contained?:food_quality -= removal_penalty
 			to_chat(user, SPAN_WARNING("The quality of ingredients in the [src] was reduced by the extra jostling."))
 
@@ -176,12 +176,12 @@
 		if(reagents.total_volume != 0)
 			var/reagent_qual_reduction = round(reagents.total_volume/contents.len)
 			if(reagent_qual_reduction != 0)
-				for (var/obj/item/contained in contents)
+				for(var/obj/item/contained in contents)
 					contained?:food_quality -= reagent_qual_reduction
 				to_chat(user, SPAN_WARNING("The quality of ingredients in the [src] was reduced by the presence of reagents in the container."))
 
 
-		for (var/contained in contents)
+		for(var/contained in contents)
 			var/atom/movable/AM = contained
 			remove_from_visible(AM)
 			if(!target)
@@ -226,10 +226,10 @@
 	//The latter part is a brief reminder of contents
 	//This is used in the removal menu
 	. = shortname
-	if (!isnull(number))
+	if(!isnull(number))
 		.+= " [number]"
 	.+= " - "
-	if (LAZYLEN(contents))
+	if(LAZYLEN(contents))
 		var/obj/O = locate() in contents
 		return . + O.name //Just append the name of the first object
 	return . + "empty"

@@ -20,9 +20,9 @@
 
 
 /obj/item/implant/adrenalin/trigger(emote, mob/living/source)
-	if (uses < 1)
+	if(uses < 1)
 		return
-	if (emote == "pale")
+	if(emote == "pale")
 		src.uses--
 		to_chat(source, SPAN_NOTICE("You feel a sudden surge of energy!"))
 		source.SetStunned(0)

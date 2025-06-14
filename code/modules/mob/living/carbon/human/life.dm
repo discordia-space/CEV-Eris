@@ -44,7 +44,7 @@
 	if(in_stasis && (stat == DEAD))
 		timeofdeath = world.time - stasis_timeofdeath
 
-	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
+	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 
 	fire_alert = FIRE_ALERT_NONE //Reset this here, because both breathe() and handle_environment() have a chance to set it.
@@ -179,15 +179,15 @@
 			if(equipment_tint_total >= TINT_BLIND)	// Covered eyes, heal faster
 				eye_blurry = max(eye_blurry-2, 0)
 
-//	if (disabilities & COUGHING)
-//		if ((prob(5) && paralysis <= 1))
+//	if(disabilities & COUGHING)
+//		if((prob(5) && paralysis <= 1))
 //			drop_item()
 //			spawn( 0 )
 //				emote("cough")
 //				return
-//	if (disabilities & NERVOUS)
+//	if(disabilities & NERVOUS)
 //		speech_problem_flag = 1
-//		if (prob(10))
+//		if(prob(10))
 //			stuttering = max(10, stuttering)
 
 	if(stat != DEAD)
@@ -302,7 +302,7 @@
 			if(!rig.offline && (rig.air_supply && internal == rig.air_supply))
 				rig_supply = rig.air_supply
 
-		if (!rig_supply && (!contents.Find(internal) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT)))))
+		if(!rig_supply && (!contents.Find(internal) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT)))))
 			internal = null
 
 		if(internal)
@@ -414,7 +414,7 @@
 			alert = 1
 			failed_exhale = 1
 			var/ratio = 1 - (safe_exhaled_max - exhaled_pp)/(safe_exhaled_max*0.3)
-			if (getOxyLoss() < 50*ratio)
+			if(getOxyLoss() < 50*ratio)
 				oxyloss = HUMAN_MAX_OXYLOSS
 		else if(exhaled_pp > safe_exhaled_max * 0.6)
 			word = pick("a little dizzy","short of breath")
@@ -452,7 +452,7 @@
 
 	// Were we able to breathe?
 	var/failed_breath = failed_inhale || failed_exhale
-	if (!failed_breath)
+	if(!failed_breath)
 		adjustOxyLoss(-5)
 
 	handle_temperature_effects(breath)
@@ -497,7 +497,7 @@
 
 		//breathing in hot/cold air also heats/cools you a bit
 		var/temp_adj = breath.temperature - bodytemperature
-		if (temp_adj < 0)
+		if(temp_adj < 0)
 			temp_adj /= (BODYTEMP_COLD_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
 		else
 			temp_adj /= (BODYTEMP_HEAT_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
@@ -505,8 +505,8 @@
 		var/relative_density = breath.total_moles / (MOLES_CELLSTANDARD * BREATH_PERCENTAGE)
 		temp_adj *= relative_density
 
-		if (temp_adj > BODYTEMP_HEATING_MAX) temp_adj = BODYTEMP_HEATING_MAX
-		if (temp_adj < BODYTEMP_COOLING_MAX) temp_adj = BODYTEMP_COOLING_MAX
+		if(temp_adj > BODYTEMP_HEATING_MAX) temp_adj = BODYTEMP_HEATING_MAX
+		if(temp_adj < BODYTEMP_COOLING_MAX) temp_adj = BODYTEMP_COOLING_MAX
 		//world << "Breath: [breath.temperature], [src]: [bodytemperature], Adjusting: [temp_adj]"
 		bodytemperature += temp_adj
 
@@ -561,7 +561,7 @@
 			var/thermal_protection = get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 			if(thermal_protection < 1)
 				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
-		else if (loc_temp > bodytemperature)			//Place is hotter than we are
+		else if(loc_temp > bodytemperature)			//Place is hotter than we are
 			var/thermal_protection = get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 			if(thermal_protection < 1)
 				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
@@ -646,16 +646,16 @@
 */
 
 /mob/living/carbon/human/proc/stabilize_body_temperature()
-	if (species.passive_temp_gain) // We produce heat naturally.
+	if(species.passive_temp_gain) // We produce heat naturally.
 		bodytemperature += species.passive_temp_gain
-	if (species.body_temperature == null)
+	if(species.body_temperature == null)
 		return //this species doesn't have metabolic thermoregulation
 
 	var/body_temperature_difference = species.body_temperature - bodytemperature
 
-	if (abs(body_temperature_difference) < 0.5)
+	if(abs(body_temperature_difference) < 0.5)
 		return //fuck this precision
-	if (on_fire)
+	if(on_fire)
 		return //too busy for pesky metabolic regulation
 
 	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
@@ -824,7 +824,7 @@
 		else if(sleeping)
 			speech_problem_flag = 1
 			handle_dreams()
-			if (mind)
+			if(mind)
 				//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 				if(client || sleeping > 3)
 					AdjustSleeping(-1)
@@ -866,10 +866,10 @@
 		//Other
 		handle_statuses()
 
-		if (drowsyness)
+		if(drowsyness)
 			drowsyness--
 			eye_blurry = max(2, eye_blurry)
-			if (prob(5))
+			if(prob(5))
 				sleeping += 1
 				Paralyse(5)
 
@@ -879,7 +879,7 @@
 
 /mob/living/carbon/human/handle_regular_hud_updates()
 	. = ..()
-	for (var/obj/screen/H in HUDprocess)
+	for(var/obj/screen/H in HUDprocess)
 //		var/obj/screen/B = H
 		H.Process()
 	if(!overlays_cache)
@@ -931,7 +931,7 @@
 
 	// Puke if toxloss is too high
 	if(!stat)
-		if (getToxLoss() >= 45 && nutrition > 20)
+		if(getToxLoss() >= 45 && nutrition > 20)
 			vomit()
 
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
@@ -948,7 +948,7 @@
 
 
 /mob/living/carbon/human/proc/handle_hud_list()
-	if (BITTEST(hud_updateflag, HEALTH_HUD))
+	if(BITTEST(hud_updateflag, HEALTH_HUD))
 		var/image/holder = hud_list[HEALTH_HUD]
 		if(stat == DEAD)
 			holder.icon_state = "hudhealth-100" 	// X_X
@@ -973,7 +973,7 @@
 			holder.icon_state = "hud[percentage_health]"
 		hud_list[HEALTH_HUD] = holder
 
-	if (BITTEST(hud_updateflag, LIFE_HUD))
+	if(BITTEST(hud_updateflag, LIFE_HUD))
 		var/image/holder = hud_list[LIFE_HUD]
 		if(stat == DEAD)
 			holder.icon_state = "huddead"
@@ -981,7 +981,7 @@
 			holder.icon_state = "hudhealthy"
 		hud_list[LIFE_HUD] = holder
 
-	if (BITTEST(hud_updateflag, STATUS_HUD))
+	if(BITTEST(hud_updateflag, STATUS_HUD))
 
 		var/image/holder = hud_list[STATUS_HUD]
 		if(stat == DEAD)
@@ -1006,7 +1006,7 @@
 		hud_list[STATUS_HUD] = holder
 		hud_list[STATUS_HUD_OOC] = holder2
 
-	if (BITTEST(hud_updateflag, ID_HUD))
+	if(BITTEST(hud_updateflag, ID_HUD))
 		var/image/holder = hud_list[ID_HUD]
 		if(wear_id)
 			var/obj/item/card/id/I = wear_id.GetIdCard()
@@ -1020,7 +1020,7 @@
 
 		hud_list[ID_HUD] = holder
 
-	if (BITTEST(hud_updateflag, WANTED_HUD))
+	if(BITTEST(hud_updateflag, WANTED_HUD))
 		var/image/holder = hud_list[WANTED_HUD]
 		holder.icon_state = "hudblank"
 		var/perpname = get_id_name(name)
@@ -1038,7 +1038,7 @@
 					holder.icon_state = "hudreleased"
 		hud_list[WANTED_HUD] = holder
 
-	if (BITTEST(hud_updateflag,  IMPCHEM_HUD) || BITTEST(hud_updateflag, IMPTRACK_HUD))
+	if(BITTEST(hud_updateflag,  IMPCHEM_HUD) || BITTEST(hud_updateflag, IMPTRACK_HUD))
 
 		var/image/holder1 = hud_list[IMPTRACK_HUD]
 		var/image/holder2 = hud_list[IMPCHEM_HUD]
@@ -1056,7 +1056,7 @@
 		hud_list[IMPTRACK_HUD] = holder1
 		hud_list[IMPCHEM_HUD]  = holder2
 
-	if (BITTEST(hud_updateflag, SPECIALROLE_HUD))
+	if(BITTEST(hud_updateflag, SPECIALROLE_HUD))
 		var/image/holder = hud_list[SPECIALROLE_HUD]
 		holder.icon_state = "hudblank"
 		if(mind && mind.antagonist.len != 0)
@@ -1067,7 +1067,7 @@
 				holder.icon_state = "hudsyndicate"
 			hud_list[SPECIALROLE_HUD] = holder
 
-	if (BITTEST(hud_updateflag, EXCELSIOR_HUD))
+	if(BITTEST(hud_updateflag, EXCELSIOR_HUD))
 		var/image/holder = hud_list[EXCELSIOR_HUD]
 		holder.icon_state = "hudblank"
 		if(is_excelsior(src))
@@ -1106,7 +1106,7 @@
 	var/burn_temperature = fire_burn_temperature()
 	var/thermal_protection = get_heat_protection(burn_temperature)
 
-	if (thermal_protection < 1 && bodytemperature < burn_temperature)
+	if(thermal_protection < 1 && bodytemperature < burn_temperature)
 		bodytemperature += round(BODYTEMP_HEATING_MAX*(1-thermal_protection), 1)
 
 /mob/living/carbon/human/rejuvenate()

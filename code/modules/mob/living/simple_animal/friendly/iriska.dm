@@ -63,7 +63,7 @@ var/list/despised = list()
 		if(!snack || !(snack.loc in oview(src, 1)))
 			snack = null
 			foodtarget = 0
-			if (can_eat())
+			if(can_eat())
 				for(var/obj/item/reagent_containers/food/snacks/S in oview(src,1))
 					if(!istype(S, /obj/item/reagent_containers/food/snacks/grown))
 						if(isturf(S.loc))
@@ -74,13 +74,13 @@ var/list/despised = list()
 		if(snack)
 			scan_interval = min_scan_interval
 
-			if (snack.loc.x < src.x)
+			if(snack.loc.x < src.x)
 				set_dir(WEST)
-			else if (snack.loc.x > src.x)
+			else if(snack.loc.x > src.x)
 				set_dir(EAST)
-			else if (snack.loc.y < src.y)
+			else if(snack.loc.y < src.y)
 				set_dir(SOUTH)
-			else if (snack.loc.y > src.y)
+			else if(snack.loc.y > src.y)
 				set_dir(NORTH)
 			else
 				set_dir(SOUTH)
@@ -95,7 +95,7 @@ var/list/despised = list()
 
 /mob/living/simple_animal/iriska/proc/react_to_mob()
 	for(var/mob/living/M in oview(src, 1))
-		if (M.stat != DEAD)
+		if(M.stat != DEAD)
 
 			if(iscorgi(M))
 				if(prob(5)) visible_emote("pointedly ignores [M].")
@@ -108,7 +108,7 @@ var/list/despised = list()
 				if(M.real_name in tolerated)
 					if(prob(2)) say("Meoow!")
 
-				else if ((M.job == "Captain") && !(M.real_name in despised)) // Recognize captain
+				else if((M.job == "Captain") && !(M.real_name in despised)) // Recognize captain
 					tolerated |= M.real_name
 					visible_emote("looks at [M] with a hint of respect.")
 

@@ -17,7 +17,7 @@
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list(/obj/item/rig) //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/max_w_class = ITEM_SIZE_BULKY //Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_storage_space = DEFAULT_HUGE_STORAGE * 0.7 //This is a entire satchel of storage 
+	var/max_storage_space = DEFAULT_HUGE_STORAGE * 0.7 //This is a entire satchel of storage
 	var/storage_slots = null //The number of storage slots in this container.
 
 //Create the internal storage and pass on various parameters
@@ -35,8 +35,8 @@
 *****************************/
 //Installing stuff
 /obj/item/rig_module/storage/can_install(var/obj/item/rig/rig, var/mob/user, var/feedback = FALSE)
-	if (rig.storage) //If it already has a storage mod installed, then no adding another one
-		if (user && feedback)
+	if(rig.storage) //If it already has a storage mod installed, then no adding another one
+		if(user && feedback)
 			to_chat(user, SPAN_DANGER("The [rig] already has a storage module installed, you can't fit another one."))
 		return FALSE
 	.=..()
@@ -59,7 +59,7 @@
 *****************************/
 //This is called whenever people use something on the rig backpack
 /obj/item/rig_module/storage/accepts_item(var/obj/item/input_device)
-	if (container)
+	if(container)
 		return container.attackby(input_device, usr)
 	return FALSE
 
@@ -77,7 +77,7 @@
 //The module can be used as a storage container even when not inside a rig
 /obj/item/rig_module/storage/attackby(obj/item/W as obj, mob/user as mob)
 	.=..()
-	if (!.)
+	if(!.)
 		return accepts_item(W)
 
 //More external functionality
@@ -88,7 +88,7 @@
 
 
 /obj/item/rig_module/storage/attack_hand(mob/user as mob)
-	if (loc == user)
+	if(loc == user)
 		container.open(user)
 	else
 		container.close_all()

@@ -235,11 +235,11 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	fill_storyevents_list()
 
 	var/list/L = typesof(/datum/storyteller)-/datum/storyteller
-	for (var/T in L)
+	for(var/T in L)
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
 		var/datum/storyteller/S = new T()
-		if (S.config_tag)
+		if(S.config_tag)
 			GLOB.storyteller_cache[S.config_tag] = S // So we don't instantiate them repeatedly.
 			if(!(S.config_tag in storytellers))		// ensure each mode is added only once
 				log_misc("Adding storyteller [S.name] ([S.config_tag]) to configuration.")
@@ -253,172 +253,172 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		if(!t)	continue
 
 		t = trim(t)
-		if (length(t) == 0)
+		if(length(t) == 0)
 			continue
-		else if (copytext(t, 1, 2) == "#")
+		else if(copytext(t, 1, 2) == "#")
 			continue
 
 		var/pos = findtext(t, " ")
 		var/name
 		var/value
 
-		if (pos)
+		if(pos)
 			name = lowertext(copytext(t, 1, pos))
 			value = copytext(t, pos + 1)
 		else
 			name = lowertext(t)
 
-		if (!name)
+		if(!name)
 			continue
 
 		if(type == "config")
 			switch (name)
-				if ("resource_urls")
+				if("resource_urls")
 					config.resource_urls = splittext(value, " ")
 
-				if ("admin_legacy_system")
+				if("admin_legacy_system")
 					config.admin_legacy_system = 1
 
-				if ("ban_legacy_system")
+				if("ban_legacy_system")
 					config.ban_legacy_system = 1
 
-				if ("admin_memo_system")
+				if("admin_memo_system")
 					config.admin_memo_system = 1
 
-				if ("use_recursive_explosions")
+				if("use_recursive_explosions")
 					use_recursive_explosions = 1
 
-				if ("log_ooc")
+				if("log_ooc")
 					config.log_ooc = 1
 
-				if ("log_access")
+				if("log_access")
 					config.log_access = 1
 
-				if ("sql_enabled")
+				if("sql_enabled")
 					config.sql_enabled = 1
 
-				if ("log_say")
+				if("log_say")
 					config.log_say = 1
 
-				if ("debug_paranoid")
+				if("debug_paranoid")
 					config.debugparanoid = 1
 
-				if ("log_admin")
+				if("log_admin")
 					config.log_admin = 1
 
-				if ("log_debug")
+				if("log_debug")
 					config.log_debug = 1
 
-				if ("log_game")
+				if("log_game")
 					config.log_game = 1
 
-				if ("log_vote")
+				if("log_vote")
 					config.log_vote = 1
 
-				if ("log_whisper")
+				if("log_whisper")
 					config.log_whisper = 1
 
-				if ("log_attack")
+				if("log_attack")
 					config.log_attack = 1
 
-				if ("log_emote")
+				if("log_emote")
 					config.log_emote = 1
 
-				if ("log_adminchat")
+				if("log_adminchat")
 					config.log_adminchat = 1
 
-				if ("log_adminwarn")
+				if("log_adminwarn")
 					config.log_adminwarn = 1
 
-				if ("log_pda")
+				if("log_pda")
 					config.log_pda = 1
 
-				if ("log_world_output")
+				if("log_world_output")
 					config.log_world_output = 1
 
-				if ("log_hrefs")
+				if("log_hrefs")
 					config.log_hrefs = 1
 
-				if ("log_runtime")
+				if("log_runtime")
 					config.log_runtime = 1
 					var/newlog = file("data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log")
 					if(runtime_diary != newlog)
 						world.log << "Now logging runtimes to data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log"
 						runtime_diary = newlog
 
-				if ("no_click_cooldown")
+				if("no_click_cooldown")
 					config.no_click_cooldown = 1
 
 				if("allow_admin_ooccolor")
 					config.allow_admin_ooccolor = 1
 
-				if ("allow_vote_restart")
+				if("allow_vote_restart")
 					config.allow_vote_restart = 1
 
-				if ("allow_vote_mode")
+				if("allow_vote_mode")
 					config.allow_vote_mode = 1
 
-				if ("no_dead_vote")
+				if("no_dead_vote")
 					config.vote_no_dead = 1
 
-				if ("default_no_vote")
+				if("default_no_vote")
 					config.vote_no_default = 1
 
-				if ("vote_delay")
+				if("vote_delay")
 					config.vote_delay = text2num(value)
 
-				if ("vote_period")
+				if("vote_period")
 					config.vote_period = text2num(value)
 
-				if ("vote_autogamemode_timeleft")
+				if("vote_autogamemode_timeleft")
 					config.vote_autogamemode_timeleft = text2num(value)
 
 				if("ert_admin_only")
 					config.ert_admin_call_only = 1
 
-				if ("allow_ai")
+				if("allow_ai")
 					config.allow_ai = 1
 
-//				if ("authentication")
+//				if("authentication")
 //					config.enable_authentication = 1
 
-				if ("respawn_delay")
+				if("respawn_delay")
 					config.respawn_delay = text2num(value)
 
-				if ("servername")
+				if("servername")
 					config.server_name = value
 
-				if ("serversuffix")
+				if("serversuffix")
 					config.server_suffix = 1
 
-				if ("nudge_script_path")
+				if("nudge_script_path")
 					config.nudge_script_path = value
 
-				if ("hostedby")
+				if("hostedby")
 					config.hostedby = value
 
-				if ("serverurl")
+				if("serverurl")
 					config.serverurl = value
 
-				if ("language")
+				if("language")
 					config.language = value
 
-				if ("server")
+				if("server")
 					config.server = value
 
-				if ("banappeals")
+				if("banappeals")
 					config.banappeals = value
 
-				if ("wikiurl")
+				if("wikiurl")
 					config.wikiurl = value
 
-				if ("discordurl")
+				if("discordurl")
 					config.discordurl = value
 
-				if ("forumurl")
+				if("forumurl")
 					config.forumurl = value
 
-				if ("githuburl")
+				if("githuburl")
 					config.githuburl = value
 
 				if("ip_reputation")
@@ -439,47 +439,47 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("ipr_minimum_age")
 					config.ipr_minimum_age = text2num(value)
 
-				if ("ipqualityscore_apikey")
+				if("ipqualityscore_apikey")
 					config.ipqualityscore_apikey = value
 
-				if ("panic_bunker")
+				if("panic_bunker")
 					config.panic_bunker = 1
 
-				if ("paranoia_logging")
+				if("paranoia_logging")
 					config.paranoia_logging = 1
 
-				if ("ghosts_can_possess_animals")
+				if("ghosts_can_possess_animals")
 					config.ghosts_can_possess_animals = value
 
-				if ("guest_jobban")
+				if("guest_jobban")
 					config.guest_jobban = 1
 
-				if ("guest_ban")
+				if("guest_ban")
 					config.guests_allowed = 0
 
-				if ("disable_ooc")
+				if("disable_ooc")
 					config.ooc_allowed = 0
 					config.looc_allowed = 0
 
-				if ("disable_entry")
+				if("disable_entry")
 					config.enter_allowed = 0
 
-				if ("disable_dead_ooc")
+				if("disable_dead_ooc")
 					config.dooc_allowed = 0
 
-				if ("disable_dsay")
+				if("disable_dsay")
 					config.dsay_allowed = 0
 
-				if ("disable_respawn")
+				if("disable_respawn")
 					config.abandon_allowed = 0
 
-				if ("usewhitelist")
+				if("usewhitelist")
 					config.usewhitelist = 1
 
-				if ("allow_metadata")
+				if("allow_metadata")
 					config.allow_Metadata = 1
 
-				if ("objectives_disabled")
+				if("objectives_disabled")
 					config.objectives_disabled = 1
 
 				if("protect_roles_from_antagonist")
@@ -783,34 +783,34 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		if(!t)	continue
 
 		t = trim(t)
-		if (length(t) == 0)
+		if(length(t) == 0)
 			continue
-		else if (copytext(t, 1, 2) == "#")
+		else if(copytext(t, 1, 2) == "#")
 			continue
 
 		var/pos = findtext(t, " ")
 		var/name
 		var/value
 
-		if (pos)
+		if(pos)
 			name = lowertext(copytext(t, 1, pos))
 			value = copytext(t, pos + 1)
 		else
 			name = lowertext(t)
 
-		if (!name)
+		if(!name)
 			continue
 
 		switch (name)
-			if ("address")
+			if("address")
 				sqladdress = value
-			if ("port")
+			if("port")
 				sqlport = value
-			if ("database")
+			if("database")
 				sqldb = value
-			if ("login")
+			if("login")
 				sqllogin = value
-			if ("password")
+			if("password")
 				sqlpass = value
 			else
 				log_misc("Unknown setting in configuration: '[name]'")
@@ -835,7 +835,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 /datum/configuration/proc/post_load()
 	//apply a default value to config.python_path, if needed
-	if (!config.python_path)
+	if(!config.python_path)
 		if(world.system_type == UNIX)
 			config.python_path = "/usr/bin/env python2"
 		else //probably windows, if not this should work anyway

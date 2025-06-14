@@ -57,7 +57,7 @@
 
 
 /obj/machinery/cryo_slab/proc/go_out()
-	if (!han_solo)
+	if(!han_solo)
 		return
 
 	for(var/obj/O in src)

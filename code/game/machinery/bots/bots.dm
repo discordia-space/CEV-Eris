@@ -29,7 +29,7 @@
 	qdel(src)
 
 /obj/machinery/bot/proc/healthcheck()
-	if (src.health <= 0)
+	if(src.health <= 0)
 		src.explode()
 
 /obj/machinery/bot/emag_act(var/remaining_charges, var/user)
@@ -103,7 +103,7 @@
 		turn_off()
 	spawn(severity * 300)
 		stat &= ~EMPED
-		if (was_on)
+		if(was_on)
 			turn_on()
 
 

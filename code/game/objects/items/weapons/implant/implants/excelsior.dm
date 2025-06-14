@@ -49,7 +49,7 @@
 	//First of all, handling of human players
 	if(istype(target))
 		//Human players have minds. If it doesnt have a mind, its probably a monkey
-		if (target.mind)
+		if(target.mind)
 			//We'll check if the target is already excelsior, return false if so, waste of an implant
 			for(var/datum/antagonist/A in target.mind.antagonist)
 				if(A.id == antag_id)

@@ -43,7 +43,7 @@
 	return extra_text
 /datum/faction/excelsior/create_objectives()
 	objectives.Cut()
-	for (var/datum/antagonist/A in members)
+	for(var/datum/antagonist/A in members)
 		to_chat(A.owner.current, SPAN_NOTICE("You may summon your required materials using the \"summon stash\" command."))
 
 	.=..()

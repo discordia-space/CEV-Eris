@@ -95,13 +95,13 @@
 	else
 		icon_state = "generator0"
 		set_light(0)
-	if (tendrils_deployed)
-		for (var/D in tendril_dirs)
+	if(tendrils_deployed)
+		for(var/D in tendril_dirs)
 			var/I = image(icon,"capacitor_connected", dir = D)
 			overlays += I
 
-	for (var/obj/machinery/power/conduit/shield_conduit/S in tendrils)
-		if (running)
+	for(var/obj/machinery/power/conduit/shield_conduit/S in tendrils)
+		if(running)
 			S.icon_state = "conduit_1"
 			S.bright_light()
 		else
@@ -118,11 +118,11 @@
 	mode_list = list()
 	for(var/st in subtypesof(/datum/shield_mode/))
 		var/datum/shield_mode/SM = new st()
-		if (locate(SM.mode_flag) in allowed_modes)
+		if(locate(SM.mode_flag) in allowed_modes)
 			mode_list.Add(SM)
 
 	//Enable all modes in the default modes list
-	for (var/DM in default_modes)
+	for(var/DM in default_modes)
 		toggle_flag(DM)
 
 	// Link to Eris object on the overmap
@@ -167,7 +167,7 @@
 	update_icon()
 
 /obj/machinery/power/shipside/shield_generator/spawn_tendrils(dirs = list(NORTH, EAST, WEST))
-	for (var/D in dirs)
+	for(var/D in dirs)
 		var/turf/T = get_step(src, D)
 		var/obj/machinery/power/conduit/shield_conduit/tendril = locate(T)
 		if(!tendril)
@@ -182,7 +182,7 @@
 // Generates the field objects. Deletes existing field, if applicable.
 /obj/machinery/power/shipside/shield_generator/proc/regenerate_field()
 	needs_update = FALSE
-	if (generatingShield)
+	if(generatingShield)
 		return
 	generatingShield = TRUE
 
@@ -206,23 +206,23 @@
 	if(check_flag(MODEFLAG_HULL))
 		var/isFloor
 		for(var/turf/T in shielded_turfs)
-			if (locate(/obj/effect/shield) in T)
+			if(locate(/obj/effect/shield) in T)
 				continue
 			isFloor = TRUE
 			for(var/turf/TN in orange(1, T))
-				if (!turf_is_external(TN) || !TN.CanPass(target = TN))
+				if(!turf_is_external(TN) || !TN.CanPass(target = TN))
 					isFloor = FALSE
 					break
 
 			var/obj/effect/shield/S
-			if (isFloor)
+			if(isFloor)
 				S = new/obj/effect/shield/floor(T)
 			else
 				S = new/obj/effect/shield(T)
 			S.gen = src
 			S.flags_updated()
 			field_segments |= S
-			if (T.diffused)
+			if(T.diffused)
 				S.fail(20)
 			CHECK_TICK
 	else
@@ -259,16 +259,16 @@
 	upkeep_power_usage = 0
 	power_usage = 0
 
-	if (!anchored)
+	if(!anchored)
 		return
 	if(offline_for)
 		offline_for = max(0, offline_for - 1)
-		if (offline_for <= 0)
+		if(offline_for <= 0)
 			emergency_shutdown = FALSE
 
 	// We are shutting down, therefore our stored energy disperses faster than usual.
 	else if(running == SHIELD_DISCHARGING)
-		if (offline_for <= 0)
+		if(offline_for <= 0)
 			shutdown_machine() //We've finished the winding down period and now turn off
 			offline_for += 30 //Another minute before it can be turned back on again
 		return
@@ -296,10 +296,10 @@
 	if(!overloaded)
 		for(var/obj/effect/shield/S in damaged_segments)
 			S.regenerate()
-	else if (field_integrity() > 5)
+	else if(field_integrity() > 5)
 		overloaded = 0
 
-	if (needs_update)
+	if(needs_update)
 		regenerate_field()
 
 
@@ -307,7 +307,7 @@
 	if(running == SHIELD_DISCHARGING)
 		shutdown_machine()
 	else
-		if (current_energy < 0)
+		if(current_energy < 0)
 			current_energy = 0
 		overloaded = 1
 		for(var/obj/effect/shield/S in field_segments)
@@ -339,7 +339,7 @@
 
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 650, 800)
 		ui.set_initial_data(data)
 		ui.open()
@@ -349,11 +349,11 @@
 //Sorts the mode list so that currently active ones are at the top
 /obj/machinery/power/shipside/shield_generator/proc/sort_modes()
 	var/list/temp = list()
-	for (var/A in mode_list)
+	for(var/A in mode_list)
 		var/datum/shield_mode/SM = A //This late casting is an optimisation trick
 
 		//Shield modes list contains the flags of active modes
-		if (shield_modes & SM.mode_flag)
+		if(shield_modes & SM.mode_flag)
 			//If its in here, then it's active
 			mode_list.Remove(SM)
 
@@ -568,7 +568,7 @@
 
 	for(var/turf/gen_turf in base_turfs)
 		var/turf/T
-		for (var/x_offset = -field_radius; x_offset <= field_radius; x_offset++)
+		for(var/x_offset = -field_radius; x_offset <= field_radius; x_offset++)
 			T = locate(gen_turf.x + x_offset, gen_turf.y - field_radius, gen_turf.z)
 			if(T)
 				out += T
@@ -577,7 +577,7 @@
 				out += T
 			CHECK_TICK
 
-		for (var/y_offset = -field_radius+1; y_offset < field_radius; y_offset++)
+		for(var/y_offset = -field_radius+1; y_offset < field_radius; y_offset++)
 			T = locate(gen_turf.x - field_radius, gen_turf.y + y_offset, gen_turf.z)
 			if(T)
 				out += T
@@ -597,7 +597,7 @@
 				continue
 
 			for(var/turf/TN in orange(1, T))
-				if (turf_is_external(TN))
+				if(turf_is_external(TN))
 					valid_turfs |= TN
 
 			CHECK_TICK
@@ -634,7 +634,7 @@
 
 
 /obj/machinery/power/shipside/shield_generator/proc/handle_reporting()
-	if (report_scheduled)
+	if(report_scheduled)
 		return
 
 	report_scheduled = TRUE
@@ -646,17 +646,17 @@
 	var/do_report = FALSE //We only report if this is true
 	report_scheduled = FALSE //Reset this regardless of what we do here
 
-	if (world.time > (last_report_time + min_report_interval))
+	if(world.time > (last_report_time + min_report_interval))
 		//If its been a while since the last report, another one is fine
 		do_report = TRUE
 
-	else if (last_report_integrity - field_integrity() >= 6)
+	else if(last_report_integrity - field_integrity() >= 6)
 		//If we've taken a lot of damage since the last report, another one is fine too
 		do_report = TRUE
 
 
 
-	if (!do_report)
+	if(!do_report)
 		return
 
 
@@ -664,19 +664,19 @@
 	last_report_integrity = field_integrity()
 
 	//If integrity is above 80% we won't bother notifying anyone, but we still set the above vars
-	if (field_integrity() >= max_report_integrity)
+	if(field_integrity() >= max_report_integrity)
 		return
 
 	//Ok now we actually do the report
 	var/prefix = ""
 	var/spanclass = ""
-	if (field_integrity() <= 50)
+	if(field_integrity() <= 50)
 		prefix = "Warning! "
 		spanclass = "notice"
-	if (field_integrity() <= 25)
+	if(field_integrity() <= 25)
 		prefix = "Danger! "
 		spanclass = "danger"
-	if (field_integrity() <= 15)
+	if(field_integrity() <= 15)
 		prefix = "--CRITICAL WARNING!-- "
 		spanclass = "danger"
 
@@ -690,19 +690,19 @@
 	switch (event_type)
 		if(EVENT_DAMAGE_PHYSICAL to EVENT_DAMAGE_SPECIAL)
 			switch (event_type)
-				if (EVENT_DAMAGE_PHYSICAL)
+				if(EVENT_DAMAGE_PHYSICAL)
 					logstring += "Impact registered"
-				if (EVENT_DAMAGE_EM)
+				if(EVENT_DAMAGE_EM)
 					logstring += "EM Signature"
-				if (EVENT_DAMAGE_HEAT)
+				if(EVENT_DAMAGE_HEAT)
 					logstring += "Energy discharge"
-				if (EVENT_DAMAGE_SPECIAL)
+				if(EVENT_DAMAGE_SPECIAL)
 					logstring += "Gravitational wavefronts"
 				else
 					return
 
 
-			if (origin_atom)
+			if(origin_atom)
 				var/turf/T = get_turf(origin_atom)
 				if(T)
 					logstring += " at [T.x],[T.y],[T.z]"
@@ -711,37 +711,37 @@
 
 			logstring += " Integrity [round(field_integrity())]%"
 
-		if (EVENT_ENABLED to EVENT_RECONFIGURED)
+		if(EVENT_ENABLED to EVENT_RECONFIGURED)
 			switch (event_type)
-				if (EVENT_ENABLED)
+				if(EVENT_ENABLED)
 					logstring += "Shield powered up"
-				if (EVENT_DISABLED)
+				if(EVENT_DISABLED)
 					logstring += "Shield powered down"
-				if (EVENT_RECONFIGURED)
+				if(EVENT_RECONFIGURED)
 					logstring += "Configuration altered"
 				else
 					return
 
-			if (origin_atom == src)
+			if(origin_atom == src)
 				logstring += " via Physical Access"
 			else
 				logstring += " from console at"
 				var/area/A = get_area(origin_atom)
-				if (A)
+				if(A)
 					logstring += " [strip_improper(A.name)]"
 				else
 					logstring += " Unknown Area"
 
-				if (origin_atom)
+				if(origin_atom)
 					logstring += ", [origin_atom.x ? origin_atom.x : "unknown"],[origin_atom.y ? origin_atom.y : "unknown"],[origin_atom.z ? origin_atom.z : "unknown"]"
 
 
-	if (logstring != "")
+	if(logstring != "")
 		//Insert this string into the log
 		event_log.Add(logstring)
 
 		//If we're over the limit, cut the oldest entry
-		if (event_log.len > max_log_entries)
+		if(event_log.len > max_log_entries)
 			event_log.Cut(1,2)
 
 /obj/machinery/power/conduit/shield_conduit //Most of the stuff is moved to the shipside_machinery.dm

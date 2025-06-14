@@ -152,23 +152,23 @@
 		return 1
 
 	usr.set_machine(src)
-	if (href_list["toggleUV"])
+	if(href_list["toggleUV"])
 		src.toggleUV(usr)
-	if (href_list["togglesafeties"])
+	if(href_list["togglesafeties"])
 		src.togglesafeties(usr)
-	if (href_list["dispense_helmet"])
+	if(href_list["dispense_helmet"])
 		dispense_object(HELMET, usr)
-	if (href_list["dispense_suit"])
+	if(href_list["dispense_suit"])
 		dispense_object(SUIT, usr)
-	if (href_list["dispense_mask"])
+	if(href_list["dispense_mask"])
 		dispense_object(MASK, usr)
-	if (href_list["toggle_open"])
+	if(href_list["toggle_open"])
 		src.toggle_open(usr)
-	if (href_list["toggle_lock"])
+	if(href_list["toggle_lock"])
 		src.toggle_lock(usr)
-	if (href_list["start_UV"])
+	if(href_list["start_UV"])
 		src.start_UV(usr)
-	if (href_list["eject_guy"])
+	if(href_list["eject_guy"])
 		src.eject_occupant(usr)
 	updateUsrDialog()
 	update_icon()
@@ -272,7 +272,7 @@
 
 			OCCUPANT.take_organ_damage(0, burndamage)
 			OCCUPANT.apply_effect(50, IRRADIATE)
-			if (!(OCCUPANT.species && (OCCUPANT.species.flags & NO_PAIN)))
+			if(!(OCCUPANT.species && (OCCUPANT.species.flags & NO_PAIN)))
 				OCCUPANT.emote("scream")
 
 	//End of the cycle
@@ -305,7 +305,7 @@
 //	for(var/obj/O in src)
 //		O.loc = src.loc
 
-	if (OCCUPANT.client)
+	if(OCCUPANT.client)
 		if(user != OCCUPANT)
 			to_chat(OCCUPANT, "<font color='blue'>The machine kicks you out!</font>")
 		if(user.loc != src.loc)

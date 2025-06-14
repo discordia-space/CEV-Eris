@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(spawntypes)
 /obj/landmark/join/New()
 	if(join_tag)
 		var/datum/spawnpoint/SP = get_spawn_point(name)
-		if (!SP)
+		if(!SP)
 			SP = create_spawn_point(name)
 			SP.turfs += src.loc
 			SP.display_name = name

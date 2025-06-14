@@ -68,7 +68,7 @@
 
 	for(var/d in list(turn(dir,90),turn(dir,-90), dir))
 		var/turf/O = get_step(S,d)
-		if (O == origin)
+		if(O == origin)
 			continue //No torching the user
 		if(!(locate(/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel) in O))
 

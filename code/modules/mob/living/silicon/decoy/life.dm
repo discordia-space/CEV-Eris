@@ -1,8 +1,8 @@
 /mob/living/silicon/decoy/Life()
-	if (src.stat == 2)
+	if(src.stat == 2)
 		return
 	else
-		if (src.health <= HEALTH_THRESHOLD_DEAD && src.stat != 2)
+		if(src.health <= HEALTH_THRESHOLD_DEAD && src.stat != 2)
 			death()
 			return
 

@@ -6,7 +6,7 @@
 	data["crew_manifest"] = html_crew_manifest(TRUE)
 
 	var/datum/nanoui/ui = SSnano.try_update_ui(user, src_object, "manifest", null, data, TRUE)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src_object, "manifest", "crew_manifest.tmpl", "Crew Manifest", 450, 600, state = nano_state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
@@ -60,16 +60,16 @@
 			if(trim(M.name) == trim(name))
 				matched = TRUE
 				var/temp = M.manifest_status(CR)
-				if (temp)
+				if(temp)
 					isactive[name] = temp
 				else
 					skip = TRUE
 				break
 
-		if (skip)
+		if(skip)
 			continue
 
-		if (!matched)
+		if(!matched)
 			isactive[name] = "Unknown"
 
 		var/datum/job/job = SSjob.occupations_by_name[rank]

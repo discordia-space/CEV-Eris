@@ -44,7 +44,7 @@ LEGACY_RECORD_STRUCTURE(all_warrants, warrant)
 			"id" = W.uid,
 			"arrestsearch" = W.fields["arrestsearch"],
 			"archived" = W.archived)
-			if (warrant["archived"])
+			if(warrant["archived"])
 				archivedwarrants.Add(list(warrant))
 			else if(warrant["arrestsearch"] == "arrest")
 				arrestwarrants.Add(list(warrant))
@@ -55,7 +55,7 @@ LEGACY_RECORD_STRUCTURE(all_warrants, warrant)
 		data["archivedwarrants"] = archivedwarrants.len? archivedwarrants :null
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "digitalwarrant.tmpl", name, 700, 450, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
@@ -141,7 +141,7 @@ LEGACY_RECORD_STRUCTURE(all_warrants, warrant)
 			namelist += "[CR.get_name()] \[[CR.get_job()]\]"
 		var/new_person = sanitize(input(usr, "Please input name") as null|anything in namelist)
 		if(CanInteract(user, GLOB.default_state))
-			if (!new_person || !activewarrant)
+			if(!new_person || !activewarrant)
 				return
 			// string trickery to extract name & job
 			var/entry_components = splittext(new_person, " \[")
@@ -155,7 +155,7 @@ LEGACY_RECORD_STRUCTURE(all_warrants, warrant)
 		var/new_name = sanitize(input("Please input name") as null|text)
 		var/new_job = sanitize(input("Please input job") as null|text)
 		if(CanInteract(user, GLOB.default_state))
-			if (!new_name || !new_job || !activewarrant)
+			if(!new_name || !new_job || !activewarrant)
 				return
 			activewarrant.fields["namewarrant"] = new_name
 			activewarrant.fields["jobwarrant"] = new_job
@@ -164,7 +164,7 @@ LEGACY_RECORD_STRUCTURE(all_warrants, warrant)
 		. = 1
 		var/new_name = sanitize(input("Please input name or location") as null|text)
 		if(CanInteract(user, GLOB.default_state))
-			if (!new_name || !activewarrant)
+			if(!new_name || !activewarrant)
 				return
 			activewarrant.fields["namewarrant"] = new_name
 
@@ -172,7 +172,7 @@ LEGACY_RECORD_STRUCTURE(all_warrants, warrant)
 		. = 1
 		var/new_charges = sanitize(input("Please input charges", "Charges", activewarrant.fields["charges"]) as null|text)
 		if(CanInteract(user, GLOB.default_state))
-			if (!new_charges || !activewarrant)
+			if(!new_charges || !activewarrant)
 				return
 			activewarrant.fields["charges"] = new_charges
 

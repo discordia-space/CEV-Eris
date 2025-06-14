@@ -26,9 +26,9 @@
 
 /obj/item/implantcase/attackby(obj/item/I as obj, mob/user as mob)
 	..()
-	if (istype(I, /obj/item/pen))
+	if(istype(I, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
-		if (user.get_active_hand() != I)
+		if(user.get_active_hand() != I)
 			return
 		if((!in_range(src, usr) && src.loc != user))
 			return
@@ -48,10 +48,10 @@
 			spawn(5)
 				I.reagents.trans_to_obj(implant, 5)
 				to_chat(user, SPAN_NOTICE("You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units."))
-	else if (istype(I, /obj/item/implanter))
+	else if(istype(I, /obj/item/implanter))
 		var/obj/item/implanter/M = I
 		if(M.implant)
-			if (implant || M.implant.implanted)
+			if(implant || M.implant.implanted)
 				return
 			M.implant.forceMove(src)
 			src.implant = M.implant
@@ -65,6 +65,6 @@
 				implant = null
 				update_icon()
 				M.update_icon()
-	else if (istype(I, /obj/item/implant) && !implant && user.unEquip(I, src))
+	else if(istype(I, /obj/item/implant) && !implant && user.unEquip(I, src))
 		implant = I
 		update_icon()

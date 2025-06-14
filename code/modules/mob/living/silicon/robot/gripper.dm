@@ -41,11 +41,11 @@
 	..(user, extra_description)
 
 /proc/grippersafety(var/obj/item/gripper/G)
-	if (!G || !G.wrapped)//The object must have been lost
+	if(!G || !G.wrapped)//The object must have been lost
 		return FALSE
 
 	//The object left the gripper but it still exists. Maybe placed on a table
-	if (G.wrapped.loc != G)
+	if(G.wrapped.loc != G)
 		//Reset the force and then remove our reference to it
 		G.wrapped.force = G.force_holder
 		G.wrapped = null
@@ -59,19 +59,19 @@
 
 /obj/item/gripper/proc/grip_item(obj/item/I, mob/user, var/feedback = 1)
 	//This function returns 1 if we successfully took the item, or 0 if it was invalid. This information is useful to the caller
-	if (!wrapped)
+	if(!wrapped)
 		if(is_type_in_list(I,can_hold))
-			if (feedback)
+			if(feedback)
 				to_chat(user, "You collect \the [I].")
 			I.do_pickup_animation(user.loc, I.loc)
 			I.forceMove(src)
 			wrapped = I
 			update_icon()
 			return TRUE
-		if (feedback)
+		if(feedback)
 			to_chat(user, "<span class='danger'>Your gripper cannot hold \the [I].</span>")
 		return FALSE
-	if (feedback)
+	if(feedback)
 		to_chat(user, "<span class='danger'>Your gripper is already holding \the [wrapped].</span>")
 	return FALSE
 
@@ -79,7 +79,7 @@
 //This places a little image of the gripped item in the gripper, so you can see visually what you're holding
 /obj/item/gripper/update_icon()
 	underlays.Cut()
-	if (wrapped && wrapped.icon)
+	if(wrapped && wrapped.icon)
 		var/mutable_appearance/MA = new(wrapped)
 		MA.layer = ABOVE_HUD_LAYER
 		MA.plane = get_relative_plane(ABOVE_HUD_PLANE)
@@ -129,9 +129,9 @@
 		return TRUE
 	else// mob interactions
 		switch (user.a_intent)
-			if (I_HELP)
+			if(I_HELP)
 				user.visible_message("[user] [pick("boops", "squeezes", "pokes", "prods", "strokes", "bonks")] [M] with \the [src]")
-			if (I_HURT)
+			if(I_HURT)
 				M.attack_generic(user,user.mob_size*0.5,"crushed")//about 20 dmg for a cyborg
 				//Attack generic does a visible message so we dont need one here
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*4)
@@ -140,7 +140,7 @@
 	return FALSE
 
 /obj/item/gripper/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if (wrapped)
+	if(wrapped)
 		var/resolved = wrapped.attackby(O,user)
 		if(!resolved && wrapped && O)
 			O.afterattack(wrapped,user,1)//We pass along things targeting the gripper, to objects inside the gripper. So that we can draw chemicals from held beakers for instance
@@ -168,10 +168,10 @@
 			cam.taped = 0
 			cam.set_status(1)
 
-	else if (istype(target, /obj/item/storage) && !istype(target, /obj/item/storage/pill_bottle) && !istype(target, /obj/item/storage/secure))
+	else if(istype(target, /obj/item/storage) && !istype(target, /obj/item/storage/pill_bottle) && !istype(target, /obj/item/storage/secure))
 		var/obj/item/storage/S = target
-		for (var/obj/item/C in S.contents)
-			if (grip_item(C, user, 0))
+		for(var/obj/item/C in S.contents)
+			if(grip_item(C, user, 0))
 				to_chat(user, "You grab the [C] from inside the [target.name].")
 				S.update_icon()
 				return
@@ -186,7 +186,7 @@
 
 		grip_item(target, user)
 
-	else if (!justdropped)
+	else if(!justdropped)
 		target.attack_ai(user)
 
 	justdropped = 0

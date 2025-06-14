@@ -39,7 +39,7 @@
 	..(user, extra_description)
 
 /obj/structure/janitorialcart/MouseDrop_T(atom/movable/O as mob|obj, mob/living/user as mob)
-	if (istype(O, /obj/structure/mopbucket) && !mybucket)
+	if(istype(O, /obj/structure/mopbucket) && !mybucket)
 		O.forceMove(src)
 		mybucket = O
 		to_chat(user, "You mount the [O] on the janicart.")
@@ -49,7 +49,7 @@
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/reagent_containers/glass/rag) || istype(I, /obj/item/soap))
-		if (mybucket)
+		if(mybucket)
 			if(I.reagents.total_volume < I.reagents.maximum_volume)
 				if(mybucket.reagents.total_volume < 1)
 					to_chat(user, "<span class='notice'>[mybucket] is empty!</span>")
@@ -63,7 +63,7 @@
 			to_chat(user, "<span class='notice'>There is no bucket mounted here to dip [I] into!</span>")
 		return 1
 
-	else if (istype(I, /obj/item/reagent_containers/glass/bucket) && mybucket)
+	else if(istype(I, /obj/item/reagent_containers/glass/bucket) && mybucket)
 		I.afterattack(mybucket, usr, 1)
 		update_icon()
 		return 1
@@ -108,9 +108,9 @@
 		//This return will prevent afterattack from executing if the object goes into the trashbag,
 		//This prevents dumb stuff like splashing the cart with the contents of a container, after putting said container into trash
 
-	else if (!has_items)
-		if (I.has_quality(QUALITY_BOLT_TURNING))
-			if (I.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, STAT_MEC))
+	else if(!has_items)
+		if(I.has_quality(QUALITY_BOLT_TURNING))
+			if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, STAT_MEC))
 				dismantle(user)
 			return
 	..()
@@ -236,38 +236,38 @@
 //This is called if the cart is caught in an explosion, or destroyed by weapon fire
 /obj/structure/janitorialcart/proc/spill(var/chance = 100)
 	var/turf/dropspot = get_turf(src)
-	if (mymop && prob(chance))
+	if(mymop && prob(chance))
 		mymop.forceMove(dropspot)
 		mymop.tumble(2)
 		mymop = null
 
-	if (myspray && prob(chance))
+	if(myspray && prob(chance))
 		myspray.forceMove(dropspot)
 		myspray.tumble(3)
 		myspray = null
 
-	if (myreplacer && prob(chance))
+	if(myreplacer && prob(chance))
 		myreplacer.forceMove(dropspot)
 		myreplacer.tumble(3)
 		myreplacer = null
 
-	if (mybucket && prob(chance*0.5))//bucket is heavier, harder to knock off
+	if(mybucket && prob(chance*0.5))//bucket is heavier, harder to knock off
 		mybucket.forceMove(dropspot)
 		mybucket.tumble(1)
 		mybucket = null
 
-	if (signs)
-		for (var/obj/item/caution/Sign in src)
-			if (prob(min((chance*2),100)))
+	if(signs)
+		for(var/obj/item/caution/Sign in src)
+			if(prob(min((chance*2),100)))
 				signs--
 				Sign.forceMove(dropspot)
 				Sign.tumble(3)
-				if (signs < 0)//safety for something that shouldn't happen
+				if(signs < 0)//safety for something that shouldn't happen
 					signs = 0
 					update_icon()
 					return
 
-	if (mybag && prob(min((chance*2),100)))//Bag is flimsy
+	if(mybag && prob(min((chance*2),100)))//Bag is flimsy
 		mybag.forceMove(dropspot)
 		mybag.tumble(1)
 		mybag.spill()//trashbag spills its contents too
@@ -278,8 +278,8 @@
 
 
 /obj/structure/janitorialcart/proc/dismantle(var/mob/user = null)
-	if (!dismantled)
-		if (has_items)
+	if(!dismantled)
+		if(has_items)
 			spill()
 
 		new /obj/item/stack/material/steel(src.loc, 10)

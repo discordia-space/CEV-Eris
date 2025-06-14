@@ -117,8 +117,8 @@
 			icon_state = "mulebot0"
 
 		updateDialog()
-	else if (istype(I, /obj/item/tool/wrench))
-		if (src.health < maxHealth)
+	else if(istype(I, /obj/item/tool/wrench))
+		if(src.health < maxHealth)
 			src.health = min(maxHealth, src.health+25)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			user.visible_message(
@@ -176,7 +176,7 @@
 
 /obj/machinery/bot/mulebot/attack_hand(var/mob/user)
 	. = ..()
-	if (.)
+	if(.)
 		return
 	user.set_machine(src)
 	interact(user, 0)
@@ -250,9 +250,9 @@
 /obj/machinery/bot/mulebot/Topic(href, href_list)
 	if(..())
 		return
-	if (usr.stat)
+	if(usr.stat)
 		return
-	if ((in_range(src, usr) && istype(src.loc, /turf)) || (issilicon(usr)))
+	if((in_range(src, usr) && istype(src.loc, /turf)) || (issilicon(usr)))
 		usr.set_machine(src)
 
 		switch(href_list["op"])
@@ -264,10 +264,10 @@
 					to_chat(usr, SPAN_WARNING("Access denied."))
 					return
 			if("power")
-				if (src.on)
+				if(src.on)
 					turn_off()
-				else if (cell && !open)
-					if (!turn_on())
+				else if(cell && !open)
+					if(!turn_on())
 						to_chat(usr, SPAN_WARNING("You can't switch on [src]."))
 						return
 				else
@@ -384,7 +384,7 @@
 	if(user.stat)
 		return
 
-	if (!on || !istype(C)|| C.anchored || get_dist(user, src) > 1 || get_dist(src,C) > 1 )
+	if(!on || !istype(C)|| C.anchored || get_dist(user, src) > 1 || get_dist(src,C) > 1 )
 		return
 
 	if(load)
@@ -729,12 +729,12 @@
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 
 	var/damage = rand(5,15)
-	H.damage_through_armor( 2  * damage, BRUTE, BP_HEAD, ARMOR_MELEE)
-	H.damage_through_armor( 2  * damage, BRUTE, BP_CHEST, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
+	H.damage_through_armor(2	* damage, BRUTE, BP_HEAD, ARMOR_MELEE)
+	H.damage_through_armor(2	* damage, BRUTE, BP_CHEST, ARMOR_MELEE)
+	H.damage_through_armor(0.5	* damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
+	H.damage_through_armor(0.5	* damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
+	H.damage_through_armor(0.5	* damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
+	H.damage_through_armor(0.5	* damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
 
 	blood_splatter(src,H,1)
 	bloodiness += 4
@@ -841,9 +841,9 @@
 	//	signal.data[key] = keyval[key]
 	signal.data = keyval
 		//world << "sent [key],[keyval[key]] on [freq]"
-	if (signal.data["findbeacon"])
+	if(signal.data["findbeacon"])
 		frequency.post_signal(src, signal, filter = RADIO_NAVBEACONS)
-	else if (signal.data["type"] == "mulebot")
+	else if(signal.data["type"] == "mulebot")
 		frequency.post_signal(src, signal, filter = RADIO_MULEBOT)
 	else
 		frequency.post_signal(src, signal)
@@ -865,7 +865,7 @@
 	post_signal_multiple(control_freq, kv)
 
 /obj/machinery/bot/mulebot/emp_act(severity)
-	if (cell)
+	if(cell)
 		cell.emp_act(severity)
 	if(load)
 		load.emp_act(severity)
@@ -877,10 +877,10 @@
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/device/assembly/prox_sensor(Tsec)
-	for (var/i in 1 to 2)
+	for(var/i in 1 to 2)
 		new /obj/item/stack/rods(Tsec)
 	new /obj/item/stack/cable_coil/cut(Tsec)
-	if (cell)
+	if(cell)
 		cell.loc = Tsec
 		cell.update_icon()
 		cell = null

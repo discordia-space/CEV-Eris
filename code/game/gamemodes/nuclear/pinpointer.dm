@@ -30,7 +30,7 @@
 		to_chat(usr, SPAN_NOTICE("You deactivate the pinpointer"))
 
 /obj/item/pinpointer/attackby(obj/item/I, mob/user, params)
-	if (!slot && istype(I, /obj/item/disk/nuclear))
+	if(!slot && istype(I, /obj/item/disk/nuclear))
 		usr.drop_item()
 		I.loc = src
 		src.slot = I
@@ -46,7 +46,7 @@
 /obj/item/pinpointer/update_icon()
 	cut_overlays()
 
-	if (slot)
+	if(slot)
 		var/tooloverlay = "disknukeloaded"
 		overlays += (tooloverlay)
 

@@ -17,7 +17,7 @@
 
 /obj/item/storage/belt/Initialize()
 	. = ..()
-	if (!item_state)
+	if(!item_state)
 		item_state = icon_state
 
 /obj/item/storage/belt/verb/toggle_layer()
@@ -31,7 +31,7 @@
 	update_icon()
 
 /obj/item/storage/update_icon()
-	if (ismob(src.loc))
+	if(ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_belt()
 
@@ -91,7 +91,7 @@
 	new /obj/item/tool/wirecutters/armature(src)
 	new /obj/item/tool/shovel/power(src)
 	new /obj/item/stack/cable_coil/random(src)
-	
+
 /obj/item/storage/belt/utility/roboticist
 	spawn_blacklisted = TRUE
 
@@ -103,7 +103,7 @@
 	new /obj/item/tool/wirecutters/pliers(src)
 	new /obj/item/stack/cable_coil/random(src)
 	new /obj/item/tool/multitool(src)
-	
+
 /obj/item/storage/belt/utility/neotheology
 	name = "neotheology utility belt"
 	desc = "Waist-held holy items."

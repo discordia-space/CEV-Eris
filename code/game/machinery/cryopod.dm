@@ -525,7 +525,7 @@
 	name = initial(name)
 	if(new_occupant)
 		occupant = new_occupant
-		if (occupant.name)
+		if(occupant.name)
 			name = "[name] ([occupant.name])"
 		else
 			//Name isn't set during spawning, but real_name is. This is used for people spawning in cryopods

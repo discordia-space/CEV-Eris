@@ -87,7 +87,7 @@
 /mob/visible_message(var/message, var/self_message, var/blind_message, var/range = world.view)
 	var/list/messageturfs = list()//List of turfs we broadcast to.
 	var/list/messagemobs = list()//List of living mobs nearby who can hear it, and distant ghosts who've chosen to hear it
-	for (var/turf in view(range, get_turf(src)))
+	for(var/turf in view(range, get_turf(src)))
 
 		messageturfs += turf
 
@@ -155,14 +155,14 @@
 
 /mob/proc/findname(msg)
 	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
-		if (M.real_name == text("[]", msg))
+		if(M.real_name == text("[]", msg))
 			return M
 	return 0
 
 /mob/proc/movement_delay()
 	. = 0
 
-	if ((drowsyness > 0) && !MOVING_DELIBERATELY(src))
+	if((drowsyness > 0) && !MOVING_DELIBERATELY(src))
 		. += 6
 	if(lying) //Crawling, it's slower
 		. += 14 + (weakened)
@@ -190,16 +190,16 @@
 	return incapacitated(INCAPACITATION_DISABLED)
 
 /mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
-	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
+	if((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting || weakened))
+	if((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting || weakened))
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && pinned.len)
+	if((incapacitation_flags & INCAPACITATION_FORCELYING) && pinned.len)
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
+	if((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
 		return 1
 
 	if((incapacitation_flags & INCAPACITATION_RESTRAINED) && restrained())
@@ -222,12 +222,12 @@
 	return
 
 /mob/proc/reset_view(atom/A)
-	if (client)
-		if (istype(A, /atom/movable))
+	if(client)
+		if(istype(A, /atom/movable))
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = A
 		else
-			if (isturf(loc))
+			if(isturf(loc))
 				client.eye = client.mob
 				client.perspective = MOB_PERSPECTIVE
 			else
@@ -264,7 +264,7 @@
 	if(!istype(examinify, /obj/screen))
 		face_atom(examinify)
 	var/obj/item/device/lighting/toggleable/flashlight/FL = locate() in src
-	if (FL?.on && stat != DEAD && !incapacitated())
+	if(FL?.on && stat != DEAD && !incapacitated())
 		FL.afterattack(examinify, src)
 	examinify.examine(src)
 
@@ -300,7 +300,7 @@
 		return FALSE
 
 	var/turf/tile = get_turf(pointing_at)
-	if (!tile)
+	if(!tile)
 		return FALSE
 
 	var/turf/our_tile = get_turf(src)
@@ -315,7 +315,7 @@
 
 /mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
 	if(!istype(l_hand, /obj/item/grab) && !istype(r_hand, /obj/item/grab))
-		if (!L)
+		if(!L)
 			return null
 		else
 			return L.container
@@ -326,18 +326,18 @@
 			L.master = src
 		if(istype(l_hand, /obj/item/grab))
 			var/obj/item/grab/G = l_hand
-			if (!L.container.Find(G.affecting))
+			if(!L.container.Find(G.affecting))
 				L.container += G.affecting
-				if (G.affecting)
+				if(G.affecting)
 					G.affecting.ret_grab(L, 1)
 		if(istype(r_hand, /obj/item/grab))
 			var/obj/item/grab/G = r_hand
-			if (!L.container.Find(G.affecting))
+			if(!L.container.Find(G.affecting))
 				L.container += G.affecting
-				if (G.affecting)
+				if(G.affecting)
 					G.affecting.ret_grab(L, 1)
 		if(!flag)
-			if (L.master == src)
+			if(L.master == src)
 				var/list/temp = list()
 				temp += L.container
 				//L = null
@@ -365,7 +365,7 @@
 		return
 
 	var/obj/item/W = get_active_hand()
-	if (W)
+	if(W)
 		W.attack_self(src)
 
 
@@ -422,15 +422,15 @@
 /mob/proc/store_memory(msg as message, popup, sane = 1)
 	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
 
-	if (sane)
+	if(sane)
 		msg = sanitize(msg)
 
-	if (length(memory) == 0)
+	if(length(memory) == 0)
 		memory += msg
 	else
 		memory += "<BR>[msg]"
 
-	if (popup)
+	if(popup)
 		memory()
 
 /mob/proc/update_flavor_text()
@@ -443,7 +443,7 @@
 		flavor_text = msg
 
 /mob/proc/print_flavor_text()
-	if (flavor_text && flavor_text != "")
+	if(flavor_text && flavor_text != "")
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(length(msg) <= 40)
@@ -481,7 +481,7 @@
 			continue
 		if(istype(O, /obj/item/disk/nuclear))
 			var/name = "Nuclear Disk"
-			if (names.Find(name))
+			if(names.Find(name))
 				namecounts[name]++
 				name = "[name] ([namecounts[name]])"
 			else
@@ -491,7 +491,7 @@
 
 		if(istype(O, /obj/singularity))
 			var/name = "Singularity"
-			if (names.Find(name))
+			if(names.Find(name))
 				namecounts[name]++
 				name = "[name] ([namecounts[name]])"
 			else
@@ -501,7 +501,7 @@
 
 		if(istype(O, /obj/machinery/bot))
 			var/name = "BOT: [O.name]"
-			if (names.Find(name))
+			if(names.Find(name))
 				namecounts[name]++
 				name = "[name] ([namecounts[name]])"
 			else
@@ -512,7 +512,7 @@
 
 	for(var/mob/M in sortNames(SSmobs.mob_list | SShumans.mob_list))
 		var/name = M.name
-		if (names.Find(name))
+		if(names.Find(name))
 			namecounts[name]++
 			name = "[name] ([namecounts[name]])"
 		else
@@ -529,14 +529,14 @@
 	var/ok = "[is_admin ? "Admin Observe" : "Observe"]"
 	eye_name = input("Please, select a player!", ok, null, null) as null|anything in creatures
 
-	if (!eye_name)
+	if(!eye_name)
 		return
 
 	var/mob/mob_eye = creatures[eye_name]
 
 	if(client && mob_eye)
 		client.eye = mob_eye
-		if (is_admin)
+		if(is_admin)
 			client.adminobs = 1
 			if(mob_eye == client.mob || client.eye == client.mob)
 				client.adminobs = 0
@@ -603,10 +603,10 @@
 
 /mob/proc/start_pulling(var/atom/movable/AM)
 
-	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
-	if (AM.anchored)
+	if(AM.anchored)
 		to_chat(src, "<span class='warning'>It won't budge!</span>")
 		return
 
@@ -859,10 +859,10 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 
 /mob/living/Paralyse(amount)
 	var/zero_before = FALSE
-	if (!paralysis)
+	if(!paralysis)
 		zero_before = TRUE
 	.=..()
-	if (. && zero_before)
+	if(. && zero_before)
 		//These three procs instantly create the blinding/sleep overlay
 		//We only call them if the mob has just become paralysed, to prevent an infinite loop
 		handle_regular_status_updates() //This checks paralysis and sets stat
@@ -995,7 +995,7 @@ mob/proc/yank_out_object()
 		H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
 
-		if (ishuman(U))
+		if(ishuman(U))
 			var/mob/living/carbon/human/human_user = U
 			human_user.bloody_hands(H)
 
@@ -1183,14 +1183,14 @@ mob/proc/yank_out_object()
 //Throwing stuff
 
 /mob/proc/toggle_throw_mode()
-	if (src.in_throw_mode)
+	if(src.in_throw_mode)
 		throw_mode_off()
 	else
 		throw_mode_on()
 
 /mob/proc/throw_mode_off()
 	src.in_throw_mode = 0
-	/*for (var/obj/screen/HUDthrow/HUD in src.client.screen.)
+	/*for(var/obj/screen/HUDthrow/HUD in src.client.screen.)
 		if(HUD.name == "throw") //in case we don't have the HUD and we use the hotkey
 			//src.throw_icon.icon_state = "act_throw_off"
 			HUD.toggle_throw_mode()
@@ -1200,7 +1200,7 @@ mob/proc/yank_out_object()
 	src.in_throw_mode = 1
 	/*if(src.throw_icon)
 		src.throw_icon.icon_state = "act_throw_on"*/
-	/*for (var/obj/screen/HUDthrow/HUD in src.client.screen.)
+	/*for(var/obj/screen/HUDthrow/HUD in src.client.screen.)
 		if(HUD.name == "throw") //in case we don't have the HUD and we use the hotkey
 			//src.throw_icon.icon_state = "act_throw_off"
 			HUD.toggle_throw_mode()
@@ -1218,7 +1218,7 @@ mob/proc/yank_out_object()
 	return
 
 /mob/proc/kill_CH()
-	if (src.client.CH)
+	if(src.client.CH)
 		to_chat(src, SPAN_NOTICE ("You unprepare [src.client.CH.handler_name]."))
 		qdel(src.client.CH)
 

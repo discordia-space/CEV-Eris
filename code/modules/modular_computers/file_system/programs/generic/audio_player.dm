@@ -33,7 +33,7 @@
 			break
 		var/turf/T = get_turf(computer)
 		var/playedmessage = selected_audio.storedinfo[i]
-		if (findtextEx(playedmessage,"*",1,2)) //remove marker for action sounds
+		if(findtextEx(playedmessage,"*",1,2)) //remove marker for action sounds
 			playedmessage = copytext(playedmessage,2)
 		T.audible_message("<font color=Maroon><B>Audio Player</B>: [playedmessage]</font>")
 		if(selected_audio.storedinfo.len < i+1)
@@ -189,7 +189,7 @@
 
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "mpc_audio_player.tmpl", name, 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)

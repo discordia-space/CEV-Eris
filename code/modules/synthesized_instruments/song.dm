@@ -43,14 +43,14 @@
 
 
 /datum/synthesized_song/proc/play_synthesized_note(note, acc, oct, duration, where, which_one)
-	if (oct < GLOB.musical_config.lowest_octave || oct > GLOB.musical_config.highest_octave)	return
-	if (oct < src.octave_range_min || oct > src.octave_range_max)	return
+	if(oct < GLOB.musical_config.lowest_octave || oct > GLOB.musical_config.highest_octave)	return
+	if(oct < src.octave_range_min || oct > src.octave_range_max)	return
 
 	var/delta1 = acc == "b" ? -1 : acc == "#" ? 1 : acc == "s" ? 1 : acc == "n" ? 0 : 0
 	var/delta2 = 12 * oct
 
 	var/note_num = delta1+delta2+GLOB.musical_config.nn2no[note]
-	if (note_num < 0 || note_num > 127)
+	if(note_num < 0 || note_num > 127)
 		CRASH("play_synthesized note failed because of 0..127 condition, [note], [acc], [oct]")
 
 	var/datum/sample_pair/pair = src.instrument_data.sample_map[GLOB.musical_config.n2t(note_num)]
@@ -91,25 +91,25 @@
 	var/delta_volume = player.volume / src.sustain_timer
 
 	var/tick = duration
-	while ((current_volume > 0) && token)
+	while((current_volume > 0) && token)
 		var/new_volume = current_volume
 		tick += world.tick_lag
-		if (delta_volume <= 0)
+		if(delta_volume <= 0)
 			CRASH("Delta Volume somehow was non-positive: [delta_volume]")
-		if (src.soft_coeff <= 1)
+		if(src.soft_coeff <= 1)
 			CRASH("Soft Coeff somehow was <=1: [src.soft_coeff]")
-		if (src.linear_decay)
+		if(src.linear_decay)
 			new_volume = new_volume - delta_volume
 		else
 			new_volume = new_volume / src.soft_coeff
 
 		var/sanitized_volume = max(round(new_volume), 0)
-		if (sanitized_volume == current_volume)
+		if(sanitized_volume == current_volume)
 			current_volume = new_volume
 			continue
 		current_volume = sanitized_volume
 		src.player.event_manager.push_event(src.player, token, tick, current_volume)
-		if (current_volume <= 0)
+		if(current_volume <= 0)
 			break
 
 
@@ -124,32 +124,32 @@
 	return
 
 /datum/synthesized_song/proc/play_lines(mob/user, list/allowed_suff, list/note_off_delta, list/lines)
-	if (!lines.len)
+	if(!lines.len)
 		STOP_PLAY_LINES
 	var/list/cur_accidentals = list("n", "n", "n", "n", "n", "n", "n")
 	var/list/cur_octaves = list(3, 3, 3, 3, 3, 3, 3)
 	src.current_line = 1
-	for (var/line in lines)
+	for(var/line in lines)
 		var/cur_note = 1
-		if (src.player && src.player.actual_instrument)
+		if(src.player && src.player.actual_instrument)
 			var/obj/structure/synthesized_instrument/S = src.player.actual_instrument
 			var/datum/real_instrument/R = S.real_instrument
-			if (R.song_editor)
+			if(R.song_editor)
 				SSnano.update_uis(R.song_editor)
-		for (var/notes in splittext(lowertext(line), ","))
+		for(var/notes in splittext(lowertext(line), ","))
 			var/list/components = splittext(notes, "/")
 			var/duration = sanitize_tempo(src.tempo)
-			if (components.len)
+			if(components.len)
 				var/delta = components.len==2 && text2num(components[2]) ? text2num(components[2]) : 1
 				var/note_str = splittext(components[1], "-")
 
 				duration = sanitize_tempo(src.tempo / delta)
 				src.player.event_manager.suspended = 1
-				for (var/note in note_str)
-					if (!note)	continue // wtf, empty note
+				for(var/note in note_str)
+					if(!note)	continue // wtf, empty note
 					var/note_sym = CP(note, 1)
 					var/note_off = 0
-					if (note_sym in note_off_delta)
+					if(note_sym in note_off_delta)
 						note_off = text2ascii(note_sym) - note_off_delta[note_sym]
 					else
 						continue // Shitty note, move along and avoid runtimes
@@ -157,32 +157,32 @@
 					var/accidental = cur_accidentals[note_off]
 
 					switch (length(note))
-						if (3)
+						if(3)
 							accidental = CP(note, 2)
 							octave = CP(note, 3)
-							if (!(accidental in allowed_suff) || !IS_DIGIT(octave))
+							if(!(accidental in allowed_suff) || !IS_DIGIT(octave))
 								continue
 							else
 								octave = text2num(octave)
-						if (2)
-							if (IS_DIGIT(CP(note, 2)))
+						if(2)
+							if(IS_DIGIT(CP(note, 2)))
 								octave = text2num(CP(note, 2))
 							else
 								accidental = CP(note, 2)
-								if (!(accidental in allowed_suff))
+								if(!(accidental in allowed_suff))
 									continue
 					cur_octaves[note_off] = octave
 					cur_accidentals[note_off] = accidental
 					play_synthesized_note(note_off, accidental, octave+transposition, duration, src.current_line, cur_note)
-					if (src.player.event_manager.is_overloaded())
+					if(src.player.event_manager.is_overloaded())
 						STOP_PLAY_LINES
 			cur_note++
 			src.player.event_manager.suspended = 0
-			if (!src.playing || src.player.should_stop_playing(user))
+			if(!src.playing || src.player.should_stop_playing(user))
 				STOP_PLAY_LINES
 			sleep(duration)
 		src.current_line++
-	if (src.autorepeat)
+	if(src.autorepeat)
 		.()
 
 #undef STOP_PLAY_LINES

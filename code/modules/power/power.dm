@@ -89,9 +89,9 @@
 
 /obj/machinery/proc/auto_use_power()
 	switch (use_power)
-		if (1)
+		if(1)
 			use_power(idle_power_usage)
-		if (2)
+		if(2)
 			use_power(active_power_usage)
 
 /obj/machinery/proc/power_change()		// called whenever the power settings of the containing area change
@@ -292,7 +292,7 @@
 //source is an object caused electrocuting (airlock, grille, etc)
 //No animations will be performed by this proc.
 /proc/electrocute_mob(mob/living/carbon/M, power_source, obj/source, siemens_coeff = 1, hands = TRUE)
-	if (!M || !istype(M) || siemens_coeff == 0)
+	if(!M || !istype(M) || siemens_coeff == 0)
 		return	FALSE
 	if(istype(M.loc, /mob/living/exosuit))	return FALSE	//feckin mechs are dumb
 	var/area/source_area
@@ -313,9 +313,9 @@
 	else if(istype(power_source,/obj/machinery/power/apc))
 		var/obj/machinery/power/apc/apc = power_source
 		cell = apc.cell
-		if (apc.terminal)
+		if(apc.terminal)
 			PN = apc.terminal.powernet
-	else if (!power_source)
+	else if(!power_source)
 		return FALSE
 	else
 		log_admin("ERROR: /proc/electrocute_mob([M], [power_source], [source]): wrong power_source")
@@ -331,16 +331,16 @@
 	else
 		body_part = pick(BP_L_LEG, BP_R_LEG)
 
-	if (!cell && !PN)
+	if(!cell && !PN)
 		return 0
 	var/PN_damage = 0
 	var/cell_damage = 0
-	if (PN)
+	if(PN)
 		PN_damage = PN.get_electrocute_damage()
-	if (cell)
+	if(cell)
 		cell_damage = cell.get_electrocute_damage()
 	var/shock_damage = max(PN_damage, cell_damage)
-	if (PN_damage >= cell_damage)
+	if(PN_damage >= cell_damage)
 		power_source = PN
 	else
 		power_source = cell
@@ -353,11 +353,11 @@
 	if(drained_energy && PN)
 		PN.trigger_warning()
 
-	if (source_area)
+	if(source_area)
 		source_area.use_power(drained_energy/CELLRATE)
-	else if (istype(power_source,/datum/powernet))
+	else if(istype(power_source,/datum/powernet))
 		var/drained_power = drained_energy/CELLRATE
 		drained_power = PN.draw_power(drained_power)
-	else if (istype(power_source, /obj/item/cell))
+	else if(istype(power_source, /obj/item/cell))
 		drained_energy = cell.use(drained_energy)
 	return drained_energy

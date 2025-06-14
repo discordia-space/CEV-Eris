@@ -108,9 +108,9 @@ world/IsBanned(key, address, computer_id, real_bans_only=FALSE)
 
 			return list("reason"="[bantype]", "desc"="[desc]")
 
-		if (failedcid)
+		if(failedcid)
 			message_admins("[key] has logged in with a blank computer id in the ban check.")
-		if (failedip)
+		if(failedip)
 			message_admins("[key] has logged in with a blank ip in the ban check.")
 		return ..()	//default pager ban stuff
 #endif

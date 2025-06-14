@@ -162,13 +162,13 @@
 		var/turf/T = get_step(loc, direction)
 		if(is_wall(T))
 			var/image/wall_hug_overlay = image(icon = src.icon, icon_state = "wall_hug", dir = direction)
-			if (T.x < x)
+			if(T.x < x)
 				wall_hug_overlay.pixel_x -= 32
-			if (T.x > x)
+			if(T.x > x)
 				wall_hug_overlay.pixel_x += 32
-			if (T.y < y)
+			if(T.y < y)
 				wall_hug_overlay.pixel_y -= 32
-			if (T.y > y)
+			if(T.y > y)
 				wall_hug_overlay.pixel_y += 32
 			wall_hug_overlay.layer = ABOVE_WINDOW_LAYER
 			overlays += wall_hug_overlay
@@ -357,9 +357,9 @@
 
 	var/weapon_type
 	if(user.a_intent == I_HURT)
-		if (W.has_quality(QUALITY_CUTTING))
+		if(W.has_quality(QUALITY_CUTTING))
 			weapon_type = QUALITY_CUTTING
-		else if (W.has_quality(QUALITY_WELDING))
+		else if(W.has_quality(QUALITY_WELDING))
 			weapon_type = QUALITY_WELDING
 
 		if(weapon_type)

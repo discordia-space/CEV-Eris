@@ -62,7 +62,7 @@
 	return ..()
 
 /obj/item/clothing/accessory/badge/holo/emag_act(var/remaining_charges, var/mob/user)
-	if (emagged)
+	if(emagged)
 		to_chat(user, SPAN_DANGER("\The [src] is already cracked."))
 		return
 	else

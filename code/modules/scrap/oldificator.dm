@@ -40,30 +40,30 @@
 
 /obj/item/gun/make_young()
 	var/list/stored_upgrades = item_upgrades.Copy()
-	for (var/obj/item/toremove in stored_upgrades)
+	for(var/obj/item/toremove in stored_upgrades)
 		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
-		if (IU)
+		if(IU)
 			SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, src)
 			visible_message(SPAN_NOTICE("\The [toremove] detaches from \the [src]."))
 			. = TRUE
 
 	refresh_upgrades()
-	if (.) // this is so it always returns true if it did something
+	if(.) // this is so it always returns true if it did something
 		..()
 	else
 		. = ..()
 
 /obj/item/tool/make_young()
 	var/list/stored_upgrades = item_upgrades.Copy()
-	for (var/obj/item/toremove in stored_upgrades)
+	for(var/obj/item/toremove in stored_upgrades)
 		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
-		if (IU)
+		if(IU)
 			SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, src)
 			visible_message(SPAN_NOTICE("\The [toremove] detaches from \the [src]."))
 			. = TRUE
 
 	refresh_upgrades()
-	if (.) // this is so it always returns true if it did something
+	if(.) // this is so it always returns true if it did something
 		..()
 	else
 		. = ..()
@@ -387,7 +387,7 @@
 /*
 /obj/effect/decal/mecha_wreckage/make_old(low_quality_oldification)
 	.=..()
-	if (.)
+	if(.)
 		salvage_num = max(1, salvage_num - pick(1, 2, 3))
 */
 /obj/item/part/gun/make_old(low_quality_oldification)

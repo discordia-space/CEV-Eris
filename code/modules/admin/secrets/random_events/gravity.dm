@@ -16,7 +16,7 @@
 		return
 
 	gravity_is_on = !gravity_is_on
-	if (GLOB.active_gravity_generator)
+	if(GLOB.active_gravity_generator)
 		GLOB.active_gravity_generator.set_state(gravity_is_on)
 
 

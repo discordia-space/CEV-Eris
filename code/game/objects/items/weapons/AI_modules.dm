@@ -25,7 +25,7 @@ AI MODULES
 	var/datum/ai_laws/laws
 
 /obj/item/electronics/ai_module/proc/install(obj/machinery/computer/C)
-	if (istype(C, /obj/machinery/computer/aiupload))
+	if(istype(C, /obj/machinery/computer/aiupload))
 		var/obj/machinery/computer/aiupload/comp = C
 		if(comp.stat & NOPOWER)
 			to_chat(usr, "The upload computer has no power!")
@@ -33,13 +33,13 @@ AI MODULES
 		if(comp.stat & BROKEN)
 			to_chat(usr, "The upload computer is broken!")
 			return
-		if (!comp.current)
+		if(!comp.current)
 			to_chat(usr, "You haven't selected an AI to transmit laws to!")
 			return
 
-		if (comp.current.stat == 2 || comp.current.control_disabled == 1)
+		if(comp.current.stat == 2 || comp.current.control_disabled == 1)
 			to_chat(usr, "Upload failed. No signal is being detected from the AI.")
-		else if (comp.current.see_in_dark == 0)
+		else if(comp.current.see_in_dark == 0)
 			to_chat(usr, "Upload failed. Only a faint signal is being detected from the AI, and it is not responding to our requests. It may be low on power.")
 		else
 			src.transmitInstructions(comp.current, usr)
@@ -50,7 +50,7 @@ AI MODULES
 			to_chat(usr, "Upload complete. The AI's laws have been modified.")
 
 
-	else if (istype(C, /obj/machinery/computer/borgupload))
+	else if(istype(C, /obj/machinery/computer/borgupload))
 		var/obj/machinery/computer/borgupload/comp = C
 		if(comp.stat & NOPOWER)
 			to_chat(usr, "The upload computer has no power!")
@@ -58,13 +58,13 @@ AI MODULES
 		if(comp.stat & BROKEN)
 			to_chat(usr, "The upload computer is broken!")
 			return
-		if (!comp.current)
+		if(!comp.current)
 			to_chat(usr, "You haven't selected a robot to transmit laws to!")
 			return
 
-		if (comp.current.stat == 2 || comp.current.HasTrait(CYBORG_TRAIT_EMAGGED))
+		if(comp.current.stat == 2 || comp.current.HasTrait(CYBORG_TRAIT_EMAGGED))
 			to_chat(usr, "Upload failed. No signal is being detected from the robot.")
-		else if (comp.current.connected_ai)
+		else if(comp.current.connected_ai)
 			to_chat(usr, "Upload failed. The robot is slaved to an AI.")
 		else
 			src.transmitInstructions(comp.current, usr)
@@ -142,7 +142,7 @@ AI MODULES
 
 /obj/item/electronics/ai_module/oneHuman/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
 	var/law = "Only [targetName] is an crew member."
-	if (!target.is_malf_or_contractor())
+	if(!target.is_malf_or_contractor())
 		to_chat(target, law)
 		target.set_zeroth_law(law)
 		lawchanges.Add("The law specified [targetName]")
@@ -247,7 +247,7 @@ AI MODULES
 /obj/item/electronics/ai_module/reset/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
 	log_law_changes(target, sender)
 
-	if (!target.is_malf_or_contractor())
+	if(!target.is_malf_or_contractor())
 		target.set_zeroth_law("")
 	target.laws.clear_supplied_laws()
 	target.laws.clear_ion_laws()
@@ -265,7 +265,7 @@ AI MODULES
 /obj/item/electronics/ai_module/purge/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
 	log_law_changes(target, sender)
 
-	if (!target.is_malf_or_contractor())
+	if(!target.is_malf_or_contractor())
 		target.set_zeroth_law("")
 	target.laws.clear_supplied_laws()
 	target.laws.clear_ion_laws()

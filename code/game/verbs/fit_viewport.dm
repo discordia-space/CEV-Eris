@@ -12,7 +12,7 @@
 	var/map_size = splittext(sizes["mapwindow.size"], "x")
 	var/height = text2num(map_size[2])
 	var/desired_width = round(height * aspect_ratio)
-	if (text2num(map_size[1]) == desired_width)
+	if(text2num(map_size[1]) == desired_width)
 		// Nothing to do
 		return
 
@@ -31,13 +31,13 @@
 		map_size = splittext(after_size, "x")
 		var/got_width = text2num(map_size[1])
 
-		if (got_width == desired_width)
+		if(got_width == desired_width)
 			// success
 			return
-		else if (isnull(delta))
+		else if(isnull(delta))
 			// calculate a probable delta value based on the difference
 			delta = 100 * (desired_width - got_width) / split_width
-		else if ((delta > 0 && got_width > desired_width) || (delta < 0 && got_width < desired_width))
+		else if((delta > 0 && got_width > desired_width) || (delta < 0 && got_width < desired_width))
 			// if we overshot, halve the delta and reverse direction
 			delta = -delta/2
 

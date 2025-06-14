@@ -68,7 +68,7 @@
 	add_fingerprint(usr)
 	switch(href_list["operation"])
 		if("start")
-			if (on)
+			if(on)
 				turn_off()
 			else
 				turn_on()
@@ -390,7 +390,7 @@
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
-	else if (istype(W, /obj/item/pen))
+	else if(istype(W, /obj/item/pen))
 		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
 		if(!t)
 			return

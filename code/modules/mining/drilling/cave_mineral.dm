@@ -38,7 +38,7 @@
 
 /turf/cave_mineral/Initialize()
 	.=..()
-	if (mineral_name && (mineral_name in ore_data))
+	if(mineral_name && (mineral_name in ore_data))
 		mineral = ore_data[mineral_name]
 		UpdateMineral()
 	icon_state = "rock[rand(0,4)]"
@@ -117,17 +117,17 @@
 /turf/cave_mineral/proc/DropMineral()
 	if(!mineral)
 		return
-	for (var/i = 1 to seismic_multiplier)
+	for(var/i = 1 to seismic_multiplier)
 		new mineral.ore(src)
 
 /turf/cave_mineral/proc/GetDrilled()
 
 
 
-	if (mineral && mineral.result_amount)
+	if(mineral && mineral.result_amount)
 		// If the turf has already been excavated, some of it's ore has been removed
 		clear_ore_effects()
-		for (var/i = 1 to mineral.result_amount - mined_ore)
+		for(var/i = 1 to mineral.result_amount - mined_ore)
 			DropMineral()
 
 	// Add some rubble, you did just clear out a big chunk of rock.

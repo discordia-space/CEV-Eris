@@ -39,7 +39,7 @@
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
-	if (ammo_magazine)
+	if(ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
 		wielded_item_state = "_doble" + "_mag"

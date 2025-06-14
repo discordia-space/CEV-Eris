@@ -59,7 +59,7 @@
 	set category = "Object"
 	set src in view(1)
 	var/N = input("Amount per transfer from this:","[src]") as null|anything in possible_transfer_amounts
-	if (N)
+	if(N)
 		amount_per_transfer_from_this = N
 
 /obj/structure/reagent_dispensers/proc/explode()
@@ -143,7 +143,7 @@
 	..(user, extra_description)
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
-	if (rig)
+	if(rig)
 		usr.visible_message(SPAN_NOTICE("\The [usr] begins to detach [rig] from \the [src]."), SPAN_NOTICE("You begin to detach [rig] from \the [src]."))
 		if(do_after(usr, 20, src))
 			usr.visible_message(SPAN_NOTICE("\The [usr] detaches \the [rig] from \the [src]."), SPAN_NOTICE("You detach [rig] from \the [src]"))
@@ -158,12 +158,12 @@
 			user.visible_message("[user] screws [src]'s faucet [modded ? "closed" : "open"].", \
 				"You screw [src]'s faucet [modded ? "closed" : "open"]")
 			modded = !modded
-			if (modded)
+			if(modded)
 				message_admins("[key_name_admin(user)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
 				log_game("[key_name(user)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel.")
 				leak_fuel(amount_per_transfer_from_this)
-	if (istype(I,/obj/item/device/assembly_holder))
-		if (rig)
+	if(istype(I,/obj/item/device/assembly_holder))
+		if(rig)
 			to_chat(user, SPAN_WARNING("There is another device in the way."))
 			return ..()
 		user.visible_message(SPAN_DANGER("\The [user] begins rigging [I] to \the [src]."), SPAN_WARNING("You begin rigging [I] to \the [src]"))
@@ -171,7 +171,7 @@
 			user.visible_message(SPAN_DANGER("\The [user] rigs [I] to \the [src]."), SPAN_WARNING("You rig [I] to \the [src].</span>"))
 
 			var/obj/item/device/assembly_holder/H = I
-			if (istype(H.left_assembly,/obj/item/device/assembly/igniter) || istype(H.right_assembly,/obj/item/device/assembly/igniter))
+			if(istype(H.left_assembly,/obj/item/device/assembly/igniter) || istype(H.right_assembly,/obj/item/device/assembly/igniter))
 				message_admins("[key_name_admin(user)] rigged fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) for explosion. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
 				log_game("[key_name(user)] rigged fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) for explosion.")
 
@@ -215,18 +215,18 @@
 		qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(datum/gas_mixture/air, temperature, volume)
-	if (modded)
+	if(modded)
 		explode()
-	else if (temperature > T0C+500)
+	else if(temperature > T0C+500)
 		explode()
 	return ..()
 
 /obj/structure/reagent_dispensers/fueltank/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
-	if ((. = ..()) && modded)
+	if((. = ..()) && modded)
 		leak_fuel(amount_per_transfer_from_this/10)
 
 /obj/structure/reagent_dispensers/fueltank/proc/leak_fuel(amount)
-	if (reagents.total_volume == 0)
+	if(reagents.total_volume == 0)
 		return
 
 	amount = min(amount, reagents.total_volume)

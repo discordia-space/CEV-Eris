@@ -171,7 +171,7 @@
 	for(var/V in components) if(V != "power cell")
 		var/datum/robot_component/C = components[V]
 		C.installed = C.installed_by_default
-		if (C.installed)
+		if(C.installed)
 			C.wrapped = new C.external_type
 
 	if(!cell)
@@ -271,7 +271,7 @@
 		module_sprites = new_sprites.Copy()
 		//Custom_sprite check and entry
 
-		if (custom_sprite == 1)
+		if(custom_sprite == 1)
 			var/list/valid_states = icon_states(CUSTOM_ITEM_SYNTH)
 			if("[ckey]-[modtype]" in valid_states)
 				module_sprites["Custom"] = "[ckey]-[modtype]"
@@ -321,7 +321,7 @@
 			spawn()
 				pick_module() //Bring up the pick menu again
 			return //And abort out of this
-		if ("Yes")
+		if("Yes")
 			//This time spawn the real module
 			if(module)
 				return
@@ -329,7 +329,7 @@
 			new module_type(src)
 
 	//Fallback incase of runtimes
-	if (RM)
+	if(RM)
 		QDEL_NULL(RM)
 
 	updatename()
@@ -360,7 +360,7 @@
 	name = real_name
 
 	//We also need to update name of internal camera.
-	if (camera)
+	if(camera)
 		camera.c_tag = changed_name
 
 	if(!custom_sprite) //Check for custom sprite
@@ -400,7 +400,7 @@
 		return null
 
 	var/dat = "<HEAD><TITLE>[name] Self-Diagnosis Report</TITLE></HEAD><BODY>\n"
-	for (var/V in components)
+	for(var/V in components)
 		var/datum/robot_component/C = components[V]
 		dat += {"
 			<b>[C.name]</b><br><table>
@@ -441,7 +441,7 @@
 		to_chat(src, SPAN_DANGER("Your self-diagnosis component isn't functioning."))
 
 	var/datum/robot_component/CO = get_component("diagnosis unit")
-	if (!cell_use_power(CO.active_usage))
+	if(!cell_use_power(CO.active_usage))
 		to_chat(src, SPAN_DANGER("Low Power."))
 	var/dat = self_diagnosis()
 	src << browse(dat, "window=robotdiagnosis")
@@ -523,7 +523,7 @@
 	return 2
 
 /mob/living/silicon/robot/attackby(obj/item/I, mob/user)
-	if (istype(I, /obj/item/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
+	if(istype(I, /obj/item/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
 		return
 
 	if(opened) // Are they trying to insert something?
@@ -547,12 +547,12 @@
 
 
 
-		if (istype(I, /obj/item/gripper))//Code for allowing cyborgs to use rechargers
+		if(istype(I, /obj/item/gripper))//Code for allowing cyborgs to use rechargers
 			var/obj/item/gripper/Gri = I
 			if(!wiresexposed)
 				var/datum/robot_component/cell_component = components["power cell"]
 				if(cell)
-					if (Gri.grip_item(cell, user))
+					if(Gri.grip_item(cell, user))
 						cell.update_icon()
 						cell.add_fingerprint(user)
 						to_chat(user, "You remove \the [cell].")
@@ -561,7 +561,7 @@
 						cell_component.installed = 0
 						updateicon()
 				else if(cell_component.installed == -1)
-					if (Gri.grip_item(cell_component.wrapped, user))
+					if(Gri.grip_item(cell_component.wrapped, user))
 						cell_component.wrapped = null
 						cell_component.installed = 0
 						to_chat(user, "You remove \the [cell_component.wrapped].")
@@ -576,12 +576,12 @@
 	switch(tool_type)
 
 		if(QUALITY_WELDING)
-			if (user.a_intent == I_HELP)
-				if (src == user)
+			if(user.a_intent == I_HELP)
+				if(src == user)
 					to_chat(user, SPAN_WARNING("You lack the reach to be able to repair yourself."))
 					return
 
-				if (!getBruteLoss())
+				if(!getBruteLoss())
 					to_chat(user, SPAN_NOTICE("Nothing to fix here!"))
 					return
 
@@ -596,7 +596,7 @@
 				return
 
 		if(QUALITY_PRYING)
-			if (user.a_intent == I_HELP)
+			if(user.a_intent == I_HELP)
 				if(opened)
 					if(cell)
 						if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
@@ -666,14 +666,14 @@
 				return
 
 		if(QUALITY_WIRE_CUTTING)
-			if (user.a_intent == I_HELP)
-				if (wiresexposed)
+			if(user.a_intent == I_HELP)
+				if(wiresexposed)
 					wires.Interact(user)
 				return
 
 		if(QUALITY_SCREW_DRIVING)
-			if (user.a_intent == I_HELP)
-				if (opened && !cell)
+			if(user.a_intent == I_HELP)
+				if(opened && !cell)
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						wiresexposed = !wiresexposed
 						to_chat(user, SPAN_NOTICE("The wires have been [wiresexposed ? "exposed" : "unexposed"]"))
@@ -703,18 +703,18 @@
 			return
 
 	if(istype(I, /obj/item/stack/cable_coil) && (wiresexposed || isdrone(src)))
-		if (!getFireLoss())
+		if(!getFireLoss())
 			to_chat(user, "Nothing to fix here!")
 			return
 		var/obj/item/stack/cable_coil/coil = I
-		if (coil.use(1))
+		if(coil.use(1))
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			adjustFireLoss(-30)
 			updatehealth()
 			for(var/mob/O in viewers(user, null))
 				O.show_message(text(SPAN_DANGER("[user] has fixed some of the burnt wires on [src]!")), 1)
 
-	else if (istype(I, /obj/item/stock_parts/matter_bin) && opened) // Installing/swapping a matter bin
+	else if(istype(I, /obj/item/stock_parts/matter_bin) && opened) // Installing/swapping a matter bin
 		if(storage)
 			to_chat(user, "You replace \the [storage] with \the [I]")
 			storage.forceMove(get_turf(src))
@@ -726,7 +726,7 @@
 		I.forceMove(src)
 		recalculate_synth_capacities()
 
-	else if (istype(I, /obj/item/cell) && opened)	// trying to put a cell inside
+	else if(istype(I, /obj/item/cell) && opened)	// trying to put a cell inside
 		var/datum/robot_component/C = components["power cell"]
 		if(wiresexposed)
 			to_chat(user, SPAN_WARNING("Close the panel first."))
@@ -784,7 +784,7 @@
 			else
 				to_chat(usr, "Upgrade error!")
 
-	else if (istype(I,/obj/item/tool_upgrade)) //Upgrading is handled in _upgrades.dm
+	else if(istype(I,/obj/item/tool_upgrade)) //Upgrading is handled in _upgrades.dm
 		return
 
 	else
@@ -879,14 +879,14 @@
 	<B>Installed Modules</B><BR><BR>"}
 
 
-	for (var/obj in module.modules)
-		if (!obj)
+	for(var/obj in module.modules)
+		if(!obj)
 			dat += text("<B>Resource depleted</B><BR>")
 		else if(activated(obj))
 			dat += text("[obj]: <B>Activated</B><BR>")
 		else
 			dat += text("[obj]: <A HREF=?src=\ref[src];act=\ref[obj]>Activate</A><BR>")
-	if (HasTrait(CYBORG_TRAIT_EMAGGED))
+	if(HasTrait(CYBORG_TRAIT_EMAGGED))
 		if(activated(module.emag))
 			dat += text("[module.emag]: <B>Activated</B><BR>")
 		else
@@ -906,19 +906,19 @@
 	if(usr != src)
 		return TRUE
 
-	if (href_list["showalerts"])
+	if(href_list["showalerts"])
 		open_subsystem(/datum/nano_module/alarm_monitor/all)
 		return TRUE
 
-	if (href_list["mod"])
+	if(href_list["mod"])
 		var/obj/item/O = locate(href_list["mod"])
-		if (istype(O) && (O.loc == src))
+		if(istype(O) && (O.loc == src))
 			O.attack_self(src)
 		return TRUE
 
-	if (href_list["act"])
+	if(href_list["act"])
 		var/obj/item/O = locate(href_list["act"])
-		if (!istype(O))
+		if(!istype(O))
 			return TRUE
 
 		if(!((O in module.modules) || (O == module.emag)))
@@ -950,7 +950,7 @@
 		installed_modules()
 		return TRUE
 
-	if (href_list["deact"])
+	if(href_list["deact"])
 		var/obj/item/O = locate(href_list["deact"])
 		if(activated(O))
 			if(module_state_1 == O)
@@ -1066,7 +1066,7 @@
 	if(module_sprites.len == 1 || !client)
 		if(!(icontype in module_sprites))
 			icontype = module_sprites[1]
-		if (!client)
+		if(!client)
 			return
 	else
 		var/list/options = list()
@@ -1218,9 +1218,9 @@
 			return TRUE
 
 /mob/living/silicon/robot/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
-	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (lockcharge || !is_component_functioning("actuator")))
+	if((incapacitation_flags & INCAPACITATION_FORCELYING) && (lockcharge || !is_component_functioning("actuator")))
 		return TRUE
-	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && !is_component_functioning("actuator"))
+	if((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && !is_component_functioning("actuator"))
 		return TRUE
 	return ..()
 
@@ -1230,7 +1230,7 @@
 /mob/living/silicon/robot/flash(duration = 0, drop_items = FALSE, doblind = FALSE, doblurry = FALSE)
 	if(blinded)
 		return
-	if (HUDtech.Find("flash"))
+	if(HUDtech.Find("flash"))
 		flick("e_flash", HUDtech["flash"])
 	if(duration)
 		if(!HasTrait(CYBORG_TRAIT_FLASH_RESISTANT))

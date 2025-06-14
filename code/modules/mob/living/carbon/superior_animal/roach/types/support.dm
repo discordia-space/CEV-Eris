@@ -32,7 +32,7 @@
 	return ..()
 
 /mob/living/carbon/superior_animal/roach/support/proc/gas_attack()
-	if (!gas_sac.has_reagent("blattedin", 20) || stat != CONSCIOUS)
+	if(!gas_sac.has_reagent("blattedin", 20) || stat != CONSCIOUS)
 		return
 
 	var/location = get_turf(src)

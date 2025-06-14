@@ -61,7 +61,7 @@
 	else
 		overlays += "slide[silenced ? "_s" : ""]"
 
-	if (silenced)
+	if(silenced)
 		wielded_item_state = "_s"
 	else
 		wielded_item_state = ""

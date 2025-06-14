@@ -11,10 +11,10 @@
  * * autofocus - The bool that controls if this alert should grab window focus.
  */
 /proc/tgui_alert(mob/user, message = "", title, list/buttons = list("Ok"), timeout = 0, autofocus = TRUE)
-	if (!user)
+	if(!user)
 		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
+	if(!istype(user))
+		if(istype(user, /client))
 			var/client/client = user
 			user = client.mob
 		else
@@ -32,7 +32,7 @@
 	var/datum/tgui_alert/alert = new(user, message, title, buttons, timeout, autofocus)
 	alert.ui_interact(user)
 	alert.wait()
-	if (alert)
+	if(alert)
 		. = alert.choice
 		qdel(alert)
 
@@ -65,7 +65,7 @@
 	src.buttons = buttons.Copy()
 	src.message = message
 	src.title = title
-	if (timeout)
+	if(timeout)
 		src.timeout = timeout
 		start_time = world.time
 		QDEL_IN(src, timeout)
@@ -80,7 +80,7 @@
  * the window was closed by the user.
  */
 /datum/tgui_alert/proc/wait()
-	while (!choice && !closed && !QDELETED(src))
+	while(!choice && !closed && !QDELETED(src))
 		stoplag(1)
 
 /datum/tgui_alert/ui_interact(mob/user, datum/tgui/ui)
@@ -114,11 +114,11 @@
 
 /datum/tgui_alert/ui_act(action, list/params)
 	. = ..()
-	if (.)
+	if(.)
 		return
 	switch(action)
 		if("choose")
-			if (!(params["choice"] in buttons))
+			if(!(params["choice"] in buttons))
 				CRASH("[usr] entered a non-existent button choice: [params["choice"]]")
 			set_choice(params["choice"])
 			closed = TRUE

@@ -120,25 +120,25 @@
 		var/wallsouth = 0
 		var/walleast = 0
 		var/wallwest = 0
-		for (var/turf/wall/W in range(2, curloc))
+		for(var/turf/wall/W in range(2, curloc))
 			var/turf/tempwall = get_turf(W)
-			if (tempwall.x == curloc.x)
-				if (tempwall.y == (curloc.y - 1))
+			if(tempwall.x == curloc.x)
+				if(tempwall.y == (curloc.y - 1))
 					wallnorth = 1
-					if (!ischance)
+					if(!ischance)
 						W.ricochet_id = ricochet_temp_id
-				else if (tempwall.y == (curloc.y + 1))
+				else if(tempwall.y == (curloc.y + 1))
 					wallsouth = 1
-					if (!ischance)
+					if(!ischance)
 						W.ricochet_id = ricochet_temp_id
-			if (tempwall.y == curloc.y)
-				if (tempwall.x == (curloc.x + 1))
+			if(tempwall.y == curloc.y)
+				if(tempwall.x == (curloc.x + 1))
 					walleast = 1
-					if (!ischance)
+					if(!ischance)
 						W.ricochet_id = ricochet_temp_id
-				else if (tempwall.x == (curloc.x - 1))
+				else if(tempwall.x == (curloc.x - 1))
 					wallwest = 1
-					if (!ischance)
+					if(!ischance)
 						W.ricochet_id = ricochet_temp_id
 
 		if((wallnorth || wallsouth) && ((Proj.starting.y - curloc.y)*(wallsouth - wallnorth) >= 0))

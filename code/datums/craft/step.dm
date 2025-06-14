@@ -240,7 +240,7 @@
 	if(!reqed_quality)
 		var/turf/T = get_step(user, user.dir)
 		//Use atom/movable to account for the possiblity of recipes requiring live or dead mobs as ingredients
-		for (var/atom/movable/A in range(1, T))
+		for(var/atom/movable/A in range(1, T))
 			if(!A.anchored)
 				items += A
 

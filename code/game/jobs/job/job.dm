@@ -190,19 +190,19 @@
 /datum/job/proc/get_description_blurb()
 	var/job_desc = ""
 	//Here's the actual content of the description
-	if (description)
+	if(description)
 		job_desc += "<h1>Overview:</h1>"
 		job_desc += "<hr>"
 		job_desc += description
 		job_desc += "<br>"
 
-	if (duties)
+	if(duties)
 		job_desc += "<h1>Duties:</h1>"
 		job_desc += "<hr>"
 		job_desc += duties
 		job_desc += "<br>"
 
-	if (loyalties)
+	if(loyalties)
 		job_desc += "<h1>Loyalties:</h1>"
 		job_desc += "<hr>"
 		job_desc += loyalties

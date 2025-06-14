@@ -16,7 +16,7 @@
 //
 //  object_selectors    :   select_item [('FROM' | 'IN') from_item] [modifier_list]
 //  modifier_list       :   ('WHERE' bool_expression | 'MAP' expression) [modifier_list]
-// 
+//
 //	from_item			:	'world' | expression
 //
 //	call_function		:	<function name> '(' [arguments] ')'
@@ -27,7 +27,7 @@
 //	assignments			:	assignment [',' assignments]
 //	assignment			:	<variable name> '=' expression
 //	variable			:	<variable name> | <variable name> '.' variable | '[' <hex number> ']' | '[' <hex number> ']' '.' variable
-//  
+//
 //	bool_expression		:	expression comparitor expression  [bool_operator bool_expression]
 //	expression			:	( unary_expression | '(' expression ')' | value ) [binary_operator expression]
 //	unary_expression	:	unary_operator ( unary_expression | value | '(' expression ')' )
@@ -173,7 +173,7 @@
 /datum/SDQL_parser/proc/object_selectors(i, list/node)
 	i = select_item(i, node)
 
-	if (tokenl(i) == "from" || tokenl(i) == "in")
+	if(tokenl(i) == "from" || tokenl(i) == "in")
 		i++
 		var/list/from = list()
 		i = from_item(i, from)
@@ -187,21 +187,21 @@
 
 // modifier_list: ('WHERE' bool_expression | 'MAP' expression) [modifier_list]
 /datum/SDQL_parser/proc/modifier_list(i, list/node)
-	while (TRUE)
-		if (tokenl(i) == "where")
+	while(TRUE)
+		if(tokenl(i) == "where")
 			i++
 			node += "where"
 			var/list/expr = list()
 			i = bool_expression(i, expr)
 			node[++node.len] = expr
 
-		else if (tokenl(i) == "map")
+		else if(tokenl(i) == "map")
 			i++
 			node += "map"
 			var/list/expr = list()
 			i = expression(i, expr)
 			node[++node.len] = expr
-	
+
 		else
 			return i
 
@@ -226,11 +226,11 @@
 
 //select_item:	'*' | select_function | object_type
 /datum/SDQL_parser/proc/select_item(i, list/node)
-	if (token(i) == "*")
+	if(token(i) == "*")
 		node += "*"
 		i++
 
-	else if (copytext(token(i), 1, 2) == "/")
+	else if(copytext(token(i), 1, 2) == "/")
 		i = object_type(i, node)
 
 	else
@@ -240,16 +240,16 @@
 
 // Standardized method for handling the IN/FROM and WHERE options.
 /datum/SDQL_parser/proc/selectors(i, list/node)
-	while (token(i))
+	while(token(i))
 		var/tok = tokenl(i)
-		if (tok in list("from", "in"))
+		if(tok in list("from", "in"))
 			var/list/from = list()
 			i = from_item(i + 1, from)
 
 			node["from"] = from
 			continue
 
-		if (tok == "where")
+		if(tok == "where")
 			var/list/where = list()
 			i = bool_expression(i + 1, where)
 
@@ -259,7 +259,7 @@
 		parse_error("Expected either FROM, IN or WHERE token, found [token(i)] instead.")
 		return i + 1
 
-	if (!node.Find("from"))
+	if(!node.Find("from"))
 		node["from"] = list("world")
 
 	return i
@@ -326,16 +326,16 @@
 		L += "."
 		i = variable(i + 2, L)
 
-	else if (token(i + 1) == "(") // OH BOY PROC
+	else if(token(i + 1) == "(") // OH BOY PROC
 		var/list/arguments = list()
 		i = call_function(i, null, arguments)
 		L += ":"
 		L[++L.len] = arguments
 
-	else if (token(i + 1) == "\[")
+	else if(token(i + 1) == "\[")
 		var/list/expression = list()
 		i = expression(i + 2, expression)
-		if (token(i) != "]")
+		if(token(i) != "]")
 			parse_error("Missing ] at the end of list access.")
 
 		L += "\["
@@ -351,11 +351,11 @@
 //object_type:	<type path>
 /datum/SDQL_parser/proc/object_type(i, list/node)
 
-	if (copytext(token(i), 1, 2) != "/")
+	if(copytext(token(i), 1, 2) != "/")
 		return parse_error("Expected type, but it didn't begin with /")
-	
+
 	var/path = text2path(token(i))
-	if (path == null)
+	if(path == null)
 		return parse_error("Nonexistant type path: [token(i)]")
 
 	node += path
@@ -415,21 +415,21 @@
 		var/tok
 		do
 			tok = token(i)
-			if (tok == "," || tok == ":")
-				if (temp_expression_list == null)
+			if(tok == "," || tok == ":")
+				if(temp_expression_list == null)
 					parse_error("Found ',' or ':' without expression in an array.")
 					return i + 1
 
 				expression_list[++expression_list.len] = temp_expression_list
 				temp_expression_list = null
-				if (tok == ":")
+				if(tok == ":")
 					temp_expression_list = list()
 					i = expression(i + 1, temp_expression_list)
 					expression_list[expression_list[expression_list.len]] = temp_expression_list
 					temp_expression_list = null
 					tok = token(i)
-					if (tok != ",")
-						if (tok == "]")
+					if(tok != ",")
+						if(tok == "]")
 							break
 
 						parse_error("Expected ',' or ']' after array assoc value, but found '[token(i)]'")
@@ -457,7 +457,7 @@
 
 		while(token(i) && token(i) != "]")
 
-		if (temp_expression_list)
+		if(temp_expression_list)
 			expression_list[++expression_list.len] = temp_expression_list
 
 	node[++node.len] = expression_list

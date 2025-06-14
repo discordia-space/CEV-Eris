@@ -148,26 +148,26 @@
 		if(2)
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
-				if (C.get_amount() < 5)
+				if(C.get_amount() < 5)
 					to_chat(user, SPAN_WARNING("You need five coils of wire to add them to the frame."))
 					return
 				to_chat(user, SPAN_NOTICE("You start to add cables to the frame."))
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(do_after(user, 20, src) && state == 2)
-					if (C.use(5))
+					if(C.use(5))
 						to_chat(user, SPAN_NOTICE("You add cables to the frame."))
 						state = 3
 						icon_state = "3"
 		if(3)
 			if(istype(I, /obj/item/stack/material) && I.get_material_name() == MATERIAL_GLASS)
 				var/obj/item/stack/G = I
-				if (G.get_amount() < 2)
+				if(G.get_amount() < 2)
 					to_chat(user, SPAN_WARNING("You need two sheets of glass to put in the glass panel."))
 					return
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, SPAN_NOTICE("You start to put in the glass panel."))
 				if(do_after(user, 20, src) && state == 3)
-					if (G.use(2))
+					if(G.use(2))
 						to_chat(user, SPAN_NOTICE("You put in the glass panel."))
 						src.state = 4
 						src.icon_state = "4"

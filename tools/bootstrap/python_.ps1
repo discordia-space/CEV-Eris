@@ -17,7 +17,7 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 function ExtractVersion {
 	param([string] $Path, [string] $Key)
 	foreach ($Line in Get-Content $Path) {
-		if ($Line.StartsWith("export $Key=")) {
+		if($Line.StartsWith("export $Key=")) {
 			return $Line.Substring("export $Key=".Length)
 		}
 	}
@@ -28,7 +28,7 @@ function ExtractVersion {
 $Bootstrap = Split-Path $script:MyInvocation.MyCommand.Path
 $Tools = Split-Path $Bootstrap
 $Cache = "$Bootstrap/.cache"
-if ($Env:TG_BOOTSTRAP_CACHE) {
+if($Env:TG_BOOTSTRAP_CACHE) {
 	$Cache = $Env:TG_BOOTSTRAP_CACHE
 }
 $PythonVersion = ExtractVersion -Path "$Bootstrap/../../dependencies.sh" -Key "PYTHON_VERSION"
@@ -37,7 +37,7 @@ $PythonExe = "$PythonDir/python.exe"
 $Log = "$Cache/last-command.log"
 
 # Download and unzip a portable version of Python
-if (!(Test-Path $PythonExe -PathType Leaf)) {
+if(!(Test-Path $PythonExe -PathType Leaf)) {
 	$host.ui.RawUI.WindowTitle = "Downloading Python $PythonVersion..."
 	New-Item $Cache -ItemType Directory -ErrorAction silentlyContinue | Out-Null
 
@@ -57,7 +57,7 @@ if (!(Test-Path $PythonExe -PathType Leaf)) {
 }
 
 # Install pip
-if (!(Test-Path "$PythonDir/Scripts/pip.exe")) {
+if(!(Test-Path "$PythonDir/Scripts/pip.exe")) {
 	$host.ui.RawUI.WindowTitle = "Downloading Pip..."
 
 	Invoke-WebRequest "https://bootstrap.pypa.io/get-pip.py" `
@@ -65,7 +65,7 @@ if (!(Test-Path "$PythonDir/Scripts/pip.exe")) {
 		-ErrorAction Stop
 
 	& $PythonExe "$Cache/get-pip.py" --no-warn-script-location
-	if ($LASTEXITCODE -ne 0) {
+	if($LASTEXITCODE -ne 0) {
 		exit $LASTEXITCODE
 	}
 
@@ -74,11 +74,11 @@ if (!(Test-Path "$PythonDir/Scripts/pip.exe")) {
 }
 
 # Use pip to install our requirements
-if (!(Test-Path "$PythonDir/requirements.txt") -or ((Get-FileHash "$Tools/requirements.txt").hash -ne (Get-FileHash "$PythonDir/requirements.txt").hash)) {
+if(!(Test-Path "$PythonDir/requirements.txt") -or ((Get-FileHash "$Tools/requirements.txt").hash -ne (Get-FileHash "$PythonDir/requirements.txt").hash)) {
 	$host.ui.RawUI.WindowTitle = "Updating dependencies..."
 
 	& $PythonExe -m pip install -U pip -r "$Tools/requirements.txt"
-	if ($LASTEXITCODE -ne 0) {
+	if($LASTEXITCODE -ne 0) {
 		exit $LASTEXITCODE
 	}
 
@@ -94,7 +94,7 @@ $host.ui.RawUI.WindowTitle = "python $args"
 $ErrorActionPreference = "Continue"
 & $PythonExe -u $args 2>&1 | ForEach-Object {
 	$str = "$_"
-	if ($_.GetType() -eq [System.Management.Automation.ErrorRecord]) {
+	if($_.GetType() -eq [System.Management.Automation.ErrorRecord]) {
 		$str = $str.TrimEnd("`r`n")
 	}
 	$str | Out-File -Encoding utf8 -Append $Log

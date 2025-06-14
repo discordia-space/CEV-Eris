@@ -8,8 +8,8 @@
 	if(air_group || (height==0)) return 1
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
-	if (flipped == 1)
-		if (get_dir(loc, target) == dir)
+	if(flipped == 1)
+		if(get_dir(loc, target) == dir)
 			return !density
 		else
 			return 1
@@ -27,7 +27,7 @@
 			return TRUE // Bullet is too high to hit
 		P.height = (P.height == HEIGHT_LOW) ? HEIGHT_LOW : HEIGHT_CENTER
 
-	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
+	if(get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return TRUE
 	if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
 		return TRUE
@@ -36,15 +36,15 @@
 		return TRUE // Emitters, or anything with no targeted bodypart will always bypass the cover
 
 	var/targetzone = check_zone(P.def_zone)
-	if (targetzone in list(BP_R_LEG, BP_L_LEG))
+	if(targetzone in list(BP_R_LEG, BP_L_LEG))
 		valid = TRUE //The legs are always concealed
-	if (ismob(P.original))
+	if(ismob(P.original))
 		var/mob/M = P.original
-		if (M.lying)
+		if(M.lying)
 			valid = TRUE				//Lying down covers your whole body
 	if(flipped==1)
 		if(get_dir(loc, from) == dir)	//Flipped tables catch mroe bullets
-			if (targetzone == BP_GROIN)
+			if(targetzone == BP_GROIN)
 				valid = TRUE
 		else
 			valid = FALSE					//But only from one side
@@ -56,7 +56,7 @@
 	if(valid)
 		var/pierce = P.check_penetrate(src)
 		health -= P.get_structure_damage()/2
-		if (health > 0)
+		if(health > 0)
 			visible_message(SPAN_WARNING("[P] hits \the [src]!"))
 			return pierce
 		else
@@ -68,8 +68,8 @@
 /obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSTABLE))
 		return 1
-	if (flipped==1)
-		if (get_dir(loc, target) == dir)
+	if(flipped==1)
+		if(get_dir(loc, target) == dir)
 			return !density
 		else
 			return 1
@@ -82,7 +82,7 @@
 		return
 
 	if(ismob(A.loc))
-		if (user.unEquip(A, loc))
+		if(user.unEquip(A, loc))
 			set_pixel_click_offset(A, params)
 		return
 
@@ -94,9 +94,9 @@
 				set_pixel_click_offset(O, params, animate = TRUE)
 				return
 
-		else if (A.CanMouseDrop(loc, user))
+		else if(A.CanMouseDrop(loc, user))
 			//Mice can push around pens and paper, but not heavy tools
-			if (O.w_class <= user.can_pull_size)
+			if(O.w_class <= user.can_pull_size)
 				O.forceMove(loc)
 				set_pixel_click_offset(O, params, animate = TRUE)
 				return
@@ -168,6 +168,6 @@
 		to_chat(user, SPAN_WARNING("There's nothing to put \the [W] on! Try adding plating to \the [src] first."))
 		return
 
-	if (user.unEquip(W, loc))
+	if(user.unEquip(W, loc))
 		set_pixel_click_offset(W, params)
 /obj/structure/table/attack_tk() // no telehulk sorry

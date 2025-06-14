@@ -160,7 +160,7 @@ proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount 
 		//sleep(0)
 		var/obj/item/projectile/bullet/pellet/fragment/P = new f_type(epicenter)
 
-		if (!isnull(f_damage))
+		if(!isnull(f_damage))
 			P.damage_types[BRUTE] = f_damage
 		P.pellets = fragments_per_projectile
 		P.range_step = f_step
@@ -170,7 +170,7 @@ proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount 
 		P.launch(T)
 
 		//Some of the fragments will hit mobs in the same turf
-		if (prob(same_turf_hit_chance))
+		if(prob(same_turf_hit_chance))
 			for(var/mob/living/M in epicenter)
 				P.attack_mob(M, 0, 100)
 

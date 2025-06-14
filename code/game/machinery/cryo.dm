@@ -71,17 +71,17 @@
 /obj/machinery/atmospherics/unary/cryo_cell/attack_hand(mob/user)
 	nano_ui_interact(user)
 
- /**
-  * The nano_ui_interact proc is used to open and update Nano UIs
-  * If nano_ui_interact is not used then the UI will not update correctly
-  * nano_ui_interact is currently defined for /atom/movable (which is inherited by /obj and /mob)
-  *
-  * @param user /mob The mob who is interacting with this ui
-  * @param ui_key string A string key to use for this ui. Allows for multiple unique uis on one obj/mob (defaut value "main")
-  * @param ui /datum/nanoui This parameter is passed by the nanoui process() proc when updating an open ui
-  *
-  * @return nothing
-  */
+/*
+* The nano_ui_interact proc is used to open and update Nano UIs
+* If nano_ui_interact is not used then the UI will not update correctly
+* nano_ui_interact is currently defined for /atom/movable (which is inherited by /obj and /mob)
+*
+* @param user /mob The mob who is interacting with this ui
+* @param ui_key string A string key to use for this ui. Allows for multiple unique uis on one obj/mob (defaut value "main")
+* @param ui /datum/nanoui This parameter is passed by the nanoui process() proc when updating an open ui
+*
+* @return nothing
+*/
 /obj/machinery/atmospherics/unary/cryo_cell/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 
 	if(user == occupant || user.stat)
@@ -93,7 +93,7 @@
 	data["hasOccupant"] = occupant ? 1 : 0
 
 	var/occupantData[0]
-	if (occupant)
+	if(occupant)
 		occupantData["name"] = occupant.name
 		occupantData["stat"] = occupant.stat
 		occupantData["health"] = occupant.health
@@ -125,7 +125,7 @@
 	data["beakerVolume"] = 0
 	if(beaker)
 		data["beakerLabel"] = beaker.label_text ? beaker.label_text : null
-		if (beaker.reagents && beaker.reagents.reagent_list.len)
+		if(beaker.reagents && beaker.reagents.reagent_list.len)
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				data["beakerVolume"] += R.volume
 
@@ -133,7 +133,7 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
 	// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "cryo.tmpl", "Cryo Cell Control System", 520, 410)
@@ -271,11 +271,11 @@
 		return
 	//for(var/obj/O in src)
 	//	O.loc = loc
-	if (occupant.client)
+	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.forceMove(get_step(loc, SOUTH))	//this doesn't account for walls or anything, but i don't forsee that being a problem.
-	if (occupant.bodytemperature < 261 && occupant.bodytemperature >= 70) //Patch by Aranclanos to stop people from taking burn damage after being ejected
+	if(occupant.bodytemperature < 261 && occupant.bodytemperature >= 70) //Patch by Aranclanos to stop people from taking burn damage after being ejected
 		occupant.bodytemperature = 261									  // Changed to 70 from 140 by Zuhayr due to reoccurance of bug.
 //	occupant.metabslow = 0
 	occupant = null
@@ -285,22 +285,22 @@
 	return
 
 /obj/machinery/atmospherics/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob)
-	if (stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER|BROKEN))
 		to_chat(usr, SPAN_WARNING("The cryo cell is not functioning."))
 		return
-	if (!istype(M))
+	if(!istype(M))
 		to_chat(usr, SPAN_DANGER("The cryo cell cannot handle such a lifeform!"))
 		return
-	if (occupant)
+	if(occupant)
 		to_chat(usr, SPAN_DANGER("The cryo cell is already occupied!"))
 		return
-	if (M.abiotic())
+	if(M.abiotic())
 		to_chat(usr, SPAN_WARNING("Subject may not have abiotic items on."))
 		return
 	if(!node1)
 		to_chat(usr, SPAN_WARNING("The cell is not correctly connected to its pipe network!"))
 		return
-	if (M.client)
+	if(M.client)
 		M.client.perspective = EYE_PERSPECTIVE
 		M.client.eye = src
 	M.stop_pulling()
@@ -319,7 +319,7 @@
 /obj/machinery/atmospherics/unary/cryo_cell/MouseDrop_T(var/mob/target, var/mob/user)
 	if(!ismob(target))
 		return
-	if (target.buckled)
+	if(target.buckled)
 		to_chat(usr, SPAN_WARNING("Unbuckle the subject before attempting to move them."))
 		return
 	user.visible_message(
@@ -359,7 +359,7 @@
 		if(M.Victim == usr)
 			to_chat(usr, "You're too busy getting your life sucked out of you.")
 			return
-	if (usr.stat != 0)
+	if(usr.stat != 0)
 		return
 	put_mob(usr)
 	return

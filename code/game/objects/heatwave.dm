@@ -38,7 +38,7 @@ proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, pen
 
 			var/organ_hit = BP_CHEST //Chest is hit first
 			var/loc_damage
-			while (burn_damage > 0)
+			while(burn_damage > 0)
 				burn_damage -= loc_damage = rand(1, burn_damage)
 				L.damage_through_armor(loc_damage, BURN, organ_hit, ARMOR_ENERGY, penetration)
 				organ_hit = ran_zone()  //We determine next body parts that should be hit

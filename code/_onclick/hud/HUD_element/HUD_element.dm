@@ -81,7 +81,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 /HUD_element/Destroy()
 	hide()
 
-	if (_data)
+	if(_data)
 		_data.Cut()
 
 	vis_contents.Cut()
@@ -92,7 +92,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 		qdel(E)
 
 	var/HUD_element/parent = getParent()
-	if (parent)
+	if(parent)
 		var/list/HUD_element/elementRemove = parent.getElements()
 		elementRemove.Remove(src)
 		_setParent()
@@ -110,18 +110,18 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 			call(_clickProc)(src, usr, location, control, params)
 
 
-	if (_passClickToParent)
+	if(_passClickToParent)
 		var/HUD_element/parent = getParent()
-		if (parent)
+		if(parent)
 			parent = parent.Click(location, control, params)
-			if (!parent) //parent deleted
+			if(!parent) //parent deleted
 				return
 
-	if (_hideParentOnClick)
+	if(_hideParentOnClick)
 		var/HUD_element/parent = getParent()
-		if (parent)
+		if(parent)
 			parent = parent.hide()
-			if (!parent) //parent deleted
+			if(!parent) //parent deleted
 				return
 
 // override if needed

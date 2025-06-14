@@ -125,7 +125,7 @@
 
 /area/proc/get_cameras()
 	var/list/cameras = list()
-	for (var/obj/machinery/camera/C in src)
+	for(var/obj/machinery/camera/C in src)
 		cameras += C
 	return cameras
 
@@ -133,25 +133,25 @@
 	return "[name] #[camera_id++]"
 
 /area/proc/atmosalert(danger_level, var/alarm_source)
-	if (danger_level == 0)
+	if(danger_level == 0)
 		atmosphere_alarm.clearAlarm(src, alarm_source)
 	else
 		atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
 
 	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
-	for (var/obj/machinery/alarm/AA in src)
-		if (!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.report_danger_level)
+	for(var/obj/machinery/alarm/AA in src)
+		if(!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.report_danger_level)
 			danger_level = max(danger_level, AA.danger_level)
 
 	if(danger_level != atmosalm)
-		if (danger_level < 1 && atmosalm >= 1)
+		if(danger_level < 1 && atmosalm >= 1)
 			//closing the doors on red and opening on green provides a bit of hysteresis that will hopefully prevent fire doors from opening and closing repeatedly due to noise
 			air_doors_open()
-		else if (danger_level >= 2 && atmosalm < 2)
+		else if(danger_level >= 2 && atmosalm < 2)
 			air_doors_close()
 
 		atmosalm = danger_level
-		for (var/obj/machinery/alarm/AA in src)
+		for(var/obj/machinery/alarm/AA in src)
 			AA.update_icon()
 
 		return 1
@@ -179,7 +179,7 @@
 			D.close()
 
 /area/proc/fire_reset()
-	if (fire)
+	if(fire)
 		fire = 0	//used for firedoor checks
 		updateicon()
 		mouse_opacity = 0
@@ -199,14 +199,14 @@
 	return
 
 /area/proc/partyalert()
-	if (!( party ))
+	if(!( party ))
 		party = 1
 		updateicon()
 		mouse_opacity = 0
 	return
 
 /area/proc/partyreset()
-	if (party)
+	if(party)
 		party = 0
 		mouse_opacity = 0
 		updateicon()
@@ -229,13 +229,13 @@
 
 	////////////weather
 
-	if ((fire || eject || party || atmosalm == 2) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
+	if((fire || eject || party || atmosalm == 2) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
 		if(fire)
 			for(var/obj/machinery/light/L in src)
 				if(istype(L, /obj/machinery/light/small))
 					continue
 				L.set_red()
-		else if (atmosalm == 2)
+		else if(atmosalm == 2)
 			for(var/obj/machinery/light/L in src)
 				if(istype(L, /obj/machinery/light/small))
 					continue
@@ -283,7 +283,7 @@
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()			// reverify power status (to update icons etc.)
 	SEND_SIGNAL_OLD(src, COMSIG_AREA_APC_POWER_CHANGE)
-	if (fire || eject || party)
+	if(fire || eject || party)
 		updateicon()
 
 /area/proc/usage(var/chan)
@@ -384,16 +384,16 @@ var/list/mob/living/forced_ambiance_list = new
 	if(gravity_blocker)
 		if(get_area(gravity_blocker) == src)
 			has_gravity = FALSE
-			if (grav_before != has_gravity)
+			if(grav_before != has_gravity)
 				gravity_changed()
 			return
 		else
 			gravity_blocker = null
 
-	if (GLOB.active_gravity_generator)
+	if(GLOB.active_gravity_generator)
 		has_gravity = gravity_is_on
 
-	if (grav_before != has_gravity)
+	if(grav_before != has_gravity)
 		gravity_changed()
 
 

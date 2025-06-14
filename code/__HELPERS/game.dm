@@ -22,7 +22,7 @@
 
 /proc/get_area_master(const/O)
 	var/area/A = get_area(O)
-	if (isarea(A))
+	if(isarea(A))
 		return A
 
 // Like view but bypasses luminosity check
@@ -143,7 +143,7 @@
 
 	for(var/am in hear)
 		var/atom/movable/AM = am
-		if (!AM.loc)
+		if(!AM.loc)
 			continue
 
 		if(ismob(AM))
@@ -385,7 +385,7 @@
 	var/list/greens = list()
 	var/list/weights = list()
 
-	for (var/i = 0, ++i <= colors.len)
+	for(var/i = 0, ++i <= colors.len)
 		reds.Add(GetRedPart(colors[i]))
 		blues.Add(GetBluePart(colors[i]))
 		greens.Add(GetGreenPart(colors[i]))
@@ -397,7 +397,7 @@
 	return rgb(r, g, b)
 
 /proc/mixOneColor(list/weight, list/color)
-	if (!weight || !color || length(weight)!=length(color))
+	if(!weight || !color || length(weight)!=length(color))
 		return 0
 
 	var/contents = length(weight)
@@ -500,20 +500,20 @@
 /proc/is_opaque(turf/T)
 	if(!T)
 		return FALSE
-	if (T.opacity)
+	if(T.opacity)
 		return TRUE
 	for(var/obj/O in T.contents)
-		if (O.opacity)
+		if(O.opacity)
 			return TRUE
 	return FALSE
 
 /proc/get_preferences(mob/target)
 	var/datum/preferences/P = null
-	if (target.client)
+	if(target.client)
 		P = target.client.prefs
-	else if (target.ckey)
+	else if(target.ckey)
 		P = SScharacter_setup.preferences_datums[target.ckey]
-	else if (target.mind && target.mind.key)
+	else if(target.mind && target.mind.key)
 		P = SScharacter_setup.preferences_datums[target.mind.key]
 
 	return P
@@ -523,10 +523,10 @@
 /proc/pick_landmark(ltype)
 	var/list/L = list()
 	for(var/S in GLOB.landmarks_list)
-		if (istype(S, ltype))
+		if(istype(S, ltype))
 			L.Add(S)
 
-	if (L.len)
+	if(L.len)
 		return pick(L)
 
 /proc/activate_mobs_in_range(atom/caller , distance)

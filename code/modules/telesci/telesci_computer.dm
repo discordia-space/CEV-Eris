@@ -235,7 +235,7 @@
 					log_msg += "[key_name(T)], "
 				else
 					log_msg += "[ROI.name]"
-					if (istype(ROI, /obj/structure/closet))
+					if(istype(ROI, /obj/structure/closet))
 						var/obj/structure/closet/C = ROI
 						log_msg += " ("
 						for(var/atom/movable/Q as mob|obj in C)
@@ -243,7 +243,7 @@
 								log_msg += "[key_name(Q)], "
 							else
 								log_msg += "[Q.name], "
-						if (dd_hassuffix(log_msg, "("))
+						if(dd_hassuffix(log_msg, "("))
 							log_msg += "empty)"
 						else
 							log_msg = dd_limittext(log_msg, length(log_msg) - 2)
@@ -251,7 +251,7 @@
 					log_msg += ", "
 				go_to_bluespace(get_turf(src),telepad.entropy_value, FALSE, ROI, dest)
 
-			if (dd_hassuffix(log_msg, ", "))
+			if(dd_hassuffix(log_msg, ", "))
 				log_msg = dd_limittext(log_msg, length(log_msg) - 2)
 			else
 				log_msg += "nothing"
@@ -360,7 +360,7 @@
 
 /proc/dd_limittext(message, length)
 	var/size = length(message)
-	if (size <= length)
+	if(size <= length)
 		return message
 	else
 		return copytext(message, 1, length + 1)

@@ -8,7 +8,7 @@
 		if(T && T.flipped == 0 && T.material.name == material.name)
 			return 0
 	T = locate() in get_step(src.loc,direction)
-	if (!T || T.flipped == 1 || T.material != material)
+	if(!T || T.flipped == 1 || T.material != material)
 		return 1
 	return T.straight_table_check(direction)
 
@@ -18,7 +18,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if (!can_touch(usr) || ismouse(usr))
+	if(!can_touch(usr) || ismouse(usr))
 		return
 
 	if(flipped < 0 || !flip(get_cardinal_dir(usr,src)))
@@ -62,10 +62,10 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if (!can_touch(usr))
+	if(!can_touch(usr))
 		return
 
-	if (!unflipping_check())
+	if(!unflipping_check())
 		to_chat(usr, SPAN_NOTICE("It won't budge."))
 		return
 	unflip()
@@ -78,8 +78,8 @@
 	verbs +=/obj/structure/table/proc/do_put
 
 	var/list/targets = list(get_step(src,dir),get_step(src,turn(dir, 45)),get_step(src,turn(dir, -45)))
-	for (var/atom/movable/A in get_turf(src))
-		if (!A.anchored)
+	for(var/atom/movable/A in get_turf(src))
+		if(!A.anchored)
 			spawn(0)
 				A.throw_at(pick(targets),1,1)
 
@@ -94,11 +94,11 @@
 		if(T && T.flipped == 0 && material && T.material && T.material.name == material.name)
 			T.flip(direction)
 	take_damage(rand(5, 10))
-	if (material)
-		if (istype(material, /material/glass))
+	if(material)
+		if(istype(material, /material/glass))
 			var/material/glass/G = material
 			G.place_shard(src.loc)
-			if (G.is_reinforced())
+			if(G.is_reinforced())
 				new /obj/item/stack/rods(loc)
 			playsound(src, "shatter", 70, 1)
 			material = null

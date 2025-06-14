@@ -34,14 +34,14 @@
 	create_reagents(100)
 	if(!available_recipes)
 		available_recipes = new
-		for (var/type in (typesof(/datum/recipe)-/datum/recipe))
+		for(var/type in (typesof(/datum/recipe)-/datum/recipe))
 			available_recipes+= new type
 		acceptable_items = new
 		acceptable_reagents = new
-		for (var/datum/recipe/recipe in available_recipes)
-			for (var/item in recipe.items)
+		for(var/datum/recipe/recipe in available_recipes)
+			for(var/item in recipe.items)
 				acceptable_items |= item
-			for (var/reagent in recipe.reagents)
+			for(var/reagent in recipe.reagents)
 				acceptable_reagents |= reagent
 			if(recipe.items)
 				max_n_of_items = max(max_n_of_items,recipe.items.len)
@@ -154,7 +154,7 @@
 		)
 		if(!I.reagents)
 			return 1
-		for (var/datum/reagent/R in I.reagents.reagent_list)
+		for(var/datum/reagent/R in I.reagents.reagent_list)
 			if(!acceptable_reagents.Find(R.id))
 				to_chat(user, SPAN_WARNING("Your [I] contains components unsuitable for cookery."))
 				return 1
@@ -205,7 +205,7 @@
 		var/list/items_counts = new
 		var/list/items_measures = new
 		var/list/items_measures_p = new
-		for (var/obj/O in contents)
+		for(var/obj/O in contents)
 			var/display_name = O.name
 			if(istype(O,/obj/item/reagent_containers/food/snacks/egg))
 				items_measures[display_name] = "egg"
@@ -224,7 +224,7 @@
 				items_measures[display_name] = "fillet of meat"
 				items_measures_p[display_name] = "fillets of meat"
 			items_counts[display_name]++
-		for (var/O in items_counts)
+		for(var/O in items_counts)
 			var/N = items_counts[O]
 			if(!items_measures.Find(O))
 				dat += {"<B>[capitalize(O)]:</B> [N] [lowertext(O)]\s<BR>"}
@@ -234,7 +234,7 @@
 				else
 					dat += {"<B>[capitalize(O)]:</B> [N] [items_measures_p[O]]<BR>"}
 
-		for (var/datum/reagent/R in reagents.reagent_list)
+		for(var/datum/reagent/R in reagents.reagent_list)
 			var/display_name = R.name
 			if(R.id == "capsaicin")
 				display_name = "Hotsauce"
@@ -317,7 +317,7 @@
 		return
 
 /obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
-	for (var/i=1 to seconds)
+	for(var/i=1 to seconds)
 		if(stat & (NOPOWER|BROKEN))
 			return 0
 		use_power(500)
@@ -325,7 +325,7 @@
 	return 1
 
 /obj/machinery/microwave/proc/has_extra_item()
-	for (var/obj/O in contents)
+	for(var/obj/O in contents)
 		if(!istype(O,/obj/item/reagent_containers/food) && !istype(O, /obj/item/grown))
 			return 1
 	return 0
@@ -349,7 +349,7 @@
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/dispose()
-	for (var/obj/O in contents)
+	for(var/obj/O in contents)
 		O.loc = src.loc
 	if(reagents.total_volume)
 		dirty++
@@ -374,7 +374,7 @@
 /obj/machinery/microwave/proc/fail()
 	var/obj/item/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
 	var/amount = 0
-	for (var/obj/O in contents-ffuu)
+	for(var/obj/O in contents-ffuu)
 		amount++
 		if(O.reagents)
 			var/id = O.reagents.get_master_reagent_id()
@@ -419,11 +419,11 @@
 	set category = "Object"
 	set src in view(1)
 
-	if (!Adjacent(usr))
+	if(!Adjacent(usr))
 		to_chat(usr, SPAN_WARNING("You need to be in arm's reach for that!"))
 		return
 
-	if (usr.incapacitated())
+	if(usr.incapacitated())
 		return
 
 	if(!lit)

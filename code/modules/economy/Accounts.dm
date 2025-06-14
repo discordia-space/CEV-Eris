@@ -25,14 +25,14 @@
 
 //One-stop safety checks for accounts
 /datum/money_account/proc/is_valid()
-	if (suspended)
+	if(suspended)
 		return FALSE
 
 	return TRUE
 
 //Try to get the name of the account
 /datum/money_account/proc/get_name()
-	if (account_name)
+	if(account_name)
 		return account_name
 	return owner_name
 
@@ -163,7 +163,7 @@
 //Charges an account a certain amount of money which is functionally just removed from existence
 /proc/charge_to_account(attempt_account_number, target_name, purpose, terminal_id, amount)
 	var/datum/money_account/D = get_account(attempt_account_number)
-	if (D)
+	if(D)
 		//create a transaction log entry
 		var/datum/transaction/T = new(-amount, target_name, purpose, terminal_id)
 		return T.apply_to(D)
@@ -173,7 +173,7 @@
 //Creates money from nothing and deposits it in an account
 /proc/deposit_to_account(attempt_account_number, source_name, purpose, terminal_id, amount)
 	var/datum/money_account/D = get_account(attempt_account_number)
-	if (D)
+	if(D)
 		//create a transaction log entry
 		var/datum/transaction/T = new(amount, source_name, purpose, terminal_id)
 		return T.apply_to(D)
@@ -185,16 +185,16 @@
 	var/datum/money_account/source = get_account(source_account)
 	var/datum/money_account/target = get_account(target_account)
 
-	if (!source || !target)
+	if(!source || !target)
 		return FALSE
-	if (!source.is_valid() || !target.is_valid())
+	if(!source.is_valid() || !target.is_valid())
 		return FALSE
 
 	//We've got both accounts and confirmed they are valid
 
 	//The transaction to take the money
 	var/datum/transaction/T1 = new(amount*-1, target.get_name(), purpose, terminal_id)
-	if (T1.apply_to(source))
+	if(T1.apply_to(source))
 
 		//The transaction to give the money
 		var/datum/transaction/T2 = new(amount, source.get_name(), purpose, terminal_id)

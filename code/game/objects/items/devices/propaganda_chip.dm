@@ -13,9 +13,9 @@
 	set src in oview(1)
 	if(usr.incapacitated() || !Adjacent(usr) || !isturf(loc))
 		return
-	
+
 	for(var/obj/item/device/propaganda_chip/C in get_area(src))
-		if (C.active)
+		if(C.active)
 			to_chat(usr, SPAN_WARNING("Another chip in the area prevents activation."))
 			return
 
@@ -29,16 +29,16 @@
 obj/item/device/propaganda_chip/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
-	
+
 /obj/item/device/propaganda_chip/attack_hand(mob/user)
-	if (active)
+	if(active)
 		switch(alert("Do I want to disturb the chip, it looks delicate","You think...","Yes","No"))
 			if("Yes")
 				if(!Adjacent(user))
 					return
 				visible_message(SPAN_WARNING("[user] destroys [src]!") )
 				playsound(src.loc, 'sound/effects/basscannon.ogg', 100, 1, 15, 15)
-				for (var/mob/M in range(20, src))
+				for(var/mob/M in range(20, src))
 					to_chat(M,SPAN_WARNING("You hear a loud electronic noise"))
 
 				Destroy()
@@ -47,13 +47,13 @@ obj/item/device/propaganda_chip/Destroy()
 	..()
 
 /obj/item/device/propaganda_chip/pickup()
-	if (active)
+	if(active)
 		return
 	..()
 
 /obj/item/device/propaganda_chip/Process()
-	if (active)
-		if (world.time > last_talk_time + 20 SECONDS && prob(10)) // 4 times the time of the talking crystal, multiple chips can exist at once
+	if(active)
+		if(world.time > last_talk_time + 20 SECONDS && prob(10)) // 4 times the time of the talking crystal, multiple chips can exist at once
 			print_message()
 
 /obj/item/device/propaganda_chip/proc/print_message()
@@ -65,13 +65,13 @@ obj/item/device/propaganda_chip/Destroy()
 		if(candidate_mind.assigned_role in list(JOBS_SECURITY))
 			continue
 
-		else 
+		else
 			crew_target_mind = candidate_mind
 
-		if (crew_target_mind)
+		if(crew_target_mind)
 			break
 	var/datum/mind/crew_name
-	if (!crew_target_mind || !(crew_target_mind?.current))
+	if(!crew_target_mind || !(crew_target_mind?.current))
 		crew_name = "Unknown"
 	else
 		crew_name = crew_target_mind.current.real_name
@@ -91,7 +91,7 @@ obj/item/device/propaganda_chip/Destroy()
 	var/message_text = pick(messages)
 	var/message = " <b>[crew_name]</b> says,<FONT SIZE =-2>  \"[message_text]\"</FONT>"
 
-	for (var/mob/living/M in viewers(src))
+	for(var/mob/living/M in viewers(src))
 		to_chat(M, "[message]")
 	last_talk_time = world.time
-		
+

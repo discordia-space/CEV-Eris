@@ -25,8 +25,8 @@
 	if(required_tool_quality && tool.tool_qualities)
 		return tool.tool_qualities[required_tool_quality]
 	else
-		for (var/T in allowed_tools)
-			if (istype(tool,T))
+		for(var/T in allowed_tools)
+			if(istype(tool,T))
 				return allowed_tools[T]
 	return 0
 
@@ -59,14 +59,11 @@
 
 // does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
 /datum/old_surgery_step/proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	//var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	//if (can_infect && affected)
-	//	affected.spread_germs_from(user)
-	if (ishuman(user) && prob(60))
+	if(ishuman(user) && prob(60))
 		var/mob/living/carbon/human/H = user
-		if (blood_level)
+		if(blood_level)
 			H.bloody_hands(target,0)
-		if (blood_level > 1)
+		if(blood_level > 1)
 			H.bloody_body(target,0)
 	return
 
@@ -134,7 +131,7 @@ proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		else
 			to_chat(user, SPAN_WARNING("You must remain close to your patient to conduct surgery."))
 
-		if (ishuman(M))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			H.update_surgery()
 		return	1	  												//don't want to do weapony things after surgery
@@ -144,7 +141,7 @@ proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 proc/sort_surgeries()
 	var/gap = GLOB.old_surgery_steps.len
 	var/swapped = 1
-	while (gap > 1 || swapped)
+	while(gap > 1 || swapped)
 		swapped = 0
 		if(gap > 1)
 			gap = round(gap / 1.247330950103979)

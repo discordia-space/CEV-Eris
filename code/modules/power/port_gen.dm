@@ -180,7 +180,7 @@
 	if(!use_reagents_as_fuel)
 		//HasFuel() should guarantee us that there is enough fuel left, so no need to check that
 		//the only thing we need to worry about is if we are going to rollover to the next sheet
-		if (needed_fuel > sheet_left)
+		if(needed_fuel > sheet_left)
 			sheets--
 			sheet_left = (1 + sheet_left) - needed_fuel
 		else
@@ -200,7 +200,7 @@
 		cooling in order to get more power out.
 	*/
 	var/datum/gas_mixture/environment = loc.return_air()
-	if (environment)
+	if(environment)
 		var/ratio = min(environment.return_pressure()/ONE_ATMOSPHERE, 1)
 		var/ambient = environment.temperature - T20C
 		lower_limit += ambient*ratio
@@ -210,9 +210,9 @@
 
 	//calculate the temperature increase
 	var/bias = 0
-	if (temperature < lower_limit)
+	if(temperature < lower_limit)
 		bias = min(round((average - temperature)/TEMPERATURE_DIVISOR, 1), TEMPERATURE_CHANGE_MAX)
-	else if (temperature > upper_limit)
+	else if(temperature > upper_limit)
 		bias = max(round((temperature - average)/TEMPERATURE_DIVISOR, 1), -TEMPERATURE_CHANGE_MAX)
 
 	//limit temperature increase so that it cannot raise temperature above upper_limit,
@@ -221,20 +221,20 @@
 	var/dec_limit = min(temperature - lower_limit, 0)
 	temperature += between(dec_limit, rand(-7 + bias, 7 + bias), inc_limit)
 
-	if (temperature > max_temperature)
+	if(temperature > max_temperature)
 		overheat()
-	else if (overheating > 0)
+	else if(overheating > 0)
 		overheating--
 
 /obj/machinery/power/port_gen/pacman/handleInactive()
 	var/cooling_temperature = 20
 	var/datum/gas_mixture/environment = loc.return_air()
-	if (environment)
+	if(environment)
 		var/ratio = min(environment.return_pressure()/ONE_ATMOSPHERE, 1)
 		var/ambient = environment.temperature - T20C
 		cooling_temperature += ambient*ratio
 
-	if (temperature > cooling_temperature)
+	if(temperature > cooling_temperature)
 		var/temp_loss = (temperature - cooling_temperature)/TEMPERATURE_DIVISOR
 		temp_loss = between(2, round(temp_loss, 1), TEMPERATURE_CHANGE_MAX)
 		temperature = max(temperature - temp_loss, cooling_temperature)
@@ -245,7 +245,7 @@
 
 /obj/machinery/power/port_gen/pacman/proc/overheat()
 	overheating++
-	if (overheating > 60)
+	if(overheating > 60)
 		explode()
 
 /obj/machinery/power/port_gen/pacman/explode()
@@ -262,16 +262,16 @@
 		reagents.clear_reagents()
 
 	var/datum/gas_mixture/environment = loc.return_air()
-	if (environment)
+	if(environment)
 		environment.adjust_gas_temp("plasma", plasma/10, temperature + T0C)
 
 	..()
 
 /obj/machinery/power/port_gen/pacman/emag_act(var/remaining_charges, var/mob/user)
-	if (active && prob(25))
+	if(active && prob(25))
 		explode() //if they're foolish enough to emag while it's running
 
-	if (!emagged)
+	if(!emagged)
 		emagged = 1
 		return 1
 
@@ -307,7 +307,7 @@
 						var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 						for(var/obj/item/CP in component_parts)
 							CP.loc = src.loc
-						while ( sheets > 0 )
+						while( sheets > 0 )
 							DropFuel()
 						new_frame.state = 2
 						new_frame.icon_state = "box_1"
@@ -341,7 +341,7 @@
 
 /obj/machinery/power/port_gen/pacman/attack_hand(mob/user)
 	..()
-	if (!anchored)
+	if(!anchored)
 		return
 	nano_ui_interact(user)
 
@@ -375,7 +375,7 @@
 	data["fuel_ejectable"] = TRUE
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "pacman.tmpl", src.name, 500, 560)
 		ui.set_initial_data(data)
 		ui.open()
@@ -384,8 +384,8 @@
 
 /*
 /obj/machinery/power/port_gen/pacman/interact(mob/user)
-	if (get_dist(src, user) > 1 )
-		if (!isAI(user))
+	if(get_dist(src, user) > 1 )
+		if(!isAI(user))
 			user.unset_machine()
 			user << browse(null, "window=port_gen")
 			return
@@ -393,7 +393,7 @@
 	user.set_machine(src)
 
 	var/dat = text("<b>[name]</b><br>")
-	if (active)
+	if(active)
 		dat += text("Generator: <A href='?src=\ref[src];action=disable'>On</A><br>")
 	else
 		dat += text("Generator: <A href='?src=\ref[src];action=enable'>Off</A><br>")
@@ -426,17 +426,17 @@
 				active = 1
 				update_icon()
 		if(href_list["action"] == "disable")
-			if (active)
+			if(active)
 				active = 0
 				update_icon()
 		if(href_list["action"] == "eject")
 			if(!active)
 				DropFuel()
 		if(href_list["action"] == "lower_power")
-			if (power_output > 1)
+			if(power_output > 1)
 				power_output--
-		if (href_list["action"] == "higher_power")
-			if (power_output < max_power_output || (emagged && power_output < round(max_power_output*2.5)))
+		if(href_list["action"] == "higher_power")
+			if(power_output < max_power_output || (emagged && power_output < round(max_power_output*2.5)))
 				power_output++
 
 /obj/machinery/power/port_gen/pacman/super
@@ -456,15 +456,15 @@
 
 /obj/machinery/power/port_gen/pacman/super/UseFuel()
 	//produces a tiny amount of radiation when in use
-	if (prob(2*power_output))
-		for (var/mob/living/L in range(src, 5))
+	if(prob(2*power_output))
+		for(var/mob/living/L in range(src, 5))
 			L.apply_effect(1, IRRADIATE) //should amount to ~5 rads per minute at max safe power
 	..()
 
 /obj/machinery/power/port_gen/pacman/super/explode()
 	//a nice burst of radiation
 	var/rads = 50 + (sheets + sheet_left)*1.5
-	for (var/mob/living/L in range(src, 10))
+	for(var/mob/living/L in range(src, 10))
 		//should really fall with the square of the distance, but that makes the rads value drop too fast
 		//I dunno, maybe physics works different when you live in 2D -- SM radiation also works like this, apparently
 		L.apply_effect(max(20, round(rads/get_dist(L,src))), IRRADIATE)

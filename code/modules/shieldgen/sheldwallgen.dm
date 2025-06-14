@@ -225,7 +225,7 @@
 				return
 
 	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/modular_computer))
-		if (src.allowed(user))
+		if(src.allowed(user))
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 		else
@@ -342,7 +342,7 @@
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return prob(20)
 	else
-		if (istype(mover, /obj/item/projectile))
+		if(istype(mover, /obj/item/projectile))
 			return prob(10)
 		else
 			return !src.density

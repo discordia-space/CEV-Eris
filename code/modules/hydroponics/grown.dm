@@ -206,7 +206,7 @@
 						for(var/i=0,i<2,i++)
 							var/obj/item/stack/material/wood/NG = new (user.loc)
 							if(flesh_colour) NG.color = flesh_colour
-							for (var/obj/item/stack/material/wood/G in user.loc)
+							for(var/obj/item/stack/material/wood/G in user.loc)
 								if(G==NG)
 									continue
 								if(G.amount>=G.max_amount)
@@ -280,7 +280,7 @@
 		for(var/i=0,i<2,i++)
 			var/obj/item/stack/tile/grass/G = new (user.loc)
 			if(flesh_colour) G.color = flesh_colour
-			for (var/obj/item/stack/tile/grass/NG in user.loc)
+			for(var/obj/item/stack/tile/grass/NG in user.loc)
 				if(G==NG)
 					continue
 				if(NG.amount>=NG.max_amount)

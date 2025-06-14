@@ -10,7 +10,7 @@
 	Note that AI have no need for the adjacency proc, and so this proc is a lot cleaner.
 */
 /mob/living/silicon/ai/can_click()
-	if (stat || control_disabled)
+	if(stat || control_disabled)
 		return FALSE
 	return ..()
 

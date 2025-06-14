@@ -95,7 +95,7 @@
 
 /mob/living/silicon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1)
 
-	if (istype(source, /obj/machinery/containment_field))
+	if(istype(source, /obj/machinery/containment_field))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, loc)
 		s.start()
@@ -116,7 +116,7 @@
 	return 1
 
 /mob/living/silicon/bullet_act(var/obj/item/projectile/Proj)
-	if (Proj.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+	if(Proj.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 
 	if(!Proj.nodamage)
@@ -163,7 +163,7 @@
 		return
 
 	. = ..(language)
-	if (can_speak && (added_language in languages) && !(added_language in speech_synthesizer_langs))
+	if(can_speak && (added_language in languages) && !(added_language in speech_synthesizer_langs))
 		speech_synthesizer_langs += added_language
 		return 1
 
@@ -178,13 +178,13 @@
 /mob/living/silicon/proc/toggle_sensor_mode()
 	var/sensor_type = input("Please select sensor type.", "Sensor Integration", null) in list("Security", "Medical","Disable")
 	switch(sensor_type)
-		if ("Security")
+		if("Security")
 			sensor_mode = SEC_HUD
 			to_chat(src, SPAN_NOTICE("Security records overlay enabled."))
-		if ("Medical")
+		if("Medical")
 			sensor_mode = MED_HUD
 			to_chat(src, SPAN_NOTICE("Life signs monitor overlay enabled."))
-		if ("Disable")
+		if("Disable")
 			sensor_mode = 0
 			to_chat(src, "Sensor augmentations disabled.")
 

@@ -63,7 +63,7 @@
 
 /obj/machinery/cash_register/interact(mob/user as mob)
 	var/dat = "<h2>Cash Register<hr></h2>"
-	if (locked)
+	if(locked)
 		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Unlock</a><br>"
 		dat += "Linked account: <b>[linked_account ? linked_account.owner_name : "None"]</b><br>"
 		dat += "<b>[cash_locked? "Unlock" : "Lock"] Cash Box</b> | "
@@ -123,11 +123,11 @@
 					to_chat(usr, "\icon[src]<span class='warning'>Account not found.</span>")
 			if("custom_order")
 				var/t_purpose = sanitize(input("Enter purpose", "New purpose") as text)
-				if (!t_purpose || !Adjacent(usr)) return
+				if(!t_purpose || !Adjacent(usr)) return
 				transaction_purpose = t_purpose
 				item_list += t_purpose
 				var/t_amount = round(input("Enter price", "New price") as num)
-				if (!t_amount || !Adjacent(usr)) return
+				if(!t_amount || !Adjacent(usr)) return
 				transaction_amount += t_amount
 				price_list += t_amount
 				playsound(src, 'sound/machines/twobeep.ogg', 25)
@@ -136,7 +136,7 @@
 				var/item_name = locate(href_list["item"])
 				var/n_amount = round(input("Enter amount", "New amount") as num)
 				n_amount = CLAMP(n_amount, 0, 20)
-				if (!item_list[item_name] || !Adjacent(usr)) return
+				if(!item_list[item_name] || !Adjacent(usr)) return
 				transaction_amount += (n_amount - item_list[item_name]) * price_list[item_name]
 				if(!n_amount)
 					item_list -= item_name
@@ -178,10 +178,10 @@
 	var/obj/item/card/id/I = O.GetIdCard()
 	if(I)
 		scan_card(I, O)
-	else if (istype(O, /obj/item/spacecash/ewallet))
+	else if(istype(O, /obj/item/spacecash/ewallet))
 		var/obj/item/spacecash/ewallet/E = O
 		scan_wallet(E)
-	else if (istype(O, /obj/item/spacecash))
+	else if(istype(O, /obj/item/spacecash))
 		var/obj/item/spacecash/SC = O
 		if(cash_open)
 			to_chat(user, "You neatly sort the cash into the box.")
@@ -219,10 +219,10 @@
 
 
 /obj/machinery/cash_register/proc/scan_card(obj/item/card/id/I, obj/item/ID_container)
-	if (!transaction_amount)
+	if(!transaction_amount)
 		return
 
-	if (cash_open)
+	if(cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
 		to_chat(usr, "\icon[src]<span class='warning'>The cash box is open.</span>")
 		return
@@ -230,7 +230,7 @@
 	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(I))
 		return
 
-	if (!linked_account)
+	if(!linked_account)
 		usr.visible_message("\icon[src]<span class='warning'>Unable to connect to linked account.</span>")
 		return
 
@@ -278,10 +278,10 @@
 
 
 /obj/machinery/cash_register/proc/scan_wallet(obj/item/spacecash/ewallet/E)
-	if (!transaction_amount)
+	if(!transaction_amount)
 		return
 
-	if (cash_open)
+	if(cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
 		to_chat(usr, "\icon[src]<span class='warning'>The cash box is open.</span>")
 		return
@@ -310,10 +310,10 @@
 
 
 /obj/machinery/cash_register/proc/scan_cash(obj/item/spacecash/SC)
-	if (!transaction_amount)
+	if(!transaction_amount)
 		return
 
-	if (cash_open)
+	if(cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
 		to_chat(usr, "\icon[src]<span class='warning'>The cash box is open.</span>")
 		return
@@ -346,7 +346,7 @@
 	if(item_list.len > 10)
 		src.visible_message("\icon[src]<span class='warning'>Only up to ten different items allowed per purchase.</span>")
 		return
-	if (cash_open)
+	if(cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
 		to_chat(usr, "\icon[src]<span class='warning'>The cash box is open.</span>")
 		return
@@ -424,7 +424,7 @@
 
 
 /obj/machinery/cash_register/proc/check_account()
-	if (!linked_account)
+	if(!linked_account)
 		usr.visible_message("\icon[src]<span class='warning'>Unable to connect to linked account.</span>")
 		return 0
 

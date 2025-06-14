@@ -28,7 +28,7 @@
 		return "No active chemical agents found in [O]."
 	. = list("Chemicals found in [O]:")
 	var/one_percent = O.reagents.total_volume / 100
-	for (var/datum/reagent/R in O.reagents.reagent_list)
+	for(var/datum/reagent/R in O.reagents.reagent_list)
 		. += "[R][details ? ": [R.volume / one_percent]%" : ""]"
 	. = jointext(., "<br>")
 

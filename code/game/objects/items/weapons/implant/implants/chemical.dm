@@ -45,7 +45,7 @@
 			qdel(src)
 
 /obj/item/implant/chem/emp_act(severity)
-	if (malfunction)
+	if(malfunction)
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 

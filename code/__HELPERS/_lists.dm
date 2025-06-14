@@ -11,10 +11,10 @@
 
 #define listequal(A, B) (A.len == B.len && !length(A^B))
 
-#define LAZYINITLIST(L) if (!L) L = list()
+#define LAZYINITLIST(L) if(!L) L = list()
 
 #define LAZYLEN(L) length(L)
-#define UNSETEMPTY(L) if (L && !LAZYLEN(L)) L = null
+#define UNSETEMPTY(L) if(L && !LAZYLEN(L)) L = null
 #define LAZYREMOVE(L, I) if(L) { L -= I; if(!LAZYLEN(L)) { L = null; } }
 #define LAZYADD(L, I) if(!L) { L = list(); } L += I;
 #define LAZYINSERT(L, I, X) if(!L) { L = list(); } L.Insert(X, I);
@@ -31,7 +31,7 @@
 #define LAZYSET(L,K,V) if(!L) { L = list(); } L[K] = V;
 
 //Adds value to the existing value of a key
-#define LAZYAPLUS(L,K,V) if(!L) { L = list(); } if (!L[K]) { L[K] = 0; } L[K] += V;
+#define LAZYAPLUS(L,K,V) if(!L) { L = list(); } if(!L[K]) { L[K] = 0; } L[K] += V;
 
 //Subtracts value from the existing value of a key
 #define LAZYAMINUS(L,K,V) if(L && L[K]) { L[K] -= V; if(!LAZYLEN(L[K])) { L -= K } }
@@ -82,17 +82,17 @@
 //Returns a list in plain english as a string
 /proc/english_list(list/input, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
 	var/total = input.len
-	if (!total)
+	if(!total)
 		return "[nothing_text]"
-	else if (total == 1)
+	else if(total == 1)
 		return "[input[1]]"
-	else if (total == 2)
+	else if(total == 2)
 		return "[input[1]][and_text][input[2]]"
 	else
 		var/output = ""
 		var/index = 1
-		while (index < total)
-			if (index == total - 1)
+		while(index < total)
+			if(index == total - 1)
 				comma_text = final_comma_text
 
 			output += "[input[index]][comma_text]"
@@ -163,7 +163,7 @@
 	. = list()
 	for(var/thing in atoms)
 		var/atom/A = thing
-		if (typecache[A.type])
+		if(typecache[A.type])
 			. += A
 
 /proc/typecache_filter_list_reverse(list/atoms, list/typecache)
@@ -262,15 +262,15 @@
 /proc/pickweight(list/L, base_weight = 1)
 	var/total = 0
 	var/item
-	for (item in L)
-		if (!L[item])
+	for(item in L)
+		if(!L[item])
 			L[item] = base_weight
 		total += L[item]
 
 	total = rand() * total
-	for (item in L)
+	for(item in L)
 		total -= L[item]
-		if (total <= 0)
+		if(total <= 0)
 			return item
 
 //Picks a number of elements from a list based on weight.
@@ -280,8 +280,8 @@
 	//First we total the list as normal
 	var/total = 0
 	var/item
-	for (item in L)
-		if (!L[item])
+	for(item in L)
+		if(!L[item])
 			L[item] = base_weight
 		total += L[item]
 
@@ -289,13 +289,13 @@
 	//It is critical that this list be sorted in ascending order, so we will build it in that order
 	//First one is free, so we start counting at 2
 	var/list/requests = list(rand(1, total))
-	for (var/i in 2 to quantity)
+	for(var/i in 2 to quantity)
 		//Each time we generate the next request
 		var/newreq = rand()* total
 		//We will loop through all existing requests
-		for (var/j in 1 to requests.len)
+		for(var/j in 1 to requests.len)
 			//We keep going through the list until we find an element which is bigger than the one we want to add
-			if (requests[j] > newreq)
+			if(requests[j] > newreq)
 				//And then we insert the newqreq at that point, pushing everything else forward
 				requests.Insert(j, newreq)
 				break
@@ -311,11 +311,11 @@
 	total = 0
 
 	//Now we will iterate forward through the items list, adding each weight to the total
-	for (item in L)
+	for(item in L)
 		total += L[item]
 
 		//After each item we do a while loop
-		while (requests.len && total >= requests[1])
+		while(requests.len && total >= requests[1])
 			//If the total is higher than the value of the first request
 			results += item //We add this item to the results list
 			requests.Cut(1,2) //And we cut off the top of the requests list
@@ -339,7 +339,7 @@
 //Pick a random element from the list by weight and remove it from the list.
 //Result is returned as a list in the format list(key, value)
 /proc/pickweight_n_take(list/L)
-	if (L.len)
+	if(L.len)
 		. = pickweight(L)
 		L.Remove(.)
 
@@ -427,7 +427,7 @@
 	var/temp = L.Copy()
 	L.len = 0
 	for(var/key in temp)
-		if (isnum(key))
+		if(isnum(key))
 			L |= key
 		else
 			L[key] = temp[key]
@@ -471,27 +471,27 @@
 //returns an unsorted list of nearest map objects from a given list to sourceLocation using get_dist, acceptableDistance sets tolerance for distance
 //result is intended to be used with pick()
 /proc/nearestObjectsInList(list/L, sourceLocation, acceptableDistance = 0)
-	if (L.len == 1)
+	if(L.len == 1)
 		return L.Copy()
 
 	var/list/nearestObjects = new
 	var/shortestDistance = INFINITY
-	for (var/object in L)
+	for(var/object in L)
 		var/distance = get_dist(sourceLocation,object)
 
-		if (distance <= acceptableDistance)
-			if (shortestDistance > acceptableDistance)
+		if(distance <= acceptableDistance)
+			if(shortestDistance > acceptableDistance)
 				shortestDistance = acceptableDistance
 				nearestObjects.Cut()
 			nearestObjects += object
 
-		else if (shortestDistance > acceptableDistance)
-			if (distance < shortestDistance)
+		else if(shortestDistance > acceptableDistance)
+			if(distance < shortestDistance)
 				shortestDistance = distance
 				nearestObjects.Cut()
 				nearestObjects += object
 
-			else if (distance == shortestDistance)
+			else if(distance == shortestDistance)
 				nearestObjects += object
 
 	return nearestObjects
@@ -610,28 +610,28 @@
 	var/sort_result
 
 	var/current_sort_text
-	for (current_sort_text in incoming)
+	for(current_sort_text in incoming)
 		low_index = 1
 		high_index = sorted_text.len
-		while (low_index <= high_index)
+		while(low_index <= high_index)
 			// Figure out the midpoint, rounding up for fractions.  (BYOND rounds down, so add 1 if necessary.)
 			midway_calc = (low_index + high_index) / 2
 			current_index = round(midway_calc)
-			if (midway_calc > current_index)
+			if(midway_calc > current_index)
 				current_index++
 			current_item = sorted_text[current_index]
 
-			if (case_sensitive)
+			if(case_sensitive)
 				sort_result = sorttextEx(current_sort_text, current_item)
 			else
 				sort_result = sorttext(current_sort_text, current_item)
 
 			switch(sort_result)
-				if (1)
+				if(1)
 					high_index = current_index - 1	// current_sort_text < current_item
-				if (-1)
+				if(-1)
 					low_index = current_index + 1	// current_sort_text > current_item
-				if (0)
+				if(0)
 					low_index = current_index		// current_sort_text == current_item
 					break
 
@@ -639,7 +639,7 @@
 		insert_index = low_index
 
 		// Special case adding to end of list.
-		if (insert_index > sorted_text.len)
+		if(insert_index > sorted_text.len)
 			sorted_text += current_sort_text
 			continue
 

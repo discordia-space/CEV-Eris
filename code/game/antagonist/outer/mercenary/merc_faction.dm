@@ -42,7 +42,7 @@
 
 /datum/faction/mercenary/add_leader(var/datum/antagonist/member, var/announce = TRUE)
 	.=..()
-	if (.)
+	if(.)
 		//put the commander outfit on
 		var/decl/hierarchy/outfit/O = outfit_by_type(/decl/hierarchy/outfit/antagonist/mercenary/commander)
 		O.equip(member.owner.current, OUTFIT_ADJUSTMENT_NO_RESET)
@@ -59,7 +59,7 @@ This could potentially return a list of thousands of atoms, but thats fine. Its 
 /datum/faction/mercenary/get_inventory()
 	var/list/contents = ..()
 	var/list/search_areas = list(/area/shuttle/mercenary, /area/centcom/merc_base)
-	for (var/a in search_areas)
+	for(var/a in search_areas)
 		contents |= get_area_contents(a)
 
 	return contents

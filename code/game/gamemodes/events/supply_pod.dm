@@ -32,7 +32,7 @@
 	add_guardians()
 
 	//Sometimes the pod will open itself
-	if (prob(50))
+	if(prob(50))
 		auto_open = TRUE
 
 /datum/event/supply_pod/proc/find_dropsite()
@@ -42,33 +42,33 @@
 	var/turf/T
 	while(!done)
 		attempts--
-		if (attempts <= 0)
+		if(attempts <= 0)
 			done = TRUE
 
 		var/area/A = random_ship_area(TRUE, TRUE, TRUE)
-		if (!A)
+		if(!A)
 			//Something is horribly wrong
 			kill()
 			break
 
 		T = A.random_space()
-		if (!T)
+		if(!T)
 			continue
 
 		var/nearspace = FALSE
 		//We'll try not to cause breaches by dropping it somewhere sufficiently far from space
-		for (var/u in RANGE_TURFS(5, T))
+		for(var/u in RANGE_TURFS(5, T))
 			//We test each tile within a radius of 4
 			var/turf/U = u
-			if (turf_is_external(U))
+			if(turf_is_external(U))
 				nearspace = TRUE
 				break
 
 		//If no external tiles were found within the radius, we are good to go!
-		if (!nearspace)
+		if(!nearspace)
 			done = TRUE
 
-	if (T)
+	if(T)
 		epicentre = T
 	else
 		//Something is horribly wrong
@@ -78,7 +78,7 @@
 //Next, what will be in it?
 /datum/event/supply_pod/proc/build_contents()
 	//First of all, we'll make it contain a couple of the possible supply pack contents
-	for (var/i = 0; i < 2; i++)
+	for(var/i = 0; i < 2; i++)
 		var/droptype = pick(subtypesof(/datum/supply_drop_loot))
 		var/datum/supply_drop_loot/dropdatum = new droptype
 		pod_contents.Add(dropdatum.contents)
@@ -86,11 +86,11 @@
 
 
 	//Secondly, some rare items, to bring all the boys to the yard
-	for (var/i = 0; i < 10; i++)
+	for(var/i = 0; i < 10; i++)
 		pod_contents.Add(/obj/spawner/pack/rare)
 
 	//Aaand thirdly a bunch of random stuff just to fill out space
-	for (var/i = 0; i < 20; i++)
+	for(var/i = 0; i < 20; i++)
 		pod_contents.Add(/obj/spawner/lowkeyrandom)
 
 
@@ -110,11 +110,11 @@
 	)
 
 	//It may not contain mobs, or it may be a clown car full of horrors that spill forth like boiling oil
-	while (prob(80))
+	while(prob(80))
 		var/newtype = pick(possible_mobs)
 
 		var/num = rand(2,6)
-		for (var/i = 0; i < num;i++)
+		for(var/i = 0; i < num;i++)
 			pod_contents.Add(newtype)
 
 

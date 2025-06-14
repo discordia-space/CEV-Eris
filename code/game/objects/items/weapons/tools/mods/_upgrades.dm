@@ -6,7 +6,7 @@
 */
 
 /*/client/verb/debugupgrades()
-	for (var/t in subtypesof(/obj/item/tool_upgrade))
+	for(var/t in subtypesof(/obj/item/tool_upgrade))
 		new t(usr.loc)
 */
 
@@ -55,7 +55,7 @@
 	if(isitem(A))
 		var/obj/item/T = A
 		//No using multiples of the same upgrade
-		for (var/obj/item/I in T.item_upgrades)
+		for(var/obj/item/I in T.item_upgrades)
 			if(I.type == parent.type || (exclusive_type && istype(I.type, exclusive_type)))
 				if(user)
 					to_chat(user, SPAN_WARNING("An upgrade of this type is already installed!"))
@@ -101,7 +101,7 @@
 
 	if(required_qualities.len)
 		var/qmatch = FALSE
-		for (var/q in required_qualities)
+		for(var/q in required_qualities)
 			if(T.ever_has_quality(q))
 				qmatch = TRUE
 				break
@@ -455,7 +455,7 @@
 	SIGNAL_HANDLER
 	if(tool_upgrades[UPGRADE_SANCTIFY])
 		reference.Add(SPAN_NOTICE("Does additional burn damage to mutants."))
-	if (tool_upgrades[UPGRADE_PRECISION] > 0)
+	if(tool_upgrades[UPGRADE_PRECISION] > 0)
 		reference.Add(SPAN_NOTICE("Enhances precision by [tool_upgrades[UPGRADE_PRECISION]]"))
 	else if(tool_upgrades[UPGRADE_PRECISION] < 0)
 		reference.Add(SPAN_WARNING("Reduces precision by [abs(tool_upgrades[UPGRADE_PRECISION])]"))

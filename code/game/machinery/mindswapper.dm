@@ -23,7 +23,7 @@
 /obj/machinery/mindswapper/update_icon()
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if (operating)
+	if(operating)
 		icon_state = "mindswap_on"
 	else
 		icon_state = "mindswap_off"
@@ -80,7 +80,7 @@
 	var/list/swapBoddies = list()
 	var/list/swapMinds = list()
 	for(var/mob/living/M in range(swap_range,src))
-		if (M.stat != DEAD && M.mob_classification != CLASSIFICATION_SYNTHETIC && !(M.type in swap_blacklist))  // candidates should not be dead
+		if(M.stat != DEAD && M.mob_classification != CLASSIFICATION_SYNTHETIC && !(M.type in swap_blacklist))  // candidates should not be dead
 			swapBoddies += M
 			swapMinds += M.ghostize(0)
 	// Shuffle the list containing the candidates' boddies

@@ -235,7 +235,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if (usr.incapacitated() || occupant == usr)
+	if(usr.incapacitated() || occupant == usr)
 		return
 
 	go_out()

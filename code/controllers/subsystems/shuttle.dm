@@ -15,21 +15,21 @@ SUBSYSTEM_DEF(shuttle)
 	last_landmark_registration_time = world.time
 	for(var/shuttle_type in subtypesof(/datum/shuttle))
 		var/datum/shuttle/shuttle = shuttle_type
-		if (!initial(shuttle.defer_initialisation))
+		if(!initial(shuttle.defer_initialisation))
 			initialise_shuttle(shuttle_type)
 	. = ..()
 
 /datum/controller/subsystem/shuttle/fire(resumed = FALSE)
-	if (!resumed)
+	if(!resumed)
 		working_shuttles = process_shuttles.Copy()
 
-	while (working_shuttles.len)
+	while(working_shuttles.len)
 		var/datum/shuttle/autodock/shuttle = working_shuttles[working_shuttles.len]
 		working_shuttles.len--
 		if(shuttle.process_state)
 			shuttle.Process()
 
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
 
@@ -50,8 +50,8 @@ SUBSYSTEM_DEF(shuttle)
 	msg += "S:[LAZYLEN(shuttles)], L:[LAZYLEN(registered_shuttle_landmarks)]"
 
 /datum/controller/subsystem/shuttle/proc/get_shuttle(var/needle)
-	for (var/S in shuttles)
-		if (S == needle)
+	for(var/S in shuttles)
+		if(S == needle)
 			return shuttles[S]
 
 	return null

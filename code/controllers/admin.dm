@@ -71,8 +71,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 	var/list/controllers = list()
 	var/list/controller_choices = list()
 
-	for (var/datum/controller/controller in world)
-		if (istype(controller, /datum/controller/subsystem))
+	for(var/datum/controller/controller in world)
+		if(istype(controller, /datum/controller/subsystem))
 			continue
 		controllers["[controller] (controller.type)"] = controller //we use an associated list to ensure clients can't hold references to controllers
 		controller_choices += "[controller] (controller.type)"
@@ -80,7 +80,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 	var/datum/controller/controller_string = input("Select controller to debug", "Debug Controller") as null|anything in controller_choices
 	var/datum/controller/controller = controllers[controller_string]
 
-	if (!istype(controller))
+	if(!istype(controller))
 		return
 	debug_variables(controller)
 

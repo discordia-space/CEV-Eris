@@ -24,7 +24,7 @@ COMSIG_ABERRANT_SECONDARY
 	var/install_start_action = "attaching"
 	var/install_success_action = "attached"
 	var/install_time = WORKTIME_FAST
-	//var/install_tool_quality = null				
+	//var/install_tool_quality = null
 	var/install_difficulty = FAILCHANCE_ZERO
 	var/install_stat = STAT_COG
 	var/install_sound = WORKSOUND_HONK
@@ -35,7 +35,7 @@ COMSIG_ABERRANT_SECONDARY
 	var/removal_stat = STAT_COG
 
 	var/mod_time = WORKTIME_FAST
-	var/mod_tool_quality = null				
+	var/mod_tool_quality = null
 	var/mod_difficulty = FAILCHANCE_ZERO
 	var/mod_stat = STAT_COG
 	var/mod_sound = WORKSOUND_HONK
@@ -48,7 +48,7 @@ COMSIG_ABERRANT_SECONDARY
 
 	// These should be flags used by a single var
 	var/adjustable = FALSE
-	var/destroy_on_removal = FALSE 
+	var/destroy_on_removal = FALSE
 	var/removable = TRUE
 	var/breakable = FALSE //Some mods are meant to be tamper-resistant and should be removed only in a hard way
 
@@ -81,7 +81,7 @@ COMSIG_ABERRANT_SECONDARY
 		if(!multiples_allowed)
 			var/obj/item/I = A
 			//No using multiples of the same upgrade
-			for (var/obj/item/item in I.item_upgrades)
+			for(var/obj/item/item in I.item_upgrades)
 				if(item.type == parent.type || (exclusive_type && istype(item, exclusive_type)))
 					if(user)
 						to_chat(user, SPAN_WARNING("A modification of this type is already attached!"))
@@ -108,7 +108,7 @@ COMSIG_ABERRANT_SECONDARY
 			if(user)
 				to_chat(user, SPAN_WARNING("\The [I] can not accept \the [parent]!"))
 			return FALSE
-	
+
 	return TRUE
 
 /datum/component/modification/proc/apply(obj/item/A, mob/living/user)
@@ -187,7 +187,7 @@ COMSIG_ABERRANT_SECONDARY
 	details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
 	if(examine_stat_secondary)
 		details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
-	
+
 	if(examine_msg)
 		reference.Add(SPAN_WARNING(examine_msg))
 	if(details_unlocked)

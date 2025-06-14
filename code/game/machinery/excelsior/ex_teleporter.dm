@@ -112,7 +112,7 @@ var/global/excelsior_last_draft = 0
 	if(C)
 		max_energy = C.maxcharge //Big buff for max energy
 		excelsior_max_energy = 0
-		for (var/obj/machinery/complant_teleporter/t in excelsior_teleporters)
+		for(var/obj/machinery/complant_teleporter/t in excelsior_teleporters)
 			excelsior_max_energy += t.max_energy
 		excelsior_energy = min(excelsior_energy, excelsior_max_energy)
 		if(C.autorecharging)
@@ -152,16 +152,16 @@ var/global/excelsior_last_draft = 0
 		excelsior_energy = excelsior_max_energy
 		set_power_use(IDLE_POWER_USE)
 
- /**
-  * The nano_ui_interact proc is used to open and update Nano UIs
-  * If nano_ui_interact is not used then the UI will not update correctly
-  * nano_ui_interact is currently defined for /atom/movable
-  *
-  * @param user /mob The mob who is interacting with this ui
-  * @param ui_key string A string key to use for this ui. Allows for multiple unique uis on one obj/mob (defaut value "main")
-  *
-  * @return nothing
-  */
+/*
+* The nano_ui_interact proc is used to open and update Nano UIs
+* If nano_ui_interact is not used then the UI will not update correctly
+* nano_ui_interact is currently defined for /atom/movable
+*
+* @param user /mob The mob who is interacting with this ui
+* @param ui_key string A string key to use for this ui. Allows for multiple unique uis on one obj/mob (defaut value "main")
+*
+* @return nothing
+*/
 /obj/machinery/complant_teleporter/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(user.stat || user.restrained() || stat & (BROKEN|NOPOWER))
 		return
@@ -171,7 +171,7 @@ var/global/excelsior_last_draft = 0
 	time_until_scan = time2text((30 MINUTES - ((world.time - round_start_time) % (30 MINUTES))), "mm:ss")
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "excelsior_teleporter.tmpl", name, 390, 450)
 		ui.set_initial_data(data)
 		ui.open()
@@ -236,7 +236,7 @@ var/global/excelsior_last_draft = 0
 
 	if(href_list["order"])
 		var/ordered_item = href_list["order"]
-		if (materials_list.Find(ordered_item))
+		if(materials_list.Find(ordered_item))
 			var/order_energy_cost = materials_list[ordered_item]["price"]
 			var/order_path = material_stack_type(ordered_item)
 			var/order_amount = materials_list[ordered_item]["amount"]
@@ -244,13 +244,13 @@ var/global/excelsior_last_draft = 0
 
 	if(href_list["order_p"])
 		var/ordered_item = text2path(href_list["order_p"])
-		if (parts_list.Find(ordered_item))
+		if(parts_list.Find(ordered_item))
 			var/order_energy_cost = parts_list[ordered_item]
 			send_order(ordered_item, order_energy_cost, 1)
 
 	if(href_list["order_i"])
 		var/ordered_item = text2path(href_list["order_i"])
-		if (IKEA_list.Find(ordered_item))
+		if(IKEA_list.Find(ordered_item))
 			var/order_energy_cost = IKEA_list[ordered_item]
 			send_order(ordered_item, order_energy_cost, 1)
 
@@ -270,7 +270,7 @@ var/global/excelsior_last_draft = 0
 
 /obj/machinery/complant_teleporter/proc/update_nano_data()
 	nanoui_data["menu"] = nanoui_menu
-	if (nanoui_menu == 1)
+	if(nanoui_menu == 1)
 		var/list/available_mandates = list()
 		var/list/completed_mandates = list()
 		for(var/datum/antag_contract/M in GLOB.excel_antag_contracts)

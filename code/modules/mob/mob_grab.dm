@@ -67,7 +67,7 @@
 
 	//check if assailant is grabbed by victim as well
 	if(assailant.grabbed_by)
-		for (var/obj/item/grab/G in assailant.grabbed_by)
+		for(var/obj/item/grab/G in assailant.grabbed_by)
 			if(G.assailant == affecting && G.affecting == assailant)
 				G.dancing = 1
 				G.adjust_position()
@@ -194,7 +194,7 @@
 		return
 	if(affecting.buckled)
 		var/obj/O = affecting.buckled
-		if (istype(O))
+		if(istype(O))
 			O.post_buckle_mob(affecting) //A hack to fix offsets on altars and tables
 		return
 	if(affecting.lying && state != GRAB_KILL)
@@ -390,7 +390,7 @@
 	// Size check here
 	if(assailant.mob_size > affecting.mob_size)
 		slowdown *= 0.5
-	else if (assailant.mob_size < affecting.mob_size)
+	else if(assailant.mob_size < affecting.mob_size)
 		slowdown *= 1.5
 
 /obj/item/grab/attack(mob/M, mob/living/user)
@@ -475,13 +475,13 @@
 	if(affecting)
 		if(affecting.buckled)
 			var/obj/O = affecting.buckled
-			if (istype(O))
+			if(istype(O))
 				O.post_buckle_mob(affecting) //A hack to fix offsets on altars and tables
 		else
 			animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
-		if (issuperioranimal(affecting))
+		if(issuperioranimal(affecting))
 			var/mob/living/carbon/superior_animal/wrangled = affecting
-			if (wrangled.grabbed_by_friend && assailant && (assailant in wrangled.friends))
+			if(wrangled.grabbed_by_friend && assailant && (assailant in wrangled.friends))
 				wrangled.grabbed_by_friend = FALSE
 		affecting.reset_plane_and_layer()
 		affecting.grabbed_by -= src

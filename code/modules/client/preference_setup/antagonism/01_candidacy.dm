@@ -40,7 +40,7 @@
 		var/datum/antagonist/antag = GLOB.all_antag_selectable_types[A]
 
 		//Multiple antags can share one bantype, we only want it to be shown once
-		if (antag.bantype in bantypes)
+		if(antag.bantype in bantypes)
 			continue
 
 		bantypes += antag.bantype

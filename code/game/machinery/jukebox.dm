@@ -107,9 +107,9 @@
 	update_music()
 
 /obj/machinery/media/jukebox/proc/set_hacked(var/newhacked)
-	if (hacked == newhacked) return
+	if(hacked == newhacked) return
 	hacked = newhacked
-	if (hacked)
+	if(hacked)
 		tracks.Add(secret_tracks)
 	else
 		tracks.Remove(secret_tracks)
@@ -155,7 +155,7 @@
 
 
 /obj/machinery/media/jukebox/proc/update_tape(var/removed)
-	if (!removed)
+	if(!removed)
 		tracks.Add(get_tape_playlist())
 	else
 		tracks.Remove(get_tape_playlist())
@@ -191,7 +191,7 @@
 			overlays += "[state_base]-emagged"
 		else
 			overlays += "[state_base]-running"
-	if (panel_open)
+	if(panel_open)
 		overlays += "panel_open"
 
 /obj/machinery/media/jukebox/Topic(href, href_list)
@@ -284,7 +284,7 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "jukebox.tmpl", title, 450, 600)
 		ui.set_initial_data(data)
 		ui.open()
@@ -361,7 +361,7 @@
 	set category = "Object"
 	set name = "Eject tape"
 
-	if (usr.stat)
+	if(usr.stat)
 		return
 
 	if(my_tape)

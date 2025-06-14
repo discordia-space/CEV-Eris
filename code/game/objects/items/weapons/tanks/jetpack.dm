@@ -100,18 +100,18 @@
 	set category = "Object"
 
 	//Turning off stabilisation always works
-	if (stabilization_on)
+	if(stabilization_on)
 		disable_stabilizer()
 	else
 		enable_stabilizer()
 
 /obj/item/tank/jetpack/proc/enable_stabilizer()
-	if (stabilize(usr, usr.l_move_time, TRUE))
+	if(stabilize(usr, usr.l_move_time, TRUE))
 		stabilization_on = TRUE
 		to_chat(usr, "You toggle the stabilization [stabilization_on? "on":"off"].")
 		return TRUE
 	else
-		if (!on)
+		if(!on)
 			to_chat(usr, SPAN_WARNING("The [src] must be enabled first!"))
 		else
 			to_chat(usr, SPAN_WARNING("The [src] doesnt have enough gas to enable the stabiliser."))
@@ -123,13 +123,13 @@
 
 	//If your jetpack cuts out, you'll fall in a gravity area. Lets trigger that
 	var/atom/movable/A = get_toplevel_atom() //Get what this jetpack is attached to, usually a mob or object
-	if (A)
+	if(A)
 		//This is a hack. Future todo: Make mechas not utilize anchored
-		if (istype(A, /mob/living/exosuit))
+		if(istype(A, /mob/living/exosuit))
 			A.anchored = FALSE
 
 		var/turf/T = get_turf(A)
-		if (T)
+		if(T)
 			T.fallThrough(A)
 		//This proc will handle alll of the logic checks, like gravity, catwalks, other means of staying afloat,
 		//And of course checking if the turf is actually a hole to fall through. We just fire it and let it do the hard work
@@ -152,7 +152,7 @@
 	on = TRUE
 	icon_state = "[icon_state]-on"
 	trail.start()
-	if (ismob(usr))
+	if(ismob(usr))
 		var/mob/M = usr
 		M.update_inv_back()
 		M.update_action_buttons()
@@ -163,7 +163,7 @@
 	on = FALSE
 	icon_state = initial(icon_state)
 	trail.stop()
-	if (ismob(usr))
+	if(ismob(usr))
 		var/mob/M = usr
 		M.update_inv_back()
 		M.update_action_buttons()
@@ -181,10 +181,10 @@
 	if(!(src.on))
 		return FALSE
 
-	if (!operational_safety(user))
+	if(!operational_safety(user))
 		return FALSE
 
-	if (!num)
+	if(!num)
 		num = thrust_cost
 
 	if(get_gas().total_moles < num)
@@ -192,7 +192,7 @@
 		return FALSE
 
 	//Setup a stabilize check, but only if this isn't already from one
-	if (!stabilization_check)
+	if(!stabilization_check)
 		stabilize_done = FALSE
 		addtimer(CALLBACK(src, PROC_REF(stabilize), user, world.time), user.total_movement_delay()*1.5)
 
@@ -229,26 +229,26 @@
 /obj/item/tank/jetpack/proc/stabilize(mob/living/user, schedule_time, enable_stabilize = FALSE)
 	//First up, lets check we still have the user and they're still wearing this jetpack
 
-	if (!operational_safety(user))
+	if(!operational_safety(user))
 		return 0
 
 
 	//If we're not currently trying to turn stabilisation on, then we do some additional checks
-	if (!enable_stabilize)
+	if(!enable_stabilize)
 		//If this is true then this stabilisation is already resolved and paid for.
-		if (stabilize_done)
+		if(stabilize_done)
 			return FALSE
 
 		//In that case it needs to be already turned on
-		if (!stabilization_on)
+		if(!stabilization_on)
 			return FALSE
 
 		//If the time since their last move is 50% more than their movement delay, then they've probably stopped
-		if ((world.time - user.l_move_time) < user.total_movement_delay()*1.25)
+		if((world.time - user.l_move_time) < user.total_movement_delay()*1.25)
 			return FALSE
 
 	//Ok now lets be sure we have enough gas to do stabilisation
-	if (!allow_thrust(thrust_cost, user, stabilization_check = TRUE))
+	if(!allow_thrust(thrust_cost, user, stabilization_check = TRUE))
 		return FALSE
 
 	//Great, everything works fine, the user is now stable
@@ -276,11 +276,11 @@
 */
 /obj/item/tank/jetpack/proc/get_gas()
 	RETURN_TYPE(/datum/gas_mixture)
-	if (istype(gastank, /obj/item/tank))
+	if(istype(gastank, /obj/item/tank))
 		return gastank.air_contents
 
 
-	if (istype(gastank, /obj/machinery/portable_atmospherics))
+	if(istype(gastank, /obj/machinery/portable_atmospherics))
 		var/obj/machinery/portable_atmospherics/canister/C = gastank
 		return C.air_contents
 
@@ -301,7 +301,7 @@
 
 //Safety checks for thrust and stabilisation are seperated into a seperate proc, for overriding
 /obj/item/tank/jetpack/proc/operational_safety(mob/living/user)
-	if (!user || loc != user)
+	if(!user || loc != user)
 		return FALSE
 	return TRUE
 
@@ -320,7 +320,7 @@
 
 
 /obj/item/tank/jetpack/rig/operational_safety(mob/living/user)
-	if (!user || holder.loc != user)
+	if(!user || holder.loc != user)
 		return FALSE
 	return TRUE
 
@@ -351,26 +351,26 @@
 //Whenever we call a function that might use gas, we'll check if its time to start processing
 /obj/item/tank/jetpack/synthetic/allow_thrust(num, mob/living/user, stabilization_check = FALSE)
 	.=..(num, user, stabilization_check)
-	if (!processing)
+	if(!processing)
 		//We'll allow a 5% leeway before we go into sucking mode, to prevent constant turning on and off
-		if (get_gas().total_moles < (default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C)) * 0.95)
+		if(get_gas().total_moles < (default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C)) * 0.95)
 			processing = TRUE
 			START_PROCESSING(SSobj, src)
 
 /obj/item/tank/jetpack/synthetic/stabilize(mob/living/user, schedule_time, enable_stabilize = FALSE)
 	.=..(user, schedule_time, enable_stabilize)
-	if (!processing)
-		if (get_gas().total_moles < (default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C)) * 0.95)
+	if(!processing)
+		if(get_gas().total_moles < (default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C)) * 0.95)
 			processing = TRUE
 			START_PROCESSING(SSobj, src)
 
 
 /obj/item/tank/jetpack/synthetic/Process()
-	if (!draw_air())
+	if(!draw_air())
 		stop_drawing()
 
 /obj/item/tank/jetpack/synthetic/operational_safety(mob/living/user)
-	if (!component || !component.powered)
+	if(!component || !component.powered)
 		return FALSE
 	return TRUE
 
@@ -378,26 +378,26 @@
 //Until our tank is full enough
 /obj/item/tank/jetpack/synthetic/proc/draw_air()
 	var/turf/T = get_turf(src)
-	if (!T)
+	if(!T)
 		return
 	var/datum/gas_mixture/environment = T.return_air()
-	if (!environment)
+	if(!environment)
 		return
 
 	var/pressure = environment.return_pressure()
-	if (pressure < minimum_pressure)
+	if(pressure < minimum_pressure)
 		return
 
 	//Ok we've got a sufficiently pressurised environment, now lets make sure we have the power
 	var/mob/living/silicon/robot/R = get_holding_mob()
-	if (!R)
+	if(!R)
 		STOP_PROCESSING(SSobj, src)
 
-	if (!operational_safety())
+	if(!operational_safety())
 		return
 
 	//We now start compressing.
-	if (!compressing)
+	if(!compressing)
 		playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		to_chat(R, SPAN_NOTICE("Your [src] clicks as it starts drawing and compressing air to refill the tank"))
 
@@ -414,13 +414,13 @@
 
 //Called whenever compression fails for some reason, or when it finishes and the tank is full
 /obj/item/tank/jetpack/synthetic/proc/stop_drawing(complete = FALSE)
-	if (compressing)
+	if(compressing)
 		playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		var/mob/living/silicon/robot/R = get_holding_mob()
 		to_chat(R, SPAN_NOTICE("Your [src] clicks as its internal compressor shuts off"))
 	compressing = FALSE
 
-	if (complete)
+	if(complete)
 		STOP_PROCESSING(SSobj, src)
 		processing = FALSE
 
@@ -435,18 +435,18 @@
 
 	//If we're inside something that's not a turf, then ask that thing for its jetpack instead
 		//This generally means vehicles/mechs
-	if (!istype(loc, /turf))
+	if(!istype(loc, /turf))
 		return loc?.get_jetpack(src)
 
 	// Search the human for a jetpack. Either on back or on a RIG that's on
 	// on their back.
-	if (istype(back, /obj/item/tank/jetpack))
+	if(istype(back, /obj/item/tank/jetpack))
 		return back
-	else if (istype(s_store, /obj/item/tank/jetpack))
+	else if(istype(s_store, /obj/item/tank/jetpack))
 		return s_store
-	else if (istype(back, /obj/item/rig))
+	else if(istype(back, /obj/item/rig))
 		var/obj/item/rig/rig = back
-		for (var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
+		for(var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
 			return module.jets
 
 /mob/living/silicon/robot/get_jetpack(mob/user)

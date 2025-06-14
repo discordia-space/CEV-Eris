@@ -145,7 +145,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 		return
 
 	var/newname = sanitizeSafe(input(target,"Enter a name, or leave blank for the default name.", "Name change","") as text, MAX_NAME_LEN)
-	if (newname != "")
+	if(newname != "")
 		target.real_name = newname
 		target.name = target.real_name
 

@@ -151,8 +151,8 @@ var/list/channel_to_radio_key = new
 			var/warning_message = "A splitting spike of headache prevents you from saying whatever vile words you planned to say! You think better of saying such nonsense again. The following terms break the atmosphere and are not allowed: &quot;"
 			var/list/words = splittext(message, " ")
 			var/cringe = ""
-			for (var/word in words)
-				if (findtext(word, config.ic_filter_regex))
+			for(var/word in words)
+				if(findtext(word, config.ic_filter_regex))
 					warning_message = "[warning_message]<b>[word]</b> "
 					cringe += "/<b>[word]</b>"
 				else
@@ -179,8 +179,8 @@ var/list/channel_to_radio_key = new
 
 	//parse the radio code and consume it
 	var/message_mode = parse_message_mode(message, "headset")
-	if (message_mode)
-		if (message_mode == "headset")
+	if(message_mode)
+		if(message_mode == "headset")
 			message = copytext(message,2)//parse ;
 		else
 			message = copytext_char(message,3)//parse :s
@@ -339,7 +339,7 @@ var/list/channel_to_radio_key = new
 
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
-	for (var/mob/O in viewers(src, null))
+	for(var/mob/O in viewers(src, null))
 		O.hear_signlang(message, verb, language, src)
 	return 1
 

@@ -17,7 +17,7 @@
 	return energy
 
 /datum/matter_synth/proc/use_charge(var/amount)
-	if (energy >= amount)
+	if(energy >= amount)
 		energy -= amount
 		return 1
 	return 0

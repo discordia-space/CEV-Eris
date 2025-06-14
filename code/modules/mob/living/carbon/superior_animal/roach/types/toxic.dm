@@ -60,7 +60,7 @@
 		L.damage_through_armor(damage, TOX, attack_flag = ARMOR_BIO)
 
 /obj/item/projectile/roach_spit/attack_mob(mob/living/target_mob, distance, miss_modifier=0)
-	if (isroach(target_mob))
+	if(isroach(target_mob))
 		return FALSE // so these pass through roaches
 	..()
 

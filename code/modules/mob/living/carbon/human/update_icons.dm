@@ -149,7 +149,7 @@ Please contact me on #coderbus IRC. ~Carn x
 //	update_hud()		//TODO: remove the need for this
 	overlays.Cut()
 
-	if (icon_update)
+	if(icon_update)
 		icon = stand_icon
 		for(var/image/I in overlays_standing)
 			overlays += I
@@ -479,7 +479,7 @@ var/global/list/damage_icon_parts = list()
 
 //contained sprite gender icons
 /mob/living/carbon/human/proc/get_gender_icon_contained(var/g = MALE)
-	if (g == FEMALE)
+	if(g == FEMALE)
 		return "_f"
 	else
 		return
@@ -507,7 +507,7 @@ var/global/list/damage_icon_parts = list()
 			under_icon = get_gender_icon(gender, "uniform")
 
 		//determine state to use
-		if (!under_state)
+		if(!under_state)
 			if(w_uniform.item_state_slots && w_uniform.item_state_slots[slot_w_uniform_str])
 				under_state = w_uniform.item_state_slots[slot_w_uniform_str]
 			else if(w_uniform.icon_state)
@@ -526,7 +526,7 @@ var/global/list/damage_icon_parts = list()
 			standing.overlays	+= bloodsies
 
 		//accessories
-		if (istype(w_uniform, /obj/item/clothing/under))//Prevent runtime errors with unusual objects
+		if(istype(w_uniform, /obj/item/clothing/under))//Prevent runtime errors with unusual objects
 			var/obj/item/clothing/under/under = w_uniform
 			if(under.accessories.len)
 				for(var/obj/item/clothing/accessory/A in under.accessories)
@@ -609,7 +609,7 @@ var/global/list/damage_icon_parts = list()
 			else
 				overlays_standing[GLASSES_LAYER] = image("icon" = glasses.icon, "icon_state" = state)
 
-		else if (glasses.icon_override)
+		else if(glasses.icon_override)
 			overlays_standing[GLASSES_LAYER] = image(icon = glasses.icon_override,   icon_state = glasses.icon_state)
 
 		else
@@ -622,7 +622,7 @@ var/global/list/damage_icon_parts = list()
 	overlays_standing[L_EAR_LAYER] = null
 	overlays_standing[R_EAR_LAYER] = null
 
-	if (!check_draw_ears())
+	if(!check_draw_ears())
 		if(update_icons)   update_icons()
 		return
 
@@ -727,7 +727,7 @@ var/global/list/damage_icon_parts = list()
 			//Special case here. We will check if the suit store icon contains our desired iconstate
 			//If not we will use the mob's back icon instead. This allows reusing back icons for shoulder-slung guns
 			var/icon/test = new (t_icon)
-			if (!(t_state in icon_states(test)))
+			if(!(t_state in icon_states(test)))
 				t_icon = get_back_icon(s_store)
 
 
@@ -760,7 +760,7 @@ var/global/list/damage_icon_parts = list()
 		else
 			t_icon = get_gender_icon(gender, "hat")
 
-		if (!standing)
+		if(!standing)
 			//Determine the state to use
 			var/t_state = head.icon_state
 
@@ -845,7 +845,7 @@ var/global/list/damage_icon_parts = list()
 			t_icon = wear_suit.item_icons[slot_wear_suit_str]
 
 		//determine state to use
-		if (!suit_state)
+		if(!suit_state)
 			if(wear_suit.item_state_slots && wear_suit.item_state_slots[slot_wear_suit_str])
 				suit_state = wear_suit.item_state_slots[slot_wear_suit_str]
 			else if(wear_suit.icon_state)
@@ -921,7 +921,7 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/proc/get_back_icon(var/obj/item/test = null)
 	if(!test && back)
 		test = back
-	if (test)
+	if(test)
 		//determine the icon to use
 		var/icon/overlay_icon
 		var/overlay_state = ""
@@ -1062,7 +1062,7 @@ var/global/list/damage_icon_parts = list()
 
 			overlays_standing[R_HAND_LAYER] = standing
 
-		if (handcuffed) drop_r_hand() //this should be moved out of icon code
+		if(handcuffed) drop_r_hand() //this should be moved out of icon code
 
 	if(update_icons) update_icons()
 
@@ -1104,7 +1104,7 @@ var/global/list/damage_icon_parts = list()
 
 			overlays_standing[L_HAND_LAYER] = standing
 
-		if (handcuffed) drop_l_hand() //This probably should not be here
+		if(handcuffed) drop_l_hand() //This probably should not be here
 
 	if(update_icons) update_icons()
 
@@ -1150,19 +1150,19 @@ var/global/list/damage_icon_parts = list()
 //Drawcheck functions
 //These functions check if an item should be drawn, or if its covered up by something else
 /mob/living/carbon/human/proc/check_draw_gloves()
-	if (!gloves)
+	if(!gloves)
 		return 0
-	else if (gloves.flags_inv & ALWAYSDRAW)
+	else if(gloves.flags_inv & ALWAYSDRAW)
 		return 1
-	else if (wear_suit && (wear_suit.flags_inv & HIDEGLOVES))
+	else if(wear_suit && (wear_suit.flags_inv & HIDEGLOVES))
 		return 0
 	else
 		return 1
 
 /mob/living/carbon/human/proc/check_draw_ears()
-	if (!l_ear && !r_ear)
+	if(!l_ear && !r_ear)
 		return 0
-	else if ((l_ear && (l_ear.flags_inv & ALWAYSDRAW)) || (r_ear && (r_ear.flags_inv & ALWAYSDRAW)))
+	else if((l_ear && (l_ear.flags_inv & ALWAYSDRAW)) || (r_ear && (r_ear.flags_inv & ALWAYSDRAW)))
 		return 1
 	else if( (head && (head.flags_inv & (HIDEEARS))) || (wear_mask && (wear_mask.flags_inv & (HIDEEARS))))
 		return 0
@@ -1170,9 +1170,9 @@ var/global/list/damage_icon_parts = list()
 		return 1
 
 /mob/living/carbon/human/proc/check_draw_glasses()
-	if (!glasses)
+	if(!glasses)
 		return 0
-	else if (glasses.flags_inv & ALWAYSDRAW)
+	else if(glasses.flags_inv & ALWAYSDRAW)
 		return 1
 	else if( (head && (head.flags_inv & (HIDEEYES))) || (wear_mask && (wear_mask.flags_inv & (HIDEEYES))))
 		return 0
@@ -1181,9 +1181,9 @@ var/global/list/damage_icon_parts = list()
 
 
 /mob/living/carbon/human/proc/check_draw_mask()
-	if (!wear_mask)
+	if(!wear_mask)
 		return 0
-	else if (wear_mask.flags_inv & ALWAYSDRAW)
+	else if(wear_mask.flags_inv & ALWAYSDRAW)
 		return 1
 	else if( head && (head.flags_inv & HIDEEYES))
 		return 0
@@ -1191,9 +1191,9 @@ var/global/list/damage_icon_parts = list()
 		return 1
 
 /mob/living/carbon/human/proc/check_draw_shoes()
-	if (!shoes)
+	if(!shoes)
 		return 0
-	else if (shoes.flags_inv & ALWAYSDRAW)
+	else if(shoes.flags_inv & ALWAYSDRAW)
 		return 1
 	else if(wear_suit && (wear_suit.flags_inv & HIDESHOES))
 		return 0
@@ -1202,9 +1202,9 @@ var/global/list/damage_icon_parts = list()
 
 
 /mob/living/carbon/human/proc/check_draw_underclothing()
-	if (!w_uniform)
+	if(!w_uniform)
 		return 0
-	else if (w_uniform.flags_inv & ALWAYSDRAW)
+	else if(w_uniform.flags_inv & ALWAYSDRAW)
 		return 1
 	else if(wear_suit && (wear_suit.flags_inv & HIDEJUMPSUIT))
 		return 0

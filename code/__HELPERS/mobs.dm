@@ -160,7 +160,7 @@ Proc for attack log creation, because really why not
 
 //checks whether this item is a module of the robot it is located in.
 /proc/is_robot_module(var/obj/item/thing)
-	if (!thing || !isrobot(thing.loc))
+	if(!thing || !isrobot(thing.loc))
 		return 0
 	var/mob/living/silicon/robot/R = thing.loc
 	return (thing in R.module.modules)
@@ -180,15 +180,15 @@ Proc for attack log creation, because really why not
 
 	var/holding = user.get_active_hand()
 	var/datum/progressbar/progbar
-	if (progress)
+	if(progress)
 		progbar = new(user, time, target)
 
 	var/endtime = world.time+time
 	var/starttime = world.time
 	. = 1
-	while (world.time < endtime)
+	while(world.time < endtime)
 		sleep(1)
-		if (progress)
+		if(progress)
 			progbar.update(world.time - starttime)
 		if(!user || !target)
 			. = 0
@@ -208,7 +208,7 @@ Proc for attack log creation, because really why not
 			. = 0
 			break
 
-	if (progbar)
+	if(progbar)
 		qdel(progbar)
 
 /proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, immobile = 1)
@@ -226,21 +226,21 @@ Proc for attack log creation, because really why not
 	var/datum/progressbar/progbar
 
 	var/atom/progtarget = target
-	if (!progtarget && progress) //Fallback behaviour. If no target is set, but the progress bar is enabled
+	if(!progtarget && progress) //Fallback behaviour. If no target is set, but the progress bar is enabled
 		//Then we'll use the user as the target for the progress bar
 		progtarget = user
 
 		//This means there will always be a bar if progress is true
 
-	if (progress)
+	if(progress)
 		progbar = new(user, delay, progtarget)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
 	. = 1
-	while (world.time < endtime)
+	while(world.time < endtime)
 		sleep(1)
-		if (progress)
+		if(progress)
 			progbar.update(world.time - starttime)
 
 		if(!user || user.incapacitated(incapacitation_flags))
@@ -261,7 +261,7 @@ Proc for attack log creation, because really why not
 				. = 0
 				break
 
-	if (progbar)
+	if(progbar)
 		qdel(progbar)
 
 //Defined at mob level for ease of use
@@ -324,7 +324,7 @@ Proc for attack log creation, because really why not
 
 /proc/is_excelsior(var/mob/M)
 	var/obj/item/implant/excelsior/E = locate(/obj/item/implant/excelsior) in M
-	if (E && E.wearer == M)
+	if(E && E.wearer == M)
 		return TRUE
 
 	return FALSE
@@ -417,7 +417,7 @@ Proc for attack log creation, because really why not
 //Returns true if this person has a job which is a department head
 /mob/proc/is_head_role()
 	.=FALSE
-	if (!mind || !mind.assigned_job)
+	if(!mind || !mind.assigned_job)
 		return
 
 	return mind.assigned_job.head_position
@@ -445,7 +445,7 @@ Proc for attack log creation, because really why not
 /world/proc/push_usr(mob/user_mob, datum/callback/invoked_callback, ...)
 	var/temp = usr
 	usr = user_mob
-	if (length(args) > 2)
+	if(length(args) > 2)
 		. = invoked_callback.Invoke(arglist(args.Copy(3)))
 	else
 		. = invoked_callback.Invoke()

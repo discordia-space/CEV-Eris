@@ -214,7 +214,7 @@
 
 //Adds 'u' number of zeros ahead of the text 't'
 /proc/add_zero(t, u)
-	while (length(t) < u)
+	while(length(t) < u)
 		t = "0[t]"
 	return t
 
@@ -241,15 +241,15 @@
 
 //Returns a string with reserved characters and spaces before the first letter removed
 /proc/trim_left(text)
-	for (var/i = 1 to length(text))
-		if (text2ascii(text, i) > 32)
+	for(var/i = 1 to length(text))
+		if(text2ascii(text, i) > 32)
 			return copytext(text, i)
 	return ""
 
 //Returns a string with reserved characters and spaces after the last letter removed
 /proc/trim_right(text)
-	for (var/i = length(text), i > 0, i--)
-		if (text2ascii(text, i) > 32)
+	for(var/i = length(text), i > 0, i--)
+		if(text2ascii(text, i) > 32)
 			return copytext(text, 1, i + 1)
 	return ""
 
@@ -393,21 +393,21 @@ proc/TextPreview(var/string, var/len=40)
 //Takes a direction define and returns the name of it
 /proc/direction_to_text(var/D)
 	switch (D)
-		if (NORTH)
+		if(NORTH)
 			return "North"
-		if (SOUTH)
+		if(SOUTH)
 			return "South"
-		if (EAST)
+		if(EAST)
 			return "East"
-		if (WEST)
+		if(WEST)
 			return "West"
-		if (NORTHWEST)
+		if(NORTHWEST)
 			return "Northwest"
-		if (NORTHEAST)
+		if(NORTHEAST)
 			return "Northeast"
-		if (SOUTHWEST)
+		if(SOUTHWEST)
 			return "Southwest"
-		if (SOUTHEAST)
+		if(SOUTHEAST)
 			return "Southeast"
 		else
 			return "Unknown direction [D]"
@@ -533,7 +533,7 @@ proc/TextPreview(var/string, var/len=40)
 //Generates a clickable link which will jump the camera/ghost to the target atom
 //Useful for admin procs
 /proc/jumplink(var/atom/target)
-	if (QDELETED(target))
+	if(QDELETED(target))
 		return ""
 	var/turf/T = get_turf(target)
 	var/area/A = get_area(target)

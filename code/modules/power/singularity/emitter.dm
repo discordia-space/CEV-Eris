@@ -38,7 +38,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if (src.anchored || usr:stat)
+	if(src.anchored || usr:stat)
 		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 90))
@@ -60,7 +60,7 @@
 	return ..()
 
 /obj/machinery/power/emitter/update_icon()
-	if (active && powernet && avail(active_power_usage))
+	if(active && powernet && avail(active_power_usage))
 		icon_state = "emitter_+a"
 	else
 		icon_state = "emitter"
@@ -181,13 +181,13 @@
 					to_chat(user, SPAN_WARNING("\The [src] needs to be wrenched to the floor."))
 					return
 				if(1)
-					if (I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						state = 2
 						to_chat(user, SPAN_NOTICE("You weld [src] to the floor."))
 						connect_to_network()
 						return
 				if(2)
-					if (I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						state = 1
 						to_chat(user, SPAN_NOTICE("You cut [src] free from the floor."))
 						disconnect_from_network()

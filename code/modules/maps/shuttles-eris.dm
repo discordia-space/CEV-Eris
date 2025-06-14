@@ -142,7 +142,7 @@
 	.=..()
 	var/datum/faction/F = get_faction_by_id(FACTION_SERBS)
 	var/datum/objective/timed/merc/MO = (locate(/datum/objective/timed/merc) in F.objectives)
-	if (MO)
+	if(MO)
 		MO.end_mission()
 
 //This fires, and the mission timer starts ticking, as soon as they leave base
@@ -150,7 +150,7 @@
 	.=..()
 	var/datum/faction/F = get_faction_by_id(FACTION_SERBS)
 	var/datum/objective/timed/merc/MO = (locate(/datum/objective/timed/merc) in F.objectives)
-	if (MO)
+	if(MO)
 		MO.start_mission()
 
 //Docking controller chooses which of our airlocks should open onto the target location.
@@ -278,7 +278,7 @@
 	.=..()
 	var/datum/faction/F = get_faction_by_id(FACTION_PIRATES)
 	var/datum/objective/timed/pirate/MO = (locate(/datum/objective/timed/pirate) in F.objectives)
-	if (MO)
+	if(MO)
 		MO.end_mission()
 
 //This fires, and the mission timer starts ticking, as soon as they leave base
@@ -286,7 +286,7 @@
 	.=..()
 	var/datum/faction/F = get_faction_by_id(FACTION_PIRATES)
 	var/datum/objective/timed/pirate/MO = (locate(/datum/objective/timed/pirate) in F.objectives)
-	if (MO)
+	if(MO)
 		MO.start_mission()
 
 // Cannot go back to the base with an alive outsider
@@ -303,7 +303,7 @@
 	locked_shuttle = TRUE
 
 /datum/shuttle/autodock/multi/antag/pirate/can_launch()
-	if (locked_shuttle || check_back_to_base())
+	if(locked_shuttle || check_back_to_base())
 		return FALSE
 	else
 		return ..()

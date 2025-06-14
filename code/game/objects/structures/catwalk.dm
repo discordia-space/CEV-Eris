@@ -10,7 +10,7 @@
 
 /obj/structure/catwalk/New()
 	..()
-	if (istype(loc, /turf/open))
+	if(istype(loc, /turf/open))
 		var/turf/open/T = loc
 		T.updateFallability()
 	spawn(4)
@@ -31,7 +31,7 @@
 	redraw_nearby_catwalks()
 
 /obj/structure/catwalk/Destroy()
-	if (istype(loc, /turf/open))
+	if(istype(loc, /turf/open))
 		var/turf/open/T = loc
 		T.updateFallability(src)
 	redraw_nearby_catwalks()

@@ -36,9 +36,9 @@ var/list/flooring_cache = list()
 		// Apply edges, corners, and inner corners.
 		overlays.Cut()
 		var/has_border = 0
-		if (!flooring.smooth_nothing)
+		if(!flooring.smooth_nothing)
 		//Check if we're actually going to do anything first
-			if (isnull(set_update_icon))
+			if(isnull(set_update_icon))
 
 				//Check the cardinal turfs
 				for(var/step_dir in cardinal)
@@ -51,7 +51,7 @@ var/list/flooring_cache = list()
 
 
 					//Alright we've figured out whether or not we smooth with this turf
-					if (!is_linked)
+					if(!is_linked)
 						has_border |= step_dir
 
 						//Now, if we don't, then lets add a border
@@ -62,32 +62,32 @@ var/list/flooring_cache = list()
 
 
 			//We can only have inner corners if we're smoothed with something
-			if (has_smooth)
+			if(has_smooth)
 				if(flooring.flags & TURF_HAS_INNER_CORNERS)
 
 					//Quick way to check if we're smoothed with both north and east
 					if((has_smooth & NORTHEAST) == NORTHEAST)
 						//If we are, then check the diagonal tile
-						if (!flooring.test_link(src, get_step(src, NORTHEAST)))
+						if(!flooring.test_link(src, get_step(src, NORTHEAST)))
 							//If we smooth with north and east, but don't smooth with the northeast diagonal, then we have an inner corner!
 							overlays |= get_flooring_overlay("[flooring.icon]_[flooring.icon_base]-corner-[NORTHEAST]-[plane]", "[flooring.icon_base]_corners", NORTHEAST)
 
 					if((has_smooth & NORTHWEST) == NORTHWEST)
-						if (!flooring.test_link(src, get_step(src, NORTHWEST)))
+						if(!flooring.test_link(src, get_step(src, NORTHWEST)))
 							overlays |= get_flooring_overlay("[flooring.icon]_[flooring.icon_base]-corner-[NORTHWEST]-[plane]", "[flooring.icon_base]_corners", NORTHWEST)
 
 					if((has_smooth & SOUTHEAST) == SOUTHEAST)
-						if (!flooring.test_link(src, get_step(src, SOUTHEAST)))
+						if(!flooring.test_link(src, get_step(src, SOUTHEAST)))
 							overlays |= get_flooring_overlay("[flooring.icon]_[flooring.icon_base]-corner-[SOUTHEAST]-[plane]", "[flooring.icon_base]_corners", SOUTHEAST)
 
 					if((has_smooth & SOUTHWEST) == SOUTHWEST)
-						if (!flooring.test_link(src, get_step(src, SOUTHWEST)))
+						if(!flooring.test_link(src, get_step(src, SOUTHWEST)))
 							overlays |= get_flooring_overlay("[flooring.icon]_[flooring.icon_base]-corner-[SOUTHWEST]-[plane]", "[flooring.icon_base]_corners", SOUTHWEST)
 
 
 
 			//Next up, outer corners
-			if (has_border)
+			if(has_border)
 				if(flooring.flags & TURF_HAS_CORNERS)
 					if((has_border & NORTHEAST) == NORTHEAST)
 						overlays |= get_flooring_overlay("[flooring.icon]_[flooring.icon_base]-edge-[NORTHEAST]-[plane]", "[flooring.icon_base]_edges", NORTHEAST,(flooring.flags & TURF_EDGES_EXTERNAL))
@@ -101,7 +101,7 @@ var/list/flooring_cache = list()
 
 			//Now lets handle those fancy floors which have many centre icons
 			if(flooring.has_base_range)
-				if (!has_border || (flooring.flags & TURF_CAN_HAVE_RANDOM_BORDER))
+				if(!has_border || (flooring.flags & TURF_CAN_HAVE_RANDOM_BORDER))
 					//Some floors can have random tiles on the borders, some don't. It all depends on the sprite
 					icon_state = "[flooring.icon_base][rand(0,flooring.has_base_range)]"
 					flooring_override = icon_state
@@ -146,7 +146,7 @@ var/list/flooring_cache = list()
 /decl/flooring/proc/test_link(var/turf/origin, var/turf/T, var/countercheck = FALSE)
 
 	var/is_linked = FALSE
-	if (countercheck)
+	if(countercheck)
 		//If this is a countercheck, we skip all of the above, start off with true, and go straight to the atom lists
 		is_linked = TRUE
 	else if(T)
@@ -165,10 +165,10 @@ var/list/flooring_cache = list()
 
 
 		//If we get here then its a normal floor
-		else if (istype(T, /turf/floor))
+		else if(istype(T, /turf/floor))
 			var/turf/floor/t = T
 			//If the floor is the same as us,then we're linked,
-			if (t.flooring?.type == type) // Because it can , and will be null
+			if(t.flooring?.type == type) // Because it can , and will be null
 				is_linked = TRUE
 				/*
 					But there's a caveat. To make atom black/whitelists work correctly, we also need to check that
@@ -178,30 +178,30 @@ var/list/flooring_cache = list()
 					To prevent infinite loops we have a countercheck var, which we'll set true
 				*/
 
-				if (smooth_movable_atom != SMOOTH_NONE)
+				if(smooth_movable_atom != SMOOTH_NONE)
 					//We do the countercheck, passing countercheck as true
 					is_linked = test_link(T, origin, countercheck = TRUE)
 
 
 
-			else if (floor_smooth == SMOOTH_ALL)
+			else if(floor_smooth == SMOOTH_ALL)
 				is_linked = TRUE
 
-			else if (floor_smooth != SMOOTH_NONE)
+			else if(floor_smooth != SMOOTH_NONE)
 
 
 
 				//If we get here it must be using a whitelist or blacklist
-				if (floor_smooth == SMOOTH_WHITELIST)
-					for (var/v in flooring_whitelist)
-						if (istype(t.flooring, v))
+				if(floor_smooth == SMOOTH_WHITELIST)
+					for(var/v in flooring_whitelist)
+						if(istype(t.flooring, v))
 							//Found a match on the list
 							is_linked = TRUE
 							break
 				else if(floor_smooth == SMOOTH_BLACKLIST)
 					is_linked = TRUE //Default to true for the blacklist, then make it false if a match comes up
-					for (var/v in flooring_whitelist)
-						if (istype(t.flooring, v))
+					for(var/v in flooring_whitelist)
+						if(istype(t.flooring, v))
 							//Found a match on the list
 							is_linked = FALSE
 							break
@@ -214,42 +214,42 @@ var/list/flooring_cache = list()
 	var/best_priority = -1
 	//A white or blacklist entry will only override smoothing if its priority is higher than this
 	//And then this value becomes its priority
-	if (smooth_movable_atom != SMOOTH_NONE)
-		if (smooth_movable_atom == SMOOTH_WHITELIST || smooth_movable_atom == SMOOTH_GREYLIST)
-			for (var/list/v in movable_atom_whitelist)
+	if(smooth_movable_atom != SMOOTH_NONE)
+		if(smooth_movable_atom == SMOOTH_WHITELIST || smooth_movable_atom == SMOOTH_GREYLIST)
+			for(var/list/v in movable_atom_whitelist)
 				var/d_type = v[1]
 				var/list/d_vars = v[2]
 				var/d_priority = v[3]
 				//Priority is the quickest thing to check first
-				if (d_priority <= best_priority)
+				if(d_priority <= best_priority)
 					continue
 
 				//Ok, now we start testing all the atoms in the target turf
-				for (var/a in T) //No implicit typecasting here, faster
+				for(var/a in T) //No implicit typecasting here, faster
 
-					if (istype(a, d_type))
+					if(istype(a, d_type))
 						//It's the right type, so we're sure it will have the vars we want.
 
 						var/atom/movable/AM = a
 						//Typecast it to a movable atom
 						//Lets make sure its in the way before we consider it
-						if (!AM.is_between_turfs(origin, T))
+						if(!AM.is_between_turfs(origin, T))
 							continue
 
 						//From here on out, we do dangerous stuff that may runtime if the coder screwed up
 
 
 						var/match = TRUE
-						for (var/d_var in d_vars)
+						for(var/d_var in d_vars)
 							//For each variable we want to check
-							if (AM.vars[d_var] != d_vars[d_var])
+							if(AM.vars[d_var] != d_vars[d_var])
 								//We get a var of the same name from the atom's vars list.
 								//And check if it equals our desired value
 								match = FALSE
 								break //If any var doesn't match the desired value, then this atom is not a match, move on
 
 
-						if (match)
+						if(match)
 							//If we've successfully found an atom which matches a list entry
 							best_priority = d_priority //This one is king until a higher priority overrides it
 
@@ -257,41 +257,41 @@ var/list/flooring_cache = list()
 							is_linked = TRUE
 
 
-		if (smooth_movable_atom == SMOOTH_BLACKLIST || smooth_movable_atom == SMOOTH_GREYLIST)
+		if(smooth_movable_atom == SMOOTH_BLACKLIST || smooth_movable_atom == SMOOTH_GREYLIST)
 			//All of this blacklist code is copypasted from above, with only minor name changes
-			for (var/list/v in movable_atom_blacklist)
+			for(var/list/v in movable_atom_blacklist)
 				var/d_type = v[1]
 				var/list/d_vars = v[2]
 				var/d_priority = v[3]
 				//Priority is the quickest thing to check first
-				if (d_priority <= best_priority)
+				if(d_priority <= best_priority)
 					continue
 
 				//Ok, now we start testing all the atoms in the target turf
-				for (var/a in T) //No implicit typecasting here, faster
+				for(var/a in T) //No implicit typecasting here, faster
 
-					if (istype(a, d_type))
+					if(istype(a, d_type))
 						//It's the right type, so we're sure it will have the vars we want.
 
 						var/atom/movable/AM = a
 						//Typecast it to a movable atom
 						//Lets make sure its in the way before we consider it
-						if (!AM.is_between_turfs(origin, T))
+						if(!AM.is_between_turfs(origin, T))
 							continue
 
 						//From here on out, we do dangerous stuff that may runtime if the coder screwed up
 
 						var/match = TRUE
-						for (var/d_var in d_vars)
+						for(var/d_var in d_vars)
 							//For each variable we want to check
-							if (AM.vars[d_var] != d_vars[d_var])
+							if(AM.vars[d_var] != d_vars[d_var])
 								//We get a var of the same name from the atom's vars list.
 								//And check if it equals our desired value
 								match = FALSE
 								break //If any var doesn't match the desired value, then this atom is not a match, move on
 
 
-						if (match)
+						if(match)
 							//If we've successfully found an atom which matches a list entry
 							best_priority = d_priority //This one is king until a higher priority overrides it
 
@@ -327,15 +327,15 @@ var/list/flooring_cache = list()
 
 
 		//External overlays will be offsetted out of this tile
-		if (external)
-			if (icon_dir & NORTH)
+		if(external)
+			if(icon_dir & NORTH)
 				I.pixel_y = 32
-			else if (icon_dir & SOUTH)
+			else if(icon_dir & SOUTH)
 				I.pixel_y = -32
 
-			if (icon_dir & WEST)
+			if(icon_dir & WEST)
 				I.pixel_x = -32
-			else if (icon_dir & EAST)
+			else if(icon_dir & EAST)
 				I.pixel_x = 32
 
 		flooring_cache[cache_key] = I

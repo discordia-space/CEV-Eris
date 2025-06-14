@@ -38,7 +38,7 @@
 					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					to_chat(user, SPAN_NOTICE("You start to put the glass into [src]..."))
 					if(do_after(user, 10, src))
-						if (density && G.use(2))
+						if(density && G.use(2))
 							health = maxHealth
 							stat &= ~BROKEN
 							have_glass = TRUE

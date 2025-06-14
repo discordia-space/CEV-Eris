@@ -25,11 +25,11 @@
 
 /turf/floor/Entered(atom/movable/AM, atom/old_loc)
 	..(AM, old_loc)
-	if (flooring)
+	if(flooring)
 		flooring.Entered(AM, old_loc)
 
 /turf/floor/is_plating()
-	if (flooring)
+	if(flooring)
 		return flooring.is_plating
 	else
 		//TODO: FIND OUT WHY ANYTHING COULD HAVE NULL FLOORING
@@ -51,7 +51,7 @@
 /turf/floor/LateInitialize(list/mapload_arg)
 	//At roundstart, we call update icon with update_neighbors set to false.
 	//So each floor tile will only work once
-	if (mapload_arg)
+	if(mapload_arg)
 		update_icon(FALSE)
 	else
 		//If its not roundstart, then we call update icon with update_neighbors set to true.
@@ -70,7 +70,7 @@
 
 	/*This is passed false in the New() flooring set, so that we're not calling everything up to
 	nine times when the world is created. This saves on tons of roundstart processing*/
-	if (update)
+	if(update)
 		update_icon(1)
 
 	levelupdate()
@@ -79,9 +79,9 @@
 	if(health < maxHealth)
 		if(health < (0.25 * maxHealth))
 			extra_description += SPAN_DANGER("It looks like it's about to collapse!")
-		else if (health < (0.5 * maxHealth))
+		else if(health < (0.5 * maxHealth))
 			extra_description += SPAN_WARNING("It's heavily damaged!")
-		else if (health < (0.75 * maxHealth))
+		else if(health < (0.75 * maxHealth))
 			extra_description += SPAN_WARNING("It's taken a bit of a beating!")
 		else
 			extra_description += SPAN_WARNING("It has a few scuffs and scrapes")
@@ -118,20 +118,20 @@
 	//We attempt to get whatever should be under this floor
 	if(flooring)
 		var/temp = flooring.get_plating_type(src) //This will return null if there's nothing underneath
-		if (temp)
+		if(temp)
 			set_flooring(get_flooring_data(temp))
 			return
 	ReplaceWithLattice() //IF there's nothing underneath, turn ourselves into an openspace
 
 
 /turf/floor/levelupdate()
-	if (flooring)
+	if(flooring)
 		for(var/obj/O in src)
 			O.hide(O.hides_under_flooring() && (flooring.flags & TURF_HIDES_THINGS))
 			SEND_SIGNAL_OLD(O, COMSIG_TURF_LEVELUPDATE, (flooring.flags & TURF_HIDES_THINGS))
 
 
 /turf/floor/proc/is_damaged()
-	if (broken || burnt || health < maxHealth)
+	if(broken || burnt || health < maxHealth)
 		return TRUE
 	return FALSE

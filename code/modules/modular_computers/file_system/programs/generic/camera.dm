@@ -62,7 +62,7 @@
 		data["cameras"] = camera_repository.cameras_in_network(current_network)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "sec_camera.tmpl", "Camera Monitoring", 900, 800, state = state)
 		// ui.auto_update_layout = 1 // Disabled as with suit sensors monitor - breaks the UI map. Re-enable once it's fixed somehow.
 
@@ -150,7 +150,7 @@
 	if(!current_camera)
 		return 0
 	var/viewflag = current_camera.check_eye(user)
-	if ( viewflag < 0 ) //camera doesn't work
+	if( viewflag < 0 ) //camera doesn't work
 		reset_current()
 	return viewflag
 

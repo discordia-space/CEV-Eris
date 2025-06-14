@@ -22,7 +22,7 @@
 	var/list/slot = null
 	for(var/j = 1, j <= available_slots.len, j++)
 		slot = available_slots[j]
-		if (slot["item"] == null)
+		if(slot["item"] == null)
 			break
 		slot = null
 
@@ -30,7 +30,7 @@
 		to_chat(user, "<span class='notice'>There is no free space on \the [src] to place \the [I]!</span>")
 		return
 
-	if (user.unEquip(I, src.loc))
+	if(user.unEquip(I, src.loc))
 		I.pixel_x = slot["offset"]["x"]
 		I.pixel_y = slot["offset"]["y"]
 		slot["item"] = I

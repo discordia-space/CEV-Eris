@@ -43,10 +43,10 @@ Every failure causes the trap to dig deeper and hurt the victim more
 Freeing yourself is much harder than freeing someone else. Calling for help is advised if practical
 */
 /obj/item/beartrap/proc/attempt_release(mob/living/user, obj/item/I)
-	if (!buckled_mob || QDELETED(buckled_mob))
+	if(!buckled_mob || QDELETED(buckled_mob))
 		return //Nobody there to rescue?
 
-	if (!user)
+	if(!user)
 		return //No user, or too far away
 
 	if(iscarbon(user)) //check if mob is carbon as handcuffed only applies to carbon mobs
@@ -58,9 +58,9 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	var/difficulty = base_difficulty
 
 	//Does the user have the dexterity to operate the trap?
-	if (!can_use(user))
+	if(!can_use(user))
 		//If they don't, then they're probably some kind of animal trapped in it
-		if (user != buckled_mob || user.client)
+		if(user != buckled_mob || user.client)
 			//Such a creature can't free someone else
 			return
 
@@ -71,33 +71,33 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		Such is nature*/
 
 	else
-		if (user != buckled_mob)
+		if(user != buckled_mob)
 			difficulty -= 35 //It's easier to free someone else than to free yourself
 
 		//Is there a tool involved?
-		if (istype(I))
+		if(istype(I))
 			//Using a crowbar helps
 			to_chat(user, SPAN_NOTICE("\The [I] gives you extra leverage"))
 			var/reduction = I.get_tool_quality(QUALITY_PRYING)*0.5
-			if (user == buckled_mob)
+			if(user == buckled_mob)
 				reduction *= 0.66 //But it helps less if you don't have good leverage
 			difficulty -= reduction
 			I.consume_resources(time_to_escape * 3, user)
 
-		if (issilicon(user))
+		if(issilicon(user))
 			difficulty += 5 //Robots are less dextrous
 
 		//How about your stats? Being strong or crafty helps.
 		//We'll subtract the highest of either robustness or mechanical, from the difficulty
 		var/reduction = user.stats.getMaxStat(list(STAT_ROB, STAT_MEC))
-		if (user == buckled_mob)
+		if(user == buckled_mob)
 			reduction *= 0.66 //But it helps less if you don't have good leverage
 		difficulty -= reduction
 
 	//Alright we calculated the difficulty, now lets do the attempt
 
 	//Firstly a visible message
-	if (buckled_mob == user)
+	if(buckled_mob == user)
 		user.visible_message(
 			SPAN_NOTICE("\The [user] tries to free themselves from \the [src]."),
 			SPAN_NOTICE("You carefully begin to free yourself from \the [src]."),
@@ -122,7 +122,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		return
 
 	//You completed the doafter, but did you succeed?
-	if (difficulty > 0 && prob(difficulty))
+	if(difficulty > 0 && prob(difficulty))
 		fail_attempt(user, difficulty)
 		return
 
@@ -137,22 +137,22 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 //Using a crowbar allows you to lever the trap open, better success rate
 /obj/item/beartrap/attackby(obj/item/C, mob/living/user)
-	if (C.has_quality(QUALITY_PRYING))
+	if(C.has_quality(QUALITY_PRYING))
 		attempt_release(user, C)
 		return
 	.=..()
 
 /obj/item/beartrap/attack_hand(mob/user as mob)
-	if (buckled_mob)
+	if(buckled_mob)
 		attempt_release(user)
 		return
-	if (deployed)
+	if(deployed)
 		user.visible_message(
 			SPAN_DANGER("[user] starts to carefully disarm \the [src]."),
 			SPAN_DANGER("You begin to carefully disarm \the [src].")
 			)
 
-		if (do_after(user, 25))
+		if(do_after(user, 25))
 			user.visible_message(
 				SPAN_DANGER("[user] has disarmed \the [src]."),
 				SPAN_DANGER("You have disarmed \the [src]!")
@@ -164,13 +164,13 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	.=..()
 
 /obj/item/beartrap/attack_generic(mob/user, damage)
-	if (buckled_mob)
+	if(buckled_mob)
 		attempt_release(user)
 		return
 	.=..()
 
 /obj/item/beartrap/attack_robot(mob/user)
-	if (buckled_mob)
+	if(buckled_mob)
 		attempt_release(user)
 		return
 	.=..()
@@ -188,9 +188,9 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 //Attempting to resist out of a beartrap will be counted as using your hand on the trap.
 /obj/item/beartrap/resist_buckle(mob/user)
-	if (user == buckled_mob && !user.stunned)
+	if(user == buckled_mob && !user.stunned)
 		//We check stunned here, and a failure stuns the victim. This prevents someone from just spam-resisting and instantly killing themselves
-		if (user.client)
+		if(user.client)
 			attack_hand(user)
 		else
 			//Fallback behaviour for possible future use of NPCs
@@ -216,7 +216,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 			"You hear the slow creaking of a spring."
 			)
 
-		if (do_after(user, 25))
+		if(do_after(user, 25))
 			user.visible_message(
 				SPAN_DANGER("[user] has deployed \the [src]."),
 				SPAN_DANGER("You have deployed \the [src]!"),
@@ -236,7 +236,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 //If an attempt to release the mob fails, it digs in and deals more damage
 /obj/item/beartrap/proc/fail_attempt(user, difficulty)
-	if (!buckled_mob)
+	if(!buckled_mob)
 		return
 
 	var/mob/living/L = buckled_mob
@@ -247,7 +247,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		L.Stun(4) //A short stun prevents spamming failure attempts
 		shake_camera(user, 2, 1)
 
-	if (ishuman(L))
+	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		visible_message(SPAN_DANGER("\The [src] snaps back, digging deeper into [buckled_mob.name]'s [H.get_organ(target_zone).name]"))
 	else
@@ -255,9 +255,9 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 	playsound(src, 'sound/effects/impacts/beartrap_shut.ogg', 10, 1,-2,-2)//Fairly quiet snapping sound
 
-	if (difficulty)
+	if(difficulty)
 		to_chat(user, SPAN_NOTICE("You failed to release the trap. There was a [round(100 - difficulty)]% chance of success"))
-		if (user == buckled_mob)
+		if(user == buckled_mob)
 			to_chat(user, SPAN_NOTICE("Freeing yourself is very difficult. Perhaps you should call for help?"))
 
 
@@ -265,10 +265,10 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 /obj/item/beartrap/proc/attack_mob(mob/living/L)
 	//Small mobs won't trigger the trap
 	//Imagine a mouse running harmlessly over it
-	if (!L || L.mob_size < min_size)
+	if(!L || L.mob_size < min_size)
 		return
 
-	if (ismech(L))
+	if(ismech(L))
 		deployed = FALSE
 		playsound(src, 'sound/effects/impacts/beartrap_shut.ogg', 100, 1,10,10)
 		return
@@ -296,7 +296,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 
 	//If the victim is nonhuman and has no client, start processing.
-	if (!ishuman(L) && !L.client)
+	if(!ishuman(L) && !L.client)
 		START_PROCESSING(SSobj, src)
 
 
@@ -311,16 +311,16 @@ Very rarely it might escape
 
 	//If its dead or gone, stop processing
 	//Also stop if a player took control of it, they can try to free themselves
-	if (QDELETED(L) || L.is_dead() || L.loc != loc || L.client)
+	if(QDELETED(L) || L.is_dead() || L.loc != loc || L.client)
 		release_mob()		// Reset the trap properly if the roach was gibbed during the processing.
 		return PROCESS_KILL
 
-	if (L.incapacitated())
+	if(L.incapacitated())
 		//If it's not conscious and able, skip this process tick, but keep checking in future
 		return
 
 	//Chance each tick that the mob will attempt to free itself
-	if (prob(struggle_prob))
+	if(prob(struggle_prob))
 		attempt_release(L)
 
 
@@ -405,7 +405,7 @@ Very rarely it might escape
 		check_integrity()
 
 /obj/item/beartrap/makeshift/proc/check_integrity()
-	if (prob(integrity))
+	if(prob(integrity))
 		return
 
 	break_apart()

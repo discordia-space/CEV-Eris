@@ -36,7 +36,7 @@
 
 	//Hook up the uplink with the mob wearing this implant
 	var/mob/living/M = implant.get_holding_mob()
-	if (M && M.mind)
+	if(M && M.mind)
 		uplink = new(implant, M.mind, telecrystals)
 		implant.hidden_uplink = uplink
 		uplink.uplink_owner = M.mind
@@ -181,10 +181,10 @@
 	var/list/ritual_types = list()
 
 /datum/core_module/rituals/cruciform/set_up()
-	for (var/grouptype in ritual_types)
-		for (var/rn in GLOB.all_rituals)
+	for(var/grouptype in ritual_types)
+		for(var/rn in GLOB.all_rituals)
 			var/datum/ritual/R = GLOB.all_rituals[rn]
-			if (istype(R, grouptype))
+			if(istype(R, grouptype))
 				module_rituals |= R.name
 
 /datum/core_module/rituals/cruciform/base

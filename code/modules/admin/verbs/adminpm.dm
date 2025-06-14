@@ -57,7 +57,7 @@
 				to_chat(src, "<font color='red'>Error: Private-Message: Client not found. They may have lost connection, so try using an adminhelp!</font>")
 			return
 
-	if (src.handle_spam_prevention(msg,MUTE_ADMINHELP))
+	if(src.handle_spam_prevention(msg,MUTE_ADMINHELP))
 		return
 
 	msg = sanitize(msg)

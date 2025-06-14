@@ -115,7 +115,7 @@ Food quality is calculated based on the steps taken.
 	//Create a base step
 	create_step_base()
 
-	for (var/step in step_builder)
+	for(var/step in step_builder)
 		if(islist(step))
 			var/list/step_list = step
 			var/reason = ""
@@ -517,13 +517,13 @@ Food quality is calculated based on the steps taken.
 
 	//Flatten exclusive options into the global list for easy referencing later.
 	//initiate the exclusive option list
-	for (var/datum/cooking_with_jane/recipe_step/exclusive_option in active_exclusive_option_list)
-		if (!GLOB.cwj_optional_step_exclusion_dictionary["[exclusive_option.unique_id]"])
+	for(var/datum/cooking_with_jane/recipe_step/exclusive_option in active_exclusive_option_list)
+		if(!GLOB.cwj_optional_step_exclusion_dictionary["[exclusive_option.unique_id]"])
 			GLOB.cwj_optional_step_exclusion_dictionary["[exclusive_option.unique_id]"] = list()
 	//populate the exclusive option list
-	for (var/datum/cooking_with_jane/recipe_step/exclusive_option in active_exclusive_option_list)
-		for (var/datum/cooking_with_jane/recipe_step/excluder in active_exclusive_option_list["[exclusive_option]"])
-			if (exclusive_option.unique_id != excluder.unique_id)
+	for(var/datum/cooking_with_jane/recipe_step/exclusive_option in active_exclusive_option_list)
+		for(var/datum/cooking_with_jane/recipe_step/excluder in active_exclusive_option_list["[exclusive_option]"])
+			if(exclusive_option.unique_id != excluder.unique_id)
 				GLOB.cwj_optional_step_exclusion_dictionary["[exclusive_option.unique_id]"] = excluder.unique_id
 
 	active_exclusive_option_list = null
@@ -610,7 +610,7 @@ Food quality is calculated based on the steps taken.
 	//Handle exclusive options
 	if(exclusive_option_mode)
 		active_exclusive_option_list[step] = list()
-		for (var/datum/cooking_with_jane/recipe_step/ex_step in active_exclusive_option_list)
+		for(var/datum/cooking_with_jane/recipe_step/ex_step in active_exclusive_option_list)
 			if(ex_step == step.unique_id || step.in_option_chain(ex_step))
 				continue
 			active_exclusive_option_list[ex_step] += step

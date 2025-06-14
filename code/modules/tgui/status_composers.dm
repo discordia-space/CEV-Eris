@@ -16,7 +16,7 @@
 /// Dead users will receive updates no matter what, though you likely want to add
 /// a [`ui_status_only_living`] check for finer observer interactions.
 /proc/ui_status_user_is_adjacent(mob/user, atom/source, allow_tk = TRUE)
-	if (isliving(user))
+	if(isliving(user))
 		var/mob/living/living_user = user
 		return living_user.shared_living_ui_distance(source, allow_tk = allow_tk)
 	else
@@ -24,7 +24,7 @@
 
 /// Returns a UI status such that the dead will be able to watch, but not interact.
 /proc/ui_status_only_living(mob/user, source)
-	if (isliving(user))
+	if(isliving(user))
 		return UI_INTERACTIVE
 
 	if(isobserver(user))
@@ -63,7 +63,7 @@
 /// they would have access to if this was a machine. For example, AIs can
 /// interact if there's cameras with wireless control is enabled.
 /proc/ui_status_silicon_has_access(mob/user, atom/source)
-	if (!issilicon(user))
+	if(!issilicon(user))
 		return UI_CLOSE
 	var/mob/living/silicon/silicon_user = user
 	return silicon_user.get_ui_access(source)
@@ -96,7 +96,7 @@
 /// Returns UI_INTERACTIVE if the user is conscious and lying down.
 /// Returns UI_UPDATE otherwise.
 /proc/ui_status_user_is_conscious_and_lying_down(mob/user)
-	if (!isliving(user))
+	if(!isliving(user))
 		return UI_UPDATE
 
 	var/mob/living/living_user = user

@@ -68,10 +68,10 @@
 	var/transfer_moles = (set_flow_rate/input_air.volume)*input_air.total_moles
 
 	var/power_draw = -1
-	if (transfer_moles > MINIMUM_MOLES_TO_FILTER)
+	if(transfer_moles > MINIMUM_MOLES_TO_FILTER)
 		power_draw = filter_gas_multi(src, filtering_outputs, input_air, output_air, transfer_moles, power_rating)
 
-	if (power_draw >= 0)
+	if(power_draw >= 0)
 		last_power_draw = power_draw
 		use_power(power_draw)
 
@@ -92,7 +92,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "omni_filter.tmpl", "Omni Filter Control", 330, 330)
 		ui.set_initial_data(data)
 

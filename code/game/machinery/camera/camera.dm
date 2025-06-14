@@ -109,9 +109,9 @@
 
 /obj/machinery/camera/hitby(AM as mob|obj)
 	..()
-	if (isobj(AM))
+	if(isobj(AM))
 		var/obj/O = AM
-		if (O.throwforce >= src.toughness)
+		if(O.throwforce >= src.toughness)
 			visible_message(SPAN_WARNING("<B>[src] was hit by [O].</B>"))
 		take_damage(O.throwforce)
 
@@ -120,7 +120,7 @@
 	cameranet.updateVisibility(src, 0)
 
 /obj/machinery/camera/attack_hand(mob/living/carbon/human/user as mob)
-	if (taped == 1)
+	if(taped == 1)
 		icon_state = "camera"
 		taped = 0
 		set_status(1)
@@ -215,7 +215,7 @@
 	//	interact(user)
 
 	// OTHER
-	if (can_use() && isliving(user) && user.a_intent != I_HURT)
+	if(can_use() && isliving(user) && user.a_intent != I_HURT)
 		var/mob/living/U = user
 		var/list/mob/viewers = list()
 		if(istype(I, /obj/item/ducttape))
@@ -230,13 +230,13 @@
 			for(var/mob/O in GLOB.living_mob_list)
 				if(!O.client)
 					continue
-				if (istype(O, /mob/living/silicon/ai))
+				if(istype(O, /mob/living/silicon/ai))
 					viewers += O
-				else if (istype(O.machine, /obj/item/modular_computer))
+				else if(istype(O.machine, /obj/item/modular_computer))
 					var/obj/item/modular_computer/S = O.machine
-					if (S.active_program && S.active_program.NM && istype(S.active_program.NM, /datum/nano_module/camera_monitor))
+					if(S.active_program && S.active_program.NM && istype(S.active_program.NM, /datum/nano_module/camera_monitor))
 						var/datum/nano_module/camera_monitor/CM = S.active_program.NM
-						if (CM.current_camera == src)
+						if(CM.current_camera == src)
 							viewers += O
 			for(var/mob/O in viewers)
 				if(!O.client)
@@ -256,11 +256,11 @@
 					I.examine(O)
 			last_shown_time = world.time + 2 SECONDS
 
-	else if (istype(I, /obj/item/camera_bug))
-		if (!src.can_use())
+	else if(istype(I, /obj/item/camera_bug))
+		if(!src.can_use())
 			to_chat(user, SPAN_WARNING("Camera non-functional."))
 			return
-		if (src.bugged)
+		if(src.bugged)
 			to_chat(user, SPAN_NOTICE("Camera bug removed."))
 			src.bugged = 0
 		else
@@ -269,10 +269,10 @@
 
 	else if(I.damtype == BRUTE || I.damtype == BURN) //bashing cameras
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if (I.force >= src.toughness)
+		if(I.force >= src.toughness)
 			user.do_attack_animation(src)
 			visible_message(SPAN_WARNING("<b>[src] has been [pick(I.attack_verb)] with [I] by [user]!</b>"))
-			if (I.hitsound)
+			if(I.hitsound)
 				playsound(loc, I.hitsound, 50, 1, -1)
 		take_damage(I.force)
 
@@ -288,7 +288,7 @@
 		return
 
 	set_status(!status)
-	if (!status)
+	if(!status)
 		if(user)
 			visible_message(SPAN_NOTICE("[user] has deactivated [src]!"))
 			add_hiddenprint(user)
@@ -307,7 +307,7 @@
 
 /obj/machinery/camera/take_damage(var/force, var/message)
 	//prob(25) gives an average of 3-4 hits
-	if (force >= toughness && (force > toughness*4 || prob(25)))
+	if(force >= toughness && (force > toughness*4 || prob(25)))
 		destroy()
 
 //Used when someone breaks a camera
@@ -327,7 +327,7 @@
 	playsound(loc, "sparks", 50, 1)
 
 /obj/machinery/camera/proc/set_status(var/newstatus)
-	if (status != newstatus)
+	if(status != newstatus)
 		status = newstatus
 		update_coverage()
 
@@ -337,9 +337,9 @@
 	return 0
 
 /obj/machinery/camera/update_icon()
-	if (!status || (stat & BROKEN))
+	if(!status || (stat & BROKEN))
 		icon_state = "[initial(icon_state)]1"
-	else if (stat & EMPED)
+	else if(stat & EMPED)
 		icon_state = "[initial(icon_state)]emp"
 	else
 		icon_state = initial(icon_state)
@@ -492,7 +492,7 @@
 /obj/machinery/camera/proc/reset_wires()
 	if(!wires)
 		return
-	if (stat & BROKEN) // Fix the camera
+	if(stat & BROKEN) // Fix the camera
 		stat &= ~BROKEN
 	wires.CutAll()
 	wires.MendAll()

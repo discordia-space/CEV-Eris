@@ -205,7 +205,7 @@
 
 	for(var/obj/item/device/radio/beacon/R in world)
 		var/turf/T = get_turf(R)
-		if (!T)
+		if(!T)
 			continue
 		if(!IS_PLAYABLE_LEVEL(T.z))
 			continue
@@ -216,13 +216,13 @@
 			areaindex[tmpname] = 1
 		L[tmpname] = R
 
-	for (var/obj/item/implant/tracking/I in world)
-		if (!I.implanted || !ismob(I.loc))
+	for(var/obj/item/implant/tracking/I in world)
+		if(!I.implanted || !ismob(I.loc))
 			continue
 		else
 			var/mob/M = I.loc
-			if (M.stat == 2)
-				if (M.timeofdeath + 6000 < world.time)
+			if(M.stat == 2)
+				if(M.timeofdeath + 6000 < world.time)
 					continue
 			var/turf/T = get_turf(M)
 			if(T)	continue
@@ -254,12 +254,12 @@
 
 	if(stat & (NOPOWER|BROKEN) || !isliving(usr))
 		return
-	if (t)
+	if(t)
 		src.id = t
 	return
 
 /proc/find_loc(obj/R as obj)
-	if (!R)	return null
+	if(!R)	return null
 	var/turf/T = R.loc
 	while(!istype(T, /turf))
 		T = T.loc
@@ -280,19 +280,19 @@
 	underlays += "tele-wires"
 
 /obj/machinery/teleport/hub/Bumped(M as mob|obj)
-	if (src.icon_state == "tele1")
+	if(src.icon_state == "tele1")
 		teleport(M)
 		use_power(5000)
 	return
 
 /obj/machinery/teleport/hub/proc/teleport(atom/movable/M as mob|obj)
-	if (!mconsole)
+	if(!mconsole)
 		return
-	if (!mconsole.locked)
+	if(!mconsole.locked)
 		for(var/mob/O in hearers(src, null))
 			O.show_message(SPAN_WARNING("Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix."))
 		return
-	if (istype(M, /atom/movable))
+	if(istype(M, /atom/movable))
 		if(prob(5) && !accurate) //oh dear a problem, put em in deep space
 			go_to_bluespace(get_turf(src), entropy_value, FALSE, M, locate(rand((2*TRANSITIONEDGE), world.maxx - (2*TRANSITIONEDGE)), rand((2*TRANSITIONEDGE), world.maxy - (2*TRANSITIONEDGE)), 3), 2)
 		else
@@ -330,7 +330,7 @@
 /obj/machinery/teleport/station/proc/engage()
 	if(stat & (BROKEN|NOPOWER))
 		return
-	if (mhub)
+	if(mhub)
 		src.engaged = 1
 		mhub.icon_state = "tele1"
 		use_power(5000)
@@ -346,7 +346,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 
-	if (mhub)
+	if(mhub)
 		src.engaged = 0
 		mhub.icon_state = "tele0"
 		mhub.accurate = 0
@@ -366,7 +366,7 @@
 	if(stat & (BROKEN|NOPOWER) || !isliving(usr))
 		return
 
-	if (mhub && !active)
+	if(mhub && !active)
 		active = 1
 		for(var/mob/O in hearers(src, null))
 			O.show_message(SPAN_NOTICE("Test firing!"), 2)

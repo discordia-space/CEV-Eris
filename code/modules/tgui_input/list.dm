@@ -11,12 +11,12 @@
  * * timeout - The timeout of the input box, after which the menu will close and qdel itself. Set to zero for no timeout.
  */
 /proc/tgui_input_list(mob/user, message, title = "Select", list/items, default, timeout = 0)
-	if (!user)
+	if(!user)
 		user = usr
 	if(!length(items))
 		return
-	if (!istype(user))
-		if (istype(user, /client))
+	if(!istype(user))
+		if(istype(user, /client))
 			var/client/client = user
 			user = client.mob
 		else
@@ -27,7 +27,7 @@
 	var/datum/tgui_list_input/input = new(user, message, title, items, default, timeout)
 	input.ui_interact(user)
 	input.wait()
-	if (input)
+	if(input)
 		. = input.choice
 		qdel(input)
 
@@ -74,7 +74,7 @@
 		string_key = avoid_assoc_duplicate_keys(string_key, repeat_items)
 		src.items += string_key
 		src.items_map[string_key] = i
-	if (timeout)
+	if(timeout)
 		src.timeout = timeout
 		start_time = world.time
 		QDEL_IN(src, timeout)
@@ -89,7 +89,7 @@
  * the window was closed by the user.
  */
 /datum/tgui_list_input/proc/wait()
-	while (!choice && !closed)
+	while(!choice && !closed)
 		stoplag(1)
 
 /datum/tgui_list_input/ui_interact(mob/user, datum/tgui/ui)
@@ -123,11 +123,11 @@
 
 /datum/tgui_list_input/ui_act(action, list/params)
 	. = ..()
-	if (.)
+	if(.)
 		return
 	switch(action)
 		if("submit")
-			if (!(params["entry"] in items))
+			if(!(params["entry"] in items))
 				return
 			set_choice(items_map[params["entry"]])
 			closed = TRUE

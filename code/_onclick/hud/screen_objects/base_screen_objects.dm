@@ -27,9 +27,9 @@
 	src.parentmob = _parentmob
 	src.name = _name
 //	src.screen_loc = _screen_loc
-	if (_icon)
+	if(_icon)
 		src.icon = _icon
-	if (_icon_state)
+	if(_icon_state)
 		src.icon_state = _icon_state
 	..()
 
@@ -314,14 +314,14 @@
 
 /obj/screen/inventory/hand/Click()
 	var/mob/living/carbon/C = parentmob
-	if (slot_id == slot_l_hand) C.activate_hand("l")
+	if(slot_id == slot_l_hand) C.activate_hand("l")
 	else C.activate_hand("r")
 
 /obj/screen/inventory/hand/update_icon()
 	overlays -= ovrls["act_hand"]
-	if (slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand))
+	if(slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand))
 		overlays += ovrls["act_hand"]
-/*	if (slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) // if display left
+/*	if(slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) // if display left
 		icon_state = "act_hand[slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
 		icon_state = "hand[slot_id==slot_l_hand ? "-l" : "-r"]"*/
@@ -357,7 +357,7 @@
 /obj/screen/health/update_icon()
 	if(parentmob:stat != DEAD)
 		cut_overlays()
-		if (parentmob:analgesic >= 100)
+		if(parentmob:analgesic >= 100)
 //			icon_state = "health_numb"
 			overlays += ovrls["health0"]
 		else
@@ -412,7 +412,7 @@
 	cut_overlays()
 	var/image/ovrl
 
-	if (H.sanity?.max_level > 0)
+	if(H.sanity?.max_level > 0)
 		switch(H.sanity.level / H.sanity.max_level)
 			if(-INFINITY to 0)
 				overlays += ovrls["sanity6"]
@@ -675,30 +675,30 @@
 
 	var/temp_step
 	cut_overlays()
-	if (parentmob:bodytemperature >= base_temperature)
+	if(parentmob:bodytemperature >= base_temperature)
 		temp_step = (parentmobC.species.heat_level_1 - base_temperature)/4
 
-		if (parentmob:bodytemperature >= parentmobC.species.heat_level_1)
+		if(parentmob:bodytemperature >= parentmobC.species.heat_level_1)
 			overlays += ovrls["temp4"]
-		else if (parentmob:bodytemperature >= base_temperature + temp_step*3)
+		else if(parentmob:bodytemperature >= base_temperature + temp_step*3)
 			overlays += ovrls["temp3"]
-		else if (parentmob:bodytemperature >= base_temperature + temp_step*2)
+		else if(parentmob:bodytemperature >= base_temperature + temp_step*2)
 			overlays += ovrls["temp2"]
-		else if (parentmob:bodytemperature >= base_temperature + temp_step*1)
+		else if(parentmob:bodytemperature >= base_temperature + temp_step*1)
 			overlays += ovrls["temp1"]
 		else
 			overlays += ovrls["temp0"]
 
-	else if (parentmob:bodytemperature < base_temperature)
+	else if(parentmob:bodytemperature < base_temperature)
 		temp_step = (base_temperature - parentmobC.species.cold_level_1)/4
 
-		if (parentmob:bodytemperature <= parentmobC.species.cold_level_1)
+		if(parentmob:bodytemperature <= parentmobC.species.cold_level_1)
 			overlays += ovrls["temp-4"]
-		else if (parentmob:bodytemperature <= base_temperature - temp_step*3)
+		else if(parentmob:bodytemperature <= base_temperature - temp_step*3)
 			overlays += ovrls["temp-3"]
-		else if (parentmob:bodytemperature <= base_temperature - temp_step*2)
+		else if(parentmob:bodytemperature <= base_temperature - temp_step*2)
 			overlays += ovrls["temp-2"]
-		else if (parentmob:bodytemperature <= base_temperature - temp_step*1)
+		else if(parentmob:bodytemperature <= base_temperature - temp_step*1)
 			overlays += ovrls["temp-1"]
 		else
 			overlays += ovrls["temp0"]
@@ -903,7 +903,7 @@ obj/screen/fire/DEADelize()
 					for(var/i=1, i<tankcheck.len+1, ++i)
 						if(istype(tankcheck[i], /obj/item/tank))
 							var/obj/item/tank/t = tankcheck[i]
-							if (!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc, breathes))
+							if(!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc, breathes))
 								contents.Add(t.air_contents.total_moles)	//Someone messed with the tank and put unknown gasses
 								continue					//in it, so we're going to believe the tank is what it says it is
 							switch(breathes)
@@ -915,7 +915,7 @@ obj/screen/fire/DEADelize()
 									else
 										contents.Add(0)
 
-								if ("oxygen")
+								if("oxygen")
 									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["oxygen"])
 									else if(istype(t, /obj/item/tank/onestar_regenerator))
@@ -924,7 +924,7 @@ obj/screen/fire/DEADelize()
 										contents.Add(0)
 
 								// No races breath this, but never know about downstream servers.
-								if ("carbon dioxide")
+								if("carbon dioxide")
 									if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["carbon_dioxide"])
 									else
@@ -1052,7 +1052,7 @@ obj/screen/fire/DEADelize()
 	//icon_state = "pull0"
 
 /obj/screen/pull/update_icon()
-	if (parentmob.pulling)
+	if(parentmob.pulling)
 		icon_state = "pull1"
 	else
 		icon_state = "pull0"
@@ -1081,7 +1081,7 @@ obj/screen/fire/DEADelize()
 	return TRUE
 
 /obj/screen/HUDthrow/update_icon()
-	if (parentmob.in_throw_mode)
+	if(parentmob.in_throw_mode)
 		icon_state = "act_throw_on"
 	else
 		icon_state = "act_throw_off"
@@ -1169,7 +1169,7 @@ obj/screen/fire/DEADelize()
 /obj/screen/mov_intent/Click()
 	var/move_intent_type = next_list_item(usr.move_intent.type, usr.move_intents)
 	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
-	if (newintent.can_enter(parentmob, TRUE))
+	if(newintent.can_enter(parentmob, TRUE))
 		parentmob.move_intent = newintent
 		SEND_SIGNAL_OLD(parentmob, COMSIG_HUMAN_WALKINTENT_CHANGE, parentmob, newintent)
 		update_icon()
@@ -1394,13 +1394,13 @@ obj/screen/fire/DEADelize()
 
 /obj/screen/drugoverlay/update_icon()
 	underlays.Cut()
-//	if (parentmob.disabilities & NEARSIGHTED)
+//	if(parentmob.disabilities & NEARSIGHTED)
 //		var/obj/item/clothing/glasses/G = parentmob.get_equipped_item(slot_glasses)
 //		if(!G || !G.prescription)
 //			underlays += global_hud.vimpaired
-	if (parentmob.eye_blurry)
+	if(parentmob.eye_blurry)
 		underlays |= global_hud.blurry
-	if (parentmob.druggy)
+	if(parentmob.druggy)
 		underlays |= global_hud.druggy
 
 
@@ -1559,19 +1559,19 @@ obj/screen/fire/DEADelize()
 	screen_loc = "1,0"
 
 /obj/screen/toggle_invetory/proc/hideobjects()
-	for (var/obj/screen/HUDelement in parentmob.HUDinventory)
-		if (HUDelement.hideflag & TOGGLE_INVENTORY_FLAG)
+	for(var/obj/screen/HUDelement in parentmob.HUDinventory)
+		if(HUDelement.hideflag & TOGGLE_INVENTORY_FLAG)
 			HUDelement.invisibility = 101
 			hidden_inventory_update(HUDelement)
-	for (var/obj/screen/HUDelement in parentmob.HUDfrippery)
-		if (HUDelement.hideflag & TOGGLE_INVENTORY_FLAG)
+	for(var/obj/screen/HUDelement in parentmob.HUDfrippery)
+		if(HUDelement.hideflag & TOGGLE_INVENTORY_FLAG)
 			HUDelement.invisibility = 101
 
 /obj/screen/toggle_invetory/proc/showobjects()
-	for (var/obj/screen/HUDelement in parentmob.HUDinventory)
+	for(var/obj/screen/HUDelement in parentmob.HUDinventory)
 		HUDelement.invisibility = 0
 		hidden_inventory_update(HUDelement)
-	for (var/obj/screen/HUDelement in parentmob.HUDfrippery)
+	for(var/obj/screen/HUDelement in parentmob.HUDfrippery)
 		HUDelement.invisibility = 0
 
 /obj/screen/toggle_invetory/Click()

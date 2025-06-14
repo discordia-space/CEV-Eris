@@ -619,7 +619,7 @@
 	shuffle(firstnames)
 	shuffle(secondnames)
 	var/list/names = list()
-	for (var/i = 1; i <= min(firstnames.len, secondnames.len); i++)
+	for(var/i = 1; i <= min(firstnames.len, secondnames.len); i++)
 		names += "[firstnames[i]] [secondnames[i]]"
 
 	var/random = 0
@@ -629,7 +629,7 @@
 
 	//Give the maintshroom the name
 	var generated_name = ""
-	if (random <= names.len)
+	if(random <= names.len)
 		generated_name = names[random]
 	else
 		generated_name = names[1]
@@ -648,7 +648,7 @@
 	var/list/HSV = ReadHSV(RGBtoHSV(color))
 	color = set_HSV(color, list(null, min(HSV[2],100), 255))
 
-	if (chem)
+	if(chem)
 		set_trait(TRAIT_PLANT_COLOUR,color)
 		set_trait(TRAIT_PRODUCT_COLOUR,color)
 

@@ -145,13 +145,13 @@
 
 
 	for(var/mob/M in viewers(1, src))
-		if ((M.client && M.machine == src))
+		if((M.client && M.machine == src))
 			src.interact(M)
 	AutoUpdateAI(src)
 
 /obj/machinery/power/turbine/interact(mob/user)
 
-	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && (!isAI(user)) )
+	if( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && (!isAI(user)) )
 		user.machine = null
 		user << browse(null, "window=turbine")
 		return
@@ -193,7 +193,7 @@
 
 		spawn(0)
 			for(var/mob/M in viewers(1, src))
-				if ((M.client && M.machine == src))
+				if((M.client && M.machine == src))
 					src.interact(M)
 
 	else
@@ -257,9 +257,9 @@
 		usr.client.eye = src.compressor
 	else if( href_list["str"] )
 		src.compressor.starter = !src.compressor.starter
-	else if (href_list["doors"])
+	else if(href_list["doors"])
 		for(var/obj/machinery/door/blast/D in src.doors)
-			if (door_status == 0)
+			if(door_status == 0)
 				spawn( 0 )
 					D.open()
 					door_status = 1

@@ -117,13 +117,13 @@
 		return 1
 
 /obj/item/tool/tape_roll/stick(obj/item/target, mob/user)
-	if (!istype(target) || target.anchored)
+	if(!istype(target) || target.anchored)
 		return
 
-	if (target.w_class > ITEM_SIZE_SMALL)
+	if(target.w_class > ITEM_SIZE_SMALL)
 		to_chat(user, SPAN_WARNING("The [target] is too big to stick with tape!"))
 		return
-	if (istype(target.loc, /obj))
+	if(istype(target.loc, /obj))
 		return
 	consume_resources(10, user)
 	user.drop_from_inventory(target)
@@ -163,10 +163,10 @@
 	name = W.name + " (taped)"
 
 /obj/item/ducttape/update_icon()
-	if (!stuck)
+	if(!stuck)
 		return
 
-	if (istype(stuck, /obj/item/paper))
+	if(istype(stuck, /obj/item/paper))
 		icon_state = stuck.icon_state
 		cut_overlays()
 		overlays = stuck.overlays + "tape_overlay"

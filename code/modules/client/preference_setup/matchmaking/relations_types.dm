@@ -71,7 +71,7 @@
 			good += R
 	if(best.len)
 		return best
-	else if (good.len)
+	else if(good.len)
 		return good
 	return rest
 

@@ -69,7 +69,7 @@
 			user.visible_message(SPAN_NOTICE("[user] takes the glass off the solar panel."))
 			qdel(src)
 		return
-	else if (I)
+	else if(I)
 		src.add_fingerprint(user)
 		src.health -= I.force
 		src.healthcheck()
@@ -77,7 +77,7 @@
 
 
 /obj/machinery/power/solar/proc/healthcheck()
-	if (src.health <= 0)
+	if(src.health <= 0)
 		if(!(stat & BROKEN))
 			broken()
 		else
@@ -406,12 +406,12 @@
 /obj/machinery/power/solar_control/attackby(obj/item/I, mob/user)
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING), src))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			if (src.stat & BROKEN)
+			if(src.stat & BROKEN)
 				to_chat(user, SPAN_NOTICE("The broken glass falls out."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				new /obj/item/material/shard( src.loc )
 				var/obj/item/electronics/circuitboard/solar_control/M = new /obj/item/electronics/circuitboard/solar_control( A )
-				for (var/obj/C in src)
+				for(var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
 				A.state = 3
@@ -422,7 +422,7 @@
 				to_chat(user, SPAN_NOTICE("You disconnect the monitor."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				var/obj/item/electronics/circuitboard/solar_control/M = new /obj/item/electronics/circuitboard/solar_control( A )
-				for (var/obj/C in src)
+				for(var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
 				A.state = 4
@@ -479,7 +479,7 @@
 			if(connected_tracker)
 				connected_tracker.set_angle(SSsun.angle)
 				set_panels(cdir)
-		else if (track == 1) //begin manual tracking
+		else if(track == 1) //begin manual tracking
 			src.targetdir = src.cdir
 			if(src.trackrate) nexttime = world.time + 36000/abs(trackrate)
 			set_panels(targetdir)

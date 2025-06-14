@@ -34,11 +34,12 @@ process()
 check_build()
 
 Setup map
-  |EC|
-CC|FC|
-  |PB|
+////////
+//|EC|//
+CC|FC|//
+//|PB|//
 PE|PE|PE
-
+////////
 
 Icon Addemdum
 Icon system is much more robust, and the icons are all variable based.
@@ -94,7 +95,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	set category = "Object"
 	set src in oview(1)
 
-	if (src.anchored || usr:stat)
+	if(src.anchored || usr:stat)
 		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 270))
@@ -105,7 +106,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	set category = "Object"
 	set src in oview(1)
 
-	if (src.anchored || usr:stat)
+	if(src.anchored || usr:stat)
 		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 90))
@@ -267,7 +268,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	set category = "Object"
 	set src in oview(1)
 
-	if (src.anchored || usr:stat)
+	if(src.anchored || usr:stat)
 		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 270))
@@ -278,7 +279,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	set category = "Object"
 	set src in oview(1)
 
-	if (src.anchored || usr:stat)
+	if(src.anchored || usr:stat)
 		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 90))

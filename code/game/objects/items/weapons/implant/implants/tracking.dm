@@ -34,7 +34,7 @@
 	return ..()
 
 /obj/item/implant/tracking/emp_act(severity)
-	if (malfunction)	//no, dawg, you can't malfunction while you are malfunctioning
+	if(malfunction)	//no, dawg, you can't malfunction while you are malfunctioning
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 

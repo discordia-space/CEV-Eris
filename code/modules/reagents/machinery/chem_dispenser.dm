@@ -94,7 +94,7 @@
 	data["accept_beaker"] = accept_beaker
 
 	var/list/chemicals = list()
-	for (var/re in dispensable_reagents)
+	for(var/re in dispensable_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
 			chemicals.Add(list(list("title" = temp.name, "id" = temp.id, "commands" = list("dispense" = temp.id)))) // list in a list because Byond merges the first list...
@@ -118,9 +118,9 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "chem_dispenser.tmpl", ui_title, 390, 655)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -158,7 +158,7 @@
 			var/datum/reagents/R = B.reagents
 			var/space = R.maximum_volume - R.total_volume
 			var/added_amount = 0
-			if (dispensable_reagents.Find(href_list["dispense"]))
+			if(dispensable_reagents.Find(href_list["dispense"]))
 				added_amount = min(amount, cell.charge / chemical_dispenser_ENERGY_COST, space)
 				cell.use(added_amount * chemical_dispenser_ENERGY_COST)
 			// In a perfect world , we  would pass the cost through Topic() and not search lists , in reality , this is necesarry
@@ -207,7 +207,7 @@
 		if(accept_beaker && istype(B, /obj/item/reagent_containers/food))
 			to_chat(user, SPAN_NOTICE("This machine only accepts beakers"))
 		src.beaker =  B
-		if (user.unEquip(B, src))
+		if(user.unEquip(B, src))
 			to_chat(user, "You set [B] on the machine.")
 			update_icon()
 			SSnano.update_uis(src) // update all UIs attached to src

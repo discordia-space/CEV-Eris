@@ -69,9 +69,9 @@ proc/admin_notice(message, rights)
 		to_chat(usr, "That mob doesn't seem to exist! Something went wrong.")
 		return
 
-	if (!istype(src, /datum/admins))
+	if(!istype(src, /datum/admins))
 		src = usr.client.holder
-	if (!istype(src, /datum/admins))
+	if(!istype(src, /datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
@@ -97,9 +97,9 @@ proc/admin_notice(message, rights)
 	if(!M)
 		to_chat(usr, "You seem to be selecting a mob that doesn't exist anymore.")
 		return
-	if (!istype(src, /datum/admins))
+	if(!istype(src, /datum/admins))
 		src = usr.client.holder
-	if (!istype(src, /datum/admins))
+	if(!istype(src, /datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
@@ -115,7 +115,7 @@ proc/admin_notice(message, rights)
 		var/country = M.client.country
 		var/country_code = M.client.country_code
 		if(country && country_code)
-			// TODO (28.07.17): uncomment after flag icons resize
+			// TODO: uncomment after flag icons resize
 			// <img src=\"flag_[country_code].png\">
 			// usr << browse_rsc(icon('icons/country_flags.dmi', country_code), "flag_[country_code].png")
 			body += "<b>Country:</b> [country]<br><br>"
@@ -167,7 +167,7 @@ proc/admin_notice(message, rights)
 		<A href='?src=\ref[src];subtlemessage=\ref[M]'>Subtle message</A>
 	"}
 
-	if (M.client)
+	if(M.client)
 		if(!isnewplayer(M))
 			body += "<br><br>"
 			body += "<b>Transformation:</b>"
@@ -245,9 +245,9 @@ proc/admin_notice(message, rights)
 	set name = "Access Newscaster Network"
 	set desc = "Allows you to view, add and edit news feeds."
 
-	if (!istype(src,/datum/admins))
+	if(!istype(src,/datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
+	if(!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
 	var/dat
@@ -549,7 +549,7 @@ proc/admin_notice(message, rights)
 	set category = "Server"
 	set name = "Restart"
 	set desc="Restarts the world"
-	if (!usr.client.holder)
+	if(!usr.client.holder)
 		return
 	var/confirm = alert("Restart the game world?", "Restart", "Yes", "Cancel")
 	if(confirm == "Cancel")
@@ -601,7 +601,7 @@ proc/admin_notice(message, rights)
 		return
 
 	config.ooc_allowed = !(config.ooc_allowed)
-	if (config.ooc_allowed)
+	if(config.ooc_allowed)
 		to_chat(world, "<B>The OOC channel has been globally enabled!</B>")
 	else
 		to_chat(world, "<B>The OOC channel has been globally disabled!</B>")
@@ -617,7 +617,7 @@ proc/admin_notice(message, rights)
 		return
 
 	config.looc_allowed = !(config.looc_allowed)
-	if (config.looc_allowed)
+	if(config.looc_allowed)
 		to_chat(world, "<B>The LOOC channel has been globally enabled!</B>")
 	else
 		to_chat(world, "<B>The LOOC channel has been globally disabled!</B>")
@@ -633,7 +633,7 @@ proc/admin_notice(message, rights)
 		return
 
 	config.dsay_allowed = !(config.dsay_allowed)
-	if (config.dsay_allowed)
+	if(config.dsay_allowed)
 		to_chat(world, "<B>Deadchat has been globally enabled!</B>")
 	else
 		to_chat(world, "<B>Deadchat has been globally disabled!</B>")
@@ -675,7 +675,7 @@ proc/admin_notice(message, rights)
 	set desc="People can't enter"
 	set name="Toggle Entering"
 	config.enter_allowed = !(config.enter_allowed)
-	if (!(config.enter_allowed))
+	if(!(config.enter_allowed))
 		to_chat(world, "<B>New players may no longer enter the game.</B>")
 	else
 		to_chat(world, "<B>New players may now enter the game.</B>")
@@ -690,7 +690,7 @@ proc/admin_notice(message, rights)
 
 	config.allow_ai = !( config.allow_ai )
 
-	if (!( config.allow_ai ))
+	if(!( config.allow_ai ))
 		to_chat(world, "<B>The AI job is no longer chooseable.</B>")
 	else
 		to_chat(world, "<B>The AI job is chooseable now.</B>")
@@ -720,13 +720,13 @@ proc/admin_notice(message, rights)
 
 	if(!check_rights(R_SERVER))
 		return
-	if (SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_STARTUP)
+	if(SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_STARTUP)
 		SSticker.delay_end = !SSticker.delay_end
 		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins("\blue [key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
 		return
 	round_progressing = !round_progressing
-	if (!round_progressing)
+	if(!round_progressing)
 		to_chat(world, "<b>The game start has been delayed.</b>")
 		log_admin("[key_name(usr)] delayed the game.")
 	else
@@ -748,7 +748,7 @@ proc/admin_notice(message, rights)
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
 /proc/is_special_character(mob/M) // returns 1 for special characters
-	if (!istype(M))
+	if(!istype(M))
 		return NO_ANTAG
 
 	if(M.mind && player_is_limited_antag(M.mind))
@@ -851,7 +851,7 @@ proc/admin_notice(message, rights)
 	set desc="Reduces view range when wearing welding helmets"
 	set name="Toggle tinted welding helmets."
 	config.welder_vision = !( config.welder_vision )
-	if (config.welder_vision)
+	if(config.welder_vision)
 		to_chat(world, "<B>Reduced welder vision has been enabled!</B>")
 	else
 		to_chat(world, "<B>Reduced welder vision has been disabled!</B>")
@@ -864,7 +864,7 @@ proc/admin_notice(message, rights)
 	set desc="Guests can't enter"
 	set name="Toggle guests"
 	config.guests_allowed = !(config.guests_allowed)
-	if (!(config.guests_allowed))
+	if(!(config.guests_allowed))
 		to_chat(world, "<B>Guests may no longer enter the game.</B>")
 	else
 		to_chat(world, "<B>Guests may now enter the game.</B>")
@@ -964,12 +964,12 @@ proc/admin_notice(message, rights)
 		else if(isrobot(S))
 			var/mob/living/silicon/robot/R = S
 			to_chat(usr, "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [R.connected_ai])":"(Independant)"]: laws:</b>")
-		else if (ispAI(S))
+		else if(ispAI(S))
 			to_chat(usr, "<b>pAI [key_name(S, usr)]'s laws:</b>")
 		else
 			to_chat(usr, "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>")
 
-		if (S.laws == null)
+		if(S.laws == null)
 			to_chat(usr, "[key_name(S, usr)]'s laws are null?? Contact a coder.")
 		else
 			S.laws.show_laws(usr)
@@ -981,7 +981,7 @@ proc/admin_notice(message, rights)
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
 
-	if (!holder)
+	if(!holder)
 		to_chat(src, "Only administrators may use this command.")
 		return
 
@@ -1049,18 +1049,18 @@ proc/admin_notice(message, rights)
 		return //Extra sanity check to make sure only observers are shoved into things
 
 	//Same as assume-direct-control perm requirements.
-	if (!check_rights(R_ADMIN|R_DEBUG,0))
+	if(!check_rights(R_ADMIN|R_DEBUG,0))
 		return FALSE
-	if (!frommob.ckey)
+	if(!frommob.ckey)
 		return FALSE
 	var/question = ""
-	if (tomob.ckey)
+	if(tomob.ckey)
 		question = "This mob already has a user ([tomob.key]) in control of it! "
 	question += "Are you sure you want to place [frommob.name]([frommob.key]) in control of [tomob.name]?"
 	var/ask = alert(question, "Place ghost in control of mob?", "Yes", "No")
-	if (ask != "Yes")
+	if(ask != "Yes")
 		return TRUE
-	if (!frommob || !tomob) //make sure the mobs don't go away while we waited for a response
+	if(!frommob || !tomob) //make sure the mobs don't go away while we waited for a response
 		return TRUE
 	if(tomob.client) //No need to ghostize if there is no client
 		tomob.ghostize(0)
@@ -1085,7 +1085,7 @@ proc/admin_notice(message, rights)
 	var/msg
 
 	if(check_rights(R_ADMIN))
-		if (H.paralysis == 0)
+		if(H.paralysis == 0)
 			H.paralysis = 8000
 			msg = "has paralyzed [key_name(H)]."
 		else
@@ -1128,7 +1128,7 @@ proc/admin_notice(message, rights)
 		return
 
 	config.z_level_shooting = !(config.z_level_shooting)
-	if (config.z_level_shooting)
+	if(config.z_level_shooting)
 		to_chat(world, "<B>Shooting between z-levels has been globally enabled! Use the lookup verb to shoot up, click on empty spaces to shoot down!</B>")
 	else
 		to_chat(world, "<B>Shooting between z-levels has been globally disabled!</B>")

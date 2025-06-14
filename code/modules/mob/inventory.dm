@@ -2,7 +2,7 @@
 /mob/proc/attack_ui(slot)
 	var/obj/item/W = get_active_hand()
 	var/obj/item/E = get_equipped_item(slot)
-	if (istype(E))
+	if(istype(E))
 		if(istype(W))
 			W.resolve_attackby(E, src)
 		else
@@ -95,16 +95,16 @@
 	the search through all the slots, without having to duplicate the rest of the item dropping.
 */
 /mob/proc/u_equip(obj/W as obj)
-	if (W == r_hand)
+	if(W == r_hand)
 		r_hand = null
 		update_inv_r_hand(0)
-	else if (W == l_hand)
+	else if(W == l_hand)
 		l_hand = null
 		update_inv_l_hand(0)
-	else if (W == back)
+	else if(W == back)
 		back = null
 		update_inv_back(0)
-	else if (W == wear_mask)
+	else if(W == wear_mask)
 		wear_mask = null
 		update_inv_wear_mask(0)
 	return
@@ -122,7 +122,7 @@
 
 /mob/proc/get_inventory_slot(obj/item/I)
 	var/slot = slot_none
-	if (I.get_holding_mob() == src)
+	if(I.get_holding_mob() == src)
 		slot = I.get_equip_slot()
 	return slot
 
@@ -138,7 +138,7 @@
 //Attemps to remove an object on a mob.
 /mob/proc/remove_from_mob(obj/O, drop = TRUE)
 	u_equip(O)
-	if (client)
+	if(client)
 		client.screen -= O
 	O.layer = initial(O.layer)
 	O.set_plane(initial(O.plane))
@@ -155,7 +155,7 @@
 //It should be equipped to a new slot or forcemoved somewhere immediately after this is called
 /mob/proc/prepare_for_slotmove(obj/item/I)
 	u_equip(I)
-	if (client)
+	if(client)
 		client.screen -= I
 	I.layer = initial(I.layer)
 	I.set_plane(initial(I.plane))
@@ -185,7 +185,7 @@
 
 //Returns the inventory slot for the current hand
 /mob/proc/get_active_hand_slot()
-	if (hand)
+	if(hand)
 		return slot_l_hand
 	return slot_r_hand
 

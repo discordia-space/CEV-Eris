@@ -44,7 +44,7 @@
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
-	if (cell)
+	if(cell)
 		iconstring += "_mag"
 		itemstring += "_mag"
 		wielded_item_state = "_doble_mag"

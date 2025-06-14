@@ -24,7 +24,7 @@
 	if(module_state_1 == module_active)
 		if(istype(module_state_1,/obj/item/borg/sight))
 			sight_mode &= ~module_state_1:sight_mode
-		if (client)
+		if(client)
 			client.screen -= module_state_1
 		contents -= module_state_1
 		module_active = null
@@ -34,7 +34,7 @@
 	else if(module_state_2 == module_active)
 		if(istype(module_state_2,/obj/item/borg/sight))
 			sight_mode &= ~module_state_2:sight_mode
-		if (client)
+		if(client)
 			client.screen -= module_state_2
 		contents -= module_state_2
 		module_active = null
@@ -44,7 +44,7 @@
 	else if(module_state_3 == module_active)
 		if(istype(module_state_3,/obj/item/borg/sight))
 			sight_mode &= ~module_state_3:sight_mode
-		if (client)
+		if(client)
 			client.screen -= module_state_3
 		contents -= module_state_3
 		module_active = null
@@ -62,7 +62,7 @@
 	if(module_state_1)
 		if(istype(module_state_1,/obj/item/borg/sight))
 			sight_mode &= ~module_state_1:sight_mode
-		if (client)
+		if(client)
 			client.screen -= module_state_1
 		contents -= module_state_1
 		module_state_1:loc = module
@@ -71,7 +71,7 @@
 	if(module_state_2)
 		if(istype(module_state_2,/obj/item/borg/sight))
 			sight_mode &= ~module_state_2:sight_mode
-		if (client)
+		if(client)
 			client.screen -= module_state_2
 		contents -= module_state_2
 		module_state_2:loc = module
@@ -80,13 +80,13 @@
 	if(module_state_3)
 		if(istype(module_state_3,/obj/item/borg/sight))
 			sight_mode &= ~module_state_3:sight_mode
-		if (client)
+		if(client)
 			client.screen -= module_state_3
 		contents -= module_state_3
 		module_state_3:loc = module
 		module_state_3 = null
 		//inv3.icon_state = "inv3"
-	for (var/obj/screen/HUDelement in HUDinventory)
+	for(var/obj/screen/HUDelement in HUDinventory)
 		HUDelement.underlays.Cut()
 	update_robot_modules_display()
 	updateicon()
@@ -197,7 +197,7 @@
 			select_module(module)
 		else
 			deselect_module(get_selected_module()) //If we can't do select anything, at least deselect the current module.
-	for (var/obj/screen/inv in src.HUDinventory)
+	for(var/obj/screen/inv in src.HUDinventory)
 		inv.update_icon()
 	return
 
@@ -223,7 +223,7 @@
 	return
 
 /mob/living/silicon/robot/proc/find_inv_position(var/invnum)
-	if (!src.HUDinventory.len)
+	if(!src.HUDinventory.len)
 		return
 	var/obj/screen/silicon/module/inv
 
@@ -241,7 +241,7 @@
 		to_chat(src, SPAN_NOTICE("Already activated"))
 		return
 	if(!module_state_1)
-		if (O.pre_equip(src, slot_robot_equip_1))
+		if(O.pre_equip(src, slot_robot_equip_1))
 			return
 
 		module_state_1 = O
@@ -254,7 +254,7 @@
 		O.equipped(src, slot_robot_equip_1)
 
 	else if(!module_state_2)
-		if (O.pre_equip(src, slot_robot_equip_2))
+		if(O.pre_equip(src, slot_robot_equip_2))
 			return
 		module_state_2 = O
 		O.layer = ABOVE_HUD_LAYER
@@ -266,7 +266,7 @@
 		O.equipped(src, slot_robot_equip_2)
 
 	else if(!module_state_3)
-		if (O.pre_equip(src, slot_robot_equip_3))
+		if(O.pre_equip(src, slot_robot_equip_3))
 			return
 		module_state_3 = O
 		O.layer = ABOVE_HUD_LAYER
@@ -284,7 +284,7 @@
 //Parent call will drop it on the floor if gripper can't hold it
 /mob/living/silicon/robot/put_in_hands(var/obj/item/W)
 	var/obj/item/gripper/G = locate() in list(module_state_1, module_state_2, module_state_3)
-	if (G && G.grip_item(W, src, 1))
+	if(G && G.grip_item(W, src, 1))
 		return 1
 	else
 		return ..(W)
@@ -293,6 +293,6 @@
 /mob/living/silicon/robot/canUnEquip(obj/item/I) //Force overrides NODROP for things like wizarditis and admin undress.
 	if(!I || !I.loc)
 		return TRUE
-	if (istype(I.loc, /obj/item/gripper)) //Robots are allowed to drop the things in their gripper
+	if(istype(I.loc, /obj/item/gripper)) //Robots are allowed to drop the things in their gripper
 		return TRUE
 	return ..(I) //This will be false for things directly equipped

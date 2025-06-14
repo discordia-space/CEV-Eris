@@ -42,10 +42,10 @@
 		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
 		return
 
-	else if (istype(I, /obj/item/gripper))//Code for allowing cyborgs to use rechargers
+	else if(istype(I, /obj/item/gripper))//Code for allowing cyborgs to use rechargers
 		var/obj/item/gripper/Gri = I
-		if (charging)//If there's something in the charger
-			if (Gri.grip_item(charging, user))//we attempt to grab it
+		if(charging)//If there's something in the charger
+			if(Gri.grip_item(charging, user))//we attempt to grab it
 				charging = null
 				update_icon()
 			else
@@ -67,9 +67,9 @@
 			to_chat(user, SPAN_WARNING("[src] blinks red as you try to insert the item!"))
 			return
 
-		if (istype(I, /obj/item/gun/energy))
+		if(istype(I, /obj/item/gun/energy))
 			var/obj/item/gun/energy/W = I
-			if (W.disposable)
+			if(W.disposable)
 				to_chat(user, SPAN_NOTICE("Your gun is disposable, it cannot be charged."))
 				return
 		if(istype(I, /obj/item/gun/energy/nuclear) || istype(I, /obj/item/gun/energy/crossbow))

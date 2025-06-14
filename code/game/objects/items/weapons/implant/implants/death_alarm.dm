@@ -20,7 +20,7 @@
 	return data
 
 /obj/item/implant/death_alarm/Process()
-	if (!implanted)
+	if(!implanted)
 		return
 	var/mob/M = wearer
 
@@ -38,7 +38,7 @@
 			a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", use_text_to_speech = TRUE)
 			qdel(a)
 			STOP_PROCESSING(SSobj, src)
-		if ("emp")
+		if("emp")
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
 			var/name = prob(50) ? t.name : pick(SSmapping.main_ship_areas_by_name)
 			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", use_text_to_speech = TRUE)
@@ -50,7 +50,7 @@
 			STOP_PROCESSING(SSobj, src)
 
 /obj/item/implant/death_alarm/malfunction(severity)			//for some reason alarms stop going off in case they are emp'd, even without this
-	if (malfunction)		//so I'm just going to add a meltdown chance here
+	if(malfunction)		//so I'm just going to add a meltdown chance here
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 
@@ -58,7 +58,7 @@
 	if(severity == 1)
 		if(prob(40))	//small chance of obvious meltdown
 			meltdown()
-		else if (prob(60))	//but more likely it will just quietly die
+		else if(prob(60))	//but more likely it will just quietly die
 			malfunction = MALFUNCTION_PERMANENT
 		STOP_PROCESSING(SSobj, src)
 

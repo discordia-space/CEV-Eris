@@ -30,8 +30,8 @@
 
 	if(faction == "neutral")
 		return TRUE
-	for (var/mob/living/exosuit/M in GLOB.mechas_list)
-		if (M.z == src.z && get_dist(src, M) <= dist)
+	for(var/mob/living/exosuit/M in GLOB.mechas_list)
+		if(M.z == src.z && get_dist(src, M) <= dist)
 			return TRUE
 
 	for(var/mob/living/M in SSmobs.mob_living_by_zlevel[(get_turf(src)).z])

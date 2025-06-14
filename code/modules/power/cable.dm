@@ -163,7 +163,7 @@ var/list/possible_cable_coil_colours = list(
 
 	else if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = I
-		if (coil.get_amount() < 1)
+		if(coil.get_amount() < 1)
 			to_chat(user, "Not enough cable")
 			return
 		if(user.a_intent == I_HURT)
@@ -206,7 +206,7 @@ var/list/possible_cable_coil_colours = list(
 		shock(user, 5, 0.2)
 
 	else
-		if (I.flags & CONDUCT)
+		if(I.flags & CONDUCT)
 			shock(user, 50, 0.7)
 
 /obj/structure/cable/proc/spawnSplicing(var/messiness = 1)
@@ -258,7 +258,7 @@ var/list/possible_cable_coil_colours = list(
 /obj/structure/cable/proc/shock(mob/user, prb, var/siemens_coeff = 1)
 	if(!prob(prb))
 		return 0
-	if (electrocute_mob(user, powernet, src, siemens_coeff))
+	if(electrocute_mob(user, powernet, src, siemens_coeff))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()
@@ -543,7 +543,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 /obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
 	..()
 	src.amount = length
-	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
+	if(param_color) // It should be red by default, so only recolor it if parameter was specified.
 		color = param_color
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
@@ -561,7 +561,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.organs_by_name[user.targeted_organ]
 
-		if (!S) return
+		if(!S) return
 		if(!BP_IS_ROBOTIC(S) || user.a_intent != I_HELP)
 			return ..()
 
@@ -595,7 +595,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 
 /obj/item/stack/cable_coil/update_icon()
-	if (!color)
+	if(!color)
 		color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_ORANGE, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
 	if(amount == 1)
 		icon_state = "coil1"
@@ -758,8 +758,8 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		C.mergeDiagonalsNetworks(C.d2)
 
 	use(1)
-	if (C.shock(user, 50))
-		if (prob(50)) //fail
+	if(C.shock(user, 50))
+		if(prob(50)) //fail
 			new/obj/item/stack/cable_coil(C.loc, 1, C.color)
 			qdel(C)
 
@@ -845,8 +845,8 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 		use(1)
 
-		if (C.shock(user, 50))
-			if (prob(50)) //fail
+		if(C.shock(user, 50))
+			if(prob(50)) //fail
 				new/obj/item/stack/cable_coil(C.loc, 2, C.color)
 				qdel(C)
 				return

@@ -101,22 +101,22 @@
 	if(prob(20)) //Aditional fail chance that hidded from user
 		to_chat(H, SPAN_NOTICE("There is nothing there. You feel safe."))
 		return TRUE
-	for (var/mob/living/carbon/superior_animal/S in range(14, H))
-		if (S.stat != DEAD)
+	for(var/mob/living/carbon/superior_animal/S in range(14, H))
+		if(S.stat != DEAD)
 			to_chat(H, SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile."))
 			was_triggired = TRUE
 			break
 
-	if (!was_triggired)
-		for (var/mob/living/simple_animal/hostile/S in range(14, H))
-			if (S.stat != DEAD)
+	if(!was_triggired)
+		for(var/mob/living/simple_animal/hostile/S in range(14, H))
+			if(S.stat != DEAD)
 				to_chat(H, SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile."))
 				was_triggired = TRUE
 				break
-	if (prob(80) && (locate(/obj/structure/wire_splicing) in view(7, H))) //Add more traps later
+	if(prob(80) && (locate(/obj/structure/wire_splicing) in view(7, H))) //Add more traps later
 		to_chat(H, SPAN_WARNING("Something is wrong with this area. Tread carefully."))
 		was_triggired = TRUE
-	if (!was_triggired)
+	if(!was_triggired)
 		to_chat(H, SPAN_NOTICE("There is nothing there. You feel safe."))
 
 	set_personal_cooldown(H)
@@ -329,7 +329,7 @@
 		fail("There is no cruciform on this one", user, C)
 		return FALSE
 
-	if (H.stat == DEAD)
+	if(H.stat == DEAD)
 		fail("It is too late for this one, the soul has already left the vessel", user, C)
 		return FALSE
 
@@ -363,7 +363,7 @@
 	if(ishuman(H))
 		var/mob/living/carbon/human/M = H
 		var/obj/item/organ/external/E = M.organs_by_name[BP_CHEST]
-		for (var/i = 0; i < 5;i++)
+		for(var/i = 0; i < 5;i++)
 			E.take_damage(5, BRUTE, sharp = FALSE)
 			//Deal 25 damage in five hits. Using multiple small hits mostly prevents internal damage
 

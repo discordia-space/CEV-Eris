@@ -28,15 +28,15 @@
 
 
 /datum/shuttle/autodock/ferry/specops/launch(var/user)
-	if (!can_launch())
+	if(!can_launch())
 		return
 
-	if (istype(user, /obj/machinery/computer))
+	if(istype(user, /obj/machinery/computer))
 		var/obj/machinery/computer/C = user
 
 		if(world.time <= reset_time)
 			C.visible_message("<span class='notice'>[boss_name] will not allow the Special Operations shuttle to launch yet.</span>")
-			if (((world.time - reset_time)/10) > 60)
+			if(((world.time - reset_time)/10) > 60)
 				C.visible_message("<span class='notice'>[-((world.time - reset_time)/10)/60] minutes remain!</span>")
 			else
 				C.visible_message("<span class='notice'>[-(world.time - reset_time)/10] seconds remain!</span>")
@@ -44,14 +44,14 @@
 
 		C.visible_message("<span class='notice'>The Special Operations shuttle will depart in [(specops_countdown_time/10)] seconds.</span>")
 
-	if (location)	//returning
+	if(location)	//returning
 		radio_announce("THE SPECIAL OPERATIONS SHUTTLE IS PREPARING TO RETURN")
 	else
 		radio_announce("THE SPECIAL OPERATIONS SHUTTLE IS PREPARING FOR LAUNCH")
 
 	sleep_until_launch()
 
-//	if (location)
+//	if(location)
 //		var/obj/machinery/light/small/readylight/light = locate() in shuttle_area
 //		if(light) light.set_state(0)
 
@@ -63,7 +63,7 @@
 	..()
 
 	spawn(2 SECONDS)
-		if (!location)	//just arrived home
+		if(!location)	//just arrived home
 			for(var/turf/T in get_area_turfs(shuttle_area))
 				var/mob/M = locate(/mob) in T
 				to_chat(M, "<span class='danger'>You have arrived at [boss_name]. Operation has ended!</span>")
@@ -77,12 +77,12 @@
 //				if(light) light.set_state(1)
 
 /datum/shuttle/autodock/ferry/specops/cancel_launch()
-	if (!can_cancel())
+	if(!can_cancel())
 		return
 
 	cancel_countdown = 1
 	radio_announce("ALERT: LAUNCH SEQUENCE ABORTED")
-	if (istype(in_use, /obj/machinery/computer))
+	if(istype(in_use, /obj/machinery/computer))
 		var/obj/machinery/computer/C = in_use
 		C.visible_message("<span class='warning'>Launch sequence aborted.</span>")
 	..()

@@ -32,7 +32,7 @@
 	else
 		wielded_item_state = "_doble"
 
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
 
 	icon_state = iconstring

@@ -10,7 +10,7 @@
 		is_adult = 0
 		maxHealth = 150
 		revive()
-		if (!client) rabid = 1
+		if(!client) rabid = 1
 		number = rand(1, 1000)
 		name = "[colour] [is_adult ? "adult" : "baby"] slime ([number])"
 		return

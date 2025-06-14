@@ -63,7 +63,7 @@
 	. = ..()
 
 /obj/item/roach_egg/Process()
-	if (isturf(src.loc) || istype(src.loc, /obj/structure/closet) || istype(src.loc, /obj/item/organ/external)) // suppresses hatching when not in a suitable loc
+	if(isturf(src.loc) || istype(src.loc, /obj/structure/closet) || istype(src.loc, /obj/item/organ/external)) // suppresses hatching when not in a suitable loc
 		if(amount_grown >= 100)
 			var/obj/item/organ/external/O
 			if(istype(loc, /obj/item/organ/external)) // In case you want to implant some roach eggs into someone, gross!

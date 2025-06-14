@@ -309,7 +309,7 @@
 			data["account_logs"] = logs
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "tax_app.tmpl", "TaxQuickly 2565", 450, 600, state = state)
 		if(host.update_layout())
 			ui.auto_update_layout = TRUE

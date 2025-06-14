@@ -53,8 +53,8 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 /datum/unit_test/Destroy()
 	QDEL_LIST(allocated)
 	// clear the test area
-	for (var/turf/turf in block(locate(1, 1, run_loc_floor_bottom_left.z), locate(world.maxx, world.maxy, run_loc_floor_bottom_left.z)))
-		for (var/content in turf.contents)
+	for(var/turf/turf in block(locate(1, 1, run_loc_floor_bottom_left.z), locate(world.maxx, world.maxy, run_loc_floor_bottom_left.z)))
+		for(var/content in turf.contents)
 			qdel(content)
 	return ..()
 
@@ -73,16 +73,16 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 /// Instances allocated through this proc will be destroyed when the test is over
 /datum/unit_test/proc/allocate(type, ...)
 	var/list/arguments = args.Copy(2)
-	if (!arguments.len)
+	if(!arguments.len)
 		arguments = list(run_loc_floor_bottom_left)
-	else if (arguments[1] == null)
+	else if(arguments[1] == null)
 		arguments[1] = run_loc_floor_bottom_left
 	var/instance = new type(arglist(arguments))
 	allocated += instance
 	return instance
 
 /datum/unit_test/proc/test_screenshot(name, icon/icon)
-	if (!istype(icon))
+	if(!istype(icon))
 		TEST_FAIL("[icon] is not an icon.")
 		return
 
@@ -91,11 +91,11 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 
 	var/filename = "code/modules/unit_tests/screenshots/[path_prefix]_[name].png"
 
-	if (fexists(filename))
+	if(fexists(filename))
 		var/data_filename = "data/screenshots/[path_prefix]_[name].png"
 		fcopy(icon, data_filename)
 		log_test("[path_prefix]_[name] was found, putting in data/screenshots")
-	else if (fexists("code"))
+	else if(fexists("code"))
 		// We are probably running in a local build
 		fcopy(icon, filename)
 		TEST_FAIL("Screenshot for [name] did not exist. One has been created.")
@@ -152,9 +152,9 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 
 	var/list/tests_to_run = subtypesof(/datum/unit_test)
 	var/list/focused_tests = list()
-	for (var/_test_to_run in tests_to_run)
+	for(var/_test_to_run in tests_to_run)
 		var/datum/unit_test/test_to_run = _test_to_run
-		if (initial(test_to_run.focus))
+		if(initial(test_to_run.focus))
 			focused_tests += test_to_run
 	if(length(focused_tests))
 		tests_to_run = focused_tests

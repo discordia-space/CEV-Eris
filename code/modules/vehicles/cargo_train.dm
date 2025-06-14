@@ -206,7 +206,7 @@
 		return
 
 	turn_on()
-	if (on)
+	if(on)
 		to_chat(usr, "You start [src]'s engine.")
 	else
 		if(!cell.check_charge(charge_use))
@@ -227,7 +227,7 @@
 		return
 
 	turn_off()
-	if (!on)
+	if(!on)
 		to_chat(usr, "You stop [src]'s engine.")
 
 /obj/vehicle/train/cargo/engine/verb/remove_key()

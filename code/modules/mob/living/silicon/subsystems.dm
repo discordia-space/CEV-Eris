@@ -126,7 +126,7 @@
 	. = ..()
 
 /stat_silicon_subsystem/Click(var/mob/given = usr)
-	if (istype(given))
+	if(istype(given))
 		subsystem.nano_ui_interact(given, state = ui_state)
 	else
 		subsystem.nano_ui_interact(usr, state = ui_state)

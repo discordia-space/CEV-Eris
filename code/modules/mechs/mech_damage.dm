@@ -65,7 +65,7 @@
 	if(!effective_force)
 		return FALSE
 
-	if (damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, I.armor_divisor, used_weapon = I, sharp = is_sharp(I), edge = has_edge(I), dir_mult = dir_mult))
+	if(damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, I.armor_divisor, used_weapon = I, sharp = is_sharp(I), edge = has_edge(I), dir_mult = dir_mult))
 		return TRUE
 	else
 		return FALSE
@@ -198,21 +198,21 @@
 		playsound(src, 'sound/weapons/thudswoosh.ogg', 100, 1, 10, 10)
 		return
 	//Wreck the contents of the tile
-	for (var/atom/movable/AM in dest)
-		if (AM != src)
+	for(var/atom/movable/AM in dest)
+		if(AM != src)
 			AM.explosion_act(200, null)
 
 	//Damage surrounding tiles
-	for (var/turf/T in range(1, src))
+	for(var/turf/T in range(1, src))
 		T.explosion_act(150, null)
 
 	apply_damage(abs(from.z - dest.z)*30, BRUTE, BP_LEGS, 10)
 
 	//And do some screenshake for everyone in the vicinity
-	for (var/mob/M in range(20, src))
+	for(var/mob/M in range(20, src))
 		var/dist = get_dist(M, src)
 		dist *= 0.5
-		if (dist <= 1)
+		if(dist <= 1)
 			dist = 1 //Prevent runtime errors
 
 		shake_camera(M, 10/dist, 2.5/dist, 0.12)
@@ -249,7 +249,7 @@
 			P.redirect(new_x, new_y, get_turf(src), src)
 		return PROJECTILE_CONTINUE
 
-	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+	if(P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 	var/obj/item/mech_equipment/shield_generator/gen = getShield()
 	var/list/damages = P.damage_types
@@ -293,7 +293,7 @@
         . = comp.rear_mult // Hit from the back
     // Side quadrants (45 - 135 degrees and 225 - 315 degrees)
 
-    else if (!facing_vector||!angle||!incoming_hit_vector)
+    else if(!facing_vector||!angle||!incoming_hit_vector)
         . = comp.side_mult
     else
         . = comp.side_mult // Hit from the sides

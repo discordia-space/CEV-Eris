@@ -47,12 +47,12 @@
 	tendril_dirs = list()
 	if(tendrils.len < 1)
 		return FALSE
-	for (var/obj/machinery/power/conduit/C in tendrils)
+	for(var/obj/machinery/power/conduit/C in tendrils)
 		tendril_dirs.Add(turn(C.dir, 180))
 	return TRUE
 
 /obj/machinery/power/shipside/proc/spawn_tendrils(dirs = list(NORTH, EAST, WEST))
-	for (var/D in dirs)
+	for(var/D in dirs)
 		var/turf/T = get_step(src, D)
 		var/obj/machinery/power/conduit/tendril = locate(T)
 		if(!tendril)
@@ -79,15 +79,15 @@
 
 /obj/machinery/power/shipside/proc/toggle_tendrils(forced_state)
 	var/target_state
-	if (isnull(forced_state))
+	if(isnull(forced_state))
 		target_state = tendrils_deployed ? FALSE : TRUE
 	else
 		target_state = forced_state
 
-	if (target_state == tendrils_deployed)
+	if(target_state == tendrils_deployed)
 		return
 	//If we're extending them
-	if (target_state == TRUE)
+	if(target_state == TRUE)
 		if(!anchored)
 			visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it needs to be properly anchored to deploy"))
 			playsound(src.loc, 'sound/machines/buzz-two.ogg', 100, 1, 5)
@@ -98,9 +98,9 @@
 			visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it has no conduits to deploy"))
 			playsound(src.loc, 'sound/machines/buzz-two.ogg', 100, 1, 5)
 			return FALSE
-		for (var/D in tendril_dirs)
+		for(var/D in tendril_dirs)
 			var/turf/T = get_step(src, D)
-			if (!turf_clear_ignore_cables(T))
+			if(!turf_clear_ignore_cables(T))
 				visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it lacks the space to deploy"))
 				playsound(src.loc, 'sound/machines/buzz-two.ogg', 100, 1, 5)
 				tendrils_deployed = FALSE
@@ -108,7 +108,7 @@
 				return FALSE
 
 		//Now deploy
-		for (var/obj/machinery/power/conduit/C in tendrils)
+		for(var/obj/machinery/power/conduit/C in tendrils)
 			var/turf/T = get_step(src, turn(C.dir, 180))
 			C.forceMove(T)
 			C.connect(src)
@@ -120,8 +120,8 @@
 		to_chat(usr, SPAN_NOTICE("You deployed [src] conduits."))
 		return TRUE
 
-	else if (target_state == FALSE)
-		for (var/obj/machinery/power/conduit/C in tendrils)
+	else if(target_state == FALSE)
+		for(var/obj/machinery/power/conduit/C in tendrils)
 			C.disconnect_from_network()
 			C.forceMove(src)
 		tendrils_deployed = FALSE
@@ -227,7 +227,7 @@
 /obj/machinery/power/conduit/on_deconstruction()
 	disconnect()
 	. = ..()
-	
+
 /obj/machinery/power/conduit/RefreshParts()
 	. = ..()
 	if(base)
@@ -278,7 +278,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if (src.anchored || usr.stat)
+	if(src.anchored || usr.stat)
 		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 90))

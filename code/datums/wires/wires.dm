@@ -151,7 +151,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 				var/mob/living/exosuit/mech = L.loc
 				I = mech.get_active_hand()
 			if(href_list["cut"]) // Toggles the cut/mend status
-				if (!istype(I))
+				if(!istype(I))
 					return
 				var/tool_type = null
 				if(QUALITY_CUTTING in I.tool_qualities)
@@ -167,7 +167,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 					to_chat(L, SPAN_WARNING("You need something that can cut!"))
 
 			else if(href_list["pulse"])
-				if (!istype(I))
+				if(!istype(I))
 					return
 				if(I.get_tool_type(usr, list(QUALITY_PULSING), holder))
 					if(I.use_tool(L, holder, WORKTIME_INSTANT, QUALITY_PULSING, FAILCHANCE_ZERO))

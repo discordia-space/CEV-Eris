@@ -95,9 +95,9 @@
 
 /obj/item/device/taperecorder/show_message(msg, type, alt, alt_type)
 	var/recordedtext
-	if (msg && type == 2) //must be hearable
+	if(msg && type == 2) //must be hearable
 		recordedtext = msg
-	else if (alt && alt_type == 2)
+	else if(alt && alt_type == 2)
 		recordedtext = alt
 	else
 		return
@@ -296,7 +296,7 @@
 			break
 		var/turf/T = get_turf(src)
 		var/playedmessage = audio_file.storedinfo[i]
-		if (findtextEx(playedmessage,"*",1,2)) //remove marker for action sounds
+		if(findtextEx(playedmessage,"*",1,2)) //remove marker for action sounds
 			playedmessage = copytext(playedmessage,2)
 		T.audible_message("<font color=Maroon><B>Recorder</B>: [playedmessage]</font>")
 		if(audio_file.storedinfo.len < i+1)

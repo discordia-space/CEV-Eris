@@ -27,9 +27,9 @@
 
 /datum/event/wormholes/setup()
 	number_of_wormholes = rand(2,8)
-	for (var/i = 1; i <= number_of_wormholes*2; i++)
+	for(var/i = 1; i <= number_of_wormholes*2; i++)
 		var/area/A
-		if (prob(15))
+		if(prob(15))
 			//15% chance to allow maintenance areas in the search
 			A = random_ship_area(TRUE, FALSE)
 		else
@@ -46,7 +46,7 @@
 
 
 /datum/event/wormholes/start()
-	for (var/i = 1; i <= number_of_wormholes; i++)
+	for(var/i = 1; i <= number_of_wormholes; i++)
 		var/turf/enter = pick_n_take(wormhole_tiles)
 		var/turf/exit = pick_n_take(wormhole_tiles)
 		new /obj/effect/portal/wormhole(enter, rand(min_duration, max_duration),exit)

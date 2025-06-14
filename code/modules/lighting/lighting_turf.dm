@@ -14,22 +14,22 @@
 
 // Builds a lighting overlay for us, but only if our area is dynamic.
 /turf/proc/lighting_build_overlay()
-	if (lighting_overlay)
+	if(lighting_overlay)
 		return
 
 	var/area/A = loc
-	if (!A.dynamic_lighting)
+	if(!A.dynamic_lighting)
 		return
 
-	if (!lighting_corners_initialised)
+	if(!lighting_corners_initialised)
 		generate_missing_corners()
 
 	new /atom/movable/lighting_overlay(src)
 
-	for (var/LC in corners)
+	for(var/LC in corners)
 		var/datum/lighting_corner/C = LC
-		if (!C.active) // We would activate the corner, calculate the lighting for it.
-			for (var/L in C.affecting)
+		if(!C.active) // We would activate the corner, calculate the lighting for it.
+			for(var/L in C.affecting)
 				var/datum/light_source/S = L
 				S.recalc_corner(C)
 
@@ -37,7 +37,7 @@
 
 // Used to get a scaled lumcount.
 /turf/proc/get_lumcount(var/minlum = 0, var/maxlum = 1)
-	if (!lighting_overlay)
+	if(!lighting_overlay)
 		return 0.5
 
 	var/totallums = 0
@@ -54,8 +54,8 @@
 // Can't think of a good name, this proc will recalculate the has_opaque_atom variable.
 /turf/proc/recalc_atom_opacity()
 	has_opaque_atom = FALSE
-	for (var/atom/A in src.contents)
-		if (A.opacity)
+	for(var/atom/A in src.contents)
+		if(A.opacity)
 			has_opaque_atom = TRUE
 			return
 
@@ -80,11 +80,11 @@
 
 /turf/proc/generate_missing_corners()
 	lighting_corners_initialised = TRUE
-	if (!corners)
+	if(!corners)
 		corners = list(null, null, null, null)
 
-	for (var/i = 1 to 4)
-		if (corners[i]) // Already have a corner on this direction.
+	for(var/i = 1 to 4)
+		if(corners[i]) // Already have a corner on this direction.
 			continue
 
 		corners[i] = new/datum/lighting_corner(src, LIGHTING_CORNER_DIAGONAL[i])

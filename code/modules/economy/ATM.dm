@@ -62,7 +62,7 @@ log transactions
 
 /obj/machinery/atm/power_change()
 	..()
-	if (held_card && !powered(0))
+	if(held_card && !powered(0))
 		held_card.loc = src.loc
 		authenticated_account = null
 		held_card = null
@@ -72,7 +72,7 @@ log transactions
 	if(stat & NOPOWER)
 		icon_state = "atm_off"
 		return
-	else if (held_card)
+	else if(held_card)
 		icon_state = "atm_cardin"
 	else
 		icon_state = "atm"
@@ -136,7 +136,7 @@ log transactions
 	if(issilicon(user))
 		to_chat(user, "\red \icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per system banking regulation #1005.")
 		return
-	if (..())
+	if(..())
 		return
 	if(get_dist(src,user) <= 1)
 
@@ -242,7 +242,7 @@ log transactions
 		user << browse(null,"window=atm")
 
 /obj/machinery/atm/Topic(var/href, var/href_list)
-	if (..())
+	if(..())
 		return
 	if(href_list["choice"])
 		switch(href_list["choice"])
@@ -365,7 +365,7 @@ log transactions
 					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
 
 				playsound(loc, pick('sound/items/polaroid1.ogg','sound/items/polaroid2.ogg'), 50, 1)
-			if ("print_transaction")
+			if("print_transaction")
 				if(authenticated_account)
 					var/obj/item/paper/R = new(src.loc)
 					R.name = "Transaction logs: [authenticated_account.owner_name]"
@@ -412,7 +412,7 @@ log transactions
 						to_chat(usr, "\red \icon[src] The ATM card reader rejected your ID because this machine has been sabotaged!")
 					else
 						var/obj/item/I = usr.get_active_hand()
-						if (istype(I, /obj/item/card/id))
+						if(istype(I, /obj/item/card/id))
 							usr.drop_item()
 							I.loc = src
 							held_card = I

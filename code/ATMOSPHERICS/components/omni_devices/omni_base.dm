@@ -86,7 +86,7 @@
 	for(var/datum/omni_port/P in ports)
 		int_pressure += P.air.return_pressure()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if ((int_pressure - env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+	if((int_pressure - env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
 		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
@@ -248,7 +248,7 @@
 			continue
 		for(var/obj/machinery/atmospherics/target in get_step(src, P.dir))
 			if(target.initialize_directions & get_dir(target, src))
-				if (check_connect_types(target, src))
+				if(check_connect_types(target, src))
 					P.node = target
 					break
 

@@ -1,17 +1,17 @@
 /mob/observer/eye/angel/say(var/message)
 	message = sanitize(message)
 
-	if (!message)
+	if(!message)
 		return
 
 	log_say("ANGEL/[src.key] : [message]")
 
-	if (src.client)
+	if(src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
 			to_chat(src, "\red You cannot talk in deadchat and ANGEL chat (muted).")
 			return
 
-		if (src.client.handle_spam_prevention(message,MUTE_DEADCHAT))
+		if(src.client.handle_spam_prevention(message,MUTE_DEADCHAT))
 			return
 
 	if(say_disabled)	//This is here to try to identify lag problems
@@ -81,7 +81,7 @@
 	if(subject && subject.client)
 		var/client/C = subject.client
 		keyname = (C.holder && C.holder.fakekey) ? C.holder.fakekey : C.key
-		if (C.mob)
+		if(C.mob)
 			name = C.mob.name
 		else
 			name = "Unknown ANGEL"

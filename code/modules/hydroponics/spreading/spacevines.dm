@@ -5,16 +5,16 @@
 	//Vines will spawn at a burrow
 	var/obj/structure/burrow/origin
 	var/list/burrows = GLOB.all_burrows.Copy()
-	while (burrows.len)
+	while(burrows.len)
 		var/obj/structure/burrow/B = pick_n_take(burrows)
 
 		//Needs to not already have plants
-		if (B.plant)
+		if(B.plant)
 			continue
 
 		//We ideally want to spawn in crew areas, but we will accept a maintenance burrow as a fallback
 		origin = B
-		if (B.maintenance)
+		if(B.maintenance)
 
 			//Keep searching for a better one
 			continue
@@ -24,7 +24,7 @@
 			break
 
 	//We failed to find a spawning burrow :()
-	if (!origin)
+	if(!origin)
 		return FALSE
 
 	//Break the floor
@@ -51,9 +51,9 @@
 	//Force an immediate spread
 	SSmigration.handle_plant_spreading()
 
-	for (var/a in origin.plantspread_burrows)
+	for(var/a in origin.plantspread_burrows)
 		var/obj/structure/burrow/B = locate(a)
-		if (istype(B))
+		if(istype(B))
 			spawn(RAND_DECIMAL(5, 30))
 				B.break_open() //Break the floor at each of the burrows it spreads to
 				log_and_message_admins("Spacevines spread to burrow [jumplink(B)]")

@@ -21,7 +21,7 @@
 
 /obj/effect/spawner/maintshroom/Initialize()
 	.=..()
-	if (instant)
+	if(instant)
 		spawn_shroom()
 		return INITIALIZE_HINT_QDEL
 
@@ -47,7 +47,7 @@
 /obj/effect/spawner/maintshroom/delayed/spawn_shroom()
 	//If all the burrows in the area were destroyed before we spawned, then our spawning is cancelled
 	var/obj/structure/burrow/B = find_visible_burrow(src)
-	if (!B)
+	if(!B)
 		return
 
 	// Skip the spawning if the burrow is in a well lit places.

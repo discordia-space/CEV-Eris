@@ -2676,7 +2676,7 @@
 #include "code\modules\stashes\stash_types\excelsior.dm"
 #include "code\modules\stashes\stash_types\junk.dm"
 #include "code\modules\stashes\stash_types\ninja.dm"
-#include "code\modules\stashes\stash_types\valueables.dm"
+#include "code\modules\stashes\stash_types\valuables.dm"
 #include "code\modules\stashes\stash_types\weapons.dm"
 #include "code\modules\surgery\_defines.dm"
 #include "code\modules\surgery\assisted.dm"

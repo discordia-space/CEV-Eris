@@ -229,10 +229,10 @@
 		if(issilicon(host))
 			var/mob/living/silicon/S = host
 			data["ringtone"] = S.email_ringtone
-		else if (istype(host,/obj/item/modular_computer))
+		else if(istype(host,/obj/item/modular_computer))
 			var/obj/item/modular_computer/computer = nano_host()
 			var/datum/computer_file/program/email_client/PRG = computer.active_program
-			if (istype(PRG))
+			if(istype(PRG))
 				data["ringtone"] = PRG.ringtone
 
 		if(addressbook)
@@ -257,7 +257,7 @@
 				data["msg_hasattachment"] = 1
 				data["msg_attachment_filename"] = "[msg_attachment.filename].[msg_attachment.filetype]"
 				data["msg_attachment_size"] = msg_attachment.size
-		else if (current_message)
+		else if(current_message)
 			data["cur_title"] = current_message.title
 			data["cur_body"] = pencode2html(current_message.stored_data)
 			data["cur_timestamp"] = current_message.timestamp
@@ -304,7 +304,7 @@
 	var/list/data = nano_ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "email_client.tmpl", "Email Client", 600, 450, state = state)
 		if(host.update_layout())
 			ui.auto_update_layout = 1
@@ -375,10 +375,10 @@
 		if(issilicon(host))
 			var/mob/living/silicon/S = host
 			S.email_ringtone = !S.email_ringtone
-		else if (istype(host,/obj/item/modular_computer))
+		else if(istype(host,/obj/item/modular_computer))
 			var/obj/item/modular_computer/computer = nano_host()
 			var/datum/computer_file/program/email_client/PRG = computer.active_program
-			if (istype(PRG))
+			if(istype(PRG))
 				PRG.ringtone = !PRG.ringtone
 		return 1
 

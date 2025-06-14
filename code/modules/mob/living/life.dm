@@ -38,7 +38,7 @@
 
 
 /mob/living/proc/Life_Check()
-	if (HasMovementHandler(/datum/movement_handler/mob/transformation/))
+	if(HasMovementHandler(/datum/movement_handler/mob/transformation/))
 		return
 	if(!loc)
 		return
@@ -86,7 +86,7 @@
 
 
 /mob/living/proc/Life_Check_Light()
-	if (HasMovementHandler(/datum/movement_handler/mob/transformation/))
+	if(HasMovementHandler(/datum/movement_handler/mob/transformation/))
 		return
 	if(!loc)
 		return
@@ -127,7 +127,7 @@
 	if(stat != DEAD)
 		if(paralysis)
 			stat = UNCONSCIOUS
-		else if (status_flags & FAKEDEATH)
+		else if(status_flags & FAKEDEATH)
 			stat = UNCONSCIOUS
 		else
 			stat = CONSCIOUS
@@ -202,7 +202,7 @@
 	if(stat == DEAD || eyeobj)
 		update_dead_sight()
 	else
-		if (is_ventcrawling)
+		if(is_ventcrawling)
 			sight |= SEE_TURFS|SEE_OBJS|BLIND
 		else
 			sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
@@ -222,17 +222,17 @@
 	handle_hud_glasses()
 
 /*/mob/living/proc/HUD_create()
-	if (!usr.client)
+	if(!usr.client)
 		return
 	usr.client.screen.Cut()
 	if(ishuman(usr) && (usr.client.prefs.UI_style != null))
-		if (!GLOB.HUDdatums.Find(usr.client.prefs.UI_style))
+		if(!GLOB.HUDdatums.Find(usr.client.prefs.UI_style))
 			log_debug("[usr] try update a HUD, but HUDdatums not have [usr.client.prefs.UI_style]!")
 		else
 			var/mob/living/carbon/human/H = usr
 			var/datum/hud/human/HUDdatum = GLOB.HUDdatums[usr.client.prefs.UI_style]
-			if (!H.HUDneed.len)
-				if (H.HUDprocess.len)
+			if(!H.HUDneed.len)
+				if(H.HUDprocess.len)
 					log_debug("[usr] have object in HUDprocess list, but HUDneed is empty.")
 					for(var/obj/screen/health/HUDobj in H.HUDprocess)
 						H.HUDprocess -= HUDobj
@@ -244,7 +244,7 @@
 					var/obj/screen/HUD = new HUDtype()
 					to_chat(world, "[HUD] added")
 					H.HUDneed += HUD
-					if (HUD.type in HUDdatum.HUDprocess)
+					if(HUD.type in HUDdatum.HUDprocess)
 						to_chat(world, "[HUD] added in process")
 						H.HUDprocess += HUD
 					to_chat(world, "[HUD] added in screen")

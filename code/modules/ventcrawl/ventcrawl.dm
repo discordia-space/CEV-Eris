@@ -157,7 +157,7 @@ var/list/ventcrawl_machinery = list(
 	var/datum/pipe_network/network
 
 	//Fixes getting the network for the first entrypoint
-	if (istype(starting_machine, /obj/machinery/atmospherics/unary))
+	if(istype(starting_machine, /obj/machinery/atmospherics/unary))
 		network = starting_machine.return_network(starting_machine.node1)
 	else
 		network = starting_machine.return_network(starting_machine)
@@ -167,7 +167,7 @@ var/list/ventcrawl_machinery = list(
 		return
 	is_ventcrawling = 1
 	update_sight()
-	if (!client)
+	if(!client)
 		return
 	client.eye = starting_machine
 	for(var/datum/pipeline/pipeline in network.line_members)

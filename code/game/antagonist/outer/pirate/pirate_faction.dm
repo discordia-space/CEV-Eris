@@ -28,7 +28,7 @@
 
 /datum/faction/pirate/add_leader(var/datum/antagonist/member, var/announce = TRUE)
 	.=..()
-	if (.)
+	if(.)
 		// Put the commander outfit on
 		var/decl/hierarchy/outfit/O = outfit_by_type(/decl/hierarchy/outfit/antagonist/pirate/commander)
 		O.equip(member.owner.current, OUTFIT_ADJUSTMENT_NO_RESET)

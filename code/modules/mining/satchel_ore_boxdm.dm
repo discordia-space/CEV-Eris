@@ -13,13 +13,13 @@
 	var/list/stored_ore = list()
 
 /obj/structure/ore_box/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/ore))
+	if(istype(W, /obj/item/ore))
 		user.remove_from_mob(W)
 		src.contents += W
-	if (istype(W, /obj/item/storage))
+	if(istype(W, /obj/item/storage))
 		var/obj/item/storage/S = W
 		S.hide_from(usr)
-		if (locate(/obj/item/ore) in S.contents)
+		if(locate(/obj/item/ore) in S.contents)
 			for(var/obj/item/ore/O in S.contents)
 				S.remove_from_storage(O, src) //This will move the item to this item's contents
 			playsound(loc, S.use_sound, 50, 1, -5)
@@ -78,7 +78,7 @@
 		to_chat(usr, "\red The ore box is empty")
 		return
 
-	for (var/obj/item/ore/O in contents)
+	for(var/obj/item/ore/O in contents)
 		contents -= O
 		O.loc = src.loc
 		O.layer = initial(O.layer)
@@ -92,7 +92,7 @@
 	. = ..()
 	if(QDELETED(src))
 		return 0
-	for (var/obj/item/ore/O in contents)
+	for(var/obj/item/ore/O in contents)
 		O.loc = src.loc
 		O.take_damage(damage)
 	return 0

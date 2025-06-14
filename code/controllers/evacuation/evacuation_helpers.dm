@@ -30,7 +30,7 @@
 	if(!isnull(evac_called_at))
 		return FALSE
 
-	if (!universe.OnShuttleCall(null))
+	if(!universe.OnShuttleCall(null))
 		return FALSE
 
 	if(SSticker.excelsior_hijacking == 1)

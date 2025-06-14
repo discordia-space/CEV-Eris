@@ -73,10 +73,10 @@
 		T.assume_air(lowertemp)
 		qdel(hotspot)
 
-	if (environment && environment.temperature > min_temperature) // Abstracted as steam or something
+	if(environment && environment.temperature > min_temperature) // Abstracted as steam or something
 		var/removed_heat = between(0, volume * WATER_LATENT_HEAT, -environment.get_thermal_energy_change(min_temperature))
 		environment.add_thermal_energy(-removed_heat)
-		if (prob(5))
+		if(prob(5))
 			T.visible_message(SPAN_WARNING("The water sizzles as it lands on \the [T]!"))
 
 	else if(volume >= 10)

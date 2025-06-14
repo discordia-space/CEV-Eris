@@ -127,7 +127,7 @@
 		add_padding(padding_type)
 		return
 
-	else if (W.has_quality(QUALITY_WIRE_CUTTING))
+	else if(W.has_quality(QUALITY_WIRE_CUTTING))
 		if(!padding_material)
 			to_chat(user, "\The [src] has no padding to remove.")
 			return
@@ -150,12 +150,12 @@
 //If there's blankets on the bed, got to roll them down before you can unbuckle the mob
 /obj/structure/bed/attack_hand(var/mob/user)
 	var/obj/item/bedsheet/blankets = (locate(/obj/item/bedsheet) in loc)
-	if (buckled_mob && blankets && !blankets.rolled && !blankets.folded)
-		if (!blankets.toggle_roll(user))
+	if(buckled_mob && blankets && !blankets.rolled && !blankets.folded)
+		if(!blankets.toggle_roll(user))
 			return
 
 	//Useability tweak. If you're lying on this bed, clicking it will make you get up
-	if (isliving(user) && user.loc == loc && user.resting)
+	if(isliving(user) && user.loc == loc && user.resting)
 		var/mob/living/L = user
 		L.lay_down() //This verb toggles the resting state
 
@@ -251,7 +251,7 @@
 
 /obj/item/roller/proc/deploy(var/mob/user)
 	var/turf/T = get_turf(src) //When held, this will still find the user's location
-	if (istype(T))
+	if(istype(T))
 		var/obj/structure/bed/roller/R = new structure_form_type(user.loc)
 		R.add_fingerprint(user)
 		qdel(src)
@@ -296,7 +296,7 @@
 		to_chat(user, SPAN_NOTICE("The rack is empty."))
 		return
 
-	if (!isturf(user.loc) || (locate(/obj/structure/bed/roller) in user.loc))
+	if(!isturf(user.loc) || (locate(/obj/structure/bed/roller) in user.loc))
 		to_chat(user, SPAN_WARNING("You can't deploy that here!"))
 		return
 
@@ -308,8 +308,8 @@
 //Picking up rollerbeds
 /obj/item/roller_holder/afterattack(var/obj/target, var/mob/user, var/proximity)
 	.=..()
-	if (istype(target,/obj/item/roller))
-		if (held.len >= max_stored)
+	if(istype(target,/obj/item/roller))
+		if(held.len >= max_stored)
 			to_chat(user, SPAN_WARNING("You can't fit anymore rollerbeds in \the [src]!"))
 			return
 

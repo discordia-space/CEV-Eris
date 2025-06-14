@@ -9,6 +9,6 @@
 
 	visible_message(SPAN_DANGER("\The [src] emits a horrifying wail!"))
 
-	for (var/obj/structure/burrow/B in find_nearby_burrows(src))
+	for(var/obj/structure/burrow/B in find_nearby_burrows(src))
 		B.visible_message(SPAN_DANGER("\The [B] springs to life with interior motion!"))
 		B.distress(TRUE)

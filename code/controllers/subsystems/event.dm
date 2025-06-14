@@ -36,17 +36,17 @@ SUBSYSTEM_DEF(event)
 	all_parallaxes = SSevent.all_parallaxes
 
 /datum/controller/subsystem/event/fire(resumed = FALSE)
-	if (!resumed)
+	if(!resumed)
 		processing_events = active_events.Copy()
 		pos = EVENT_LEVEL_MUNDANE
 
-	while (processing_events.len)
+	while(processing_events.len)
 		var/datum/event/E = processing_events[processing_events.len]
 		processing_events.len--
 
 		E.Process()
 
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
 /datum/controller/subsystem/event/proc/event_complete(datum/event/E)

@@ -17,7 +17,7 @@
 	data["max_events"] = GLOB.musical_config.max_events
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new (user, src, ui_key, "song_usage_info.tmpl", "Usage info", 500, 150)
 		ui.set_initial_data(data)
 		ui.open()

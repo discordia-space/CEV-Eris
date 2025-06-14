@@ -32,7 +32,7 @@
 
 
 /obj/effect/effect/smoke/chem/Destroy()
-	if (reagents)
+	if(reagents)
 		reagents.my_atom = null
 		QDEL_NULL(reagents)
 	walk(src, 0)
@@ -162,14 +162,14 @@
 			for(var/atom/A in T.contents)
 				if(istype(A, /obj/effect/effect/smoke/chem))
 					continue
-				else if (ismob(A))
+				else if(ismob(A))
 					chemholder.reagents.touch_mob(A)
 					if(istype(A, /mob/living/carbon))
 						var/mob/living/carbon/H = A
 						var/internals = H.get_breath_from_internal()
 						var/gasmask = FALSE
 						if(H.wear_mask)
-							gasmask = H.wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT			
+							gasmask = H.wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT
 						if(!internals && !gasmask)
 							chemholder.reagents.trans_to_mob(H, 5, CHEM_INGEST, copy = TRUE)
 							chemholder.reagents.trans_to_mob(H, 5, CHEM_BLOOD, copy = TRUE)
@@ -247,7 +247,7 @@
 /datum/effect/effect/system/smoke_spread/chem/roach/spawnSmoke(turf/T, icon/I, smoke_duration, dist)
 	var/obj/effect/effect/smoke/chem/roach/roachy = new(location, smoke_duration + rand(0, 20), T, I)
 	..(T, I, smoke_duration, dist, roachy)
-	
+
 
 /datum/effect/effect/system/smoke_spread/chem/proc/smokeFlow() // Smoke pathfinder. Uses a flood fill method based on zones to quickly check what turfs the smoke (airflow) can actually reach.
 

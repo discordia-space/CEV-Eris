@@ -41,8 +41,8 @@
 
 
 	deployed = 1
-	if (origin_turf)
-		for (var/obj/structure/droppod_door/DD in orange(4, origin_turf))
+	if(origin_turf)
+		for(var/obj/structure/droppod_door/DD in orange(4, origin_turf))
 			DD.deploy()
 	visible_message(SPAN_DANGER("The explosive bolts on \the [src] detonate, throwing it open!"))
 	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 5)

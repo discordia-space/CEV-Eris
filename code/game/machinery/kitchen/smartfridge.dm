@@ -202,7 +202,7 @@
 /obj/machinery/smartfridge/drying_rack/accept_check(var/obj/item/O as obj)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/))
 		var/obj/item/reagent_containers/food/snacks/S = O
-		if (S.dried_type)
+		if(S.dried_type)
 			return 1
 	return 0
 
@@ -230,7 +230,7 @@
 		if(S.dry)
 			continue
 		S.dryness += drying_power
-		if (S.dryness >= 1)
+		if(S.dryness >= 1)
 			if(S.dried_type == S.type || !S.dried_type)
 				S.dry = TRUE
 				S.name = "dried [S.name]"
@@ -238,7 +238,7 @@
 			else
 				var/D = S.dried_type
 				D = new D(src)
-				if (istype(D, /obj/item/reagent_containers/food/snacks))
+				if(istype(D, /obj/item/reagent_containers/food/snacks))
 					var/obj/item/reagent_containers/food/snacks/SD = D
 					SD.dry = TRUE //So we dont get stuck in an endless loop of drying, transforming and drying again
 				qdel(S)
@@ -246,7 +246,7 @@
 		else
 			drying_something = TRUE
 
-	if (drying_something != currently_drying)
+	if(drying_something != currently_drying)
 		currently_drying = drying_something
 		update_icon() //Only update the icon if we have to
 	currently_drying = drying_something
@@ -390,7 +390,7 @@
 
 /obj/machinery/smartfridge/proc/update_contents()
 	item_quants.Cut()
-	for (var/obj/item/i in contents)
+	for(var/obj/item/i in contents)
 		item_quants[i.name] = (item_quants[i.name] ? item_quants[i.name]+1 : 1)
 /*******************
 *   SmartFridge Menu
@@ -407,7 +407,7 @@
 	data["secure"] = is_secure
 
 	var/list/items[0]
-	for (var/i=1 to length(item_quants))
+	for(var/i=1 to length(item_quants))
 		var/K = item_quants[i]
 		var/count = item_quants[K]
 		if(count > 0)
@@ -466,7 +466,7 @@
 	if(!target)
 		return 0
 
-	for (var/O in item_quants)
+	for(var/O in item_quants)
 		if(item_quants[O] <= 0) //Try to use a record that actually has something to dump.
 			continue
 

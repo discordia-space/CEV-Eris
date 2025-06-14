@@ -14,7 +14,7 @@
 
 	. = A.attack_generic(src, damage, pick(attacktext), environment_smash, melee_sharp, melee_edge, wound_mult)
 	if(.)
-		if (attack_sound && loc && prob(attack_sound_chance))
+		if(attack_sound && loc && prob(attack_sound_chance))
 			playsound(loc, attack_sound, attack_sound_volume, 1)
 
 /mob/living/carbon/superior_animal/RangedAttack()

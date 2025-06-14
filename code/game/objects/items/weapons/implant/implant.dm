@@ -52,7 +52,7 @@
 //return TRUE for implanter icon update.
 /obj/item/implant/proc/install(mob/living/target, organ, mob/user)
 	var/obj/item/organ/external/affected
-	if (ishuman(target))
+	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		affected = H.organs_by_name[organ]
 		if(!affected)

@@ -19,15 +19,15 @@
 
 /obj/item/stack/medical/attack(mob/living/M, mob/living/user)
 	var/types = M.get_classification()
-	if (!(types & CLASSIFICATION_ORGANIC))
+	if(!(types & CLASSIFICATION_ORGANIC))
 		to_chat(user, SPAN_WARNING("\The [src] cannot be applied to [M]!"))
 		return 1
 
-	if ( ! (ishuman(user) || issilicon(user)) )
+	if( ! (ishuman(user) || issilicon(user)) )
 		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return 1
 
-	if (ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
@@ -51,7 +51,7 @@
 				SPAN_NOTICE("[user] starts applying [src] to [M]."), \
 				SPAN_NOTICE("You start applying [src] to [M].") \
 				)
-				if (do_after(user, 30, M))
+				if(do_after(user, 30, M))
 					if(prob(10 + user.stats.getStat(STAT_BIO)))
 						to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
 					else
@@ -69,7 +69,7 @@
 		H.UpdateDamageIcon()
 
 	else
-		if (!M.bruteloss && !M.fireloss)
+		if(!M.bruteloss && !M.fireloss)
 			to_chat(user, "<span class='notice'> [M] seems healthy, there are no wounds to treat! </span>")
 			return 1
 
@@ -78,7 +78,7 @@
 				SPAN_NOTICE("You start applying [src] to [M].") \
 			)
 		var/med_skill = user.stats.getStat(STAT_BIO)
-		if (do_after(user, 30, M))
+		if(do_after(user, 30, M))
 			M.heal_organ_damage((src.heal_brute * (1+med_skill/50)/2), (src.heal_burn * (1+med_skill/50)/2))
 			if(prob(10 + med_skill))
 				to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
@@ -131,7 +131,7 @@
 	if(..())
 		return 1
 
-	if (ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
@@ -149,7 +149,7 @@
 					SPAN_NOTICE("You start treating [M]'s [affecting.name].")
 				)
 				var/used = 0
-				for (var/datum/wound/W in affecting.wounds)
+				for(var/datum/wound/W in affecting.wounds)
 					if(W.internal)
 						continue
 					if(W.bandaged)
@@ -165,13 +165,13 @@
 						continue
 					if(used == amount)
 						break
-					if (W.current_stage <= W.max_bleeding_stage)
+					if(W.current_stage <= W.max_bleeding_stage)
 						user.visible_message(
 							SPAN_NOTICE("\The [user] bandages \a [W.desc] on [M]'s [affecting.name]."),
 							SPAN_NOTICE("You bandage \a [W.desc] on [M]'s [affecting.name].")
 						)
 						//H.add_side_effect("Itch")
-					else if (W.damage_type == BRUISE)
+					else if(W.damage_type == BRUISE)
 						user.visible_message(
 							SPAN_NOTICE("\The [user] places a bruise patch over \a [W.desc] on [M]'s [affecting.name]."),
 							SPAN_NOTICE("You place a bruise patch over \a [W.desc] on [M]'s [affecting.name].")
@@ -204,8 +204,8 @@
 						to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
 				use(used)
 		else
-			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src, TRUE))
+			if(can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+				if(do_surgery(H,user,src, TRUE))
 					return
 			else
 				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
@@ -237,7 +237,7 @@
 	if(..())
 		return 1
 
-	if (ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
@@ -277,8 +277,8 @@
 						else
 							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
 		else
-			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src, TRUE))
+			if(can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+				if(do_surgery(H,user,src, TRUE))
 					return
 			else
 				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a [src]!"))
@@ -327,7 +327,7 @@
 				SPAN_NOTICE("You start treating [M]'s [affecting.name].")
 			)
 			var/used = 0
-			for (var/datum/wound/W in affecting.wounds)
+			for(var/datum/wound/W in affecting.wounds)
 				if(W.internal)
 					continue
 				if(W.bandaged)
@@ -343,12 +343,12 @@
 					continue
 				if(used == amount)
 					break
-				if (W.current_stage <= W.max_bleeding_stage)
+				if(W.current_stage <= W.max_bleeding_stage)
 					user.visible_message(
 						SPAN_NOTICE("\The [user] cleans \a [W.desc] on [M]'s [affecting.name] and seals the edges with bioglue."),
 						SPAN_NOTICE("You clean and seal \a [W.desc] on [M]'s [affecting.name].")
 					)
-				else if (W.damage_type == BRUISE)
+				else if(W.damage_type == BRUISE)
 					user.visible_message(
 						SPAN_NOTICE("\The [user] places a medical patch over \a [W.desc] on [M]'s [affecting.name]."),
 						SPAN_NOTICE("You place a medical patch over \a [W.desc] on [M]'s [affecting.name].")
@@ -383,8 +383,8 @@
 			use(used)
 			update_icon()
 	else
-		if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
-			if (do_surgery(H,user,src, TRUE))
+		if(can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+			if(do_surgery(H,user,src, TRUE))
 				return
 		else
 			to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
@@ -409,7 +409,7 @@
 	if(amount < 1)
 		return
 
-	if (ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
@@ -451,8 +451,8 @@
 						else
 							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
 		else
-			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src, TRUE))
+			if(can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+				if(do_surgery(H,user,src, TRUE))
 					return
 			else
 				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
@@ -470,7 +470,7 @@
 	if(..())
 		return 1
 
-	if (ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
@@ -485,7 +485,7 @@
 		if(affecting.status & ORGAN_SPLINTED)
 			to_chat(user, SPAN_DANGER("[M]'s [limb] is already splinted!"))
 			return
-		if (M != user)
+		if(M != user)
 			user.visible_message(
 				SPAN_DANGER("[user] starts to apply \the [src] to [M]'s [limb]."),
 				SPAN_DANGER("You start to apply \the [src] to [M]'s [limb]."),
@@ -501,7 +501,7 @@
 				SPAN_DANGER("You hear something being wrapped.")
 			)
 		if(do_after(user, max(0, 60 - user.stats.getStat(STAT_BIO)), M))
-			if (M != user)
+			if(M != user)
 				user.visible_message(
 					SPAN_DANGER("[user] finishes applying \the [src] to [M]'s [limb]."),
 					SPAN_DANGER("You finish applying \the [src] to [M]'s [limb]."),

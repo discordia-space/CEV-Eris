@@ -71,7 +71,7 @@
 	A.adjustOxyLoss(-4)
 	A.updatehealth()
 	// If the AI is dead, revive it.
-	if (A.health >= -100 && A.stat == DEAD)
+	if(A.health >= -100 && A.stat == DEAD)
 		A.set_stat(CONSCIOUS)
 		A.lying = 0
 		A.switch_from_dead_to_living_mob_list()
@@ -121,7 +121,7 @@
 		data["ai_laws"] = all_laws
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "aidiag.tmpl", "AI Maintenance Utility", 600, 400, state = state)
 		if(host.update_layout())
 			ui.auto_update_layout = 1

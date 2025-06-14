@@ -53,7 +53,7 @@ The answer was five and a half years -ZeroBits
 		data["scanner"] = istype(scanner)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "library.tmpl", "Library Program", 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)

@@ -26,7 +26,7 @@
 
 /obj/structure/medical_stand/New()
 	..()
-	if (spawn_type)
+	if(spawn_type)
 		tank = new spawn_type (src)
 	contained = new mask_type (src)
 	update_icon()
@@ -34,8 +34,8 @@
 /obj/structure/medical_stand/update_icon()
 	cut_overlays()
 
-	if (tank)
-		if (breather)
+	if(tank)
+		if(breather)
 			overlays += "tube_active"
 		else
 			overlays += "tube"
@@ -70,7 +70,7 @@
 				if(75 to 79)	filling.icon_state = "reagent75"
 				if(80 to 90)	filling.icon_state = "reagent80"
 				if(91 to INFINITY)	filling.icon_state = "reagent100"
-			if (filling.icon)
+			if(filling.icon)
 				filling.icon += reagents.get_color()
 				overlays += filling
 
@@ -104,9 +104,9 @@
 		if(usr.stat == DEAD || !CanMouseDrop(target))
 			return
 		var/list/available_options = list()
-		if (tank)
+		if(tank)
 			available_options += "Gas mask"
-		if (beaker)
+		if(beaker)
 			available_options += "Drip needle"
 
 		var/action_type
@@ -120,13 +120,13 @@
 			if("Gas mask")
 				if(!can_apply_to_target(target, usr)) // There is no point in attempting to apply a mask if it's impossible.
 					return
-				if (breather)
+				if(breather)
 					src.add_fingerprint(usr)
 					if(!do_mob(usr, target, 20) || !can_apply_to_target(target, usr))
 						return
 					if(tank)
 						tank.forceMove(src)
-					if (breather.wear_mask == contained)
+					if(breather.wear_mask == contained)
 						breather.remove_from_mob(contained)
 						contained.forceMove(src)
 					else
@@ -171,10 +171,10 @@
 
 /obj/structure/medical_stand/attack_hand(mob/user as mob)
 	var/list/available_options = list()
-	if (tank)
+	if(tank)
 		available_options += "Toggle valve"
 		available_options += "Remove tank"
-	if (beaker)
+	if(beaker)
 		available_options += "Remove vessel"
 
 	var/action_type
@@ -183,25 +183,25 @@
 	else if(available_options.len)
 		action_type = available_options[1]
 	switch (action_type)
-		if ("Remove tank")
-			if (!tank)
+		if("Remove tank")
+			if(!tank)
 				to_chat(user, SPAN_WARNING("There is no tank in \the [src]!"))
 				return
-			else if (tank && is_loosen)
+			else if(tank && is_loosen)
 				user.visible_message(SPAN_NOTICE("\The [user] removes \the [tank] from \the [src]."), SPAN_WARNING("You remove \the [tank] from \the [src]."))
 				user.put_in_hands(tank)
 				tank = null
 				update_icon()
 				return
-			else if (!is_loosen)
+			else if(!is_loosen)
 				user.visible_message(SPAN_NOTICE("\The [user] tries to removes \the [tank] from \the [src] but it won't budge."), SPAN_WARNING("You try to removes \the [tank] from \the [src] but it won't budge."))
 				return
-		if ("Toggle valve")
-			if (!tank)
+		if("Toggle valve")
+			if(!tank)
 				to_chat(user, SPAN_WARNING("There is no tank in \the [src]!"))
 				return
 			else
-				if (valve_opened)
+				if(valve_opened)
 					src.visible_message(SPAN_NOTICE("\The [user] closes valve on \the [src]!"),
 						SPAN_NOTICE("You close valve on \the [src]."))
 					if(breather)
@@ -221,7 +221,7 @@
 					playsound(get_turf(src), 'sound/effects/internals.ogg', 100, 1)
 					update_icon()
 					START_PROCESSING(SSobj,src)
-		if ("Remove vessel")
+		if("Remove vessel")
 			if(beaker)
 				beaker.forceMove(loc)
 				beaker = null
@@ -309,7 +309,7 @@
 				is_loosen = TRUE
 			else
 				is_loosen = FALSE
-				if (valve_opened)
+				if(valve_opened)
 					START_PROCESSING(SSobj,src)
 			user.visible_message(
 			SPAN_NOTICE("The [user] [is_loosen == TRUE ? "loosen" : "tighten"] the nut holding [tank] in place."),
@@ -331,7 +331,7 @@
 			src.add_fingerprint(user)
 			update_icon()
 
-	else if (istype(W, /obj/item/reagent_containers))
+	else if(istype(W, /obj/item/reagent_containers))
 		if(!isnull(src.beaker))
 			to_chat(user, "There is already a reagent container loaded!")
 			return
@@ -372,7 +372,7 @@
 		if(!can_apply_to_target(breather))
 			if(tank)
 				tank.forceMove(src)
-			if (breather.wear_mask == contained)
+			if(breather.wear_mask == contained)
 				breather.remove_from_mob(contained)
 				contained.forceMove(src)
 			else
@@ -383,7 +383,7 @@
 			update_icon()
 			return
 		if(valve_opened)
-			if (tank)
+			if(tank)
 				breather.internal = tank
 				if(internalsHud)
 					internalsHud.icon_state = "internal1"
@@ -391,7 +391,7 @@
 			if(internalsHud)
 				internalsHud.icon_state = "internal0"
 			breather.internal = null
-	else if (tank && valve_opened)
+	else if(tank && valve_opened)
 		var/datum/gas_mixture/removed = tank.remove_air(0.01)
 		var/datum/gas_mixture/environment = loc.return_air()
 		environment.merge(removed)
@@ -432,14 +432,14 @@
 				visible_message("\The [src] beeps loudly.")
 
 			var/datum/reagent/B = H.take_blood(beaker,amount)
-			if (B)
+			if(B)
 				beaker.reagents.reagent_list |= B
 				beaker.reagents.update_total()
 				beaker.on_reagent_change()
 				beaker.reagents.handle_reactions()
 				update_icon()
 
-	if ((!valve_opened || tank.distribute_pressure == 0) && !breather && !attached)
+	if((!valve_opened || tank.distribute_pressure == 0) && !breather && !attached)
 		return PROCESS_KILL
 
 /obj/structure/medical_stand/anesthetic

@@ -226,9 +226,9 @@
 		return
 	if(!isliving(usr))
 		return
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
+	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
 		//Authenticate
-		if (href_list["auth"])
+		if(href_list["auth"])
 			if(auth)
 				auth = 0
 				screen = 0
@@ -241,10 +241,10 @@
 						message = incorrectkey
 
 		//Turn the server on/off.
-		if (href_list["active"])
+		if(href_list["active"])
 			if(auth) linkedServer.active = !linkedServer.active
 		//Find a server
-		if (href_list["find"])
+		if(href_list["find"])
 			if(message_servers && message_servers.len > 1)
 				src.linkedServer = input(usr,"Please select a server.", "Select a server.", null) as null|anything in message_servers
 				message = "<span class='alert'>NOTICE: Server selected.</span>"
@@ -255,7 +255,7 @@
 				message = noserver
 
 		//Clears the request console logs - KEY REQUIRED
-		if (href_list["clearr"])
+		if(href_list["clearr"])
 			if(!linkedServer || (src.linkedServer.stat & (NOPOWER|BROKEN)))
 				message = noserver
 			else
@@ -263,7 +263,7 @@
 					src.linkedServer.rc_msgs = list()
 					message = SPAN_NOTICE("NOTICE: Logs cleared.")
 		//Change the password - KEY REQUIRED
-		if (href_list["pass"])
+		if(href_list["pass"])
 			if(!linkedServer || (src.linkedServer.stat & (NOPOWER|BROKEN)))
 				message = noserver
 			else
@@ -283,7 +283,7 @@
 							message = incorrectkey
 
 		//Hack the Console to get the password
-		if (href_list["hack"])
+		if(href_list["hack"])
 			if((isAI(usr) || isrobot(usr)) && (usr.mind.antagonist.len && usr.mind.original == usr))
 				src.hacking = 1
 				src.screen = 2
@@ -293,7 +293,7 @@
 					if(src && src.linkedServer && usr)
 						BruteForce(usr)
 		//Delete the request console log.
-		if (href_list["deleter"])
+		if(href_list["deleter"])
 			//Are they on the view logs screen?
 			if(screen == 4)
 				if(!linkedServer || (src.linkedServer.stat & (NOPOWER|BROKEN)))
@@ -313,7 +313,7 @@
 			//usr << href_list["select"]
 
 
-		if (href_list["back"])
+		if(href_list["back"])
 			src.screen = 0
 
 	return src.attack_hand(usr)

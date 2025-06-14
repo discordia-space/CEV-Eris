@@ -146,7 +146,7 @@
   - rscadd: Adds a steel/glass walkway above RnD, now with 99% more firelocks!
   - rscdel: Removes the exposed catwalk above RnD
   - tweak: Added R-Windows to xenobiology, exterior MoeSci windows, and the server
-      room, reshuffles the base RnD area for (hopefully) more convenience.
+      room, reshuffles the base RnD area for(hopefully) more convenience.
   komunre:
   - bugfix: tape could be applied to any door
 2021-10-17:

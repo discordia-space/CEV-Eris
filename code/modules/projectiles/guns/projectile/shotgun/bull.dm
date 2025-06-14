@@ -51,7 +51,7 @@
 	update_icon()
 
 /obj/item/gun/projectile/shotgun/bull/consume_next_projectile()
-	if (chambered)
+	if(chambered)
 		return chambered.BB
 	return null
 

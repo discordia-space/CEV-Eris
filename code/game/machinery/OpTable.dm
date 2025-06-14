@@ -23,7 +23,7 @@
 	..()
 	for(var/dir in list(NORTH,EAST,SOUTH,WEST))
 		computer = locate(/obj/machinery/computer/operating, get_step(src, dir))
-		if (computer)
+		if(computer)
 			computer.table = src
 			break
 //	spawn(100) //Wont the MC just call this process() before and at the 10 second mark anyway?
@@ -31,12 +31,12 @@
 
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
-	if (user.incapacitated(INCAPACITATION_DEFAULT))
+	if(user.incapacitated(INCAPACITATION_DEFAULT))
 		return
-	if (victim)
+	if(victim)
 		user_unbuckle_mob(user)
 		return
-//	if (HULK in usr.mutations)
+//	if(HULK in usr.mutations)
 //		visible_message(SPAN_DANGER("\The [usr] destroys \the [src]!"))
 //		density = FALSE
 //		qdel(src)
@@ -55,7 +55,7 @@
 		return 0
 
 /obj/machinery/optable/proc/check_victim()
-	if (istype(buckled_mob,/mob/living/carbon))
+	if(istype(buckled_mob,/mob/living/carbon))
 		victim = buckled_mob
 		if(ishuman(buckled_mob))
 			var/mob/living/carbon/human/M = buckled_mob
@@ -70,13 +70,13 @@
 	check_victim()
 
 /obj/machinery/optable/proc/take_victim(mob/living/carbon/C, mob/living/carbon/user as mob)
-	if (C == user)
+	if(C == user)
 		user.visible_message("[user] climbs on \the [src].","You climb on \the [src].")
 	else
 		visible_message(SPAN_NOTICE("\The [C] has been laid on \the [src] by [user]."), 3)
-		if (user.pulling == C)
+		if(user.pulling == C)
 			user.stop_pulling() //Lets not drag your patient off the table after you just put them there
-	if (C.client)
+	if(C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
 	C.loc = loc

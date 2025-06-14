@@ -8,11 +8,11 @@
 
 /datum/vertical_travel_method/jump/can_perform(var/dir)
 	.=..()
-	if (.)
-		if (isrobot(M))
+	if(.)
+		if(isrobot(M))
 			return FALSE //Robots can't jump
 
-		if (gravity)
+		if(gravity)
 			/*
 				Jumping under gravity is not currently supported.
 				In future, certain hardsuit modules, mutations, cybernetic enhancements and antag powers
@@ -23,7 +23,7 @@
 		//In order to jump, you need a solid surface under you to push off of
 		var/turf/T
 		var/testdir
-		if (dir == UP)
+		if(dir == UP)
 
 			T = origin
 			testdir = DOWN
@@ -33,10 +33,10 @@
 			testdir = UP
 
 		//Can't push off of nothing
-		if (!T)
+		if(!T)
 			return FALSE
 
-		if (T.CanZPass(M, testdir))
+		if(T.CanZPass(M, testdir))
 			return FALSE
 
 
@@ -47,13 +47,13 @@
 
 		//If the turf is a hole, then its not the turf itself we're pushing off of
 		//In that case lets look for objects in the turf
-		if (T.is_hole)
+		if(T.is_hole)
 
 			//This is kind of simple. It seems there's no easy way to do "find the object that's blocking me"
 			//Z pass code is split across a variety of functions and variables.
 			//TODO: Refactor all that, and then this
 			var/atom/a = locate(/obj/structure/catwalk, T)
-			if (a)
+			if(a)
 				subject = a
 			else
 				subject = T.getEffectShield()
@@ -61,7 +61,7 @@
 
 /datum/vertical_travel_method/jump/start_animation()
 	.=..()
-	if (direction == DOWN)
+	if(direction == DOWN)
 		var/matrix/mat = M.transform
 		mat.Turn(180)
 		M.transform = mat

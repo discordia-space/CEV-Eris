@@ -14,7 +14,7 @@
 	explanation_text = "Reproduce at least once."
 
 /datum/objective/borer_reproduce/check_completion()
-	if (failed)
+	if(failed)
 		return FALSE
 
 	if(owner && owner.current)

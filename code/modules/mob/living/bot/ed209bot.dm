@@ -171,7 +171,7 @@
 		if(6)
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
-				if (C.get_amount() < 1)
+				if(C.get_amount() < 1)
 					to_chat(user, SPAN_WARNING("You need one coil of wire to wire [src]."))
 					return
 				to_chat(user, SPAN_NOTICE("You start to wire [src]."))

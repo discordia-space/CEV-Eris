@@ -46,7 +46,7 @@ GLOBAL_VAR_INIT(goonchatbasehtml, file2text('code/modules/goonchat/browserassets
 
 	var/datum/asset/group/gc = get_asset_datum(/datum/asset/group/goonchat)
 
-	if (gc.send(owner))
+	if(gc.send(owner))
 		owner.browse_queue_flush() // stall loading html until goochant actualy gets sent
 
 	var/html = GLOB.goonchatbasehtml
@@ -166,19 +166,19 @@ GLOBAL_VAR_INIT(goonchatbasehtml, file2text('code/modules/goonchat/browserassets
 			return
 
 		var/list/connData = json_decode(cookie)
-		if (connData && islist(connData) && connData.len > 0 && connData["connData"])
+		if(connData && islist(connData) && connData.len > 0 && connData["connData"])
 			connectionHistory = connData["connData"] //lol fuck
 			var/list/found = new()
 			for(var/i in connectionHistory.len to 1 step -1)
 				var/list/row = src.connectionHistory[i]
-				if (!row || row.len < 3 || (!row["ckey"] || !row["compid"] || !row["ip"])) //Passed malformed history object
+				if(!row || row.len < 3 || (!row["ckey"] || !row["compid"] || !row["ip"])) //Passed malformed history object
 					return
-				if (world.IsBanned(row["ckey"], row["ip"], row["compid"], real_bans_only=TRUE))
+				if(world.IsBanned(row["ckey"], row["ip"], row["compid"], real_bans_only=TRUE))
 					found = row
 					break
 
 			//Uh oh this fucker has a history of playing on a banned account!!
-			if (found.len > 0)
+			if(found.len > 0)
 				//TODO: add a new evasion ban for the CURRENT client details, using the matched row details
 				message_admins("[key_name(src.owner)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
 				//log_admin_private("[key_name(owner)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
@@ -231,7 +231,7 @@ GLOBAL_VAR_INIT(goonchatbasehtml, file2text('code/modules/goonchat/browserassets
 		for(var/I in target)
 			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
 
-			if (!C)
+			if(!C)
 				continue
 
 			//Send it to the old style output window.
@@ -249,7 +249,7 @@ GLOBAL_VAR_INIT(goonchatbasehtml, file2text('code/modules/goonchat/browserassets
 	else
 		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
 
-		if (!C)
+		if(!C)
 			return
 
 		//Send it to the old style output window.

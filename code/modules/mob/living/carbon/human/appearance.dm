@@ -18,7 +18,7 @@
 	return 1
 
 /mob/living/carbon/human/proc/change_name(var/type)
-	if (type == "random")
+	if(type == "random")
 		var/datum/language/L = get_default_language()
 		L.set_random_name(src)
 
@@ -185,7 +185,7 @@
 	var/gender = pick(MALE, FEMALE)
 	var/list/tts_voices = new()
 	if(gender == FEMALE) //defaults are MALE so check for FEMALE first, use MALE as default case
-		change_gender(gender) 
+		change_gender(gender)
 		tts_voices += TTS_SEED_DEFAULT_FEMALE //Failsafe voice
 	else
 		change_facial_hair(pick(GLOB.facial_hair_styles_list)) //pick a random facial hair

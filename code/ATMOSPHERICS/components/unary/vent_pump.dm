@@ -78,7 +78,7 @@
 
 	initial_loc = get_area(loc)
 	area_uid = initial_loc.uid
-	if (!id_tag)
+	if(!id_tag)
 		assign_uid()
 		id_tag = num2text(uid)
 
@@ -148,10 +148,10 @@
 /obj/machinery/atmospherics/unary/vent_pump/Process()
 	..()
 
-	if (hibernate > world.time)
+	if(hibernate > world.time)
 		return 1
 
-	if (!node1)
+	if(!node1)
 		use_power = NO_POWER_USE
 		return
 
@@ -173,10 +173,10 @@
 
 	for(var/e in environments)
 		var/datum/gas_mixture/environment = e
-		if (!environment)
+		if(!environment)
 			continue
 
-		if (!environment.total_moles && !air_contents.total_moles)
+		if(!environment.total_moles && !air_contents.total_moles)
 			continue
 
 		//Figure out the target pressure difference
@@ -292,7 +292,7 @@
 		use_power = !use_power
 
 	if(signal.data["checks"] != null)
-		if (signal.data["checks"] == "default")
+		if(signal.data["checks"] == "default")
 			pressure_checks = pressure_checks_default
 		else
 			pressure_checks = text2num(signal.data["checks"])
@@ -309,7 +309,7 @@
 		expanded_range = !expanded_range
 
 	if(signal.data["set_internal_pressure"] != null)
-		if (signal.data["set_internal_pressure"] == "default")
+		if(signal.data["set_internal_pressure"] == "default")
 			internal_pressure_bound = internal_pressure_bound_default
 		else
 			internal_pressure_bound = between(
@@ -319,7 +319,7 @@
 			)
 
 	if(signal.data["set_external_pressure"] != null)
-		if (signal.data["set_external_pressure"] == "default")
+		if(signal.data["set_external_pressure"] == "default")
 			external_pressure_bound = external_pressure_bound_default
 		else
 			external_pressure_bound = between(
@@ -379,16 +379,16 @@
 
 
 		if(QUALITY_BOLT_TURNING)
-			if (!(stat & NOPOWER) && use_power)
+			if(!(stat & NOPOWER) && use_power)
 				to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], turn it off first."))
 				return 1
 			var/turf/T = src.loc
-			if (node1 && node1.level==1 && isturf(T) && !T.is_plating())
+			if(node1 && node1.level==1 && isturf(T) && !T.is_plating())
 				to_chat(user, SPAN_WARNING("You must remove the plating first."))
 				return 1
 			var/datum/gas_mixture/int_air = return_air()
 			var/datum/gas_mixture/env_air = loc.return_air()
-			if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+			if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
 				to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
 				add_fingerprint(user)
 				return 1

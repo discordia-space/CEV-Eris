@@ -54,7 +54,7 @@ flood into this room and surrounding ones.
 Each leader can only call reinforcements once in its life. But it can also sound an evacuation once. If it has no
 reinforcements left it will attempt to evacuate*/
 /mob/living/carbon/superior_animal/roach/fuhrer/proc/distress_call()
-	if (!distress_calls && !retreat_calls)
+	if(!distress_calls && !retreat_calls)
 		return
 
 	distress_level += 1
@@ -64,17 +64,17 @@ reinforcements left it will attempt to evacuate*/
 	see a human player
 
 	*/
-	for (var/mob/living/carbon/human/H in view())
-		if (H.stat != DEAD && H.client)
+	for(var/mob/living/carbon/human/H in view())
+		if(H.stat != DEAD && H.client)
 			distress_level += 2
 			break
 
-	if (distress_level > 0 && prob(distress_level))
+	if(distress_level > 0 && prob(distress_level))
 
 		distress_level = -30 //Once a call is successfully triggered, set the chance negative
 		//So it will be a while before this guy can send another call
 
-		if (distress_calls)
+		if(distress_calls)
 			distress_calls--
 			playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 			spawn(2)
@@ -84,15 +84,15 @@ reinforcements left it will attempt to evacuate*/
 			visible_message(SPAN_DANGER("[src] emits a horrifying wail as nearby burrows stir to life!"))
 
 			//Add all nearby burrows to the distressed burrows list
-			//for (var/obj/structure/burrow/B in range(20, loc))
-			for (var/obj/structure/burrow/B in find_nearby_burrows())
+			//for(var/obj/structure/burrow/B in range(20, loc))
+			for(var/obj/structure/burrow/B in find_nearby_burrows())
 				B.distress(TRUE, src)
 
 
 
 
 		//If no distress calls available, sound a retreat instead
-		else if (retreat_calls)
+		else if(retreat_calls)
 			retreat_calls --
 			playsound(src.loc, 'sound/voice/hiss6.ogg', 100, 1, 8, 8)
 			spawn(2)
@@ -100,7 +100,7 @@ reinforcements left it will attempt to evacuate*/
 				//Playing the sound twice will make it sound really horrible
 
 			visible_message(SPAN_DANGER("[src] emits a haunting scream as it turns to flee, taking the nearby horde with it...."))
-			for (var/obj/structure/burrow/B in find_nearby_burrows())
+			for(var/obj/structure/burrow/B in find_nearby_burrows())
 				B.evacuate()
 
 /mob/living/carbon/superior_animal/roach/fuhrer/leaveOvermind()

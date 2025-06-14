@@ -160,15 +160,15 @@
 
 	//Checking turfs allows this to be done in unusual circumstances
 	var/turf/T = get_turf(user)
-	if (!(T.Adjacent(get_turf(H))))
+	if(!(T.Adjacent(get_turf(H))))
 		to_chat(user, SPAN_DANGER("[H] is beyond your reach.."))
 		return
 
 
 	user.visible_message("[user] places their hands upon [H] and utters a prayer", "You lay your hands upon [H] and begin speaking the words of convalescence")
-	if (do_after(user, 40, H, TRUE))
+	if(do_after(user, 40, H, TRUE))
 		T = get_turf(user)
-		if (!(T.Adjacent(get_turf(H))))
+		if(!(T.Adjacent(get_turf(H))))
 			to_chat(user, SPAN_DANGER("[H] is beyond your reach.."))
 			return
 		log_and_message_admins(" healed [CI.wearer] with Succour litany")
@@ -198,7 +198,7 @@
 		return FALSE
 
 	var/mob/living/M = pick_disciple_global(user, TRUE)
-	if (!M)
+	if(!M)
 		return
 
 	if(user == M)
@@ -238,7 +238,7 @@
 
 /datum/ritual/cruciform/inquisitor/message/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
 	var/mob/living/carbon/human/H = pick_disciple_global(user, TRUE)
-	if (!H)
+	if(!H)
 		return
 
 	if(user == H)
@@ -246,7 +246,7 @@
 		return FALSE
 
 	var/text = input(user, "What message will you send to the target? The message will be recieved telepathically and they will not know who it is from unless you reveal yourself.", "Sending a message") as text|null
-	if (!text)
+	if(!text)
 		return
 	log_and_message_admins("sent a message to [H] with text \"[text]\"")
 	to_chat(H, SPAN_NOTICE("A voice speaks in your mind: \"[text]\""))

@@ -183,12 +183,12 @@ var/list/flooring_types
 
 //Normal plating allows anything, except other types of plating
 /decl/flooring/reinforced/plating/can_build_floor(var/decl/flooring/newfloor)
-	if (istype(newfloor, /decl/flooring/reinforced/plating))
+	if(istype(newfloor, /decl/flooring/reinforced/plating))
 		return FALSE
 	return TRUE
 
 /decl/flooring/reinforced/plating/get_plating_type(var/turf/location)
-	if (turf_is_upper_hull(location))
+	if(turf_is_upper_hull(location))
 		return null
 	return plating_type
 
@@ -215,12 +215,12 @@ var/list/flooring_types
 
 //Underplating can only be upgraded to normal plating
 /decl/flooring/reinforced/plating/under/can_build_floor(var/decl/flooring/newfloor)
-	if (newfloor.type == /decl/flooring/reinforced/plating)
+	if(newfloor.type == /decl/flooring/reinforced/plating)
 		return TRUE
 	return FALSE
 
 /decl/flooring/reinforced/plating/under/attackby(var/obj/item/I, var/mob/user, var/turf/T)
-	if (istype(I, /obj/item/stack/rods))
+	if(istype(I, /obj/item/stack/rods))
 		.=TRUE
 		var/obj/item/stack/rods/R = I
 		if(R.amount <= 2)
@@ -234,16 +234,16 @@ var/list/flooring_types
 				T.contents += CT
 
 /decl/flooring/reinforced/plating/under/get_plating_type(turf/location)
-	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
+	if(turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
 		return plating_type
-	else if (turf_is_upper_hull(location))
+	else if(turf_is_upper_hull(location))
 		return /decl/flooring/reinforced/plating
 	else return null
 
 /decl/flooring/reinforced/plating/under/get_plating_type(turf/location)
-	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
+	if(turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
 		return plating_type
-	else if (turf_is_upper_hull(location))
+	else if(turf_is_upper_hull(location))
 		return /decl/flooring/reinforced/plating
 	else return null
 
@@ -287,9 +287,9 @@ var/list/flooring_types
 	return FALSE //Not allowed to build directly on hull, you must first remove it and then build on the underplating
 
 /decl/flooring/reinforced/plating/hull/get_plating_type(var/turf/location)
-	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
+	if(turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
 		return null
-	else if (turf_is_upper_hull(location))
+	else if(turf_is_upper_hull(location))
 		return /decl/flooring/reinforced/plating/under
 	else
 		return null //This should never happen, hull plating should only be on the exterior

@@ -67,7 +67,7 @@
 		return
 
 	if(!on && istype(I, /obj/item/reagent_containers) && I.is_open_container())
-		if (!mainBeaker || separationBeakers.len < beakerSlots)
+		if(!mainBeaker || separationBeakers.len < beakerSlots)
 			. = TRUE //no afterattack
 			var/obj/item/reagent_containers/B = I
 			if(!user.unEquip(B, src))
@@ -86,7 +86,7 @@
 	if(!Adjacent(user) || !C.Adjacent(user) || user.stat)
 		return ..()
 	if(!on && istype(C, /obj/item/reagent_containers) && C.is_open_container())
-		if (!mainBeaker || separationBeakers.len < beakerSlots)
+		if(!mainBeaker || separationBeakers.len < beakerSlots)
 			C.forceMove(src)
 			C.add_fingerprint(user)
 			if(!mainBeaker)
@@ -122,9 +122,9 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "centrifuge.tmpl", name, 800, 700)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -225,7 +225,7 @@
 	if(!Adjacent(user) || !C.Adjacent(user) || user.stat)
 		return ..()
 	if(!on && istype(C, /obj/item/reagent_containers) && C.is_open_container())
-		if (!mainBeaker || separationBeakers.len < beakerSlots)
+		if(!mainBeaker || separationBeakers.len < beakerSlots)
 			C.forceMove(src)
 			C.add_fingerprint(user)
 			if(!mainBeaker)
@@ -240,7 +240,7 @@
 
 /obj/item/device/makeshift_centrifuge/attackby(obj/item/C, mob/living/user)
 	if(!on && istype(C, /obj/item/reagent_containers) && C.is_open_container())
-		if (!mainBeaker || separationBeakers.len < beakerSlots)
+		if(!mainBeaker || separationBeakers.len < beakerSlots)
 			if(insert_item(C, user))
 				if(!mainBeaker)
 					mainBeaker = C
@@ -263,9 +263,9 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "centrifuge.tmpl", name, 800, 700)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)

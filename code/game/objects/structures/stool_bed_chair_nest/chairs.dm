@@ -167,10 +167,10 @@
 		occupant.buckled = null
 		occupant.Move(src.loc, glide_size_override=glide_size)
 		occupant.buckled = src
-		if (occupant && (src.loc != occupant.loc))
-			if (propelled)
-				for (var/mob/O in src.loc)
-					if (O != occupant)
+		if(occupant && (src.loc != occupant.loc))
+			if(propelled)
+				for(var/mob/O in src.loc)
+					if(O != occupant)
 						Bump(O)
 			else
 				unbuckle_mob()

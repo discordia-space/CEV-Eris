@@ -87,7 +87,7 @@
 */
 	var/list/processed_evac_options = list()
 	if(!isnull(evacuation_controller))
-		for (var/datum/evacuation_option/EO in evacuation_controller.available_evac_options())
+		for(var/datum/evacuation_option/EO in evacuation_controller.available_evac_options())
 			var/list/option = list()
 			option["option_text"] = EO.option_text
 			option["option_target"] = EO.option_target
@@ -193,14 +193,14 @@
 			. = 1
 			if(is_autenthicated(user))
 				var/datum/evacuation_option/selected_evac_option = evacuation_controller.evacuation_options[href_list["target"]]
-				if (isnull(selected_evac_option) || !istype(selected_evac_option))
+				if(isnull(selected_evac_option) || !istype(selected_evac_option))
 					return
-				if (!selected_evac_option.silicon_allowed && issilicon(user))
+				if(!selected_evac_option.silicon_allowed && issilicon(user))
 					return
-				if (selected_evac_option.needs_syscontrol && !ntn_cont)
+				if(selected_evac_option.needs_syscontrol && !ntn_cont)
 					return
 				var/confirm = alert("Are you sure you want to [selected_evac_option.option_desc]?", name, "No", "Yes")
-				if (confirm == "Yes" && can_still_topic())
+				if(confirm == "Yes" && can_still_topic())
 					evacuation_controller.handle_evac_option(selected_evac_option.option_target, user)
 		if("setstatus")
 			. = 1
@@ -278,7 +278,7 @@ var/last_message_id = 0
 	message["title"] = message_title
 	message["contents"] = message_text
 
-	for (var/datum/comm_message_listener/l in comm_message_listeners)
+	for(var/datum/comm_message_listener/l in comm_message_listeners)
 		l.Add(message)
 
 /datum/comm_message_listener
@@ -316,7 +316,7 @@ var/last_message_id = 0
 	frequency.post_signal( signal = status_signal )
 
 /proc/cancel_call_proc(var/mob/user)
-	if (!SSticker || !evacuation_controller)
+	if(!SSticker || !evacuation_controller)
 		return
 
 	if(evacuation_controller.cancel_evacuation())
@@ -333,7 +333,7 @@ var/last_message_id = 0
 	return 0
 
 /proc/call_shuttle_proc(var/mob/user, var/emergency)
-	if (!SSticker || !evacuation_controller)
+	if(!SSticker || !evacuation_controller)
 		return
 
 	if(isnull(emergency))
@@ -363,7 +363,7 @@ var/last_message_id = 0
 
 /proc/init_autotransfer()
 
-	if (!SSticker || !evacuation_controller)
+	if(!SSticker || !evacuation_controller)
 		return
 
 	. = evacuation_controller.call_evacuation(null, _emergency_evac = FALSE, autotransfer = TRUE)

@@ -173,223 +173,13 @@
 	children = list(
 		/datum/asset/simple/jquery,
 		/datum/asset/simple/goonchat,
-		/datum/asset/simple/namespaced/fontawesome
-	)
+		/datum/asset/simple/namespaced/fontawesome)
 
-// /datum/asset/spritesheet/chat
-// 	name = "chat"
-
-// /datum/asset/spritesheet/chat/register()
-// 	InsertAll("emoji", EMOJI_SET)
-// 	// pre-loading all lanugage icons also helps to avoid meta
-// 	InsertAll("language", 'icons/misc/language.dmi')
-// 	// catch languages which are pulling icons from another file
-// 	for(var/path in typesof(/datum/language))
-// 		var/datum/language/L = path
-// 		var/icon = initial(L.icon)
-// 		if (icon != 'icons/misc/language.dmi')
-// 			var/icon_state = initial(L.icon_state)
-// 			Insert("language-[icon_state]", icon, icon_state=icon_state)
-// 	..()
-
-// /datum/asset/simple/lobby
-// 	assets = list(
-// 		"playeroptions.css" = 'html/browser/playeroptions.css'
-// 	)
 
 /datum/asset/simple/namespaced/common
 	assets = list("padlock.png" = 'icons/ui_icons/common/padlock.png')
 	parents = list("common.css" = 'html/browser/common.css')
 
-// /datum/asset/simple/permissions
-// 	assets = list(
-// 		"search.js" = 'html/admin/search.js',
-// 		"panels.css" = 'html/admin/panels.css'
-// 	)
-
-// /datum/asset/group/permissions
-// 	children = list(
-// 		/datum/asset/simple/permissions,
-// 		/datum/asset/simple/namespaced/common
-// 	)
-
-// /datum/asset/spritesheet/simple/condiments
-// 	name = "condiments"
-// 	assets = list(
-// 		CONDIMASTER_STYLE_FALLBACK = 'icons/ui_icons/condiments/emptycondiment.png',
-// 		"enzyme" = 'icons/ui_icons/condiments/enzyme.png',
-// 		"flour" = 'icons/ui_icons/condiments/flour.png',
-// 		"mayonnaise" = 'icons/ui_icons/condiments/mayonnaise.png',
-// 		"milk" = 'icons/ui_icons/condiments/milk.png',
-// 		"blackpepper" = 'icons/ui_icons/condiments/peppermillsmall.png',
-// 		"rice" = 'icons/ui_icons/condiments/rice.png',
-// 		"sodiumchloride" = 'icons/ui_icons/condiments/saltshakersmall.png',
-// 		"soymilk" = 'icons/ui_icons/condiments/soymilk.png',
-// 		"soysauce" = 'icons/ui_icons/condiments/soysauce.png',
-// 		"sugar" = 'icons/ui_icons/condiments/sugar.png',
-// 		"ketchup" = 'icons/ui_icons/condiments/ketchup.png',
-// 		"capsaicin" = 'icons/ui_icons/condiments/hotsauce.png',
-// 		"frostoil" = 'icons/ui_icons/condiments/coldsauce.png',
-// 		"bbqsauce" = 'icons/ui_icons/condiments/bbqsauce.png', //Currently doesn't exist
-// 		"cornoil" = 'icons/ui_icons/condiments/oliveoil.png',
-// 	)
-
-// //this exists purely to avoid meta by pre-loading all language icons.
-// /datum/asset/language/register()
-// 	for(var/path in typesof(/datum/language))
-// 		set waitfor = FALSE
-// 		var/datum/language/L = new path ()
-// 		L.get_icon()
-
-// /datum/asset/spritesheet/pipes
-// 	name = "pipes"
-
-// /datum/asset/spritesheet/pipes/register()
-// 	for (var/each in list('icons/obj/atmospherics/pipes/pipe_item.dmi', 'icons/obj/atmospherics/pipes/disposal.dmi', 'icons/obj/atmospherics/pipes/transit_tube.dmi', 'icons/obj/plumbing/fluid_ducts.dmi'))
-// 		InsertAll("", each, GLOB.alldirs)
-// 	..()
-
-// /datum/asset/spritesheet/supplypods
-// 	name = "supplypods"
-
-// /datum/asset/spritesheet/supplypods/register()
-// 	for (var/style in 1 to length(GLOB.podstyles))
-// 		if (style == STYLE_SEETHROUGH)
-// 			Insert("pod_asset[style]", icon('icons/obj/supplypods.dmi' , "seethrough-icon"))
-// 			continue
-// 		var/base = GLOB.podstyles[style][POD_BASE]
-// 		if (!base)
-// 			Insert("pod_asset[style]", icon('icons/obj/supplypods.dmi', "invisible-icon"))
-// 			continue
-// 		var/icon/podIcon = icon('icons/obj/supplypods.dmi', base)
-// 		var/door = GLOB.podstyles[style][POD_DOOR]
-// 		if (door)
-// 			door = "[base]_door"
-// 			podIcon.Blend(icon('icons/obj/supplypods.dmi', door), ICON_OVERLAY)
-// 		var/shape = GLOB.podstyles[style][POD_SHAPE]
-// 		if (shape == POD_SHAPE_NORML)
-// 			var/decal = GLOB.podstyles[style][POD_DECAL]
-// 			if (decal)
-// 				podIcon.Blend(icon('icons/obj/supplypods.dmi', decal), ICON_OVERLAY)
-// 			var/glow = GLOB.podstyles[style][POD_GLOW]
-// 			if (glow)
-// 				glow = "pod_glow_[glow]"
-// 				podIcon.Blend(icon('icons/obj/supplypods.dmi', glow), ICON_OVERLAY)
-// 		Insert("pod_asset[style]", podIcon)
-// 	return ..()
-
-// // Representative icons for each research design
-// /datum/asset/spritesheet/research_designs
-// 	name = "design"
-
-// /datum/asset/spritesheet/research_designs/register()
-// 	for (var/path in subtypesof(/datum/design))
-// 		var/datum/design/D = path
-
-// 		var/icon_file
-// 		var/icon_state
-// 		var/icon/I
-
-// 		if(initial(D.research_icon) && initial(D.research_icon_state)) //If the design has an icon replacement skip the rest
-// 			icon_file = initial(D.research_icon)
-// 			icon_state = initial(D.research_icon_state)
-// 			if(!(icon_state in icon_states(icon_file)))
-// 				warning("design [D] with icon '[icon_file]' missing state '[icon_state]'")
-// 				continue
-// 			I = icon(icon_file, icon_state, SOUTH)
-
-// 		else
-// 			// construct the icon and slap it into the resource cache
-// 			var/atom/item = initial(D.build_path)
-// 			if (!ispath(item, /atom))
-// 				// biogenerator outputs to beakers by default
-// 				if (initial(D.build_type) & BIOGENERATOR)
-// 					item = /obj/item/reagent_containers/glass/beaker/large
-// 				else
-// 					continue  // shouldn't happen, but just in case
-
-// 			// circuit boards become their resulting machines or computers
-// 			if (ispath(item, /obj/item/circuitboard))
-// 				var/obj/item/circuitboard/C = item
-// 				var/machine = initial(C.build_path)
-// 				if (machine)
-// 					item = machine
-
-// 			// Check for GAGS support where necessary
-// 			var/greyscale_config = initial(item.greyscale_config)
-// 			var/greyscale_colors = initial(item.greyscale_colors)
-// 			if (greyscale_config && greyscale_colors)
-// 				icon_file = SSgreyscale.GetColoredIconByType(greyscale_config, greyscale_colors)
-// 			else
-// 				icon_file = initial(item.icon)
-
-// 			icon_state = initial(item.icon_state)
-// 			if(!(icon_state in icon_states(icon_file)))
-// 				warning("design [D] with icon '[icon_file]' missing state '[icon_state]'")
-// 				continue
-// 			I = icon(icon_file, icon_state, SOUTH)
-
-// 			// computers (and snowflakes) get their screen and keyboard sprites
-// 			if (ispath(item, /obj/machinery/computer) || ispath(item, /obj/machinery/power/solar_control))
-// 				var/obj/machinery/computer/C = item
-// 				var/screen = initial(C.icon_screen)
-// 				var/keyboard = initial(C.icon_keyboard)
-// 				var/all_states = icon_states(icon_file)
-// 				if (screen && (screen in all_states))
-// 					I.Blend(icon(icon_file, screen, SOUTH), ICON_OVERLAY)
-// 				if (keyboard && (keyboard in all_states))
-// 					I.Blend(icon(icon_file, keyboard, SOUTH), ICON_OVERLAY)
-
-// 		Insert(initial(D.id), I)
-// 	return ..()
-
-// /datum/asset/spritesheet/vending
-// 	name = "vending"
-
-// /datum/asset/spritesheet/vending/register()
-// 	for (var/k in GLOB.vending_products)
-// 		var/atom/item = k
-// 		if (!ispath(item, /atom))
-// 			continue
-
-// 		var/icon_file
-// 		if (initial(item.greyscale_colors) && initial(item.greyscale_config))
-// 			icon_file = SSgreyscale.GetColoredIconByType(initial(item.greyscale_config), initial(item.greyscale_colors))
-// 		else
-// 			icon_file = initial(item.icon)
-// 		var/icon_state = initial(item.icon_state)
-// 		var/icon/I
-
-// 		var/icon_states_list = icon_states(icon_file)
-// 		if(icon_state in icon_states_list)
-// 			I = icon(icon_file, icon_state, SOUTH)
-// 			var/c = initial(item.color)
-// 			if (!isnull(c) && c != "#FFFFFF")
-// 				I.Blend(c, ICON_MULTIPLY)
-// 		else
-// 			var/icon_states_string
-// 			for (var/an_icon_state in icon_states_list)
-// 				if (!icon_states_string)
-// 					icon_states_string = "[json_encode(an_icon_state)](\ref[an_icon_state])"
-// 				else
-// 					icon_states_string += ", [json_encode(an_icon_state)](\ref[an_icon_state])"
-// 			stack_trace("[item] does not have a valid icon state, icon=[icon_file], icon_state=[json_encode(icon_state)](\ref[icon_state]), icon_states=[icon_states_string]")
-// 			I = icon('icons/turf/floors.dmi', "", SOUTH)
-
-// 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
-
-// 		Insert(imgid, I)
-// 	return ..()
-
-// /datum/asset/simple/orbit
-// 	assets = list(
-// 		"ghost.png" = 'icons/ui_icons/orbit/ghost.png'
-// 	)
-
-// /datum/asset/simple/vv
-// 	assets = list(
-// 		"view_variables.css" = 'html/admin/view_variables.css'
-// 	)
 
 /* === ERIS STUFF === */
 /datum/asset/simple/design_icons/register()
@@ -403,7 +193,7 @@
 		var/icon_state = initial(item.icon_state)
 
 		// eugh
-		if (!icon_file)
+		if(!icon_file)
 			icon_file = ""
 
 		#ifdef UNIT_TESTS
@@ -444,7 +234,7 @@
 				var/icon_state = initial(item.icon_state)
 
 				// eugh
-				if (!icon_file)
+				if(!icon_file)
 					icon_file = ""
 
 				#ifdef UNIT_TESTS
@@ -476,7 +266,7 @@
 
 	// this is fucked but crafting has a circular dept unfortunantly. could unfuck with tgui port
 	for(var/datum/craft_step/CS as anything in craftStep)
-		if (!CS.reqed_material && !CS.reqed_type)
+		if(!CS.reqed_material && !CS.reqed_type)
 			continue
 		CS.iconfile = SSassets.transport.get_asset_url(CS.reqed_material ? sanitizeFileName("[material_stack_type(CS.reqed_material)].png") : null, assets[sanitizeFileName("[CS.reqed_type].png")])
 		CS.make_desc() // redo it
@@ -487,7 +277,7 @@
 
 		var/obj/item/item = initial(type)
 		// no.
-		if (initial(item.bad_type) == type)
+		if(initial(item.bad_type) == type)
 			continue
 
 		var/icon_file = initial(item.icon)
@@ -540,7 +330,7 @@
 
 /datum/asset/simple/directories/register()
 	// Crawl the directories to find files.
-	for (var/path in dirs)
+	for(var/path in dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)
 			if(copytext(filename, length(filename)) != "/") // Ignore directories.

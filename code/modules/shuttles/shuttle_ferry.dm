@@ -21,10 +21,10 @@
 
 //Gets the shuttle landmark associated with the given location (defaults to current location)
 /datum/shuttle/autodock/ferry/proc/get_location_waypoint(location_id = null)
-	if (isnull(location_id))
+	if(isnull(location_id))
 		location_id = location
 
-	if (!location_id)
+	if(!location_id)
 		return waypoint_station
 	return waypoint_offsite
 
@@ -39,8 +39,8 @@
 /datum/shuttle/autodock/ferry/shuttle_moved()
 	..()
 
-	if (next_location == waypoint_station) location = 0
-	if (next_location == waypoint_offsite) location = 1
+	if(next_location == waypoint_station) location = 0
+	if(next_location == waypoint_offsite) location = 1
 
 /datum/shuttle/autodock/ferry/process_arrived()
 	..()

@@ -447,7 +447,7 @@
 // Parameters: 1 (forced - if true, the checks will be skipped)
 // Description: Opens the door. Does necessary checks. Automatically closes if autoclose is true
 /obj/machinery/door/blast/open(forced = FALSE)
-	if ((operating || (stat & BROKEN || stat & NOPOWER)) && !forced)
+	if((operating || (stat & BROKEN || stat & NOPOWER)) && !forced)
 		return
 	force_open()
 	if(autoclose)
@@ -459,7 +459,7 @@
 // Parameters: 1 (forced - if true, the checks will be skipped)
 // Description: Closes the door. Does necessary checks.
 /obj/machinery/door/blast/close(forced = FALSE)
-	if ((operating || (stat & BROKEN || stat & NOPOWER)) && !forced)
+	if((operating || (stat & BROKEN || stat & NOPOWER)) && !forced)
 		return
 	force_close()
 	crush()

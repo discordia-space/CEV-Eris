@@ -162,7 +162,7 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, NT_FREQ, SEC_
 
 /proc/frequency_span_class(var/frequency)
 	// Antags!
-	if (frequency in ANTAG_FREQS)
+	if(frequency in ANTAG_FREQS)
 		return "syndradio"
 	// centcom channels
 	if(frequency in CENT_FREQS)
@@ -176,7 +176,7 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, NT_FREQ, SEC_
 	// department radio formatting (poorly optimized, ugh)
 	if(frequency == SEC_FREQ)
 		return "secradio"
-	if (frequency == ENG_FREQ)
+	if(frequency == ENG_FREQ)
 		return "engradio"
 	if(frequency == SCI_FREQ)
 		return "sciradio"
@@ -227,17 +227,17 @@ var/const/RADIO_BLASTDOORS = "radio_blastdoors"
 		if(!start_point)
 			qdel(signal)
 			return 0
-	if (filter)
+	if(filter)
 		send_to_filter(source, signal, filter, start_point, range)
 		send_to_filter(source, signal, RADIO_DEFAULT, start_point, range)
 	else
 		//Broadcast the signal to everyone!
-		for (var/next_filter in devices)
+		for(var/next_filter in devices)
 			send_to_filter(source, signal, next_filter, start_point, range)
 
 //Sends a signal to all machines belonging to a given filter. Should be called by post_signal()
 /datum/radio_frequency/proc/send_to_filter(obj/source, datum/signal/signal, var/filter, var/turf/start_point = null, var/range = null)
-	if (range && !start_point)
+	if(range && !start_point)
 		return
 	for(var/obj/device in devices[filter])
 		if(device == source)
@@ -251,11 +251,11 @@ var/const/RADIO_BLASTDOORS = "radio_blastdoors"
 		device.receive_signal(signal, TRANSMISSION_RADIO, frequency)
 
 /datum/radio_frequency/proc/add_listener(obj/device as obj, var/filter as text|null)
-	if (!filter)
+	if(!filter)
 		filter = RADIO_DEFAULT
 	//log_admin("add_listener(device=[device],filter=[filter]) frequency=[frequency]")
 	var/list/obj/devices_line = devices[filter]
-	if (!devices_line)
+	if(!devices_line)
 		devices_line = new
 		devices[filter] = devices_line
 	devices_line+=device
@@ -265,12 +265,12 @@ var/const/RADIO_BLASTDOORS = "radio_blastdoors"
 	//log_admin("DEBUG: devices(filter_str).len=[l]")
 
 /datum/radio_frequency/proc/remove_listener(obj/device)
-	for (var/devices_filter in devices)
+	for(var/devices_filter in devices)
 		var/list/devices_line = devices[devices_filter]
 		devices_line -= device
-		while (null in devices_line)
+		while(null in devices_line)
 			devices_line -= null
-		if (devices_line.len==0)
+		if(devices_line.len==0)
 			devices -= devices_filter
 			del(devices_line)
 
@@ -295,11 +295,11 @@ var/const/RADIO_BLASTDOORS = "radio_blastdoors"
 	frequency = model.frequency
 
 /datum/signal/proc/debug_print()
-	if (source)
+	if(source)
 		. = "signal = {source = '[source]' ([source:x],[source:y],[source:z])\n"
 	else
 		. = "signal = {source = '[source]' ()\n"
-	for (var/i in data)
+	for(var/i in data)
 		. += "data\[\"[i]\"\] = \"[data[i]]\"\n"
 		if(islist(data[i]))
 			var/list/L = data[i]

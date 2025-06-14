@@ -30,14 +30,14 @@
 	layer = LOW_OBJ_LAYER+0.01
 
 /obj/structure/closet/body_bag/attackby(W as obj, mob/user)
-	if (istype(W, /obj/item/pen))
+	if(istype(W, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
-		if (user.get_active_hand() != W)
+		if(user.get_active_hand() != W)
 			return
-		if (!in_range(src, user) && src.loc != user)
+		if(!in_range(src, user) && src.loc != user)
 			return
 		t = sanitizeSafe(t, MAX_NAME_LEN)
-		if (t)
+		if(t)
 			src.name = "body bag - "
 			src.name += t
 			src.overlays += image(src.icon, "bodybag_label")

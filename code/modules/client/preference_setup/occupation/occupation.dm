@@ -84,7 +84,7 @@
 	. += "<tt><center>"
 
 	//Attempts to set job description based on a high ranked or selected job
-	if (!desc_set)
+	if(!desc_set)
 		create_job_description(user)
 	. += "[job_desc]"
 	. += "<b>Choose occupation chances.<br>Unavailable occupations are crossed out.</b>"
@@ -202,7 +202,7 @@
 
 	else if(href_list["select_alt_title"])
 		var/datum/job/job = locate(href_list["select_alt_title"])
-		if (job)
+		if(job)
 			var/choices = list(job.title) + job.alt_titles
 			var/choice = input("Choose an title for [job.title].", "Choose Title", pref.GetPlayerAltTitle(job)) as anything in choices|null
 			if(choice && CanUseTopic(user))
@@ -281,7 +281,7 @@
 		//If not, then we'll attempt to get the job they have set as high priority, if any
 		job = SSjob.GetJob(pref.job_high)
 
-	if (!job)
+	if(!job)
 		return
 
 	desc_set = TRUE
@@ -326,20 +326,20 @@
 	job_desc +="<div style='border: 1px solid grey; float: right; margin-right: 20px; padding: 8px; line-height: 120%;'> <h1 style='padding: 0px;'>Stats:</h1>"
 	if(job.title == ASSISTANT_TITLE)
 		job_desc += "<ul>"
-		for (var/a in ALL_STATS)
+		for(var/a in ALL_STATS)
 			job_desc += "<li>[a]: ???</li>"
 		job_desc += "</ul>"
-	else if (job.stat_modifiers.len)
+	else if(job.stat_modifiers.len)
 		job_desc += "<ul>"
-		for (var/a in job.stat_modifiers)
+		for(var/a in job.stat_modifiers)
 			job_desc += "<li>[a]: [job.stat_modifiers[a]]</li>"
 		job_desc += "</ul>"
 	else
 		job_desc += "None"
 	job_desc += "<h1 style='padding: 0px;'>Perks:</h1>"
-	if (job.perks.len)
+	if(job.perks.len)
 		job_desc += "<ul>"
-		for (var/a in job.perks)
+		for(var/a in job.perks)
 			var/datum/perk/P = a
 			job_desc += "<li>[initial(P.name)]</li>"
 		job_desc += "</ul>"

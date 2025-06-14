@@ -5,13 +5,13 @@
 	//It recurses up the hierarchy out of containers until it reaches a mob, or a turf, or hits the limit
 	var/x = 0//As a safety, we'll crawl up a maximum of 10 layers
 	var/atom/a = src
-	while (x < 10)
+	while(x < 10)
 		x++
-		if (isnull(a))
+		if(isnull(a))
 			return null
 
 
-		if (istype(a.loc, /turf))
+		if(istype(a.loc, /turf))
 			return a
 
 		a = a.loc
@@ -38,7 +38,7 @@
 
 /atom/proc/in_maintenance()
 	var/area/A = get_area(src)
-	if (A && A.is_maintenance)
+	if(A && A.is_maintenance)
 		return TRUE
 	return FALSE
 

@@ -19,7 +19,7 @@
 	"red" = 1,
 	"gold" = 1,
 	"green" = 1)
-	for (var/mob/living/carbon/slime/S in spawns)
+	for(var/mob/living/carbon/slime/S in spawns)
 		S.set_mutation(pickweight(colors))
 
 /obj/spawner/mob/slime/cluster

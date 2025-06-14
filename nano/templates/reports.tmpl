@@ -14,7 +14,7 @@
 					<h3>{{:value.name}}</h3>
 				{{else}}
 					<div class='itemLabel'>
-						{{if (value.can_edit && value.access_edit && !data.view_only)}}
+						{{if(value.can_edit && value.access_edit && !data.view_only)}}
 							{{:helper.link('','pencil' , {'edit' : 1, 'ID' : value.ID}, null)}}
 						{{/if}}
 						{{:value.name}}: 

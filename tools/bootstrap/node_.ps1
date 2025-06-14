@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 function Extract-Variable {
 	param([string] $Path, [string] $Key)
 	foreach ($Line in Get-Content $Path) {
-		if ($Line.StartsWith("export $Key=")) {
+		if($Line.StartsWith("export $Key=")) {
 			return $Line.Substring("export $Key=".Length)
 		}
 	}
@@ -14,7 +14,7 @@ function Extract-Variable {
 }
 
 function Download-Node {
-	if (Test-Path $NodeTarget -PathType Leaf) {
+	if(Test-Path $NodeTarget -PathType Leaf) {
 		return
 	}
 	Write-Output "Downloading Node v$NodeVersion (may take a while)"
@@ -26,7 +26,7 @@ function Download-Node {
 ## Convenience variables
 $BaseDir = Split-Path $script:MyInvocation.MyCommand.Path
 $Cache = "$BaseDir\.cache"
-if ($Env:TG_BOOTSTRAP_CACHE) {
+if($Env:TG_BOOTSTRAP_CACHE) {
 	$Cache = $Env:TG_BOOTSTRAP_CACHE
 }
 
@@ -36,13 +36,13 @@ $NodeTargetDir = "$Cache\node-v$NodeVersion-x64"
 $NodeTarget = "$NodeTargetDir\node.exe"
 
 ## Just print the path and exit
-if ($Args.length -eq 1 -and $Args[0] -eq "Get-Path") {
+if($Args.length -eq 1 -and $Args[0] -eq "Get-Path") {
 	Write-Output "$NodeTargetDir"
 	exit 0
 }
 
 ## Just download node and exit
-if ($Args.length -eq 1 -and $Args[0] -eq "Download-Node") {
+if($Args.length -eq 1 -and $Args[0] -eq "Download-Node") {
 	Download-Node
 	exit 0
 }

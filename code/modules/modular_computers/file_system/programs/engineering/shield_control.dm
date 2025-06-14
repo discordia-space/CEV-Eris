@@ -35,29 +35,29 @@
 /datum/nano_module/shield_control/proc/connect_to_generator()
 	var/n = 0
 	gen = null
-	for (var/obj/machinery/power/shipside/shield_generator/hull/G in world)
+	for(var/obj/machinery/power/shipside/shield_generator/hull/G in world)
 		//Check that the generator is on the same vessel as us.
 		//This allows antag ships/stations to have their own shield generators and consoles
-		if (is_matching_vessel(G, nano_host()))
-			if (G.anchored && G.tendrils_deployed && !G.ai_control_disabled) //Only look at those that are wrenched in and setup
+		if(is_matching_vessel(G, nano_host()))
+			if(G.anchored && G.tendrils_deployed && !G.ai_control_disabled) //Only look at those that are wrenched in and setup
 				gen = G //It's a good enough candidate, we're connected!
 				n++
 
 
 
 	//If we found more than one compatible hull shield, something is wrong. We'll display a warning to the user about this
-	if (n > 1)
+	if(n > 1)
 		multigen = TRUE
 
 	else
 		multigen = FALSE
 
 	//Lets describe the generator's location, this will be shown to the user. It will read something like
-	if (istype(gen))
+	if(istype(gen))
 		playsound_host('sound/machines/chime.ogg', 50) //Sound for successfully connecting
 		genloc += "Connected to: [gen.name] in "
 		var/area/A = get_area(gen)
-		if (A)
+		if(A)
 			genloc += "[strip_improper(A.name)] "
 		else
 			genloc += "Unknown Area "
@@ -73,7 +73,7 @@
 		return
 	var/list/data = host.initial_data()
 
-	if (istype(gen))
+	if(istype(gen))
 		data["genloc"] = genloc
 		data["running"] = gen.running
 		data["modes"] = gen.get_flag_descriptions()
@@ -98,7 +98,7 @@
 		data["nogen"] = TRUE //Special flag so the template can tell between console and physical
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 600, 800, state = state)
 		if(nano_host().update_layout()) // This is necessary to ensure the status bar remains updated along with rest of the UI.
 			ui.auto_update_layout = 1
@@ -116,7 +116,7 @@
 		. = 1
 		return
 
-	if (!gen || gen.ai_control_disabled || !gen.anchored)
+	if(!gen || gen.ai_control_disabled || !gen.anchored)
 		//Remote software control works the same as AI control.  Cutting that wire disables remote
 		//If the generator has been unwrenched we also lose connection
 		playsound_host('sound/machines/buzz-two.ogg', 50)
@@ -127,7 +127,7 @@
 
 
 	//Doesn't respond while disabled
-	if (gen.offline_for)
+	if(gen.offline_for)
 		return
 
 	if(href_list["begin_shutdown"])
@@ -222,7 +222,7 @@
 		data["focus"] = focus.return_reading_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "power_monitor.tmpl", "Power Monitoring Console", 800, 500, state = state)
 		if(host.update_layout()) // This is necessary to ensure the status bar remains updated along with rest of the UI.
 			ui.auto_update_layout = 1

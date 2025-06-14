@@ -13,7 +13,7 @@
 
 	spawn()
 		src.machine = locate(/obj/machinery/mineral/stacking_machine) in range(3, src)
-		if (machine)
+		if(machine)
 			machine.console = src
 		else
 			log_debug("[src] ([x],[y],[z]) can't find coresponding staking unit.")
@@ -94,20 +94,20 @@
 /obj/machinery/mineral/stacking_machine/proc/outputMaterial(var/material_name, var/amount)
 	var/stored_amount = stack_storage[material_name] || 0
 	amount = min(stored_amount, amount)
-	if (amount > 0)
+	if(amount > 0)
 		stack_storage[material_name] -= amount
 		var/stacktype = material_stack_type(material_name)
 		new stacktype (get_step(src, output_dir), amount)
 		flick("stacker_eject", src)
 
 /obj/machinery/mineral/stacking_machine/Process()
-	if (src.output_dir && src.input_dir)
+	if(src.output_dir && src.input_dir)
 		var/turf/T = get_step(src, input_dir)
-		for (var/obj/item/O in T.contents)
-			if (istype(O))
-				if (istype(O, /obj/item/stack/material))
+		for(var/obj/item/O in T.contents)
+			if(istype(O))
+				if(istype(O, /obj/item/stack/material))
 					var/obj/item/stack/material/M = O
-					if (M.material && M.material.name)
+					if(M.material && M.material.name)
 						var/material_name = M.material.name
 						var/stack_amount = M.amount
 						var/stored_amount = stack_storage[material_name] || 0
@@ -119,8 +119,8 @@
 					O.forceMove(get_step(src, output_dir))
 
 	//Output amounts that are past stack_amt.
-	for (var/material_name in stack_storage)
-		if (stack_storage[material_name] >= stack_amt)
+	for(var/material_name in stack_storage)
+		if(stack_storage[material_name] >= stack_amt)
 			outputMaterial(material_name, stack_amt)
 
 	if(console)

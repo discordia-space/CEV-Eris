@@ -130,10 +130,10 @@
 					if(I.malfunction)
 						I.restore()
 						return
-			else if (istype(organ, /obj/item/organ/external) && organ.damage > 0 && BP_IS_ROBOTIC(organ))
+			else if(istype(organ, /obj/item/organ/external) && organ.damage > 0 && BP_IS_ROBOTIC(organ))
 				organ.heal_damage((2 + organ.damage * 0.05)* effect_multiplier, (2 + organ.damage * 0.05)* effect_multiplier, 1, 1)
 				return
-			else if (istype(organ, /obj/item/organ/internal) && organ.damage > 0 && BP_IS_ROBOTIC(organ))
+			else if(istype(organ, /obj/item/organ/internal) && organ.damage > 0 && BP_IS_ROBOTIC(organ))
 				organ.heal_damage((2 + organ.damage * 0.05)* effect_multiplier)
 				return
 

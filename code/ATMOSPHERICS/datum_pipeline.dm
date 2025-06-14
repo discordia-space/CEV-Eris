@@ -17,7 +17,7 @@ datum/pipeline
 		QDEL_NULL(network)
 
 		//Update individual gas_mixtures by volume ratio
-		if (air.volume)
+		if(air.volume)
 			for(var/obj/machinery/atmospherics/pipe/member in members)
 				var/datum/gas_mixture/G = new
 				G.copy_from(air)

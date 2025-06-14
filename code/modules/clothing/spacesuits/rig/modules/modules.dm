@@ -59,14 +59,14 @@
 
 	var/list/stat_rig_module/stat_modules = new()
 
-	
+
 
 /obj/item/rig_module/get_cell()
 	holder = get_rig()
 	return holder?.get_cell()
 
 /obj/item/rig_module/Destroy()
-	if (holder)
+	if(holder)
 		holder.uninstall(src)
 		holder = null
 	return ..()

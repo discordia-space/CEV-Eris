@@ -290,25 +290,25 @@ var/list/rummage_sound = list(\
 /proc/footstep_sound(var/sound)
 	var/toplay
 	switch (sound)
-		if ("asteroid")
+		if("asteroid")
 			toplay = pick(footstep_asteroid)
-		if ("carpet")
+		if("carpet")
 			toplay = pick(footstep_carpet)
-		if ("catwalk")
+		if("catwalk")
 			toplay = pick(footstep_catwalk)
-		if ("floor")
+		if("floor")
 			toplay = pick(footstep_floor)
-		if ("grass")
+		if("grass")
 			toplay = pick(footstep_grass)
-		if ("gravel")
+		if("gravel")
 			toplay = pick(footstep_gravel)
-		if ("hull")
+		if("hull")
 			toplay = pick(footstep_hull)
-		if ("plating")
+		if("plating")
 			toplay = pick(footstep_plating)
-		if ("tile")
+		if("tile")
 			toplay = pick(footstep_tile)
-		if ("wood")
+		if("wood")
 			toplay = pick(footstep_wood)
 
 	return toplay
@@ -403,12 +403,12 @@ var/const/FALLOFF_SOUNDS = 0.5
 		S.environment = -1
 		if(frequency)
 			S.frequency = frequency
-		else if (vary)
+		else if(vary)
 			S.frequency = get_rand_frequency()
 
 	//sound volume falloff with pressure
 	var/pressure_factor = 1
-	
+
 	var/turf/T = get_turf(src)
 	// 3D sounds, the technology is here!
 	if(T && isturf(turf_source))
@@ -421,20 +421,20 @@ var/const/FALLOFF_SOUNDS = 0.5
 		var/datum/gas_mixture/source_env = turf_source.return_air()
 
 		if(use_pressure)
-			if (hearer_env && source_env)
+			if(hearer_env && source_env)
 				var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
 
-				if (pressure < ONE_ATMOSPHERE)
+				if(pressure < ONE_ATMOSPHERE)
 					pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
 			else //in space
 				pressure_factor = 0
 
-			if (distance <= 1)
+			if(distance <= 1)
 				pressure_factor = max(pressure_factor, 0.15)	//hearing through contact
 
 			S.volume *= pressure_factor
-		
-		if (S.volume <= 0)
+
+		if(S.volume <= 0)
 			return //no volume means no sound
 
 		var/dx = turf_source.x - T.x // Hearing from the right/left
@@ -452,24 +452,24 @@ var/const/FALLOFF_SOUNDS = 0.5
 
 		if(istype(src,/mob/living/))
 			var/mob/living/carbon/M = src
-			if (istype(M) && M.hallucination_power > 50 && M.chem_effects[CE_MIND] < 1)
+			if(istype(M) && M.hallucination_power > 50 && M.chem_effects[CE_MIND] < 1)
 				S.environment = PSYCHOTIC
-			else if (M.druggy)
+			else if(M.druggy)
 				S.environment = DRUGGED
-			else if (M.drowsyness)
+			else if(M.drowsyness)
 				S.environment = DIZZY
-			else if (M.confused)
+			else if(M.confused)
 				S.environment = DIZZY
-			else if (M.stat == UNCONSCIOUS)
+			else if(M.stat == UNCONSCIOUS)
 				S.environment = UNDERWATER
-			else if (pressure_factor < 0.5)
+			else if(pressure_factor < 0.5)
 				S.environment = SPACE
 			else
 				var/area/A = get_area(src)
 				if(istype(A))
 					S.environment = A.sound_env
 
-		else if (pressure_factor < 0.5)
+		else if(pressure_factor < 0.5)
 			S.environment = SPACE
 		else
 			var/area/A = get_area(src)
@@ -491,30 +491,29 @@ var/const/FALLOFF_SOUNDS = 0.5
 /proc/get_sfx(soundin)
 	if(istext(soundin))
 		switch(soundin)
-			if ("shatter") soundin = pick(shatter_sound)
-			if ("explosion") soundin = pick(explosion_sound)
-			if ("sparks") soundin = pick(spark_sound)
-			if ("rustle") soundin = pick(rustle_sound)
-			if ("punch") soundin = pick(punch_sound)
-			if ("clownstep") soundin = pick(clown_sound)
-			if ("swing_hit") soundin = pick(swing_hit_sound)
-			if ("hiss") soundin = pick(hiss_sound)
-			if ("pageturn") soundin = pick(page_sound)
-			if ("keyboard") soundin = pick(keyboard_sound)
-			if ("robot_talk_heavy") soundin = pick(robot_talk_heavy_sound)
-			if ("robot_talk_light") soundin = pick(robot_talk_light_sound)
-			if ("miss_sound") soundin = pick(miss_sound)
-			if ("ric_sound") soundin = pick(ric_sound)
-			if ("casing_sound") soundin = pick(casing_sound)
-			if ("hitobject") soundin = pick(bullet_hit_object_sound)
-			if ("climb")soundin = pick(climb_sound)
-			if ("catwalk")soundin = pick(footstep_catwalk)
-			if ("crumble") soundin = pick(crumble_sound)
-			if ("thud") soundin = pick(thud_sound)
-			if ("weld") soundin = pick(weld_sound)
-			if ("rummage") soundin = pick(rummage_sound)
-			if ("ricochet") soundin = pick(bullet_hit_wall)
-			//if ("gunshot") soundin = pick(gun_sound)
+			if("shatter") soundin = pick(shatter_sound)
+			if("explosion") soundin = pick(explosion_sound)
+			if("sparks") soundin = pick(spark_sound)
+			if("rustle") soundin = pick(rustle_sound)
+			if("punch") soundin = pick(punch_sound)
+			if("clownstep") soundin = pick(clown_sound)
+			if("swing_hit") soundin = pick(swing_hit_sound)
+			if("hiss") soundin = pick(hiss_sound)
+			if("pageturn") soundin = pick(page_sound)
+			if("keyboard") soundin = pick(keyboard_sound)
+			if("robot_talk_heavy") soundin = pick(robot_talk_heavy_sound)
+			if("robot_talk_light") soundin = pick(robot_talk_light_sound)
+			if("miss_sound") soundin = pick(miss_sound)
+			if("ric_sound") soundin = pick(ric_sound)
+			if("casing_sound") soundin = pick(casing_sound)
+			if("hitobject") soundin = pick(bullet_hit_object_sound)
+			if("climb")soundin = pick(climb_sound)
+			if("catwalk")soundin = pick(footstep_catwalk)
+			if("crumble") soundin = pick(crumble_sound)
+			if("thud") soundin = pick(thud_sound)
+			if("weld") soundin = pick(weld_sound)
+			if("rummage") soundin = pick(rummage_sound)
+			if("ricochet") soundin = pick(bullet_hit_wall)
 	return soundin
 
 
@@ -582,13 +581,13 @@ var/const/FALLOFF_SOUNDS = 0.5
 	timer_handle = null //This has been successfully called, that handle is no use now
 
 	var/atom/playfrom = locate(source)
-	if (QDELETED(playfrom))
+	if(QDELETED(playfrom))
 		//Our source atom is gone, no more sounds
 		stop()
 		return
 
 	//We're past the end time, no more sounds
-	if (world.time > end_time)
+	if(world.time > end_time)
 		stop()
 		return
 
@@ -597,7 +596,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 
 	//Setup the next sound
 	var/nextinterval = interval
-	if (variance)
+	if(variance)
 		nextinterval *= RAND_DECIMAL(1-variance, 1+variance)
 
 	//Set the next timer handle
@@ -606,6 +605,6 @@ var/const/FALLOFF_SOUNDS = 0.5
 
 
 /datum/repeating_sound/proc/stop()
-	if (timer_handle)
+	if(timer_handle)
 		deltimer(timer_handle)
 	qdel(src)

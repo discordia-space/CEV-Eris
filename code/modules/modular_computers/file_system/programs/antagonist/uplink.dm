@@ -53,7 +53,7 @@
 	data["authenticated"] = PRG.authenticated
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "taxquickly.tmpl", "TaxQuickly 2559", 450, 600, state = state)
 		if(host.update_layout())
 			ui.auto_update_layout = TRUE
@@ -65,7 +65,7 @@
 	var/obj/item/modular_computer/computer = nano_host()
 	var/datum/computer_file/program/uplink/PRG = computer.active_program
 	if(computer.hidden_uplink)
-		if (computer.hidden_uplink.check_trigger(usr,stored_login))
+		if(computer.hidden_uplink.check_trigger(usr,stored_login))
 			PRG.authenticated = TRUE
 			error = FALSE
 			SSnano.close_user_uis(usr, src)

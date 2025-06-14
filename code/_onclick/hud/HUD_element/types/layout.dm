@@ -26,7 +26,7 @@
 /HUD_element/layout/horizontal/alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets, var/padding = 0)
 	_alignment = horizontal
 	if(targets && targets.len)
-		for (var/HUD_element/T in targets)
+		for(var/HUD_element/T in targets)
 			add(T,padding,padding)
 			//we are using _aligment to align elements in alignElements()
 			T.setAlignment(HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT,vertical)
@@ -37,7 +37,7 @@
 /HUD_element/layout/vertical/alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets, var/padding = 0)
 	_alignment = vertical
 	if(targets && targets.len)
-		for (var/HUD_element/T in targets)
+		for(var/HUD_element/T in targets)
 			add(T,padding,padding)
 			//we are using _aligment to align elements in alignElements()
 			T.setAlignment(horizontal, HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
@@ -51,7 +51,7 @@
 	if(!_paddingData.len)
 		return
 
-	if (_alignment == HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT)
+	if(_alignment == HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT)
 		for(var/i = 1, i <= _paddingData.len, i++)
 			var/HUD_element/E = _paddingData[i]
 			var/list/data = _paddingData[E]
@@ -60,7 +60,7 @@
 			setWidth(getWidth() + E.getWidth())
 			setWidth(getWidth() + data["right"])
 
-	else if (_alignment == HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT)
+	else if(_alignment == HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT)
 		for(var/i = _paddingData.len, i >= 1, i--)
 			var/HUD_element/E = _paddingData[i]
 			var/list/data = _paddingData[E]
@@ -75,7 +75,7 @@
 	if(!_paddingData.len)
 		return
 
-	if (_alignment == HUD_VERTICAL_NORTH_INSIDE_ALIGNMENT)
+	if(_alignment == HUD_VERTICAL_NORTH_INSIDE_ALIGNMENT)
 		for(var/i = 1, i <= _paddingData.len, i++)
 			var/HUD_element/E = _paddingData[i]
 			var/list/data = _paddingData[E]
@@ -84,7 +84,7 @@
 			setHeight(getHeight() + E.getHeight())
 			setHeight(getHeight() + data["top"])
 
-	else if (_alignment == HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
+	else if(_alignment == HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
 		for(var/i = _paddingData.len, i >= 1, i--)
 			var/HUD_element/E = _paddingData[i]
 			var/list/data = _paddingData[E]
@@ -114,7 +114,7 @@
 		data["left"] = paddingLeft
 	if(paddingRight)
 		data["right"] = paddingRight
-	
+
 	_spreadElements()
 	return TRUE
 
@@ -136,7 +136,7 @@
 		data["bottom"] = paddingBottom
 	if(paddingTop)
 		data["top"] = paddingTop
-	
+
 	_spreadElements()
 	return TRUE
 
@@ -159,7 +159,7 @@
 	if(!getElements())
 		setHeight(0)
 		setWidth(0)
-	
+
 	if(_paddingData[element])
 		_paddingData[element] = null
 

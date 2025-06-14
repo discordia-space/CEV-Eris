@@ -124,7 +124,7 @@
 	var/tag_x
 
 /obj/item/smallDelivery/attack_self(mob/user as mob)
-	if (src.wrapped && (src.wrapped in src.contents)) //sometimes items can disappear. For example, bombs. --rastaf0
+	if(src.wrapped && (src.wrapped in src.contents)) //sometimes items can disappear. For example, bombs. --rastaf0
 		wrapped.forceMove(user.loc)
 		if(ishuman(user))
 			user.put_in_hands(wrapped)
@@ -247,9 +247,9 @@
 	user.attack_log += text("\[[time_stamp()]\] <font color='blue'>Has used [src.name] on \ref[target]</font>")
 	playsound(src,'sound/machines/PAPER_Fold_01_mono.ogg',100,1)
 
-	if (istype(target, /obj/item) && !(istype(target, /obj/item/storage) && !istype(target,/obj/item/storage/box)))
+	if(istype(target, /obj/item) && !(istype(target, /obj/item/storage) && !istype(target,/obj/item/storage/box)))
 		var/obj/item/O = target
-		if (src.amount > 1)
+		if(src.amount > 1)
 			var/obj/item/smallDelivery/P = new /obj/item/smallDelivery(get_turf(O.loc))	//Aaannd wrap it up!
 			if(!istype(O.loc, /turf))
 				if(user.client)
@@ -278,9 +278,9 @@
 			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
 			SPAN_NOTICE("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
 			"You hear someone taping paper around a small object.")
-	else if (istype(target, /obj/structure/closet/crate))
+	else if(istype(target, /obj/structure/closet/crate))
 		var/obj/structure/closet/crate/O = target
-		if (src.amount > 3 && !O.opened)
+		if(src.amount > 3 && !O.opened)
 			var/obj/structure/bigDelivery/P = new /obj/structure/bigDelivery(get_turf(O.loc))
 			P.icon_state = "deliverycrate"
 			P.wrapped = O
@@ -291,9 +291,9 @@
 			"You hear someone taping paper around a large object.")
 		else if(src.amount < 3)
 			to_chat(user, SPAN_WARNING("You need more paper."))
-	else if (istype (target, /obj/structure/closet))
+	else if(istype (target, /obj/structure/closet))
 		var/obj/structure/closet/O = target
-		if (src.amount > 3 && !O.opened)
+		if(src.amount > 3 && !O.opened)
 			var/obj/structure/bigDelivery/P = new /obj/structure/bigDelivery(get_turf(O.loc))
 			P.wrapped = O
 			O.welded = 1
@@ -306,7 +306,7 @@
 			to_chat(user, SPAN_WARNING("You need more paper."))
 	else
 		to_chat(user, "\blue The object you are trying to wrap is unsuitable for the sorting machinery!")
-	if (src.amount <= 0)
+	if(src.amount <= 0)
 		new /obj/item/c_tube( src.loc )
 		qdel(src)
 		return
@@ -348,7 +348,7 @@
 	for(var/i = 1, i <= tagger_locations.len, i++)
 		dat += "<td><a href='?src=\ref[src];nextTag=[tagger_locations[i]]'>[tagger_locations[i]]</a></td>"
 
-		if (i%4==0)
+		if(i%4==0)
 			dat += "</tr><tr>"
 
 	dat += "</tr></table><br>Current Selection: [currTag ? currTag : "None"]</tt>"

@@ -558,7 +558,7 @@
 			M.ghostize()
 
 	var/list/cave_content = get_area_contents(/area/asteroid/cave)
-	for (var/atom/movable/A in cave_content)
+	for(var/atom/movable/A in cave_content)
 		if(isturf(A) || istype(A, /obj/cave_generator || istype(A, /atom/movable/lighting_overlay)))
 			continue
 		else if(!(A.type in blacklist))
@@ -570,7 +570,7 @@
 
 	// Clean up shards and rods created when girders and windows are deleted at previous step
 	cave_content = get_area_contents(/area/asteroid/cave)
-	for (var/atom/movable/A in cave_content)
+	for(var/atom/movable/A in cave_content)
 		if(isturf(A) || istype(A, /obj/cave_generator || istype(A, /atom/movable/lighting_overlay)))
 			continue
 		else if(!(A.type in blacklist))

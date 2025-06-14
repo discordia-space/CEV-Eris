@@ -3,7 +3,7 @@
 	var/tally = ..()
 	if(species.slowdown)
 		tally += species.slowdown
-	if (istype(loc, /turf/space)) // It's hard to be slowed down in space by... anything
+	if(istype(loc, /turf/space)) // It's hard to be slowed down in space by... anything
 		return tally
 	/// No slowdown for mech pilots , mech already handles movement.
 	if(ismech(loc))
@@ -64,7 +64,7 @@
 	//tally += min((shock_stage / 100) * 3, 3) //Scales from 0 to 3 over 0 to 100 shock stage
 	tally += clamp((get_dynamic_pain() - get_painkiller()) / 40, 0, 3) // Scales from 0 to 3,
 
-	if (bodytemperature < 283.222)
+	if(bodytemperature < 283.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
 	tally += stance_damage // missing/damaged legs or augs affect speed
 
@@ -85,7 +85,7 @@
 
 	if(thrust)
 		if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
-			if (thrust.stabilization_on)
+			if(thrust.stabilization_on)
 				return TRUE
 			return -1
 
@@ -101,7 +101,7 @@
 		prob_slip -= 2
 	else if(l_hand.w_class <= ITEM_SIZE_SMALL)
 		prob_slip -= 1
-	if (!r_hand)
+	if(!r_hand)
 		prob_slip -= 2
 	else if(r_hand.w_class <= ITEM_SIZE_SMALL)
 		prob_slip -= 1

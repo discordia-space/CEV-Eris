@@ -117,7 +117,7 @@
 
 	var/datum/asset/craftIcons = get_asset_datum(/datum/asset/simple/craft)
 	var/datum/asset/materialIcons = get_asset_datum(/datum/asset/simple/materials)
-	if (craftIcons.send(user.client) || materialIcons.send(user.client))
+	if(craftIcons.send(user.client) || materialIcons.send(user.client))
 		user.client.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
 
 	var/list/listed_products = list()

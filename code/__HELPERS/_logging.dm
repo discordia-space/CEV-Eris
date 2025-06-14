@@ -65,11 +65,11 @@
 /proc/log_admin(text)
 	admin_log.Add(text)
 	lobby_message(message = text, color = "#FFA500")
-	if (config.log_admin)
+	if(config.log_admin)
 		game_log("ADMIN", text)
 
 /proc/log_debug(text)
-	if (config.log_debug)
+	if(config.log_debug)
 		game_log("DEBUG", text)
 
 	for(var/client/C in admins)
@@ -77,43 +77,43 @@
 			to_chat(C, "DEBUG: [text]")
 
 /proc/log_game(text)
-	if (config.log_game)
+	if(config.log_game)
 		game_log("GAME", text)
 
 /proc/log_vote(text)
-	if (config.log_vote)
+	if(config.log_vote)
 		game_log("VOTE", text)
 
 /proc/log_access(text)
-	if (config.log_access)
+	if(config.log_access)
 		game_log("ACCESS", text)
 
 /proc/log_say(text)
-	if (config.log_say)
+	if(config.log_say)
 		game_log("SAY", text)
 
 /proc/log_ooc(text)
-	if (config.log_ooc)
+	if(config.log_ooc)
 		game_log("OOC", text)
 
 /proc/log_whisper(text)
-	if (config.log_whisper)
+	if(config.log_whisper)
 		game_log("WHISPER", text)
 
 /proc/log_emote(text)
-	if (config.log_emote)
+	if(config.log_emote)
 		game_log("EMOTE", text)
 
 /proc/log_attack(text)
-	if (config.log_attack)
+	if(config.log_attack)
 		game_log("ATTACK", text)
 
 /proc/log_adminsay(text)
-	if (config.log_adminchat)
+	if(config.log_adminchat)
 		game_log("ADMINSAY", text)
 
 /proc/log_adminwarn(text)
-	if (config.log_adminwarn)
+	if(config.log_adminwarn)
 		game_log("ADMINWARN", text)
 
 

@@ -36,13 +36,13 @@ SUBSYSTEM_DEF(wireless)
 	return ..()
 
 /datum/controller/subsystem/wireless/Recover()
-	if (istype(SSwireless.receiver_list))
+	if(istype(SSwireless.receiver_list))
 		receiver_list = SSwireless.receiver_list
-	if (istype(SSwireless.pending_connections))
+	if(istype(SSwireless.pending_connections))
 		pending_connections = SSwireless.pending_connections
-	if (istype(SSwireless.retry_connections))
+	if(istype(SSwireless.retry_connections))
 		retry_connections = SSwireless.retry_connections
-	if (istype(SSwireless.failed_connections))
+	if(istype(SSwireless.failed_connections))
 		failed_connections = SSwireless.failed_connections
 
 /datum/controller/subsystem/wireless/fire(resumed = FALSE)

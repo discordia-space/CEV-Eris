@@ -25,7 +25,7 @@
 	if(active_recipe_pointers.len == 0)
 		return
 
-	for (var/datum/cooking_with_jane/recipe_pointer/pointer in active_recipe_pointers)
+	for(var/datum/cooking_with_jane/recipe_pointer/pointer in active_recipe_pointers)
 		pointer.tracked_quality -= penalty
 
 //Generate recipe_pointer objects based on the global list
@@ -41,7 +41,7 @@
 	#endif
 	//iterate through dictionary matching on holder type
 	if(GLOB.cwj_recipe_dictionary[container.appliancetype])
-		for (var/key in GLOB.cwj_recipe_dictionary[container.appliancetype])
+		for(var/key in GLOB.cwj_recipe_dictionary[container.appliancetype])
 			#ifdef CWJ_DEBUG
 			log_debug("Loading [container.appliancetype] , [key] into pointer.")
 			#endif
@@ -54,7 +54,7 @@
 	log_debug("Called /datum/cooking_with_jane/recipe_tracker/proc/get_step_options")
 	#endif
 	var/list/options = list()
-	for (var/datum/cooking_with_jane/recipe_pointer/pointer in active_recipe_pointers)
+	for(var/datum/cooking_with_jane/recipe_pointer/pointer in active_recipe_pointers)
 		options += pointer.get_possible_steps()
 
 	#ifdef CWJ_DEBUG
@@ -68,7 +68,7 @@
 	log_debug("Called /datum/cooking_with_jane/recipe_tracker/proc/populate_step_flags")
 	#endif
 	step_flags = 0
-	for (var/datum/cooking_with_jane/recipe_pointer/pointer in active_recipe_pointers)
+	for(var/datum/cooking_with_jane/recipe_pointer/pointer in active_recipe_pointers)
 		var/flag_group = pointer.get_step_flags()
 		#ifdef CWJ_DEBUG
 		log_debug("Flag group returned with [flag_group]")
@@ -111,10 +111,10 @@
 	var/use_class
 
 	//Decide what action is being taken with the item, if any.
-	for (var/datum/cooking_with_jane/recipe_pointer/pointer in active_recipe_pointers)
+	for(var/datum/cooking_with_jane/recipe_pointer/pointer in active_recipe_pointers)
 		var/option_list = list()
 		option_list += pointer.get_possible_steps()
-		for (var/datum/cooking_with_jane/recipe_step/step in option_list)
+		for(var/datum/cooking_with_jane/recipe_step/step in option_list)
 			var/class_string = get_class_string(step.class)
 			var/is_valid = step.check_conditions_met(used_object, src)
 			#ifdef CWJ_DEBUG
@@ -159,10 +159,10 @@
 
 	var/has_traversed = FALSE
 	//traverse and cull pointers
-	for (var/datum/cooking_with_jane/recipe_pointer/pointer in active_recipe_pointers)
+	for(var/datum/cooking_with_jane/recipe_pointer/pointer in active_recipe_pointers)
 		var/used_id = FALSE
 		var/list/option_list = pointer.get_possible_steps()
-		for (var/datum/cooking_with_jane/recipe_step/step in option_list)
+		for(var/datum/cooking_with_jane/recipe_step/step in option_list)
 			if(!(step.unique_id in valid_unique_id_list))
 				continue
 			else
@@ -171,7 +171,7 @@
 					has_traversed = TRUE
 					pointer.traverse(step.unique_id, used_object)
 					break
-		if (!used_id)
+		if(!used_id)
 			active_recipe_pointers.Remove(pointer)
 			qdel(pointer)
 
@@ -190,7 +190,7 @@
 		if(user)
 			if(alert(user, "If you finish cooking now, you will create [recipe_string]. However, you feel there are possibilities beyond even this. Continue cooking anyways?",,"Yes","No") == "Yes")
 				//Cull finished recipe items
-				for (var/datum/cooking_with_jane/recipe_pointer/pointer in completed_list)
+				for(var/datum/cooking_with_jane/recipe_pointer/pointer in completed_list)
 					active_recipe_pointers.Remove(pointer)
 					qdel(pointer)
 				completed_list = list()
@@ -247,12 +247,12 @@
 		ourlist = considered_steps.Copy()
 		log_debug("/recipe_tracker/proc/attempt_complete_recursive entered second recursion!")
 
-	for (var/datum/cooking_with_jane/recipe_pointer/pointer in ourlist)
+	for(var/datum/cooking_with_jane/recipe_pointer/pointer in ourlist)
 		var/option_list = list()
 		option_list += pointer.get_possible_steps()
 		var/has_valid_step = FALSE
 		var/had_traversal = FALSE
-		for (var/datum/cooking_with_jane/recipe_step/step in option_list)
+		for(var/datum/cooking_with_jane/recipe_step/step in option_list)
 			if(step.class != use_class)
 				continue
 
@@ -349,7 +349,7 @@
 		//Reference the global exclusion list to see if we can add this
 		var/exclude_step = FALSE
 		if(step.flags & CWJ_IS_EXCLUSIVE)
-			for (var/id in GLOB.cwj_optional_step_exclusion_dictionary["[step.unique_id]"])
+			for(var/id in GLOB.cwj_optional_step_exclusion_dictionary["[step.unique_id]"])
 				//Reference the global exclusion list to see if any of the taken steps
 				//Have the current step marked as exclusive.
 				if(steps_taken["[id]"])
@@ -399,7 +399,7 @@
 		//Reference the global exclusion list to see if we can add this
 		var/exclude_step = FALSE
 		if(step.flags & CWJ_IS_EXCLUSIVE)
-			for (var/id in GLOB.cwj_optional_step_exclusion_dictionary["[step.unique_id]"])
+			for(var/id in GLOB.cwj_optional_step_exclusion_dictionary["[step.unique_id]"])
 				//Reference the global exclusion list to see if any of the taken steps
 				//Have the current step marked as exclusive.
 				if(steps_taken["[id]"])

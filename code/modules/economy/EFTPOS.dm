@@ -120,9 +120,9 @@
 			scan_card(I, O)
 		else
 			to_chat(usr, "\icon[src]<span class='warning'>Unable to connect to linked account.</span>")
-	else if (istype(O, /obj/item/spacecash/ewallet))
+	else if(istype(O, /obj/item/spacecash/ewallet))
 		var/obj/item/spacecash/ewallet/E = O
-		if (linked_account)
+		if(linked_account)
 			if(linked_account.is_valid())
 				if(transaction_locked && !transaction_paid)
 					if(transaction_amount <= E.worth)
@@ -188,7 +188,7 @@
 					transaction_amount = try_num
 			if("toggle_lock")
 				if(transaction_locked)
-					if (transaction_paid)
+					if(transaction_paid)
 						transaction_locked = 0
 						transaction_paid = 0
 					else
@@ -203,26 +203,26 @@
 			if("scan_card")
 				if(linked_account)
 					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/card))
+					if(istype(I, /obj/item/card))
 						scan_card(I)
 				else
 					to_chat(usr, "\icon[src]<span class='warning'>Unable to link accounts.</span>")
 			if("reset")
 				//reset the access code - requires HoP/captain access
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/card))
+				if(istype(I, /obj/item/card))
 					var/obj/item/card/id/C = I
 					if(access_cent_captain in C.access || (access_hop in C.access) || (access_captain in C.access))
 						access_code = 0
 						to_chat(usr, "\icon[src]<span class='info'>Access code reset to 0.</span>")
-				else if (istype(I, /obj/item/card/emag))
+				else if(istype(I, /obj/item/card/emag))
 					access_code = 0
 					to_chat(usr, "\icon[src]<span class='info'>Access code reset to 0.</span>")
 
 	src.attack_self(usr)
 
 /obj/item/device/eftpos/proc/scan_card(var/obj/item/card/I, var/obj/item/ID_container)
-	if (istype(I, /obj/item/card/id))
+	if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/C = I
 		if(I==ID_container || ID_container == null)
 			usr.visible_message("<span class='info'>\The [usr] swipes a card through \the [src].</span>")

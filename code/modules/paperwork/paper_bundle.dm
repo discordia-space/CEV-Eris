@@ -17,9 +17,9 @@
 /obj/item/paper_bundle/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
-	if (istype(W, /obj/item/paper/carbon))
+	if(istype(W, /obj/item/paper/carbon))
 		var/obj/item/paper/carbon/C = W
-		if (!C.iscopy && !C.copied)
+		if(!C.iscopy && !C.copied)
 			to_chat(user, SPAN_NOTICE("Take off the carbon copy first."))
 			add_fingerprint(user)
 			return
@@ -179,7 +179,7 @@
 			update_icon()
 	else
 		to_chat(usr, SPAN_NOTICE("You need to hold it in hands!"))
-	if (ismob(src.loc) ||ismob(src.loc.loc))
+	if(ismob(src.loc) ||ismob(src.loc.loc))
 		src.attack_self(usr)
 		updateUsrDialog()
 

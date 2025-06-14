@@ -86,11 +86,11 @@
 		if(!T.is_plating() && node1 && node2 && node1.level == BELOW_PLATING_LEVEL && node2.level == BELOW_PLATING_LEVEL && istype(node1, /obj/machinery/atmospherics/pipe) && istype(node2, /obj/machinery/atmospherics/pipe))
 			return
 		else
-			if (node1)
+			if(node1)
 				add_underlay(T, node1, turn(dir, -180), node1.icon_connect_type)
 			else
 				add_underlay(T, node1, turn(dir, -180))
-			if (node2)
+			if(node2)
 				add_underlay(T, node2, dir, node2.icon_connect_type)
 			else
 				add_underlay(T, node2, dir)
@@ -117,14 +117,14 @@
 
 	if(pressure_delta > 0.5)
 		if(pump_direction) //internal -> external
-			if (node1 && (environment.temperature || air1.temperature))
+			if(node1 && (environment.temperature || air1.temperature))
 				var/transfer_moles = calculate_transfer_moles(air1, environment, pressure_delta)
 				power_draw = pump_gas(src, air1, environment, transfer_moles, power_rating)
 
 				if(power_draw >= 0 && network1)
 					network1.update = 1
 		else //external -> internal
-			if (node2 && (environment.temperature || air2.temperature))
+			if(node2 && (environment.temperature || air2.temperature))
 				var/transfer_moles = calculate_transfer_moles(environment, air2, pressure_delta, (network2)? network2.volume : 0)
 
 				//limit flow rate from turfs
@@ -134,7 +134,7 @@
 				if(power_draw >= 0 && network2)
 					network2.update = 1
 
-	if (power_draw >= 0)
+	if(power_draw >= 0)
 		last_power_draw = power_draw
 		use_power(power_draw)
 

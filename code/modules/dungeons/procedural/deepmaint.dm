@@ -54,7 +54,7 @@ var/global/list/big_deepmaint_room_templates = list()
 		while(length > 0) //Iterates from the current adjacent tile through direction chosen in makeNiche to check if the next 4 tiles are walls. If they are, they are returned, otherwise the list is reset and returned.
 			length = length - 1
 			T = get_step(T, direction)
-			if (T.is_wall)
+			if(T.is_wall)
 				walls += T
 				if(walls.len == line.len)
 					return walls
@@ -83,23 +83,23 @@ var/global/list/big_deepmaint_room_templates = list()
 		if(picked_room in done_rooms)
 			continue
 		var/list/turf/viable_turfs = list()
-		for (var/turf/floor/F in range(roomMinSize + 1, picked_room.centre))
+		for(var/turf/floor/F in range(roomMinSize + 1, picked_room.centre))
 			//not under walls
-			if (F.is_wall)
+			if(F.is_wall)
 				continue
 
-			if (F.contents.len > 1) //There's a lot of things rangine from tables to mechs or closets that can be on the chosen turf, so we'll ignore all turfs that have something aside lighting overlay
+			if(F.contents.len > 1) //There's a lot of things rangine from tables to mechs or closets that can be on the chosen turf, so we'll ignore all turfs that have something aside lighting overlay
 				continue
 
 
 			//No turfs in space
-			if (turf_is_external(F))
+			if(turf_is_external(F))
 				continue
 
 			//To be valid, the floor needs to have a wall in a cardinal direction
-			for (var/d in cardinal)
+			for(var/d in cardinal)
 				var/turf/T = get_step(F, d)
-				if (T.is_wall)
+				if(T.is_wall)
 					//Its got a wall!
 					viable_turfs[F] = T //We put this floor and its wall into the possible turfs list
 					break

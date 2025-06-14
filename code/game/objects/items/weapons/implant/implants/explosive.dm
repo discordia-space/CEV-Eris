@@ -53,7 +53,7 @@
 	qdel(src)
 
 /obj/item/implant/explosive/activate(delay)
-	if (malfunction == MALFUNCTION_PERMANENT)
+	if(malfunction == MALFUNCTION_PERMANENT)
 		return
 
 	STOP_PROCESSING(SSobj, src)
@@ -69,7 +69,7 @@
 				wearer.visible_message("<span class='warning'>Something beeps inside [wearer][part ? "'s [part.name]" : ""]!</span>")
 				playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
 				sleep(25)
-				if (part.organ_tag in list(BP_CHEST, BP_HEAD, BP_GROIN))
+				if(part.organ_tag in list(BP_CHEST, BP_HEAD, BP_GROIN))
 					part.createwound(BRUISE, 60)
 					explosion(get_turf(src), 400, 75)
 					qdel(src)
@@ -111,12 +111,12 @@
 	phrase = replace_characters(phrase, replacechars)
 	STOP_PROCESSING(SSobj, src)
 
-	if (death_react == "Dead Hand")
+	if(death_react == "Dead Hand")
 		explosion_delay = (input("Set detonation delay in seconds:") as num) * 10
 		START_PROCESSING(SSobj, src)
 
 /obj/item/implant/explosive/Process()
-	if (!implanted)
+	if(!implanted)
 		STOP_PROCESSING(SSobj, src)
 		return
 
@@ -127,15 +127,15 @@
 		activate(explosion_delay)
 
 /obj/item/implant/explosive/malfunction(severity)
-	if (malfunction)
+	if(malfunction)
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 	switch (severity)
-		if (2)
-			if (prob(15))
+		if(2)
+			if(prob(15))
 				activate()
-		if (1)
-			if (prob(50))
+		if(1)
+			if(prob(50))
 				activate()
 			else
 				meltdown()

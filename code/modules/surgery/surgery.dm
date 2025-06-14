@@ -66,7 +66,7 @@
 	if(blood_level && !BP_IS_ROBOTIC(organ) && organ.owner && ishuman(user) && prob(60))
 		var/mob/living/carbon/human/H = user
 		H.bloody_hands(organ.owner, 0)
-		if (blood_level > 1)
+		if(blood_level > 1)
 			H.bloody_body(organ.owner, 0)
 
 	if(can_infect && prob(5) && istype(organ, /obj/item/organ/internal))

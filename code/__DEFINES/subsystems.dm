@@ -132,7 +132,7 @@
 #define RUNLEVELS_DEFAULT (RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
 
 #define START_PROCESSING_IN_LIST(Datum, List) \
-if (Datum.is_processing) {\
+if(Datum.is_processing) {\
 	if(Datum.is_processing != "SSmachines.[#List]")\
 	{\
 		CRASH("Failed to start processing. [log_info_line(Datum)] is already being processed by [Datum.is_processing] but queue attempt occured on SSmachines.[#List]."); \

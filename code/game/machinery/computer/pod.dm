@@ -71,7 +71,7 @@
 				else //it's not an old computer. Generate standard pod circuitboard.
 					M = new /obj/item/electronics/circuitboard/pod( A )
 
-				for (var/obj/C in src)
+				for(var/obj/C in src)
 					C.loc = loc
 				M.id = id
 				A.circuit = M
@@ -94,7 +94,7 @@
 				else //it's not an old computer. Generate standard pod circuitboard.
 					M = new /obj/item/electronics/circuitboard/pod( A )
 
-				for (var/obj/C in src)
+				for(var/obj/C in src)
 					C.loc = loc
 				M.id = id
 				A.circuit = M

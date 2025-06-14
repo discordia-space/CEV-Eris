@@ -54,7 +54,7 @@
 /datum/storyevent/roleset/proc/get_candidates_list(var/antag, var/report)
 	var/datum/antagonist/A = GLOB.all_antag_types[role_id]
 
-	if (A.outer)
+	if(A.outer)
 		return ghost_candidates_list(role_id)
 	else
 		return candidates_list(role_id)
@@ -140,20 +140,20 @@
 	if(temp.outer)
 		for(var/mob/observer/candidate in GLOB.player_list)
 			if(!candidate.client)
-				if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is disconnected"))
+				if(report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is disconnected"))
 				continue
 
 			//Lets check if we asked them recently to prevent spam
-			if ((candidate.key in request_log))
+			if((candidate.key in request_log))
 				var/last_request = request_log[candidate.key]
-				if ((world.time - last_request) < request_timeout)
-					if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] was already asked too recently"))
+				if((world.time - last_request) < request_timeout)
+					if(report) to_chat(report, SPAN_NOTICE("Failure: [candidate] was already asked too recently"))
 					continue
 			if(!temp.can_become_antag_ghost(candidate))
-				if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] can't become this antag from ghost"))
+				if(report) to_chat(report, SPAN_NOTICE("Failure: [candidate] can't become this antag from ghost"))
 				continue
 			if(!(temp.bantype in candidate.client.prefs.be_special_role))
-				if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled"))
+				if(report) to_chat(report, SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled"))
 				continue
 
 			any_candidates = TRUE
@@ -183,7 +183,7 @@
 /datum/storyevent/roleset/trigger_event(var/severity = EVENT_LEVEL_ROLESET)
 
 	calc_target_quantity()
-	if (!target_quantity || target_quantity <= 0)
+	if(!target_quantity || target_quantity <= 0)
 		//Something is completely wrong, abort!
 		cancel(severity, 0)
 
@@ -199,9 +199,9 @@
 	var/list/candidates = get_candidates_list(role_id)
 
 
-	if (candidates.len)
-		for (var/i = 1; i <= target_quantity;i++)
-			if (!candidates.len)
+	if(candidates.len)
+		for(var/i = 1; i <= target_quantity;i++)
+			if(!candidates.len)
 				break
 
 			var/datum/antagonist/A = new antag.type
@@ -212,12 +212,12 @@
 				break
 
 			var/success = FALSE
-			if (antag.outer)
+			if(antag.outer)
 				success = A.create_from_ghost(M, announce = FALSE)
 			else
 				success = A.create_antagonist(M, announce = FALSE)
 
-			if (success)
+			if(success)
 				success_quantity++
 				create_objectives(A)
 			else
@@ -229,7 +229,7 @@
 	/*
 		Once we get here, we're done assigning antags, for better or worse. Lets see how we did
 	*/
-	if (success_quantity >= target_quantity)
+	if(success_quantity >= target_quantity)
 		//Yay, all antags successfully spawned
 		log_and_message_admins("Antagonist Spawning successful for antagonist [role_id], [antag], quantity [success_quantity]")
 		return TRUE
@@ -241,11 +241,11 @@
 
 		//We will now refund part of the cost
 		var/success_percent = 0
-		if (success_quantity > 1)
+		if(success_quantity > 1)
 			success_percent = success_quantity / target_quantity
 		cancel(severity, success_percent)
-			
-		if ( success_quantity > 0 )
+
+		if( success_quantity > 0 )
 			// At least one antag has spawned
 			return TRUE
 		else
@@ -259,9 +259,9 @@
 	else
 		possible_candidates = candidates_list(role_id, FALSE, report)
 
-	if (possible_candidates.len > 0)
+	if(possible_candidates.len > 0)
 		return TRUE
-	if (report) to_chat(report, SPAN_NOTICE("Failure: No candidates found"))
+	if(report) to_chat(report, SPAN_NOTICE("Failure: No candidates found"))
 	return FALSE
 
 
@@ -284,7 +284,7 @@
 	success_quantity = 0
 
 	var/datum/storyteller/S = get_storyteller()
-	if (!S)
+	if(!S)
 		//Something is horribly wrong
 		return
 
@@ -293,7 +293,7 @@
 	var/num_crew = S.crew
 	target_quantity = base_quantity
 	//We add extra antags based on crew numbers
-	if (scaling_threshold && num_crew >= scaling_threshold)
+	if(scaling_threshold && num_crew >= scaling_threshold)
 		target_quantity += round(num_crew / scaling_threshold)
 
 	target_quantity = min(target_quantity, max_quantity)

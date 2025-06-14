@@ -96,14 +96,14 @@
 	qdel(src)
 
 /obj/effect/spresent/relaymove(mob/user as mob)
-	if (user.stat)
+	if(user.stat)
 		return
 	to_chat(user, SPAN_WARNING("You can't move."))
 
 /obj/effect/spresent/attackby(obj/item/W, mob/user)
 	..()
 
-	if (!istype(W, /obj/item/tool/wirecutters))
+	if(!istype(W, /obj/item/tool/wirecutters))
 		to_chat(user, SPAN_WARNING("I need wirecutters for that."))
 		return
 
@@ -142,12 +142,12 @@
 
 /obj/item/wrapping_paper/attackby(obj/item/W, mob/user)
 	..()
-	if (!( locate(/obj/structure/table, src.loc) ))
+	if(!( locate(/obj/structure/table, src.loc) ))
 		to_chat(user, SPAN_WARNING("You MUST put the paper on a table!"))
-	if (W.w_class < ITEM_SIZE_BULKY)
-		if ((istype(user.l_hand, /obj/item/tool/wirecutters) || istype(user.r_hand, /obj/item/tool/wirecutters)))
+	if(W.w_class < ITEM_SIZE_BULKY)
+		if((istype(user.l_hand, /obj/item/tool/wirecutters) || istype(user.r_hand, /obj/item/tool/wirecutters)))
 			var/a_used = 2 ** (src.w_class - 1)
-			if (src.amount < a_used)
+			if(src.amount < a_used)
 				to_chat(user, SPAN_WARNING("You need more paper!"))
 				return
 			else
@@ -165,7 +165,7 @@
 				G.add_fingerprint(user)
 				W.add_fingerprint(user)
 				src.add_fingerprint(user)
-			if (src.amount <= 0)
+			if(src.amount <= 0)
 				new /obj/item/c_tube( src.loc )
 				qdel(src)
 				return
@@ -182,16 +182,16 @@
 	..(user, extra_description)
 
 /obj/item/wrapping_paper/attack(mob/target, mob/user)
-	if (!ishuman(target))
+	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/H = target
 
-	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket) || H.stat)
-		if (src.amount > 2)
+	if(istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket) || H.stat)
+		if(src.amount > 2)
 			var/obj/effect/spresent/present = new /obj/effect/spresent (H.loc)
 			src.amount -= 2
 
-			if (H.client)
+			if(H.client)
 				H.client.perspective = EYE_PERSPECTIVE
 				H.client.eye = present
 

@@ -1,11 +1,11 @@
 
 //Sets the storyteller to a new one, and does any heavy lifting for a handover
 /proc/set_storyteller(var/datum/storyteller/newST, var/announce = TRUE)
-	if (!newST)
+	if(!newST)
 		//You can call this without passing anything, we'll go fetch it ourselves
 		newST = config.pick_storyteller(STORYTELLER_BASE) //This function is in code/controllers/configuration.dm
 
-	if (!istype(newST))
+	if(!istype(newST))
 		if(!istext(newST)) //Welp that failed
 			return
 
@@ -14,7 +14,7 @@
 		else
 			newST = GLOB.storyteller_cache[newST]
 
-	if (get_storyteller() == newST)
+	if(get_storyteller() == newST)
 		return //Nothing happens if we try to set to the storyteller we already have
 
 	//If there's an existing storyteller, we'll make it do cleanup procedures before the handover
@@ -24,14 +24,14 @@
 	//Finally, we set the new one //and it's set globally.
 	GLOB.storyteller = newST
 
-	if (oldST != null)
+	if(oldST != null)
 		GLOB.storyteller.points = oldST.points.Copy()//Transfer over points
 		//TODO: Cleanup and handover
 
 	//Configure the new storyteller
 	GLOB.storyteller.set_up()
 
-	if (announce)
+	if(announce)
 		GLOB.storyteller.announce()
 
 
@@ -82,8 +82,8 @@
 
 	//Factoring in tag-based weight modifiers
 	//Each storyteller has different tag weights
-	for (var/etag in tag_weight_mults)
-		if (etag in R.tags)
+	for(var/etag in tag_weight_mults)
+		if(etag in R.tags)
 			new_weight *= tag_weight_mults[etag]
 
 	return new_weight
@@ -94,8 +94,8 @@
 
 	//Factoring in tag-based cost modifiers
 	//Each storyteller has different tag weights
-	for (var/etag in tag_cost_mults)
-		if (etag in R.tags)
+	for(var/etag in tag_cost_mults)
+		if(etag in R.tags)
 			new_cost *= tag_cost_mults[etag]
 
 	return new_cost
@@ -111,11 +111,11 @@
 //Since severity are no longer numbers, we need a proc for incrementing it
 /proc/get_next_severity(var/input)
 	switch (input)
-		if (EVENT_LEVEL_MUNDANE)
+		if(EVENT_LEVEL_MUNDANE)
 			return EVENT_LEVEL_MODERATE
-		if (EVENT_LEVEL_MODERATE)
+		if(EVENT_LEVEL_MODERATE)
 			return EVENT_LEVEL_MAJOR
-		if (EVENT_LEVEL_MAJOR)
+		if(EVENT_LEVEL_MAJOR)
 			return EVENT_LEVEL_ROLESET
 	return input
 

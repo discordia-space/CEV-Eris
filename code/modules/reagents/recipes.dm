@@ -295,9 +295,9 @@
 	result_amount = 3
 
 /datum/chemical_reaction/nicotine
-    result = "nicotine"
-    required_reagents = list("toxin" = 1, "carbon" = 1, "capsaicin" = 1, "mercury" = 1)
-    result_amount = 8
+	result = "nicotine"
+	required_reagents = list("toxin" = 1, "carbon" = 1, "capsaicin" = 1, "mercury" = 1)
+	result_amount = 8
 
 /datum/chemical_reaction/lube
 	result = "lube"

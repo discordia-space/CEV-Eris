@@ -17,18 +17,18 @@
 	return max(min_cost, cost - discount)
 
 /datum/armament/proc/purchase(var/mob/living/carbon/H)
-	if (!eotp)
+	if(!eotp)
 		error("No EOTP found to purchase from.")
 		return FALSE
-	if (get_dist(eotp.loc, H.loc) > 3)
+	if(get_dist(eotp.loc, H.loc) > 3)
 		log_and_message_admins("[key_name(H)] tried to make a topic call out of range of the [eotp]")
 		return FALSE
 
-	if (!is_neotheology_disciple(H))
+	if(!is_neotheology_disciple(H))
 		to_chat(H, SPAN_DANGER("You do not understand how to use this."))
 		return FALSE
 
-	if (eotp.armaments_points < get_cost())
+	if(eotp.armaments_points < get_cost())
 		to_chat(H, SPAN_DANGER("You lack the required amount of armament points."))
 		return FALSE
 
@@ -36,13 +36,13 @@
 
 	purchase_count++
 
-	if (!max_discount)
+	if(!max_discount)
 		discount = discount + discount_increase
 	else
 		discount = min(max_discount, discount + discount_increase)
 
 
-	if (purchase_count < 2)
+	if(purchase_count < 2)
 		eotp.max_armaments_points += max_increase
 
 	on_purchase(H)
@@ -74,7 +74,7 @@
 	var/list/data = nano_ui_data(user, ui_key)
 
 	ui = SSnano.try_update_ui(user, eotp, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "eopt.tmpl", "Eye of the protector", 550, 655)
@@ -84,7 +84,7 @@
 		ui.open()
 
 /obj/machinery/power/eotp/Topic(href, href_list)
-	if (href_list["chosen"])
+	if(href_list["chosen"])
 		var/i = text2num(href_list["chosen"])
 		var/datum/armament/A = eotp.armaments[i]
 		A.purchase(usr)
@@ -98,14 +98,14 @@
 
 //Im really lazy, some one else can make fitting descriptions
 /datum/armament/item/New()
-	if (desc == initial(desc))
+	if(desc == initial(desc))
 		var/obj/item/I = path
 		var/text = initial(I.desc)
-		if (text)
+		if(text)
 			desc = text
 
 /datum/armament/item/on_purchase(mob/living/carbon/H)
-	if (path)
+	if(path)
 		var/obj/_item = new path(get_turf(eotp))
 		eotp.visible_message(SPAN_NOTICE("The [_item.name] appears out of bluespace near the [eotp]!"))
 
@@ -116,10 +116,10 @@
 	min_cost = 25
 
 /datum/armament/item/disk/New()
-	if (desc == initial(desc))
+	if(desc == initial(desc))
 		var/obj/item/computer_hardware/hard_drive/portable/design/D = path
 		var/text = initial(D.disk_name)
-		if (text)
+		if(text)
 			desc = text
 
 

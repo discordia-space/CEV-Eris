@@ -110,13 +110,13 @@
 	if(type == "ready")
 		load()
 		return TRUE
-	if (type == "open")
+	if(type == "open")
 		open(payload)
 		return TRUE
-	if (type == "close")
+	if(type == "close")
 		close()
 		return TRUE
-	if (type == "thinking")
+	if(type == "thinking")
 		if(payload["mode"] == TRUE)
 			start_thinking()
 			return TRUE
@@ -124,10 +124,10 @@
 			stop_thinking()
 			return TRUE
 		return FALSE
-	if (type == "typing")
+	if(type == "typing")
 		start_typing()
 		return TRUE
-	if (type == "entry" || type == "force")
+	if(type == "entry" || type == "force")
 		handle_entry(type, payload)
 		return TRUE
 	return FALSE

@@ -59,13 +59,13 @@
 /mob/living/carbon/human/proc/handle_stance()
 	// Don't need to process any of this if they aren't standing anyways
 	// unless their stance is damaged, and we want to check if they should stay down
-	if (!stance_damage && (lying || resting) && (life_tick % 4) == 0)
+	if(!stance_damage && (lying || resting) && (life_tick % 4) == 0)
 		return
 
 	stance_damage = 0
 
 	// Buckled to a bed/chair. Stance damage is forced to 0 since they're sitting on something solid
-	if (istype(buckled, /obj/structure/bed))
+	if(istype(buckled, /obj/structure/bed))
 		return
 
 	// Calculate limb effect on stance
@@ -82,9 +82,9 @@
 	// One cane fully mitigates a broken leg.
 	// Two canes are needed for a lost leg. If you are missing both legs, canes aren't gonna help you.
 	if(stance_damage > 0 && stance_damage < 8)
-		if (l_hand && istype(l_hand, /obj/item/tool/cane))
+		if(l_hand && istype(l_hand, /obj/item/tool/cane))
 			stance_damage -= 3
-		if (r_hand && istype(r_hand, /obj/item/tool/cane))
+		if(r_hand && istype(r_hand, /obj/item/tool/cane))
 			stance_damage -= 3
 		stance_damage = max(stance_damage, 0)
 
@@ -121,7 +121,7 @@
 	if(!l_hand && !r_hand)
 		return
 
-	for (var/obj/item/organ/external/E in organs)
+	for(var/obj/item/organ/external/E in organs)
 		if(!E || !(E.functions & BODYPART_GRASP) || (E.status & ORGAN_SPLINTED))
 			continue
 
@@ -178,7 +178,7 @@
 // basically has_limb()
 /mob/living/carbon/human/has_appendage(var/appendage_check)	//returns TRUE if found, type of organ modification if limb is robotic, FALSE if not found
 
-	if (appendage_check == BP_CHEST)
+	if(appendage_check == BP_CHEST)
 		return TRUE
 
 	var/obj/item/organ/external/appendage
@@ -203,7 +203,7 @@
 			blood_splatter(src,B,1)
 			O.set_dna(src)
 			update_body()
-			if (show_message)
+			if(show_message)
 				to_chat(src, SPAN_DANGER("With a shower of fresh blood, a new [O.name] forms."))
 				visible_message(SPAN_DANGER("With a shower of fresh blood, a length of biomass shoots from [src]'s [O.amputation_point], forming a new [O.name]!"))
 			return TRUE
@@ -220,7 +220,7 @@
 	else
 		if(organ_type in BP_ALL_LIMBS)
 			var/obj/item/organ/external/O = E
-			if (heal && (O.damage > 0 || O.status & (ORGAN_BROKEN)))
+			if(heal && (O.damage > 0 || O.status & (ORGAN_BROKEN)))
 				O.status &= ~ORGAN_BROKEN
 				for(var/datum/wound/W in O.wounds)
 					if(W.internal)
@@ -232,7 +232,7 @@
 						O.wounds -= W
 				return TRUE
 		else
-			if (heal && (E.damage > 0 || E.status & (ORGAN_BROKEN)))
+			if(heal && (E.damage > 0 || E.status & (ORGAN_BROKEN)))
 				E.status &= ~ORGAN_BROKEN
 				return TRUE
 	return FALSE

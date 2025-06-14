@@ -126,7 +126,7 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 
 /obj/machinery/power/rad_collector/proc/eject()
 	locked = FALSE
-	if (!P)
+	if(!P)
 		return
 	P.forceMove(drop_location())
 	P = null

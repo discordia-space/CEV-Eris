@@ -349,7 +349,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 /client/proc/secrets()
 	set name = "Secrets"
 	set category = "Admin"
-	if (holder)
+	if(holder)
 		holder.Secrets()
 
 /client/proc/fix_air()
@@ -500,7 +500,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 		var/message = sanitize(input("What do you want the message to be?", "Make Sound") as text|null)
 		if(!message)
 			return
-		for (var/mob/V in hearers(O))
+		for(var/mob/V in hearers(O))
 			V.show_message(message, 2)
 		log_admin("[key_name(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound")
 		message_admins("\blue [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound", 1)
@@ -522,7 +522,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	if(mob.control_object)
 		if(!msg)
 			return
-		for (var/mob/V in hearers(mob.control_object))
+		for(var/mob/V in hearers(mob.control_object))
 			V.show_message("<b>[mob.control_object.name]</b> says: \"" + msg + "\"", 2)
 
 /client/proc/enable_profiler()
@@ -692,14 +692,14 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	set category = "Admin"
 	if(holder)
 		var/list/jobs = list()
-		for (var/datum/job/J in SSjob.occupations)
-			if (J.current_positions >= J.total_positions && J.total_positions != -1)
+		for(var/datum/job/J in SSjob.occupations)
+			if(J.current_positions >= J.total_positions && J.total_positions != -1)
 				jobs += J.title
-		if (!jobs.len)
+		if(!jobs.len)
 			to_chat(usr, "There are no fully staffed jobs.")
 			return
 		var/job = input("Please select job slot to free", "Free job slot")  as null|anything in jobs
-		if (job)
+		if(job)
 			SSjob.FreeRole(job)
 			message_admins("A job slot for [job] has been opened by [key_name_admin(usr)]")
 			return
@@ -735,7 +735,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	set name = "Man Up Global"
 	set desc = "Tells everyone to man up and deal with it."
 
-	for (var/mob/T as mob in SSmobs.mob_list | SShumans.mob_list)
+	for(var/mob/T as mob in SSmobs.mob_list | SShumans.mob_list)
 		to_chat(T, "<br><center><span class='notice'><b><font size=4>Man up.<br> Deal with it.</font></b><br>Move on.</span></center><br>")
 		T << 'sound/voice/ManUp1.ogg'
 

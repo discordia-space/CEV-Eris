@@ -9,7 +9,7 @@
  */
 export const classes = (classNames: (string | BooleanLike)[]) => {
   let className = '';
-  for (let i = 0; i < classNames.length; i++) {
+  for(let i = 0; i < classNames.length; i++) {
     const part = classNames[i];
     if (typeof part === 'string') {
       className += part + ' ';
@@ -38,12 +38,12 @@ export const normalizeChildren = <T>(children: T | T[]) => {
  */
 export const shallowDiffers = (a: object, b: object) => {
   let i;
-  for (i in a) {
+  for(i in a) {
     if (!(i in b)) {
       return true;
     }
   }
-  for (i in b) {
+  for(i in b) {
     if (a[i] !== b[i]) {
       return true;
     }

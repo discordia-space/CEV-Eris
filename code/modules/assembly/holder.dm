@@ -205,7 +205,7 @@
 	set category = "Object"
 	set src in usr
 
-	if ( !(usr.stat || usr.restrained()) )
+	if( !(usr.stat || usr.restrained()) )
 		var/obj/item/device/assembly_holder/holder
 		if(istype(src,/obj/item/grenade/chem_grenade))
 			var/obj/item/grenade/chem_grenade/gren = src
@@ -221,7 +221,7 @@
 			to_chat(usr, SPAN_NOTICE("Clock is ticking already."))
 		else
 			var/ntime = input("Enter desired time in seconds", "Time", "5") as num
-			if (ntime>0 && ntime<1000)
+			if(ntime>0 && ntime<1000)
 				tmr.time = ntime
 				name = initial(name) + "([tmr.time] secs)"
 				to_chat(usr, SPAN_NOTICE("Timer set to [tmr.time] seconds."))

@@ -30,7 +30,7 @@
 	if(R.module)
 		R.uneq_active()
 		R.update_robot_modules_display()
-		for (var/obj/screen/inv in parentmob.HUDinventory)
+		for(var/obj/screen/inv in parentmob.HUDinventory)
 			inv.update_icon()
 	else
 		to_chat(R, "You haven't selected a module yet.")
@@ -49,9 +49,9 @@
 	src.name = _name
 	src.screen_loc = _screen_loc
 	src.module_num = _module_num
-	if (_icon_state)
+	if(_icon_state)
 		src.icon_state = _icon_state
-	if (_icon)
+	if(_icon)
 		src.icon = _icon
 	src.update_icon()
 
@@ -75,7 +75,7 @@
 
 
 /obj/screen/silicon/module/Click()
-	if (isrobot(parentmob))
+	if(isrobot(parentmob))
 		var/mob/living/silicon/robot/R = parentmob
 		R.toggle_module(module_num)
 		return TRUE
@@ -92,7 +92,7 @@
 
 /obj/screen/silicon/cell/update_icon()
 	var/mob/living/silicon/robot/R = parentmob
-	if (R.cell)
+	if(R.cell)
 		var/cellcharge = R.cell.charge/R.cell.maxcharge
 		switch(cellcharge)
 			if(0.75 to INFINITY)
@@ -113,7 +113,7 @@
 	return
 
 /obj/screen/health/cyborg/update_icon()
-	if (parentmob.stat != 2)
+	if(parentmob.stat != 2)
 		if(isdrone(parentmob))
 			switch(parentmob.health)
 				if(35 to INFINITY)
@@ -201,7 +201,7 @@
 /obj/screen/silicon/glasses_overlay/update_icon()
 	overlays.Cut()
 	var/mob/living/silicon/robot/R = parentmob
-	for (var/obj/item/borg/sight/S in list(R.module_state_1, R.module_state_2, R.module_state_3))
+	for(var/obj/item/borg/sight/S in list(R.module_state_1, R.module_state_2, R.module_state_3))
 		if(S.overlay)
 			overlays |= S.overlay
 
@@ -219,7 +219,7 @@
 	update_icon()
 
 /obj/screen/silicon/pull/update_icon()
-	if (parentmob.pulling)
+	if(parentmob.pulling)
 		icon_state = "robotpull1"
 	else
 		icon_state = "robotpull0"

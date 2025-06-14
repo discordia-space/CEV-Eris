@@ -14,37 +14,37 @@
 	allowed_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 
 /obj/item/implant/freedom/trigger(emote, mob/living/carbon/source)
-	if (src.uses < 1)
+	if(src.uses < 1)
 		to_chat (source, "You don't feel anything")
 		return
-	if (emote == src.activation_emote)
+	if(emote == src.activation_emote)
 		src.uses--
 		spawn(10 MINUTES)
 			src.uses++
 		to_chat(source, "You feel a faint click.")
-		if (source.handcuffed && install_organ == INSTALL_HANDS)
+		if(source.handcuffed && install_organ == INSTALL_HANDS)
 			var/obj/item/W = source.handcuffed
 			source.handcuffed = null
 			if(source.buckled && source.buckled.buckle_require_restraints)
 				source.buckled.unbuckle_mob()
 			source.update_inv_handcuffed()
-			if (source.client)
+			if(source.client)
 				source.client.screen -= W
-			if (W)
+			if(W)
 				W.loc = source.loc
 				dropped(source)
-				if (W)
+				if(W)
 					W.layer = initial(W.layer)
-		if (source.legcuffed && install_organ == INSTALL_FOOTS)
+		if(source.legcuffed && install_organ == INSTALL_FOOTS)
 			var/obj/item/W = source.legcuffed
 			source.legcuffed = null
 			source.update_inv_legcuffed()
-			if (source.client)
+			if(source.client)
 				source.client.screen -= W
-			if (W)
+			if(W)
 				W.loc = source.loc
 				dropped(source)
-				if (W)
+				if(W)
 					W.layer = initial(W.layer)
 
 /obj/item/implant/freedom/on_install(mob/living/carbon/source, obj/item/organ/O)

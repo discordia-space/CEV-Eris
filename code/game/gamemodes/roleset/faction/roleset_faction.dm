@@ -14,11 +14,11 @@
 	calc_target_quantity()
 	var/datum/antagonist/antag = GLOB.all_antag_types[role_id]
 	//Find the faction first, create it if it doesnt exist
-	if (!faction_id)
+	if(!faction_id)
 		return
 	var/datum/faction/F = get_faction_by_id(faction_id)
 
-	if (!F)
+	if(!F)
 		F = new faction_type()
 
 
@@ -35,8 +35,8 @@
 
 
 
-	for (var/i = 1; i <= target_quantity;i++)
-		if (!candidates.len)
+	for(var/i = 1; i <= target_quantity;i++)
+		if(!candidates.len)
 			break
 
 		var/datum/antagonist/A = new antag.type
@@ -47,12 +47,12 @@
 			break
 
 		var/success = FALSE
-		if (antag.outer)
+		if(antag.outer)
 			success = A.create_from_ghost(M, F, announce = FALSE)
 		else
 			success = A.create_antagonist(M, F, announce = FALSE)
 
-		if (success)
+		if(success)
 			success_quantity++
 		else
 			//If we found a viable candidate but failed to turn them into an antag, we'll skip over them
@@ -61,7 +61,7 @@
 
 
 	//Appoint leaders for this faction
-	if (leaders)
+	if(leaders)
 		F.pick_leaders(leaders)
 
 
@@ -74,7 +74,7 @@
 	/*
 		Once we get here, we're done assigning antags, for better or worse. Lets see how we did
 	*/
-	if (success_quantity >= target_quantity)
+	if(success_quantity >= target_quantity)
 		//Yay, all antags successfully spawned
 		return TRUE
 
@@ -86,11 +86,11 @@
 
 		//We will now refund part of the cost
 		var/success_percent = 0
-		if (success_quantity > 1)
+		if(success_quantity > 1)
 			success_percent = success_quantity / target_quantity
 		cancel(severity, success_percent)
 
-		if ( success_quantity > 0 )
+		if( success_quantity > 0 )
 			// At least one antag has spawned
 			return TRUE
 		else

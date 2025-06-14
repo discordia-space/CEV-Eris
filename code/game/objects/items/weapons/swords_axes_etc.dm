@@ -22,7 +22,7 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 /obj/item/melee/classic_baton/attack(mob/M, mob/living/user)
-/*	if ((CLUMSY in user.mutations) && prob(50))
+/*	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You club yourself over the head."))
 		user.Weaken(3 * force)
 		if(ishuman(user))
@@ -92,7 +92,7 @@
 
 /obj/item/melee/telebaton/attack(mob/target, mob/living/user)
 	if(on)
-/*		if ((CLUMSY in user.mutations) && prob(50))
+/*		if((CLUMSY in user.mutations) && prob(50))
 			to_chat(user, SPAN_WARNING("You club yourself over the head."))
 			user.Weaken(3 * force)
 			if(ishuman(user))

@@ -104,7 +104,7 @@ TODO: LATER
 	error("No element found with id \"[id]\".")
 
 /datum/interface/proc/hide(var/id)
-	if (!id)
+	if(!id)
 		for(var/HUD_element/element in _elements)
 			element.hide()
 	else
@@ -118,7 +118,7 @@ TODO: LATER
 	if(!_observer)
 		error("Interface has no observer.")
 		return FALSE
-	if (!id)
+	if(!id)
 		for(var/HUD_element/element in _elements)
 			element.show(_observer)
 	else

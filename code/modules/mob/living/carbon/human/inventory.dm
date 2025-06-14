@@ -50,7 +50,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			return
 		else
 			equip_to_from_suit_storage(I)
-	else if ( src.s_store )
+	else if( src.s_store )
 		equip_to_from_suit_storage(src.s_store)
 	else
 		to_chat(src, SPAN_NOTICE("You are not holding anything to equip or draw."))
@@ -115,7 +115,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 //Find HUD position on screen
 /mob/living/carbon/human/proc/find_inv_position(var/slot_id)
 	for(var/obj/screen/inventory/HUDinv in HUDinventory)
-		if (HUDinv.slot_id == slot_id)
+		if(HUDinv.slot_id == slot_id)
 			return (HUDinv.invisibility == 101) ? null : HUDinv.screen_loc
 	log_admin("[src] try find_inv_position a [slot_id], but not have that slot!")
 	to_chat(src, "Some problem hase accure, change UI style pls or call admins.")
@@ -126,10 +126,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 	return "7,7"
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
-	for (var/slot in slots)
-		if (equip_to_slot_if_possible(W, slots[slot]))
+	for(var/slot in slots)
+		if(equip_to_slot_if_possible(W, slots[slot]))
 			return slot
-	if (del_on_fail)
+	if(del_on_fail)
 		qdel(W)
 	return null
 
@@ -146,29 +146,29 @@ This saves us from having to call add_fingerprint() any time something is put in
 	W.screen_loc = null
 
 
-	if (W == wear_suit)
+	if(W == wear_suit)
 		if(s_store)
 			drop_from_inventory(s_store)
 		wear_suit = null
 		update_inv_wear_suit()
-	else if (W == w_uniform)
-		if (r_store)
+	else if(W == w_uniform)
+		if(r_store)
 			drop_from_inventory(r_store)
-		if (l_store)
+		if(l_store)
 			drop_from_inventory(l_store)
-		if (wear_id)
+		if(wear_id)
 			drop_from_inventory(wear_id)
-		if (belt)
+		if(belt)
 			drop_from_inventory(belt)
 		w_uniform = null
 		update_inv_w_uniform()
-	else if (W == gloves)
+	else if(W == gloves)
 		gloves = null
 		update_inv_gloves()
-	else if (W == glasses)
+	else if(W == glasses)
 		glasses = null
 		update_inv_glasses()
-	else if (W == head)
+	else if(W == head)
 		head = null
 		if(istype(W, /obj/item))
 			var/obj/item/I = W
@@ -177,19 +177,19 @@ This saves us from having to call add_fingerprint() any time something is put in
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
 		update_inv_head()
-	else if (W == l_ear)
+	else if(W == l_ear)
 		l_ear = null
 		update_inv_ears()
-	else if (W == r_ear)
+	else if(W == r_ear)
 		r_ear = null
 		update_inv_ears()
-	else if (W == shoes)
+	else if(W == shoes)
 		shoes = null
 		update_inv_shoes()
-	else if (W == belt)
+	else if(W == belt)
 		belt = null
 		update_inv_belt()
-	else if (W == wear_mask)
+	else if(W == wear_mask)
 		wear_mask = null
 		if(istype(W, /obj/item))
 			var/obj/item/I = W
@@ -203,33 +203,33 @@ This saves us from having to call add_fingerprint() any time something is put in
 				internals.icon_state = "internal0"*/
 			internal = null
 		update_inv_wear_mask()
-	else if (W == wear_id)
+	else if(W == wear_id)
 		wear_id = null
 		update_inv_wear_id()
-	else if (W == r_store)
+	else if(W == r_store)
 		r_store = null
 		update_inv_pockets()
-	else if (W == l_store)
+	else if(W == l_store)
 		l_store = null
 		update_inv_pockets()
-	else if (W == s_store)
+	else if(W == s_store)
 		s_store = null
 		update_inv_s_store()
-	else if (W == back)
+	else if(W == back)
 		back = null
 		update_inv_back()
-	else if (W == handcuffed)
+	else if(W == handcuffed)
 		handcuffed = null
 		if(buckled && buckled.buckle_require_restraints)
 			buckled.unbuckle_mob()
 		update_inv_handcuffed()
-	else if (W == legcuffed)
+	else if(W == legcuffed)
 		legcuffed = null
 		update_inv_legcuffed()
-	else if (W == r_hand)
+	else if(W == r_hand)
 		r_hand = null
 		update_inv_r_hand()
-	else if (W == l_hand)
+	else if(W == l_hand)
 		l_hand = null
 		update_inv_l_hand()
 	else
@@ -450,44 +450,44 @@ This saves us from having to call add_fingerprint() any time something is put in
 	var/style_factor = 0
 	var/suit_coverage = 0 // what a suit blocks from view
 	var/head_coverage = 0 // what a helmet or mask blocks from view
-	if (istype(wear_suit, /obj/item/clothing))
+	if(istype(wear_suit, /obj/item/clothing))
 		var/obj/item/clothing/suit/worn_suit = wear_suit // clothing has style_coverage.
 		suit_coverage = worn_suit.style_coverage
 		style_factor += worn_suit.get_style()
-	if (istype(head, /obj/item/clothing))
+	if(istype(head, /obj/item/clothing))
 		var/obj/item/clothing/suit/worn_hat = head
 		head_coverage = worn_hat.style_coverage
 		style_factor += worn_hat.get_style()
 	else if(!head)
 		style_factor++ // if we're not wearing anything on our head we look stylish, bald people rise up
-	if (!(head_coverage & COVERS_WHOLE_FACE) && istype(wear_mask, /obj/item/clothing)) // is it hidden, and if not is it a mask?
+	if(!(head_coverage & COVERS_WHOLE_FACE) && istype(wear_mask, /obj/item/clothing)) // is it hidden, and if not is it a mask?
 		var/obj/item/clothing/mask/worn_mask = wear_mask
 		head_coverage |= worn_mask.style_coverage
 		style_factor += worn_mask.get_style()
-	if (!(head_coverage & COVERS_EARS))
-		if (l_ear && !istype(l_ear, /obj/item/clothing/ears/offear)) // so we don't count earmuffs twice
+	if(!(head_coverage & COVERS_EARS))
+		if(l_ear && !istype(l_ear, /obj/item/clothing/ears/offear)) // so we don't count earmuffs twice
 			style_factor += l_ear.get_style()
-		if (r_ear && !istype(r_ear, /obj/item/clothing/ears/offear))
+		if(r_ear && !istype(r_ear, /obj/item/clothing/ears/offear))
 			style_factor += r_ear.get_style()
-	if (glasses && !(head_coverage & COVERS_EYES))
+	if(glasses && !(head_coverage & COVERS_EYES))
 		style_factor += glasses.get_style()
 	else if(!glasses)
 		style_factor++ // if we're not wearing any glasses we look stylish
-	if (gloves && !(suit_coverage & COVERS_FOREARMS))
+	if(gloves && !(suit_coverage & COVERS_FOREARMS))
 		style_factor += gloves.get_style()
 	else if(!gloves)
 		style_factor-- // if we're not hiding fingerprints we're definitely stylish
-	if (w_uniform && !((gloves || suit_coverage & COVERS_FOREARMS) && (shoes || suit_coverage & COVERS_FORELEGS) && (suit_coverage & (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS)) == (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS))) // if suit_coverage AND three flags equals those three flags, then it means it has those three flags.
+	if(w_uniform && !((gloves || suit_coverage & COVERS_FOREARMS) && (shoes || suit_coverage & COVERS_FORELEGS) && (suit_coverage & (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS)) == (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS))) // if suit_coverage AND three flags equals those three flags, then it means it has those three flags.
 		style_factor += w_uniform.get_style()
-	if (shoes && !(suit_coverage & COVERS_FORELEGS))
+	if(shoes && !(suit_coverage & COVERS_FORELEGS))
 		style_factor += shoes.get_style()
 	else if(!shoes)
 		style_factor-- // if we're not wearing shoes we're definitely not stylish
-	if (back)
+	if(back)
 		style_factor += back.get_style() // back and belt can't be covered
 	else if(!back)
 		style_factor++ // if we don't have anything on our back we look stylish by since literally no backpacks give or take style bonus isn't big
-	if (belt)
+	if(belt)
 		style_factor += belt.get_style()
 
 	if(restrained())

@@ -67,20 +67,20 @@
 
 			update_icon()
 
-		if (network1)
+		if(network1)
 			network1.update = 1
-		if (network2)
+		if(network2)
 			network2.update = 1
 
 	update_icon()
 		overlays.Cut()
-		if (dP > 10)
+		if(dP > 10)
 			overlays += image('icons/obj/pipeturbine.dmi', "moto-turb")
-		if (kin_energy > 100000)
+		if(kin_energy > 100000)
 			overlays += image('icons/obj/pipeturbine.dmi', "low-turb")
-		if (kin_energy > 500000)
+		if(kin_energy > 500000)
 			overlays += image('icons/obj/pipeturbine.dmi', "med-turb")
-		if (kin_energy > 1000000)
+		if(kin_energy > 1000000)
 			overlays += image('icons/obj/pipeturbine.dmi', "hi-turb")
 
 	attackby(obj/item/tool/W as obj, mob/user as mob)
@@ -96,10 +96,10 @@
 				initialize_directions = NORTH|SOUTH
 				atmos_init()
 			build_network()
-			if (node1)
+			if(node1)
 				node1.atmos_init()
 				node1.build_network()
-			if (node2)
+			if(node2)
 				node2.atmos_init()
 				node2.build_network()
 		else
@@ -117,7 +117,7 @@
 		set name = "Rotate Circulator (Clockwise)"
 		set src in view(1)
 
-		if (usr.stat || usr.restrained() || anchored)
+		if(usr.stat || usr.restrained() || anchored)
 			return
 
 		src.set_dir(turn(src.dir, -90))
@@ -128,7 +128,7 @@
 		set name = "Rotate Circulator (Counterclockwise)"
 		set src in view(1)
 
-		if (usr.stat || usr.restrained() || anchored)
+		if(usr.stat || usr.restrained() || anchored)
 			return
 
 		src.set_dir(turn(src.dir, 90))
@@ -237,7 +237,7 @@
 		turbine = null
 		if(src.loc && anchored)
 			turbine = locate(/obj/machinery/atmospherics/pipeturbine) in get_step(src, dir)
-			if (turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir, 180) != dir)
+			if(turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir, 180) != dir)
 				turbine = null
 
 	Process()
@@ -251,7 +251,7 @@
 
 
 	attackby(obj/item/tool/W as obj, mob/user as mob)
-		if (!W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
+		if(!W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
 			return ..()
 		anchored = !anchored
 		turbine = null
@@ -263,7 +263,7 @@
 		set name = "Rotate Motor Clockwise"
 		set src in view(1)
 
-		if (usr.stat || usr.restrained()  || anchored)
+		if(usr.stat || usr.restrained()  || anchored)
 			return
 
 		src.set_dir(turn(src.dir, -90))
@@ -273,7 +273,7 @@
 		set name = "Rotate Motor Counterclockwise"
 		set src in view(1)
 
-		if (usr.stat || usr.restrained()  || anchored)
+		if(usr.stat || usr.restrained()  || anchored)
 			return
 
 		src.set_dir(turn(src.dir, 90))

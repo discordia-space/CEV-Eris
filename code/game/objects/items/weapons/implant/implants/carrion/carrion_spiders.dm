@@ -86,7 +86,7 @@
 	..()
 
 /obj/item/implant/carrion_spider/proc/toggle_attack(mob/user)
-	if (ready_to_attack)
+	if(ready_to_attack)
 		ready_to_attack = FALSE
 		to_chat(user, SPAN_NOTICE("\The [src] won't attack nearby creatures anymore."))
 	else

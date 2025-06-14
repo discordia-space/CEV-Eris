@@ -99,22 +99,22 @@
 
 /obj/machinery/pipedispenser/attackby(var/obj/item/I, var/mob/user)
 	src.add_fingerprint(usr)
-	if (istype(I, /obj/item/pipe) || istype(I, /obj/item/pipe_meter))
+	if(istype(I, /obj/item/pipe) || istype(I, /obj/item/pipe_meter))
 		to_chat(usr, SPAN_NOTICE("You put [I] back to [src]."))
 		user.drop_item()
 		qdel(I)
 		return
 	var/obj/item/tool/tool = I
-	if (!tool)
+	if(!tool)
 		return ..()
-	if (!tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+	if(!tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 		return ..()
 	anchored = !src.anchored
 	anchored ? (src.stat &= ~MAINT) : (src.stat |= MAINT)
 	if(anchored)
 		power_change()
 	else
-		if (usr.machine==src)
+		if(usr.machine==src)
 			usr << browse(null, "window=pipedispenser")
 	user.visible_message( \
 		SPAN_NOTICE("\The [user] [anchored ? "":"un"]fastens \the [src]."), \
@@ -143,10 +143,10 @@ Nah
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return
 
-	if (!istype(pipe) || get_dist(usr, src) > 1 || get_dist(src,pipe) > 1 )
+	if(!istype(pipe) || get_dist(usr, src) > 1 || get_dist(src,pipe) > 1 )
 		return
 
-	if (pipe.anchored)
+	if(pipe.anchored)
 		return
 
 	qdel(pipe)

@@ -11,20 +11,20 @@
 
 /datum/firemode/charge/update(var/force_state = null)
 	var/mob/living/L
-	if (gun)
+	if(gun)
 		// bit of a hack here, but we want mounted systems to work properly
-		if (istype(gun.loc, /obj/item/mech_equipment/mounted_system))
+		if(istype(gun.loc, /obj/item/mech_equipment/mounted_system))
 			var/obj/item/mech_equipment/mounted_system/MS = gun.loc
 			if(MS.owner)
 				L = MS.owner.get_mob() // this will only work for one pilot but the only fix is to rewrite everything AHHHHH I HATE THIS
-		else if (gun.is_held())
+		else if(gun.is_held())
 			L = gun.loc
 
 	var/enable = FALSE
 	//Force state is used for forcing it to be disabled in circumstances where it'd normally be valid
-	if (!isnull(force_state))
+	if(!isnull(force_state))
 		enable = force_state
-	else if (L && L.client)
+	else if(L && L.client)
 
 		//First of all, lets determine whether we're enabling or disabling the click handler
 
@@ -38,42 +38,42 @@
 					skip_hand_check = TRUE
 
 		//We enable it if the gun is held in the user's active hand and the safety is off
-		if (skip_hand_check || L.get_active_hand() == gun)
+		if(skip_hand_check || L.get_active_hand() == gun)
 			//Lets also make sure it can fire
 			var/can_fire = TRUE
 
 			//Safety stops it
-			if (gun.safety)
+			if(gun.safety)
 				can_fire = FALSE
 
 			//Energy weapons need to have enough charge to fire
 			if(istype(gun, /obj/item/gun/energy))
 				var/obj/item/gun/energy/E = gun
 				var/obj/item/cell/C = E.get_cell()
-				if (!C || !C.check_charge(E.charge_cost))
+				if(!C || !C.check_charge(E.charge_cost))
 					can_fire = FALSE
 
 			//TODO: Centralise all this into some can_fire proc
-			if (can_fire)
+			if(can_fire)
 				enable = TRUE
 		else
 			enable = FALSE
 
 	//Ok now lets set the desired state
-	if (!enable)
-		if (!CH)
+	if(!enable)
+		if(!CH)
 			//If we're turning it off, but the click handler doesn't exist, then we have nothing to do
 			return
 
 		//Todo: make client click handlers into a list
-		if (CH.owner) //Remove our handler from the client
+		if(CH.owner) //Remove our handler from the client
 			CH.owner.CH = null //wew
 		QDEL_NULL(CH) //And delete it
 		return
 
 	else
 		//We're trying to turn things on
-		if (CH)
+		if(CH)
 			return //The click handler exists, we dont need to do anything
 
 
@@ -103,7 +103,7 @@
 //Fire charged attack
 /datum/click_handler/charge/MouseUp(object,location,control,params)
 	object = resolve_world_target(object)
-	if (object)
+	if(object)
 		var/atom/target = object
 		target = object
 		owner.mob.face_atom(target)

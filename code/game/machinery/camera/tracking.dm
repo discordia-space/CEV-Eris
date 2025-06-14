@@ -11,9 +11,9 @@
 
 	cameranet.process_sort()
 	var/list/T = list()
-	for (var/obj/machinery/camera/C in cameranet.cameras)
+	for(var/obj/machinery/camera/C in cameranet.cameras)
 		var/list/tempnetwork = C.network&src.network
-		if (tempnetwork.len)
+		if(tempnetwork.len)
 			T[text("[][]", C.c_tag, (C.can_use() ? null : " (Deactivated)"))] = C
 
 	track = new()
@@ -27,7 +27,7 @@
 	if(check_unable())
 		return
 	var/list/cameras = get_camera_list()
-	if (!cameras.len)
+	if(!cameras.len)
 		return 0
 	var/camera = input(src, "Choose a camera:", "Registered cameras") as null|anything in cameras
 	if(!camera)
@@ -71,7 +71,7 @@
 	set name = "Goto Camera Location"
 	set desc = "Returns to the selected camera location"
 
-	if (!(loc in stored_locations))
+	if(!(loc in stored_locations))
 		to_chat(src, SPAN_WARNING("Location [loc] not found"))
 		return
 
@@ -83,7 +83,7 @@
 	set name = "Delete Camera Location"
 	set desc = "Deletes the selected camera location"
 
-	if (!(loc in stored_locations))
+	if(!(loc in stored_locations))
 		to_chat(src, SPAN_WARNING("Location [loc] not found"))
 		return
 
@@ -110,7 +110,7 @@
 			continue
 
 		var/name = M.name
-		if (name in TB.names)
+		if(name in TB.names)
 			TB.namecounts[name]++
 			name = text("[] ([])", name, TB.namecounts[name])
 		else
@@ -163,8 +163,8 @@
 	target.tracking_initiated()
 
 	spawn (0)
-		while (U.cameraFollow == target)
-			if (U.cameraFollow == null)
+		while(U.cameraFollow == target)
+			if(U.cameraFollow == null)
 				return
 
 			switch(target.tracking_status())
@@ -184,9 +184,9 @@
 			sleep(10)
 
 /obj/machinery/camera/attack_ai(var/mob/living/silicon/ai/user as mob)
-	if (!istype(user))
+	if(!istype(user))
 		return
-	if (!src.can_use())
+	if(!src.can_use())
 		return
 	user.eyeobj.setLoc(get_turf(src))
 
@@ -198,21 +198,21 @@
 	var/obj/machinery/camera/a
 	var/obj/machinery/camera/b
 
-	for (var/i = L.len, i > 0, i--)
-		for (var/j = 1 to i - 1)
+	for(var/i = L.len, i > 0, i--)
+		for(var/j = 1 to i - 1)
 			a = L[j]
 			b = L[j + 1]
-			if (a.c_tag_order != b.c_tag_order)
-				if (a.c_tag_order > b.c_tag_order)
+			if(a.c_tag_order != b.c_tag_order)
+				if(a.c_tag_order > b.c_tag_order)
 					L.Swap(j, j + 1)
 			else
-				if (sorttext(a.c_tag, b.c_tag) < 0)
+				if(sorttext(a.c_tag, b.c_tag) < 0)
 					L.Swap(j, j + 1)
 	return L
 
 
 /mob/living/proc/near_camera()
-	if (!isturf(loc))
+	if(!isturf(loc))
 		return 0
 	else if(!cameranet.checkVis(src))
 		return 0

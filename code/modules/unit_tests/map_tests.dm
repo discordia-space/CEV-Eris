@@ -20,9 +20,9 @@
 
 	for(var/area/A in SSmapping.all_areas)
 		if(IS_SHIP_LEVEL(A.z) && !(A.type in exempt_areas))
-			if (isnull(A.apc) && !(A.type in exempt_from_apc))
+			if(isnull(A.apc) && !(A.type in exempt_from_apc))
 				TEST_FAIL("[A.name]([A.type]) lacks an APC Z: [A.z].")
-			if (!((LAZYLEN(A.air_scrub_info) && LAZYLEN(A.air_vent_info)) || (A.type in exempt_from_atmos)))
+			if(!((LAZYLEN(A.air_scrub_info) && LAZYLEN(A.air_vent_info)) || (A.type in exempt_from_atmos)))
 				TEST_FAIL("[A.name]([A.type]) lacks an air scrubber [(!A.air_scrub_info?.len && !A.air_vent_info?.len) ? "and" : "or"] a vent Z: [A.z].")
 
 /*

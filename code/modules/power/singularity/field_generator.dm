@@ -3,13 +3,13 @@
 
 /*
 field_generator power level display
-   The icon used for the field_generator need to have 'num_power_levels' number of icon states
-   named 'Field_Gen +p[num]' where 'num' ranges from 1 to 'num_power_levels'
+	The icon used for the field_generator need to have 'num_power_levels' number of icon states
+	named 'Field_Gen +p[num]' where 'num' ranges from 1 to 'num_power_levels'
 
-   The power level is displayed using overlays. The current displayed power level is stored in 'powerlevel'.
-   The overlay in use and the powerlevel variable must be kept in sync.  A powerlevel equal to 0 means that
-   no power level overlay is currently in the overlays list.
-   -Aygar
+	The power level is displayed using overlays. The current displayed power level is stored in 'powerlevel'.
+	The overlay in use and the powerlevel variable must be kept in sync.  A powerlevel equal to 0 means that
+	no power level overlay is currently in the overlays list.
+	-Aygar
 */
 
 #define field_generator_max_power 250000
@@ -177,7 +177,7 @@ field_generator power level display
 	active = 1
 	warming_up = 1
 	spawn(1)
-		while (warming_up<3 && active)
+		while(warming_up<3 && active)
 			sleep(50)
 			warming_up++
 			update_icon()
@@ -196,10 +196,10 @@ field_generator power level display
 
 	var/power_draw = gen_power_draw
 	for(var/obj/machinery/field_generator/FG in connected_gens)
-		if (!isnull(FG))
+		if(!isnull(FG))
 			power_draw += gen_power_draw
-	for (var/obj/machinery/containment_field/F in fields)
-		if (!isnull(F))
+	for(var/obj/machinery/containment_field/F in fields)
+		if(!isnull(F))
 			power_draw += field_power_draw
 	power_draw /= 2	//because this will be mirrored for both generators
 	if(draw_power(round(power_draw)) >= power_draw)
@@ -225,10 +225,10 @@ field_generator power level display
 	src.power = 0
 
 	for(var/obj/machinery/field_generator/FG in connected_gens)
-		if (FG in flood_list)
+		if(FG in flood_list)
 			continue
 		actual_draw += FG.draw_power(draw - actual_draw, flood_list) //since the flood list reference is shared this actually works.
-		if (actual_draw >= draw)
+		if(actual_draw >= draw)
 			return actual_draw
 
 	return actual_draw
@@ -286,7 +286,7 @@ field_generator power level display
 			CF.set_dir(field_dir)
 	var/listcheck = 0
 	for(var/obj/machinery/field_generator/FG in connected_gens)
-		if (isnull(FG))
+		if(isnull(FG))
 			continue
 		if(FG == G)
 			listcheck = 1
@@ -295,7 +295,7 @@ field_generator power level display
 		connected_gens.Add(G)
 	listcheck = 0
 	for(var/obj/machinery/field_generator/FG2 in G.connected_gens)
-		if (isnull(FG2))
+		if(isnull(FG2))
 			continue
 		if(FG2 == src)
 			listcheck = 1
@@ -306,13 +306,13 @@ field_generator power level display
 
 /obj/machinery/field_generator/proc/cleanup()
 	clean_up = 1
-	for (var/obj/machinery/containment_field/F in fields)
-		if (isnull(F))
+	for(var/obj/machinery/containment_field/F in fields)
+		if(isnull(F))
 			continue
 		qdel(F)
 	fields = list()
 	for(var/obj/machinery/field_generator/FG in connected_gens)
-		if (isnull(FG))
+		if(isnull(FG))
 			continue
 		FG.connected_gens.Remove(src)
 		if(!FG.clean_up)//Makes the other gens clean up as well

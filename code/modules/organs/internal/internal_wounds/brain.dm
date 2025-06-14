@@ -9,13 +9,13 @@
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 	characteristic_flag = IWOUND_HALLUCINATE
 /datum/internal_wound/organic/brain_blunt/contusion
-    name = "brain contusion"
+	name = "brain contusion"
 
 /datum/internal_wound/organic/brain_blunt/diffuse
-    name = "diffuse axonal injury"
+	name = "diffuse axonal injury"
 
 /datum/internal_wound/organic/brain_blunt/torn
-    name = "torn nerve fibers"
+	name = "torn nerve fibers"
 
 // Sharp
 /datum/internal_wound/organic/brain_sharp
@@ -126,7 +126,7 @@
 /datum/internal_wound/robotic/brain_blunt
 	treatments_item = list(/obj/item/stack/nanopaste = 1)
 	treatments_tool = list(QUALITY_HAMMERING = FAILCHANCE_HARD)
-	treatments_chem = list(CE_MECH_REPAIR = 0.55)		// repair nanites + 3 metals OR repair nanite OD + a metal 
+	treatments_chem = list(CE_MECH_REPAIR = 0.55)		// repair nanites + 3 metals OR repair nanite OD + a metal
 	severity = 0
 	severity_max = 5
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
@@ -232,5 +232,5 @@
 	treatments_tool = list(QUALITY_CAUTERIZE = FAILCHANCE_HARD)
 
 /datum/internal_wound/robotic/brain_emp_burn/upturned
-	name = "upturned memory stack" 
+	name = "upturned memory stack"
 	treatments_tool = list(QUALITY_PRYING = FAILCHANCE_HARD) // gotta put it the way it was!

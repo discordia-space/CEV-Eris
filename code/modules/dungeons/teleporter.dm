@@ -229,17 +229,17 @@
 
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 
-	for (var/mob/living/O in viewers(src, null))
-		if (get_dist(src, O) > 8)
+	for(var/mob/living/O in viewers(src, null))
+		if(get_dist(src, O) > 8)
 			continue
 
-		if (ishuman(O))
+		if(ishuman(O))
 			var/mob/living/carbon/human/H = O
 			H.flash(8, FALSE , FALSE , FALSE, 8)
 
 		else
 			if(!O.blinded)
-				if (istype(O,/mob/living/silicon/ai))
+				if(istype(O,/mob/living/silicon/ai))
 					return
 				O.flash(8, FALSE, FALSE ,FALSE)
 

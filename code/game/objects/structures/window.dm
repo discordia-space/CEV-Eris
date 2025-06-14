@@ -25,7 +25,7 @@
 /obj/structure/window/get_fall_damage(var/turf/from, var/turf/dest)
 	var/damage = health * 0.4 * get_health_ratio()
 
-	if (from && dest)
+	if(from && dest)
 		damage *= abs(from.z - dest.z)
 
 	return damage
@@ -61,7 +61,7 @@
 	damage = damage * (1 - silicate / 200) // up to 50% damage resistance
 	damage -= resistance // then flat resistance from material
 
-	if (damage <= 0)
+	if(damage <= 0)
 		return 0
 
 	health -= damage
@@ -91,9 +91,9 @@
 		updateSilicate()
 
 /obj/structure/window/proc/updateSilicate()
-	if (is_full_window())
+	if(is_full_window())
 		return
-	if (overlays)
+	if(overlays)
 		overlays.Cut()
 
 	var/image/img = image(src.icon, src.icon_state)
@@ -104,14 +104,14 @@
 //Setting the explode var makes the shattering louder and more violent, possibly injuring surrounding mobs
 /obj/structure/window/proc/shatter(var/display_message = 1, var/explode = FALSE)
 	alpha = 0
-	if (explode)
+	if(explode)
 		playsound(src, "shatter", 100, 1, 5,5)
 	else
 		playsound(src, "shatter", 70, 1)
 
 	//Cache a list of nearby turfs for throwing shards at
 	var/list/turf/nearby
-	if (explode)
+	if(explode)
 		nearby = (RANGE_TURFS(2, src) - get_turf(src))
 	else
 		nearby = (RANGE_TURFS(1, src) - get_turf(src))
@@ -125,7 +125,7 @@
 			new /obj/item/stack/rods(loc)
 		while(index < rand(4,6))
 			var/obj/item/material/shard/S = new shardtype(loc)
-			if (nearby.len > 0)
+			if(nearby.len > 0)
 				var/turf/target = pick(nearby)
 				//spawn()
 				S.throw_at(target,40,3)
@@ -209,9 +209,9 @@
 
 /obj/structure/window/attack_hand(mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if (user.a_intent == I_HURT)
+	if(user.a_intent == I_HURT)
 
-		if (ishuman(user))
+		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.species.can_shred(H))
 				attack_generic(H,25)
@@ -346,16 +346,16 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 	if(reinf && state <= 1)
 		usable_qualities.Add(QUALITY_PRYING)
-	if (health < maxHealth)
+	if(health < maxHealth)
 		usable_qualities.Add(QUALITY_SEALING)
 
 	//If you set intent to harm, you can hit the window with tools to break it. Set to any other intent to use tools on it
-	if (user.a_intent != I_HURT)
+	if(user.a_intent != I_HURT)
 		var/tool_type = I.get_tool_type(user, usable_qualities, src)
 		switch(tool_type)
 			if(QUALITY_SEALING)
 				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
-				if (I.use_tool(user, src, 60 + ((maxHealth - health)*3), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
+				if(I.use_tool(user, src, 60 + ((maxHealth - health)*3), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
 					to_chat(user, SPAN_NOTICE("The [src] looks pretty solid now!"))
 					health = maxHealth
 			if(QUALITY_BOLT_TURNING)
@@ -467,7 +467,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 
 	//player-constructed windows
 
-	if (start_dir)
+	if(start_dir)
 		set_dir(start_dir)
 
 	health = maxHealth
@@ -564,7 +564,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	..()
 
 	//player-constructed windows
-	if (constructed)
+	if(constructed)
 		state = 0
 
 /obj/structure/window/reinforced/plasma
@@ -612,11 +612,11 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	if(QDELETED(src))
 		return
 
-	if (!is_full_window())
+	if(!is_full_window())
 		return
 
 	//If there's a wall under us, we're safe, stop here.
-	if (istype(loc, /turf/wall/low))
+	if(istype(loc, /turf/wall/low))
 		return
 
 	//This is where the fun begins
@@ -625,12 +625,12 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 
 	//Hole tiles are empty space and openspace. Can't fall here.
 	//But if its openspace we'll probably fall through and smash below. fall_impact will handle that
-	if (T.is_hole)
+	if(T.is_hole)
 		return
 
 	//Check for gravity
 	var/area/A = get_area(T)
-	if (!A.has_gravity)
+	if(!A.has_gravity)
 		//No gravity, cant fall here
 		return
 

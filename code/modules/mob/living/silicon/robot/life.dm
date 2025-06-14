@@ -2,7 +2,7 @@
 	set invisibility = 0
 	set background = 1
 
-	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
+	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 
 	//Status updates, death etc.
@@ -12,13 +12,13 @@
 	if(client)
 		handle_regular_hud_updates()
 		update_items()
-	if (src.stat != DEAD) //still using power
+	if(src.stat != DEAD) //still using power
 		use_power()
 		process_killswitch()
 		process_locks()
 		process_queued_alarms()
 	else
-		if (!src.death_notified && src.connected_ai)
+		if(!src.death_notified && src.connected_ai)
 			src.notify_ai(ROBOT_NOTIFICATION_SIGNAL_LOST)
 			src.death_notified = TRUE
 	update_lying_buckled_and_verb_status()
@@ -45,7 +45,7 @@
 		var/datum/robot_component/C = components[V]
 		C.update_power_state()
 
-	if (cell && is_component_functioning("power cell") && src.cell.charge > 0)
+	if(cell && is_component_functioning("power cell") && src.cell.charge > 0)
 		if(src.module_state_1)
 			cell_use_power(50) // 50W load for every enabled tool TODO: tool-specific loads
 		if(src.module_state_2)
@@ -61,7 +61,7 @@
 
 		src.has_power = 1
 	else
-		if (src.has_power)
+		if(src.has_power)
 			to_chat(src, "\red You are now running on emergency backup power.")
 		src.has_power = 0
 		if(lights_on) // Light is on but there is no power!
@@ -91,14 +91,14 @@
 		death()
 
 
-	if (src.stat != 2) //Alive.
-		if (src.paralysis || src.stunned || !src.has_power || src.weakened) //Stunned etc.
+	if(src.stat != 2) //Alive.
+		if(src.paralysis || src.stunned || !src.has_power || src.weakened) //Stunned etc.
 			src.stat = 1
-			if (src.weakened > 0)
+			if(src.weakened > 0)
 				AdjustWeakened(-1)
-			if (src.stunned > 0)
+			if(src.stunned > 0)
 				AdjustStunned(-1)
-			if (src.paralysis > 0)
+			if(src.paralysis > 0)
 				AdjustParalysis(-1)
 				src.blinded = TRUE
 			else
@@ -113,29 +113,29 @@
 		src.blinded = TRUE
 		src.stat = 2
 
-	if (src.stuttering) src.stuttering--
+	if(src.stuttering) src.stuttering--
 
-	if (src.eye_blind)
+	if(src.eye_blind)
 		src.eye_blind--
 		src.blinded = TRUE
 
-	if (src.ear_deaf > 0) src.ear_deaf--
-	if (src.ear_damage < 25)
+	if(src.ear_deaf > 0) src.ear_deaf--
+	if(src.ear_damage < 25)
 		src.ear_damage -= 0.05
 		src.ear_damage = max(src.ear_damage, 0)
 
 	src.density = !( src.lying )
 
-	if ((src.sdisabilities & BLIND))
+	if((src.sdisabilities & BLIND))
 		src.blinded = TRUE
-//	if ((src.sdisabilities & DEAF))
+//	if((src.sdisabilities & DEAF))
 //		src.ear_deaf = 1
 
-	if (src.eye_blurry > 0)
+	if(src.eye_blurry > 0)
 		src.eye_blurry--
 		src.eye_blurry = max(0, src.eye_blurry)
 
-	if (src.druggy > 0)
+	if(src.druggy > 0)
 		src.druggy--
 		src.druggy = max(0, src.druggy)
 
@@ -155,7 +155,7 @@
 /mob/living/silicon/robot/handle_regular_hud_updates()
 
 	.=..()
-	if (!.)//Parent function will return zero if no client
+	if(!.)//Parent function will return zero if no client
 		return
 
 
@@ -164,7 +164,7 @@
 
 
 
-	for (var/obj/screen/H in HUDprocess)
+	for(var/obj/screen/H in HUDprocess)
 //		var/obj/screen/B = H
 		H.Process()
 
@@ -181,9 +181,9 @@
 		hud.hud.process_hud(src)
 	else
 		switch(src.sensor_mode)
-			if (SEC_HUD)
+			if(SEC_HUD)
 				process_sec_hud(src,0)
-			if (MED_HUD)
+			if(MED_HUD)
 				process_med_hud(src,0)
 
 
@@ -191,33 +191,33 @@
 	if(stat == DEAD || eyeobj)
 		update_dead_sight()
 	else
-		if (is_ventcrawling)
+		if(is_ventcrawling)
 			sight |= SEE_TURFS|SEE_OBJS
 
-		if ((src.sight_mode & BORGXRAY))
+		if((src.sight_mode & BORGXRAY))
 			src.sight |= SEE_TURFS
 			src.sight |= SEE_MOBS
 			src.sight |= SEE_OBJS
 			src.see_in_dark = 8
 			src.see_invisible = SEE_INVISIBLE_MINIMUM
-		else if ((src.sight_mode & BORGMESON) && (src.sight_mode & BORGTHERM))
+		else if((src.sight_mode & BORGMESON) && (src.sight_mode & BORGTHERM))
 			src.sight |= SEE_TURFS
 			src.sight |= SEE_MOBS
 			src.see_in_dark = 8
 			see_invisible = SEE_INVISIBLE_MINIMUM
-		else if (src.sight_mode & BORGMESON)
+		else if(src.sight_mode & BORGMESON)
 			src.sight |= SEE_TURFS
 			src.see_in_dark = 8
 			see_invisible = SEE_INVISIBLE_MINIMUM
-		else if (src.sight_mode & BORGMATERIAL)
+		else if(src.sight_mode & BORGMATERIAL)
 			src.sight |= SEE_OBJS
 			src.see_in_dark = 8
 			see_invisible = SEE_INVISIBLE_MINIMUM
-		else if (src.sight_mode & BORGTHERM)
+		else if(src.sight_mode & BORGTHERM)
 			src.sight |= SEE_MOBS
 			src.see_in_dark = 8
 			src.see_invisible = SEE_INVISIBLE_LEVEL_TWO
-		else if (src.stat != 2)
+		else if(src.stat != 2)
 			src.sight &= ~SEE_MOBS
 			src.sight &= ~SEE_TURFS
 			src.sight &= ~SEE_OBJS
@@ -234,7 +234,7 @@
 
 
 /mob/living/silicon/robot/proc/update_items()
-	if (src.client)
+	if(src.client)
 		src.client.screen -= src.contents
 		for(var/obj/I in src.contents)
 			if(I && !(istype(I,/obj/item/cell/large) || istype(I,/obj/item/device/radio)  || istype(I,/obj/machinery/camera) || istype(I,/obj/item/device/mmi)))

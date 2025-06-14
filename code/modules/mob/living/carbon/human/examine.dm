@@ -307,10 +307,10 @@
 		else
 			perpname = src.name
 
-		for (var/datum/data/record/E in data_core.general)
-			if (E.fields["name"] == perpname)
-				for (var/datum/data/record/R in data_core.general)
-					if (R.fields["id"] == E.fields["id"])
+		for(var/datum/data/record/E in data_core.general)
+			if(E.fields["name"] == perpname)
+				for(var/datum/data/record/R in data_core.general)
+					if(R.fields["id"] == E.fields["id"])
 						medical = R.fields["p_stat"]
 
 		msg += "<span class = 'deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>\n"
@@ -322,7 +322,7 @@
 	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
 
 	msg += "*---------*</span>"
-	if (pose)
+	if(pose)
 		if( findtext(pose,".",length(pose)) == 0 && findtext(pose,"!",length(pose)) == 0 && findtext(pose,"?",length(pose)) == 0 )
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "\n[T.He] [T.is] [pose]"

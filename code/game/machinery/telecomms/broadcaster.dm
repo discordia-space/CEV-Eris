@@ -47,7 +47,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		// TODO: CHECK THAT. >>> signal.data["level"] |= listening_levels
 		signal.data["level"] |= listening_levels
 
-	   /** #### - Normal Broadcast - #### **/
+		/** #### - Normal Broadcast - #### **/
 
 		if(signal.data["type"] == 0)
 
@@ -61,7 +61,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 							  signal.data["verb"], signal.data["language"], signal.data["speech_volume"])
 
 
-	   /** #### - Simple Broadcast - #### **/
+		/** #### - Simple Broadcast - #### **/
 
 		if(signal.data["type"] == 1)
 
@@ -71,8 +71,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 								  signal.data["compression"], listening_levels)
 
 
-	   /** #### - Artificial Broadcast - #### **/
-	   			// (Imitates a mob)
+		/** #### - Artificial Broadcast - #### **/
+				// (Imitates a mob)
 
 		if(signal.data["type"] == 2)
 

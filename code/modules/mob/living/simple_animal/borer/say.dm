@@ -6,20 +6,20 @@
 	if(!message)
 		return
 
-	if (stat == 2)
+	if(stat == 2)
 		return say_dead(message)
 
-	if (stat)
+	if(stat)
 		return
 
-	if (src.client)
+	if(src.client)
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "\red You cannot speak in IC (muted).")
 			return
-		if (src.client.handle_spam_prevention(message,MUTE_IC))
+		if(src.client.handle_spam_prevention(message,MUTE_IC))
 			return
 
-	if (copytext(message, 1, 2) == "*")
+	if(copytext(message, 1, 2) == "*")
 		return emote(copytext(message, 2))
 
 	var/datum/language/L = parse_language(message)
@@ -35,8 +35,8 @@
 	to_chat(src, "You drop words into [host]'s mind: \"[message]\"")
 	to_chat(host, "Your own thoughts speak: \"[message]\"")
 
-	for (var/mob/M in GLOB.player_list)
-		if (isnewplayer(M))
+	for(var/mob/M in GLOB.player_list)
+		if(isnewplayer(M))
 			continue
 		else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 			to_chat(M, "[src.truename] whispers to [host], \"[message]\"")

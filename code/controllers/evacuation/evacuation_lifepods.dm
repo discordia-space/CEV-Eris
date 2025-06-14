@@ -17,11 +17,11 @@
 	priority_announcement.Announce(replacetext(replacetext(SSmapping.emergency_shuttle_leaving_dock, "%dock_name%", "[dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
 
 /datum/evacuation_controller/lifepods/available_evac_options()
-	if (is_on_cooldown())
+	if(is_on_cooldown())
 		return list()
-	if (is_idle())
+	if(is_idle())
 		return list(evacuation_options[EVAC_OPT_ABANDON_SHIP])
-	if (is_evacuating())
+	if(is_evacuating())
 		return list(evacuation_options[EVAC_OPT_CANCEL_ABANDON_SHIP])
 
 #undef EVAC_OPT_ABANDON_SHIP

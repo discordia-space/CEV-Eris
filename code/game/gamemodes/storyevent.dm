@@ -67,27 +67,27 @@
 //Check if we can trigger
 /datum/storyevent/proc/can_trigger(var/severity, var/mob/report, var/manual)
 	.=TRUE
-	if (!enabled)
-		if (report) to_chat(report, SPAN_NOTICE("Failure: The event is disabled"))
+	if(!enabled)
+		if(report) to_chat(report, SPAN_NOTICE("Failure: The event is disabled"))
 		return FALSE
 
-	if (occurrences_max > 0 && occurrences >= occurrences_max)
-		if (report) to_chat(report, SPAN_NOTICE("Failure: The event has already triggered the maximum number of times for a single round"))
+	if(occurrences_max > 0 && occurrences >= occurrences_max)
+		if(report) to_chat(report, SPAN_NOTICE("Failure: The event has already triggered the maximum number of times for a single round"))
 		return FALSE
 
 	if(processing && is_processing())
-		if (report) to_chat(report, SPAN_NOTICE("Failure: This event is already processing"))
+		if(report) to_chat(report, SPAN_NOTICE("Failure: This event is already processing"))
 		return FALSE
 
 	if(!manual && GLOB.storyteller.calculate_event_cost(src, severity) > GLOB.storyteller.points[severity])
 		return FALSE
 
 	//IF this is a wrapper for a random event, we'll check if that event can trigger
-	if (event_type)
+	if(event_type)
 		//We have to create a new one, but New doesn't really do anything for events
 		var/datum/event/E = new event_type(src, severity)
-		if (!E.can_trigger())
-			if (report) to_chat(report, SPAN_NOTICE("Failure: Event can't trigger for specific unknown reasons"))
+		if(!E.can_trigger())
+			if(report) to_chat(report, SPAN_NOTICE("Failure: Event can't trigger for specific unknown reasons"))
 			.=FALSE
 		//Clean it up after we're done
 		qdel(E)
@@ -109,13 +109,13 @@
 
 /datum/storyevent/proc/cancel(var/type, var/completion = 0)
 	//This proc refunds the cost of this event
-	if (GLOB.storyteller)
+	if(GLOB.storyteller)
 		GLOB.storyteller.modify_points(get_cost(type)*(1 - completion), type)
 
 /datum/storyevent/proc/trigger_event(var/severity = EVENT_LEVEL_MUNDANE)
-	if (event_type)
+	if(event_type)
 		var/datum/event/E = new event_type(src, severity)
-		if (!E.can_trigger())
+		if(!E.can_trigger())
 			return FALSE
 		//If we get here, the event is fine to fire!
 

@@ -48,7 +48,7 @@
 					to_chat(user, "Device must be placed over an exposed cable to attach to it.")
 					return
 			else
-				if (mode == 2)
+				if(mode == 2)
 					STOP_PROCESSING(SSmachines, src)
 				anchored = FALSE
 				mode = 0

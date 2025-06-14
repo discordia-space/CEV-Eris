@@ -191,7 +191,7 @@
 //return flags that should be added to the viewer's sight var.
 //Otherwise return a negative number to indicate that the view should be cancelled.
 /atom/proc/check_eye(user as mob)
-	if (isAI(user)) // WHYYYY
+	if(isAI(user)) // WHYYYY
 		return 0
 	return -1
 
@@ -448,21 +448,21 @@ its easier to just keep the beam vertical.
 	return
 
 /atom/proc/hitby(atom/movable/AM as mob|obj)
-	if (density)
+	if(density)
 		AM.throwing = FALSE
 	return
 
 /atom/proc/add_hiddenprint(mob/living/M)
 	if(isnull(M)) return
 	if(isnull(M.key)) return
-	if (ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if (H.gloves)
+		if(H.gloves)
 			if(src.fingerprintslast != H.key)
 				src.fingerprintshidden += text("\[[time_stamp()]\] (Wearing gloves). Real name: [], Key: []", H.real_name, H.key)
 				src.fingerprintslast = H.key
 			return FALSE
-		if (!( src.fingerprints ))
+		if(!( src.fingerprints ))
 			if(src.fingerprintslast != H.key)
 				src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []", H.real_name, H.key)
 				src.fingerprintslast = H.key
@@ -497,7 +497,7 @@ its easier to just keep the beam vertical.
 			H.fingers_trace = md5(H.real_name)
 
 		//Now, deal with gloves.
-		if (H.gloves && H.gloves != src)
+		if(H.gloves && H.gloves != src)
 			if(fingerprintslast != H.key)
 				fingerprintshidden += text("\[[]\](Wearing gloves). Real name: [], Key: []", time_stamp(), H.real_name, H.key)
 				fingerprintslast = H.key
@@ -608,7 +608,7 @@ its easier to just keep the beam vertical.
 	if(istype(M))
 		if(!M.fingers_trace)
 			M.fingers_trace = md5(M.real_name)
-		if (M.species)
+		if(M.species)
 			blood_color = M.species.blood_color
 			if(!blood_color)
 				return FALSE
@@ -776,7 +776,7 @@ its easier to just keep the beam vertical.
 
 /atom/proc/get_coords()
 	var/turf/T = get_turf(src)
-	if (T)
+	if(T)
 		return new /datum/coords(T)
 
 /atom/proc/change_area(area/old_area, area/new_area)
@@ -812,7 +812,7 @@ its easier to just keep the beam vertical.
 
 /atom/proc/get_recursive_contents()
 	var/list/result = list()
-	for (var/atom/a in contents)
+	for(var/atom/a in contents)
 		result += a
 		result |= a.get_recursive_contents()
 	return result

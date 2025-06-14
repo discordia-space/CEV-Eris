@@ -54,7 +54,7 @@
 		if(A.owner && A.is_active() && !A.is_dead())
 			a_count++
 
-	if (!a_count && !c_count)
+	if(!a_count && !c_count)
 		return 0 //Can't spawn without at least one antag and one disciple
 
 	return new_weight * max(a_count+c_count, 1)
@@ -71,8 +71,8 @@
 			a_count++
 			break
 
-	if (!a_count)
-		if (report) to_chat(report, SPAN_NOTICE("Failure: No antags which can serve as target"))
+	if(!a_count)
+		if(report) to_chat(report, SPAN_NOTICE("Failure: No antags which can serve as target"))
 		return FALSE //Can't spawn without at least one antag
 
 
@@ -106,8 +106,8 @@
 			a_count++
 			break
 
-	if (a_count == 0)
-		if (report) to_chat(report, SPAN_NOTICE("Failure: No antags which can serve as target"))
+	if(a_count == 0)
+		if(report) to_chat(report, SPAN_NOTICE("Failure: No antags which can serve as target"))
 		return FALSE //Can't spawn without at least one antag
 
 	return ..()
@@ -118,7 +118,7 @@
 		if(A.owner && A.is_active() && !A.is_dead())
 			a_count++
 
-	if (a_count == 0)
+	if(a_count == 0)
 		return 0 //Can't spawn without at least one antag
 
 	return new_weight * max(a_count, 1)

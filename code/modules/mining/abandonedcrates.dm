@@ -138,13 +138,13 @@
 	else
 		visible_message(SPAN_WARNING("A red light on \the [src]'s control panel flashes briefly."))
 		attempts--
-		if (attempts == 0)
+		if(attempts == 0)
 			to_chat(user, SPAN_DANGER("The crate's anti-tamper system activates!"))
 			explosion(get_turf(src), 300, 50)
 			qdel(src)
 
 /obj/structure/closet/crate/secure/loot/emag_act(var/remaining_charges, var/mob/user)
-	if (locked)
+	if(locked)
 		to_chat(user, SPAN_NOTICE("The crate unlocks!"))
 		locked = 0
 
@@ -162,9 +162,9 @@
 
 /obj/structure/closet/crate/secure/loot/attackby(obj/item/W as obj, mob/user as mob)
 	if(locked)
-		if (istype(W, /obj/item/tool/multitool)) // Greetings Urist McProfessor, how about a nice game of cows and bulls?
+		if(istype(W, /obj/item/tool/multitool)) // Greetings Urist McProfessor, how about a nice game of cows and bulls?
 			to_chat(user, SPAN_NOTICE("DECA-CODE LOCK ANALYSIS:"))
-			if (attempts == 1)
+			if(attempts == 1)
 				to_chat(user, SPAN_WARNING("* Anti-Tamper system will activate on the next failed access attempt."))
 			else
 				to_chat(user, SPAN_NOTICE("* Anti-Tamper system will activate after [src.attempts] failed access attempts."))

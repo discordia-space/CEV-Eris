@@ -117,11 +117,11 @@
 	..()
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MATERIAL_STEEL && !parts.len)
 		var/obj/item/stack/material/M = W
-		if (M.use(1))
+		if(M.use(1))
 			var/obj/item/secbot_assembly/ed209_assembly/B = new(loc)
 			B.forceMove(get_turf(src))
 			to_chat(user, SPAN_NOTICE("You armed the robot frame."))
-			if (user.get_inactive_hand() == src)
+			if(user.get_inactive_hand() == src)
 				user.remove_from_mob(src)
 				user.put_in_inactive_hand(B)
 			qdel(src)
@@ -236,11 +236,11 @@
 
 		qdel(src)
 
-	if (istype(W, /obj/item/pen))
+	if(istype(W, /obj/item/pen))
 		var/t = sanitizeSafe(input(user, "Enter new robot name", src.name, src.created_name), MAX_NAME_LEN)
-		if (!t)
+		if(!t)
 			return
-		if (!Adjacent(user) && src.loc != user)
+		if(!Adjacent(user) && src.loc != user)
 			return
 
 		src.created_name = t

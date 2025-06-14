@@ -25,9 +25,9 @@
 	..()
 	if(on_fire)
 		add_overlay("coffin_pyre") //Otherwise the flame visual goes away from the icon changing
-	for (var/mob/living/L in contents)
+	for(var/mob/living/L in contents)
 		//When the coffin is closed we check for mobs in it.
-		if (L.mind && L.mind.key)
+		if(L.mind && L.mind.key)
 			//We won't check if the mob is dead yet, maybe being spaced in a coffin is an execution method
 			occupant = L
 			break

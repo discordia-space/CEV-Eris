@@ -101,7 +101,7 @@
 			SPAN_DANGER("You begin deploying \the [src]!")
 			)
 
-		if (do_after(user, 25))
+		if(do_after(user, 25))
 			user.visible_message(
 				SPAN_DANGER("[user] has deployed \the [src]."),
 				SPAN_DANGER("You have deployed \the [src]!")
@@ -128,7 +128,7 @@
 				armed = FALSE
 				update_icon()
 				return
-	if (deployed)
+	if(deployed)
 		if(pulse_difficulty == FAILCHANCE_ZERO)
 			user.visible_message(
 					SPAN_NOTICE("You carefully disarm the [src].")
@@ -143,7 +143,7 @@
 					SPAN_DANGER("[user] extends its hand to reach \the [src]!"),
 					SPAN_DANGER("You extend your arms to pick it up, knowing that it will likely blow up when you touch it!")
 					)
-			if (do_after(user, 5))
+			if(do_after(user, 5))
 				if(prob(prob_explode))
 					user.visible_message(
 						SPAN_DANGER("[user] attempts to pick up \the [src] only to hear a beep as it explodes in \his hands!"),
@@ -166,7 +166,7 @@
 /obj/item/mine/attackby(obj/item/I, mob/user)
 	if(QUALITY_PULSING in I.tool_qualities)
 
-		if (deployed)
+		if(deployed)
 			user.visible_message(
 			SPAN_DANGER("[user] starts to carefully disarm \the [src]."),
 			SPAN_DANGER("You begin to carefully disarm \the [src].")
@@ -182,7 +182,7 @@
 			update_icon()
 		return
 	else
-		if (deployed)   //now touching it with stuff that don't pulse will also be a bad idea
+		if(deployed)   //now touching it with stuff that don't pulse will also be a bad idea
 			user.visible_message(
 				SPAN_DANGER("\The [src] is hit with [I] and it explodes!"),
 				SPAN_DANGER("You hit \the [src] with [I] and it explodes!"))
@@ -191,7 +191,7 @@
 
 
 /obj/item/mine/Crossed(mob/AM)
-	if (armed)
+	if(armed)
 		if(locate(/obj/structure/multiz/ladder) in get_turf(loc))
 			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the ladder and does not go off."))
 			return
@@ -228,7 +228,7 @@
 				detonator.forceMove(get_turf(src))
 				detonator = null
 
-	if (istype(I,/obj/item/device/assembly_holder))
+	if(istype(I,/obj/item/device/assembly_holder))
 		if(detonator)
 			to_chat(user, SPAN_WARNING("There is another device in the way."))
 			return ..()

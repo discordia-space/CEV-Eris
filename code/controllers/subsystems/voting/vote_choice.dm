@@ -12,6 +12,6 @@
 
 /datum/vote_choice/proc/total_votes()
 	var/total = 0
-	for (var/voter in voters)
+	for(var/voter in voters)
 		total += voters[voter]
 	return total

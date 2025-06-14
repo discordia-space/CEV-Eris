@@ -100,8 +100,8 @@
 	interact(user)
 
 /obj/machinery/shield_gen/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
-		if (!issilicon(user))
+	if( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
+		if(!issilicon(user))
 			user.unset_machine()
 			user << browse(null, "window=shield_generator")
 			return
@@ -141,7 +141,7 @@
 	user.set_machine(src)
 
 /obj/machinery/shield_gen/Process()
-	if (!anchored && active)
+	if(!anchored && active)
 		toggle()
 
 	average_field_strength = max(average_field_strength, 0)
@@ -188,7 +188,7 @@
 		usr.unset_machine()
 		return
 	else if( href_list["toggle"] )
-		if (!active && !anchored)
+		if(!active && !anchored)
 			usr << "\red The [src] needs to be firmly secured to the floor first."
 			return
 		toggle()
@@ -234,12 +234,12 @@
 	if(stat & BROKEN)
 		icon_state = "broke"
 	else
-		if (src.active)
+		if(src.active)
 			icon_state = "generator1"
 		else
 			icon_state = "generator0"
 		overlays.Cut()
-		if (owned_capacitor)
+		if(owned_capacitor)
 			var/I = image(icon,"capacitor_connected", dir = turn(owned_capacitor.dir, 180))
 			overlays += I
 
@@ -249,22 +249,22 @@
 	var/list/out = list()
 
 	var/turf/gen_turf = get_turf(src)
-	if (!gen_turf)
+	if(!gen_turf)
 		return
 
 	var/turf/T
-	for (var/x_offset = -field_radius; x_offset <= field_radius; x_offset++)
+	for(var/x_offset = -field_radius; x_offset <= field_radius; x_offset++)
 		T = locate(gen_turf.x + x_offset, gen_turf.y - field_radius, gen_turf.z)
-		if (T) out += T
+		if(T) out += T
 
 		T = locate(gen_turf.x + x_offset, gen_turf.y + field_radius, gen_turf.z)
-		if (T) out += T
+		if(T) out += T
 
-	for (var/y_offset = -field_radius+1; y_offset < field_radius; y_offset++)
+	for(var/y_offset = -field_radius+1; y_offset < field_radius; y_offset++)
 		T = locate(gen_turf.x - field_radius, gen_turf.y + y_offset, gen_turf.z)
-		if (T) out += T
+		if(T) out += T
 
 		T = locate(gen_turf.x + field_radius, gen_turf.y + y_offset, gen_turf.z)
-		if (T) out += T
+		if(T) out += T
 
 	return out

@@ -105,7 +105,7 @@
 			else
 				growth_type = 4 // Mold
 
-		if (growth_type != 4 && !(seed.get_trait(TRAIT_WALL_HUGGER)))
+		if(growth_type != 4 && !(seed.get_trait(TRAIT_WALL_HUGGER)))
 			//Random rotation for vines
 			//Disabled for mold because it looks bad
 			//0 is in here several times to weight it a bit more towards normal
@@ -127,7 +127,7 @@
 
 	if(seed.get_trait(TRAIT_CHEMS) > 0)
 		src.create_reagents(5*(seed.chems.len))
-		for (var/reagent in seed.chems)
+		for(var/reagent in seed.chems)
 			src.reagents.add_reagent(reagent, 5)
 
 	spawn(2) // Plants will sometimes be spawned in the turf adjacent to the one they need to end up in, for the sake of correct dir/etc being set.
@@ -142,13 +142,13 @@
 			//Lets make acid plants not cause random breaches
 
 			//Check for external tiles around it
-			for (var/turf/U in range(T, 2))
-				if (turf_is_external(U))
+			for(var/turf/U in range(T, 2))
+				if(turf_is_external(U))
 					near_external = TRUE
 					break
 
 			//If we're not near to any external tiles, then we can melt stuff
-			if (!near_external)
+			if(!near_external)
 				T.explosion_act(prob(80) ? 50 : 100, null)
 
 /obj/effect/plant/update_icon()
@@ -169,7 +169,7 @@
 		set_light(0)
 
 /obj/effect/plant/proc/refresh_icon()
-	if (growth_threshold == 0)
+	if(growth_threshold == 0)
 		error("growth_threshold is somehow 0, probably never got redefined. Qdeling to prevent repeat logs")
 		qdel(src)
 		return
@@ -210,11 +210,11 @@ var/list/global/cutoff_plant_icons = list()
 //This allows them to be cutoff and appear to draw under the wall
 
 /obj/effect/plant/proc/get_cutoff_plant_icon(var/icon_base)
-	if (!icon_base)
+	if(!icon_base)
 		return icon //This is not unlikely
 
 	//We retrieve things from this global list first, used as a cache to prevent repeating this expensive icon work
-	if (cutoff_plant_icons[icon_base])
+	if(cutoff_plant_icons[icon_base])
 		return cutoff_plant_icons[icon_base]
 
 	//Ok it doesnt exist yet, lets make it
@@ -223,7 +223,7 @@ var/list/global/cutoff_plant_icons = list()
 	var/icon/I = new()
 
 	//We will loop through each of the five iconstates of a plant
-	for (var/i = 1; i <= 5; i++)
+	for(var/i = 1; i <= 5; i++)
 		//For each state, we create an icon containing only that state
 		var/icon/J = new(icon, "[icon_base]-[i]")
 
@@ -291,7 +291,7 @@ var/list/global/cutoff_plant_icons = list()
 					M.Turn(270)
 			src.transform = M
 
-			if (newDir == SOUTH)
+			if(newDir == SOUTH)
 				//Lets cutoff part of the plant
 				icon = get_cutoff_plant_icon(seed.get_trait(TRAIT_PLANT_ICON))
 

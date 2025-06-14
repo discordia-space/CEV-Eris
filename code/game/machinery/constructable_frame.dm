@@ -135,7 +135,7 @@
 		if(STATE_NONE)
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
-				if (C.get_amount() < 5)
+				if(C.get_amount() < 5)
 					to_chat(user, SPAN_WARNING("You need five lengths of cable to add them to the frame."))
 					return
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)

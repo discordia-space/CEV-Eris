@@ -38,7 +38,7 @@
 	var/turf/a = get_turf(A)
 	var/turf/b = get_turf(B)
 
-	if (!a || !b)
+	if(!a || !b)
 		return 0
 
 	var/vecX = A.x - B.x

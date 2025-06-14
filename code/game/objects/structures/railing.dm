@@ -74,11 +74,11 @@
 	if(reinforced)
 		var/reinforcement_text = "\nIt is reinforced with rods"
 		switch(reinforcement_security)
-			if (0 to 1)
+			if(0 to 1)
 				reinforcement_text += ", which are barely hanging on"
-			if (1 to 20)
+			if(1 to 20)
 				reinforcement_text += ", which are loosely attached"
-			if (20 to 30)
+			if(20 to 30)
 				reinforcement_text += ", which are a bit loose"
 		extra_description += SPAN_NOTICE("[reinforcement_text].")
 	..(user, extra_description)
@@ -86,8 +86,8 @@
 /obj/structure/railing/take_damage(amount)
 	. = health - amount < 0 ? amount - health : amount
 	. *= explosion_coverage
-	if (reinforced)
-		if (reinforcement_security == 0)
+	if(reinforced)
+		if(reinforcement_security == 0)
 			visible_message(SPAN_WARNING("[src]'s reinforcing rods fall off!"))
 			reinforced = FALSE
 			var/obj/item/stack/rodtoedit = new /obj/item/stack/rods(src.loc)
@@ -110,60 +110,60 @@
 	var/Lturn = turn(src.dir, 90)
 
 	for(var/obj/structure/railing/R in src.loc)	// analyzing turf
-		if ((R.dir == Lturn) && R.anchored)	//checking left side
+		if((R.dir == Lturn) && R.anchored)	//checking left side
 			check |= 32
-			if (UpdateNeighbors)
+			if(UpdateNeighbors)
 				R.update_icon(0)
-		if ((R.dir == Rturn) && R.anchored)	//checking right side
+		if((R.dir == Rturn) && R.anchored)	//checking right side
 			check |= 2
-			if (UpdateNeighbors)
+			if(UpdateNeighbors)
 				R.update_icon(0)
 
-	for (var/obj/structure/railing/R in get_step(src, Lturn))	//analysing left turf
-		if ((R.dir == src.dir) && R.anchored)
+	for(var/obj/structure/railing/R in get_step(src, Lturn))	//analysing left turf
+		if((R.dir == src.dir) && R.anchored)
 			check |= 16
-			if (UpdateNeighbors)
+			if(UpdateNeighbors)
 				R.update_icon(0)
-	for (var/obj/structure/railing/R in get_step(src, Rturn))	//analysing right turf
-		if ((R.dir == src.dir) && R.anchored)
+	for(var/obj/structure/railing/R in get_step(src, Rturn))	//analysing right turf
+		if((R.dir == src.dir) && R.anchored)
 			check |= 1
-			if (UpdateNeighbors)
+			if(UpdateNeighbors)
 				R.update_icon(0)
 
-	for (var/obj/structure/railing/R in get_step(src, (Lturn + src.dir)))	//analysing upper-left turf from src direction
-		if ((R.dir == Rturn) && R.anchored)
+	for(var/obj/structure/railing/R in get_step(src, (Lturn + src.dir)))	//analysing upper-left turf from src direction
+		if((R.dir == Rturn) && R.anchored)
 			check |= 64
-			if (UpdateNeighbors)
+			if(UpdateNeighbors)
 				R.update_icon(0)
-	for (var/obj/structure/railing/R in get_step(src, (Rturn + src.dir)))	//analysing upper-right turf from src direction
-		if ((R.dir == Lturn) && R.anchored)
+	for(var/obj/structure/railing/R in get_step(src, (Rturn + src.dir)))	//analysing upper-right turf from src direction
+		if((R.dir == Lturn) && R.anchored)
 			check |= 4
-			if (UpdateNeighbors)
+			if(UpdateNeighbors)
 				R.update_icon(0)
 
 /obj/structure/railing/update_icon(var/UpdateNeighbors = 1)
 	NeighborsCheck(UpdateNeighbors)
 	cut_overlays()
-	if (!check || !anchored)
+	if(!check || !anchored)
 		icon_state = "[icon_modifier][reinforced ? "reinforced_": null]railing0"
 	else
 		icon_state = "[icon_modifier][reinforced ? "reinforced_": null]railing1"
 		//left side
-		if (check & 32)
+		if(check & 32)
 			overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]corneroverlay")
-		if ((check & 16) || !(check & 32) || (check & 64))
+		if((check & 16) || !(check & 32) || (check & 64))
 			overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]frontoverlay_l")
-		if (!(check & 2) || (check & 1) || (check & 4))
+		if(!(check & 2) || (check & 1) || (check & 4))
 			overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]frontoverlay_r")
 			if(check & 4)
 				switch (src.dir)
-					if (NORTH)
+					if(NORTH)
 						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = 32)
-					if (SOUTH)
+					if(SOUTH)
 						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = -32)
-					if (EAST)
+					if(EAST)
 						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = -32)
-					if (WEST)
+					if(WEST)
 						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = 32)
 
 /obj/structure/railing/verb/rotate()
@@ -233,7 +233,7 @@
 	if(occupied)
 		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
 		return
-	if (state < GRAB_AGGRESSIVE)
+	if(state < GRAB_AGGRESSIVE)
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
@@ -248,7 +248,7 @@
 			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
 			return
 	else
-		if (get_turf(target) == get_turf(src))
+		if(get_turf(target) == get_turf(src))
 			target.forceMove(get_step(src, src.dir))
 		else
 			target.forceMove(get_turf(src))
@@ -277,7 +277,7 @@
 					to_chat(user, (anchored ? SPAN_NOTICE("You have unfastened \the [src] from the floor.") : SPAN_NOTICE("You have fastened \the [src] to the floor.")))
 					anchored = !anchored
 					update_icon()
-				else if (!reinforcement_security)
+				else if(!reinforcement_security)
 					to_chat(user, SPAN_NOTICE("You remove the reinforcing rods from [src]"))
 					var/obj/item/stack/rodtoedit = new /obj/item/stack/rods(get_turf(usr))
 					rodtoedit.amount = 2
@@ -378,7 +378,7 @@
 /obj/structure/railing/get_fall_damage(var/turf/from, var/turf/dest)
 	var/damage = health * 0.4
 
-	if (from && dest)
+	if(from && dest)
 		damage *= abs(from.z - dest.z)
 
 	return damage

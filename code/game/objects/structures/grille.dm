@@ -156,7 +156,7 @@
 					return
 
 			var/wtype = ST.material.created_window
-			if (ST.use(1))
+			if(ST.use(1))
 				var/obj/structure/window/WD = new wtype(loc, dir_to_set, 1)
 				to_chat(user, SPAN_NOTICE("You place the [WD] on [src]."))
 				WD.update_icon()
@@ -261,7 +261,7 @@
 /obj/structure/grille/get_fall_damage(var/turf/from, var/turf/dest)
 	var/damage = health * 0.4 * get_health_ratio()
 
-	if (from && dest)
+	if(from && dest)
 		damage *= abs(from.z - dest.z)
 
 	return damage

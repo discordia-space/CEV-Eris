@@ -142,12 +142,12 @@
 /obj/item/tray/robotray/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
-	if ( !target )
+	if( !target )
 		return
 	// pick up items, mostly copied from base tray pickup proc
 	// see code\game\objects\items\weapons\kitchen.dm line 241
-	if ( istype(target,/obj/item))
-		if ( !isturf(target.loc) ) // Don't load up stuff if it's inside a container or mob!
+	if( istype(target,/obj/item))
+		if( !isturf(target.loc) ) // Don't load up stuff if it's inside a container or mob!
 			return
 		var turf/pickup = target.loc
 
@@ -171,7 +171,7 @@
 				carrying.Add(I)
 				overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer)
 				addedSomething = 1
-		if ( addedSomething )
+		if( addedSomething )
 			user.visible_message("\blue [user] load some items onto their service tray.")
 
 		return
@@ -179,17 +179,17 @@
 	// Unloads the tray, copied from base item's proc dropped() and altered
 	// see code\game\objects\items\weapons\kitchen.dm line 263
 
-	if ( isturf(target) || istype(target,/obj/structure/table) )
+	if( isturf(target) || istype(target,/obj/structure/table) )
 		var foundtable = istype(target,/obj/structure/table/)
-		if ( !foundtable ) //it must be a turf!
+		if( !foundtable ) //it must be a turf!
 			for(var/obj/structure/table/T in target)
 				foundtable = 1
 				break
 
 		var turf/dropspot
-		if ( !foundtable ) // don't unload things onto walls or other silly places.
+		if( !foundtable ) // don't unload things onto walls or other silly places.
 			dropspot = user.loc
-		else if ( isturf(target) ) // they clicked on a turf with a table in it
+		else if( isturf(target) ) // they clicked on a turf with a table in it
 			dropspot = target
 		else					// they clicked on a table
 			dropspot = target.loc
@@ -210,8 +210,8 @@
 						if(I)
 							step(I, pick(NORTH,SOUTH,EAST,WEST))
 							sleep(rand(2,4))
-		if ( droppedSomething )
-			if ( foundtable )
+		if( droppedSomething )
+			if( foundtable )
 				user.visible_message("\blue [user] unloads their service tray.")
 			else
 				user.visible_message("\blue [user] drops all the items on their tray.")
@@ -244,7 +244,7 @@
 			if(newcolour) colour = newcolour
 
 		if("Mode")
-			if (mode == 1)
+			if(mode == 1)
 				mode = 2
 			else
 				mode = 1
@@ -256,10 +256,10 @@
 // see code\modules\paperwork\paper.dm line 62
 
 /obj/item/pen/robopen/proc/RenamePaper(mob/user,obj/paper)
-	if ( !user || !paper )
+	if( !user || !paper )
 		return
 	var/n_name = sanitizeSafe(input(user, "What would you like to label the paper?", "Paper Labelling", null)  as text, 32)
-	if ( !user || !paper )
+	if( !user || !paper )
 		return
 
 	//n_name = copytext(n_name, 1, 32)
@@ -310,7 +310,7 @@
 	set src in range(0)
 
 	var/N = input("How much damage should the shield absorb?") in list("5","10","25","50","75","100")
-	if (N)
+	if(N)
 		shield_level = text2num(N)/100
 
 /obj/item/borg/combat/mobility

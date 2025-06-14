@@ -66,7 +66,7 @@
 	var/obj/item/handcuffs/chained = null
 
 /obj/item/clothing/shoes/color/orange/proc/attach_cuffs(var/obj/item/handcuffs/cuffs, mob/user as mob)
-	if (src.chained) return
+	if(src.chained) return
 
 	user.drop_item()
 	cuffs.loc = src
@@ -75,7 +75,7 @@
 	src.icon_state = "orange1"
 
 /obj/item/clothing/shoes/color/orange/proc/remove_cuffs(mob/user as mob)
-	if (!src.chained) return
+	if(!src.chained) return
 
 	user.put_in_hands(src.chained)
 	src.chained.add_fingerprint(user)
@@ -90,7 +90,7 @@
 
 /obj/item/clothing/shoes/color/orange/attackby(H as obj, mob/user as mob)
 	..()
-	if (istype(H, /obj/item/handcuffs))
+	if(istype(H, /obj/item/handcuffs))
 		attach_cuffs(H, user)
 
 

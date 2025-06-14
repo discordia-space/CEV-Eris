@@ -575,7 +575,7 @@
 	var/list/data = nano_ui_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "trade.tmpl", name, 910, 800, state = state)
 
 		// template keys starting with _ are not appended to the UI automatically and have to be called manually

@@ -1,17 +1,17 @@
 /mob/living/silicon/ai/Life()
-	if (stat == DEAD)
+	if(stat == DEAD)
 		return
 	else //I'm not removing that shitton of tabs, unneeded as they are. -- Urist
 		//Being dead doesn't mean your temperature never changes
 		var/turf/T = get_turf(src)
 
-		if (stat!=CONSCIOUS)
+		if(stat!=CONSCIOUS)
 			cameraFollow = null
 			reset_view(null)
 
 		updatehealth()
 
-		if (!hardware_integrity() || !backup_capacitor())
+		if(!hardware_integrity() || !backup_capacitor())
 			death()
 			return
 
@@ -38,20 +38,20 @@
 			to_chat(src, SPAN_NOTICE("<b>APU GENERATOR FAILURE! (System Damaged)</b>"))
 			stop_apu(1)
 
-		if (!is_blinded())
-			if (aiRestorePowerRoutine==2)
+		if(!is_blinded())
+			if(aiRestorePowerRoutine==2)
 				to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 				aiRestorePowerRoutine = 0
 //				blind.alpha = 0
 				updateicon()
 				return
-			else if (aiRestorePowerRoutine==3)
+			else if(aiRestorePowerRoutine==3)
 				to_chat(src, "Alert cancelled. Power has been restored.")
 				aiRestorePowerRoutine = 0
 //				blind.alpha = 0
 				updateicon()
 				return
-			else if (APU_power)
+			else if(APU_power)
 				aiRestorePowerRoutine = 0
 //				blind.alpha = 0
 				updateicon()
@@ -59,8 +59,8 @@
 		else
 			var/area/current_area = get_area(src)
 
-			if (lacks_power())
-				if (aiRestorePowerRoutine==0)
+			if(lacks_power())
+				if(aiRestorePowerRoutine==0)
 					aiRestorePowerRoutine = 1
 
 					pull_to_core()  // Pull back mind to core if it is controlling a drone
@@ -71,8 +71,8 @@
 					spawn(20)
 						to_chat(src, "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection.")
 						sleep(50)
-						if (current_area.power_equip)
-							if (!istype(T, /turf/space))
+						if(current_area.power_equip)
+							if(!istype(T, /turf/space))
 								to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 								aiRestorePowerRoutine = 0
 //								blind.alpha = 0
@@ -81,7 +81,7 @@
 						sleep(20)
 						to_chat(src, "Emergency control system online. Verifying connection to power network.")
 						sleep(50)
-						if (istype(T, /turf/space))
+						if(istype(T, /turf/space))
 							to_chat(src, "Unable to verify! No power connection detected!")
 							aiRestorePowerRoutine = 2
 							return
@@ -90,28 +90,28 @@
 						var/obj/machinery/power/apc/theAPC = null
 
 						var/PRP
-						for (PRP=1, PRP<=4, PRP++)
-							for (var/obj/machinery/power/apc/APC in current_area)
-								if (!(APC.stat & BROKEN))
+						for(PRP=1, PRP<=4, PRP++)
+							for(var/obj/machinery/power/apc/APC in current_area)
+								if(!(APC.stat & BROKEN))
 									theAPC = APC
 									break
-							if (!theAPC)
+							if(!theAPC)
 								switch(PRP)
-									if (1) src << "Unable to locate APC!"
+									if(1) src << "Unable to locate APC!"
 									else src << "Lost connection with the APC!"
 								src:aiRestorePowerRoutine = 2
 								return
-							if (current_area.power_equip)
-								if (!istype(T, /turf/space))
+							if(current_area.power_equip)
+								if(!istype(T, /turf/space))
 									to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 									aiRestorePowerRoutine = 0
 //									blind.alpha = 0 //This, too, is a fix to issue 603
 									return
 							switch(PRP)
-								if (1) src << "APC located. Optimizing route to APC to avoid needless power waste."
-								if (2) src << "Best route identified. Hacking offline APC power port."
-								if (3) src << "Power port upload access confirmed. Loading control program into APC power port software."
-								if (4)
+								if(1) src << "APC located. Optimizing route to APC to avoid needless power waste."
+								if(2) src << "Best route identified. Hacking offline APC power port."
+								if(3) src << "Power port upload access confirmed. Loading control program into APC power port software."
+								if(4)
 									to_chat(src, "Transfer complete. Forcing APC to execute program.")
 									sleep(50)
 									to_chat(src, "Receiving control information from APC.")
@@ -129,9 +129,9 @@
 	process_queued_alarms()
 	handle_regular_hud_updates()
 	switch(sensor_mode)
-		if (SEC_HUD)
+		if(SEC_HUD)
 			process_sec_hud(src,0,eyeobj)
-		if (MED_HUD)
+		if(MED_HUD)
 			process_med_hud(src,0,eyeobj)
 
 /mob/living/silicon/ai/proc/lacks_power()
@@ -157,7 +157,7 @@
 	if(is_blinded())
 		updateicon()
 //		blind.screen_loc = ui_entire_screen
-//		if (blind.alpha!=255)
+//		if(blind.alpha!=255)
 //			blind.alpha = 255
 		sight = sight&~SEE_TURFS
 		sight = sight&~SEE_MOBS
@@ -169,6 +169,6 @@
 
 /mob/living/silicon/ai/proc/is_blinded()
 	var/area/A = get_area(src)
-	if (A && !A.power_equip && !istype(loc,/obj/item) && !APU_power)
+	if(A && !A.power_equip && !istype(loc,/obj/item) && !APU_power)
 		return 1
 	return 0

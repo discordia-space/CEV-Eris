@@ -45,13 +45,13 @@
 
 				var/obj/item/safe_thing = null
 				if(victim.wear_mask)
-					if (victim.wear_mask.body_parts_covered & EYES)
+					if(victim.wear_mask.body_parts_covered & EYES)
 						safe_thing = victim.wear_mask
 				if(victim.head)
-					if (victim.head.body_parts_covered & EYES)
+					if(victim.head.body_parts_covered & EYES)
 						safe_thing = victim.head
 				if(victim.glasses)
-					if (!safe_thing)
+					if(!safe_thing)
 						safe_thing = victim.glasses
 
 				if(safe_thing)

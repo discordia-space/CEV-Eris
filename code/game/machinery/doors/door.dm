@@ -179,9 +179,9 @@
 		damage -= bullet_resistance
 
 	// Emitter Blasts - these will eventually completely destroy the door, given enough time.
-	if (damage > 90)
+	if(damage > 90)
 		destroy_hits--
-		if (destroy_hits <= 0)
+		if(destroy_hits <= 0)
 			visible_message(SPAN_DANGER("\The [src.name] disintegrates!"))
 			if(Proj.damage_types[BRUTE] > Proj.damage_types[BURN])
 				new /obj/item/stack/material/steel(src.loc, 2)
@@ -211,10 +211,10 @@
 
 	..()
 	var/damage = 5
-	if (istype(AM, /obj/item))
+	if(istype(AM, /obj/item))
 		var/obj/item/O = AM
 		damage = O.throwforce
-	else if (isliving(AM))
+	else if(isliving(AM))
 		var/mob/living/M = AM
 		hit_by_living(M)
 		return
@@ -291,17 +291,17 @@
 
 		var/obj/item/stack/stack = I
 		var/transfer
-		if (repairing)
+		if(repairing)
 			transfer = stack.transfer_to(repairing, amount_needed - repairing.amount)
-			if (!transfer)
+			if(!transfer)
 				to_chat(user, SPAN_WARNING("You must weld or remove \the [repairing] from \the [src] before you can add anything else."))
 		else
 			repairing = stack.split(amount_needed)
-			if (repairing)
+			if(repairing)
 				repairing.loc = src
 				transfer = repairing.amount
 
-		if (transfer)
+		if(transfer)
 			to_chat(user, SPAN_NOTICE("You fit [transfer] [stack.singular_name]\s to damaged and broken parts on \the [src]."))
 
 		return
@@ -330,24 +330,24 @@
 	var/obj/item/W = I
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	var/calc_damage
-	if (thrown)
+	if(thrown)
 		calc_damage= W.throwforce*W.structure_damage_factor
 	else
 		calc_damage= W.force*W.structure_damage_factor
-		if (user)user.do_attack_animation(src)
+		if(user)user.do_attack_animation(src)
 
 	calc_damage -= resistance
 
 	if(calc_damage <= 0)
-		if (user)user.visible_message(SPAN_DANGER("\The [user] hits \the [src] with \the [W] with no visible effect."))
+		if(user)user.visible_message(SPAN_DANGER("\The [user] hits \the [src] with \the [W] with no visible effect."))
 		playsound(src.loc, hitsound, 20, 1)
 	else
-		if (user)user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
+		if(user)user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
 		playsound(src.loc, hitsound, calc_damage*2.5, 1, 3,3)
 		take_damage(W.force)
 
 /obj/machinery/door/take_damage(damage)
-	if (!isnum(damage))
+	if(!isnum(damage))
 		return
 	var/initialhealth = health
 	. = health - damage < 0 ? damage - (damage - health) : damage
@@ -389,7 +389,7 @@
 /obj/machinery/door/proc/set_broken()
 	stat |= BROKEN
 
-	if (health <= 0 && open_on_break)
+	if(health <= 0 && open_on_break)
 		visible_message(SPAN_WARNING("\The [src.name] breaks open!"))
 		open(TRUE)
 	else

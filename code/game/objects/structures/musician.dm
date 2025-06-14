@@ -376,7 +376,7 @@
 			var/t = ""
 			do
 				t = html_encode(input(usr, "Please paste the entire song, formatted:", text("[]", src.name), t)  as message)
-				if (!in_range(src, usr))
+				if(!in_range(src, usr))
 					return
 
 				if(length(t) >= 12000)
@@ -412,7 +412,7 @@
 	return
 
 /obj/structure/device/piano/attackby(var/obj/item/tool/tool, mob/user)
-	if (tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+	if(tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 		anchored = !anchored
 		user.visible_message( \
 			"[user] [anchored ? "tightens" : "loosens"] \the [src]'s casters.", \

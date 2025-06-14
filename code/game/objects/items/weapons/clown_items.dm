@@ -9,7 +9,7 @@
  * Banana Peals
  */
 /obj/item/bananapeel/Crossed(AM as mob|obj)
-	if (isliving(AM))
+	if(isliving(AM))
 		var/mob/living/M = AM
 		if((locate(/obj/structure/multiz/stairs) in get_turf(loc)) || (locate(/obj/structure/multiz/ladder) in get_turf(loc)))
 			visible_message(SPAN_DANGER("\The [M] carefully avoids stepping down on \the [src]."))
@@ -44,7 +44,7 @@
 	reagents.add_reagent("cleaner", 20)
 
 /obj/item/soap/Crossed(AM as mob|obj)
-	if (isliving(AM))
+	if(isliving(AM))
 		var/mob/living/M = AM
 		if((locate(/obj/structure/multiz/stairs) in get_turf(loc)) || (locate(/obj/structure/multiz/ladder) in get_turf(loc)))
 			visible_message(SPAN_DANGER("\The [M] carefully avoids stepping down on \the [src]."))
@@ -73,8 +73,8 @@
 		to_chat(user, "<span class='notice'>You wet \the [src] in the sink.</span>")
 		wet()
 		return
-	else if (istype(target, /obj/structure/mopbucket) || istype(target, /obj/item/reagent_containers/glass) || istype(target, /obj/structure/reagent_dispensers/watertank))
-		if (target.reagents && target.reagents.total_volume)
+	else if(istype(target, /obj/structure/mopbucket) || istype(target, /obj/item/reagent_containers/glass) || istype(target, /obj/structure/reagent_dispensers/watertank))
+		if(target.reagents && target.reagents.total_volume)
 			to_chat(user, "<span class='notice'>You wet \the [src] in the [target].</span>")
 			wet()
 			return
@@ -154,7 +154,7 @@
 	I.gun_loc_tag = GUN_MECHANISM
 
 /obj/item/bikehorn/attack_self(mob/user)
-	if (spam_flag == 0)
+	if(spam_flag == 0)
 		spam_flag = 1
 		playsound(src.loc, 'sound/items/bikehorn.ogg', 50, 1)
 		src.add_fingerprint(user)

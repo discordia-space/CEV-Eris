@@ -57,10 +57,10 @@
 
 /obj/structure/multiz/attack_ai(mob/living/silicon/user)
 	if(target)
-		if (isAI(user))
+		if(isAI(user))
 			var/turf/T = get_turf(target)
 			T.move_camera_by_click()
-		else if (Adjacent(user))
+		else if(Adjacent(user))
 			attack_hand(user)
 
 
@@ -101,7 +101,7 @@
 
 	//If the tile to the north is acessible, change our behaviour to hug the south of a tile and draw over all mobs
 	var/turf/T = get_step(src, NORTH)
-	if (turf_clear(T))
+	if(turf_clear(T))
 		pixel_y = -4
 		layer = ABOVE_MOB_LAYER
 
@@ -146,7 +146,7 @@
 		attack_hand(user)
 
 /obj/structure/multiz/ladder/attack_hand(var/mob/M)
-	if (isrobot(M))
+	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		var/new_delay = climb_delay * (R.HasTrait(CYBORG_TRAIT_PARKOUR) ? 0.75 : 1) * (isdrone(M) ? 1 : 3 / R.speed_factor)
 		climb(M, (new_delay))	//Robots are not built for climbing, they should go around where possible
@@ -168,17 +168,17 @@
 		if(!A.CanPass(M))
 			to_chat(M, SPAN_NOTICE("\A [A] is blocking \the [src]."))
 			return
-		else if (A.density && ismob(A))
+		else if(A.density && ismob(A))
 			tempMob = A
 			continue
 
-	if (tempMob)
+	if(tempMob)
 		to_chat(M, SPAN_NOTICE("\A [tempMob] is blocking \the [src], making it harder to climb."))
 		delay = delay * 1.5
 
 	//Robots are a quarter ton of steel and most of them lack legs or arms of any appreciable sorts.
 	//Even being able to climb ladders at all is a violation of newton'slaws. It shall at least be slow and communicated as such
-	if (isrobot(M) && !isdrone(M))
+	if(isrobot(M) && !isdrone(M))
 		M.visible_message(
 			"<span class='notice'>\A [M] starts slowly climbing [istop ? "down" : "up"] \a [src]!</span>",
 			"<span class='danger'>You begin the slow, laborious process of dragging your hulking frame [istop ? "down" : "up"] \the [src]</span>",

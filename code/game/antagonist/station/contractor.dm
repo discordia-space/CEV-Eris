@@ -22,7 +22,7 @@
 		return "<a href='?src=\ref[owner];common=crystals'>\[set crystals\]</a><a href='?src=\ref[src];spawn_uplink=\ref[owner.current]'>\[spawn uplink\]</a>"
 
 /datum/antagonist/contractor/Topic(href, href_list)
-	if (..())
+	if(..())
 		return
 	if(href_list["spawn_uplink"]) spawn_uplink(locate(href_list["spawn_uplink"]))
 

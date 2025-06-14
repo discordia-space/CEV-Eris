@@ -47,7 +47,7 @@
 	else if(istype(notification_source, /obj/item/modular_computer))
 		var/obj/item/modular_computer/computer = notification_source
 		var/datum/computer_file/program/email_client/PRG = computer.active_program
-		if (istype(PRG) && PRG.ringtone)
+		if(istype(PRG) && PRG.ringtone)
 			computer.visible_message("\The [host] beeps softly, indicating a new email has been received.", 1)
 			playsound(computer, 'sound/machines/twobeep.ogg', 50, 1)
 

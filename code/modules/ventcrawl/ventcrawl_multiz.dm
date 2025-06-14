@@ -20,10 +20,10 @@
 
 /obj/machinery/atmospherics/pipe/zpipe/Topic(href, href_list)
 	. = ..()
-	if (href_list["crawl_user"])
+	if(href_list["crawl_user"])
 		var/mob/living/L = locate(href_list["crawl_user"])
 		var/direction = text2num(href_list["crawl_dir"])
-		if (istype(L))
+		if(istype(L))
 			return handle_z_crawl(L, direction)
 
 /obj/machinery/atmospherics/pipe/zpipe/proc/check_ventcrawl(var/turf/target)
@@ -49,7 +49,7 @@
 	return
 
 /obj/machinery/atmospherics/pipe/zpipe/handle_z_crawl(var/mob/living/L, var/direction)
-	if (!can_z_crawl(L, direction))
+	if(!can_z_crawl(L, direction))
 		to_chat(L, span("notice", "You can't climb that way!"))
 		return
 	to_chat(L, span("notice", "You start climbing [travel_direction_name] the pipe. This will take a while..."))

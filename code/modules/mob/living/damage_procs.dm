@@ -127,14 +127,14 @@
 	var/damage = min(15, maxHealth*0.4)
 
 	//If damage is multiplied by the number of floors you fall simultaneously
-	if (from && dest)
+	if(from && dest)
 		damage *= abs(from.z - dest.z)+1
 	return damage
 
 /mob/living/fall_impact(var/turf/from, var/turf/dest)
 	activate_ai()
 	var/damage = get_fall_damage(from, dest)
-	if (damage > 0)
+	if(damage > 0)
 		take_overall_damage(damage)
 		playsound(src, pick(punch_sound), 100, 1, 10)
 		Weaken(4)

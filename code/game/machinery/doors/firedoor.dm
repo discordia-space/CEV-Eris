@@ -193,7 +193,7 @@
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					user.visible_message(SPAN_DANGER("[user] has removed the electronics from \the [src]."),
 										"You have removed the electronics from [src].")
-					if (stat & BROKEN)
+					if(stat & BROKEN)
 						new /obj/item/electronics/circuitboard/broken(src.loc)
 					else
 						new/obj/item/electronics/airalarm(src.loc)
@@ -228,7 +228,7 @@
 
 
 /obj/machinery/door/firedoor/close(var/forced = 0)
-	if (blocked) //welded
+	if(blocked) //welded
 		return
 
 	if(!forced)
@@ -240,7 +240,7 @@
 	return ..()
 
 /obj/machinery/door/firedoor/open(var/forced = 0)
-	if (blocked) //welded
+	if(blocked) //welded
 		return
 
 	if(hatch_open)

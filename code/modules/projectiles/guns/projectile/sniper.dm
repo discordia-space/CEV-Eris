@@ -54,10 +54,10 @@
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
-	if (item_suffix)
+	if(item_suffix)
 		itemstring += "[item_suffix]"
 
-	if (bolt_open)
+	if(bolt_open)
 		iconstring += "_open"
 	else
 		iconstring += "_closed"

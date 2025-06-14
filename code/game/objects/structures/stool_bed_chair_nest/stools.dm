@@ -70,7 +70,7 @@ var/global/list/stool_cache = list() //haha stool
 	update_icon()
 
 /obj/item/stool/attack(mob/M as mob, mob/user as mob)
-	if (prob(5) && isliving(M))
+	if(prob(5) && isliving(M))
 		user.visible_message(SPAN_DANGER("[user] breaks [src] over [M]'s back!"))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(M)

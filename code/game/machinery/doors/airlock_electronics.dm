@@ -18,7 +18,7 @@
 	var/wifi_id = null
 
 /obj/item/electronics/airlock/attack_self(mob/user)
-	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
+	if(!ishuman(user) && !istype(user,/mob/living/silicon/robot))
 		return ..(user)
 
 	nano_ui_interact(user)
@@ -69,7 +69,7 @@
 				if(!istype(I, /obj/item/card/id))
 					to_chat(user, SPAN_WARNING("[\src] flashes a yellow LED near the ID scanner. Did you remember to scan your ID or PDA?"))
 					return TOPIC_HANDLED
-				if (check_access(I))
+				if(check_access(I))
 					locked = FALSE
 					last_configurator = I.registered_name
 				else
@@ -98,19 +98,19 @@
 
 
 /obj/item/electronics/airlock/proc/toggle_access(var/acc)
-	if (acc == "all")
+	if(acc == "all")
 		conf_access = null
 	else
 		var/req = text2num(acc)
 
-		if (conf_access == null)
+		if(conf_access == null)
 			conf_access = list()
 
-		if (!(req in conf_access))
+		if(!(req in conf_access))
 			conf_access += req
 		else
 			conf_access -= req
-			if (!conf_access.len)
+			if(!conf_access.len)
 				conf_access = null
 
 

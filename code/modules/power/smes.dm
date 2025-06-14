@@ -140,9 +140,9 @@
 
 	if(inputting == 2)
 		overlays += image('icons/obj/power.dmi', "smes-oc2")
-	else if (inputting == 1)
+	else if(inputting == 1)
 		overlays += image('icons/obj/power.dmi', "smes-oc1")
-	else if (input_attempt)
+	else if(input_attempt)
 		overlays += image('icons/obj/power.dmi', "smes-oc0")
 
 	var/clevel = chargedisplay()
@@ -151,7 +151,7 @@
 
 	if(outputting == 2)
 		overlays += image('icons/obj/power.dmi', "smes-op2")
-	else if (outputting == 1)
+	else if(outputting == 1)
 		overlays += image('icons/obj/power.dmi', "smes-op1")
 	else
 		overlays += image('icons/obj/power.dmi', "smes-op0")
@@ -236,22 +236,22 @@
 
 //Will return 1 on failure
 /obj/machinery/power/smes/proc/make_terminal(const/mob/user)
-	if (user.loc == loc)
+	if(user.loc == loc)
 		to_chat(user, SPAN_WARNING("You must not be on the same tile as the [src]."))
 		return 1
 
 	//Direction the terminal will face to
 	var/tempDir = get_dir(user, src)
 	switch(tempDir)
-		if (NORTHEAST, SOUTHEAST)
+		if(NORTHEAST, SOUTHEAST)
 			tempDir = EAST
-		if (NORTHWEST, SOUTHWEST)
+		if(NORTHWEST, SOUTHWEST)
 			tempDir = WEST
 	var/turf/tempLoc = get_step(src, reverse_direction(tempDir))
-	if (istype(tempLoc, /turf/space))
+	if(istype(tempLoc, /turf/space))
 		to_chat(user, SPAN_WARNING("You can't build a terminal on space."))
 		return 1
-	else if (istype(tempLoc))
+	else if(istype(tempLoc))
 		if(!tempLoc.is_plating())
 			to_chat(user, SPAN_WARNING("You must remove the floor plating first."))
 			return 1
@@ -285,20 +285,20 @@
 			to_chat(user, SPAN_NOTICE("You [open_hatch ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 		return
 
-	if (!open_hatch)
+	if(!open_hatch)
 		to_chat(user, SPAN_WARNING("You need to open access hatch on [src] first!"))
 		return 0
 
 	if(tool_type == QUALITY_WIRE_CUTTING)
 		if(terminal && !building_terminal && open_hatch)
 			var/turf/tempTDir = terminal.loc
-			if (istype(tempTDir))
+			if(istype(tempTDir))
 				if(!tempTDir.is_plating())
 					to_chat(user, SPAN_WARNING("You must remove the floor plating first."))
 					return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				building_terminal = 1
-				if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
+				if(prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 					s.set_up(5, 1, src)
 					s.start()
@@ -316,11 +316,11 @@
 	if(istype(I, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
 		building_terminal = 1
 		var/obj/item/stack/cable_coil/CC = I
-		if (CC.get_amount() <= 10)
+		if(CC.get_amount() <= 10)
 			to_chat(user, SPAN_WARNING("You need more cables."))
 			building_terminal = 0
 			return 0
-		if (make_terminal(user))
+		if(make_terminal(user))
 			building_terminal = 0
 			return 0
 		building_terminal = 0
@@ -357,9 +357,9 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "smes.tmpl", "SMES Unit", 540, 380)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -498,7 +498,7 @@
 		input_level = rand(0, input_level_max)
 	if(prob(50))
 		charge -= 1e6/severity
-		if (charge < 0)
+		if(charge < 0)
 			charge = 0
 	if(prob(50))
 		energy_fail(rand(0 + (severity * 30),30 + (severity * 30)))

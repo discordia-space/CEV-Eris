@@ -40,7 +40,7 @@
 
 
 /obj/item/tool/weldingtool/is_hot()
-	if (damtype == BURN)
+	if(damtype == BURN)
 		return heat
 
 

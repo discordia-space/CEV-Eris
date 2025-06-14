@@ -26,7 +26,7 @@
 	if(default_deconstruction(I, user))
 		return
 	//Useability tweak for borgs
-	if (istype(I,/obj/item/gripper))
+	if(istype(I,/obj/item/gripper))
 		nano_ui_interact(user)
 		return
 	return insert(I, user)
@@ -103,7 +103,7 @@
 	var/list/data = list()
 
 	data["contents"] = list()
-	for (var/obj/item/I in holdingitems)
+	for(var/obj/item/I in holdingitems)
 		var/obj/item/stack/stack = I
 		if(istype(stack) && stack.get_amount() > 1)
 			data["contents"] += "[stack.get_amount()] [I.name]"
@@ -359,17 +359,17 @@
 		grind()
 		update_icon()
 		refresh_all()
-		if (toolsound)
+		if(toolsound)
 			toolsound.stop()
 			toolsound = null
 
 /obj/item/storage/makeshift_grinder/proc/grind()
 	// Sanity check.
-	if (!reagents || (reagents.total_volume >= reagents.maximum_volume))
+	if(!reagents || (reagents.total_volume >= reagents.maximum_volume))
 		return
 
 	// Process.
-	for (var/obj/item/O in src.contents)
+	for(var/obj/item/O in src.contents)
 		var/remaining_volume = reagents.maximum_volume - reagents.total_volume
 		if(remaining_volume <= 0)
 			break
@@ -393,14 +393,14 @@
 			if(O.reagents.total_volume == 0)
 				qdel(O)
 				src.contents.Remove(O)
-			if (reagents.total_volume >= reagents.maximum_volume)
+			if(reagents.total_volume >= reagents.maximum_volume)
 				break
 
 /obj/item/storage/makeshift_grinder/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/container = I
 		if(!container.standard_pour_into(user, src)) . = ..()
-	else if (LAZYLEN(I.reagents)) . = ..()
+	else if(LAZYLEN(I.reagents)) . = ..()
 	else to_chat(user, SPAN_NOTICE("\icon[I] \the [I] seems that it is not suitable for a \icon[src] [src]."))
 	update_icon()
 

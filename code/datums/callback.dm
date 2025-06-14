@@ -68,10 +68,10 @@
  * * ... an optional list of extra arguments to pass to the proc
  */
 /datum/callback/New(thingtocall, proctocall, ...)
-	if (thingtocall)
+	if(thingtocall)
 		object = thingtocall
 	delegate = proctocall
-	if (length(args) > 2)
+	if(length(args) > 2)
 		arguments = args.Copy(3)
 	if(usr)
 		user = WEAKREF(usr)
@@ -86,12 +86,12 @@
 /world/proc/ImmediateInvokeAsync(thingtocall, proctocall, ...)
 	set waitfor = FALSE
 
-	if (!thingtocall)
+	if(!thingtocall)
 		return
 
 	var/list/calling_arguments = length(args) > 2 ? args.Copy(3) : null
 
-	if (thingtocall == GLOBAL_PROC)
+	if(thingtocall == GLOBAL_PROC)
 		call(proctocall)(arglist(calling_arguments))
 	else
 		call(thingtocall, proctocall)(arglist(calling_arguments))
@@ -110,22 +110,22 @@
 		if(W)
 			var/mob/M = W.resolve()
 			if(M)
-				if (length(args))
+				if(length(args))
 					return world.PushUsr(arglist(list(M, src) + args))
 				return world.PushUsr(M, src)
 
-	if (!object)
+	if(!object)
 		return
 
 	var/list/calling_arguments = arguments
-	if (length(args))
-		if (length(arguments))
+	if(length(args))
+		if(length(arguments))
 			calling_arguments = calling_arguments + args //not += so that it creates a new list so the arguments list stays clean
 		else
 			calling_arguments = args
 	// if(datum_flags & DF_VAR_EDITED)
 	// 	return WrapAdminProcCall(object, delegate, calling_arguments)
-	if (object == GLOBAL_PROC)
+	if(object == GLOBAL_PROC)
 		return call(delegate)(arglist(calling_arguments))
 	return call(object, delegate)(arglist(calling_arguments))
 
@@ -145,22 +145,22 @@
 		if(W)
 			var/mob/M = W.resolve()
 			if(M)
-				if (length(args))
+				if(length(args))
 					return world.PushUsr(arglist(list(M, src) + args))
 				return world.PushUsr(M, src)
 
-	if (!object)
+	if(!object)
 		return
 
 	var/list/calling_arguments = arguments
-	if (length(args))
-		if (length(arguments))
+	if(length(args))
+		if(length(arguments))
 			calling_arguments = calling_arguments + args //not += so that it creates a new list so the arguments list stays clean
 		else
 			calling_arguments = args
 	// if(datum_flags & DF_VAR_EDITED)
 	// 	return WrapAdminProcCall(object, delegate, calling_arguments)
-	if (object == GLOBAL_PROC)
+	if(object == GLOBAL_PROC)
 		return call(delegate)(arglist(calling_arguments))
 	return call(object, delegate)(arglist(calling_arguments))
 
@@ -174,21 +174,21 @@
 
 /datum/callback_select/New(count, savereturns)
 	total = count
-	if (savereturns)
+	if(savereturns)
 		finished = new(count)
 
 
 /datum/callback_select/proc/invoke_callback(index, datum/callback/callback, list/callback_args, savereturn = TRUE)
 	set waitfor = FALSE
-	if (!callback || !istype(callback))
+	if(!callback || !istype(callback))
 		//This check only exists because the alternative is callback_select would block forever if given invalid data
 		CRASH("invalid callback passed to invoke_callback")
-	if (!length(callback_args))
+	if(!length(callback_args))
 		callback_args = list()
 	pendingcount++
 	var/rtn = callback.Invoke(arglist(callback_args))
 	pendingcount--
-	if (savereturn)
+	if(savereturn)
 		finished[index] = rtn
 
 /**
@@ -203,18 +203,18 @@
  * * resolution The number of byond ticks between each time you check if all callbacks are complete
  */
 /proc/callback_select(list/callbacks, list/callback_args, savereturns = TRUE, resolution = 1)
-	if (!callbacks)
+	if(!callbacks)
 		return
 	var/count = length(callbacks)
-	if (!count)
+	if(!count)
 		return
-	if (!callback_args)
+	if(!callback_args)
 		callback_args = list()
 
 	callback_args.len = count
 
 	var/datum/callback_select/CS = new(count, savereturns)
-	for (var/i in 1 to count)
+	for(var/i in 1 to count)
 		CS.invoke_callback(i, callbacks[i], callback_args[i], savereturns)
 
 	while(CS.pendingcount)

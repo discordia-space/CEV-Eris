@@ -45,7 +45,7 @@ export const createRenderer: CreateRenderer = (getVNode) => (...args) => {
       logger.log('rendered in',
         perf.measure('render/start', 'render/finish'));
     }
-    else if (initialRender) {
+    else if(initialRender) {
       logger.debug('serving from:', location.href);
       logger.debug('bundle entered in',
         perf.measure('inception', 'init'));

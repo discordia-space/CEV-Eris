@@ -75,7 +75,7 @@
 /datum/reagent/carbon/touch_turf(turf/T)
 	if(!istype(T, /turf/space))
 		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, T)
-		if (!dirtoverlay)
+		if(!dirtoverlay)
 			dirtoverlay = new/obj/effect/decal/cleanable/dirt(T)
 			dirtoverlay.alpha = volume * 30
 		else

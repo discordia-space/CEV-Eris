@@ -138,7 +138,7 @@
 	if(entry_vent)
 		entry_vent = null
 	walk(src, 0)
-	if (istype(loc, /obj/item/organ/external))
+	if(istype(loc, /obj/item/organ/external))
 		var/obj/item/organ/external/O = loc
 		O.implants -= src
 	. = ..()

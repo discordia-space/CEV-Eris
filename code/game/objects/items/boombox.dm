@@ -113,7 +113,7 @@
 
 
 /obj/item/media/boombox/proc/update_tape(var/removed)
-	if (!removed)
+	if(!removed)
 		tracks.Add(get_tape_playlist())
 	else
 		tracks.Remove(get_tape_playlist())
@@ -175,7 +175,7 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "jukebox.tmpl", title, 450, 600)
 		ui.set_initial_data(data)
 		ui.open()
@@ -235,7 +235,7 @@
 	set category = "Object"
 	set name = "Eject tape"
 
-	if (usr.stat)
+	if(usr.stat)
 		return
 
 	if(my_tape)

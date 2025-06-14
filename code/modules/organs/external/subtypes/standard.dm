@@ -24,7 +24,7 @@
 		if(amount > 40)
 			if(damage_type == BRUTE && prob(50))
 				disfigure("brute")
-			else if (damage_type == BURN)
+			else if(damage_type == BURN)
 				disfigure("burn")
 
 /obj/item/organ/external/head/get_conditions()

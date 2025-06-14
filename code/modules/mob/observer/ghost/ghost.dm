@@ -40,7 +40,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		var/turf/T = get_turf(body)				//Where is the body located?
 		attack_log = body.attack_log	//preserve our attack logs by copying them to our ghost
 
-		if (ishuman(body))
+		if(ishuman(body))
 			var/mob/living/carbon/human/H = body
 			icon = H.stand_icon
 			overlays = H.overlays_standing
@@ -87,7 +87,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	return ..()
 
 /mob/observer/ghost/Topic(href, href_list)
-	if (href_list["track"])
+	if(href_list["track"])
 		if(ismob(href_list["track"]))
 			var/mob/target = locate(href_list["track"]) in SSmobs.mob_list | SShumans.mob_list
 			if(target)
@@ -146,9 +146,9 @@ Works together with spawning an observer, noted above.
 		//It is also set in the mob/death proc
 		// One more if to get rid off re-enter timer resets.
 		if(stat != DEAD)
-			if (isanimal(src))
+			if(isanimal(src))
 				set_death_time(ANIMAL, world.time)
-			else if (ispAI(src) || isdrone(src))
+			else if(ispAI(src) || isdrone(src))
 				set_death_time(MINISYNTH, world.time)
 			else
 				set_death_time(CREW, world.time)//Crew is the fallback
@@ -356,7 +356,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(isghost(usr)) //Make sure they're an observer!
 
-		if (!target)//Make sure we actually have a target
+		if(!target)//Make sure we actually have a target
 			return
 		else
 			var/mob/M = getmobs()[target] //Destination mob
@@ -399,7 +399,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!isghost(usr)) return
 
 	// Shamelessly copied from the Gas Analyzers
-	if (!( istype(usr.loc, /turf) ))
+	if(!( istype(usr.loc, /turf) ))
 		return
 
 	var/datum/gas_mixture/environment = usr.loc.return_air()
@@ -439,15 +439,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	switch(alert(src, "Are you -sure- you want to become a mouse? This will not affect your crew or drone respawn time. You can choose to spawn near your ghost or at a random vent on this deck.","Are you sure you want to squeek?","Near Ghost", "Random","Cancel"))
 		if("Cancel")
 			return  //Hit the wrong key...again.
-		if ("Random")
+		if("Random")
 			spawnpoint = find_mouse_random_spawnpoint(T.z) //find a viable mouse spawn candidate.
-		if ("Near Ghost")
+		if("Near Ghost")
 			spawnpoint = find_mouse_near_spawnpoint(T)
 
 	if(!isobserver(src) || !src.ckey)
 		return //So we can't spawn infinite mice if we've already used this
 
-	if (spawnpoint)
+	if(spawnpoint)
 		host = new /mob/living/simple_animal/mouse(spawnpoint.loc)
 	else
 		to_chat(src, "<span class='warning'>Unable to find any safe, unwelded vents to spawn mice at. The ship must be quite a mess!  Trying again might work, if you think there's still a safe place. </span>")
@@ -468,7 +468,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	for(var/obj/machinery/atmospherics/unary/vent_pump/v in GLOB.machines)
 		if(!v.welded && v.z == T.z && !(is_turf_atmos_unsafe(get_turf(v))))
 			var/distance = dist3D(v, T)
-			if (distance < nearest_dist)
+			if(distance < nearest_dist)
 				nearest_safe_vent = v
 				nearest_dist = distance
 
@@ -485,7 +485,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(!v.welded && v.z == ZLevel)
 			found_vents.Add(v)
 
-	if (found_vents.len == 0)
+	if(found_vents.len == 0)
 		return null//Every vent on the map is welded? Sucks to be a mouse
 
 	var/attempts = 0
@@ -494,17 +494,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/obj/machinery/atmospherics/unary/vent_pump/bestvent = null
 	var/best_connections = 0
-	while (attempts < max_attempts)
+	while(attempts < max_attempts)
 		attempts++
 		var/obj/machinery/atmospherics/unary/vent_pump/testvent = pick(found_vents)
 
-		if (!testvent.network)//this prevents runtime errors
+		if(!testvent.network)//this prevents runtime errors
 			continue
 
 		var/turf/T = get_turf(testvent)
 
 
-		if (is_turf_atmos_unsafe(T))
+		if(is_turf_atmos_unsafe(T))
 			continue
 		//----------------------
 
@@ -525,14 +525,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			best_connections = connections.len
 			bestvent = testvent
 
-		if (connections.len >= target_connections)
+		if(connections.len >= target_connections)
 			return testvent
 			//If we've found one that's good enough, then we stop looking
 
 
 	//IF we get here, then we hit the limit without finding a valid one.
 	//This would probably only be likely to happen if the station is full of holes and pipes are broken everywhere
-	if (bestvent == null)
+	if(bestvent == null)
 		//If bestvent is null, then every vent we checked was either welded or unsafe to spawn at. The user will be given a message reflecting this.
 		return null
 	else
@@ -668,14 +668,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	updateghostsight()
 
 /mob/observer/ghost/proc/updateghostsight()
-	if (!seedarkness)
+	if(!seedarkness)
 		see_invisible = SEE_INVISIBLE_NOLIGHTING
 	else
 		see_invisible = ghostvision ? SEE_INVISIBLE_OBSERVER : SEE_INVISIBLE_LIVING
 	updateghostimages()
 
 /mob/observer/ghost/proc/updateghostimages()
-	if (!client)
+	if(!client)
 		return
 	client.images -= ghost_sightless_images
 	client.images -= ghost_darkness_images
@@ -700,14 +700,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/timedifference = world.time- get_death_time(respawn_type)
 	var/respawn_time = 0
-	if (respawn_type == CREW)
+	if(respawn_type == CREW)
 		respawn_time = config.respawn_delay MINUTES
 
 		//Here we factor in bonuses added from cryosleep and similar things
 		timedifference += get_respawn_bonus()
-	else if (respawn_type == ANIMAL)
+	else if(respawn_type == ANIMAL)
 		respawn_time = min(ANIMAL_SPAWN_DELAY, config.respawn_delay)
-	else if (respawn_type == MINISYNTH)
+	else if(respawn_type == MINISYNTH)
 		respawn_time = min(DRONE_SPAWN_DELAY, config.respawn_delay)
 
 	timedifference = max(timedifference, 0)
@@ -741,11 +741,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	//Death times are initialised if they were unset
 	//get/set death_time functions are in mob_helpers.dm
 	//These initialised times are designed to allow a player to immediately be a mouse or drone if they joined as observer from lobby
-	if (!get_death_time(ANIMAL))
+	if(!get_death_time(ANIMAL))
 		set_death_time(ANIMAL, world.time - ANIMAL_SPAWN_DELAY)//allow instant mouse spawning
-	if (!get_death_time(MINISYNTH))
+	if(!get_death_time(MINISYNTH))
 		set_death_time(MINISYNTH, world.time - DRONE_SPAWN_DELAY) //allow instant drone spawning
-	if (!get_death_time(CREW))
+	if(!get_death_time(CREW))
 		set_death_time(CREW, world.time)
 
 
@@ -765,15 +765,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Respawn"
 	set category = "OOC"
 
-	if (!( config.abandon_allowed ))
+	if(!( config.abandon_allowed ))
 		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return
 
-	if (istype(src, /mob/new_player))
+	if(istype(src, /mob/new_player))
 		to_chat(usr, "<span class='notice'><B>You are already at the lobby!</B></span>")
 		return
 
-	if (stat != DEAD)
+	if(stat != DEAD)
 		to_chat(usr, "<span class='notice'><B>You must be dead to use this!</B></span>")
 		return
 	else if(!MayRespawn(1, CREW))

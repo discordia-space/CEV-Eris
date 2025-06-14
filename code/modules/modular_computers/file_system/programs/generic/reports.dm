@@ -37,7 +37,7 @@
 			data["reports"] = L
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "reports.tmpl", name, 700, 800, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)

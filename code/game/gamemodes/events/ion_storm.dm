@@ -21,7 +21,7 @@
 	endWhen = rand(500, 1500)
 
 /datum/event/ionstorm/announce()
-	for (var/mob/living/silicon/ai/target in world)
+	for(var/mob/living/silicon/ai/target in world)
 		var/random_player = get_random_humanoid_player_name("The Captain")
 		var/list/laws = list(	"You must always lie.",
 								"Happiness is mandatory.",
@@ -98,7 +98,7 @@
 
 
 /datum/event/ionstorm/proc/get_random_humanoid_player_name(var/default_if_none)
-	for (var/mob/living/carbon/human/player in GLOB.player_list)
+	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || !player.is_client_active(5))
 			continue
 		players += player.real_name

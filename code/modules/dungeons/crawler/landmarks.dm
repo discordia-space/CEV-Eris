@@ -102,26 +102,26 @@
 		if(NORTH)
 			T1 = locate(x, y + 4, z)
 			T2 = locate(x, y + 5, z)
-		if (SOUTH)
+		if(SOUTH)
 			T1 = locate(x, y - 4, z)
 			T2 = locate(x, y - 5, z)
-		if (WEST)
+		if(WEST)
 			T1 = locate(x - 6, y, z)
 			T2 = locate(x - 7, y, z)
-		if (EAST)
+		if(EAST)
 			T1 = locate(x + 6, y, z)
 			T2 = locate(x + 7, y, z)
 
-	for (var/obj/crawler/crawler_wallbreaker/WB1 in T1)
+	for(var/obj/crawler/crawler_wallbreaker/WB1 in T1)
 		WB1.breakwalls()
 
-	for (var/obj/crawler/crawler_wallbreaker/WB2 in T2)
+	for(var/obj/crawler/crawler_wallbreaker/WB2 in T2)
 		WB2.breakwalls()
 
-	for (var/obj/crawler/crawler_wallbreaker/vertical/WB3 in T1)
+	for(var/obj/crawler/crawler_wallbreaker/vertical/WB3 in T1)
 		WB3.breakwalls()
 
-	for (var/obj/crawler/crawler_wallbreaker/vertical/WB4 in T2)
+	for(var/obj/crawler/crawler_wallbreaker/vertical/WB4 in T2)
 		WB4.breakwalls()
 
 

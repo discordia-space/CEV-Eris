@@ -71,7 +71,7 @@
 
 
 /obj/item/hatton/proc/click_empty(mob/user = null)
-	if (user)
+	if(user)
 		user.visible_message(SPAN_DANGER("*click*"), SPAN_DANGER("*click*"))
 	else
 		src.visible_message(SPAN_DANGER("*click*"))
@@ -79,23 +79,23 @@
 
 
 /obj/item/hatton/proc/use_charge()
-	if (magazine && magazine.charge > 0)
+	if(magazine && magazine.charge > 0)
 		magazine.charge--
 		return TRUE
 	return FALSE
 
 /obj/item/hatton/proc/Fire(atom/target as mob|obj|turf, mob/living/user as mob|obj, params)
-	if (world.time < last_fired + fire_cooldown)
+	if(world.time < last_fired + fire_cooldown)
 		to_chat(user, SPAN_WARNING("[src] is still cooling down, wait for [((last_fired + fire_cooldown) - world.time)*0.1] seconds"))
 		click_empty()
 		return
 
 //	if(isliving(user))
 //		var/mob/living/M = user
-//		if (HULK in M.mutations)
+//		if(HULK in M.mutations)
 //			to_chat(M, SPAN_WARNING("Your meaty finger is much too large for the trigger guard!"))
 //			return
-	if (!Adjacent(loc, target))
+	if(!Adjacent(loc, target))
 		to_chat(user, SPAN_WARNING("You're too far away to breach that!"))
 		return
 	/*if(ishuman(user))
@@ -109,14 +109,14 @@
 
 /*	if(isliving(user))
 		var/mob/living/M = user
-		if ((CLUMSY in M.mutations) && prob(50))
+		if((CLUMSY in M.mutations) && prob(50))
 			to_chat(user, SPAN_DANGER("[src] blows up in your face."))
 			M.drop_item()
 			Fire(get_turf(M))
 			del(src)
 			return
 */
-	if (use_charge())
+	if(use_charge())
 		last_fired = world.time
 		playsound(user, fire_sound, 70, 1)
 		update_icon()
@@ -192,10 +192,10 @@
 
 /obj/item/hatton/robot/use_charge()
 	var/mob/living/silicon/robot/R = loc
-	if (!istype(R))
+	if(!istype(R))
 		return FALSE
 
-	if (R.cell_use_power(power_cost))
+	if(R.cell_use_power(power_cost))
 		return TRUE
 	return FALSE
 

@@ -13,7 +13,7 @@
 	if(do_gibs) gibs(loc, src)
 
 	var/atom/movable/overlay/animation = null
-	if (anim)
+	if(anim)
 		animation = new(loc)
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'
@@ -30,7 +30,7 @@
 //Dusting robots does not eject the MMI, so it's a bit more powerful than gib() /N
 /mob/proc/dust(anim = "dust-m", remains = /obj/effect/decal/cleanable/ash, iconfile = 'icons/mob/mob.dmi')
 	death(1)
-	if (istype(loc, /obj/item/holder))
+	if(istype(loc, /obj/item/holder))
 		var/obj/item/holder/H = loc
 		H.release_mob()
 
@@ -104,11 +104,11 @@
 		kill_CH() //We dead... clear any prepared abilities...
 
 	timeofdeath = world.time
-	if (isanimal(src))
+	if(isanimal(src))
 		set_death_time(ANIMAL, world.time)
-	else if (ispAI(src) || isdrone(src))
+	else if(ispAI(src) || isdrone(src))
 		set_death_time(MINISYNTH, world.time)
-	else if (isliving(src))
+	else if(isliving(src))
 		set_death_time(CREW, world.time)//Crew is the fallback
 	if(mind)
 		mind.store_memory("Time of death: [stationtime2text()]", 0)
@@ -123,14 +123,14 @@
 //This proc retrieves the relevant time of death from
 /mob/proc/get_death_time(var/which)
 	var/datum/preferences/P = get_preferences(src)
-	if (!P)
+	if(!P)
 		return FALSE
 
 	return P.time_of_death[which]
 
 /mob/proc/set_death_time(var/which, var/value)
 	var/datum/preferences/P = get_preferences(src)
-	if (!P)
+	if(!P)
 		return FALSE
 	P.time_of_death[which] = value
 	return 1
@@ -141,22 +141,22 @@
 //Bonuses can be applied by things like going to cryosleep
 /mob/proc/get_respawn_bonus(var/which)
 	var/datum/preferences/P = get_preferences(src)
-	if (!P)
+	if(!P)
 		return FALSE
 
-	if (which)
+	if(which)
 		return P.crew_respawn_bonuses[which]
 	else
 		//Passing in no specific request will instead return the total of all the respawn bonuses
 		//This behaviour is utilised in mayrespawn
 		var/total = 0
-		for (var/v in P.crew_respawn_bonuses)
+		for(var/v in P.crew_respawn_bonuses)
 			total += P.crew_respawn_bonuses[v]
 		return total
 
 /mob/proc/set_respawn_bonus(var/which, var/value)
 	var/datum/preferences/P = get_preferences(src)
-	if (!P)
+	if(!P)
 		return FALSE
 	P.crew_respawn_bonuses[which] = value
 	return 1
@@ -164,7 +164,7 @@
 //Wipes all respawn bonuses. Called when a player actually respawns
 /mob/proc/clear_respawn_bonus()
 	var/datum/preferences/P = get_preferences(src)
-	if (!P)
+	if(!P)
 		return FALSE
 	P.crew_respawn_bonuses.Cut()
 	return 1

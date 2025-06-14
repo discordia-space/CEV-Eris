@@ -59,7 +59,7 @@
 		to_chat(user, SPAN_WARNING("The injector is empty."))
 		return
 
-	if (M.can_inject(user, 1))
+	if(M.can_inject(user, 1))
 		to_chat(user, SPAN_NOTICE("You inject [M] with the injector."))
 		to_chat(M, SPAN_NOTICE("You feel a tiny prick!"))
 

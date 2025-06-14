@@ -29,7 +29,7 @@
 	var/shuttle_status
 	switch (shuttle.process_state)
 		if(IDLE_STATE)
-			if (shuttle.in_use)
+			if(shuttle.in_use)
 				shuttle_status = "Busy."
 			else
 				shuttle_status = "Standing-by at [shuttle.current_location]."
@@ -79,7 +79,7 @@
 
 /obj/machinery/computer/shuttle_control/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/datum/shuttle/autodock/shuttle = SSshuttle.shuttles[shuttle_tag]
-	if (!istype(shuttle))
+	if(!istype(shuttle))
 		to_chat(user, "<span class='warning'>Unable to establish link with the shuttle.</span>")
 		return
 
@@ -96,7 +96,7 @@
 	return handle_topic_href(SSshuttle.shuttles[shuttle_tag], href_list)
 
 /obj/machinery/computer/shuttle_control/emag_act(var/remaining_charges, var/mob/user)
-	if (!hacked)
+	if(!hacked)
 		req_access = list()
 		req_one_access = list()
 		hacked = 1

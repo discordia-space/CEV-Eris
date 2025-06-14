@@ -20,7 +20,7 @@
 	..()
 	spawn()
 		src.machine = locate(/obj/machinery/mineral/processing_unit) in range(3, src)
-		if (machine)
+		if(machine)
 			machine.console = src
 		else
 			log_debug("[src] ([x],[y],[z]) can't find coresponding processing unit.")
@@ -98,7 +98,7 @@
 		return TRUE
 	if(action == "machine_link")
 		machine = locate(/obj/machinery/mineral/processing_unit) in range(3, src)
-		if (machine)
+		if(machine)
 			machine.console = src
 		return TRUE
 

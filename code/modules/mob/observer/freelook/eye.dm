@@ -85,15 +85,15 @@
 	var/delay = 0.5
 	set_glide_size(DELAY2GLIDESIZE(delay))
 
-	if (cooldown && cooldown < world.timeofday)
+	if(cooldown && cooldown < world.timeofday)
 		sprint = initial
-	for (var/i = 0; i < max(sprint, initial); i += 30)
+	for(var/i = 0; i < max(sprint, initial); i += 30)
 		var/turf/step = get_step(get_turf(src), direct)
-		if (step)
+		if(step)
 			setLoc(step)
 
 	cooldown = world.timeofday + 5
-	if (acceleration)
+	if(acceleration)
 		sprint = min(sprint + 0.5, max_sprint)
 	else
 		sprint = initial

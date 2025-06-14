@@ -6,14 +6,14 @@
 
 /datum/click_handler/New(client/_owner)
 	owner = _owner
-	if (mouse_icon)
+	if(mouse_icon)
 		owner.mouse_pointer_icon = mouse_icon
 
 //datum/click_handler/Prepare(/client/_owner)
 
 /datum/click_handler/Destroy()
 	..()
-	if (owner)
+	if(owner)
 		owner.CH = null
 		owner.mouse_pointer_icon=initial(owner.mouse_pointer_icon)
 	return ..()
@@ -21,10 +21,10 @@
 
 //Return false from these procs to discard the click afterwards
 /datum/click_handler/proc/Click(var/atom/target, location, control, params)
-	if (!isHUDobj(target))
-		if (mob_check(owner.mob) && use_ability(owner.mob, target))
+	if(!isHUDobj(target))
+		if(mob_check(owner.mob) && use_ability(owner.mob, target))
 			//Ability successful
-			if (one_use_flag)
+			if(one_use_flag)
 				//If we're single use, delete ourselves anyways
 				qdel(src)
 		else
@@ -56,16 +56,16 @@
 //In the case of click catchers, we resolve and return the turf under it
 /datum/click_handler/proc/resolve_world_target(var/a)
 
-	if (istype(a, /obj/screen/click_catcher))
+	if(istype(a, /obj/screen/click_catcher))
 		var/obj/screen/click_catcher/CC = a
 		return CC.resolve(owner.mob)
 
-	if (istype(a, /turf))
+	if(istype(a, /turf))
 		return a
 
-	else if (istype(a, /atom))
+	else if(istype(a, /atom))
 		var/atom/A = a
-		if (istype(A.loc, /turf))
+		if(istype(A.loc, /turf))
 			return A
 	return null
 
@@ -153,7 +153,7 @@
 		return TRUE
 	if(!isatom(target))
 		return TRUE
-	if (mob_check(owner.mob) && use_ability(owner.mob, target, params))
+	if(mob_check(owner.mob) && use_ability(owner.mob, target, params))
 		return TRUE
 	else if(modifiers["shift"])
 		owner.mob.examinate(target)

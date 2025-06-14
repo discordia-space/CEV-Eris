@@ -1,4 +1,4 @@
- ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 /// Syringes.
 ////////////////////////////////////////////////////////////////////////////////
 #define SYRINGE_DRAW 0
@@ -104,7 +104,7 @@
 					else
 						B = T.take_blood(src,amount)
 
-					if (B)
+					if(B)
 						reagents.reagent_list += B
 						reagents.update_total()
 						on_reagent_change()
@@ -238,9 +238,9 @@
 	if(ismob(loc))
 		var/injoverlay
 		switch(mode)
-			if (SYRINGE_DRAW)
+			if(SYRINGE_DRAW)
 				injoverlay = "draw"
-			if (SYRINGE_INJECT)
+			if(SYRINGE_INJECT)
 				injoverlay = "inject"
 		add_overlay(injoverlay)
 		update_wear_icon()
@@ -253,7 +253,7 @@
 		var/target_zone = ran_zone(check_zone(user.targeted_organ, target))
 		var/obj/item/organ/external/affecting = H.get_organ(target_zone)
 
-		if (!affecting || affecting.is_stump())
+		if(!affecting || affecting.is_stump())
 			to_chat(user, SPAN_DANGER("They are missing that limb!"))
 			return
 
@@ -262,7 +262,7 @@
 		if((user != target) && H.check_shields(7, src, user, "\the [src]"))
 			return
 
-		if (target != user && H.getarmor(target_zone, ARMOR_MELEE) > 5 && prob(50))
+		if(target != user && H.getarmor(target_zone, ARMOR_MELEE) > 5 && prob(50))
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(text("\red <B>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</B>"), 1)
 			user.remove_from_mob(src)
@@ -362,9 +362,9 @@
 	if(ismob(loc))
 		var/injoverlay
 		switch(mode)
-			if (SYRINGE_DRAW)
+			if(SYRINGE_DRAW)
 				injoverlay = "draw"
-			if (SYRINGE_INJECT)
+			if(SYRINGE_INJECT)
 				injoverlay = "inject"
 		add_overlay(injoverlay)
 		update_wear_icon()

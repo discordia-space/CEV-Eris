@@ -16,7 +16,7 @@
 		return TRUE
 
 /obj/structure/closet/secure_closet/personal/attackby(obj/item/W, mob/living/user)
-	if (src.opened)
+	if(src.opened)
 		user.unEquip(W, src.loc)
 	else if(istype(W, /obj/item/melee/energy/blade))
 		if(emag_act(INFINITY, user, "The locker has been sliced open by [user] with \an [W]!", "You hear metal being sliced and sparks flying."))
@@ -56,12 +56,12 @@
 		return
 	if(ishuman(usr))
 		src.add_fingerprint(usr)
-		if (src.locked || !src.registered_name)
+		if(src.locked || !src.registered_name)
 			to_chat(usr, SPAN_WARNING("You need to unlock it first."))
-		else if (src.broken)
+		else if(src.broken)
 			to_chat(usr, SPAN_WARNING("It appears to be broken."))
 		else
-			if (src.opened)
+			if(src.opened)
 				if(!src.close())
 					return
 			src.locked = TRUE

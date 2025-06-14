@@ -82,7 +82,7 @@
 		to_chat(usr, "You must be conscious to do that!")
 		return
 
-	if (!usr.IsAdvancedToolUser())
+	if(!usr.IsAdvancedToolUser())
 		return
 
 	var/scan_data = ""

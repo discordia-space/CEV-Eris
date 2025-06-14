@@ -339,7 +339,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 		to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy)"))
 
 	excelsior_energy += reward
-	for (var/obj/machinery/complant_teleporter/t in excelsior_teleporters)
+	for(var/obj/machinery/complant_teleporter/t in excelsior_teleporters)
 		t.update_nano_data()
 
 /datum/antag_contract/excel/appropriate
@@ -390,11 +390,11 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 		if(!istype(H) || H.stat == DEAD || !IS_SHIP_LEVEL(H.z))
 			continue
 
-		if (targets_command)
+		if(targets_command)
 			if(!(candidate_mind.assigned_role in list(JOBS_COMMAND + JOBS_SECURITY)))
 				continue
 
-		if (cruciform_check)
+		if(cruciform_check)
 			var/cruciform = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
 			if(cruciform)
 				continue

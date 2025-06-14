@@ -11,7 +11,7 @@
 		explanation_text = "Target has not arrived today. Is it a coincidence?"
 
 /datum/objective/assassinate/check_completion()
-	if (failed)
+	if(failed)
 		return FALSE
 
 	if(target && target.current)

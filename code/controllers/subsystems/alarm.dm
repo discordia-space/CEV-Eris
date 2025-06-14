@@ -28,18 +28,18 @@ SUBSYSTEM_DEF(alarm)
 	return ..()
 
 /datum/controller/subsystem/alarm/fire(resumed = FALSE)
-	if (!resumed)
+	if(!resumed)
 		current = all_handlers.Copy()
 		active_alarm_cache.Cut()
 
-	while (current.len)
+	while(current.len)
 		var/datum/alarm_handler/AH = current[current.len]
 		current.len--
 
 		AH.Process()
 		active_alarm_cache += AH.alarms
 
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
 /datum/controller/subsystem/alarm/stat_entry(msg)

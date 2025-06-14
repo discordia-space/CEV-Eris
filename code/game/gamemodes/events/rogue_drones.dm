@@ -27,20 +27,20 @@
 	//This means that drones will only be spawned in places where someone could see them
 		//And thusly, places where they might fire into the ship
 	var/area/spess = locate(/area/space) in world
-	for (var/turf/T in spess)
-		if (!IS_SHIP_LEVEL(T.z))
+	for(var/turf/T in spess)
+		if(!IS_SHIP_LEVEL(T.z))
 			continue
 
-		if (locate(/obj/effect/shield) in T)
+		if(locate(/obj/effect/shield) in T)
 			continue
 
 		//The number of windows near each tile is recorded
 		var/numwin
-		for (var/obj/structure/window/W in view(4, T))
+		for(var/obj/structure/window/W in view(4, T))
 			numwin++
 
 		//And the square of it is entered into the list as a weight
-		if (numwin)
+		if(numwin)
 			viable_turfs[T] = numwin*numwin
 
 	//We will then use pickweight and this will be more likely to choose tiles with many windows, for maximum exposure
@@ -67,11 +67,11 @@
 	for(var/turf/T in spawn_locations)
 		var/mob/living/simple_animal/hostile/retaliate/malf_drone/D = new /mob/living/simple_animal/hostile/retaliate/malf_drone(T)
 		drones_list.Add(D)
-		if (prob(25))
+		if(prob(25))
 			D.disabled = rand(15, 60)
-		if (prob(95))
+		if(prob(95))
 			D.hostile_drone = TRUE //There's a small chance that each one wont attack
-		if (prob(5))
+		if(prob(5))
 			log_and_message_admins("Drone spawned at [jumplink(T)],")
 
 /datum/event/rogue_drone/end()

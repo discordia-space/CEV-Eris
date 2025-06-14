@@ -209,12 +209,12 @@
 			break
 //		if(W.internal || W.bandaged)
 //			continue
-		if (W.current_stage <= W.max_bleeding_stage)
+		if(W.current_stage <= W.max_bleeding_stage)
 			mech.visible_message(
 				SPAN_NOTICE("\The [mech] cleans \a [W.desc] on [mending_target]'s [affecting.name] and seals the edges with bioglue."),
 				SPAN_NOTICE("You clean and seal \a [W.desc] on [mending_target]'s [affecting.name].")
 			)
-		else if (W.damage_type == BRUISE)
+		else if(W.damage_type == BRUISE)
 			mech.visible_message(
 				SPAN_NOTICE("\The [mech] places a medical patch over \a [W.desc] on [mending_target]'s [affecting.name]."),
 				SPAN_NOTICE("You place a medical patch over \a [W.desc] on [mending_target]'s [affecting.name].")

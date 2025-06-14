@@ -12,14 +12,14 @@
 	var/datum/gas_mixture/air_contents = null
 
 /obj/item/latexballon/proc/blow(obj/item/tank/tank)
-	if (icon_state == "latexballon_bursted")
+	if(icon_state == "latexballon_bursted")
 		return
 	src.air_contents = tank.remove_air_volume(3)
 	icon_state = "latexballon_blow"
 	item_state = "latexballon"
 
 /obj/item/latexballon/proc/burst()
-	if (!air_contents)
+	if(!air_contents)
 		return
 	playsound(src, 'sound/weapons/Gunshot.ogg', 100, 1)
 	icon_state = "latexballon_bursted"
@@ -42,5 +42,5 @@
 	return
 
 /obj/item/latexballon/attackby(obj/item/W as obj, mob/user as mob)
-	if (can_puncture(W))
+	if(can_puncture(W))
 		burst()

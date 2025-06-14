@@ -58,7 +58,7 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 
 		if(istype(A, /obj/machinery/bot))
 			var/obj/machinery/bot/B = A
-			if (B.health > 0)
+			if(B.health > 0)
 				stance = HOSTILE_STANCE_ATTACK
 				T = B
 				break
@@ -176,8 +176,8 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 /mob/living/simple_animal/hostile/proc/ListTargets(var/dist = 7)
 	var/list/L = hearers(src, dist)
 
-	for (var/mob/living/exosuit/M in GLOB.mechas_list)
-		if (M.z == z && get_dist(src, M) <= dist)
+	for(var/mob/living/exosuit/M in GLOB.mechas_list)
+		if(M.z == z && get_dist(src, M) <= dist)
 			L += M
 
 	return L

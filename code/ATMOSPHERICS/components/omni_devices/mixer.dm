@@ -89,10 +89,10 @@
 
 	//concentration must add to 1
 	var/total = 0
-	for (var/datum/omni_port/P in inputs)
+	for(var/datum/omni_port/P in inputs)
 		total += P.concentration
 
-	if (total != 1)
+	if(total != 1)
 		return 1
 
 	return 0
@@ -103,14 +103,14 @@
 
 	//Figure out the amount of moles to transfer
 	var/transfer_moles = 0
-	for (var/datum/omni_port/P in inputs)
+	for(var/datum/omni_port/P in inputs)
 		transfer_moles += (set_flow_rate*P.concentration/P.air.volume)*P.air.total_moles
 
 	var/power_draw = -1
-	if (transfer_moles > MINIMUM_MOLES_TO_FILTER)
+	if(transfer_moles > MINIMUM_MOLES_TO_FILTER)
 		power_draw = mix_gas(src, mixing_inputs, output.air, transfer_moles, power_rating)
 
-	if (power_draw >= 0)
+	if(power_draw >= 0)
 		last_power_draw = power_draw
 		use_power(power_draw)
 
@@ -132,7 +132,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "omni_mixer.tmpl", "Omni Mixer Control", 360, 330)
 		ui.set_initial_data(data)
 

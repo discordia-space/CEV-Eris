@@ -6,7 +6,7 @@
 
 /obj/item/storage/case/attack_hand(mob/user as mob)
 
-	if ((loc != user) && opened)
+	if((loc != user) && opened)
 		open(user)
 
 	else

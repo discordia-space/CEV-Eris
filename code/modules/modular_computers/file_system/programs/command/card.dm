@@ -85,7 +85,7 @@
 			for(var/i = ACCESS_REGION_MIN; i <= ACCESS_REGION_MAX; i++)
 				var/list/accesses = list()
 				for(var/access in get_region_accesses(i))
-					if (get_access_desc(access))
+					if(get_access_desc(access))
 						accesses.Add(list(list(
 							"desc" = replacetext(get_access_desc(access), " ", "&nbsp"),
 							"ref" = access,
@@ -97,7 +97,7 @@
 			data["regions"] = regions
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "identification_computer.tmpl", name, 600, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
@@ -125,9 +125,9 @@
 	var/mob/user = usr
 	var/obj/item/card/id/user_id_card = user.GetIdCard()
 	var/obj/item/card/id/id_card
-	if (computer.card_slot)
+	if(computer.card_slot)
 		id_card = computer.card_slot.stored_card
-	if (!user_id_card || !authorized(user_id_card))
+	if(!user_id_card || !authorized(user_id_card))
 		to_chat(user, SPAN_WARNING("Access denied"))
 		return
 
@@ -136,7 +136,7 @@
 		if("switchm")
 			if(href_list["target"] == "mod")
 				module.mod_mode = 1
-			else if (href_list["target"] == "manifest")
+			else if(href_list["target"] == "manifest")
 				module.mod_mode = 0
 		if("togglea")
 			if(module.show_assignments)
@@ -260,7 +260,7 @@
 				var/access_type = text2num(href_list["access_target"])
 				var/access_allowed = text2num(href_list["allowed"])
 				if(access_type in get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM))
-					if (check_modify(user_id_card, access_type))
+					if(check_modify(user_id_card, access_type))
 						id_card.access -= access_type
 						if(!access_allowed)
 							id_card.access += access_type
@@ -281,11 +281,11 @@
 
 // Function that checks if the user's id is allowed to use the id computer. Can optionally check for a specific access lookup.
 /datum/computer_file/program/card_mod/proc/authorized(var/obj/item/card/id/id_card, var/area)
-	if (id_card && !area)
+	if(id_card && !area)
 		for(var/i = 1, i <= access_lookup.len, i ++)
 			if(access_lookup[i] in id_card.access)
 				return TRUE
-	else if (id_card && area)
+	else if(id_card && area)
 		if(access_lookup[area] in id_card.access)
 			return TRUE
 	return FALSE

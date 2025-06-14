@@ -13,7 +13,7 @@
 		var/pressure = mixture.return_pressure()
 		var/total_moles = mixture.total_moles
 
-		if (total_moles>0)
+		if(total_moles>0)
 			. += SPAN_NOTICE("Pressure: [round(pressure, 0.1)] kPa")
 			for(var/mix in mixture.gas)
 				. += SPAN_NOTICE("[gas_data.name[mix]]: [round((mixture.gas[mix] / total_moles) * 100)]%")

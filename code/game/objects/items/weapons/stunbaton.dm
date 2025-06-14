@@ -112,7 +112,7 @@
 
 	if(user.a_intent == I_HURT)
 		. = ..()
-		if (!.)	//item/attack() does it's own messaging and logs
+		if(!.)	//item/attack() does it's own messaging and logs
 			return 0	// item/attack() will return 1 if they hit, 0 if they missed.
 
 		//whacking someone causes a much poorer electrical contact than deliberately prodding them.
@@ -178,7 +178,7 @@
 /obj/item/melee/baton/robot/attack_self(mob/user)
 	//try to find our power cell
 	var/mob/living/silicon/robot/R = loc
-	if (istype(R))
+	if(istype(R))
 		cell = R.cell
 	return ..()
 

@@ -67,7 +67,7 @@
 	// the datum fires first than actual login. Do actual login first before triggering login events
 	GLOB.logged_in_event.raise_event(src)
 
-	if (key != client.key)
+	if(key != client.key)
 		key = client.key
 
 	if(loc && !isturf(loc))

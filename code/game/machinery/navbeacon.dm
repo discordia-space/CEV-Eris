@@ -123,7 +123,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 
 		else if(I.GetIdCard())
 			if(open)
-				if (src.allowed(user))
+				if(src.allowed(user))
 					src.locked = !src.locked
 					to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 				else
@@ -193,13 +193,13 @@ Transponder Codes:<UL>"}
 
 	Topic(href, href_list)
 		..()
-		if (usr.stat)
+		if(usr.stat)
 			return
-		if ((in_range(src, usr) && istype(src.loc, /turf)) || (issilicon(usr)))
+		if((in_range(src, usr) && istype(src.loc, /turf)) || (issilicon(usr)))
 			if(open && !locked)
 				usr.set_machine(src)
 
-				if (href_list["freq"])
+				if(href_list["freq"])
 					freq = sanitize_frequency(freq + text2num(href_list["freq"]))
 					updateDialog()
 

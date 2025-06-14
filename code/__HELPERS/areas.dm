@@ -19,7 +19,7 @@
 /proc/get_area_contents(var/areatype)
 	var/list/turf/LT = get_area_turfs(areatype)
 	var/list/contents = list()
-	for (var/turf/T in LT)
+	for(var/turf/T in LT)
 		contents |= T.get_recursive_contents()
 
 	return contents
@@ -33,10 +33,10 @@
 /proc/is_matching_vessel(var/atom/A, var/atom/B)
 	var/area/area1 = get_area(A)
 	var/area/area2 = get_area(B)
-	if (!area1 || !area2)
+	if(!area1 || !area2)
 		return FALSE
 
-	if (area1.vessel == area2.vessel)
+	if(area1.vessel == area2.vessel)
 		return TRUE
 	return FALSE
 
@@ -92,7 +92,7 @@
 	for(var/turf/floor/F in src.contents)
 		if(turf_clear(F))
 			turfs += F
-	if (turfs.len)
+	if(turfs.len)
 		return pick(turfs)
 	else return null
 
@@ -101,9 +101,9 @@
 	var/list/turfs = list()
 	for(var/turf/floor/F in src.contents)
 		if(turf_clear(F))
-			if (F.flooring && (F.flooring.flags & TURF_HIDES_THINGS))
+			if(F.flooring && (F.flooring.flags & TURF_HIDES_THINGS))
 				turfs += F
-	if (turfs.len)
+	if(turfs.len)
 		return pick(turfs)
 	else return null
 

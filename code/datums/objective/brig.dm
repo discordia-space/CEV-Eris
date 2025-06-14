@@ -10,7 +10,7 @@
 	return target
 
 /datum/objective/brig/check_completion()
-	if (failed)
+	if(failed)
 		return FALSE
 
 	if(already_completed)

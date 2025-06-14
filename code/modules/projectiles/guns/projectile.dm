@@ -69,7 +69,7 @@
 		if(handle_casings != HOLD_CASINGS)
 			ammo_magazine.stored_ammo -= chambered
 
-	if (chambered)
+	if(chambered)
 		return chambered.BB
 	return null
 
@@ -84,7 +84,7 @@
 	process_chambered()
 
 /obj/item/gun/projectile/proc/process_chambered()
-	if (!chambered) return
+	if(!chambered) return
 
 	if(chambered.is_caseless)
 		QDEL_NULL(chambered)
@@ -143,12 +143,12 @@
 		var/method_for_this_load = 0
 
 		//Magazine loading takes precedence first
-		if ((load_method & AM.mag_type) & MAGAZINE)
+		if((load_method & AM.mag_type) & MAGAZINE)
 			method_for_this_load = MAGAZINE
 		//Speedloading second
-		else if ((load_method & AM.mag_type) & SPEEDLOADER)
+		else if((load_method & AM.mag_type) & SPEEDLOADER)
 			method_for_this_load = SPEEDLOADER
-		else if ((load_method & AM.mag_type) & SINGLE_CASING)
+		else if((load_method & AM.mag_type) & SINGLE_CASING)
 			method_for_this_load = SINGLE_CASING
 		else
 			//Not sure how this could happen, sanity check. Abort and return if none of the above were true
@@ -183,7 +183,7 @@
 				var/count = 0
 				if(AM.reload_delay)
 					to_chat(user, SPAN_NOTICE("It takes some time to reload [src] with [AM]..."))
-				if (do_after(user, AM.reload_delay, user))
+				if(do_after(user, AM.reload_delay, user))
 					for(var/obj/item/ammo_casing/C in AM.stored_ammo)
 						if(loaded.len >= max_shells)
 							break
@@ -212,7 +212,7 @@
 
 		if(C.reload_delay)
 			to_chat(user, SPAN_NOTICE("It takes some time to reload [src] with [C]..."))
-		if (!do_after(user, C.reload_delay, user))
+		if(!do_after(user, C.reload_delay, user))
 			return
 
 		if(C.amount > 1)
@@ -273,7 +273,7 @@
 		if(saw_off == FALSE)
 			to_chat(user, SPAN_NOTICE("Sawing down \the [src] will achieve nothing or may impede operation."))
 			return
-		if (src.item_upgrades.len)
+		if(src.item_upgrades.len)
 			if(src.dna_compare_samples) //or else you can override dna lock
 				to_chat(user, SPAN_NOTICE("Sawing down \the [src] will not allow use of the firearm."))
 				return
@@ -290,7 +290,7 @@
 			sawnoff.caliber = caliber
 			to_chat(user, SPAN_WARNING("You cut down the stock, barrel, and anything else nice from \the [src], ruining a perfectly good weapon."))
 			qdel(src)
-	if (!.) //Parent returns true if attackby is handled
+	if(!.) //Parent returns true if attackby is handled
 		load_ammo(A, user)
 		update_held_icon()
 
@@ -344,10 +344,10 @@
 
 /obj/item/gun/projectile/proc/get_max_ammo()
 	var/bullets = 0
-	if (load_method & MAGAZINE)
+	if(load_method & MAGAZINE)
 		if(ammo_magazine)
 			bullets += ammo_magazine.max_ammo
-	if (load_method & SPEEDLOADER)
+	if(load_method & SPEEDLOADER)
 		bullets += max_shells
 	return bullets
 

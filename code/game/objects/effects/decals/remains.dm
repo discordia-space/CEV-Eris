@@ -33,7 +33,7 @@
 /obj/item/remains/attack_hand(mob/user)
 	to_chat(user, SPAN_NOTICE("[src] sinks together into a pile of ash."))
 	var/turf/floor/F = get_turf(src)
-	if (istype(F))
+	if(istype(F))
 		new /obj/effect/decal/cleanable/ash(F)
 	qdel(src)
 

@@ -78,7 +78,7 @@
 					dmg = round(dmg * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 				if(dmg_type == BRUTE)
 
-					if ( (sharp || edge) && prob ( (1 - dmg / dmg_types[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks, this converts damage into crushing as well
+					if( (sharp || edge) && prob ( (1 - dmg / dmg_types[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks, this converts damage into crushing as well
 						if(wounding_multiplier)
 							wounding_multiplier = step_wounding_double(wounding_multiplier) // Implied piercing damage, degrade by two steps (prevents damage duping from <1 multiplier)
 						else
@@ -98,7 +98,7 @@
 				if(ishuman(src) && def_zone && dmg >= 20)
 					var/mob/living/carbon/human/H = src
 					var/obj/item/organ/external/o = H.get_organ(def_zone)
-					if (o && o.status & ORGAN_SPLINTED)
+					if(o && o.status & ORGAN_SPLINTED)
 						visible_message(SPAN_WARNING("The splints break off [src] after being hit!"),
 								SPAN_WARNING("Your splints break off after being hit!"))
 						o.status &= ~ORGAN_SPLINTED
@@ -172,7 +172,7 @@
 /mob/living/bullet_act(obj/item/projectile/P, var/def_zone_hit)
 	var/hit_dir = get_dir(P, src)
 
-	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+	if(P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 
 	if(config.z_level_shooting && P.height) // If the bullet came from above or below, limit what bodyparts can be hit for consistency
@@ -221,7 +221,7 @@
 	var/armor_coefficient = max(0, 1 - getarmor(def_zone, ARMOR_ENERGY) / 100)
 
 	//If armor is 100 or more, we just skeeping it
-	if (stun_amount && armor_coefficient)
+	if(stun_amount && armor_coefficient)
 
 		Stun(stun_amount * armor_coefficient)
 		Weaken(stun_amount * armor_coefficient)
@@ -229,7 +229,7 @@
 		apply_effect(EYE_BLUR, stun_amount * armor_coefficient)
 		SEND_SIGNAL_OLD(src, COMSIG_LIVING_STUN_EFFECT)
 
-	if (agony_amount && armor_coefficient)
+	if(agony_amount && armor_coefficient)
 
 		apply_damage(agony_amount * armor_coefficient, HALLOSS, def_zone, FALSE, FALSE, FALSE, used_weapon)
 		apply_effect(STUTTER, agony_amount * armor_coefficient)
@@ -269,7 +269,7 @@
 //		effective_force *= 2
 
 	//Apply weapon damage
-	if (damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, I.armor_divisor, used_weapon = I, sharp = is_sharp(I), edge = has_edge(I)))
+	if(damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, I.armor_divisor, used_weapon = I, sharp = is_sharp(I), edge = has_edge(I)))
 		return TRUE
 	else
 		return FALSE
@@ -281,7 +281,7 @@
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce
 
-		if (O.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+		if(O.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 			IgniteMob()
 
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
@@ -421,7 +421,7 @@
 
 //Finds the effective temperature that the mob is burning at.
 /mob/living/proc/fire_burn_temperature()
-	if (fire_stacks <= 0)
+	if(fire_stacks <= 0)
 		return FALSE
 
 	//Scale quadratically so that single digit numbers of fire stacks don't burn ridiculously hot.

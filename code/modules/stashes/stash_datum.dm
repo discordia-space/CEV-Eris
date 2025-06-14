@@ -125,7 +125,7 @@ This file contains the underlying code for stash datums
 /datum/stash/proc/select_location()
 	select_direction()
 
-	if (selected_direction == DIRECTION_LANDMARK)
+	if(selected_direction == DIRECTION_LANDMARK)
 		//If we're using landmark spawning then we do that
 		var/obj/landmark/storyevent/midgame_stash_spawn/S = pick_landmark(/obj/landmark/storyevent/midgame_stash_spawn)
 
@@ -140,13 +140,13 @@ This file contains the underlying code for stash datums
 		//200 tries for safety. It's quite likely to pick turfs without floor tiles
 		//but maybe the ship is rekt. Limiting attempts just prevents an infinite loop situation
 
-		for (var/i = 1; i <= 200; i++)
+		for(var/i = 1; i <= 200; i++)
 			//Can pick any area without players in it.
 			//This is overwhelmingly likely to be in maintenance and thats good.
 			var/area/A = random_ship_area(TRUE, FALSE, FALSE)
 
 			//If its not a maint area, we may reroll it
-			if (!A.is_maintenance && prob(nonmaint_reroll))
+			if(!A.is_maintenance && prob(nonmaint_reroll))
 				continue
 
 			var/turf/T = A.random_hideable_turf()
@@ -162,11 +162,11 @@ This file contains the underlying code for stash datums
 	//First of all, lets select how we're going to direct the user. This is not purely random
 
 	//If there's only one possible direction, then we take that
-	if (directions == DIRECTION_COORDS || directions == DIRECTION_LANDMARK)
+	if(directions == DIRECTION_COORDS || directions == DIRECTION_LANDMARK)
 		selected_direction = directions
 
 	else
-		if ((directions & DIRECTION_LANDMARK) && prob(50))
+		if((directions & DIRECTION_LANDMARK) && prob(50))
 			//Landmark returns the unique navigation text tied to the landmark object, failing this, the area it is within.
 			selected_direction = DIRECTION_LANDMARK
 		else
@@ -176,9 +176,9 @@ This file contains the underlying code for stash datums
 
 //This proc is called after location is set, it creates the necessary info to direct the user
 /datum/stash/proc/create_direction()
-	if (selected_direction == DIRECTION_COORDS)
+	if(selected_direction == DIRECTION_COORDS)
 		create_direction_string(stash_location)
-	if (selected_direction == DIRECTION_LANDMARK)
+	if(selected_direction == DIRECTION_LANDMARK)
 		return //Do nothing, it was already made
 
 
@@ -186,17 +186,17 @@ This file contains the underlying code for stash datums
 //This creates the direction string which will be inserted into the note,
 //It does this by combining a base string with supplied data
 /datum/stash/proc/create_direction_string(var/data)
-	if (direction_string != "")
+	if(direction_string != "")
 		//Don't create it twice
 		return
 
 	//Creating it from a landmark
-	if (selected_direction == DIRECTION_LANDMARK)
+	if(selected_direction == DIRECTION_LANDMARK)
 		var/obj/landmark/storyevent/midgame_stash_spawn/S = data
 		direction_string = replacetext(direction_string_base_landmark,"%L", S.navigation)
 
 	//Creating coords from an atom
-	else if (selected_direction == DIRECTION_COORDS)
+	else if(selected_direction == DIRECTION_COORDS)
 		var/turf/T = get_turf(data)
 		direction_string = direction_string_base_coords
 		direction_string = replacetext(direction_string, "%X", "[T.x]")
@@ -220,8 +220,8 @@ This file contains the underlying code for stash datums
 /datum/stash/proc/do_spawn()
 	var/list/results = list()
 	contents_list_base.Add(contents_list_extra) //Combine the two lists now
-	for (var/a in contents_list_random) //Add the random contents
-		if (prob(contents_list_random[a]))
+	for(var/a in contents_list_random) //Add the random contents
+		if(prob(contents_list_random[a]))
 			contents_list_base.Add(a)
 	var/atom/spawning_loc = spawn_container() //Make the container and assign it as the place where we will spawn stuff
 
@@ -230,7 +230,7 @@ This file contains the underlying code for stash datums
 		results.Add(spawning_loc)
 
 	//Now lets handle deferred spawning first
-	if (deferred && istype(spawning_loc, /obj/item/storage/deferred))
+	if(deferred && istype(spawning_loc, /obj/item/storage/deferred))
 		//For deferred spawns, we just add our spawning list to its list, and we're done.
 		//The items will be spawned later when a user opens this stash
 		var/obj/item/storage/deferred/D = spawning_loc
@@ -239,10 +239,10 @@ This file contains the underlying code for stash datums
 
 	else
 		//Not deferred, normal spawning! Okay
-		for (var/a in contents_list_base)
+		for(var/a in contents_list_base)
 			//How many of each thing are we spawning, quantity is the value
 			var/num = contents_list_base[a]
-			for (var/i = 0; i < num;i++)
+			for(var/i = 0; i < num;i++)
 				//Spawn it in the thing
 				results += new a(spawning_loc)
 
@@ -250,7 +250,7 @@ This file contains the underlying code for stash datums
 
 	//And finally lets make sure our container can fit the things we've stuffed into it
 	//And also that its hidden under the floor
-	if (istype(spawning_loc, /obj/item/storage))
+	if(istype(spawning_loc, /obj/item/storage))
 		var/obj/item/storage/S = spawning_loc
 		S.expand_to_fit()
 		S.level = BELOW_PLATING_LEVEL
@@ -258,11 +258,11 @@ This file contains the underlying code for stash datums
 
 
 	//External spawning
-	for (var/a in contents_list_external)
+	for(var/a in contents_list_external)
 
 		//How many of each thing are we spawning, quantity is the value
 		var/num = contents_list_external[a]
-		for (var/i = 0; i < num;i++)
+		for(var/i = 0; i < num;i++)
 			//Spawn it in the thing
 			results += new a(T)
 
@@ -288,7 +288,7 @@ This file contains the underlying code for stash datums
 
 //This creates and returns the container, if applicable
 /datum/stash/proc/spawn_container()
-	if (stash_container_type)
+	if(stash_container_type)
 		//Usually stash location will be a turf, but maybe its in a locker, thats fine.
 		//We'll make our container in the contents of whatever it is
 		stash_container = new stash_container_type(stash_location)
@@ -334,19 +334,19 @@ This file contains the underlying code for stash datums
 	var/category_resolved = FALSE
 	var/category = null
 	var/list/possible_stashes = list()
-	while (category_resolved == FALSE)
-		if (!possible_categories.len)
+	while(category_resolved == FALSE)
+		if(!possible_categories.len)
 			break
 
 		category = pickweight_n_take(possible_categories)
 
 		//Now lets check that this category actually has any stashes left in it
 		possible_stashes = GLOB.all_stash_datums[category]
-		if (possible_stashes.len)
+		if(possible_stashes.len)
 			category_resolved = TRUE
 		else
 			category = null //Go around again
 
 	//Now we pickweight our datum
-	if (category)
+	if(category)
 		return pickweight_n_take(possible_stashes)

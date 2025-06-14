@@ -16,8 +16,8 @@
 		var/wound_found = FALSE
 
 
-		if (target_zone == BP_HEAD)
-			if ((H.sanity.level >= 0) && (H.sanity.level < 5))
+		if(target_zone == BP_HEAD)
+			if((H.sanity.level >= 0) && (H.sanity.level < 5))
 				to_chat(user, SPAN_WARNING("[H] appears to be in acute shock, presenting dilated pupils, pale, clammy skin and a tense jaw."))
 			else if((H.sanity.level >= 5) && (H.sanity.level < 30))
 				to_chat(user, SPAN_WARNING("[H] appears to be in a state of heavy 	shock, presenting dilated pupils and clammy skin."))
@@ -293,7 +293,7 @@
 		to_chat(attacker, SPAN_WARNING("\The [target] needs to be on the ground to do this."))
 		return
 	var/free_space = TRUE//if there are walls or structures around us, we can't do this.
-	for (var/turf/T in range(1, attacker.loc))
+	for(var/turf/T in range(1, attacker.loc))
 		if(istype(T, /turf/wall))
 			free_space = FALSE
 		if(!T.Enter(attacker))

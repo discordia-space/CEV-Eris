@@ -161,13 +161,13 @@ var/list/tape_roll_applications = list()
 			if(possible_dirs & (NORTH|SOUTH))
 				var/obj/item/tape/TP = new tape_type(start)
 				for(var/dir in list(NORTH, SOUTH))
-					if (possible_dirs & dir)
+					if(possible_dirs & dir)
 						TP.tape_dir += dir
 				TP.update_icon()
 			if(possible_dirs & (EAST|WEST))
 				var/obj/item/tape/TP = new tape_type(start)
 				for(var/dir in list(EAST, WEST))
-					if (possible_dirs & dir)
+					if(possible_dirs & dir)
 						TP.tape_dir += dir
 				TP.update_icon()
 			start = null
@@ -183,10 +183,10 @@ var/list/tape_roll_applications = list()
 			if(EAST,   WEST)	dir =  EAST|WEST	// East-West taping
 
 		var/can_place = 1
-		while (can_place)
+		while(can_place)
 			if(cur.density)
 				can_place = 0
-			else if (istype(cur, /turf/space))
+			else if(istype(cur, /turf/space))
 				can_place = 0
 			else
 				for(var/obj/O in cur)
@@ -196,7 +196,7 @@ var/list/tape_roll_applications = list()
 			if(cur == end)
 				break
 			cur = get_step_towards(cur,end)
-		if (!can_place)
+		if(!can_place)
 			start = null
 			update_icon()
 			to_chat(usr, SPAN_WARNING("You can't run \the [src] through that!"))
@@ -205,7 +205,7 @@ var/list/tape_roll_applications = list()
 		cur = start
 		var/tapetest
 		var/tape_dir
-		while (1)
+		while(1)
 			tapetest = 0
 			tape_dir = dir
 			if(cur == start)
@@ -244,7 +244,7 @@ var/list/tape_roll_applications = list()
 	if(!proximity)
 		return
 
-	if (istype(A, /obj/machinery/door))
+	if(istype(A, /obj/machinery/door))
 		var/turf/T = get_turf(A)
 		var/obj/item/tape/P = new tape_type(T.x,T.y,T.z)
 		P.loc = locate(T.x,T.y,T.z)
@@ -254,7 +254,7 @@ var/list/tape_roll_applications = list()
 		P.update_plane()
 		to_chat(user, SPAN_NOTICE("You finish placing \the [src]."))
 
-	if (istype(A, /turf/floor) ||istype(A, /turf/floor/dummy))
+	if(istype(A, /turf/floor) ||istype(A, /turf/floor/dummy))
 		var/turf/F = A
 		var/direction = user.loc == F ? user.dir : turn(user.dir, 180)
 		var/icon/hazard_overlay = hazard_overlays["[direction]"]
@@ -281,7 +281,7 @@ var/list/tape_roll_applications = list()
 	if(!lifted && ismob(mover))
 		var/mob/M = mover
 		add_fingerprint(M)
-		if (!allowed(M))	//only select few learn art of not crumpling the tape
+		if(!allowed(M))	//only select few learn art of not crumpling the tape
 			to_chat(M, SPAN_WARNING("You are not supposed to go past [src]..."))
 			if(M.a_intent == I_HELP)
 				return 0
@@ -292,7 +292,7 @@ var/list/tape_roll_applications = list()
 	breaktape(W, user)
 
 /obj/item/tape/attack_hand(mob/user as mob)
-	if (user.a_intent == I_HELP && src.allowed(user))
+	if(user.a_intent == I_HELP && src.allowed(user))
 		user.show_viewers(SPAN_NOTICE("\The [user] lifts \the [src], allowing passage."))
 		for(var/obj/item/tape/T in gettapeline())
 			T.lift(100) //~10 seconds
@@ -319,14 +319,14 @@ var/list/tape_roll_applications = list()
 		dirs += EAST
 
 	var/list/obj/item/tape/tapeline = list()
-	for (var/obj/item/tape/T in get_turf(src))
+	for(var/obj/item/tape/T in get_turf(src))
 		tapeline += T
 	for(var/dir in dirs)
 		var/turf/cur = get_step(src, dir)
 		var/not_found = 0
-		while (!not_found)
+		while(!not_found)
 			not_found = 1
-			for (var/obj/item/tape/T in cur)
+			for(var/obj/item/tape/T in cur)
 				tapeline += T
 				not_found = 0
 			cur = get_step(cur, dir)
@@ -341,7 +341,7 @@ var/list/tape_roll_applications = list()
 		return
 	user.show_viewers(SPAN_NOTICE("\The [user] breaks \the [src]!"))
 
-	for (var/obj/item/tape/T in gettapeline())
+	for(var/obj/item/tape/T in gettapeline())
 		if(T == src)
 			continue
 		if(T.tape_dir & get_dir(T, src))

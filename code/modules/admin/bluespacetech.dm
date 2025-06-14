@@ -134,7 +134,7 @@
 	set desc = "Toggles on/off falling for you."
 	set category = "BST"
 
-	if (fall_override)
+	if(fall_override)
 		fall_override = FALSE
 		to_chat(src, SPAN_NOTICE("You will now fall normally."))
 	else
@@ -270,13 +270,13 @@
 	set src in usr
 
 	switch (mode)
-		if ("X-Ray without Lighting")
+		if("X-Ray without Lighting")
 			vision_flags = (SEE_TURFS|SEE_OBJS|SEE_MOBS)
 			see_invisible = SEE_INVISIBLE_NOLIGHTING
-		if ("X-Ray with Lighting")
+		if("X-Ray with Lighting")
 			vision_flags = (SEE_TURFS|SEE_OBJS|SEE_MOBS)
 			see_invisible = -1
-		if ("Normal")
+		if("Normal")
 			vision_flags = FALSE
 			see_invisible = -1
 

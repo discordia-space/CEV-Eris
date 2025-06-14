@@ -13,7 +13,7 @@
 	var/list/insultmsg = list("FUCK EVERYONE!", "I'M A TATER!", "ALL SECURITY TO SHOOT ME ON SIGHT!", "I HAVE A BOMB!", "CAPTAIN IS A COMDOM!")
 
 /obj/item/device/megaphone/attack_self(mob/living/user as mob)
-	if (user.client)
+	if(user.client)
 		if(user.client.prefs.muted & MUTE_IC)
 			to_chat(src, SPAN_WARNING("You cannot speak in IC (muted)."))
 			return
@@ -30,7 +30,7 @@
 		return
 	message = capitalize(message)
 	log_say("[user.name]/[user.key]  (megaphone) : [message]")
-	if ((loc == user && usr.stat == 0))
+	if((loc == user && usr.stat == 0))
 		if(emagged)
 			if(insults)
 				for(var/mob/O in (viewers(user)))

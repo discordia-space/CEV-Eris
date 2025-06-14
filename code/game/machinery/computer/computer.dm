@@ -97,9 +97,9 @@
 			A.dir = src.dir
 			A.circuit = circuit
 			A.anchored = TRUE
-			for (var/obj/C in src)
+			for(var/obj/C in src)
 				C.loc = src.loc
-			if (src.stat & BROKEN)
+			if(src.stat & BROKEN)
 				to_chat(user, SPAN_NOTICE("The broken glass falls out."))
 				new /obj/item/material/shard(src.loc)
 				A.state = 3
@@ -121,7 +121,7 @@
 /obj/machinery/computer/Topic(href, href_list)
 	if(..())
 		return 1
-	if (issilicon(usr) || !CheckFaceFlag || CheckFace(src,usr))
+	if(issilicon(usr) || !CheckFaceFlag || CheckFace(src,usr))
 		keyboardsound(usr)
 		return 0
 	else
@@ -137,7 +137,7 @@
 		return 1
 	if(!issilicon(user))
 		return 0
-	if (issilicon(usr) || !CheckFaceFlag || CheckFace(src,user))
+	if(issilicon(usr) || !CheckFaceFlag || CheckFace(src,user))
 		keyboardsound(user)
 		return 0
 	else

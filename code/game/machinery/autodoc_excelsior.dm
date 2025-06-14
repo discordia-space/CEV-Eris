@@ -49,7 +49,7 @@
 	return ..()
 
 /obj/machinery/excelsior_autodoc/relaymove(mob/user)
-	if (user.incapacitated())
+	if(user.incapacitated())
 		return
 	go_out()
 	return
@@ -66,7 +66,7 @@
 	set category = "Object"
 	set name = "Eject Occupant"
 
-	if (usr.incapacitated())
+	if(usr.incapacitated())
 		return
 	go_out()
 	add_fingerprint(usr)
@@ -90,7 +90,7 @@
 	return
 
 /obj/machinery/excelsior_autodoc/proc/go_out()
-	if (!occupant || cover_locked)
+	if(!occupant || cover_locked)
 		return
 	if(autodoc_processor.active)
 		to_chat(usr, SPAN_WARNING("Comrade, autodoc is locked down! Wait until all operations is done."))
@@ -128,7 +128,7 @@
 		to_chat(user, SPAN_DANGER("Autodoc is implanting you!"))
 		sleep(50)
 		var/obj/item/implant/excelsior/implant = new(user)
-		if (!implant.install(user, BP_HEAD))
+		if(!implant.install(user, BP_HEAD))
 			qdel(implant)
 		cover_locked = FALSE
 	else
@@ -142,7 +142,7 @@
 		nano_ui_interact(user)
 
 /obj/machinery/excelsior_autodoc/affect_grab(mob/user, mob/target)
-	if (occupant)
+	if(occupant)
 		to_chat(user, SPAN_NOTICE("The autodoc is already occupied!"))
 		return
 	if(target.buckled)
@@ -158,13 +158,13 @@
 /obj/machinery/excelsior_autodoc/MouseDrop_T(mob/target, mob/user)
 	if(!ismob(target))
 		return
-	if (occupant)
+	if(occupant)
 		to_chat(user, SPAN_WARNING("The autodoc is already occupied!"))
 		return
-	if (target.abiotic())
+	if(target.abiotic())
 		to_chat(user, SPAN_WARNING("Subject cannot have abiotic items on."))
 		return
-	if (target.buckled)
+	if(target.buckled)
 		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
 		return
 	user.visible_message(

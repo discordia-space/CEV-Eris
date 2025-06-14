@@ -23,7 +23,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if (have_lenses)
+	if(have_lenses)
 		flash_protection = initial(protection)
 		see_invisible = initial(see_invisible)
 		vision_flags = initial(vision_flags)

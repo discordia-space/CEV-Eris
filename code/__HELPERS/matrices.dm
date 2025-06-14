@@ -79,7 +79,7 @@
 		return color_identity()
 
 	var/x = 0
-	if (value < 0)
+	if(value < 0)
 		x = 127 + value / 100 * 127;
 	else
 		x = value % 1
@@ -111,13 +111,13 @@
 
 //Changes our pixel offset by offset pixels towards the target atom
 /atom/proc/offset_to(var/atom/target, var/offset = 1)
-	if (target.x < x)
+	if(target.x < x)
 		pixel_x -= offset
-	else if (target.x > x)
+	else if(target.x > x)
 		pixel_x += offset
-	if (target.y < y)
+	if(target.y < y)
 		pixel_y -= offset
-	else if (target.y > y)
+	else if(target.y > y)
 		pixel_y += offset
 
 #undef LUMR

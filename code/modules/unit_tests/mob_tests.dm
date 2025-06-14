@@ -73,7 +73,7 @@
 
 	H.apply_damage(5, damtype, BP_CHEST)
 	H.updatehealth() // Just in case, though at this time apply_damage does this for us.
-                         // We operate with the assumption that someone might mess with that proc one day.
+	// We operate with the assumption that someone might mess with that proc one day.
 
 	var/ending_damage = damage_check(H, damtype)
 	var/ending_health = H.health
@@ -83,13 +83,13 @@
 	var/failure = FALSE
 	var/damage_ratio = STANDARD
 
-	if (ending_damage == 0)
+	if(ending_damage == 0)
 		damage_ratio = IMMUNE
 
-	else if (ending_damage < 5)
+	else if(ending_damage < 5)
 		damage_ratio = ARMORED
 
-	else if (ending_damage > 5)
+	else if(ending_damage > 5)
 		damage_ratio = EXTRA_VULNERABLE
 
 	if(damage_ratio != expected_vulnerability)

@@ -29,7 +29,7 @@
 #define NEW_SS_GLOBAL(varname) if(varname != src){if(istype(varname)){Recover();qdel(varname);}varname = src;}
 
 #define START_PROCESSING(Processor, Datum) \
-if (Datum.is_processing) {\
+if(Datum.is_processing) {\
 	if(Datum.is_processing != #Processor)\
 	{\
 		CRASH("Failed to start processing. [log_info_line(Datum)] is already being processed by [Datum.is_processing] but queue attempt occured on [#Processor]."); \

@@ -19,13 +19,13 @@
 	user = nuser
 	RegisterSignal(user, COMSIG_PARENT_QDELETING, PROC_REF(user_deleted))
 	window_id = nwindow_id
-	if (ntitle)
+	if(ntitle)
 		title = format_text(ntitle)
-	if (nwidth)
+	if(nwidth)
 		width = nwidth
-	if (nheight)
+	if(nheight)
 		height = nheight
-	if (nref)
+	if(nref)
 		ref = WEAKREF(nref)
 
 /datum/browser/proc/user_deleted(datum/source)
@@ -46,7 +46,7 @@
 	// do nothing
 
 /datum/browser/proc/add_stylesheet(name, file)
-	if (istype(name, /datum/asset/spritesheet))
+	if(istype(name, /datum/asset/spritesheet))
 		var/datum/asset/spritesheet/sheet = name
 		stylesheets["spritesheet_[sheet.name].css"] = "data/spritesheets/[sheet.name]"
 	else
@@ -54,7 +54,7 @@
 
 		stylesheets[asset_name] = file
 
-		if (!SSassets.cache[asset_name])
+		if(!SSassets.cache[asset_name])
 			SSassets.transport.register_asset(asset_name, file)
 
 /datum/browser/proc/add_script(name, file)
@@ -70,11 +70,11 @@
 /datum/browser/proc/get_header()
 	var/file
 	head_content += "<link rel='stylesheet' type='text/css' href='[common_asset.get_url_mappings()["common.css"]]'>"
-	for (file in stylesheets)
+	for(file in stylesheets)
 		head_content += "<link rel='stylesheet' type='text/css' href='[SSassets.transport.get_asset_url(file)]'>"
 
 
-	for (file in scripts)
+	for(file in scripts)
 		head_content += "<script type='text/javascript' src='[SSassets.transport.get_asset_url(file)]'></script>"
 
 	head_content += "<script type='text/javascript'> function UpdateBrowserDataAlt(data){document.getElementById('theContent').innerHTML = data;}</script>"
@@ -116,21 +116,21 @@
 		to_chat(user, span_userdanger("The [title] browser you tried to open failed a sanity check! Please report this on github!"))
 		return
 	var/window_size = ""
-	if (width && height)
+	if(width && height)
 		window_size = "size=[width]x[height];"
 	common_asset.send(user)
-	if (stylesheets.len)
+	if(stylesheets.len)
 		SSassets.transport.send_assets(user, stylesheets)
-	if (scripts.len)
+	if(scripts.len)
 		SSassets.transport.send_assets(user, scripts)
 	user << browse(get_content(), "window=[window_id];[window_size][window_options]")
-	if (use_onclose)
+	if(use_onclose)
 		setup_onclose()
 
 /datum/browser/proc/setup_onclose()
 	set waitfor = 0 //winexists sleeps, so we don't need to.
-	for (var/i in 1 to 10)
-		if (user?.client && winexists(user, window_id))
+	for(var/i in 1 to 10)
+		if(user?.client && winexists(user, window_id))
 			var/atom/send_ref
 			if(ref)
 				send_ref = ref.resolve()

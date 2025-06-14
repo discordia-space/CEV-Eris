@@ -84,7 +84,7 @@
 				return FALSE
 			if(merging_casing.mergeCasing(src, null, user))
 				return TRUE
-		else if (mergeCasing(I, 1, user))
+		else if(mergeCasing(I, 1, user))
 			return TRUE
 
 /obj/item/ammo_casing/proc/mergeCasing(var/obj/item/ammo_casing/AC, var/amountToMerge, var/mob/living/user, var/noMessage = FALSE, var/noIconUpdate = FALSE)

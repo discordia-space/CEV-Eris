@@ -64,7 +64,7 @@
 	else
 		units = "MW"
 		amount = (round(amount/10000) / 100)
-	if (units == "W")
+	if(units == "W")
 		return "[amount] W"
 	else
 		return "~[amount] [units]" //kW and MW are only approximate readings, therefore add "~"
@@ -167,7 +167,7 @@
 			APC_entry["total_load"] = power_to_text(A.lastused_total)
 			// Hopefully removes those goddamn \improper s which are screwing up the UI
 			var/N = A.area.name
-			if(findtext(N, "ÿ"))
+			if(findtext(N, "ï¿½"))
 				N = copytext(N, 3)
 			APC_entry["name"] = N
 			// Add data into main list of APC data.

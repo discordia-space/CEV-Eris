@@ -26,12 +26,12 @@
 
 /datum/event/meteor_wave/setup()
 	switch (severity)
-		if (EVENT_LEVEL_MUNDANE)
+		if(EVENT_LEVEL_MUNDANE)
 			strength = 1
-		if (EVENT_LEVEL_MODERATE)
+		if(EVENT_LEVEL_MODERATE)
 			strength = 2
 			duration = 40
-		if (EVENT_LEVEL_MAJOR)
+		if(EVENT_LEVEL_MAJOR)
 			strength = 3
 			duration = 130
 	start_side = pick(cardinal)
@@ -97,7 +97,7 @@
 /datum/event/meteor_wave/overmap/tick()
 	if(victim && !victim.is_still()) //Meteors mostly fly in your face
 		start_side = prob(90) ? victim.fore_dir : pick(cardinal)
-	else if (prob(90))
+	else if(prob(90))
 		return //If you're not moving you wont get hit muc
 	..()
 
@@ -178,7 +178,7 @@
 	for(var/i = 0; i < number; i++)
 		//If no target zlevel is specified, then we'll throw each meteor at an individually randomly selected ship zlevel
 		var/target_level
-		if (zlevel)
+		if(zlevel)
 			target_level = zlevel
 		else
 			target_level = pick(SSmapping.main_ship_z_levels)
@@ -399,7 +399,7 @@
 /obj/effect/meteor/proc/meteor_effect()
 	//Logging. A meteor impact sends a message to admins with a clickable link.
 	//This allows them to jump over and see what happened, its tremendously interesting
-	if (istype(hit_location))
+	if(istype(hit_location))
 		var/area/A = get_area(hit_location)
 		var/where = "[A? A.name : "Unknown Location"] | [hit_location.x], [hit_location.y]"
 		var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[hit_location.x];Y=[hit_location.y];Z=[hit_location.z]'>[where]</a>"

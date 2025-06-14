@@ -160,7 +160,7 @@ var/global/datum/matchmaker/matchmaker = new()
 		dat += "<br>"
 	for(var/datum/relation/R in relations)
 		dat += "<b>[R.other.finalized ? "\[F\] " : ""][R.other.holder]</b>, [R.other.holder.role_alt_title ? R.other.holder.role_alt_title : R.other.holder.assigned_role]."
-		if (!R.finalized)
+		if(!R.finalized)
 			dat += " <a href='?src=\ref[src];del_relation=\ref[R]'>Remove</a>"
 			editable = 1
 		dat += "<br>[R.desc]"

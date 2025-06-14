@@ -67,7 +67,7 @@
 		CS.new_storyteller = ch
 
 		//The base storyteller, Guide, is put aside for a moment
-		if (S.config_tag == STORYTELLER_BASE)
+		if(S.config_tag == STORYTELLER_BASE)
 			base = CS
 			continue
 		//Storytellers are inserted at a random spot so they will be randomly sorted
@@ -90,7 +90,7 @@
 
 
 /datum/poll/storyteller/on_start()
-	if (SSticker.current_state == GAME_STATE_PREGAME)
+	if(SSticker.current_state == GAME_STATE_PREGAME)
 		pregame = TRUE
 		round_progressing = FALSE
 		to_chat(world, "<b>Game start has been delayed due to voting.</b>")
@@ -99,7 +99,7 @@
 /datum/poll/storyteller/on_end()
 	..()
 	//This happens if the vote was skipped with force start
-	if (!master_storyteller)
+	if(!master_storyteller)
 		master_storyteller = STORYTELLER_BASE
 		world.save_storyteller(master_storyteller)
 
@@ -107,7 +107,7 @@
 
 
 	set_storyteller(config.pick_storyteller(master_storyteller), announce = !(pregame)) //This does the actual work //Even if master storyteller is null, this will pick the default
-	if (pregame)
+	if(pregame)
 		round_progressing = TRUE
 		to_chat(world, "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>")
 		spawn(10 SECONDS)
@@ -141,7 +141,7 @@
 
 //on_end will be called after this, so that's where we actually call set_storyteller
 /datum/vote_choice/storyteller/on_win()
-	if (master_storyteller == new_storyteller)
+	if(master_storyteller == new_storyteller)
 		poll.next_vote = world.time + (poll.cooldown * 0.5) //If the storyteller didn't actually change, the cooldown is half as long
 	master_storyteller = new_storyteller
 	world.save_storyteller(master_storyteller)
@@ -181,27 +181,27 @@
 
 
 /datum/poll/evac/get_vote_power(var/client/C)
-	if (!istype(C))
+	if(!istype(C))
 		return 0 //Shouldnt be possible, but safety
 
 	var/mob/M = C.mob
-	if (!M || isghost(M) || isnewplayer(M) || ismouse(M) || isdrone(M) || M.is_dead())
+	if(!M || isghost(M) || isnewplayer(M) || ismouse(M) || isdrone(M) || M.is_dead())
 		return VOTE_WEIGHT_LOW
 
 	var/datum/mind/mind = M.mind
-	if (!mind)
+	if(!mind)
 		//If you don't have a mind in your mob, you arent really alive
 		return VOTE_WEIGHT_LOW
 
 	//Antags control the story of the round, they should be able to delay evac in order to enact their
 	//fun and interesting plans
-	if (player_is_antag(mind))
+	if(player_is_antag(mind))
 		return VOTE_WEIGHT_HIGH
 
 	//How long has this player been alive
 	//This comes after the antag check because that's more important
 	var/lifetime = world.time - mind.creation_time
-	if (lifetime <= MINIMUM_VOTE_LIFETIME)
+	if(lifetime <= MINIMUM_VOTE_LIFETIME)
 		//If you just spawned for the vote, your weight is still low
 		return VOTE_WEIGHT_LOW
 
@@ -209,7 +209,7 @@
 	//Heads of staff are in a better position to understand the state of the ship and round,
 	//their vote is more important.
 	//This is after the lifetime check to prevent exploits of instaspawning as a head when a vote is called
-	if (M.is_head_role())
+	if(M.is_head_role())
 		return VOTE_WEIGHT_HIGH
 
 

@@ -464,7 +464,7 @@ var/global/list/items_blood_overlay_by_type = list()
 		blood_overlay = IMG
 
 /obj/item/proc/showoff(mob/user)
-	for (var/mob/M in view(user))
+	for(var/mob/M in view(user))
 		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>",1)
 
 /mob/living/carbon/verb/showoff()
@@ -480,11 +480,11 @@ var/global/list/items_blood_overlay_by_type = list()
 	set category = "Object"
 
 	var/obj/item/I = get_active_hand()
-	if (istype(I, /obj/item/grab)) // a grab signifies that it's another mob that should be spun
+	if(istype(I, /obj/item/grab)) // a grab signifies that it's another mob that should be spun
 		var/obj/item/grab/inhand_grab = I
 		var/mob/living/grabbed = inhand_grab.throw_held()
-		if (grabbed)
-			if (grabbed.stats.getPerk(PERK_ASS_OF_CONCRETE))
+		if(grabbed)
+			if(grabbed.stats.getPerk(PERK_ASS_OF_CONCRETE))
 				visible_message(SPAN_WARNING("[src] tries to pick up [grabbed], and fails!"))
 
 			else
@@ -541,11 +541,11 @@ var/global/list/items_blood_overlay_by_type = list()
 		else
 			to_chat(src, SPAN_WARNING("You do not have a firm enough grip to forcibly spin [inhand_grab.affecting]."))
 
-	else if (I && !I.abstract && I.mob_can_unequip(src, get_active_hand_slot())) // being unable to unequip normally means
+	else if(I && !I.abstract && I.mob_can_unequip(src, get_active_hand_slot())) // being unable to unequip normally means
 		I.SpinAnimation(5,1) // that the item is stuck on or in, and so cannot spin
 		external_recoil(50)
 		visible_message("[src] spins [I.name] in \his hand.") // had to mess with the macros a bit to get
-		if (recoil > 60) // the text to work, which is why "a" is not included
+		if(recoil > 60) // the text to work, which is why "a" is not included
 			visible_message(SPAN_WARNING("[I] flies out of [src]\'s hand!"))
 			unEquip(I)
 			return

@@ -12,7 +12,7 @@
 	var/flush
 
 /obj/item/device/aicard/attack(mob/living/silicon/decoy/M, mob/user)
-	if (!istype (M, /mob/living/silicon/decoy))
+	if(!istype (M, /mob/living/silicon/decoy))
 		return ..()
 	else
 		M.death()
@@ -41,7 +41,7 @@
 		data["has_laws"] = laws.len
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "aicard.tmpl", "[name]", 600, 400, state = state)
 		ui.set_initial_data(data)
 		ui.open()
@@ -55,22 +55,22 @@
 		return 1
 
 	var/user = usr
-	if (href_list["wipe"])
+	if(href_list["wipe"])
 		var/confirm = alert("Are you sure you want to wipe this card's memory? This cannot be undone once started.", "Confirm Wipe", "Yes", "No")
 		if(confirm == "Yes" && (CanUseTopic(user, state) == STATUS_INTERACTIVE))
 			admin_attack_log(user, carded_ai, "Wiped using \the [src.name]", "Was wiped with \the [src.name]", "used \the [src.name] to wipe")
 			flush = 1
 			to_chat(carded_ai, "Your core files are being wiped!")
-			while (carded_ai && carded_ai.stat != DEAD)
+			while(carded_ai && carded_ai.stat != DEAD)
 				carded_ai.adjustOxyLoss(2)
 				carded_ai.updatehealth()
 				sleep(10)
 			flush = 0
-	if (href_list["radio"])
+	if(href_list["radio"])
 		carded_ai.aiRadio.disabledAi = text2num(href_list["radio"])
 		to_chat(carded_ai, "<span class='warning'>Your Subspace Transceiver has been [carded_ai.aiRadio.disabledAi ? "disabled" : "enabled"]!</span>")
 		to_chat(user, "<span class='notice'>You [carded_ai.aiRadio.disabledAi ? "disable" : "enable"] the AI's Subspace Transceiver.</span>")
-	if (href_list["wireless"])
+	if(href_list["wireless"])
 		carded_ai.control_disabled = text2num(href_list["wireless"])
 		to_chat(carded_ai, "<span class='warning'>Your wireless interface has been [carded_ai.control_disabled ? "disabled" : "enabled"]!</span>")
 		to_chat(user, "<span class='notice'>You [carded_ai.control_disabled ? "disable" : "enable"] the AI's wireless interface.</span>")
@@ -80,7 +80,7 @@
 /obj/item/device/aicard/update_icon()
 	overlays.Cut()
 	if(carded_ai)
-		if (!carded_ai.control_disabled)
+		if(!carded_ai.control_disabled)
 			overlays += image('icons/obj/pda.dmi', "aicard-on")
 		if(carded_ai.stat)
 			icon_state = "aicard-404"

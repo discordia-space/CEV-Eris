@@ -40,7 +40,7 @@ Notes:
 
 
 /datum/tooltip/New(client/C)
-	if (C)
+	if(C)
 		owner = C
 		owner << browse(file2text('code/modules/tooltip/tooltip.html'), "window=[control]")
 
@@ -48,21 +48,21 @@ Notes:
 
 
 /datum/tooltip/proc/show(atom/movable/thing, params = null, title = null, content = null, theme = "midnight", special = "none")
-	if (!thing || !params || (!title && !content) || !owner || !isnum(world.icon_size))
+	if(!thing || !params || (!title && !content) || !owner || !isnum(world.icon_size))
 		return FALSE
-	if (!init)
+	if(!init)
 		//Initialize some vars
 		init = 1
 		owner << output(list2params(list(world.icon_size, control)), "[control]:tooltip.init")
 
 	showing = TRUE
 
-	if (title && content)
+	if(title && content)
 		title = "<h1>[title]</h1>"
 		content = "<p>[content]</p>"
-	else if (title && !content)
+	else if(title && !content)
 		title = "<p>[title]</p>"
-	else if (!title && content)
+	else if(!title && content)
 		content = "<p>[content]</p>"
 
 	// Strip macros from item names
@@ -78,14 +78,14 @@ Notes:
 
 	//If a hide() was hit while we were showing, run hide() again to avoid stuck tooltips
 	showing = FALSE
-	if (queueHide)
+	if(queueHide)
 		hide()
 
 	return TRUE
 
 
 /datum/tooltip/proc/hide()
-	if (queueHide)
+	if(queueHide)
 		addtimer(CALLBACK(src, PROC_REF(do_hide)), 1)
 	else
 		do_hide()

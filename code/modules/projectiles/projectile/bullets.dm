@@ -13,7 +13,7 @@
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
 
 /obj/item/projectile/bullet/on_hit(atom/target)
-	if (..(target))
+	if(..(target))
 		var/mob/living/L = target
 		shake_camera(L, 1, 1, 0.5)
 
@@ -114,7 +114,7 @@
 /obj/item/projectile/bullet/pellet/proc/get_pellets(var/distance)
 	var/pellet_loss = round((distance - 1)/range_step) //pellets lost due to distance
 	var/remaining = pellets - pellet_loss
-	if (remaining < 0)
+	if(remaining < 0)
 		return 0
 	return ROUND_PROB(remaining)
 
@@ -122,7 +122,7 @@
 
 
 	var/total_pellets = get_pellets(distance)
-	if (total_pellets <= 0)
+	if(total_pellets <= 0)
 		return 1
 	var/spread = max(base_spread - (spread_step*distance), 0)
 
@@ -132,14 +132,14 @@
 		prone_chance = max(spread_step*(distance - 2), 0)
 
 	var/hits = 0
-	for (var/i in 1 to total_pellets)
+	for(var/i in 1 to total_pellets)
 		if(target_mob.lying && target_mob != original && prob(prone_chance))
 			continue
 
 		//pellet hits spread out across different zones, but 'aim at' the targeted zone with higher probability
 		var/old_zone = def_zone
 		def_zone = ran_zone(def_zone, spread)
-		if (..()) hits++
+		if(..()) hits++
 		def_zone = old_zone //restore the original zone the projectile was aimed at
 
 	pellets -= hits //each hit reduces the number of pellets left
@@ -149,7 +149,7 @@
 			var/target_turf = get_turf_away_from_target_complex(target_mob, starting, knockback_calc)
 			throw_at(target_turf, knockback_calc, 2, firer)
 
-	if (hits >= total_pellets || pellets <= 0)
+	if(hits >= total_pellets || pellets <= 0)
 		return 1
 	return 0
 

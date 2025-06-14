@@ -45,7 +45,7 @@
 	return bounds
 
 /datum/map_template/proc/initTemplateBounds(list/bounds)
-	if (!bounds) //something went wrong
+	if(!bounds) //something went wrong
 		stack_trace("[name] template failed to initialize correctly!")
 		return
 

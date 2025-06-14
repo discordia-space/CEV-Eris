@@ -19,12 +19,12 @@ would spawn and follow the beaker, even if it is carried or thrown.
 
 /obj/effect/Initialize(mapload, ...)
 	. = ..()
-	if (random_rotation)
+	if(random_rotation)
 		var/matrix/M = transform
-		if (random_rotation == 1)
+		if(random_rotation == 1)
 			M.Turn(pick(0,90,180,-90))
 
-		else if (random_rotation == 2)
+		else if(random_rotation == 2)
 			M.Turn(rand(0,360))
 
 		transform = M
@@ -129,7 +129,7 @@ steam.start() -- spawns the effect
 	..()
 	playsound(src.loc, "sparks", 100, 1)
 	var/turf/T = src.loc
-	if (istype(T, /turf))
+	if(istype(T, /turf))
 		T.hotspot_expose(1000,100)
 
 /obj/effect/sparks/Initialize()
@@ -138,14 +138,14 @@ steam.start() -- spawns the effect
 
 /obj/effect/sparks/Destroy()
 	var/turf/T = src.loc
-	if (istype(T, /turf))
+	if(istype(T, /turf))
 		T.hotspot_expose(1000,100)
 	return ..()
 
 /obj/effect/sparks/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	. = ..()
 	var/turf/T = src.loc
-	if (istype(T, /turf))
+	if(istype(T, /turf))
 		T.hotspot_expose(1000,100)
 
 /datum/effect/effect/system/spark_spread
@@ -237,9 +237,9 @@ steam.start() -- spawns the effect
 		affect(M)
 
 /obj/effect/effect/smoke/proc/affect(var/mob/living/carbon/M)
-	if (istype(M))
+	if(istype(M))
 		return 0
-	if (M.internal != null)
+	if(M.internal != null)
 		if(M.wear_mask && (M.wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT & AIRTIGHT))
 			return 0
 		if(ishuman(M))
@@ -316,11 +316,11 @@ steam.start() -- spawns the effect
 	time_to_live = 200
 
 /obj/effect/effect/smoke/bad/affect(var/mob/living/carbon/M)
-	if (!..())
+	if(!..())
 		return 0
 	M.drop_item()
 	M.adjustOxyLoss(1)
-	if (M.coughedtime != 1)
+	if(M.coughedtime != 1)
 		M.coughedtime = 1
 		M.emote("cough")
 		spawn ( 20 )
@@ -338,12 +338,12 @@ steam.start() -- spawns the effect
 
 
 /obj/effect/effect/smoke/sleepy/affect(mob/living/carbon/M as mob )
-	if (!..())
+	if(!..())
 		return 0
 
 	M.drop_item()
 	M:sleeping += 1
-	if (M.coughedtime != 1)
+	if(M.coughedtime != 1)
 		M.coughedtime = 1
 		M.emote("cough")
 		spawn ( 20 )
@@ -370,13 +370,13 @@ steam.start() -- spawns the effect
 
 
 /obj/effect/effect/smoke/mustard/affect(var/mob/living/carbon/human/R)
-	if (!..())
+	if(!..())
 		return 0
-	if (R.wear_suit != null)
+	if(R.wear_suit != null)
 		return 0
 
 	R.burn_skin(0.75)
-	if (R.coughedtime != 1)
+	if(R.coughedtime != 1)
 		R.coughedtime = 1
 		R.emote("gasp")
 		spawn (20)
@@ -460,7 +460,7 @@ steam.start() -- spawns the effect
 		return
 
 	start()
-		if (amount <= 2)
+		if(amount <= 2)
 			var/datum/effect/effect/system/spark_spread/s = new
 			s.set_up(2, 1, location)
 			s.start()
@@ -468,7 +468,7 @@ steam.start() -- spawns the effect
 			for(var/mob/M in viewers(5, location))
 				to_chat(M, SPAN_WARNING("The solution violently explodes."))
 			for(var/mob/M in viewers(1, location))
-				if (prob (50 * amount))
+				if(prob (50 * amount))
 					to_chat(M, SPAN_WARNING("The explosion knocks you down."))
 					M.Weaken(rand(1,5))
 			return

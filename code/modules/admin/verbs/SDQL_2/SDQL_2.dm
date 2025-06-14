@@ -162,7 +162,7 @@
 
 	var/list/querys = SDQL_parse(query_list)
 
-	if (!querys || querys.len < 1)
+	if(!querys || querys.len < 1)
 		return
 
 	try
@@ -199,14 +199,14 @@
 
 				if("select")
 					var/list/text_list = list()
-					for (var/t in objs)
+					for(var/t in objs)
 						SDQL_print(t, text_list)
 						text_list += "<br>"
 						CHECK_TICK
 
 					var/text = text_list.Join()
 
-					if (text)
+					if(text)
 						var/static/result_offset = 0
 						usr << browse(text, "window=SDQL-result-[result_offset++]")
 					else
@@ -216,7 +216,7 @@
 					if("set" in query_tree)
 						var/list/set_list = query_tree["set"]
 						for(var/d in objs)
-							if (!is_proper_datum(d))
+							if(!is_proper_datum(d))
 								continue
 							for(var/list/sets in set_list)
 								var/datum/temp = d
@@ -316,11 +316,11 @@
 	var/list/out = list()
 
 	// If only a single object got returned, wrap it into a list so the for loops run on it.
-	if (!islist(location) && location != world)
+	if(!islist(location) && location != world)
 		location = list(location)
 
-	if (type == "*")
-		for (var/x in location)
+	if(type == "*")
+		for(var/x in location)
 			out += x
 
 		return out
@@ -369,20 +369,20 @@
 
 	// 1 and 2 are type and FROM.
 	var/i = 3
-	while (i <= tree.len)
+	while(i <= tree.len)
 		var/key = tree[i++]
 		var/list/expression = tree[i++]
 		switch (key)
-			if ("map")
-				for (var/j = 1 to objs.len)
+			if("map")
+				for(var/j = 1 to objs.len)
 					var/x = objs[j]
 					objs[j] = SDQL_expression(x, expression)
 					CHECK_TICK
 
-			if ("where")
+			if("where")
 				var/list/out = list()
-				for (var/x in objs)
-					if (SDQL_expression(x, expression))
+				for(var/x in objs)
+					if(SDQL_expression(x, expression))
 						out += x
 					CHECK_TICK
 				objs = out
@@ -489,10 +489,10 @@
 		for(var/list/expression_list in expressions_list)
 			var/result = SDQL_expression(object, expression_list)
 			var/assoc
-			if (expressions_list[expression_list] != null)
+			if(expressions_list[expression_list] != null)
 				assoc = SDQL_expression(object, expressions_list[expression_list])
 
-			if (assoc != null)
+			if(assoc != null)
 				// Need to insert the key like this to prevent duplicate keys fucking up.
 				var/list/dummy = list()
 				dummy[result] = assoc
@@ -511,30 +511,30 @@
 	var/static/list/exclude = list("usr", "src", "marked", "global")
 	var/long = start < expression.len
 	var/datum/D
-	if (is_proper_datum(object))
+	if(is_proper_datum(object))
 		D = object
 
-	if (object == world && (!long || expression[start + 1] == ".") && !(expression[start] in exclude))
+	if(object == world && (!long || expression[start + 1] == ".") && !(expression[start] in exclude))
 		v = global.vars[expression[start]]
 
-	else if (expression [start] == "{" && long)
-		if (lowertext(copytext(expression[start + 1], 1, 3)) != "0x")
+	else if(expression [start] == "{" && long)
+		if(lowertext(copytext(expression[start + 1], 1, 3)) != "0x")
 			to_chat(usr, SPAN_DANGER("Invalid pointer syntax: [expression[start + 1]]"))
 			return null
 		v = locate("\[[expression[start + 1]]]")
-		if (!v)
+		if(!v)
 			to_chat(usr, SPAN_DANGER("Invalid pointer: [expression[start + 1]]"))
 			return null
 		start++
 		long = start < expression.len
 
-	else if (D != null && (!long || expression[start + 1] == ".") && (expression[start] in D.vars))
+	else if(D != null && (!long || expression[start + 1] == ".") && (expression[start] in D.vars))
 		v = D.vars[expression[start]]
 
-	else if (D != null && long && expression[start + 1] == ":" && hascall(D, expression[start]))
+	else if(D != null && long && expression[start + 1] == ":" && hascall(D, expression[start]))
 		v = expression[start]
 
-	else if (!long || expression[start + 1] == ".")
+	else if(!long || expression[start + 1] == ".")
 		switch(expression[start])
 			if("usr")
 				v = usr
@@ -550,20 +550,20 @@
 			else
 				return null
 
-	else if (object == world) // Shitty ass hack kill me.
+	else if(object == world) // Shitty ass hack kill me.
 		v = expression[start]
 
 	if(long)
-		if (expression[start + 1] == ".")
+		if(expression[start + 1] == ".")
 			return SDQL_var(v, expression[start + 2], source = source)
 
-		else if (expression[start + 1] == ":")
+		else if(expression[start + 1] == ":")
 			return SDQL_function(object, v, expression[start + 2], source)
 
-		else if (expression[start + 1] == "\[" && islist(v))
+		else if(expression[start + 1] == "\[" && islist(v))
 			var/list/L = v
 			var/index = SDQL_expression(source, expression[start + 2])
-			if (isnum(index) && (!ISINTEGER(index) || L.len < index))
+			if(isnum(index) && (!ISINTEGER(index) || L.len < index))
 				to_chat(usr, SPAN_DANGER("Invalid list index: [index]"))
 				return null
 
@@ -579,7 +579,7 @@
 	for(var/arg in arguments)
 		new_args[++new_args.len] = SDQL_expression(source, arg)
 
-	if (object == world) // Global proc.
+	if(object == world) // Global proc.
 		procname = "/proc/[procname]"
 		return call(procname)(arglist(new_args))
 
@@ -698,7 +698,7 @@
 	return istype(object, /datum) || istype(object, /client)
 
 /proc/SDQL_print(object, list/text_list)
-	if (is_proper_datum(object))
+	if(is_proper_datum(object))
 		text_list += "<A HREF='?_src_=vars;Vars=\ref[object]'>\ref[object]</A>"
 		if(istype(object, /atom))
 			var/atom/a = object
@@ -715,23 +715,23 @@
 		else
 			text_list += ": [object]"
 
-	else if (islist(object))
+	else if(islist(object))
 		var/list/L = object
 		var/first = TRUE
 		text_list += "\["
-		for (var/x in L)
-			if (!first)
+		for(var/x in L)
+			if(!first)
 				text_list += ", "
 			first = FALSE
 			SDQL_print(x, text_list)
-			if (!isnull(x) && !isnum(x) && L[x] != null)
+			if(!isnull(x) && !isnum(x) && L[x] != null)
 				text_list += " -> "
 				SDQL_print(L[L[x]])
 
 		text_list += "]"
 
 	else
-		if (isnull(object))
+		if(isnull(object))
 			text_list += "NULL"
 
 		else

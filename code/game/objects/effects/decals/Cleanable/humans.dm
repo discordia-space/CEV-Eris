@@ -52,7 +52,7 @@ var/global/list/image/splatter_cache=list()
 		if(src.loc && isturf(src.loc))
 			for(var/obj/effect/decal/cleanable/blood/B in src.loc)
 				if(B != src)
-					if (B.blood_DNA)
+					if(B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
 					qdel(B)
 	drytime = world.time + DRYING_TIME * (amount+1)
@@ -67,7 +67,7 @@ var/global/list/image/splatter_cache=list()
 	color = basecolor
 
 /obj/effect/decal/cleanable/blood/Crossed(mob/living/carbon/human/perp)
-	if (!istype(perp))
+	if(!istype(perp))
 		return
 	if(amount < 1)
 		return
@@ -94,13 +94,13 @@ var/global/list/image/splatter_cache=list()
 				S.overlays += S.blood_overlay
 			S.blood_DNA |= blood_DNA.Copy()
 
-	else if (hasfeet)//Or feet
+	else if(hasfeet)//Or feet
 		perp.feet_blood_color = basecolor
 		perp.track_blood = max(amount,perp.track_blood)
 		if(!perp.feet_blood_DNA)
 			perp.feet_blood_DNA = list()
 		perp.feet_blood_DNA |= blood_DNA.Copy()
-	else if (perp.buckled && istype(perp.buckled, /obj/structure/bed/chair/wheelchair))
+	else if(perp.buckled && istype(perp.buckled, /obj/structure/bed/chair/wheelchair))
 		var/obj/structure/bed/chair/wheelchair/W = perp.buckled
 		W.bloodiness = 4
 
@@ -116,14 +116,14 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/attack_hand(mob/living/carbon/human/user)
 	..()
-	if (amount && istype(user))
+	if(amount && istype(user))
 		add_fingerprint(user)
-		if (user.gloves)
+		if(user.gloves)
 			return FALSE
 		var/taken = rand(1,amount)
 		amount -= taken
 		to_chat(user, SPAN_NOTICE("You get some of \the [src] on your hands."))
-		if (!user.blood_DNA)
+		if(!user.blood_DNA)
 			user.blood_DNA = list()
 		user.blood_DNA |= blood_DNA.Copy()
 		user.bloody_hands += taken
@@ -214,12 +214,12 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions)
 	var/direction = pick(directions)
-	for (var/i = 0, i < pick(1,3), i++)
+	for(var/i = 0, i < pick(1,3), i++)
 		var/obj/effect/decal/cleanable/blood/splatter/b = new(loc)
 		b.basecolor = src.basecolor
 		b.update_icon()
 
-		if (step_to(src, get_step(src, direction), 0))
+		if(step_to(src, get_step(src, direction), 0))
 			break
 
 /obj/effect/decal/cleanable/mucus
@@ -241,13 +241,13 @@ var/global/list/image/splatter_cache=list()
 
 //This proc prevents blood on openspace tiles, by causing them to fall down until they hit the ground
 /obj/effect/decal/cleanable/blood/proc/fall_to_floor()
-	if (istype(loc, /turf/open))
+	if(istype(loc, /turf/open))
 		anchored = FALSE //Anchored things can't fall
-		while (istype(loc, /turf/open))
+		while(istype(loc, /turf/open))
 			var/turf/open/T = loc
 			T.fallThrough(src)
 
 			//A failsafe. If falling through the floor somehow fails to send us anywhere new, we break out to avoid an infinite loop
-			if (loc == T)
+			if(loc == T)
 				break
 	anchored = initial(anchored) //Reset it

@@ -75,9 +75,9 @@
 
 
 	/***********************************************************************************
-	 *	Internal procedures. Might be useful if you're writing a /jp_DungeonRoom datum.*
-	 *	Probably not useful if you just want to make a simple dungeon				   *
-	 ***********************************************************************************/
+	*	Internal procedures. Might be useful if you're writing a /jp_DungeonRoom datum.	*
+	*	Probably not useful if you just want to make a simple dungeon					*
+	***********************************************************************************/
 
 /obj/procedural/jp_DungeonGenerator/proc/updateWallConnections()
 	for(var/turf/wall/W in border_turfs)
@@ -207,9 +207,9 @@
 	Returns 'true' if l is a list, false otherwise
 */
 
-/***********************************************************************************
- *	External procedures, intended to be used by user code.						   *
- ***********************************************************************************/
+/********************************************************************************
+*	External procedures, intended to be used by user code.						*
+*********************************************************************************/
 
 /*
 	Returns a string representation of the error you pass into it.
@@ -709,12 +709,12 @@
 
 
 /***********************************************************************************
- *	The remaining procedures are seriously internal, and I strongly suggest not    *
- *  touching them unless you're certain you know what you're doing. That includes  *
- *  calling them, unless you've figured out what the side-effects and assumptions  *
- *  of the procedure are. These may not work except in the context of a generate() *
- *  call.
- ***********************************************************************************/
+ *	The remaining procedures are seriously internal, and I strongly suggest not		*
+ *	touching them unless you're certain you know what you're doing. That includes	*
+ *	calling them, unless you've figured out what the side-effects and assumptions	*
+ *	of the procedure are. These may not work except in the context of a generate()	*
+ *	call.
+***********************************************************************************/
 
 /obj/procedural/jp_DungeonGenerator/proc/regionCreate(turf/t)
 	var/size

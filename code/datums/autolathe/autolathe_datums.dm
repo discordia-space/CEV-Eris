@@ -98,7 +98,7 @@
 				LAZYAPLUS(materials, a, amount)
 
 	mats = O.matter_reagents
-	if (mats && mats.len)
+	if(mats && mats.len)
 		for(var/a in mats)
 			var/amount = mats[a] * multiplier
 			if(amount)

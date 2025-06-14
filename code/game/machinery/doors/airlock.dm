@@ -433,7 +433,7 @@ There are 9 wires.
 	return ((src.aiControlDisabled==1) && (!hackProof) && (!src.isAllPowerLoss()));
 
 /obj/machinery/door/airlock/proc/arePowerSystemsOn()
-	if (stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER|BROKEN))
 		return 0
 	return (src.main_power_lost_until==0 || src.backup_power_lost_until==0)
 
@@ -530,11 +530,11 @@ There are 9 wires.
 /obj/machinery/door/airlock/proc/set_safeties(var/activate, var/feedback = 0)
 	var/message = ""
 	// Safeties!  We don't need no stinking safeties!
-	if (isWireCut(AIRLOCK_WIRE_SAFETY))
+	if(isWireCut(AIRLOCK_WIRE_SAFETY))
 		message = text("The safety wire is cut - Cannot enable safeties.")
-	else if (!activate && safe)
+	else if(!activate && safe)
 		safe = 0
-	else if (activate && !safe)
+	else if(activate && !safe)
 		safe = 1
 
 	if(feedback && message)
@@ -645,14 +645,14 @@ There are 9 wires.
 			overlays = list()
 			if(p_open)
 				overlays += image(icon, "panel_open")
-			if (!(stat & NOPOWER))
+			if(!(stat & NOPOWER))
 				if(stat & BROKEN)
 					overlays += image(icon, "sparks_broken")
-				else if (health < maxHealth * 3/4)
+				else if(health < maxHealth * 3/4)
 					overlays += image(icon, "sparks_damaged")
 			if(welded)
 				overlays += image(icon, "welded")
-		else if (health < maxHealth * 3/4 && !(stat & NOPOWER))
+		else if(health < maxHealth * 3/4 && !(stat & NOPOWER))
 			overlays += image(icon, "sparks_damaged")
 	else
 		icon_state = "door_open"
@@ -761,7 +761,7 @@ There are 9 wires.
 	data["commands"] = commands
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "door_control.tmpl", "Door Controls", 450, 350, state = state)
 		ui.set_initial_data(data)
 		ui.open()
@@ -864,7 +864,7 @@ There are 9 wires.
 		if(canAIHack(user))
 			hack(user)
 		else
-			if (isAllPowerLoss()) //don't really like how this gets checked a second time, but not sure how else to do it.
+			if(isAllPowerLoss()) //don't really like how this gets checked a second time, but not sure how else to do it.
 				to_chat(user, SPAN_WARNING("Unable to interface: Connection timed out."))
 			else
 				to_chat(user, SPAN_WARNING("Unable to interface: Connection refused."))
@@ -912,18 +912,18 @@ There are 9 wires.
 			// Door speed control
 			if(isWireCut(AIRLOCK_WIRE_SPEED))
 				to_chat(usr, text("The timing wire is cut - Cannot alter timing."))
-			else if (activate && normalspeed)
+			else if(activate && normalspeed)
 				normalspeed = 0
-			else if (!activate && !normalspeed)
+			else if(!activate && !normalspeed)
 				normalspeed = 1
 		if("lights")
 			// Bolt lights
 			if(isWireCut(AIRLOCK_WIRE_LIGHT))
 				to_chat(usr, "The bolt lights wire is cut - The door bolt lights are permanently disabled.")
-			else if (!activate && lights)
+			else if(!activate && lights)
 				lights = 0
 				to_chat(usr, "The door bolt lights have been disabled.")
-			else if (activate && !lights)
+			else if(activate && !lights)
 				lights = 1
 				to_chat(usr, "The door bolt lights have been enabled.")
 
@@ -953,7 +953,7 @@ There are 9 wires.
 						to_chat(user, SPAN_NOTICE("You removed the airlock electronics!"))
 
 						var/obj/structure/door_assembly/da = new assembly_type(loc)
-						if (istype(da, /obj/structure/door_assembly/multi_tile))
+						if(istype(da, /obj/structure/door_assembly/multi_tile))
 							da.set_dir(dir)
 
 		 				da.anchored = TRUE
@@ -969,7 +969,7 @@ There are 9 wires.
 							new /obj/item/electronics/circuitboard/broken(loc)
 							operating = 0
 						else
-							if (!electronics) create_electronics()
+							if(!electronics) create_electronics()
 
 							electronics.loc = loc
 							electronics = null
@@ -992,8 +992,8 @@ There are 9 wires.
 		if(QUALITY_SCREW_DRIVING)
 			var/used_sound = p_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
-				if (p_open)
-					if (stat & BROKEN)
+				if(p_open)
+					if(stat & BROKEN)
 						to_chat(usr, SPAN_WARNING("The panel is broken and cannot be closed."))
 					else
 						p_open = 0
@@ -1051,15 +1051,15 @@ There are 9 wires.
 	stat |= BROKEN
 
 	//If the door has been violently smashed open
-	if (health <= 0)
+	if(health <= 0)
 		visible_message("<span class = 'warning'>\The [name] breaks open!</span>")
 		unlock() //Then it is open
 		open(TRUE)
-	else if (secured_wires)
+	else if(secured_wires)
 		lock()
 
-	for (var/mob/O in viewers(src, null))
-		if ((O.client && !( O.blinded )))
+	for(var/mob/O in viewers(src, null))
+		if((O.client && !( O.blinded )))
 			O.show_message("[name]'s control panel bursts open, sparks spewing out!")
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -1079,15 +1079,15 @@ There are 9 wires.
 		playsound(loc, open_sound_powered, 70, 1, -2)
 	else
 		var/obj/item/tool/T = forced
-		if (istype(T) && T.item_flags & SILENT)
+		if(istype(T) && T.item_flags & SILENT)
 			playsound(loc, open_sound_unpowered, 3, 1, -5) //Silenced tools can force open airlocks silently
-		else if (istype(T) && T.item_flags & LOUD)
+		else if(istype(T) && T.item_flags & LOUD)
 			playsound(loc, open_sound_unpowered, 500, 1, 10) //Loud tools can force open airlocks LOUDLY
 		else
 			playsound(loc, open_sound_unpowered, 70, 1, -1)
 
 	var/obj/item/tool/T = forced
-	if (istype(T) && T.item_flags & HONKING)
+	if(istype(T) && T.item_flags & HONKING)
 		playsound(loc, WORKSOUND_HONK, 70, 1, -2)
 
 	return ..()
@@ -1168,7 +1168,7 @@ There are 9 wires.
 
 /mob/living/carbon/airlock_crush(var/crush_damage)
 	. = ..()
-	if (!(species && (species.flags & NO_PAIN)))
+	if(!(species && (species.flags & NO_PAIN)))
 		emote("scream")
 
 /mob/living/silicon/robot/airlock_crush(var/crush_damage)
@@ -1217,15 +1217,15 @@ There are 9 wires.
 		playsound(src.loc, close_sound, 70, 1, -2)
 	else
 		var/obj/item/tool/T = forced
-		if (istype(T) && T.item_flags & SILENT)
+		if(istype(T) && T.item_flags & SILENT)
 			playsound(src.loc, open_sound_unpowered, 3, 1, -5) //Silenced tools can force airlocks silently
-		else if (istype(T) && T.item_flags & LOUD)
+		else if(istype(T) && T.item_flags & LOUD)
 			playsound(src.loc, open_sound_unpowered, 500, 1, 10) //Loud tools can force open airlocks LOUDLY
 		else
 			playsound(src.loc, open_sound_unpowered, 70, 1, -2)
 
 	var/obj/item/tool/T = forced
-	if (istype(T) && T.item_flags & HONKING)
+	if(istype(T) && T.item_flags & HONKING)
 		playsound(src.loc, WORKSOUND_HONK, 70, 1, -2)
 
 	..()
@@ -1234,7 +1234,7 @@ There are 9 wires.
 	if(locked)
 		return 0
 
-	if (operating && !forced) return 0
+	if(operating && !forced) return 0
 
 	src.locked = 1
 	playsound(src.loc, 'sound/machines/Custom_bolts.ogg', 40, 1, 5)
@@ -1247,7 +1247,7 @@ There are 9 wires.
 	if(!src.locked)
 		return
 
-	if (!forced)
+	if(!forced)
 		if(operating || !src.arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_DOOR_BOLTS)) return
 
 	src.locked = 0
@@ -1266,7 +1266,7 @@ There are 9 wires.
 	..()
 
 	//if assembly is given, create the new door from the assembly
-	if (assembly && istype(assembly))
+	if(assembly && istype(assembly))
 		assembly_type = assembly.type
 
 		electronics = assembly.electronics
@@ -1293,7 +1293,7 @@ There are 9 wires.
 	//wires
 	if(IS_TECHNICAL_LEVEL(newloc.z))
 		secured_wires = 1
-	if (secured_wires)
+	if(secured_wires)
 		wires = new/datum/wires/airlock/secure(src)
 	else
 		wires = new/datum/wires/airlock(src)
@@ -1326,7 +1326,7 @@ There are 9 wires.
 // the airlock is deconstructed
 /obj/machinery/door/airlock/proc/create_electronics()
 	//create new electronics
-	if (secured_wires)
+	if(secured_wires)
 		src.electronics = new/obj/item/electronics/airlock/secure( src.loc )
 	else
 		src.electronics = new/obj/item/electronics/airlock( src.loc )
@@ -1336,7 +1336,7 @@ There are 9 wires.
 		src.check_access()
 	if(src.req_access.len)
 		electronics.conf_access = src.req_access
-	else if (src.req_one_access.len)
+	else if(src.req_one_access.len)
 		electronics.conf_access = src.req_one_access
 		electronics.one_access = 1
 
@@ -1372,11 +1372,11 @@ There are 9 wires.
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	var/calc_damage = W.force*W.structure_damage_factor
 	var/quiet = FALSE
-	if (istool(I))
+	if(istool(I))
 		var/obj/item/tool/T = I
 		quiet = T.item_flags & SILENT
 
-	if (locked)
+	if(locked)
 		calc_damage *= 0.66
 	calc_damage -= resistance
 	user.do_attack_animation(src)
@@ -1390,7 +1390,7 @@ There are 9 wires.
 
 
 /obj/machinery/door/airlock/take_damage(var/damage)
-	if (isnum(damage) && locked)
+	if(isnum(damage) && locked)
 		damage *= 0.66 //The bolts reinforce the door, reducing damage taken
 
 	return ..(damage)

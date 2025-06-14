@@ -30,14 +30,14 @@
 	..(_name, start_waypoint)
 
 	//Initial dock
-	if (default_docking_controller)
+	if(default_docking_controller)
 		active_docking_controller = locate(default_docking_controller)
 
-	if (current_location && current_location.docking_controller)
+	if(current_location && current_location.docking_controller)
 		active_docking_controller = current_location.docking_controller
 	current_dock_target = get_docking_target(current_location)
 
-	if (active_docking_controller)
+	if(active_docking_controller)
 		dock()
 
 	//Optional transition area
@@ -95,29 +95,29 @@
 */
 /datum/shuttle/autodock/Process()
 	switch(process_state)
-		if (WAIT_LAUNCH)
+		if(WAIT_LAUNCH)
 			if(check_undocked())
 				//*** ready to go
 				process_launch()
 
-		if (FORCE_LAUNCH)
+		if(FORCE_LAUNCH)
 			process_launch()
 
-		if (WAIT_ARRIVE)
-			if (moving_status == SHUTTLE_IDLE)
+		if(WAIT_ARRIVE)
+			if(moving_status == SHUTTLE_IDLE)
 				//*** we made it to the destination, update stuff
 				process_arrived()
 				process_state = WAIT_FINISH
 
-		if (WAIT_FINISH)
-			if (world.time > last_dock_attempt_time + DOCK_ATTEMPT_TIMEOUT || check_docked())
+		if(WAIT_FINISH)
+			if(world.time > last_dock_attempt_time + DOCK_ATTEMPT_TIMEOUT || check_docked())
 				//*** all done here
 				process_state = IDLE_STATE
 				arrived()
 
 //not to be confused with the arrived() proc
 /datum/shuttle/autodock/proc/process_arrived()
-	if (next_location.docking_controller)
+	if(next_location.docking_controller)
 		active_docking_controller = next_location.docking_controller
 	current_dock_target = get_docking_target(next_location)
 	dock()
@@ -139,7 +139,7 @@
 		if(!istype(landmark_transition))
 			landmark_transition = transition_tag
 
-	if (move_time && landmark_transition && istype(landmark_transition))
+	if(move_time && landmark_transition && istype(landmark_transition))
 		. = long_jump(next_location, landmark_transition, move_time)
 	else
 		. = short_jump(next_location)
@@ -161,7 +161,7 @@
 	"Public" procs
 */
 /datum/shuttle/autodock/proc/launch(var/user)
-	if (!can_launch()) return
+	if(!can_launch()) return
 
 	in_use = user	//obtain an exclusive lock on the shuttle
 
@@ -169,14 +169,14 @@
 	undock()
 
 /datum/shuttle/autodock/proc/force_launch(var/user)
-	if (!can_force()) return
+	if(!can_force()) return
 
 	in_use = user	//obtain an exclusive lock on the shuttle
 
 	process_state = FORCE_LAUNCH
 
 /datum/shuttle/autodock/proc/cancel_launch(var/user)
-	if (!can_cancel()) return
+	if(!can_cancel()) return
 
 	moving_status = SHUTTLE_IDLE
 	process_state = WAIT_FINISH

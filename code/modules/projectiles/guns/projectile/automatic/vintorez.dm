@@ -34,12 +34,12 @@
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
-	if (wielded)
+	if(wielded)
 		itemstring = initial(item_state) + wielded_item_state
 	else
 		itemstring = initial(item_state)
 
-	if (ammo_magazine)
+	if(ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
 		wielded_item_state = "_doble_mag"
@@ -47,7 +47,7 @@
 			iconstring += "_l"
 	else
 		wielded_item_state = "_doble"
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
 
 	icon_state = iconstring

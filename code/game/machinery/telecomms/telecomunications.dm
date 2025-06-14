@@ -245,7 +245,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			damage_chance = 50
 		if((T0C + 200) to INFINITY)					// More than 200C, INFERNO. Takes damage every tick.
 			damage_chance = 100
-	if (damage_chance && prob(damage_chance))
+	if(damage_chance && prob(damage_chance))
 		integrity = between(0, integrity - 1, 100)
 
 
@@ -258,10 +258,10 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 
 /obj/machinery/telecomms/proc/produce_heat()
-	if (!produces_heat)
+	if(!produces_heat)
 		return
 
-	if (!use_power)
+	if(!use_power)
 		return
 
 	if(!(stat & (NOPOWER|BROKEN)))
@@ -276,7 +276,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			if(removed)
 
 				var/heat_produced = idle_power_usage	//obviously can't produce more heat than the machine draws from it's power source
-				if (traffic <= 0)
+				if(traffic <= 0)
 					heat_produced *= 0.30	//if idle, produce less heat.
 
 				removed.add_thermal_energy(heat_produced)

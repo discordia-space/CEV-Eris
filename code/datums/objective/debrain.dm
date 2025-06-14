@@ -11,7 +11,7 @@
 		explanation_text = "Target has not arrived today. Did he know that I would come?"
 
 /datum/objective/debrain/check_completion()
-	if (failed)
+	if(failed)
 		return FALSE
 	if(!target) //If it's a free objective.
 		return TRUE
@@ -21,6 +21,6 @@
 		return FALSE
 	var/atom/A = target.current
 	var/list/contents = get_owner_inventory()
-	if ((A in contents))
+	if((A in contents))
 		return TRUE
 	return FALSE

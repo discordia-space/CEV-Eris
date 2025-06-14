@@ -221,7 +221,7 @@
 	var/DamageToApply = round(BombDamage / 4)
 
 	for(var/limb in BP_BY_DEPTH)
-		if (limb in organ_rel_size)
+		if(limb in organ_rel_size)
 			apply_damage(DamageToApply * (organ_rel_size[limb] / 100), BRUTE, limb)
 	return BombDamage * BlockCoefficient
 

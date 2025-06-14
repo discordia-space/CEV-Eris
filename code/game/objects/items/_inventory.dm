@@ -25,7 +25,7 @@
 /obj/item/proc/can_be_equipped(mob/user, slot, disable_warning = 0)
 	var/obj/item/equipped = user.get_equipped_item(slot)
 	if(equipped && equipped.overslot)
-		if (!disable_warning)
+		if(!disable_warning)
 			to_chat(user, "You are unable to wear \the [src] as [equipped] in the way.")
 		return FALSE
 	return TRUE
@@ -33,7 +33,7 @@
 /obj/item/pre_attack(atom/a, mob/user, var/params)
 	if(overslot)
 		var/obj/item/clothing/i = a
-		if (istype(i))
+		if(istype(i))
 			if(i.is_worn() && i.slot_flags == slot_flags)
 				user.equip_to_appropriate_slot(src)
 				return TRUE
@@ -106,7 +106,7 @@
 	if(!canremove)
 		return FALSE
 	var/mob/living/carbon/human/attached_to = M
-	if (istype(attached_to) && attached_to.is_item_attached(src))
+	if(istype(attached_to) && attached_to.is_item_attached(src))
 		return FALSE
 	if(!M.slot_is_accessible(slot, src, disable_warning? null : M))
 		return FALSE
@@ -114,30 +114,30 @@
 
 
 /obj/item/proc/is_equipped()
-	if (ismob(loc))
+	if(ismob(loc))
 		return (equip_slot != slot_none)
 
 
 /obj/item/proc/is_worn()
 	//If equip_slot is zero then it has never been equipped
-	if (equip_slot == slot_none)
+	if(equip_slot == slot_none)
 		return FALSE
 
-	if (ismob(loc))
+	if(ismob(loc))
 		return !(equip_slot in unworn_slots)
 
 
 /obj/item/proc/is_held()
 	//If equip_slot is zero then it has never been equipped
-	if (equip_slot == slot_none)
+	if(equip_slot == slot_none)
 		return FALSE
 
-	if (ismob(loc))
+	if(ismob(loc))
 		return equip_slot in list(slot_l_hand, slot_r_hand,slot_robot_equip_1,slot_robot_equip_2,slot_robot_equip_3)
 
 
 /obj/item/proc/get_equip_slot()
-	if (ismob(loc))
+	if(ismob(loc))
 		return equip_slot
 	else
 		return slot_none

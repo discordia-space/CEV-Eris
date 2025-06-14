@@ -25,7 +25,7 @@
 
 	// There's a chance for a weed explosion to happen if the weeds take over.
 	// Plants that are themselves weeds (weed_tolerance > 10) are unaffected.
-	if (weedlevel >= 10 && prob(10))
+	if(weedlevel >= 10 && prob(10))
 		if(!seed || weedlevel >= seed.get_trait(TRAIT_WEED_TOLERANCE))
 			weed_invasion()
 
@@ -82,7 +82,7 @@
 		health -= seed.handle_environment(T,environment)
 
 	// If we're attached to a pipenet, then we should let the pipenet know we might have modified some gasses
-	if (closed_system && connected_port)
+	if(closed_system && connected_port)
 		update_connected_network()
 
 	// Toxin levels beyond the plant's tolerance cause damage, but
@@ -99,7 +99,7 @@
 		if(seed.get_trait(TRAIT_CARNIVOROUS))
 			health += HYDRO_SPEED_MULTIPLIER
 			pestlevel -= HYDRO_SPEED_MULTIPLIER
-		else if (pestlevel >= seed.get_trait(TRAIT_PEST_TOLERANCE))
+		else if(pestlevel >= seed.get_trait(TRAIT_PEST_TOLERANCE))
 			health -= HYDRO_SPEED_MULTIPLIER
 
 	// Some plants thrive and live off of weeds.
@@ -107,7 +107,7 @@
 		if(seed.get_trait(TRAIT_PARASITE))
 			health += HYDRO_SPEED_MULTIPLIER
 			weedlevel -= HYDRO_SPEED_MULTIPLIER
-		else if (weedlevel >= seed.get_trait(TRAIT_WEED_TOLERANCE))
+		else if(weedlevel >= seed.get_trait(TRAIT_WEED_TOLERANCE))
 			health -= HYDRO_SPEED_MULTIPLIER
 
 	// Handle life and death.

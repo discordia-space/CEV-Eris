@@ -29,7 +29,7 @@
 		 ishuman(possible_target.current) &&\
 		  (possible_target.current.stat != DEAD) &&\
 		   (player_is_ship_antag(possible_target)))
-			if (!player_is_antag_id(possible_target, ROLE_MARSHAL)) // If player is antag, we can test their antag ID
+			if(!player_is_antag_id(possible_target, ROLE_MARSHAL)) // If player is antag, we can test their antag ID
 				possible_targets.Add(possible_target) // A marshal should not target another marshal
 	return possible_targets
 

@@ -1,10 +1,10 @@
 /**
-  * Simple data container component containing level up statistics.
-  * This does NOT make something a valid inspiration. It simply holds the data in case it gets used as one!
-  * To actually use it, the typepath of the object has to be contained within the sanity datum valid_inspiration list.
-  * Assign this component to an item specifying which statistics should be levelled up, and the item will be able to be used as an inspiration.
-  * The format of statistics is list(STAT_DEFINE = number) or a proc that returns such a list.
-  * (This would've been better as an element instead of a component, but currently elements don't exist on cev eris. F)
+Simple data container component containing level up statistics.
+This does NOT make something a valid inspiration. It simply holds the data in case it gets used as one!
+To actually use it, the typepath of the object has to be contained within the sanity datum valid_inspiration list.
+Assign this component to an item specifying which statistics should be levelled up, and the item will be able to be used as an inspiration.
+The format of statistics is list(STAT_DEFINE = number) or a proc that returns such a list.
+(This would've been better as an element instead of a component, but currently elements don't exist on cev eris. F)
 */
 
 /datum/component/inspiration

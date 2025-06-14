@@ -12,32 +12,32 @@ see external_procs.dm for usable procs and documentation on how to use them
 	*/
 	var/HUD_element/parent = getParent()
 	switch (_currentAlignmentHorizontal)
-		if (HUD_NO_ALIGNMENT)
+		if(HUD_NO_ALIGNMENT)
 			_alignmentOffsetX = 0
-		if (HUD_HORIZONTAL_WEST_OUTSIDE_ALIGNMENT)
-			if (!parent)
+		if(HUD_HORIZONTAL_WEST_OUTSIDE_ALIGNMENT)
+			if(!parent)
 				error("Trying to align outside of the screen.")
 			else
 				_alignmentOffsetX = -getWidth()
-		if (HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT)
-			if (!parent)
+		if(HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT)
+			if(!parent)
 				_alignmentOffsetX = _absolutePositionX * -1
 			else
 				_alignmentOffsetX = 0
-		if (HUD_CENTER_ALIGNMENT)
-			if (parent)
+		if(HUD_CENTER_ALIGNMENT)
+			if(parent)
 				_alignmentOffsetX = parent.getWidth()/2 - getWidth()/2
-			else if (!parent)
+			else if(!parent)
 				_alignmentOffsetX = ((2 * (_observer ? _observer.view : 7) + 1) * 32)/2 - (getWidth()/2)
-		if (HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT)
-			if (parent)
+		if(HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT)
+			if(parent)
 				_alignmentOffsetX = parent.getWidth() - getWidth()
-			else if (!parent)
+			else if(!parent)
 				_alignmentOffsetX = (2 * (_observer ? _observer.view : 7) + 1) * 32 - _absolutePositionX - getWidth()
-		if (HUD_HORIZONTAL_EAST_OUTSIDE_ALIGNMENT)
-			if (!parent)
+		if(HUD_HORIZONTAL_EAST_OUTSIDE_ALIGNMENT)
+			if(!parent)
 				error("Trying to align outside of the screen.")
-			else if (parent)
+			else if(parent)
 				_alignmentOffsetX = parent.getWidth()
 		else
 			if(_currentAlignmentHorizontal)
@@ -45,31 +45,31 @@ see external_procs.dm for usable procs and documentation on how to use them
 				_alignmentOffsetX = 0
 
 	switch (_currentAlignmentVertical)
-		if (HUD_NO_ALIGNMENT)
+		if(HUD_NO_ALIGNMENT)
 			_alignmentOffsetY = 0
-		if (HUD_VERTICAL_SOUTH_OUTSIDE_ALIGNMENT)
-			if (!parent)
+		if(HUD_VERTICAL_SOUTH_OUTSIDE_ALIGNMENT)
+			if(!parent)
 				error("Trying to align outside of the screen.")
 			_alignmentOffsetY = -getHeight()
-		if (HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
-			if (!parent)
+		if(HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
+			if(!parent)
 				_alignmentOffsetY = _absolutePositionY * -1
 			else
 				_alignmentOffsetY = 0
-		if (HUD_CENTER_ALIGNMENT)
-			if (parent)
+		if(HUD_CENTER_ALIGNMENT)
+			if(parent)
 				_alignmentOffsetY = parent.getHeight()/2 - getHeight()/2
-			else if (!parent)
+			else if(!parent)
 				_alignmentOffsetY = ((2 * (_observer ? _observer.view : 7) + 1) * 32)/2 - (getHeight()/2)
-		if (HUD_VERTICAL_NORTH_INSIDE_ALIGNMENT)
-			if (parent)
+		if(HUD_VERTICAL_NORTH_INSIDE_ALIGNMENT)
+			if(parent)
 				_alignmentOffsetY = parent.getHeight() - getHeight()
-			else if (!parent)
+			else if(!parent)
 				_alignmentOffsetY = (2 * (_observer ? _observer.view : 7) + 1) * 32 - _absolutePositionY - getHeight()
-		if (HUD_VERTICAL_NORTH_OUTSIDE_ALIGNMENT)
-			if (!parent)
+		if(HUD_VERTICAL_NORTH_OUTSIDE_ALIGNMENT)
+			if(!parent)
 				error("Trying to align outside of the screen.")
-			else if (parent)
+			else if(parent)
 				_alignmentOffsetY = parent.getHeight()
 		else
 			if(_currentAlignmentVertical)
@@ -81,7 +81,7 @@ see external_procs.dm for usable procs and documentation on how to use them
 	var/realY = _relativePositionY
 
 	var/HUD_element/parent = getParent()
-	if (parent)
+	if(parent)
 		realX += parent._absolutePositionX
 		realY += parent._absolutePositionY
 
@@ -102,12 +102,12 @@ see external_procs.dm for usable procs and documentation on how to use them
 
 /HUD_element/proc/_getObserverHUD()
 	var/client/observer = getObserver()
-	if (!observer)
+	if(!observer)
 		var/identifier = getIdentifier()
 		log_to_dd("Error: HUD element with identifier '[identifier]' has no observer")
 		return
 
-	if (!observer.HUD_elements)
+	if(!observer.HUD_elements)
 		observer.HUD_elements = new
 
 	return observer.HUD_elements
@@ -118,17 +118,17 @@ see external_procs.dm for usable procs and documentation on how to use them
 	return src
 
 /HUD_element/proc/_connectElement(var/HUD_element/E)
-	if (!E)
+	if(!E)
 		log_to_dd("Error: Invalid HUD element '[E]'")
 		return
 
 	var/list/HUD_element/elements = getElements()
-	if (elements.Find(E))
+	if(elements.Find(E))
 		log_to_dd("Error: HUD element '[E]' already connected")
 		return
 
 	var/HUD_element/parent = E.getParent()
-	if (parent)
+	if(parent)
 		var/list/HUD_element/elementRemove = parent.getElements()
 		elementRemove.Remove(E)
 
@@ -138,16 +138,16 @@ see external_procs.dm for usable procs and documentation on how to use them
 	return src
 
 /HUD_element/proc/_disconnectElement(var/HUD_element/E)
-	if (!E)
+	if(!E)
 		log_to_dd("Error: Invalid HUD element '[E]'")
 		return
 
 	var/list/HUD_element/elements = getElements()
-	if (elements.Find(E))
+	if(elements.Find(E))
 		elements.Remove(E)
 
 	E._unsetParent()
-	
+
 	return src
 
 /HUD_element/proc/_setParent(var/HUD_element/E)

@@ -68,29 +68,29 @@
 
 /decl/observ/proc/is_listening(var/event_source, var/datum/listener, var/proc_call)
 	// Return whether there are global listeners unless the event source is given.
-	if (!event_source)
+	if(!event_source)
 		return !!global_listeners.len
 
 	// Return whether anything is listening to a source, if no listener is given.
-	if (!listener)
+	if(!listener)
 		return global_listeners.len || (event_source in event_sources)
 
 	// Return false if nothing is associated with that source.
-	if (!(event_source in event_sources))
+	if(!(event_source in event_sources))
 		return FALSE
 
 	// Get and check the listeners for the reuqested event.
 	var/listeners = event_sources[event_source]
-	if (!(listener in listeners))
+	if(!(listener in listeners))
 		return FALSE
 
 	// Return true unless a specific callback needs checked.
-	if (!proc_call)
+	if(!proc_call)
 		return TRUE
 
 	// Check if the specific callback exists.
 	var/list/callback = listeners[listener]
-	if (!callback)
+	if(!callback)
 		return FALSE
 
 	return (proc_call in callback)
@@ -100,24 +100,24 @@
 
 /decl/observ/proc/register(var/datum/event_source, var/datum/listener, var/proc_call)
 	// Sanity checking.
-	if (!(event_source && listener && proc_call))
+	if(!(event_source && listener && proc_call))
 		return FALSE
-	if (istype(event_source, /decl/observ))
+	if(istype(event_source, /decl/observ))
 		return FALSE
 
 	// Crash if the event source is the wrong type.
-	if (!istype(event_source, expected_type))
+	if(!istype(event_source, expected_type))
 		CRASH("Unexpected type. Expected [expected_type], was [event_source.type]")
 
 	// Setup the listeners for this source if needed.
 	var/list/listeners = event_sources[event_source]
-	if (!listeners)
+	if(!listeners)
 		listeners = list()
 		event_sources[event_source] = listeners
 
 	// Make sure the callbacks are a list.
 	var/list/callbacks = listeners[listener]
-	if (!callbacks)
+	if(!callbacks)
 		callbacks = list()
 		listeners[listener] = callbacks
 
@@ -131,46 +131,46 @@
 
 /decl/observ/proc/unregister(var/event_source, var/datum/listener, var/proc_call)
 	// Sanity.
-	if (!(event_source && listener && (event_source in event_sources)))
+	if(!(event_source && listener && (event_source in event_sources)))
 		return FALSE
 
 	// Return false if nothing is listening for this event.
 	var/list/listeners = event_sources[event_source]
-	if (!listeners)
+	if(!listeners)
 		return FALSE
 
 	// Remove all callbacks if no specific one is given.
-	if (!proc_call)
+	if(!proc_call)
 		if(listeners.Remove(listener))
 			// Perform some cleanup and return true.
-			if (!listeners.len)
+			if(!listeners.len)
 				event_sources -= event_source
 			return TRUE
 		return FALSE
 
 	// See if the listener is registered.
 	var/list/callbacks = listeners[listener]
-	if (!callbacks)
+	if(!callbacks)
 		return FALSE
 
 	// See if the callback exists.
 	if(!callbacks.Remove(proc_call))
 		return FALSE
 
-	if (!callbacks.len)
+	if(!callbacks.len)
 		listeners -= listener
-	if (!listeners.len)
+	if(!listeners.len)
 		event_sources -= event_source
 	return TRUE
 
 /decl/observ/proc/register_global(var/datum/listener, var/proc_call)
 	// Sanity.
-	if (!(listener && proc_call))
+	if(!(listener && proc_call))
 		return FALSE
 
 	// Make sure the callbacks are setup.
 	var/list/callbacks = global_listeners[listener]
-	if (!callbacks)
+	if(!callbacks)
 		callbacks = list()
 		global_listeners[listener] = callbacks
 
@@ -180,36 +180,36 @@
 
 /decl/observ/proc/unregister_global(var/datum/listener, var/proc_call)
 	// Return false unless the listener is set as a global listener.
-	if (!(listener && (listener in global_listeners)))
+	if(!(listener && (listener in global_listeners)))
 		return FALSE
 
 	// Remove all callbacks if no specific one is given.
-	if (!proc_call)
+	if(!proc_call)
 		global_listeners -= listener
 		return TRUE
 
 	// See if the listener is registered.
 	var/list/callbacks = global_listeners[listener]
-	if (!callbacks)
+	if(!callbacks)
 		return FALSE
 
 	// See if the callback exists.
 	if(!callbacks.Remove(proc_call))
 		return FALSE
 
-	if (!callbacks.len)
+	if(!callbacks.len)
 		global_listeners -= listener
 	return TRUE
 
 /decl/observ/proc/raise_event()
 	// Sanity
-	if (!args.len)
+	if(!args.len)
 		return FALSE
 
 	// Call the global listeners.
-	for (var/datum/listener in global_listeners)
+	for(var/datum/listener in global_listeners)
 		var/list/callbacks = global_listeners[listener]
-		for (var/proc_call in callbacks)
+		for(var/proc_call in callbacks)
 
 			// If the callback crashes, record the error and remove it.
 			try
@@ -221,11 +221,11 @@
 
 	// Call the listeners for this specific event source, if they exist.
 	var/source = args[1]
-	if (source in event_sources)
+	if(source in event_sources)
 		var/list/listeners = event_sources[source]
-		for (var/datum/listener in listeners)
+		for(var/datum/listener in listeners)
 			var/list/callbacks = listeners[listener]
-			for (var/proc_call in callbacks)
+			for(var/proc_call in callbacks)
 
 				// If the callback crashes, record the error and remove it.
 				try

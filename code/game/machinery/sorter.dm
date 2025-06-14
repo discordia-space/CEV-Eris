@@ -239,7 +239,7 @@
 	var/list/data = nano_ui_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "sorter.tmpl", src.name, 600, 400, state = state)
 		ui.set_initial_data(data)
 		ui.open()
@@ -247,23 +247,23 @@
 
 
 /obj/machinery/sorter/Topic(href, href_list)
-	if (..()) return TRUE
+	if(..()) return TRUE
 
-	if (href_list["remove"])
+	if(href_list["remove"])
 		var/key = text2num(href_list["remove"])
 		var/datum/sort_rule/rule_to_remove = sort_settings[key]
 		sort_settings.Remove(rule_to_remove)
 		qdel(rule_to_remove)
-	else if (href_list["add_new"])
+	else if(href_list["add_new"])
 		new_rule_ui = !new_rule_ui
 
-	else if (href_list["filter"])
+	else if(href_list["filter"])
 		custom_rule["accept"] = text2num(href_list["filter"])
 
-	else if (href_list["sort_type"])
+	else if(href_list["sort_type"])
 		custom_rule["sort_type"] = href_list["sort_type"]
 
-	else if (href_list["type_input"])
+	else if(href_list["type_input"])
 		switch(custom_rule["sort_type"])
 			if(SORT_TYPE_MATERIAL)
 				custom_rule["value"] = input("Please, select a material!", "Matter sorting", null, null) as null|anything in MATERIAL_LIST
@@ -272,13 +272,13 @@
 			if(SORT_TYPE_REAGENT)
 				custom_rule["value"] = input("Please, enter a reagent to search for!", "Reagent sorting", null, null) as text //Until we make a full reagent ID list
 
-	else if (href_list["amount_input"])
+	else if(href_list["amount_input"])
 		custom_rule["amount"] = text2num(input("Type amount of [custom_rule["sort_type"]]"))
 		if(!isnum(custom_rule["amount"]))
 			state("Sorry. Amount should be a number.")
 			custom_rule["amount"] = 1
 
-	else if (href_list["add"])
+	else if(href_list["add"])
 		if(sort_settings.len < number_of_settings)
 			sort_settings += new /datum/sort_rule(custom_rule["accept"],
 												custom_rule["sort_type"],
@@ -289,7 +289,7 @@
 			state("Maximum number of rules reached. Out of Memory.")
 		custom_rule = list("accept", "sort_type", "value", "amount")
 
-	else if (href_list["cancel"])
+	else if(href_list["cancel"])
 		new_rule_ui = null
 		custom_rule = list("accept", "sort_type", "value", "amount")
 

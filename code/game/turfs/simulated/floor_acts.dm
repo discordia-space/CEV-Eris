@@ -3,7 +3,7 @@
 	var/absorbed_damage = 0
 	var/obj/effect/shield/turf_shield = getEffectShield()
 
-	if (turf_shield)
+	if(turf_shield)
 		var/temp = turf_shield.ignoreExAct
 		turf_shield.ignoreExAct = FALSE
 		absorbed_damage = turf_shield.explosion_act(target_power, handler)

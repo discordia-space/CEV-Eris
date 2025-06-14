@@ -30,10 +30,10 @@
 /datum/antagonist/proc/update_id()
 	if(!owner || !owner.current)
 		return
-	if (!default_access || !default_access.len)
+	if(!default_access || !default_access.len)
 		return
 	var/list/things = owner.current.get_recursive_contents()
-	for (var/obj/item/card/id/W in things)
+	for(var/obj/item/card/id/W in things)
 		W.access |= default_access
 
 /datum/antagonist/proc/create_id(var/assignment, var/equip = 1)
@@ -44,7 +44,7 @@
 
 	var/mob/living/carbon/human/player = owner.current
 	//Remove the old ID
-	if (player.wear_id)
+	if(player.wear_id)
 		QDEL_NULL(player.wear_id)
 
 	var/obj/item/card/id/W = new id_type(player)

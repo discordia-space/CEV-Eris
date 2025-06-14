@@ -3,7 +3,7 @@
 /mob/living/carbon/resolve_item_attack(obj/item/I, mob/living/user, var/hit_zone)
 	if(check_attack_throat(I, user))
 		return null
-	if (!hit_zone)
+	if(!hit_zone)
 		hit_zone = "chest"
 	return ..(I, user, hit_zone)
 
@@ -30,11 +30,11 @@
 /*Its entirely possible that we were gibbed or dusted by the above. Check if we still exist before
 continuing. Being gibbed or dusted has a 1.5 second delay, during which it sets the transforming var to
 true, and the mob is not yet deleted, so we need to check that as well*/
-	if (QDELETED(src) || transforming)
+	if(QDELETED(src) || transforming)
 		return TRUE
 
 	//Melee weapon embedded object code.
-	if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
+	if(I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
 		var/damage = effective_force
 
 		//blunt objects should really not be embedding in things unless a huge amount of force is involved
@@ -72,7 +72,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 			return 0
 
 		damage_through_armor(W.force, W.damtype, BP_HEAD, wounding_multiplier = 2, sharp = W.sharp, edge = W.edge, used_weapon = W)
-		
+
 		user.visible_message(SPAN_DANGER("\The [user] cuts [src]'s neck with \the [W]!"), SPAN_DANGER("You cut [src]'s neck with \the [W]!"))
 
 		if(W.hitsound)

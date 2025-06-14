@@ -9,7 +9,7 @@
 		update_explanation()
 
 /datum/objective/plunder/check_completion()
-	if (failed)
+	if(failed)
 		return FALSE
 	if(owner && (!owner.current || owner.current.stat == DEAD))
 		return FALSE
@@ -20,7 +20,7 @@
 	var/list/contents = list()
 
 	// Get inventory of the faction
-	if (owner_faction)
+	if(owner_faction)
 		contents.Add(owner_faction.get_inventory())
 
 	var/cumulated_amount = 0

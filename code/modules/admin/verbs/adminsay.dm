@@ -30,7 +30,7 @@
 	msg = sanitize(msg)
 	log_admin("MOD: [key_name(src)] : [msg]")
 
-	if (!msg)
+	if(!msg)
 		return
 
 	var/sender_name = key_name(usr, 1)

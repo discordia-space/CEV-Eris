@@ -112,7 +112,7 @@
 		//very simple load balancing. If there was a net excess this tick then it must have been that some APCs used less than perapc, since perapc*numapc = avail
 		//Therefore we can raise the amount of power rationed out to APCs on the assumption that those APCs that used less than perapc will continue to do so.
 		//If that assumption fails, then some APCs will miss out on power next tick, however it will be rebalanced for the tick after.
-		if (netexcess >= 0)
+		if(netexcess >= 0)
 			perapc_excess += min(netexcess/numapc, (avail - perapc) - perapc_excess)
 		else
 			perapc_excess = 0
@@ -161,45 +161,45 @@
 /datum/powernet/proc/get_electrocute_damage()
 	switch(avail)
 		// 50+ MW - divine punishment
-		if (50000000 to INFINITY)
+		if(50000000 to INFINITY)
 			return min(rand(95,190),rand(95,190))
 
 		// 30 to 50 MW - some ridicluous high effort high power SM setup
-		if (30000000 to 50000000)
+		if(30000000 to 50000000)
 			return min(rand(80,180),rand(80,180))
 
 		// 20 to 30 MW - a seriously overclocked SM with some extra Technomancer voodoo
-		if (20000000 to 30000000)
+		if(20000000 to 30000000)
 			return min(rand(70,170),rand(70,170))
 
 		// 15 to 20 MW - hardwired overclocked SM
-		if (15000000 to 20000000)
+		if(15000000 to 20000000)
 			return min(rand(65,160),rand(65,160))
 
 		// 10 to 15 MW - hardwired SM under light load
 		// Powerful enough to flash limbs to ash sometimes
-		if (10000000 to 15000000)
+		if(10000000 to 15000000)
 			return min(rand(50,140),rand(50,140))
 
 		// 1 to 10 MW - hardwired SM under noticeable load
 		// Quite lethal already, but damage output can be pushed further
-		if (1000000 to 10000000)
+		if(1000000 to 10000000)
 			return min(rand(45,120),rand(45,120))
 
 		// 200 to 1000 kW - beefy powernet
-		if (200000 to 1000000)
+		if(200000 to 1000000)
 			return min(rand(30,80),rand(30,80))
 
 		// 100 to 200 kW - average powernet
-		if (100000 to 200000)
+		if(100000 to 200000)
 			return min(rand(20,60),rand(20,60))
 
 		// 50 to 100 kW - something a PACMAN-type generator can dish out
-		if (50000 to 100000)
+		if(50000 to 100000)
 			return min(rand(15,40),rand(15,40))
 
 		// 1 to 50 kW - what is this, a power line for ants?
-		if (1000 to 50000)
+		if(1000 to 50000)
 			return min(rand(10,20),rand(10,20))
 		else
 			return 0

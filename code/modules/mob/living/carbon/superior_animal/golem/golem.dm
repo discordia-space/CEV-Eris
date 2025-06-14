@@ -118,7 +118,7 @@
 
 	//CONSCIOUS UNCONSCIOUS DEAD
 
-	if (!check_AI_act())
+	if(!check_AI_act())
 		return FALSE
 
 	switch(stance)
@@ -176,11 +176,11 @@
 /mob/living/carbon/superior_animal/golem/prepareAttackOnTarget()
 	stop_automated_movement = 1
 
-	if (!target_mob || !isValidAttackTarget(target_mob))
+	if(!target_mob || !isValidAttackTarget(target_mob))
 		loseTarget()
 		return
 
-	if ((get_dist(src, target_mob) >= (viewRange + kept_distance)) || src.z != target_mob.z) //golems with a kept distance need to be further away to lose their gargets, to avoid losing targets by trying to keep distance
+	if((get_dist(src, target_mob) >= (viewRange + kept_distance)) || src.z != target_mob.z) //golems with a kept distance need to be further away to lose their gargets, to avoid losing targets by trying to keep distance
 		loseTarget()
 		return
 

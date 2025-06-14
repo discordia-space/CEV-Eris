@@ -22,14 +22,14 @@
 	icon = 'icons/obj/smoothlattice.dmi'
 	icon_state = "latticeblank"
 	updateOverlays()
-	for (var/dir in cardinal)
+	for(var/dir in cardinal)
 		var/obj/structure/lattice/L
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
 			L.updateOverlays()
 
 /obj/structure/lattice/Destroy()
-	for (var/dir in cardinal)
+	for(var/dir in cardinal)
 		var/obj/structure/lattice/L
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
@@ -42,7 +42,7 @@
 			to_chat(user, SPAN_NOTICE("Slicing lattice joints ..."))
 			new /obj/item/stack/rods(get_turf(user))
 			qdel(src)
-	if (istype(I, /obj/item/stack/rods) || istype(I, /obj/item/stack/rods/cyborg))
+	if(istype(I, /obj/item/stack/rods) || istype(I, /obj/item/stack/rods/cyborg))
 		var/obj/item/stack/rods/R = I
 		if(R.amount <= 2 && !istype(R, /obj/item/stack/rods/cyborg))
 			return
@@ -56,7 +56,7 @@
 				new /obj/structure/catwalk(src.loc)
 				qdel(src)
 			return
-	if (istype(I, /obj/item/stack))
+	if(istype(I, /obj/item/stack))
 		var/turf/T = get_turf(src)
 		return T.attackby(I, user) //BubbleWrap - hand this off to the underlying turf instead
 	return
@@ -70,7 +70,7 @@
 		var/dir_sum = 0
 
 		var/turf/T
-		for (var/direction in cardinal)
+		for(var/direction in cardinal)
 			T = get_step(src, direction)
 			if(locate(/obj/structure/lattice, T) || locate(/obj/structure/catwalk, T))
 				dir_sum += direction

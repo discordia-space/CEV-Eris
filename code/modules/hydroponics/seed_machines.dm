@@ -188,7 +188,7 @@
 	var/list/data = nano_ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_panel_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "botany_isolator.tmpl", "Lysis-isolation Centrifuge", 470, 450)
 		ui.set_initial_data(data)
 		ui.open()
@@ -247,7 +247,7 @@
 	var/list/data = nano_ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_panel_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "botany_editor.tmpl", "Bioballistic Delivery System", 470, 450)
 		ui.set_initial_data(data)
 		ui.open()

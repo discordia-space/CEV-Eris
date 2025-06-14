@@ -1,5 +1,5 @@
 /mob/proc/on_mob_jump(var/turf/T)
-	if (istype(loc, /mob/living/exosuit))
+	if(istype(loc, /mob/living/exosuit))
 		var/mob/living/exosuit/M = loc
 		M.forceMove(T)
 	else

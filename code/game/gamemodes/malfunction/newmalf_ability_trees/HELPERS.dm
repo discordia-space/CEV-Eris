@@ -31,7 +31,7 @@
 
 	var/datum/malf_hardware/C
 
-	for (var/datum/malf_hardware/H in hardware_list)
+	for(var/datum/malf_hardware/H in hardware_list)
 		if(H.name == choice)
 			C = H
 			break

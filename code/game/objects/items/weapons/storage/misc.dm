@@ -58,7 +58,7 @@
 	var/open = FALSE
 
 /obj/item/storage/ration_pack/open(mob/user)
-	if (!open)
+	if(!open)
 		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
 		icon_state = "erp_open"
 		open = TRUE
@@ -89,7 +89,7 @@
 	)
 
 /obj/item/storage/ration_pack/ihr/open(mob/user)
-	if (!open)
+	if(!open)
 		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
 		icon_state = "ihr_open"
 		open = TRUE

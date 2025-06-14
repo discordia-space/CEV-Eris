@@ -60,7 +60,7 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 			if(H.type == handler_path)
 				REMOVE_AND_QDEL(H)
 				break
-	else if (handler_path in movement_handlers)
+	else if(handler_path in movement_handlers)
 		REMOVE_AND_QDEL(handler_path)
 
 /atom/movable/proc/ReplaceMovementHandler(var/handler_path)

@@ -46,7 +46,7 @@
 
 /obj/effect/energy_field/proc/Strengthen(var/severity)
 	strength += severity
-	if (strength < 0)
+	if(strength < 0)
 		strength = 0
 
 	//if we take too much damage, drop out - the generator will bring us back up if we have enough power
@@ -58,7 +58,7 @@
 		set_invisibility(101)
 		set_density(0)
 
-	if (density != old_density)
+	if(density != old_density)
 		update_nearby_tiles()
 
 /obj/effect/energy_field/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)

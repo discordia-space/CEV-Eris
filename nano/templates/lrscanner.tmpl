@@ -68,7 +68,7 @@
 	<h2>CONTROLS</h2>
 		<table>
 			<tr>
-			{{if (data.running == 2)}}
+			{{if(data.running == 2)}}
 				<td>{{:helper.link('Turn off', null, {'begin_shutdown' : '1'})}}
 			{{else}}
 				<td>{{:helper.link('Turn on', null, {'start_generator' : '1'})}}

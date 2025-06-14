@@ -39,8 +39,8 @@
 
 /obj/item/implanter/compressed/attack(mob/living/M, mob/living/user)
 	var/obj/item/implant/compressed/c = implant
-	if (!c)	return
-	if (c.scanned == null)
+	if(!c)	return
+	if(c.scanned == null)
 		to_chat(user, "Please scan an object with the implanter first.")
 		return
 	..()
@@ -50,7 +50,7 @@
 		return
 	if(istype(A,/obj/item) && implant)
 		var/obj/item/implant/compressed/c = implant
-		if (c.scanned)
+		if(c.scanned)
 			to_chat(user, SPAN_WARNING("Something is already scanned inside the implant!"))
 			return
 		if(ismob(A.loc))

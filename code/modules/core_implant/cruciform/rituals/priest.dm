@@ -43,7 +43,7 @@
 		fail("This cruciform already has a soul inside.", user, C)
 		return FALSE
 
-	if (CI.wearer.stat == DEAD)
+	if(CI.wearer.stat == DEAD)
 		fail("It is too late for this one, the soul has already left the vessel", user, C)
 		return FALSE
 
@@ -141,7 +141,7 @@
 
 /datum/ritual/cruciform/priest/acolyte/short_boost/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
 	// take_boost is automatically triggered by a callback function when the boost ends but the participant
-	if (participant) // check if participant still exists otherwise we cannot read null.stats
+	if(participant) // check if participant still exists otherwise we cannot read null.stats
 		to_chat(participant, SPAN_WARNING("Your knowledge of [get_stats_to_text()] feels lessened."))
 
 /datum/ritual/cruciform/priest/acolyte/short_boost/proc/get_stats_to_text()

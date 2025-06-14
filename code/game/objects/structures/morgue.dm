@@ -33,10 +33,10 @@
 	return ..()
 
 /obj/structure/morgue/update_icon()
-	if (open)
+	if(open)
 		icon_state = "morgue0"
 	else
-		if (current_storage > 0)
+		if(current_storage > 0)
 			icon_state = "morgue2"
 		else
 			icon_state = "morgue1"
@@ -67,7 +67,7 @@
 		return
 	next_toggle = world.time + 15 //Throttle toggling to reduce lag and potential exploits
 	playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
-	if (connected)
+	if(connected)
 		close(user)
 	else
 		open(user)
@@ -76,12 +76,12 @@
 
 
 /obj/structure/morgue/proc/open()
-	if (!anchored)
+	if(!anchored)
 		//No opening while unanchored
 		return
 
 	var/turf/T = get_step(src, dir)
-	if (!(turf_clear(T)))
+	if(!(turf_clear(T)))
 		return
 
 	open = TRUE
@@ -96,7 +96,7 @@
 	var/glidesize = DELAY2GLIDESIZE(5)
 	connected.forceMove(T, glide_size_override=glidesize)
 	for(var/atom/movable/A in loc)
-		if (!A.anchored)
+		if(!A.anchored)
 			A.forceMove(T,glide_size_override=glidesize)
 
 
@@ -108,7 +108,7 @@
 	occupant = null
 	var/glidesize = DELAY2GLIDESIZE(5)
 	for(var/atom/movable/A in connected.loc)
-		if (!A.anchored)
+		if(!A.anchored)
 			A.forceMove(loc,glide_size_override=glidesize)
 
 	connected.forceMove(loc,glide_size_override=glidesize)
@@ -122,14 +122,14 @@
 	open = FALSE
 
 	//If this drawer contains a corpse that used to be a player..
-	if (occupant && occupant.mind && occupant.mind.key && occupant.stat == DEAD)
+	if(occupant && occupant.mind && occupant.mind.key && occupant.stat == DEAD)
 		//Whoever inhabited this body is long gone, we need some black magic to find where and who they are now
 		var/mob/M = key2mob(occupant.mind.key)
-		if (!M)
+		if(!M)
 			return
-		if (M.stat != DEAD)
+		if(M.stat != DEAD)
 			return // no more bonuses for alive mobs
-		if (M.get_respawn_bonus("CORPSE_HANDLING"))
+		if(M.get_respawn_bonus("CORPSE_HANDLING"))
 			return // we got this one already
 		//We send a message to the occupant's current mob - probably a ghost, but who knows.
 		to_chat(M, SPAN_NOTICE("Your remains have been collected and properly stored. Your crew respawn time is reduced by [(MORGUE_RESPAWN_BONUS)/600] minutes."))
@@ -142,7 +142,7 @@
 
 
 /obj/structure/morgue/proc/store_atom(var/atom/movable/AM)
-	if (AM.anchored)
+	if(AM.anchored)
 		return
 		//Allowing it to suck up any non anchored object is probably open to exploits,
 		//But fixing that is beyond my scope for now.
@@ -150,11 +150,11 @@
 	var/newcap
 	var/mob/living/foundmob
 
-	if (ismob(AM))
-		if (!isliving(AM))
+	if(ismob(AM))
+		if(!isliving(AM))
 			//Don't eat ghosts and AI eyes please
 			return
-		if (occupant)
+		if(occupant)
 			//Only one mob per drawer
 			return
 		foundmob = AM
@@ -162,18 +162,18 @@
 	else
 		//Not a mob, must be an object
 
-		if (isitem(AM))
+		if(isitem(AM))
 			var/obj/item/I = AM
 			newcap = I.get_storage_cost()
 
-		else if (istype(AM, /obj/structure/closet))
+		else if(istype(AM, /obj/structure/closet))
 			//Closet includes coffins and deployed bodybags
-			if (occupant)
+			if(occupant)
 				//One of these is allowed in if it contains a mob and we dont already have a mob
 				return
 			//Try to find a mob inside it
 			foundmob = locate(/mob/living) in AM.contents
-			if (foundmob)
+			if(foundmob)
 				newcap = 80 //These will take up most of the space
 			else
 				return
@@ -186,24 +186,24 @@
 	newcap = max(newcap, 2)
 
 	//Make sure we have space to fit it
-	if ((current_storage + newcap) > max_capacity)
+	if((current_storage + newcap) > max_capacity)
 		return
 
 	//Ok once we get here, we've confirmed that we can store the thing
-	if (foundmob)
+	if(foundmob)
 		occupant = foundmob
 	current_storage += newcap
 	AM.forceMove(src)
 
 /obj/structure/morgue/attackby(P as obj, mob/user as mob)
-	if (istype(P, /obj/item/pen))
+	if(istype(P, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", name), null)  as text
-		if (user.get_active_hand() != P)
+		if(user.get_active_hand() != P)
 			return
-		if ((!in_range(src, usr) && loc != user))
+		if((!in_range(src, usr) && loc != user))
 			return
 		t = sanitizeSafe(t, MAX_NAME_LEN)
-		if (t)
+		if(t)
 			name = text("Morgue- '[]'", t)
 		else
 			name = "Morgue"
@@ -211,12 +211,12 @@
 	return
 
 /obj/structure/morgue/relaymove(mob/user as mob)
-	if (user.stat)
+	if(user.stat)
 		return
 	connected = new /obj/structure/m_tray( loc )
 	step(connected, EAST)
 	var/turf/T = get_step(src, EAST)
-	if (T.contents.Find(connected))
+	if(T.contents.Find(connected))
 		connected.connected = src
 		icon_state = "morgue0"
 		for(var/atom/movable/A as mob|obj in src)
@@ -248,20 +248,20 @@
 	return ..()
 
 /obj/structure/m_tray/attack_hand(mob/user as mob)
-	if (connected)
+	if(connected)
 		connected.attack_hand(user)
 
 /obj/structure/m_tray/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
-	if ((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src) || user.contents.Find(O)))
+	if((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src) || user.contents.Find(O)))
 		return
-	if (!ismob(O) && !istype(O, /obj/structure/closet/body_bag))
+	if(!ismob(O) && !istype(O, /obj/structure/closet/body_bag))
 		return
-	if (!ismob(user) || user.stat || user.lying || user.stunned)
+	if(!ismob(user) || user.stat || user.lying || user.stunned)
 		return
 	O.forceMove(loc)
-	if (user != O)
+	if(user != O)
 		for(var/mob/B in viewers(user, 3))
-			if ((B.client && !( B.blinded )))
+			if((B.client && !( B.blinded )))
 				to_chat(B, SPAN_WARNING("\The [user] stuffs [O] into [src]!"))
 	return
 
@@ -299,10 +299,10 @@
 	return ..()
 
 /obj/structure/crematorium/proc/update()
-	if (connected)
+	if(connected)
 		icon_state = "crema0"
 	else
-		if (contents.len)
+		if(contents.len)
 			icon_state = "crema2"
 		else
 			icon_state = "crema1"
@@ -319,29 +319,29 @@
 	. = ..()
 
 /obj/structure/crematorium/attack_hand(mob/user as mob)
-//	if (cremating) AWW MAN! THIS WOULD BE SO MUCH MORE FUN ... TO WATCH
+//	if(cremating) AWW MAN! THIS WOULD BE SO MUCH MORE FUN ... TO WATCH
 //		user.show_message(SPAN_WARNING("Uh-oh, that was a bad idea."), 1)
 //		//usr << "Uh-oh, that was a bad idea."
 //		src:loc:poison += 20000000
 //		src:loc:firelevel = src:loc:poison
 //		return
-	if (cremating)
+	if(cremating)
 		to_chat(usr, SPAN_WARNING("It's locked."))
 		return
-	if ((connected) && (locked == 0))
+	if((connected) && (locked == 0))
 		for(var/atom/movable/A as mob|obj in connected.loc)
-			if (!( A.anchored ))
+			if(!( A.anchored ))
 				A.forceMove(src)
 		playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		//connected = null
 		qdel(connected)
-	else if (locked == 0)
+	else if(locked == 0)
 		playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		connected = new /obj/structure/c_tray( loc )
 		step(connected, SOUTH)
 		connected.layer = OBJ_LAYER
 		var/turf/T = get_step(src, SOUTH)
-		if (T.contents.Find(connected))
+		if(T.contents.Find(connected))
 			connected.connected = src
 			icon_state = "crema0"
 			for(var/atom/movable/A as mob|obj in src)
@@ -354,14 +354,14 @@
 	update()
 
 /obj/structure/crematorium/attackby(P as obj, mob/user as mob)
-	if (istype(P, /obj/item/pen))
+	if(istype(P, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", name), null)  as text
-		if (user.get_active_hand() != P)
+		if(user.get_active_hand() != P)
 			return
-		if ((!in_range(src, usr) > 1 && loc != user))
+		if((!in_range(src, usr) > 1 && loc != user))
 			return
 		t = sanitizeSafe(t, MAX_NAME_LEN)
-		if (t)
+		if(t)
 			name = text("Crematorium- '[]'", t)
 		else
 			name = "Crematorium"
@@ -369,13 +369,13 @@
 	return
 
 /obj/structure/crematorium/relaymove(mob/user as mob)
-	if (user.stat || locked)
+	if(user.stat || locked)
 		return
 	connected = new /obj/structure/c_tray( loc )
 	step(connected, SOUTH)
 	connected.layer = OBJ_LAYER
 	var/turf/T = get_step(src, SOUTH)
-	if (T.contents.Find(connected))
+	if(T.contents.Find(connected))
 		connected.connected = src
 		icon_state = "crema0"
 		for(var/atom/movable/A as mob|obj in src)
@@ -394,7 +394,7 @@
 		return //don't let you cremate something twice or w/e
 
 	if(contents.len <= 0)
-		for (var/mob/M in viewers(src))
+		for(var/mob/M in viewers(src))
 			M.show_message(SPAN_WARNING("You hear a hollow crackle."), 1)
 			return
 
@@ -403,19 +403,19 @@
 			to_chat(usr, "You get the feeling that you shouldn't cremate one of the items in the cremator.")
 			return
 
-		for (var/mob/M in viewers(src))
+		for(var/mob/M in viewers(src))
 			M.show_message(SPAN_WARNING("You hear a roar as the crematorium activates."), 1)
 
 		cremating = 1
 		locked = 1
 
 		for(var/mob/living/M in contents)
-			if (M.stat!=2)
-				if (!iscarbon(M))
+			if(M.stat!=2)
+				if(!iscarbon(M))
 					M.emote("scream")
 				else
 					var/mob/living/carbon/C = M
-					if (!(C.species && (C.species.flags & NO_PAIN)))
+					if(!(C.species && (C.species.flags & NO_PAIN)))
 						C.emote("scream")
 
 			//Logging for this causes runtimes resulting in the cremator locking up. Commenting it out until that's figured out.
@@ -458,9 +458,9 @@
 	return ..()
 
 /obj/structure/c_tray/attack_hand(mob/user as mob)
-	if (connected)
+	if(connected)
 		for(var/atom/movable/A as mob|obj in loc)
-			if (!( A.anchored ))
+			if(!( A.anchored ))
 				A.forceMove(connected)
 			//Foreach goto(26)
 		connected.connected = null
@@ -472,16 +472,16 @@
 	return
 
 /obj/structure/c_tray/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
-	if ((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src) || user.contents.Find(O)))
+	if((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src) || user.contents.Find(O)))
 		return
-	if (!ismob(O) && !istype(O, /obj/structure/closet/body_bag))
+	if(!ismob(O) && !istype(O, /obj/structure/closet/body_bag))
 		return
-	if (!ismob(user) || user.stat || user.lying || user.stunned)
+	if(!ismob(user) || user.stat || user.lying || user.stunned)
 		return
 	O.forceMove(loc)
-	if (user != O)
+	if(user != O)
 		for(var/mob/B in viewers(user, 3))
-			if ((B.client && !( B.blinded )))
+			if((B.client && !( B.blinded )))
 				to_chat(B, (SPAN_WARNING("[user] stuffs [O] into [src]!")))
 			//Foreach goto(99)
 	return
@@ -501,9 +501,9 @@
 	if(..())
 		return
 	if(allowed(user))
-		for (var/obj/structure/crematorium/C in world)
-			if (C.id == id)
-				if (!C.cremating)
+		for(var/obj/structure/crematorium/C in world)
+			if(C.id == id)
+				if(!C.cremating)
 					C.cremate(user)
 	else
 		to_chat(usr, SPAN_WARNING("Access denied."))

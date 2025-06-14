@@ -37,7 +37,7 @@
 	start_x = start_x || rand(OVERMAP_EDGE, OVERMAP_SIZE - OVERMAP_EDGE)
 	start_y = start_y || rand(OVERMAP_EDGE, OVERMAP_SIZE - OVERMAP_EDGE)
 
-	if ((!eris_start_set) && (name == config.start_location))
+	if((!eris_start_set) && (name == config.start_location))
 		var/obj/effect/overmap/ship/eris/E = (locate(/obj/effect/overmap/ship/eris) in GLOB.ships)
 		start_x = E.start_x
 		start_y = E.start_y

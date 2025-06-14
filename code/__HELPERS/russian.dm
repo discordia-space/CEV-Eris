@@ -2,13 +2,13 @@
 /proc/rhtml_encode(var/msg)
 	msg = replacetext(msg, "<", "&lt;")
 	msg = replacetext(msg, ">", "&gt;")
-	msg = replacetext(msg, "ÿ", "&#255;")
+	msg = replacetext(msg, "ï¿½", "&#255;")
 	return msg
 
 /proc/rhtml_decode(var/msg)
 	msg = replacetext(msg, "&gt;", ">")
 	msg = replacetext(msg, "&lt;", "<")
-	msg = replacetext(msg, "&#255;", "ÿ")
+	msg = replacetext(msg, "&#255;", "ï¿½")
 	return msg
 
 
@@ -18,12 +18,12 @@
 	var/t = ""
 	for(var/i = 1, i <= length(text), i++)
 		var/a = text2ascii(text, i)
-		if (a > 223)
+		if(a > 223)
 			t += ascii2text(a - 32)
-		else if (a == 184)
+		else if(a == 184)
 			t += ascii2text(168)
 		else t += ascii2text(a)
-	t = replacetext(t,"&#255;","ß")
+	t = replacetext(t,"&#255;","ï¿½")
 	return t
 
 /proc/rlowertext(text as text)
@@ -31,9 +31,9 @@
 	var/t = ""
 	for(var/i = 1, i <= length(text), i++)
 		var/a = text2ascii(text, i)
-		if (a > 191 && a < 224)
+		if(a > 191 && a < 224)
 			t += ascii2text(a + 32)
-		else if (a == 168)
+		else if(a == 168)
 			t += ascii2text(184)
 		else t += ascii2text(a)
 	return t
@@ -44,12 +44,12 @@
 /proc/russian_to_cp1251(var/msg, var/prepare_to_browser = FALSE)//CHATBOX
 	if(prepare_to_browser)
 		msg = replace_characters(msg, list("\n\n" = "<br>", "\n" = "", "\t" = ""))
-	return replacetext(msg, "ÿ", "&#255;")
+	return replacetext(msg, "ï¿½", "&#255;")
 
 /proc/russian_to_utf8(var/msg, var/prepare_to_browser = FALSE)//PDA PAPER POPUPS
 	if(prepare_to_browser)
 		msg = replace_characters(msg, list("\n\n" = "<br>", "\n" = "", "\t" = ""))
-	return replacetext(msg, "ÿ", "&#1103;")
+	return replacetext(msg, "ï¿½", "&#1103;")
 
 /proc/utf8_to_cp1251(msg)
 	return replacetext(msg, "&#1103;", "&#255;")
@@ -57,18 +57,18 @@
 /proc/cp1251_to_utf8(msg)
 	return replacetext(msg, "&#255;", "&#1103;")
 
-//Prepare text for edit. Replace "ÿ" with "\ß" for edition. Don't forget to call post_edit().
+//Prepare text for edit. Replace "ï¿½" with "\ï¿½" for edition. Don't forget to call post_edit().
 /proc/edit_cp1251(msg)
-	return replacetext(msg, "&#255;", "\\ß")
+	return replacetext(msg, "&#255;", "\\ï¿½")
 
 /proc/edit_utf8(msg)
-	return replacetext(msg, "&#1103;", "\\ß")
+	return replacetext(msg, "&#1103;", "\\ï¿½")
 
 /proc/post_edit_cp1251(msg)
-	return replacetext(msg, "\\ß", "&#255;")
+	return replacetext(msg, "\\ï¿½", "&#255;")
 
 /proc/post_edit_utf8(msg)
-	return replacetext(msg, "\\ß", "&#1103;")
+	return replacetext(msg, "\\ï¿½", "&#1103;")
 
 //input
 
@@ -94,13 +94,13 @@
 
 
 var/global/list/rkeys = list(
-	"à" = "f", "â" = "d", "ã" = "u", "ä" = "l",
-	"å" = "t", "ç" = "p", "è" = "b", "é" = "q",
-	"ê" = "r", "ë" = "k", "ì" = "v", "í" = "y",
-	"î" = "j", "ï" = "g", "ð" = "h", "ñ" = "c",
-	"ò" = "n", "ó" = "e", "ô" = "a", "ö" = "w",
-	"÷" = "x", "ø" = "i", "ù" = "o", "û" = "s",
-	"ü" = "m", "ÿ" = "z"
+	"ï¿½" = "f", "ï¿½" = "d", "ï¿½" = "u", "ï¿½" = "l",
+	"ï¿½" = "t", "ï¿½" = "p", "ï¿½" = "b", "ï¿½" = "q",
+	"ï¿½" = "r", "ï¿½" = "k", "ï¿½" = "v", "ï¿½" = "y",
+	"ï¿½" = "j", "ï¿½" = "g", "ï¿½" = "h", "ï¿½" = "c",
+	"ï¿½" = "n", "ï¿½" = "e", "ï¿½" = "a", "ï¿½" = "w",
+	"ï¿½" = "x", "ï¿½" = "i", "ï¿½" = "o", "ï¿½" = "s",
+	"ï¿½" = "m", "ï¿½" = "z"
 )
 
 //Transform keys from russian keyboard layout to eng analogues and lowertext it.
@@ -112,84 +112,84 @@ var/global/list/rkeys = list(
 //TEXT MODS RUS
 /proc/capitalize_cp1251(var/t as text)
 	var/s = 2
-	if (copytext(t,1,2) == ";")
+	if(copytext(t,1,2) == ";")
 		s += 1
-	else if (copytext(t,1,2) == ":")
+	else if(copytext(t,1,2) == ":")
 		s += 2
 	return ruppertext(copytext(t, 1, s)) + copytext(t, s)
 
 /proc/intonation(text)
-	if (copytext(text,-1) == "!")
+	if(copytext(text,-1) == "!")
 		text = "<b>[text]</b>"
 	return text
 
 var/global/list/cyrillic_unicode_keys = list(
-	list("à", "&#x430;"),
-	list("á", "&#x431;"),
-	list("â", "&#x432;"),
-	list("ã", "&#x433;"),
-	list("ä", "&#x434;"),
-	list("å", "&#x435;"),
-	list("¸", "&#x451;"),
-	list("æ", "&#x436;"),
-	list("ç", "&#x437;"),
-	list("è", "&#x438;"),
-	list("é", "&#x439;"),
-	list("ê", "&#x43A;"),
-	list("ë", "&#x43B;"),
-	list("ì", "&#x43C;"),
-	list("í", "&#x43D;"),
-	list("î", "&#x43E;"),
-	list("ï", "&#x43F;"),
-	list("ð", "&#x440;"),
-	list("ñ", "&#x441;"),
-	list("ò", "&#x442;"),
-	list("ó", "&#x443;"),
-	list("ô", "&#x444;"),
-	list("õ", "&#x445;"),
-	list("ö", "&#x446;"),
-	list("÷", "&#x447;"),
-	list("ø", "&#x448;"),
-	list("ù", "&#x449;"),
-	list("ú", "&#x44A;"),
-	list("û", "&#x44B;"),
-	list("ü", "&#x44C;"),
-	list("ý", "&#x44D;"),
-	list("þ", "&#x44E;"),
-	list("ÿ", "&#x44F;"),
-	list("À", "&#x410;"),
-	list("Á", "&#x411;"),
-	list("Â", "&#x412;"),
-	list("Ã", "&#x413;"),
-	list("Ä", "&#x414;"),
-	list("Å", "&#x415;"),
-	list("¨", "&#x401;"),
-	list("Æ", "&#x416;"),
-	list("Ç", "&#x417;"),
-	list("È", "&#x418;"),
-	list("É", "&#x419;"),
-	list("Ê", "&#x41A;"),
-	list("Ë", "&#x41B;"),
-	list("Ì", "&#x41C;"),
-	list("Í", "&#x41D;"),
-	list("Î", "&#x41E;"),
-	list("Ï", "&#x41F;"),
-	list("Ð", "&#x420;"),
-	list("Ñ", "&#x421;"),
-	list("Ò", "&#x422;"),
-	list("Ó", "&#x423;"),
-	list("Ô", "&#x424;"),
-	list("Õ", "&#x425;"),
-	list("Ö", "&#x426;"),
-	list("×", "&#x427;"),
-	list("Ø", "&#x428;"),
-	list("Ù", "&#x429;"),
-	list("Ú", "&#x42A;"),
-	list("Û", "&#x42B;"),
-	list("Ü", "&#x42C;"),
-	list("Ý", "&#x42D;"),
-	list("Þ", "&#x42E;"),
-	list("ß", "&#x42F;")
+	list("ï¿½", "&#x430;"),
+	list("ï¿½", "&#x431;"),
+	list("ï¿½", "&#x432;"),
+	list("ï¿½", "&#x433;"),
+	list("ï¿½", "&#x434;"),
+	list("ï¿½", "&#x435;"),
+	list("ï¿½", "&#x451;"),
+	list("ï¿½", "&#x436;"),
+	list("ï¿½", "&#x437;"),
+	list("ï¿½", "&#x438;"),
+	list("ï¿½", "&#x439;"),
+	list("ï¿½", "&#x43A;"),
+	list("ï¿½", "&#x43B;"),
+	list("ï¿½", "&#x43C;"),
+	list("ï¿½", "&#x43D;"),
+	list("ï¿½", "&#x43E;"),
+	list("ï¿½", "&#x43F;"),
+	list("ï¿½", "&#x440;"),
+	list("ï¿½", "&#x441;"),
+	list("ï¿½", "&#x442;"),
+	list("ï¿½", "&#x443;"),
+	list("ï¿½", "&#x444;"),
+	list("ï¿½", "&#x445;"),
+	list("ï¿½", "&#x446;"),
+	list("ï¿½", "&#x447;"),
+	list("ï¿½", "&#x448;"),
+	list("ï¿½", "&#x449;"),
+	list("ï¿½", "&#x44A;"),
+	list("ï¿½", "&#x44B;"),
+	list("ï¿½", "&#x44C;"),
+	list("ï¿½", "&#x44D;"),
+	list("ï¿½", "&#x44E;"),
+	list("ï¿½", "&#x44F;"),
+	list("ï¿½", "&#x410;"),
+	list("ï¿½", "&#x411;"),
+	list("ï¿½", "&#x412;"),
+	list("ï¿½", "&#x413;"),
+	list("ï¿½", "&#x414;"),
+	list("ï¿½", "&#x415;"),
+	list("ï¿½", "&#x401;"),
+	list("ï¿½", "&#x416;"),
+	list("ï¿½", "&#x417;"),
+	list("ï¿½", "&#x418;"),
+	list("ï¿½", "&#x419;"),
+	list("ï¿½", "&#x41A;"),
+	list("ï¿½", "&#x41B;"),
+	list("ï¿½", "&#x41C;"),
+	list("ï¿½", "&#x41D;"),
+	list("ï¿½", "&#x41E;"),
+	list("ï¿½", "&#x41F;"),
+	list("ï¿½", "&#x420;"),
+	list("ï¿½", "&#x421;"),
+	list("ï¿½", "&#x422;"),
+	list("ï¿½", "&#x423;"),
+	list("ï¿½", "&#x424;"),
+	list("ï¿½", "&#x425;"),
+	list("ï¿½", "&#x426;"),
+	list("ï¿½", "&#x427;"),
+	list("ï¿½", "&#x428;"),
+	list("ï¿½", "&#x429;"),
+	list("ï¿½", "&#x42A;"),
+	list("ï¿½", "&#x42B;"),
+	list("ï¿½", "&#x42C;"),
+	list("ï¿½", "&#x42D;"),
+	list("ï¿½", "&#x42E;"),
+	list("ï¿½", "&#x42F;")
 	)
 
 /proc/cyrillic_to_unicode(text)

@@ -64,14 +64,14 @@
 /obj/machinery/power/generator/update_icon()
 	icon_state = anchored ? "teg-assembled" : "teg-unassembled"
 	overlays.Cut()
-	if (stat & (NOPOWER|BROKEN) || !anchored)
+	if(stat & (NOPOWER|BROKEN) || !anchored)
 		return 1
 	else
-		if (lastgenlev != 0)
+		if(lastgenlev != 0)
 			overlays += image('icons/obj/machines/thermoelectric.dmi', "teg-op[lastgenlev]")
-			if (circ1 && circ2)
+			if(circ1 && circ2)
 				var/extreme = (lastgenlev > 9) ? "ex" : ""
-				if (circ1.last_temperature < circ2.last_temperature)
+				if(circ1.last_temperature < circ2.last_temperature)
 					circ1.temperature_overlay = "circ-[extreme]cold"
 					circ2.temperature_overlay = "circ-[extreme]hot"
 				else
@@ -114,9 +114,9 @@
 				air1.temperature = air1.temperature - energy_transfer/air1_heat_capacity
 
 	//Transfer the air
-	if (air1)
+	if(air1)
 		circ1.air2.merge(air1)
-	if (air2)
+	if(air2)
 		circ2.air2.merge(air2)
 
 	//Update the gas networks
@@ -175,7 +175,7 @@
 /obj/machinery/power/generator/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	// this is the data which will be sent to the ui
 	var/vertical = 0
-	if (dir == NORTH || dir == SOUTH)
+	if(dir == NORTH || dir == SOUTH)
 		vertical = 1
 
 	var/data[0]
@@ -214,7 +214,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "generator.tmpl", "Thermoelectric Generator", 450, 550)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -233,7 +233,7 @@
 	set name = "Rotate Generator (Clockwise)"
 	set src in view(1)
 
-	if (usr.stat || usr.restrained()  || anchored)
+	if(usr.stat || usr.restrained()  || anchored)
 		return
 
 	src.set_dir(turn(src.dir, 90))
@@ -243,7 +243,7 @@
 	set name = "Rotate Generator (Counterclockwise)"
 	set src in view(1)
 
-	if (usr.stat || usr.restrained()  || anchored)
+	if(usr.stat || usr.restrained()  || anchored)
 		return
 
 	src.set_dir(turn(src.dir, -90))

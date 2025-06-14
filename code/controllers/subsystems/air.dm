@@ -82,7 +82,7 @@ SUBSYSTEM_DEF(air)
 /datum/controller/subsystem/air/fire(resumed = 0)
 	var/timer = world.tick_usage
 
-	if (currentpart == SSAIR_PIPENETS || !resumed)
+	if(currentpart == SSAIR_PIPENETS || !resumed)
 		process_pipenets(resumed)
 		cost_pipenets = MC_AVERAGE(cost_pipenets, TICK_DELTA_TO_MS(world.tick_usage - timer))
 		if(state != SS_RUNNING)
@@ -105,7 +105,7 @@ SUBSYSTEM_DEF(air)
 
 	// This ensures that doorways don't form their own single-turf zones, since doorways are self-zone-blocked and
 	// can merge with an adjacent zone, whereas zones that are formed on adjacent turfs cannot merge with the doorway.
-	if (currentpart == SSAIR_TILES_CUR)
+	if(currentpart == SSAIR_TILES_CUR)
 		timer = world.tick_usage
 		process_tiles_current(resumed)
 		cost_tiles_curr = MC_AVERAGE(cost_tiles_curr, TICK_DELTA_TO_MS(world.tick_usage - timer))
@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(air)
 		resumed = 0
 		currentpart = SSAIR_TILES_DEF
 
-	if (currentpart == SSAIR_TILES_DEF)
+	if(currentpart == SSAIR_TILES_DEF)
 		timer = world.tick_usage
 		process_tiles_deferred(resumed)
 		cost_tiles_def = MC_AVERAGE(cost_tiles_def, TICK_DELTA_TO_MS(world.tick_usage - timer))
@@ -124,7 +124,7 @@ SUBSYSTEM_DEF(air)
 		currentpart = SSAIR_EDGES
 
 	// Where gas exchange happens.
-	if (currentpart == SSAIR_EDGES)
+	if(currentpart == SSAIR_EDGES)
 		timer = world.tick_usage
 		process_edges(resumed)
 		cost_edges = MC_AVERAGE(cost_edges, TICK_DELTA_TO_MS(world.tick_usage - timer))
@@ -134,7 +134,7 @@ SUBSYSTEM_DEF(air)
 		currentpart = SSAIR_FIRE_ZONES
 
 	// Process fire zones.
-	if (currentpart == SSAIR_FIRE_ZONES)
+	if(currentpart == SSAIR_FIRE_ZONES)
 		timer = world.tick_usage
 		process_fire_zones(resumed)
 		cost_fire_zones = MC_AVERAGE(cost_fire_zones, TICK_DELTA_TO_MS(world.tick_usage - timer))
@@ -144,7 +144,7 @@ SUBSYSTEM_DEF(air)
 		currentpart = SSAIR_HOTSPOTS
 
 	// Process hotspots.
-	if (currentpart == SSAIR_HOTSPOTS)
+	if(currentpart == SSAIR_HOTSPOTS)
 		timer = world.tick_usage
 		process_hotspots(resumed)
 		cost_hotspots = MC_AVERAGE(cost_hotspots, TICK_DELTA_TO_MS(world.tick_usage - timer))
@@ -154,7 +154,7 @@ SUBSYSTEM_DEF(air)
 		currentpart = SSAIR_ZONES
 
 	// Process zones.
-	if (currentpart == SSAIR_ZONES)
+	if(currentpart == SSAIR_ZONES)
 		timer = world.tick_usage
 		process_zones(resumed)
 		cost_zones = MC_AVERAGE(cost_zones, TICK_DELTA_TO_MS(world.tick_usage - timer))
@@ -166,7 +166,7 @@ SUBSYSTEM_DEF(air)
 /*********** Processing procs ***********/
 
 /datum/controller/subsystem/air/proc/process_pipenets(resumed = 0)
-	if (!resumed)
+	if(!resumed)
 		src.currentrun = networks.Copy()
 	// Cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -177,12 +177,12 @@ SUBSYSTEM_DEF(air)
 			thing.Process()
 		else
 			networks -= thing
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
 /datum/controller/subsystem/air/proc/process_atmos_machinery(resumed = 0)
 	var/seconds = wait * 0.1
-	if (!resumed)
+	if(!resumed)
 		src.currentrun = GLOB.atmos_machinery.Copy()
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -195,14 +195,14 @@ SUBSYSTEM_DEF(air)
 			return
 
 /datum/controller/subsystem/air/proc/process_tiles_current(resumed = 0)
-	while (tiles_to_update.len)
+	while(tiles_to_update.len)
 		var/turf/T = tiles_to_update[tiles_to_update.len]
 		tiles_to_update.len--
 
 		// Check if the turf is self-zone-blocked
 		if(T.c_airblock(T) & ZONE_BLOCKED)
 			deferred_tiles += T
-			if (MC_TICK_CHECK)
+			if(MC_TICK_CHECK)
 				return
 			continue
 
@@ -217,7 +217,7 @@ SUBSYSTEM_DEF(air)
 			return
 
 /datum/controller/subsystem/air/proc/process_tiles_deferred(resumed = 0)
-	while (deferred_tiles.len)
+	while(deferred_tiles.len)
 		var/turf/T = deferred_tiles[deferred_tiles.len]
 		deferred_tiles.len--
 
@@ -232,48 +232,48 @@ SUBSYSTEM_DEF(air)
 			return
 
 /datum/controller/subsystem/air/proc/process_edges(resumed = 0)
-	if (!resumed)
+	if(!resumed)
 		src.currentrun = active_edges.Copy()
 	// Cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
-	while (currentrun.len)
+	while(currentrun.len)
 		var/connection_edge/E = currentrun[currentrun.len]
 		currentrun.len--
 		E.tick()
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
 /datum/controller/subsystem/air/proc/process_fire_zones(resumed = 0)
-	if (!resumed)
+	if(!resumed)
 		src.currentrun = active_fire_zones.Copy()
 	// Cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
-	while (currentrun.len)
+	while(currentrun.len)
 		var/zone/Z = currentrun[currentrun.len]
 		currentrun.len--
 		Z.process_fire()
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
 /datum/controller/subsystem/air/proc/process_hotspots(resumed = 0)
-	if (!resumed)
+	if(!resumed)
 		src.currentrun = active_hotspots.Copy()
 	// Cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
-	while (currentrun.len)
+	while(currentrun.len)
 		var/obj/fire/F = currentrun[currentrun.len]
 		currentrun.len--
 		F.Process()
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
 /datum/controller/subsystem/air/proc/process_zones(resumed = 0)
-	while (zones_to_update.len)
+	while(zones_to_update.len)
 		var/zone/Z = zones_to_update[zones_to_update.len]
 		zones_to_update.len--
 		Z.tick()
 		Z.needs_update = FALSE
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
 /*********** Setup procs ***********/
@@ -289,7 +289,7 @@ SUBSYSTEM_DEF(air)
 			CHECK_TICK
 
 /datum/controller/subsystem/air/proc/setup_atmos_machinery()
-	for (var/obj/machinery/atmospherics/AM in GLOB.atmos_machinery)
+	for(var/obj/machinery/atmospherics/AM in GLOB.atmos_machinery)
 		AM.atmos_init()
 		CHECK_TICK
 
@@ -297,7 +297,7 @@ SUBSYSTEM_DEF(air)
 //	all atmos machinery has to initalize before the first
 //	pipenet can be built.
 /datum/controller/subsystem/air/proc/setup_pipenets()
-	for (var/obj/machinery/atmospherics/AM in GLOB.atmos_machinery)
+	for(var/obj/machinery/atmospherics/AM in GLOB.atmos_machinery)
 		AM.build_network()
 		CHECK_TICK
 

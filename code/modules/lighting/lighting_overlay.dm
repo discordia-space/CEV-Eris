@@ -25,7 +25,7 @@
 	T.lighting_overlay = src
 	T.luminosity       = 0
 
-	if (no_update)
+	if(no_update)
 		return
 
 	update_overlay()
@@ -43,8 +43,8 @@
 
 /atom/movable/lighting_overlay/proc/update_overlay()
 	var/turf/T = loc
-	if (!istype(T)) // Erm...
-		if (loc)
+	if(!istype(T)) // Erm...
+		if(loc)
 			warning("A lighting overlay realised its loc was NOT a turf (actual loc: [loc], [loc.type]) in update_overlay() and got deleted!")
 
 		else
@@ -70,7 +70,7 @@
 	var/datum/lighting_corner/cg = dummy_lighting_corner
 	var/datum/lighting_corner/cb = dummy_lighting_corner
 	var/datum/lighting_corner/ca = dummy_lighting_corner
-	if (corners) //done this way for speed
+	if(corners) //done this way for speed
 		cr = corners[3] || dummy_lighting_corner
 		cg = corners[2] || dummy_lighting_corner
 		cb = corners[4] || dummy_lighting_corner

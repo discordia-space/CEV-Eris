@@ -136,7 +136,7 @@
 	icon_state = "pda-clown"
 
 /obj/item/modular_computer/pda/artist/Crossed(AM as mob|obj) //Clown PDA is slippery.
-	if (isliving(AM))
+	if(isliving(AM))
 		var/mob/living/M = AM
 		if((locate(/obj/structure/multiz/stairs) in get_turf(loc)) || (locate(/obj/structure/multiz/ladder) in get_turf(loc)))
 			visible_message(SPAN_DANGER("\The [M] carefully avoids stepping down on \the [src]."))

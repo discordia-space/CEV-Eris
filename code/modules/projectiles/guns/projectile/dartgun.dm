@@ -126,14 +126,14 @@
 	user.set_machine(src)
 	var/dat = "<b>[src] mixing control:</b><br><br>"
 
-	if (beakers.len)
+	if(beakers.len)
 		var/i = 1
 		for(var/obj/item/reagent_containers/glass/beaker/B in beakers)
 			dat += "Beaker [i] contains: "
 			if(B.reagents && B.reagents.reagent_list.len)
 				for(var/datum/reagent/R in B.reagents.reagent_list)
 					dat += "<br>    [R.volume] units of [R.name], "
-				if (check_beaker_mixing(B))
+				if(check_beaker_mixing(B))
 					dat += text("<A href='?src=\ref[src];stop_mix=[i]'><font color='green'>Mixing</font></A> ")
 				else
 					dat += text("<A href='?src=\ref[src];mix=[i]'><font color='red'>Not mixing</font></A> ")
@@ -172,11 +172,11 @@
 				if(M == beakers[index])
 					mixing -= M
 					break
-	else if (href_list["mix"])
+	else if(href_list["mix"])
 		var/index = text2num(href_list["mix"])
 		if(index <= beakers.len)
 			mixing += beakers[index]
-	else if (href_list["eject"])
+	else if(href_list["eject"])
 		var/index = text2num(href_list["eject"])
 		if(index <= beakers.len)
 			if(beakers[index])
@@ -185,7 +185,7 @@
 				mixing -= B
 				beakers -= B
 				B.loc = get_turf(src)
-	else if (href_list["eject_cart"])
+	else if(href_list["eject_cart"])
 		unload_ammo(usr)
 	src.updateUsrDialog()
 	return

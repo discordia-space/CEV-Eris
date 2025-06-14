@@ -65,7 +65,7 @@
 	if(sound_takeoff)
 		playsound(current_location, sound_takeoff, 100, 20, 0.2)
 	spawn(warmup_time*10)
-		if (moving_status == SHUTTLE_IDLE)
+		if(moving_status == SHUTTLE_IDLE)
 			return //someone cancelled the launch
 
 		if(!fuel_check()) //fuel error (probably out of fuel) occured, so cancel the launch
@@ -101,7 +101,7 @@
 		moving_status = SHUTTLE_INTRANSIT
 		if(attempt_move(interim))
 			var/fwooshed = 0
-			while (world.time < arrive_time)
+			while(world.time < arrive_time)
 				if(!fwooshed && (arrive_time - world.time) < 100)
 					fwooshed = 1
 					playsound(destination, sound_landing, 100, 0, 7)

@@ -266,7 +266,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		current_user.images -= menu_holder
 
 /datum/radial_menu/proc/wait(atom/user, atom/anchor, require_near = FALSE)
-	while (current_user && !finished && !selected_choice)
+	while(current_user && !finished && !selected_choice)
 		if(need_in_screen && !(anchor in user.contents))
 			return
 		if(require_near && !in_range(anchor, user))

@@ -55,7 +55,7 @@ var/global/list/sparring_attack_cache = list()
 				)
 				target.apply_effect(attack_damage*2, EYE_BLUR)
 			if(BP_L_ARM)
-				if (target.l_hand)
+				if(target.l_hand)
 					// Disarm left hand
 					//Urist McAssistant dropped the macguffin with a scream just sounds odd. Plus it doesn't work with NO_PAIN
 					target.visible_message(
@@ -63,7 +63,7 @@ var/global/list/sparring_attack_cache = list()
 					)
 					target.drop_l_hand()
 			if(BP_R_ARM)
-				if (target.r_hand)
+				if(target.r_hand)
 					// Disarm right hand
 					target.visible_message(
 						SPAN_DANGER("\The [target.r_hand] was knocked right out of [target]'s grasp!")
@@ -121,9 +121,9 @@ var/global/list/sparring_attack_cache = list()
 
 /datum/unarmed_attack/bite/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
 
-	if (user.wear_mask && (istype(user.wear_mask, /obj/item/clothing/mask/muzzle) || istype(user.wear_mask, /obj/item/grenade)))
+	if(user.wear_mask && (istype(user.wear_mask, /obj/item/clothing/mask/muzzle) || istype(user.wear_mask, /obj/item/grenade)))
 		return 0
-	if (user == target && (zone in list(BP_HEAD, BP_EYES, BP_MOUTH)))
+	if(user == target && (zone in list(BP_HEAD, BP_EYES, BP_MOUTH)))
 		return 0
 	return 1
 
@@ -184,7 +184,7 @@ var/global/list/sparring_attack_cache = list()
 	damage = 0
 
 /datum/unarmed_attack/kick/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
-	if (user.legcuffed)
+	if(user.legcuffed)
 		return 0
 
 	if(!(zone in (BP_LEGS + BP_GROIN)))
@@ -225,13 +225,13 @@ var/global/list/sparring_attack_cache = list()
 
 /datum/unarmed_attack/stomp/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
 
-	if (user.legcuffed)
+	if(user.legcuffed)
 		return 0
 
 	if(!istype(target))
 		return 0
 
-	if (!user.lying && (target.lying || (zone in list(BP_L_LEG, BP_R_LEG))))
+	if(!user.lying && (target.lying || (zone in list(BP_L_LEG, BP_R_LEG))))
 		if(target.grabbed_by == user && target.lying)
 			return 0
 		var/obj/item/organ/external/E = user.organs_by_name[BP_L_LEG]

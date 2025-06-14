@@ -130,7 +130,7 @@
 		return 1
 	if(href_list["download_pause"])
 		download_paused = !download_paused
-		if (download_paused)
+		if(download_paused)
 			ui_header = "downloader_paused.gif"
 		else
 			ui_header = "downloader_running.gif"
@@ -232,7 +232,7 @@
 
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "mpc_downloader.tmpl", name, 600, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)

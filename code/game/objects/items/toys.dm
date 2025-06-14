@@ -46,7 +46,7 @@
 
 /obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user, proximity)
 	if(!proximity) return
-	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
+	if(istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to_obj(src, 10)
 		to_chat(user, SPAN_NOTICE("You fill the balloon with the contents of [A]."))
 		src.desc = "A translucent balloon with some form of liquid sloshing around in it."
@@ -147,9 +147,9 @@
 		if(!isturf(target.loc) || target == user) return
 		if(flag) return
 
-		if (locate (/obj/structure/table, src.loc))
+		if(locate (/obj/structure/table, src.loc))
 			return
-		else if (bullets)
+		else if(bullets)
 			var/turf/trg = get_turf(target)
 			var/obj/effect/foam_dart_dummy/D = new/obj/effect/foam_dart_dummy(get_turf(src))
 			bullets--
@@ -158,7 +158,7 @@
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
 
 			for(var/i=0, i<6, i++)
-				if (D)
+				if(D)
 					if(D.loc == trg) break
 					step_towards(D,trg)
 
@@ -187,7 +187,7 @@
 					qdel(D)
 
 			return
-		else if (bullets == 0)
+		else if(bullets == 0)
 			user.Weaken(5)
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(SPAN_WARNING("\The [user] realized they were out of ammo and starting scrounging for some!"), 1)
@@ -198,7 +198,7 @@
 
 // ******* Check
 
-		if (src.bullets > 0 && M.lying)
+		if(src.bullets > 0 && M.lying)
 
 			for(var/mob/O in viewers(M, null))
 				if(O.client)
@@ -208,9 +208,9 @@
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
 			new /obj/item/toy/ammo/crossbow(M.loc)
 			src.bullets--
-		else if (M.lying && src.bullets == 0)
+		else if(M.lying && src.bullets == 0)
 			for(var/mob/O in viewers(M, null))
-				if (O.client)
+				if(O.client)
 					O.show_message(SPAN_DANGER("\The [user] casually lines up a shot with [M]'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!"), 1, SPAN_WARNING("You hear someone fall"), 2)
 			user.Weaken(5)
 		return
@@ -248,7 +248,7 @@
 
 	attack_self(mob/user)
 		src.active = !( src.active )
-		if (src.active)
+		if(src.active)
 			to_chat(user, SPAN_NOTICE("You extend the plastic blade with a quick flick of your wrist."))
 			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 			src.icon_state = "swordblue"
@@ -332,18 +332,18 @@
 
 /obj/item/toy/waterflower/afterattack(atom/A as mob|obj, mob/user)
 
-	if (istype(A, /obj/item/storage/backpack ))
+	if(istype(A, /obj/item/storage/backpack ))
 		return
 
-	else if (locate (/obj/structure/table, src.loc))
+	else if(locate (/obj/structure/table, src.loc))
 		return
 
-	else if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
+	else if(istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to(src, 10)
 		to_chat(user, SPAN_NOTICE("You refill your flower!"))
 		return
 
-	else if (src.reagents.total_volume < 1)
+	else if(src.reagents.total_volume < 1)
 		src.empty = 1
 		to_chat(user, SPAN_NOTICE("Your flower has run dry!"))
 		return
@@ -575,9 +575,9 @@
 /obj/structure/plushie/attack_hand(mob/user)
 	if(user.a_intent == I_HELP)
 		user.visible_message(SPAN_NOTICE("<b>\The [user]</b> hugs [src]!"),SPAN_NOTICE("You hug [src]!"))
-	else if (user.a_intent == I_HURT)
+	else if(user.a_intent == I_HURT)
 		user.visible_message(SPAN_WARNING("<b>\The [user]</b> punches [src]!"),SPAN_WARNING("You punch [src]!"))
-	else if (user.a_intent == I_GRAB)
+	else if(user.a_intent == I_GRAB)
 		user.visible_message(SPAN_WARNING("<b>\The [user]</b> attempts to strangle [src]!"),SPAN_WARNING("You attempt to strangle [src]!"))
 	else
 		user.visible_message(SPAN_NOTICE("<b>\The [user]</b> pokes the [src]."),SPAN_NOTICE("You poke the [src]."))
@@ -619,9 +619,9 @@
 /obj/item/toy/plushie/attack_self(mob/user)
 	if(user.a_intent == I_HELP)
 		user.visible_message(SPAN_NOTICE("<b>\The [user]</b> hugs [src]!"),SPAN_NOTICE("You hug [src]!"))
-	else if (user.a_intent == I_HURT)
+	else if(user.a_intent == I_HURT)
 		user.visible_message(SPAN_WARNING("<b>\The [user]</b> punches [src]!"),SPAN_WARNING("You punch [src]!"))
-	else if (user.a_intent == I_GRAB)
+	else if(user.a_intent == I_GRAB)
 		user.visible_message(SPAN_WARNING("<b>\The [user]</b> attempts to strangle [src]!"),SPAN_WARNING("You attempt to strangle [src]!"))
 	else
 		user.visible_message(SPAN_NOTICE("<b>\The [user]</b> pokes the [src]."),SPAN_NOTICE("You poke the [src]."))

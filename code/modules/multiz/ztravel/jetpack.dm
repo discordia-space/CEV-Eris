@@ -14,7 +14,7 @@
 
 /datum/vertical_travel_method/jetpack/start_animation()
 	.=..()
-	if (direction == DOWN)
+	if(direction == DOWN)
 		M.pixel_y += 8
 		var/matrix/mat = matrix()
 		mat.Scale(0.9)
@@ -29,31 +29,31 @@
 	.=..()
 	thrust = M.get_jetpack()
 	subject = thrust
-	if (!gravity)
+	if(!gravity)
 		burst_interval *= 1.5 //We need thrusts less often in 0G
 
 
 /datum/vertical_travel_method/jetpack/calculate_time()
-	if (isrobot(M))
+	if(isrobot(M))
 		base_time *= 2 //Robots are heavy and slow, but they can use jetpacks
-	else if (istype(M, /mob/living/exosuit))
+	else if(istype(M, /mob/living/exosuit))
 		base_time *= 2.5 //Heavier still
 	.=..()
 
 /datum/vertical_travel_method/jetpack/can_perform(var/mob/living/L, var/dir)
 	.=..()
-	if (.)
-		if (!istype(thrust))
+	if(.)
+		if(!istype(thrust))
 			return FALSE	//If you don't have a jetpack, we wont show any messages related to it
 
 
-		if (!thrust.on)
+		if(!thrust.on)
 			to_chat(M, SPAN_NOTICE("You could go [dir2text(direction)]ward with your [thrust.name], if it were turned on!"))
 			return FALSE
 
 
 		//If the jetpack is empty then we fail. But only if its empty
-		if (!thrust.check_thrust(JETPACK_MOVE_COST, M))
+		if(!thrust.check_thrust(JETPACK_MOVE_COST, M))
 			to_chat(M, SPAN_NOTICE("Your [thrust.name] doesn't have enough left in it to get you anywhere!"))
 			return FALSE
 
@@ -65,15 +65,15 @@
 //This is also where they consume fuel
 /datum/vertical_travel_method/jetpack/tick()
 	.=..()
-	if (world.time >= next_burst)
+	if(world.time >= next_burst)
 
 		//Multiplying the cost by the burst interval allows this cost to be independant of the interval
-		if (thrust.allow_thrust(thrust.thrust_cost*burst_interval * 0.3, M, TRUE))
+		if(thrust.allow_thrust(thrust.thrust_cost*burst_interval * 0.3, M, TRUE))
 			var/obj/effect/effect/E = thrust.trail.do_effect(origin, SOUTH)
 			//Since the user will have their pixel offset animated by the transition, we must compensate the visuals
 			//We will calculate a pixel offset for the thrust particle based on the progress
 			var/max = 64
-			if (direction == DOWN)
+			if(direction == DOWN)
 				max = -16
 
 			var/progress = progress()

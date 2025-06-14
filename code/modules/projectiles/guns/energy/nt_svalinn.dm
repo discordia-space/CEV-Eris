@@ -19,7 +19,7 @@
 	price_tag = 200
 	init_firemodes = list(
 		WEAPON_NORMAL,
- 		WEAPON_CHARGE
+		WEAPON_CHARGE
 	)
 	twohanded = FALSE
 	suitable_cell = /obj/item/cell/small/neotheology

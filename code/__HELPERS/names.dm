@@ -1,6 +1,6 @@
 var/command_name
 /proc/command_name()
-	if (command_name)
+	if(command_name)
 		return command_name
 
 	var/name = "[boss_name]"
@@ -22,7 +22,7 @@ var/command_name
 
 	station_name = name
 
-	if (config && config.server_name)
+	if(config && config.server_name)
 		world.name = "[config.server_name]: [name]"
 	else
 		world.name = name
@@ -31,7 +31,7 @@ var/command_name
 
 var/syndicate_name = null
 /proc/syndicate_name()
-	if (syndicate_name)
+	if(syndicate_name)
 		return syndicate_name
 
 	var/name = ""
@@ -40,11 +40,11 @@ var/syndicate_name = null
 	name += pick("Clandestine", "Prima", "Blue", "Zero-G", "Max", "Blasto", "Waffle", "North", "Omni", "Newton", "Cyber", "Bonk", "Gene", "Gib")
 
 	// Suffix
-	if (prob(80))
+	if(prob(80))
 		name += " "
 
 		// Full
-		if (prob(60))
+		if(prob(60))
 			name += pick("Syndicate", "Consortium", "Collective", "Corporation", "Group", "Holdings", "Biotech", "Industries", "Systems", "Products", "Chemicals", "Enterprises", "Family", "Creations", "International", "Intergalactic", "Interplanetary", "Foundation", "Positronics", "Hive")
 		// Broken
 		else

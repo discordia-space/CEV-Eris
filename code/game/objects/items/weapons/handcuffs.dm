@@ -26,7 +26,7 @@
 	if(!user.IsAdvancedToolUser())
 		return
 
-/*	if ((CLUMSY in user.mutations) && prob(50))
+/*	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("Uh ... how do those things work?!"))
 		place_handcuffs(user, user)
 		return
@@ -35,13 +35,13 @@
 		to_chat(user,SPAN_WARNING("\The [C] is already handcuffed."))
 		return
 
-	if (C == user) //cool shit bro
+	if(C == user) //cool shit bro
 		place_handcuffs(user, user)
 		return
 
 	var/cuff_delay = 4 SECONDS
-	for (var/obj/item/grab/G in C.grabbed_by)
-		if (G.loc == user)
+	for(var/obj/item/grab/G in C.grabbed_by)
+		if(G.loc == user)
 			if(G.state >= GRAB_PASSIVE)
 				cuff_delay -= 1 SECONDS //3
 			if(G.state >= GRAB_AGGRESSIVE)
@@ -102,18 +102,18 @@
 
 var/last_chew = 0
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A)
-	if (A != src) return ..()
-	if (last_chew + 26 > world.time) return
+	if(A != src) return ..()
+	if(last_chew + 26 > world.time) return
 
 	var/mob/living/carbon/human/H = A
-	if (!H.handcuffed) return
-	if (H.a_intent != I_HURT) return
-	if (H.targeted_organ != BP_MOUTH) return
-	if (H.wear_mask) return
-	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
+	if(!H.handcuffed) return
+	if(H.a_intent != I_HURT) return
+	if(H.targeted_organ != BP_MOUTH) return
+	if(H.wear_mask) return
+	if(istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
 
 	var/obj/item/organ/external/O = H.organs_by_name[H.hand ? BP_L_ARM : BP_R_ARM]
-	if (!O) return
+	if(!O) return
 
 	var/s = SPAN_WARNING("[H.name] chews on \his [O.name]!")
 	H.visible_message(s, SPAN_WARNING("You chew on your [O.name]!"))
@@ -172,7 +172,7 @@ var/last_chew = 0
 	..()
 	if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I
-		if (R.use(1))
+		if(R.use(1))
 			var/obj/item/material/wirerod/W = new(get_turf(user))
 			user.put_in_hands(W)
 			to_chat(user, SPAN_NOTICE("You wrap the cable restraint around the top of the rod."))
@@ -184,7 +184,7 @@ var/last_chew = 0
 	spawn_tags = null
 
 /obj/item/handcuffs/cyborg/afterattack(atom/A, mob/user, proximity)
-	if (istype(A,/obj/item/handcuffs))
+	if(istype(A,/obj/item/handcuffs))
 		qdel(A)
 
 /obj/item/handcuffs/cable/tape

@@ -91,7 +91,7 @@
 	security_state.set_security_level(security_state.all_security_levels[5], force_change = TRUE)
 	SSticker.excelsior_hijacking = 1
 	var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
-	for (var/datum/antagonist/A in commies.members)
+	for(var/datum/antagonist/A in commies.members)
 		to_chat(A.owner.current, SPAN_EXCEL_NOTIF("\The [src] has been booted in the Bridge by [starter]. Failure to defend it until it completes its mission will result in implant detonation! Ever upwards comrades."))
 	redirectTimer = addtimer(CALLBACK(src, PROC_REF(finishRedirecting)), 15 MINUTES, TIMER_STOPPABLE)
 	addtimer(CALLBACK(src, PROC_REF(requestReboot)), 3 MINUTES)
@@ -101,7 +101,7 @@
 	rebootTimer = addtimer(CALLBACK(src , PROC_REF(stopRedirecting)), 2 MINUTES, TIMER_STOPPABLE)
 	var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
 	icon_state = "redirector_reboot"
-	for (var/datum/antagonist/A in commies.members)
+	for(var/datum/antagonist/A in commies.members)
 		to_chat(A.owner.current, SPAN_EXCEL_NOTIF("\The [src] needs to be rebooted with new information! Head over to it and place your hands on it."))
 
 /obj/machinery/excelsior_redirector/proc/doReboot(mob/living/carbon/human/user)
@@ -116,7 +116,7 @@
 		deltimer(rebootTimer)
 		rebootTimer = null
 		var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
-		for (var/datum/antagonist/A in commies.members)
+		for(var/datum/antagonist/A in commies.members)
 			to_chat(A.owner.current, SPAN_EXCEL_NOTIF("\The [src] has been rebooted by [user]. It will need another reboot in 3 minutes."))
 		addtimer(CALLBACK(src, PROC_REF(requestReboot)),3 MINUTES)
 		icon_state = "redirector_running"
@@ -128,7 +128,7 @@
 		return
 	to_chat(user, SPAN_WARNING("You start bending \the [src]'s antenna! It's quite tough..."))
 	var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
-	for (var/datum/antagonist/A in commies.members)
+	for(var/datum/antagonist/A in commies.members)
 		to_chat(A.owner.current, SPAN_EXCEL_NOTIF("The [src]'s antenna is being bent by someone! Stop them."))
 	if(do_after(user, 1 MINUTE, src))
 		if(antennaBent)
@@ -139,7 +139,7 @@
 		icon_state = "redirector_bent"
 		/*
 		var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
-		for (var/datum/antagonist/A in commies.members)
+		for(var/datum/antagonist/A in commies.members)
 			to_chat(A.owner.current, SPAN_NOTICE("The [src]'s antenna has been bent! Progress has been reset and it needs to be fixed!"))
 		*/
 	else
@@ -161,7 +161,7 @@
 	var/decl/security_state/security_state = decls_repository.get_decl(SSmapping.security_state)
 	security_state.set_security_level(oldSecurityLevel, force_change = TRUE)
 	var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
-	for (var/datum/antagonist/A in commies.members)
+	for(var/datum/antagonist/A in commies.members)
 		to_chat(A.owner.current, SPAN_EXCEL_NOTIF("\The [src]'s redirect has been stopped! You have failed the commune!"))
 		var/mob/living/carbon/human/unworthy = A.owner.current
 		var/obj/item/implant/excelsior/implnt = locate(/obj/item/implant/excelsior/) in unworthy

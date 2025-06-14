@@ -66,7 +66,7 @@ var/global/datum/repository/crew/crew_repository = new()
 						if(CR.get_status() == "Deceased")
 							continue
 					crewmembers[++crewmembers.len] = crewmemberData
-					if (crewmemberData["alert"])
+					if(crewmemberData["alert"])
 						cache_data_alert[num2text(z_level)] = TRUE
 
 	crewmembers = sortNames(crewmembers)
@@ -89,7 +89,7 @@ var/global/datum/repository/crew/crew_repository = new()
 	for(var/mob/living/carbon/human/H in SShumans.mob_list)
 		if(istype(H.w_uniform, /obj/item/clothing/under))
 			var/obj/item/clothing/under/C = H.w_uniform
-			if (C.has_sensor)
+			if(C.has_sensor)
 				tracked |= C
 	return tracked
 

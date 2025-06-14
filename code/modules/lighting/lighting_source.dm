@@ -32,13 +32,13 @@
 
 /datum/light_source/New(var/atom/owner, var/atom/top)
 	source_atom = owner // Set our new owner.
-	if (!source_atom.light_sources)
+	if(!source_atom.light_sources)
 		source_atom.light_sources = list()
 
 	source_atom.light_sources += src // Add us to the lights of our owner.
 	top_atom = top
-	if (top_atom != source_atom)
-		if (!top.light_sources)
+	if(top_atom != source_atom)
+		if(!top.light_sources)
 			top.light_sources     = list()
 
 		top_atom.light_sources += src
@@ -61,16 +61,16 @@
 /datum/light_source/proc/destroy()
 	destroyed = TRUE
 	force_update()
-	if (source_atom && source_atom.light_sources)
+	if(source_atom && source_atom.light_sources)
 		source_atom.light_sources -= src
 		source_atom                = null
 
-	if (top_atom && top_atom.light_sources)
+	if(top_atom && top_atom.light_sources)
 		top_atom.light_sources    -= src
 		top_atom                   = null
 
 #define effect_update                   \
-	if (!needs_update)                  \
+	if(!needs_update)                  \
 	{                                   \
 		global.lighting_update_lights += src;  \
 		needs_update            = TRUE; \
@@ -79,7 +79,7 @@
 // This proc will cause the light source to update the top atom, and add itself to the update queue.
 /datum/light_source/proc/update(var/atom/new_top_atom)
 	// This top atom is different.
-	if (new_top_atom && new_top_atom != top_atom)
+	if(new_top_atom && new_top_atom != top_atom)
 		if(top_atom != source_atom) // Remove ourselves from the light sources of that top atom.
 			top_atom.light_sources -= src
 
@@ -107,41 +107,41 @@
 
 // Will check if we actually need to update, and update any variables that may need to be updated.
 /datum/light_source/proc/check()
-	if (!source_atom || !light_range || !light_power)
+	if(!source_atom || !light_range || !light_power)
 		destroy()
 		return 1
 
-	if (!top_atom)
+	if(!top_atom)
 		top_atom = source_atom
 		. = 1
 
-	if (istype(top_atom, /turf))
+	if(istype(top_atom, /turf))
 		if(source_turf != top_atom)
 			source_turf = top_atom
 			. = 1
-	else if (top_atom.loc != source_turf)
+	else if(top_atom.loc != source_turf)
 		source_turf = top_atom.loc
 		. = 1
 
-	if (source_atom.light_power != light_power)
+	if(source_atom.light_power != light_power)
 		light_power = source_atom.light_power
 		. = 1
 
-	if (source_atom.light_range != light_range)
+	if(source_atom.light_range != light_range)
 		light_range = source_atom.light_range
 		. = 1
 
-	if (light_range && light_power && !applied)
+	if(light_range && light_power && !applied)
 		. = 1
 
-	if (source_atom.light_color != light_color)
+	if(source_atom.light_color != light_color)
 		light_color = source_atom.light_color
 		parse_light_color()
 		. = 1
 
 // Decompile the hexadecimal colour into lumcounts of each perspective.
 /datum/light_source/proc/parse_light_color()
-	if (light_color)
+	if(light_color)
 		lum_r = GetRedPart   (light_color) / 255
 		lum_g = GetGreenPart (light_color) / 255
 		lum_b = GetBluePart  (light_color) / 255
@@ -193,25 +193,25 @@
 	applied_lum_b = lum_b
 
 	FOR_DVIEW(var/turf/T, light_range, source_turf, INVISIBILITY_LIGHTING)
-		if (!T.lighting_corners_initialised)
+		if(!T.lighting_corners_initialised)
 			T.generate_missing_corners()
 
-		for (var/A in T.get_corners())
+		for(var/A in T.get_corners())
 			var/datum/lighting_corner/C = A
 
-			if (C.update_gen == update_gen)
+			if(C.update_gen == update_gen)
 				continue
 
 			C.update_gen = update_gen
 			C.affecting += src
 
-			if (!C.active)
+			if(!C.active)
 				effect_str[C] = 0
 				continue
 
 			APPLY_CORNER(C)
 
-		if (!T.affecting_lights)
+		if(!T.affecting_lights)
 			T.affecting_lights = list()
 
 		T.affecting_lights += src
@@ -223,9 +223,9 @@
 /datum/light_source/proc/remove_lum()
 	applied = FALSE
 
-	for (var/A in affecting_turfs)
+	for(var/A in affecting_turfs)
 		var/turf/T = A
-		if (T.affecting_lights)
+		if(T.affecting_lights)
 			T.affecting_lights -= src
 
 	affecting_turfs.Cut()
@@ -248,34 +248,34 @@
 	var/list/datum/lighting_corner/corners = list()
 	var/list/turf/turfs                    = list()
 	FOR_DVIEW(var/turf/T, light_range, source_turf, 0)
-		if (!T.lighting_corners_initialised)
+		if(!T.lighting_corners_initialised)
 			T.generate_missing_corners()
 		corners |= T.get_corners()
 		turfs   += T
 
 	var/list/L = turfs - affecting_turfs // New turfs, add us to the affecting lights of them.
 	affecting_turfs += L
-	for (var/turf/T in L)
-		if (!T.affecting_lights)
+	for(var/turf/T in L)
+		if(!T.affecting_lights)
 			T.affecting_lights = list(src)
 		else
 			T.affecting_lights += src
 
 	L = affecting_turfs - turfs // Now-gone turfs, remove us from the affecting lights.
 	affecting_turfs -= L
-	for (var/turf/T in L)
+	for(var/turf/T in L)
 		if(T.affecting_lights)
 			T.affecting_lights.Remove(src)
 
-	for (var/datum/lighting_corner/C in corners - effect_str) // New corners
+	for(var/datum/lighting_corner/C in corners - effect_str) // New corners
 		C.affecting += src
-		if (!C.active)
+		if(!C.active)
 			effect_str[C] = 0
 			continue
 
 		APPLY_CORNER(C)
 
-	for (var/datum/lighting_corner/C in effect_str - corners) // Old, now gone, corners.
+	for(var/datum/lighting_corner/C in effect_str - corners) // Old, now gone, corners.
 		REMOVE_CORNER(C)
 		C.affecting -= src
 		effect_str -= C

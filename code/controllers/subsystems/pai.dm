@@ -353,7 +353,7 @@ SUBSYSTEM_DEF(pai)
 			return // handle logouts that happen whilst the alert is waiting for a response.
 		if(response == "Yes")
 			recruitWindow(C.mob)
-		else if (response == "Never for this round")
+		else if(response == "Never for this round")
 			C.prefs.be_special_role -= BE_PAI
 
 /datum/paiCandidate

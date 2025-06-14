@@ -44,7 +44,7 @@ var/list/global/tank_gauge_cache = list()
 /obj/item/tank/Initialize(mapload, ...)
 	. = ..()
 
-	if (!item_state)
+	if(!item_state)
 		item_state = icon_state
 
 	air_contents = new /datum/gas_mixture(volume)
@@ -92,9 +92,9 @@ var/list/global/tank_gauge_cache = list()
 
 /obj/item/tank/attackby(obj/item/W, mob/living/user)
 	..()
-	if (istype(src.loc, /obj/item/assembly))
+	if(istype(src.loc, /obj/item/assembly))
 		icon = src.loc
-	else if (istype(W,/obj/item/latexballon))
+	else if(istype(W,/obj/item/latexballon))
 		var/obj/item/latexballon/LB = W
 		LB.blow(src)
 		src.add_fingerprint(user)
@@ -103,7 +103,7 @@ var/list/global/tank_gauge_cache = list()
 		bomb_assemble(W,user)
 
 /obj/item/tank/attack_self(mob/living/user)
-	if (!(src.air_contents))
+	if(!(src.air_contents))
 		return
 
 	nano_ui_interact(user)
@@ -154,9 +154,9 @@ var/list/global/tank_gauge_cache = list()
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "tanks.tmpl", "Tank", 500, 300)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -167,21 +167,21 @@ var/list/global/tank_gauge_cache = list()
 
 /obj/item/tank/Topic(href, href_list)
 	..()
-	if (usr.stat|| usr.restrained())
+	if(usr.stat|| usr.restrained())
 		return 0
-	if (src.loc != usr)
+	if(src.loc != usr)
 		return 0
 
-	if (href_list["dist_p"])
-		if (href_list["dist_p"] == "reset")
+	if(href_list["dist_p"])
+		if(href_list["dist_p"] == "reset")
 			src.distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
-		else if (href_list["dist_p"] == "max")
+		else if(href_list["dist_p"] == "max")
 			src.distribute_pressure = TANK_MAX_RELEASE_PRESSURE
 		else
 			var/cp = text2num(href_list["dist_p"])
 			src.distribute_pressure += cp
 		src.distribute_pressure = min(max(round(src.distribute_pressure), 0), TANK_MAX_RELEASE_PRESSURE)
-	if (href_list["stat"])
+	if(href_list["stat"])
 		toggle_valve(loc)
 	return 1
 
@@ -235,7 +235,7 @@ var/list/global/tank_gauge_cache = list()
 	return remove_air(moles_needed)
 
 /obj/item/tank/proc/get_total_moles()
-	if (air_contents)
+	if(air_contents)
 		return air_contents.total_moles
 	return 0
 

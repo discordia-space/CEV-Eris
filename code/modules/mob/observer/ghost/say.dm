@@ -51,7 +51,7 @@
 	. = src.emote_dead(message)
 
 /*
-	for (var/mob/M in hearers(null, null))
+	for(var/mob/M in hearers(null, null))
 		if(!M.stat)
 			if(M.job == "Monochurch Preacher")
 				if(prob (49))

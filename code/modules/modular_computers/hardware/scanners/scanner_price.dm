@@ -8,7 +8,7 @@
 /obj/item/computer_hardware/scanner/price/do_on_afterattack(mob/user, atom/target, proximity)
 	if(!can_use_scanner(user, target, proximity))
 		return
-	if (!scan_power_use())
+	if(!scan_power_use())
 		return
 
 	var/dat = price_scan_results(target)

@@ -37,11 +37,11 @@
 			to_chat(usr, "The scanner no longer shows limb damage.")
 
 /proc/medical_scan_action(atom/target, mob/living/user, obj/scanner, var/mode)
-	if (!user.IsAdvancedToolUser())
+	if(!user.IsAdvancedToolUser())
 		to_chat(user, SPAN_WARNING("You are not nimble enough to use this device."))
 		return
 
-/*	if ((CLUMSY in user.mutations) && prob(50))
+/*	if((CLUMSY in user.mutations) && prob(50))
 		. = list()
 
 		user.visible_message(SPAN_NOTICE("\The [user] runs \the [scanner] over the floor."))
@@ -50,19 +50,19 @@
 		return jointext(., "<br>")
 */
 	var/mob/living/carbon/human/scan_subject = null
-	if (istype(target, /mob/living/carbon/human))
+	if(istype(target, /mob/living/carbon/human))
 		scan_subject = target
-	else if (istype(target, /obj/structure/closet/body_bag))
+	else if(istype(target, /obj/structure/closet/body_bag))
 		var/obj/structure/closet/body_bag/B = target
 		if(!B.opened)
 			var/list/scan_content = list()
 			for(var/mob/living/L in B.contents)
 				scan_content.Add(L)
 
-			if (scan_content.len == 1)
+			if(scan_content.len == 1)
 				for(var/mob/living/carbon/human/L in scan_content)
 					scan_subject = L
-			else if (scan_content.len > 1)
+			else if(scan_content.len > 1)
 				to_chat(user, SPAN_WARNING("\The [scanner] picks up multiple readings inside \the [target], too close together to scan properly."))
 				return
 			else
@@ -72,7 +72,7 @@
 	if(!scan_subject)
 		return
 
-	if (scan_subject.isSynthetic())
+	if(scan_subject.isSynthetic())
 		to_chat(user, SPAN_WARNING("\The [scanner] is designed for organic humanoid patients only."))
 		return
 
@@ -82,7 +82,7 @@
 /proc/medical_scan_results(var/mob/living/M, var/mode)
 	. = list()
 	var/dat = list()
-	if (!ishuman(M) || M.isSynthetic())
+	if(!ishuman(M) || M.isSynthetic())
 		//these sensors are designed for organic life
 		. += "<h2>Analyzing Results for ERROR:\n\t Overall Status: ERROR</h2>"
 		. += span("highlight", "    Key: <font color='#0080ff'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>")
@@ -171,15 +171,15 @@
 					++unknown
 			if(unknown)
 				dat += SPAN_WARNING("Non-medical reagent[(unknown > 1)?"s":""] found in subject's stomach.")
-	if (M.getCloneLoss())
+	if(M.getCloneLoss())
 		dat += SPAN_WARNING("Subject appears to have been imperfectly cloned.")
-	if (M.has_brain_worms())
+	if(M.has_brain_worms())
 		dat += SPAN_WARNING("Subject suffering from aberrant brain activity. Recommend further scanning.")
-	else if (M.getBrainLoss() >= 60 || !M.has_brain())
+	else if(M.getBrainLoss() >= 60 || !M.has_brain())
 		dat += SPAN_WARNING("Subject is brain dead.")
-	else if (M.getBrainLoss() >= 25)
+	else if(M.getBrainLoss() >= 25)
 		dat += SPAN_WARNING("Severe brain damage detected. Subject likely to have a traumatic brain injury.")
-	else if (M.getBrainLoss() >= 10)
+	else if(M.getBrainLoss() >= 10)
 		dat += SPAN_WARNING("Significant brain damage detected. Subject may have had a concussion.")
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M

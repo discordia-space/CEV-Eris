@@ -78,7 +78,7 @@
 				to_chat(user, SPAN_NOTICE("You remove \the [cell] from \the [src]."))
 				cell = null
 
-	if (istype(W, /obj/item/cell))
+	if(istype(W, /obj/item/cell))
 		if(open)
 			if(cell)
 				to_chat(user, SPAN_WARNING("There is a power cell already installed."))

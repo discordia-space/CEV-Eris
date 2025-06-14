@@ -508,7 +508,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 /obj/machinery/newscaster/Topic(href, href_list)
 	if(..())
 		return
-	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (issilicon(usr)))
+	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (issilicon(usr)))
 		usr.set_machine(src)
 		scan_user(usr)
 
@@ -718,7 +718,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 
 		else if(href_list["setScreen"]) //Brings us to the main menu and resets all fields~
 			src.screen = text2num(href_list["setScreen"])
-			if (src.screen == 0)
+			if(src.screen == 0)
 				src.scanned_user = "Unknown";
 				msg = "";
 				src.c_locked=0;
@@ -744,27 +744,27 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 
 
 /obj/machinery/newscaster/attackby(obj/item/I as obj, mob/user as mob)
-	if (src.isbroken)
+	if(src.isbroken)
 		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, 1)
-		for (var/mob/O in hearers(5, src.loc))
+		for(var/mob/O in hearers(5, src.loc))
 			O.show_message("<EM>[user.name]</EM> further abuses the shattered [src.name].")
 	else
 		if(istype(I, /obj/item) )
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			var/obj/item/W = I
 			if(W.force <15)
-				for (var/mob/O in hearers(5, src.loc))
+				for(var/mob/O in hearers(5, src.loc))
 					O.show_message("[user.name] hits the [src.name] with the [W.name] with no visible effect." )
 					playsound(src.loc, 'sound/effects/Glasshit.ogg', 100, 1)
 			else
 				src.hitstaken++
 				if(src.hitstaken==3)
-					for (var/mob/O in hearers(5, src.loc))
+					for(var/mob/O in hearers(5, src.loc))
 						O.show_message("[user.name] smashes the [src.name]!" )
 					src.isbroken=1
 					playsound(src.loc, 'sound/effects/Glassbr3.ogg', 100, 1)
 				else
-					for (var/mob/O in hearers(5, src.loc))
+					for(var/mob/O in hearers(5, src.loc))
 						O.show_message("[user.name] forcefully slams the [src.name] with the [I.name]!" )
 					playsound(src.loc, 'sound/effects/Glasshit.ogg', 100, 1)
 		else
@@ -795,7 +795,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 	else if(issilicon(user))
 		var/mob/living/silicon/tempAI = user
 		var/obj/item/photo/selection = tempAI.GetPicture()
-		if (!selection)
+		if(!selection)
 			return
 
 		photo_data = new(selection, 1)
@@ -911,7 +911,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 obj/item/newspaper/Topic(href, href_list)
 	var/mob/living/U = usr
 	..()
-	if ((src in U.contents) || ( istype(loc, /turf) && in_range(src, U) ))
+	if((src in U.contents) || ( istype(loc, /turf) && in_range(src, U) ))
 		U.set_machine(src)
 		if(href_list["next_page"])
 			if(curr_page==src.pages+1)
@@ -936,7 +936,7 @@ obj/item/newspaper/Topic(href, href_list)
 			src.curr_page--
 			playsound(src.loc, "pageturn", 50, 1)
 
-		if (ismob(loc))
+		if(ismob(loc))
 			src.attack_self(loc)
 
 
@@ -947,9 +947,9 @@ obj/item/newspaper/attackby(obj/item/W as obj, mob/user as mob)
 		else
 			var/s = sanitize(input(user, "Write something", "Newspaper", ""))
 			s = sanitize(s)
-			if (!s)
+			if(!s)
 				return
-			if (!in_range(src, usr) && src.loc != usr)
+			if(!in_range(src, usr) && src.loc != usr)
 				return
 			src.scribble_page = src.curr_page
 			src.scribble = s

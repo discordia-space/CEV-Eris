@@ -82,7 +82,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 //You can pass in true or false in a case where you've already done the calculations and can skip some checking here
 //Its perfectly fine to call this proc with no input, it will figure out what it needs to do
 /mob/proc/update_floating(var/setstate = null)
-	if (!isnull(setstate))
+	if(!isnull(setstate))
 		make_floating(setstate)
 		return
 
@@ -160,22 +160,22 @@ note dizziness decrements automatically in the mob's Life() proc.
 	..()
 	is_floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
 
-	if (!use_item)
+	if(!use_item)
 		//The use item flag governs whether or not we'll add a little weapon image to the animation
 		return
 
 	// What icon do we use for the attack?
 	var/image/I
 	var/obj/item/T = get_active_hand()
-	if (T && T.icon)
+	if(T && T.icon)
 		I = image(T.icon, A, T.icon_state, A.layer + 1)
 	else // Attacked with a fist?
 		return
 
 	// Who can see the attack?
 	var/list/viewing = list()
-	for (var/mob/M in viewers(A))
-		if (M.client)
+	for(var/mob/M in viewers(A))
+		if(M.client)
 			viewing |= M.client
 	flick_overlay(I, viewing, 5) // 5 ticks/half a second
 
@@ -245,8 +245,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 		//Will make the strength falloff after the duration.
 		//This helps to reduce jarring effects of major screenshaking suddenly returning to stability
 		//Recommended taper values are 0.05-0.1
-		if (taper > 0)
-			while (strength > 0)
+		if(taper > 0)
+			while(strength > 0)
 				strength -= taper
 				if(aiEyeFlag)
 					M.client.eye = locate(dd_range(1,oldeye.loc.x+rand(-strength,strength),world.maxx),dd_range(1,oldeye.loc.y+rand(-strength,strength),world.maxy),oldeye.loc.z)
@@ -279,11 +279,11 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 /atom/movable/proc/do_pickup_animation(atom/target, atom/old_loc)
 	set waitfor = FALSE
-	if (QDELETED(src))
+	if(QDELETED(src))
 		return
-	if (QDELETED(target))
+	if(QDELETED(target))
 		return
-	if (QDELETED(old_loc))
+	if(QDELETED(old_loc))
 		return
 
 	var/turf/old_turf = get_turf(old_loc)
@@ -291,10 +291,10 @@ note dizziness decrements automatically in the mob's Life() proc.
 	I.plane = plane
 	I.layer = ABOVE_MOB_LAYER
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	if (ismob(target))
+	if(ismob(target))
 		I.dir = target.dir
 
-	if (istype(old_loc,/obj/item/storage))
+	if(istype(old_loc,/obj/item/storage))
 		I.pixel_x += old_loc.pixel_x
 		I.pixel_y += old_loc.pixel_y
 
@@ -316,16 +316,16 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 /atom/movable/proc/do_putdown_animation(atom/target, mob/user)
 	spawn()
-		if (QDELETED(src))
+		if(QDELETED(src))
 			return
-		if (QDELETED(target))
+		if(QDELETED(target))
 			return
-		if (QDELETED(user))
+		if(QDELETED(user))
 			return
 		var/old_invisibility = invisibility // I don't know, it may be used.
 		invisibility = 100
 		var/turf/old_turf = get_turf(user)
-		if (QDELETED(old_turf))
+		if(QDELETED(old_turf))
 			return
 		var/image/I = image(icon = src, loc = old_turf, layer = layer + 0.1)
 		I.plane = get_relative_plane(GAME_PLANE)
@@ -334,7 +334,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 		I.pixel_x = 0
 		I.pixel_y = 0
-		if (ismob(target))
+		if(ismob(target))
 			I.dir = target.dir
 		flick_overlay(I, clients, 4)
 
@@ -347,7 +347,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 		animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix(), easing = CUBIC_EASING)
 		sleep(3)
-		if (QDELETED(src))
+		if(QDELETED(src))
 			return
 		invisibility = old_invisibility
 		pixel_x = old_x
@@ -371,6 +371,6 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, easing = CUBIC_EASING)
 	sleep(3)
-	if (QDELETED(src))
+	if(QDELETED(src))
 		return
 	invisibility = old_invisibility

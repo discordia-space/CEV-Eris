@@ -5,7 +5,7 @@
 /obj/landmark/storyevent/Initialize()
 	. = ..()
 
-	if (!(navigation))
+	if(!(navigation))
 		var/proposition = get_landmark_area()
 		navigation = "But you forgot where you left it. Oops. Maybe it's somewhere near [proposition]?"
 

@@ -102,12 +102,12 @@
 		return
 
 	var/datum/pipe_network/network = connected_port.return_network(src)
-	if (network)
+	if(network)
 		network.update = 1
 
 /obj/machinery/portable_atmospherics/attackby(var/obj/item/I, var/mob/user)
-	if ((istype(I, /obj/item/tank) && !( src.destroyed )))
-		if (src.holding)
+	if((istype(I, /obj/item/tank) && !( src.destroyed )))
+		if(src.holding)
 			return
 		var/obj/item/tank/T = I
 		user.drop_item()
@@ -179,8 +179,8 @@
 		power_change()
 		return
 
-	if ((istype(I, /obj/item/tank) && !( src.destroyed )))
-		if (src.holding)
+	if((istype(I, /obj/item/tank) && !( src.destroyed )))
+		if(src.holding)
 			return
 		var/obj/item/tank/T = I
 		user.drop_item()

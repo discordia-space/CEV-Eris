@@ -38,13 +38,13 @@
  */
 /mob/proc/zMove(direction, var/method = 0)
 	// In the case of an active eyeobj, move that instead.
-	if (eyeobj)
+	if(eyeobj)
 		return eyeobj.zMove(direction)
 
 	var/atom/movable/mover = src
 
 	//If we're inside a thing, that thing is the thing that moves
-	if (istype(loc, /obj))
+	if(istype(loc, /obj))
 		mover = loc
 	// If were inside a mech
 	if(istype(loc, /mob/living/exosuit))
@@ -104,12 +104,12 @@
 		return FALSE
 
 	// Check for blocking atoms at the destination.
-	for (var/atom/A in destination)
-		if (!A.CanPass(mover, start, 1.5, 0))
+	for(var/atom/A in destination)
+		if(!A.CanPass(mover, start, 1.5, 0))
 			to_chat(src, SPAN_WARNING("\The [A] blocks you."))
 			return FALSE
 
-	for (var/a in possible_methods)
+	for(var/a in possible_methods)
 		VTM = new a(src)
 		if(VTM.can_perform(direction))
 			// special case for mechs
@@ -131,9 +131,9 @@
 	return zMove(DOWN)
 
 /mob/living/zMove(direction)
-	if (is_ventcrawling)
+	if(is_ventcrawling)
 		var/obj/machinery/atmospherics/pipe/zpipe/P = loc
-		if (istype(P) && P.can_z_crawl(src, direction))
+		if(istype(P) && P.can_z_crawl(src, direction))
 			return P.handle_z_crawl(src, direction)
 
 	return ..()
@@ -193,10 +193,10 @@
 // they can have them. So we override and check.
 /* Maybe next time.
 /mob/living/carbon/human/CanAvoidGravity()
-	if (!restrained())
+	if(!restrained())
 		var/obj/item/tank/jetpack/thrust = get_jetpack()
 
-		if (thrust && !lying && thrust.allow_thrust(0.01, src))
+		if(thrust && !lying && thrust.allow_thrust(0.01, src))
 			return TRUE
 
 	return ..()
@@ -204,7 +204,7 @@
 /mob/living/silicon/robot/CanAvoidGravity()
 	var/obj/item/tank/jetpack/thrust = get_jetpack()
 
-	if (thrust && thrust.allow_thrust(0.02, src))
+	if(thrust && thrust.allow_thrust(0.02, src))
 		return TRUE
 
 	return ..()
@@ -229,7 +229,7 @@
  * this cycle.
  */
 /atom/movable/proc/can_fall(turf/below, turf/open/dest = src.loc)
-	if (!istype(dest) || !dest.is_hole)
+	if(!istype(dest) || !dest.is_hole)
 		return FALSE
 
 	// Anchored things don't fall.
@@ -241,7 +241,7 @@
 		return FALSE
 
 	// The var/climbers API is implemented here.
-	if (LAZYLEN(dest.climbers) && (src in dest.climbers))
+	if(LAZYLEN(dest.climbers) && (src in dest.climbers))
 		return FALSE
 
 	// True otherwise.
@@ -262,7 +262,7 @@
 
 
 /mob/living/carbon/human/can_fall(turf/below, turf/open/dest = src.loc)
-	if (CanAvoidGravity())
+	if(CanAvoidGravity())
 		return FALSE
 	// can't fall on walls anymore
 	var/turf/true_below = SSmapping.GetBelow(src)
@@ -273,7 +273,7 @@
 			else
 				return FALSE
 
-	if (!restrained())
+	if(!restrained())
 		var/tile_view = view(src, 1)
 		var/obj/item/clothing/shoes/magboots/MB = shoes
 		if(stats.getPerk(PERK_PARKOUR))
@@ -295,7 +295,7 @@
 	return FALSE
 
 /mob/living/silicon/robot/can_fall(turf/below, turf/open/dest = src.loc)
-	if (CanAvoidGravity())
+	if(CanAvoidGravity())
 		return FALSE
 	if(HasTrait(CYBORG_TRAIT_PARKOUR))
 		var/tile_view = view(src, 1)

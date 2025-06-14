@@ -252,7 +252,7 @@
 	var/list/data = nano_ui_data(user)
 
 	var/datum/asset/toolupgrageds = get_asset_datum(/datum/asset/simple/tool_upgrades)
-	if (toolupgrageds.send(user.client))
+	if(toolupgrageds.send(user.client))
 		user.client.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)

@@ -248,7 +248,7 @@ var/list/_client_preferences_by_type
 	key = "tgui_fancy"
 
 /datum/client_preference/tgui_fancy/changed(mob/preference_mob, new_value)
-	for (var/datum/tgui/tgui as anything in preference_mob?.tgui_open_uis)
+	for(var/datum/tgui/tgui as anything in preference_mob?.tgui_open_uis)
 		// Force it to reload either way
 		tgui.update_static_data(preference_mob)
 
@@ -257,7 +257,7 @@ var/list/_client_preferences_by_type
 	key = "tgui_lock"
 
 /datum/client_preference/tgui_lock/changed(mob/preference_mob, new_value)
-	for (var/datum/tgui/tgui as anything in preference_mob?.tgui_open_uis)
+	for(var/datum/tgui/tgui as anything in preference_mob?.tgui_open_uis)
 		// Force it to reload either way
 		tgui.update_static_data(preference_mob)
 

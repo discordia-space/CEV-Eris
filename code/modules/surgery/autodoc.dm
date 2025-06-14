@@ -129,7 +129,7 @@
 			if(!pumped)
 				patchnote.surgery_operations &= ~AUTODOC_DIALYSIS
 
-		else if (patchnote.surgery_operations & AUTODOC_BLOOD)
+		else if(patchnote.surgery_operations & AUTODOC_BLOOD)
 			to_chat(patient, SPAN_NOTICE("Administering blood IV to patient."))
 			var/datum/reagent/organic/blood/blood = patient.vessel.reagent_list[1]
 			blood.volume += damage_heal_amount
@@ -199,7 +199,7 @@
 		return
 	var/list/data = form_data()
 	ui = SSnano.try_update_ui(user, holder, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, holder, ui_key, template_name, "Autodoc", 600, 480, state=state)
 		ui.set_initial_data(data)
 		ui.open()

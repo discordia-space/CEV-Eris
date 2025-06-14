@@ -157,7 +157,7 @@
 	wires = new(src)
 
 	//Add on any extra items allowed into suit storage
-	if (extra_allowed.len)
+	if(extra_allowed.len)
 		allowed |= extra_allowed
 
 	if((!req_access || !req_access.len) && (!req_one_access || !req_one_access.len))
@@ -269,7 +269,7 @@
 	var/seal_target = !active
 
 	//Only force deploy when we're turning it on, not when removing it
-	if (seal_target)
+	if(seal_target)
 		if(process_mech_suit_restriction())
 			return
 
@@ -333,7 +333,7 @@
 								helmet.update_light(wearer)
 
 					//sealed pieces become airtight, protecting against diseases
-					if (seal_target)
+					if(seal_target)
 						piece.armor.bio = 100
 					else
 						piece.armor.bio = armor.bio
@@ -401,7 +401,7 @@
 			if(!offline)
 				if(istype(wearer))
 					if(!canremove)
-						if (offline_slowdown < 3)
+						if(offline_slowdown < 3)
 							to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly goes dead."))
 						else
 							to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit."))
@@ -542,7 +542,7 @@
 		data["modules"] = module_list
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, ((loc != user) ? ai_interface_path : interface_path), interface_title, 480, 550, state = nano_state)
 		ui.set_initial_data(data)
 		ui.open()
@@ -621,7 +621,7 @@
 		ai_override_enabled = !ai_override_enabled
 		notify_ai("Synthetic suit control has been [ai_override_enabled ? "enabled" : "disabled"].")
 	else if(href_list["toggle_suit_lock"])
-		if (locked != -1)
+		if(locked != -1)
 			locked = !locked
 
 	// Makes it so the UI instantly updates , instead of using the MC tick, way faster at high stress.
@@ -639,11 +639,11 @@
 
 //Delayed equipping of rigs
 /obj/item/rig/pre_equip(var/mob/user, var/slot)
-	if (active)
+	if(active)
 		//Can't take it off while it's engaged
 		return TRUE
 
-	if (slot == rig_wear_slot)
+	if(slot == rig_wear_slot)
 		if(seal_delay > 0)
 			user.visible_message(
 				SPAN_NOTICE("[user] starts putting on \the [src]..."),
@@ -652,7 +652,7 @@
 			if(!do_after(user,seal_delay,src))
 				return TRUE //A nonzero return value will cause the equipping operation to fail
 	//Delayed unequipping too
-	else if (is_worn())
+	else if(is_worn())
 		retract()
 		if(seal_delay > 0)
 			user.visible_message(
@@ -665,7 +665,7 @@
 
 /obj/item/rig/equipped(var/mob/user, var/slot)
 	..()
-	if (slot == rig_wear_slot)
+	if(slot == rig_wear_slot)
 		user.visible_message(
 			SPAN_NOTICE("<b>[user] struggles into \the [src].</b>"),
 			SPAN_NOTICE("<b>You struggle into \the [src].</b>")
@@ -713,7 +713,7 @@
 
 	if(use_obj)
 		if(check_slot == use_obj && deploy_mode != ONLY_DEPLOY)
-			if (active && !(use_obj.retract_while_active))
+			if(active && !(use_obj.retract_while_active))
 				to_chat(wearer, SPAN_DANGER("The [use_obj] is locked in place while [src] is active. You must deactivate it first!"))
 				return
 
@@ -724,14 +724,14 @@
 				if(istype(holder))
 					if(use_obj && check_slot == use_obj)
 						use_obj.canremove = 1
-						if (wearer.unEquip(use_obj, src))
+						if(wearer.unEquip(use_obj, src))
 							if(use_obj.overslot)
 								use_obj.remove_overslot_contents(wearer)
 							to_chat(wearer, "<font color='blue'><b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b></font>")
 						use_obj.canremove = 0
 
 
-		else if (deploy_mode != ONLY_RETRACT)
+		else if(deploy_mode != ONLY_RETRACT)
 			if(process_mech_suit_restriction())
 				return
 
@@ -791,7 +791,7 @@
 	remove()
 
 /obj/item/rig/proc/retract()
-	if (wearer)
+	if(wearer)
 		for(var/piece in list("helmet","chest","gauntlets","boots"))
 			toggle_piece(piece, wearer, ONLY_RETRACT)
 
@@ -822,10 +822,10 @@
 		visor.vision.glasses.emp_act(severity_class)
 
 /obj/item/rig/proc/shock(mob/user)
-	if (!user)
+	if(!user)
 		return 0
 
-	if (electrocute_mob(user, cell, src)) //electrocute_mob() handles removing charge from the cell, no need to do that here.
+	if(electrocute_mob(user, cell, src)) //electrocute_mob() handles removing charge from the cell, no need to do that here.
 		spark_system.start()
 		if(user.stunned)
 			return 1
@@ -986,43 +986,43 @@
 //Randomly deletes modules
 /obj/item/rig/proc/lose_modules(var/probability)
 	for(var/obj/item/rig_module/module in installed_modules)
-		if (probability)
+		if(probability)
 			qdel(module)
 
 
 //Fiddles with some wires to possibly make the suit malfunction a little
 /obj/item/rig/proc/misconfigure(var/probability)
-	if (prob(probability))
+	if(prob(probability))
 		wires.UpdatePulsed(RIG_SECURITY)//Fiddle with access
-	if (prob(probability))
+	if(prob(probability))
 		wires.UpdatePulsed(RIG_AI_OVERRIDE)//frustrate the AI
-	if (prob(probability))
+	if(prob(probability))
 		wires.UpdateCut(RIG_SYSTEM_CONTROL)//break the suit
-	if (prob(probability))
+	if(prob(probability))
 		wires.UpdatePulsed(RIG_INTERFACE_LOCK)
-	if (prob(probability))
+	if(prob(probability))
 		wires.UpdateCut(RIG_INTERFACE_SHOCK)
-	if (prob(probability))
+	if(prob(probability))
 		subverted = 1
 
 //Drains, rigs or removes the cell
 /obj/item/rig/proc/sabotage_cell()
-	if (!cell)
+	if(!cell)
 		return
 
-	if (prob(50))
+	if(prob(50))
 		cell.charge = rand(0, cell.charge*0.5)
-	else if (prob(15))
+	else if(prob(15))
 		cell.rigged = 1
 	else
 		cell = null
 
 //Depletes or removes the airtank
 /obj/item/rig/proc/sabotage_tank()
-	if (!air_supply)
+	if(!air_supply)
 		return
 
-	if (prob(70))
+	if(prob(70))
 		air_supply.remove_air(air_supply.air_contents.total_moles)
 	else
 		QDEL_NULL(air_supply)

@@ -265,7 +265,7 @@
 			to_chat(src, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
 		return FALSE
 	if(uniform.accessories.len && !uniform.can_attach_accessory(src))
-		if (!disable_warning)
+		if(!disable_warning)
 			to_chat(src, SPAN_WARNING("You already have an accessory of this type attached to your [uniform]."))
 		return FALSE
 	return TRUE

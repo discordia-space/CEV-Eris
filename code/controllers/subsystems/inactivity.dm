@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(inactivity_and_job_tracking)
 	current_playtimes[client_ckey][target.mind.assigned_job.title] = 0
 
 /datum/controller/subsystem/inactivity_and_job_tracking/fire(resumed = FALSE)
-	if (!resumed)
+	if(!resumed)
 		client_list = clients.Copy()
 
 	while(client_list.len)
@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(inactivity_and_job_tracking)
 			to_chat(C, SPAN_WARNING("You have been inactive for more than [config.kick_inactive] minute\s and have been disconnected."))
 			del(C) // Don't qdel, cannot override finalize_qdel behaviour for clients.
 			number_kicked++
-		else if (C.mob && C.mob.mind && C.mob.stat != DEAD)
+		else if(C.mob && C.mob.mind && C.mob.stat != DEAD)
 			C.mob.mind.last_activity = world.time - C.inactivity
 			if(C.mob.mind?.assigned_job?.title && !isghost(C.mob))
 				// This also shouldn't happen.
@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(inactivity_and_job_tracking)
 			if(C.mob.mind?.assigned_job?.title)
 				current_playtimes[C.ckey][C.mob.mind.assigned_job.title] += 1 MINUTE
 
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
 /datum/controller/subsystem/inactivity_and_job_tracking/stat_entry(msg)

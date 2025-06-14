@@ -199,7 +199,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	//When a fire is created, immediately call fire_act on things in the tile.
 	//This is needed for flamethrowers
-	for (var/a in loc)
+	for(var/a in loc)
 		var/atom/A = a
 		A.fire_act()
 
@@ -214,7 +214,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 /obj/fire/proc/RemoveFire()
 	var/turf/T = loc
-	if (istype(T))
+	if(istype(T))
 		set_light(0)
 
 		T.fire = null

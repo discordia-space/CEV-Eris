@@ -158,7 +158,7 @@
 			return TRUE // Bullet is too high to hit
 		P.height = (P.height == HEIGHT_LOW) ? HEIGHT_LOW : HEIGHT_CENTER
 
-	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
+	if(get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return 1
 	if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
 		return TRUE
@@ -167,11 +167,11 @@
 	if(!P.def_zone)
 		return 1 // Emitters, or anything with no targeted bodypart will always bypass the cover
 	var/targetzone = check_zone(P.def_zone)
-	if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
+	if(targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
 		valid = TRUE //The lower body is always concealed
-	if (ismob(P.original))
+	if(ismob(P.original))
 		var/mob/M = P.original
-		if (M.lying)
+		if(M.lying)
 			valid = TRUE			//Lying down covers your whole body
 
 	// Bullet is low enough to hit the wall
@@ -181,7 +181,7 @@
 	if(valid)
 		var/pierce = P.check_penetrate(src)
 		take_damage(P.get_structure_damage()/2)
-		if (health > 0)
+		if(health > 0)
 			visible_message(SPAN_WARNING("[P] hits \the [src]!"))
 			return pierce
 		else

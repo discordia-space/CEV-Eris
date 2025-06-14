@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(lighting)
 	. = ..()
 
 /datum/controller/subsystem/lighting/fire(resumed=FALSE)
-	if (resuming_stage == 0 || !resumed)
+	if(resuming_stage == 0 || !resumed)
 		src.currentrun_lights   = lighting_update_lights
 		lighting_update_lights   = list()
 
@@ -35,30 +35,26 @@ SUBSYSTEM_DEF(lighting)
 
 	var/list/currentrun_lights = src.currentrun_lights
 
-	while (currentrun_lights.len)
+	while(currentrun_lights.len)
 		var/datum/light_source/L = currentrun_lights[currentrun_lights.len]
 		currentrun_lights.len--
 
-		if (L.check() || L.destroyed || L.force_update)
+		if(L.check() || L.destroyed || L.force_update)
 			L.remove_lum()
-			if (!L.destroyed)
+			if(!L.destroyed)
 				L.apply_lum()
 
-		else if (L.vis_update)
+		else if(L.vis_update)
 			L.smart_vis_update()
 
 		L.vis_update   = FALSE
 		L.force_update = FALSE
 		L.needs_update = FALSE
 
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
-	if (resuming_stage == STAGE_SOURCES || !resumed)
-		// PJB left this in, was causing crashes.
-		//if (currentrun_corners && currentrun_corners.len)
-		//	to_chat(world, "we still have corners to do, but we're gonna override them?")
-
+	if(resuming_stage == STAGE_SOURCES || !resumed)
 		src.currentrun_corners  = lighting_update_corners
 		lighting_update_corners  = list()
 
@@ -66,16 +62,16 @@ SUBSYSTEM_DEF(lighting)
 
 	var/list/currentrun_corners = src.currentrun_corners
 
-	while (currentrun_corners.len)
+	while(currentrun_corners.len)
 		var/datum/lighting_corner/C = currentrun_corners[currentrun_corners.len]
 		currentrun_corners.len--
 
 		C.update_overlays()
 		C.needs_update = FALSE
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
-	if (resuming_stage == STAGE_CORNERS || !resumed)
+	if(resuming_stage == STAGE_CORNERS || !resumed)
 		src.currentrun_overlays = lighting_update_overlays
 		lighting_update_overlays = list()
 
@@ -83,13 +79,13 @@ SUBSYSTEM_DEF(lighting)
 
 	var/list/currentrun_overlays = src.currentrun_overlays
 
-	while (currentrun_overlays.len)
+	while(currentrun_overlays.len)
 		var/atom/movable/lighting_overlay/O = currentrun_overlays[currentrun_overlays.len]
 		currentrun_overlays.len--
 
 		O.update_overlay()
 		O.needs_update = FALSE
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
 	resuming_stage = 0

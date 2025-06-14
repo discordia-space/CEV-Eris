@@ -99,7 +99,7 @@
 	else
 		to_chat(user, "\blue You upend the MMI, spilling the brain onto the floor.")
 		var/obj/item/organ/internal/vital/brain/brain
-		if (brainobj)	//Pull brain organ out of MMI.
+		if(brainobj)	//Pull brain organ out of MMI.
 			brainobj.loc = user.loc
 			brain = brainobj
 			brainobj = null

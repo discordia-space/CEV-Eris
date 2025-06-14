@@ -12,14 +12,14 @@
 
 // Returns an integer given a hexadecimal number string as input.
 /proc/hex2num(hex)
-	if (!istext(hex))
+	if(!istext(hex))
 		return
 
 	var/num   = 0
 	var/power = 1
 	var/i     = length(hex)
 
-	while (i)
+	while(i)
 		var/char = text2ascii(hex, i)
 		switch(char)
 			if(48)                                  // 0 -- do nothing
@@ -47,7 +47,7 @@ var/global/list/hexdigits = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9
 
 	//pad with zeroes
 	var/left = padlength - length(.)
-	while (left-- > 0)
+	while(left-- > 0)
 		. = "0[.]"
 
 
@@ -64,38 +64,38 @@ var/global/list/hexdigits = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9
 // Turns a direction into text
 /proc/num2dir(direction)
 	switch (direction)
-		if (1) return NORTH
-		if (2) return SOUTH
-		if (4) return EAST
-		if (8) return WEST
+		if(1) return NORTH
+		if(2) return SOUTH
+		if(4) return EAST
+		if(8) return WEST
 		else
 			log_world("UNKNOWN DIRECTION: [direction]")
 
 // Turns a direction into text
 /proc/dir2text(direction)
 	switch (direction)
-		if (NORTH)  return "north"
-		if (SOUTH)  return "south"
-		if (EAST)  return "east"
-		if (WEST)  return "west"
-		if (NORTHEAST)  return "northeast"
-		if (SOUTHEAST)  return "southeast"
-		if (NORTHWEST)  return "northwest"
-		if (SOUTHWEST) return "southwest"
-		if (UP) return "up"
-		if (DOWN) return "down"
+		if(NORTH)  return "north"
+		if(SOUTH)  return "south"
+		if(EAST)  return "east"
+		if(WEST)  return "west"
+		if(NORTHEAST)  return "northeast"
+		if(SOUTHEAST)  return "southeast"
+		if(NORTHWEST)  return "northwest"
+		if(SOUTHWEST) return "southwest"
+		if(UP) return "up"
+		if(DOWN) return "down"
 
 // Turns text into proper directions
 /proc/text2dir(direction)
 	switch (uppertext(direction))
-		if ("NORTH")     return 1
-		if ("SOUTH")     return 2
-		if ("EAST")      return 4
-		if ("WEST")      return 8
-		if ("NORTHEAST") return 5
-		if ("NORTHWEST") return 9
-		if ("SOUTHEAST") return 6
-		if ("SOUTHWEST") return 10
+		if("NORTH")     return 1
+		if("SOUTH")     return 2
+		if("EAST")      return 4
+		if("WEST")      return 8
+		if("NORTHEAST") return 5
+		if("NORTHWEST") return 9
+		if("SOUTHEAST") return 6
+		if("SOUTHWEST") return 10
 
 //Converts an angle (degrees) into a ss13 direction
 GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,SOUTHWEST,WEST,NORTHWEST))
@@ -130,20 +130,20 @@ GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,
 // Converts a blend_mode constant to one acceptable to icon.Blend()
 /proc/blendMode2iconMode(blend_mode)
 	switch (blend_mode)
-		if (BLEND_MULTIPLY) return ICON_MULTIPLY
-		if (BLEND_ADD)      return ICON_ADD
-		if (BLEND_SUBTRACT) return ICON_SUBTRACT
+		if(BLEND_MULTIPLY) return ICON_MULTIPLY
+		if(BLEND_ADD)      return ICON_ADD
+		if(BLEND_SUBTRACT) return ICON_SUBTRACT
 		else                return ICON_OVERLAY
 
 // Converts a rights bitfield into a string
 /proc/rights2text(rights, seperator="")
-	if (rights & R_ADMIN)       . += "[seperator]+ADMIN"
-	if (rights & R_FUN)         . += "[seperator]+FUN"
-	if (rights & R_SERVER)      . += "[seperator]+SERVER"
-	if (rights & R_DEBUG)       . += "[seperator]+DEBUG"
-	if (rights & R_PERMISSIONS) . += "[seperator]+PERMISSIONS"
-	if (rights & R_MOD)         . += "[seperator]+MODERATOR"
-	if (rights & R_MENTOR)      . += "[seperator]+MENTOR"
+	if(rights & R_ADMIN)       . += "[seperator]+ADMIN"
+	if(rights & R_FUN)         . += "[seperator]+FUN"
+	if(rights & R_SERVER)      . += "[seperator]+SERVER"
+	if(rights & R_DEBUG)       . += "[seperator]+DEBUG"
+	if(rights & R_PERMISSIONS) . += "[seperator]+PERMISSIONS"
+	if(rights & R_MOD)         . += "[seperator]+MODERATOR"
+	if(rights & R_MENTOR)      . += "[seperator]+MENTOR"
 	return .
 
 // heat2color functions. Adapted from: http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/
@@ -224,13 +224,13 @@ GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,
 //Takes a key and attempts to find the mob it currently belongs to
 /proc/key2mob(var/key)
 	var/client/C = directory[key]
-	if (C)
+	if(C)
 		//This should work if the mob is currently logged in
 		return C.mob
 	else
 		//This is a fallback for if they're not logged in
-		for (var/mob/M in GLOB.player_list)
-			if (M.key == key)
+		for(var/mob/M in GLOB.player_list)
+			if(M.key == key)
 				return M
 		return null
 

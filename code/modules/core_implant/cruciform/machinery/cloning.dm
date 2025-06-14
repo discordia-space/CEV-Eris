@@ -374,9 +374,9 @@
 	..(user, extra_description)
 
 /obj/machinery/neotheology/biomass_container/attackby(obj/item/I, mob/user)
-	if (istype(I, /obj/item/stack/material/biomatter))
+	if(istype(I, /obj/item/stack/material/biomatter))
 		var/obj/item/stack/material/biomatter/B = I
-		if (B.biomatter_in_sheet && B.amount)
+		if(B.biomatter_in_sheet && B.amount)
 			var/sheets_amount_to_transfer = input(user, "How many sheets do you want to load?", "Biomatter melting", 1) as num
 			if(sheets_amount_to_transfer > 0)
 				if(sheets_amount_to_transfer > B.amount)

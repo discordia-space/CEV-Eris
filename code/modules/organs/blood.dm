@@ -27,7 +27,7 @@
 /mob/living/carbon/proc/get_blood_data()
 	var/data = list()
 	data["donor"] = WEAKREF(src)
-	if (!data["virus2"])
+	if(!data["virus2"])
 		data["virus2"] = list()
 	data["blood_DNA"] = dna_trace
 	data["blood_type"] = b_type
@@ -80,7 +80,7 @@
 						custom_pain("You feel a stabbing pain in your [temp]!",1)
 				else
 					blood_max += W.damage * WOUND_BLEED_MULTIPLIER
-		if (temp.open)
+		if(temp.open)
 			blood_max += OPEN_ORGAN_BLEED_AMOUNT  //Yer stomach is cut open
 
 	// bloodclotting slows bleeding
@@ -129,7 +129,7 @@
 
 //Transfers blood from container ot vessels
 /mob/living/carbon/proc/inject_blood(var/datum/reagent/organic/blood/injected, var/amount)
-	if (!injected || !istype(injected))
+	if(!injected || !istype(injected))
 		return
 	var/list/chems = list()
 	chems = params2list(injected.data["trace_chem"])
@@ -147,7 +147,7 @@
 
 	var/datum/reagent/organic/blood/our = get_blood()
 
-	if (!injected || !our)
+	if(!injected || !our)
 		return
 	if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) && !get_active_mutation(src, MUTATION_NO_REJECT))
 		reagents.add_reagent("toxin", amount * (get_active_mutation(src, MUTATION_REJECT) ? 1 : 0.5))

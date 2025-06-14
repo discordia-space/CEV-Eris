@@ -43,7 +43,7 @@ GLOBAL_LIST_EMPTY(gps_trackers_by_serial)
 		return null
 
 	var/turf/T = get_turf(holder)
-	if (!T)
+	if(!T)
 		return null
 	return new /datum/coords(T)
 
@@ -52,17 +52,17 @@ GLOBAL_LIST_EMPTY(gps_trackers_by_serial)
 	return C ? C.get_text() : default
 
 /datum/gps_data/proc/get_direction(atom/source = holder, atom/target)
-	if (!target)
+	if(!target)
 		return FALSE
 	return get_dir(source,target)
 
 /datum/gps_data/proc/get_distance(atom/source = holder, atom/target)
-	if (!target)
+	if(!target)
 		return FALSE
 	return get_dist(source,target)
 
 /datum/gps_data/proc/get_z_level_diff(atom/source = holder, atom/target)
-	if (!target)
+	if(!target)
 		return FALSE
 	var/turf/source_loc = get_turf(source)
 	var/turf/target_loc = get_turf(target)

@@ -5,7 +5,7 @@
 		return 0
 	if(accessories.len && restricted_accessory_slots && (A.slot in restricted_accessory_slots))
 		for(var/obj/item/clothing/accessory/AC in accessories)
-			if (AC.slot == A.slot)
+			if(AC.slot == A.slot)
 				return 0
 
 /obj/item/clothing/attackby(var/obj/item/I, var/mob/user)

@@ -36,11 +36,11 @@
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
-	if (ammo_magazine)
+	if(ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
 
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
 
 	icon_state = iconstring

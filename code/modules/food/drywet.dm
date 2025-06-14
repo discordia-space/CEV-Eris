@@ -87,8 +87,8 @@
 
 //copied from obj/item/storage
 /obj/item/reagent_containers/drywet/proc/handle_item_insertion(obj/item/W, prevent_warning = 0)
-	if (!istype(W)) return 0
-	if (usr)
+	if(!istype(W)) return 0
+	if(usr)
 		usr.prepare_for_slotmove(W)
 		usr.update_icons() //update our overlays
 
@@ -99,18 +99,18 @@
 	untaken_capacity -=  volume_taken // checked for validity in can be inserted proc but dangerous if that proc is skipped
 
 	if(usr)
-		if (usr.client)
+		if(usr.client)
 			usr.client.screen -= W
 		W.dropped(usr)
 		add_fingerprint(usr)
 
-		if (!prevent_warning)
-			for (var/mob/M in viewers(usr, null))
-				if (M == usr)
+		if(!prevent_warning)
+			for(var/mob/M in viewers(usr, null))
+				if(M == usr)
 					to_chat(usr, SPAN_NOTICE("You put \the [W] into [src]."))
-				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
+				else if(M in range(1)) //If someone is standing close enough, they can tell what it is...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
-				else if (W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
+				else if(W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
 
 
@@ -148,7 +148,7 @@
 		return FALSE
 
 
-	if (largestdimension != null && W.w_class > largestdimension)
+	if(largestdimension != null && W.w_class > largestdimension)
 		if(!stop_messages)
 			to_chat(usr, SPAN_NOTICE("[W] is too large for this [src]."))
 		return FALSE
@@ -182,10 +182,10 @@
 
 // copied from obj/item/storage
 /obj/item/reagent_containers/drywet/proc/remove_from_storage(obj/item/W, atom/new_location)
-	if (!istype(W))
+	if(!istype(W))
 		return
 
-	if (new_location)
+	if(new_location)
 		W.loc = new_location
 	else
 		W.loc = get_turf(src)

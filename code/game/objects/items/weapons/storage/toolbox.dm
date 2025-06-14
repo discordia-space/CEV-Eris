@@ -38,7 +38,7 @@
 		new /obj/item/ammo_casing/flare(src)
 	else
 		new /obj/item/device/lighting/glowstick/flare(src)
-	if (prob(40))
+	if(prob(40))
 		new /obj/item/tool/tape_roll(src)
 	new /obj/item/device/radio(src)
 

@@ -187,7 +187,7 @@ var/list/mob_hat_cache = list()
 		to_chat(user, SPAN_DANGER("\The [src] is not compatible with \the [W]."))
 		return
 
-	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/modular_computer))
+	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/modular_computer))
 
 		if(stat == 2)
 

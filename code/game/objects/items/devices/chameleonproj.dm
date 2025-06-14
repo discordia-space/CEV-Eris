@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 		toggle()
 
 /obj/item/device/chameleon/afterattack(atom/target, mob/user , proximity)
-	if (istype(target, /obj/item/storage)) return
+	if(istype(target, /obj/item/storage)) return
 	if(!proximity) return
 	if(!active_dummy)
 		if(scan_item(target))

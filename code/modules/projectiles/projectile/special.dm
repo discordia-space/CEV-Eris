@@ -164,7 +164,7 @@
 			if(prob(15))
 				H.apply_effect((rand(30,80)),IRRADIATE)
 				H.Weaken(5)
-				for (var/mob/V in viewers(src))
+				for(var/mob/V in viewers(src))
 					V.show_message("\red [M] writhes in pain as \his vacuoles boil.", 3, "\red You hear the crunching of leaves.", 2)
 			else
 				M.adjustFireLoss(rand(5,15))
@@ -187,7 +187,7 @@
 		var/mob/living/carbon/human/H = M
 		if((H.species.flags & IS_PLANT) && (H.nutrition < 500))
 			H.adjustNutrition(30)
-	else if (istype(target, /mob/living/carbon/))
+	else if(istype(target, /mob/living/carbon/))
 		M.show_message("\blue The radiation beam dissipates harmlessly through your body.")
 	else
 		return 1
@@ -251,7 +251,7 @@
 	sharp = FALSE
 	embed = FALSE	// plasma is not directly destroyed as projectile does not survive impact
 	recoil = 4
-	matter = list(MATERIAL_PLASTIC = 0.5, MATERIAL_PLASMA = 1) 
+	matter = list(MATERIAL_PLASTIC = 0.5, MATERIAL_PLASMA = 1)
 
 /obj/item/projectile/bullet/flare/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -267,7 +267,7 @@
 	if(!istype(T)) return
 
 	//blind adjacent people with enhanced vision
-	for (var/mob/living/carbon/M in viewers(T, flash_range))
+	for(var/mob/living/carbon/M in viewers(T, flash_range))
 		if(M.eyecheck() < FLASH_PROTECTION_NONE)
 			M.flash(0, FALSE , FALSE , FALSE)
 

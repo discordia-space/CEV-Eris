@@ -3,7 +3,7 @@
 	unique = TRUE
 
 /datum/objective/block/check_completion()
-	if (failed)
+	if(failed)
 		return FALSE
 
 	if(!issilicon(owner.current))

@@ -98,18 +98,18 @@
 		var/is_in_use = 0
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)
-			if ((M.client && M.machine == src))
+			if((M.client && M.machine == src))
 				is_in_use = 1
 				src.attack_hand(M)
-		if (isAI(usr) || isrobot(usr))
-			if (!(usr in nearby))
-				if (usr.client && usr.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
+		if(isAI(usr) || isrobot(usr))
+			if(!(usr in nearby))
+				if(usr.client && usr.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
 					is_in_use = 1
 					src.attack_ai(usr)
 
 		// check for TK users
 
-		if (ishuman(usr))
+		if(ishuman(usr))
 			if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
 				if(!(usr in nearby))
 					if(usr.client && usr.machine==src)
@@ -123,7 +123,7 @@
 		var/list/nearby = viewers(1, src)
 		var/is_in_use = 0
 		for(var/mob/M in nearby)
-			if ((M.client && M.machine == src))
+			if((M.client && M.machine == src))
 				is_in_use = 1
 				src.interact(M)
 		var/ai_in_use = AutoUpdateAI(src)
@@ -239,7 +239,7 @@
 //Makes an object move around randomly for a couple of tiles
 /obj/proc/tumble(var/dist = 2)
 	set waitfor = FALSE
-	if (dist >= 1)
+	if(dist >= 1)
 		dist += rand(0,1)
 		for(var/i = 1, i <= dist, i++)
 			if(src)

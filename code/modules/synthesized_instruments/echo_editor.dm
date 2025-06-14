@@ -13,7 +13,7 @@
 /datum/nano_module/echo_editor/nano_ui_interact(mob/user, ui_key = "echo_editor", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/list/list/data = list()
 	data["echo_params"] = list()
-	for (var/i=1 to 18)
+	for(var/i=1 to 18)
 		var/list/echo_data = list()
 		echo_data["index"] = i
 		echo_data["name"] = GLOB.musical_config.echo_param_names[i]
@@ -22,19 +22,19 @@
 		data["echo_params"] += list(echo_data)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new (user, src, ui_key, "echo_editor.tmpl", "Echo Editor", 300, 600)
 		ui.set_initial_data(data)
 		ui.open()
 
 
 /datum/nano_module/echo_editor/Topic(href, href_list)
-	if (..())
+	if(..())
 		return 1
 
 	var/target = href_list["target"]
 	var/index = text2num(href_list["index"])
-	if (href_list["index"] && !(index in 1 to 18))
+	if(href_list["index"] && !(index in 1 to 18))
 		to_chat(usr, "Wrong index was provided: [index]")
 		return 0
 
@@ -47,17 +47,17 @@
 	var/reals_allowed = bounds[3]
 
 	switch (target)
-		if ("set")
+		if("set")
 			var/new_value = min(max(input(usr, "[name]: [bound_min] - [bound_max]") as num, bound_min), bound_max)
-			if (!isnum(new_value))
+			if(!isnum(new_value))
 				return
 			new_value = reals_allowed ? new_value : round(new_value)
 			src.player.echo[index] = new_value
-		if ("reset")
+		if("reset")
 			src.player.echo[index] = default
-		if ("reset_all")
+		if("reset_all")
 			src.player.echo = GLOB.musical_config.echo_default.Copy()
-		if ("desc")
+		if("desc")
 			to_chat(usr, "[name]: from [bound_min] to [bound_max] (default: [default])<br>[desc]")
 
 	return 1

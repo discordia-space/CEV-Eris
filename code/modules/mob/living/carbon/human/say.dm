@@ -79,12 +79,12 @@
 		return 1
 
 	//These only pertain to common. Languages are handled by mob/say_understands()
-	if (!speaking)
-		if (issilicon(other))
+	if(!speaking)
+		if(issilicon(other))
 			return 1
-		if (isbrain(other))
+		if(isbrain(other))
 			return 1
-		if (isslime(other))
+		if(isslime(other))
 			return 1
 
 	//This is already covered by mob/say_understands()
@@ -136,12 +136,12 @@
 
 
 /*
-   ***Deprecated***
-   let this be handled at the hear_say or hear_radio proc
-   This is left in for robot speaking when humans gain binary channel access until I get around to rewriting
-   robot_talk() proc.
-   There is no language handling build into it however there is at the /mob level so we accept the call
-   for it but just ignore it.
+	Deprecated
+	let this be handled at the hear_say or hear_radio proc
+	This is left in for robot speaking when humans gain binary channel access until I get around to rewriting
+	robot_talk() proc.
+	There is no language handling build into it however there is at the /mob level so we accept the call
+	for it but just ignore it.
 */
 
 /mob/living/carbon/human/say_quote(var/message, var/datum/language/speaking = null)

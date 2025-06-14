@@ -40,7 +40,7 @@ LINEN BINS
 		to_chat(user, "Someone already using \the [src]")
 		return FALSE
 	inuse = TRUE
-	if (do_after(user, 6, src, incapacitation_flags = INCAPACITATION_UNCONSCIOUS))
+	if(do_after(user, 6, src, incapacitation_flags = INCAPACITATION_UNCONSCIOUS))
 		if(user.loc != loc)
 			user.do_attack_animation(src)
 		playsound(get_turf(loc), "rustle", 15, 1, -5)
@@ -68,7 +68,7 @@ LINEN BINS
 		to_chat(user, "Someone already using \the [src]")
 		return FALSE
 	inuse = TRUE
-	if (do_after(user, 25, src))
+	if(do_after(user, 25, src))
 		rolled = FALSE
 		if(user.loc != loc)
 			user.do_attack_animation(src)
@@ -147,9 +147,9 @@ LINEN BINS
 			pickup(usr)
 
 /obj/item/bedsheet/update_icon()
-	if (folded)
+	if(folded)
 		icon_state = "sheet-folded"
-	else if (rolled)
+	else if(rolled)
 		icon_state = "sheet-rolled"
 	else
 		icon_state = initial(icon_state)

@@ -11,17 +11,17 @@
 	var/ended = FALSE
 
 /datum/objective/timed/merc/check_completion()
-	if (failed)
+	if(failed)
 		return FALSE
 
 	var/datum/shuttle/autodock/multi/antag/mercenary/MS = SSshuttle.get_shuttle("Mercenary")
 
-	if (!MS)
+	if(!MS)
 		//Shuttle was destroyed?
 		return FALSE
 
 
-	if (MS.current_location != MS.home_waypoint && MS.next_location != MS.home_waypoint)
+	if(MS.current_location != MS.home_waypoint && MS.next_location != MS.home_waypoint)
 		//The shuttle still near Eris, fail
 		//This will succeed as long as they're enroute away from eris
 		return FALSE
@@ -42,7 +42,7 @@
 //The faction datum processes to tick down the mission timer
 /datum/objective/timed/merc/Process()
 	mission_timer -= 1 SECONDS
-	if (!ended && mission_timer <= 0)
+	if(!ended && mission_timer <= 0)
 		end_mission()
 
 	/*
@@ -55,12 +55,12 @@
 //The mission ends when the mercs return to base or their time limit expires
 /datum/objective/timed/merc/proc/end_mission()
 	ended = TRUE
-	if (!check_completion())
+	if(!check_completion())
 		abort_mission()
 	else
 
-		for (var/datum/objective/O in owner_faction.objectives)
-			if (O.check_completion())
+		for(var/datum/objective/O in owner_faction.objectives)
+			if(O.check_completion())
 				O.completed = TRUE
 
 	//This is one of the few times a world << call is actually intended functionality.
@@ -73,15 +73,15 @@
 /datum/objective/timed/merc/proc/abort_mission()
 
 	//First of all, every merc left on eris is executed by a little bomb in their skull
-	for (var/datum/antagonist/A in owner_faction.members)
-		if (!A || !A.owner)
+	for(var/datum/antagonist/A in owner_faction.members)
+		if(!A || !A.owner)
 			continue
 
 		var/mob/living/carbon/human/H = A.owner.current
-		if (!H)
+		if(!H)
 			continue
 
-		if (!IS_SHIP_LEVEL(H.z))
+		if(!IS_SHIP_LEVEL(H.z))
 			continue
 
 		var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
@@ -90,12 +90,12 @@
 
 
 	//Secondly, fail all mission objectives
-	for (var/datum/objective/O in owner_faction.objectives)
+	for(var/datum/objective/O in owner_faction.objectives)
 		O.failed = TRUE
 
 	/*
 	//Thirdly, the merc ship selfdestructs
 	var/list/atoms = get_area_contents(/area/shuttle/mercenary)
-	for (var/a in atoms)
+	for(var/a in atoms)
 		qdel(a)
 	*/

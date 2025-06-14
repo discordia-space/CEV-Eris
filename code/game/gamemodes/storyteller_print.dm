@@ -98,18 +98,18 @@
 	data += "<b><a href='?src=\ref[src];force_spawn=1'>\[FORCE ROLE SPAWN\]</a></b>"
 	data += "<hr>"
 	data += "<B>Evacuation</B>"
-	if (!evacuation_controller.is_idle())
+	if(!evacuation_controller.is_idle())
 		data += "<a href='?src=\ref[src];call_shuttle=1'>Call Evacuation</a><br>"
 	else
 		var/timeleft = evacuation_controller.get_eta()
-		if (evacuation_controller.waiting_to_leave())
+		if(evacuation_controller.waiting_to_leave())
 			data += "ETA: [(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
 			data += "<a href='?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
 	data += "<br><a href='?src=\ref[src];delay_round_end=1'>[SSticker.delay_end ? "End Round Normally" : "Delay Round End"]</a>"
 
 	data += "<hr><b>Current antags:</b><div style=\"border:1px solid black;\"><ul>"
 
-	if (GLOB.current_antags.len)
+	if(GLOB.current_antags.len)
 		for(var/datum/antagonist/A in GLOB.current_antags)
 			var/act = "<font color=red>DEAD</font>"
 			if(!A.is_dead())
@@ -135,7 +135,7 @@
 		data += "|[severity_to_string[severity]] events:"
 		data += "|Points: [points[severity]]"
 		data += "<ul>"
-		for (var/datum/storyevent/S in L)
+		for(var/datum/storyevent/S in L)
 			data += "<li>[S.id] - weight: [L[S]] <a href='?src=\ref[src];event=[S.id];ev_calc_weight=1'>\[UPD\]</a>"
 			if(!calculate_weights)
 				data += "<a href='?src=\ref[src];event=[S.id];ev_set_weight=1'>\[SET\]</a>  "
@@ -208,22 +208,22 @@
 	if(href_list["call_shuttle"])
 		switch(href_list["call_shuttle"])
 			if("1")
-				if (evacuation_controller.call_evacuation(usr, TRUE))
+				if(evacuation_controller.call_evacuation(usr, TRUE))
 					log_admin("[key_name(usr)] started the evacuation")
 					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
 			if("2")
-				if (evacuation_controller.call_evacuation(usr, TRUE))
+				if(evacuation_controller.call_evacuation(usr, TRUE))
 					log_admin("[key_name(usr)] started the evacuation")
 					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
 
-				else if (evacuation_controller.cancel_evacuation())
+				else if(evacuation_controller.cancel_evacuation())
 					log_admin("[key_name(usr)] cancelled the evacuation")
 					message_admins("\blue [key_name_admin(usr)] cancelled the evacuation", 1)
 
 	if(href_list["delay_round_end"])
 		if(!check_rights(R_SERVER))
 			return
-		if (SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_STARTUP)
+		if(SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_STARTUP)
 			SSticker.delay_end = !SSticker.delay_end
 			log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 			message_admins("\blue [key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
@@ -248,16 +248,16 @@
 			if(href_list["ev_spawn"])
 				//When in debug mode, we pass in the user.
 					//If antag spawning fails, they will be spammed with text explaining why
-				if (!evt.can_trigger(href_list["severity"], debug_mode? usr : null, TRUE))
+				if(!evt.can_trigger(href_list["severity"], debug_mode? usr : null, TRUE))
 					var/answer = alert(usr, "\"[evt.id]\" is not allowed to trigger.\n\
 					To find out why, turn on debug mode in the storyteller panel and try again. \n\
 					You can also try to bypass the requirement and force it anyway, but this is unlikely to work\n \
 					 Would you like to force it anyway?", "Force Event? ", "yes", "no")
-					if (answer == "no")
+					if(answer == "no")
 						return
 
 				var/result = evt.create(href_list["severity"])
-				if (result)
+				if(result)
 					log_and_message_admins("Event \"[evt.id]\" was successfully force spawned by [key_name(usr)]")
 				else
 					log_and_message_admins("[key_name(usr)] failed to force spawn \"[evt.id]\".")

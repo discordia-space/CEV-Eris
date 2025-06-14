@@ -140,11 +140,11 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 
 
 /datum/storyteller/proc/can_tick()
-	if (world.time > next_tick)
+	if(world.time > next_tick)
 		return TRUE
 
 /datum/storyteller/proc/set_timer()
-	if (!(world.time > next_tick))
+	if(!(world.time > next_tick))
 		//We duplicate this check from can_tick, so that an admin forcing an immediate event won't
 		//Throw the timing out of sync for the rest of the game
 		return
@@ -210,15 +210,15 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 ********************/
 
 /datum/storyteller/proc/modify_points(var/delta, var/type = EVENT_LEVEL_ROLESET)
-	if (!delta || !isnum(delta))
+	if(!delta || !isnum(delta))
 		return
 	//Adds delta points to the specified pool.
 	//If type is 0, adds points to all pools
 	//Pass a negative delta to subtract points
-	if (type)
+	if(type)
 		points[type] += delta
 	else
-		for (var/a in points)
+		for(var/a in points)
 			points[a] += delta
 
 /datum/storyteller/proc/handle_points()
@@ -229,17 +229,17 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 	check_thresholds()
 
 /datum/storyteller/proc/check_thresholds()
-	while (points[EVENT_LEVEL_MUNDANE] >= POOL_THRESHOLD_MUNDANE)
-		if (!handle_event(EVENT_LEVEL_MUNDANE))
+	while(points[EVENT_LEVEL_MUNDANE] >= POOL_THRESHOLD_MUNDANE)
+		if(!handle_event(EVENT_LEVEL_MUNDANE))
 			//This returns false if no viable events
 			break
 
-	while (points[EVENT_LEVEL_MODERATE] >= POOL_THRESHOLD_MODERATE)
-		if (!handle_event(EVENT_LEVEL_MODERATE))
+	while(points[EVENT_LEVEL_MODERATE] >= POOL_THRESHOLD_MODERATE)
+		if(!handle_event(EVENT_LEVEL_MODERATE))
 			break
 
-	while (points[EVENT_LEVEL_MAJOR] >= POOL_THRESHOLD_MAJOR)
-		if (!handle_event(EVENT_LEVEL_MAJOR))
+	while(points[EVENT_LEVEL_MAJOR] >= POOL_THRESHOLD_MAJOR)
+		if(!handle_event(EVENT_LEVEL_MAJOR))
 			break
 
 	//No loop for roleset events to prevent possible wierdness like the same player being picked twice
@@ -260,32 +260,32 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 	//We will be modifying it and don't want those modifications to go back to the source
 	var/list/temp_pool
 	switch(event_type)
-		if (EVENT_LEVEL_MUNDANE)
+		if(EVENT_LEVEL_MUNDANE)
 			temp_pool = event_pool_mundane.Copy()
-		if (EVENT_LEVEL_MODERATE)
+		if(EVENT_LEVEL_MODERATE)
 			temp_pool = event_pool_moderate.Copy()
-		if (EVENT_LEVEL_MAJOR)
+		if(EVENT_LEVEL_MAJOR)
 			temp_pool = event_pool_major.Copy()
-		if (EVENT_LEVEL_ROLESET)
+		if(EVENT_LEVEL_ROLESET)
 			temp_pool = event_pool_roleset.Copy()
 
-	if (!temp_pool || !temp_pool.len)
+	if(!temp_pool || !temp_pool.len)
 		return FALSE
 
 	var/datum/storyevent/choice = null
 	//We pick an event from the pool at random, and check if it's allowed to run
-	while (choice == null)
+	while(choice == null)
 		choice = pickweight(temp_pool)
-		if (!choice.can_trigger(event_type))
+		if(!choice.can_trigger(event_type))
 			//If its not, we'll remove it from the temp pool and then pick another
 			temp_pool -= choice
 			choice = null
 
-		if (!temp_pool.len)
+		if(!temp_pool.len)
 			return FALSE
 			//Repeat until we find one which is allowed, or the pool is empty
 
-	if (!choice)
+	if(!choice)
 		return FALSE
 
 	//Once we get here, we've found an event which can run!
@@ -306,7 +306,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 The actual fire event proc is located in storyteller_meta*/
 /datum/storyteller/proc/schedule_event(var/datum/storyevent/C, var/event_type)
 	var/delay
-	if (event_type == EVENT_LEVEL_ROLESET)
+	if(event_type == EVENT_LEVEL_ROLESET)
 		delay = 1 //Basically no delay on these to reduce bugginess
 	else
 		delay = rand(1, event_schedule_delay)
@@ -324,24 +324,24 @@ The actual fire event proc is located in storyteller_meta*/
 	event_pool_moderate.Cut()
 	event_pool_major.Cut()
 	event_pool_roleset.Cut()
-	for (var/datum/storyevent/a in storyevents)
+	for(var/datum/storyevent/a in storyevents)
 
 
 		var/new_weight
 
-		if (!a.enabled)
+		if(!a.enabled)
 			new_weight = 0
 		else
 			new_weight = calculate_event_weight(a)
 
 		//We setup the event pools as an associative list in preparation for a pickweight call
-		if (EVENT_LEVEL_MUNDANE in a.event_pools)
+		if(EVENT_LEVEL_MUNDANE in a.event_pools)
 			event_pool_mundane[a] = new_weight
-		if (EVENT_LEVEL_MODERATE in a.event_pools)
+		if(EVENT_LEVEL_MODERATE in a.event_pools)
 			event_pool_moderate[a] = new_weight
-		if (EVENT_LEVEL_MAJOR in a.event_pools)
+		if(EVENT_LEVEL_MAJOR in a.event_pools)
 			event_pool_major[a] = new_weight
-		if (EVENT_LEVEL_ROLESET in a.event_pools)
+		if(EVENT_LEVEL_ROLESET in a.event_pools)
 			event_pool_roleset[a] = new_weight
 
 

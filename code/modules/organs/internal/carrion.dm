@@ -88,7 +88,7 @@
 
 	var/list/options = list()
 	var/obj/item/implant/carrion_spider/S
-	if (!spiderlist.len)
+	if(!spiderlist.len)
 		to_chat(owner, SPAN_WARNING("You dont have any spiders evolved!"))
 		return
 
@@ -270,10 +270,10 @@
 		return
 	src = core
 
-	if (owner.transforming)
+	if(owner.transforming)
 		return
 
-	if (!owner)
+	if(!owner)
 		return
 
 	if(!absorbed_dna.len)
@@ -379,12 +379,12 @@
 	if(istype(food, /obj/item/grab))
 		var/obj/item/grab/grab = food
 		var/mob/living/carbon/human/H = grab.affecting
-		if (grab.state < GRAB_AGGRESSIVE)
+		if(grab.state < GRAB_AGGRESSIVE)
 			to_chat(owner, SPAN_WARNING("Your grip upon [H.name] is too weak."))
 			return
 		if(istype(H))
 			var/obj/item/organ/external/E = H.get_organ(owner.targeted_organ)
-			if (tearing) // one at a time, thank you.
+			if(tearing) // one at a time, thank you.
 				to_chat(owner, SPAN_WARNING("Your maw is already focused on something."))
 				return
 
@@ -398,14 +398,14 @@
 				tearing = FALSE
 				E.take_damage(30, BRUTE)
 				var/blacklist = list()
-				for (var/obj/item/organ/internal/to_blacklist in E.internal_organs)
-					if (istype(to_blacklist, /obj/item/organ/internal/bone/))
+				for(var/obj/item/organ/internal/to_blacklist in E.internal_organs)
+					if(istype(to_blacklist, /obj/item/organ/internal/bone/))
 						blacklist += to_blacklist
 						continue
-					if (istype(to_blacklist, /obj/item/organ/internal/vital/brain/))
+					if(istype(to_blacklist, /obj/item/organ/internal/vital/brain/))
 						blacklist += to_blacklist// removing bones from a valid_organs list based on
 				var/list/valid_organs = E.internal_organs - blacklist// E.internal_organs gibs the victim.
-				if (!valid_organs.len)
+				if(!valid_organs.len)
 					visible_message(SPAN_DANGER("[owner] tears up [H]'s [E.name]!"))
 					return
 				var/obj/item/organ/internal/organ_to_remove = pick(valid_organs)
@@ -444,7 +444,7 @@
 					taste_description = "carrion organs taste heavenly, you need more!"
 			else if(istype(O, /obj/item/organ/internal))
 				var/organ_rotten = FALSE
-				if (O.status & ORGAN_DEAD)
+				if(O.status & ORGAN_DEAD)
 					organ_rotten = TRUE
 				if(O.species != all_species[SPECIES_HUMAN])
 					chemgain = 5
@@ -504,7 +504,7 @@
 		spawn(2)
 			playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8) //Same trick as with the fuhrer
 		visible_message(SPAN_DANGER("[owner] emits a frightening screech as you feel the ground tramble!"))
-		for (var/obj/structure/burrow/B in find_nearby_burrows())
+		for(var/obj/structure/burrow/B in find_nearby_burrows())
 			for(var/i = 1, i <= 4 ,i++) //4 per burrow
 				var/obj/structure/burrow/origin = SSmigration.choose_burrow_target(null, TRUE, 100)
 				var/spider_to_spawn = pickweight(list(/mob/living/carbon/superior_animal/giant_spider = 4,\
@@ -615,7 +615,7 @@
 		return
 	src = spinneret
 
-	if (owner.check_ability(30,TRUE, 1))
+	if(owner.check_ability(30,TRUE, 1))
 		new /obj/structure/spider_nest(owner.loc)
 
 /obj/structure/spider_nest

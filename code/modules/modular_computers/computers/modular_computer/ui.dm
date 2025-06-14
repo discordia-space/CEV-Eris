@@ -31,7 +31,7 @@
 
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "mpc_mainscreen.tmpl", "NTOS Main Menu", 400, 500)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
@@ -176,7 +176,7 @@
 
 	if(gps_sensor)
 		data["has_gps"] = TRUE
-		if (gps_sensor.check_functionality())
+		if(gps_sensor.check_functionality())
 			data["gps_icon"] = "satelite_on.gif"
 		else
 			data["gps_icon"] = "satelite_off.gif"

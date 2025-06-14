@@ -61,7 +61,7 @@
 
 	if(href_list["fname"])
 		var/raw_first_name = input(user, "Choose your character's first name:", "Character First Name", pref.real_first_name)  as text|null
-		if (!isnull(raw_first_name) && CanUseTopic(user))
+		if(!isnull(raw_first_name) && CanUseTopic(user))
 			var/new_fname = sanitize_name(raw_first_name, pref.species, 14)
 			if(new_fname)
 				if(GLOB.in_character_filter.len) //If you name yourself brazil, you're getting a random name.

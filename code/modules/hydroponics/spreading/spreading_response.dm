@@ -8,7 +8,7 @@
 			D.create_reagents(10*seed.chems.len)
 			if(!src)
 				return
-			for (var/reagent in seed.chems)
+			for(var/reagent in seed.chems)
 				D.reagents.add_reagent(reagent, 10)
 			D.set_color()
 			D.set_up(my_target, 1, 10)
@@ -66,13 +66,13 @@
 		if(choice == "Cut down")
 			//Cutting tools can cut down vines quickly
 			var/tool_type = null
-			if (W.has_quality(QUALITY_WIRE_CUTTING))
+			if(W.has_quality(QUALITY_WIRE_CUTTING))
 				tool_type = QUALITY_WIRE_CUTTING
-			else if (W.has_quality(QUALITY_LASER_CUTTING))
+			else if(W.has_quality(QUALITY_LASER_CUTTING))
 				tool_type = QUALITY_LASER_CUTTING
-			else if (W.has_quality(QUALITY_CUTTING))
+			else if(W.has_quality(QUALITY_CUTTING))
 				tool_type = QUALITY_CUTTING
-			else if (W.has_quality(QUALITY_WELDING))
+			else if(W.has_quality(QUALITY_WELDING))
 				tool_type = QUALITY_WELDING
 
 			if(tool_type)
@@ -95,11 +95,11 @@
 
 
 		switch(choice)
-			if ("Sample plant")
+			if("Sample plant")
 				seed.harvest(user,0, 0, 1)
 				health -= (rand(3,5)*5)
 				check_health()
-			if ("Sample seed")
+			if("Sample seed")
 				seed.harvest(user,0, 1)
 				health -= (rand(3,5)*2)
 				check_health()
@@ -107,15 +107,15 @@
 	else
 		//Gardening tools can cut down vines quickly
 		var/tool_type = null
-		if (W.has_quality(QUALITY_SHOVELING))
+		if(W.has_quality(QUALITY_SHOVELING))
 			tool_type = QUALITY_SHOVELING
-		else if (W.has_quality(QUALITY_WIRE_CUTTING))
+		else if(W.has_quality(QUALITY_WIRE_CUTTING))
 			tool_type = QUALITY_WIRE_CUTTING
-		else if (W.has_quality(QUALITY_LASER_CUTTING))
+		else if(W.has_quality(QUALITY_LASER_CUTTING))
 			tool_type = QUALITY_LASER_CUTTING
-		else if (W.has_quality(QUALITY_CUTTING))
+		else if(W.has_quality(QUALITY_CUTTING))
 			tool_type = QUALITY_CUTTING
-		else if (W.has_quality(QUALITY_WELDING))
+		else if(W.has_quality(QUALITY_WELDING))
 			tool_type = QUALITY_WELDING
 
 		if(tool_type)
@@ -130,7 +130,7 @@
 		if(W.force && ! (W.flags & NOBLUDGEON))
 			var/damage = W.force
 			//Swords and axes are good here
-			if (W.edge)
+			if(W.edge)
 				damage *= 1.5
 			health -= damage
 			check_health()

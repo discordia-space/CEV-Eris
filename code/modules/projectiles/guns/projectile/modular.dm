@@ -112,7 +112,7 @@
 			if(gun_part.part_itemstring && !(PARTMOD_FRAME_SPRITE & spriteTags)) // Part also wants to modify itemstring, and is allowed to
 				itemstring = "_" + gun_part.part_overlay + itemstring // Add their overlay name
 
-	if (ammo_magazine) // Warning! If a sprite is missing from the DMI despite being possible to insert ingame, it might have unforeseen consequences (no magazine showing up)
+	if(ammo_magazine) // Warning! If a sprite is missing from the DMI despite being possible to insert ingame, it might have unforeseen consequences (no magazine showing up)
 		itemstring += "_full"
 		overlays += "mag_[ammo_magazine.mag_well][caliber]" + dashTag
 

@@ -35,7 +35,7 @@
 		filetype = "CD"
 
 /datum/computer_file/binary/design/proc/set_point_cost(cost)
-	if (isnull(cost))
+	if(isnull(cost))
 		point_cost = 1
 	else
 		point_cost = cost

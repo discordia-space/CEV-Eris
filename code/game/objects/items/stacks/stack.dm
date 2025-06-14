@@ -38,15 +38,15 @@
 
 /obj/item/stack/New(var/loc, var/amount=null)
 	.=..()
-	if (amount)
+	if(amount)
 		src.amount = amount
 
 /obj/item/stack/Initialize()
 	. = ..()
-	if (!stacktype)
+	if(!stacktype)
 		stacktype = type
 
-	if (rand_min || rand_max)
+	if(rand_min || rand_max)
 		amount = rand(rand_min, rand_max)
 		amount = round(amount, 1) //Just in case
 	update_icon()
@@ -64,18 +64,18 @@
 		return ..()
 	if(amount <= (max_amount * (1/3)))
 		icon_state = initial(icon_state)
-	else if (amount <= (max_amount * (2/3)))
+	else if(amount <= (max_amount * (2/3)))
 		icon_state = "[initial(icon_state)]_2"
 	else
 		icon_state = "[initial(icon_state)]_3"
 	..()
 
 /obj/item/stack/Destroy()
-	if (synths)
+	if(synths)
 		synths.Cut() //Preventing runtimes
 	//if(uses_charge)
 		//return 1
-	if (src && usr && usr.machine == src)
+	if(src && usr && usr.machine == src)
 		usr << browse(null, "window=stack")
 
 
@@ -93,53 +93,53 @@
 	list_recipes(user)
 
 /obj/item/stack/proc/list_recipes(mob/user as mob, recipes_sublist)
-	if (!recipes)
+	if(!recipes)
 		return
-	if (!src || get_amount() <= 0)
+	if(!src || get_amount() <= 0)
 		user << browse(null, "window=stack")
 	user.set_machine(src) //for correct work of onclose
 	var/list/recipe_list = recipes
-	if (recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
+	if(recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
 		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
 		recipe_list = srl.recipes
 	var/t1 = text("<HTML><HEAD><title>Constructions from []</title></HEAD><body><TT>Amount Left: []<br>", src, src.get_amount())
 	for(var/i=1;i<=recipe_list.len,i++)
 		var/E = recipe_list[i]
-		if (isnull(E))
+		if(isnull(E))
 			t1 += "<hr>"
 			continue
 
-		if (i>1 && !isnull(recipe_list[i-1]))
+		if(i>1 && !isnull(recipe_list[i-1]))
 			t1+="<br>"
 
-		if (istype(E, /datum/stack_recipe_list))
+		if(istype(E, /datum/stack_recipe_list))
 			var/datum/stack_recipe_list/srl = E
 			t1 += "<a href='?src=\ref[src];sublist=[i]'>[srl.title]</a>"
 
-		if (istype(E, /datum/stack_recipe))
+		if(istype(E, /datum/stack_recipe))
 			var/datum/stack_recipe/R = E
 			var/max_multiplier = round(src.get_amount() / R.req_amount)
 			var/title
 			var/can_build = 1
 			can_build = can_build && (max_multiplier>0)
-			if (R.res_amount>1)
+			if(R.res_amount>1)
 				title+= "[R.res_amount]x [R.title]\s"
 			else
 				title+= "[R.title]"
 			title+= " ([R.req_amount] [src.singular_name]\s)"
-			if (can_build)
+			if(can_build)
 				t1 += text("<A href='?src=\ref[src];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  ")
 			else
 				t1 += text("[]", title)
 				continue
-			if (R.max_res_amount>1 && max_multiplier>1)
+			if(R.max_res_amount>1 && max_multiplier>1)
 				max_multiplier = min(max_multiplier, round(R.max_res_amount/R.res_amount))
 				t1 += " |"
 				var/list/multipliers = list(5,10,25)
-				for (var/n in multipliers)
-					if (max_multiplier>=n)
+				for(var/n in multipliers)
+					if(max_multiplier>=n)
 						t1 += " <A href='?src=\ref[src];make=[i];multiplier=[n]'>[n*R.res_amount]x</A>"
-				if (!(max_multiplier in multipliers))
+				if(!(max_multiplier in multipliers))
 					t1 += " <A href='?src=\ref[src];make=[i];multiplier=[max_multiplier]'>[max_multiplier*R.res_amount]x</A>"
 
 	t1 += "</TT></body></HTML>"
@@ -151,27 +151,27 @@
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
 
-	if (!can_use(required))
-		if (produced>1)
+	if(!can_use(required))
+		if(produced>1)
 			to_chat(user, SPAN_WARNING("You haven't got enough [src] to build \the [produced] [recipe.title]\s!"))
 		else
 			to_chat(user, SPAN_WARNING("You haven't got enough [src] to build \the [recipe.title]!"))
 		return
 
-	if (recipe.one_per_turf && (locate(recipe.result_type) in user.loc))
+	if(recipe.one_per_turf && (locate(recipe.result_type) in user.loc))
 		to_chat(user, SPAN_WARNING("There is another [recipe.title] here!"))
 		return
 
-	if (recipe.on_floor && !isfloor(user.loc))
+	if(recipe.on_floor && !isfloor(user.loc))
 		to_chat(user, SPAN_WARNING("\The [recipe.title] must be constructed on the floor!"))
 		return
 
-	if (recipe.time)
+	if(recipe.time)
 		to_chat(user, SPAN_NOTICE("Building [recipe.title] ..."))
-		if (!do_after(user, recipe.time, user))
+		if(!do_after(user, recipe.time, user))
 			return
 
-	if (use(required))
+	if(use(required))
 		var/atom/O
 		if(recipe.use_material)
 			O = new recipe.result_type(user.loc, recipe.use_material)
@@ -180,13 +180,13 @@
 		O.set_dir(user.dir)
 		O.add_fingerprint(user)
 
-		if (istype(O, /obj/item/stack))
+		if(istype(O, /obj/item/stack))
 			var/obj/item/stack/S = O
 			S.amount = produced
 			S.add_to_stacks(user)
 
-		if (istype(O, /obj/item/storage)) //BubbleWrap - so newly formed boxes are empty
-			for (var/obj/item/I in O)
+		if(istype(O, /obj/item/storage)) //BubbleWrap - so newly formed boxes are empty
+			for(var/obj/item/I in O)
 				qdel(I)
 
 
@@ -200,28 +200,28 @@
 
 /obj/item/stack/Topic(href, href_list)
 	..()
-	if ((usr.restrained() || usr.stat || usr.get_active_hand() != src))
+	if((usr.restrained() || usr.stat || usr.get_active_hand() != src))
 		return
 
-	if (href_list["sublist"] && !href_list["make"])
+	if(href_list["sublist"] && !href_list["make"])
 		list_recipes(usr, text2num(href_list["sublist"]))
 
-	if (href_list["make"])
-		if (src.get_amount() < 1) qdel(src) //Never should happen
+	if(href_list["make"])
+		if(src.get_amount() < 1) qdel(src) //Never should happen
 
 		var/list/recipes_list = recipes
-		if (href_list["sublist"])
+		if(href_list["sublist"])
 			var/datum/stack_recipe_list/srl = recipes_list[text2num(href_list["sublist"])]
 			recipes_list = srl.recipes
 
 		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
 		var/multiplier = text2num(href_list["multiplier"])
-		if (!multiplier || (multiplier <= 0)) //href exploit protection
+		if(!multiplier || (multiplier <= 0)) //href exploit protection
 			return
 
 		src.produce_recipe(R, multiplier, usr)
 
-	if (src && usr.machine==src) //do not reopen closed window
+	if(src && usr.machine==src) //do not reopen closed window
 		spawn( 0 )
 			src.interact(usr)
 			return
@@ -230,16 +230,16 @@
 //Return 1 if an immediate subsequent call to use() would succeed.
 //Ensures that code dealing with stacks uses the same logic
 /obj/item/stack/proc/can_use(var/used)
-	if (get_amount() < used)
+	if(get_amount() < used)
 		return 0
 	return 1
 
 /obj/item/stack/proc/use(var/used)
-	if (!can_use(used))
+	if(!can_use(used))
 		return 0
 	if(!uses_charge)
 		amount -= used
-		if (amount <= 0 && consumable)	// Only proceed with deletion if the item is supposed to disappear entirely after being used up
+		if(amount <= 0 && consumable)	// Only proceed with deletion if the item is supposed to disappear entirely after being used up
 			if(usr)
 				usr.remove_from_mob(src)
 			qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer
@@ -276,19 +276,19 @@
 
 //attempts to transfer amount to S, and returns the amount actually transferred
 /obj/item/stack/proc/transfer_to(obj/item/stack/S, var/tamount=null, var/type_verified)
-	if (!get_amount())
+	if(!get_amount())
 		return 0
-	if ((stacktype != S.stacktype) && !type_verified)
+	if((stacktype != S.stacktype) && !type_verified)
 		return 0
-	if (isnull(tamount))
+	if(isnull(tamount))
 		tamount = src.get_amount()
 
 	var/transfer = max(min(tamount, src.get_amount(), (S.get_max_amount() - S.get_amount())), 0)
 
 	var/orig_amount = src.get_amount()
-	if (transfer && src.use(transfer))
+	if(transfer && src.use(transfer))
 		S.add(transfer)
-		if (prob(transfer/orig_amount * 100))
+		if(prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(S)
 			if(blood_DNA)
 				if(!S.blood_DNA || !istype(S.blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
@@ -299,9 +299,9 @@
 
 //creates a new stack with the specified amount
 /obj/item/stack/proc/split(var/tamount)
-	if (!splittable)
+	if(!splittable)
 		return null
-	if (!amount)
+	if(!amount)
 		return null
 	if(uses_charge)
 		return null
@@ -309,10 +309,10 @@
 	var/transfer = max(min(tamount, src.amount, initial(max_amount)), 0)
 
 	var/orig_amount = src.amount
-	if (transfer && src.use(transfer))
+	if(transfer && src.use(transfer))
 		var/obj/item/stack/S = new src.type(loc, transfer)
 		S.color = color
-		if (prob(transfer/orig_amount * 100))
+		if(prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(S)
 			if(blood_DNA)
 				if(!S.blood_DNA || !istype(S.blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
@@ -348,41 +348,41 @@
 	return max_amount
 
 /obj/item/stack/proc/add_to_stacks(mob/user as mob)
-	for (var/obj/item/stack/item in user.loc)
-		if (item==src)
+	for(var/obj/item/stack/item in user.loc)
+		if(item==src)
 			continue
 		var/transfer = src.transfer_to(item)
-		if (transfer)
+		if(transfer)
 			to_chat(user, SPAN_NOTICE("You add a new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s."))
 		if(!amount)
 			break
 
 /obj/item/stack/attack_hand(mob/user as mob)
-	if (user.get_inactive_hand() == src)
+	if(user.get_inactive_hand() == src)
 		var/obj/item/stack/F = src.split(1)
-		if (F)
+		if(F)
 			user.put_in_hands(F)
 			src.add_fingerprint(user)
 			F.add_fingerprint(user)
 			spawn(0)
-				if (src && usr.machine==src)
+				if(src && usr.machine==src)
 					src.interact(usr)
 	else
 		..()
 	return
 
 /obj/item/stack/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/stack))
+	if(istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
-		if (user.get_inactive_hand()==src)
+		if(user.get_inactive_hand()==src)
 			src.transfer_to(S, 1)
 		else
 			src.transfer_to(S)
 
 		spawn(0) //give the stacks a chance to delete themselves if necessary
-			if (S && usr.machine==S)
+			if(S && usr.machine==S)
 				S.interact(usr)
-			if (src && usr.machine==src)
+			if(src && usr.machine==src)
 				src.interact(usr)
 	else
 		return ..()
@@ -396,7 +396,7 @@
 	set name = "Split"
 	set category = "Object"
 
-	if (!usr.IsAdvancedToolUser())
+	if(!usr.IsAdvancedToolUser())
 		return
 
 
@@ -405,20 +405,20 @@
 	"This stack contains [amount]/[max_amount]. How many would you like to split off into a new stack?\n\
 	The new stack will be put into your hands if possible", "Split Stack", round(amount * 0.5)) as null|num
 
-	if (!Adjacent(usr))
+	if(!Adjacent(usr))
 		to_chat(usr, SPAN_WARNING("You need to be in arm's reach for that!"))
 		return
 
-	if (usr.incapacitated())
+	if(usr.incapacitated())
 		return
 
-	if (!isnum(quantity) || quantity < 1)
+	if(!isnum(quantity) || quantity < 1)
 		return
 
 	var/obj/item/stack/S = split(round(quantity, 1))
-	if (istype(S))
+	if(istype(S))
 		//Try to put the new stack into the user's hands
-		if (!(usr.put_in_hands(S)))
+		if(!(usr.put_in_hands(S)))
 			//If that fails, leave it beside the original stack
 			S.forceMove(get_turf(src))
 

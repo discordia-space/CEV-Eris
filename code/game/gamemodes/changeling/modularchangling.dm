@@ -168,7 +168,7 @@ var/list/datum/power/carrion/powerinstances = list()
 
 						var maintable_data = document.getElementById('maintable_data');
 						var ltr = maintable_data.getElementsByTagName("tr");
-						for ( var i = 0; i < ltr.length; ++i )
+						for( var i = 0; i < ltr.length; ++i )
 						{
 							try{
 								var tr = ltr\[i\];
@@ -181,7 +181,7 @@ var/list/datum/power/carrion/powerinstances = list()
 								var search = lsearch\[0\];
 								//var inner_span = li.getElementsByTagName("span")\[1\] //Should only ever contain one element.
 								//document.write("<p>"+search.innerText+"<br>"+filter+"<br>"+search.innerText.indexOf(filter))
-								if ( search.innerText.toLowerCase().indexOf(filter) == -1 )
+								if( search.innerText.toLowerCase().indexOf(filter) == -1 )
 								{
 									//document.write("a");
 									//ltr.removeChild(tr);
@@ -397,7 +397,7 @@ var/list/datum/power/carrion/powerinstances = list()
 /obj/item/organ/internal/carrion/core/proc/purchasePower(var/Pname, var/free = FALSE)
 	var/datum/power/carrion/Thepower = Pname
 
-	for (var/datum/power/carrion/P in powerinstances)
+	for(var/datum/power/carrion/P in powerinstances)
 		//world << "[P] - [Pname] = [P.name == Pname ? "True" : "False"]"
 		if(P.name == Pname)
 			Thepower = P
@@ -421,7 +421,7 @@ var/list/datum/power/carrion/powerinstances = list()
 
 	purchasedpowers += Thepower
 
-	if (Thepower.organpath)
+	if(Thepower.organpath)
 		var/obj/item/organ/internal/organ = new Thepower.organpath
 		var/obj/item/organ/external/parentorgan =  owner.get_organ(organ.parent_organ_base)
 		parentorgan.add_item(organ, owner, FALSE)

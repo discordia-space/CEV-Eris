@@ -105,8 +105,8 @@
 		else
 			tearing = FALSE
 
-	else if (tool_type == QUALITY_BOLT_TURNING)
-		if (!occupied)
+	else if(tool_type == QUALITY_BOLT_TURNING)
+		if(!occupied)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."),SPAN_NOTICE("You dismantle \the [src]."))
 				new /obj/item/stack/rods(loc, 3)

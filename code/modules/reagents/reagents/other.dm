@@ -216,7 +216,7 @@
 		for(var/i in matter)
 			var/material/M = get_material_by_name(i)
 			var/matter_ammount = round(matter[i] * 0.75) // around 75% matterials back
-			if (matter_ammount < 1)
+			if(matter_ammount < 1)
 				continue
 			var/obj/item/stack/material/MS = new M.stack_type(O.drop_location())
 			MS.amount = matter_ammount
@@ -359,10 +359,10 @@
 		T.assume_air(lowertemp)
 		qdel(hotspot)
 
-	if (environment && environment.temperature > min_temperature) // Abstracted as steam or something
+	if(environment && environment.temperature > min_temperature) // Abstracted as steam or something
 		var/removed_heat = between(0, volume * COOLANT_LATENT_HEAT, -environment.get_thermal_energy_change(min_temperature))
 		environment.add_thermal_energy(-removed_heat)
-		if (prob(5) && environment && environment.temperature > T100C)
+		if(prob(5) && environment && environment.temperature > T100C)
 			T.visible_message("<span class='warning'>\The [src] sizzles as it lands on \the [T]!</span>")
 */
 

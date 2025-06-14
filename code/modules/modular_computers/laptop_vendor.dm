@@ -257,7 +257,7 @@
 		data["totalprice"] = total_price
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "computer_fabricator.tmpl", "Personal Computer Vendor", 500, 400)
 		ui.set_initial_data(data)
 		ui.open()
@@ -297,7 +297,7 @@ obj/machinery/lapvend/attackby(obj/item/W as obj, mob/user as mob)
 	else
 		visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
-	if (!customer_account || customer_account.suspended)
+	if(!customer_account || customer_account.suspended)
 		ping("Connection error. Unable to connect to account.")
 		return FALSE
 

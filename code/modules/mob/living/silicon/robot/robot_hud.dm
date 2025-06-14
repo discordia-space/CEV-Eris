@@ -14,7 +14,7 @@
 		H.defaultHUD = "BorgStyle"
 		recreate_flag = TRUE
 
-	if (recreate_flag)
+	if(recreate_flag)
 		H.destroy_HUD()
 		H.create_HUD()
 
@@ -25,7 +25,7 @@
 /mob/living/silicon/robot/check_HUDdatum()//correct a datum?
 	var/mob/living/silicon/robot/H = src
 
-	if (H.defaultHUD == "BorgStyle") //���� � ������� ���� �������� �����\��� ����
+	if(H.defaultHUD == "BorgStyle") //���� � ������� ���� �������� �����\��� ����
 		if(GLOB.HUDdatums.Find(H.defaultHUD))//���� ���������� ����� ��� ����
 			return TRUE
 	return FALSE
@@ -33,7 +33,7 @@
 /mob/living/silicon/robot/create_HUDinventory()
 	var/mob/living/silicon/robot/H = src
 	var/datum/hud/cyborg/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
-	for (var/HUDname in HUDdatum.slot_data)
+	for(var/HUDname in HUDdatum.slot_data)
 		var/HUDtype
 		HUDtype = HUDdatum.slot_data[HUDname]["type"]
 //		var/obj/screen/inventory/inv_box = new HUDtype(HUDname, HUDdatum.slot_data[HUDname]["loc"],HUDdatum.icon,HUDdatum.slot_data[HUDname]["icon"] ? HUDdatum.icon,HUDdatum.slot_data[HUDname]["icon"] : ,HUDdatum.icon,HUDdatum.slot_data[HUDname]["icon_state"],H, HUDdatum.slot_data.Find(HUDname))
@@ -51,7 +51,7 @@
 /mob/living/silicon/robot/create_HUDneed()
 	var/mob/living/silicon/robot/H = src
 	var/datum/hud/cyborg/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
-	for (var/HUDname in HUDdatum.HUDneed)
+	for(var/HUDname in HUDdatum.HUDneed)
 		var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
 //		var/obj/screen/HUD = new HUDtype(HUDname, HUDdatum.HUDneed[HUDname]["loc"], H)
 
@@ -67,7 +67,7 @@
 //		if(HUDdatum.HUDneed[HUDname]["icon_state"])//������ �� �������� icon_state
 //			HUD.icon_state = HUDdatum.HUDneed[HUDname]["icon_state"]
 		H.HUDneed[HUD.name] += HUD//��������� � ������ �����
-		if (HUD.process_flag)//���� ��� ����� ����������
+		if(HUD.process_flag)//���� ��� ����� ����������
 			H.HUDprocess += HUD//������� � �������������� ������
 	return
 
@@ -77,7 +77,7 @@
 	var/mob/living/silicon/robot/H = src
 	var/datum/hud/cyborg/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 	//��������� �������� ���� (���������)
-	for (var/list/whistle in HUDdatum.HUDfrippery)
+	for(var/list/whistle in HUDdatum.HUDfrippery)
 		var/obj/screen/frippery/F = new (whistle["icon_state"],whistle["loc"], whistle["dir"],H)
 		F.icon = HUDdatum.icon
 		H.HUDfrippery += F
@@ -89,7 +89,7 @@
 	var/mob/living/silicon/robot/H = src
 	var/datum/hud/cyborg/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 	//��������� ����������� ��������(damage,flash,pain... �������)
-	for (var/techobject in HUDdatum.HUDoverlays)
+	for(var/techobject in HUDdatum.HUDoverlays)
 		var/HUDtype = HUDdatum.HUDoverlays[techobject]["type"]
 		var/obj/screen/HUD = new HUDtype(_name = techobject, _parentmob = H)// _screen_loc = HUDdatum.HUDoverlays[techobject]["loc"]
 		if(HUDdatum.HUDoverlays[techobject]["icon"])//������ �� �������� icon
@@ -99,7 +99,7 @@
 		if(HUDdatum.HUDoverlays[techobject]["icon_state"])//������ �� �������� icon_state
 			HUD.icon_state = HUDdatum.HUDoverlays[techobject]["icon_state"]
 		H.HUDtech[HUD.name] += HUD//��������� � ������ �����
-		if (HUD.process_flag)//���� ��� ����� ����������
+		if(HUD.process_flag)//���� ��� ����� ����������
 			H.HUDprocess += HUD//������� � �������������� ������
 	return
 

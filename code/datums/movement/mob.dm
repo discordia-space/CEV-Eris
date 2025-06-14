@@ -37,7 +37,7 @@
 	nextmove = world.time + 2.5
 
 /datum/movement_handler/mob/admin_possess/MayMove(var/mob/mover, var/is_external)
-	if (world.time > nextmove)
+	if(world.time > nextmove)
 		return MOVEMENT_PROCEED
 	return MOVEMENT_STOP
 
@@ -67,12 +67,12 @@
 
 	//Incorp movement needs a delay just to make it controllable
 	var/overflow = world.time - nextmove
-	if (overflow > 1)
+	if(overflow > 1)
 		overflow = 0
 	nextmove = (world.time + 0.5)-overflow
 
 /datum/movement_handler/mob/incorporeal/MayMove(var/mob/mover, var/is_external)
-	if (world.time > nextmove)
+	if(world.time > nextmove)
 		return MOVEMENT_PROCEED
 	return MOVEMENT_STOP
 
@@ -172,7 +172,7 @@
 	Any individual step can still be slightly slower than it should be, but the next one will compensate and errors won't compound
 	*/
 	var/overflow = next_move - world.time
-	if (overflow > 1 || overflow < 0)
+	if(overflow > 1 || overflow < 0)
 		overflow = 0
 
 	var/mob_delay = max(MOVE_DELAY_MIN, mob.movement_delay())
@@ -308,11 +308,11 @@
 	mob.add_move_cooldown(extra_delay)
 
 	/* TODO: Bay grab system
-	for (var/obj/item/grab/G in mob)
-		if (G.assailant_reverse_facing())
+	for(var/obj/item/grab/G in mob)
+		if(G.assailant_reverse_facing())
 			mob.set_dir(GLOB.reverse_dir[direction])
 		G.assailant_moved()
-	for (var/obj/item/grab/G in mob.grabbed_by)
+	for(var/obj/item/grab/G in mob.grabbed_by)
 		G.adjust_position()
 	*/
 	mob.moving = FALSE
@@ -325,11 +325,11 @@
 /datum/movement_handler/mob/movement/proc/HandleGrabs(var/direction, var/old_turf)
 	. = 0
 	// TODO: Look into making grabs use movement events instead, this is a mess.
-	for (var/obj/item/grab/G in mob)
+	for(var/obj/item/grab/G in mob)
 		. = max(., G.slowdown)
 		var/mob/M = G.affecting
 		if(M && get_dist(old_turf, M) <= 1)
-			if (isturf(M.loc) && isturf(mob.loc) && mob.loc != old_turf && M.loc != mob.loc)
+			if(isturf(M.loc) && isturf(mob.loc) && mob.loc != old_turf && M.loc != mob.loc)
 				step(M, get_dir(M.loc, old_turf))
 		G.adjust_position()
 

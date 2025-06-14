@@ -152,10 +152,10 @@
 
 /turf/mineral/proc/GetDrilled(var/artifact_fail = 0)
 	//var/destroyed = 0 //used for breaking strange rocks
-	if (mineral && mineral.result_amount)
+	if(mineral && mineral.result_amount)
 
 		//if the turf has already been excavated, some of it's ore has been removed
-		for (var/i = 1 to mineral.result_amount - mined_ore)
+		for(var/i = 1 to mineral.result_amount - mined_ore)
 			DropMineral()
 
 	//Add some rubble,  you did just clear out a big chunk of rock.
@@ -173,10 +173,10 @@
 	var/mineralChance = 50 //%
 
 /turf/mineral/random/New()
-	if (prob(mineralChance) && !mineral)
+	if(prob(mineralChance) && !mineral)
 		var/mineral_name = pickweight(mineralSpawnChanceList) //temp mineral name
 		mineral_name = lowertext(mineral_name)
-		if (mineral_name && (mineral_name in ore_data))
+		if(mineral_name && (mineral_name in ore_data))
 			mineral = ore_data[mineral_name]
 			UpdateMineral()
 
@@ -225,7 +225,7 @@
 /turf/floor/asteroid/attackby(obj/item/I, mob/user)
 
 	if(QUALITY_DIGGING in I.tool_qualities)
-		if (dug)
+		if(dug)
 			to_chat(user, SPAN_WARNING("This area has already been dug"))
 			return
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_DIGGING, FAILCHANCE_EASY, required_stat = STAT_ROB))

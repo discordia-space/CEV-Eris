@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/asset_cache_job
 	if(href_list["asset_cache_confirm_arrival"])
 		asset_cache_job = asset_cache_confirm_arrival(href_list["asset_cache_confirm_arrival"])
-		if (!asset_cache_job)
+		if(!asset_cache_job)
 			return
 
 	// Tgui Topic middleware
@@ -55,11 +55,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		DIRECT_OUTPUT(href_logfile, "<small>[time2text(world.timeofday,"hh:mm")]</small>[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
 
 	//byond bug ID:2256651
-	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
+	if(asset_cache_job && (asset_cache_job in completed_asset_jobs))
 		to_chat(src, span_danger("An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)"))
 		src << browse("...", "window=asset_cache_browser")
 		return
-	if (href_list["asset_cache_preload_data"])
+	if(href_list["asset_cache_preload_data"])
 		asset_cache_preload_data(href_list["asset_cache_preload_data"])
 		return
 
@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	switch(href_list["action"])
 		if("openLink")
 			src << link(href_list["link"])
-	if (hsrc)
+	if(hsrc)
 		var/datum/real_src = hsrc
 		if(QDELETED(real_src))
 			return
@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like admins.
 	//Admin Authorisation
 	var/datum/admins/admin_datum = admin_datums[ckey]
-	if (!isnull(admin_datum))
+	if(!isnull(admin_datum))
 		admin_datum.associate(src)
 		connecting_admin = TRUE
 	// if(CONFIG_GET(flag/autoadmin))
@@ -246,14 +246,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 
 	. = ..() //calls mob.Login()
-	if (byond_version >= 512)
-		if (!byond_build || byond_build < 1386)
+	if(byond_version >= 512)
+		if(!byond_build || byond_build < 1386)
 			message_admins(span_adminnotice("[key_name(src)] has been detected as spoofing their byond version. Connection rejected."))
 			// add_system_note("Spoofed-Byond-Version", "Detected as using a spoofed byond version.")
 			// log_suspicious_login("Failed Login: [key] - Spoofed byond version")
 			qdel(src)
 
-		if (num2text(byond_build) in GLOB.blacklisted_builds)
+		if(num2text(byond_build) in GLOB.blacklisted_builds)
 			log_access("Failed login: [key] - blacklisted byond version")
 			to_chat(src, span_userdanger("Your version of byond is blacklisted."))
 			to_chat(src, span_danger("Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]]."))
@@ -274,18 +274,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	connection_realtime = world.realtime
 	connection_timeofday = world.timeofday
 	winset(src, null, "command=\".configure graphics-hwmode on\"")
-
-	/* byond err version check here (configurable) */
-
-	// if (connection == "web" && !connecting_admin)
-	// 	if (!CONFIG_GET(flag/allow_webclient))
-	// 		to_chat(src, "Web client is disabled")
-	// 		qdel(src)
-	// 		return
-	// 	if (CONFIG_GET(flag/webclient_only_byond_members) && !IsByondMember())
-	// 		to_chat(src, "Sorry, but the web client is restricted to byond members only.")
-	// 		qdel(src)
-	// 		return
 
 	if( (world.address == address || !address) && !host )
 		host = key
@@ -557,29 +545,13 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
-// #if (PRELOAD_RSC == 0)
-// 	var/static/next_external_rsc = 0
-// 	var/list/external_rsc_urls = CONFIG_GET(keyed_list/external_rsc_urls)
-// 	if(length(external_rsc_urls))
-// 		next_external_rsc = WRAP(next_external_rsc+1, 1, external_rsc_urls.len+1)
-// 		preload_rsc = external_rsc_urls[next_external_rsc]
-// #endif
-
 	spawn (10) //removing this spawn causes all clients to not get verbs.
 
 		//load info on what assets the client has
 		src << browse('code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
 
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
-		// if (CONFIG_GET(flag/asset_simple_preload))
 		addtimer(CALLBACK(SSassets.transport, TYPE_PROC_REF(/datum/asset_transport, send_assets_slow), src, SSassets.transport.preload), 5 SECONDS)
-
-		// #if (PRELOAD_RSC == 0)
-		// for (var/name in GLOB.vox_sounds)
-		// 	var/file = GLOB.vox_sounds[name]
-		// 	Export("##action=load_rsc", file)
-		// 	stoplag()
-		// #endif
 
 		// ???
 		send_all_cursor_icons(src)

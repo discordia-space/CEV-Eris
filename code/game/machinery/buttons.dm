@@ -146,7 +146,8 @@
 				2 = idscan
 				4 = bolts
 				8 = shock
-				16 = door safties  */
+				16 = door safties
+*/
 
 /obj/machinery/button/toggle/door/update_icon()
 	if(active)

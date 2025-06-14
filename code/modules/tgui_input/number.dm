@@ -16,10 +16,10 @@
  * * round_value - whether the inputted number is rounded down into an integer.
  */
 /proc/tgui_input_number(mob/user, message, title = "Number Input", default = 0, max_value = 10000, min_value = 0, timeout = 0, round_value = TRUE)
-	if (!user)
+	if(!user)
 		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
+	if(!istype(user))
+		if(istype(user, /client))
 			var/client/client = user
 			user = client.mob
 		else
@@ -31,7 +31,7 @@
 	var/datum/tgui_input_number/number_input = new(user, message, title, default, max_value, min_value, timeout, round_value)
 	number_input.ui_interact(user)
 	number_input.wait()
-	if (number_input)
+	if(number_input)
 		. = number_input.entry
 		qdel(number_input)
 
@@ -70,7 +70,7 @@
 	src.min_value = min_value
 	src.title = title
 	src.round_value = round_value
-	if (timeout)
+	if(timeout)
 		src.timeout = timeout
 		start_time = world.time
 		QDEL_IN(src, timeout)
@@ -94,7 +94,7 @@
  * the window was closed by the user.
  */
 /datum/tgui_input_number/proc/wait()
-	while (!entry && !closed && !QDELETED(src))
+	while(!entry && !closed && !QDELETED(src))
 		stoplag(1)
 
 /datum/tgui_input_number/ui_interact(mob/user, datum/tgui/ui)
@@ -129,7 +129,7 @@
 
 /datum/tgui_input_number/ui_act(action, list/params)
 	. = ..()
-	if (.)
+	if(.)
 		return
 	switch(action)
 		if("submit")

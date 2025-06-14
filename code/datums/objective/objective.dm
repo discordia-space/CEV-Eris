@@ -22,17 +22,17 @@ var/global/list/all_objectives_types = null
 	var/unique = FALSE					//If true, each antag/faction can have only one instance of this objective
 
 /datum/objective/New(datum/antagonist/new_owner, datum/mind/_target)
-	if (istype(new_owner))
+	if(istype(new_owner))
 		antag = new_owner
 		antag.objectives += src
 		if(antag.owner)
 			owner = antag.owner
-	else if (istype(new_owner, /datum/faction))
+	else if(istype(new_owner, /datum/faction))
 		owner_faction = new_owner
 		owner_faction.objectives += src
 	if(!_target)
 		find_target()
-	else if (_target != ANTAG_SKIP_TARGET)
+	else if(_target != ANTAG_SKIP_TARGET)
 		target = _target
 	update_explanation()
 	all_objectives.Add(src)
@@ -42,7 +42,7 @@ var/global/list/all_objectives_types = null
 	if(antag)
 		antag.objectives -= src
 		antag = null
-	if (owner_faction)
+	if(owner_faction)
 		owner_faction.objectives -= src
 		owner_faction = null
 	if(owner)
@@ -56,7 +56,7 @@ var/global/list/all_objectives_types = null
 	return
 
 /datum/objective/proc/check_completion()
-	if (failed)
+	if(failed)
 		return FALSE
 	return completed
 
@@ -69,24 +69,24 @@ var/global/list/all_objectives_types = null
 
 //Checks if a given mind is a valid target to perform objectives on
 /datum/objective/proc/is_valid_target(datum/mind/M)
-	if (!M.current)
+	if(!M.current)
 		return FALSE //No mob
 
-	if (M == owner) //No targeting ourselves
+	if(M == owner) //No targeting ourselves
 		return FALSE
 
-	if (!ishuman(M.current) && human_target)
+	if(!ishuman(M.current) && human_target)
 		return FALSE
 
-	if (M.current.stat == DEAD)
+	if(M.current.stat == DEAD)
 		//Don't target the dead
 		return FALSE
 
 	//Special handling for targeting other antags
-	if (M.antagonist.len)
-		for (var/datum/antagonist/A in M.antagonist)
+	if(M.antagonist.len)
+		for(var/datum/antagonist/A in M.antagonist)
 			//Make sure we don't target our own faction
-			if (owner_faction && (owner_faction == A.faction))
+			if(owner_faction && (owner_faction == A.faction))
 				return FALSE
 
 	return TRUE
@@ -138,10 +138,10 @@ var/global/list/all_objectives_types = null
 //If the owner is a faction, then asks that faction to return its inventory
 /datum/objective/proc/get_owner_inventory()
 	var/list/contents = list()
-	if (owner && owner.current)
+	if(owner && owner.current)
 		contents.Add(owner.current.get_contents())
 
-	if (owner_faction)
+	if(owner_faction)
 		contents.Add(owner_faction.get_inventory())
 
 	return contents
@@ -154,9 +154,9 @@ var/global/list/all_objectives_types = null
 
 //Gets the list of targets from our owner
 /datum/objective/proc/get_owner_targets()
-	if (owner_faction)
+	if(owner_faction)
 		return owner_faction.get_targets()
-	else if (antag)
+	else if(antag)
 		return antag.get_targets()
 	else
 		return list()

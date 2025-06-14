@@ -45,13 +45,13 @@
 			if(toner <= 0)
 				break
 
-			if (istype(copyitem, /obj/item/paper))
+			if(istype(copyitem, /obj/item/paper))
 				copy(copyitem)
 				sleep(15)
-			else if (istype(copyitem, /obj/item/photo))
+			else if(istype(copyitem, /obj/item/photo))
 				photocopy(copyitem)
 				sleep(15)
-			else if (istype(copyitem, /obj/item/paper_bundle))
+			else if(istype(copyitem, /obj/item/paper_bundle))
 				var/obj/item/paper_bundle/B = bundlecopy(copyitem)
 				sleep(15*B.pages.len)
 			else
@@ -88,11 +88,11 @@
 			if(!camera)
 				return
 			var/obj/item/photo/selection = camera.selectpicture()
-			if (!selection)
+			if(!selection)
 				return
 
 			var/obj/item/photo/p = photocopy(selection)
-			if (p.desc == "")
+			if(p.desc == "")
 				p.desc += "Copied by [tempAI.name]"
 			else
 				p.desc += " - Copied by [tempAI.name]"
@@ -155,10 +155,10 @@
 	c.offset_y = copy.offset_y
 	var/list/temp_overlays = copy.overlays       //Iterates through stamps
 	var/image/img                                //and puts a matching
-	for (var/j = 1, j <= min(temp_overlays.len, copy.ico.len), j++) //gray overlay onto the copy
-		if (findtext(copy.ico[j], "cap") || findtext(copy.ico[j], "cent"))
+	for(var/j = 1, j <= min(temp_overlays.len, copy.ico.len), j++) //gray overlay onto the copy
+		if(findtext(copy.ico[j], "cap") || findtext(copy.ico[j], "cent"))
 			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-circle")
-		else if (findtext(copy.ico[j], "deny"))
+		else if(findtext(copy.ico[j], "deny"))
 			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-x")
 		else
 			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-dots")

@@ -132,7 +132,7 @@
 	src.add_fingerprint(usr)
 	update_icon(1)
 	sleep(10)
-	if (src.open)
+	if(src.open)
 		src.close()
 	else
 		src.open()
@@ -151,19 +151,19 @@
 
 	for(var/direction in cardinal)
 		if(direction&initialize_directions)
-			if (!node1_dir)
+			if(!node1_dir)
 				node1_dir = direction
-			else if (!node2_dir)
+			else if(!node2_dir)
 				node2_dir = direction
 
 	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
 		if(target.initialize_directions & get_dir(target, src))
-			if (check_connect_types(target, src))
+			if(check_connect_types(target, src))
 				node1 = target
 				break
 	for(var/obj/machinery/atmospherics/target in get_step(src, node2_dir))
 		if(target.initialize_directions & get_dir(target, src))
-			if (check_connect_types(target, src))
+			if(check_connect_types(target, src))
 				node2 = target
 				break
 
@@ -291,18 +291,18 @@
 /obj/machinery/atmospherics/valve/attackby(var/obj/item/I, var/mob/user as mob)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
-	if (istype(src, /obj/machinery/atmospherics/valve/digital))
+	if(istype(src, /obj/machinery/atmospherics/valve/digital))
 		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it's too complicated."))
 		return 1
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+	if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
 		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
-	if (do_after(user, 40, src))
+	if(do_after(user, 40, src))
 		user.visible_message( \
 			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
 			SPAN_NOTICE("You have unfastened \the [src]."), \

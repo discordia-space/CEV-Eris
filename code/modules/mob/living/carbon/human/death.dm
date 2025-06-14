@@ -3,19 +3,19 @@
 	var/on_turf = istype(loc, /turf)
 
 	for(var/obj/item/organ/I in internal_organs)
-		if (!(keep_only_robotics && !(I.nature == MODIFICATION_SILICON)))
+		if(!(keep_only_robotics && !(I.nature == MODIFICATION_SILICON)))
 			I.removed()
 			if(on_turf)
 				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,max_range),30)
 
 	for(var/obj/item/organ/external/E in src.organs)
-		if (!(keep_only_robotics && !(E.nature == MODIFICATION_SILICON)))
+		if(!(keep_only_robotics && !(E.nature == MODIFICATION_SILICON)))
 			E.droplimb(TRUE, DROPLIMB_EDGE, 1)
 			if(on_turf)
 				E.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,max_range),30)
 
 	for(var/obj/item/D in src)
-		if (keep_only_robotics && istype(D, /obj/item/organ))
+		if(keep_only_robotics && istype(D, /obj/item/organ))
 			continue
 		else
 			drop_from_inventory(D)
@@ -72,7 +72,7 @@
 					var/mob/living/carbon/human/H = L
 					if(H in disciples)
 						continue
-					else if (H.random_organ_by_process(BP_SPCORE) || H.active_mutations.len)
+					else if(H.random_organ_by_process(BP_SPCORE) || H.active_mutations.len)
 						burn_damage_done = (martyr.burn_damage / get_dist(src, H)) * 2
 						H.adjustFireLoss(burn_damage_done)
 					else

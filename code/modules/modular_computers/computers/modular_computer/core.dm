@@ -105,7 +105,7 @@
 
 /obj/item/modular_computer/update_icon()
 	overlays.Cut()
-	if (screen_on)
+	if(screen_on)
 		if(bsod)
 			overlays.Add("bsod")
 			set_light(screen_light_range, screen_light_strength, get_average_color(icon,"bsod"), skip_screen_check = TRUE)
@@ -129,13 +129,13 @@
 
 //skip_screen_check is used when set_light is called from update_icon
 /obj/item/modular_computer/set_light(range, brightness, color, skip_screen_check = FALSE)
-	if (enabled && led && led.enabled)
+	if(enabled && led && led.enabled)
 		//We need to buff non handheld devices cause othervise their screen light might be brighter
 		brightness = (hardware_flag & (PROGRAM_PDA | PROGRAM_TABLET)) ? led.brightness_power : (led.brightness_power * 1.4)
 		range = (hardware_flag & (PROGRAM_PDA | PROGRAM_TABLET)) ? led.brightness_range : (led.brightness_range * 1.2)
 		..(range, brightness, led.brightness_color)
-	else if (!skip_screen_check)
-		if (screen_on)
+	else if(!skip_screen_check)
+		if(screen_on)
 			if(bsod)
 				color = get_average_color(icon, "bsod")
 				..(screen_light_range, screen_light_strength, color)
@@ -211,8 +211,8 @@
 		all_threads.Remove(PRG)
 
 	//Turn on all non-disabled hardware
-	for (var/obj/item/computer_hardware/H in src)
-		if (H.enabled)
+	for(var/obj/item/computer_hardware/H in src)
+		if(H.enabled)
 			H.disabled()
 	if(loud)
 		visible_message("\The [src] shuts down.", range = TRUE)
@@ -224,8 +224,8 @@
 	update_icon()
 
 	//Turn on all non-disabled hardware
-	for (var/obj/item/computer_hardware/H in src)
-		if (H.enabled)
+	for(var/obj/item/computer_hardware/H in src)
+		if(H.enabled)
 			H.enabled()
 
 	// Autorun feature
@@ -301,7 +301,7 @@
 
 /obj/item/modular_computer/proc/update_label()
 	var/obj/item/card/id/I = GetIdCard()
-	if (istype(I))
+	if(istype(I))
 		SetName("[initial(name)]-[I.registered_name] ([I.assignment])")
 		return
 

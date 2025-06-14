@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(chat)
 	if(handle_whitespace)
 		message = replacetext(message, "\n", "<br>")
 		message = replacetext(message, "\t", "[GLOB.TAB][GLOB.TAB]")
-	if (trailing_newline)
+	if(trailing_newline)
 		message += "<br>"
 
 	//Replace expanded \icon macro with icon2html

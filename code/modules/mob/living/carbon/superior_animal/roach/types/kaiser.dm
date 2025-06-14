@@ -90,7 +90,7 @@ Has ability of every roach.
 
 // SUPPORT ABILITIES
 /mob/living/carbon/superior_animal/roach/kaiser/proc/gas_attack()
-	if (!gas_sac.has_reagent("blattedin", 20) || stat != CONSCIOUS)
+	if(!gas_sac.has_reagent("blattedin", 20) || stat != CONSCIOUS)
 		return
 
 	var/location = get_turf(src)
@@ -115,20 +115,20 @@ Has ability of every roach.
 
 // FUHRER ABILITIES
 /mob/living/carbon/superior_animal/roach/kaiser/proc/distress_call()
-	if (!distress_call_stage)
+	if(!distress_call_stage)
 		return
 
-	for (var/mob/living/carbon/human/H in view())
-		if (H.stat != DEAD && H.client)
+	for(var/mob/living/carbon/human/H in view())
+		if(H.stat != DEAD && H.client)
 			break
 
-	if (distress_call_stage)
+	if(distress_call_stage)
 		distress_call_stage--
 		playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 		spawn(2)
 			playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 		visible_message(SPAN_DANGER("[src] emits a horrifying wail as nearby burrows stir to life!"))
-		for (var/obj/structure/burrow/B in find_nearby_burrows(src))
+		for(var/obj/structure/burrow/B in find_nearby_burrows(src))
 			B.distress(TRUE, src)
 
 

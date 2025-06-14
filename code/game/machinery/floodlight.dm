@@ -142,7 +142,7 @@
 		if(ABORT_CHECK)
 			return
 
-	if (istype(I, /obj/item/cell/large))
+	if(istype(I, /obj/item/cell/large))
 		if(open)
 			if(cell)
 				to_chat(user, SPAN_WARNING("There is a power cell already installed."))

@@ -52,5 +52,5 @@
 	update_wear_icon()
 
 /obj/item/device/lighting/glowstick/flare/is_hot()
-	if (on)
+	if(on)
 		return heat

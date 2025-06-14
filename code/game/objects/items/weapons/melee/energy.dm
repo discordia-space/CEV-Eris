@@ -14,7 +14,7 @@
 	var/active_w_class
 
 /obj/item/melee/energy/is_hot()
-	if (active)
+	if(active)
 		return heat
 
 /obj/item/melee/energy/proc/activate(mob/living/user)
@@ -46,8 +46,8 @@
 	update_wear_icon()
 
 /obj/item/melee/energy/attack_self(mob/living/user as mob)
-	if (active)
-/*		if ((CLUMSY in user.mutations) && prob(50))
+	if(active)
+/*		if((CLUMSY in user.mutations) && prob(50))
 			user.visible_message(SPAN_DANGER("\The [user] accidentally cuts \himself with \the [src]."),\
 			SPAN_DANGER("You accidentally cut yourself with \the [src]."))
 			user.take_organ_damage(5,5)	*/

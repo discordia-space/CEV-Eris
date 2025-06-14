@@ -11,7 +11,7 @@
 /mob/living/proc/flash(duration = 0, drop_items = FALSE, doblind = FALSE, doblurry = FALSE)
 	if(blinded)
 		return
-	if (HUDtech.Find("flash"))
+	if(HUDtech.Find("flash"))
 		flick("e_flash", HUDtech["flash"])
 	if(duration)
 		if(!ishuman(src))
@@ -60,20 +60,20 @@ default behaviour is:
 
 /mob/living/Bump(atom/movable/AM, yes)
 	spawn(0)
-		if ((!( yes ) || now_pushing) || !loc)
+		if((!( yes ) || now_pushing) || !loc)
 			return
 		now_pushing = TRUE
-		if (isliving(AM))
+		if(isliving(AM))
 			var/mob/living/tmob = AM
 
 			for(var/mob/living/M in range(tmob, 1))
 				if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/grab, tmob.grabbed_by.len)) )
-					if ( !(world.time % 5) )
+					if( !(world.time % 5) )
 						to_chat(src, "<span class='warning'>[tmob] is restrained, you cannot push past</span>")
 					now_pushing = FALSE
 					return
 				if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0) )
-					if ( !(world.time % 5) )
+					if( !(world.time % 5) )
 						to_chat(src, "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>")
 					now_pushing = FALSE
 					return
@@ -118,14 +118,14 @@ default behaviour is:
 		now_pushing = FALSE
 		spawn(0)
 			..()
-			if (!istype(AM, /atom/movable))
+			if(!istype(AM, /atom/movable))
 				return
-			if (!now_pushing)
+			if(!now_pushing)
 				now_pushing = TRUE
 
-				if (!AM.anchored)
+				if(!AM.anchored)
 					var/t = get_dir(src, AM)
-					if (istype(AM, /obj/structure/window))
+					if(istype(AM, /obj/structure/window))
 						for(var/obj/structure/window/win in get_step(AM,t))
 							now_pushing = FALSE
 							return
@@ -167,7 +167,7 @@ default behaviour is:
 
 /mob/living/verb/succumb()
 	set hidden = TRUE
-	if (health < 0)
+	if(health < 0)
 		adjustOxyLoss(health + maxHealth * 2) // Deal 2x health in OxyLoss damage, as before but variable.
 		health = -maxHealth
 		to_chat(src, "\blue You have given up life and succumbed to death.")
@@ -194,7 +194,7 @@ default behaviour is:
 	//world << "DEBUG: burn_skin(), mutations=[mutations]"
 //	if(mShock in mutations) //shockproof
 //		return FALSE
-//	if (COLD_RESISTANCE in mutations) //fireproof
+//	if(COLD_RESISTANCE in mutations) //fireproof
 //		return FALSE
 	var/divided_damage = (burn_amount)/(organs.len)
 	var/extradam = 0	//added to when organ is at max dam
@@ -411,11 +411,11 @@ default behaviour is:
 	if(iscarbon(src))
 		var/mob/living/carbon/C = src
 
-		if (C.handcuffed && !initial(C.handcuffed))
+		if(C.handcuffed && !initial(C.handcuffed))
 			C.drop_from_inventory(C.handcuffed)
 		C.handcuffed = initial(C.handcuffed)
 
-		if (C.legcuffed && !initial(C.legcuffed))
+		if(C.legcuffed && !initial(C.legcuffed))
 			C.drop_from_inventory(C.legcuffed)
 		C.legcuffed = initial(C.legcuffed)
 	BITSET(hud_updateflag, HEALTH_HUD)
@@ -425,7 +425,7 @@ default behaviour is:
 	fire_stacks = 0
 
 /mob/living/proc/rejuvenate()
-	if (reagents)
+	if(reagents)
 		reagents.clear_reagents()
 
 	// shut down various types of badness
@@ -503,13 +503,13 @@ default behaviour is:
 	if(PDA_Manifest.len)
 		PDA_Manifest.Cut()
 	for(var/datum/data/record/R in data_core.medical)
-		if ((R.fields["name"] == src.real_name))
+		if((R.fields["name"] == src.real_name))
 			qdel(R)
 	for(var/datum/data/record/T in data_core.security)
-		if ((T.fields["name"] == src.real_name))
+		if((T.fields["name"] == src.real_name))
 			qdel(T)
 	for(var/datum/data/record/G in data_core.general)
-		if ((G.fields["name"] == src.real_name))
+		if((G.fields["name"] == src.real_name))
 			qdel(G)
 
 	//This should guarantee that ghosts don't spawn.
@@ -522,23 +522,23 @@ default behaviour is:
 	return
 
 /mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
-	if (buckled)
+	if(buckled)
 		return
 
-	if (restrained())
+	if(restrained())
 		stop_pulling()
 
 
 	var/t7 = 1
-	if (restrained())
+	if(restrained())
 		for(var/mob/living/M in range(src, 1))
-			if ((M.pulling == src && M.stat == 0 && !( M.restrained() )))
+			if((M.pulling == src && M.stat == 0 && !( M.restrained() )))
 				t7 = null
-	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (moving)))))
+	if((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (moving)))))
 		var/turf/T = loc
 		. = ..()
 
-		if (pulling && pulling.loc)
+		if(pulling && pulling.loc)
 			if(!(isturf(pulling.loc)))
 				stop_pulling()
 				return
@@ -548,28 +548,28 @@ default behaviour is:
 			stop_pulling()
 			return
 
-		if (!restrained())
+		if(!restrained())
 			var/diag = get_dir(src, pulling)
-			if ((diag - 1) & diag)
+			if((diag - 1) & diag)
 			else
 				diag = null
-			if ((get_dist(src, pulling) > 1 || diag))
-				if (isliving(pulling))
+			if((get_dist(src, pulling) > 1 || diag))
+				if(isliving(pulling))
 					var/mob/living/M = pulling
 					var/ok = 1
-					if (locate(/obj/item/grab, M.grabbed_by))
-						if (prob(75))
+					if(locate(/obj/item/grab, M.grabbed_by))
+						if(prob(75))
 							var/obj/item/grab/G = pick(M.grabbed_by)
-							if (istype(G, /obj/item/grab))
+							if(istype(G, /obj/item/grab))
 								for(var/mob/O in viewers(M, null))
 									O.show_message(text("\red [] has been pulled from []'s grip by []", G.affecting, G.assailant, src), 1)
 								//G = null
 								qdel(G)
 						else
 							ok = 0
-						if (locate(/obj/item/grab, M.grabbed_by.len))
+						if(locate(/obj/item/grab, M.grabbed_by.len))
 							ok = 0
-					if (ok)
+					if(ok)
 						var/atom/movable/t = M.pulling
 						M.stop_pulling()
 
@@ -603,19 +603,19 @@ default behaviour is:
 						if(t)
 							M.start_pulling(t)
 				else
-					if (pulling)
-						if (istype(pulling, /obj/structure/window))
+					if(pulling)
+						if(istype(pulling, /obj/structure/window))
 							var/obj/structure/window/W = pulling
 							if(W.is_full_window())
 								for(var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
 									stop_pulling()
-					if (pulling)
+					if(pulling)
 						step_glide(pulling, get_dir(pulling.loc, T), glide_size)
 	else
 		stop_pulling()
 		. = ..()
 
-	if (s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
+	if(s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
 		s_active.close(src)
 
 	step_count++
@@ -769,25 +769,25 @@ default behaviour is:
 
 /mob/living/throw_mode_off()
 	src.in_throw_mode = 0
-	if (HUDneed.Find("throw"))
+	if(HUDneed.Find("throw"))
 		var/obj/screen/HUDthrow/HUD = HUDneed["throw"]
 		HUD.update_icon()
 
 /mob/living/throw_mode_on()
 	src.in_throw_mode = 1
-	if (HUDneed.Find("throw"))
+	if(HUDneed.Find("throw"))
 		var/obj/screen/HUDthrow/HUD = HUDneed["throw"]
 		HUD.update_icon()
 
 /mob/living/start_pulling(var/atom/movable/AM)
 
-	if (!AM || !usr || src==AM || !isturf(src.loc))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if(!AM || !usr || src==AM || !isturf(src.loc))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
 	if(isobj(AM)) // even if we fail all the checks assume they touched the thing
 		AM.add_fingerprint(usr)
 
-	if (AM.anchored)
+	if(AM.anchored)
 		to_chat(src, "<span class='warning'>It won't budge!</span>")
 		return
 
@@ -835,7 +835,7 @@ default behaviour is:
 	src.pulling = AM
 	AM.pulledby = src
 
-	if (HUDneed.Find("pull"))
+	if(HUDneed.Find("pull"))
 		var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
 		HUD.update_icon()
 

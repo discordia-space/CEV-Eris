@@ -1,13 +1,13 @@
 // Helper for can_safely_remove_from_zone(). Stolen from Aurora(i think)
 #define GET_ZONE_NEIGHBOURS(T, ret) \
 	ret = 0; \
-	if (T.zone) { \
-		for (var/_gzn_dir in GLOB.gzn_check) { \
+	if(T.zone) { \
+		for(var/_gzn_dir in GLOB.gzn_check) { \
 			var/turf/other = get_step(T, _gzn_dir); \
-			if (istype(other) && other.zone == T.zone) { \
+			if(istype(other) && other.zone == T.zone) { \
 				var/block; \
 				ATMOS_CANPASS_TURF(block, other, T); \
-				if (!(block & AIR_BLOCKED)) { \
+				if(!(block & AIR_BLOCKED)) { \
 					ret |= _gzn_dir; \
 				} \
 			} \
@@ -171,7 +171,7 @@
 	. = check_dirs
 
 	//src is only connected to the zone by a single direction, this is a safe removal.
-	if (!(. & (. - 1)))
+	if(!(. & (. - 1)))
 		return TRUE
 
 	for(var/dir in GLOB.csrfz_check)
@@ -179,7 +179,7 @@
 		if((dir & check_dirs) == dir)
 			//check that they are connected by the corner turf
 			var/turf/T = get_step(src, dir)
-			if (!istype(T))
+			if(!istype(T))
 				. &= ~dir
 				continue
 

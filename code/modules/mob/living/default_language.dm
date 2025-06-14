@@ -27,7 +27,7 @@
 /mob/living/proc/set_default_language(var/langname)
 	var/datum/language/L
 	//Support for passing a datum directly, or the name of a language to go fetch. Very flexible proc
-	if (istype(langname, /datum/language))
+	if(istype(langname, /datum/language))
 		L = langname
 	else
 		L = all_languages[langname]

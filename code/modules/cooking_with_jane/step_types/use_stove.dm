@@ -35,8 +35,8 @@
 
 
 	var/bad_cooking = 0
-	for (var/key in container.stove_data)
-		if (heat != key)
+	for(var/key in container.stove_data)
+		if(heat != key)
 			bad_cooking += container.stove_data[key]
 
 	bad_cooking = round(bad_cooking/(5 SECONDS))

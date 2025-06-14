@@ -44,7 +44,7 @@
 
 	var/iconstring = initial(icon_state)
 
-	if (bolt_open)
+	if(bolt_open)
 		iconstring += "_open"
 
 	icon_state = iconstring

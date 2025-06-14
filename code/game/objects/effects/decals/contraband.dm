@@ -23,10 +23,10 @@
 
 /obj/item/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
 	switch(poster_datum)
-		if ("all")
+		if("all")
 			if(!new_design)
 				design = pick(GLOB.poster_designs)
-		if ("asters")
+		if("asters")
 			if(!new_design)
 				design = pick(GLOB.poster_designs_asters)
 		else
@@ -105,18 +105,18 @@
 
 //Places the poster on a wall
 /obj/item/contraband/poster/afterattack(var/turf/wall/W, var/mob/user, var/adjacent, var/clickparams)
-	if (!adjacent)
+	if(!adjacent)
 		return
 
 	//must place on a wall and user must not be inside a closet/whatever
-	if (!istype(W) || !W.Adjacent(user))
+	if(!istype(W) || !W.Adjacent(user))
 		to_chat(user, SPAN_WARNING("You can't place this here!"))
 		return
 
 	var/turf/new_loc = null
 
 	var/placement_dir = get_dir(user, W)
-	if (placement_dir in cardinal)
+	if(placement_dir in cardinal)
 		new_loc = user.loc
 	else
 		placement_dir = reverse_dir[placement_dir]

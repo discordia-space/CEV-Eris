@@ -201,7 +201,7 @@ obj/structure/windoor_assembly/Destroy()
 				to_chat(user, SPAN_NOTICE("You start to reinforce the windoor with rods."))
 
 				if(do_after(user,40,src) && !secure)
-					if (R.use(4))
+					if(R.use(4))
 						to_chat(user, SPAN_NOTICE("You reinforce the windoor."))
 						src.secure = "secure_"
 						if(src.anchored)
@@ -215,7 +215,7 @@ obj/structure/windoor_assembly/Destroy()
 
 				var/obj/item/stack/cable_coil/CC = I
 				if(do_after(user, 40,src))
-					if (CC.use(1))
+					if(CC.use(1))
 						to_chat(user, SPAN_NOTICE("You wire the windoor!"))
 						src.state = 1
 						if(src.secure)
@@ -256,7 +256,7 @@ obj/structure/windoor_assembly/Destroy()
 	set category = "Object"
 	set src in oview(1)
 
-	if (src.anchored)
+	if(src.anchored)
 		to_chat(usr, "It is fastened to the floor; therefore, you can't rotate it!")
 		return 0
 	if(src.state != 0)

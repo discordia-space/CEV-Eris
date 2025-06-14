@@ -60,7 +60,7 @@
 	var/list/data = nano_ui_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "bioreactor.tmpl", src.name, 410, 500, state = state)
 		ui.set_initial_data(data)
 		ui.open()

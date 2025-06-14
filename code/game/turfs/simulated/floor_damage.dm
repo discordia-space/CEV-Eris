@@ -64,6 +64,6 @@
 
 /proc/damage_floor_at(x, y, z, damage, damage_type, ignore_resistance)
 	var/turf/floor/F = locate(x,y,z)
-	if (istype(F))
+	if(istype(F))
 		F.take_damage(damage, damage_type, ignore_resistance)
 

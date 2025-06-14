@@ -40,7 +40,7 @@ var/global/list/map_sectors = list()
 	var/static/list/moving_levels
 	moving_levels = moving_levels || new
 
-	if (moving_levels["[zlevel]"] != gen_dir)
+	if(moving_levels["[zlevel]"] != gen_dir)
 		moving_levels["[zlevel]"] = gen_dir
 
 		var/list/spaceturfs = block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel))
@@ -52,7 +52,7 @@ var/global/list/map_sectors = list()
 			for(var/turf/space/T in spaceturfs)
 				T.icon_state = "speedspace_[gen_dir]_[rand(1,15)]"
 				for(var/atom/movable/AM in T)
-					if (AM.simulated && !AM.anchored)
+					if(AM.simulated && !AM.anchored)
 						AM.throw_at(get_step(T,reverse_direction(direction)), 5, 1)
 						CHECK_TICK
 				CHECK_TICK

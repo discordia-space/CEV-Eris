@@ -53,15 +53,15 @@
 
 		if(step)
 
-			for (var/datum/chunk/chunk in visibleChunks)
-				if (step in chunk.obscuredTurfs)
+			for(var/datum/chunk/chunk in visibleChunks)
+				if(step in chunk.obscuredTurfs)
 					return FALSE // Do not step into unknown turfs; prevents some strange bugs
 
-			if (step.density)
+			if(step.density)
 				return FALSE // Do not pass through walls
 
-			for (var/atom/movable/A in step)
-				if (!A.CanPass(src, step))
+			for(var/atom/movable/A in step)
+				if(!A.CanPass(src, step))
 					return FALSE // Do not pass through REALLY BIG objects
 
 			setLoc(step)

@@ -71,7 +71,7 @@
 	return steal_target
 
 /datum/objective/steal/check_completion()
-	if (failed)
+	if(failed)
 		return FALSE
 	if(!steal_target)
 		return FALSE

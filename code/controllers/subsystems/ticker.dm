@@ -183,7 +183,7 @@ SUBSYSTEM_DEF(ticker)
 					last_player_left_timestamp = world.time
 					return TRUE
 				// Counting down the world's end
-				else if (world.time >= last_player_left_timestamp + (config.empty_server_restart_time MINUTES))
+				else if(world.time >= last_player_left_timestamp + (config.empty_server_restart_time MINUTES))
 					last_player_left_timestamp = 0
 					log_game("\[Server\] No players were on a server last [config.empty_server_restart_time] minutes, restarting server...")
 					world.Reboot()
@@ -431,12 +431,12 @@ SUBSYSTEM_DEF(ticker)
 
 	for(var/datum/antag_contract/excel/targeted/overthrow/M in GLOB.excel_antag_contracts)
 		var/mob/living/carbon/human/H = M.target_mind.current
-		if (H.stat == DEAD || is_excelsior(H))
+		if(H.stat == DEAD || is_excelsior(H))
 			M.complete()
 
 	for(var/datum/antag_contract/excel/targeted/liberate/M in GLOB.excel_antag_contracts)
 		var/mob/living/carbon/human/H = M.target_mind.current
-		if (is_excelsior(H))
+		if(is_excelsior(H))
 			M.complete()
 
 	for(var/datum/antag_contract/excel/propaganda/M in GLOB.excel_antag_contracts)
@@ -444,10 +444,10 @@ SUBSYSTEM_DEF(ticker)
 		var/marked_areas = 0
 		if(M.completed)
 			return
-		for (var/obj/item/device/propaganda_chip/C in SSobj.processing) // Doubles as an active check
-			if (get_area(C) in targets)
+		for(var/obj/item/device/propaganda_chip/C in SSobj.processing) // Doubles as an active check
+			if(get_area(C) in targets)
 				marked_areas += 1
-		if (marked_areas >= 3)
+		if(marked_areas >= 3)
 			M.complete()
 	addtimer(CALLBACK(src, PROC_REF(excel_check)), 3 MINUTES)
 

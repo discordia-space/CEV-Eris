@@ -78,7 +78,7 @@
 /obj/item/rcd/proc/useResource(var/amount, var/mob/user, var/checkOnly)
 	if(stored_matter < amount)
 		return 0
-	if (!checkOnly)
+	if(!checkOnly)
 		stored_matter -= amount
 		update_icon()	//Updates the ammo counter if ammo is succesfully used
 	return 1
@@ -209,7 +209,7 @@
 		if(R.cell)
 			var/cost = amount*30
 			if(R.cell.charge >= cost)
-				if (!checkOnly)
+				if(!checkOnly)
 					R.cell.use(cost)
 				return 1
 	return 0
@@ -230,7 +230,7 @@
 		var/obj/item/rig_module/module = loc
 		if(module.holder && module.holder.cell)
 			if(module.holder.cell.charge >= cost)
-				if (!checkOnly)
+				if(!checkOnly)
 					module.holder.cell.use(cost)
 				return TRUE
 	/// MECH MOUNTED

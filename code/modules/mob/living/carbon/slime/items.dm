@@ -180,7 +180,7 @@
 		qdel(M)
 		var/newname = sanitize(input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime") as null|text, MAX_NAME_LEN)
 
-		if (!newname)
+		if(!newname)
 			newname = "pet slime"
 		pet.name = newname
 		pet.real_name = newname
@@ -211,7 +211,7 @@
 		qdel(M)
 		var/newname = sanitize(input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime") as null|text, MAX_NAME_LEN)
 
-		if (!newname)
+		if(!newname)
 			newname = "pet slime"
 		pet.name = newname
 		pet.real_name = newname

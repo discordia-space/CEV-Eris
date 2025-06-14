@@ -204,19 +204,19 @@
 
 /datum/robot_component/camera/update_power_state()
 	..()
-	if (camera)
+	if(camera)
 		camera.status = powered
 
 /datum/robot_component/camera/install()
-	if (camera)
+	if(camera)
 		camera.status = 1
 
 /datum/robot_component/camera/uninstall()
-	if (camera)
+	if(camera)
 		camera.status = 0
 
 /datum/robot_component/camera/destroy()
-	if (camera)
+	if(camera)
 		camera.status = 0
 
 // SELF DIAGNOSIS MODULE

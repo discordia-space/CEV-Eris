@@ -1,6 +1,6 @@
 /turf/proc/getEffectShield()
-	for (var/obj/effect/shield/S in contents)
-		if (!S.isInactive())
+	for(var/obj/effect/shield/S in contents)
+		if(!S.isInactive())
 			return S
 
 /obj/effect/shield_impact
@@ -114,7 +114,7 @@ Like for example singulo act and whatever.
 		gen.damaged_segments -= src
 
 		//When we regenerate, affect any mobs that happen to be standing in our spot
-		for (var/mob/living/L in loc)
+		for(var/mob/living/L in loc)
 			L.shield_impact(src)
 
 
@@ -201,7 +201,7 @@ Like for example singulo act and whatever.
 // As we have various shield modes, this handles whether specific things can pass or not.
 /obj/effect/shield/CanPass(var/atom/movable/mover, var/turf/target, var/height=0, var/air_group=0)
 	// Somehow we don't have a generator. This shouldn't happen. Delete the shield.
-	if (isInactive())
+	if(isInactive())
 		return TRUE
 
 	// Atmosphere containment.
@@ -209,13 +209,13 @@ Like for example singulo act and whatever.
 		return !gen.check_flag(MODEFLAG_ATMOSPHERIC)
 
 	if(mover)
-		if (floorOnly)
+		if(floorOnly)
 			return TRUE
 		return mover.can_pass_shield(gen)
 	return TRUE
 
 /obj/effect/shield/proc/CanActThrough(var/atom/movable/actor)
-	if (isInactive())
+	if(isInactive())
 		return TRUE
 	if(actor)
 		return actor.can_pass_shield(gen)
@@ -227,7 +227,7 @@ Like for example singulo act and whatever.
 
 // EMP. It may seem weak but keep in mind that multiple shield segments are likely to be affected.
 /obj/effect/shield/emp_act(var/severity)
-	if (!isInactive())
+	if(!isInactive())
 		take_damage(rand(30,60) / severity, SHIELD_DAMTYPE_EM, src)
 
 
@@ -239,7 +239,7 @@ Like for example singulo act and whatever.
 
 // Fire
 /obj/effect/shield/fire_act()
-	if (!isInactive())
+	if(!isInactive())
 		take_damage(rand(5,10), SHIELD_DAMTYPE_HEAT, src)
 
 
@@ -262,7 +262,7 @@ Like for example singulo act and whatever.
 		user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [I]!</span>")
 		if(I.damtype == BURN)
 			take_damage(I.force, SHIELD_DAMTYPE_HEAT, user)
-		else if (I.damtype == BRUTE)
+		else if(I.damtype == BRUTE)
 			take_damage(I.force, SHIELD_DAMTYPE_PHYSICAL, user)
 		else
 			take_damage(I.force, SHIELD_DAMTYPE_EM, user)
@@ -350,7 +350,7 @@ Like for example singulo act and whatever.
 		return
 	/*
 	//Logging for shield impacts disabled. Logging is still enabled for meteors that succesfully hit the hull
-	if (istype(hit_location))
+	if(istype(hit_location))
 		var/area/A = get_area(hit_location)
 		var/where = "[A? A.name : "Unknown Location"] | [hit_location.x], [hit_location.y]"
 		var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[hit_location.x];Y=[hit_location.y];Z=[hit_location.z]'>[where]</a>"

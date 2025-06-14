@@ -50,7 +50,7 @@
 	data["total_thrust"] = total_thrust
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "engines_control.tmpl", "[linked.name] Engines Control", 380, 530)
 		ui.set_initial_data(data)
 		ui.open()

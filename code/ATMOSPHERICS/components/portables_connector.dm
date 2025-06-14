@@ -82,7 +82,7 @@
 
 	for(var/obj/machinery/atmospherics/target in get_step(src, node_connect))
 		if(target.initialize_directions & get_dir(target, src))
-			if (check_connect_types(target, src))
+			if(check_connect_types(target, src))
 				node = target
 				break
 
@@ -134,14 +134,14 @@
 /obj/machinery/atmospherics/portables_connector/attackby(var/obj/item/I, var/mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
-	if (connected_device)
+	if(connected_device)
 		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], dettach \the [connected_device] first."))
 		return 1
-	if (locate(/obj/machinery/portable_atmospherics, src.loc))
+	if(locate(/obj/machinery/portable_atmospherics, src.loc))
 		return 1
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+	if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
 		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1

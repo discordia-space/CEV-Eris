@@ -19,7 +19,7 @@
 //Edit by SCPR - 2022
 //Made it check for cables and pipes, because having pipes / cables randomly unwired because of it can be very frustrating for technomancers.
 /proc/turf_clear(turf/T)
-	if (T.density)
+	if(T.density)
 		return FALSE
 	for(var/atom/A in T)
 		if(istype(A, /obj/structure/cable) || istype(A, /obj/machinery/atmospherics/pipe))
@@ -30,7 +30,7 @@
 
 //A coppy of a proc above because sometimes you actually need to check if turf is clear no matter if it has wires or pipes
 /proc/turf_clear_ignore_cables(turf/T)
-	if (T.density)
+	if(T.density)
 		return FALSE
 	for(var/atom/A in T)
 		if(A.density)
@@ -39,7 +39,7 @@
 
 //A copy of a proc above because sometimes you actually need to check if turf is clear no matter if it has wires or pipes or mobs
 /proc/turf_clear_ignore_cables_and_mobs(turf/T)
-	if (T.density)
+	if(T.density)
 		return FALSE
 	for(var/atom/A in T)
 		if(A.density && !istype(A, /mob/living))
@@ -47,8 +47,8 @@
 	return TRUE
 
 /proc/clear_interior(turf/T)
-	if (turf_clear(T))
-		if (!turf_is_external(T))
+	if(turf_clear(T))
+		if(!turf_is_external(T))
 			return TRUE
 
 // Picks a turf without a mob from the given list of turfs, if one exists.
@@ -131,16 +131,16 @@
 
 /proc/is_turf_near_space(turf/T)
 	var/area/A = get_area(T)
-	if (A.flags & AREA_FLAG_EXTERNAL)
+	if(A.flags & AREA_FLAG_EXTERNAL)
 		return TRUE
 
-	for (var/a in RANGE_TURFS(1, T))
+	for(var/a in RANGE_TURFS(1, T))
 		var/turf/U = a //This is a speed hack.
 		//Manual casting when the type is known skips an istype check in the loop
-		if (A.flags & AREA_FLAG_EXTERNAL)
+		if(A.flags & AREA_FLAG_EXTERNAL)
 			return TRUE
 
-		else if (istype(U, /turf/space) || istype(U, /turf/floor/hull))
+		else if(istype(U, /turf/space) || istype(U, /turf/floor/hull))
 			return TRUE
 
 	return FALSE
@@ -149,24 +149,24 @@
 /proc/cardinal_turfs(atom/A)
 	var/list/turf/turfs = list()
 	var/turf/origin = get_turf(A)
-	for (var/a in cardinal)
+	for(var/a in cardinal)
 		var/turf/T = get_step(origin, a)
-		if (T)
+		if(T)
 			turfs.Add(T)
 	return turfs
 
 
 //This fuzzy proc attempts to determine whether or not this tile is outside the ship
 /proc/turf_is_external(turf/T)
-	if (istype(T, /turf/space))
+	if(istype(T, /turf/space))
 		return TRUE
 
 	var/area/A = get_area(T)
-	if (A.flags & AREA_FLAG_EXTERNAL)
+	if(A.flags & AREA_FLAG_EXTERNAL)
 		return TRUE
 
 	var/datum/gas_mixture/environment = T.return_air()
-	if (!environment || !environment.total_moles)
+	if(!environment || !environment.total_moles)
 		return TRUE
 
 	return FALSE
@@ -175,15 +175,15 @@
 //Returns true if this tile is an upper hull tile of the ship. IE, a roof
 /proc/turf_is_upper_hull(turf/T)
 	var/turf/B = SSmapping.GetBelow(T)
-	if (!B)
+	if(!B)
 		//Gotta be something below us if we're a roof
 		return FALSE
 
-	if (!turf_is_external(T))
+	if(!turf_is_external(T))
 		//We must be outdoors. if there's something above us we're not the roof
 		return FALSE
 
-	if (turf_is_external(B))
+	if(turf_is_external(B))
 		//Got to be containing something underneath us
 		return FALSE
 
@@ -191,16 +191,16 @@
 
 //Returns true if this is a lower hull of the ship. IE,a floor that has space underneath
 /proc/turf_is_lower_hull(turf/T)
-	if (turf_is_external(T))
+	if(turf_is_external(T))
 		//We must be indoors
 		return FALSE
 
 	var/turf/B = SSmapping.GetBelow(T)
-	if (!B)
+	if(!B)
 		//If we're on the lowest zlevel, return true
 		return TRUE
 
-	if (turf_is_external(B))
+	if(turf_is_external(B))
 		//We must be outdoors. if there's something above us we're not the roof
 		return TRUE
 
@@ -213,23 +213,23 @@
 //This is used when you want to check a turf which is a Z transition. For example, an openspace or stairs
 //If this turf conencts to another in that manner, it will return the destination. If not, it will return the input
 /proc/get_connecting_turf(turf/T, turf/from)
-	if (T.is_hole)
+	if(T.is_hole)
 		var/turf/U = SSmapping.GetBelow(T)
-		if (U)
+		if(U)
 			return U
 
 	var/obj/effect/portal/P = (locate(/obj/effect/portal) in T)
-	if (P && P.target)
+	if(P && P.target)
 		return P.get_destination(from)
 
 	var/obj/structure/multiz/stairs/active/SA = (locate(/obj/structure/multiz/stairs/active) in T)
-	if (SA && SA.target)
+	if(SA && SA.target)
 		return get_turf(SA.target)
 	return T
 
 /turf/proc/has_gravity()
 	var/area/A = loc
-	if (A)
+	if(A)
 		return A.has_gravity()
 
 	return FALSE
@@ -246,7 +246,7 @@
 //Used for border objects. This returns true if this atom is on the border between the two specified turfs
 //This assumes that the atom is located inside the target turf
 /atom/proc/is_between_turfs(turf/origin, turf/target)
-	if (flags & ON_BORDER)
+	if(flags & ON_BORDER)
 		var/testdir = get_dir(target, origin)
 		return (dir & testdir)
 	return TRUE

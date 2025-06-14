@@ -283,7 +283,7 @@
 	var/list/data = nano_ui_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "smelter.tmpl", src.name, 600, 400)
 		ui.set_initial_data(data)
 		ui.open()
@@ -291,7 +291,7 @@
 
 
 /obj/machinery/smelter/Topic(href, href_list)
-	if (..()) return TRUE
+	if(..()) return TRUE
 
 	if(href_list["eject"])
 		var/material = href_list["eject"]

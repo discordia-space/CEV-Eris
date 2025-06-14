@@ -45,27 +45,27 @@
 /obj/effect/overmap/ship/Initialize()
 	. = ..()
 	for(var/datum/ship_engine/E in ship_engines)
-		if (E.holder.z in map_z)
+		if(E.holder.z in map_z)
 			engines |= E
 			//testing("Engine at level [E.holder.z] linked to overmap object '[name]'.")
 	for(var/obj/machinery/computer/engines/E in GLOB.computer_list)
-		if (E.z in map_z)
+		if(E.z in map_z)
 			E.linked = src
 			//testing("Engines console at level [E.z] linked to overmap object '[name]'.")
 
 	for(var/obj/machinery/power/shipside/long_range_scanner/LRS in ship_scanners)
-		if (LRS.z in map_z)
+		if(LRS.z in map_z)
 			//testing("Scanner at level [LRS.z] linked to overmap object '[name]'.")
 			scanners |= LRS
 
 	for(var/obj/machinery/computer/helm/H in GLOB.computer_list)
-		if (H.z in map_z)
+		if(H.z in map_z)
 			nav_control = H
 			H.linked = src
 			H.get_known_sectors()
 			//testing("Helm console at level [H.z] linked to overmap object '[name]'.")
 	for(var/obj/machinery/computer/navigation/N in GLOB.computer_list)
-		if (N.z in map_z)
+		if(N.z in map_z)
 			N.linked = src
 			//testing("Navigation console at level [N.z] linked to overmap object '[name]'.")
 
@@ -75,27 +75,27 @@
 	// Depending on initialization order the Initialize() does not properly make the links
 
 	for(var/datum/ship_engine/E in ship_engines)
-		if (E.holder.z in map_z)
+		if(E.holder.z in map_z)
 			engines |= E
 			//testing("Engine at level [E.holder.z] linked to overmap object '[name]'.")
 	for(var/obj/machinery/computer/engines/E in GLOB.computer_list)
-		if (E.z in map_z)
+		if(E.z in map_z)
 			E.linked = src
 			//testing("Engines console at level [E.z] linked to overmap object '[name]'.")
 
 	for(var/obj/machinery/power/shipside/long_range_scanner/LRS in ship_scanners)
-		if (LRS.z in map_z)
+		if(LRS.z in map_z)
 			//testing("Scanner at level [LRS.z] linked to overmap object '[name]'.")
 			scanners |= LRS
 
 	for(var/obj/machinery/computer/helm/H in GLOB.computer_list)
-		if (H.z in map_z)
+		if(H.z in map_z)
 			nav_control = H
 			H.linked = src
 			H.get_known_sectors()
 			//testing("Helm console at level [H.z] linked to overmap object '[name]'.")
 	for(var/obj/machinery/computer/navigation/N in GLOB.computer_list)
-		if (N.z in map_z)
+		if(N.z in map_z)
 			N.linked = src
 			//testing("Navigation console at level [N.z] linked to overmap object '[name]'.")
 
@@ -145,16 +145,16 @@
 		return INFINITY
 	var/num_burns = get_speed()/get_acceleration() + 2 //some padding in case acceleration drops form fuel usage
 	var/burns_per_grid = (default_delay - speed_mod*get_speed())/burn_delay
-	if (burns_per_grid == 0)
+	if(burns_per_grid == 0)
 		error("ship attempted get_brake_path, burns_per_grid is 0")
 		return INFINITY
 	return round(num_burns/burns_per_grid)
 
 /obj/effect/overmap/ship/proc/decelerate()
 	if(!is_still() && can_burn())
-		if (speed[1])
+		if(speed[1])
 			adjust_speed(-SIGN(speed[1]) * min(get_burn_acceleration(),abs(speed[1])), 0)
-		if (speed[2])
+		if(speed[2])
 			adjust_speed(0, -SIGN(speed[2]) * min(get_burn_acceleration(),abs(speed[2])))
 		last_burn = world.time
 
@@ -203,7 +203,7 @@
 
 /obj/effect/overmap/ship/proc/can_burn()
 
-	if (world.time < last_burn + burn_delay)
+	if(world.time < last_burn + burn_delay)
 		return 0
 	for(var/datum/ship_engine/E in engines)
 		. |= E.can_burn()

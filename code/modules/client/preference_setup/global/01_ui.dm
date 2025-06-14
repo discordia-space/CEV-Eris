@@ -79,12 +79,12 @@
 	/*
 	else if(href_list["select_fps"])
 		var/version_message
-		if (user.client && user.client.byond_version < 511)
+		if(user.client && user.client.byond_version < 511)
 			version_message = "\nYou need to be using byond version 511 or later to take advantage of this feature, your version of [user.client.byond_version] is too low"
-		if (world.byond_version < 511)
+		if(world.byond_version < 511)
 			version_message += "\nThis server does not currently support client side fps. You can set now for when it does."
 		var/new_fps = input(user, "Choose your desired fps.[version_message]\n(0 = synced with server tick rate (currently:[world.fps]))", "Global Preference") as num|null
-		if (isnum(new_fps) && CanUseTopic(user))
+		if(isnum(new_fps) && CanUseTopic(user))
 			pref.clientfps = CLAMP(new_fps, CLIENT_MIN_FPS, CLIENT_MAX_FPS)
 
 			var/mob/target_mob = preference_mob()

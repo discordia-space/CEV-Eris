@@ -134,17 +134,17 @@
 	update_icon()
 	if(open_hatch)
 		if(istype(W, /obj/item/tool/crowbar))
-			if (charge < (capacity / 100) || capacity == 0)
-				if (!output_attempt && !input_attempt)
+			if(charge < (capacity / 100) || capacity == 0)
+				if(!output_attempt && !input_attempt)
 					playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
 					dismantle()
 				else
 					to_chat(user, SPAN_WARNING("Turn off the [src] before dismantling it."))
 			else
 				to_chat(user, SPAN_WARNING("Better let [src] discharge before dismantling it."))
-		else if ((istype(W, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/cell/large) && (cells_amount < 5)))
-			if (charge < (capacity / 100) || capacity == 0)
-				if (!output_attempt && !input_attempt)
+		else if((istype(W, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/cell/large) && (cells_amount < 5)))
+			if(charge < (capacity / 100) || capacity == 0)
+				if(!output_attempt && !input_attempt)
 					user.drop_item()
 					component_parts += W
 					W.forceMove(src)
@@ -188,11 +188,11 @@
 		br_cache[6] = image('icons/obj/power.dmi', "gsmes_og3")
 		br_cache[7] = image('icons/obj/power.dmi', "gsmes_og4")
 
-	if (output_attempt)
+	if(output_attempt)
 		overlays += br_cache[1]
 	if(inputting)
 		overlays += br_cache[2]
-	if (overcharge_percent > 100)
+	if(overcharge_percent > 100)
 		overlays += br_cache[3]
 	else
 		var/clevel = chargedisplay()
@@ -208,42 +208,42 @@
 //(3.6M-INFI): 8% ion_act from 115%. 2% of EMP from 125%. 1% of Hull-breaching explosion from 140%.
 /obj/machinery/power/smes/batteryrack/makeshift/proc/overcharge_consequences()
 	switch (capacity)
-		if (0 to (1.2e6-1))
-			if (overcharge_percent >= 125)
-				if (prob(5))
+		if(0 to (1.2e6-1))
+			if(overcharge_percent >= 125)
+				if(prob(5))
 					ion_act()
-		if (1.2e6 to 2.4e6)
-			if (overcharge_percent >= 120)
-				if (prob(6))
-					ion_act()
-			else
-				return
-			if (overcharge_percent >= 140)
-				if (prob(1))
-					empulse(src.loc, 3, 8, 1)
-		if ((2.4e6+1) to 3.6e6)
-			if (overcharge_percent >= 115)
-				if (prob(7))
+		if(1.2e6 to 2.4e6)
+			if(overcharge_percent >= 120)
+				if(prob(6))
 					ion_act()
 			else
 				return
-			if (overcharge_percent >= 130)
-				if (prob(1))
+			if(overcharge_percent >= 140)
+				if(prob(1))
 					empulse(src.loc, 3, 8, 1)
-			if (overcharge_percent >= 150)
-				if (prob(1))
+		if((2.4e6+1) to 3.6e6)
+			if(overcharge_percent >= 115)
+				if(prob(7))
+					ion_act()
+			else
+				return
+			if(overcharge_percent >= 130)
+				if(prob(1))
+					empulse(src.loc, 3, 8, 1)
+			if(overcharge_percent >= 150)
+				if(prob(1))
 					explosion(get_turf(src), 500, 100)
-		if ((3.6e6+1) to INFINITY)
-			if (overcharge_percent >= 115)
-				if (prob(8))
+		if((3.6e6+1) to INFINITY)
+			if(overcharge_percent >= 115)
+				if(prob(8))
 					ion_act()
 			else
 				return
-			if (overcharge_percent >= 125)
-				if (prob(2))
+			if(overcharge_percent >= 125)
+				if(prob(2))
 					empulse(src.loc, 4, 10, 1)
-			if (overcharge_percent >= 140)
-				if (prob(1))
+			if(overcharge_percent >= 140)
+				if(prob(1))
 					explosion(get_turf(src), 500, 50)
 		else //how the hell was this proc called for negative charge
 			charge = 0
@@ -265,7 +265,7 @@
 			var/actual_load = draw_power(target_load)		// add the load to the terminal side network
 			charge += actual_load * SMESRATE	// increase the charge
 
-			if (actual_load >= target_load) // did the powernet have enough power available for us?
+			if(actual_load >= target_load) // did the powernet have enough power available for us?
 				inputting = 1
 			else
 				inputting = 0
@@ -278,7 +278,7 @@
 			outputting(0)					// stop output if charge falls to zero
 
 	overcharge_percent = round((charge / capacity) * 100)
-	if (overcharge_percent > 115) //115% is the minimum overcharge for anything to happen
+	if(overcharge_percent > 115) //115% is the minimum overcharge for anything to happen
 		overcharge_consequences()
 
 	// only update icon if state changed

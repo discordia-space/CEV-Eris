@@ -78,7 +78,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 /obj/machinery/gravity_generator/main/station/Initialize()
 	. = ..()
 	//Set ourselves in the global var
-	if (!GLOB.active_gravity_generator)
+	if(!GLOB.active_gravity_generator)
 		GLOB.active_gravity_generator = src
 
 //

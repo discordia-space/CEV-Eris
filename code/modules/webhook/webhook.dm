@@ -1,7 +1,7 @@
 #define RESTART_WEBHOOK "restart"
 
 /proc/call_restart_webhook()
-	if (!config.webhook_url || !config.webhook_key)
+	if(!config.webhook_url || !config.webhook_key)
 		return
 	spawn(0)
 		var/message = "<@&546427101247438849> Restart!"
@@ -11,7 +11,7 @@
 		world.Export("[config.webhook_url]?[query_string]")
 
 /proc/lobby_message(var/message = "Debug Message", var/color = "#FFFFFF", var/sender)
-	if (!config.webhook_url || !config.webhook_key)
+	if(!config.webhook_url || !config.webhook_key)
 		return
 	spawn(0)
 		var/query_string = "type=lobbyalert"
@@ -35,7 +35,7 @@
 
 
 /proc/send2adminchat(var/initiator, var/original_msg)
-	if (!config.webhook_url || !config.webhook_key)
+	if(!config.webhook_url || !config.webhook_key)
 		return
 
 	var/list/adm = get_admin_counts()
@@ -52,7 +52,7 @@
 		world.Export("[config.webhook_url]?[query_string]")
 
 /proc/send_adminalert2adminchat(var/message = "Debug Message", var/color = "#FFFFFF", var/sender)
-	if (!config.webhook_url || !config.webhook_key)
+	if(!config.webhook_url || !config.webhook_key)
 		return
 	spawn(0)
 		var/query_string = "type=adminalert"
@@ -77,7 +77,7 @@
 			.["present"] += X
 
 /proc/send2coders(var/message = "Debug Message", var/color = "#FFFFFF", var/sender, var/admiralty = 0)
-	if (!config.webhook_url || !config.webhook_key)
+	if(!config.webhook_url || !config.webhook_key)
 		return
 	spawn(0)
 		var/query_string = "type=codealert"

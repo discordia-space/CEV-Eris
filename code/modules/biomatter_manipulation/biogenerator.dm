@@ -187,7 +187,7 @@
 	var/list/data = nano_ui_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "nt_biogen.tmpl", src.name, 400, 400, state = state)
 		ui.set_initial_data(data)
 		ui.open()

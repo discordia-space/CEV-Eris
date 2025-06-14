@@ -56,7 +56,7 @@
 					cocoonTargets += C
 
 			cocoon_target = safepick(nearestObjectsInList(cocoonTargets,src,1))
-			if (cocoon_target)
+			if(cocoon_target)
 				busy = MOVING_TO_TARGET
 				set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 				walk_to(src, cocoon_target, 1, move_to_delay)
@@ -99,7 +99,7 @@
 							cocoonTargets += O
 
 					cocoon_target = safepick(cocoonTargets)
-					if (cocoon_target)
+					if(cocoon_target)
 						busy = MOVING_TO_TARGET
 						stop_automated_movement = 1
 						set_glide_size(DELAY2GLIDESIZE(move_to_delay))
@@ -121,10 +121,10 @@
 							var/turf/targetTurf = cocoon_target.loc
 
 							for(var/obj/O in targetTurf)
-								if (O.anchored)
+								if(O.anchored)
 									continue
-								if (istype(O, /obj/item))
-								else if (istype(O, /obj/structure) || istype(O, /obj/machinery))
+								if(istype(O, /obj/item))
+								else if(istype(O, /obj/structure) || istype(O, /obj/machinery))
 									large_cocoon = 1
 								else
 									continue
@@ -137,9 +137,9 @@
 									continue
 								large_cocoon = 1
 
-								if (istype(M, /mob/living/carbon/human))
+								if(istype(M, /mob/living/carbon/human))
 									var/mob/living/carbon/human/H = M
-									if (H.get_blood_volume() >= 1)
+									if(H.get_blood_volume() >= 1)
 										src.visible_message(SPAN_WARNING("\The [src] sticks a proboscis into \the [cocoon_target] and sucks a viscous substance out."))
 										H.drip_blood(H.species.blood_volume)
 										fed++
@@ -148,7 +148,7 @@
 								M.forceMove(C)
 								break
 
-							if (C)
+							if(C)
 								if(large_cocoon || C.is_large_cocoon)
 									C.becomeLarge()
 								C.update_openspace()
@@ -167,10 +167,10 @@
 			var/turf/targetTurf = cocoon_target.loc
 
 			for(var/obj/O in targetTurf)
-				if (O.anchored)
+				if(O.anchored)
 					continue
-				if (istype(O, /obj/item))
-				else if (istype(O, /obj/structure) || istype(O, /obj/machinery))
+				if(istype(O, /obj/item))
+				else if(istype(O, /obj/structure) || istype(O, /obj/machinery))
 					large_cocoon = 1
 				else
 					continue
@@ -183,9 +183,9 @@
 					continue
 				large_cocoon = 1
 
-				if (istype(M, /mob/living/carbon/human))
+				if(istype(M, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = M
-					if (H.get_blood_volume() >= 1)
+					if(H.get_blood_volume() >= 1)
 						src.visible_message(SPAN_WARNING("\The [src] sticks a proboscis into \the [cocoon_target] and sucks a viscous substance out."))
 						H.drip_blood(H.species.blood_volume)
 						fed++
@@ -194,7 +194,7 @@
 				M.forceMove(C)
 				break
 
-			if (C)
+			if(C)
 				if(large_cocoon || C.is_large_cocoon)
 					C.becomeLarge()
 				C.update_openspace()

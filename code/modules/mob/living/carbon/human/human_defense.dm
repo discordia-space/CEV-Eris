@@ -74,7 +74,7 @@ meteor_act
 				msg_admin_attack("[src.name] ([src.ckey]) was disarmed by a stun effect")
 
 				drop_from_inventory(hand)
-				if (BP_IS_ROBOTIC(affected))
+				if(BP_IS_ROBOTIC(affected))
 					emote("pain", 1, "drops what they were holding, their [affected.name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
@@ -96,7 +96,7 @@ meteor_act
 
 	//If you don't specify a bodypart, it checks ALL your bodyparts for protection, and averages out the values
 	for(var/organ_name in organs_by_name)
-		if (organ_name in organ_rel_size)
+		if(organ_name in organ_rel_size)
 			var/obj/item/organ/external/organ = organs_by_name[organ_name]
 			if(organ)
 				var/weight = organ_rel_size[organ_name]
@@ -132,7 +132,7 @@ meteor_act
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(obj/item/organ/external/def_zone)
-	if (!def_zone)
+	if(!def_zone)
 		return 1.0
 
 	var/siemens_coefficient = species.siemens_coefficient
@@ -163,9 +163,9 @@ meteor_act
 	if(shield)
 		protection += shield.armor[type]
 
-	if (protection > 75) // reducing the risks from powergaming
+	if(protection > 75) // reducing the risks from powergaming
 		switch (type)
-			if (ARMOR_MELEE,ARMOR_BULLET,ARMOR_ENERGY) protection = (75+protection/2)
+			if(ARMOR_MELEE,ARMOR_BULLET,ARMOR_ENERGY) protection = (75+protection/2)
 			else return protection
 
 	return protection
@@ -253,7 +253,7 @@ meteor_act
 		return null
 
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
-	if (!affecting || affecting.is_stump())
+	if(!affecting || affecting.is_stump())
 		to_chat(user, SPAN_DANGER("They are missing that limb!"))
 		return null
 
@@ -420,7 +420,7 @@ meteor_act
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce
 		var/zone
-		if (isliving(O.thrower))
+		if(isliving(O.thrower))
 			var/mob/living/L = O.thrower
 			zone = check_zone(L.targeted_organ)
 		else
@@ -444,7 +444,7 @@ meteor_act
 		var/obj/item/organ/external/affecting = get_organ(zone)
 		var/hit_area = affecting.name
 
-		if (O.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+		if(O.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 			IgniteMob()
 
 		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")
@@ -463,7 +463,7 @@ meteor_act
 		//thrown weapon embedded object code.
 		if(istype(O,/obj/item))
 			var/obj/item/I = O
-			if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
+			if(I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
 				var/damage = throw_damage
 				var/sharp = is_sharp(I)
 
@@ -473,7 +473,7 @@ meteor_act
 
 
 				var/embed_chance = (damage - embed_threshold)*I.embed_mult
-				if (embed_chance > 0 && prob(embed_chance))
+				if(embed_chance > 0 && prob(embed_chance))
 					affecting.embed(I)
 
 		// Begin BS12 momentum-transfer code.
@@ -509,7 +509,7 @@ meteor_act
 
 
 /mob/living/carbon/human/proc/bloody_hands(var/mob/living/source, var/amount = 2)
-	if (gloves)
+	if(gloves)
 		gloves.add_blood(source)
 		gloves:transfer_blood = amount
 		gloves:bloody_hands_mob = source

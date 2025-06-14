@@ -11,7 +11,7 @@
 		explanation_text = "Target has not arrived today. Lets hope they are alive."
 
 /datum/objective/protect/check_completion()
-	if (failed)
+	if(failed)
 		return FALSE
 	if(!target)
 		return TRUE

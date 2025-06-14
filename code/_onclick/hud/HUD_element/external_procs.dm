@@ -189,12 +189,12 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 /HUD_element/proc/scaleToSize(var/width, var/height) //in pixels
 	var/matrix/M = matrix()
-	if (width != null)
+	if(width != null)
 		_scaleWidth = width/_iconWidth
 		M.Scale(_scaleWidth,1)
 		M.Translate((_scaleWidth-1)*_iconWidth/2,0)
 
-	if (height != null)
+	if(height != null)
 		_scaleHeight = height/_iconHeight
 		M.Scale(1,_scaleHeight)
 		M.Translate(0,(_scaleHeight-1)*_iconHeight/2)
@@ -218,17 +218,17 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		var/x1 = E.getPositionX() + rectangle[1]
 		var/y1 = E.getPositionY() + rectangle[2]
 
-		if (x1 < result_x1)
+		if(x1 < result_x1)
 			result_x1 = x1
-		if (y1 < result_y1)
+		if(y1 < result_y1)
 			result_y1 = y1
 
 		var/x2 = x1 + rectangle[3]
 		var/y2 = y1 + rectangle[4]
 
-		if (x2 > result_x2)
+		if(x2 > result_x2)
 			result_x2 = x2
-		if (y2 > result_y2)
+		if(y2 > result_y2)
 			result_y2 = y2
 
 	var/list/bounds = new(result_x1, result_y1, result_x2, result_y2)
@@ -236,9 +236,9 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	return bounds
 
 /HUD_element/proc/setDimensions(var/width, var/height)
-	if (width != null)
+	if(width != null)
 		_width = width
-	if (height != null)
+	if(height != null)
 		_height = height
 
 	_updatePosition()
@@ -303,7 +303,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	return src
 
 /HUD_element/proc/updateIconInformation()
-	if (!icon)
+	if(!icon)
 		_iconWidth = 0
 		_iconHeight = 0
 
@@ -314,7 +314,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	var/icon/I = new(fcopy_rsc(icon),icon_state,dir)
 	var/newIconWidth = I.Width()
 	var/newIconHeight = I.Height()
-	if ((newIconWidth == _iconWidth) && (newIconHeight == _iconHeight))
+	if((newIconWidth == _iconWidth) && (newIconHeight == _iconHeight))
 		return src
 	_iconWidth = newIconWidth
 	_iconHeight = newIconHeight
@@ -324,10 +324,10 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	return src
 
 /HUD_element/proc/setAlignment(var/horizontal, var/vertical)
-	if (horizontal != null)
+	if(horizontal != null)
 		_currentAlignmentHorizontal = horizontal
 
-	if (vertical != null)
+	if(vertical != null)
 		_currentAlignmentVertical = vertical
 
 	_updatePosition()
@@ -342,10 +342,10 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 
 /HUD_element/proc/setPosition(var/x, var/y) //in pixels
-	if (x != null)
+	if(x != null)
 		_relativePositionX = round(x)
 
-	if (y != null)
+	if(y != null)
 		_relativePositionY = round(y)
 
 	_updatePosition()
@@ -379,13 +379,13 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 /HUD_element/proc/setName(var/new_name, var/nameAllElements = FALSE)
 	name = new_name
-	if (nameAllElements)
+	if(nameAllElements)
 		var/list/HUD_element/elements = getElements()
 		for(var/HUD_element/E in elements)
 			E.setName(new_name, TRUE)
 
 /HUD_element/proc/getData(var/indexString)
-	if (_data)
+	if(_data)
 		return _data[indexString]
 
 /HUD_element/proc/setData(var/indexString, var/value)
@@ -402,8 +402,8 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 /HUD_element/proc/show(var/client/C)
 	var/client/observer = getObserver()
-	if (observer)
-		if (observer != C)
+	if(observer)
+		if(observer != C)
 			log_to_dd("Error: HUD element already shown to client '[observer]'")
 			return
 
@@ -412,11 +412,11 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	_setObserver(C)
 
 	var/identifier = getIdentifier()
-	if (identifier)
+	if(identifier)
 		var/list/observerHUD = _getObserverHUD()
 		var/HUD_element/currentClientElement = observerHUD[identifier]
-		if (currentClientElement)
-			if (currentClientElement == src)
+		if(currentClientElement)
+			if(currentClientElement == src)
 				return src
 
 			qdel(currentClientElement)
@@ -433,17 +433,17 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 /HUD_element/proc/hide()
 	var/client/observer = getObserver()
-	if (!observer)
-		if (QDELETED(src))
+	if(!observer)
+		if(QDELETED(src))
 			return
 		return src
 
 	var/identifier = getIdentifier()
-	if (identifier)
+	if(identifier)
 		var/list/observerHUD = _getObserverHUD()
 		var/HUD_element/currentClientElement = observerHUD[identifier]
-		if (currentClientElement)
-			if (currentClientElement == src)
+		if(currentClientElement)
+			if(currentClientElement == src)
 				observerHUD[identifier] = null
 			else
 				log_to_dd("Error: HUD element identifier '[identifier]' was occupied by another element during hide()")
@@ -457,14 +457,14 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	for(var/HUD_element/E in elements)
 		E.hide()
 
-	if (_hideParentOnHide)
+	if(_hideParentOnHide)
 		var/HUD_element/parent = getParent()
-		if (parent)
+		if(parent)
 			parent = parent.hide()
-			if (!parent) //parent deleted
+			if(!parent) //parent deleted
 				return
 
-	if (_deleteOnHide && !QDELETED(src))
+	if(_deleteOnHide && !QDELETED(src))
 		qdel(src)
 		return
 
@@ -479,7 +479,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		error("OverlayData list is not associative")
 		return
 
-	for (var/additionName in additionsData)
+	for(var/additionName in additionsData)
 		var/list/data = additionsData[additionName]
 		if(!is_associative(data))
 			error("OverlayData list contains not associative data list with name\"[additionName]\".")
@@ -581,7 +581,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		error("Element has no child elements.")
 		return
 	var/HUD_element/E = getChildElementWithID(id)
-	if (E)
+	if(E)
 		_elements.Remove(E)
 		_elements.Insert(1,E)
 		return E
@@ -593,7 +593,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		error("Element has no child elements.")
 		return
 	var/HUD_element/E = getChildElementWithID(id)
-	if (E)
+	if(E)
 		_elements.Remove(E)
 		_elements.Add(E)
 		return E
@@ -606,7 +606,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		_onClickedInteraction = FALSE
 		return
 	_onClickedInteraction = state
-	if (state)
+	if(state)
 		_onClickedHighlightDuration = duration
 
 		setIconAddition(HUD_ICON_OVERLAY, HUD_OVERLAY_CLICKED, iconData["icon"], iconData["icon_state"], color = iconData["color"], alpha = iconData["alpha"], isPlain = iconData["is_plain"])
@@ -620,7 +620,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		_onHoveredInteraction = FALSE
 		return
 	_onHoveredInteraction = state
-	if (state)
+	if(state)
 		setIconAddition(HUD_ICON_OVERLAY, HUD_OVERLAY_HOVERED, iconData["icon"], iconData["icon_state"], color = iconData["color"], alpha = iconData["alpha"], isPlain = iconData["is_plain"])
 	else
 		_onHoveredState = FALSE
@@ -631,7 +631,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		_onToggledInteraction = FALSE
 		return
 	_onToggledInteraction = state
-	if (state)
+	if(state)
 		setIconAddition(HUD_ICON_OVERLAY, HUD_OVERLAY_TOGGLED, iconData["icon"], iconData["icon_state"], color = iconData["color"], alpha = iconData["alpha"], isPlain = iconData["is_plain"])
 	else
 		_onToggledState = FALSE

@@ -29,7 +29,7 @@
 
 
 	//Shards must be made of some matter
-	if (!amount)
+	if(!amount)
 		amount = round(RAND_DECIMAL(0.1, 1), 0.1)
 
 	//Overwrite whatever was populated before. A shard contains <1 unit of a single material
@@ -67,9 +67,9 @@
 		alpha = 255
 
 
-	if (amount > 0.7)
+	if(amount > 0.7)
 		icon_state = "[material.shard_icon]["large"]"
-	else if (amount < 0.4)
+	else if(amount < 0.4)
 		icon_state = "[material.shard_icon]["medium"]"
 	else
 		icon_state = "[material.shard_icon]["small"]"
@@ -80,7 +80,7 @@
 
 	//Variable icon size based on material quantity
 	//Shards will scale from 0.6 to 1.25 scale, in the range of 0..1 amount
-	if (amount < 1)
+	if(amount < 1)
 		M.Scale(((1.25 - 0.8)*amount)+0.8)
 
 	transform = M
@@ -93,7 +93,7 @@
 
 //Allows you to weld together similar shards in a tile to create useful sheets
 /obj/item/material/shard/proc/merge_shards(obj/item/I, mob/user)
-	if (!istype(loc, /turf))
+	if(!istype(loc, /turf))
 		to_chat(user, SPAN_WARNING("You need to lay the shards down on a surface to do this!"))
 		return
 
@@ -101,13 +101,13 @@
 	var/total = amount
 
 	//Loop through all the other shards in the tile and cache them
-	for (var/obj/item/material/shard/S in loc)
-		if (S.material.name == material.name && S != src)
+	for(var/obj/item/material/shard/S in loc)
+		if(S.material.name == material.name && S != src)
 			shards.Add(S)
 			total += S.amount
 
 	//If there's less than one unit of material in total, we can't do anything
-	if (total < 1)
+	if(total < 1)
 		to_chat(user, SPAN_WARNING("There's not enough [material.name] in [shards.len < 2 ? "this piece" : "these [shards.len] pieces"] to make anything useful. Gather more."))
 		return
 
@@ -117,7 +117,7 @@
 	to_chat(user, SPAN_NOTICE("You start welding the [name]s into useful material sheets..."))
 
 	//Do a tool operation for each shard
-	for (var/obj/item/material/shard/S in shards)
+	for(var/obj/item/material/shard/S in shards)
 		var/quality
 		switch(S.material.name)
 			if(MATERIAL_STEEL, MATERIAL_PLASTEEL)
@@ -135,10 +135,10 @@
 			qdel(S)
 
 			//And when our amount gets high enough, we split it off into a sheet
-			if (amount > 1)
+			if(amount > 1)
 				//We create a new sheet stack if one doesn't exist yet
 				//We also check the location and create a new stack if the old one is gone. Like if someone picked it up
-				if (!output || output.loc != loc)
+				if(!output || output.loc != loc)
 					output = material.place_sheet(loc)
 					output.amount = 0
 				output.amount++

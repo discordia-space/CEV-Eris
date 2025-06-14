@@ -116,23 +116,23 @@
 							oddity_stats[STAT_COG] += stat_cost
 							useful = TRUE
 
-						else if (quality == QUALITY_PULSING || quality == QUALITY_ADHESIVE || quality == QUALITY_SEALING)
+						else if(quality == QUALITY_PULSING || quality == QUALITY_ADHESIVE || quality == QUALITY_SEALING)
 							oddity_stats[STAT_MEC] += stat_cost
 							useful = TRUE
 
-						else if (quality == QUALITY_PRYING || quality == QUALITY_HAMMERING || quality == QUALITY_DIGGING)
+						else if(quality == QUALITY_PRYING || quality == QUALITY_HAMMERING || quality == QUALITY_DIGGING)
 							oddity_stats[STAT_ROB] += stat_cost
 							useful = TRUE
 
-						else if (quality == QUALITY_WELDING || quality == QUALITY_WIRE_CUTTING || quality == QUALITY_SAWING || quality == QUALITY_LASER_CUTTING)
+						else if(quality == QUALITY_WELDING || quality == QUALITY_WIRE_CUTTING || quality == QUALITY_SAWING || quality == QUALITY_LASER_CUTTING)
 							oddity_stats[STAT_VIG] += stat_cost
 							useful = TRUE
 
-						else if (quality == QUALITY_CLAMPING || quality == QUALITY_CAUTERIZING || quality == QUALITY_RETRACTING || quality == QUALITY_BONE_SETTING)
+						else if(quality == QUALITY_CLAMPING || quality == QUALITY_CAUTERIZING || quality == QUALITY_RETRACTING || quality == QUALITY_BONE_SETTING)
 							oddity_stats[STAT_BIO] += stat_cost
 							useful = TRUE
 
-						else if (quality == QUALITY_DRILLING || quality == QUALITY_SHOVELING || quality == QUALITY_EXCAVATION)
+						else if(quality == QUALITY_DRILLING || quality == QUALITY_SHOVELING || quality == QUALITY_EXCAVATION)
 							oddity_stats[STAT_TGH] += stat_cost
 							useful = TRUE
 

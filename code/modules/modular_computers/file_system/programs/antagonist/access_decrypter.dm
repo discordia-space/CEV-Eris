@@ -126,7 +126,7 @@
 		for(var/region in ACCESS_REGION_MIN to ACCESS_REGION_MAX)
 			var/list/accesses = list()
 			for(var/access in get_region_accesses(region))
-				if (get_access_desc(access))
+				if(get_access_desc(access))
 					accesses.Add(list(list(
 						"desc" = replacetext(get_access_desc(access), " ", "&nbsp"),
 						"ref" = access,
@@ -139,7 +139,7 @@
 		data["regions"] = regions
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "mpc_access_decrypter.tmpl", "Access Decrypter", 550, 400, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)

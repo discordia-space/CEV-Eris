@@ -28,17 +28,17 @@
 		. += "Slime scan results:"
 		. += text("[T.colour] [] slime", T.is_adult ? "adult" : "baby")
 		. += text("Nutrition: [T.nutrition]/[]", T.get_max_nutrition())
-		if (T.nutrition < T.get_starve_nutrition())
+		if(T.nutrition < T.get_starve_nutrition())
 			. += "<span class='alert'>Warning: slime is starving!</span>"
-		else if (T.nutrition < T.get_hunger_nutrition())
+		else if(T.nutrition < T.get_hunger_nutrition())
 			. += SPAN_WARNING("Warning: slime is hungry")
 		. += "Electric change strength: [T.powerlevel]"
 		. += "Health: [T.health]"
-		if (T.slime_mutation[4] == T.colour)
+		if(T.slime_mutation[4] == T.colour)
 			. += "This slime does not evolve any further"
 		else
-			if (T.slime_mutation[3] == T.slime_mutation[4])
-				if (T.slime_mutation[2] == T.slime_mutation[1])
+			if(T.slime_mutation[3] == T.slime_mutation[4])
+				if(T.slime_mutation[2] == T.slime_mutation[1])
 					. += text("Possible mutation: []", T.slime_mutation[3])
 					. += "Genetic destability: [T.mutation_chance/2]% chance of mutation on splitting"
 				else
@@ -47,7 +47,7 @@
 			else
 				. += text("Possible mutations: [], [], [], []", T.slime_mutation[1], T.slime_mutation[2], T.slime_mutation[3], T.slime_mutation[4])
 				. += "Genetic destability: [T.mutation_chance]% chance of mutation on splitting"
-		if (T.cores > 1)
+		if(T.cores > 1)
 			. += "Anomalious slime core amount detected"
 		. += "Growth progress: [T.amount_grown]/10"
 		return jointext(., "<br>")

@@ -21,8 +21,8 @@
 	shipside_only = TRUE
 
 /obj/machinery/porta_turret/excelsior/proc/has_power_source_nearby()
-	for (var/a in excelsior_teleporters)
-		if (dist3D(src, a) <= working_range) //The turret and teleporter can be on a different zlevel
+	for(var/a in excelsior_teleporters)
+		if(dist3D(src, a) <= working_range) //The turret and teleporter can be on a different zlevel
 			return TRUE
 	return FALSE
 
@@ -56,7 +56,7 @@
 	data["enabled"] = enabled
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "turret_control.tmpl", "Turret Controls", 500, 300)
 		ui.set_initial_data(data)
 		ui.open()

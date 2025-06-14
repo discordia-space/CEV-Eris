@@ -111,7 +111,7 @@
 						patrol_path = list()
 						target = D
 						found_spot = handle_target()
-						if (found_spot)
+						if(found_spot)
 							break search_loop
 						else
 							target_in_view = TRUE
@@ -250,7 +250,7 @@
 			patrol_path = null
 		if("freq")
 			var/freq = text2num(input("Select frequency for  navigation beacons", "Frequnecy", num2text(beacon_freq / 10))) * 10
-			if (freq > 0)
+			if(freq > 0)
 				beacon_freq = freq
 		if("screw")
 			screwloose = !screwloose

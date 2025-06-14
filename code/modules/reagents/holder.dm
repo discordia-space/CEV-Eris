@@ -260,7 +260,7 @@
 
 /datum/reagents/proc/del_reagent(id)
 	for(var/datum/reagent/current in reagent_list)
-		if (current.id == id)
+		if(current.id == id)
 			reagent_list -= current
 			qdel(current)
 			update_total()
@@ -414,12 +414,12 @@
 
 	//Here we attempt to transfer some reagents to the target. But it can often fail,
 	//like if you try to splash reagents onto an object that isn't an open container
-	if (!trans_to(target, amount, multiplier, copy) && total_volume > 0)
+	if(!trans_to(target, amount, multiplier, copy) && total_volume > 0)
 		//If it fails, but we still have some volume, then we'll just destroy some of our reagents
 		remove_any(amount) //If we don't do this, then only the spill amount above is removed, and someone can keep splashing with the same beaker endlessly
 
 /datum/reagents/proc/trans_id_to(atom/target, id, amount = 1, ignore_isinjectable = FALSE)
-	if (!target || !target.reagents || !target.simulated)
+	if(!target || !target.reagents || !target.simulated)
 		return
 
 	amount = min(amount, get_reagent_amount(id))
@@ -524,13 +524,13 @@
 		switch(R.get_average_reagents_state())
 			if(LIQUID)
 				var/obj/effect/decal/cleanable/reagents/splashed/dirtoverlay = locate(/obj/effect/decal/cleanable/reagents/splashed, target)
-				if (!dirtoverlay)
+				if(!dirtoverlay)
 					dirtoverlay = new/obj/effect/decal/cleanable/reagents/splashed(target, reagents_to_add = R)
 				else
 					dirtoverlay.add_reagents(R)
 			if(SOLID)
 				var/obj/effect/decal/cleanable/reagents/piled/dirtoverlay = locate(/obj/effect/decal/cleanable/reagents/piled, target)
-				if (!dirtoverlay)
+				if(!dirtoverlay)
 					dirtoverlay = new/obj/effect/decal/cleanable/reagents/piled(target, reagents_to_add =  R)
 				else
 					dirtoverlay.add_reagents(R)

@@ -4,7 +4,7 @@
 
 	var/text
 
-	if (objectives.len)
+	if(objectives.len)
 		text = "<b>Your [role_text] current objectives:</b>"
 
 	if(faction)

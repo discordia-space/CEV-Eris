@@ -67,7 +67,7 @@
 	//Specifically check equality to zero, rather than <=
 	//This allows a value of -1 to be passed, to convert everyone into a leader since it will never reach zero
 		//Just keeps going until theres no candidates left
-	while (num != 0 && candidates.len)
+	while(num != 0 && candidates.len)
 		var/datum/antagonist/A = pick_n_take(candidates)
 		add_leader(A)
 		num--

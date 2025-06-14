@@ -29,7 +29,7 @@
 			to_chat(user, SPAN_WARNING("\The [src] is fully loaded!"))
 			return
 
-		if (!inrange)
+		if(!inrange)
 			to_chat(user, SPAN_NOTICE("You must be adjacent to [target] to use the hydraulic clamp."))
 		else
 			if(isobj(target))

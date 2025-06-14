@@ -86,7 +86,7 @@
 
 /mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source)
 	amount = amount*species.brute_mod
-	if (organ_name in organs_by_name)
+	if(organ_name in organs_by_name)
 		var/obj/item/organ/external/O = get_organ(organ_name)
 
 		if(amount > 0)
@@ -99,7 +99,7 @@
 
 /mob/living/carbon/human/proc/adjustFireLossByPart(var/amount, var/organ_name, var/obj/damage_source)
 	amount = amount*species.burn_mod
-	if (organ_name in organs_by_name)
+	if(organ_name in organs_by_name)
 		var/obj/item/organ/external/O = get_organ(organ_name)
 
 		if(amount > 0)
@@ -137,13 +137,13 @@
 		return
 
 	var/mut_prob = min(80, amount+10)
-	if (amount > 0)
-		if (prob(mut_prob))
+	if(amount > 0)
+		if(prob(mut_prob))
 			var/list/obj/item/organ/external/candidates = list()
-			for (var/obj/item/organ/external/O in organs)
+			for(var/obj/item/organ/external/O in organs)
 				if(!(O.status & ORGAN_MUTATED))
 					candidates |= O
-			if (candidates.len)
+			if(candidates.len)
 				var/obj/item/organ/external/O = pick(candidates)
 				O.mutate()
 				to_chat(src, "<span class = 'notice'>Something is not right with your [O.name]...</span>")
@@ -297,7 +297,7 @@ This function restores all organs.
 /mob/living/carbon/human/proc/HealDamage(zone, brute, burn)
 	var/obj/item/organ/external/E = get_organ(zone)
 	if(istype(E, /obj/item/organ/external))
-		if (E.heal_damage(brute, burn))
+		if(E.heal_damage(brute, burn))
 			UpdateDamageIcon()
 			BITSET(hud_updateflag, HEALTH_HUD)
 	else

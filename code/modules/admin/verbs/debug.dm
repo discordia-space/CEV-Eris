@@ -99,18 +99,18 @@
 	for(var/path in SSgarbage.items)
 		var/datum/qdel_item/I = SSgarbage.items[path]
 		dellog += "<li><u>[path]</u><ul>"
-		if (I.failures)
+		if(I.failures)
 			dellog += "<li>Failures: [I.failures]</li>"
 		dellog += "<li>qdel() Count: [I.qdels]</li>"
 		dellog += "<li>Destroy() Cost: [I.destroy_time]ms</li>"
-		if (I.hard_deletes)
+		if(I.hard_deletes)
 			dellog += "<li>Total Hard Deletes [I.hard_deletes]</li>"
 			dellog += "<li>Time Spent Hard Deleting: [I.hard_delete_time]ms</li>"
-		if (I.slept_destroy)
+		if(I.slept_destroy)
 			dellog += "<li>Sleeps: [I.slept_destroy]</li>"
-		if (I.no_respect_force)
+		if(I.no_respect_force)
 			dellog += "<li>Ignored force: [I.no_respect_force]</li>"
-		if (I.no_hint)
+		if(I.no_hint)
 			dellog += "<li>No hint: [I.no_hint]</li>"
 		dellog += "</ul></li>"
 
@@ -352,7 +352,7 @@
 	set category = "Debug"
 	set name = "Spawn Disciple"
 	set desc = "Spawns a human with a cruciform, for ritual testing"
-	if (!mob)
+	if(!mob)
 		return
 
 	var/mob/living/carbon/human/H = new (get_turf(mob))

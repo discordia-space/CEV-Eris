@@ -21,7 +21,7 @@
 /obj/machinery/door/window/New()
 	..()
 	update_nearby_tiles()
-	if (src.req_access && src.req_access.len)
+	if(src.req_access && src.req_access.len)
 		src.icon_state = "[src.icon_state]"
 		src.base_state = src.icon_state
 	return
@@ -37,7 +37,7 @@
 			src.check_access()
 		if(src.req_access.len)
 			ae.conf_access = src.req_access
-		else if (src.req_one_access.len)
+		else if(src.req_one_access.len)
 			ae.conf_access = src.req_one_access
 			ae.one_access = 1
 	else
@@ -59,7 +59,7 @@
 	. = ..()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
-	if (!( ismob(AM) ))
+	if(!( ismob(AM) ))
 		var/mob/living/bot/bot = AM
 		if(istype(bot))
 			if(density && src.check_access(bot.botcard))
@@ -75,9 +75,9 @@
 					addtimer(CALLBACK(src, PROC_REF(close), 5 SECONDS))
 		return
 	var/mob/M = AM // we've returned by here if M is not a mob
-	if (src.operating)
+	if(src.operating)
 		return
-	if (src.density && (!issmall(M) || ishuman(M)) && src.allowed(AM) && can_open())
+	if(src.density && (!issmall(M) || ishuman(M)) && src.allowed(AM) && can_open())
 		open()
 		addtimer(CALLBACK(src, PROC_REF(close)), 5 SECONDS)
 		/*
@@ -106,7 +106,7 @@
 		return 1
 
 /obj/machinery/door/window/open()
-	if (src.operating == TRUE) //doors can still open when emag-disabled
+	if(src.operating == TRUE) //doors can still open when emag-disabled
 		return FALSE
 	if(!can_open())
 		return FALSE
@@ -127,7 +127,7 @@
 	return TRUE
 
 /obj/machinery/door/window/close()
-	if (src.operating)
+	if(src.operating)
 		return FALSE
 	src.operating = TRUE
 	flick(text("[]closing", src.base_state), src)
@@ -146,7 +146,7 @@
 
 /obj/machinery/door/window/take_damage(var/damage)
 	src.health = max(0, src.health - damage)
-	if (src.health <= 0)
+	if(src.health <= 0)
 		shatter()
 		return
 
@@ -174,7 +174,7 @@
 
 
 /obj/machinery/door/window/emag_act(var/remaining_charges, var/mob/user)
-	if (density && operable())
+	if(density && operable())
 		operating = -1
 		flick("[src.base_state]spark", src)
 		sleep(6)
@@ -190,11 +190,11 @@
 /obj/machinery/door/window/attackby(obj/item/I as obj, mob/user as mob)
 
 	//If it's in the process of opening/closing, ignore the click
-	if (src.operating == 1)
+	if(src.operating == 1)
 		return
 
 	//Emags and ninja swords? You may pass.
-	if (istype(I, /obj/item/melee/energy/blade))
+	if(istype(I, /obj/item/melee/energy/blade))
 		if(emag_act(10, user))
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
@@ -205,18 +205,18 @@
 		return 1
 
 	//If it's emagged, crowbar can pry electronics out.
-	if (src.operating == -1 && (QUALITY_PRYING in I.tool_qualities))
+	if(src.operating == -1 && (QUALITY_PRYING in I.tool_qualities))
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			to_chat(user, SPAN_NOTICE("You removed the windoor electronics!"))
 
 			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
-			if (istype(src, /obj/machinery/door/window/brigdoor))
+			if(istype(src, /obj/machinery/door/window/brigdoor))
 				wa.secure = "secure_"
 				wa.name = "Secure Wired Windoor Assembly"
 			else
 				wa.name = "Wired Windoor Assembly"
-			if (src.base_state == "right" || src.base_state == "rightsecure")
+			if(src.base_state == "right" || src.base_state == "rightsecure")
 				wa.facing = "r"
 			wa.set_dir(src.dir)
 			wa.state = "02"
@@ -229,7 +229,7 @@
 					src.check_access()
 				if(src.req_access.len)
 					ae.conf_access = src.req_access
-				else if (src.req_one_access.len)
+				else if(src.req_one_access.len)
 					ae.conf_access = src.req_one_access
 					ae.one_access = 1
 			else
@@ -258,15 +258,15 @@
 	attempt_open(user)
 
 /obj/machinery/door/window/proc/attempt_open(mob/user)
-	if (allowed(user))
-		if (density)
+	if(allowed(user))
+		if(density)
 			open()
 		else
 			close()
 		return TRUE
 
 
-	if (density)
+	if(density)
 		flick(text("[]deny", src.base_state), src)
 	return FALSE
 

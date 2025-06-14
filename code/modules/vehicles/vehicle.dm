@@ -201,7 +201,7 @@
 	src.visible_message(SPAN_DANGER("\The [src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
-	for (var/i in 1 to 2)
+	for(var/i in 1 to 2)
 		new /obj/item/stack/rods(Tsec)
 
 	new /obj/item/stack/cable_coil/cut(Tsec)

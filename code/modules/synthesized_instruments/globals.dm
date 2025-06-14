@@ -125,14 +125,14 @@ GLOBAL_DATUM_INIT(musical_config, /datum/musical_config, new)
 			"Value that controls the modal density in the late reverberation decay",
 			{"
 Bit flags that modify the behavior of above properties
-•1 - 'EnvSize' affects reverberation decay time
-•2 - 'EnvSize' affects reflection level
-•4 - 'EnvSize' affects initial reflection delay time
-•8 - 'EnvSize' affects reflections level
-•16 - 'EnvSize' affects late reverberation delay time
-•32 - AirAbsorptionHF affects DecayHFRatio
-•64 - 'EnvSize' affects echo time
-•128 - 'EnvSize' affects modulation time"})
+ï¿½1 - 'EnvSize' affects reverberation decay time
+ï¿½2 - 'EnvSize' affects reflection level
+ï¿½4 - 'EnvSize' affects initial reflection delay time
+ï¿½8 - 'EnvSize' affects reflections level
+ï¿½16 - 'EnvSize' affects late reverberation delay time
+ï¿½32 - AirAbsorptionHF affects DecayHFRatio
+ï¿½64 - 'EnvSize' affects echo time
+ï¿½128 - 'EnvSize' affects modulation time"})
 
 	var/list/echo_default = list(0, 0, 0, 0, 0, 0.0, 0, 0.25, 1.5, 1.0, 0, 1.0, 0, 0.0, 0.0, 0.0, 1.0, 7)
 	var/list/list/echo_params_bounds = list(
@@ -192,9 +192,9 @@ Bit flags that modify the behavior of above properties
 			"like DS3D flRolloffFactor but for room effect",
 			"multiplies AirAbsorptionHF member of environment reverb properties.",
 			{"
-			Bit flags that modify the behavior of properties•1 - Automatic setting of 'Direct' due to distance from listener
-			•2 - Automatic setting of 'Room' due to distance from listener
-			•4 - Automatic setting of 'RoomHF' due to distance from listener"})
+			Bit flags that modify the behavior of propertiesï¿½1 - Automatic setting of 'Direct' due to distance from listener
+			ï¿½2 - Automatic setting of 'Room' due to distance from listener
+			ï¿½4 - Automatic setting of 'RoomHF' due to distance from listener"})
 
 	var/list/n2t_int = list() // Instead of num2text it is used for faster access in n2t
 	var/list/nn2no = list(0,2,4,5,7,9,11) // Maps note num onto note offset
@@ -202,25 +202,25 @@ Bit flags that modify the behavior of above properties
 
 
 /datum/musical_config/proc/n2t(key) // Used instead of num2text for faster access in sample_map
-	if (!src.n2t_int.len)
-		for (var/i=1, i<=127, i++)
+	if(!src.n2t_int.len)
+		for(var/i=1, i<=127, i++)
 			src.n2t_int += num2text(i)
 
-	if (key==0)
+	if(key==0)
 		return "0" // Fuck you BYOND
-	if (!isnum(key) || key < 0 || key>127 || round(key) != key)
+	if(!isnum(key) || key < 0 || key>127 || round(key) != key)
 		CRASH("n2t argument must be an integer from 0 to 127")
 	return src.n2t_int[key]
 
 
 /datum/musical_config/proc/environment_to_id(environment)
-	if (environment in src.all_environments)
+	if(environment in src.all_environments)
 		return src.all_environments.Find(environment) - 2
 	return -1
 
 
 /datum/musical_config/proc/id_to_environment(id)
-	if (id >= -1 && id <= 26)
+	if(id >= -1 && id <= 26)
 		return src.all_environments[id+2]
 	return "None"
 

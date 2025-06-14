@@ -9,7 +9,7 @@
 
 	// The appearance churn is real.
 	// WILL perform like shit until we get 511 and we get mutable appearances.
-	for (var/variable in variables)
+	for(var/variable in variables)
 		I.vars[variable] = variables[variable]
 
 	animate(A, appearance = I.appearance, time, loop, easing)
@@ -66,7 +66,7 @@
 	thing << link(url)
 
 /proc/_locate(X, Y, Z)
-	if (isnull(Y)) // Assuming that it's only a single-argument call.
+	if(isnull(Y)) // Assuming that it's only a single-argument call.
 		return locate(X)
 
 	return locate(X, Y, Z)
@@ -163,7 +163,7 @@
 
 
 /proc/_list_add(var/list/L, ...)
-	if (args.len < 2)
+	if(args.len < 2)
 		return
 
 	L += args.Copy(2)
@@ -184,7 +184,7 @@
 	return L.Join(Glue, Start, End)
 
 /proc/_list_remove(var/list/L, ...)
-	if (args.len < 2)
+	if(args.len < 2)
 		return
 
 	L -= args.Copy(2)

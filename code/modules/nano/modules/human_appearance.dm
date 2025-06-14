@@ -95,7 +95,7 @@
 	var/list/data = host.initial_data()
 
 	data["change_name"] = can_change(APPEARANCE_NAME)
-	if (data["change_name"])
+	if(data["change_name"])
 		data["name"] = owner.real_name
 	data["specimen"] = owner.species.name
 	data["gender"] = owner.gender
@@ -135,7 +135,7 @@
 	data["change_hair_color"] = can_change(APPEARANCE_HAIR_COLOR)
 	data["change_facial_hair_color"] = can_change(APPEARANCE_FACIAL_HAIR_COLOR)
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "appearance_changer.tmpl", "[src]", 800, 450, state = state)
 		ui.set_initial_data(data)
 		ui.open()

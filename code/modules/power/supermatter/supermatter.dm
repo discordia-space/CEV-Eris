@@ -216,7 +216,7 @@
 
 	if(!env || !removed || !removed.total_moles)
 		damage += max((power - 15*POWER_FACTOR)/10, 0)
-	else if (grav_pulling) //If supermatter is detonating, remove all air from the zone
+	else if(grav_pulling) //If supermatter is detonating, remove all air from the zone
 		env.remove(env.total_moles)
 	else
 		damage_archived = damage
@@ -229,7 +229,7 @@
 		//calculate power gain for oxygen reaction
 		var/temp_factor
 		var/equilibrium_power
-		if (oxygen > 0.8)
+		if(oxygen > 0.8)
 			//If chain reacting at oxygen == 1, we want the power at 800 K to stabilize at a power level of 400
 			equilibrium_power = 400
 			icon_state = "[base_icon_state]_glow"
@@ -252,7 +252,7 @@
 		                     "oxygen", max((device_energy + removed.temperature - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
 
 		var/thermal_power = THERMAL_RELEASE_MODIFIER * device_energy
-		if (debug)
+		if(debug)
 			var/heat_capacity_new = removed.heat_capacity()
 			visible_message("[src]: Releasing [round(thermal_power)] W.")
 			visible_message("[src]: Releasing additional [round((heat_capacity_new - heat_capacity)*removed.temperature)] W with exhaust gasses.")
@@ -264,7 +264,7 @@
 
 	for(var/mob/living/carbon/human/H in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
 		if(!istype(H.glasses, /obj/item/clothing/glasses/powered/meson))
-			if (!(istype(H.wearing_rig, /obj/item/rig) && istype(H.wearing_rig.getCurrentGlasses(), /obj/item/clothing/glasses/powered/meson)))
+			if(!(istype(H.wearing_rig, /obj/item/rig) && istype(H.wearing_rig.getCurrentGlasses(), /obj/item/clothing/glasses/powered/meson)))
 				var/effect = max(0, min(200, power * config_hallucination_power * sqrt( 1 / max(1,get_dist(H, src)))) )
 				H.adjust_hallucination(effect, 0.25*effect)
 				H.add_side_effect("Headache", 11)
@@ -331,7 +331,7 @@
 	data["energy"] = power
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "supermatter_crystal.tmpl", "Supermatter Crystal", 500, 300)
 		ui.set_initial_data(data)
 		ui.open()
@@ -355,9 +355,9 @@
 		If you can get this close to a damaged crystal its probably too late for it anyway,
 		this is unlikely to do anything but prolong the inevitable
 	*/
-	if (W.has_quality(QUALITY_SEALING) && damage > 0)
+	if(W.has_quality(QUALITY_SEALING) && damage > 0)
 		user.visible_message("[user] starts sealing up cracks in [src] with the [W]", "You start sealing up cracks in [src] with the [W]")
-		if (W.use_tool(user, src, 140, QUALITY_SEALING, FAILCHANCE_VERY_HARD, STAT_MEC))
+		if(W.use_tool(user, src, 140, QUALITY_SEALING, FAILCHANCE_VERY_HARD, STAT_MEC))
 			to_chat(user, SPAN_NOTICE("Your insane actions are somehow paying off."))
 			user.apply_effect(100, IRRADIATE)
 			damage = 0

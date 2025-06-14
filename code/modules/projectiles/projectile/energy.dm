@@ -24,7 +24,7 @@
 	if(!istype(T)) return
 
 	//blind adjacent people
-	for (var/mob/living/carbon/M in viewers(T, flash_range))
+	for(var/mob/living/carbon/M in viewers(T, flash_range))
 		if(M.eyecheck() < FLASH_PROTECTION_MODERATE)
 			M.flash(0, FALSE, FALSE, FALSE)
 

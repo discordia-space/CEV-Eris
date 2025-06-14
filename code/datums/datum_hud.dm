@@ -218,7 +218,7 @@
 		"back18" = new /image(src.icon, "t18"),
 	)
 
-	for (var/p in IconUnderlays)
+	for(var/p in IconUnderlays)
 		var/image/I = IconUnderlays[p]
 		I.alpha = 200
 

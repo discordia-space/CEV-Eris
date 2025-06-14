@@ -18,7 +18,7 @@
 
 /datum/uplink_item/abstract/announcements/announce/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
 	var/message = input(user, "What would you like the text of the announcement to be? Write as much as you like, The title will appear as Unknown Broadcast", "False Announcement") as text|null
-	if (!message)
+	if(!message)
 		return FALSE
 	command_announcement.Announce(message, "Unknown Broadcast", use_text_to_speech = TRUE)
 	return 1

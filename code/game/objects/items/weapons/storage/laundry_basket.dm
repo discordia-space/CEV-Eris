@@ -25,7 +25,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.get_organ(BP_R_ARM)
-		if (user.hand)
+		if(user.hand)
 			temp = H.get_organ(BP_L_ARM)
 		if(!temp)
 			to_chat(user, SPAN_WARNING("You need two hands to pick this up!"))

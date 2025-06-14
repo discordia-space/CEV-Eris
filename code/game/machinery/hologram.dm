@@ -146,7 +146,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	return 0
 
 /obj/machinery/hologram/holopad/attack_ai(mob/living/silicon/ai/user)
-	if (!istype(user))
+	if(!istype(user))
 		return
 	/*There are pretty much only three ways to interact here.
 	I don't need to check for client since they're clicking on an object.
@@ -161,7 +161,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 
 /obj/machinery/hologram/holopad/proc/activate_holo(mob/living/silicon/ai/user)
 	if(!(stat & NOPOWER) && user.eyeobj.loc == src.loc)//If the projector has power and client eye is on it
-		if (user.holo)
+		if(user.holo)
 			to_chat(user, "<span class='danger'>ERROR:</span> Image feed in progress.")
 			return
 		src.visible_message("A holographic image of [user] flicks to life right before your eyes!")
@@ -272,7 +272,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	if(caller_id)
 		qdel(masters[caller_id])//Get rid of user's hologram
 		masters -= caller_id //Discard the caller from the list of those who use holopad
-	if (!masters.len)//If no users left
+	if(!masters.len)//If no users left
 		set_light(0)			//pad lighting (hologram lighting will be handled automatically since its owner was deleted)
 		icon_state = "holopad0"
 		if(sourcepad)
@@ -283,7 +283,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 
 
 /obj/machinery/hologram/holopad/Process()
-	for (var/mob/living/silicon/ai/master in masters)
+	for(var/mob/living/silicon/ai/master in masters)
 		var/active_ai = (master && !master.incapacitated() && master.client && master.eyeobj)//If there is an AI with an eye attached, it's not incapacitated, and it has a client
 		if((stat & NOPOWER) || !active_ai)
 			clear_holo(master)
@@ -299,7 +299,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			sourcepad.audible_message("<i><span class='game say'>The holopad connection timed out</span></i>")
 		incoming_connection = 0
 		end_call()
-	if (caller_id&&sourcepad)
+	if(caller_id&&sourcepad)
 		if(caller_id.loc!=sourcepad.loc)
 			to_chat(sourcepad.caller_id, "Severing connection to distant holopad.")
 			end_call()
@@ -346,7 +346,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	active_power_usage = 100
 
 /obj/machinery/hologram/holopad/Destroy()
-	for (var/mob/living/master in masters)
+	for(var/mob/living/master in masters)
 		clear_holo(master)
 	. = ..()
 

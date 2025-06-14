@@ -16,7 +16,7 @@
 	Can only be called once.
 **/
 /datum/stack_end_detector/proc/prime_canary()
-	if (!_canary)
+	if(!_canary)
 		CRASH("Prime_canary called twice")
 	. = _canary
 	_canary = null

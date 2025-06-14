@@ -17,7 +17,7 @@
 /obj/item/clothing/shoes/magboots/proc/set_slowdown()
 	var/obj/item/clothing/shoes/shoes = overslot_contents
 	slowdown = shoes? max(SHOES_SLOWDOWN, shoes.slowdown): SHOES_SLOWDOWN	//So you can't put on magboots to make you walk faster.
-	if (magpulse)
+	if(magpulse)
 		slowdown += mag_slow
 
 /obj/item/clothing/shoes/magboots/attack_self(mob/user)

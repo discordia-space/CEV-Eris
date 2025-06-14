@@ -62,16 +62,16 @@
 		return
 
 	var/ckey = client?.ckey
-	if (!ckey)
+	if(!ckey)
 		return
 
 	var/list/all_known_alts = GLOB.known_alts.load_known_alts()
 	var/list/our_known_alts = list()
 
-	for (var/known_alt in all_known_alts)
-		if (known_alt[1] == ckey)
+	for(var/known_alt in all_known_alts)
+		if(known_alt[1] == ckey)
 			our_known_alts += known_alt[2]
-		else if (known_alt[2] == ckey)
+		else if(known_alt[2] == ckey)
 			our_known_alts += known_alt[1]
 
 	var/list/found
@@ -85,20 +85,20 @@
 		var/list/row = telemetry_connections[i]
 
 		// Check for a malformed history object
-		if (!row || row.len < 3 || (!row["ckey"] || !row["address"] || !row["computer_id"]))
+		if(!row || row.len < 3 || (!row["ckey"] || !row["address"] || !row["computer_id"]))
 			return
 
-		if (!isnull(GLOB.round_id))
+		if(!isnull(GLOB.round_id))
 			query_data += list(list(
 				"telemetry_ckey" = row["ckey"],
 				"address" = row["address"],
 				"computer_id" = row["computer_id"],
 			))
 
-		if (row["ckey"] in our_known_alts)
+		if(row["ckey"] in our_known_alts)
 			continue
 
-		if (world.IsBanned(row["ckey"], row["address"], row["computer_id"], real_bans_only = TRUE))
+		if(world.IsBanned(row["ckey"], row["address"], row["computer_id"], real_bans_only = TRUE))
 			found = row
 			break
 
@@ -112,7 +112,7 @@
 		log_suspicious_login(msg, access_log_mirror = FALSE)
 
 	// Only log them all at the end, since it's not as important as reporting an evader
-	for (var/list/one_query as anything in query_data)
+	for(var/list/one_query as anything in query_data)
 		var/datum/db_query/query = SSdbcore.NewQuery({"
 			INSERT INTO [format_table_name("telemetry_connections")] (
 				ckey,
@@ -133,7 +133,7 @@
 			"ckey" = ckey,
 			"telemetry_ckey" = one_query["telemetry_ckey"],
 			"address" = one_query["address"],
-			"computer_id" = one_query["computer_id"], 
+			"computer_id" = one_query["computer_id"],
 			"round_id" = GLOB.round_id,
 		))
 		query.Execute()

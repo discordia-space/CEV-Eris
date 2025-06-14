@@ -83,7 +83,7 @@
 	for(var/mob/living/carbon/C in src.loc)
 		wash(C)
 		check_heat(C)
-	for (var/atom/movable/G in src.loc)
+	for(var/atom/movable/G in src.loc)
 		G.clean_blood()
 
 /obj/effect/shower/Destroy()
@@ -154,9 +154,9 @@
 					washears = !(H.head.flags_inv & HIDEEARS)
 
 				if(H.wear_mask)
-					if (washears)
+					if(washears)
 						washears = !(H.wear_mask.flags_inv & HIDEEARS)
-					if (washglasses)
+					if(washglasses)
 						washglasses = !(H.wear_mask.flags_inv & HIDEEYES)
 
 				if(H.head)

@@ -66,9 +66,9 @@
 /datum/sound_player/proc/apply_modifications(sound/what, note_num, which_line, which_note) // You don't need to override this
 	what.volume = volume
 	what.falloff = falloff
-	if (GLOB.musical_config.env_settings_available)
+	if(GLOB.musical_config.env_settings_available)
 		what.environment = GLOB.musical_config.is_custom_env(src.virtual_environment_selected) ? src.env : src.virtual_environment_selected
-	if (src.apply_echo)
+	if(src.apply_echo)
 		what.echo = src.echo
 	return
 

@@ -23,11 +23,11 @@
 
 /datum/antagonist/inquisitor/can_become_antag(datum/mind/M, mob/report)
 	if(!..())
-		if (report)
+		if(report)
 			to_chat(report, SPAN_NOTICE("Failure: Parent can_become_antag returned false"))
 		return FALSE
 	if(!M.current.get_core_implant(/obj/item/implant/core_implant/cruciform))
-		if (report)
+		if(report)
 			to_chat(report, SPAN_NOTICE("Failure: [M] does not have a cruciform and this antag requires it"))
 		return FALSE
 	return TRUE
@@ -46,7 +46,7 @@
 	if(!C)
 		return FALSE
 
-	if (is_preacher(owner.current))
+	if(is_preacher(owner.current))
 		was_priest = TRUE
 
 	C.make_inquisitor()
@@ -59,7 +59,7 @@
 
 	var/mob/player = owner.current
 
-	if (was_priest)
+	if(was_priest)
 		to_chat(player, "<span class='notice'>You've been promoted...</span>")
 		sleep(30)
 	// Basic intro text.
@@ -74,7 +74,7 @@
 	people may put their shipboard duties above loyalty to the church. You should be discreet in your interactions with the ship command staff \
 	Revealing your role may tarnish the Church's image, it's often best to deal with internal problems quietly")
 
-	if (was_priest)
+	if(was_priest)
 		to_chat(player, "If you were the ship's preacher before, you have the authority to promote someone to be your replacement.")
 	else
 		to_chat(player, "You have been working undercover here, until a signal from NT command calls you to action. You may wish to make your presence known to the local preacher, if there is one.")

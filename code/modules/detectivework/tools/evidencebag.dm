@@ -11,22 +11,22 @@
 	price_tag = 5
 
 /obj/item/evidencebag/MouseDrop(var/obj/item/I as obj)
-	if (!ishuman(usr))
+	if(!ishuman(usr))
 		return
 
 	var/mob/living/carbon/human/user = usr
 
-	if (!(user.l_hand == src || user.r_hand == src))
+	if(!(user.l_hand == src || user.r_hand == src))
 		return //bag must be in your hands to use
 
-	if (isturf(I.loc))
-		if (!user.Adjacent(I))
+	if(isturf(I.loc))
+		if(!user.Adjacent(I))
 			return
 	else
 		//If it isn't on the floor. Do some checks to see if it's in our hands or a box. Otherwise give up.
 		if(istype(I.loc,/obj/item/storage))	//in a container.
 			var/sdepth = I.storage_depth(user)
-			if (sdepth == -1 || sdepth > 1)
+			if(sdepth == -1 || sdepth > 1)
 				return	//too deeply nested to access
 
 			var/obj/item/storage/U = I.loc

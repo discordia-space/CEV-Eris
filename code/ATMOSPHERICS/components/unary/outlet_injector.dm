@@ -64,7 +64,7 @@
 		var/transfer_moles = (volume_rate/air_contents.volume)*air_contents.total_moles //apply flow rate limit
 		power_draw = pump_gas(src, air_contents, environment, transfer_moles, power_rating)
 
-	if (power_draw >= 0)
+	if(power_draw >= 0)
 		last_power_draw = power_draw
 		use_power(power_draw)
 
@@ -78,7 +78,7 @@
 		return 0
 
 	var/datum/gas_mixture/environment = loc.return_air()
-	if (!environment)
+	if(!environment)
 		return 0
 
 	injecting = 1

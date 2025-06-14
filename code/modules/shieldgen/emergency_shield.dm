@@ -22,7 +22,7 @@
 	shieldHealth = 400
 
 /obj/machinery/shield/proc/check_failure()
-	if (shieldHealth <= 0)
+	if(shieldHealth <= 0)
 		visible_message(SPAN_NOTICE("\The [src] dissipates!"))
 		qdel(src)
 		return
@@ -156,8 +156,8 @@
 
 /obj/machinery/shieldgen/proc/create_shields()
 	for(var/turf/target_tile in range(2, src))
-		if (istype(target_tile,/turf/space) && !(locate(/obj/machinery/shield) in target_tile))
-			if (malfunction && prob(33) || !malfunction)
+		if(istype(target_tile,/turf/space) && !(locate(/obj/machinery/shield) in target_tile))
+			if(malfunction && prob(33) || !malfunction)
 				var/obj/machinery/shield/S = new/obj/machinery/shield(target_tile)
 				deployed_shields += S
 				use_power(S.shield_generate_power)
@@ -169,28 +169,28 @@
 /obj/machinery/shieldgen/power_change()
 	..()
 	if(!active) return
-	if (stat & NOPOWER)
+	if(stat & NOPOWER)
 		collapse_shields()
 	else
 		create_shields()
 	update_icon()
 
 /obj/machinery/shieldgen/Process()
-	if (!active || (stat & NOPOWER))
+	if(!active || (stat & NOPOWER))
 		return
 
 	if(malfunction)
 		if(deployed_shields.len && prob(5))
 			qdel(pick(deployed_shields))
 	else
-		if (check_delay <= 0)
+		if(check_delay <= 0)
 			create_shields()
 
 			var/new_power_usage = 0
 			for(var/obj/machinery/shield/shield_tile in deployed_shields)
 				new_power_usage += shield_tile.shield_idle_power
 
-			if (new_power_usage != idle_power_usage)
+			if(new_power_usage != idle_power_usage)
 				idle_power_usage = new_power_usage
 				use_power(0)
 
@@ -234,7 +234,7 @@
 		to_chat(user, "The panel must be closed before operating this machine.")
 		return
 
-	if (src.active)
+	if(src.active)
 		user.visible_message("\blue \icon[src] [user] deactivated the shield generator.", \
 			"\blue \icon[src] You deactivate the shield generator.", \
 			"You hear heavy droning fade out.")
@@ -290,7 +290,7 @@
 		var/obj/item/stack/cable_coil/coil = I
 		to_chat(user, SPAN_NOTICE("You begin to replace the wires."))
 		if(do_after(user, 30,src))
-			if (coil.use(1))
+			if(coil.use(1))
 				shieldHealth = maxShieldHealth
 				malfunction = 0
 				to_chat(user, SPAN_NOTICE("You repair the [src]!"))

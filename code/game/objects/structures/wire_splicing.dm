@@ -17,7 +17,7 @@
 
 
 	//Wire splice can only exist on a cable. Lets try to place it in a good location
-	if (!(locate(/obj/structure/cable) in loc))
+	if(!(locate(/obj/structure/cable) in loc))
 		//No cable in our location, lets find one nearby
 
 		//Make a list of turfs with cables in them
@@ -25,43 +25,43 @@
 
 		//We will give each turf a score to determine its suitability
 		var/best_score = -INFINITY
-		for (var/obj/structure/cable/C in range(3, loc))
+		for(var/obj/structure/cable/C in range(3, loc))
 			var/turf/floor/T = get_turf(C)
 
 			//Wire inside a wall? can't splice there
-			if (!istype(T))
+			if(!istype(T))
 				continue
 
 			//We already checked this one
-			if (T in candidates)
+			if(T in candidates)
 				continue
 
 			var/turf_score = 0
 
 			//Nobody walks on underplating so we don't want to place traps there
-			if (istype(T.flooring, /decl/flooring/reinforced/plating/under))
+			if(istype(T.flooring, /decl/flooring/reinforced/plating/under))
 				turf_score -= 1
 
-			if (turf_is_external(T))
+			if(turf_is_external(T))
 				continue //No traps in space
 
 			//Catwalks are made for walking on, we definitely want traps there
-			if (locate(/obj/structure/catwalk) in T)
+			if(locate(/obj/structure/catwalk) in T)
 				turf_score += 2
 
 			//If its below the threshold ignore it
-			if (turf_score < best_score)
+			if(turf_score < best_score)
 				continue
 
 			//If it sets a new threshold, discard everything before
-			else if (turf_score > best_score)
+			else if(turf_score > best_score)
 				best_score = turf_score
 				candidates.Cut()
 
 			candidates.Add(T)
 
 		//No nearby cables? Cancel
-		if (!candidates.len)
+		if(!candidates.len)
 			return INITIALIZE_HINT_QDEL
 
 
@@ -71,7 +71,7 @@
 
 	//At messiness of 2 or below, triggering when walking on a catwalk is impossible
 	//Above that it becomes possible, so we will change the layer to make it poke through catwalks
-	if (messiness > 2)
+	if(messiness > 2)
 		layer = LOW_OBJ_LAYER  // I wont do such stuff on splicing "reinforcement". Take it as nasty feature
 
 /obj/structure/wire_splicing/examine(mob/user, extra_description = "")

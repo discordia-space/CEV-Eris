@@ -19,7 +19,7 @@
 // Creates or destroys it if needed, makes it update values, makes sure it's got the correct source turf...
 /atom/proc/update_light()
 	set waitfor = FALSE
-	if (QDELETED(src))
+	if(QDELETED(src))
 		return
 
 	if(!light_power || !light_range) // We won't emit light anyways, destroy the light source.
@@ -69,19 +69,19 @@
 // It notifies (potentially) affected light sources so they can update (if needed).
 /atom/movable/set_opacity(new_opacity)
 	. = ..()
-	if (!.)
+	if(!.)
 		return
 
 	opacity = new_opacity
 	var/turf/T = loc
-	if (!isturf(T))
+	if(!isturf(T))
 		return
 
-	if (new_opacity == TRUE)
+	if(new_opacity == TRUE)
 		T.has_opaque_atom = TRUE
 		T.reconsider_lights()
 	else
 		var/old_has_opaque_atom = T.has_opaque_atom
 		T.recalc_atom_opacity()
-		if (old_has_opaque_atom != T.has_opaque_atom)
+		if(old_has_opaque_atom != T.has_opaque_atom)
 			T.reconsider_lights()

@@ -59,7 +59,7 @@
 				)))
 	data["docks"] = docks
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "docking.tmpl", name, 600, 450, state = state)
 		ui.set_auto_update(1)
 		ui.set_initial_data(data)
@@ -74,7 +74,7 @@
 			var/newcode = input("Input new docking codes", "Docking codes", P.docking_codes) as text|null
 			if(!CanInteract(usr,state))
 				return
-			if (newcode)
+			if(newcode)
 				P.docking_codes = uppertext(newcode)
 		return 1
 	if(href_list["dock"])

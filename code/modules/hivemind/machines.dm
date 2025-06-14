@@ -719,7 +719,7 @@
 			H.adjust_hallucination(20, 20)
 		else
 			to_chat(H, SPAN_NOTICE("Reality flickers for a second, but you manage to focus!"))
-	else if (istype(target))
+	else if(istype(target))
 		target.adjust_hallucination(20, 20)
 	flick("[icon_state]-anim", src)
 

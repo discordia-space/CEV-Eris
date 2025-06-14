@@ -99,7 +99,7 @@
 	return ..()
 
 /obj/item/projectile/is_hot()
-	if (damage_types[BURN])
+	if(damage_types[BURN])
 		return damage_types[BURN] * heat
 
 /obj/item/projectile/proc/get_total_damage()
@@ -162,14 +162,13 @@
 
 // generate impact effect
 /obj/item/projectile/proc/on_impact(atom/A)
-    impact_effect(effect_transform)
-    if(luminosity_ttl && attached_effect)
-        spawn(luminosity_ttl)
-        QDEL_NULL(attached_effect)
+	impact_effect(effect_transform)
+	if(luminosity_ttl && attached_effect)
+		spawn(luminosity_ttl)
+		QDEL_NULL(attached_effect)
 
-    if(!ismob(A))
-        playsound(src, hitsound_wall, 50, 1, -2)
-    return
+	if(!ismob(A))
+		playsound(src, hitsound_wall, 50, 1, -2)
 
 //Checks if the projectile is eligible for embedding. Not that it necessarily will.
 /obj/item/projectile/proc/can_embed()
@@ -203,7 +202,7 @@
 /obj/item/projectile/proc/launch(atom/target, target_zone, x_offset = 0, y_offset = 0, angle_offset = 0, proj_sound, user_recoil = 0)
 	var/turf/curloc = get_turf(src)
 	var/turf/targloc = get_turf(target)
-	if (!istype(targloc) || !istype(curloc))
+	if(!istype(targloc) || !istype(curloc))
 		return TRUE
 
 	if(targloc == curloc) //Shooting something in the same turf
@@ -462,12 +461,12 @@
 	//the bullet passes through a dense object!
 	if(passthrough)
 		//move ourselves onto A so we can continue on our way
-		if (!tempLoc)
+		if(!tempLoc)
 			qdel(src)
 			return TRUE
 
 		loc = tempLoc
-		if (A)
+		if(A)
 			permutated.Add(A)
 		bumped = FALSE //reset bumped variable!
 		return FALSE
@@ -555,7 +554,7 @@
 
 /obj/item/projectile/proc/muzzle_effect(var/matrix/T)
 	//This can happen when firing inside a wall, safety check
-	if (!location)
+	if(!location)
 		return
 
 	if(silenced)
@@ -577,7 +576,7 @@
 /obj/item/projectile/proc/tracer_effect(var/matrix/M)
 
 	//This can happen when firing inside a wall, safety check
-	if (!location)
+	if(!location)
 		return
 
 	if(ispath(tracer_type))
@@ -597,18 +596,18 @@
 				P.activate()
 
 /obj/item/projectile/proc/luminosity_effect()
-    if (!location)
-        return
+	if(!location)
+		return
 
-    if(attached_effect)
-        attached_effect.Move(src.loc)
+	if(attached_effect)
+		attached_effect.Move(src.loc)
 
-    else if(luminosity_range && luminosity_power && luminosity_color)
-        attached_effect = new /obj/effect/effect/light(src.loc, luminosity_range, luminosity_power, luminosity_color)
+	else if(luminosity_range && luminosity_power && luminosity_color)
+		attached_effect = new /obj/effect/effect/light(src.loc, luminosity_range, luminosity_power, luminosity_color)
 
 /obj/item/projectile/proc/impact_effect(var/matrix/M)
 	//This can happen when firing inside a wall, safety check
-	if (!location)
+	if(!location)
 		return
 
 	if(ispath(impact_type))

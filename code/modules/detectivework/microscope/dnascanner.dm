@@ -46,7 +46,7 @@
 	data["lidstate"] = closed
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "dnaforensics.tmpl", "QuikScan DNA Analyzer", 540, 326)
 		ui.set_initial_data(data)
 		ui.open()

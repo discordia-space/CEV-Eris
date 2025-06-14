@@ -46,15 +46,15 @@
 	else
 		wielded_item_state = "_doble"
 
-	if (ammo_magazine)
+	if(ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
 		wielded_item_state += "_mag"
 
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
 
-	if (silenced)
+	if(silenced)
 		iconstring += "_s"
 		itemstring += "_s"
 		wielded_item_state += "_s"

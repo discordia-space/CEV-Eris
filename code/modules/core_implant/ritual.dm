@@ -105,7 +105,7 @@
 /proc/get_grabbed_mob(var/mob/living/carbon/human/user)
 	var/obj/item/grab/G = locate(/obj/item/grab) in user
 
-	if (G && G.affecting && istype(G.affecting, /mob/living))
+	if(G && G.affecting && istype(G.affecting, /mob/living))
 		return G.affecting
 	return null
 
@@ -115,7 +115,7 @@
 
 /proc/get_victim(var/mob/living/carbon/human/user)
 	var/mob/living/L = get_grabbed_mob(user)
-	if (!L)
+	if(!L)
 		L = get_front_mob(user)
 	return L
 

@@ -89,7 +89,7 @@
 	return
 
 /obj/machinery/atmospherics/unary/engine/proc/burn()
-	if (!is_on())
+	if(!is_on())
 		return 0
 	if(!check_fuel())
 		audible_message(src,"<span class='warning'>[src] coughs once and goes silent!</span>")

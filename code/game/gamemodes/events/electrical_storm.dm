@@ -22,9 +22,9 @@
 
 /datum/event/electrical_storm/start()
 	switch(severity)
-		if (EVENT_LEVEL_MUNDANE)
+		if(EVENT_LEVEL_MUNDANE)
 			lightsoutAmount = 2
-		if (EVENT_LEVEL_MODERATE)
+		if(EVENT_LEVEL_MODERATE)
 			lightsoutAmount = 5
 	lightsout(TRUE, lightsoutAmount, lightsoutRange)
 
@@ -58,7 +58,7 @@
 		for(var/epicentre in epicentreList)
 			log_and_message_admins("Electrical overload triggered at [jumplink(epicentre)],")
 			for(var/obj/machinery/power/apc/apc in range(epicentre,lightsoutRange))
-				if (prob(75))
+				if(prob(75))
 					apc.overload_lighting()
 
 	else

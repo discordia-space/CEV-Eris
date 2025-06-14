@@ -1,6 +1,6 @@
 
 /datum/admins/proc/player_panel_new()//The new one
-	if (!usr.client.holder)
+	if(!usr.client.holder)
 		return
 	log_admin("[key_name(usr)] checked the player panel.")
 	var/dat = "<html><head><meta http-equiv='X-UA-Compatible' content='IE=edge; charset=UTF-8'/><title>Player Panel</title></head>"
@@ -30,7 +30,7 @@
 
 						var maintable_data = document.getElementById('maintable_data');
 						var ltr = maintable_data.getElementsByTagName("tr");
-						for ( var i = 0; i < ltr.length; ++i )
+						for( var i = 0; i < ltr.length; ++i )
 						{
 							try{
 								var tr = ltr\[i\];
@@ -43,7 +43,7 @@
 								var search = lsearch\[0\];
 								//var inner_span = li.getElementsByTagName("span")\[1\] //Should only ever contain one element.
 								//document.write("<p>"+search.innerText+"<br>"+filter+"<br>"+search.innerText.indexOf(filter))
-								if ( search.innerText.toLowerCase().indexOf(filter) == -1 )
+								if( search.innerText.toLowerCase().indexOf(filter) == -1 )
 								{
 									//document.write("a");
 									//ltr.removeChild(tr);

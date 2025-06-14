@@ -11,11 +11,11 @@
 	var/brightness_color = "#e5f3ff" //LEDs has slightly blue tint
 
 /obj/item/computer_hardware/led/enabled()
-	if (holder2)
+	if(holder2)
 		holder2.set_light()
 
 /obj/item/computer_hardware/led/disabled()
-	if (holder2)
+	if(holder2)
 		holder2.set_light()
 
 

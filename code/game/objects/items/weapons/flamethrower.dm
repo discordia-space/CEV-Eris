@@ -57,11 +57,11 @@
 	return
 
 /obj/item/flamethrower/afterattack(atom/target, mob/user, proximity)
-	if (!lit)
+	if(!lit)
 		to_chat(user, SPAN_WARNING("You press the trigger but nothing happens."))
-	if (istype(target,/obj/item) && user == target.get_holding_mob())
+	if(istype(target,/obj/item) && user == target.get_holding_mob())
 		return
-	if (get_dist(target, user) <= flamerange)
+	if(get_dist(target, user) <= flamerange)
 		// Make sure our user is still holding us
 		var/turf/target_turf = get_turf(target)
 		if(target_turf)
@@ -105,7 +105,7 @@
 			to_chat(usr, SPAN_WARNING("You press the ignite button but nothing happens."))
 			return
 		lit = !lit
-		if (lit)
+		if(lit)
 			usr.visible_message(SPAN_WARNING("\The [usr] ignites \the [src]."), SPAN_WARNING("You ignite \the [src]."), "You hear sparking.")
 			playsound(src.loc, 'sound/effects/sparks4.ogg', 50, 1)
 			START_PROCESSING(SSobj, src)

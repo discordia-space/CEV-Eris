@@ -141,7 +141,7 @@
 
 /mob/living/simple_animal/Initialize(var/mapload)
 	.=..()
-	if (mapload && can_burrow)
+	if(mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
 
 /mob/living/simple_animal/Login()
@@ -152,7 +152,7 @@
 
 /mob/living/simple_animal/updatehealth()
 	..()
-	if (health <= 0 && stat != DEAD)
+	if(health <= 0 && stat != DEAD)
 		death()
 
 /mob/living/simple_animal/examine(mob/user, extra_description = "")
@@ -287,28 +287,28 @@
 //This allows animals to digest food, and only food
 //Most drugs, poisons etc, are designed to work on carbons and affect many values a simple animal doesnt have
 /mob/living/simple_animal/proc/process_food()
-	if (hunger_enabled)
-		if (nutrition)
+	if(hunger_enabled)
+		if(nutrition)
 			adjustNutrition(-nutrition_step)//Bigger animals get hungry faster
 			nutrition = max(0,min(nutrition, max_nutrition))//clamp the value
 		else
-			if (prob(3))
+			if(prob(3))
 				to_chat(src, "You feel hungry...")
 
-		if (!reagents || !reagents.total_volume)
+		if(!reagents || !reagents.total_volume)
 			return
 
 		for(var/datum/reagent/current in reagents.reagent_list)
 			var/removed = min(current.metabolism*digest_factor, current.volume)
-			if (istype(current, /datum/reagent/organic/nutriment))//If its food, it feeds us
+			if(istype(current, /datum/reagent/organic/nutriment))//If its food, it feeds us
 				var/datum/reagent/organic/nutriment/N = current
 				adjustNutrition(removed*N.nutriment_factor)
 				var/heal_amount = removed*N.regen_factor
-				if (bruteloss > 0)
+				if(bruteloss > 0)
 					var/n = min(heal_amount, bruteloss)
 					adjustBruteLoss(-n)
 					heal_amount -= n
-				if (fireloss && heal_amount)
+				if(fireloss && heal_amount)
 					var/n = min(heal_amount, fireloss)
 					adjustFireLoss(-n)
 					heal_amount -= n
@@ -316,10 +316,10 @@
 			current.remove_self(removed)//If its not food, it just does nothing. no fancy effects
 
 /mob/living/simple_animal/can_eat()
-	if (!hunger_enabled || nutrition > max_nutrition * 0.9)
+	if(!hunger_enabled || nutrition > max_nutrition * 0.9)
 		return 0//full
 
-	else if (nutrition > max_nutrition * 0.8)
+	else if(nutrition > max_nutrition * 0.8)
 		return 1//content
 
 	else return 2//hungry
@@ -351,7 +351,7 @@
 	switch(M.a_intent)
 
 		if(I_HELP)
-			if (health > 0)
+			if(health > 0)
 				M.visible_message("\blue [M] [response_help] \the [src]")
 
 		if(I_DISARM)
@@ -360,9 +360,9 @@
 			//TODO: Push the mob away or something
 
 		if(I_GRAB)
-			if (M == src)
+			if(M == src)
 				return
-			if (!(status_flags & CANPUSH))
+			if(!(status_flags & CANPUSH))
 				return
 
 			var/obj/item/grab/G = new /obj/item/grab(M, src)
@@ -415,7 +415,7 @@
 			tally = 1
 		tally *= purge
 
-	if (!nutrition)
+	if(!nutrition)
 		tally += 4
 
 	return tally
@@ -482,7 +482,7 @@
 
 //Code to handle finding and nomming nearby food items
 /mob/living/simple_animal/proc/handle_foodscanning()
-	if (client || !hunger_enabled || !autoseek_food)
+	if(client || !hunger_enabled || !autoseek_food)
 		return 0
 
 	//Feeding, chasing food, FOOOOODDDD
@@ -500,7 +500,7 @@
 				movement_target = null
 				foodtarget = 0
 				stop_automated_movement = 0
-				if (can_eat())
+				if(can_eat())
 					for(var/obj/item/reagent_containers/food/snacks/S in oview(src,7))
 						if(isturf(S.loc) || ishuman(S.loc))
 							movement_target = S
@@ -508,7 +508,7 @@
 							break
 
 					//Look for food in people's hand
-					if (!movement_target && beg_for_food)
+					if(!movement_target && beg_for_food)
 						var/obj/item/reagent_containers/food/snacks/F = null
 						for(var/mob/living/carbon/human/H in oview(src,scan_range))
 							if(istype(H.l_hand, /obj/item/reagent_containers/food/snacks))
@@ -517,7 +517,7 @@
 							if(istype(H.r_hand, /obj/item/reagent_containers/food/snacks))
 								F = H.r_hand
 
-							if (F)
+							if(F)
 								movement_target = F
 								foodtarget = 1
 								break
@@ -526,7 +526,7 @@
 				scan_interval = min_scan_interval
 				stop_automated_movement = 1
 
-				if (istype(movement_target.loc, /turf))
+				if(istype(movement_target.loc, /turf))
 					walk_to(src,movement_target,0, seek_move_delay)//Stand ontop of food
 				else
 					walk_to(src,movement_target.loc,1, seek_move_delay)//Don't stand ontop of people
@@ -534,20 +534,20 @@
 
 
 				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
-					if (movement_target.loc.x < src.x)
+					if(movement_target.loc.x < src.x)
 						set_dir(WEST)
-					else if (movement_target.loc.x > src.x)
+					else if(movement_target.loc.x > src.x)
 						set_dir(EAST)
-					else if (movement_target.loc.y < src.y)
+					else if(movement_target.loc.y < src.y)
 						set_dir(SOUTH)
-					else if (movement_target.loc.y > src.y)
+					else if(movement_target.loc.y > src.y)
 						set_dir(NORTH)
 					else
 						set_dir(SOUTH)
 
 					if(isturf(movement_target.loc) && Adjacent(get_turf(movement_target), src))
 						UnarmedAttack(movement_target)
-						if (get_turf(movement_target) == loc)
+						if(get_turf(movement_target) == loc)
 							set_dir(pick(1,2,4,8,1,1))//Face a random direction when eating, but mostly upwards
 					else if(ishuman(movement_target.loc) && Adjacent(src, get_turf(movement_target)) && prob(15))
 						beg(movement_target, movement_target.loc)
@@ -556,7 +556,7 @@
 
 //For picking up small animals
 /mob/living/simple_animal/MouseDrop(atom/over_object)
-	if (holder_type)//we need a defined holder type in order for picking up to work
+	if(holder_type)//we need a defined holder type in order for picking up to work
 		var/mob/living/carbon/H = over_object
 		if(!istype(H) || !Adjacent(H))
 			return ..()
@@ -580,13 +580,13 @@
 //I wanted to call this proc alert but it already exists.
 //Basically makes the mob pay attention to the world, resets sleep timers, awakens it from a sleeping state sometimes
 /mob/living/simple_animal/proc/poke(var/force_wake = 0)
-	if (stat != DEAD)
-		if (force_wake || (!client && prob(30)))
+	if(stat != DEAD)
+		if(force_wake || (!client && prob(30)))
 			wake_up()
 
 //Puts the mob to sleep
 /mob/living/simple_animal/proc/fall_asleep()
-	if (stat != DEAD)
+	if(stat != DEAD)
 		resting = TRUE
 		stat = UNCONSCIOUS
 		canmove = FALSE
@@ -596,7 +596,7 @@
 
 //Wakes the mob up from sleeping
 /mob/living/simple_animal/proc/wake_up()
-	if (stat != DEAD)
+	if(stat != DEAD)
 		stat = CONSCIOUS
 		resting = FALSE
 		canmove = TRUE
@@ -604,11 +604,11 @@
 		update_icons()
 
 /mob/living/simple_animal/update_icons()
-	if (stat == DEAD)
+	if(stat == DEAD)
 		icon_state = icon_dead
-	else if ((stat == UNCONSCIOUS || resting) && icon_rest)
+	else if((stat == UNCONSCIOUS || resting) && icon_rest)
 		icon_state = icon_rest
-	else if (icon_living)
+	else if(icon_living)
 		icon_state = icon_living
 
 /mob/living/simple_animal/lay_down()
@@ -616,7 +616,7 @@
 	set category = "Abilities"
 	if(resting)
 		wake_up()
-	else if (!resting)
+	else if(!resting)
 		fall_asleep()
 	to_chat(src, span("notice","You are now [resting ? "resting" : "getting up"]"))
 	update_icons()

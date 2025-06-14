@@ -82,16 +82,16 @@ Depreciated recipes that had special functions with a microwave I'm trying to re
 		return being_cooked
 	check_items(var/obj/container as obj)
 		. = ..()
-		if (.)
+		if(.)
 			var/obj/item/paper/paper = locate() in container
-			if (!paper || !paper.info)
+			if(!paper || !paper.info)
 				return 0
 		return .
 
 /datum/recipe/spacylibertyduff
 	reagents = list("water" = 5, "vodka" = 5, "psilocybin" = 5)
 	result = /obj/item/reagent_containers/food/snacks/spacylibertyduff
-	
+
 /datum/recipe/enchiladas
 	fruit = list("chili" = 2, "corn" = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/cutlet)

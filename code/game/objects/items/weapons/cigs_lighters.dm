@@ -20,7 +20,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/lit = 0
 
 /obj/item/flame/is_hot()
-	if (lit)
+	if(lit)
 		return heat
 
 /proc/isflamesource(A)
@@ -30,7 +30,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			return TRUE
 		if(QUALITY_CAUTERIZING in I.tool_qualities)
 			return TRUE
-		if (I.is_hot())
+		if(I.is_hot())
 			return TRUE
 	if(istype(A, /obj/item/flame))
 		var/obj/item/flame/F = A
@@ -143,7 +143,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(smoketime % 10 == 0)
 		if(reagents && reagents.total_volume) // check if it has any reagents at all
 			if(ishuman(loc))
-				if (src == C.wear_mask && C.check_has_mouth()) // if it's in the human/monkey mouth, transfer reagents to the mob
+				if(src == C.wear_mask && C.check_has_mouth()) // if it's in the human/monkey mouth, transfer reagents to the mob
 					reagents.trans_to_mob(C, REM, CHEM_INGEST, 0.2) // Most of it is not inhaled... balance reasons.
 			else // else just remove some of the reagents
 				reagents.remove_any(REM)
@@ -177,12 +177,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
 	var/turf/T = get_turf(src)
 	set_light(0)
-	if (type_butt)
+	if(type_butt)
 		var/obj/item/butt = new type_butt(T)
 		transfer_fingerprints_to(butt)
 		if(ismob(loc))
 			var/mob/living/M = loc
-			if (!nomessage)
+			if(!nomessage)
 				to_chat(M, SPAN_NOTICE("Your [name] goes out."))
 			M.remove_from_mob(src) //un-equip it so the overlays can update
 			M.update_inv_wear_mask(0)
@@ -194,7 +194,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		new /obj/effect/decal/cleanable/ash(T)
 		if(ismob(loc))
 			var/mob/living/M = loc
-			if (!nomessage)
+			if(!nomessage)
 				to_chat(M, SPAN_NOTICE("Your [name] goes out, and you empty the ash."))
 			lit = 0
 			icon_state = icon_off
@@ -491,7 +491,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		icon_state = icon_off
 		item_state = icon_off
 		STOP_PROCESSING(SSobj, src)
-	else if (smoketime)
+	else if(smoketime)
 		var/turf/location = get_turf(user)
 		user.visible_message(SPAN_NOTICE("[user] empties out [src]."), SPAN_NOTICE("You empty out [src]."))
 		new /obj/effect/decal/cleanable/ash(location)
@@ -505,12 +505,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	..()
 
-	if (istype(W, /obj/item/reagent_containers/food/snacks))
+	if(istype(W, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/grown/G = W
-		if (!G.dry)
+		if(!G.dry)
 			to_chat(user, SPAN_NOTICE("[G] must be dried before you stuff it into [src]."))
 			return
-		if (smoketime)
+		if(smoketime)
 			to_chat(user, SPAN_NOTICE("[src] is already packed."))
 			return
 		smoketime = 1000
@@ -598,7 +598,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					user.visible_message(SPAN_NOTICE("After a few attempts, [user] manages to light the [src]."))
 				else
 					to_chat(user, SPAN_WARNING("You burn yourself while lighting the lighter."))
-					if (user.l_hand == src)
+					if(user.l_hand == src)
 						user.apply_damage(2, BURN, BP_L_ARM, used_weapon = src)
 					else
 						user.apply_damage(2, BURN, BP_R_ARM, used_weapon = src)

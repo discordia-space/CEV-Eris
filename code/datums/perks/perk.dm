@@ -1,12 +1,12 @@
-/**
-  * The root perk datum. All perks inherit properties from this one.
-  *
-  * A perk is basically a talent that livings may have. This talent could be something like damage reduction, or some other passive benefit.
-  * Some jobs have perks that are assigned to the human during role assignment.
-  * Perks can be assigned or removed. To handle this, use the mob stats datum, with the helper procs addPerk, removePerk and getPerk.
-  * The static effects are given in assign, and removed in remove.
-  * Perks are stored in a list within a stat_holder datum.
-  */
+/*
+* The root perk datum. All perks inherit properties from this one.
+*
+* A perk is basically a talent that livings may have. This talent could be something like damage reduction, or some other passive benefit.
+* Some jobs have perks that are assigned to the human during role assignment.
+* Perks can be assigned or removed. To handle this, use the mob stats datum, with the helper procs addPerk, removePerk and getPerk.
+* The static effects are given in assign, and removed in remove.
+* Perks are stored in a list within a stat_holder datum.
+*/
 /datum/perk
 	var/name = "Perk"
 	var/desc = ""

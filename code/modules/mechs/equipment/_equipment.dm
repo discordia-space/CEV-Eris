@@ -48,7 +48,7 @@
 
 /obj/item/mech_equipment/afterattack(atom/target, mob/living/user, inrange, params)
 
-	if (owner && loc == owner && ((user in owner.pilots) || user == owner))
+	if(owner && loc == owner && ((user in owner.pilots) || user == owner))
 		if(target in owner.contents)
 			return FALSE
 		var/obj/item/cell/C = owner.get_cell()
@@ -69,7 +69,7 @@
 			return attack_self(usr)
 
 /obj/item/mech_equipment/attack_self(var/mob/user)
-	if (owner && loc == owner && ((user in owner.pilots) || user == owner))
+	if(owner && loc == owner && ((user in owner.pilots) || user == owner))
 		var/obj/item/cell/C = owner.get_cell()
 		if(C && active_power_use == 0)
 			return TRUE

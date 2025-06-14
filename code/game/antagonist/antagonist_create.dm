@@ -21,7 +21,7 @@
 
 		place_antagonist()
 
-		if (appearance_editor)
+		if(appearance_editor)
 			spawn(3)
 				var/mob/living/carbon/human/H = owner.current
 				if(istype(H))
@@ -66,7 +66,7 @@
 	M.client = ghost.client
 
 	//Load your character setup onto the new mob, only if human
-	if (load_character && ishuman(M))
+	if(load_character && ishuman(M))
 
 		var/datum/preferences/P = M.client.prefs
 		P.copy_to(M, FALSE)
@@ -109,7 +109,7 @@
 		faction = null
 
 	GLOB.current_antags.Remove(src)
-	if (!owner)
+	if(!owner)
 		return //This can happen with some spamclicking
 	if(owner.current)
 		BITSET(owner.current.hud_updateflag, SPECIALROLE_HUD)

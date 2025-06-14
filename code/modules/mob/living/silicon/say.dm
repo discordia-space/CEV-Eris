@@ -19,7 +19,7 @@
 	if(message_mode == "department" || holo)
 		return holopad_talk(message, verb, speaking)
 	else if(message_mode)
-		if (aiRadio.disabledAi || aiRestorePowerRoutine || stat)
+		if(aiRadio.disabledAi || aiRestorePowerRoutine || stat)
 			to_chat(src, SPAN_DANGER("System Error - Transceiver Disabled."))
 			return 0
 		if(message_mode == "general")
@@ -36,9 +36,9 @@
 /mob/living/silicon/say_quote(var/text)
 	var/ending = copytext(text, length(text))
 
-	if (ending == "?")
+	if(ending == "?")
 		return speak_query
-	else if (ending == "!")
+	else if(ending == "!")
 		return speak_exclamation
 
 	return speak_statement
@@ -49,10 +49,10 @@
 
 /mob/living/silicon/say_understands(var/other,var/datum/language/speaking = null)
 	//These only pertain to common. Languages are handled by mob/say_understands()
-	if (!speaking)
-		if (iscarbon(other))
+	if(!speaking)
+		if(iscarbon(other))
 			return 1
-		if (issilicon(other))
+		if(issilicon(other))
 			return 1
 	return ..()
 
@@ -63,7 +63,7 @@
 
 	message = trim(message)
 
-	if (!message)
+	if(!message)
 		return FALSE
 
 	var/obj/machinery/hologram/holopad/H = src.holo
@@ -113,7 +113,7 @@
 
 	message = trim(message)
 
-	if (!message)
+	if(!message)
 		return
 
 	var/obj/machinery/hologram/holopad/T = src.holo

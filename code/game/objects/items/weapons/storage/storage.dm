@@ -91,7 +91,7 @@
 	itemIcon.vis_contents += item //this draws the actual item, see byond ref for vis_contents var
 	itemBackground.setName(item.name, TRUE)
 
-	if (itemCount)
+	if(itemCount)
 		item.maptext = "<font color='white'>[itemCount]</font>"
 
 /obj/item/storage/proc/generateHUD(datum/hud/data)
@@ -143,11 +143,11 @@
 
 			totalWidth += itemBackground.getWidth() + spacingBetweenSlots
 
-		if (contents.len)
+		if(contents.len)
 			totalWidth -= spacingBetweenSlots
 
 		var/remainingStorage = max_storage_space - totalStorageCost
-		if (remainingStorage)
+		if(remainingStorage)
 			remainingStorage += 2 //in pixels, creates a small area where items can be put
 
 		storageBackground.scaleToSize(max(totalWidth + remainingStorage, minBackgroundWidth) + paddingSides)
@@ -160,13 +160,13 @@
 		var/list/storage_contents
 		var/list/filtered_contents_last
 		var/list/filtered_contents_count
-		if (display_contents_with_number) //used to display number next to item icons, indicating how many of such items are in storage
+		if(display_contents_with_number) //used to display number next to item icons, indicating how many of such items are in storage
 			storage_contents = new //item types in storage
 			filtered_contents_last = new //last of x item type in storage
 			filtered_contents_count = new //total number of x item type in storage
 			for(var/obj/item/I in contents) //count items and remember last item for each type
 				var/item_type = I.type
-				if (filtered_contents_count[item_type])
+				if(filtered_contents_count[item_type])
 					filtered_contents_count[item_type]++
 				else
 					storage_contents.Add(item_type)
@@ -182,19 +182,19 @@
 		var/totalHeight = 0
 
 		var/slotsToDisplay = storage_contents.len+1 //how many item slots are being displayed
-		if (storage_slots)
+		if(storage_slots)
 			slotsToDisplay = min(slotsToDisplay, storage_slots) //limit display to max slot count, if present
 
 		var/currentSlot
 		var/currentItemNumber = 1
 		var/maxColumnCount = min(data.StorageData["ColCount"], slotsToDisplay)
-		for (currentSlot = 1, currentSlot <= slotsToDisplay, currentSlot++)
+		for(currentSlot = 1, currentSlot <= slotsToDisplay, currentSlot++)
 			var/HUD_element/slottedItemBackground/itemBackground = new()
 			main.add(itemBackground)
 			itemBackground.setPosition(totalWidth, totalHeight)
 
-			if (currentItemNumber <= storage_contents.len)
-				if (display_contents_with_number)
+			if(currentItemNumber <= storage_contents.len)
+				if(display_contents_with_number)
 					var/item_type = storage_contents[currentItemNumber]
 					setupItemBackground(itemBackground, filtered_contents_last[item_type], filtered_contents_count[item_type])
 				else
@@ -207,8 +207,8 @@
 
 			totalWidth += itemBackground.getWidth() + spacingBetweenSlots
 
-			if (!(currentSlot%maxColumnCount))
-				if (!totalHeight)
+			if(!(currentSlot%maxColumnCount))
+				if(!totalHeight)
 					main.add(closeButton)
 					closeButton.setPosition(totalWidth, 0)
 
@@ -236,7 +236,7 @@
 		L += S.return_inv()
 	for(var/obj/item/gift/G in src)
 		L += G.gift
-		if (istype(G.gift, /obj/item/storage))
+		if(istype(G.gift, /obj/item/storage))
 			L += G.gift:return_inv()
 	. = L
 
@@ -245,7 +245,7 @@
 		return
 
 	if(user.s_active != src) //opening a new storage item
-		if (user.s_active) //user already had a storage item open
+		if(user.s_active) //user already had a storage item open
 			user.s_active.close(user)
 
 		for(var/obj/item/I in src)
@@ -262,7 +262,7 @@
 
 /obj/item/storage/proc/hide_from(mob/user)
 	is_seeing -= user
-	if (user.s_active == src)
+	if(user.s_active == src)
 		user.s_active = null
 
 	if(!user.client)
@@ -293,10 +293,10 @@
 		close(M)
 
 /obj/item/storage/proc/refresh_all()
-	for (var/mob/M in is_seeing)
-		if (M.client)
+	for(var/mob/M in is_seeing)
+		if(M.client)
 			var/datum/hud/data = GLOB.HUDdatums[M.defaultHUD]
-			if (data)
+			if(data)
 				generateHUD(data).show(M.client)
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
@@ -333,7 +333,7 @@
 			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W]."))
 		return FALSE
 
-	if (max_w_class != null && W.w_class > max_w_class)
+	if(max_w_class != null && W.w_class > max_w_class)
 		if(!stop_messages)
 			to_chat(usr, SPAN_NOTICE("[W] is too long for this [src]."))
 		return FALSE
@@ -360,8 +360,8 @@
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
 //such as when picking up all the items on a tile with one click.
 /obj/item/storage/proc/handle_item_insertion(obj/item/W, prevent_warning = 0)
-	if (!istype(W)) return 0
-	if (usr)
+	if(!istype(W)) return 0
+	if(usr)
 		usr.prepare_for_slotmove(W)
 		usr.update_icons() //update our overlays
 
@@ -370,18 +370,18 @@
 	W.on_enter_storage(src)
 
 	if(usr)
-		if (usr.client)
+		if(usr.client)
 			usr.client.screen -= W
 		W.dropped(usr)
 		add_fingerprint(usr)
 
-		if (!prevent_warning)
-			for (var/mob/M in viewers(usr, null))
-				if (M == usr)
+		if(!prevent_warning)
+			for(var/mob/M in viewers(usr, null))
+				if(M == usr)
 					to_chat(usr, SPAN_NOTICE("You put \the [W] into [src]."))
-				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
+				else if(M in range(1)) //If someone is standing close enough, they can tell what it is...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
-				else if (W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
+				else if(W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
 
 	refresh_all()
@@ -391,21 +391,21 @@
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/storage/proc/remove_from_storage(obj/item/W, atom/new_location)
-	if (!istype(W))
+	if(!istype(W))
 		return
 
-	if (istype(src, /obj/item/storage/fancy)) //todo: why
+	if(istype(src, /obj/item/storage/fancy)) //todo: why
 		var/obj/item/storage/fancy/F = src
 		F.update_icon(1)
 
-	if (new_location)
+	if(new_location)
 		W.loc = new_location
 	else
 		W.loc = get_turf(src)
 
 	refresh_all()
 
-	if (W.maptext)
+	if(W.maptext)
 		W.maptext = ""
 
 	W.on_exit_storage(src)
@@ -442,7 +442,7 @@
 				return
 			else //todo: proper drop handling
 				W.loc = user.loc
-				if (user.client)
+				if(user.client)
 					user.client.screen -= W
 				W.dropped(user)
 				to_chat(user, SPAN_WARNING("God damnit!"))
@@ -485,7 +485,7 @@
 	if(user)
 		if(.)
 			user.visible_message(SPAN_NOTICE("[user] puts some things in [src]."),SPAN_NOTICE("You put some things in [src]."),SPAN_NOTICE("You hear rustling."))
-			if (src.use_sound)
+			if(src.use_sound)
 				playsound(src.loc, src.use_sound, 50, 1, -5)
 		else
 			to_chat(user, SPAN_NOTICE("You fail to pick anything up with \the [src]."))
@@ -593,7 +593,7 @@
 	max_storage_space = max(ospace, max_storage_space)
 
 	//Remove any specific limits that were placed, if we were originally unlimited
-	if (!olimitedhold)
+	if(!olimitedhold)
 		can_hold.Cut()
 
 //Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
@@ -602,14 +602,14 @@
 	var/depth = 0
 	var/atom/cur_atom = src
 
-	while (cur_atom && !(cur_atom in container.contents))
-		if (isarea(cur_atom))
+	while(cur_atom && !(cur_atom in container.contents))
+		if(isarea(cur_atom))
 			return -1
-		if (istype(cur_atom.loc, /obj/item/storage))
+		if(istype(cur_atom.loc, /obj/item/storage))
 			depth++
 		cur_atom = cur_atom.loc
 
-	if (!cur_atom)
+	if(!cur_atom)
 		return -1	//inside something with a null loc.
 
 	. = depth
@@ -620,14 +620,14 @@
 	var/depth = 0
 	var/atom/cur_atom = src
 
-	while (cur_atom && !isturf(cur_atom))
-		if (isarea(cur_atom))
+	while(cur_atom && !isturf(cur_atom))
+		if(isarea(cur_atom))
 			return -1
-		if (istype(cur_atom.loc, /obj/item/storage))
+		if(istype(cur_atom.loc, /obj/item/storage))
 			depth++
 		cur_atom = cur_atom.loc
 
-	if (!cur_atom)
+	if(!cur_atom)
 		return -1	//inside something with a null loc.
 
 	. = depth
@@ -638,10 +638,10 @@
 
 //Useful for spilling the contents of containers all over the floor
 /obj/item/storage/proc/spill(dist = 2, turf/T)
-	if (!istype(T))//If its not on the floor this might cause issues
+	if(!istype(T))//If its not on the floor this might cause issues
 		T = get_turf(src)
 
-	for (var/obj/O in contents)
+	for(var/obj/O in contents)
 		remove_from_storage(O, T)
 		O.tumble(2)
 

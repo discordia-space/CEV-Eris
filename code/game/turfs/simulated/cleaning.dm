@@ -58,11 +58,11 @@
 
 //As above, but has limitations. Instead of cleaning the tile completely, it just cleans [count] number of things
 /turf/proc/clean_partial(atom/source, mob/user, var/count = 1)
-	if (!count)
+	if(!count)
 		return
 
 	//A negative value can mean infinite cleaning, but in that case just call the unlimited version
-	if (!isnum(count) || count < 0)
+	if(!isnum(count) || count < 0)
 		clean(source, user)
 		return
 
@@ -72,7 +72,7 @@
 		to_chat(user, SPAN_WARNING("\The [source] is too dry to wash that."))
 		return
 
-	for (count;count > 0;count--)
+	for(count;count > 0;count--)
 		var/cleanedsomething = FALSE
 
 
@@ -83,7 +83,7 @@
 				break //Only clean one per loop iteration
 
 		//If the tile is clean, don't keep looping
-		if (!cleanedsomething)
+		if(!cleanedsomething)
 			break
 
 /turf/proc/update_blood_overlays()
@@ -99,7 +99,7 @@
 
 //returns 1 if made bloody, returns 0 otherwise
 /turf/add_blood(mob/living/carbon/human/M as mob)
-	if (!..())
+	if(!..())
 		return 0
 
 	if(istype(M))

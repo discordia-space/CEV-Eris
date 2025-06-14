@@ -22,7 +22,7 @@
 
 
 /obj/item/implantpad/attack_hand(mob/living/user)
-	if ((src.case && (user.l_hand == src || user.r_hand == src)))
+	if((src.case && (user.l_hand == src || user.r_hand == src)))
 		user.put_in_active_hand(case)
 		case = null
 
@@ -61,15 +61,15 @@
 
 /obj/item/implantpad/Topic(href, href_list)
 	..()
-	if (usr.stat)
+	if(usr.stat)
 		return
-	if ((usr.contents.Find(src)) || ((in_range(src, usr) && istype(src.loc, /turf))))
+	if((usr.contents.Find(src)) || ((in_range(src, usr) && istype(src.loc, /turf))))
 		usr.set_machine(src)
-		if (ismob(loc))
+		if(ismob(loc))
 			attack_self(src.loc)
 		else
 			for(var/mob/M in viewers(1, src))
-				if (M.client)
+				if(M.client)
 					src.attack_self(M)
 		src.add_fingerprint(usr)
 	else

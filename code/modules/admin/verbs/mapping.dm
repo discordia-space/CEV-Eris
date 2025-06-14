@@ -88,7 +88,7 @@ var/intercom_range_display_status = 0
 			if(!(locate(/obj/structure/grille,T)))
 				var/window_check = 0
 				for(var/obj/structure/window/W in T)
-					if (W.dir == turn(C1.dir,180) || (W.dir in list(NORTHEAST, SOUTHEAST, NORTHWEST, SOUTHWEST)))
+					if(W.dir == turn(C1.dir,180) || (W.dir in list(NORTHEAST, SOUTHEAST, NORTHWEST, SOUTHWEST)))
 						window_check = 1
 						break
 				if(!window_check)
@@ -114,7 +114,7 @@ var/intercom_range_display_status = 0
 		for(var/obj/item/device/radio/intercom/I in world)
 			for(var/turf/T in RANGE_TURFS(7, I))
 				var/obj/effect/debugging/marker/F = new(T)
-				if (!(F in view(7, I.loc)))
+				if(!(F in view(7, I.loc)))
 					qdel(F)
 
 

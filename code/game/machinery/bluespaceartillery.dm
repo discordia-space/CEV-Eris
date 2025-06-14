@@ -33,15 +33,15 @@
 
 /obj/machinery/artillerycontrol/Topic(href, href_list)
 	..()
-	if (usr.stat || usr.restrained())
+	if(usr.stat || usr.restrained())
 		return
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
+	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
 		var/A
 		A = input("Area to jump bombard", "Open Fire", A) in SSmapping.main_ship_areas_by_name
 		var/area/thearea = SSmapping.main_ship_areas_by_name[A]
-		if (usr.stat || usr.restrained()) return
+		if(usr.stat || usr.restrained()) return
 		if(src.reload < 180) return
-		if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
+		if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
 			command_announcement.Announce("Bluespace artillery fire detected. Brace for impact.")
 			message_admins("[key_name_admin(usr)] has launched an artillery strike.", 1)
 			var/list/L = list()

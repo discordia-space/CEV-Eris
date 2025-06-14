@@ -163,21 +163,21 @@
 	return 1
 
 /mob/living/carbon/brain/handle_regular_hud_updates()
-	if (stat == 2) // || (XRAY in src.mutations)
+	if(stat == 2) // || (XRAY in src.mutations)
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS
 		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-	else if (stat != 2)
+	else if(stat != 2)
 		sight &= ~SEE_TURFS
 		sight &= ~SEE_MOBS
 		sight &= ~SEE_OBJS
 		see_in_dark = 2
 		see_invisible = SEE_INVISIBLE_LIVING
 
-/*	if (healths)
-		if (stat != 2)
+/*	if(healths)
+		if(stat != 2)
 			switch(health)
 				if(100 to INFINITY)
 					healths.icon_state = "health0"
@@ -196,39 +196,39 @@
 		else
 			healths.icon_state = "health7"*/
 
-		if (stat == 2) // || (XRAY in src.mutations)
+		if(stat == 2) // || (XRAY in src.mutations)
 			sight |= SEE_TURFS
 			sight |= SEE_MOBS
 			sight |= SEE_OBJS
 			see_in_dark = 8
 			see_invisible = SEE_INVISIBLE_LEVEL_TWO
-		else if (stat != 2)
+		else if(stat != 2)
 			sight &= ~SEE_TURFS
 			sight &= ~SEE_MOBS
 			sight &= ~SEE_OBJS
 			see_in_dark = 2
 			see_invisible = SEE_INVISIBLE_LIVING
-	if (client)
+	if(client)
 		client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
 
-/*	if (stat != 2)
-		if (blind)
-			if ((blinded))
+/*	if(stat != 2)
+		if(blind)
+			if((blinded))
 				blind.alpha = 255
 			else
 				blind.alpha = 0
 
-				if (disabilities & NEARSIGHTED)
+				if(disabilities & NEARSIGHTED)
 					client.screen += global_hud.vimpaired
 
-				if (eye_blurry)
+				if(eye_blurry)
 					client.screen += global_hud.blurry
 
-				if (druggy)
+				if(druggy)
 					client.screen += global_hud.druggy*/
 
-		if (machine)
-			if (!( machine.check_eye(src) ))
+		if(machine)
+			if(!( machine.check_eye(src) ))
 				reset_view(null)
 		else
 			if(client && !client.adminobs)

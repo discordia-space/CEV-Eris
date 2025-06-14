@@ -109,9 +109,9 @@
 		var/current_price = 0
 		if(A in valied_areas)
 			continue
-		if (istype(A, /area/shuttle))
+		if(istype(A, /area/shuttle))
 			continue
-		if (A.is_maintenance)
+		if(A.is_maintenance)
 			continue
 		for(var/obj/item/I in A.contents)
 			current_price += I.get_item_cost()
