@@ -227,7 +227,7 @@
 // Description: If we are clicked with crowbar or wielded fire axe, try to manually open the door.
 // This only works on broken doors or doors without power. Also allows repair with Plasteel.
 /obj/machinery/door/blast/attackby(obj/item/I, mob/user)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(user.a_intent == I_HURT)
 		hit(user, I, FALSE)
 		return

@@ -73,7 +73,6 @@
 
 /obj/effect/overmap/ship/proc/check_link()
 	// Depending on initialization order the Initialize() does not properly make the links
-
 	for(var/datum/ship_engine/E in ship_engines)
 		if(E.holder.z in map_z)
 			engines |= E
@@ -192,17 +191,14 @@
 		overlays += image('icons/obj/overmap.dmi', "vector", "dir"=dir)
 
 /obj/effect/overmap/ship/proc/burn()
-
 	for(var/datum/ship_engine/E in engines)
 		. += E.burn()
 
 /obj/effect/overmap/ship/proc/get_total_thrust()
-
 	for(var/datum/ship_engine/E in engines)
 		. += E.get_thrust()
 
 /obj/effect/overmap/ship/proc/can_burn()
-
 	if(world.time < last_burn + burn_delay)
 		return 0
 	for(var/datum/ship_engine/E in engines)
@@ -237,13 +233,12 @@
     if(T)
         forceMove(T)
 
-/obj/effect/overmap/ship/Bump(var/atom/A)
+/obj/effect/overmap/ship/Bump(atom/A)
 	if(istype(A,/turf/map/edge))
 		handle_wraparound()
 	..()
 
 /obj/effect/overmap/ship/proc/pulse()
-
 	if(pulsing)  // Should not happen but better to check
 		return
 
@@ -266,12 +261,10 @@
 			overmap_event_handler.scan_loc(src, loc, can_scan(), ACTIVE_SCAN_RANGE - initial(scan_range) + 3)
 
 /obj/effect/overmap/ship/proc/can_scan()
-
 	for(var/obj/machinery/power/shipside/long_range_scanner/LRS in scanners)
 		. |= (LRS.running)
 
 /obj/effect/overmap/ship/proc/can_pulse()
-
 	if(pulsing)  // If the ship is already pulsing it cannot pulse again
 		return FALSE
 
@@ -289,4 +282,3 @@
 
 /obj/effect/overmap/ship/proc/scan_poi()
 	overmap_event_handler.scan_poi(src, loc) // Eris uses its sensors to scan a nearby point of interest
-	return

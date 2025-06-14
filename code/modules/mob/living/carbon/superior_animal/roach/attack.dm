@@ -1,4 +1,4 @@
-/mob/living/carbon/superior_animal/roach/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/carbon/superior_animal/roach/UnarmedAttack(atom/A, proximity)
 	if(isliving(A))
 		var/mob/living/L = A
 		var/mob/living/carbon/human/H
@@ -15,7 +15,4 @@
 			else
 				L.Weaken(3)
 				L.visible_message(SPAN_DANGER("\the [src] knocks down \the [L]!"))
-
 	. = ..()
-
-

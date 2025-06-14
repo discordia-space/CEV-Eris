@@ -79,7 +79,7 @@
 	P.entropy_value += entropy_value
 	if(portal_fail_chance)
 		P.failchance = portal_fail_chance
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 /obj/item/hand_tele/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))

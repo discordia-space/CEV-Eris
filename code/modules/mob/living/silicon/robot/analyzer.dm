@@ -93,4 +93,4 @@
 					to_chat(user, "[O.name]: <font color='red'>[O.damage]</font>")
 			if(!organ_found)
 				to_chat(user, "No prosthetics located.")
-	src.add_fingerprint(user)
+	add_fingerprint(user)

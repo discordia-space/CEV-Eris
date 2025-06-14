@@ -55,7 +55,7 @@
 		new /obj/item/gun/energy/captain( src.loc )
 		to_chat(user, SPAN_NOTICE("You deactivate the hover field built into the case."))
 		src.occupied = 0
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		update_icon()
 		return
 	else

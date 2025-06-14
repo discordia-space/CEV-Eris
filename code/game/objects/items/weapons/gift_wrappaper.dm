@@ -164,7 +164,7 @@
 				W.loc = G
 				G.add_fingerprint(user)
 				W.add_fingerprint(user)
-				src.add_fingerprint(user)
+				add_fingerprint(user)
 			if(src.amount <= 0)
 				new /obj/item/c_tube( src.loc )
 				qdel(src)

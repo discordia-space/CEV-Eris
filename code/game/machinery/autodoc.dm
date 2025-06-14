@@ -18,12 +18,10 @@
 	autodoc_processor.holder = src
 	autodoc_processor.damage_heal_amount = 20
 
-
 /obj/machinery/autodoc/relaymove(mob/user)
 	if(user.stat)
 		return
-	src.go_out()
-	return
+	go_out()
 
 /obj/machinery/autodoc/attackby(obj/item/I, mob/living/user)
 	if(default_deconstruction(I, user))
@@ -39,9 +37,8 @@
 
 	if(usr.incapacitated())
 		return
-	src.go_out()
+	go_out()
 	add_fingerprint(usr)
-	return
 
 /obj/machinery/autodoc/verb/move_inside()
 	set src in view(1)
@@ -57,8 +54,7 @@
 		to_chat(usr, SPAN_WARNING("The subject cannot have abiotic items on."))
 		return
 	set_occupant(usr)
-	src.add_fingerprint(usr)
-	return
+	add_fingerprint(usr)
 
 /obj/machinery/autodoc/proc/go_out()
 	if(!occupant || locked)
@@ -76,10 +72,10 @@
 	set_power_use(IDLE_POWER_USE)
 	update_icon()
 
-/obj/machinery/autodoc/proc/set_occupant(var/mob/living/L)
+/obj/machinery/autodoc/proc/set_occupant(mob/living/L)
 	L.forceMove(src)
 	src.occupant = L
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	if(stat & (NOPOWER|BROKEN))
 		update_icon()
 		return
@@ -90,7 +86,7 @@
 		L.set_machine(src)
 	update_icon()
 
-/obj/machinery/autodoc/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/autodoc/affect_grab(mob/user, mob/target)
 	if(src.occupant)
 		to_chat(user, SPAN_NOTICE("The autodoc is already occupied!"))
 		return
@@ -101,10 +97,10 @@
 		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
 		return
 	set_occupant(target)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return TRUE
 
-/obj/machinery/autodoc/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/autodoc/MouseDrop_T(mob/target, mob/user)
 	if(!ismob(target))
 		return
 	if(src.occupant)
@@ -123,7 +119,7 @@
 	if(!do_after(user, 30, src) || !Adjacent(target))
 		return
 	set_occupant(target)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	update_icon()
 	return
 
@@ -135,7 +131,7 @@
 		locked = autodoc_processor.active
 	update_icon()
 
-/obj/machinery/autodoc/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FORCE_OPEN, var/datum/nano_topic_state/state = GLOB.default_state)
+/obj/machinery/autodoc/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FORCE_OPEN, datum/nano_topic_state/state = GLOB.default_state)
 	autodoc_processor.nano_ui_interact(user, ui_key, ui, force_open, state)
 
 /obj/machinery/autodoc/Topic(href, href_list)

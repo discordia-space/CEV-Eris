@@ -362,7 +362,7 @@
 		var/obj/item/stack/F = src.split(1)
 		if(F)
 			user.put_in_hands(F)
-			src.add_fingerprint(user)
+			add_fingerprint(user)
 			F.add_fingerprint(user)
 			spawn(0)
 				if(src && usr.machine==src)

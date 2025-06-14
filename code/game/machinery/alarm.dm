@@ -159,9 +159,7 @@
 		if(RCON_YES)
 			remote_control = 1
 
-	return
-
-/obj/machinery/alarm/proc/handle_heating_cooling(var/datum/gas_mixture/environment)
+/obj/machinery/alarm/proc/handle_heating_cooling(datum/gas_mixture/environment)
 	if(!regulating_temperature)
 		//check for when we should start adjusting temperature
 		if(get_danger_level(environment.temperature, TLV["temperature"]) || abs(environment.temperature - target_temperature) > 2)
@@ -200,7 +198,7 @@
 				heat_transfer = -environment.add_thermal_energy(-heat_transfer)	//get the actual heat transfer
 				//use_power(heat_transfer / cop, ENVIRON)	//handle by update_use_power instead
 
-/obj/machinery/alarm/proc/overall_danger_level(var/datum/gas_mixture/environment)
+/obj/machinery/alarm/proc/overall_danger_level(datum/gas_mixture/environment)
 	var/partial_pressure = R_IDEAL_GAS_EQUATION*environment.temperature/environment.volume
 	var/environment_pressure = environment.return_pressure()
 
@@ -214,20 +212,17 @@
 	plasma_dangerlevel = get_danger_level(environment.gas["plasma"]*partial_pressure, TLV["plasma"])
 	temperature_dangerlevel = get_danger_level(environment.temperature, TLV["temperature"])
 	other_dangerlevel = get_danger_level(other_moles*partial_pressure, TLV["other"])
-
 	return max(
 		pressure_dangerlevel,
 		oxygen_dangerlevel,
 		co2_dangerlevel,
 		plasma_dangerlevel,
 		other_dangerlevel,
-		temperature_dangerlevel
-		)
+		temperature_dangerlevel)
 
 // Returns whether this air alarm thinks there is a breach, given the sensors that are available to it.
 /obj/machinery/alarm/proc/breach_detected()
 	var/turf/location = loc
-
 	if(!istype(location))
 		return 0
 
@@ -241,13 +236,10 @@
 	if(environment_pressure <= pressure_levels[1])		//low pressures
 		if(!(mode == AALARM_MODE_PANIC || mode == AALARM_MODE_CYCLE))
 			return 1
-
 	return 0
-
 
 /obj/machinery/alarm/proc/master_is_operating()
 	return alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.stat & (NOPOWER|BROKEN))
-
 
 /obj/machinery/alarm/proc/elect_master()
 	for(var/obj/machinery/alarm/AA in alarm_area)
@@ -256,7 +248,7 @@
 			return 1
 	return 0
 
-/obj/machinery/alarm/proc/get_danger_level(var/current_value, var/list/danger_levels)
+/obj/machinery/alarm/proc/get_danger_level(current_value, list/danger_levels)
 	if((current_value >= danger_levels[4] && danger_levels[4] > 0) || current_value <= danger_levels[1])
 		return 2
 	if((current_value >= danger_levels[3] && danger_levels[3] > 0) || current_value <= danger_levels[2])
@@ -334,7 +326,7 @@
 	else if(dev_type == "AVP")
 		alarm_area.air_vent_info[id_tag] = signal.data
 
-/obj/machinery/alarm/proc/register_env_machine(var/m_id, var/device_type)
+/obj/machinery/alarm/proc/register_env_machine(m_id, device_type)
 	var/new_name
 	if(device_type=="AVP")
 		new_name = "[alarm_area.name] Vent Pump #[alarm_area.air_vent_names.len+1]"
@@ -364,7 +356,7 @@
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_TO_AIRALARM)
 
-/obj/machinery/alarm/proc/send_signal(var/target, var/list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
+/obj/machinery/alarm/proc/send_signal(target, list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
 	if(!radio_connection)
 		return 0
 
@@ -378,10 +370,9 @@
 
 	radio_connection.post_signal(src, signal, RADIO_FROM_AIRALARM)
 //			world << text("Signal [] Broadcasted to []", command, target)
-
 	return 1
 
-/obj/machinery/alarm/proc/apply_mode(var/new_mode)
+/obj/machinery/alarm/proc/apply_mode(new_mode)
 	//propagate mode to other air alarms in the area
 	//TODO: make it so that players can choose between applying the new mode to the room they are in (related area) vs the entire alarm area
 	if(new_mode)
@@ -428,7 +419,7 @@
 			for(var/device_id in alarm_area.air_vent_names)
 				send_signal(device_id, list("power"= 0) )
 
-/obj/machinery/alarm/proc/apply_danger_level(var/new_danger_level)
+/obj/machinery/alarm/proc/apply_danger_level(new_danger_level)
 	if(report_danger_level && alarm_area.atmosalert(new_danger_level, src))
 		post_alert(new_danger_level)
 	alarm_area.updateicon()
@@ -467,7 +458,7 @@
 	nano_ui_interact(user)
 	wires.Interact(user)
 
-/obj/machinery/alarm/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, var/master_ui = null, var/datum/nano_topic_state/state = GLOB.default_state)
+/obj/machinery/alarm/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS, master_ui, datum/nano_topic_state/state = GLOB.default_state)
 	var/data[0]
 	var/remote_connection = 0
 	var/remote_access = 0
@@ -494,11 +485,10 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/alarm/proc/populate_status(var/data)
+/obj/machinery/alarm/proc/populate_status(data)
 	var/turf/location = get_turf(src)
 	var/datum/gas_mixture/environment = location.return_air()
 	var/total = environment.total_moles
-
 	var/list/environment_data = new
 	data["has_environment"] = total
 	if(total)
@@ -514,7 +504,7 @@
 	data["fire_alarm"] = alarm_area.fire != null
 	data["target_temperature"] = "[target_temperature - T0C]C"
 
-/obj/machinery/alarm/proc/populate_controls(var/list/data)
+/obj/machinery/alarm/proc/populate_controls(list/data)
 	switch(screen)
 		if(AALARM_SCREEN_MAIN)
 			data["mode"] = mode
@@ -591,11 +581,9 @@
 			thresholds[++thresholds.len] = list("name" = "Temperature", "settings" = list())
 			for(var/i = 1, i <= 4, i++)
 				thresholds[thresholds.len]["settings"] += list(list("env" = "temperature", "val" = i, "selected" = selected[i]))
-
-
 			data["thresholds"] = thresholds
 
-/obj/machinery/alarm/CanUseTopic(var/mob/user, var/datum/nano_topic_state/state, var/href_list = list())
+/obj/machinery/alarm/CanUseTopic(mob/user, datum/nano_topic_state/state, href_list = list())
 	if(buildstage != 2)
 		return STATUS_CLOSE
 
@@ -619,7 +607,7 @@
 			AA.apply_danger_level(0)
 	update_icon()
 
-/obj/machinery/alarm/Topic(href, href_list, var/datum/nano_topic_state/state)
+/obj/machinery/alarm/Topic(href, href_list, datum/nano_topic_state/state)
 	if(..(href, href_list, state))
 		return 1
 
@@ -776,7 +764,7 @@
 			return 1
 
 /obj/machinery/alarm/attackby(obj/item/I, mob/user)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	var/list/usable_qualities = list()
 	if(buildstage == 2)
@@ -960,10 +948,9 @@ FIRE ALARM
 			src.overlays += image('icons/obj/monitors.dmi', sl.overlay_firealarm)
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
-	if(src.detecting)
+	if(detecting)
 		if(temperature > T0C + 200)
-			src.alarm()			// added check of detector status here
-	return
+			alarm()			// added check of detector status here
 
 /obj/machinery/firealarm/attack_hand(mob/user)
 	. = ..()
@@ -972,7 +959,7 @@ FIRE ALARM
 	return nano_ui_interact(user)
 
 /obj/machinery/firealarm/bullet_act()
-	return src.alarm()
+	return alarm()
 
 /obj/machinery/firealarm/emp_act(severity)
 	if(prob(50/severity))
@@ -980,8 +967,7 @@ FIRE ALARM
 	..()
 
 /obj/machinery/firealarm/attackby(obj/item/I, mob/user)
-	src.add_fingerprint(user)
-
+	add_fingerprint(user)
 	var/list/usable_qualities = list()
 	if(buildstage == 2)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
@@ -992,10 +978,8 @@ FIRE ALARM
 	if(buildstage == 0)
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
 
-
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
-
 		if(QUALITY_SCREW_DRIVING)
 			if(buildstage == 2)
 				var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
@@ -1049,7 +1033,6 @@ FIRE ALARM
 			return
 
 	switch(buildstage)
-
 		if(1)
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
@@ -1070,8 +1053,7 @@ FIRE ALARM
 				update_icon()
 				return
 
-	src.alarm()
-	return
+	alarm()
 
 /obj/machinery/firealarm/Process()//Note: this processing was mostly phased out due to other code, and only runs when needed
 	if(stat & (NOPOWER|BROKEN))
@@ -1091,14 +1073,12 @@ FIRE ALARM
 	if(locate(/obj/fire) in loc)
 		alarm()
 
-	return
-
 /obj/machinery/firealarm/power_change()
 	..()
 	spawn(rand(0,15))
 		update_icon()
 
-/obj/machinery/firealarm/nano_ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.outside_state)
+/obj/machinery/firealarm/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.outside_state)
 	var/data[0]
 	var/decl/security_state/security_state = decls_repository.get_decl(SSmapping.security_state)
 
@@ -1143,8 +1123,6 @@ FIRE ALARM
 		src.timing = 0
 		return TOPIC_REFRESH
 
-	return
-
 /obj/machinery/firealarm/proc/reset()
 	if(!( src.working ))
 		return
@@ -1156,9 +1134,8 @@ FIRE ALARM
 	else
 		to_chat(usr, "Fire Alarm is reset.")
 	update_icon()
-	return
 
-/obj/machinery/firealarm/proc/alarm(var/duration = 0)
+/obj/machinery/firealarm/proc/alarm(duration = 0)
 	if(!( src.working))
 		return
 	var/area/area = get_area(src)
@@ -1169,14 +1146,10 @@ FIRE ALARM
 	else
 		to_chat(usr, "Fire Alarm activated.")
 	update_icon()
-	//playsound(loc, 'sound/ambience/signal.ogg', 75, 0)
-	return
-
 
 
 /obj/machinery/firealarm/New(loc, dir, building)
 	..()
-
 	if(loc)
 		src.loc = loc
 
@@ -1221,7 +1194,7 @@ Just a object used in constructing fire alarms
 	idle_power_usage = 2
 	active_power_usage = 6
 
-/obj/machinery/partyalarm/attack_hand(mob/user as mob)
+/obj/machinery/partyalarm/attack_hand(mob/user)
 	if(user.stat || stat & (NOPOWER|BROKEN))
 		return
 
@@ -1278,7 +1251,6 @@ Just a object used in constructing fire alarms
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
 	A.partyreset()
-	return
 
 /obj/machinery/partyalarm/proc/alarm()
 	if(!working)
@@ -1286,7 +1258,6 @@ Just a object used in constructing fire alarms
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
 	A.partyalert()
-	return
 
 /obj/machinery/partyalarm/Topic(href, href_list)
 	if(..())

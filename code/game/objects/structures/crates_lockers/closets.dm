@@ -508,7 +508,7 @@
 	step_towards(O, src.loc)
 	if(user != O)
 		user.show_viewers(SPAN_DANGER("[user] stuffs [O] into [src]!"))
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 /obj/structure/closet/attack_ai(mob/user)
 	if(isrobot(user) && Adjacent(user)) // Robots can open/close it, but not the AI.
@@ -522,7 +522,7 @@
 		to_chat(user, SPAN_NOTICE("It won't budge!"))
 
 /obj/structure/closet/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(secure && locked && !opened)
 		src.togglelock(user)
 	else
@@ -530,7 +530,7 @@
 
 // tk grab then use on self
 /obj/structure/closet/attack_self_tk(mob/user as mob)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(!src.toggle())
 		to_chat(usr, SPAN_NOTICE("It won't budge!"))
 
@@ -565,7 +565,7 @@
 		return
 
 	if(ishuman(usr) || isrobot(usr))
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 		src.toggle(usr)
 	else
 		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
@@ -579,7 +579,7 @@
 		return
 
 	if(ishuman(usr) || isrobot(usr))
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 		src.togglelock(usr)
 	else
 		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))

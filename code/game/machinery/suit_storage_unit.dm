@@ -362,7 +362,7 @@
 //		for(var/obj/O in src)
 //			qdel(O)
 
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 		src.updateUsrDialog()
 		return
 	else

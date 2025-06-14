@@ -74,7 +74,7 @@
 
 /obj/item/storage/secure/MouseDrop(over_object, src_location, over_location)
 	if(locked)
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 		return
 	..()
 
@@ -121,7 +121,7 @@
 				src.code += text("[]", href_list["type"])
 				if(length(src.code) > 5)
 					src.code = "ERROR"
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 		for(var/mob/M in viewers(1, src.loc))
 			if((M.client && M.machine == src))
 				src.attack_self(M)
@@ -161,7 +161,7 @@
 	else
 		..()
 		close_all()
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return
 
 /obj/item/storage/secure/briefcase/AltClick(mob/user)

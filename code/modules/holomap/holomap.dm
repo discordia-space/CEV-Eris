@@ -196,7 +196,7 @@
 		initialize_holomap(get_turf(src))
 
 /obj/machinery/holomap/attackby(obj/item/I, mob/user)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	var/list/usable_qualities = list()
 	if(buildstage == 2)

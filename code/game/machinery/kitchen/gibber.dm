@@ -34,7 +34,7 @@
 		else
 			log_misc("a [src] didn't find an input plate.")
 
-/obj/machinery/gibber/autogibber/Bumped(var/atom/A)
+/obj/machinery/gibber/autogibber/Bumped(atom/A)
 	if(!input_dir)
 		return
 
@@ -173,7 +173,7 @@
 	update_icon()
 	return
 
-/obj/machinery/gibber/proc/startgibbing(mob/user as mob)
+/obj/machinery/gibber/proc/startgibbing(mob/user)
 	if(operating)
 		return
 	if(!occupant)

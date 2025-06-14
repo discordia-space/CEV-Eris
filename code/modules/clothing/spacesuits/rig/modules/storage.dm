@@ -94,5 +94,5 @@
 		container.close_all()
 		..()
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return

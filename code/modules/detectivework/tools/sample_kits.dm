@@ -4,23 +4,23 @@
 	w_class = ITEM_SIZE_TINY
 	var/list/evidence = list()
 
-/obj/item/sample/New(var/newloc, var/atom/supplied)
+/obj/item/sample/New(newloc, atom/supplied)
 	..(newloc)
 	if(supplied)
 		copy_evidence(supplied)
 		name = "[initial(name)] (\the [supplied])"
 
-/obj/item/sample/print/New(var/newloc, var/atom/supplied)
+/obj/item/sample/print/New(newloc, vatom/supplied)
 	..(newloc, supplied)
 	if(evidence && evidence.len)
 		icon_state = "fingerprint1"
 
-/obj/item/sample/proc/copy_evidence(var/atom/supplied)
+/obj/item/sample/proc/copy_evidence(atom/supplied)
 	if(supplied.suit_fibers && supplied.suit_fibers.len)
 		evidence = supplied.suit_fibers.Copy()
 		supplied.suit_fibers.Cut()
 
-/obj/item/sample/proc/merge_evidence(var/obj/item/sample/supplied, var/mob/user)
+/obj/item/sample/proc/merge_evidence(obj/item/sample/supplied, mob/user)
 	if(!supplied.evidence || !supplied.evidence.len)
 		return 0
 	evidence |= supplied.evidence
@@ -28,7 +28,7 @@
 	to_chat(user, SPAN_NOTICE("You transfer the contents of \the [supplied] into \the [src]."))
 	return 1
 
-/obj/item/sample/print/merge_evidence(var/obj/item/sample/supplied, var/mob/user)
+/obj/item/sample/print/merge_evidence(obj/item/sample/supplied, mob/user)
 	if(!supplied.evidence || !supplied.evidence.len)
 		return 0
 	for(var/print in supplied.evidence)
@@ -40,8 +40,8 @@
 	to_chat(user, SPAN_NOTICE("You overlay \the [src] and \the [supplied], combining the print records."))
 	return 1
 
-/obj/item/sample/attackby(var/obj/O, var/mob/user)
-	if(O.type == src.type)
+/obj/item/sample/attackby(obj/O, mob/user)
+	if(O.type == type)
 		user.unEquip(O)
 		if(merge_evidence(O, user))
 			qdel(O)
@@ -60,7 +60,7 @@
 	icon_state = "fingerprint0"
 	item_state = "paper"
 
-/obj/item/sample/print/attack_self(var/mob/user)
+/obj/item/sample/print/attack_self(mob/user)
 	if(evidence && evidence.len)
 		return
 	if(!ishuman(user))
@@ -76,8 +76,7 @@
 	name = "[initial(name)] (\the [H])"
 	icon_state = "fingerprint1"
 
-/obj/item/sample/print/attack(var/mob/living/M, var/mob/user)
-
+/obj/item/sample/print/attack(mob/living/M, mob/user)
 	if(!ishuman(M))
 		return ..()
 
@@ -115,7 +114,7 @@
 		return 1
 	return 0
 
-/obj/item/sample/print/copy_evidence(var/atom/supplied)
+/obj/item/sample/print/copy_evidence(atom/supplied)
 	if(supplied.fingerprints && supplied.fingerprints.len)
 		for(var/print in supplied.fingerprints)
 			evidence[print] = supplied.fingerprints[print]
@@ -129,14 +128,14 @@
 	var/evidence_type = "fiber"
 	var/evidence_path = /obj/item/sample/fibers
 
-/obj/item/forensics/sample_kit/proc/can_take_sample(var/mob/user, var/atom/supplied)
+/obj/item/forensics/sample_kit/proc/can_take_sample(mob/user, atom/supplied)
 	return (supplied.suit_fibers && supplied.suit_fibers.len)
 
-/obj/item/forensics/sample_kit/proc/take_sample(var/mob/user, var/atom/supplied)
+/obj/item/forensics/sample_kit/proc/take_sample(mob/user, atom/supplied)
 	var/obj/item/sample/S = new evidence_path(get_turf(user), supplied)
 	to_chat(user, "<span class='notice'>You transfer [S.evidence.len] [S.evidence.len > 1 ? "[evidence_type]s" : "[evidence_type]"] to \the [S].</span>")
 
-/obj/item/forensics/sample_kit/afterattack(var/atom/A, var/mob/user, var/proximity)
+/obj/item/forensics/sample_kit/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	add_fingerprint(user)
@@ -154,5 +153,5 @@
 	evidence_type = "fingerprint"
 	evidence_path = /obj/item/sample/print
 
-/obj/item/forensics/sample_kit/powder/can_take_sample(var/mob/user, var/atom/supplied)
+/obj/item/forensics/sample_kit/powder/can_take_sample(mob/user, atom/supplied)
 	return (supplied.fingerprints && supplied.fingerprints.len)

@@ -72,7 +72,7 @@
 		stop()
 
 /obj/machinery/antigrav/attackby(var/obj/item/I, var/mob/user)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	if(I.has_quality(QUALITY_BOLT_TURNING))
 		if(anchored)
 			if(!on)

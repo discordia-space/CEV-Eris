@@ -5,9 +5,7 @@
 	check_armour = ARMOR_ENERGY
 	mob_hit_sound = list('sound/effects/gore/sear.ogg')
 	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
-
 	heat = 100
-
 
 //releases a burst of light on impact or after travelling a distance
 /obj/item/projectile/energy/flash
@@ -19,7 +17,7 @@
 	var/brightness = 7
 	var/light_duration = 5
 
-/obj/item/projectile/energy/flash/on_impact(var/atom/A)
+/obj/item/projectile/energy/flash/on_impact(atom/A)
 	var/turf/T = flash_range? src.loc : get_turf(A)
 	if(!istype(T)) return
 
@@ -67,7 +65,6 @@
 	damage_types = list(CLONE = 12)
 	irradiate = 10
 
-
 /obj/item/projectile/energy/dart
 	name = "dart"
 	icon_state = "toxin"
@@ -81,7 +78,6 @@
 	nodamage = 0
 	stutter = 10
 	recoil = 3
-
 
 /obj/item/projectile/energy/bolt/large
 	name = "largebolt"

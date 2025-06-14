@@ -120,7 +120,7 @@
 		src.overlays -= image('icons/obj/computer.dmi', "ai-fixer-on")
 
 
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
 

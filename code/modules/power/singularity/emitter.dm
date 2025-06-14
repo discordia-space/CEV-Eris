@@ -66,7 +66,7 @@
 		icon_state = "emitter"
 
 /obj/machinery/power/emitter/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	activate(user)
 
 /obj/machinery/power/emitter/proc/activate(mob/user as mob)

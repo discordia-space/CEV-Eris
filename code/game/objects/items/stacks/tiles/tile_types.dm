@@ -175,12 +175,11 @@
 		"orange carpet" = /obj/item/stack/tile/carpet/oracarpet
 	)
 
-/obj/item/stack/tile/floor/cyborg/afterattack(var/atom/A, var/mob/user, proximity, params)
+/obj/item/stack/tile/floor/cyborg/afterattack(atom/A, mob/user, proximity, params)
 	if(!proximity)
 		return
 
-/obj/item/stack/tile/floor/cyborg/attack_self(var/mob/user)
-
+/obj/item/stack/tile/floor/cyborg/attack_self(mob/user)
 	var/new_cyborg_floor = input("Choose type of floor", "Tile synthesizer")as null|anything in cyborg_floor
 	if(new_cyborg_floor && !isnull(cyborg_floor[new_cyborg_floor]))
 		stacktype = cyborg_floor[new_cyborg_floor]
@@ -223,7 +222,7 @@
  */
 
  // Cyborg tile stack can copy steel tiles by clicking on them (for easy reconstruction)
-/obj/item/stack/tile/floor/steel/AltClick(var/mob/living/user)
+/obj/item/stack/tile/floor/steel/AltClick(mob/living/user)
 	var/obj/item/I = user.get_active_hand()
 	if(istype(I, /obj/item/stack/tile/floor/cyborg))
 		var/obj/item/stack/tile/floor/cyborg/C = I

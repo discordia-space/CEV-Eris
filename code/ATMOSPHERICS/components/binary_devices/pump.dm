@@ -206,7 +206,7 @@ Thus, the two variables affect pump operation are set in New():
 /obj/machinery/atmospherics/binary/pump/attack_hand(user as mob)
 	if(..())
 		return
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	if(!src.allowed(user))
 		to_chat(user, SPAN_WARNING("Access denied."))
 		return
@@ -234,7 +234,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
 	src.update_icon()
 

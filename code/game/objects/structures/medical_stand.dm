@@ -121,7 +121,7 @@
 				if(!can_apply_to_target(target, usr)) // There is no point in attempting to apply a mask if it's impossible.
 					return
 				if(breather)
-					src.add_fingerprint(usr)
+					add_fingerprint(usr)
 					if(!do_mob(usr, target, 20) || !can_apply_to_target(target, usr))
 						return
 					if(tank)
@@ -144,7 +144,7 @@
 				usr.visible_message(SPAN_NOTICE("\The [usr] has placed \the mask on [target]'s mouth."),
 									SPAN_NOTICE("You have placed \the mask on [target]'s mouth."))
 				if(attach_mask(target))
-					src.add_fingerprint(usr)
+					add_fingerprint(usr)
 					update_icon()
 					START_PROCESSING(SSobj,src)
 				return
@@ -328,7 +328,7 @@
 			W.forceMove(src)
 			tank = W
 			user.visible_message(SPAN_NOTICE("\The [user] attaches \the [tank] to \the [src]."), SPAN_NOTICE("You attach \the [tank] to \the [src]."))
-			src.add_fingerprint(user)
+			add_fingerprint(user)
 			update_icon()
 
 	else if(istype(W, /obj/item/reagent_containers))

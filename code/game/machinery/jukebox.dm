@@ -116,7 +116,7 @@
 	updateDialog()
 
 /obj/machinery/media/jukebox/attackby(obj/item/W as obj, mob/user as mob)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	var/tool_type = W.get_tool_type(user, list(QUALITY_WIRE_CUTTING, QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING), src)
 

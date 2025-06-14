@@ -43,7 +43,7 @@
 	set_light(l_range = 2, l_power = 2, l_color = new_color)
 
 /obj/machinery/holoposter/attackby(obj/item/W, mob/user)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(stat & (NOPOWER))
 		return
 

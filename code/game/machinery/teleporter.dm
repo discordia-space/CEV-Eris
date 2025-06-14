@@ -185,7 +185,7 @@
 				src.locked = L
 				one_time_use = 1
 
-			src.add_fingerprint(usr)
+			add_fingerprint(usr)
 	else
 		..()
 
@@ -243,7 +243,7 @@
 	src.locked = L[desc]
 	for(var/mob/O in hearers(src, null))
 		O.show_message(SPAN_NOTICE("Portal locked in."), 2)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	return
 
 /obj/machinery/computer/teleporter/verb/set_id(t as text)
@@ -338,7 +338,7 @@
 		mhub.set_power_use(ACTIVE_POWER_USE)
 		for(var/mob/O in hearers(src, null))
 			O.show_message(SPAN_NOTICE("Teleporter engaged!"), 2)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
 	return
 
@@ -354,7 +354,7 @@
 		set_power_use(IDLE_POWER_USE)
 		for(var/mob/O in hearers(src, null))
 			O.show_message(SPAN_NOTICE("Teleporter disengaged!"), 2)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
 	return
 
@@ -376,7 +376,7 @@
 		spawn(30)
 			active=0
 
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	return
 
 /obj/machinery/teleport/station/power_change()

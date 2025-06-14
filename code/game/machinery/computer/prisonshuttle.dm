@@ -114,7 +114,7 @@ var/prison_shuttle_timeleft = 0
 		else if(href_list["mainmenu"])
 			src.temp = null
 
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 		src.updateUsrDialog()
 		return
 

@@ -327,7 +327,7 @@
 	var/mob/m = d
 	return "[m] ([m.ckey]) ([m.type])"
 
-/proc/atom_loc_line(var/atom/a)
+/proc/atom_loc_line(atom/a)
 	if(!istype(a))
 		return
 	var/turf/t = get_turf(a)

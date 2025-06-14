@@ -70,7 +70,7 @@
 			qdel(src)
 		return
 	else if(I)
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		src.health -= I.force
 		src.healthcheck()
 	..()

@@ -1,50 +1,50 @@
 /*
-add(var/HUD_element/newElement) -> /HUD_element/newElement
+add(HUD_element/newElement) -> /HUD_element/newElement
 - adds child element into parent element, element position is relative to parent
 
-remove(var/HUD_element/element) -> /HUD_element/element
+remove(HUD_element/element) -> /HUD_element/element
 - removes child and usets childs parent
 
 getClickProc() -> /proc/clickProc
-setClickProc(var/proc/P) -> src
+setClickProc(proc/P) -> src
 - sets a proc that will be called when element is clicked, in byond proc Click()
 
 getHideParentOnClick() -> boolean
-setHideParentOnClick(var/boolean) -> src
+setHideParentOnClick(boolean) -> src
 - sets whether element will call hide() on parent after being clicked
 
 getDeleteOnHide() -> boolean
-setDeleteOnHide(var/boolean) -> src
+setDeleteOnHide(boolean) -> src
 - sets whether element will delete itself when hide() is called on this element
 
 getHideParentOnHide() -> boolean
-setHideParentOnHide(var/boolean) -> src
+setHideParentOnHide(boolean) -> src
 - sets whether element will call hide() on parent when hide() is called on this element
 
 getPassClickToParent() -> boolean
-setPassClickToParent(var/boolean) -> src
+setPassClickToParent(boolean) -> src
 - sets whether element passes Click() events to parent
 
-scaleToSize(var/width, var/height) -> src
+scaleToSize(width, height) -> src
 - scales element to desired width and height, argument values are in pixels
 - null width or height indicate not to change the relevant scaling
 
 getRectangle() -> /list/bounds
 - gets bottom-left and top-right corners of a rectangle in which the element and all child elements reside, relative to element itself
 
-setHeight(var/height) -> src
-setWidth(var/width) -> src
-setDimensions(var/width, var/height) -> src
+setHeight(height) -> src
+setWidth(width) -> src
+setDimensions(width, height) -> src
 - sets artificial width/height of an element, relevant only if icon is smaller than set values, argument values are in pixels
 
 getWidth() -> width
 getHeight() -> height
 - gets the actual width/height of an element, after scaling, return values are in pixels
 
-setIcon(var/icon/I) -> src
+setIcon(icon/I) -> src
 - sets element icon
 
-mimicAtomIcon(var/atom/A) -> src
+mimicAtomIcon(atom/A) -> src
 - takes on byond icon related vars from any atom
 
 getIconWidth() -> width
@@ -59,7 +59,7 @@ updateIconInformation() -> src
 
 getAlignmentVertical() -> alignmentVertical
 getAlignmentHorizontal() -> alignmentHorizontal
-setAlignment(var/horizontal, var/vertical) -> src
+setAlignment(horizontal, vertical) -> src
 - sets alignment behavior for element, relative to parent, null arguments indicate not to change the relevant alignment
 - look HUD_defines.dm for arguments
 
@@ -67,7 +67,7 @@ setAlignment(var/horizontal, var/vertical) -> src
 getPositionX() -> x
 getPositionY() -> y
 getPosition() -> list(x,y)
-setPosition(var/x, var/y) -> src
+setPosition(x, y) -> src
 - sets position of the element relative to parent, argument values are in pixels, null indicates no change
 - values are in pixels, arguments are rounded
 
@@ -81,13 +81,13 @@ getElements() -> /list/HUD_element
 getParent() -> /HUD_element
 - gets parent element
 
-setName(var/new_name, var/nameAllElements = FALSE)
+setName(new_name, nameAllElements = FALSE)
 - sets byond name var for element, option for recursive naming of all child elements, useful only for debug
 
-getData(var/indexString) -> value
+getData(indexString) -> value
 - gets stored data, indexString must be a valid list association index
 
-setData(var/indexString, var/value) -> src
+setData(indexString, value) -> src
 - stores value into element data storage list, indexString must be a valid list association index
 
 getIdentifier() -> identifier
@@ -97,14 +97,14 @@ getIdentifier() -> identifier
 getObserver() -> /client
 - gets client that currently sees the element, element can be seen by only 1 client at a time
 
-show(var/client/C) -> src
+show(client/C) -> src
 - shows element to client
 
 hide() -> src || null
 - hides element from client
 - returns null if element deleted itself
 
-setIconOverlays(var/icon/iconOverlays)
+setIconOverlays(icon/iconOverlays)
 - sets icon overlays
 - overlays must be named list
 - accepts only associative list
@@ -116,30 +116,28 @@ updateIcon()
 getIconOverlays() -> _iconOverlays
 - gets icon overlays
 
-getChildElementWithID(var/id) -> /HUD_element || null
+getChildElementWithID(id) -> /HUD_element || null
 - return child element with identifier id or null if none
 
-moveChildOnTop(var/id) -> /HUD_element || null
+moveChildOnTop(id) -> /HUD_element || null
 - return moved element with identifier id or null if none
 
-moveChildToBottom(var/id) -> /HUD_element || null
+moveChildToBottom(id) -> /HUD_element || null
 - return moved element with identifier id or null if none
 
-alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HUD_element || null
+alignElements(horizontal, vertical, list/HUD_element/targets) -> /HUD_element || null
 - return src if aligned atleast one objects from targets
-
 
 */
 
-
-/HUD_element/proc/add(var/HUD_element/newElement)
+/HUD_element/proc/add(HUD_element/newElement)
 	RETURN_TYPE(/HUD_element)
 	newElement = newElement || new
 	_connectElement(newElement)
 
 	return newElement
 
-/HUD_element/proc/remove(var/HUD_element/element)
+/HUD_element/proc/remove(HUD_element/element)
 	if(_disconnectElement(element))
 		return element
 
@@ -151,7 +149,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 /HUD_element/proc/getClickProc()
 	return _clickProc
 
-/HUD_element/proc/setHideParentOnClick(var/value)
+/HUD_element/proc/setHideParentOnClick(value)
 	_hideParentOnClick = value
 
 	return src
@@ -160,7 +158,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	return _hideParentOnClick
 
 
-/HUD_element/proc/setDeleteOnHide(var/value)
+/HUD_element/proc/setDeleteOnHide(value)
 	_deleteOnHide = value
 
 	return src
@@ -169,7 +167,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	return _deleteOnHide
 
 
-/HUD_element/proc/setHideParentOnHide(var/value)
+/HUD_element/proc/setHideParentOnHide(value)
 	_hideParentOnHide = value
 
 	return src
@@ -178,7 +176,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	return _hideParentOnHide
 
 
-/HUD_element/proc/setPassClickToParent(var/value)
+/HUD_element/proc/setPassClickToParent(value)
 	_passClickToParent = value
 
 	return src
@@ -187,7 +185,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	return _passClickToParent
 
 
-/HUD_element/proc/scaleToSize(var/width, var/height) //in pixels
+/HUD_element/proc/scaleToSize(width, height) //in pixels
 	var/matrix/M = matrix()
 	if(width != null)
 		_scaleWidth = width/_iconWidth
@@ -235,28 +233,22 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 	return bounds
 
-/HUD_element/proc/setDimensions(var/width, var/height)
+/HUD_element/proc/setDimensions(width, height)
 	if(width != null)
 		_width = width
 	if(height != null)
 		_height = height
-
 	_updatePosition()
-
 	return src
 
-/HUD_element/proc/setWidth(var/width)
+/HUD_element/proc/setWidth(width)
 	_width = width
-
 	_updatePosition()
-
 	return src
 
-/HUD_element/proc/setHeight(var/height)
+/HUD_element/proc/setHeight(height)
 	_height = height
-
 	_updatePosition()
-
 	return src
 
 /HUD_element/proc/getWidth()
@@ -265,21 +257,18 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 /HUD_element/proc/getHeight()
 	return max(getIconHeight(), _height)*_scaleHeight
 
-
-/HUD_element/proc/setIcon(var/icon/I)
+/HUD_element/proc/setIcon(icon/I)
 	icon = I
 	updateIconInformation()
 	updateIcon()
-
 	return src
 
-/HUD_element/proc/setIconFromDMI(var/filename, var/iconState, var/iconDir)
+/HUD_element/proc/setIconFromDMI(filename, iconState, iconDir)
 	icon = filename
 	icon_state = iconState
 	dir = iconDir
 	updateIconInformation()
 	updateIcon()
-
 	return src
 
 /HUD_element/proc/getIconWidth()
@@ -288,7 +277,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 /HUD_element/proc/getIconHeight()
 	return _iconHeight
 
-/HUD_element/proc/mimicAtomIcon(var/atom/A)
+/HUD_element/proc/mimicAtomIcon(atom/A)
 	icon = A.icon
 	icon_state = A.icon_state
 	dir = A.dir
@@ -299,16 +288,13 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 	updateIconInformation()
 	updateIcon()
-
 	return src
 
 /HUD_element/proc/updateIconInformation()
 	if(!icon)
 		_iconWidth = 0
 		_iconHeight = 0
-
 		_updatePosition()
-
 		return src
 
 	var/icon/I = new(fcopy_rsc(icon),icon_state,dir)
@@ -318,12 +304,10 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		return src
 	_iconWidth = newIconWidth
 	_iconHeight = newIconHeight
-
 	_updatePosition()
-
 	return src
 
-/HUD_element/proc/setAlignment(var/horizontal, var/vertical)
+/HUD_element/proc/setAlignment(horizontal, vertical)
 	if(horizontal != null)
 		_currentAlignmentHorizontal = horizontal
 
@@ -331,7 +315,6 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		_currentAlignmentVertical = vertical
 
 	_updatePosition()
-
 	return src
 
 /HUD_element/proc/getAlignmentVertical()
@@ -340,8 +323,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 /HUD_element/proc/getAlignmentHorizontal()
 	return _currentAlignmentHorizontal
 
-
-/HUD_element/proc/setPosition(var/x, var/y) //in pixels
+/HUD_element/proc/setPosition(x, y) //in pixels
 	if(x != null)
 		_relativePositionX = round(x)
 
@@ -349,7 +331,6 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		_relativePositionY = round(y)
 
 	_updatePosition()
-
 	return src
 
 /HUD_element/proc/getPositionX()
@@ -370,28 +351,26 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 /HUD_element/proc/getAbsolutePosition()
 	return list(_absolutePositionX,_absolutePositionY)
 
-
 /HUD_element/proc/getElements()
 	return _elements
 
 /HUD_element/proc/getParent()
 	return _parent
 
-/HUD_element/proc/setName(var/new_name, var/nameAllElements = FALSE)
+/HUD_element/proc/setName(new_name, nameAllElements = FALSE)
 	name = new_name
 	if(nameAllElements)
 		var/list/HUD_element/elements = getElements()
 		for(var/HUD_element/E in elements)
 			E.setName(new_name, TRUE)
 
-/HUD_element/proc/getData(var/indexString)
+/HUD_element/proc/getData(indexString)
 	if(_data)
 		return _data[indexString]
 
-/HUD_element/proc/setData(var/indexString, var/value)
+/HUD_element/proc/setData(indexString, value)
 	_data = _data || new
 	_data[indexString] = value
-
 	return src
 
 /HUD_element/proc/getIdentifier()
@@ -400,17 +379,15 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 /HUD_element/proc/getObserver()
 	return _observer
 
-/HUD_element/proc/show(var/client/C)
+/HUD_element/proc/show(client/C)
 	var/client/observer = getObserver()
 	if(observer)
 		if(observer != C)
 			log_to_dd("Error: HUD element already shown to client '[observer]'")
 			return
-
 		return src
 
 	_setObserver(C)
-
 	var/identifier = getIdentifier()
 	if(identifier)
 		var/list/observerHUD = _getObserverHUD()
@@ -428,7 +405,6 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	var/list/HUD_element/elements = getElements()
 	for(var/HUD_element/E in elements)
 		E.show(C)
-
 	return src
 
 /HUD_element/proc/hide()
@@ -450,7 +426,6 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 				return
 
 	observer.screen -= src
-
 	_setObserver()
 
 	var/list/HUD_element/elements = getElements()
@@ -467,10 +442,9 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	if(_deleteOnHide && !QDELETED(src))
 		qdel(src)
 		return
-
 	return src
 
-/HUD_element/proc/setIconAdditionsData(var/additionType, var/list/additionsData)
+/HUD_element/proc/setIconAdditionsData(additionType, list/additionsData)
 	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
 		error("Trying to add icon addition data without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
 		return
@@ -487,7 +461,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		setIconAddition(additionType, additionName, data["icon"], data["icon_state"], data["dir"], data["color"], data["alpha"], data["is_plain"])
 	return src
 
-/HUD_element/proc/setIconAddition(var/additionType, var/additionName, var/addIcon, var/addIconState, var/addDir, var/color, var/alpha, var/isPlain)
+/HUD_element/proc/setIconAddition(additionType, additionName, addIcon, addIconState, addDir, color, alpha, isPlain)
 	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
 		error("Trying to add icon addition without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
 		return
@@ -527,7 +501,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 	return src
 
-/HUD_element/proc/setIconAdditionAlpha(var/additionType, var/additionName, var/alpha, var/noIconUpdate = FALSE)
+/HUD_element/proc/setIconAdditionAlpha(additionType, additionName, alpha, noIconUpdate = FALSE)
 	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
 		error("Trying to set icon addition alpha without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
 		return
@@ -541,7 +515,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		updateIcon()
 	return src
 
-/HUD_element/proc/setIconAdditionColor(var/additionType, var/additionName, var/color, var/noIconUpdate = FALSE)
+/HUD_element/proc/setIconAdditionColor(additionType, additionName, color, noIconUpdate = FALSE)
 	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
 		error("Trying to set icon addition color without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
 		return
@@ -555,7 +529,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		updateIcon()
 	return src
 
-/HUD_element/proc/getIconAdditionData(var/additionType, var/additionName)
+/HUD_element/proc/getIconAdditionData(additionType, additionName)
 	if(additionType != HUD_ICON_UNDERLAY && additionType != HUD_ICON_OVERLAY)
 		error("Trying to get icon addition data without setting type (HUD_ICON_UNDERLAY/HUD_ICON_OVERLAY).")
 		return
@@ -570,13 +544,13 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	_updateLayers()
 	return src
 
-/HUD_element/proc/getChildElementWithID(var/id)
+/HUD_element/proc/getChildElementWithID(id)
 	for(var/HUD_element/element in getElements())
 		if(element.getIdentifier() == id)
 			return element
 	error("No element found with id \"[id]\".")
 
-/HUD_element/proc/moveChildOnTop(var/id)
+/HUD_element/proc/moveChildOnTop(id)
 	if(!_elements.len)
 		error("Element has no child elements.")
 		return
@@ -588,7 +562,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	else
 		error("moveChildOnTop(): No element with id \"[id]\" found.")
 
-/HUD_element/proc/moveChildToBottom(var/id)
+/HUD_element/proc/moveChildToBottom(id)
 	if(!_elements.len)
 		error("Element has no child elements.")
 		return
@@ -600,7 +574,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	else
 		error("moveChildToBottom(): No element with id \"[id]\" found.")
 
-/HUD_element/proc/setClickedInteraction(var/state, var/list/iconData , var/duration = 8)
+/HUD_element/proc/setClickedInteraction(state, list/iconData, duration = 8)
 	if(!iconData || duration <= 0)
 		error("incorrect button interaction setup.")
 		_onClickedInteraction = FALSE
@@ -614,7 +588,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		_onClickedState = FALSE
 
 
-/HUD_element/proc/setHoveredInteraction(var/state, var/list/iconData)
+/HUD_element/proc/setHoveredInteraction(state, list/iconData)
 	if(!iconData)
 		error("incorrect button interaction setup.")
 		_onHoveredInteraction = FALSE
@@ -655,16 +629,11 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		debugBox.hide()
 		_disconnectElement(debugBox)
 		qdel(debugBox)
-	/*
-		I.DrawBox(ReadRGB(COLOR_BLACK),0,0,getWidth(),getHeight())
-		I.DrawBox(ReadRGB(debugColor),1,1,getWidth()-1,getHeight()-1)
-		setIconOverlay(HUD_OVERLAY_DEBUG,I, alpha = 80)*/
-
 	updateIcon()
 
 // mob clicks overrides
 /HUD_element/move_camera_by_click()
 	return
 
-/HUD_element/attack_ghost(mob/observer/ghost/user as mob)
+/HUD_element/attack_ghost(mob/observer/ghost/user)
 	return

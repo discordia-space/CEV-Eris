@@ -128,7 +128,7 @@ var/list/tape_roll_applications = list()
 	update_icon()
 	return ..()
 
-/obj/item/taperoll/attack_self(mob/user as mob)
+/obj/item/taperoll/attack_self(mob/user)
 	if(!start)
 		start = get_turf(src)
 		to_chat(usr, SPAN_NOTICE("You place the first end of \the [src]."))
@@ -240,7 +240,7 @@ var/list/tape_roll_applications = list()
 		to_chat(usr, SPAN_NOTICE("You finish placing \the [src]."))
 		return
 
-/obj/item/taperoll/afterattack(var/atom/A, mob/user as mob, proximity)
+/obj/item/taperoll/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 
@@ -288,10 +288,10 @@ var/list/tape_roll_applications = list()
 			crumple()
 	return ..(mover)
 
-/obj/item/tape/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/tape/attackby(obj/item/W, mob/user)
 	breaktape(W, user)
 
-/obj/item/tape/attack_hand(mob/user as mob)
+/obj/item/tape/attack_hand(mob/user)
 	if(user.a_intent == I_HELP && src.allowed(user))
 		user.show_viewers(SPAN_NOTICE("\The [user] lifts \the [src], allowing passage."))
 		for(var/obj/item/tape/T in gettapeline())
@@ -335,7 +335,7 @@ var/list/tape_roll_applications = list()
 
 
 
-/obj/item/tape/proc/breaktape(obj/item/W as obj, mob/user as mob)
+/obj/item/tape/proc/breaktape(obj/item/W, mob/user)
 	if(user.a_intent == I_HELP && ((!can_puncture(W) && src.allowed(user))))
 		to_chat(user, "You can't break \the [src] with that!")
 		return
@@ -348,4 +348,3 @@ var/list/tape_roll_applications = list()
 			qdel(T)
 
 	qdel(src) //TODO: Dropping a trash item holding fibers/fingerprints of all broken tape parts
-	return

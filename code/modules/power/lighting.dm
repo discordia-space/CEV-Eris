@@ -42,7 +42,7 @@
 
 /obj/machinery/light_construct/attackby(obj/item/I, mob/user)
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	var/list/usable_qualities = list()
 	if(stage == 2)
@@ -395,7 +395,7 @@
 			to_chat(user, SPAN_WARNING("There is a [fitting] already inserted."))
 			return
 		else
-			src.add_fingerprint(user)
+			add_fingerprint(user)
 			var/obj/item/light/L = I
 			if(istype(L, light_type))
 				user.drop_item()

@@ -276,7 +276,7 @@ update_flag
 	else
 		visible_message(SPAN_WARNING("\The [user] hits \the [src] with \a [I]!"))
 		src.health -= I.force
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		healthcheck()
 
 	SSnano.update_uis(src) // Update all NanoUIs attached to src
@@ -385,7 +385,7 @@ update_flag
 				src.name = "Canister: [label]"
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	update_icon()
 
 	return 1

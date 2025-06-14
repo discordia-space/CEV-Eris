@@ -23,7 +23,7 @@
 	for(var/mob/p in pilots)
 		p.setClickCooldown(timeout)
 
-/mob/living/exosuit/ClickOn(var/atom/A, var/params, var/mob/user = usr)
+/mob/living/exosuit/ClickOn(atom/A, params, mob/user = usr)
 	if(!user || incapacitated() || user.incapacitated())
 		return
 

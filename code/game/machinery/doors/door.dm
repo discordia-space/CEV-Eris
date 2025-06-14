@@ -237,7 +237,7 @@
 	..()
 
 /obj/machinery/door/attackby(obj/item/I, mob/user)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	//Harm intent overrides other actions
 	if(src.density && user.a_intent == I_HURT && !I.GetIdCard())

@@ -630,7 +630,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 		return attack_hand(user)
 
 	attack_hand(mob/user as mob)
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 		update_icon(1)
 		sleep(10)
 		if(open)

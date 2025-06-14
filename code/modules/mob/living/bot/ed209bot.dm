@@ -52,7 +52,7 @@
 	new /obj/effect/decal/cleanable/blood/oil(Tsec)
 	qdel(src)
 
-/mob/living/bot/secbot/ed209/RangedAttack(var/atom/A)
+/mob/living/bot/secbot/ed209/RangedAttack(atom/A)
 	if(last_shot + shot_delay > world.time)
 		to_chat(src, "You are not ready to fire yet!")
 		return

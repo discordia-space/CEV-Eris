@@ -104,7 +104,7 @@
 	if(..())
 		return
 
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	nano_ui_interact(user)
 	return
 

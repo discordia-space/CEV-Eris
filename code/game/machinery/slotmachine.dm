@@ -133,7 +133,7 @@
 
 		pull_leaver(user)
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	update_icon()
 	bet = 0
 	spinning = FALSE
@@ -162,4 +162,4 @@
 		plays += 10
 		qdel(S)
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)

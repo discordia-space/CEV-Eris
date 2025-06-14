@@ -430,7 +430,7 @@
 		C.forceMove(src)
 		implant = C
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	update_icon()
 
 /obj/machinery/neotheology/reader/attack_hand(mob/user as mob)
@@ -444,7 +444,7 @@
 	user.put_in_active_hand(implant)
 	implant = null
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	update_icon()
 
 /obj/machinery/neotheology/reader/on_deconstruction()

@@ -54,7 +54,7 @@
 		user.visible_message("[user] turned \the [src] on.", \
 			"You turn on \the [src].", \
 			"You hear heavy droning.")
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	update_icon()
 
@@ -232,7 +232,7 @@
 			to_chat(user, "\red Access denied.")
 
 	else
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		visible_message("\red The [src.name] has been hit with \the [I.name] by [user.name]!")
 
 

@@ -123,7 +123,7 @@
 
 
 /obj/item/device/assembly_holder/attack_self(mob/user as mob)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(src.secured)
 		if(!left_assembly || !right_assembly)
 			to_chat(user, SPAN_WARNING("Assembly part missing!"))

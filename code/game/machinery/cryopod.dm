@@ -46,7 +46,7 @@
 		return
 
 	user.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
 	var/dat
 
@@ -68,7 +68,7 @@
 
 	var/mob/user = usr
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	if(href_list["log"])
 
@@ -422,10 +422,10 @@
 		log_admin("[key_name_admin(affecting)] has entered a stasis pod. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		message_admins("<span class='notice'>[key_name_admin(affecting)] has entered a stasis pod.</span>")
 		if(user == affecting)
-			src.add_fingerprint(affecting)
+			add_fingerprint(affecting)
 
 		//Despawning occurs when process() is called with an occupant without a client.
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 
 
 
@@ -491,7 +491,7 @@
 		usr.stop_pulling()
 		set_occupant(usr)
 
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 
 	return
 

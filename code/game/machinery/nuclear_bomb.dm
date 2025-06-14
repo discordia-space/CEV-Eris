@@ -53,7 +53,7 @@ var/bomb_set
 	return
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
 	if(anchored && (removal_stage == 0 || removal_stage == 2))
@@ -135,7 +135,7 @@ var/bomb_set
 			usr.drop_item()
 			I.loc = src
 			src.auth = I
-			src.add_fingerprint(user)
+			add_fingerprint(user)
 			return attack_hand(user)
 
 	..()

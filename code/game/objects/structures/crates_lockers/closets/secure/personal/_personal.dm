@@ -55,7 +55,7 @@
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return
 	if(ishuman(usr))
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 		if(src.locked || !src.registered_name)
 			to_chat(usr, SPAN_WARNING("You need to unlock it first."))
 		else if(src.broken)

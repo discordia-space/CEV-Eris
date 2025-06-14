@@ -197,7 +197,7 @@
 	if(..())
 		return 1
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	if(href_list["filterset"])
 		filter_type = text2num(href_list["filterset"])
 

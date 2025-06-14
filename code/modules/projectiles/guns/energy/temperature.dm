@@ -52,7 +52,7 @@
 	if(..())
 		return 1
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
 
 
@@ -64,7 +64,7 @@
 			src.current_temperature = max(0, src.current_temperature+amount)
 	if(ismob(loc))
 		attack_self(loc)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	return
 
 

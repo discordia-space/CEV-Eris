@@ -33,7 +33,7 @@
 	if(!tank)
 		tank = new /obj/structure/reagent_dispensers/watertank(src)
 
-/mob/living/bot/farmbot/attack_hand(var/mob/user as mob)
+/mob/living/bot/farmbot/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -63,7 +63,7 @@
 	onclose(user, "autofarm")
 	return
 
-/mob/living/bot/farmbot/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/bot/farmbot/emag_act(remaining_charges, mob/user)
 	. = ..()
 	if(!emagged)
 		if(user)
@@ -160,7 +160,7 @@
 			if(!path)
 				path = list()
 
-/mob/living/bot/farmbot/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/bot/farmbot/UnarmedAttack(atom/A, proximity)
 	if(!..())
 		return
 	if(attacking)
@@ -285,7 +285,7 @@
 	qdel(src)
 	return
 
-/mob/living/bot/farmbot/proc/process_tray(var/obj/machinery/portable_atmospherics/hydroponics/tray)
+/mob/living/bot/farmbot/proc/process_tray(obj/machinery/portable_atmospherics/hydroponics/tray)
 	if(!tray || !istype(tray))
 		return 0
 
@@ -324,7 +324,7 @@
 		new /obj/structure/reagent_dispensers/watertank(src)
 
 
-/obj/structure/reagent_dispensers/watertank/attackby(var/obj/item/robot_parts/S, mob/user as mob)
+/obj/structure/reagent_dispensers/watertank/attackby(var/obj/item/robot_parts/S, mob/user)
 	if((!istype(S, /obj/item/robot_parts/l_arm)) && (!istype(S, /obj/item/robot_parts/r_arm)))
 		..()
 		return
@@ -337,7 +337,7 @@
 	user.drop_from_inventory(S)
 	qdel(S)
 
-/obj/item/farmbot_arm_assembly/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/farmbot_arm_assembly/attackby(obj/item/W, mob/user)
 	..()
 	if((istype(W, /obj/item/device/scanner/plant)) && (build_step == 0))
 		build_step++
@@ -386,5 +386,5 @@
 
 		created_name = t
 
-/obj/item/farmbot_arm_assembly/attack_hand(mob/user as mob)
+/obj/item/farmbot_arm_assembly/attack_hand(mob/user)
 	return //it's a converted watertank, no you cannot pick it up and put it in your backpack

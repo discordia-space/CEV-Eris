@@ -97,7 +97,7 @@ var/list/global/tank_gauge_cache = list()
 	else if(istype(W,/obj/item/latexballon))
 		var/obj/item/latexballon/LB = W
 		LB.blow(src)
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 
 	if(istype(W, /obj/item/device/assembly_holder))
 		bomb_assemble(W,user)
@@ -208,7 +208,7 @@ var/list/global/tank_gauge_cache = list()
 			if(location.HUDneed.Find("internal"))
 				var/obj/screen/HUDelm = location.HUDneed["internal"]
 				HUDelm.update_icon()
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 
 /obj/item/tank/remove_air(amount)
 	return air_contents.remove(amount)

@@ -18,7 +18,7 @@ particle whenever the target moves
 	jetpack = null
 	return ..()
 
-/datum/effect/effect/system/trail/set_up(var/atom/_holder, var/obj/item/tank/jetpack/J)
+/datum/effect/effect/system/trail/set_up(atom/_holder, obj/item/tank/jetpack/J)
 	attach(_holder)
 	if(J)
 		jetpack = J
@@ -33,18 +33,17 @@ particle whenever the target moves
 	//Moved event is a global datum of type /decl/observ/moved
 	//It will fire a proc whenever the holder atom moves from one turf to another
 	GLOB.moved_event.register(holder, src, /datum/effect/effect/system/trail/proc/holder_moved)
-
 	active = TRUE
 
 
-/datum/effect/effect/system/trail/proc/holder_moved(var/atom/A, var/atom/old_loc)
+/datum/effect/effect/system/trail/proc/holder_movedatom/A, atom/old_loc)
 	var/obj/effect/trail_particle/E = do_effect(old_loc, get_dir(A, old_loc))
 	if(fromback && ismob(holder.loc)) //Makes jetpack particles draw over the user when facing north
 		var/mob/M = holder.loc
 		if(M.dir == NORTH)
 			E.layer = M.layer+0.01
 
-/datum/effect/effect/system/trail/proc/do_effect(var/turf/eloc, var/newdir)
+/datum/effect/effect/system/trail/proc/do_effect(turf/eloc, newdir)
 	var/obj/effect/effect/E = new trail_effect(eloc)
 	E.set_dir(newdir)
 	return E
@@ -87,7 +86,7 @@ particle whenever the target moves
 	trail_effect = /obj/effect/trail_particle/gasjet
 
 //Only do a thrust if the holder has the done var set false, and is also turned on
-/datum/effect/effect/system/trail/jet/holder_moved(var/atom/A, var/atom/old_loc)
+/datum/effect/effect/system/trail/jet/holder_moved(atom/A, atom/old_loc)
 	if(jetpack && jetpack.thrust_fx_done == FALSE && jetpack.on)
 		.=..()
 		//Set it true after.

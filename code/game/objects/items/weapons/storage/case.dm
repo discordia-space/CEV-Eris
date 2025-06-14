@@ -14,7 +14,7 @@
 		..()
 
 	update_icon()
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return
 
 /obj/item/storage/case/open(var/mob/user)

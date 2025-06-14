@@ -253,7 +253,7 @@
 		return
 
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	attempt_open(user)
 

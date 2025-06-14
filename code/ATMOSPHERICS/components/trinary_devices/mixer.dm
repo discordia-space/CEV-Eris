@@ -124,7 +124,7 @@
 /obj/machinery/atmospherics/trinary/mixer/attack_hand(user as mob)
 	if(..())
 		return
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	if(!src.allowed(user))
 		to_chat(user, SPAN_WARNING("Access denied."))
 		return

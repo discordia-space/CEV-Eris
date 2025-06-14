@@ -133,7 +133,7 @@ var/list/possible_cable_coil_colours = list(
 //
 /obj/structure/cable/attackby(obj/item/I, mob/user)
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	var/turf/T = src.loc
 	if(!T.is_plating())

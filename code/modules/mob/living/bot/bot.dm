@@ -55,7 +55,7 @@
 /mob/living/bot/death()
 	explode()
 
-/mob/living/bot/attackby(var/obj/item/O, var/mob/user)
+/mob/living/bot/attackby(obj/item/O, mob/user)
 	if(O.GetIdCard())
 		if(access_scanner.allowed(user) && !open && !emagged)
 			locked = !locked
@@ -89,17 +89,15 @@
 	else
 		..()
 
-/mob/living/bot/attack_ai(var/mob/user)
+/mob/living/bot/attack_ai(mob/user)
 	return attack_hand(user)
 
-/mob/living/bot/say(var/message)
+/mob/living/bot/say(message)
 	var/verb = "beeps"
-
 	message = sanitize(message)
-
 	..(message, null, verb)
 
-/mob/living/bot/Bump(var/atom/A)
+/mob/living/bot/Bump(atom/A)
 	if(on && botcard && istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
 		if(!istype(D, /obj/machinery/door/firedoor) && !istype(D, /obj/machinery/door/blast) && D.check_access(botcard))
@@ -107,7 +105,7 @@
 	else
 		..()
 
-/mob/living/bot/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/bot/emag_act(remaining_charges, mob/user)
 	return 0
 
 /mob/living/bot/proc/turn_on()
@@ -125,4 +123,3 @@
 
 /mob/living/bot/proc/explode()
 	qdel(src)
-

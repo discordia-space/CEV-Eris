@@ -1,6 +1,3 @@
-
-
-
 /atom/movable
 	layer = OBJ_LAYER
 	var/last_move
@@ -56,7 +53,7 @@
 			pulledby.pulling = null
 		pulledby = null
 
-/atom/movable/Bump(var/atom/A, yes)
+/atom/movable/Bump(atom/A, yes)
 	if(src.throwing)
 		src.throw_impact(A)
 		src.throwing = 0
@@ -67,7 +64,7 @@
 		A.Bumped(src)
 	return ..()
 
-/atom/movable/proc/entered_with_container(var/atom/old_loc)
+/atom/movable/proc/entered_with_container(atom/old_loc)
 	return
 
 // Gets the top-atom that contains us, doesn't care about how deeply nested a item is
@@ -142,7 +139,7 @@
 
 
 //called when src is thrown into hit_atom
-/atom/movable/proc/throw_impact(atom/hit_atom, var/speed)
+/atom/movable/proc/throw_impact(atom/hit_atom, speed)
 	if(isliving(hit_atom))
 		var/mob/living/M = hit_atom
 		M.hitby(src,speed)
@@ -163,7 +160,7 @@
 				M.turf_collision(T, speed)
 
 //decided whether a movable atom being thrown can pass through the turf it is in.
-/atom/movable/proc/hit_check(var/speed)
+/atom/movable/proc/hit_check(speed)
 	if(src.throwing)
 		for(var/atom/A in get_turf(src))
 			if(A == src) continue
@@ -283,7 +280,7 @@
 	return pick(candidates)
 
 
-/atom/movable/proc/set_glide_size(glide_size_override = 0, var/min = 0.2, var/max = world.icon_size/2)
+/atom/movable/proc/set_glide_size(glide_size_override = 0, min = 0.2, max = world.icon_size/2)
 	if(!glide_size_override || glide_size_override > max)
 		glide_size = 0
 	else
@@ -295,7 +292,7 @@
 */
 //This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
 // Spoiler alert: it is, in moved.dm
-/atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	if(glide_size_override > 0)
 		set_glide_size(glide_size_override)
 

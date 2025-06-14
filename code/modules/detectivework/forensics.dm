@@ -44,7 +44,7 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 	name = "forensic data"
 	var/uid
 
-/datum/data/record/forensic/New(var/atom/A)
+/datum/data/record/forensic/New(atom/A)
 	uid = "\ref [A]"
 	fields["name"] = sanitize(A.name)
 	fields["area"] = sanitize("[get_area(A)]")
@@ -53,7 +53,7 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 	fields["blood"] = A.blood_DNA ? A.blood_DNA.Copy() : list()
 	fields["time"] = world.time
 
-/datum/data/record/forensic/proc/merge(var/datum/data/record/other)
+/datum/data/record/forensic/proc/merge(datum/data/record/other)
 	var/list/prints = fields["fprints"]
 	var/list/o_prints = other.fields["fprints"]
 	for(var/print in o_prints)
@@ -76,7 +76,7 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 	fields["area"] = other.fields["area"]
 	fields["time"] = other.fields["time"]
 
-/datum/data/record/forensic/proc/update_prints(var/list/o_prints)
+/datum/data/record/forensic/proc/update_prints(list/o_prints)
 	var/list/prints = fields["fprints"]
 	for(var/print in o_prints)
 		if(prints[print])

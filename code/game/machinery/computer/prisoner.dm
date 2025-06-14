@@ -82,6 +82,6 @@
 			var/mob/living/carbon/R = I.wearer
 			to_chat(R, SPAN_NOTICE("You hear a voice in your head saying: '[warning]'"))
 
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	src.updateUsrDialog()
 	return

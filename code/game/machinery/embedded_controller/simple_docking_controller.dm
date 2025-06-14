@@ -34,7 +34,7 @@
 		return TRUE
 
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
 	var/clean = FALSE
 	switch(href_list["command"])

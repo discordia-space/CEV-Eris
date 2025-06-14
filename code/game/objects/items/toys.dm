@@ -194,7 +194,7 @@
 
 
 	attack(mob/M as mob, mob/user)
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 
 // ******* Check
 
@@ -263,7 +263,7 @@
 
 		update_wear_icon()
 
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		return
 
 /obj/item/toy/katana

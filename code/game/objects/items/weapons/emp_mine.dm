@@ -53,7 +53,7 @@
 
 
 /obj/item/emp_mine/attack_self(mob/user as mob)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(armed)
 		disarm()
 		to_chat(user, SPAN_NOTICE("You disarm \the [src]"))

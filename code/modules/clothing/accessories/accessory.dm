@@ -51,7 +51,7 @@
 	has_suit.overlays += get_inv_overlay()
 
 	to_chat(user, SPAN_NOTICE("You attach \the [src] to \the [has_suit]."))
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 /obj/item/clothing/accessory/proc/on_removed(var/mob/user)
 	if(!has_suit)
@@ -60,7 +60,7 @@
 	has_suit = null
 	if(user)
 		usr.put_in_hands(src)
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 	else
 		src.forceMove(get_turf(src))
 

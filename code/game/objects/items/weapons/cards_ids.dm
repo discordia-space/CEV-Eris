@@ -38,7 +38,7 @@
 		src.name = text("data disk- '[]'", t)
 	else
 		src.name = "data disk"
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	return
 
 /obj/item/card/data/clown
@@ -183,7 +183,7 @@ var/const/NO_EMAG_ACT = -50
 	user.visible_message("\The [user] shows you: \icon[src] [src.name]. The assignment on the card: [src.assignment]",\
 		"You flash your ID card: \icon[src] [src.name]. The assignment on the card: [src.assignment]")
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return
 
 /obj/item/card/id/GetAccess()

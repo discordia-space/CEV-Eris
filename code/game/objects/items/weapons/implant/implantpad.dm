@@ -71,7 +71,7 @@
 			for(var/mob/M in viewers(1, src))
 				if(M.client)
 					src.attack_self(M)
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 	else
 		usr << browse(null, "window=implantpad")
 		return

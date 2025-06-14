@@ -224,7 +224,7 @@
 			to_chat(user, SPAN_WARNING("You momentarily forget how to use \the [src]."))
 			return 1
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	return ..()
 

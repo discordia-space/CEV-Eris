@@ -38,7 +38,7 @@
 
 	else if((QUALITY_BOLT_TURNING in W.tool_qualities) && (user.a_intent == I_HELP))
 		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
-			src.add_fingerprint(user)
+			add_fingerprint(user)
 			if(anchored)
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
 			else
@@ -152,7 +152,7 @@
 			overlays = new/list()
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if((QUALITY_SCREW_DRIVING in I.tool_qualities) && (user.a_intent == I_HURT))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			user.visible_message("[user] screws [src]'s faucet [modded ? "closed" : "open"].", \

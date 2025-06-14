@@ -236,7 +236,7 @@
 /mob/living/carbon/human/var/temperature_resistance = T0C+75
 
 
-/mob/living/carbon/human/show_inv(mob/user as mob)
+/mob/living/carbon/human/show_inv(mob/user)
 	if(user.incapacitated()  || !user.Adjacent(src))
 		return
 
@@ -725,7 +725,6 @@ var/list/rank_prefix = list(\
 
 	if( (src.l_hand && !src.l_hand.abstract) || (src.r_hand && !src.r_hand.abstract) )
 		return 1
-
 	return 0
 
 /mob/living/carbon/human/get_species()
@@ -741,7 +740,6 @@ var/list/rank_prefix = list(\
 		xylophone = 1
 		spawn(1200)
 			xylophone=0
-	return
 
 /mob/living/carbon/human/proc/check_has_mouth()
 	// Todo, check stomach organ when implemented.
@@ -750,8 +748,7 @@ var/list/rank_prefix = list(\
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/human/vomit(var/forced = 0)
-
+/mob/living/carbon/human/vomit(forced = 0)
 	if(!check_has_mouth())
 		return
 	if(stat == DEAD)
@@ -802,9 +799,7 @@ var/list/rank_prefix = list(\
 					if(H.brainmob.mind)
 						H.brainmob.mind.transfer_to(src)
 						qdel(H)
-
 	losebreath = 0
-
 	..()
 
 /mob/living/carbon/human/add_blood(mob/living/carbon/human/M)
@@ -849,8 +844,6 @@ var/list/rank_prefix = list(\
 				feet_blood_DNA.Cut()
 				update_inv_shoes()
 
-	return
-
 /mob/living/carbon/human/get_visible_implants()
 	var/list/visible_implants = list()
 
@@ -868,7 +861,6 @@ var/list/rank_prefix = list(\
 	return FALSE
 
 /mob/living/carbon/human/proc/handle_embedded_objects()
-
 	for(var/obj/item/organ/external/organ in organs)
 		if(organ.status & ORGAN_SPLINTED) //Splints prevent movement.
 			continue
@@ -902,7 +894,8 @@ var/list/rank_prefix = list(\
 	set src in view(1)
 	var/self = 0
 
-	if(usr.stat || usr.restrained() || !isliving(usr)) return
+	if(usr.stat || usr.restrained() || !isliving(usr))
+		return
 
 	if(usr == src)
 		self = 1
@@ -1243,7 +1236,7 @@ var/list/rank_prefix = list(\
 			return TRUE
 	return FALSE
 
-/mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
+/mob/living/carbon/human/slip(slipped_on, stun_duration=8)
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
 		return FALSE
 	return ..(slipped_on,stun_duration)
@@ -1428,7 +1421,7 @@ var/list/rank_prefix = list(\
 //	else
 	return FALSE
 
-/mob/living/carbon/human/proc/set_remoteview(var/atom/A)
+/mob/living/carbon/human/proc/set_remoteview(atom/A)
 	remoteview_target = A
 	reset_view(A)
 
@@ -1548,7 +1541,6 @@ var/list/rank_prefix = list(\
 		var/obj/screen/block/HUD = HUDneed["block"]
 		HUD.update_icon()
 	update_block_overlay()
-	return
 
 /mob/living/carbon/human/proc/stop_blocking()
 	if(!blocking)//already blockingn't with an item somehow?
@@ -1559,4 +1551,3 @@ var/list/rank_prefix = list(\
 		var/obj/screen/block/HUD = HUDneed["block"]
 		HUD.update_icon()
 	update_block_overlay()
-	return

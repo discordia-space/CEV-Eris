@@ -330,7 +330,7 @@
 	src.Options_Topic(href, href_list)
 
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 
 	updateUsrDialog()
