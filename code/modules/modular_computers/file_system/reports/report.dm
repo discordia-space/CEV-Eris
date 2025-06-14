@@ -138,21 +138,15 @@ If the override option is set to 0, the access supplied will instead be added as
 			var/datum/report_field/array/arrayfield = field
 			dat["list_value"] = arrayfield.value_list.Copy()
 			dat["list_clumps"] = null // must override with null values or else react gets weird
-			dat["links"] = null
 			dat["value"] = null
 		else if(istype(field, /datum/report_field/arrayclump))
 			var/datum/report_field/arrayclump/clumpfield = field
 			dat["list_value"] = null
 			dat["list_clumps"] = clumpfield.value
-			dat["links"] = null
-			dat["value"] = null
-		else if(istype(field, /datum/report_field/arraylinkage))
-			var/datum/report_field/arraylinkage/source = field
-			dat["list_value"] = null
-			dat["list_clumps"] = null
-			dat["links"] = source.arrays.Copy()
 			dat["value"] = null
 		else
+			dat["list_value"] = null
+			dat["list_clumps"] = null
 			dat["value"] = field.get_value()
 
 		dat["can_edit"] = field.can_edit

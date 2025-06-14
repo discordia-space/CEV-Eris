@@ -295,7 +295,7 @@
 
 			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
 			msg += {"<span class = 'deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];viewbrief=`'>\[View Brief\]</a>
-			  <a href='?src=\ref[src];secnoteadd=`'>\[Add comment\]</a>  <a href='?src=\ref[src];secrecordadd=1'>\[Add crime\]</a>\n"}
+			  <a href='?src=\ref[src];secnoteadd=`'>\[Add Note\]</a>\n"}
 
 	if(hasHUD(user, "medical"))
 		var/perpname = "wot"

@@ -33,7 +33,6 @@ type RecordField = {
   value: string | number | object;
   list_value: any[];
   list_clumps: object[];
-  links: object;
   can_edit: BooleanLike;
   needs_big_box: BooleanLike;
   ignore_value: BooleanLike;
@@ -70,7 +69,7 @@ export const CrewRecords = (props, context) => {
         {uid &&
           currentrecord(
             { uid, fields, front_pic, side_pic, pic_edit },
-            context
+            context,
           )}
         {Boolean(uid) || (
           <>
@@ -87,7 +86,7 @@ export const CrewRecords = (props, context) => {
               <Box className={classes(['oldicons16x16', 'search'])} />
               <Button
                 content="Name Search"
-                onClick={() => act('search', { 'search': 'Name' })}
+                onClick={() => act('search', { search: 'Name' })}
               />
             </>
             {Boolean(dnasearch) && (
@@ -95,7 +94,7 @@ export const CrewRecords = (props, context) => {
                 <Box className={classes(['oldicons16x16', 'search'])} />
                 <Button
                   content="DNA Search"
-                  onClick={() => act('search', { 'search': 'DNA' })}
+                  onClick={() => act('search', { search: 'DNA' })}
                 />
               </>
             )}
@@ -104,7 +103,7 @@ export const CrewRecords = (props, context) => {
                 <Box className={classes(['oldicons16x16', 'search'])} />
                 <Button
                   content="Fingerprint Search"
-                  onClick={() => act('search', { 'search': 'Fingerprint' })}
+                  onClick={() => act('search', { search: 'Fingerprint' })}
                 />
               </>
             )}
@@ -125,7 +124,7 @@ export const CrewRecords = (props, context) => {
                         <Button
                           content={mapped.name + ''}
                           onClick={() =>
-                            act('set_active', { 'set_active': mapped.id })
+                            act('set_active', { set_active: mapped.id })
                           }
                         />
                       </Table.Cell>
@@ -186,13 +185,11 @@ const displayfield = (props, context) => {
     value,
     list_value,
     list_clumps,
-    links,
     can_edit,
     needs_big_box,
     ignore_value,
     ID,
   } = props;
-  const primelink = links ? Object.values(links)[1] : null;
   return (
     <>
       {access && access_edit && (
@@ -200,7 +197,7 @@ const displayfield = (props, context) => {
           <Box className={classes(['oldicons16x16', 'pencil'])} />
           <Button
             content={name}
-            onClick={() => act('edit_field', { 'edit_field': ID })}
+            onClick={() => act('edit_field', { edit_field: ID })}
           />
         </Box>
       )}
@@ -208,26 +205,25 @@ const displayfield = (props, context) => {
       {access && (
         <Box inline={Boolean(needs_big_box)}>
           {value}
-          {list_value && (list_value[1] ? list_value.map() : 'Unset')}
+          {list_value &&
+            (Object.values(list_value).length
+              ? list_value.join(', ')
+              : 'Unset')}
           {list_clumps &&
             (Object.keys(list_clumps)
               ? Object.keys(list_clumps).map((mapped, count) => {
-                return (
-                  <>
-                    {mapped}
-                    {': '}
-                    {returnlist(
-                      { origin: list_clumps, whichlist: count },
-                      context
-                    )}
-                    <Divider hidden />
-                  </>
-                );
-              })
-              : 'Unset')}
-          {links &&
-            (Object.keys(links).length > 0
-              ? returnlinkage({ links, primelink }, context)
+                  return (
+                    <>
+                      {mapped}
+                      {': '}
+                      {returnlist(
+                        { origin: list_clumps, whichlist: count },
+                        context,
+                      )}
+                      <Divider hidden />
+                    </>
+                  );
+                })
               : 'Unset')}
         </Box>
       )}
@@ -248,36 +244,6 @@ const returnlist = (props, context) => {
     toreturn = unfoldthis2.toString();
   } else toreturn = 'Sadness';
   return toreturn;
-};
-
-const returnlinkage = (props, context) => {
-  const { links, primelink } = props;
-  return (
-    <>
-      {links &&
-        Object.keys(links).map((displaythis, found) => (
-          <Box as="span" key={displaythis + found}>
-            {displaythis}
-            {'  '}
-          </Box>
-        ))}
-      {links && primelink && Array.isArray(primelink)
-        ? primelink.map((mapped, count: number) => {
-          return (
-            <>
-              {count === 0 && <Divider />}
-              {Object.keys(links).map((mappee, whichmappee) => {
-                return Array.isArray(links[mappee])
-                  ? links[mappee][count]+'  '
-                  : 'E-R-R';
-              })}
-              <Divider />
-            </>
-          );
-        })
-        : 'Badness'}
-    </>
-  );
 };
 
 /**/

@@ -491,7 +491,7 @@ proc/is_blind(A)
 			perpname = id.registered_name
 
 		var/datum/computer_file/report/crew_record/CR = get_crewmember_record(perpname)
-		if(check_records && (!CR || !CR.get_linkage_secRecord()))
+		if(check_records && !CR)
 			threatcount += 4
 
 		if(check_arrest && CR && (CR?.get_criminalStatus() == "*Arrest*")) // why is paperwork's folly being translated to electronic format?

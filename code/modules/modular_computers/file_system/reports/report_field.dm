@@ -211,7 +211,15 @@ Basic field subtypes.
 	value_list.Remove(given_value)
 
 /datum/report_field/array/ask_value(mob/user)
-	add_value(input(user, "Add value", "") as null|text)
+	var/inputchoice = input(user, "Add or Remove value", "Field Edit", "Add") in list("Add", "Remove")
+	if(inputchoice == "Add")
+		var/toadd = input(user, "Add value", "Field Input") as null|text
+		if(!isnull(toadd))
+			add_value(toadd)
+	else if(inputchoice == "Remove")
+		remove_value(input(user, "Choose value to remove", "Field Reduce") as null|anything in value_list )
+
+	
 
 /datum/report_field/arraylinkage
 	var/list/arrays = list()

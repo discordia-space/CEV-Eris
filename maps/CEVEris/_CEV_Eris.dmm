@@ -102891,7 +102891,7 @@
 /obj/item/computer_hardware/processor_unit,
 /obj/item/computer_hardware/tesla_link,
 /obj/item/computer_hardware/tesla_link,
-/turf/simulated/floor/hull,
+/turf/floor/hull,
 /area/space)
 "qmJ" = (
 /obj/machinery/door/blast/shutters{
@@ -105007,7 +105007,7 @@
 /obj/item/computer_hardware/network_card/wired,
 /obj/item/computer_hardware/scanner/paper,
 /obj/item/computer_hardware/scanner/paper,
-/turf/simulated/floor/hull,
+/turf/floor/hull,
 /area/space)
 "tZw" = (
 /obj/structure/cable/green{

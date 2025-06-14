@@ -101,7 +101,7 @@ export const ProgramShell = (props, context) => {
                     <Button
                       onClick={() =>
                         act('PC_toggle_component', {
-                          'component': PC_light_name,
+                          component: PC_light_name,
                         })
                       }
                     />
@@ -122,7 +122,8 @@ export const ProgramShell = (props, context) => {
               border-top-width="3px"
               border-top-style="double"
               border-top-color="#7B7B7B"
-              p="0px">
+              p="0px"
+            >
               <Table>
                 <TableRow>
                   <TableCell>

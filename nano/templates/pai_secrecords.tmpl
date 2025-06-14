@@ -48,16 +48,6 @@ code/modules/mob/living/silicon/pai/software_modules.dm
 		<div class="itemContent">{{:data.general.secNotes}}</div>
 	</div>
 {{/if}}
-{{if data.security}}
-	{{for data.security}}
-		<div class="item">
-			<div class="itemLabel">Crimes Entry</div>
-			<div class="itemContent">{{:value.crimes }}</div>
-			<div class="itemContent">{{:value.evidence }}</div>
-			<div class="itemContent">{{:value.locations }}</div>
-		</div>
-	{{/for}}
-{{/if}}
 
 {{if data.could_not_find}}
 	<div class="item">

@@ -201,19 +201,9 @@
 		data["records"] = records
 
 		var/datum/computer_file/report/crew_record/G = user.securityActive
-		var/datum/report_field/arraylinkage/S = G?.get_linkage_secRecord()
 		data["general"] = G ? list("name" = G.get_name(), "sex" = G.get_sex(), "species" = G.get_species(), "age" = G.get_age(), \
 		"job" = G.get_job(), "fingerprint" = G.get_fingerprint(), "status" = G.get_status(), "criminalStatus" = G.get_criminalStatus(), \
 		"secNotes" = G.get_linkage_secNotes()) : null
-		var/nanouirecursion = list()
-		if(S?.arrays[1])
-			for(var/index in 1 to S.arrays.len)
-				var/list/almostthere = S.retrieve_index_of_array("crimes", index, list("evidence", "locations"))
-				if(almostthere)
-					nanouirecursion += list("crimes" = almostthere[1], "evidence" = almostthere[2], "locations" = almostthere[3])
-				else // might not get overridden immediately, lack the energy to check
-					user.security_cannotfind = TRUE // was aware of the irony of the unreliability warning potentially being itself unreliable when writing this code
-		data["security"] = nanouirecursion ? nanouirecursion : null
 		data["could_not_find"] = user.security_cannotfind
 
 		ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)

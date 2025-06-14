@@ -452,62 +452,21 @@ var/list/rank_prefix = list(\
 				perpname = src.name
 
 			var/datum/computer_file/report/crew_record/CR = get_crewmember_record(perpname)
-			var/datum/report_field/arraylinkage/secrecord = CR.get_linkage_secRecord()
 			if(CR)
 				to_chat(usr, "<b>Name:</b> [CR.get_name()]	<b>Criminal Status:</b> [CR.get_criminalStatus()]")
-				var/list/crimes = secrecord.arrays["crimes"]
-				if(crimes)
-					for(var/c = 1, c <= length(crimes), c += 1)
-						if(istext(crimes[c]))
-							to_chat(usr, crimes[c])
-							to_chat(usr, "<a href='?src=\ref[src];secrecordDetailed=[c]`'>\[View details of crime]\]</a>")
-				to_chat(usr, "<a href='?src=\ref[src];secrecordDetailed=`'>\[View Full Security Record\]</a>")
+				var/datum/report_field/array/tofetch = CR.get_linkage_secNotes()
+				var/list/Briefing = tofetch.value_list
+				if(Briefing.len > 0)
+					var/list/combined = list()
+					for(var/iterator = min(Briefing.len-1, 3), iterator > -1, iterator -= 1)
+						combined.Add(Briefing[Briefing.len - iterator])
+					to_chat(usr, "Briefing latest: "+combined.Join(", "))
+				to_chat(usr, "<a href='?src=\ref[src];secnoteadd=`'>\[Add to Brief\]</a>")
+				to_chat(usr, "<a href='?src=\ref[src];viewbrief=1'>\[View Full Brief\]</a>")
 				read = 1
 
 			if(!read)
 				to_chat(usr, "\red Unable to locate a criminal record for this person.")
-
-	if(href_list["secrecordDetailed"])
-		if(hasHUD(usr,"security"))
-			var/perpname = "wot"
-			var/read = 0
-
-			var/obj/item/card/id/id = GetIdCard()
-			if(istype(id))
-				perpname = id.registered_name
-			else
-				perpname = src.name
-
-			var/datum/computer_file/report/crew_record/E = get_crewmember_record(perpname)
-			var/datum/report_field/arraylinkage/R = E.get_linkage_secRecord()
-			if(E)
-				read = 1
-				var/c = href_list["secrecordDetailed"]
-				if(isnum(c))  // retrieve the crimes, location, and evidence for c
-					var/list/crime = R.retrieve_index_of_array("crimes", c, list("locations", "evidence"))
-					for(var/detail in crime)
-						to_chat(usr, "[detail]")
-				else
-					to_chat(usr, "All crimes and details:")
-					var/list/arrayone = R.arrays[1]
-					if(length(arrayone))
-						for(var/c2 in 1 to length(arrayone))
-							var/list/crime = R.retrieve_index_of_array("crimes", c2, list("locations", "evidence"))
-							for(var/detail in crime)
-								to_chat(usr, "[detail]")
-
-					var/datum/report_field/array/tofetch = E.get_linkage_secNotes()
-					var/list/Briefing = tofetch.value_list
-					if(Briefing.len > 0)
-						var/list/combined = list()
-						for(var/iterator = min(Briefing.len-1, 3), iterator > -1, iterator -= 1)
-							combined.Add(Briefing[Briefing.len - iterator])
-						to_chat(usr, "Briefing latest: "+combined.Join(" "))
-					to_chat(usr, "<a href='?src=\ref[src];secnoteadd=`'>\[Add to Brief\]</a>")
-					to_chat(usr, "<a href='?src=\ref[src];viewbrief=1'>\[View Brief\]</a>")
-
-			if(!read)
-				to_chat(usr, "\red Unable to locate a record for this person.")
 
 	if(href_list["viewbrief"])
 		if(hasHUD(usr,"security"))
@@ -531,43 +490,9 @@ var/list/rank_prefix = list(\
 			var/datum/report_field/array/tofetch = E.get_linkage_secNotes()
 			var/list/Briefing = tofetch.value_list
 			if(Briefing.len > 0)
-				to_chat(usr, SPAN_NOTICE("Brief: " + Briefing.Join(" ")))
+				to_chat(usr, SPAN_NOTICE("Brief: " + Briefing.Join(", ")))
 			else
 				to_chat(usr, SPAN_NOTICE("[perpname] does not have a brief."))
-			
-	if(href_list["secrecordadd"])
-		if(hasHUD(usr,"security"))
-			var/perpname = "wot"
-			if(wear_id)
-				var/obj/item/card/id/id
-				if(istype(wear_id, /obj/item/modular_computer/pda))
-					id = wear_id.GetIdCard()
-				if(!id)
-					id = get_idcard()
-				if(id)
-					perpname = id.registered_name
-			else
-				perpname = src.name
-
-			var/datum/computer_file/report/crew_record/E = get_crewmember_record(perpname)
-			var/datum/report_field/arraylinkage/R = E.get_linkage_secRecord()
-			if(!E)
-				to_chat(usr, SPAN_DANGER("Unable to locate a record for [perpname]!"))
-				return FALSE
-			var/t1 =  sanitize(input("Add crime:", "Sec. records", null, null)  as text)
-			if( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"security")) )
-				return
-			var/t2
-			if(isStationLevel(z)) // is our current Z-level on the whitelist?
-				t2 = alert(usr, "Use current target area as location of crime?", "Sec. records", "Yes", "No")
-				var/area/toget = (t2 == "Yes"? get_area(src) : null)
-				t2 = toget ? toget.name : "Unknown"
-				if( !(t2) || usr.stat || usr.restrained() || !(hasHUD(usr,"security")) )
-					return
-			else
-				t2 = "Unknown" // can't grab area names off-ship; may be improved by adding more means of info but right now that's all IH gets.
-			to_chat(usr, "Evidence is currently inaccessible, skipping.")
-			R.add_index(list("crimes" = t1, "locations" = t2, "evidence" = "Not found."), TRUE)
 
 	if(href_list["secnoteadd"])
 		if(hasHUD(usr,"security"))

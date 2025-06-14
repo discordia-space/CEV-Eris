@@ -65,7 +65,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 					continue
 				else
 					var/obj/item/organ/external/organthing = H.organs_by_name[OD.organ_tag]
-					if(organthing.nature | MODIFICATION_REMOVED)
+					if(organthing.is_stump())
 						wounds.Add("[organthing.name] instead of [OD.name]")
 					else
 						prosthetics.Add(organthing.name)
@@ -147,19 +147,6 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	set_criminalStatus(GLOB.default_security_status)
 	set_dna(H ? H.dna_trace : "")
 	set_fingerprint(H ? H.fingers_trace : "")
-	var/datum/report_field/arraylinkage/secRecord = get_linkage_secRecord()
-	if(loadedprefs && !jobban_isbanned(H, "Records") && loadedprefs.sec_record)
-		var/datum/storedrecord/security/secrecord = loadedprefs.loaded_preferences["crimes"]
-		if(istype(secrecord))
-			secrecord.transfertocomputer(secRecord)
-		else
-			secrecord = new /datum/storedrecord/security/default()
-			secrecord.transfertocomputer(secRecord)
-			qdel(secrecord)
-	else
-		var/datum/storedrecord/security/default/secrecord = new()
-		secrecord.transfertocomputer(secRecord)
-		qdel(secrecord)
 
 	if(H)
 		for(var/datum/perk/fate/profile in H.stats.perks)
@@ -288,7 +275,6 @@ KEY.set_access(ACCESS, ACCESS_EDIT || ACCESS || access_heads)}
 #define FIELD_LIST(NAME, KEY, OPTIONS, ACCESS, ACCESS_EDIT) FIELD_LIST_EDIT(NAME, KEY, OPTIONS, ACCESS, ACCESS_EDIT)
 #define FIELD_LIST_EDIT(NAME, KEY, OPTIONS, ACCESS, ACCESS_EDIT) SETUP_FIELD(NAME, KEY, options/crew_record, ACCESS, ACCESS_EDIT);\
 /datum/report_field/options/crew_record/##KEY/get_options(){return OPTIONS}
-#define ARRAYFIELD_LINKED(NAME, KEY, ACCESS, ACCESS_EDIT) SETUP_ARRAYFIELD(NAME, KEY, arraylinkage/crew_record, ACCESS, ACCESS_EDIT)
 #define ARRAYFIELD_SINGLE(NAME, KEY, ACCESS, ACCESS_EDIT) SETUP_ARRAYFIELD(NAME, KEY, array/crew_record, ACCESS, ACCESS_EDIT)
 #define ARRAYFIELD_CLUMP(NAME, KEY, ACCESS, ACCESS_EDIT) SETUP_ARRAYFIELD(NAME, KEY, arrayclump/crew_record, ACCESS, ACCESS_EDIT)
 
@@ -310,7 +296,6 @@ ARRAYFIELD_CLUMP("Medical Record", medRecord, access_moebius, access_moebius)
 
 // SECURITY RECORDS
 FIELD_LIST("Criminal Status", criminalStatus, GLOB.security_statuses, access_security, access_security)
-ARRAYFIELD_LINKED("Security Record", secRecord, access_security, access_security)
 ARRAYFIELD_SINGLE("Brief", secNotes, access_security, access_security)
 FIELD_SHORT("DNA", dna, access_security, access_security)
 FIELD_SHORT("Fingerprint", fingerprint, access_security, access_security)
@@ -366,6 +351,5 @@ FIELD_LONG("Exploitable Information", antagRecord, access_syndicate, access_synd
 #undef FIELD_NUM
 #undef FIELD_LIST
 #undef FIELD_LIST_EDIT
-#undef ARRAYFIELD_LINKED
 #undef ARRAYFIELD_SINGLE
 #undef ARRAYFIELD_CLUMP
