@@ -128,12 +128,10 @@
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 
-
 /obj/effect/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap) || istype(I, /obj/item/holyvacuum))
 		return
 	..()
-
 
 #undef MOPMODE_TILE
 #undef MOPMODE_SWEEP

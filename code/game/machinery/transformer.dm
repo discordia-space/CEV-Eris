@@ -28,14 +28,14 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(!transform_dead && H.stat == DEAD)
-		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		return
-	playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+	playsound(loc, 'sound/items/Welder.ogg', 50, 1)
 	use_power(5000) // Use a lot of power.
 	var/mob/living/silicon/robot = H.Robotize()
 	robot.SetLockDown()
 	spawn(50) // So he can't jump out the gate right away.
-		playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
+		playsound(loc, 'sound/machines/ping.ogg', 50, 0)
 		if(robot)
 			robot.SetLockDown(0)
 

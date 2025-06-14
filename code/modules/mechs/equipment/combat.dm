@@ -776,7 +776,7 @@
 /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/afterattack(atom/A, mob/living/user)
 	// Dramatic gun cocking!
 	if(!cocked)
-		playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 300, 1)
+		playsound(loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 300, 1)
 		to_chat(user, SPAN_NOTICE("You chamber the [src], preparing it for full-automatic fire."))
 		// uh oh
 		visible_message(get_turf(src), SPAN_DANGER("The mech chambers the [src], preparing it for full automatic fire!"))
@@ -786,13 +786,13 @@
 	..()
 	if((ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len && !reloading) || (!ammo_magazine && !reloading))
 		reloading = TRUE
-		playsound(src.loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, 1)
+		playsound(loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, 1)
 		var/obj/item/mech_equipment/mounted_system/ballistic/hold = loc
 		to_chat(user, SPAN_NOTICE("\The [src]'s magazine has run out. Reloading..."))
 		spawn(1 SECOND)
-			playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 150, 1)
+			playsound(loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 150, 1)
 		spawn(2 SECOND)
-			playsound(src.loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, 1)
+			playsound(loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, 1)
 			if(hold.reloadGun())
 				to_chat(user, SPAN_NOTICE("\The [src]'s magazine has been reloaded."))
 			else

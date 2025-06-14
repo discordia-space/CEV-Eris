@@ -73,7 +73,7 @@
 			if(!Adjacent(user))
 				return
 			visible_message(SPAN_WARNING("[user] rips [src] in a single, decisive motion!") )
-			playsound(src.loc, 'sound/items/poster_ripped.ogg', 100, 1)
+			playsound(loc, 'sound/items/poster_ripped.ogg', 100, 1)
 			ruined = 1
 			icon = initial(icon)
 			icon_state = "poster_ripped"

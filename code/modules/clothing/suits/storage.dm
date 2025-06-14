@@ -141,7 +141,7 @@
 		H.drop_from_inventory(hood)
 		hood.forceMove(src)
 		icon_state = icon_down
-		playsound(src.loc, "rustle", 75, 1)
+		playsound(loc, "rustle", 75, 1)
 	else
 		if(H.head)
 			to_chat(H, SPAN_DANGER("You cannot raise your hood while wearing \the [H.head]."))
@@ -150,7 +150,7 @@
 			hood.canremove = 0
 			to_chat(H, "<span class='info'>You raise your hood, obscuring your face.</span>")
 			icon_state = icon_up
-			playsound(src.loc, "rustle", 75, 1)
+			playsound(loc, "rustle", 75, 1)
 
 /obj/item/clothing/suit/storage/vest/merc/New()
 	..()

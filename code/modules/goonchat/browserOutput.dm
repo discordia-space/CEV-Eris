@@ -113,7 +113,6 @@ GLOBAL_VAR_INIT(goonchatbasehtml, file2text('code/modules/goonchat/browserassets
 	messageQueue = null
 	sendClientData()
 
-	//do not convert to to_chat()
 	owner << "<span class=\"userdanger\">Failed to load fancy chat, reverting to old chat. Certain features won't work.</span>"
 
 /datum/chatOutput/proc/showChat()

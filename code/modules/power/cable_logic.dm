@@ -287,6 +287,5 @@
 			pn_input2.draw_power(RELAY_POWER_TRANSFER)
 			pn_output.newavail += RELAY_POWER_TRANSFER
 
-
 #undef RELAY_POWER_TRANSFER
 #undef LOGIC_HIGH

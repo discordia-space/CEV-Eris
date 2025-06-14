@@ -75,7 +75,7 @@
 	update_icon()
 
 /obj/machinery/pile_ripper/proc/stop(mob/living/L)
-	playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+	playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
 	safety_mode = TRUE
 	update_icon()
 	L.forceMove(loc)
@@ -115,9 +115,9 @@
 
 /obj/machinery/pile_ripper/proc/eat(mob/living/L)
 	if(issilicon(L))
-		playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+		playsound(loc, 'sound/items/Welder.ogg', 50, 1)
 	else
-		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
+		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 
 	var/gib = TRUE
 	// By default, the emagged pile_ripper will gib all non-carbons. (human simple animal mobs don't count)

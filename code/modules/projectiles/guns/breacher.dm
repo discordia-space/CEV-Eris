@@ -75,7 +75,7 @@
 		user.visible_message(SPAN_DANGER("*click*"), SPAN_DANGER("*click*"))
 	else
 		src.visible_message(SPAN_DANGER("*click*"))
-	playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
+	playsound(loc, 'sound/weapons/empty.ogg', 100, 1)
 
 
 /obj/item/hatton/proc/use_charge()

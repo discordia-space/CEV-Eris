@@ -18,5 +18,4 @@
 
 /mob/living/simple_animal/lizard/New()
 	..()
-
 	nutrition = rand(max_nutrition*0.25, max_nutrition*0.75)

@@ -154,7 +154,7 @@
 	var/entropy_value = 1 //for bluespace entropy
 
 /obj/item/tele_spear/attack(mob/living/carbon/human/M, mob/living/carbon/user)
-	playsound(src.loc, 'sound/effects/EMPulse.ogg', 65, 1)
+	playsound(loc, 'sound/effects/EMPulse.ogg', 65, 1)
 	var/turf/teleport_location = pick( getcircle(user.loc, 8) )
 	if(prob(5))
 		go_to_bluespace(get_turf(src), entropy_value, FALSE, user, teleport_location, 1)

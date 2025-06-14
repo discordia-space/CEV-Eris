@@ -112,17 +112,17 @@
 
 /obj/item/clothing/suit/armor/vest/warden/ironhammer
 	name = "Warden's overcoat"
-	desc = "An IH warden's overcoat with a vest over it, most often used in Hansa prisons."
+	desc = "An IH warden's overcoat with a vest over it, most often used in Hanza prisons."
 	icon_state = "warden_jacket_IH"
 
 /obj/item/clothing/suit/armor/vest/ironhammer
 	name = "operator armor"
-	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors. Not designed for serious operations."
+	desc = "An armored vest that protects against some damage. This one has been done in IronHammer Security colors. Not designed for serious operations."
 	icon_state = "armor_ironhammer"
 
 /obj/item/clothing/suit/armor/vest/full/ironhammer
 	name = "full operator armor"
-	desc = "An armored vest painted in Ironhammer Security colors. This one has shoulderpads and knee pads included to protect all parts of the body."
+	desc = "An armored vest painted in IronHammer Security colors. This one has shoulderpads and knee pads included to protect all parts of the body."
 	icon_state = "armor_ironhammer_fullbody"
 
 /obj/item/clothing/suit/armor/vest/handmade
@@ -305,7 +305,7 @@
 /obj/item/clothing/suit/armor/bulletproof/ironhammer
 	name = "full bulletproof suit"
 	desc = "A vest with hand and arm-guards attached that excels in protecting the wearer against high-velocity solid projectiles. \
-			This one has been done in Ironhammer Security colors."
+			This one has been done in IronHammer Security colors."
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	matter = list(
@@ -566,7 +566,7 @@
 
 /obj/item/clothing/suit/storage/vest/ironhammer
 	name = "webbed operator armor"
-	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors and has various pouches and straps attached."
+	desc = "An armored vest that protects against some damage. This one has been done in IronHammer Security colors and has various pouches and straps attached."
 	icon_state = "webvest_ironhammer"
 	spawn_blacklisted = TRUE
 

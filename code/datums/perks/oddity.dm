@@ -305,7 +305,7 @@
 		"Storing up for the winter!",
 		"On A Friday Night?",
 		"For A LimiTed Time Only!",
-		"TOP 10 HANSA CELEBRITIES!",
+		"TOP 10 HANZA CELEBRITIES!",
 		"Predstraza Gun Schematics!",
 		"Royalty Free Tapes!",
 		"Big",

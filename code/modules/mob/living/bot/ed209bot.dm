@@ -126,7 +126,7 @@
 				qdel(I)
 				build_step++
 				to_chat(user, SPAN_NOTICE("You add the robot leg to [src]."))
-				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+				playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "legs/frame assembly"
 				if(build_step == 1)
 					item_state = "ed209_leg"
@@ -141,7 +141,7 @@
 				qdel(I)
 				build_step++
 				to_chat(user, SPAN_NOTICE("You add the armor to [src]."))
-				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+				playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "vest/legs/frame assembly"
 				item_state = "ed209_shell"
 				icon_state = "ed209_shell"
@@ -152,7 +152,7 @@
 				qdel(I)
 				build_step++
 				to_chat(user, SPAN_NOTICE("You add the helmet to [src]."))
-				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+				playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "covered and shielded frame assembly"
 				item_state = "ed209_hat"
 				icon_state = "ed209_hat"
@@ -163,7 +163,7 @@
 				qdel(I)
 				build_step++
 				to_chat(user, SPAN_NOTICE("You add the prox sensor to [src]."))
-				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+				playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "covered, shielded and sensored frame assembly"
 				item_state = "ed209_prox"
 				icon_state = "ed209_prox"
@@ -179,7 +179,7 @@
 					if(C.use(1))
 						build_step++
 						to_chat(user, SPAN_NOTICE("You wire the ED-209 assembly."))
-						playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+						playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 						name = "wired ED-209 assembly"
 				return
 
@@ -188,7 +188,7 @@
 				name = "taser ED-209 assembly"
 				build_step++
 				to_chat(user, SPAN_NOTICE("You add [I] to [src]."))
-				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+				playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 				item_state = "ed209_taser"
 				icon_state = "ed209_taser"
 				user.drop_item()

@@ -55,7 +55,7 @@
 	set waitfor = 0
 	if(cocked_sound)
 		sleep(3)
-		if(user && loc) playsound(src.loc, cocked_sound, 75, 1)
+		if(user && loc) playsound(loc, cocked_sound, 75, 1)
 	set_item_state()
 
 /obj/item/gun/projectile/consume_next_projectile()
@@ -116,7 +116,7 @@
 						QDEL_NULL(temp_casing)
 					chambered.update_icon()
 
-			playsound(src.loc, casing_sound, 50, 1)
+			playsound(loc, casing_sound, 50, 1)
 		if(CYCLE_CASINGS) //cycle the casing back to the end.
 			if(ammo_magazine)
 				ammo_magazine.stored_ammo += chambered
@@ -173,7 +173,7 @@
 				AM.loc = src
 				ammo_magazine = AM
 
-				if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
+				if(reload_sound) playsound(loc, reload_sound, 75, 1)
 				cock_gun(user)
 				update_firemode()
 			if(SPEEDLOADER)
@@ -194,7 +194,7 @@
 							count++
 				if(count)
 					user.visible_message("[user] reloads [src].", SPAN_NOTICE("You load [count] round\s into [src]."))
-					if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
+					if(reload_sound) playsound(loc, reload_sound, 75, 1)
 					cock_gun(user)
 					. = 1
 				update_firemode()
@@ -227,7 +227,7 @@
 		update_firemode()
 		. = 1
 		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
-		if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
+		if(bulletinsert_sound) playsound(loc, bulletinsert_sound, 75, 1)
 
 	update_icon()
 	update_held_icon()
@@ -238,7 +238,7 @@
 		user.put_in_hands(ammo_magazine)
 
 		if(unload_sound)
-			playsound(src.loc, unload_sound, 75, 1)
+			playsound(loc, unload_sound, 75, 1)
 		ammo_magazine.update_icon()
 		ammo_magazine = null
 	else if(loaded.len)
@@ -253,13 +253,13 @@
 				loaded.Cut()
 			if(count)
 				user.visible_message("[user] unloads [src].", SPAN_NOTICE("You unload [count] round\s from [src]."))
-				if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
+				if(bulletinsert_sound) playsound(loc, bulletinsert_sound, 75, 1)
 		else if(load_method & SINGLE_CASING)
 			var/obj/item/ammo_casing/C = loaded[loaded.len]
 			loaded.len--
 			user.put_in_hands(C)
 			user.visible_message("[user] removes \a [C] from [src].", SPAN_NOTICE("You remove \a [C] from [src]."))
-			if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
+			if(bulletinsert_sound) playsound(loc, bulletinsert_sound, 75, 1)
 	else
 		to_chat(user, SPAN_WARNING("[src] is empty."))
 	update_icon()

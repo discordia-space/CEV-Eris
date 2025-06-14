@@ -255,7 +255,7 @@
 
 /datum/perk/codespeak
 	name = "Codespeak"
-	desc = "You know Ironhammer PMC's code language, adapted to use aboard of CEV Eris."
+	desc = "You know IronHammer PMC's code language, adapted to use aboard of CEV Eris."
 	icon_state = "codespeak" // https://game-icons.net/1x1/delapouite/police-officer-head.html
 	var/list/codespeak_procs = list(
 		/mob/living/carbon/human/proc/codespeak_help,

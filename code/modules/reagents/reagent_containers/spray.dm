@@ -40,7 +40,7 @@
 
 	Spray_at(A, user, proximity)
 
-	playsound(src.loc, 'sound/effects/spray2.ogg', 50, 1, -6)
+	playsound(loc, 'sound/effects/spray2.ogg', 50, 1, -6)
 
 	user.setClickCooldown(4)
 

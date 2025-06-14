@@ -313,7 +313,7 @@
 	qdel(S)
 	user.put_in_hands(A)
 	to_chat(user, SPAN_NOTICE("You add the robot arm to the first aid kit."))
-	playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+	playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 	user.drop_from_inventory(src)
 	qdel(src)
 
@@ -350,7 +350,7 @@
 					qdel(W)
 					build_step++
 					to_chat(user, SPAN_NOTICE("You add the health sensor to [src]."))
-					playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+					playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 					name = "First aid/robot arm/health analyzer assembly"
 					overlays += image('icons/obj/aibots.dmi', "na_scanner")
 
@@ -359,7 +359,7 @@
 					user.drop_item()
 					qdel(W)
 					to_chat(user, SPAN_NOTICE("You complete the Medibot! Beep boop."))
-					playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+					playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 					var/turf/T = get_turf(src)
 					var/mob/living/bot/medbot/S = new /mob/living/bot/medbot(T)
 					S.skin = skin

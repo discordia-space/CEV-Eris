@@ -44,7 +44,7 @@
 	else
 		if(loaded.len && prob(jam_chance)) //you know, when you try to shot and "aaaaawwwww fuk"
 			jammed = TRUE
-			playsound(src.loc, 'sound/weapons/guns/interact/hpistol_cock.ogg', 70, 1)
+			playsound(loc, 'sound/weapons/guns/interact/hpistol_cock.ogg', 70, 1)
 			to_chat(user, SPAN_DANGER("[src] is jammed!"))
 			return 0
 	return ..()
@@ -67,7 +67,7 @@
 		..()
 		chamber_open = FALSE
 		icon_state = "hm_pistol"
-		playsound(src.loc, 'sound/weapons/guns/interact/batrifle_magin.ogg', 65, 1)
+		playsound(loc, 'sound/weapons/guns/interact/batrifle_magin.ogg', 65, 1)
 
 /obj/item/gun/projectile/handmade_pistol/unload_ammo(mob/user, allow_dump=1)
 	return
@@ -76,7 +76,7 @@
 	src.jammed = FALSE
 	src.chamber_open = TRUE
 	icon_state = "hm_pistol_open"
-	playsound(src.loc, 'sound/weapons/guns/interact/batrifle_magout.ogg', 65, 1)
+	playsound(loc, 'sound/weapons/guns/interact/batrifle_magout.ogg', 65, 1)
 	if(loaded.len)
 		var/obj/item/ammo_casing/our_bullet = loaded[1]
 		our_bullet.loc = get_turf(src)

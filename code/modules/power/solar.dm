@@ -65,7 +65,7 @@
 			if(S)
 				S.loc = src.loc
 				S.give_glass()
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 50, TRUE)
+			playsound(loc, 'sound/items/Crowbar.ogg', 50, TRUE)
 			user.visible_message(SPAN_NOTICE("[user] takes the glass off the solar panel."))
 			qdel(src)
 		return

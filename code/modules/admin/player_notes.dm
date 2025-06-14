@@ -79,6 +79,5 @@ datum/admins/proc/notes_gethtml(var/ckey)
 		notesfile.cd = "/"
 		if(alert(usr,"Are you sure you want to remove all their notes?","Confirmation","No","Yes - Remove all notes") == "Yes - Remove all notes")
 			notesfile.dir.Remove(ckey)
-	return
 
 #undef NOTESFILE

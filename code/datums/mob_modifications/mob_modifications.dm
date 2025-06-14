@@ -44,5 +44,3 @@ GLOBAL_LIST_EMPTY(customMobModifications)
 	if(!istype(M))
 		return FALSE
 	return TRUE
-	
-	

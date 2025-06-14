@@ -340,10 +340,10 @@
 
 	if(calc_damage <= 0)
 		if(user)user.visible_message(SPAN_DANGER("\The [user] hits \the [src] with \the [W] with no visible effect."))
-		playsound(src.loc, hitsound, 20, 1)
+		playsound(loc, hitsound, 20, 1)
 	else
 		if(user)user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
-		playsound(src.loc, hitsound, calc_damage*2.5, 1, 3,3)
+		playsound(loc, hitsound, calc_damage*2.5, 1, 3,3)
 		take_damage(W.force)
 
 /obj/machinery/door/take_damage(damage)
@@ -424,7 +424,7 @@
 		if("deny")
 			if(density && !(stat & (NOPOWER|BROKEN)))
 				flick("door_deny", src)
-				playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 0)
+				playsound(loc, 'sound/machines/Custom_deny.ogg', 50, 0)
 	return
 
 

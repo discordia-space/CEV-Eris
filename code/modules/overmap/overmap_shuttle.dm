@@ -123,11 +123,11 @@
 		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			if(opened)
 				to_chat(user, "<spawn class='notice'>You tightly shut \the [src] door.")
-				playsound(src.loc, 'sound/machines/Custom_closetclose.ogg', 25, 0, -3)
+				playsound(loc, 'sound/machines/Custom_closetclose.ogg', 25, 0, -3)
 				opened = 0
 			else
 				to_chat(user, "<spawn class='notice'>You open up \the [src] door.")
-				playsound(src.loc, 'sound/machines/Custom_closetopen.ogg', 15, 1, -3)
+				playsound(loc, 'sound/machines/Custom_closetopen.ogg', 15, 1, -3)
 				opened = 1
 	else if(istype(W,/obj/item/tank))
 		if(!opened)

@@ -687,7 +687,7 @@ There are 9 wires.
 		if("deny")
 			if(density && src.arePowerSystemsOn())
 				flick("door_deny", src)
-				playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 1, -2)
+				playsound(loc, 'sound/machines/Custom_deny.ogg', 50, 1, -2)
 	return
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)
@@ -1214,19 +1214,19 @@ There are 9 wires.
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	tryingToLock = FALSE
 	if(arePowerSystemsOn())
-		playsound(src.loc, close_sound, 70, 1, -2)
+		playsound(loc, close_sound, 70, 1, -2)
 	else
 		var/obj/item/tool/T = forced
 		if(istype(T) && T.item_flags & SILENT)
-			playsound(src.loc, open_sound_unpowered, 3, 1, -5) //Silenced tools can force airlocks silently
+			playsound(loc, open_sound_unpowered, 3, 1, -5) //Silenced tools can force airlocks silently
 		else if(istype(T) && T.item_flags & LOUD)
-			playsound(src.loc, open_sound_unpowered, 500, 1, 10) //Loud tools can force open airlocks LOUDLY
+			playsound(loc, open_sound_unpowered, 500, 1, 10) //Loud tools can force open airlocks LOUDLY
 		else
-			playsound(src.loc, open_sound_unpowered, 70, 1, -2)
+			playsound(loc, open_sound_unpowered, 70, 1, -2)
 
 	var/obj/item/tool/T = forced
 	if(istype(T) && T.item_flags & HONKING)
-		playsound(src.loc, WORKSOUND_HONK, 70, 1, -2)
+		playsound(loc, WORKSOUND_HONK, 70, 1, -2)
 
 	..()
 
@@ -1237,7 +1237,7 @@ There are 9 wires.
 	if(operating && !forced) return 0
 
 	src.locked = 1
-	playsound(src.loc, 'sound/machines/Custom_bolts.ogg', 40, 1, 5)
+	playsound(loc, 'sound/machines/Custom_bolts.ogg', 40, 1, 5)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()
@@ -1251,7 +1251,7 @@ There are 9 wires.
 		if(operating || !src.arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_DOOR_BOLTS)) return
 
 	src.locked = 0
-	playsound(src.loc, 'sound/machines/Custom_boltsup.ogg', 40, 1, 5)
+	playsound(loc, 'sound/machines/Custom_boltsup.ogg', 40, 1, 5)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()
@@ -1382,10 +1382,10 @@ There are 9 wires.
 	user.do_attack_animation(src)
 	if(calc_damage <= 0)
 		user.visible_message(SPAN_DANGER("\The [user] hits \the [src] with \the [W] with no visible effect."))
-		quiet ? null : playsound(src.loc, hitsound, 20, 1)
+		quiet ? null : playsound(loc, hitsound, 20, 1)
 	else
 		user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
-		playsound(src.loc, hitsound, quiet? 3: calc_damage*2, 1, 3,quiet?-5 :2)
+		playsound(loc, hitsound, quiet? 3: calc_damage*2, 1, 3,quiet?-5 :2)
 		take_damage(W.force)
 
 

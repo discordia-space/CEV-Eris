@@ -352,7 +352,7 @@ BLIND     // can't see anything
 			update_icon()
 			return
 
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		user.visible_message("\red [user] cuts the fingertips off of the [src].","\red You cut the fingertips off of the [src].")
 
 		clipped = 1

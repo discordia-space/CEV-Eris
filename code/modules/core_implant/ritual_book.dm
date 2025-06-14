@@ -11,7 +11,7 @@
 
 
 /obj/item/book/ritual/attack_self(mob/living/carbon/human/H)
-	playsound(src.loc, pick('sound/items/BOOK_Turn_Page_1.ogg',\
+	playsound(loc, pick('sound/items/BOOK_Turn_Page_1.ogg',\
 		'sound/items/BOOK_Turn_Page_2.ogg',\
 		'sound/items/BOOK_Turn_Page_3.ogg',\
 		'sound/items/BOOK_Turn_Page_4.ogg',\

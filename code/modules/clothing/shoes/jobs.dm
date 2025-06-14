@@ -28,7 +28,7 @@
 
 /obj/item/clothing/shoes/jackboots/ironhammer
 	icon_state = "jackboots_ironhammer"
-	desc = "Standard-issue Ironhammer combat boots for combat scenarios or combat situations. All combat, all the time."
+	desc = "Standard-issue IronHammer combat boots for combat scenarios or combat situations. All combat, all the time."
 
 /obj/item/clothing/shoes/jackboots/german
 	name = "Oberth Republic boots"

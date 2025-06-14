@@ -42,7 +42,7 @@
 	process_med_hud(M, 1)
 
 /obj/item/clothing/glasses/sunglasses/medhud
-	name = "Ironhammer medical HUD"
+	name = "IronHammer medical HUD"
 	desc = "Goggles with inbuilt medical information. They provide minor flash resistance."
 	icon_state = "healthhud"
 	prescription = TRUE
@@ -79,13 +79,12 @@
 	icon_state = "sunhud"
 	prescription = TRUE
 
-	New()
-		..()
-		src.hud = new/obj/item/clothing/glasses/hud/security(src)
-		return
+/obj/item/clothing/glasses/sunglasses/sechud/New()
+	..()
+	hud = new/obj/item/clothing/glasses/hud/security(src)
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
-	name = "Ironhammer tactical HUD"
+	name = "IronHammer tactical HUD"
 	desc = "Goggles with inbuilt combat and security information. They provide minor flash resistance."
 	icon_state = "swatgoggles"
 

@@ -74,7 +74,7 @@
 	item_cost = 1
 	antag_roles = list(ROLE_MARSHAL)
 	path = /obj/item/clothing/accessory/badge/marshal
-	desc = "A leather-backed gold badge displaying the crest of the Ironhammer Marshals."
+	desc = "A leather-backed gold badge displaying the crest of the IronHammer Marshals."
 
 /datum/uplink_item/item/badassery/donut_case
 	name = "Special Donut Delivery Case"

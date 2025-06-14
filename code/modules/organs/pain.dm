@@ -129,4 +129,4 @@ mob/living/carbon/human/proc/handle_pain()
 			toxDamageMessage = "Your body aches all over, it's driving you mad."
 
 	if(toxDamageMessage && prob(toxMessageProb))
-		src.custom_pain(toxDamageMessage, getToxLoss() >= 15)
+		custom_pain(toxDamageMessage, getToxLoss() >= 15)

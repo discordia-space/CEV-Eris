@@ -56,7 +56,7 @@
 	place_handcuffs(C, user, cuff_delay)
 
 /obj/item/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user, var/delay)
-	playsound(src.loc, cuff_sound, 30, 1, -2)
+	playsound(loc, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))

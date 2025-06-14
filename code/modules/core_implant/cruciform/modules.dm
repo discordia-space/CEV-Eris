@@ -32,8 +32,6 @@
 	var/obj/item/device/uplink/hidden/uplink
 
 /datum/core_module/cruciform/uplink/install()
-
-
 	//Hook up the uplink with the mob wearing this implant
 	var/mob/living/M = implant.get_holding_mob()
 	if(M && M.mind)
@@ -41,18 +39,14 @@
 		implant.hidden_uplink = uplink
 		uplink.uplink_owner = M.mind
 
-		//Update the nanodata after installation, to activate the neotheology category
+		//Update the nanodata after installation, to activate the NeoTheology category
 		uplink.update_nano_data()
-
-
 
 
 /datum/core_module/cruciform/uplink/uninstall()
 	telecrystals = uplink.uses
 	implant.hidden_uplink = null
 	QDEL_NULL(uplink)
-
-
 
 
 /datum/core_module/cruciform/cloning

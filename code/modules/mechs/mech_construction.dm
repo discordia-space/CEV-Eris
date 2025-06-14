@@ -1,6 +1,6 @@
 /mob/living/exosuit/proc/dismantle()
 
-	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+	playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 	var/obj/structure/heavy_vehicle_frame/frame = new /obj/structure/heavy_vehicle_frame(drop_location())
 	for(var/hardpoint in hardpoints)
 		remove_system(hardpoint, force=TRUE)

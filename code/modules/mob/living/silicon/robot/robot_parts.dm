@@ -134,7 +134,7 @@
 		var/obj/item/robot_parts/selected = part ? parts[part] : null
 		if(!Adjacent(user) || !selected) return
 
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+		playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
 		if(!W.use_tool(user, src, 30, QUALITY_BOLT_TURNING))
 			to_chat(user, SPAN_NOTICE("You stop detaching [selected]."))
 			return

@@ -156,7 +156,7 @@
 /obj/item/bikehorn/attack_self(mob/user)
 	if(spam_flag == 0)
 		spam_flag = 1
-		playsound(src.loc, 'sound/items/bikehorn.ogg', 50, 1)
+		playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)
 		src.add_fingerprint(user)
 		spawn(20)
 			spam_flag = 0

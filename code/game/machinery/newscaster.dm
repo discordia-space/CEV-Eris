@@ -278,7 +278,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 		switch(screen)
 			if(0)
 				dat += "Welcome to Newscasting Unit #[unit_no].<BR> Interface & News networks Operational."
-				dat += "<BR><FONT SIZE=1>Property of Nanotrasen Inc</FONT>"
+				dat += "<BR><FONT SIZE=1>Property of NanoTrasen Inc</FONT>"
 				if(news_network.wanted_issue)
 					dat+= "<HR><A href='?src=[REF(src)];view_wanted=1'>Read Wanted Issue</A>"
 				dat+= "<HR><BR><A href='?src=[REF(src)];create_channel=1'>Create Feed Channel</A>"
@@ -745,7 +745,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 
 /obj/machinery/newscaster/attackby(obj/item/I as obj, mob/user as mob)
 	if(src.isbroken)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, 1)
+		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, 1)
 		for(var/mob/O in hearers(5, src.loc))
 			O.show_message("<EM>[user.name]</EM> further abuses the shattered [src.name].")
 	else
@@ -755,18 +755,18 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 			if(W.force <15)
 				for(var/mob/O in hearers(5, src.loc))
 					O.show_message("[user.name] hits the [src.name] with the [W.name] with no visible effect." )
-					playsound(src.loc, 'sound/effects/Glasshit.ogg', 100, 1)
+					playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
 			else
 				src.hitstaken++
 				if(src.hitstaken==3)
 					for(var/mob/O in hearers(5, src.loc))
 						O.show_message("[user.name] smashes the [src.name]!" )
 					src.isbroken=1
-					playsound(src.loc, 'sound/effects/Glassbr3.ogg', 100, 1)
+					playsound(loc, 'sound/effects/Glassbr3.ogg', 100, 1)
 				else
 					for(var/mob/O in hearers(5, src.loc))
 						O.show_message("[user.name] forcefully slams the [src.name] with the [I.name]!" )
-					playsound(src.loc, 'sound/effects/Glasshit.ogg', 100, 1)
+					playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
 		else
 			to_chat(user, SPAN_NOTICE("This does nothing."))
 	src.update_icon()
@@ -922,7 +922,7 @@ obj/item/newspaper/Topic(href, href_list)
 				if(curr_page == 0) //We're at the start, get to the middle
 					src.screen=1
 			src.curr_page++
-			playsound(src.loc, "pageturn", 50, 1)
+			playsound(loc, "pageturn", 50, 1)
 
 		else if(href_list["prev_page"])
 			if(curr_page == 0)
@@ -934,7 +934,7 @@ obj/item/newspaper/Topic(href, href_list)
 				if(curr_page == src.pages+1) //we're at the end, let's go back to the middle.
 					src.screen = 1
 			src.curr_page--
-			playsound(src.loc, "pageturn", 50, 1)
+			playsound(loc, "pageturn", 50, 1)
 
 		if(ismob(loc))
 			src.attack_self(loc)

@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(economy)
 			continue
 
 		if(!ED) // If no employer department found - payment is external
-			deposit_to_account(A, A.employer, "Payroll Funding", "Hansa payroll system", amount_to_pay)
+			deposit_to_account(A, A.employer, "Payroll Funding", "Hanza payroll system", amount_to_pay)
 			paid_external += amount_to_pay
 			continue
 		else

@@ -162,7 +162,7 @@
 			var/mob/living/carbon/human/H = src
 			H.check_self_for_injuries()
 		else if(on_fire)
-			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			if(M.on_fire)
 				M.visible_message(SPAN_WARNING("[M] tries to pat out [src]'s flames, but to no avail!"),
 				SPAN_WARNING("You try to pat out [src]'s flames, but to no avail! Put yourself out first!"))
@@ -236,7 +236,7 @@
 			AdjustStunned(-3)
 			AdjustWeakened(-3)
 
-			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 /mob/living/carbon/proc/eyecheck()
 	return 0
@@ -369,7 +369,7 @@
 	stop_pulling()
 	if(slipped_on)
 		to_chat(src, SPAN_WARNING("You slipped on [slipped_on]!"))
-		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
+		playsound(loc, 'sound/misc/slip.ogg', 50, 1, -3)
 	Weaken(stun_duration)
 
 	return TRUE

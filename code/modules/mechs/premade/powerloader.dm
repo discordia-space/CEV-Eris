@@ -1,7 +1,7 @@
 //Cheap parts are as basic as you can get. Designed for utility use and cheap production.
 /mob/living/exosuit/premade/powerloader
 	name = "S.E.U. \"Ripley\"" //Space Excavation Unit
-	desc = "A cheap utility exosuit. An old Nanotrasen design, now used just about everywhere due to post-Fall data leaks."
+	desc = "A cheap utility exosuit. An old NanoTrasen design, now used just about everywhere due to post-Fall data leaks."
 
 	rarity_value = 15
 	material = MATERIAL_STEEL

@@ -181,7 +181,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 			if(PS.amount >= 10)
 				PS.use(10)
 				to_chat(user, SPAN_NOTICE("You add the plating to the framework."))
-				playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
+				playsound(loc, 'sound/machines/click.ogg', 75, 1)
 				broken_state++
 			else
 				to_chat(user, SPAN_WARNING("You need 10 sheets of plasteel!"))
@@ -325,7 +325,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 				charge_count -= 2
 
 			if(charge_count % 4 == 0 && prob(75)) // Let them know it is charging/discharging.
-				playsound(src.loc, 'sound/effects/EMPulse.ogg', 100, 1)
+				playsound(loc, 'sound/effects/EMPulse.ogg', 100, 1)
 
 			updateDialog()
 			if(prob(25)) // To help stop "Your clothes feel warm." spam.

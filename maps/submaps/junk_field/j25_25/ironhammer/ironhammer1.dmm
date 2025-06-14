@@ -363,7 +363,7 @@
 /obj/structure/table/woodentable,
 /obj/item/device/megaphone,
 /obj/item/device/eftpos{
-	eftpos_name = "Ironhammer EFTPOS scanner"
+	eftpos_name = "IronHammer EFTPOS scanner"
 	},
 /turf/floor/wood/airless,
 /area/template_noop)

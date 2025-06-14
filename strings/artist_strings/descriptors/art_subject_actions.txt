@@ -95,7 +95,7 @@ killing [object] using mercenary gear
 torturing [object] using inquisitor gear
 hunting down [object] using marshall gear
 slaying [object] using assassin gear
-beating [object] to death using Ironhammer gear
+beating [object] to death using IronHammer gear
 throwing [object] into oblivion
 anathematizing
 firing

@@ -69,7 +69,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 
 	else if(istype(I, /obj/item/electronics/airalarm) && wired)
 		if(anchored)
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message(SPAN_WARNING("[user] has inserted a circuit into \the [src]!"),
 								  "You have inserted the circuit into \the [src]!")
 			new /obj/machinery/door/firedoor(src.loc)

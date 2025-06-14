@@ -133,7 +133,7 @@
 		set_status(0)
 		user.do_attack_animation(src)
 		visible_message(SPAN_WARNING("\The [user] slashes at [src]!"))
-		playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
+		playsound(loc, 'sound/weapons/slash.ogg', 100, 1)
 		add_hiddenprint(user)
 		destroy()
 
@@ -294,7 +294,7 @@
 			add_hiddenprint(user)
 		else
 			visible_message(SPAN_NOTICE("[src] clicks and shuts down. "))
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = "[initial(icon_state)]1"
 	else
 		if(user)
@@ -302,7 +302,7 @@
 			add_hiddenprint(user)
 		else
 			visible_message(SPAN_NOTICE("[src] clicks and reactivates itself. "))
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = initial(icon_state)
 
 /obj/machinery/camera/take_damage(var/force, var/message)

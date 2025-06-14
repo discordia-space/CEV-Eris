@@ -207,16 +207,16 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	for(var/listener in listeners)
 		update_listener(listener)
 
-/datum/sound_token/proc/update_listener(var/listener)
+/datum/sound_token/proc/update_listener(listener)
 	sound.environment = get_environment(listener)
 	sound.status = status | listener_status[listener] | SOUND_UPDATE
 	sound_to(listener, sound)
 
-/datum/sound_token/proc/get_environment(var/listener)
+/datum/sound_token/proc/get_environment(listener)
 	var/area/a = get_area(listener)
 	return (a && is_environment(a.sound_env)) ? a.sound_env : sound.environment
 
-/datum/sound_token/proc/is_environment(var/environment)
+/datum/sound_token/proc/is_environment(environment)
 	if(islist(environment) && length(environment) != 23)
 		return FALSE
 	if(!isnum(environment) || (environment < 0) || (environment > 25))

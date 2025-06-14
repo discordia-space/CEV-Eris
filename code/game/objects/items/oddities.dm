@@ -210,7 +210,7 @@
 //Double stat, work
 /obj/item/oddity/common/old_pda
 	name = "broken pda"
-	desc = "An old Nanotrasen era PDA. These were issued to their employees all throughout the galaxy."
+	desc = "An old NanoTrasen era PDA. These were issued to their employees all throughout the galaxy."
 	icon_state = "old_pda"
 	item_state = "electronic"
 	oddity_stats = list(
@@ -489,7 +489,7 @@
 
 /obj/item/oddity/hivemind/old_pda
 	name = "abnormal pda"
-	desc = "An old Nanotrasen era PDA covered in growths. Is the hive Nanotrasen's creation, or made by something worse?"
+	desc = "An old NanoTrasen era PDA covered in growths. Is the hive NanoTrasen's creation, or made by something worse?"
 	icon_state = "abnormal_pda"
 	oddity_stats = list(
 		STAT_COG = 8,

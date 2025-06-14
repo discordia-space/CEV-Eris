@@ -372,8 +372,8 @@
 	icon_state = "mug_serb"
 
 /obj/item/reagent_containers/food/drinks/mug/ironhammer
-	name = "Ironhammer mug"
-	desc = "A mug with an Ironhammer PMC logo on it."
+	name = "IronHammer mug"
+	desc = "A mug with an IronHammer PMC logo on it."
 	icon_state = "mug_hammer"
 
 /obj/item/reagent_containers/food/drinks/mug/league

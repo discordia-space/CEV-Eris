@@ -208,6 +208,6 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 				if(EVENT_LEVEL_MUNDANE)
 					command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [english_list(areanames)]. Clear them out before this starts to affect productivity.", event_name, new_sound = 'sound/AI/vermin.ogg')
 				if(EVENT_LEVEL_MODERATE)
-					command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [english_list(areanames)]. Ironhammer are advised to approach with caution.", event_name, new_sound = 'sound/AI/vermin.ogg')
+					command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [english_list(areanames)]. IronHammer are advised to approach with caution.", event_name, new_sound = 'sound/AI/vermin.ogg')
 				if(EVENT_LEVEL_MAJOR)
 					command_announcement.Announce("Shipwide Alert: Bioscans indicate that [chosen_mob] [chosen_verb] [english_list(areanames)]. Crew are advised to evacuate those areas immediately.", event_name, new_sound = 'sound/AI/vermin.ogg')

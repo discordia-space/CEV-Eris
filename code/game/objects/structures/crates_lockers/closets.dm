@@ -224,7 +224,7 @@
 		stored_units += store_mobs(stored_units)
 	opened = FALSE
 	update_icon()
-	playsound(src.loc, close_sound, 100, 1, -3)
+	playsound(loc, close_sound, 100, 1, -3)
 	density = TRUE
 	update_openspace()
 	return 1
@@ -267,9 +267,9 @@
 
 	locked = newlocked
 	if(locked)
-		playsound(src.loc, lock_on_sound, 60, 1, -3)
+		playsound(loc, lock_on_sound, 60, 1, -3)
 	else
-		playsound(src.loc, lock_off_sound, 60, 1, -3)
+		playsound(loc, lock_off_sound, 60, 1, -3)
 	if(user)
 		for(var/mob/O in viewers(user, 3))
 			O.show_message( SPAN_NOTICE("The [ctype] has been [locked ? null : "un"]locked by [user]."), 1)
@@ -539,7 +539,7 @@
 		locked = FALSE
 		broken = TRUE
 		update_icon()
-		playsound(src.loc, "sparks", 60, 1)
+		playsound(loc, "sparks", 60, 1)
 		to_chat(user, SPAN_NOTICE("You unlock \the [src]."))
 		return TRUE
 
@@ -551,7 +551,7 @@
 			locked = TRUE
 		else
 			locked = FALSE
-			playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
+			playsound(loc, 'sound/effects/sparks4.ogg', 75, 1)
 		broken = TRUE
 	update_icon()
 	..()
@@ -653,7 +653,7 @@
 			breakout = 0
 			return
 
-		playsound(src.loc, 'sound/effects/grillehit.ogg', 100, 1)
+		playsound(loc, 'sound/effects/grillehit.ogg', 100, 1)
 		animate_shake()
 		add_fingerprint(escapee)
 
@@ -661,7 +661,7 @@
 	breakout = 0
 	to_chat(escapee, SPAN_WARNING("You successfully break out!"))
 	visible_message(SPAN_DANGER("\The [escapee] successfully broke out of \the [src]!"))
-	playsound(src.loc, 'sound/effects/grillehit.ogg', 100, 1)
+	playsound(loc, 'sound/effects/grillehit.ogg', 100, 1)
 	break_open()
 	animate_shake()
 

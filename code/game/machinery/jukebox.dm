@@ -132,7 +132,7 @@
 		if(QUALITY_BOLT_TURNING)
 			user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
 			anchored = !anchored
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 			power_change()
 			update_icon()
 			if(!anchored)
@@ -223,7 +223,7 @@
 		StopPlaying()
 	else if(href_list["play"])
 		if(emagged)
-			playsound(src.loc, 'sound/items/AirHorn.ogg', 100, 1)
+			playsound(loc, 'sound/items/AirHorn.ogg', 100, 1)
 			for(var/mob/living/carbon/M in ohearers(6, src))
 				var/ear_safety = 0
 				if(ishuman(M))

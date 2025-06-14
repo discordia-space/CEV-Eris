@@ -61,7 +61,7 @@
 
 		if(W.loc != Target)
 			W.do_putdown_animation(Target, src)
-			W.forceMove(Target, drop_flag)
+			W.forceMove(Target, drop_flag, FALSE)
 		update_icons()
 		return TRUE
 	return FALSE

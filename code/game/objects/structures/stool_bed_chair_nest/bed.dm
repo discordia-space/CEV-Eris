@@ -98,7 +98,7 @@
 
 /obj/structure/bed/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_quality(QUALITY_BOLT_TURNING))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		dismantle()
 	else if(istype(W,/obj/item/stack))
 		if(padding_material)

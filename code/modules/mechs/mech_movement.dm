@@ -15,7 +15,7 @@
 		// Check for walking sound
 		if(!isinspace())
 			if(legs && legs.mech_step_sound)
-				playsound(src.loc,legs.mech_step_sound,40,1)
+				playsound(loc,legs.mech_step_sound,40,1)
 		// Check for stomping people
 		if(legs)
 			var/blocked = FALSE

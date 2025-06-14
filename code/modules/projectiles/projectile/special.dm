@@ -139,7 +139,7 @@
 		if(A)
 
 			A.explosion_act(500, null)
-			playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, 1)
+			playsound(loc, 'sound/effects/meteorimpact.ogg', 40, 1)
 
 			for(var/mob/M in range(10, src))
 				if(!M.stat && !isAI(M))

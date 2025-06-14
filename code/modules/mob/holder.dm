@@ -511,7 +511,7 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/holder/cat/penny
 	name = "Penny"
-	desc = "An important cat, straight from Hansa."
+	desc = "An important cat, straight from Hanza."
 	icon_state = "penny"
 	icon_state_dead = "penny_dead"
 	slot_flags = SLOT_HEAD

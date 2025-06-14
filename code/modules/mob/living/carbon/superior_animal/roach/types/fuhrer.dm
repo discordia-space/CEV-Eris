@@ -76,9 +76,9 @@ reinforcements left it will attempt to evacuate*/
 
 		if(distress_calls)
 			distress_calls--
-			playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
+			playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 			spawn(2)
-				playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
+				playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 				//Playing the sound twice will make it sound really horrible
 
 			visible_message(SPAN_DANGER("[src] emits a horrifying wail as nearby burrows stir to life!"))
@@ -94,9 +94,9 @@ reinforcements left it will attempt to evacuate*/
 		//If no distress calls available, sound a retreat instead
 		else if(retreat_calls)
 			retreat_calls --
-			playsound(src.loc, 'sound/voice/hiss6.ogg', 100, 1, 8, 8)
+			playsound(loc, 'sound/voice/hiss6.ogg', 100, 1, 8, 8)
 			spawn(2)
-				playsound(src.loc, 'sound/voice/hiss6.ogg', 100, 1, 8, 8)
+				playsound(loc, 'sound/voice/hiss6.ogg', 100, 1, 8, 8)
 				//Playing the sound twice will make it sound really horrible
 
 			visible_message(SPAN_DANGER("[src] emits a haunting scream as it turns to flee, taking the nearby horde with it...."))

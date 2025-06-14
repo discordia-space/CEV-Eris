@@ -64,4 +64,3 @@
 
 /mob/living/simple_animal/hostile/scarybat/cult
 	faction = "cult"
-	supernatural = 1

@@ -510,8 +510,8 @@
 	desc = "Faction sign of some sort."
 
 /obj/structure/sign/faction/ironhammer
-	name = "Ironhammer Security"
-	desc = "This sign depicts the symbol of Ironhammer Security, the largest security provider within the Hansa Trade Union."
+	name = "IronHammer Security"
+	desc = "This sign depicts the symbol of IronHammer Security, the largest security provider within the Hanza Trade Union."
 	icon_state = "ironhammer"
 
 /obj/structure/sign/faction/one_star
@@ -531,7 +531,7 @@
 
 /obj/structure/sign/faction/frozenstar
 	name = "Frozen Star"
-	desc = "The most popular weapon manufacturer in the Hansa Trade Union."
+	desc = "The most popular weapon manufacturer in the Hanza Trade Union."
 	icon_state = "frozenstar"
 
 /obj/structure/sign/faction/moebius

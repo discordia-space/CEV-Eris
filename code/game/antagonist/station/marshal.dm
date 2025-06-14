@@ -17,8 +17,8 @@
 		STAT_VIG = 15
 	)
 
-	welcome_text = "You are a freelance bounty hunter, contracted by Ironhammer to bring in a wanted fugitive, dead or alive.\n\
-	Local Ironhammer forces may assist you if you introduce yourself and win their trust. Remember that you hold no official rank \
+	welcome_text = "You are a freelance bounty hunter, contracted by IronHammer to bring in a wanted fugitive, dead or alive.\n\
+	Local IronHammer forces may assist you if you introduce yourself and win their trust. Remember that you hold no official rank \
 	and they are under no obligation to help or listen to you."
 
 /datum/antagonist/marshal/can_become_antag(datum/mind/M)

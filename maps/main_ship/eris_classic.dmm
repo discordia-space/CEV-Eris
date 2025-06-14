@@ -607,7 +607,7 @@
 "abL" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
-	name = "Ironhammer Commander";
+	name = "IronHammer Commander";
 	req_access = list(58)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -739,7 +739,7 @@
 "abZ" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_command{
-	name = "Ironhammer Commander";
+	name = "IronHammer Commander";
 	req_access = list(58)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -3465,9 +3465,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/requests_console{
 	announcementConsole = 1;
-	department = "Ironhammer Commander's Desk";
+	department = "IronHammer Commander's Desk";
 	departmentType = 4;
-	name = "Ironhammer Commander RC";
+	name = "IronHammer Commander RC";
 	pixel_x = -30
 	},
 /obj/machinery/light{
@@ -3744,7 +3744,7 @@
 /obj/structure/table/woodentable,
 /obj/item/device/megaphone,
 /obj/item/device/eftpos{
-	eftpos_name = "Ironhammer EFTPOS scanner"
+	eftpos_name = "IronHammer EFTPOS scanner"
 	},
 /obj/item/packageWrap,
 /obj/item/device/destTagger,
@@ -105370,7 +105370,7 @@
 /obj/item/packageWrap,
 /obj/item/device/destTagger,
 /obj/item/device/eftpos{
-	eftpos_name = "Neotheology EFTPOS scanner"
+	eftpos_name = "NeoTheology EFTPOS scanner"
 	},
 /turf/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
@@ -105595,7 +105595,7 @@
 "vcS" = (
 /obj/structure/table/standard,
 /obj/item/device/eftpos{
-	eftpos_name = "Neotheology EFTPOS scanner"
+	eftpos_name = "NeoTheology EFTPOS scanner"
 	},
 /obj/item/packageWrap,
 /obj/item/device/destTagger,

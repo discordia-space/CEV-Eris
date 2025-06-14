@@ -399,7 +399,7 @@ What a mess.*/
 				if(!printing)
 					var/wanted_name = sanitizeName(input("Please enter an alias for the criminal:", "Print Wanted Poster", active1.fields["name"]) as text, MAX_NAME_LEN, 1)
 					if(wanted_name)
-						var/default_description = "A poster declaring [wanted_name] to be a dangerous individual, wanted by Nanotrasen. Report any sightings to security immediately."
+						var/default_description = "A poster declaring [wanted_name] to be a dangerous individual, wanted by NanoTrasen. Report any sightings to security immediately."
 						var/major_crimes = active2.fields["ma_crim"]
 						var/minor_crimes = active2.fields["mi_crim"]
 						default_description += "\n[wanted_name] is wanted for the following crimes:\n"

@@ -9,7 +9,7 @@
 	throw_range = 10
 	slot_flags = SLOT_BELT
 	req_access = list(list(access_heads, access_security))
-	var/boss_name = "Ironhammer Security"
+	var/boss_name = "IronHammer Security"
 	var/station_name = "CEV Eris"
 	var/datum/computer_file/data/warrant/active
 
@@ -120,9 +120,9 @@
 		</br>
 		Vessel or habitat: _<u>[station_name]</u>____</br>
 		</br>
-		<center><small><i>The Ironhammer Security Operative(s) bearing this Warrant are hereby authorized by the Issuer to conduct a one time lawful search of the Suspect's person/belongings/premises and/or Organization for any items and materials that could be connected to the suspected criminal act described below, pending an investigation in progress.</br>
+		<center><small><i>The IronHammer Security Operative(s) bearing this Warrant are hereby authorized by the Issuer to conduct a one time lawful search of the Suspect's person/belongings/premises and/or Organization for any items and materials that could be connected to the suspected criminal act described below, pending an investigation in progress.</br>
 		</br>
-		The Ironhammer Security Operative(s) are obligated to remove any and all such items from the Suspects posession and/or Organization and file it as evidence.</br>
+		The IronHammer Security Operative(s) are obligated to remove any and all such items from the Suspects posession and/or Organization and file it as evidence.</br>
 		</br>
 		The Suspect/Organization staff is expected to offer full co-operation.</br>
 		</br>

@@ -220,8 +220,8 @@
 	 2. Assist others.
 	 3. Repair structural problems.
 
-	\[b\]Ironhammer Commander\[/b\] 4>5-2-2
-	People assigned as Ironhammer Commander should issue orders to the security staff. They should also carefully moderate the usage of all security equipment. All security matters should be reported to this person.
+	\[b\]IronHammer Commander\[/b\] 4>5-2-2
+	People assigned as IronHammer Commander should issue orders to the security staff. They should also carefully moderate the usage of all security equipment. All security matters should be reported to this person.
 	 1. Oversee security.
 	 2. Assign patrol duties.
 	 3. Protect the station and staff.
@@ -304,11 +304,11 @@
 /obj/item/paper/self_pacification
 	name = "Self-Pacification and You!"
 	info = {"\[h1\]\[center\]\[b\]Self-Pacification and You!\[/b\]\[/center\]\[/h1\]
-	As pursuant to \[b\]\"Hansa Property Rights For Detainees\"\[/b\], \[b\]Aster's \"Assembly Upon The Definition of Aggression\"\[/b\], and the good initiative of \[b\]IronHammer Command\[/b\]; these steps have been laid to better actuate your personal property rights while within indefinite detainment:
+	As pursuant to \[b\]\"Hanza Property Rights For Detainees\"\[/b\], \[b\]Aster's \"Assembly Upon The Definition of Aggression\"\[/b\], and the good initiative of \[b\]IronHammer Command\[/b\]; these steps have been laid to better actuate your personal property rights while within indefinite detainment:
 
 	\[b\]1.\[/b\] That those detained have access to nourishment necessary to maintain the active status of their person.
 	\[b\]2.\[/b\] That those detained have right to be free from aggression, unprovoked harassment, and must be provided the means to be so.
-	\[b\]3.\[/b\] That those detained have the right to voluntarily leave detainment, under the American principles we hold, and uphold under the Hansa Trade Union.
+	\[b\]3.\[/b\] That those detained have the right to voluntarily leave detainment, under the American principles we hold, and uphold under the Hanza Trade Union.
 
 	\[small\]\[b\]NOTICE:\[/b\] Engaging in Anti-Depressive Self-Pacification Treatment is non-pursuant to proprty rights if your person is the property of another. You \[b\]WILL be fined\[/b\] if you engage in self-pacification \[b\]post-mortem or otherwise\[/b\], your property manager may also consenquently enact punitive financial measures. \
 	\"Cruciformed\" assets (assuming positive consent of conversion) are considered property of The Church of NeoTheology, and are \[b\]not\[/b\] eligible for this social program. Your hosting Dispute Resolution Organization may further detain your cruciform in the event of self-pacification as an additional punitive measure.\[/small\]

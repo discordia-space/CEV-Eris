@@ -272,7 +272,7 @@
 
 /obj/item/storage/proc/open(mob/user)
 	if(src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+		playsound(loc, src.use_sound, 50, 1, -5)
 
 	show_to(user)
 
@@ -486,7 +486,7 @@
 		if(.)
 			user.visible_message(SPAN_NOTICE("[user] puts some things in [src]."),SPAN_NOTICE("You put some things in [src]."),SPAN_NOTICE("You hear rustling."))
 			if(src.use_sound)
-				playsound(src.loc, src.use_sound, 50, 1, -5)
+				playsound(loc, src.use_sound, 50, 1, -5)
 		else
 			to_chat(user, SPAN_NOTICE("You fail to pick anything up with \the [src]."))
 

@@ -39,7 +39,7 @@
 		else
 			name = ("bookcase ([newname])")
 	else if(istype(O,/obj/item/tool/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+		playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
 		to_chat(user, (anchored ? SPAN_NOTICE("You unfasten \the [src] from the floor.") : SPAN_NOTICE("You secure \the [src] to the floor.")))
 		anchored = !anchored
 	else if(istype(O,/obj/item/tool/screwdriver))
@@ -151,7 +151,7 @@
 	var/window_size = null // Specific window size for the book, i.e: "1920x1080", Size x Width
 
 /obj/item/book/attack_self(var/mob/user as mob)
-	playsound(src.loc, pick('sound/items/BOOK_Turn_Page_1.ogg',\
+	playsound(loc, pick('sound/items/BOOK_Turn_Page_1.ogg',\
 		'sound/items/BOOK_Turn_Page_2.ogg',\
 		'sound/items/BOOK_Turn_Page_3.ogg',\
 		'sound/items/BOOK_Turn_Page_4.ogg',\

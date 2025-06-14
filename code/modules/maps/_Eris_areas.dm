@@ -364,7 +364,7 @@
 	area_light_color = COLOR_LIGHTING_CREW_SOFT
 
 /area/eris/command/commander
-	name = "Ironhammer Commander's Office"
+	name = "IronHammer Commander's Office"
 	icon_state = "hammerred"
 	sound_env = SMALL_SOFTFLOOR
 	area_light_color = COLOR_LIGHTING_CREW_SOFT
@@ -1040,7 +1040,7 @@
 	is_maintenance = TRUE
 
 /area/eris/security/barracks
-	name = "Ironhammer Barracks"
+	name = "IronHammer Barracks"
 	icon_state = "hammerblue"
 
 /area/eris/security/prisoncells

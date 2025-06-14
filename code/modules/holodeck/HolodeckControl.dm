@@ -125,7 +125,7 @@
 	return
 
 /obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges, var/mob/user as mob)
-	playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
+	playsound(loc, 'sound/effects/sparks4.ogg', 75, 1)
 	last_to_emag = user //emag again to change the owner
 	if(!emagged)
 		emagged = 1

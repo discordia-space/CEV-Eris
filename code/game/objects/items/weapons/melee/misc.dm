@@ -82,5 +82,5 @@
 	..()
 	if(!reinforced && prob(5))
 		break_apart(user)
-		playsound(src.loc, 'sound/effects/bang.ogg', 45, 1)
+		playsound(loc, 'sound/effects/bang.ogg', 45, 1)
 		user.visible_message(SPAN_WARNING("[src] breaks in hands of [user]!"))

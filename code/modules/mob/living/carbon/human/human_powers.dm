@@ -62,7 +62,7 @@
 	status_flags |= LEAPING
 
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
-	mob_playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
+	mob_playsound(loc, 'sound/voice/shriek1.ogg', 50, 1)
 
 	if(status_flags & LEAPING) status_flags &= ~LEAPING
 

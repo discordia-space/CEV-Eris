@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/automatic/sol
 	name = "FS CAR .25 CS \"Sol\""
-	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses .25 Caseless rounds."
+	desc = "A standard-issue weapon used by IronHammer operatives. Compact and reliable. Uses .25 Caseless rounds."
 	icon = 'icons/obj/guns/projectile/sol.dmi'
 	icon_state = "sol"
 	item_state = "sol"
@@ -51,7 +51,7 @@
 
 /obj/item/part/gun/frame/sol
 	name = "Sol frame"
-	desc = "A Sol carbine frame. Ironhammer's favorite."
+	desc = "A Sol carbine frame. IronHammer's favorite."
 	icon_state = "frame_ihbullpup"
 	resultvars = list(/obj/item/gun/projectile/automatic/sol)
 	gripvars = list(/obj/item/part/gun/modular/grip/rubber)

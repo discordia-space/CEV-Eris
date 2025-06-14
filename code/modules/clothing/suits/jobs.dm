@@ -263,7 +263,7 @@
 //Inspector
 /obj/item/clothing/suit/storage/detective
 	name = "inspector's grey armored trenchcoat"
-	desc = "Grey armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
+	desc = "Grey armored trenchcoat, designed and created by IronHammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
 	icon_state = "detective_gray"
 	item_state = "detective_gray"
 	blood_overlay_type = "coat"
@@ -283,13 +283,13 @@
 
 /obj/item/clothing/suit/storage/detective/brown
 	name = "inspector's brown armored trenchcoat"
-	desc = "Brown armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
+	desc = "Brown armored trenchcoat, designed and created by IronHammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
 	icon_state = "detective_brown"
 	item_state = "detective_brown"
 
 /obj/item/clothing/suit/storage/detective/black
 	name = "inspector's black armored trenchcoat"
-	desc = "Black armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
+	desc = "Black armored trenchcoat, designed and created by IronHammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
 	icon_state = "detective_black"
 	item_state = "detective_black"
 

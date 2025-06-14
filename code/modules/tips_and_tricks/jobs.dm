@@ -9,7 +9,7 @@
 
 /tipsAndTricks/jobs/ironhammer_theft
 	jobs_list = list(/datum/job/ihc, /datum/job/gunserg, /datum/job/inspector, /datum/job/medspec, /datum/job/ihoper)
-	tipText = "As an Ironhammer Operative, you have broad access to chase criminals. This does not mean you can take anything you have access to. Taking things from other departments is theft!"
+	tipText = "As an IronHammer Operative, you have broad access to chase criminals. This does not mean you can take anything you have access to. Taking things from other departments is theft!"
 
 /tipsAndTricks/jobs/guild_resale_profit
 	jobs_list = list(/datum/job/merchant, /datum/job/cargo_tech)
@@ -61,7 +61,7 @@
 
 /tipsAndTricks/jobs/engies_lifekeeper
 	jobs_list = list(/datum/job/chief_engineer, /datum/job/technomancer)
-	tipText = "You are responsible for keeping these hundred souls alive inside an electrified air canister hurtling through an unholy blackness at speeds that make an Ironhammer bullet-pusher stare slack-jawed. You will fail. The question is how many bodies are needed to fill the breach, smother the flames, and bind the wires."
+	tipText = "You are responsible for keeping these hundred souls alive inside an electrified air canister hurtling through an unholy blackness at speeds that make an IronHammer bullet-pusher stare slack-jawed. You will fail. The question is how many bodies are needed to fill the breach, smother the flames, and bind the wires."
 
 /tipsAndTricks/jobs/engies_die_live
 	jobs_list = list(/datum/job/chief_engineer, /datum/job/technomancer)

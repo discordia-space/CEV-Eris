@@ -28,7 +28,7 @@
 			if(confirm == "Yes") //This is pretty copypasta-y
 				to_chat(user, "You activate the analyzer's microlaser, analyzing \the [loaded_item] and breaking it down.")
 				flick("portable_analyzer_scan", src)
-				playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
+				playsound(loc, 'sound/items/Welder2.ogg', 50, 1)
 				for(var/T in loaded_item.origin_tech)
 					files.check_item_for_tech(loaded_item)
 					var/object_research_value = files.experiments.get_object_research_value(loaded_item)
@@ -66,10 +66,10 @@
 			success = TRUE
 		if(success)
 			to_chat(user, "You connect to the research server, push your data upstream to it, then pull the resulting merged data from the master branch.")
-			playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
+			playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
 		else
 			to_chat(user, "Reserch server ping response timed out.  Unable to connect.  Please contact the system administrator.")
-			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1)
+			playsound(loc, 'sound/machines/buzz-two.ogg', 50, 1)
 	if(response == "Eject")
 		if(loaded_item)
 			loaded_item.loc = get_turf(src)
@@ -235,7 +235,7 @@
 	var/choice = input("Would you like to change colour or mode?") as null|anything in list("Colour","Mode")
 	if(!choice) return
 
-	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
+	playsound(loc, 'sound/effects/pop.ogg', 50, 0)
 
 	switch(choice)
 

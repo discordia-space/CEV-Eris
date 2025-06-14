@@ -71,13 +71,13 @@
 /obj/machinery/door/unpowered/simple/close(forced = 0)
 	if(!can_close(forced))
 		return
-	playsound(src.loc, material.dooropen_noise, 100, 1)
+	playsound(loc, material.dooropen_noise, 100, 1)
 	..()
 
 /obj/machinery/door/unpowered/simple/open(forced = 0)
 	if(!can_open(forced))
 		return
-	playsound(src.loc, material.dooropen_noise, 100, 1)
+	playsound(loc, material.dooropen_noise, 100, 1)
 	..()
 
 /obj/machinery/door/unpowered/simple/set_broken()

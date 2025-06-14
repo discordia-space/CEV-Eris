@@ -75,7 +75,7 @@
 		force = 3//not so robust now
 		attack_verb = list("hit", "punched")
 
-	playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+	playsound(loc, 'sound/weapons/empty.ogg', 50, 1)
 	add_fingerprint(user)
 
 	if(blood_overlay && blood_DNA && (blood_DNA.len >= 1)) //updates blood overlay, if any
@@ -103,7 +103,7 @@
 			return
 */
 		if(..())
-			//playsound(src.loc, "swing_hit", 50, 1, -1)
+			//playsound(loc, "swing_hit", 50, 1, -1)
 			return
 	else
 		return ..()

@@ -2,7 +2,7 @@
  * Contains:
  *		Security
  *		Inspector
- *		Ironhammer Commander
+ *		IronHammer Commander
  */
 
 /*
@@ -10,14 +10,14 @@
  */
 
 /obj/item/clothing/under/security_formal
-	name = "ironhammer formal uniform"
-	desc = "A navy blue suit. Often used by Ironhammer personnel, for shooting with style."
+	name = "IronHammer formal uniform"
+	desc = "A navy blue suit. Often used by IronHammer personnel, for shooting with style."
 	icon_state = "ih_formal"
 	item_state = "ih_formal"
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/under/rank/warden
-	desc = "The uniform worn by Ironhammer Sergeants, the sight of it is often followed by shouting. It has\"Gunnery Sergeant\" rank pins on the shoulders."
+	desc = "The uniform worn by IronHammer Sergeants, the sight of it is often followed by shouting. It has\"Gunnery Sergeant\" rank pins on the shoulders."
 	name = "Gunnery Sergeant jumpsuit"
 	icon_state = "warden"
 	item_state = "r_suit"
@@ -36,26 +36,26 @@
 	body_parts_covered = NONE
 
 /obj/item/clothing/under/rank/security
-	name = "Ironhammer Operative's jumpsuit"
-	desc = "The standard issue uniform of Ironhammer grunts all over the sector."
+	name = "IronHammer Operative's jumpsuit"
+	desc = "The standard issue uniform of IronHammer grunts all over the sector."
 	icon_state = "security"
 	item_state = "ba_suit"
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/security/turtleneck
-	name = "Ironhammer Operative's turtleneck"
-	desc = "Same as the standard Ironhammer uniform but with a sleek black military style sweater. Best used in cold environments"
+	name = "IronHammer Operative's turtleneck"
+	desc = "Same as the standard IronHammer uniform but with a sleek black military style sweater. Best used in cold environments"
 	icon_state = "securityrturtle"
 
 /obj/item/clothing/under/rank/security/skirt
-	name = "Ironhammer Operative's jumpskirt"
+	name = "IronHammer Operative's jumpskirt"
 	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for robust protection."
 	icon_state = "security_skirt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/under/rank/medspec
 	name = "Medical Specialist's jumpsuit"
-	desc = "An Ironhammer uniform modified for use by medics. Comes with a white shirt and medical insignia. It has \"Specialist\" rank pins on the shoulders."
+	desc = "An IronHammer uniform modified for use by medics. Comes with a white shirt and medical insignia. It has \"Specialist\" rank pins on the shoulders."
 	icon_state = "medspec"
 	item_state = "ba_suit"
 	siemens_coefficient = 0.8
@@ -71,7 +71,7 @@
  */
 /obj/item/clothing/under/rank/inspector
 	name = "inspector's suit"
-	desc = "Fancy dress shirt, slacks and tie. The fancy civilian clothes of an Ironhammer Inspector."
+	desc = "Fancy dress shirt, slacks and tie. The fancy civilian clothes of an IronHammer Inspector."
 	icon_state = "insp_under"
 	item_state = "insp_under"
 	siemens_coefficient = 0.8
@@ -118,24 +118,24 @@
 
 
 /*
- * Ironhammer Commander
+ * IronHammer Commander
  */
 /obj/item/clothing/under/rank/ih_commander
-	desc = "The uniform of an on-field Ironhammer officer. Used to distinguish officers from the grunts. It has \"Lieutenant\" rank pins on the shoulder"
-	name = "Ironhammer Commander's jumpsuit"
+	desc = "The uniform of an on-field IronHammer officer. Used to distinguish officers from the grunts. It has \"Lieutenant\" rank pins on the shoulder"
+	name = "IronHammer Commander's jumpsuit"
 	icon_state = "hos"
 	item_state = "r_suit"
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/ih_commander/skirt
-	name = "Ironhammer Commander's jumpskirt"
-	desc = "A jumpskirt worn by those few with the dedication to achieve the position of \"Ironhammer Commander\"."
+	name = "IronHammer Commander's jumpskirt"
+	desc = "A jumpskirt worn by those few with the dedication to achieve the position of \"IronHammer Commander\"."
 	icon_state = "hos_skirt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/head/HoS
-	name = "Ironhammer Commander Hat"
-	desc = "The hat of the Ironhammer Commander. For showing the enlisted who's in charge."
+	name = "IronHammer Commander Hat"
+	desc = "The hat of the IronHammer Commander. For showing the enlisted who's in charge."
 	icon_state = "hoshat"
 	body_parts_covered = NONE
 	siemens_coefficient = 0.8
@@ -144,7 +144,7 @@
  * "Navy" uniforms
  */
 /obj/item/clothing/under/rank/cadet
-	name = "Ironhammer Cadet's jumpskirt"
+	name = "IronHammer Cadet's jumpskirt"
 	desc = "A sailor's uniform used for cadets in training, though more frequently in acts of hazing."
 	icon_state = "cadet"
 	item_state = "cadet"

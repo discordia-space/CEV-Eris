@@ -58,11 +58,11 @@
 /obj/item/gun/projectile/shotgun/doublebarrel/proc/bolt_act(mob/living/user)
 	bolt_open = !bolt_open
 	if(bolt_open)
-		playsound(src.loc, 'sound/weapons/guns/interact/shotgun_break.ogg', 75, 1)
+		playsound(loc, 'sound/weapons/guns/interact/shotgun_break.ogg', 75, 1)
 		to_chat(user, SPAN_NOTICE("You snap the barrel open."))
 		unload_ammo(user, allow_dump=1)
 	else
-		playsound(src.loc, 'sound/weapons/guns/interact/shotgun_close.ogg', 75, 1)
+		playsound(loc, 'sound/weapons/guns/interact/shotgun_close.ogg', 75, 1)
 		to_chat(user, SPAN_NOTICE("You snap the barrel closed"))
 		bolt_open = 0
 	add_fingerprint(user)

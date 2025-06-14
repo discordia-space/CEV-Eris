@@ -358,7 +358,7 @@
 		D.icon_state = "chempuff"
 		D.create_reagents(5)
 		src.reagents.trans_to_obj(D, 1)
-		playsound(src.loc, 'sound/effects/spray3.ogg', 50, 1, -6)
+		playsound(loc, 'sound/effects/spray3.ogg', 50, 1, -6)
 
 		spawn(0)
 			for(var/i=0, i<1, i++)
@@ -546,7 +546,7 @@
 
 /obj/item/toy/figure/shitcurity
 	name = "shitcurity officer figurine"
-	desc = "An Aster's \"Space Life\" brand figurine of a classic redshirt of \"Nanotrasen's finest\". Their belly distends out into an obvious beer gut, revealing no form of manufacturer bias what-so-ever. \
+	desc = "An Aster's \"Space Life\" brand figurine of a classic redshirt of \"NanoTrasen's finest\". Their belly distends out into an obvious beer gut, revealing no form of manufacturer bias what-so-ever. \
 	\"I joined just to kill people.\""
 	icon_state = "shitcurity"
 

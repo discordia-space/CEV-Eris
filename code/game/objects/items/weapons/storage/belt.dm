@@ -105,7 +105,7 @@
 	new /obj/item/tool/multitool(src)
 
 /obj/item/storage/belt/utility/neotheology
-	name = "neotheology utility belt"
+	name = "NeoTheology utility belt"
 	desc = "Waist-held holy items."
 	icon_state = "utility_neotheology"
 	rarity_value = 20
@@ -212,7 +212,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/belt/tactical/neotheology
-	name = "neotheology tactical belt"
+	name = "NeoTheology tactical belt"
 	desc = "Can hold various military and security equipment."
 	icon_state = "tactical_neotheology"
 	rarity_value = 40

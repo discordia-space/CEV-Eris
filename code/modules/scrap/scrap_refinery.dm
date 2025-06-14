@@ -109,7 +109,7 @@
 		return
 
 	if(sound)
-		playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+		playsound(loc, 'sound/items/Welder.ogg', 50, 1)
 	var/chance_mod = 1
 	if(!istype(I, /obj/item/scrap_lump))
 		chance_mod = 5
@@ -134,7 +134,7 @@
 	L.forceMove(src.loc)
 
 	if(issilicon(L))
-		playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+		playsound(loc, 'sound/items/Welder.ogg', 50, 1)
 	else
 		L.emote("scream", , , 1)
 

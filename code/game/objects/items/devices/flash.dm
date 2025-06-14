@@ -67,7 +67,7 @@
 		else	//can only use it  5 times a minute
 			to_chat(user, SPAN_WARNING("*click* *click*"))
 			return
-	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
+	playsound(loc, 'sound/weapons/flash.ogg', 100, 1)
 	var/flashfail = 0
 
 	if(iscarbon(M))
@@ -145,7 +145,7 @@
 		else	//can only use it  5 times a minute
 			user.show_message(SPAN_WARNING("*click* *click*"), 2)
 			return
-	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
+	playsound(loc, 'sound/weapons/flash.ogg', 100, 1)
 	flick("flash2", src)
 	if(user && isrobot(user))
 		spawn(0)

@@ -211,7 +211,7 @@
 	icon_closed = "fur_bomber"
 
 /obj/item/clothing/suit/storage/toggle/service
-	name = "Ironhammer service jacket"
+	name = "IronHammer service jacket"
 	desc = "A blue service jacket with golden badges. Often worn in low threat areas, formal situations, or by veterans."
 	icon_state = "service"
 	item_state = "service"

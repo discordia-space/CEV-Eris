@@ -37,7 +37,7 @@ obj/item/device/propaganda_chip/Destroy()
 				if(!Adjacent(user))
 					return
 				visible_message(SPAN_WARNING("[user] destroys [src]!") )
-				playsound(src.loc, 'sound/effects/basscannon.ogg', 100, 1, 15, 15)
+				playsound(loc, 'sound/effects/basscannon.ogg', 100, 1, 15, 15)
 				for(var/mob/M in range(20, src))
 					to_chat(M,SPAN_WARNING("You hear a loud electronic noise"))
 

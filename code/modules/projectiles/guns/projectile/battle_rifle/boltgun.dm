@@ -98,7 +98,7 @@
 			to_chat(user, SPAN_NOTICE("You work the [message] open."))
 	else
 		to_chat(user, SPAN_NOTICE("You work the [message] closed."))
-		playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, 1)
+		playsound(loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, 1)
 		bolt_open = 0
 	add_fingerprint(user)
 	update_icon()

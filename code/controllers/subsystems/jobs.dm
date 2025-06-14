@@ -343,7 +343,7 @@ SUBSYSTEM_DEF(job)
 			continue
 
 		var/datum/category_item/setup_option/core_implant/I = player.client.prefs.get_option("Core implant")
-		// cant be Neotheology without a cruciform
+		// cant be NeoTheology without a cruciform
 		if(job.department == DEPARTMENT_CHURCH && istype(I.implant_type,/obj/item/implant/core_implant/cruciform))
 			continue
 		if((job.current_positions < job.total_positions) || job.total_positions == -1)

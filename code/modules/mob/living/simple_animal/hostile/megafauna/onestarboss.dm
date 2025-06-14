@@ -571,7 +571,7 @@ Effects demand parent code, so ..()
 							A.StayOn(target1)
 							B.StayOn(target2)
 							var/i = 15
-							playsound(src.loc, 'sound/machines/onestar/boss/minigun_windup.ogg', 75)
+							playsound(loc, 'sound/machines/onestar/boss/minigun_windup.ogg', 75)
 							sleep(500 MILLISECONDS)
 							while(i != 0)
 								i--

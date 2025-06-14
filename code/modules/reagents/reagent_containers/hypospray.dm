@@ -36,7 +36,7 @@
 				to_chat(user, SPAN_WARNING("Injection port on [M]'s suit is refusing your [src]."))
 				// I think rig is advanced enough for this, and people will learn what causes this error
 				if(RIG)
-					playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1, -3)
+					playsound(loc, 'sound/machines/buzz-two.ogg', 50, 1, -3)
 					RIG.visible_message("\icon[RIG]\The [RIG] states \"Attention: User of this suit appears to be synthetic origin\".")
 				return
 		// check without message

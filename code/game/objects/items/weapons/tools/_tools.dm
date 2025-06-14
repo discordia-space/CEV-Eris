@@ -394,7 +394,7 @@
 			//It will repeat roughly every 2.5 seconds until our tool finishes
 			toolsound = new/datum/repeating_sound(sound_repeat,time_to_finish,0.15, src, soundfile, volume, 1, extrarange)
 		else
-			playsound(src.loc, soundfile, volume, 1, extrarange)
+			playsound(loc, soundfile, volume, 1, extrarange)
 
 	//The we handle the doafter for the tool usage
 	if(time_to_finish)
@@ -902,7 +902,7 @@
 		if((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) && get_dist(src,O) <= 1 && !has_quality(QUALITY_WELDING))
 			O.reagents.trans_to_obj(src, max_fuel)
 			to_chat(user, SPAN_NOTICE("[src] refueled"))
-			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+			playsound(loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
 		else if((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) && get_dist(src,O) <= 1 && has_quality(QUALITY_WELDING))
 			message_admins("[key_name_admin(user)] triggered an explosion with a welding tool.")
@@ -924,7 +924,7 @@
 				else
 					O.reagents.trans_to_obj(src, max_fuel)
 					to_chat(user, SPAN_NOTICE("[src] refueled"))
-					playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+					playsound(loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
 */
 		if(switched_on)

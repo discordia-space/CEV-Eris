@@ -630,7 +630,7 @@
 		for(var/mob/M in hearers(src.loc.loc))
 			to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>")
 
-	playsound(src.loc, 'sound/effects/clang.ogg', 50, 0, 0)
+	playsound(loc, 'sound/effects/clang.ogg', 50, 0, 0)
 
 	// called to vent all gas in holder to a location
 /obj/structure/disposalholder/proc/vent_gas(var/atom/location)
@@ -1132,7 +1132,7 @@
 
 		if(O.currTag)// Tag set
 			sort_tag = O.currTag
-			playsound(src.loc, 'sound/machines/twobeep.ogg', 100, 1)
+			playsound(loc, 'sound/machines/twobeep.ogg', 100, 1)
 			to_chat(user, SPAN_NOTICE("Changed tag to '[sort_tag]'."))
 			updatename()
 			updatedesc()
@@ -1200,7 +1200,7 @@
 
 		if(O.currTag)// Tag set
 			sortType = O.currTag
-			playsound(src.loc, 'sound/machines/twobeep.ogg', 100, 1)
+			playsound(loc, 'sound/machines/twobeep.ogg', 100, 1)
 			to_chat(user, "\blue Changed filter to '[sortType]'.")
 			updatename()
 			updatedesc()

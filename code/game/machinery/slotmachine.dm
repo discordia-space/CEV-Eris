@@ -84,11 +84,11 @@
 
 		src.visible_message(SPAN_NOTICE("The reel stops at... \the [slots[slot]]!"))
 
-		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1)
+		playsound(loc, 'sound/machines/ping.ogg', 50, 1)
 
 /obj/machinery/slotmachine/proc/check_win(mob/user)
 	if(check_streak())
-		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1)
+		playsound(loc, 'sound/machines/ping.ogg', 50, 1)
 		var/weight = weights[slots["1"]]
 		var/prize = bet * weight
 
@@ -107,7 +107,7 @@
 /obj/machinery/slotmachine/proc/pull_leaver(mob/user)
 	sleep(5)
 	if(!check_win(user))// if we have not won anything - jackpot or regular bet
-		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 1)
+		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		src.visible_message("<b>[name]</b> states, \"Sorry, maybe, next time..\"")
 		jackpot += bet
 
@@ -123,7 +123,7 @@
 		plays++
 
 		src.visible_message("<b>[name]</b> states, \"Your bet is $[bet]. Goodluck, buddy!\"")
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+		playsound(loc, 'sound/machines/click.ogg', 50, 1)
 
 		set_spin_ovarlay()
 

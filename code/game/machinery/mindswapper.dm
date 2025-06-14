@@ -73,7 +73,7 @@
 
 /obj/machinery/mindswapper/proc/performswapping(mob/user as mob)
 	operating = FALSE
-	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
+	playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 	operating = FALSE
 
 	// Get all candidates in range for the mind swapping

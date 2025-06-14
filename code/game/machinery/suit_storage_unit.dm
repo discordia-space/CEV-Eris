@@ -231,7 +231,7 @@
 	isopen = !isopen
 
 	flick(isopen ? "anim_open" : "anim_close", door_overlay)
-	playsound(src.loc, 'sound/machines/Custom_openunit.ogg', 50, 0)
+	playsound(loc, 'sound/machines/Custom_openunit.ogg', 50, 0)
 
 
 /obj/machinery/suit_storage_unit/proc/toggle_lock(mob/user)
@@ -241,7 +241,7 @@
 	if(isopen)
 		return
 	locked = !locked
-	playsound(src.loc, 'sound/machines/Custom_unitclose.ogg', 50, 0)
+	playsound(loc, 'sound/machines/Custom_unitclose.ogg', 50, 0)
 
 
 /obj/machinery/suit_storage_unit/proc/start_UV(mob/user as mob)

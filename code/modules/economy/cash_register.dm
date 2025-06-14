@@ -483,7 +483,7 @@
 	else
 		user.visible_message(SPAN_WARNING("\The [user] begins unsecuring \the [src] from the floor."),
 	                         "You begin unsecuring \the [src] from the floor.")
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+	playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 	if(!do_after(user, 20))
 		manipulating = 0
 		return

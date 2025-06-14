@@ -106,7 +106,7 @@
 	var/mob/living/carbon/human/H = user
 	if(istype(H))
 		if(H.species.can_shred(H))
-			playsound(src.loc, 'sound/weapons/slash.ogg', 80, 1)
+			playsound(loc, 'sound/weapons/slash.ogg', 80, 1)
 			health -= rand(10, 20)
 		else
 			health -= rand(1,3)

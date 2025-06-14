@@ -33,7 +33,7 @@
 			paperamount += paper_result
 			user.drop_from_inventory(W)
 			qdel(W)
-			playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
+			playsound(loc, 'sound/items/pshred.ogg', 75, 1)
 			if(paperamount > max_paper)
 				to_chat(user, SPAN_DANGER("\The [src] was too full, and shredded paper goes everywhere!"))
 				for(var/i=(paperamount-max_paper);i>0;i--)

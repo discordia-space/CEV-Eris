@@ -299,7 +299,7 @@ var/list/global/tank_gauge_cache = list()
 			if(!T)
 				return
 			T.assume_air(air_contents)
-			playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
+			playsound(loc, 'sound/effects/spray.ogg', 10, 1, -3)
 			qdel(src)
 		else
 			integrity--

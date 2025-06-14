@@ -146,7 +146,7 @@
 				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_VERY_HARD, required_stat = STAT_MEC))
 					locked = -1 //Broken, it can never be locked again
 					to_chat(user, SPAN_NOTICE("Success! The tension in the panel loosens with a dull click"))
-					playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
+					playsound(loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 				return
 			else if(user.a_intent == I_HURT)
 				to_chat(user, "\The [src] access panel is not locked, there's no need to cut it.")

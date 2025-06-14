@@ -360,7 +360,7 @@
 		var/obj/item/toolbox_tiles/B = new /obj/item/toolbox_tiles
 		user.put_in_hands(B)
 		to_chat(user, SPAN_NOTICE("You add the tiles into the empty toolbox. They protrude from the top."))
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+		playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
 	else
@@ -387,7 +387,7 @@
 		B.created_name = created_name
 		user.put_in_hands(B)
 		to_chat(user, SPAN_NOTICE("You add the sensor to the toolbox and tiles!"))
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+		playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
 	else if(istype(W, /obj/item/pen))
@@ -418,7 +418,7 @@
 		var/mob/living/bot/floorbot/A = new /mob/living/bot/floorbot(T)
 		A.name = created_name
 		to_chat(user, SPAN_NOTICE("You add the robot arm to the odd looking toolbox assembly! Boop beep!"))
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+		playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
 	else if(istype(W, /obj/item/pen))

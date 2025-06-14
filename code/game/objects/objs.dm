@@ -186,7 +186,7 @@
 	if(!I || !user.IsAdvancedToolUser() || user.stat || !user.Adjacent(I))
 		return FALSE
 	user.put_in_hands(I)
-	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
+	playsound(loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	user.visible_message(
 		"[user] removes [I] from [src].",
 		SPAN_NOTICE("You remove [I] from [src].")
@@ -197,7 +197,7 @@
 	if(!I || !istype(user) || user.stat || !user.unEquip(I))
 		return FALSE
 	I.forceMove(src)
-	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
+	playsound(loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
 	to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
 	return TRUE
 
@@ -206,9 +206,9 @@
 		return FALSE
 	I_new.forceMove(src)
 	user.put_in_hands(I_old)
-	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
+	playsound(loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
 	spawn(2)
-		playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
+		playsound(loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	user.visible_message(
 		"[user] replaces [I_old] with [I_new] in [src].",
 		SPAN_NOTICE("You replace [I_old] with [I_new] in [src]."))

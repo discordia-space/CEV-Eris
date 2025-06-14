@@ -127,7 +127,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/sparks/New()
 	..()
-	playsound(src.loc, "sparks", 100, 1)
+	playsound(loc, "sparks", 100, 1)
 	var/turf/T = src.loc
 	if(istype(T, /turf))
 		T.hotspot_expose(1000,100)

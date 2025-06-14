@@ -114,7 +114,7 @@
 		src.operating = TRUE
 
 	flick(text("[]opening", src.base_state), src)
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
+	playsound(loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = text("[]open", src.base_state)
 	//sleep(10)
 
@@ -131,7 +131,7 @@
 		return FALSE
 	src.operating = TRUE
 	flick(text("[]closing", src.base_state), src)
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
+	playsound(loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = src.base_state
 
 	src.density = TRUE
@@ -156,18 +156,18 @@
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if(user.a_intent == I_HURT)
 			if(H.species.can_shred(H))
-				playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+				playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
 				visible_message(SPAN_DANGER("[user] smashes against the [src.name]."), 1)
 				take_damage(25)
 				return
 
-			playsound(src.loc, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
+			playsound(loc, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
 			user.do_attack_animation(src)
 			usr.visible_message(SPAN_DANGER("\The [usr] bangs against \the [src]!"),
 								SPAN_DANGER("You bang against \the [src]!"),
 								"You hear a banging sound.")
 		else
-			playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
+			playsound(loc, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
 			usr.visible_message("[usr.name] knocks on the [src.name].",
 								"You knock on the [src.name].",
 								"You hear a knocking sound.")
@@ -199,8 +199,8 @@
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
-			playsound(src.loc, "sparks", 50, 1)
-			playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
+			playsound(loc, "sparks", 50, 1)
+			playsound(loc, 'sound/weapons/blade1.ogg', 50, 1)
 			visible_message(SPAN_WARNING("The glass door was sliced open by [user]!"))
 		return 1
 
@@ -246,7 +246,7 @@
 	if(src.density && istype(I, /obj/item) && !istype(I, /obj/item/card))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		var/aforce = I.force
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		visible_message(SPAN_DANGER("[src] was hit by [I]."))
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)

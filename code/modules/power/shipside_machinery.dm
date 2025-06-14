@@ -90,19 +90,19 @@
 	if(target_state == TRUE)
 		if(!anchored)
 			visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it needs to be properly anchored to deploy"))
-			playsound(src.loc, 'sound/machines/buzz-two.ogg', 100, 1, 5)
+			playsound(loc, 'sound/machines/buzz-two.ogg', 100, 1, 5)
 			tendrils_deployed = FALSE
 			update_icon()
 			return FALSE
 		if(!build_tendril_dirs())
 			visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it has no conduits to deploy"))
-			playsound(src.loc, 'sound/machines/buzz-two.ogg', 100, 1, 5)
+			playsound(loc, 'sound/machines/buzz-two.ogg', 100, 1, 5)
 			return FALSE
 		for(var/D in tendril_dirs)
 			var/turf/T = get_step(src, D)
 			if(!turf_clear_ignore_cables(T))
 				visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it lacks the space to deploy"))
-				playsound(src.loc, 'sound/machines/buzz-two.ogg', 100, 1, 5)
+				playsound(loc, 'sound/machines/buzz-two.ogg', 100, 1, 5)
 				tendrils_deployed = FALSE
 				update_icon()
 				return FALSE
@@ -160,7 +160,7 @@
 		to_chat(usr, SPAN_NOTICE("Retract conduits first!"))
 		return
 	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
 		if(anchored)
 			to_chat(user, SPAN_NOTICE("You unsecure the [src] from the floor!"))
 			toggle_tendrils(FALSE)
@@ -263,7 +263,7 @@
 		to_chat(usr, SPAN_NOTICE("Disconnect [src] from the [base] first!"))
 		return
 	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
 		if(anchored)
 			to_chat(user, SPAN_NOTICE("You unsecure the [src] from the floor!"))
 			anchored = FALSE

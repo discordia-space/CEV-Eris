@@ -33,7 +33,7 @@
 	)
 	if(enabled && world.time > ambience_last_played + 60 SECONDS && prob(1))
 		ambience_last_played = world.time
-		playsound(src.loc, pick(beepsounds),15,1,10)
+		playsound(loc, pick(beepsounds),15,1,10)
 
 // Used to perform preset-specific hardware changes.
 /obj/item/modular_computer/proc/install_default_hardware()

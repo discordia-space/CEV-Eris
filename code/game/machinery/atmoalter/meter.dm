@@ -96,7 +96,7 @@
 /obj/machinery/meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(!istype(W, /obj/item/tool/wrench))
 		return ..()
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+	playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40, src))
 		user.visible_message( \

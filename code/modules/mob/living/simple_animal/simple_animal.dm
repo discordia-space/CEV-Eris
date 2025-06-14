@@ -71,10 +71,6 @@
 	var/environment_smash = 0
 	var/resistance		  = 0	// Damage reduction
 
-	//Null rod stuff
-	var/supernatural = 0
-	var/purge = 0
-
 	//Hunger/feeding vars
 	var/hunger_enabled = 1//If set to 0, a creature ignores hunger
 	max_nutrition = 50
@@ -191,7 +187,6 @@
 		handle_stunned()
 		handle_weakened()
 		handle_paralysed()
-		handle_supernatural()
 
 		process_food()
 		handle_foodscanning()
@@ -279,9 +274,6 @@
 	if(message)
 		visible_message("<span class='name'>[src]</span> [message]")
 
-/mob/living/simple_animal/proc/handle_supernatural()
-	if(purge)
-		purge -= 1
 
 //Simple reagent processing for simple animals
 //This allows animals to digest food, and only food
@@ -408,13 +400,7 @@
 
 /mob/living/simple_animal/movement_delay()
 	var/tally = MOVE_DELAY_BASE //Incase I need to add stuff other than "speed" later
-
 	tally += speed
-	if(purge)//Purged creatures will move more slowly. The more time before their purge stops, the slower they'll move.
-		if(tally <= 0)
-			tally = 1
-		tally *= purge
-
 	if(!nutrition)
 		tally += 4
 

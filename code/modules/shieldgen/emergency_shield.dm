@@ -49,7 +49,7 @@
 		src.shieldHealth -= aforce
 
 	//Play a fitting sound
-	playsound(src.loc, 'sound/effects/EMPulse.ogg', 75, 1)
+	playsound(loc, 'sound/effects/EMPulse.ogg', 75, 1)
 
 	check_failure()
 	set_opacity(TRUE)

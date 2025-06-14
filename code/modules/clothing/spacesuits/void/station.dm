@@ -458,7 +458,7 @@
 //NT
 
 /obj/item/clothing/head/space/void/NTvoid
-	name = "neotheology voidsuit helmet"
+	name = "NeoTheology voidsuit helmet"
 	desc = "A voidsuit helmet designed by NeoTheology with a most holy mix of biomatter and inorganic matter."
 	icon_state = "ntvoidhelmet"
 	item_state = "ntvoidhelmet"
@@ -477,7 +477,7 @@
 	light_overlay = "helmet_light"
 
 /obj/item/clothing/suit/space/void/NTvoid
-	name = "neotheology voidsuit"
+	name = "NeoTheology voidsuit"
 	desc = "A voidsuit designed by NeoTheology with a most holy mix of biomatter and inorganic matter."
 	icon_state = "ntvoid"
 	item_state = "ntvoid"

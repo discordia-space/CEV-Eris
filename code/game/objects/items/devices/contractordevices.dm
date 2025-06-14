@@ -49,7 +49,7 @@ effective or pretty fucking useless.
 			else
 				to_chat(M, SPAN_DANGER("You feel a sudden, electric jolt travel through your head."))
 
-	playsound(src.loc, 'sound/misc/interference.ogg', 50, 1)
+	playsound(loc, 'sound/misc/interference.ogg', 50, 1)
 	to_chat(user, SPAN_NOTICE("You trigger [src]."))
 	times_used += 1
 	if(times_used >= max_uses)

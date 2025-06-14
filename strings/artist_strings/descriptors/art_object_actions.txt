@@ -101,7 +101,7 @@ being killed using mercenary gear
 being tortured using inquisitor gear
 being hunted down using marshall gear
 being slayed using assassin gear
-being beaten to death using Ironhammer gear
+being beaten to death using IronHammer gear
 being thrown into oblivion
 being anathematized
 being fired

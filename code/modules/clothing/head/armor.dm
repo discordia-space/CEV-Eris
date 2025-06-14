@@ -74,7 +74,7 @@
 
 /obj/item/clothing/head/armor/helmet/ironhammer
 	name = "operator helmet"
-	desc = "Ironhammer Security gear. Protects the head from impacts, and the lack of a visor ensures an unhindered aim."
+	desc = "IronHammer Security gear. Protects the head from impacts, and the lack of a visor ensures an unhindered aim."
 	icon_state = "helmet_ironhammer"
 	flags_inv = BLOCKHEADHAIR|HIDEEARS
 
@@ -272,7 +272,7 @@
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_full
 	name = "full ballistic helmet"
-	desc = "Standard-issue Ironhammer ballistic helmet with a basic HUD included, covers the operator's entire face."
+	desc = "Standard-issue IronHammer ballistic helmet with a basic HUD included, covers the operator's entire face."
 	icon_state = "ironhammer_full"
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 500
@@ -389,11 +389,11 @@
 
 
 /*
- * Ironhammer riot helmet with HUD
+ * IronHammer riot helmet with HUD
  */
 /obj/item/clothing/head/armor/riot_hud
 	name = "heavy operator helmet"
-	desc = "Standard-issue Ironhammer helmet with a basic HUD and targeting system included."
+	desc = "Standard-issue IronHammer helmet with a basic HUD and targeting system included."
 	icon_state = "light_riot"
 
 	tint = TINT_NONE

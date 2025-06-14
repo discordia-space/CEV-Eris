@@ -358,7 +358,7 @@ var/global/excelsior_last_draft = 0
 		return
 
 	visible_message("\The [src] blinks, refusing [affecting].")
-	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
+	playsound(loc, 'sound/machines/ping.ogg', 50, 1, -3)
 
 /obj/machinery/complant_teleporter/proc/teleport_out(mob/living/affecting, mob/living/user)
 	flick("teleporting", src)

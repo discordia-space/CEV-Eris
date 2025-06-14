@@ -27,7 +27,7 @@
 				"The Door phenomenon",
 				"Parallel world-related mutations",
 				"Mass hallucinations or breach from another world?",
-				"Ironhammer budget: evidence of SAU overfund",
+				"IronHammer budget: evidence of SAU overfund",
 				"The truth behind the fall of One Star",
 				"Are we next? The connection between One Star and dead alien civilizations",
 				"Unknown device blueprints")

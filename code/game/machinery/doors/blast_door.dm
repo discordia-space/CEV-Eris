@@ -153,7 +153,7 @@
 /obj/machinery/door/blast/proc/force_open()
 	src.operating = 1
 	flick(icon_state_opening, src)
-	playsound(src.loc, 'sound/machines/Custom_blastdooropen.ogg', 65, 0)
+	playsound(loc, 'sound/machines/Custom_blastdooropen.ogg', 65, 0)
 	src.density = FALSE
 	SEND_SIGNAL(src, COMSIG_DOOR_OPENED, TRUE)
 	update_nearby_tiles()
@@ -169,7 +169,7 @@
 	src.operating = 1
 	src.layer = closed_layer
 	flick(icon_state_closing, src)
-	playsound(src.loc, 'sound/machines/Custom_blastdoorclose.ogg', 65, 0)
+	playsound(loc, 'sound/machines/Custom_blastdoorclose.ogg', 65, 0)
 	src.density = TRUE
 	SEND_SIGNAL(src, COMSIG_DOOR_CLOSED, TRUE)
 	update_nearby_tiles()

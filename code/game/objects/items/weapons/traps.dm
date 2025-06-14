@@ -398,7 +398,7 @@ Very rarely it might escape
 		check_integrity()
 
 //Takes 1 damage every time they fail to open it
-/obj/item/beartrap/makeshift/fail_attempt(var/user, var/difficulty)
+/obj/item/beartrap/makeshift/fail_attempt(user, difficulty)
 	.=..()
 	integrity -= 0.8
 	spawn(5)

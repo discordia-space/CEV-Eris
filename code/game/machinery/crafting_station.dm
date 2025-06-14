@@ -94,5 +94,5 @@ var/global/list/crafting_designs
 	flick("craft_done", src)
 	warmed_up = FALSE
 	if(!current_file && !queue.len)
-		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
+		playsound(loc, 'sound/machines/ping.ogg', 50, 1, -3)
 		visible_message("\The [src] pings, indicating that queue is complete.")

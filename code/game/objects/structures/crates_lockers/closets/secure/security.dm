@@ -44,7 +44,7 @@
 	new /obj/item/storage/pouch/holster(src)
 
 /obj/structure/closet/secure_closet/reinforced/hos
-	name = "Ironhammer Commander locker"
+	name = "IronHammer Commander locker"
 	req_access = list(access_hos)
 	icon_state = "hos"
 
@@ -112,7 +112,7 @@
 	new /obj/item/clothing/suit/armor/vest/ironhammer(src)
 
 /obj/structure/closet/secure_closet/personal/security
-	name = "Ironhammer Operative locker"
+	name = "IronHammer Operative locker"
 	req_access = list(access_hos)
 	access_occupy = list(access_brig)
 	icon_state = "sec"
@@ -140,7 +140,7 @@
 	new /obj/item/storage/ration_pack/ihr(src)
 
 /obj/structure/closet/secure_closet/medspec
-	name = "Ironhammer Medical Specialist locker"
+	name = "IronHammer Medical Specialist locker"
 	req_access = list(access_medspec)
 	icon_state = "sec"
 
@@ -162,7 +162,7 @@
 	new /obj/item/storage/briefcase/crimekit(src)
 
 /obj/structure/closet/secure_closet/detective
-	name = "Ironhammer Inspector locker"
+	name = "IronHammer Inspector locker"
 	req_access = list(access_forensics_lockers)
 	icon_state = "cabinetdetective"
 

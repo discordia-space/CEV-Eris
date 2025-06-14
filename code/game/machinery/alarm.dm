@@ -1169,7 +1169,7 @@ FIRE ALARM
 	else
 		to_chat(usr, "Fire Alarm activated.")
 	update_icon()
-	//playsound(src.loc, 'sound/ambience/signal.ogg', 75, 0)
+	//playsound(loc, 'sound/ambience/signal.ogg', 75, 0)
 	return
 
 

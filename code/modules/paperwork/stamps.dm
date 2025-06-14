@@ -48,7 +48,7 @@
 	icon_state = "stamp-qm"
 
 /obj/item/stamp/nt
-	name = "neotheology preacher's stamp"
+	name = "NeoTheology preacher's stamp"
 	icon_state = "stamp-nt"
 
 /obj/item/stamp/lus

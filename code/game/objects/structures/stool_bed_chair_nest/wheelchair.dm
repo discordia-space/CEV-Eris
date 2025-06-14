@@ -155,7 +155,7 @@
 		occupant.apply_effect(6, STUTTER, occupant.getarmor(def_zone, ARMOR_MELEE))
 		occupant.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
 
-		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
+		playsound(loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
 
 		if(isliving(A))
 

@@ -13,10 +13,3 @@ GLOBAL_DATUM_INIT(shuttle_moved_event, /decl/observ/shuttle_moved, new)
 /decl/observ/shuttle_moved
 	name = "Shuttle Moved"
 	expected_type = /datum/shuttle
-
-/*****************
-* Shuttle Moved Handling *
-*****************/
-
-// Located in modules/shuttle/shuttle.dm
-// Proc: /datum/shuttle/proc/attempt_move()

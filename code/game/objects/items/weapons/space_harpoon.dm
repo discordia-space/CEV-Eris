@@ -3,7 +3,7 @@
 
 /obj/item/bluespace_harpoon
 	name = "NT BSD \"Harpoon\""
-	desc = "One of the last things developed by old Nanotrasen, this harpoon serves as a tool for short and accurate teleportation of cargo and personnel through bluespace."
+	desc = "One of the last things developed by old NanoTrasen, this harpoon serves as a tool for short and accurate teleportation of cargo and personnel through bluespace."
 	icon_state = "harpoon-1"
 	item_state = "harpoon-1"
 	icon = 'icons/obj/items.dmi'
@@ -169,7 +169,7 @@
 
 /obj/item/bluespace_harpoon/mounted/blitz
 	name = "OR BSD \"Blauerraumharpune\""
-	desc = "Reverse engineered version of harpoon developed by old Nanotrasen, remounted for robotic use only by Oberth Republic."
+	desc = "Reverse engineered version of harpoon developed by old NanoTrasen, remounted for robotic use only by Oberth Republic."
 	icon_state = "harpoon-mounted-blitz-1"
 	spawn_tags = null
 

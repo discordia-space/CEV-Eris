@@ -198,7 +198,7 @@
 	cover_state.layer = 5
 	cover_closed = FALSE
 	cover_moving = TRUE
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+	playsound(loc, 'sound/machines/ding.ogg', 50, 1)
 	update_icon()
 
 /obj/machinery/excelsior_autodoc/proc/close_cover()
@@ -206,7 +206,7 @@
 	cover_state.layer = 5
 	cover_closed = TRUE
 	cover_moving = TRUE
-	playsound(src.loc, 'sound/machines/medbayscanner1.ogg', 50, 1)
+	playsound(loc, 'sound/machines/medbayscanner1.ogg', 50, 1)
 	update_icon()
 
 /obj/machinery/excelsior_autodoc/update_icon()

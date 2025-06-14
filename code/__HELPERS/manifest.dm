@@ -16,7 +16,7 @@
 	var/list/dept_data = list(
 
 		list("names" = list(), "header" = "Command Staff", "flag" = COMMAND),
-		list("names" = list(), "header" = "Ironhammer Security", "flag" = IRONHAMMER),
+		list("names" = list(), "header" = "IronHammer Security", "flag" = IRONHAMMER),
 		list("names" = list(), "header" = "Moebius Medical", "flag" = MEDICAL),
 		list("names" = list(), "header" = "Moebius Research", "flag" = SCIENCE),
 		list("names" = list(), "header" = "Church of NeoTheology", "flag" = CHURCH),

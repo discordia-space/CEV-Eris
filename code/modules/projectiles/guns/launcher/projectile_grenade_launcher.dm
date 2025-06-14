@@ -44,7 +44,7 @@
 	user.remove_from_mob(G)
 	G.forceMove(src)
 	chambered = G
-	playsound(src.loc, bulletinsert_sound, 75, 1)
+	playsound(loc, bulletinsert_sound, 75, 1)
 
 /obj/item/gun/projectile/shotgun/pump/grenade/proc/unload_underslung(mob/user)
 	if(chambered)

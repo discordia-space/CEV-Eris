@@ -227,7 +227,7 @@
 	overlays.Add(image(icon, icon_state = "portal_pop"))
 	visible_message("The portal bursts!")
 
-	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
+	playsound(loc, 'sound/weapons/flash.ogg', 100, 1)
 
 	for(var/mob/living/O in viewers(src, null))
 		if(get_dist(src, O) > 8)

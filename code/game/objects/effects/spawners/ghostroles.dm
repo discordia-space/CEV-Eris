@@ -6,7 +6,7 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_1"
 	outfit = /decl/hierarchy/outfit/escapedprisoner
-	short_desc = "You're a prisoner, sentenced to hard work in one of Ironhammer's labor camps, but it seems as \
+	short_desc = "You're a prisoner, sentenced to hard work in one of IronHammer's labor camps, but it seems as \
 	though fate has other plans for you."
 	flavour_text = "Good. It seems as though your ship crashed. You remember that you were convicted of "
 	assignedrole = "Escaped Prisoner"
@@ -20,7 +20,7 @@
 	)
 
 /obj/effect/mob_spawn/human/prisoner_transport/special(mob/living/L)
-	L.fully_replace_character_name(null,"IHP #PH-0[rand(111,999)]") //Ironhammer Prisoner #Prison Hulk-(numbers)
+	L.fully_replace_character_name(null,"IHP #PH-0[rand(111,999)]") //IronHammer Prisoner #Prison Hulk-(numbers)
 
 /obj/effect/mob_spawn/human/prisoner_transport/Initialize(mapload)
 	. = ..()

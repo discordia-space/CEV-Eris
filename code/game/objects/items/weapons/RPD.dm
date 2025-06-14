@@ -170,5 +170,5 @@
 /obj/item/rpd/borg/attackby()
 	return
 
-/obj/item/rpd/borg/can_use(var/mob/user,var/turf/T)
+/obj/item/rpd/borg/can_use(mob/user, turf/T)
 	return (user.Adjacent(T) && !user.stat)

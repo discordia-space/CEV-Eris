@@ -555,7 +555,7 @@
 	icon_state = "incendiary"
 	projectile_type = /obj/item/projectile/bullet/grenade/heatwave
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_BIOMATTER = 20, MATERIAL_PLASMA = 1)
-	rarity_value = 40 // Neotheology
+	rarity_value = 40 // NeoTheology
 
 //// Other ////
 

@@ -76,7 +76,7 @@ var/list/floor_light_cache = list()
 			stat |= BROKEN
 		else
 			visible_message(SPAN_DANGER("\The [user] attacks \the [src]!"))
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+			playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
 			if(isnull(damaged)) damaged = 0
 		update_brightness()
 		return

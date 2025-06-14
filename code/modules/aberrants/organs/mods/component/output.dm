@@ -437,7 +437,7 @@
 					gas_cloud.attach(location)
 					gas_cloud.set_up(gas_sac, gas_cloud_volume, 0, location)
 					owner.visible_message(SPAN_DANGER("\the [owner] exhales strange vapors!"))
-					addtimer(CALLBACK(src, .proc/smoke_trigger), 1, TIMER_STOPPABLE)
+					addtimer(CALLBACK(src, PROC_REF(smoke_trigger)), 1, TIMER_STOPPABLE)
 					triggered = TRUE
 
 	if(triggered)

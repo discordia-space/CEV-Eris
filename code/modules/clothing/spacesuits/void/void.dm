@@ -166,7 +166,7 @@
 		helmet.canremove = 1
 		H.drop_from_inventory(helmet)
 		helmet.forceMove(src)
-		playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
+		playsound(loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	else
 		if(H.head)
 			to_chat(H, SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head]."))
@@ -174,7 +174,7 @@
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
 			helmet.canremove = 0
 			to_chat(H, "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>")
-			playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
+			playsound(loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	helmet.update_light(H)
 
 /obj/item/clothing/suit/space/void/verb/eject_tank()

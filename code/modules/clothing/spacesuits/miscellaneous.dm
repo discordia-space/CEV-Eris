@@ -34,7 +34,7 @@
 	accompanying_object = /obj/item/clothing/head/space/emergency
 	slowdown = HEAVY_SLOWDOWN
 
-//Neotheology spacesuits
+//NeoTheology spacesuits
 /obj/item/clothing/head/space/medicus
 	name = "NT Medicus Helmet"
 	icon_state = "nt_habithat_visor"

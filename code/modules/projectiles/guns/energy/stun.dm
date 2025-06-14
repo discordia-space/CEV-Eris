@@ -1,6 +1,6 @@
 /obj/item/gun/energy/taser
 	name = "NT SP \"Counselor\""
-	desc = "The NT SP \"Counselor\" is a taser gun used for non-lethal takedowns. Used by Nanotrasen security forces before Corporation Wars."
+	desc = "The NT SP \"Counselor\" is a taser gun used for non-lethal takedowns. Used by NanoTrasen security forces before Corporation Wars."
 	icon = 'icons/obj/guns/energy/taser.dmi'
 	icon_state = "taser"
 	item_state = null	//so the human update icon uses the icon_state instead.
@@ -30,7 +30,7 @@
 
 /obj/item/gun/energy/stunrevolver
 	name = "NT SP \"Zeus\""
-	desc = "Also know as stunrevolver. Older and less precise Nanotrasen solution for non-lethal takedowns. This gun has smaller capacity in exchange for S-cells use."
+	desc = "Also know as stunrevolver. Older and less precise NanoTrasen solution for non-lethal takedowns. This gun has smaller capacity in exchange for S-cells use."
 	icon = 'icons/obj/guns/energy/stunrevolver.dmi'
 	icon_state = "stunrevolver"
 	item_state = "stunrevolver"
@@ -48,7 +48,7 @@
 
 /obj/item/gun/energy/stunrevolver/moebius
 	name = "ML SP \"Suez\""	//Ersatz name
-	desc = "Also know as stunrevolver. A Moebius copy of the older and less precise Nanotrasen solution for non-lethal takedowns. This gun has smaller capacity in exchange for S-cells use."
+	desc = "Also know as stunrevolver. A Moebius copy of the older and less precise NanoTrasen solution for non-lethal takedowns. This gun has smaller capacity in exchange for S-cells use."
 	icon = 'icons/obj/guns/energy/stunrevolver_moebius.dmi'
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 6, MATERIAL_SILVER = 2, MATERIAL_PLASTIC = 5)
 	serial_type = "ML"

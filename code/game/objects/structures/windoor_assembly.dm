@@ -229,7 +229,7 @@ obj/structure/windoor_assembly/Destroy()
 
 			//Adding airlock electronics for access. Step 6 complete.
 			if(istype(I, /obj/item/electronics/airlock) && I:icon_state != "door_electronics_smoked")
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
+				playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
 				user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
 				if(do_after(user, 40,src))

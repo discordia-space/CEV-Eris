@@ -312,7 +312,7 @@
 	update_icon()
 	if(on == TRUE)
 		if(needsound == 1)
-			playsound(src.loc, 'sound/effects/Custom_lights.ogg', 65, 1)
+			playsound(loc, 'sound/effects/Custom_lights.ogg', 65, 1)
 			needsound = 0
 	else
 		needsound = 1
@@ -602,7 +602,7 @@
 
 	if(!skip_sound_and_sparks)
 		if(status == LIGHT_OK || status == LIGHT_BURNED)
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+			playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		if(on)
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
@@ -770,7 +770,7 @@
 		status = LIGHT_BROKEN
 		force = WEAPON_FORCE_WEAK
 		sharp = TRUE
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		update()
 
 

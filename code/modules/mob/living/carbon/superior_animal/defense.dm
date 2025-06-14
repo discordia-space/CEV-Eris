@@ -187,7 +187,7 @@
 		drop_from_inventory(I)
 		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
 
-	playsound(src.loc, 'sound/effects/splat.ogg', max(10,min(50,maxHealth)), 1)
+	playsound(loc, 'sound/effects/splat.ogg', max(10,min(50,maxHealth)), 1)
 	if(do_gibs)
 		gibs(src.loc, null, /obj/effect/gibspawner/generic, fleshcolor, bloodcolor)
 	. = ..(anim,FALSE)
@@ -196,7 +196,7 @@
 	if(!anim)
 		anim = 0
 
-	playsound(src.loc, 'sound/effects/Custom_flare.ogg', max(10,min(50,maxHealth)), 1)
+	playsound(loc, 'sound/effects/Custom_flare.ogg', max(10,min(50,maxHealth)), 1)
 	. = ..(anim,remains)
 
 /mob/living/carbon/superior_animal/death(var/gibbed,var/message = deathmessage)

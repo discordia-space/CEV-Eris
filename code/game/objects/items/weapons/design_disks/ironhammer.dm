@@ -1,6 +1,6 @@
-// Ironhammer
+// IronHammer
 /obj/item/computer_hardware/hard_drive/portable/design/security
-	disk_name = "Ironhammer Miscellaneous Pack"
+	disk_name = "IronHammer Miscellaneous Pack"
 	icon_state = "ironhammer"
 	rarity_value = 5
 	license = 20
@@ -20,7 +20,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/armor/generic
-	disk_name = "Ironhammer Combat Equipment - Standard Armor"
+	disk_name = "IronHammer Combat Equipment - Standard Armor"
 	icon_state = "ironhammer"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	rarity_value = 12 // one of the more common advanced disks
@@ -32,7 +32,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/armor/generic/bulletproof
-	disk_name = "Ironhammer Combat Equipment - Bulletproof Armor"
+	disk_name = "IronHammer Combat Equipment - Bulletproof Armor"
 	icon_state = "ironhammer"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	spawn_blacklisted = TRUE // Is too easy to acquire and changing the rarity value didn't help much when tested
@@ -45,7 +45,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/armor/generic/ablative
-	disk_name = "Ironhammer Combat Equipment - Laserproof Armor"
+	disk_name = "IronHammer Combat Equipment - Laserproof Armor"
 	icon_state = "ironhammer"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	spawn_blacklisted = TRUE // Is too easy to acquire and changing the rarity value didn't help much when tested
@@ -57,7 +57,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/armor/ih
-	disk_name = "Ironhammer Combat Equipment - Operator Armor"
+	disk_name = "IronHammer Combat Equipment - Operator Armor"
 	icon_state = "ironhammer"
 	spawn_blacklisted = TRUE //should only be obtainable from the sectech
 	license = 6
@@ -68,7 +68,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/armor/ih/bulletproof
-	disk_name = "Ironhammer Combat Equipment - Bulletproof Operator Armor"
+	disk_name = "IronHammer Combat Equipment - Bulletproof Operator Armor"
 	icon_state = "ironhammer"
 	spawn_blacklisted = TRUE
 	license = 4

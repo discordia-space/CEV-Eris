@@ -491,7 +491,7 @@
 		var/obj/item/secbot_assembly/A = new /obj/item/secbot_assembly
 		user.put_in_hands(A)
 		to_chat(user, "You add the signaler to the helmet.")
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+		playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
 	else
@@ -518,7 +518,7 @@
 		user.drop_item()
 		build_step = 2
 		to_chat(user, "You add \the [I] to [src].")
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+		playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 		overlays += image('icons/obj/aibots.dmi', "hs_eye")
 		name = "helmet/signaler/prox sensor assembly"
 		qdel(I)
@@ -527,7 +527,7 @@
 		user.drop_item()
 		build_step = 3
 		to_chat(user, "You add \the [I] to [src].")
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+		playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 		name = "helmet/signaler/prox sensor/robot arm assembly"
 		overlays += image('icons/obj/aibots.dmi', "hs_arm")
 		qdel(I)
@@ -535,7 +535,7 @@
 	else if(istype(I, /obj/item/melee/baton) && build_step == 3)
 		user.drop_item()
 		to_chat(user, "You complete the Securitron! Beep boop.")
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+		playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 		var/mob/living/bot/secbot/S = new /mob/living/bot/secbot(get_turf(src))
 		S.name = created_name
 		qdel(I)

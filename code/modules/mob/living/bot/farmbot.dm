@@ -332,7 +332,7 @@
 	var/obj/item/farmbot_arm_assembly/A = new /obj/item/farmbot_arm_assembly(loc)
 
 	to_chat(user, "You add the robot arm to [src].")
-	playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+	playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 	loc = A //Place the water tank into the assembly, it will be needed for the finished bot
 	user.drop_from_inventory(S)
 	qdel(S)
@@ -342,7 +342,7 @@
 	if((istype(W, /obj/item/device/scanner/plant)) && (build_step == 0))
 		build_step++
 		to_chat(user, "You add the plant analyzer to [src].")
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+		playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 		name = "farmbot assembly"
 		user.remove_from_mob(W)
 		qdel(W)
@@ -350,7 +350,7 @@
 	else if((istype(W, /obj/item/reagent_containers/glass/bucket)) && (build_step == 1))
 		build_step++
 		to_chat(user, "You add a bucket to [src].")
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+		playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 		name = "farmbot assembly with bucket"
 		user.remove_from_mob(W)
 		qdel(W)
@@ -358,7 +358,7 @@
 	else if((istype(W, /obj/item/tool/minihoe)) && (build_step == 2))
 		build_step++
 		to_chat(user, "You add a minihoe to [src].")
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+		playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 		name = "farmbot assembly with bucket and minihoe"
 		user.remove_from_mob(W)
 		qdel(W)
@@ -366,7 +366,7 @@
 	else if((isproxsensor(W)) && (build_step == 3))
 		build_step++
 		to_chat(user, "You complete the Farmbot! Beep boop.")
-		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+		playsound(loc, 'sound/effects/insert.ogg', 50, 1)
 		var/mob/living/bot/farmbot/S = new /mob/living/bot/farmbot(get_turf(src))
 		for(var/obj/structure/reagent_dispensers/watertank/wTank in contents)
 			wTank.loc = S

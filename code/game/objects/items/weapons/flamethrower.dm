@@ -107,7 +107,7 @@
 		lit = !lit
 		if(lit)
 			usr.visible_message(SPAN_WARNING("\The [usr] ignites \the [src]."), SPAN_WARNING("You ignite \the [src]."), "You hear sparking.")
-			playsound(src.loc, 'sound/effects/sparks4.ogg', 50, 1)
+			playsound(loc, 'sound/effects/sparks4.ogg', 50, 1)
 			START_PROCESSING(SSobj, src)
 		else
 			usr.visible_message(SPAN_NOTICE("\The [usr] extinguish \the [src]."), SPAN_NOTICE("You extinguish \the [src]."))

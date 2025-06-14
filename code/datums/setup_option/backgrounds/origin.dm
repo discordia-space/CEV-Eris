@@ -52,7 +52,7 @@
 
 /datum/category_item/setup_option/background/origin/sich_prime
 	name = "Sich Prime"
-	desc = "A Ukrainian colony that was a major industrial center during the Corporation Wars, during which they made the fatal mistake of siding with Nanotrasen. \
+	desc = "A Ukrainian colony that was a major industrial center during the Corporation Wars, during which they made the fatal mistake of siding with NanoTrasen. \
 			Bombed and poisoned, this planet suffered the harshest toll of the war, both from population loss and ecological devastation. \
 			While ostensibly under the direct control of Hanza, its local military is extremely disloyal and known to support the Founders - a revanchist international group that seeks the return of planetary government's national control over space."
 
@@ -68,8 +68,8 @@
 
 /datum/category_item/setup_option/background/origin/new_rome
 	name = "New Rome"
-	desc = "One of the first colonies founded by American settlers, New Rome was rich with biosphere and natural resources and served as Nanotrasen's headquarters when it was still an emerging power. As such, it holds the highest human population of any planet in the galaxy. \
-			Although the War ended before it was sieged, New Rome suffered an economic crisis following the fall of Nanotrasen and never recovered. \
+	desc = "One of the first colonies founded by American settlers, New Rome was rich with biosphere and natural resources and served as NanoTrasen's headquarters when it was still an emerging power. As such, it holds the highest human population of any planet in the galaxy. \
+			Although the War ended before it was sieged, New Rome suffered an economic crisis following the fall of NanoTrasen and never recovered. \
 			Formerly a garden world, it is now dotted with hive cities, decaying ecologies, widespread poverty, and NeoTheology desperately trying to revive the ecosphere artificially with biomatter technology. \
 			On New Rome, one must make the choice: to remain free and die impoverished and starving, or join the cult of NeoTheology to survive with a stable job and a place to live. \
 			Gives you knowledge of the Latin language."
@@ -133,7 +133,7 @@
 	desc = "A lifeless, unforgiving ice world, rich with rare minerals, life on Crozet is only possible underground. \
 			Originally founded by a French mining company, it was occupied later by exiled nobility from the HMSS \"Destined\". \
 			The exiles founded the Four Great Houses to defend the colony's sovereignty, as well as their right to work the local population to death in the mines. \
-			This lasted until Nanotrasen invaded with the help of one of the Houses, and later, Crozet was left under NeoTheology control under the terms of a peace treaty. \
+			This lasted until NanoTrasen invaded with the help of one of the Houses, and later, Crozet was left under NeoTheology control under the terms of a peace treaty. \
 			The local population are prone to revolt after decades of mistreatment and generally want to be left alone, making them ripe for recruitment by the Founders."
 
 	stat_modifiers = list(
@@ -149,7 +149,7 @@
 /datum/category_item/setup_option/background/origin/first_expeditionary_fleet
 	name = "First Expeditionary Fleet"
 	desc = "A collection of old and modified colony ships, FTL capable shipyards, mobile hydroponics, and an armada of military ships. \
-			The de facto Headquarters of the Ironhammer PMC, the armada can be deployed whenever or wherever is needed for a contract, or even evacuate to deep space if necessary. \
+			The de facto Headquarters of the IronHammer PMC, the armada can be deployed whenever or wherever is needed for a contract, or even evacuate to deep space if necessary. \
 			It moves from planet to planet in Hanza space, and it is often used by larger corporations, being used as a giant power projector over planetary governments. \
 			For the fleet to function, a gigantic amount of manpower is required, and the armada's ships tend to be as populous as small cities, with both civilians and military personnel. \
 			Life in the Fleet is rather dull and spartan most of the time, with deep traditions of asceticism rooted in the crew of every ship. \
@@ -193,7 +193,7 @@
 			And it was used for that, until stars started coming back from Null Space. \
 			In order to salvage those wonders first, NanoTrasen has sent this platform, reworked to serve as a local forward operating base, and renamed it to Central Command. \
 			The war broke out, and without any support from the mainland, after relentless attacks from the Syndicate, and the destruction of many stations under CentCom's control, such as NSS 13 \"Exodus\", they surrendered to Syndicate. \
-			Now it's an independent station under Ironhammer control, that oversees the spread of Null Space artifacts, or at least is trying to. \
+			Now it's an independent station under IronHammer control, that oversees the spread of Null Space artifacts, or at least is trying to. \
 			It's a place for grand deals to be made, friends to be sold, a place where people run from law and boring life,for a fresh start in Null Space. \
 			And - in most cases - die a horrible death in the end."
 
@@ -210,8 +210,8 @@
 /datum/category_item/setup_option/background/origin/eureka
     name = "Eureka"
     desc = "Once a paradise for the Australian colonists that lived on it, their neutrality during the corporate wars cost them this paradise. \
-            And thus did the Syndicate and Nanotrasen both bomb Eureka to hell, causing once verdant lands to become hellish deserts of nuclear proportions. \
-            As a side effect of this once the corporate wars ended, Eurekans are known to be eerily good trackers and pathfinders in these conditions and elsewhere, causing what's left of the Eurekan people to pay a tithe to Hansa and Neotheology both in the form of criminals. \
+            And thus did the Syndicate and NanoTrasen both bomb Eureka to hell, causing once verdant lands to become hellish deserts of nuclear proportions. \
+            As a side effect of this once the corporate wars ended, Eurekans are known to be eerily good trackers and pathfinders in these conditions and elsewhere, causing what's left of the Eurekan people to pay a tithe to Hanza and NeoTheology both in the form of criminals. \
             All in the name of saving what's left."
 
     stat_modifiers = list(
@@ -242,7 +242,7 @@
 
 /datum/category_item/setup_option/background/origin/tripwire
 	name = "Tripwire Belt"
-	desc = "A network of hidden ships, gun emplacements and listening bases placed in a large asteroid belt late in the Corporate War by the Syndicate for the purpose of being an early warning station for attacks on Hansa Sector core worlds. After the end of the corporate war Ironhammer transformed it into a large system of training camps and bases for specialists and new recruits. Due to an almost complete lack of terraforming, hostile environment and outdated syndicate construction, the Tripwire Belt is suited for teaching new recruits on how to survive in deep space conditions, but this also means morale is often low."
+	desc = "A network of hidden ships, gun emplacements and listening bases placed in a large asteroid belt late in the Corporate War by the Syndicate for the purpose of being an early warning station for attacks on Hanza Sector core worlds. After the end of the corporate war IronHammer transformed it into a large system of training camps and bases for specialists and new recruits. Due to an almost complete lack of terraforming, hostile environment and outdated syndicate construction, the Tripwire Belt is suited for teaching new recruits on how to survive in deep space conditions, but this also means morale is often low."
 
 	stat_modifiers = list(
 		STAT_ROB = -5,
@@ -255,9 +255,9 @@
 
 /datum/category_item/setup_option/background/origin/kestrel
 	name = "Kestrel Hive"
-	desc = "A massive fleet of nomadic space stations lacking FTL, originally little more than mobile refineries and ore smelters which turned into veritable towns inhabited by hardass miners and ruthless prospectors. The Hive is constantly busy with stripping the massive asteroid fields in a system at the edge of Hansa space that is little more than barren dwarf planets and desolate gas giants. \
+	desc = "A massive fleet of nomadic space stations lacking FTL, originally little more than mobile refineries and ore smelters which turned into veritable towns inhabited by hardass miners and ruthless prospectors. The Hive is constantly busy with stripping the massive asteroid fields in a system at the edge of Hanza space that is little more than barren dwarf planets and desolate gas giants. \
 	The forge-towns can produce all needed equipment on-site thanks to their massive production facilities, though often the stations struggle to support the crammed population, so air and water rationing aren't uncommon, and even gravity generator shutdowns are a common occurrence. \
-	The cluster is owned and operated by Tartarus Industrial Union, a division of the idealistic Hansa megacorp in charge of heavy industries. The workers of Kestrel Hive, real rough folk, partake in several very dangerous recreational activities, from hopping from asteroid to asteroid with just your EVA suit and a spare tank of oxygen, to rocket-fuel and pure ethanol booze, with bits of radioactive byproducts mixed in. Strongest alcohol you’ll ever find, and you need a strong drink if you want to keep your wits during the twelve-hour shifts."
+	The cluster is owned and operated by Tartarus Industrial Union, a division of the idealistic Hanza megacorp in charge of heavy industries. The workers of Kestrel Hive, real rough folk, partake in several very dangerous recreational activities, from hopping from asteroid to asteroid with just your EVA suit and a spare tank of oxygen, to rocket-fuel and pure ethanol booze, with bits of radioactive byproducts mixed in. Strongest alcohol you’ll ever find, and you need a strong drink if you want to keep your wits during the twelve-hour shifts."
 
 	stat_modifiers = list(
 		STAT_ROB = 6,

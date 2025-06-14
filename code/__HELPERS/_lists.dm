@@ -130,7 +130,7 @@
 			return TRUE
 	return FALSE
 
-/proc/instances_of_type_in_list(var/atom/A, var/list/L)
+/proc/instances_of_type_in_list(atom/A, list/L)
 	var/instances = 0
 	for(var/type in L)
 		if(istype(A, type))

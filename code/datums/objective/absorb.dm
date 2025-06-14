@@ -1,1 +1,0 @@
-// Ling absorb was here, should be removed

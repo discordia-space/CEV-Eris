@@ -23,7 +23,7 @@ GLOBAL_LIST_INIT(music_tracks, list(
 	"Bluespace" = /music_track/bluespace,
 	"Exploring" = /music_track/exploring,
 	"The Runner in Motion" = /music_track/runner,
-	"Neotheology" = /music_track/neotheology,
+	"NeoTheology" = /music_track/neotheology,
 	"Downtown 2" = /music_track/downtown
 ))
 

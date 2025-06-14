@@ -275,7 +275,7 @@
 
 //Faction Corpses//
 /obj/landmark/corpse/operative
-	name = "Ironhammer Operative"
+	name = "IronHammer Operative"
 	corpseuniform = list(/obj/item/clothing/under/rank/security, /obj/item/clothing/under/rank/security/turtleneck)
 	corpseshoes = /obj/item/clothing/shoes/jackboots/ironhammer
 	corpsegloves = list(/obj/item/clothing/gloves/security/ironhammer, /obj/item/clothing/gloves/stungloves)

@@ -138,7 +138,7 @@
 				if(C.get_amount() < 5)
 					to_chat(user, SPAN_WARNING("You need five lengths of cable to add them to the frame."))
 					return
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, SPAN_NOTICE("You start to add cables to the frame."))
 				if(do_after(user, 20, src) && state == STATE_NONE)
 					if(C.use(5))
@@ -150,7 +150,7 @@
 			if(istype(I, /obj/item/electronics/circuitboard))
 				var/obj/item/electronics/circuitboard/B = I
 				if(B.board_type == "machine" && frame_type == B.frame_type)
-					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					to_chat(user, SPAN_NOTICE("You add the circuit board to the frame."))
 					circuit = I
 					user.drop_from_inventory(I)
@@ -187,7 +187,7 @@
 			if(istype(I, /obj/item))
 				for(var/CM in req_components)
 					if(istype(I, CM) && (req_components[CM] > 0))
-						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+						playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 
 						// Stacks get special treatment
 						if(istype(I, /obj/item/stack))

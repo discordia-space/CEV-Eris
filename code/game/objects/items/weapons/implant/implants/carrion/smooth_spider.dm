@@ -8,7 +8,7 @@
 /obj/item/implant/carrion_spider/smooth/activate()
 	..()
 	if(not_playing)
-		playsound(src.loc, 'sound/items/bikehorn.ogg', 50, 1)
+		playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)
 		not_playing = FALSE
 		spawn(5)
 			not_playing = TRUE

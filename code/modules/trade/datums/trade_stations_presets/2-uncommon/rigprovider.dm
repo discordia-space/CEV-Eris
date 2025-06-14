@@ -63,7 +63,7 @@
 		/obj/item/rig/hazmat = offer_data("AMI control module", 1000, 2),					// base price: 1290 (incl. components)
 		/obj/item/rig/combat = offer_data("combat hardsuit control module", 1500, 2),		// base price: 1590 (incl. components)
 		/obj/item/rig/techno = offer_data("technomancer suit control module", 8000, 1),
-		/obj/item/rig/combat/ironhammer = offer_data("Ironhammer hardsuit control module", 8000, 1),
+		/obj/item/rig/combat/ironhammer = offer_data("IronHammer hardsuit control module", 8000, 1),
 		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 10000, 1),
 		/obj/item/rig/light/hacker = offer_data("cybersuit control module", 10000, 1)
 	)

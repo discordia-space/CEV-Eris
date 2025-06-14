@@ -8,7 +8,7 @@
 
 /obj/machinery/biomatter_solidifier
 	name = "biomatter solidifier"
-	desc = "A Neotheology machine that converts liquid biomatter into the solid."
+	desc = "A NeoTheology machine that converts liquid biomatter into the solid."
 	icon = 'icons/obj/machines/simple_nt_machines.dmi'
 	icon_state = "solidifier"
 	density = TRUE

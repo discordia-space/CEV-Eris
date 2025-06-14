@@ -499,7 +499,7 @@
 		user.visible_message("*click click*", SPAN_DANGER("*click*"))
 	else
 		src.visible_message("*click click*")
-	playsound(src.loc, 'sound/weapons/guns/misc/gun_empty.ogg', 100, 1)
+	playsound(loc, 'sound/weapons/guns/misc/gun_empty.ogg', 100, 1)
 	update_firemode() //Stops automatic weapons spamming this shit endlessly
 
 //called after successfully firing
@@ -813,7 +813,7 @@
 		return
 	var/datum/firemode/new_mode = switch_firemodes()
 	if(new_mode)
-		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
+		playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 		to_chat(user, SPAN_NOTICE("\The [src] is now set to [new_mode.name]."))
 
 /obj/item/gun/proc/toggle_safety(mob/living/user)

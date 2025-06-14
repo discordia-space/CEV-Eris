@@ -123,7 +123,7 @@
 
 /obj/item/book/manual/nuclear
 	name = "Fission Mailed: Nuclear Sabotage 101"
-	desc = "An information manual for Syndicate operatives on the usage of nuclear devices to destroy Nanotrasen facilities, a throwback to the past."
+	desc = "An information manual for Syndicate operatives on the usage of nuclear devices to destroy NanoTrasen facilities, a throwback to the past."
 	icon_state = "book_nuclear"
 	author = "Syndicate"
 	title = "Fission Mailed: Nuclear Sabotage 101"
@@ -267,11 +267,11 @@
 
 //security
 /obj/item/book/manual/wiki/security_ironparagraphs
-	name = "Ironhammer Paragraphs"
+	name = "IronHammer Paragraphs"
 	desc = "A set of corporate guidelines for keeping order on privately-owned space assets."
 	icon_state = "book_ironparagraphs"
-	author = "Ironhammer Security"
-	title = "Ironhammer Paragraphs"
+	author = "IronHammer Security"
+	title = "IronHammer Paragraphs"
 	page_link = "Agreement"
 
 /obj/item/book/manual/wiki/security_detective

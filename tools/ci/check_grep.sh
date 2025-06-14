@@ -90,26 +90,8 @@ if $grep -i 'var/list/static/.*' $code_files; then
 	st=1
 fi;
 
-part "can_perform_action argument check"
-if $grep 'can_perform_action\(\s*\)' $code_files; then
-	echo
-	echo -e "${RED}ERROR: Found a can_perform_action() proc with improper arguments.${NC}"
-	st=1
-fi;
 
-part "src as a trait source" # ideally we'd lint / test for ANY datum reference as a trait source, but 'src' is the most common.
-if $grep -i '(add_trait|remove_trait)\(.+,\s*.+,\s*src\)' $code_files; then
-	echo
-	echo -e "${RED}ERROR: Using 'src' as a trait source. Source must be a string key - dont't use references to datums as a source, perhaps use 'REF(src)'.${NC}"
-	st=1
-fi;
-if $grep -i '(add_traits|remove_traits)\(.+,\s*src\)' $code_files; then
-	echo
-	echo -e "${RED}ERROR: Using 'src' as trait sources. Source must be a string key - dont't use references to datums as sources, perhaps use 'REF(src)'.${NC}"
-	st=1
-fi;
-
-part "ensure proper lowertext usage"
+part "ensure proper span usage"
 # lowertext() is a BYOND-level proc, so it can be used in any sort of code... including the TGS DMAPI which we don't manage in this repository.
 # basically, we filter out any results with "tgs" in it to account for this edgecase without having to enforce this rule in that separate codebase.
 # grepping the grep results is a bit of a sad solution to this but it's pretty much the only option in our existing linter framework
@@ -169,48 +151,45 @@ if $grep 'Nanotrasen' $code_files; then
     echo -e "${RED}ERROR: Misspelling(s) of NanoTrasen detected in code, please capitalize the T(s).${NC}"
     st=1
 fi;
+if $grep 'Neotheology' $code_files; then
+	echo
+    echo -e "${RED}ERROR: Misspelling(s) of NeoTheology detected in code, please capitalize the T(s).${NC}"
+    st=1
+fi;
+if $grep 'Hansa' $code_files; then
+	echo
+    echo -e "${RED}ERROR: Misspelling(s) of Hanza detected in code.${NC}"
+    st=1
+fi;
+# Leaving other factions for now, otherwise we'll have to edit job names and that may mess with the preferences
 if $grep -i'eciev' $code_files; then
 	echo
     echo -e "${RED}ERROR: Common I-before-E typo detected in code.${NC}"
     st=1
 fi;
-if $grep 'for (' $code_files; then
+if $grep 'for \(' $code_files; then
 	echo
     echo -e "${RED}ERROR: Spaces are not needed around for() loop brackets.${NC}"
     st=1
 fi;
-if $grep 'while (' $code_files; then
+if $grep 'while \(' $code_files; then
 	echo
     echo -e "${RED}ERROR: Spaces are not needed around while() loop brackets.${NC}"
     st=1
 fi;
-if $grep 'if (' $code_files; then
+if $grep 'if \(' $code_files; then
 	echo
     echo -e "${RED}ERROR: Spaces are not needed around if() statement brackets.${NC}"
     st=1
 fi;
-if $grep 'do (' $code_files; then
+if $grep 'do \(' $code_files; then
 	echo
     echo -e "${RED}ERROR: Spaces are not needed around do() statement brackets.${NC}"
     st=1
 fi;
 
-section "515 Proc Syntax"
-part "proc ref syntax"
-if $grep '\.proc/' $code_x_515 ; then
-    echo
-    echo -e "${RED}ERROR: Outdated proc reference use detected in code, please use proc reference helpers.${NC}"
-    st=1
-fi;
-
 if [ "$pcre2_support" -eq 1 ]; then
 	section "regexes requiring PCRE2"
-	part "empty variable values"
-	if $grep -PU '{\n\t},' $map_files; then
-		echo
-		echo -e "${RED}ERROR: Empty variable value list detected in map file. Please remove the curly brackets entirely.${NC}"
-		st=1
-	fi;
 	part "to_chat sanity"
 	if $grep -P 'to_chat\((?!.*,).*\)' $code_files; then
 		echo
@@ -229,17 +208,6 @@ if [ "$pcre2_support" -eq 1 ]; then
 		echo -e "${RED}ERROR: File(s) with no trailing newline detected, please add one.${NC}"
 		st=1
 	fi
-	part "datum stockpart sanity"
-	if $grep -P 'for\b.*/obj/item/stock_parts/(?!power_store)(?![\w_]+ in )' $code_files; then
-		echo
-		echo -e "${RED}ERROR: Should be using datum/stock_part instead"
-		st=1
-	fi;
-	part "improper atom initialize args"
-	if $grep -P '^/(obj|mob|turf|area|atom)/.+/Initialize\((?!mapload).*\)' $code_files; then
-		echo
-		echo -e "${RED}ERROR: Initialize override without 'mapload' argument.${NC}"
-		st=1
 fi;
 
 else

@@ -78,7 +78,7 @@
 	spawn_blacklisted = TRUE
 	style_coverage = COVERS_HAIR
 
-//Ironhammer
+// IronHammer
 /obj/item/clothing/head/beret/sec/navy/officer
 	name = "Operative beret"
 	desc = "A navy blue beret with an Operative's rank emblem. For operatives that are more inclined towards style than safety."

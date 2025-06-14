@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/lamia
 	name = "FS HG .40 Magnum \"Lamia\""
-	desc = "FS HG .40 Magnum \"Lamia\", a heavy pistol of Ironhammer enforcers. Uses 40 Magnum rounds."
+	desc = "FS HG .40 Magnum \"Lamia\", a heavy pistol of IronHammer enforcers. Uses 40 Magnum rounds."
 	icon = 'icons/obj/guns/projectile/lamia.dmi'
 	icon_state = "lamia"
 	item_state = "lamia"

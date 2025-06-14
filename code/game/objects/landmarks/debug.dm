@@ -10,12 +10,12 @@
 
 /obj/landmark/debug/all_containers/New()
 	for(var/type in typesof(/obj/item/reagent_containers) - typesof(/obj/item/reagent_containers/food))
-		new type(src.loc)
+		new type(loc)
 
 /obj/landmark/debug/all_food/New()
 	for(var/type in typesof(/obj/item/reagent_containers/food))
-		new type(src.loc)
+		new type(loc)
 
 /obj/landmark/debug/all_closets/New()
 	for(var/type in typesof(/obj/structure/closet))
-		new type(src.loc)
+		new type(loc)

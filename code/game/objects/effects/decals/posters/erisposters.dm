@@ -6,12 +6,12 @@
 	icon_state = "founders"
 
 /datum/poster/erisposters/ironhammer
-	name = "Ironhammer"
+	name = "IronHammer"
 	desc = "Anytime, anywhere, anyplace."
 	icon_state = "ironhammer"
 
 /datum/poster/erisposters/ironhamme2
-	name = "Ironhammer Alert"
+	name = "IronHammer Alert"
 	desc = "Alert: Terror level raised!"
 	icon_state = "ironhammer2"
 

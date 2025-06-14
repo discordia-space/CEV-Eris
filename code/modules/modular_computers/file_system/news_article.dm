@@ -14,8 +14,3 @@
 	if(server_file_path && load_from_file)
 		stored_data = file2text(server_file_path)
 	calculate_size()
-
-
-// NEWS DEFINITIONS BELOW THIS LINE
-
-//TODO: Make this more modular so new entries don't require a PR, perhaps SQL Database integration.

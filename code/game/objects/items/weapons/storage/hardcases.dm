@@ -136,7 +136,7 @@ obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 
 /obj/item/storage/hcases/ammo/ih
 	icon_state = "ammo_case_ih"
-	desc = "An ammo can for Ironhammer. Can hold ammo magazines, boxes, and bullets. Alt+click to open and close."
+	desc = "An ammo can for IronHammer. Can hold ammo magazines, boxes, and bullets. Alt+click to open and close."
 
 /obj/item/storage/hcases/ammo/serb
 	icon_state = "ammo_case_serb"

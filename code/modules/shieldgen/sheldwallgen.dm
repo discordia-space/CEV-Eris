@@ -212,14 +212,14 @@
 
 			else if(!state)
 				state = TRUE
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+				playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
 				to_chat(user, "You secure the external reinforcing bolts to the floor.")
 				src.anchored = TRUE
 				return
 
 			else
 				state = FALSE
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+				playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
 				to_chat(user, "You undo the external reinforcing bolts.")
 				src.anchored = FALSE
 				return

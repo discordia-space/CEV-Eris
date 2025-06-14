@@ -311,7 +311,7 @@
 
 /obj/item/card/id/bst
 	icon_state = "centcom"
-	desc = "An ID straight from Hansa. This one looks as though its very existence is a trade secret."
+	desc = "An ID straight from Hanza. This one looks as though its very existence is a trade secret."
 	spawn_frequency = 0
 
 /obj/item/card/id/bst/Initialize(mapload)

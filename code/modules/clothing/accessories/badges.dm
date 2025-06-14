@@ -19,7 +19,7 @@
 	name = "faded security badge"
 	desc = "An ancient badge of the NanoTrasen Security Division, made of silver and set on false black leather."
 	icon_state = "badge_round"
-	badge_string = "Nanotrasen Security Division"
+	badge_string = "NanoTrasen Security Division"
 
 /obj/item/clothing/accessory/badge/proc/set_name(var/new_name)
 	stored_name = new_name
@@ -45,11 +45,11 @@
 //.Holobadges.
 /obj/item/clothing/accessory/badge/holo
 	name = "holobadge"
-	desc = "This glowing blue badge marks the holder as a member of Ironhammer Security."
+	desc = "This glowing blue badge marks the holder as a member of IronHammer Security."
 	icon_state = "holobadge"
 	item_state = "holobadge"
 	var/emagged //Emagging removes Sec check.
-	badge_string = "Ironhammer Security"
+	badge_string = "IronHammer Security"
 
 /obj/item/clothing/accessory/badge/holo/cord
 	icon_state = "holobadge-cord"
@@ -98,7 +98,7 @@
 
 /obj/item/clothing/accessory/badge/holo/specialist
 	name = "Specialist's Holo Badge"
-	desc = "This medical teal badge marks the holder as an honorable Ironhammer Medical Specialist."
+	desc = "This medical teal badge marks the holder as an honorable IronHammer Medical Specialist."
 	icon_state = "specbadge"
 	item_state = "specbadge"
 	slot_flags = SLOT_ACCESSORY_BUFFER
@@ -106,7 +106,7 @@
 
 /obj/item/clothing/accessory/badge/holo/sergeant
 	name = "Sergeant Holo badge"
-	desc = "This glowing red badge marks the holder as a distinguished Ironhammer Sergeant"
+	desc = "This glowing red badge marks the holder as a distinguished IronHammer Sergeant"
 	icon_state = "sargebadge"
 	item_state = "sargebadge"
 	slot_flags = SLOT_ACCESSORY_BUFFER
@@ -114,25 +114,25 @@
 
 /obj/item/clothing/accessory/badge/commander
 	name = "Commander's badge"
-	desc = "An immaculately polished gold Ironhammer Security badge. Labeled 'Commander.'"
+	desc = "An immaculately polished gold IronHammer Security badge. Labeled 'Commander.'"
 	icon_state = "goldbadge"
 	item_state = "goldbadge"
 	slot_flags = SLOT_ACCESSORY_BUFFER
-	badge_string = "Ironhammer Officer Corps"
+	badge_string = "IronHammer Officer Corps"
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/accessory/badge/inspector
 	name = "Inspector's badge"
-	desc = "A leather-backed silver badge displaying the crest of the Ironhammer Inspectors."
+	desc = "A leather-backed silver badge displaying the crest of the IronHammer Inspectors."
 	icon_state = "inspectorbadge"
 	item_state = "inspectorbadge"
-	badge_string = "Ironhammer Investigation Agency"
+	badge_string = "IronHammer Investigation Agency"
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/accessory/badge/marshal
 	name = "Marshal's badge"
-	desc = "A leather-backed gold badge displaying the crest of the Ironhammer Marshals."
+	desc = "A leather-backed gold badge displaying the crest of the IronHammer Marshals."
 	icon_state = "marshalbadge"
 	item_state = "marshalbadge"
-	badge_string = "Ironhammer Marshal Bureau"
+	badge_string = "IronHammer Marshal Bureau"
 	spawn_blacklisted = TRUE
