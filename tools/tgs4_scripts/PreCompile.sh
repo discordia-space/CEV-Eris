@@ -17,10 +17,23 @@ set +e
 has_git="$(command -v git)"
 has_cargo="$(command -v ~/.cargo/bin/cargo)"
 has_sudo="$(command -v sudo)"
-has_grep="$(command -v grep)"
-has_youtubedl="$(command -v youtube-dl)"
+has_curl="$(command -v curl)"
 has_pip3="$(command -v pip3)"
 set -e
+
+# apt packages, libssl needed by rust-g but not included in TGS barebones install
+if ! ( [ -x "$has_git" ] && [ -x "$has_curl" ] && [ -x "$has_pip3" ] && [ -f "/usr/lib/i386-linux-gnu/libssl.so" ] ); then
+	echo "Attempting to install apt dependencies..."
+	if ! [ -x "$has_sudo" ]; then
+		dpkg --add-architecture i386
+		apt-get update
+		apt-get install -y lib32z1 git pkg-config libssl-dev:i386 libssl-dev zlib1g-dev:i386 curl libclang-dev g++-multilib python3 python3-pip
+	else
+		sudo dpkg --add-architecture i386
+		sudo apt-get update
+		sudo apt-get install -y lib32z1 git pkg-config libssl-dev:i386 libssl-dev zlib1g-dev:i386 curl libclang-dev g++-multilib python3 python3-pip
+	fi
+fi
 
 # install cargo if needed
 if ! [ -x "$has_cargo" ]; then
@@ -29,24 +42,17 @@ if ! [ -x "$has_cargo" ]; then
 	. ~/.profile
 fi
 
-# apt packages, libssl needed by rust-g but not included in TGS barebones install
-if ! ( [ -x "$has_git" ] && [ -x "$has_grep" ] && [ -f "/usr/lib/i386-linux-gnu/libssl.so" ] ); then
-	echo "Installing apt dependencies..."
-	if ! [ -x "$has_sudo" ]; then
-		dpkg --add-architecture i386
-		apt-get update
-		apt-get install -y git libssl-dev:i386
-		rm -rf /var/lib/apt/lists/*
-	else
-		sudo dpkg --add-architecture i386
-		sudo apt-get update
-		sudo apt-get install -y git libssl-dev:i386
-		sudo rm -rf /var/lib/apt/lists/*
-	fi
+# install or update yt-dlp when not present, or if it is present with pip3,
+# which we assume was used to install it
+if ! [ -x "$has_ytdlp" ]; then
+	echo "Installing yt-dlp with pip3..."
+	pip3 install yt-dlp --break-system-packages
+else
+	echo "Ensuring yt-dlp is up-to-date with pip3..."
+	pip3 install yt-dlp -U --break-system-packages
 fi
-dpkg --add-architecture i386
-apt-get update
-apt-get install -y lib32z1 pkg-config libssl-dev:i386 libssl-dev libssl1.1:i386
+
+
 # update rust-g
 if [ ! -d "rust-g" ]; then
 	echo "Cloning rust-g..."
@@ -91,21 +97,6 @@ cmake ..
 make
 mv libbyond-extools.so "$1/libbyond-extools.so"
 cd ../../..
-
-# install or update youtube-dl when not present, or if it is present with pip3,
-# which we assume was used to install it
-if ! [ -x "$has_youtubedl" ]; then
-	echo "Installing youtube-dl with pip3..."
-	if ! [ -x "$has_sudo" ]; then
-		apt-get install -y python3 python3-pip
-	else
-		sudo apt-get install -y python3 python3-pip
-	fi
-	pip3 install youtube-dl
-elif [ -x "$has_pip3" ]; then
-	echo "Ensuring youtube-dl is up-to-date with pip3..."
-	pip3 install youtube-dl -U
-fi
 
 # compile tgui
 echo "Compiling tgui..."
