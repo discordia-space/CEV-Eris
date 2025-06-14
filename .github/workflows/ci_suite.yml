@@ -131,13 +131,6 @@ jobs:
         run: |
           source $HOME/BYOND/byond/bin/byondsetup
           bash tools/ci/run_server.sh ${{ matrix.map }}
-      - name: Upload screenshot tests
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test_artifacts_${{ matrix.map }}
-          path: data/screenshots_new/
-          retention-days: 1
 
   test_windows:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
