@@ -4,7 +4,6 @@ on:
   pull_request:
     branches:
       - master
-      - "project/**"
   merge_group:
     branches:
       - master
@@ -22,7 +21,10 @@ jobs:
       - name: Mandatory Empty Step
         run: exit 0
 
-
+  run_linters:
+    name: Run Linters
+    needs: start_gate
+    uses: ./.github/workflows/run_linters.yml
 
 
 
@@ -35,7 +37,7 @@ jobs:
         # compile_all_maps,
         # run_all_tests,
         # run_alternate_tests,
-        # run_linters,
+        run_linters,
       ]
     runs-on: ubuntu-latest
     steps:
