@@ -10,7 +10,7 @@
 "bz" = (/turf/shuttle/wall/science{icon_state = "10,13"},/area/space)
 "bI" = (/obj/structure/shuttle_part/science{icon_state = "11,0"},/turf/template_noop,/area/space)
 "bK" = (/obj/machinery/light/small{dir = 1},/turf/shuttle/floor/science{icon_state = "10,12"},/area/space)
-"cl" = (/obj/machinery/atmospherics/pipe/tank/air,/turf/shuttle/floor/science{icon_state = "5,5"},/area/space)
+"cl" = (/obj/machinery/atmospherics/tank/air,/turf/shuttle/floor/science{icon_state = "5,5"},/area/space)
 "co" = (/turf/shuttle/wall/science{icon_state = "8,0"},/area/space)
 "cI" = (/obj/structure/table/standard,/obj/machinery/camera/network/research_outpost{dir = 1},/obj/machinery/recharger,/turf/shuttle/floor/science{icon_state = "7,17"},/area/space)
 "cM" = (/obj/machinery/atmospherics/pipe/simple/hidden/universal,/turf/shuttle/floor/science{icon_state = "5,4"},/area/space)
