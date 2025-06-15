@@ -9,21 +9,22 @@
 	stop_following()
 	..()
 
-/client/proc/Jump(var/area/A in return_sorted_areas())
+/client/proc/Jump(area_name in SSmapping.all_areas_by_name)
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
 	set category = "Admin"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
 		return
 
-	var/new_location = safepick(get_area_turfs(A))
+	var/area/area = SSmapping.all_areas_by_name[area_name]
+	var/new_location = safepick(get_area_turfs(area))
 
 	if(new_location)
 		usr.on_mob_jump(new_location)
-		log_admin("[key_name(usr)] jumped to [A]")
-		message_admins("[key_name_admin(usr)] jumped to [A]", 1)
+		log_admin("[key_name(usr)] jumped to [area]")
+		message_admins("[key_name_admin(usr)] jumped to [area]", 1)
 	else
-		alert("Admin jump failed due to missing [A] area turfs.")
+		alert("Admin jump failed due to missing [area] area turfs.")
 
 //allows us to jump to a specific turf
 /client/proc/jumptoturf(var/turf/T in turfs)

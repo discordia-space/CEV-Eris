@@ -414,7 +414,7 @@
 	failure_timer = max(failure_timer, duration)
 
 /obj/machinery/power/smes/proc/ion_act()
-	if(isStationLevel(src.z))
+	if(IS_SHIP_LEVEL(z))
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
 				M.show_message("\red The [src.name] is making strange noises!", 3, "\red You hear sizzling electronics.", 2)

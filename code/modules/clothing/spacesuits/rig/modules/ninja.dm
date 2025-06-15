@@ -118,7 +118,7 @@
 		to_chat(H, SPAN_WARNING("You cannot teleport into solid walls."))
 		return 0
 
-	if(isAdminLevel(T.z))
+	if(IS_TECHNICAL_LEVEL(T.z))
 		to_chat(H, SPAN_WARNING("You cannot use your teleporter on this Z-level."))
 		return 0
 

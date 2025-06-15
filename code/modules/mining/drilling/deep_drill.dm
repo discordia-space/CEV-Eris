@@ -117,9 +117,6 @@
 		else if (!anchored && check_surroundings()) // we only care about the terrain when anchoring, not the other way around, otherwise the drill gets stuck if the terrain under it changes (like if someone RCDs the asteroid tile under it)
 			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
 			return
-		else if(!anchored && !(istype(loc, /turf/floor/asteroid) || istype(loc, /turf/floor/exoplanet)))
-			to_chat(user, SPAN_WARNING("\The [src] cannot dig that kind of ground!"))
-			return
 
 		anchored = !anchored
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)

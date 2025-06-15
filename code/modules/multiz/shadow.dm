@@ -55,13 +55,13 @@
 /mob/living/proc/check_shadow()
 	var/mob/M = src
 	if(isturf(M.loc))
-		var/turf/T = GetAbove(src)
+		var/turf/T = SSmapping.GetAbove(src)
 		while(T && T.is_transparent)
 			if(!M.shadow)
 				M.shadow = new(M)
 			M.shadow.forceMove(T)
 			M = M.shadow
-			T = GetAbove(M)
+			T = SSmapping.GetAbove(M)
 
 	if(M.shadow)
 		qdel(M.shadow)

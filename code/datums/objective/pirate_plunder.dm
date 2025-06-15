@@ -91,7 +91,7 @@
 		if (!H)
 			continue
 
-		if (isNotStationLevel(H.z))
+		if (!IS_SHIP_LEVEL(H.z))
 			continue
 
 		var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)

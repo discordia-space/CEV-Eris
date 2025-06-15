@@ -1260,7 +1260,7 @@ var/list/rank_prefix = list(\
 	// which it will always have since it is very poorly handled in its dereferencing SPCR - 2022
 	machine = null
 	if(!is_physically_disabled())
-		var/turf/above = GetAbove(src)
+		var/turf/above = SSmapping.GetAbove(src)
 		if(shadow)
 			if(client.eye == shadow)
 				reset_view(0)

@@ -1,0 +1,14 @@
+{
+	"map_name": "Crawler",
+	"map_desc": "This is a map apparently.",
+	"map_file": "maps/dungeons/crawler-1.dmm",
+	"map_size_x": 210,
+	"map_size_y": 146,
+	"map_size_z": 1,
+
+	"is_playable_level": true,
+	"is_main_ship_level": false,
+	"is_sealed_level": true,
+
+	"call_proc_on_load": "build_crawler"
+}

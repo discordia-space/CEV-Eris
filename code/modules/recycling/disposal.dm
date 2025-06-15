@@ -973,7 +973,7 @@
 	var/turf/T
 	var/obj/structure/disposalpipe/P
 	if(nextdir == UP)
-		T = GetAbove(src)
+		T = SSmapping.GetAbove(src)
 		if(!T)
 			H.forceMove(loc)
 			return
@@ -1023,7 +1023,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == DOWN)
-		T = GetBelow(src)
+		T = SSmapping.GetBelow(src)
 		if(!T)
 			H.forceMove(src.loc)
 			return

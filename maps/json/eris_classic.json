@@ -1,0 +1,53 @@
+{
+	"map_name": "Classic Eris",
+	"map_desc": "Five decks tall, labyrinth of a ship for medium or large population.",
+	"map_file": "maps/main_ship/eris_classic.dmm",
+	"map_size_x": 200,
+	"map_size_y": 200,
+	"map_size_z": 5,
+
+	"is_playable_level": true,
+	"is_main_ship_level": true,
+	"is_sealed_level": false,
+
+	"add_jobs":[
+		{"Captain":1},
+		{"First Officer":1},
+
+		{"Ironhammer Commander":1},
+		{"Ironhammer Gunnery Sergeant":1},
+		{"Ironhammer Inspector":2},
+		{"Ironhammer Medical Specialist":2},
+		{"Ironhammer Operative":6},
+
+		{"NeoTheology Preacher":1},
+		{"NeoTheology Acolyte":2},
+		{"NeoTheology Agrolyte":3},
+		{"NeoTheology Custodian":4},
+
+		{"Club Manager":1},
+		{"Club Worker":2},
+		{"Club Artist":2},
+
+		{"Technomancer Exultant":1},
+		{"Technomancer":5},
+
+		{"Guild Merchant":1},
+		{"Guild Technician":3},
+		{"Guild Miner":4},
+
+		{"Moebius Biolab Officer":1},
+		{"Moebius Doctor":5},
+		{"Moebius Chemist":2},
+		{"Moebius Paramedic":3},
+		{"Moebius Bio-Engineer":2},
+
+		{"Moebius Expedition Overseer":1},
+		{"Moebius Scientist":5},
+		{"Moebius Roboticist":3},
+		{"Moebius Psychiatrist":1},
+
+		{"AI":1},
+		{"Robot":2},
+		{"Vagabond":-1}]
+}

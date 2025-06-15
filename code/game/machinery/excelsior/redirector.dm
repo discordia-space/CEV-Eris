@@ -86,7 +86,7 @@
 
 /obj/machinery/excelsior_redirector/proc/beginRedirecting(mob/living/carbon/human/starter)
 	timeStarted = world.time
-	var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
+	var/decl/security_state/security_state = decls_repository.get_decl(SSmapping.security_state)
 	oldSecurityLevel = security_state.current_security_level
 	security_state.set_security_level(security_state.all_security_levels[5], force_change = TRUE)
 	SSticker.excelsior_hijacking = 1
@@ -158,7 +158,7 @@
 		deltimer(rebootTimer)
 		rebootTimer = null
 	SSticker.excelsior_hijacking = 0
-	var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
+	var/decl/security_state/security_state = decls_repository.get_decl(SSmapping.security_state)
 	security_state.set_security_level(oldSecurityLevel, force_change = TRUE)
 	var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
 	for (var/datum/antagonist/A in commies.members)

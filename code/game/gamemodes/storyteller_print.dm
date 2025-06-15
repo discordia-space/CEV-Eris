@@ -36,7 +36,7 @@
 		if(M.client)
 			if(M.stat != DEAD)
 				surviving_total++
-				if(isOnAdminLevel(M))
+				if(IS_TECHNICAL_LEVEL(M.z)) // Escape pods dock to a normally inacessible Z-level
 					escaped_total++
 			if(isghost(M))
 				ghosts++

@@ -36,7 +36,7 @@
 	if(frequency)
 		radio_connection = SSradio.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/atmospherics/trinary/filter/New()
+/obj/machinery/atmospherics/trinary/filter/LateInitialize()
 	..()
 	switch(filter_type)
 		if(0) //removing hydrocarbons

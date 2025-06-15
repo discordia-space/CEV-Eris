@@ -24,9 +24,9 @@
 /datum/component/jamming/proc/getAffectedLevels(targetLevel)
 	var/minimumLevel = targetLevel
 	var/maximumLevel = targetLevel
-	while(HasBelow(minimumLevel) && minimumLevel > targetLevel - z_transfer)
+	while(SSmapping.HasBelow(minimumLevel) && minimumLevel > targetLevel - z_transfer)
 		minimumLevel--
-	while(HasAbove(maximumLevel) && maximumLevel < targetLevel + z_transfer)
+	while(SSmapping.HasAbove(maximumLevel) && maximumLevel < targetLevel + z_transfer)
 		maximumLevel++
 	return list(minimumLevel, maximumLevel)
 

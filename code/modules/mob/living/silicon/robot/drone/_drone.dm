@@ -424,6 +424,6 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/aibound/Life()
 	..()
-	if(bound_ai && !isOnStationLevel(src))
+	if(bound_ai && !IS_SHIP_LEVEL(z))
 		to_chat(src, SPAN_WARNING("You get out of the ship control range!"))
 		death(TRUE)

@@ -92,7 +92,7 @@
 	for(var/obj/item/device/lighting/L in world)
 		L.brightness_on = L.brightness_on / 4
 		L.update_icon()
-	for(var/area/area as anything in ship_areas)
+	for(var/area/area as anything in SSmapping.main_ship_areas)
 		for(var/obj/structure/cyberplant/c in area)
 			c.brightness_on = c.brightness_on / 2
 			c.doInterference()
@@ -110,7 +110,7 @@
 	for(var/obj/item/device/lighting/L in world)
 		L.brightness_on = initial(L.brightness_on)
 		L.update_icon()
-	for(var/area/area as anything in ship_areas)
+	for(var/area/area as anything in SSmapping.main_ship_areas)
 		for(var/obj/structure/cyberplant/c in area)
 			c.brightness_on = initial(c.brightness_on)
 			c.doInterference()
@@ -187,7 +187,7 @@
 /datum/event/micro_debris/tick()
 	if(!(activeFor % 3))	// Every 3rd tick
 		for(var/i in 0 to rand(1,3))
-			spawn_debris(pickweight(debris_types), pick(cardinal), pick(GLOB.maps_data.station_levels))
+			spawn_debris(pickweight(debris_types), pick(cardinal), pick(SSmapping.main_ship_z_levels))
 
 /datum/event/micro_debris/proc/spawn_debris(debris, start_side, zlevel)
 	var/turf/start_turf = spaceDebrisStartLoc(start_side, zlevel)

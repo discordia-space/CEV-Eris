@@ -22,20 +22,20 @@
 	//We'll pick space tiles which have windows nearby
 	//This means that carp will only be spawned in places where someone could see them
 	var/area/spess = locate(/area/space) in world
-	for (var/turf/T in spess)
-		if (!(T.z in GLOB.maps_data.station_levels))
+	for(var/turf/T in spess)
+		if(!IS_SHIP_LEVEL(T.z))
 			continue
 
-		if (locate(/obj/effect/shield) in T)
+		if(locate(/obj/effect/shield) in T)
 			continue
 
 		//The number of windows near each tile is recorded
 		var/numwin
-		for (var/obj/structure/window/W in view(4, T))
+		for(var/obj/structure/window/W in view(4, T))
 			numwin++
 
 		//And the square of it is entered into the list as a weight
-		if (numwin)
+		if(numwin)
 			viable_turfs[T] = numwin*numwin
 
 	//We will then use pickweight and this will be more likely to choose tiles with many windows, for maximum exposure

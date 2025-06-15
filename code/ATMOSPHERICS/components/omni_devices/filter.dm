@@ -18,7 +18,7 @@
 
 	var/list/filtering_outputs = list()	//maps gasids to gas_mixtures
 
-/obj/machinery/atmospherics/omni/filter/New()
+/obj/machinery/atmospherics/omni/filter/LateInitialize()
 	..()
 	rebuild_filtering_list()
 	for(var/datum/omni_port/P in ports)

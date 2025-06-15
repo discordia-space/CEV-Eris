@@ -13,12 +13,6 @@
 	var/turf/loc = get_turf(O)
 	return loc ? loc.z : 0
 
-/proc/get_area_name(N) //get area by its name
-	for(var/area/A in GLOB.map_areas)
-		if(A.name == N)
-			return A
-	return 0
-
 // get the area's name
 /proc/get_area_name_litteral(atom/X, format_text = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)
@@ -497,7 +491,7 @@
 /proc/get_vents()
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in GLOB.machines)
-		if(!temp_vent.welded && temp_vent.network && isOnStationLevel(temp_vent))
+		if(!temp_vent.welded && temp_vent.network && IS_SHIP_LEVEL(temp_vent.z))
 			if(temp_vent.network.normal_members.len > 15)
 				vents += temp_vent
 	return vents

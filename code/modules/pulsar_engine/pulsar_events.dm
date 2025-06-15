@@ -17,11 +17,22 @@
 	return TRUE
 
 /datum/pulsar_event/proc/get_valid_tile()
-	var/tile_x = rand(2, GLOB.maps_data.pulsar_size - 2)
-	var/tile_y = rand(2, GLOB.maps_data.pulsar_size - 2)
-	var/turf/T = locate(tile_x, tile_y, GLOB.maps_data.pulsar_z)
+	var/pulsar_z
+	for(var/list/z_level_data in SSmapping.z_level_info_decoded)
+		if(z_level_data["map_name"] == "Pulsar")
+			pulsar_z = z_level_data["bottom_z"]
+			break
+
+	if(!pulsar_z)
+		return
+
+	var/tile_x = rand(2, PULSAR_SIZE - 2)
+	var/tile_y = rand(2, PULSAR_SIZE - 2)
+	var/turf/T = locate(tile_x, tile_y, pulsar_z)
+
 	if(istype(T) && check_tile(T))
 		return T
+
 	return get_valid_tile() //Infinite reccurson highly improabable
 
 /datum/pulsar_event/proc/on_trigger()
@@ -37,8 +48,8 @@
 	portal_1.set_target(portal_2_turf)
 	portal_2.set_target(portal_1_turf)
 	//Shadows for the map
-	var/turf/mirror_tile_1 = locate(GLOB.maps_data.pulsar_size - portal_1_turf.x, GLOB.maps_data.pulsar_size - portal_1_turf.y, portal_1_turf.z)
-	var/turf/mirror_tile_2 = locate(GLOB.maps_data.pulsar_size - portal_2_turf.x, GLOB.maps_data.pulsar_size - portal_2_turf.y, portal_2_turf.z)
+	var/turf/mirror_tile_1 = locate(PULSAR_SIZE - portal_1_turf.x, PULSAR_SIZE - portal_1_turf.y, portal_1_turf.z)
+	var/turf/mirror_tile_2 = locate(PULSAR_SIZE - portal_2_turf.x, PULSAR_SIZE - portal_2_turf.y, portal_2_turf.z)
 	var/obj/effect/portal/perfect/portal_1_shadow = new /obj/effect/portal/perfect(mirror_tile_1)
 	var/obj/effect/portal/perfect/portal_2_shadow = new /obj/effect/portal/perfect(mirror_tile_2)
 	portal_1_shadow.set_target(mirror_tile_2)
@@ -70,7 +81,7 @@
 		var/area/A = get_area(C)
 		if(!A)
 			continue
-		if(!(A.z in GLOB.maps_data.station_levels))
+		if(!IS_SHIP_LEVEL(A.z))
 			continue
 		if(A.flags & AREA_FLAG_RAD_SHIELDED)
 			continue
@@ -108,7 +119,7 @@
 
 	for(var/obj/effect/rift as anything in pulsar_rifts)
 		projectile_explosion(get_turf(rift), 10, /obj/item/projectile/beam/emitter, rand(5, 10), list(BURN = 50))
-	
+
 
 /datum/event/pulsar_overcharge/proc/spwawn_new_rift_wave(amount)
 	for(var/i in 1 to amount)
@@ -120,7 +131,7 @@
 			continue
 		var/obj/effect/pulsar_rift/p = new(T)
 		pulsar_rifts |= p
-	
+
 
 /datum/event/pulsar_overcharge/end()
 	for(var/obj/effect/pulsar_rift/p as anything in pulsar_rifts)

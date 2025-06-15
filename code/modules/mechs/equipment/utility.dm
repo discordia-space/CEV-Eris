@@ -1019,7 +1019,7 @@
 	if(platform)
 		if(!lifted)
 			/// We are checking the turf above first
-			var/turf/aboveSpace = GetAbove(get_turf(owner))
+			var/turf/aboveSpace = SSmapping.GetAbove(get_turf(owner))
 			if(!aboveSpace)
 				to_chat(user, SPAN_NOTICE("The universe runs out of fabric here! You cannot possibly elevate something here."))
 				return
@@ -1028,7 +1028,7 @@
 				return
 			/// Then the one infront + above
 			aboveSpace = get_step(owner, owner.dir)
-			aboveSpace = GetAbove(aboveSpace)
+			aboveSpace = SSmapping.GetAbove(aboveSpace)
 			if(!aboveSpace)
 				to_chat(user, SPAN_NOTICE("The universe runs out of fabric here! You cannot possibly elevate something here."))
 				return

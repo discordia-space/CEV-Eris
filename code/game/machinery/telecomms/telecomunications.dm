@@ -145,7 +145,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		else
 			for(var/obj/machinery/telecomms/T in telecomms_list)
 				add_link(T)
-		
+
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/telecomms/Destroy()
@@ -175,12 +175,12 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	listening_levels = list(z_level)
 
 	// UP
-	while(HasAbove(z_level++))
+	while(SSmapping.HasAbove(z_level++))
 		listening_levels |= z_level
 
 	// Down
 	z_level = position.z
-	while(HasBelow(z_level--))
+	while(SSmapping.HasBelow(z_level--))
 		listening_levels |= z_level
 
 

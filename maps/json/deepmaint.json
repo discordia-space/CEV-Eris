@@ -1,0 +1,12 @@
+{
+	"map_name": "Deep Maintenance",
+	"map_desc": "Procedurally generated, abandoned area of the ship.",
+	"map_file": "maps/dungeons/deepmaint-1.dmm",
+	"map_size_x": 175,
+	"map_size_y": 175,
+	"map_size_z": 1,
+
+	"is_playable_level": true,
+	"is_main_ship_level": false,
+	"is_sealed_level": true
+}
