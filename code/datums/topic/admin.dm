@@ -387,8 +387,8 @@
 	body += source.formatJobGroup(M, "Church Positions", "ecd37d", "churchdept", church_positions)
 	//Civilian (Grey)
 	body += source.formatJobGroup(M, "Civilian Positions", "dddddd", "civiliandept", civilian_positions)
-	//Non-Human (Green)
-	body += source.formatJobGroup(M, "Non-human Positions", "ccffcc", "nonhumandept", nonhuman_positions + "Antag HUD")
+	//Silicon (Green)
+	body += source.formatJobGroup(M, "Non-human Positions", "ccffcc", "silicondept", silicon_positions + "Antag HUD")
 	//Antagonist (Orange)
 
 	var/jobban_list = list()
@@ -459,9 +459,9 @@
 				var/datum/job/temp = SSjob.GetJob(jobPos)
 				if(!temp) continue
 				joblist += temp.title
-		if("nonhumandept")
+		if("silicondept")
 			joblist += "pAI"
-			for(var/jobPos in nonhuman_positions)
+			for(var/jobPos in silicon_positions)
 				if(!jobPos)	continue
 				var/datum/job/temp = SSjob.GetJob(jobPos)
 				if(!temp) continue

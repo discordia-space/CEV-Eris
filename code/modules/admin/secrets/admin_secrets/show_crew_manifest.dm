@@ -7,6 +7,6 @@
 		return
 	var/dat
 	dat += "<h4>Crew Manifest</h4>"
-	dat += data_core.get_manifest()
+	dat += html_crew_manifest(TRUE)
 
 	user << browse(dat, "window=manifest;size=370x420;can_close=1")

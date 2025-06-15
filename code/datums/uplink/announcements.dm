@@ -38,48 +38,42 @@
 		return 0
 
 	var/obj/item/card/id/I = user.GetIdCard()
-	var/datum/data/record/random_general_record
-	var/datum/data/record/random_medical_record
-	if(data_core.general.len)
-		random_general_record	= pick(data_core.general)
-		random_medical_record	= find_medical_record("id", random_general_record.fields["id"])
+	var/datum/computer_file/report/crew_record/random_record
+	if(GLOB.all_crew_records.len)
+		random_record = pick(GLOB.all_crew_records)
 
-	var/datum/data/record/general = data_core.CreateGeneralRecord(user)
+	var/datum/computer_file/report/crew_record/general = new()
 	if(I)
-		general.fields["age"] = I.age
-		general.fields["rank"] = I.assignment
-		general.fields["real_rank"] = I.assignment
-		general.fields["name"] = I.registered_name
-		general.fields["sex"] = I.sex
+		general.set_age(I.age)
+		general.set_job(I.assignment)
+		general.set_name(I.registered_name)
+		general.set_sex(I.sex)
 	else
 		var/mob/living/carbon/human/H
 		if(ishuman(user))
 			H = user
-			general.fields["age"] = H.age
+			general.set_age(H.age)
 		else
-			general.fields["age"] = initial(H.age)
+			general.set_age(initial(H.age))
 		var/assignment = GetAssignment(user)
-		general.fields["rank"] = assignment
-		general.fields["real_rank"] = assignment
-		general.fields["name"] = user.real_name
-		general.fields["sex"] = capitalize(user.gender)
+		general.set_job(assignment)
+		general.set_department(args["department"])
+		general.set_name(user.real_name)
+		general.set_sex(capitalize(user.gender))
 
-	general.fields["species"] = user.get_species()
-	var/datum/data/record/medical = data_core.CreateMedicalRecord(general.fields["name"], general.fields["id"])
-	data_core.CreateSecurityRecord(general.fields["name"], general.fields["id"])
+	general.set_species(user.get_species())
 
-	if(!random_general_record)
-		general.fields["fingerprint"] 	= random_general_record.fields["fingerprint"]
-	if(random_medical_record)
-		medical.fields["b_type"]		= random_medical_record.fields["b_type"]
-		medical.fields["b_dna"]			= random_medical_record.fields["b_type"]
+	if(random_record)
+		general.set_fingerprint(random_record.get_fingerprint())
+		general.set_bloodtype(random_record.get_bloodtype())
+		general.set_dna(random_record.get_bloodtype())
 
 	if(I)
-		general.fields["fingerprint"] 	= I.fingerprint_hash
-		medical.fields["b_type"]	= I.blood_type
-		medical.fields["b_dna"]		= I.dna_hash
+		general.set_fingerprint(I.fingerprint_hash)
+		general.set_bloodtype(I.blood_type)
+		general.set_dna(I.dna_hash)
 
-	AnnounceArrival(general.fields["name"], general.fields["rank"], "has completed cryogenic revival")
+	AnnounceArrival(general.get_name(), general.get_job(), "has completed cryogenic revival")
 	return 1
 
 /datum/uplink_item/abstract/announcements/fake_ion_storm

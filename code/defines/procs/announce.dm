@@ -119,4 +119,7 @@ datum/announcement/proc/Log(message as text, message_title as text)
 		if(issilicon(character))
 			global_announcer.autosay("A new [rank] [join_message].", ANNOUNCER_NAME, use_text_to_speech = TRUE)
 		else
-			global_announcer.autosay("[character.real_name], [rank], [join_message].", ANNOUNCER_NAME, use_text_to_speech = TRUE)
+			if(istype(character))
+				global_announcer.autosay("[character.real_name], [rank], [join_message].", ANNOUNCER_NAME, use_text_to_speech = TRUE)
+			else if(istext(character))
+				global_announcer.autosay("[character], [rank], [join_message].", ANNOUNCER_NAME, use_text_to_speech = TRUE) // send the text

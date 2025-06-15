@@ -94,31 +94,16 @@
 
 /datum/world_topic/manifest/Run(list/input)
 	var/list/positions = list()
-	var/list/set_names = list(
-			"heads" = command_positions,
-			"sec" = security_positions,
-			"eng" = engineering_positions,
-			"med" = medical_positions,
-			"sci" = science_positions,
-			"car" = cargo_positions,
-			"civ" = civilian_positions,
-			"chr" = church_positions,
-			"bot" = nonhuman_positions
-		)
 
-	for(var/datum/data/record/t in data_core.general)
-		var/name = t.fields["name"]
-		var/rank = t.fields["rank"]
-		var/real_rank = make_list_rank(t.fields["real_rank"])
+	for(var/datum/computer_file/report/crew_record/t in GLOB.all_crew_records)
+		var/name = t.get_name()
+		var/rank = t.get_job()
 
-		var/department = FALSE
-		for(var/k in set_names)
-			if(real_rank in set_names[k])
-				if(!positions[k])
-					positions[k] = list()
-				positions[k][name] = rank
-				department = TRUE
-		if(!department)
+		var/department = t.get_department()
+
+		if(department && department != "Unset")
+			positions[department][name] = rank
+		else
 			if(!positions["misc"])
 				positions["misc"] = list()
 			positions["misc"][name] = rank

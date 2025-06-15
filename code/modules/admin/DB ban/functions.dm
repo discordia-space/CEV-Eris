@@ -341,7 +341,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	output += "<option value=''>--</option>"
 	for(var/j in get_all_jobs())
 		output += "<option value='[j]'>[j]</option>"
-	for(var/j in nonhuman_positions)
+	for(var/j in silicon_positions)
 		output += "<option value='[j]'>[j]</option>"
 	var/list/bantypes = list("contractor","carrion","operative","revolutionary","cultist","wizard") //For legacy bans.
 	for(var/ban_type in GLOB.antag_bantypes) // Grab other bans.

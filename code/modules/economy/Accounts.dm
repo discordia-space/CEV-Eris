@@ -37,8 +37,12 @@
 	return owner_name
 
 //Attempts to return the associated data record for this account
+// expensive to run, store the result from this.
 /datum/money_account/proc/get_record()
-	return find_general_record("pay_account", account_number)
+	for(var/datum/computer_file/report/crew_record/CR in GLOB.all_crew_records)
+		var/accountnum = CR.get_account()
+		if(account_number == accountnum)
+			return CR
 
 /datum/transaction
 	var/target_name = ""

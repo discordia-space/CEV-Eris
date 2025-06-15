@@ -211,4 +211,151 @@ Basic field subtypes.
 	value_list.Remove(given_value)
 
 /datum/report_field/array/ask_value(mob/user)
-	add_value(input(user, "Add value", "") as null|text)
+	var/inputchoice = input(user, "Add or Remove value", "Field Edit", "Add") in list("Add", "Remove")
+	if(inputchoice == "Add")
+		var/toadd = input(user, "Add value", "Field Input") as null|text
+		if(!isnull(toadd))
+			add_value(toadd)
+	else if(inputchoice == "Remove")
+		remove_value(input(user, "Choose value to remove", "Field Reduce") as null|anything in value_list )
+
+	
+
+/datum/report_field/arraylinkage
+	var/list/arrays = list()
+	ignore_value = TRUE // value is too generic to use
+
+// retrieves index of key
+// can retrieve additional entries of same index using additionalarrays param
+/datum/report_field/arraylinkage/proc/retrieve_index_of_array(key, index = 0, additionalarrays = list())
+	if(!(key && (arrays.len > 0) && index > 0)) // can we access?
+		return FALSE
+	var/primeretrieved = arrays[key] // key's array
+	if(!(index && primeretrieved && length(primeretrieved) >= index)) // can we access the index asked for using the key?
+		return FALSE
+	var/list/toreturn = list(primeretrieved[index])
+	for(var/arrayexists in additionalarrays) // all linked arrays we also want index of
+		if((arrayexists in arrays) && length(arrays[arrayexists]) >= index)
+			var/list/toadd = arrays[arrayexists]
+			toreturn.Add(toadd[index])
+		else
+			return FALSE // we really don't want input from bad sources.
+	. = toreturn // succeeded all the checks? caller's will be done.
+
+// adds one index to the end of each list
+// sets the contents of each list for the created index on demand using either keys or arrangement of any given input of proper size
+/datum/report_field/arraylinkage/proc/add_index(list/new_entries, keyed = FALSE)
+	if(!new_entries || new_entries.len > arrays.len)
+		return FALSE
+	if(new_entries.len != arrays.len) // only accept using list-order based indexing when it has a 1 to 1 ratio
+		keyed = TRUE
+	var/count = 1
+	if(keyed)
+		for(var/key in arrays) // unfitting keys are discarded, but can still disqualify a list.
+			var/list/currentarray = arrays[key]
+			if(new_entries[key])
+				currentarray.Add(new_entries[key])
+			else
+				currentarray.Add(null) // all arrays must have the same indexing for the linkage to work.
+		. = TRUE
+	else
+		for(var/entry in new_entries) // sanitize before it's t oo late
+			if(new_entries[entry])
+				CRASH("keyed outside of key mode in add_index")
+		for(var/entry in new_entries)
+			var/list/currentarray = arrays?[count]
+			if(!currentarray) // in case a check breaks
+				return
+			count ++
+			currentarray.Add(entry)
+		. = TRUE
+
+// set one entry in one list
+/datum/report_field/arraylinkage/proc/edit_index(key, setto, index)
+	if(!arrays[key] || length(arrays[key]) < index || !islist(arrays[key]))
+		return FALSE
+	var/list/accessed = arrays[key]
+	if(accessed)
+		accessed[index] = setto
+		. = TRUE
+
+// delete one index of all lists in arraylinkage
+/datum/report_field/arraylinkage/proc/remove_index(index)
+	if(!length(arrays) || length(arrays[1]) < index) // check if there are arrays and the first one is long enough
+		return FALSE // hopefully all arrays have the same length as the first one 
+	for(var/list/arraytocut in arrays)
+		arraytocut.Cut(index, index+1)
+	. = TRUE
+
+/datum/report_field/arraylinkage/ask_value(mob/user)
+
+/datum/report_field/arrayclump // these arrays are explicitly unlinked and are stored here for categorization
+	value = list() // only input key=array as entry
+
+/datum/report_field/arrayclump/set_value(given_value)
+	if(!islist(given_value))
+		return FALSE
+	. = ..()
+
+/datum/report_field/arrayclump/ask_value(mob/user)
+	. = TRUE
+	var/list/clumpvalue = value
+	if(!istype(clumpvalue))
+		return FALSE
+	var/list/entries = clumpvalue.Copy() 
+	entries.Add("<NEW>")
+	
+	var/entrychoice = input(user, "Choose Entry Category", "Entry Category") as null | anything in entries
+	if(entrychoice == "<NEW>" )
+		var/entryname = input(user, "Choose Entry Name", "Entry Name") as text | null
+		entryname = sanitizeSafe(entryname)
+		if(!istext(entryname))
+			to_chat(user, SPAN_NOTICE("Edit canceled successfully."))
+			return FALSE
+		if(clumpvalue[entryname]) // only replace entry with alert
+			if(alert(user, "Replace old entry?", "Entry Replacement", "Yes", "No") == "No")
+				to_chat(user, SPAN_NOTICE("Edit canceled successfully."))
+				return FALSE
+		var/startingvalue = input(user, "Create Entry", "Entry Creation") as text | null
+		startingvalue = sanitizeSafe(startingvalue)
+		if(!istext(startingvalue))
+			to_chat(user, SPAN_NOTICE("Edit canceled successfully."))
+			return FALSE
+		to_chat(user, SPAN_NOTICE("You have successfully added an entry to [name]."))
+		value[entryname] = list(startingvalue)
+	
+	else if(entrychoice)
+		var/list/selections = clumpvalue[entrychoice]
+		selections = selections.Copy() // don't edit the original list
+		selections.Add("<NEW>")
+		var/selectionchoice = input(user, "Select Entry", "Entry") as null | anything in selections
+		if(!istext(selectionchoice))
+			return FALSE
+		if(selectionchoice == "<NEW>")
+			var/nextvalue = input(user, "Add Value", "Value") as text | null
+			nextvalue = sanitizeSafe(nextvalue)
+			if(!istext(nextvalue))
+				to_chat(user, SPAN_NOTICE("Addition canceled successfully."))
+				return FALSE
+			else
+				var/list/entrytoaddto = clumpvalue[entrychoice]
+				if(istype(entrytoaddto))
+					entrytoaddto.Add(nextvalue)
+				else
+					CRASH("Type Mismatch in clump list")
+		
+		else
+			var/newvalue = input(user, "New Value", "Value") as text | null
+			newvalue = sanitizeSafe(newvalue)
+			if(!istext(newvalue))
+				to_chat(user, SPAN_NOTICE("Replacement canceled successfully."))
+				return FALSE
+			var/list/intermediaryvalue = clumpvalue[entrychoice]
+			if(istype(intermediaryvalue))
+				var/indexhound = clumpvalue.Find(intermediaryvalue) // the Hound finds the value we splice
+				intermediaryvalue.Splice(indexhound, indexhound+1, newvalue) 
+			else
+				CRASH("Type Mismatch in clump list")
+			
+
+
