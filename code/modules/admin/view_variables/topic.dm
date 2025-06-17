@@ -369,7 +369,8 @@
 			add_verb(H, verb)
 
 	else if(href_list["remverb"])
-		if(!check_rights(R_DEBUG))      return
+		if(!check_rights(R_DEBUG))
+			return
 
 		var/mob/H = locate(href_list["remverb"])
 

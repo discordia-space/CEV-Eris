@@ -391,52 +391,89 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/get_equipped_item(slot)
 	switch(slot)
-		if(slot_back)       return back
-		if(slot_legcuffed)  return legcuffed
-		if(slot_handcuffed) return handcuffed
-		if(slot_l_store)    return l_store
-		if(slot_r_store)    return r_store
-		if(slot_wear_mask)  return wear_mask
-		if(slot_l_hand)     return l_hand
-		if(slot_r_hand)     return r_hand
-		if(slot_wear_id)    return wear_id
-		if(slot_glasses)    return glasses
-		if(slot_gloves)     return gloves
-		if(slot_head)       return head
-		if(slot_shoes)      return shoes
-		if(slot_belt)       return belt
-		if(slot_wear_suit)  return wear_suit
-		if(slot_w_uniform)  return w_uniform
-		if(slot_s_store)    return s_store
-		if(slot_l_ear)      return l_ear
-		if(slot_r_ear)      return r_ear
+		if(slot_back)
+			return back
+		if(slot_legcuffed)
+			return legcuffed
+		if(slot_handcuffed)
+			return handcuffed
+		if(slot_l_store)
+			return l_store
+		if(slot_r_store)
+			return r_store
+		if(slot_wear_mask)
+			return wear_mask
+		if(slot_l_hand)
+			return l_hand
+		if(slot_r_hand)
+			return r_hand
+		if(slot_wear_id)
+			return wear_id
+		if(slot_glasses)
+			return glasses
+		if(slot_gloves)
+			return gloves
+		if(slot_head)
+			return head
+		if(slot_shoes)
+			return shoes
+		if(slot_belt)
+			return belt
+		if(slot_wear_suit)
+			return wear_suit
+		if(slot_w_uniform)
+			return w_uniform
+		if(slot_s_store)
+			return s_store
+		if(slot_l_ear)
+			return l_ear
+		if(slot_r_ear)
+			return r_ear
 	return ..()
 
 /mob/living/carbon/human/get_equipped_items(include_carried = FALSE)
 	var/list/items = new/list()
 
-	if(back)		items += back
-	if(belt)		items += belt
-	if(l_ear)		items += l_ear
-	if(r_ear)		items += r_ear
-	if(glasses)		items += glasses
-	if(gloves)		items += gloves
-	if(head)		items += head
-	if(shoes)		items += shoes
-	if(wear_id)		items += wear_id
-	if(wear_mask)	items += wear_mask
-	if(wear_suit)	items += wear_suit
-	if(w_uniform)	items += w_uniform
+	if(back)
+		items += back
+	if(belt)
+		items += belt
+	if(l_ear)
+		items += l_ear
+	if(r_ear)
+		items += r_ear
+	if(glasses)
+		items += glasses
+	if(gloves)
+		items += gloves
+	if(head)
+		items += head
+	if(shoes)
+		items += shoes
+	if(wear_id)
+		items += wear_id
+	if(wear_mask)
+		items += wear_mask
+	if(wear_suit)
+		items += wear_suit
+	if(w_uniform)
+		items += w_uniform
 
 	if(include_carried)
-		if(l_hand)     items += l_hand
-		if(r_hand)     items += r_hand
-		if(l_store)    items += l_store
-		if(r_store)    items += r_store
-		if(legcuffed)  items += legcuffed
-		if(handcuffed) items += handcuffed
-		if(s_store)    items += s_store
-
+		if(l_hand)
+			items += l_hand
+		if(r_hand)
+			items += r_hand
+		if(l_store)
+			items += l_store
+		if(r_store)
+			items += r_store
+		if(legcuffed)
+			items += legcuffed
+		if(handcuffed)
+			items += handcuffed
+		if(s_store)
+			items += s_store
 	return items
 
 /mob/living/carbon/human/get_max_w_class()

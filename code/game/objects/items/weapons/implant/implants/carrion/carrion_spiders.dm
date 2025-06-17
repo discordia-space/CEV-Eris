@@ -1,7 +1,7 @@
- #define SPIDER_GROUP_1 1
- #define SPIDER_GROUP_2 2
- #define SPIDER_GROUP_3 4
- #define SPIDER_GROUP_4 8
+#define SPIDER_GROUP_1 1
+#define SPIDER_GROUP_2 2
+#define SPIDER_GROUP_3 4
+#define SPIDER_GROUP_4 8
 
 /obj/item/implant/carrion_spider
 	name = "spooky spider"

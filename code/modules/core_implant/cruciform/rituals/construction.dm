@@ -152,8 +152,8 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 			return FALSE
 
 		var/required_amount = blueprint.materials[item_type]
-        // I hope it is fast enough
-        // could have initialized it in glob
+		// I hope it is fast enough
+		// could have initialized it in glob
 		if(item_type in typesof(/obj/item/stack/))
 			var/obj/item/stack/stacked = located_raw
 			if(stacked.amount < required_amount)
@@ -305,6 +305,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		/obj/item/stack/cable_coil = 30 //! TODO: proper recipe
 	)
 	build_time = 7 SECONDS
+
 /datum/nt_blueprint/machinery/bioreactor_port
 	name = "Biomatter Reactor: Port"
 	build_path = /obj/machinery/multistructure/bioreactor_part/bioport
@@ -313,6 +314,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		/obj/item/reagent_containers/glass/bucket = 1
 	)
 	build_time = 6 SECONDS
+
 /datum/nt_blueprint/machinery/bioreactor_biotank
 	name = "Biomatter Reactor: Tank"
 	build_path = /obj/machinery/multistructure/bioreactor_part/biotank_platform
@@ -322,6 +324,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		/obj/structure/reagent_dispensers/biomatter/large = 1
 	)
 	build_time = 6 SECONDS
+
 /datum/nt_blueprint/machinery/bioreactor_unloader
 	name = "Biomatter Reactor: Unloader"
 	build_path = /obj/machinery/multistructure/bioreactor_part/unloader
@@ -331,6 +334,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		/obj/structure/reagent_dispensers/biomatter = 1
 	)
 	build_time = 8 SECONDS
+
 /datum/nt_blueprint/machinery/bioreactor_platform
 	name = "Biomatter Reactor: Platform"
 	build_path = /obj/machinery/multistructure/bioreactor_part/platform

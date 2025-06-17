@@ -284,13 +284,13 @@ var/const/POWER = 8
 	return null
 
 /datum/wires/proc/Attach(var/colour, var/obj/item/device/assembly/signaler/S)
-    var/obj/item/implant/carrion_spider/spark/I = S
-    if(istype(S) || istype(I))
-        if(!IsAttached(colour))
-            signallers[colour] = S
-            S.loc = holder
-            S.connected = src
-            return S
+	var/obj/item/implant/carrion_spider/spark/I = S
+	if(istype(S) || istype(I))
+		if(!IsAttached(colour))
+			signallers[colour] = S
+			S.loc = holder
+			S.connected = src
+			return S
 
 /datum/wires/proc/Detach(var/colour)
 	if(colour)

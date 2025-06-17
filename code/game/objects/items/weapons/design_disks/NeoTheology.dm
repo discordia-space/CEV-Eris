@@ -222,7 +222,7 @@
 		/datum/design/bioprinter/belt/medical,
 		/datum/design/bioprinter/belt/medical/emt,
 
-   		/datum/design/autolathe/device/headset_church
+		/datum/design/autolathe/device/headset_church
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt_ritual

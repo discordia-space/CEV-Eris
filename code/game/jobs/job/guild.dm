@@ -50,10 +50,10 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
 							 ///datum/computer_file/program/deck_management,
-							 /datum/computer_file/program/trade,
-							 /datum/computer_file/program/scanner,
-							 /datum/computer_file/program/wordprocessor,
-							 /datum/computer_file/program/reports)
+							/datum/computer_file/program/trade,
+							/datum/computer_file/program/scanner,
+							/datum/computer_file/program/wordprocessor,
+							/datum/computer_file/program/reports)
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/merchant
 
@@ -93,9 +93,9 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
 							 ///datum/computer_file/program/deck_management,
-							 /datum/computer_file/program/scanner,
-							 /datum/computer_file/program/wordprocessor,
-							 /datum/computer_file/program/reports)
+							/datum/computer_file/program/scanner,
+							/datum/computer_file/program/wordprocessor,
+							/datum/computer_file/program/reports)
 
 
 	description = "You are a low ranking member of the Asters' Merchant Guild, and an apprentice to the local merchant.  You may one day take over his position. You are equal parts scavenger, loader, shopkeeper and salesman. Remember the guild's core role here. To keep everyone supplied with everything they could need, and to profit from this endeavour<br>\
@@ -168,8 +168,8 @@ Character Expectations:<br>\
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
 							 ///datum/computer_file/program/deck_management,
-							 /datum/computer_file/program/wordprocessor,
-							 /datum/computer_file/program/reports)
+							/datum/computer_file/program/wordprocessor,
+							/datum/computer_file/program/reports)
 
 /obj/landmark/join/start/mining
 	name = "Guild Miner"

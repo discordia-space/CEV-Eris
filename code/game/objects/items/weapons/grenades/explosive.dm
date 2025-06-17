@@ -3,24 +3,21 @@
 	desc = "A military-grade offensive blast grenade, designed to be thrown by assaulting troops."
 	icon_state = "explosive"
 	matter = list(MATERIAL_STEEL = 5)
-
 	var/explosion_power = 350
 	var/explosion_falloff = 75
 	var/explosion_flags = 0
 	var/flash_range = 10
 
-
 /obj/item/grenade/explosive/prime()
-    set waitfor = 0
-    ..()
-    var/turf/O = get_turf(src)
-    if(!O) return
+	set waitfor = 0
+	..()
+	var/turf/O = get_turf(src)
+	if(!O)
+		return
+	on_explosion(O)
+	qdel(src)
 
-    on_explosion(O)
-
-    qdel(src)
-
-/obj/item/grenade/explosive/proc/on_explosion(var/turf/O)
+/obj/item/grenade/explosive/proc/on_explosion(turf/O)
 	explosion(O, explosion_power, explosion_falloff, explosion_flags)
 
 /obj/item/grenade/explosive/nt

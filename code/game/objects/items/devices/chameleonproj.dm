@@ -94,7 +94,8 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	else
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, 1, -6)
 		var/obj/O = new saved_item(src)
-		if(!O) return
+		if(!O)
+			return
 		var/obj/effect/dummy/chameleon/C = new(usr.loc)
 		C.activate(O, usr, saved_icon, saved_icon_state, saved_overlays, src)
 		qdel(O)

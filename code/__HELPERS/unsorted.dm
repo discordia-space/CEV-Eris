@@ -1068,15 +1068,20 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 
 //Whether or not the given item counts as sharp in terms of dealing damage
 /proc/is_sharp(obj/O)
-	if(!O) return FALSE
-	if(O.sharp) return TRUE
-	if(O.edge) return TRUE
+	if(!O)
+		return FALSE
+	if(O.sharp)
+		return TRUE
+	if(O.edge)
+		return TRUE
 	return FALSE
 
 //Whether or not the given item counts as cutting with an edge in terms of removing limbs
 /proc/has_edge(obj/O)
-	if(!O) return FALSE
-	if(O.edge) return TRUE
+	if(!O)
+		return FALSE
+	if(O.edge)
+		return TRUE
 	return FALSE
 
 //Returns 1 if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.

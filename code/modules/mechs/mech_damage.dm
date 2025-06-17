@@ -281,24 +281,24 @@
 	return PROJECTILE_STOP
 
 /mob/living/exosuit/proc/get_dir_mult(hit_dir, obj/item/mech_component/comp)
-    var/facing_vector = get_vector(dir)
-    var/incoming_hit_vector = get_vector(hit_dir)
-    var/angle = get_vector_angle(facing_vector, incoming_hit_vector)
+	var/facing_vector = get_vector(dir)
+	var/incoming_hit_vector = get_vector(hit_dir)
+	var/angle = get_vector_angle(facing_vector, incoming_hit_vector)
 
-    // Front quadrant (135 - 225 degrees)
-    if(angle > 135 && angle < 225)
-        . = comp.front_mult // Hit from the front
-    // Rear quadrant (315 - 45 degrees, with wrap-around at 360/0 degrees)
-    else if(angle < 45 || angle > 315)
-        . = comp.rear_mult // Hit from the back
-    // Side quadrants (45 - 135 degrees and 225 - 315 degrees)
+	// Front quadrant (135 - 225 degrees)
+	if(angle > 135 && angle < 225)
+		. = comp.front_mult // Hit from the front
+	// Rear quadrant (315 - 45 degrees, with wrap-around at 360/0 degrees)
+	else if(angle < 45 || angle > 315)
+		. = comp.rear_mult // Hit from the back
+	// Side quadrants (45 - 135 degrees and 225 - 315 degrees)
 
-    else if(!facing_vector||!angle||!incoming_hit_vector)
-        . = comp.side_mult
-    else
-        . = comp.side_mult // Hit from the sides
+	else if(!facing_vector||!angle||!incoming_hit_vector)
+		. = comp.side_mult
+	else
+		. = comp.side_mult // Hit from the sides
 
-    return .
+	return .
 
 /mob/living/exosuit/getFireLoss()
 	var/total = 0

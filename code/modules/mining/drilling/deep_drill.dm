@@ -216,7 +216,8 @@
 		shutdown_drill("critical damage")
 		if(prob(10)) // Some chance that the drill completely blows up
 			var/turf/O = get_turf(src)
-			if(!O) return
+			if(!O)
+				return
 			explosion(get_turf(src), 800, 50)
 			qdel(src)
 

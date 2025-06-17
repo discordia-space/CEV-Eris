@@ -144,99 +144,99 @@
 
 	\[b\]Job Name\[/b\] general access>lab access-engine access-systems access (atmosphere control)
 	Job Description
-	 Job Duties (in no particular order)
-	 Tips (where applicable)
+	Job Duties (in no particular order)
+	Tips (where applicable)
 
 	\[b\]Research Assistant\[/b\] 1>1-0-0
 	This is probably the lowest level position. Anyone who enters the space station after the initial job assignment will automatically receive this position. Access with this is restricted. First Officer should appropriate the correct level of assistance.
-	 1. Assist the researchers.
-	 2. Clean up the labs.
-	 3. Prepare materials.
+	1. Assist the researchers.
+	2. Clean up the labs.
+	3. Prepare materials.
 
 	\[b\]Staff Assistant\[/b\] 2>0-0-0
 	This position assists the security officer in his duties. The staff assisstants should primarily br patrolling the ship waiting until they are needed to maintain ship safety. (Addendum: Updated/Elevated Security Protocols admit issuing of low level weapons to security personnel)
-	 1. Patrol ship/Guard key areas
-	 2. Assist security officer
-	 3. Perform other security duties.
+	1. Patrol ship/Guard key areas
+	2. Assist security officer
+	3. Perform other security duties.
 
 	\[b\]Technical Assistant\[/b\] 1>0-0-1
 	This is yet another low level position. The technical assistant helps the engineer and the statian technician with the upkeep and maintenance of the station. This job is very important because it usually gets to be a heavy workload on station technician and these helpers will alleviate that.
-	 1. Assist Station technician and Engineers.
-	 2. Perform general maintenance of station.
-	 3. Prepare materials.
+	1. Assist Station technician and Engineers.
+	2. Perform general maintenance of station.
+	3. Prepare materials.
 
 	\[b\]Medical Assistant\[/b\] 1>1-0-0
 	This is the fourth position yet it is slightly less common. This position doesn't have much power outside of the med bay. Consider this position like a nurse who helps to upkeep medical records and the materials (filling syringes and checking vitals)
-	 1. Assist the medical personnel.
-	 2. Update medical files.
-	 3. Prepare materials for medical operations.
+	1. Assist the medical personnel.
+	2. Update medical files.
+	3. Prepare materials for medical operations.
 
 	\[b\]Research Technician\[/b\] 2>3-0-0
 	This job is primarily a step up from research assistant. These people generally do not get their own lab but are more hands on in the experimentation process. At this level they are permitted to work as consultants to the others formally.
-	 1. Inform superiors of research.
-	 2. Perform research alongside of official researchers.
+	1. Inform superiors of research.
+	2. Perform research alongside of official researchers.
 
 	\[b\]Detective\[/b\] 3>2-0-0
 	This job is in most cases slightly boring at best. Their sole duty is to perform investigations of crine scenes and analysis of the crime scene. This alleviates SOME of the burden from the security officer. This person's duty is to draw conclusions as to what happened and testify in court. Said person also should stroe the evidence ly.
-	 1. Perform crime-scene investigations/draw conclusions.
-	 2. Store and catalogue evidence properly.
-	 3. Testify to superiors/inquieries on findings.
+	1. Perform crime-scene investigations/draw conclusions.
+	2. Store and catalogue evidence properly.
+	3. Testify to superiors/inquieries on findings.
 
 	\[b\]Station Technician\[/b\] 2>0-2-3
 	People assigned to this position must work to make sure all the systems aboard Space Station 13 are operable. They should primarily work in the computer lab and repairing faulty equipment. They should work with the atmospheric technician.
-	 1. Maintain SS13 systems.
-	 2. Repair equipment.
+	1. Maintain SS13 systems.
+	2. Repair equipment.
 
 	\[b\]Atmospheric Technician\[/b\] 3>0-0-4
 	These people should primarily work in the atmospheric control center and lab. They have the very important job of maintaining the delicate atmosphere on SS13.
-	 1. Maintain atmosphere on SS13
-	 2. Research atmospheres on the space station. (safely please!)
+	1. Maintain atmosphere on SS13
+	2. Research atmospheres on the space station. (safely please!)
 
 	\[b\]Engineer\[/b\] 2>1-3-0
 	People working as this should generally have detailed knowledge as to how the propulsion systems on SS13 work. They are one of the few classes that have unrestricted access to the engine area.
-	 1. Upkeep the engine.
-	 2. Prevent fires in the engine.
-	 3. Maintain a safe orbit.
+	1. Upkeep the engine.
+	2. Prevent fires in the engine.
+	3. Maintain a safe orbit.
 
 	\[b\]Medical Researcher\[/b\] 2>5-0-0
 	This position may need a little clarification. Their duty is to make sure that all experiments are safe and to conduct experiments that may help to improve the station. They will be generally idle until a new laboratory is constructed.
-	 1. Make sure the station is kept safe.
-	 2. Research medical properties of materials studied of Space Station 13.
+	1. Make sure the station is kept safe.
+	2. Research medical properties of materials studied of Space Station 13.
 
 	\[b\]Scientist\[/b\] 2>5-0-0
 	These people study the properties, particularly the toxic properties, of materials handled on SS13. Technically they can also be called Plasma Technicians as plasma is the material they routinly handle.
-	 1. Research plasma
-	 2. Make sure all plasma is properly handled.
+	1. Research plasma
+	2. Make sure all plasma is properly handled.
 
 	\[b\]Medical Doctor (Officer)\[/b\] 2>0-0-0People working this job should primarily stay in the medical area. They should make sure everyone goes to the medical bay for treatment and examination. Also they should make sure that medical supplies are kept in order.
-	 1. Heal wounded people.
-	 2. Perform examinations of all personnel.
-	 3. Moniter usage of medical equipment.
+	1. Heal wounded people.
+	2. Perform examinations of all personnel.
+	3. Moniter usage of medical equipment.
 
 	\[b\]Security Officer\[/b\] 3>0-0-0
 	These people should attempt to keep the peace inside the station and make sure the station is kept safe. One side duty is to assist in repairing the station. They also work like general maintenance personnel. They are not given a weapon and must use their own resources.
-	 (Addendum: Updated/Elevated Security Protocols admit issuing of weapons to security personnel)
-	 1. Maintain order.
-	 2. Assist others.
-	 3. Repair structural problems.
+	(Addendum: Updated/Elevated Security Protocols admit issuing of weapons to security personnel)
+	1. Maintain order.
+	2. Assist others.
+	3. Repair structural problems.
 
 	\[b\]IronHammer Commander\[/b\] 4>5-2-2
 	People assigned as IronHammer Commander should issue orders to the security staff. They should also carefully moderate the usage of all security equipment. All security matters should be reported to this person.
-	 1. Oversee security.
-	 2. Assign patrol duties.
-	 3. Protect the station and staff.
+	1. Oversee security.
+	2. Assign patrol duties.
+	3. Protect the station and staff.
 
 	\[b\]First Officer\[/b\] 4>4-2-2
 	People assigned as First Officer will find themselves moderating all actions done by personnel. Also they have the ability to assign jobs and access levels.
-	 1. Assign duties.
-	 2. Moderate personnel.
-	 3. Moderate research.
+	1. Assign duties.
+	2. Moderate personnel.
+	3. Moderate research.
 
 	\[b\]Captain\[/b\] 5>5-5-5 (unrestricted station wide access)
 	This is the highest position you can aquire on Space Station 13. They are allowed anywhere inside the space station and therefore should protect their ID card. They also have the ability to assign positions and access levels. They should not abuse their power.
-	 1. Assign all positions on SS13
-	 2. Inspect the station for any problems.
-	 3. Perform administrative duties.
+	1. Assign all positions on SS13
+	2. Inspect the station for any problems.
+	3. Perform administrative duties.
 	\[br\]"}
 
 /obj/item/paper/sop

@@ -328,7 +328,7 @@
 		voicemask = 1
 	SEND_SIGNAL_OLD(src, COMSIG_MESSAGE_SENT)
 
-  /* ###### Radio headsets can only broadcast through subspace ###### */
+	/* ###### Radio headsets can only broadcast through subspace ###### */
 	if(subspace_transmission)
 		// First, we want to generate a new radio signal
 		var/datum/signal/signal = new
@@ -377,7 +377,7 @@
 		// Receiving code can be located in Telecommunications.dm
 		return signal.data["done"] && (position.z in signal.data["level"])
 
-  /* ###### Intercoms and station-bounced radios ###### */
+	/* ###### Intercoms and station-bounced radios ###### */
 	var/filter_type = 2
 	/* --- Intercoms can only broadcast to other intercoms, but bounced radios can broadcast to bounced radios and intercoms --- */
 	if(istype(src, /obj/item/device/radio/intercom))

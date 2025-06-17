@@ -20,7 +20,8 @@
 	..()
 
 	var/turf/O = get_turf(src)
-	if(!O) return
+	if(!O)
+		return
 
 	if(num_fragments)
 		var/ontop = FALSE

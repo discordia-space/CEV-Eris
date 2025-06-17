@@ -154,12 +154,12 @@
 	path = /obj/item/clothing/head/ushanka
 
 /datum/gear/head/cap/ushanka/New()
-    ..()
-    var/ushanka = list(
-        "Tan"	= /obj/item/clothing/head/ushanka,
-        "Black" = /obj/item/clothing/head/ushanka/black
-    )
-    gear_tweaks += new /datum/gear_tweak/path(ushanka)
+	..()
+	var/ushanka = list(
+		"Tan"	= /obj/item/clothing/head/ushanka,
+		"Black" = /obj/item/clothing/head/ushanka/black
+	)
+	gear_tweaks += new /datum/gear_tweak/path(ushanka)
 
 /datum/gear/head/cap/secfield
 	display_name = "cap, IH field"
@@ -177,16 +177,16 @@
 	cost = 2
 
 /datum/gear/head/cap/military
-    display_name = "military cap, color presets"
-    path = /obj/item/clothing/head/soft/green2soft
+	display_name = "military cap, color presets"
+	path = /obj/item/clothing/head/soft/green2soft
 
 /datum/gear/head/cap/military/New()
-    ..()
-    var/battledress_serb = list(
-        "Green" = /obj/item/clothing/head/soft/green2soft,
-        "Tan" = /obj/item/clothing/head/soft/tan2soft
-    )
-    gear_tweaks += new /datum/gear_tweak/path(battledress_serb)
+	..()
+	var/battledress_serb = list(
+		"Green" = /obj/item/clothing/head/soft/green2soft,
+		"Tan" = /obj/item/clothing/head/soft/tan2soft
+	)
+	gear_tweaks += new /datum/gear_tweak/path(battledress_serb)
 
 /datum/gear/head/tanker_helmet/color_presets
 	display_name = "tanker helmet, color presets"
@@ -207,12 +207,12 @@
 
 
 /datum/gear/head/cowboy
-    display_name = "cowboy hat, color and size presets"
-    path = /obj/item/clothing/head/cowboy
+	display_name = "cowboy hat, color and size presets"
+	path = /obj/item/clothing/head/cowboy
 
 /datum/gear/head/cowboy/New()
-    ..()
-    var/cowboy = list(
+	..()
+	var/cowboy = list(
 		"Brown"			= /obj/item/clothing/head/cowboy,
 		"Black"			= /obj/item/clothing/head/cowboy/black,
 		"White"			= /obj/item/clothing/head/cowboy/white,
@@ -220,4 +220,4 @@
 		"Wide, black"	= /obj/item/clothing/head/cowboy/wide/black,
 		"Wide, white"	= /obj/item/clothing/head/cowboy/wide/white
 	)
-    gear_tweaks += new /datum/gear_tweak/path(cowboy)
+	gear_tweaks += new /datum/gear_tweak/path(cowboy)

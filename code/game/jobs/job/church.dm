@@ -32,7 +32,7 @@
 	perks = list(PERK_CHANNELING)
 
 	software_on_spawn = list(/datum/computer_file/program/records,
-							 /datum/computer_file/program/reports)
+							/datum/computer_file/program/reports)
 
 	core_upgrades = list(
 		CRUCIFORM_PRIEST,

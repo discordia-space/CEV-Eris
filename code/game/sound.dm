@@ -363,11 +363,10 @@ var/list/rummage_sound = list(\
 
 	soundin = get_sfx(soundin) // same sound for everyone
 	frequency = vary && isnull(frequency) ? get_rand_frequency() : frequency // Same frequency for everybody
-
 	var/turf/turf_source = get_turf(source)
 	var/maxdistance = (world.view + extrarange) * 2
 
- 	// Looping through the player list has the added bonus of working for mobs inside containers
+	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/list/listeners = GLOB.player_list
 	if(!ignore_walls) //these sounds don't carry through walls
 		listeners = listeners & hearers(maxdistance, turf_source)
@@ -383,7 +382,6 @@ var/list/rummage_sound = list(\
 				else if(!M.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
 					continue
 			var/turf/T = get_turf(M)
-
 			if(T && (T.z == turf_source.z || zrange && abs(T.z - turf_source.z) <= zrange))
 				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet, use_pressure)
 

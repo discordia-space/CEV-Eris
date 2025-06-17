@@ -1,5 +1,4 @@
- // This file contains all Nano procs/definitions for external classes/objects
-
+// This file contains all Nano procs/definitions for external classes/objects
 /*
 * A "panic button" verb to close all UIs on current mob.
 * Use it when the bug with UI not opening (because the server still considers it open despite it being closed on client) pops up.

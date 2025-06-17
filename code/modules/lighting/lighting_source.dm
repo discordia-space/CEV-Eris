@@ -30,7 +30,7 @@
 	var/destroyed           // Whether we are destroyed and need to stop emitting light.
 	var/force_update
 
-/datum/light_source/New(var/atom/owner, var/atom/top)
+/datum/light_source/New(atom/owner, atom/top)
 	source_atom = owner // Set our new owner.
 	if(!source_atom.light_sources)
 		source_atom.light_sources = list()
@@ -39,22 +39,16 @@
 	top_atom = top
 	if(top_atom != source_atom)
 		if(!top.light_sources)
-			top.light_sources     = list()
-
+			top.light_sources = list()
 		top_atom.light_sources += src
-
 	source_turf = top_atom
 	light_power = source_atom.light_power
 	light_range = source_atom.light_range
 	light_color = source_atom.light_color
-
 	parse_light_color()
-
 	effect_str      = list()
 	affecting_turfs = list()
-
 	update()
-
 	return ..()
 
 // Kill ourselves.
@@ -63,46 +57,41 @@
 	force_update()
 	if(source_atom && source_atom.light_sources)
 		source_atom.light_sources -= src
-		source_atom                = null
+		source_atom = null
 
 	if(top_atom && top_atom.light_sources)
-		top_atom.light_sources    -= src
-		top_atom                   = null
+		top_atom.light_sources -= src
+		top_atom = null
 
-#define effect_update                   \
-	if(!needs_update)                  \
-	{                                   \
-		global.lighting_update_lights += src;  \
-		needs_update            = TRUE; \
+#define effect_update	\
+	if(!needs_update)	\
+	{	\
+		global.lighting_update_lights += src;	\
+		needs_update = TRUE;	\
 	}
 
 // This proc will cause the light source to update the top atom, and add itself to the update queue.
-/datum/light_source/proc/update(var/atom/new_top_atom)
+/datum/light_source/proc/update(atom/new_top_atom)
 	// This top atom is different.
 	if(new_top_atom && new_top_atom != top_atom)
 		if(top_atom != source_atom) // Remove ourselves from the light sources of that top atom.
 			top_atom.light_sources -= src
 
 		top_atom = new_top_atom
-
 		if(top_atom != source_atom)
 			if(!top_atom.light_sources)
 				top_atom.light_sources = list()
-
 			top_atom.light_sources += src // Add ourselves to the light sources of our new top atom.
-
 	effect_update
 
 // Will force an update without checking if it's actually needed.
 /datum/light_source/proc/force_update()
 	force_update = 1
-
 	effect_update
 
 // Will cause the light source to recalculate turfs that were removed or added to visibility only.
 /datum/light_source/proc/vis_update()
 	vis_update = 1
-
 	effect_update
 
 // Will check if we actually need to update, and update any variables that may need to be updated.
@@ -158,11 +147,8 @@
 
 #define APPLY_CORNER(C)              \
 	. = LUM_FALLOFF(C, source_turf); \
-                                     \
 	. *= light_power;                \
-                                     \
 	effect_str[C] = .;               \
-                                     \
 	C.update_lumcount                \
 	(                                \
 		. * applied_lum_r,           \

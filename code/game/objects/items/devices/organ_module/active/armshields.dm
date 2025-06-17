@@ -11,7 +11,7 @@
 	bad_type = /obj/item/shield/buckler/energy/arm
 
 /obj/item/shield/buckler/energy/arm/update_icon()
-   return
+	return
 
 /obj/item/organ_module/active/simple/armshield
 	name = "embedded shield"

@@ -32,9 +32,9 @@
 				 PERK_CODESPEAK_COP)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
-							 /datum/computer_file/program/digitalwarrant,
-							 /datum/computer_file/program/camera_monitor,
-							 /datum/computer_file/program/reports)
+							/datum/computer_file/program/digitalwarrant,
+							/datum/computer_file/program/camera_monitor,
+							/datum/computer_file/program/reports)
 
 	description = "You are the commander of the local regiment of the IronHammer Mercenary company, contracted to protect and serve aboard the CEV Eris. IronHammer serves as both an internal security force, and as a guard for expeditions outwith the ship.<br>\
 	<br>\
@@ -90,7 +90,7 @@
 				 PERK_CODESPEAK_COP)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
-							 /datum/computer_file/program/camera_monitor)
+							/datum/computer_file/program/camera_monitor)
 
 	description = "You are the Second-in-Command of the local IronHammer regiment, and the defacto leader if the commander isn't around. <br>\
 	Within IronHammer you largely hold a desk job, your duties will rarely take you outside of the IronHammer wing, and you are not expected to interact with civilians. You have enough to deal with as is, and are probably the hardest working member of IronHammer.<br>\
@@ -143,9 +143,9 @@
 				 PERK_CODESPEAK_COP)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
-							 /datum/computer_file/program/audio,
-							 /datum/computer_file/program/suit_sensors,
-							 /datum/computer_file/program/camera_monitor)
+							/datum/computer_file/program/audio,
+							/datum/computer_file/program/suit_sensors,
+							/datum/computer_file/program/camera_monitor)
 
 	description = "You are the ship's detective, here to take care of the cases that aren't always what they seem, and suspects that aren't always caught red handed or ready to confess.<br>\
 	The inspector's job is to interrogate suspects, gather witness statements,  harvest evidence and reach a conclusion about the nature and culprit of a crime.<br>\
@@ -197,9 +197,9 @@
 				 PERK_CODESPEAK_COP)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
-							 /datum/computer_file/program/suit_sensors,
-							 /datum/computer_file/program/chem_catalog,
-							 /datum/computer_file/program/camera_monitor)
+							/datum/computer_file/program/suit_sensors,
+							/datum/computer_file/program/chem_catalog,
+							/datum/computer_file/program/camera_monitor)
 
 	description = "You are a highly trained specialist within IronHammer. You were probably a medical student or inexperienced doctor when you joined IronHammer, and you thusly have a combination of medical and military training. You are not quite as knowledgeable as a civilian career doctor, not quite as much of a fighter as a dedicated IH operative, but strike a balance inbetween. Balance is the nature of your existence.<br>\
 	<br>\
@@ -250,7 +250,7 @@
 				 PERK_CODESPEAK_COP)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
-							 /datum/computer_file/program/camera_monitor)
+							/datum/computer_file/program/camera_monitor)
 
 	description = "You are the boots on the ground, the rifle in the window, the long arm of the law. You are the hand of ironhammer, and the frontline against criminals, terrorists, and xenos.<br>\
 	<br>\

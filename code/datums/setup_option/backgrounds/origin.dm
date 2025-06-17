@@ -208,20 +208,20 @@
 
 
 /datum/category_item/setup_option/background/origin/eureka
-    name = "Eureka"
-    desc = "Once a paradise for the Australian colonists that lived on it, their neutrality during the corporate wars cost them this paradise. \
-            And thus did the Syndicate and NanoTrasen both bomb Eureka to hell, causing once verdant lands to become hellish deserts of nuclear proportions. \
-            As a side effect of this once the corporate wars ended, Eurekans are known to be eerily good trackers and pathfinders in these conditions and elsewhere, causing what's left of the Eurekan people to pay a tithe to Hanza and NeoTheology both in the form of criminals. \
-            All in the name of saving what's left."
+	name = "Eureka"
+	desc = "Once a paradise for the Australian colonists that lived on it, their neutrality during the corporate wars cost them this paradise. \
+			And thus did the Syndicate and NanoTrasen both bomb Eureka to hell, causing once verdant lands to become hellish deserts of nuclear proportions. \
+			As a side effect of this once the corporate wars ended, Eurekans are known to be eerily good trackers and pathfinders in these conditions and elsewhere, causing what's left of the Eurekan people to pay a tithe to Hanza and NeoTheology both in the form of criminals. \
+			All in the name of saving what's left."
 
-    stat_modifiers = list(
-        STAT_ROB = -5,
-        STAT_TGH = 5,
-        STAT_BIO = 10,
-        STAT_MEC = -10,
-        STAT_VIG = 10,
-        STAT_COG = -5
-    )
+	stat_modifiers = list(
+		STAT_ROB = -5,
+		STAT_TGH = 5,
+		STAT_BIO = 10,
+		STAT_MEC = -10,
+		STAT_VIG = 10,
+		STAT_COG = -5
+	)
 
 /datum/category_item/setup_option/background/origin/streltsy
 	name = "Wandering Streltsy"

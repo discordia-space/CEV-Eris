@@ -23,7 +23,8 @@
 
 /obj/item/implant/carrion_spider/explosive/proc/prime()
 	var/turf/O = get_turf(src)
-	if(!O) return
+	if(!O)
+		return
 
 	on_explosion(O)
 

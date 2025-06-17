@@ -1,43 +1,43 @@
 // Damage things. TODO: Merge these down to reduce on defines.
 // Way to waste perfectly good damage-type names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc.
-#define BRUTE     "brute"
-#define BURN      "fire"
-#define TOX       "tox"
-#define OXY       "oxy"
-#define CLONE     "clone"
-#define HALLOSS   "halloss"
-#define BLAST	  "blast"
-#define PSY       "psy"
+#define BRUTE		"brute"
+#define BURN		"fire"
+#define TOX			"tox"
+#define OXY			"oxy"
+#define CLONE		"clone"
+#define HALLOSS		"halloss"
+#define BLAST		"blast"
+#define PSY			"psy"
 
-#define CUT       "cut"
-#define BRUISE    "bruise"
-#define PIERCE    "pierce"
+#define CUT			"cut"
+#define BRUISE		"bruise"
+#define PIERCE		"pierce"
 
-#define STUN      "stun"
-#define WEAKEN    "weaken"
-#define PARALYZE  "paralize"
-#define IRRADIATE "irradiate"
-#define SLUR      "slur"
-#define STUTTER   "stutter"
-#define EYE_BLUR  "eye_blur"
-#define DROWSY    "drowsy"
+#define STUN		"stun"
+#define WEAKEN		"weaken"
+#define PARALYZE	"paralize"
+#define IRRADIATE	"irradiate"
+#define SLUR		"slur"
+#define STUTTER		"stutter"
+#define EYE_BLUR	"eye_blur"
+#define DROWSY		"drowsy"
 
 #define FIRE_DAMAGE_MODIFIER 0.0215 // Higher values result in more external fire damage to the skin. (default 0.0215)
 #define AIR_DAMAGE_MODIFIER 2.025  // More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
 
 //Armor defines
 
-#define ARMOR_MELEE			"melee"
-#define ARMOR_BULLET		"bullet"
-#define ARMOR_ENERGY		"energy"
-#define ARMOR_BOMB			"bomb"
-#define ARMOR_BIO			"bio"
-#define ARMOR_RAD			"rad"
+#define ARMOR_MELEE		"melee"
+#define ARMOR_BULLET	"bullet"
+#define ARMOR_ENERGY	"energy"
+#define ARMOR_BOMB		"bomb"
+#define ARMOR_BIO		"bio"
+#define ARMOR_RAD		"rad"
 
 //Blood levels. These are percentages based on the species blood_volume
-#define BLOOD_VOLUME_SAFE_MODIFIER    45
-#define BLOOD_VOLUME_OKAY_MODIFIER    35
-#define BLOOD_VOLUME_BAD_MODIFIER     20
+#define BLOOD_VOLUME_SAFE_MODIFIER	45
+#define BLOOD_VOLUME_OKAY_MODIFIER	35
+#define BLOOD_VOLUME_BAD_MODIFIER	20
 
 // Organ processes
 #define OP_EYES          "eyes"

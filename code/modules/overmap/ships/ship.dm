@@ -214,24 +214,24 @@
 	. = max(.,0)
 
 /obj/effect/overmap/ship/proc/handle_wraparound()
-    var/nx = x
-    var/ny = y
-    var/low_edge = 1
-    var/high_edge = OVERMAP_SIZE
+	var/nx = x
+	var/ny = y
+	var/low_edge = 1
+	var/high_edge = OVERMAP_SIZE
 
-    if(x <= low_edge)
-        nx = high_edge
-    if(x >= high_edge)
-        nx = low_edge
+	if(x <= low_edge)
+		nx = high_edge
+	if(x >= high_edge)
+		nx = low_edge
 
-    if(y <= low_edge)
-        ny =high_edge
-    if(y >= high_edge)
-        ny = low_edge
+	if(y <= low_edge)
+		ny =high_edge
+	if(y >= high_edge)
+		ny = low_edge
 
-    var/turf/T = locate(nx,ny,z)
-    if(T)
-        forceMove(T)
+	var/turf/T = locate(nx,ny,z)
+	if(T)
+		forceMove(T)
 
 /obj/effect/overmap/ship/Bump(atom/A)
 	if(istype(A,/turf/map/edge))

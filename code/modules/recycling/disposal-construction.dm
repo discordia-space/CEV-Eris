@@ -48,7 +48,7 @@
 		if(PIPE_TYPE_TRUNK)
 			base_state = "pipe-t"
 			pipe_dir = dir
-		 // disposal bin has only one dir, thus we don't need to care about setting it
+		// disposal bin has only one dir, thus we don't need to care about setting it
 		if(PIPE_TYPE_BIN)
 			if(anchored)
 				base_state = "disposal"

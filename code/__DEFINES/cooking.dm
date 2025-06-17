@@ -3,16 +3,16 @@
 
 //Step classifications, for easy reference later.
 //If something falls outside these classifications, why would it?
-#define CWJ_START 					1		//Default step to construct the list.
-#define CWJ_ADD_ITEM 				2		//Adding an item to a recipe (Ex- adding a slice of bread)
-#define CWJ_ADD_REAGENT 			3		//Adding a reagent to a recipe (Ex- Adding salt)
-#define CWJ_USE_ITEM 				4 		//Using an item in a recipe (Ex- cutting bread with a knife)
+#define CWJ_START					1		//Default step to construct the list.
+#define CWJ_ADD_ITEM				2		//Adding an item to a recipe (Ex- adding a slice of bread)
+#define CWJ_ADD_REAGENT				3		//Adding a reagent to a recipe (Ex- Adding salt)
+#define CWJ_USE_ITEM				4 		//Using an item in a recipe (Ex- cutting bread with a knife)
 #define CWJ_USE_TOOL				5
 #define CWJ_ADD_PRODUCE				6		//Adding Produce to a recipe
-#define CWJ_USE_STOVE	 			7 		//Using a stove in a recipe
-#define CWJ_USE_GRILL	 			8 		//Using a grill in a recipe
-#define CWJ_USE_OVEN	 			9 		//Using a oven in a recipe
-#define CWJ_USE_OTHER 				10 		//Custom Command flag, will take in argument lists.
+#define CWJ_USE_STOVE				7 		//Using a stove in a recipe
+#define CWJ_USE_GRILL				8 		//Using a grill in a recipe
+#define CWJ_USE_OVEN				9 		//Using a oven in a recipe
+#define CWJ_USE_OTHER				10 		//Custom Command flag, will take in argument lists.
 
 
 //Optional flags
@@ -41,9 +41,9 @@
 #define CWJ_MAX_QUALITY_ENABLED 	32
 
 //Check item use flags
-#define CWJ_NO_STEPS  	  	1 //The used object has no valid recipe uses
-#define CWJ_CHOICE_CANCEL 	2 //The user opted to cancel when given a choice
-#define CWJ_SUCCESS 		3 //The user decided to use the item and the step was followed
+#define CWJ_NO_STEPS		1 //The used object has no valid recipe uses
+#define CWJ_CHOICE_CANCEL	2 //The user opted to cancel when given a choice
+#define CWJ_SUCCESS			3 //The user decided to use the item and the step was followed
 #define CWJ_PARTIAL_SUCCESS	4 //The user decided to use the item but the qualifications for the step was not fulfilled
 #define CWJ_COMPLETE		5 //The meal has been completed!
 #define CWJ_LOCKOUT			6 //Someone tried starting the function while a prompt was running. Jerk.
@@ -54,7 +54,7 @@
 #define CWJ_CHECK_FULL		2 //For reagents, nothing can be added to
 
 //Cooking container types
-#define PLATE 			"plate"
+#define PLATE			"plate"
 #define CUTTING_BOARD	"cutting board"
 #define PAN				"pan"
 #define POT				"pot"

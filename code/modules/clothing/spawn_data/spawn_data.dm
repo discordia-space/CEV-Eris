@@ -285,7 +285,7 @@
 	rarity_value = 15.8333
 
 /obj/item/clothing/gloves/stungloves
-    rarity_value = 99
+	rarity_value = 99
 
 /obj/item/clothing/gloves
 	rarity_value = 14.1667

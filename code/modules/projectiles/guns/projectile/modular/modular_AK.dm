@@ -1,8 +1,8 @@
 /obj/item/gun/projectile/automatic/modular/ak // Frame
 	name = "\"Kalash\""
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
-		 This is a copy of an ancient semi-automatic rifle. If it won't fire, percussive maintenance should get it working again. \
-		 It is known for its easy maintenance, and low price."
+		This is a copy of an ancient semi-automatic rifle. If it won't fire, percussive maintenance should get it working again. \
+		It is known for its easy maintenance, and low price."
 	icon = 'icons/obj/guns/projectile/modular/ak.dmi'
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL

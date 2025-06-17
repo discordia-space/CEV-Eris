@@ -96,16 +96,16 @@
 /datum/stash/weapon/mutiny/overworked
 	contents_list_extra = list(/obj/item/clothing/mask/gas = 3)
 	lore = "Logbook:<br>\
-	 Engineering has worked for six days in pressure suits with the rest of us packed in amidships.<br>\
- The toilets don't work, the air has been rebreathed by seventy mouths seven million times, and I can smell the damn cook's halitosis coming out the one working air vent because he's sleeping next to the one working scrubber.<br>\
- Half of the crew wants to hit the pods, the other half wants their bonus pay. I know what half I'm in, and we're meeting at %D. Fuck this captain. Once we find some softsuits, that is."
+	Engineering has worked for six days in pressure suits with the rest of us packed in amidships.<br>\
+	The toilets don't work, the air has been rebreathed by seventy mouths seven million times, and I can smell the damn cook's halitosis coming out the one working air vent because he's sleeping next to the one working scrubber.<br>\
+	Half of the crew wants to hit the pods, the other half wants their bonus pay. I know what half I'm in, and we're meeting at %D. Fuck this captain. Once we find some softsuits, that is."
 
 
 /datum/stash/weapon/mutiny/starvation
- 	//Make sure there's a shotgun with slugs in the stash, as described in the text.
- 	//Also the wardens were hoarding food
- 	contents_list_extra = list(/obj/spawner/gun/shotgun = 1, /obj/item/ammo_magazine/ammobox/shotgun = 1, /obj/spawner/rations = 6)
- 	lore = "Convicts figured out the starvation rations are neither accidental nor temporary.<br>\
+	//Make sure there's a shotgun with slugs in the stash, as described in the text.
+	//Also the wardens were hoarding food
+	contents_list_extra = list(/obj/spawner/gun/shotgun = 1, /obj/item/ammo_magazine/ammobox/shotgun = 1, /obj/spawner/rations = 6)
+	lore = "Convicts figured out the starvation rations are neither accidental nor temporary.<br>\
 	Plan B is to shoot troublemakers until we balance the calorie equation.<br>\
 	Just keep it semi-justifiable, don't leave any slugs in the walls, and stick the lethals back at %D when you're done.<br>\
 	Can't have the marshals find out we're breaking those precious regulations."

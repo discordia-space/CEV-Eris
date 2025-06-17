@@ -519,9 +519,9 @@
 	icon_state = "erisblue"
 
 /area/eris/crew_quarters/library
- 	name = "\improper Library"
- 	icon_state = "library"
- 	sound_env = LARGE_SOFTFLOOR
+	name = "\improper Library"
+	icon_state = "library"
+	sound_env = LARGE_SOFTFLOOR
 
 /area/eris/crew_quarters/librarybackroom
 	name = "Library Backroom"

@@ -73,13 +73,13 @@
 //If limb took enough damage and is broken, try to cut or tear it off
 	if(owner && loc == owner && !is_stump())
 		if(!cannot_amputate && config.limbs_can_break && (brute_dam + burn_dam) >= (max_damage * ORGAN_HEALTH_MULTIPLIER))
-            //organs can come off in four cases
-            //1. If the damage source is edge_eligible and the brute damage dealt exceeds the edge threshold, then the organ is cut off.
-            //2. If the damage amount dealt exceeds the disintegrate threshold, the organ is completely obliterated.
-            //3. If the organ has already reached or would be put over it's max damage amount (currently redundant),
-            //   and the brute damage dealt exceeds the tearoff threshold, the organ is torn off.
-            //4. If the organ is robotic, and it has reached its max damage threshold, it will either drop off, or blow up.
-            //Check edge eligibility
+			//organs can come off in four cases
+			//1. If the damage source is edge_eligible and the brute damage dealt exceeds the edge threshold, then the organ is cut off.
+			//2. If the damage amount dealt exceeds the disintegrate threshold, the organ is completely obliterated.
+			//3. If the organ has already reached or would be put over it's max damage amount (currently redundant),
+			//	and the brute damage dealt exceeds the tearoff threshold, the organ is torn off.
+			//4. If the organ is robotic, and it has reached its max damage threshold, it will either drop off, or blow up.
+			//Check edge eligibility
 			var/edge_eligible = 0
 			if(edge)
 				if(istype(used_weapon,/obj/item))

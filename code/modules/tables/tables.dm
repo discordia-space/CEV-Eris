@@ -491,7 +491,7 @@ var/list/custom_table_appearance = list(
 #define CORNER_CLOCKWISE 4
 
 /*
-  turn() is weird:
+	turn() is weird:
 	turn(icon, angle) turns icon by angle degrees clockwise
 	turn(matrix, angle) turns matrix by angle degrees clockwise
 	turn(dir, angle) turns dir by angle degrees counter-clockwise

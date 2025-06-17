@@ -46,9 +46,9 @@ Your second loyalty is to your command officers. The heads of each faction. List
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
-							 /datum/computer_file/program/card_mod,
-							 /datum/computer_file/program/camera_monitor,
-							 /datum/computer_file/program/reports)
+							/datum/computer_file/program/card_mod,
+							/datum/computer_file/program/camera_monitor,
+							/datum/computer_file/program/reports)
 
 
 	equip(var/mob/living/carbon/human/H)
@@ -111,9 +111,9 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
-							 /datum/computer_file/program/card_mod,
-							 /datum/computer_file/program/camera_monitor,
-							 /datum/computer_file/program/reports)
+							/datum/computer_file/program/card_mod,
+							/datum/computer_file/program/camera_monitor,
+							/datum/computer_file/program/reports)
 
 
 	get_access()

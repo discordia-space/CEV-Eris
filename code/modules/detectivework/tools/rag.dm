@@ -62,8 +62,8 @@
 	update_name()
 
 /obj/item/reagent_containers/glass/rag/is_hot()
-    if(on_fire)
-        return 1000
+	if(on_fire)
+		return 1000
 
 /obj/item/reagent_containers/glass/rag/proc/update_name()
 	if(on_fire)
