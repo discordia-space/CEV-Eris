@@ -133,8 +133,8 @@
 		else if (patchnote.surgery_operations & AUTODOC_BLOOD)
 			to_chat(patient, SPAN_NOTICE("Administering blood IV to patient."))
 			var/datum/reagent/organic/blood/blood = patient.vessel.reagent_list[1]
-			blood.volume += damage_heal_amount
-			if(blood.volume >= patient.vessel.total_volume)
+			blood.volume = min(blood.volume + damage_heal_amount, patient.vessel.maximum_volume)
+			if(blood.volume == patient.vessel.maximum_volume)
 				patchnote.surgery_operations &= ~AUTODOC_BLOOD
 
 	else if(patchnote.surgery_operations & AUTODOC_DAMAGE)
@@ -168,7 +168,7 @@
 			var/datum/internal_wound/wound = I.wounddatums[pick(I.wounddatums)]
 			if(istype(wound))
 				wound.treatment(TRUE, TRUE)
-			patchnote.surgery_operations &= ~AUTODOC_INTERNAL_WOUNDS
+			if(!length(I.wounddatums)) patchnote.surgery_operations &= ~AUTODOC_INTERNAL_WOUNDS
 
 /datum/autodoc/Process()
 	if(!patient)
