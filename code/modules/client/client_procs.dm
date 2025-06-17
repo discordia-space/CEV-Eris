@@ -257,7 +257,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			log_access("Failed login: [key] - blacklisted byond version")
 			to_chat(src, span_userdanger("Your version of byond is blacklisted."))
 			to_chat(src, span_danger("Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]]."))
-			to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
+			to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href='byond://\"https://secure.byond.com/download/build\"'>BYOND's website</a> to download other versions."))
 			if(connecting_admin)
 				to_chat(src, "As an admin, you are being allowed to continue using this version, but please consider changing byond versions")
 			else

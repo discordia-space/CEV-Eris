@@ -739,7 +739,7 @@
 /datum/admin_topic/c_mode/Run(list/input)
 	var/dat = {"<B>What storyteller do you wish to install?</B><HR>"}
 	for(var/mode in config.storytellers)
-		dat += {"<A href='?src=\ref[source];c_mode2=[mode]'>[config.storyteller_names[mode]]</A><br>"}
+		dat += {"<a href='byond://?src=\ref[source];c_mode2=[mode]'>[config.storyteller_names[mode]]</A><br>"}
 	dat += {"Now: [master_storyteller]"}
 	usr << browse(dat, "window=c_mode")
 
@@ -966,7 +966,7 @@
 	to_chat(source.owner, "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;")
 	to_chat(source.owner, "Location = [location_description];")
 	to_chat(source.owner, "[special_role_description]")
-	to_chat(source.owner, "(<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a>) (<A HREF='?src=\ref[source];adminplayeropts=\ref[M]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[M]'>VV</A>) (<A HREF='?src=\ref[source];subtlemessage=\ref[M]'>SM</A>) ([admin_jump_link(M, source)]) (<A HREF='?src=\ref[source];secretsadmin=check_antagonist'>CA</A>)")
+	to_chat(source.owner, "(<a href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</a>) (<a href='byond://?src=\ref[source];adminplayeropts=\ref[M]'>PP</A>) (<a href='byond://?_src_=vars;Vars=\ref[M]'>VV</A>) (<a href='byond://?src=\ref[source];subtlemessage=\ref[M]'>SM</A>) ([admin_jump_link(M, source)]) (<a href='byond://?src=\ref[source];secretsadmin=check_antagonist'>CA</A>)")
 
 
 /datum/admin_topic/adminspawncookie
@@ -1057,7 +1057,7 @@
 
 		for(var/page = 1, page <= B.pages.len, page++)
 			var/obj/pageobj = B.pages[page]
-			data += "<A href='?src=\ref[source];AdminFaxViewPage=[page];paper_bundle=\ref[B]'>Page [page] - [pageobj.name]</A><BR>"
+			data += "<a href='byond://?src=\ref[source];AdminFaxViewPage=[page];paper_bundle=\ref[B]'>Page [page] - [pageobj.name]</A><BR>"
 
 		usr << browse(data, "window=[B.name]")
 	else

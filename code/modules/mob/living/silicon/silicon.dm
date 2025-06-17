@@ -252,7 +252,7 @@
 					to_chat(src, "\The [A.alarm_name()].")
 
 		if(alarm_raised)
-			to_chat(src, "<A HREF=?src=\ref[src];showalerts=1>\[Show Alerts\]</A>")
+			to_chat(src, "<a href='byond://?src=\ref[src];showalerts=1>\[Show Alerts\]</A>")
 
 		for(var/datum/alarm_handler/AH in queued_alarms)
 			var/list/alarms = queued_alarms[AH]
@@ -264,7 +264,7 @@
 /mob/living/silicon/ai/raised_alarm(datum/alarm/A)
 	var/cameratext = ""
 	for(var/obj/machinery/camera/C in A.cameras())
-		cameratext += "[(cameratext == "")? "" : "|"]<A HREF='?src=\ref[src];switchcamera=\ref[C]'>[C.c_tag]</A>"
+		cameratext += "[(cameratext == "")? "" : "|"]<a href='byond://?src=\ref[src];switchcamera=\ref[C]'>[C.c_tag]</A>"
 	to_chat(src, "[A.alarm_name()]! ([(cameratext)? cameratext : "No Camera"])")
 
 /mob/living/silicon/proc/is_malf_or_contractor()

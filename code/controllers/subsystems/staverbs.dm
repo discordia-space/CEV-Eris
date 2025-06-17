@@ -74,7 +74,7 @@ SUBSYSTEM_DEF(statverbs)
 	if(statverbs && statverbs.len)
 		. = "Apply: "
 		for(var/stat in statverbs)
-			. += " <a href='?src=\ref[src];statverb=[stat];obj_name=[src]'>[stat]</a>"
+			. += " <a href='byond://?src=\ref[src];statverb=[stat];obj_name=[src]'>[stat]</a>"
 
 /atom/Topic(href, href_list)
 	. = ..()
@@ -201,32 +201,32 @@ SUBSYSTEM_DEF(statverbs)
 			if(target.tendrils.len < 1) //no conduits?
 				target.tendrils_deployed = TRUE
 			var/datum/repeating_sound/wrenchsound = new(30, timer, 0.15, conduit, 'sound/items/Ratchet.ogg', 80, 1)
-			user.visible_message(SPAN_NOTICE("[user] starts to connect various pipes and wires between [conduit] and [target]."), 
+			user.visible_message(SPAN_NOTICE("[user] starts to connect various pipes and wires between [conduit] and [target]."),
 			"You start to connect various pipes and wires between [conduit] and [target].")
 			if(do_mob(user, conduit, timer))
 				wrenchsound.stop()
 				qdel(wrenchsound)
 				conduit.connect(target)
-				user.visible_message(SPAN_NOTICE("[user] successfully connected [conduit] to the [target]!"), 
+				user.visible_message(SPAN_NOTICE("[user] successfully connected [conduit] to the [target]!"),
 				"You successfully conneced [conduit] to the [target]!")
 			else
 				wrenchsound.stop()
 				qdel(wrenchsound)
-				user.visible_message(SPAN_NOTICE("[user] stopped connecting [conduit] and [target]."), 
+				user.visible_message(SPAN_NOTICE("[user] stopped connecting [conduit] and [target]."),
 				"You stopped connecting [conduit] and [target].")
 	else //disconnection
 		var/datum/repeating_sound/wrenchsound = new(30, timer, 0.15, conduit, 'sound/items/Ratchet.ogg', 80, 1)
-		user.visible_message(SPAN_NOTICE("[user] attempts to disconnect [conduit] from the [conduit.base]."), 
+		user.visible_message(SPAN_NOTICE("[user] attempts to disconnect [conduit] from the [conduit.base]."),
 		"You attempt to disconnect [conduit] from the [conduit.base].")
 		if(do_mob(user, conduit, timer))
 			wrenchsound.stop()
 			qdel(wrenchsound)
-			user.visible_message(SPAN_NOTICE("[user] successfully disconnected [conduit] from the [conduit.base]!"), 
+			user.visible_message(SPAN_NOTICE("[user] successfully disconnected [conduit] from the [conduit.base]!"),
 			"You successfully disconneced [conduit] from the [conduit.base]!")
 			if(conduit.base.tendrils_deployed == TRUE)
 				conduit.disconnect()
 		else
 			wrenchsound.stop()
 			qdel(wrenchsound)
-			user.visible_message(SPAN_NOTICE("[user] stopped connecting [conduit] and [conduit.base]."), 
+			user.visible_message(SPAN_NOTICE("[user] stopped connecting [conduit] and [conduit.base]."),
 			"You stopped connecting [conduit] and [conduit.base].")

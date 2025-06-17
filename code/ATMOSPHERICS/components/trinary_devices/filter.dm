@@ -174,18 +174,18 @@
 			current_filter_type = "ERROR - Report this bug to the admin, please!"
 
 	dat += {"
-			<b>Power: </b><a href='?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
+			<b>Power: </b><a href='byond://?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
 			<b>Filtering: </b>[current_filter_type]<br><HR>
 			<h4>Set Filter Type:</h4>
-			<A href='?src=\ref[src];filterset=0'>Plasma</A><BR>
-			<A href='?src=\ref[src];filterset=1'>Oxygen</A><BR>
-			<A href='?src=\ref[src];filterset=2'>Nitrogen</A><BR>
-			<A href='?src=\ref[src];filterset=3'>Carbon Dioxide</A><BR>
-			<A href='?src=\ref[src];filterset=4'>Nitrous Oxide</A><BR>
-			<A href='?src=\ref[src];filterset=-1'>Nothing</A><BR>
+			<a href='byond://?src=\ref[src];filterset=0'>Plasma</A><BR>
+			<a href='byond://?src=\ref[src];filterset=1'>Oxygen</A><BR>
+			<a href='byond://?src=\ref[src];filterset=2'>Nitrogen</A><BR>
+			<a href='byond://?src=\ref[src];filterset=3'>Carbon Dioxide</A><BR>
+			<a href='byond://?src=\ref[src];filterset=4'>Nitrous Oxide</A><BR>
+			<a href='byond://?src=\ref[src];filterset=-1'>Nothing</A><BR>
 			<HR>
 			<B>Set Flow Rate Limit:</B>
-			[src.set_flow_rate]L/s | <a href='?src=\ref[src];set_flow_rate=1'>Change</a><BR>
+			[src.set_flow_rate]L/s | <a href='byond://?src=\ref[src];set_flow_rate=1'>Change</a><BR>
 			<B>Flow rate: </B>[round(last_flow_rate, 0.1)]L/s
 			"}
 

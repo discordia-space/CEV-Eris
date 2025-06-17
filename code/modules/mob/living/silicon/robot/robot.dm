@@ -839,9 +839,9 @@
 	dat += {"
 	<B>Activated Modules</B>
 	<BR>
-	Module 1: [module_state_1 ? "<A HREF=?src=\ref[src];mod=\ref[module_state_1]>[module_state_1]<A>" : "No Module"]<BR>
-	Module 2: [module_state_2 ? "<A HREF=?src=\ref[src];mod=\ref[module_state_2]>[module_state_2]<A>" : "No Module"]<BR>
-	Module 3: [module_state_3 ? "<A HREF=?src=\ref[src];mod=\ref[module_state_3]>[module_state_3]<A>" : "No Module"]<BR>
+	Module 1: [module_state_1 ? "<a href='byond://?src=\ref[src];mod=\ref[module_state_1]>[module_state_1]<A>" : "No Module"]<BR>
+	Module 2: [module_state_2 ? "<a href='byond://?src=\ref[src];mod=\ref[module_state_2]>[module_state_2]<A>" : "No Module"]<BR>
+	Module 3: [module_state_3 ? "<a href='byond://?src=\ref[src];mod=\ref[module_state_3]>[module_state_3]<A>" : "No Module"]<BR>
 	<BR>
 	<B>Installed Modules</B><BR><BR>"}
 
@@ -851,12 +851,12 @@
 		else if(activated(obj))
 			dat += text("[obj]: <B>Activated</B><BR>")
 		else
-			dat += text("[obj]: <A HREF=?src=\ref[src];act=\ref[obj]>Activate</A><BR>")
+			dat += text("[obj]: <a href='byond://?src=\ref[src];act=\ref[obj]>Activate</A><BR>")
 	if(HasTrait(CYBORG_TRAIT_EMAGGED))
 		if(activated(module.emag))
 			dat += text("[module.emag]: <B>Activated</B><BR>")
 		else
-			dat += text("[module.emag]: <A HREF=?src=\ref[src];act=\ref[module.emag]>Activate</A><BR>")
+			dat += text("[module.emag]: <a href='byond://?src=\ref[src];act=\ref[module.emag]>Activate</A><BR>")
 	src << browse(dat, "window=robotmod")
 
 /mob/living/silicon/robot/Topic(href, href_list)
@@ -1080,7 +1080,7 @@
 		if(ROBOT_NOTIFICATION_SIGNAL_LOST)
 			to_chat(connected_ai , SPAN_NOTICE("NOTICE - Signal lost: [braintype] [name]."))
 		if(ROBOT_NOTIFICATION_NEW_UNIT) //New Robot
-			to_chat(connected_ai , SPAN_NOTICE("NOTICE - New [lowertext(braintype)] connection detected: <a href='byond://?src=\ref[connected_ai];track2=\ref[connected_ai];track=\ref[src]'>[name]</a>"))
+			to_chat(connected_ai , SPAN_NOTICE("NOTICE - New [lowertext(braintype)] connection detected: <a href='byond://byond://?src=\ref[connected_ai];track2=\ref[connected_ai];track=\ref[src]'>[name]</a>"))
 		if(ROBOT_NOTIFICATION_NEW_MODULE) //New Module
 			to_chat(connected_ai , SPAN_NOTICE("NOTICE - [braintype] module change detected: [name] has loaded the [first_arg]."))
 		if(ROBOT_NOTIFICATION_MODULE_RESET)

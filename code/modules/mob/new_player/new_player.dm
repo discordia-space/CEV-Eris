@@ -31,19 +31,19 @@
 /mob/new_player/proc/new_player_panel_proc()
 	var/output = "<div align='center'><B>New Player Options</B>"
 	output +="<hr>"
-	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</A></p>"
+	output += "<p><a href='byond://byond://?src=\ref[src];show_preferences=1'>Setup Character</A></p>"
 
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
 		if(ready)
-			output += "<p>\[ <span class='linkOn'><b>Ready</b></span> | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
+			output += "<p>\[ <span class='linkOn'><b>Ready</b></span> | <a href='byond://byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
 		else
-			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | <span class='linkOn'><b>Not Ready</b></span> \]</p>"
+			output += "<p>\[ <a href='byond://byond://?src=\ref[src];ready=1'>Ready</a> | <span class='linkOn'><b>Not Ready</b></span> \]</p>"
 
 	else
-		output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
-		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</A></p>"
+		output += "<a href='byond://byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
+		output += "<p><a href='byond://byond://?src=\ref[src];late_join=1'>Join Game!</A></p>"
 
-	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
+	output += "<p><a href='byond://byond://?src=\ref[src];observe=1'>Observe</A></p>"
 
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
@@ -60,9 +60,9 @@
 				break
 
 			if(newpoll)
-				output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+				output += "<p><b><a href='byond://byond://?src=\ref[src];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
 			else
-				output += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A></p>"
+				output += "<p><a href='byond://byond://?src=\ref[src];showpoll=1'>Show Player Polls</A></p>"
 
 	output += "</div>"
 
@@ -355,7 +355,7 @@
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
 			for(var/mob/M in GLOB.player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 				active++
-			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+			dat += "<a href='byond://byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
 
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=400x640;can_close=1")

@@ -216,7 +216,7 @@ var/list/datum/power/carrion/powerinstances = list()
 
 					if(!ownsthis)
 					{
-						body += "<a href='?src=\ref[src];P="+power+"'>Evolve</a>"
+						body += "<a href='byond://?src=\ref[src];P="+power+"'>Evolve</a>"
 					}
 
 					body += "</td><td align='center'>";

@@ -236,8 +236,8 @@
 		else
 			dat = {"<b>Ingredients:</b><br>[dat]"}
 		dat += {"<HR><BR>\
-		<A href='?src=\ref[src];action=cook'>Turn on!<BR>\
-		<A href='?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
+		<a href='byond://?src=\ref[src];action=cook'>Turn on!<BR>\
+		<a href='byond://?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
 		"}
 	user << browse("<HEAD><TITLE>[src] Controls</TITLE></HEAD><TT>[dat]</TT>", "window=[src]")
 	onclose(user, "[src]")

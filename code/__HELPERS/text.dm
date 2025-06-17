@@ -538,7 +538,7 @@ proc/TextPreview(var/string, var/len=40)
 	var/turf/T = get_turf(target)
 	var/area/A = get_area(target)
 	var/where = "[A? A.name : "Unknown Location"] | [T.x], [T.y], [T.z]"
-	var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>[where]</a>"
+	var/whereLink = "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>[where]</a>"
 	return whereLink
 
 //Used for applying byonds text macros to strings that are loaded at runtime

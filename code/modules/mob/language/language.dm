@@ -251,15 +251,15 @@
 		var/mob/living/silicon/silicon = src
 
 		if(silicon.default_language)
-			dat += "Current default language: [silicon.default_language] - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/><br/>"
+			dat += "Current default language: [silicon.default_language] - <a href='byond://byond://?src=\ref[src];default_lang=reset'>reset</a><br/><br/>"
 
 		for(var/datum/language/L in languages)
 			if(!(L.flags & NONGLOBAL))
 				var/default_str
 				if(L == silicon.default_language)
-					default_str = " - default - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a>"
+					default_str = " - default - <a href='byond://byond://?src=\ref[src];default_lang=reset'>reset</a>"
 				else
-					default_str = " - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a>"
+					default_str = " - <a href='byond://byond://?src=\ref[src];default_lang=\ref[L]'>set default</a>"
 
 				var/synth = (L in silicon.speech_synthesizer_langs)
 				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b>[synth ? default_str : null]<br/>Speech Synthesizer: <i>[synth ? "YES" : "NOT SUPPORTED"]</i><br/>[L.desc]<br/><br/>"
@@ -287,14 +287,14 @@
 	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"
 
 	if(default_language)
-		dat += "Current default language: [default_language] - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/><br/>"
+		dat += "Current default language: [default_language] - <a href='byond://byond://?src=\ref[src];default_lang=reset'>reset</a><br/><br/>"
 
 	for(var/datum/language/L in languages)
 		if(!(L.flags & NONGLOBAL))
 			if(L == default_language)
-				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b> - default - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/>[L.desc]<br/><br/>"
+				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b> - default - <a href='byond://byond://?src=\ref[src];default_lang=reset'>reset</a><br/>[L.desc]<br/><br/>"
 			else
-				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b> - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a><br/>[L.desc]<br/><br/>"
+				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b> - <a href='byond://byond://?src=\ref[src];default_lang=\ref[L]'>set default</a><br/>[L.desc]<br/><br/>"
 
 	src << browse(dat, "window=checklanguage")
 

@@ -29,8 +29,8 @@
 /datum/category_item/player_setup_item/physical/flavor/content(mob/user)
 	. = list()
 	. += "<b>Flavor:</b><br>"
-	. += "<a href='?src=\ref[src];flavor_text=open'>Set Flavor Text</a><br/>"
-	. += "<a href='?src=\ref[src];flavour_text_robot=open'>Set Robot Flavor Text</a><br/>"
+	. += "<a href='byond://?src=\ref[src];flavor_text=open'>Set Flavor Text</a><br/>"
+	. += "<a href='byond://?src=\ref[src];flavour_text_robot=open'>Set Robot Flavor Text</a><br/>"
 	return jointext(.,null)
 
 /datum/category_item/player_setup_item/physical/flavor/OnTopic(href, list/href_list, mob/user)
@@ -61,11 +61,11 @@
 	HTML += "<tt><center>"
 	HTML += "<b>Set Robot Flavour Text</b> <hr />"
 	HTML += "<br></center>"
-	HTML += "<a href='?src=\ref[src];flavour_text_robot=Default'>Default:</a> "
+	HTML += "<a href='byond://?src=\ref[src];flavour_text_robot=Default'>Default:</a> "
 	HTML += TextPreview(pref.flavour_texts_robot["Default"])
 	HTML += "<hr />"
 	for(var/module in robot_modules)
-		HTML += "<a href='?src=\ref[src];flavour_text_robot=[module]'>[module]:</a> "
+		HTML += "<a href='byond://?src=\ref[src];flavour_text_robot=[module]'>[module]:</a> "
 		HTML += TextPreview(pref.flavour_texts_robot[module])
 		HTML += "<br>"
 	HTML += "<hr />"

@@ -5,7 +5,7 @@
 /proc/log_and_message_admins(message as text, mob/user = usr, turf/location)
 	var/turf/T = location ? location : (user ? get_turf(user) : null)
 	if(T)
-		message = message + " (<a HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)"
+		message = message + " (<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)"
 
 	log_admin(user ? "[key_name(user)] [message]" : "EVENT [message]")
 	message_admins(user ? "[key_name_admin(user)] [message]" : "EVENT [message]")
@@ -27,7 +27,7 @@
 	if(attacker)
 		attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>[key_name(victim)] - [attacker_message]</font>")
 
-	msg_admin_attack("[key_name(attacker)] [admin_message] [key_name(victim)] (INTENT: [attacker? uppertext(attacker.a_intent) : "N/A"]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[attacker.x];Y=[attacker.y];Z=[attacker.z]'>JMP</a>)")
+	msg_admin_attack("[key_name(attacker)] [admin_message] [key_name(victim)] (INTENT: [attacker? uppertext(attacker.a_intent) : "N/A"]) (<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[attacker.x];Y=[attacker.y];Z=[attacker.z]'>JMP</a>)")
 
 /proc/admin_attacker_log_many_victims(mob/attacker, list/mob/victims, attacker_message, victim_message, admin_message)
 	if(!victims || !victims.len)

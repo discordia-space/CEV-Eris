@@ -41,7 +41,7 @@
 
 	var/dat = {"<B>Freeze Gun Configuration: </B><BR>
 	Current output temperature: [temp_text]<BR>
-	Target output temperature: <A href='?src=\ref[src];temp=-100'>-</A> <A href='?src=\ref[src];temp=-10'>-</A> <A href='?src=\ref[src];temp=-1'>-</A> [current_temperature] <A href='?src=\ref[src];temp=1'>+</A> <A href='?src=\ref[src];temp=10'>+</A> <A href='?src=\ref[src];temp=100'>+</A><BR>
+	Target output temperature: <a href='byond://?src=\ref[src];temp=-100'>-</A> <a href='byond://?src=\ref[src];temp=-10'>-</A> <a href='byond://?src=\ref[src];temp=-1'>-</A> [current_temperature] <a href='byond://?src=\ref[src];temp=1'>+</A> <a href='byond://?src=\ref[src];temp=10'>+</A> <a href='byond://?src=\ref[src];temp=100'>+</A><BR>
 	"}
 
 	user << browse(dat, "window=freezegun;size=450x300;can_resize=1;can_close=1;can_minimize=1")

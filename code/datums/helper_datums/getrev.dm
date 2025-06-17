@@ -37,7 +37,7 @@ client/verb/showrevinfo()
 	if(revdata.revision)
 		to_chat(src, "<b>Server revision:</b> [revdata.branch] - [revdata.date]")
 		if(config.githuburl)
-			to_chat(src, "<a href='[config.githuburl]/commit/[revdata.revision]'>[revdata.revision]</a>")
+			to_chat(src, "<a href='byond://[config.githuburl]/commit/[revdata.revision]'>[revdata.revision]</a>")
 		else
 			to_chat(src, revdata.revision)
 	else

@@ -86,7 +86,7 @@
 
 	var/mob/living/L = get(holder.holder2, /mob/living)
 	if(L)
-		var/open_app_link = "<a href='?src=\ref[holder.holder2];PC_runprogram=[filename];disk=\ref[holder]'>Open Email Client</a>"
+		var/open_app_link = "<a href='byond://?src=\ref[holder.holder2];PC_runprogram=[filename];disk=\ref[holder]'>Open Email Client</a>"
 		received_message.notify_mob(L, holder.holder2, open_app_link)
 
 
@@ -121,7 +121,7 @@
 /datum/nano_module/email_client/proc/mail_received(datum/computer_file/data/email_message/received_message)
 	var/mob/living/L = get(nano_host(), /mob/living)
 	if(L)
-		received_message.notify_mob(L, nano_host(), "<a href='?src=\ref[src];open;reply=[received_message.uid]'>Reply</a>")
+		received_message.notify_mob(L, nano_host(), "<a href='byond://?src=\ref[src];open;reply=[received_message.uid]'>Reply</a>")
 		log_and_message_admins("[usr] received email from [received_message.source]. \n Message title: [received_message.title]. \n [received_message.stored_data]")
 
 /datum/nano_module/email_client/Destroy()

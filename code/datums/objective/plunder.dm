@@ -39,8 +39,8 @@
 	explanation_text = "Plunder loot with a cumulated value of [target_amount] credits. Loot must be stored on the raid shuttle in a loot crate to be considered toward your objective."
 
 /datum/objective/plunder/get_panel_entry()
-	return "Plunder loot with a cumulated value of <a href='?src=\ref[src];set_target=1'>[target_amount]</a> credits. \
-	        Value of loot: <a href='?src=\ref[src];set_target=1'>[get_loot_value()]</a> credits."
+	return "Plunder loot with a cumulated value of <a href='byond://?src=\ref[src];set_target=1'>[target_amount]</a> credits. \
+	        Value of loot: <a href='byond://?src=\ref[src];set_target=1'>[get_loot_value()]</a> credits."
 
 /datum/objective/plunder/get_info()
 	return "Value of loot: [get_loot_value()] credits."

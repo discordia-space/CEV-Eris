@@ -508,7 +508,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 					if("PERMABAN")
 						typedesc = "<font color='red'><b>PERMABAN</b></font>"
 					if("TEMPBAN")
-						typedesc = "<b>TEMPBAN</b><br><font size='2'>([duration] minutes) [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];dbbanedit=duration;dbbanid=[banid]\">Edit</a>)"]<br>Expires [expiration]</font>"
+						typedesc = "<b>TEMPBAN</b><br><font size='2'>([duration] minutes) [(unbanned || auto) ? "" : "(<a href='byond://\"byond://?src=\ref[src];dbbanedit=duration;dbbanid=[banid]\"'>Edit</a>)"]<br>Expires [expiration]</font>"
 					if("JOB_PERMABAN")
 						typedesc = "<b>JOBBAN</b><br><font size='2'>([job])</font>"
 					if("JOB_TEMPBAN")
@@ -519,14 +519,14 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 				output += "<td align='center'><b>[target_ckey]</b></td>"
 				output += "<td align='center'>[bantime]</td>"
 				output += "<td align='center'><b>[banned_by_ckey]</b></td>"
-				output += "<td align='center'>[(unbanned || auto) ? "" : "<b><a href=\"byond://?src=\ref[src];dbbanedit=unban;dbbanid=[banid]\">Unban</a></b>"]</td>"
+				output += "<td align='center'>[(unbanned || auto) ? "" : "<b><a href='byond://\"byond://?src=\ref[src];dbbanedit=unban;dbbanid=[banid]\"'>Unban</a></b>"]</td>"
 				output += "</tr>"
 				output += "<tr bgcolor='[dcolor]'>"
 				output += "<td align='center' colspan='2' bgcolor=''><b>IP:</b> [ip]</td>"
 				output += "<td align='center' colspan='3' bgcolor=''><b>CIP:</b> [cid]</td>"
 				output += "</tr>"
 				output += "<tr bgcolor='[lcolor]'>"
-				output += "<td align='center' colspan='5'><b>Reason: [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];dbbanedit=reason;dbbanid=[banid]\">Edit</a>)"]</b> <cite>\"[reason]\"</cite></td>"
+				output += "<td align='center' colspan='5'><b>Reason: [(unbanned || auto) ? "" : "(<a href='byond://\"byond://?src=\ref[src];dbbanedit=reason;dbbanid=[banid]\"'>Edit</a>)"]</b> <cite>\"[reason]\"</cite></td>"
 				output += "</tr>"
 				if(unbanned)
 					output += "<tr bgcolor='[dcolor]'>"

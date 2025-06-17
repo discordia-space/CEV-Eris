@@ -538,7 +538,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 
 	// Give profiler access
 	world.SetConfig("APP/admin", ckey, "role=admin")
-	to_chat(src, "Press <a href='?debug=profile'>here</a> to access profiler panel. It will replace verb panel, and you may have to wait a couple of seconds for it to display.")
+	to_chat(src, "Press <a href='byond://?debug=profile'>here</a> to access profiler panel. It will replace verb panel, and you may have to wait a couple of seconds for it to display.")
 
 /client/proc/kill_air()
 	set category = "Debug"

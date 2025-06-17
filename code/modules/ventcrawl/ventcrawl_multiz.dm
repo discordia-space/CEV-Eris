@@ -15,7 +15,7 @@
 /obj/machinery/atmospherics/pipe/zpipe/Entered(atom/movable/Obj)
 	if(istype(Obj, /mob/living))
 		var/mob/living/L = Obj
-		to_chat(L, span("notice", "You are in a vertical pipe section. Use <a href='?src=\ref[src];crawl_user=\ref[L];crawl_dir=[travel_direction]'>[travel_verbname]</a> from the IC menu to [travel_direction_verb] a level."))
+		to_chat(L, span("notice", "You are in a vertical pipe section. Use <a href='byond://?src=\ref[src];crawl_user=\ref[L];crawl_dir=[travel_direction]'>[travel_verbname]</a> from the IC menu to [travel_direction_verb] a level."))
 	. = ..()
 
 /obj/machinery/atmospherics/pipe/zpipe/Topic(href, href_list)

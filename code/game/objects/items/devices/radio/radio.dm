@@ -27,27 +27,9 @@
 	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 
-	var/static/list/default_internal_channels = list(
-		num2text(PUB_FREQ) = list(),
-		num2text(AI_FREQ)  = list(access_synth),
-		num2text(COMM_FREQ)= list(access_heads),
-		num2text(ENG_FREQ) = list(access_engine_equip, access_atmospherics),
-		num2text(MED_FREQ) = list(access_medical_equip),
-		num2text(NT_FREQ) = list(access_nt_disciple),
-		num2text(MED_I_FREQ)=list(access_medical_equip),
-		num2text(SEC_FREQ) = list(access_security),
-		num2text(SEC_I_FREQ)=list(access_security),
-		num2text(SCI_FREQ) = list(access_tox,access_robotics,access_xenobiology),
-		num2text(SUP_FREQ) = list(access_cargo),
-		num2text(SRV_FREQ) = list(access_janitor, access_hydroponics))
-
-	var/static/list/unique_internal_channels = list(
-		num2text(DTH_FREQ) = list(access_cent_specops))
-
-	var/static/list/default_medbay_channels = list(
-		num2text(PUB_FREQ) = list(),
-		num2text(MED_FREQ) = list(access_medical_equip),
-		num2text(MED_I_FREQ) = list(access_medical_equip))
+	var/static/list/default_internal_channels
+	var/static/list/unique_internal_channels
+	var/static/list/default_medbay_channels
 
 /obj/item/device/radio
 	var/datum/radio_frequency/radio_connection
@@ -61,6 +43,27 @@
 /obj/item/device/radio/New()
 	..()
 	wires = new(src)
+	if(!default_internal_channels)
+		default_internal_channels = list(
+		num2text(PUB_FREQ) = list(),
+		num2text(AI_FREQ)  = list(access_synth),
+		num2text(COMM_FREQ)= list(access_heads),
+		num2text(ENG_FREQ) = list(access_engine_equip, access_atmospherics),
+		num2text(MED_FREQ) = list(access_medical_equip),
+		num2text(NT_FREQ) = list(access_nt_disciple),
+		num2text(MED_I_FREQ)=list(access_medical_equip),
+		num2text(SEC_FREQ) = list(access_security),
+		num2text(SEC_I_FREQ)=list(access_security),
+		num2text(SCI_FREQ) = list(access_tox,access_robotics,access_xenobiology),
+		num2text(SUP_FREQ) = list(access_cargo),
+		num2text(SRV_FREQ) = list(access_janitor, access_hydroponics))
+		unique_internal_channels = list(
+		num2text(DTH_FREQ) = list(access_cent_specops))
+		default_medbay_channels = list(
+		num2text(PUB_FREQ) = list(),
+		num2text(MED_FREQ) = list(access_medical_equip),
+		num2text(MED_I_FREQ) = list(access_medical_equip))
+
 	internal_channels = default_internal_channels.Copy()
 	if(syndie)
 		internal_channels += unique_internal_channels.Copy()
@@ -163,7 +166,7 @@
 	var/list = !!(chan_stat&FREQ_LISTENING)!=0
 	return {"
 			<B>[chan_name]</B><br>
-			Speaker: <A href='byond://?src=\ref[src];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
+			Speaker: <a href='byond://byond://?src=\ref[src];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
 			"}
 
 /obj/item/device/radio/proc/ToggleBroadcast()

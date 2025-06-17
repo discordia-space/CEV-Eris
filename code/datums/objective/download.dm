@@ -31,7 +31,7 @@
 	explanation_text = "Download [target_amount] research levels."
 
 /datum/objective/download/get_panel_entry()
-	return "Download <a href='?src=\ref[src];set_target=1'>[target_amount]</a> research levels."
+	return "Download <a href='byond://?src=\ref[src];set_target=1'>[target_amount]</a> research levels."
 
 /datum/objective/download/Topic(href, href_list)
 	if(..())
