@@ -212,7 +212,7 @@
 	H.drop_from_inventory(tank)
 	src.tank = null
 
-/obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user)
 
 	if(!isliving(user))
 		return

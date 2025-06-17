@@ -1,7 +1,7 @@
 /datum/admin_secret_item/fun_secret/paintbal_mode
 	name = "Paintball Mode"
 
-/datum/admin_secret_item/fun_secret/paintbal_mode/execute(var/mob/user)
+/datum/admin_secret_item/fun_secret/paintbal_mode/execute(mob/user)
 	. = ..()
 	if(!.)
 		return

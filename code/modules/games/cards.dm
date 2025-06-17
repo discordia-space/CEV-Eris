@@ -35,10 +35,8 @@
 
 /obj/item/deck/cards/New()
 	..()
-
 	var/datum/playingcard/P
 	for(var/suit in list("spades","clubs","diamonds","hearts"))
-
 		var/colour
 		if(suit == "spades" || suit == "clubs")
 			colour = "black_"
@@ -59,14 +57,13 @@
 			P.back_icon = "card_back"
 			cards += P
 
-
 	for(var/i = 0,i<2,i++)
 		P = new()
 		P.name = "joker"
 		P.card_icon = "joker"
 		cards += P
 
-/obj/item/deck/attackby(obj/O as obj, mob/user as mob)
+/obj/item/deck/attackby(obj/O, mob/user)
 	if(istype(O,/obj/item/hand))
 		var/obj/item/hand/H = O
 		for(var/datum/playingcard/P in H.cards)
@@ -77,19 +74,18 @@
 	..()
 
 /obj/item/deck/verb/draw_card()
-
 	set category = "Object"
 	set name = "Draw"
 	set desc = "Draw a card from a deck."
 	set src in view(1)
 
-	if(usr.stat || !Adjacent(usr)) return
+	if(usr.stat || !Adjacent(usr))
+		return
 
 	if(!iscarbon(usr))
 		return
 
 	var/mob/living/carbon/user = usr
-
 	if(!cards.len)
 		to_chat(usr, "There are no cards in the deck.")
 		return
@@ -103,7 +99,8 @@
 		H = new(get_turf(src))
 		user.put_in_hands(H)
 
-	if(!H || !user) return
+	if(!H || !user)
+		return
 
 	var/datum/playingcard/P = cards[1]
 	H.cards += P
@@ -113,13 +110,13 @@
 	to_chat(user, "It's the [P].")
 
 /obj/item/deck/verb/deal_card()
-
 	set category = "Object"
 	set name = "Deal"
 	set desc = "Deal a card from a deck."
 	set src in view(1)
 
-	if(usr.stat || !Adjacent(usr)) return
+	if(usr.stat || !Adjacent(usr))
+		return
 
 	if(!cards.len)
 		to_chat(usr, "There are no cards in the deck.")
@@ -129,16 +126,15 @@
 	for(var/mob/living/player in viewers(3))
 		if(!player.stat)
 			players += player
-	//players -= usr
 
 	var/mob/living/M = input("Who do you wish to deal a card?") as null|anything in players
-	if(!usr || !src || !M) return
+	if(!usr || !src || !M)
+		return
 
 	deal_at(usr, M)
 
 /obj/item/deck/proc/deal_at(mob/user, mob/target)
 	var/obj/item/hand/H = new(get_step(user, user.dir))
-
 	H.cards += cards[1]
 	cards -= cards[1]
 	H.concealed = 1
@@ -149,7 +145,7 @@
 		user.visible_message("\The [user] deals a card to \the [target].")
 	H.throw_at(get_step(target,target.dir),10,1,H)
 
-/obj/item/hand/attackby(obj/O as obj, mob/user as mob)
+/obj/item/hand/attackby(obj/O, mob/user)
 	if(istype(O,/obj/item/hand))
 		var/obj/item/hand/H = O
 		for(var/datum/playingcard/P in cards)
@@ -161,8 +157,7 @@
 		return
 	..()
 
-/obj/item/deck/attack_self(var/mob/user as mob)
-
+/obj/item/deck/attack_self(mob/user)
 	var/list/newcards = list()
 	while(cards.len)
 		var/datum/playingcard/P = pick(cards)
@@ -172,36 +167,34 @@
 	user.visible_message("\The [user] shuffles [src].")
 
 /obj/item/deck/MouseDrop(atom/over)
-	if(!usr || !over) return
-	if(!Adjacent(usr) || !over.Adjacent(usr)) return // should stop you from dragging through windows
+	if(!usr || !over)
+		return
+	if(!Adjacent(usr) || !over.Adjacent(usr))
+		return // should stop you from dragging through windows
 
-	if(!ishuman(over) || !(over in viewers(3))) return
+	if(!ishuman(over) || !(over in viewers(3)))
+		return
 
 	if(!cards.len)
 		to_chat(usr, "There are no cards in the deck.")
 		return
-
 	deal_at(usr, over)
 
-/obj/item/pack/
+/obj/item/pack
 	name = "card pack"
 	desc = "For those with disposible income."
-
 	icon_state = "card_pack"
 	icon = 'icons/obj/playing_cards.dmi'
 	w_class = ITEM_SIZE_TINY
 	var/list/cards = list()
 
-
-/obj/item/pack/attack_self(var/mob/user as mob)
+/obj/item/pack/attack_self(mob/user)
 	user.visible_message("[user] rips open \the [src]!")
 	var/obj/item/hand/H = new()
-
 	H.cards += cards
 	cards.Cut();
 	user.drop_item()
 	qdel(src)
-
 	H.update_icon()
 	user.put_in_active_hand(H)
 
@@ -211,12 +204,10 @@
 	icon = 'icons/obj/playing_cards.dmi'
 	icon_state = "empty"
 	w_class = ITEM_SIZE_TINY
-
 	var/concealed = 0
 	var/list/cards = list()
 
 /obj/item/hand/verb/discard()
-
 	set category = "Object"
 	set name = "Discard"
 	set desc = "Place a card from your hand in front of you."
@@ -226,10 +217,10 @@
 		to_discard[P.name] = P
 	var/discarding = input("Which card do you wish to put down?") as null|anything in to_discard
 
-	if(!discarding || !to_discard[discarding] || !usr || !src) return
+	if(!discarding || !to_discard[discarding] || !usr || !src)
+		return
 
 	var/datum/playingcard/card = to_discard[discarding]
-
 	var/obj/item/hand/H = new(src.loc)
 	H.cards += card
 	cards -= card
@@ -238,11 +229,10 @@
 	src.update_icon()
 	usr.visible_message("\The [usr] plays \the [discarding].")
 	H.loc = get_step(usr,usr.dir)
-
 	if(!cards.len)
 		qdel(src)
 
-/obj/item/hand/attack_self(var/mob/user as mob)
+/obj/item/hand/attack_self(mob/user)
 	concealed = !concealed
 	update_icon()
 	user.visible_message("\The [user] [concealed ? "conceals" : "reveals"] their hand.")
@@ -255,7 +245,6 @@
 	..(user, extra_description)
 
 /obj/item/hand/update_icon(var/direction = 0)
-
 	if(!cards.len)
 		qdel(src)
 		return
@@ -268,8 +257,6 @@
 		desc = "[P.desc]"
 
 	cut_overlays()
-
-
 	if(cards.len == 1)
 		var/datum/playingcard/P = cards[1]
 		var/image/I = new(src.icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
@@ -279,7 +266,6 @@
 		return
 
 	var/offset = FLOOR(20/cards.len, 1)
-
 	var/matrix/M = matrix()
 	if(direction)
 		switch(direction)
@@ -310,12 +296,12 @@
 		overlays += I
 		i++
 
-/obj/item/hand/dropped(mob/user as mob)
+/obj/item/hand/dropped(mob/user)
 	if(locate(/obj/structure/table, loc))
-		src.update_icon(user.dir)
+		update_icon(user.dir)
 	else
 		update_icon()
 
-/obj/item/hand/pre_pickup(mob/user as mob)
-	src.update_icon()
+/obj/item/hand/pre_pickup(mob/user)
+	update_icon()
 	return ..()

@@ -1,6 +1,6 @@
 var/list/client_preference_stats_
 
-/proc/client_preference_stats_for_usr(var/mob/user = usr)
+/proc/client_preference_stats_for_usr(mob/user = usr)
 	. = list()
 	if(!user)
 		return

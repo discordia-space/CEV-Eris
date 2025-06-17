@@ -97,10 +97,9 @@
 	//Used to control how often ian scans for nearby food
 
 	sanity_damage = -0.01
-
 	mob_classification = CLASSIFICATION_ORGANIC
 
-/mob/living/simple_animal/proc/beg(var/atom/thing, var/atom/holder)
+/mob/living/simple_animal/proc/beg(atom/thing, atom/holder)
 	visible_emote("gazes longingly at [holder]'s [thing]")
 
 /mob/living/simple_animal/New()
@@ -112,9 +111,7 @@
 
 	seek_move_delay = (1 / seek_speed) / (world.tick_lag / 10)//number of ticks between moves
 	turns_since_scan = rand(min_scan_interval, max_scan_interval)//Randomise this at the start so animals don't sync up
-
 	remove_verb(src, /mob/verb/observe)
-
 	if(mob_size)
 		nutrition_step = mob_size * 0.03 * metabolic_factor
 		bite_factor = mob_size * 0.1
@@ -126,8 +123,8 @@
 /mob/living/simple_animal/Move(NewLoc, direct)
 	. = ..()
 	if(.)
-		if(src.nutrition && src.stat != DEAD)
-			src.adjustNutrition(-nutrition_step)
+		if(nutrition && stat != DEAD)
+			adjustNutrition(-nutrition_step)
 
 /mob/living/simple_animal/Released()
 	//These will cause mobs to immediately do things when released.
@@ -135,16 +132,15 @@
 	turns_since_move = turns_per_move
 	..()
 
-/mob/living/simple_animal/Initialize(var/mapload)
+/mob/living/simple_animal/Initialize(mapload)
 	.=..()
 	if(mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
 
 /mob/living/simple_animal/Login()
-	if(src && src.client)
-		src.client.screen = null
+	if(client)
+		client.screen = null
 	..()
-
 
 /mob/living/simple_animal/updatehealth()
 	..()
@@ -171,9 +167,7 @@
 
 /mob/living/simple_animal/Life()
 	.=..()
-
 	if(!stasis)
-
 		if(!.)
 			return FALSE
 
@@ -187,25 +181,18 @@
 		handle_stunned()
 		handle_weakened()
 		handle_paralysed()
-
 		process_food()
 		handle_foodscanning()
 
 		//Atmos
 		var/atmos_suitable = 1
-
 		var/atom/A = loc
-
 		if(istype(A,/turf))
 			var/turf/T = A
-
 			var/datum/gas_mixture/Environment = T.return_air()
-
 			if(Environment)
-
-				if( abs(Environment.temperature - bodytemperature) > 40 )
+				if(abs(Environment.temperature - bodytemperature) > 40)
 					bodytemperature += ((Environment.temperature - bodytemperature) / 5)
-
 				if(min_oxy)
 					if(Environment.gas["oxygen"] < min_oxy)
 						atmos_suitable = 0
@@ -265,7 +252,6 @@
 							set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
 							step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
 							turns_since_move = 0
-
 	return TRUE
 
 /mob/living/simple_animal/proc/visible_emote(message)
@@ -273,7 +259,6 @@
 		message = safepick(message)
 	if(message)
 		visible_message("<span class='name'>[src]</span> [message]")
-
 
 //Simple reagent processing for simple animals
 //This allows animals to digest food, and only food
@@ -310,16 +295,15 @@
 /mob/living/simple_animal/can_eat()
 	if(!hunger_enabled || nutrition > max_nutrition * 0.9)
 		return 0//full
-
 	else if(nutrition > max_nutrition * 0.8)
 		return 1//content
-
-	else return 2//hungry
+	else
+		return 2//hungry
 
 /mob/living/simple_animal/gib()
 	..(icon_gib,1)
 
-/mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple_animal/bullet_act(obj/item/projectile/Proj)
 	if(!Proj)
 		return
 
@@ -337,11 +321,9 @@
 	density = initial(density)
 	update_icons()
 
-/mob/living/simple_animal/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_animal/attack_hand(mob/living/carbon/human/M)
 	..()
-
 	switch(M.a_intent)
-
 		if(I_HELP)
 			if(health > 0)
 				M.visible_message("\blue [M] [response_help] \the [src]")
@@ -358,13 +340,10 @@
 				return
 
 			var/obj/item/grab/G = new /obj/item/grab(M, src)
-
 			M.put_in_active_hand(G)
-
 			G.synch()
 			G.affecting = src
 			LAssailant = M
-
 			M.visible_message("\red [M] has grabbed [src] passively!")
 			M.do_attack_animation(src)
 
@@ -374,9 +353,7 @@
 			M.visible_message("\red [M] [response_harm] \the [src]")
 			M.do_attack_animation(src)
 
-	return
-
-/mob/living/simple_animal/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_animal/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/gripper))
 		return ..(O, user)
 
@@ -390,8 +367,7 @@
 	else
 		O.attack(src, user, user.targeted_organ)
 
-/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
-
+/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
 	if(effective_force <= resistance)
 		to_chat(user, SPAN_DANGER("This weapon is ineffective, it does no damage."))
 		return 2
@@ -403,7 +379,6 @@
 	tally += speed
 	if(!nutrition)
 		tally += 4
-
 	return tally
 
 /mob/living/simple_animal/get_status_tab_items()
@@ -425,8 +400,6 @@
 		adjustBruteLoss(target_power / 3)
 	return 0
 
-
-
 /mob/living/simple_animal/proc/SA_attackable(_target_mob)
 	. = TRUE
 
@@ -444,15 +417,15 @@
 		if(B.health > 0)
 			return FALSE
 
-/mob/living/simple_animal/get_speech_ending(verb, var/ending)
+/mob/living/simple_animal/get_speech_ending(verb, ending)
 	return verb
 
-/mob/living/simple_animal/put_in_hands(var/obj/item/W) // No hands.
+/mob/living/simple_animal/put_in_hands(obj/item/W) // No hands.
 	W.loc = get_turf(src)
 	return 1
 
 // Harvest an animal's delicious byproducts
-/mob/living/simple_animal/proc/harvest(var/mob/user)
+/mob/living/simple_animal/proc/harvest(mob/user)
 	var/actual_meat_amount = max(1,(meat_amount/2))
 	if(meat_type && actual_meat_amount>0 && (stat == DEAD))
 		for(var/i=0;i<actual_meat_amount;i++)
@@ -551,10 +524,8 @@
 		return
 	return ..()
 
-
 /mob/living/simple_animal/handle_fire()
 	return
-
 /mob/living/simple_animal/update_fire()
 	return
 /mob/living/simple_animal/IgniteMob()
@@ -562,10 +533,9 @@
 /mob/living/simple_animal/ExtinguishMob()
 	return
 
-
 //I wanted to call this proc alert but it already exists.
 //Basically makes the mob pay attention to the world, resets sleep timers, awakens it from a sleeping state sometimes
-/mob/living/simple_animal/proc/poke(var/force_wake = 0)
+/mob/living/simple_animal/proc/poke(force_wake = 0)
 	if(stat != DEAD)
 		if(force_wake || (!client && prob(30)))
 			wake_up()
@@ -606,7 +576,6 @@
 		fall_asleep()
 	to_chat(src, span("notice","You are now [resting ? "resting" : "getting up"]"))
 	update_icons()
-
 
 //This is called when an animal 'speaks'. It does nothing here, but descendants should override it to add audio
 /mob/living/simple_animal/proc/speak_audio()

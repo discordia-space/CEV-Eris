@@ -262,7 +262,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 	update_icon()
 	return 0
 
-/obj/machinery/newscaster/attack_hand(mob/user as mob)            //########### THE MAIN BEEF IS HERE! And in the proc below this...############
+/obj/machinery/newscaster/attack_hand(mob/user)            //########### THE MAIN BEEF IS HERE! And in the proc below this...############
 
 	if(!src.ispowered || src.isbroken)
 		return
@@ -743,7 +743,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 
 
 
-/obj/machinery/newscaster/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/newscaster/attackby(obj/item/I as obj, mob/user)
 	if(src.isbroken)
 		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, 1)
 		for(var/mob/O in hearers(5, src.loc))
@@ -779,7 +779,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 	is_synth = synth
 	photo = p
 
-/obj/machinery/newscaster/proc/AttachPhoto(mob/user as mob)
+/obj/machinery/newscaster/proc/AttachPhoto(mob/user)
 	if(photo_data)
 		if(!photo_data.is_synth)
 			photo_data.photo.forceMove(get_turf(src))
@@ -940,7 +940,7 @@ obj/item/newspaper/Topic(href, href_list)
 			src.attack_self(loc)
 
 
-obj/item/newspaper/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/newspaper/attackby(obj/item/W as obj, mob/user)
 	if(istype(W, /obj/item/pen))
 		if(src.scribble_page == src.curr_page)
 			to_chat(user, "<FONT COLOR='blue'>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</FONT>")

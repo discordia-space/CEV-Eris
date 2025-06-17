@@ -122,7 +122,7 @@
 	..()
 
 
-/obj/item/device/assembly_holder/attack_self(mob/user as mob)
+/obj/item/device/assembly_holder/attack_self(mob/user)
 	add_fingerprint(user)
 	if(src.secured)
 		if(!left_assembly || !right_assembly)

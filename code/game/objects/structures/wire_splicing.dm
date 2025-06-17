@@ -89,7 +89,7 @@
 		if(prob(chance_to_shock))
 			shock(L, FALSE)
 
-/obj/structure/wire_splicing/proc/shock(mob/user as mob, using_hands = TRUE)
+/obj/structure/wire_splicing/proc/shock(mob/user, using_hands = TRUE)
 	if(!in_range(src, user))//To prevent TK and mech users from getting shocked
 		return FALSE
 	var/turf/T = get_turf(src)

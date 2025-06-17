@@ -78,7 +78,7 @@
 /obj/item/storage/bsdm/permanent
 	del_on_send = FALSE
 
-/obj/item/storage/bsdm/permanent/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/bsdm/permanent/attackby(obj/item/W as obj, mob/user)
 	..()
 
 	if(istype(W, /obj/item/reagent_containers/syringe/blitzshell))

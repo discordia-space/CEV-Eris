@@ -71,7 +71,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		location.hotspot_expose(700, 5)
 		return
 
-/obj/item/flame/match/dropped(mob/user as mob)
+/obj/item/flame/match/dropped(mob/user)
 	//If dropped, put ourselves out
 	//not before lighting up the turf we land on, though.
 	if(lit)
@@ -202,7 +202,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			update_wear_icon()
 		STOP_PROCESSING(SSobj, src)
 
-/obj/item/clothing/mask/smokable/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/mask/smokable/attackby(obj/item/W as obj, mob/user)
 	..()
 	if(isflamesource(W))
 		var/text = matchmes
@@ -262,7 +262,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	. = ..()
 	tool_qualities = list(QUALITY_CAUTERIZING = 10)
 
-/obj/item/clothing/mask/smokable/cigarette/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/mask/smokable/cigarette/attackby(obj/item/W as obj, mob/user)
 	..()
 
 	if(istype(W, /obj/item/melee/energy/sword))
@@ -272,7 +272,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	return
 
-/obj/item/clothing/mask/smokable/cigarette/afterattack(obj/item/reagent_containers/glass/glass, mob/user as mob, proximity)
+/obj/item/clothing/mask/smokable/cigarette/afterattack(obj/item/reagent_containers/glass/glass, mob/user, proximity)
 	..()
 	if(!proximity)
 		return

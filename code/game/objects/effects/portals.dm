@@ -29,7 +29,7 @@
 	origin_turf = get_turf(AM)
 	src.teleport(AM)
 
-/obj/effect/portal/attack_hand(mob/user as mob)
+/obj/effect/portal/attack_hand(mob/user)
 	origin_turf = get_turf(user)
 	src.teleport(user)
 

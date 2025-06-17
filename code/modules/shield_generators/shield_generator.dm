@@ -14,11 +14,9 @@
 	icon_state = "generator0"
 	density = TRUE
 	anchored = FALSE
-
 	circuit = /obj/item/electronics/circuitboard/shield_generator
 
 	var/needs_update = FALSE //If true, will update in process
-
 	var/datum/wires/shield_generator/wires
 	var/list/field_segments = list()	// List of all shield segments owned by this generator.
 	var/list/damaged_segments = list()	// List of shield segments that have failed and are currently regenerating.
@@ -55,7 +53,6 @@
 	obj/effect/overmap/ship/linked_ship = null // To access position of Eris on the overmap
 
 	// The shield mode flags which should be enabled on this generator by default
-
 	var/list/allowed_modes = list(MODEFLAG_HYPERKINETIC,
 							MODEFLAG_PHOTONIC,
 							MODEFLAG_NONHUMANS,
@@ -86,7 +83,6 @@
 	list/tendril_dirs = list()
 	tendrils_deployed = FALSE				// Whether the capacitors are currently extended
 
-
 /obj/machinery/power/shipside/shield_generator/update_icon()
 	overlays.Cut()
 	if(running)
@@ -107,8 +103,6 @@
 		else
 			S.icon_state = "conduit_0"
 			S.no_light()
-
-
 
 /obj/machinery/power/shipside/shield_generator/Initialize()
 	. = ..()
@@ -136,7 +130,6 @@
 	QDEL_NULL(wires)
 	. = ..()
 
-
 /obj/machinery/power/shipside/shield_generator/RefreshParts()
 	max_energy = 0
 	input_maxcap = 0
@@ -154,12 +147,10 @@
 	mitigation_physical = between(0, mitigation_physical, mitigation_max)
 	mitigation_heat = between(0, mitigation_heat, mitigation_max)
 
-
 // Shuts down the shield, removing all shield segments and unlocking generator settings.
 /obj/machinery/power/shipside/shield_generator/shutdown_machine()
 	for(var/obj/effect/shield/S in field_segments)
 		qdel(S)
-
 	running = SHIELD_OFF
 	mitigation_em = 0
 	mitigation_physical = 0
@@ -185,7 +176,6 @@
 	if(generatingShield)
 		return
 	generatingShield = TRUE
-
 	if(field_segments.len)
 		for(var/obj/effect/shield/S in field_segments)
 			qdel(S)
@@ -197,7 +187,6 @@
 		return
 
 	var/list/shielded_turfs
-
 	if(check_flag(MODEFLAG_HULL))
 		shielded_turfs = fieldtype_hull()
 	else
@@ -232,11 +221,8 @@
 			S.flags_updated()
 			field_segments |= S
 			CHECK_TICK
-
 	update_icon()
-
 	generatingShield = FALSE
-
 
 // Recalculates and updates the upkeep multiplier
 /obj/machinery/power/shipside/shield_generator/proc/update_upkeep_multiplier()
@@ -244,7 +230,6 @@
 	for(var/datum/shield_mode/SM in mode_list)
 		if(check_flag(SM.mode_flag))
 			new_upkeep *= SM.multiplier
-
 	upkeep_multiplier = new_upkeep
 
 // Recalculates and updates the upkeep star multiplier
@@ -258,7 +243,6 @@
 /obj/machinery/power/shipside/shield_generator/Process()
 	upkeep_power_usage = 0
 	power_usage = 0
-
 	if(!anchored)
 		return
 	if(offline_for)
@@ -276,11 +260,8 @@
 	mitigation_em = between(0, mitigation_em - MITIGATION_LOSS_PASSIVE, mitigation_max)
 	mitigation_heat = between(0, mitigation_heat - MITIGATION_LOSS_PASSIVE, mitigation_max)
 	mitigation_physical = between(0, mitigation_physical - MITIGATION_LOSS_PASSIVE, mitigation_max)
-
 	update_upkeep_star_multiplier() // Update shield upkeep depending on proximity to the star at the center of the overmap
-
 	upkeep_power_usage = round((field_segments.len - damaged_segments.len) * ENERGY_UPKEEP_PER_TILE * upkeep_multiplier * upkeep_star_multiplier)
-
 	if(tendrils_deployed && !input_cut && (running == SHIELD_RUNNING || running == SHIELD_OFF))
 		var/energy_buffer = 0
 		for(var/obj/machinery/power/conduit/shield_conduit/SC in tendrils)
@@ -302,7 +283,6 @@
 	if(needs_update)
 		regenerate_field()
 
-
 /obj/machinery/power/shipside/shield_generator/proc/energy_failure()
 	if(running == SHIELD_DISCHARGING)
 		shutdown_machine()
@@ -313,10 +293,8 @@
 		for(var/obj/effect/shield/S in field_segments)
 			S.fail(1)
 
-
-/obj/machinery/power/shipside/shield_generator/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/power/shipside/shield_generator/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS)
 	var/data[0]
-
 	data["running"] = running
 	data["modes"] = get_flag_descriptions()
 	data["logs"] = get_logs()
@@ -337,14 +315,12 @@
 	data["offline_for"] = offline_for * 2
 	data["shutdown"] = emergency_shutdown
 
-
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 650, 800)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
-
 
 //Sorts the mode list so that currently active ones are at the top
 /obj/machinery/power/shipside/shield_generator/proc/sort_modes()
@@ -366,13 +342,13 @@
 	mode_list.Add(temp)
 
 
-/obj/machinery/power/shipside/shield_generator/attack_hand(var/mob/user)
+/obj/machinery/power/shipside/shield_generator/attack_hand(mob/user)
 	nano_ui_interact(user)
 	if(panel_open)
 		wires.Interact(user)
 
 
-/obj/machinery/power/shipside/shield_generator/CanUseTopic(var/mob/user)
+/obj/machinery/power/shipside/shield_generator/CanUseTopic(mob/user)
 	if(issilicon(user) && !Adjacent(user) && ai_control_disabled)
 		return STATUS_UPDATE
 	return ..()
@@ -460,7 +436,7 @@
 
 
 // Takes specific amount of damage
-/obj/machinery/power/shipside/shield_generator/proc/take_shield_damage(damage, shield_damtype, atom/damager = null)
+/obj/machinery/power/shipside/shield_generator/proc/take_shield_damage(damage, shield_damtype, atom/damager)
 	var/energy_to_use = damage * ENERGY_PER_HP
 
 	// Even if the shield isn't currently modulating, it can still use old modulation buildup to reduce damage
@@ -523,7 +499,6 @@
 /obj/machinery/power/shipside/shield_generator/proc/check_flag(flag)
 	return (shield_modes & flag)
 
-
 /obj/machinery/power/shipside/shield_generator/proc/toggle_flag(flag)
 	shield_modes ^= flag
 	update_upkeep_multiplier()
@@ -538,9 +513,7 @@
 		mitigation_em = 0
 		mitigation_physical = 0
 		mitigation_heat = 0
-
 	sort_modes()
-
 
 /obj/machinery/power/shipside/shield_generator/proc/get_flag_descriptions()
 	var/list/all_flags = list()
@@ -565,7 +538,6 @@
 /obj/machinery/power/shipside/shield_generator/proc/fieldtype_square()
 	var/list/out = list()
 	var/list/base_turfs = get_base_turfs()
-
 	for(var/turf/gen_turf in base_turfs)
 		var/turf/T
 		for(var/x_offset = -field_radius; x_offset <= field_radius; x_offset++)
@@ -590,7 +562,6 @@
 /obj/machinery/power/shipside/shield_generator/proc/fieldtype_hull()
 	var/list/turf/valid_turfs = list()
 	var/list/base_turfs = get_base_turfs()
-
 	for(var/turf/gen_turf in base_turfs)
 		for(var/turf/T in RANGE_TURFS(field_radius, gen_turf))
 			if(istype(T, /turf/space))
@@ -599,19 +570,15 @@
 			for(var/turf/TN in orange(1, T))
 				if(turf_is_external(TN))
 					valid_turfs |= TN
-
 			CHECK_TICK
-
 	return valid_turfs
 
 // Returns a list of turfs from which a field will propagate. If multi-Z mode is enabled, this will return a "column" of turfs above and below the generator.
 /obj/machinery/power/shipside/shield_generator/proc/get_base_turfs()
 	var/list/turfs = list()
 	var/turf/T = get_turf(src)
-
 	if(!istype(T))
 		return
-
 	turfs.Add(T)
 
 	// Multi-Z mode is disabled
@@ -624,12 +591,10 @@
 			turfs.Add(T)
 
 	T = get_turf(src)
-
 	while(SSmapping.HasBelow(T.z))
 		T = SSmapping.GetBelow(T)
 		if(istype(T))
 			turfs.Add(T)
-
 	return turfs
 
 
@@ -654,11 +619,8 @@
 		//If we've taken a lot of damage since the last report, another one is fine too
 		do_report = TRUE
 
-
-
 	if(!do_report)
 		return
-
 
 	last_report_time = world.time
 	last_report_integrity = field_integrity()
@@ -682,10 +644,8 @@
 
 	command_announcement.Announce(span(spanclass, "[prefix]Shield integrity at [round(field_integrity())]%"), "Shield Status Report", msg_sanitized = TRUE)
 
-
-
 //This proc keeps an internal log of shield impacts, activations, deactivations, and a vague log of config changes
-/obj/machinery/power/shipside/shield_generator/log_event(var/event_type, var/atom/origin_atom)
+/obj/machinery/power/shipside/shield_generator/log_event(event_type, atom/origin_atom)
 	var/logstring = "[stationtime2text()]: "
 	switch (event_type)
 		if(EVENT_DAMAGE_PHYSICAL to EVENT_DAMAGE_SPECIAL)
@@ -734,8 +694,6 @@
 
 				if(origin_atom)
 					logstring += ", [origin_atom.x ? origin_atom.x : "unknown"],[origin_atom.y ? origin_atom.y : "unknown"],[origin_atom.z ? origin_atom.z : "unknown"]"
-
-
 	if(logstring != "")
 		//Insert this string into the log
 		event_log.Add(logstring)

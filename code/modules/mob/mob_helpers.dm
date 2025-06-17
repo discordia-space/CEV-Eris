@@ -23,7 +23,7 @@
 /mob/living/carbon/human/isMonkey()
 	return istype(species, /datum/species/monkey)
 
-proc/isdeaf(A)
+/proc/isdeaf(A)
 //	if(isliving(A))
 //		var/mob/living/M = A
 //		return (M.sdisabilities & DEAF) || M.ear_deaf
@@ -53,10 +53,8 @@ proc/isdeaf(A)
 		return U.sensor_mode
 	return SUIT_SENSOR_OFF
 
-
-/proc/is_admin(var/mob/user)
+/proc/is_admin(mob/user)
 	return check_rights(R_ADMIN, 0, user) != 0
-
 
 /proc/hsl2rgb(h, s, l)
 	return //TODO: Implement
@@ -118,7 +116,6 @@ var/list/global/organ_rel_size = list(
 			organ_rel_size[BP_L_LEG ]; BP_L_LEG ,
 			organ_rel_size[BP_R_LEG]; BP_R_LEG,
 		)
-
 	return ran_zone
 
 //Replaces some of the characters with *, used in whispers. pr = probability of no star.
@@ -145,7 +142,6 @@ var/list/global/organ_rel_size = list(
 			block = list()
 	. += (intag ? block : stars_no_html(JOINTEXT(block), pr, re_encode))
 	. = JOINTEXT(.)
-
 
 //Ingnores the possibility of breaking tags.
 /proc/stars_no_html(text, pr, re_encode)
@@ -210,19 +206,14 @@ var/list/global/organ_rel_size = list(
 	/* Turn text into complete gibberish! */
 	var/returntext = ""
 	for(var/i = 1, i <= length(t), i++)
-
 		var/letter = copytext_char(t, i, i+1)
 		if(prob(50))
 			if(p >= 70)
 				letter = ""
-
 			for(var/j = 1, j <= rand(0, 2), j++)
 				letter += pick("#","@","*","&","%","$","/", "<", ">", ";","*","*","*","*","*","*","*")
-
 		returntext += letter
-
 	return returntext
-
 
 /proc/ninjaspeak(n)
 /*
@@ -252,24 +243,18 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		p=p+n_mod
 	return sanitize(t)
 
-
-
-
-
 /proc/findname(msg)
 	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 		if(M.real_name == text("[msg]"))
 			return 1
 	return 0
 
-
-/mob/proc/abiotic(var/full_body = 0)
+/mob/proc/abiotic(full_body = 0)
 	if(full_body && ((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )) || (src.back || src.wear_mask)))
 		return 1
 
 	if((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )))
 		return 1
-
 	return 0
 
 //converts intent-strings into numbers and back
@@ -312,28 +297,27 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		var/obj/screen/intent/I = HUDneed["intent"]
 		I.update_icon()
 
-
-proc/is_blind(A)
+/proc/is_blind(A)
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
 		if(C.sdisabilities & BLIND || C.blinded)
 			return 1
 	return 0
 
-/proc/broadcast_security_hud_message(var/message, var/broadcast_source)
+/proc/broadcast_security_hud_message(message, broadcast_source)
 	broadcast_hud_message(message, broadcast_source, sec_hud_users, /obj/item/clothing/glasses/hud/security)
 
-/proc/broadcast_medical_hud_message(var/message, var/broadcast_source)
+/proc/broadcast_medical_hud_message(message, broadcast_source)
 	broadcast_hud_message(message, broadcast_source, med_hud_users, /obj/item/clothing/glasses/hud/health)
 
-/proc/broadcast_hud_message(var/message, var/broadcast_source, var/list/targets, var/icon)
+/proc/broadcast_hud_message(message, broadcast_source, list/targets, icon)
 	var/turf/sourceturf = get_turf(broadcast_source)
 	for(var/mob/M in targets)
 		var/turf/targetturf = get_turf(M)
 		if((targetturf.z == sourceturf.z))
 			M.show_message("<span class='info'>\icon[icon] [message]</span>", 1)
 
-/proc/mobs_in_area(var/area/A)
+/proc/mobs_in_area(area/A)
 	var/list/mobs = new
 	for(var/mob/living/M in SSmobs.mob_list | SShumans.mob_list)
 		if(get_area(M) == A)
@@ -343,7 +327,7 @@ proc/is_blind(A)
 //Direct dead say used both by emote and say
 //It is somewhat messy. I don't know what to do.
 //I know you can't see the change, but I rewrote the name code. It is significantly less messy now
-/proc/say_dead_direct(var/message, var/mob/subject = null)
+/proc/say_dead_direct(message, mob/subject)
 	var/name
 	var/keyname
 	if(subject && subject.client)
@@ -386,7 +370,7 @@ proc/is_blind(A)
 			to_chat(M, "<span class='deadsay'>" + create_text_tag("dead", "DEAD:", M.client) + " [lname][follow][message]</span>")
 
 //Announces that a ghost has joined/left, mainly for use with wizards
-/proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
+/proc/announce_ghost_joinleave(O, joined_ghosts = 1, message = "")
 	var/client/C
 	//Accept any type, sort what we want here
 	if(ismob(O))
@@ -401,7 +385,6 @@ proc/is_blind(A)
 			C = M.current.client
 		else if(M.original && M.original.client)
 			C = M.original.client
-
 	if(C)
 		var/name
 		if(C.mob)
@@ -420,13 +403,13 @@ proc/is_blind(A)
 		else
 			say_dead_direct("<span class='name'>[name]</span> no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
 
-/mob/proc/switch_to_camera(var/obj/machinery/camera/C)
+/mob/proc/switch_to_camera(obj/machinery/camera/C)
 	if(!C.can_use() || stat || (get_dist(C, src) > 1 || machine != src || blinded || !canmove))
 		return 0
 	check_eye(src)
 	return 1
 
-/mob/living/silicon/ai/switch_to_camera(var/obj/machinery/camera/C)
+/mob/living/silicon/ai/switch_to_camera(obj/machinery/camera/C)
 	if(!C.can_use() || !is_in_chassis())
 		return 0
 
@@ -434,7 +417,7 @@ proc/is_blind(A)
 	return 1
 
 // Returns true if the mob has a client which has been active in the last given X minutes.
-/mob/proc/is_client_active(var/active = 1)
+/mob/proc/is_client_active(active = 1)
 	return client && client.inactivity < active MINUTES
 
 /mob/proc/can_eat()
@@ -444,19 +427,17 @@ proc/is_blind(A)
 	return 1
 
 #define SAFE_PERP -50
-/mob/living/proc/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/proc/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	if(stat == DEAD)
 		return SAFE_PERP
-
 	return 0
 
-/mob/living/carbon/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/carbon/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	if(handcuffed)
 		return SAFE_PERP
-
 	return ..()
 
-/mob/living/carbon/human/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/carbon/human/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
@@ -496,10 +477,9 @@ proc/is_blind(A)
 
 		if(check_arrest && R && (R.fields["criminal"] == "*Arrest*"))
 			threatcount += 4
-
 	return threatcount
 
-/mob/living/simple_animal/hostile/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/simple_animal/hostile/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
@@ -508,12 +488,9 @@ proc/is_blind(A)
 		threatcount += 4
 	return threatcount
 
-
-
-
 #undef SAFE_PERP
 
-/mob/proc/get_multitool(var/obj/item/tool/multitool/P)
+/mob/proc/get_multitool(obj/item/tool/multitool/P)
 	if(istype(P))
 		return P
 
@@ -529,7 +506,6 @@ proc/is_blind(A)
 /mob/living/silicon/ai/get_multitool()
 	return ..(aiMulti)
 
-
 //This proc returns true if the mob has no health problems. EG, no damaged organs, alive, not poisoned, etc
 //It is used by cryopods to allow people to quickly respawn during peaceful times
 /mob/proc/in_perfect_health()
@@ -541,8 +517,6 @@ proc/is_blind(A)
 
 	if(brainloss || bruteloss || cloneloss || fireloss || halloss || oxyloss || toxloss)
 		return FALSE
-
-
 	return TRUE
 
 /mob/living/carbon/human/in_perfect_health()
@@ -552,7 +526,6 @@ proc/is_blind(A)
 	for(var/obj/item/organ/o in internal_organs)
 		if(o.damage)
 			return FALSE
-
 	return ..()
 
 /mob/proc/get_sex()
@@ -610,27 +583,11 @@ proc/is_blind(A)
 	if(max_w_class > ITEM_SIZE_TINY)
 		return max_w_class/(ITEM_SIZE_TITANIC)
 
-/*
-/mob/proc/get_accumulated_vision_handlers()
-	var/result[2]
-	var/asight = 0
-	var/ainvis = 0
-	for(var/atom/vision_handler in additional_vision_handlers)
-		//Grab their flags
-		asight |= vision_handler.additional_sight_flags()
-		ainvis = min(ainvis, vision_handler.additional_see_invisible())
-	result[1] = asight
-	result[2] = ainvis
-
-	return result
-*/
-
 /mob/proc/set_faction(target_faction)
 	faction = target_faction ? target_faction : initial(faction)
 
-
 // Steps used to modify wounding multiplier. Should be used alongside edge/sharp when determining final damage of BRUTE-type attacks.
-/proc/step_wounding(var/wounding, var/is_increase = FALSE) // Usually mobs are the ones attacking (no), so this should be okay here? If it gets lucky a macro would be slightly faster
+/proc/step_wounding(wounding, is_increase = FALSE) // Usually mobs are the ones attacking (no), so this should be okay here? If it gets lucky a macro would be slightly faster
 	if(is_increase)
 		switch(wounding)
 			if(WOUNDING_TRIVIAL)
@@ -664,7 +621,7 @@ proc/is_blind(A)
 			if(WOUNDING_EXTREME)
 				return WOUNDING_WIDE
 
-/proc/step_wounding_double(var/wounding, var/is_increase = FALSE)
+/proc/step_wounding_double(wounding, is_increase = FALSE)
 	if(is_increase)
 		switch(wounding)
 			if(WOUNDING_TRIVIAL)
@@ -699,7 +656,7 @@ proc/is_blind(A)
 				return WOUNDING_NORMAL
 
 // Determine wounding level. If var/wounding is provided, the attack should come from a projectile. This isn't the case yet, as we default to var/wounding = 1 until melee rework.
-/proc/wound_check(var/injurytype, var/wounding, var/edge, var/sharp)
+/proc/wound_check(injurytype, wounding, edge, sharp)
 	if(sharp && (!edge)) // impaling/piercing, 2x damage, affected by injurytype
 		switch(injurytype)
 			if(INJURY_TYPE_HOMOGENOUS)

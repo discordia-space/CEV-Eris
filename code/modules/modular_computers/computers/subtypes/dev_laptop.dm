@@ -18,7 +18,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 200
 
-/obj/item/modular_computer/laptop/AltClick(var/mob/user)
+/obj/item/modular_computer/laptop/AltClick(mob/user)
 // Prevents carrying of open laptops inhand.
 // While they work inhand, i feel it'd make tablets lose some of their high-mobility advantage they have over laptops now.
 	if(!CanPhysicallyInteract(user))
@@ -32,7 +32,6 @@
 
 /obj/item/modular_computer/laptop/update_icon()
 	..()
-
 	icon_state = initial(icon_state)
 	if(!anchored)
 		overlays.Cut()

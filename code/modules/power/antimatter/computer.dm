@@ -3,7 +3,6 @@
 #define STATE_INJECTOR  2
 #define STATE_ENGINE 3
 
-
 /obj/machinery/computer/am_engine
 	name = "Antimatter Engine Console"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -18,13 +17,12 @@
 /obj/machinery/computer/am_engine/New()
 	..()
 	spawn( 24 )
-		for(var/obj/machinery/power/am_engine/engine/E in world)
-			if(E.engine_id == src.engine_id)
-				src.connected_E = E
-		for(var/obj/machinery/power/am_engine/injector/I in world)
-			if(I.engine_id == src.engine_id)
-				src.connected_I = I
-	return
+		for(var/obj/machinery/power/am_engine/engine/E in SSmachines.machinery)
+			if(E.engine_id == engine_id)
+				connected_E = E
+		for(var/obj/machinery/power/am_engine/injector/I in SSmachines.machinery)
+			if(I.engine_id == engine_id)
+				connected_I = I
 
 /obj/machinery/computer/am_engine/Topic(href, href_list)
 	if(..())
@@ -36,33 +34,32 @@
 	switch(href_list["operation"])
 		// main interface
 		if("activate")
-			src.connected_E.engine_process()
+			connected_E.engine_process()
 		if("engine")
-			src.state = STATE_ENGINE
+			state = STATE_ENGINE
 		if("injector")
-			src.state = STATE_INJECTOR
+			state = STATE_INJECTOR
 		if("main")
-			src.state = STATE_DEFAULT
+			state = STATE_DEFAULT
 		if("login")
 			var/mob/M = usr
 			var/obj/item/card/id/I = M.get_active_hand()
 			if(I && istype(I))
-				if(src.check_access(I))
+				if(check_access(I))
 					authenticated = 1
 		if("deactivate")
-			src.connected_E.stopping = 1
+			connected_E.stopping = 1
 		if("logout")
 			authenticated = 0
+	updateUsrDialog()
 
-	src.updateUsrDialog()
+/obj/machinery/computer/am_engine/attack_ai(/ob/user)
+	return .ttack_hand(user)
 
-/obj/machinery/computer/am_engine/attack_ai(var/mob/user as mob)
-	return src.attack_hand(user)
+/obj/machinery/computer/am_engine/attack_paw(/ob/user)
+	return .ttack_hand(user)
 
-/obj/machinery/computer/am_engine/attack_paw(var/mob/user as mob)
-	return src.attack_hand(user)
-
-/obj/machinery/computer/am_engine/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/am_engine/attack_hand(/ob/user)
 	if(..())
 		return
 	user.machine = src
@@ -92,4 +89,3 @@
 	dat += "<BR>\[ [(src.state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A> | " : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
 	user << browse(dat, "window=communications;size=400x500")
 	onclose(user, "communications")
-

@@ -62,7 +62,7 @@
 
 	return ..()
 
-/obj/vehicle/train/cargo/engine/attackby(obj/item/W as obj, mob/user as mob)
+/obj/vehicle/train/cargo/engine/attackby(obj/item/W as obj, mob/user)
 	if(istype(W, /obj/item/key/cargo_train))
 		if(!key)
 			user.drop_item()

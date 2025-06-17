@@ -10,7 +10,6 @@
 #define AB_CHECK_ALIVE 8
 #define AB_CHECK_INSIDE 16
 
-
 /datum/action
 	var/name = "Generic Action"
 	var/action_type = AB_ITEM
@@ -26,7 +25,7 @@
 	var/background_icon_state = "bg_default"
 	var/mob/living/owner
 
-/datum/action/New(var/Target)
+/datum/action/New(Target)
 	target = Target
 
 /datum/action/Destroy()
@@ -42,7 +41,6 @@
 	owner = T
 	owner.actions.Add(src)
 	owner.update_action_buttons()
-	return
 
 /datum/action/proc/Remove(mob/living/T)
 	if(button)
@@ -53,7 +51,6 @@
 	T.actions.Remove(src)
 	T.update_action_buttons()
 	owner = null
-	return
 
 /datum/action/proc/Trigger()
 	if(!Checks())
@@ -79,8 +76,7 @@
 			if(target && procname)
 				if(!arguments)
 					arguments = usr
-				call(target, procname)(arguments)		
-	return
+				call(target, procname)(arguments)
 
 /datum/action/proc/Activate()
 	return
@@ -174,27 +170,23 @@
 	UpdateIcon()
 	usr.update_action_buttons()
 
-
-/obj/screen/movable/action_button/hide_toggle/proc/InitialiseIcon(var/mob/living/user)
+/obj/screen/movable/action_button/hide_toggle/proc/InitialiseIcon(mob/living/user)
 	icon_state = "bg_default"
 	UpdateIcon()
-	return
 
 /obj/screen/movable/action_button/hide_toggle/UpdateIcon()
 	overlays.Cut()
 	var/image/img = image(icon, src, hidden?"show":"hide")
 	overlays += img
-	return
 
 //This is the proc used to update all the action buttons. Properly defined in /mob/living/
 /mob/proc/update_action_buttons()
-	return
 
 #define AB_WEST_OFFSET 4
 #define AB_NORTH_OFFSET 26
 #define AB_MAX_COLUMNS 10
 
-/datum/hud/proc/ButtonNumberToScreenCoords(var/number) // TODO : Make this zero-indexed for readabilty
+/datum/hud/proc/ButtonNumberToScreenCoords(number) // TODO : Make this zero-indexed for readabilty
 	var/row = round((number-1)/AB_MAX_COLUMNS)
 	var/col = ((number - 1)%(AB_MAX_COLUMNS)) + 1
 	var/coord_col = "+[col-1]"
@@ -203,12 +195,11 @@
 	var/coord_row_offset = AB_NORTH_OFFSET
 	return "WEST[coord_col]:[coord_col_offset],NORTH[coord_row]:[coord_row_offset]"
 
-/datum/hud/proc/SetButtonCoords(var/obj/screen/button, var/number)
+/datum/hud/proc/SetButtonCoords(obj/screen/button, number)
 	var/row = round((number-1)/AB_MAX_COLUMNS)
 	var/col = ((number - 1)%(AB_MAX_COLUMNS)) + 1
 	var/x_offset = 32*(col-1) + AB_WEST_OFFSET + 2*col
 	var/y_offset = -32*(row+1) + AB_NORTH_OFFSET
-
 	var/matrix/M = matrix()
 	M.Translate(x_offset, y_offset)
 	button.transform = M

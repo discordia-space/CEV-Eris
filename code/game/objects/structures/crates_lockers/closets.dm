@@ -67,11 +67,11 @@
 
 /obj/structure/closet/LateInitialize()
 	. = ..()
-
 	if(!opened) // if closed, any item at the crate's loc is put in the contents
 		var/obj/item/I
 		for(I in src.loc)
-			if(I.density || I.anchored || I == src) continue
+			if(I.density || I.anchored || I == src)
+				continue
 			I.forceMove(src)
 		// adjust locker size to hold all items with 5 units of free store room
 		var/content_size = 0
@@ -234,7 +234,7 @@
 		to_chat(user, SPAN_NOTICE("It won't budge!"))
 		return
 
-/obj/structure/closet/proc/togglelock(mob/user as mob)
+/obj/structure/closet/proc/togglelock(mob/user)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
 	if(!secure)
 		return
@@ -250,14 +250,14 @@
 	else
 		to_chat(user, SPAN_NOTICE("Access Denied"))
 
-/obj/structure/closet/AltClick(mob/user as mob)
+/obj/structure/closet/AltClick(mob/user)
 	if(Adjacent(user))
 		src.togglelock(user)
 
-/obj/structure/closet/proc/CanToggleLock(var/mob/user)
+/obj/structure/closet/proc/CanToggleLock(mob/user)
 	return allowed(user)
 
-/obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
+/obj/structure/closet/proc/set_locked(newlocked, mob/user)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
 	if(!secure)
 		return
@@ -276,7 +276,7 @@
 	update_icon()
 
 //Cham Projector Exception
-/obj/structure/closet/proc/store_misc(var/stored_units)
+/obj/structure/closet/proc/store_misc(stored_units)
 	var/added_units = 0
 	for(var/obj/effect/dummy/chameleon/AD in src.loc)
 		if((stored_units + added_units) > storage_capacity)
@@ -285,7 +285,7 @@
 		added_units++
 	return added_units
 
-/obj/structure/closet/proc/store_items(var/stored_units)
+/obj/structure/closet/proc/store_items(stored_units)
 	var/added_units = 0
 	for(var/obj/item/I in src.loc)
 		var/item_size = CEILING(I.w_class / 2, 1)
@@ -296,7 +296,7 @@
 			added_units += item_size
 	return added_units
 
-/obj/structure/closet/proc/store_mobs(var/stored_units)
+/obj/structure/closet/proc/store_mobs(stored_units)
 	var/added_units = 0
 	for(var/mob/living/M in src.loc)
 		if(M.buckled || M.pinned.len)
@@ -336,17 +336,13 @@
 	..()
 	damage(proj_damage)
 
-	return
-
 /obj/structure/closet/affect_grab(mob/living/user, mob/living/target)
 	if(src.opened)
 		MouseDrop_T(target, user)      //act like they were dragged onto the closet
 		return TRUE
 	return FALSE
 
-
 /obj/structure/closet/attackby(obj/item/I, mob/user)
-
 	if(istype(I, /obj/item/gripper))
 		//Empty gripper attacks will call attack_AI
 		return FALSE
@@ -478,14 +474,13 @@
 	else if(istype(I, /obj/item/packageWrap))
 		return
 	else if(istype(I,/obj/item/card/id))
-		src.togglelock(user)
+		togglelock(user)
 		return
 	else if(istype(I, /obj/item/melee/energy/blade) && secure)
 		emag_act(INFINITY, user)
 		return
 	else
-		src.attack_hand(user)
-	return
+		attack_hand(user)
 
 /obj/structure/closet/MouseDrop_T(atom/movable/O as mob|obj, mob/user)
 	if(istype(O, /obj/screen))	//fix for HUD elements making their way into the world	-Pete
@@ -514,14 +509,14 @@
 	if(isrobot(user) && Adjacent(user)) // Robots can open/close it, but not the AI.
 		attack_hand(user)
 
-/obj/structure/closet/relaymove(mob/user as mob)
+/obj/structure/closet/relaymove(mob/user)
 	if(user.stat || !isturf(src.loc))
 		return
 
 	if(!src.open())
 		to_chat(user, SPAN_NOTICE("It won't budge!"))
 
-/obj/structure/closet/attack_hand(mob/user as mob)
+/obj/structure/closet/attack_hand(mob/user)
 	add_fingerprint(user)
 	if(secure && locked && !opened)
 		src.togglelock(user)
@@ -529,12 +524,12 @@
 		src.toggle(user)
 
 // tk grab then use on self
-/obj/structure/closet/attack_self_tk(mob/user as mob)
+/obj/structure/closet/attack_self_tk(mob/user)
 	add_fingerprint(user)
 	if(!src.toggle())
 		to_chat(usr, SPAN_NOTICE("It won't budge!"))
 
-/obj/structure/closet/emag_act(var/remaining_charges, var/mob/user)
+/obj/structure/closet/emag_act(remaining_charges, mob/user)
 	if(!broken)
 		locked = FALSE
 		broken = TRUE
@@ -627,19 +622,15 @@
 		return 0 //closed but not welded...
 	return 1
 
-/obj/structure/closet/proc/mob_breakout(var/mob/living/escapee)
+/obj/structure/closet/proc/mob_breakout(mob/living/escapee)
 	var/breakout_time = 2 //2 minutes by default
-
 	if(breakout || !req_breakout())
 		return
 
 	escapee.setClickCooldown(100)
-
 	//okay, so the closet is either welded or locked... resist!!!
 	to_chat(escapee, SPAN_WARNING("You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)"))
-
 	visible_message(SPAN_DANGER("\The [src] begins to shake violently!"))
-
 	breakout = 1 //can't think of a better way to do this right now.
 	for(var/i in 1 to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
 		if(!do_after(escapee, 50, src)) //5 seconds

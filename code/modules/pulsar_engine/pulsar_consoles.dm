@@ -286,7 +286,7 @@
 	connected_console.tank = null
 	SSnano.update_uis(connected_console)
 
-/obj/structure/pulsar_fuel_tank/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/pulsar_fuel_tank/attackby(obj/item/W as obj, mob/user)
 	if(istype(W,/obj/item/tank))
 		var/obj/item/tank/tank = W
 		air_contents.merge(tank.return_air())

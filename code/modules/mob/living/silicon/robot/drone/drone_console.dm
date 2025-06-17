@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(drones, list())
 	//Used to enable or disable drone fabrication.
 	var/obj/machinery/drone_fabricator/dronefab
 
-/obj/machinery/computer/drone_control/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/drone_control/attack_hand(mob/user)
 	if(..())
 		return
 
@@ -118,4 +118,4 @@ GLOBAL_LIST_INIT(drones, list())
 		dronefab.produce_drones = !dronefab.produce_drones
 		to_chat(usr, "<span class='notice'>You [dronefab.produce_drones ? "enable" : "disable"] drone production in the nearby fabricator.</span>")
 
-	src.updateUsrDialog()
+	updateUsrDialog()

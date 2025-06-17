@@ -219,7 +219,7 @@ see multiz/movement.dm for some info.
 		SEND_SIGNAL_OLD(O, COMSIG_TURF_LEVELUPDATE, FALSE)
 
 // Straight copy from space.
-/turf/open/attackby(obj/item/C as obj, mob/user as mob)
+/turf/open/attackby(obj/item/C as obj, mob/user)
 	if(istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)

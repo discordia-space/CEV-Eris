@@ -6,7 +6,7 @@
 /turf/floor/holofloor
 	thermal_conductivity = 0
 
-/turf/floor/holofloor/attackby(obj/item/W as obj, mob/user as mob)
+/turf/floor/holofloor/attackby(obj/item/W as obj, mob/user)
 	return
 	// HOLOFLOOR DOES NOT GIVE A FUCK
 
@@ -133,7 +133,7 @@
 
 /turf/open/holonofloor // Simulated nothingness
 
-/turf/open/holonofloor/attackby(obj/item/W as obj, mob/user as mob)
+/turf/open/holonofloor/attackby(obj/item/W as obj, mob/user)
 	return
 
 /turf/open/holonofloor/ChangeTurf(new_turf_type, force_lighting_update)
@@ -151,7 +151,7 @@
 
 /obj/structure/railing/holorailing
 
-/obj/structure/railing/holorailing/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/railing/holorailing/attackby(obj/item/W as obj, mob/user)
 	return
 
 /obj/structure/railing/holorailing/take_damage(amount)
@@ -176,12 +176,12 @@
 /obj/item/stool/holostool
 	damtype = HALLOSS
 
-/obj/item/stool/holostool/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/stool/holostool/attackby(obj/item/W as obj, mob/user)
 	if(istool(W) || istype(W,/obj/item/stack))
 		return
 	..()
 
-/obj/item/stool/holostool/attack(mob/M as mob, mob/user as mob)
+/obj/item/stool/holostool/attack(mob/M as mob, mob/user)
 	if(prob(5) && isliving(M))
 		user.visible_message(SPAN_DANGER("[user] breaks [src] over [M]'s back, disappearing into mist!"))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -204,7 +204,7 @@
 
 /obj/structure/bed/chair/custom/holochair
 
-/obj/structure/bed/chair/custom/holochair/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/bed/chair/custom/holochair/attackby(obj/item/W as obj, mob/user)
 	if(istool(W) || istype(W,/obj/item/stack))
 		return
 	..()
@@ -223,7 +223,7 @@
 /obj/structure/window/reinforced/holowindow/Destroy()
 	. = ..()
 
-/obj/structure/window/reinforced/holowindow/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/window/reinforced/holowindow/attackby(obj/item/W as obj, mob/user)
 	if(!istype(W) || W.flags & NOBLUDGEON)
 		return
 
@@ -258,7 +258,7 @@
 /obj/machinery/door/window/holowindoor/Destroy()
 	. = ..()
 
-/obj/machinery/door/window/holowindoor/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/door/window/holowindoor/attackby(obj/item/I as obj, mob/user)
 
 	if(src.operating == 1)
 		return
@@ -381,7 +381,7 @@
 	visible_message(SPAN_WARNING("[user] dunks [target] into the [src]!"))
 	return TRUE
 
-/obj/structure/holohoop/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/holohoop/attackby(obj/item/W as obj, mob/user)
 	if(istype(W, /obj/item) && get_dist(src,user)<2)
 		user.drop_item(src.loc)
 		visible_message(SPAN_NOTICE("[user] dunks [W] into the [src]!"), 3)
@@ -417,7 +417,7 @@
 	active_power_usage = 6
 	power_channel = STATIC_ENVIRON
 
-/obj/machinery/readybutton/attack_ai(mob/user as mob)
+/obj/machinery/readybutton/attack_ai(mob/user)
 	to_chat(user, "The ship AI is not to interact with these devices!")
 	return
 
@@ -425,10 +425,10 @@
 	..()
 
 
-/obj/machinery/readybutton/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/readybutton/attackby(obj/item/W as obj, mob/user)
 	to_chat(user, "The device is a solid button, there's nothing you can do with it!")
 
-/obj/machinery/readybutton/attack_hand(mob/user as mob)
+/obj/machinery/readybutton/attack_hand(mob/user)
 
 	if(user.stat || stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")

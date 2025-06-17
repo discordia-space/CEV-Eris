@@ -222,7 +222,7 @@
 
 	..(user, extra_description)
 
-/obj/item/attack_hand(mob/user as mob)
+/obj/item/attack_hand(mob/user)
 	if(pre_pickup(user))
 		pickup(user)
 		return TRUE
@@ -240,7 +240,7 @@
 		SEND_SIGNAL_OLD(src, COMSIG_ITEM_PICKED, src, target)
 	add_hud_actions(target)
 
-/obj/item/attack_ai(mob/user as mob)
+/obj/item/attack_ai(mob/user)
 	if(istype(loc, /obj/item/robot_module))
 		//If the item is part of a cyborg module, equip it
 		if(!isrobot(user))
@@ -252,7 +252,7 @@
 /obj/item/proc/talk_into(mob/living/M, message, channel, verb = "says", datum/language/speaking = null, speech_volume)
 	return
 
-/obj/item/proc/moved(mob/user as mob, old_loc as turf)
+/obj/item/proc/moved(mob/user, old_loc as turf)
 	return
 
 // Called whenever an object is moved out of a mob's equip slot. Possibly into another slot, possibly to elsewhere

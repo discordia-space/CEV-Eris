@@ -4,7 +4,6 @@
 /datum/category_item/player_setup_item/player_global/prefixes
 	name = "Prefixes"
 	sort_order = 2
-
 	var/static/list/prefix_by_name
 
 /datum/category_item/player_setup_item/player_global/prefixes/New()
@@ -14,7 +13,6 @@
 /datum/category_item/player_setup_item/player_global/prefixes/load_preferences(var/savefile/S)
 	var/list/prefix_keys_by_name
 	from_file(S["prefix_keys"], prefix_keys_by_name)
-
 	if(istype(prefix_keys_by_name))
 		pref.prefix_keys_by_type = list()
 		for(var/prefix_name in prefix_keys_by_name)
@@ -27,7 +25,6 @@
 	for(var/prefix_type in pref.prefix_keys_by_type)
 		var/decl/prefix/prefix_instance = decls_repository.get_decl(prefix_type)
 		prefix_keys_by_name[prefix_instance.name] = pref.prefix_keys_by_type[prefix_type]
-
 	to_file(S["prefix_keys"], prefix_keys_by_name)
 
 /datum/category_item/player_setup_item/player_global/prefixes/sanitize_preferences()
@@ -44,23 +41,18 @@
 	// In case of overlap, all affected prefixes are given their default key
 	reset_duplicate_keys()
 
-/datum/category_item/player_setup_item/player_global/prefixes/content(var/mob/user)
+/datum/category_item/player_setup_item/player_global/prefixes/content(mob/user)
 	. += "<b>Prefix Keys:</b><br>"
 	. += "<table>"
 	for(var/prefix_name in prefix_by_name)
 		var/decl/prefix/prefix_instance = prefix_by_name[prefix_name]
 		var/current_prefix = pref.prefix_keys_by_type[prefix_instance.type]
-
 		. += "<tr><td>[prefix_instance.name]</td><td>[pref.prefix_keys_by_type[prefix_instance.type]]</td><td>"
-
 		if(prefix_instance.is_locked)
 			. += "<span class='linkOff'>Change</span>"
 		else
-
 			. += "<a href='?src=\ref[src];change_prefix=\ref[prefix_instance]'>Change</a>"
-
 		. += "</td><td>"
-
 		if(prefix_instance.is_locked || current_prefix == prefix_instance.default_key)
 			. += "<span class='linkOff'>Reset</span>"
 		else
@@ -68,12 +60,11 @@
 		. += "</td></tr>"
 	. += "</table>"
 
-/datum/category_item/player_setup_item/player_global/prefixes/OnTopic(var/href, var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/player_global/prefixes/OnTopic(href, list/href_list, mob/user)
 	if(href_list["change_prefix"])
 		var/decl/prefix/prefix_instance = locate(href_list["change_prefix"])
 		if(!istype(prefix_instance) || prefix_instance.is_locked)
 			return TOPIC_NOACTION
-
 		do
 			var/keys_in_use = list()
 			for(var/prefix_type in pref.prefix_keys_by_type)
@@ -119,7 +110,6 @@
 		pref.prefix_keys_by_type[prefix_instance.type] = prefix_instance.default_key
 		reset_duplicate_keys()
 		return TOPIC_REFRESH
-
 	else
 		return ..()
 

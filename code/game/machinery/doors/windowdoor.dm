@@ -150,7 +150,7 @@
 		shatter()
 		return
 
-/obj/machinery/door/window/attack_hand(mob/user as mob)
+/obj/machinery/door/window/attack_hand(mob/user)
 	if(!attempt_open(user) && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -187,7 +187,7 @@
 			open()
 	..()
 
-/obj/machinery/door/window/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/door/window/attackby(obj/item/I as obj, mob/user)
 
 	//If it's in the process of opening/closing, ignore the click
 	if(src.operating == 1)

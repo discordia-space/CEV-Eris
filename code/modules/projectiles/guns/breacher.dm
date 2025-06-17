@@ -40,7 +40,7 @@
 		icon_state="Hatton_Hammer_0"
 
 
-/obj/item/hatton/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/hatton/attackby(obj/item/W as obj, mob/user)
 	if(istype(W,/obj/item/hatton_magazine))
 		if(!magazine)
 			user.drop_item()
@@ -224,7 +224,7 @@
 	else
 		icon_state = "Moebius_Hammer_0"
 
-/obj/item/hatton/moebius/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/hatton/moebius/attackby(obj/item/W as obj, mob/user)
 	if(istype(W,/obj/item/hatton_magazine/moebius))
 		if(!magazine)
 			user.drop_item()

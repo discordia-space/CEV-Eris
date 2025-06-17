@@ -21,7 +21,7 @@
 	var/linked
 
 
-/obj/item/storage/laundry_basket/attack_hand(mob/user as mob)
+/obj/item/storage/laundry_basket/attack_hand(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.get_organ(BP_R_ARM)
@@ -36,7 +36,7 @@
 		return
 	return ..()
 
-/obj/item/storage/laundry_basket/attack_self(mob/user as mob)
+/obj/item/storage/laundry_basket/attack_self(mob/user)
 	var/turf/T = get_turf(user)
 	to_chat(user, SPAN_NOTICE("You dump the [src]'s contents onto \the [T]."))
 	return ..()
@@ -64,14 +64,14 @@
 	else
 		return ..()
 
-/obj/item/storage/laundry_basket/dropped(mob/user as mob)
+/obj/item/storage/laundry_basket/dropped(mob/user)
 	qdel(linked)
 	return ..()
 
-/obj/item/storage/laundry_basket/show_to(mob/user as mob)
+/obj/item/storage/laundry_basket/show_to(mob/user)
 	return
 
-/obj/item/storage/laundry_basket/open(mob/user as mob)
+/obj/item/storage/laundry_basket/open(mob/user)
 
 
 //Offhand
@@ -81,7 +81,7 @@
 	name = "second hand"
 	use_to_pickup = 0
 
-/obj/item/storage/laundry_basket/offhand/dropped(mob/user as mob)
+/obj/item/storage/laundry_basket/offhand/dropped(mob/user)
 	user.drop_from_inventory(linked)
 	return
 

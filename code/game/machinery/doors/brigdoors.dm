@@ -28,7 +28,6 @@
 	var/list/obj/machinery/targets = list()
 	var/timetoset = 0		// Used to set releasetime upon starting the timer
 	var/list/advanced_access = list(access_armory)
-
 	maptext_height = 26
 	maptext_width = 32
 
@@ -36,10 +35,8 @@
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-
 /obj/machinery/door_timer/LateInitialize()
 	..()
-
 	for(var/obj/machinery/door/window/brigdoor/M in GLOB.all_doors)
 		if(M.id == src.id)
 			targets += M
@@ -65,49 +62,40 @@
 // if it's less than 0, open door, reset timer
 // update the door_timer window and the icon
 /obj/machinery/door_timer/Process()
-
-	if(stat & (NOPOWER|BROKEN))	return
-	if(src.timing)
-
+	if(stat & (NOPOWER|BROKEN))
+		return
+	if(timing)
 		// poorly done midnight rollover
 		// (no seriously there's gotta be a better way to do this)
 		var/timeleft = timeleft()
 		if(timeleft > 1e5)
-			src.releasetime = 0
+			releasetime = 0
 
-
-		if(world.timeofday > src.releasetime)
-			src.timer_end() // open doors, reset timer, clear status screen
-			src.timing = 0
-
-		src.updateUsrDialog()
-		src.update_icon()
-
+		if(world.timeofday > releasetime)
+			timer_end() // open doors, reset timer, clear status screen
+			timing = 0
+		updateUsrDialog()
+		update_icon()
 	else
 		timer_end()
-
-	return
-
 
 // has the door power situation changed, if so update icon.
 /obj/machinery/door_timer/power_change()
 	..()
 	update_icon()
-	return
-
 
 // open/closedoor checks if door_timer has power, if so it checks if the
 // linked door is open/closed (by density) then opens it/closes it.
-
 // Closes and locks doors, power check
 /obj/machinery/door_timer/proc/timer_start()
-	if(stat & (NOPOWER|BROKEN))	return 0
+	if(stat & (NOPOWER|BROKEN))
+		return 0
 
 	// Set releasetime
 	releasetime = world.timeofday + timetoset
-
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
-		if(door.density)	continue
+		if(door.density)
+			continue
 		spawn(0)
 			door.close()
 
@@ -119,16 +107,16 @@
 		C.set_locked(TRUE)
 	return 1
 
-
 // Opens and unlocks doors, power check
 /obj/machinery/door_timer/proc/timer_end()
-	if(stat & (NOPOWER|BROKEN))	return 0
+	if(stat & (NOPOWER|BROKEN))
+		return 0
 
 	// Reset releasetime
 	releasetime = 0
-
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
-		if(!door.density)	continue
+		if(!door.density)
+			continue
 		spawn(0)
 			door.open()
 
@@ -138,9 +126,7 @@
 		if(C.opened)
 			continue
 		C.set_locked(FALSE)
-
 	return 1
-
 
 // Check for releasetime timeleft
 /obj/machinery/door_timer/proc/timeleft()
@@ -149,28 +135,24 @@
 		. = 0
 
 // Set timetoset
-/obj/machinery/door_timer/proc/timeset(var/seconds)
+/obj/machinery/door_timer/proc/timeset(seconds)
 	timetoset = seconds * 10
-
 	if(timetoset <= 0)
 		timetoset = 0
 
-	return
-
 //Check access for shower temp change of for other dangerous functions
-/obj/machinery/door_timer/proc/allowed_advanced(var/mob/user as mob)
+/obj/machinery/door_timer/proc/allowed_advanced(mob/user)
 	var/obj/item/id = user.GetIdCard()
 	if(id)
 		var/list/access = id.GetAccess()
 		return has_access(list(), advanced_access, access)
 	return FALSE
 
-
 //Allows humans to use door_timer
 //Opens dialog window when someone clicks on door timer
 // Allows altering timer and the timing boolean.
 // Flasher activation limited to 150 seconds
-/obj/machinery/door_timer/attack_hand(var/mob/user as mob)
+/obj/machinery/door_timer/attack_hand(mob/user)
 	if(..())
 		return
 
@@ -181,17 +163,14 @@
 	// Used for 'set timer'
 	var/setsecond = round((timetoset / 10) % 60)
 	var/setminute = round(((timetoset / 10) - setsecond) / 60)
-
 	user.set_machine(src)
 
-	// dat
 	var/dat = "<HTML><BODY><TT>"
-
 	dat += "<HR>Timer System:</hr>"
 	dat += " <b>Door [src.id] controls</b><br/>"
 
 	// Start/Stop timer
-	if(src.timing)
+	if(timing)
 		dat += "<a href='?src=\ref[src];timing=0'>Stop Timer and open door</a><br/>"
 	else
 		dat += "<a href='?src=\ref[src];timing=1'>Activate Timer and close door</a><br/>"
@@ -201,7 +180,7 @@
 	dat += "<br/>"
 
 	// Set Timer display (uses timetoset)
-	if(src.timing)
+	if(timing)
 		dat += "Set Timer: [(setminute ? text("[setminute]:") : null)][setsecond]  <a href='?src=\ref[src];change=1'>Set</a><br/>"
 	else
 		dat += "Set Timer: [(setminute ? text("[setminute]:") : null)][setsecond]<br/>"
@@ -227,11 +206,8 @@
 
 	dat += "<br/><br/><a href='?src=\ref[user];mach_close=computer'>Close</a>"
 	dat += "</TT></BODY></HTML>"
-
 	user << browse(dat, "window=computer;size=400x500")
 	onclose(user, "computer")
-	return
-
 
 //Function for using door_timer dialog input, checks if user has permission
 // href_list to
@@ -243,26 +219,23 @@
 /obj/machinery/door_timer/Topic(href, href_list)
 	if(..())
 		return
-	if(!src.allowed(usr))
+	if(!allowed(usr))
 		return
 
 	usr.set_machine(src)
 
 	if(href_list["timing"])
-		src.timing = text2num(href_list["timing"])
-
-		if(src.timing)
-			src.timer_start()
+		timing = text2num(href_list["timing"])
+		if(timing)
+			timer_start()
 		else
-			src.timer_end()
-
+			timer_end()
 	else
 		if(href_list["tp"])  //adjust timer, close door if not already closed
 			var/tp = text2num(href_list["tp"])
 			var/addtime = (timetoset / 10)
 			addtime += tp
 			addtime = min(max(round(addtime), 0), 3600)
-
 			timeset(addtime)
 
 		if(href_list["fc"])
@@ -288,17 +261,8 @@
 				S.spray()
 
 	add_fingerprint(usr)
-	src.updateUsrDialog()
-	src.update_icon()
-
-	/* if(src.timing)
-		src.timer_start()
-
-	else
-		src.timer_end() */
-
-	return
-
+	updateUsrDialog()
+	update_icon()
 
 //icon update function
 // if NOPOWER, display blank
@@ -320,30 +284,25 @@
 		update_display(disp1, disp2)
 	else
 		if(maptext)	maptext = ""
-	return
-
 
 // Adds an icon in case the screen is broken/off, stolen from status_display.dm
-/obj/machinery/door_timer/proc/set_picture(var/state)
+/obj/machinery/door_timer/proc/set_picture(state)
 	picture_state = state
 	overlays.Cut()
 	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
 
-
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
 // Stolen from status_display
-/obj/machinery/door_timer/proc/update_display(var/line1, var/line2)
+/obj/machinery/door_timer/proc/update_display(line1, line2)
 	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
 	if(maptext != new_text)
 		maptext = new_text
 
-
 //Actual string input to icon display for loop, with 5 pixel x offsets for each letter.
 //Stolen from status_display
-/obj/machinery/door_timer/proc/texticon(var/tn, var/px = 0, var/py = 0)
+/obj/machinery/door_timer/proc/texticon(tn, px = 0, py = 0)
 	var/image/I = image('icons/obj/status_display.dmi', "blank")
 	var/len = length(tn)
-
 	for(var/d = 1 to len)
 		var/char = copytext(tn, len-d+1, len-d+2)
 		if(char == " ")

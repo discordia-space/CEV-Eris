@@ -14,7 +14,6 @@
 	var/content = ""
 	var/static/datum/asset/simple/namespaced/common/common_asset = get_asset_datum(/datum/asset/simple/namespaced/common)
 
-
 /datum/browser/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null)
 	user = nuser
 	RegisterSignal(user, COMSIG_PARENT_QDELETING, PROC_REF(user_deleted))
@@ -41,7 +40,6 @@
 /datum/browser/proc/set_window_options(nwindow_options)
 	window_options = nwindow_options
 
-
 /datum/browser/proc/set_title_image(ntitle_image)
 	// do nothing
 
@@ -51,9 +49,7 @@
 		stylesheets["spritesheet_[sheet.name].css"] = "data/spritesheets/[sheet.name]"
 	else
 		var/asset_name = "[name].css"
-
 		stylesheets[asset_name] = file
-
 		if(!SSassets.cache[asset_name])
 			SSassets.transport.register_asset(asset_name, file)
 
@@ -80,7 +76,7 @@
 	head_content += "<script type='text/javascript'> function UpdateBrowserDataAlt(data){document.getElementById('theContent').innerHTML = data;}</script>"
 
 	return {"<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+	<html>
 	<head>
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -165,10 +161,7 @@
 	var/param = "null"
 	if(ref)
 		param = "[REF(ref)]"
-
 	winset(user, windowid, "on-close=\".windowclose [param]\"")
-
-
 
 // the on-close client verb
 // called when a browser popup window is closed after registering with proc/onclose()

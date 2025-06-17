@@ -344,7 +344,7 @@
 	return TRUE
 
 // Wedge_item copypaste from airlock.dm
-/obj/machinery/door/holy/attack_hand(mob/user as mob)
+/obj/machinery/door/holy/attack_hand(mob/user)
 	if(user.a_intent == I_GRAB && wedged_item && !user.get_active_hand())
 		take_out_wedged_item(user)
 		return

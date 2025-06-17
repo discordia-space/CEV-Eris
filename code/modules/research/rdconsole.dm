@@ -114,7 +114,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		linked_destroy = null
 	return ..()
 
-/obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj, var/mob/user as mob)
+/obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj, var/mob/user)
 	//Loading a disk into it.
 	if(istype(D, /obj/item/computer_hardware/hard_drive/portable))
 		if(disk)

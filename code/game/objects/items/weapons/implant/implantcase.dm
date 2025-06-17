@@ -24,7 +24,7 @@
 		var/image/content = image('icons/obj/items.dmi', icon_state = implant.implant_overlay, pixel_x = 7, pixel_y = -6)
 		add_overlay(content)
 
-/obj/item/implantcase/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/implantcase/attackby(obj/item/I as obj, mob/user)
 	..()
 	if(istype(I, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text

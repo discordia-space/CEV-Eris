@@ -266,13 +266,6 @@
 /obj/machinery/atmospherics/unary/freezer/BorgCtrlClick(mob/living/silicon/robot/user)
 	AICtrlClick(user)
 
-//
-//	On Ctrl-Click will turn on or off telecomms machinery
-//	ENABLE WHEN TCOMS UI WILL BE UPDATED TO NANOUI
-/*
-/obj/machinery/telecomms/BorgCtrlClick(var/mob/living/silicon/robot/user)
-	AICtrlClick(user)
-*/
 
 //QOL feature, clicking on turf can toogle doors
 /turf/BorgCtrlClick(mob/living/silicon/robot/user)

@@ -20,9 +20,7 @@
 	var/display_label = TRUE // to show or not to show label on the sprite
 	var/label_icon_state
 	var/lid_icon_state
-
 	var/label_text = ""
-
 	var/list/can_be_placed_into = list(
 		/obj/machinery/chem_master/,
 		/obj/machinery/chemical_dispenser,
@@ -58,7 +56,6 @@
 	// Switch it from REFILLABLE | DRAINABLE to INJECTABLE | DRAWABLE, or the other way around.
 	// This way, you can still use syringes through the lid.
 	reagent_flags ^= REFILLABLE | DRAINABLE | INJECTABLE | DRAWABLE
-
 	update_icon()
 	return TRUE
 
@@ -66,10 +63,10 @@
 	if(has_lid())
 		to_chat(user, SPAN_NOTICE("You need to take the lid off [src] first!"))
 
-/obj/item/reagent_containers/glass/self_feed_message(var/mob/user)
+/obj/item/reagent_containers/glass/self_feed_message(mob/user)
 	to_chat(user, SPAN_NOTICE("You swallow a gulp from \the [src]."))
 
-/obj/item/reagent_containers/glass/feed_sound(var/mob/user)
+/obj/item/reagent_containers/glass/feed_sound(mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
 /obj/item/reagent_containers/glass/examine(mob/user, extra_description = "")
@@ -102,16 +99,15 @@
 			return TRUE
 	return ..()
 
-/obj/item/reagent_containers/glass/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/glass/attack(mob/M as mob, mob/user, def_zone)
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 
 	if(standard_feed_mob(user, M))
 		return
-
 	return 0
 
-/obj/item/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/flag)
+/obj/item/reagent_containers/glass/afterattack(obj/target, mob/user, flag)
 	if(!flag)
 		return
 	for(var/type in can_be_placed_into)
@@ -132,12 +128,10 @@
 			label_text = tmp_label
 			update_name_label()
 			update_icon()
-
 	var/hotness = I.is_hot()
 	if(hotness && reagents)
 		reagents.expose_temperature(hotness)
 		to_chat(user, SPAN_NOTICE("You heat [name] with [I]!"))
-
 	..()
 
 /obj/item/reagent_containers/glass/proc/update_name_label()

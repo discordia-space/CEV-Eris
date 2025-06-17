@@ -21,7 +21,7 @@
 	effect = null
 	return ..()
 
-/obj/machinery/cellshower/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/cellshower/attackby(obj/item/I as obj, mob/user)
 	if(QUALITY_PULSING in I.tool_qualities)
 		to_chat(user, SPAN_NOTICE("The water temperature seems to be [watertemp]."))
 

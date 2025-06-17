@@ -10,7 +10,7 @@
 
 	var/static/list/amount_of_underwear_by_id_card
 
-/obj/structure/undies_wardrobe/attackby(var/obj/item/underwear/underwear, var/mob/user)
+/obj/structure/undies_wardrobe/attackby(obj/item/underwear/underwear, mob/user)
 	if(istype(underwear))
 		if(!user.unEquip(underwear))
 			return
@@ -32,23 +32,21 @@
 			GLOB.destroyed_event.register(id, src, /obj/structure/undies_wardrobe/proc/remove_id_card)
 		else
 			remove_id_card(id)
-
 	else
 		..()
 
-/obj/structure/undies_wardrobe/proc/remove_id_card(var/id_card)
+/obj/structure/undies_wardrobe/proc/remove_id_card(id_card)
 	LAZYREMOVE(amount_of_underwear_by_id_card, id_card)
 	GLOB.destroyed_event.unregister(id_card, src, /obj/structure/undies_wardrobe/proc/remove_id_card)
 
-/obj/structure/undies_wardrobe/attack_hand(var/mob/user)
+/obj/structure/undies_wardrobe/attack_hand(mob/user)
 	if(!human_who_can_use_underwear(user))
 		to_chat(user, "<span class='warning'>Sadly there's nothing in here for you to wear.</span>")
 		return
 	interact(user)
 
-/obj/structure/undies_wardrobe/interact(var/mob/living/carbon/human/H)
+/obj/structure/undies_wardrobe/interact(mob/living/carbon/human/H)
 	var/id = H.GetIdCard()
-
 	var/dat = list()
 	dat += "<b>Underwear</b><br><hr>"
 	dat += "You may claim [id ? length(GLOB.underwear.categories) - LAZYACCESS(amount_of_underwear_by_id_card, id) : 0] more article\s this shift.<br><br>"
@@ -63,10 +61,9 @@
 		return FALSE
 	return TRUE
 
-/obj/structure/undies_wardrobe/CanUseTopic(var/user)
+/obj/structure/undies_wardrobe/CanUseTopic(user)
 	if(!human_who_can_use_underwear(user))
 		return STATUS_CLOSE
-
 	return ..()
 
 /obj/structure/undies_wardrobe/Topic(href, href_list, state)

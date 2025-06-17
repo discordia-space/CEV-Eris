@@ -125,10 +125,10 @@
 	else if(dir==12)
 		set_dir(4)
 
-/obj/machinery/atmospherics/valve/attack_ai(mob/user as mob)
+/obj/machinery/atmospherics/valve/attack_ai(mob/user)
 	return
 
-/obj/machinery/atmospherics/valve/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/valve/attack_hand(mob/user)
 	add_fingerprint(usr)
 	update_icon(1)
 	sleep(10)
@@ -232,10 +232,10 @@
 	var/id
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/valve/digital/attack_ai(mob/user as mob)
+/obj/machinery/atmospherics/valve/digital/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/atmospherics/valve/digital/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/valve/digital/attack_hand(mob/user)
 	if(!powered())
 		return
 	if(!src.allowed(user))
@@ -288,7 +288,7 @@
 			else
 				open()
 
-/obj/machinery/atmospherics/valve/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/atmospherics/valve/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if(istype(src, /obj/machinery/atmospherics/valve/digital))

@@ -78,7 +78,7 @@
 		T.ChangeTurf(/turf/floor/asteroid) //turn it back into an asteroid, otherwise things like platings become underplatings which makes no sense
 
 
-/obj/machinery/mining/deep_drill/attackby(obj/item/I, mob/user as mob)
+/obj/machinery/mining/deep_drill/attackby(obj/item/I, mob/user)
 
 	if(!cave_connected)
 		var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING), src)
@@ -142,7 +142,7 @@
 
 	..()
 
-/obj/machinery/mining/deep_drill/attack_hand(mob/user as mob)
+/obj/machinery/mining/deep_drill/attack_hand(mob/user)
 
 	if(!panel_open)
 		if(cave_connected) //there are no restrictions on turning off the drill besides the panel being shut.

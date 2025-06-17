@@ -423,7 +423,7 @@
 	var/reading = FALSE
 
 
-/obj/machinery/neotheology/reader/attackby(obj/item/I, mob/user as mob)
+/obj/machinery/neotheology/reader/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/implant/core_implant/cruciform))
 		var/obj/item/implant/core_implant/cruciform/C = I
 		user.drop_item()
@@ -433,7 +433,7 @@
 	add_fingerprint(user)
 	update_icon()
 
-/obj/machinery/neotheology/reader/attack_hand(mob/user as mob)
+/obj/machinery/neotheology/reader/attack_hand(mob/user)
 	if(!implant)
 		return
 

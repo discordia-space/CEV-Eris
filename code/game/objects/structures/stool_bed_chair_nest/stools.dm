@@ -69,7 +69,7 @@ var/global/list/stool_cache = list() //haha stool
 		padding_material = null
 	update_icon()
 
-/obj/item/stool/attack(mob/M as mob, mob/user as mob)
+/obj/item/stool/attack(mob/M as mob, mob/user)
 	if(prob(5) && isliving(M))
 		user.visible_message(SPAN_DANGER("[user] breaks [src] over [M]'s back!"))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -140,7 +140,7 @@ var/global/list/stool_cache = list() //haha stool
 /obj/item/stool/custom
 	icon_state = "stool_base"
 
-/obj/item/stool/custom/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/stool/custom/attackby(obj/item/W as obj, mob/user)
 	if(istool(W))
 		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 			dismantle()

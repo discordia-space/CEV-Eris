@@ -8,26 +8,21 @@
 	use_power = IDLE_POWER_USE
 	initialize_directions = 0
 	level = BELOW_PLATING_LEVEL
-
 	var/configuring = 0
 	//var/target_pressure = ONE_ATMOSPHERE	//a base type as abstract as this should NOT be making these kinds of assumptions
-
 	var/tag_north = ATM_NONE
 	var/tag_south = ATM_NONE
 	var/tag_east = ATM_NONE
 	var/tag_west = ATM_NONE
-
 	var/overlays_on[5]
 	var/overlays_off[5]
 	var/overlays_error[2]
 	var/underlays_current[4]
-
 	var/list/ports = new()
 
 /obj/machinery/atmospherics/omni/LateInitialize()
 	..()
 	icon_state = "base"
-
 	ports = new()
 	for(var/d in cardinal)
 		var/datum/omni_port/new_port = new(src, d)
@@ -43,7 +38,6 @@
 		if(new_port.mode > 0)
 			initialize_directions |= d
 		ports += new_port
-
 	build_icons()
 
 /obj/machinery/atmospherics/omni/update_icon()
@@ -53,10 +47,7 @@
 		overlays = overlays_error
 	else
 		overlays = use_power ? (overlays_on) : (overlays_off)
-
 	underlays = underlays_current
-
-	return
 
 /obj/machinery/atmospherics/omni/proc/error_check()
 	return
@@ -64,7 +55,6 @@
 /obj/machinery/atmospherics/omni/Process()
 	last_power_draw = 0
 	last_flow_rate = 0
-
 	if(error_check())
 		use_power = NO_POWER_USE
 
@@ -78,7 +68,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/omni/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/omni/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 
@@ -103,10 +93,8 @@
 /obj/machinery/atmospherics/omni/attack_hand(user as mob)
 	if(..())
 		return
-
-	add_fingerprint(usr)
+	add_fingerprint(user)
 	nano_ui_interact(user)
-	return
 
 /obj/machinery/atmospherics/omni/proc/build_icons()
 	if(!check_icon_cache())
@@ -160,10 +148,9 @@
 				underlays_current[ref_layer] = null
 				overlays_off[ref_layer] = null
 				overlays_on[ref_layer] = null
-
 	update_icon()
 
-/obj/machinery/atmospherics/omni/proc/select_port_icons(var/datum/omni_port/P)
+/obj/machinery/atmospherics/omni/proc/select_port_icons(datum/omni_port/P)
 	if(!istype(P))
 		return
 
@@ -203,7 +190,7 @@
 		P.update = 1
 	update_ports()
 
-/obj/machinery/atmospherics/omni/hide(var/i)
+/obj/machinery/atmospherics/omni/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/omni/proc/update_ports()
@@ -215,9 +202,7 @@
 /obj/machinery/atmospherics/omni/proc/sort_ports()
 	return
 
-
 // Housekeeping and pipe network stuff below
-
 /obj/machinery/atmospherics/omni/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	for(var/datum/omni_port/P in ports)
 		if(reference == P.node)
@@ -226,20 +211,15 @@
 
 	if(new_network.normal_members.Find(src))
 		return 0
-
 	new_network.normal_members += src
-
-	return null
 
 /obj/machinery/atmospherics/omni/Destroy()
 	loc = null
-
 	for(var/datum/omni_port/P in ports)
 		if(P.node)
 			P.node.disconnect(src)
 			qdel(P.network)
 			P.node = null
-
 	. = ..()
 
 /obj/machinery/atmospherics/omni/atmos_init()
@@ -251,10 +231,8 @@
 				if(check_connect_types(target, src))
 					P.node = target
 					break
-
 	for(var/datum/omni_port/P in ports)
 		P.update = 1
-
 	update_ports()
 
 /obj/machinery/atmospherics/omni/build_network()
@@ -266,28 +244,21 @@
 
 /obj/machinery/atmospherics/omni/return_network(obj/machinery/atmospherics/reference)
 	build_network()
-
 	for(var/datum/omni_port/P in ports)
 		if(reference == P.node)
 			return P.network
-
-	return null
 
 /obj/machinery/atmospherics/omni/reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
 	for(var/datum/omni_port/P in ports)
 		if(P.network == old_network)
 			P.network = new_network
-
 	return 1
 
 /obj/machinery/atmospherics/omni/return_network_air(datum/pipe_network/reference)
-	var/list/results = list()
-
+	. = list()
 	for(var/datum/omni_port/P in ports)
 		if(P.network == reference)
-			results += P.air
-
-	return results
+			. += P.air
 
 /obj/machinery/atmospherics/omni/disconnect(obj/machinery/atmospherics/reference)
 	for(var/datum/omni_port/P in ports)
@@ -296,7 +267,4 @@
 			P.node = null
 			P.update = 1
 			break
-
 	update_ports()
-
-	return null

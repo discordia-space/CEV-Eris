@@ -33,7 +33,7 @@
 		extra_description += "The service panel is [open ? "open" : "closed"]."
 	..(user, extra_description)
 
-/obj/item/storage/secure/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/secure/attackby(obj/item/W as obj, mob/user)
 	if(locked)
 		if(istype(W, /obj/item/melee/energy/blade) && emag_act(INFINITY, user, "You slice through the lock of \the [src]"))
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
@@ -79,7 +79,7 @@
 	..()
 
 
-/obj/item/storage/secure/attack_self(mob/user as mob)
+/obj/item/storage/secure/attack_self(mob/user)
 	user.set_machine(src)
 	var/dat = text("<TT><B>[]</B><BR>\n\nLock Status: []",src, (src.locked ? "LOCKED" : "UNLOCKED"))
 	var/message = "Code"
@@ -153,7 +153,7 @@
 	throw_range = 4
 	w_class = ITEM_SIZE_BULKY
 
-/obj/item/storage/secure/briefcase/attack_hand(mob/user as mob)
+/obj/item/storage/secure/briefcase/attack_hand(mob/user)
 	if((src.loc == user) && (src.locked == 1))
 		to_chat(usr, SPAN_WARNING("[src] is locked and cannot be opened!"))
 	else if((src.loc == user) && (!src.locked))

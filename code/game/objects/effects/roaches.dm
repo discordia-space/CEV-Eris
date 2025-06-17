@@ -10,7 +10,7 @@
 	var/amount_grown = 0
 	var/food_quality = 1 //So it can be boiled
 
-/obj/item/roach_egg/afterattack(obj/O as obj, mob/user as mob, proximity)
+/obj/item/roach_egg/afterattack(obj/O as obj, mob/user, proximity)
 	if(istype(O,/obj/machinery/microwave))
 		return ..()
 	if(!proximity || !O.is_refillable())

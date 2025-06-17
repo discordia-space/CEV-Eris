@@ -4,33 +4,27 @@
 	w_class = ITEM_SIZE_HUGE
 	var/opened = FALSE //Checking opened case or not
 
-/obj/item/storage/case/attack_hand(mob/user as mob)
-
+/obj/item/storage/case/attack_hand(mob/user)
 	if((loc != user) && opened)
 		open(user)
-
 	else
 		close_all()
 		..()
-
 	update_icon()
 	add_fingerprint(user)
-	return
 
-/obj/item/storage/case/open(var/mob/user)
+/obj/item/storage/case/open(mob/user)
 	if(!opened)
 		return
 	..()
 
-/obj/item/storage/case/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/case/attackby(obj/item/W, mob/user)
 	update_icon()
 	..()
 
 /obj/item/storage/case/AltClick()
 	if(!istype(loc, /turf/))
 		to_chat(usr, "\The [src] has to be on a stable surface first!")
-		return
-
 	else
 		opened = !opened
 		anchored = !anchored
@@ -39,7 +33,6 @@
 
 /obj/item/storage/case/update_icon()
 	..()
-
 	icon_state = initial(icon_state)
 	if(!anchored)
 		cut_overlays()

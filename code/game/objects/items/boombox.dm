@@ -97,7 +97,7 @@
 
 	current_listeners = new_people
 
-/obj/item/media/boombox/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/media/boombox/attackby(obj/item/W as obj, mob/user)
 	add_fingerprint(user)
 
 	if(istype(W, /obj/item/music_tape))
@@ -181,7 +181,7 @@
 		ui.open()
 		ui.set_auto_update(playing)
 
-/obj/item/media/boombox/attack_ai(mob/user as mob)
+/obj/item/media/boombox/attack_ai(mob/user)
 	return attack_hand(user)
 
 

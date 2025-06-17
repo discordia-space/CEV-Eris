@@ -8,8 +8,7 @@
 	circuit = /obj/item/electronics/circuitboard/prisoner
 	var/locked = TRUE
 
-
-/obj/machinery/computer/prisoner/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/prisoner/attack_hand(mob/user)
 	if(..())
 		return
 	user.set_machine(src)
@@ -48,14 +47,10 @@
 
 	user << browse(dat, "window=computer;size=400x500")
 	onclose(user, "computer")
-	return
-
 
 /obj/machinery/computer/prisoner/Process()
 	if(!..())
-		src.updateDialog()
-	return
-
+		updateDialog()
 
 /obj/machinery/computer/prisoner/Topic(href, href_list)
 	if(..())
@@ -69,7 +64,7 @@
 			I.activate(amount)
 
 	else if(href_list["lock"])
-		if(src.allowed(usr))
+		if(allowed(usr))
 			locked = !locked
 		else
 			to_chat(usr, "Unauthorized Access.")
@@ -83,5 +78,4 @@
 			to_chat(R, SPAN_NOTICE("You hear a voice in your head saying: '[warning]'"))
 
 	add_fingerprint(usr)
-	src.updateUsrDialog()
-	return
+	updateUsrDialog()

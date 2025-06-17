@@ -16,13 +16,13 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
-/obj/machinery/button/remote/attack_ai(mob/user as mob)
+/obj/machinery/button/remote/attack_ai(mob/user)
 	if(wires & 2)
 		return attack_hand(user)
 	else
 		to_chat(user, "Error, no route to host.")
 
-/obj/machinery/button/remote/attackby(obj/item/W, mob/user as mob)
+/obj/machinery/button/remote/attackby(obj/item/W, mob/user)
 	return attack_hand(user)
 
 /obj/machinery/button/remote/emag_act(var/remaining_charges, var/mob/user)
@@ -32,7 +32,7 @@
 		playsound(loc, "sparks", 100, 1)
 		return 1
 
-/obj/machinery/button/remote/attack_hand(mob/user as mob)
+/obj/machinery/button/remote/attack_hand(mob/user)
 	if(..())
 		return 1
 
@@ -234,7 +234,7 @@
 	desc = "It controls blast doors, remotely. But need id_card with access to it."
 	icon_state = "doorid0"
 
-/obj/machinery/button/remote/blast_door/id_card/attackby(obj/item/W, mob/user as mob)
+/obj/machinery/button/remote/blast_door/id_card/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id))
 		var/obj/item/card/id/id_card = W
 		if(has_access(req_access, list(), id_card.access))
@@ -251,7 +251,7 @@
 		to_chat(user, SPAN_WARNING("You need a id card to operate."))
 		flick("doorid-denied",src)
 
-/obj/machinery/button/remote/blast_door/id_card/attack_hand(mob/user as mob)
+/obj/machinery/button/remote/blast_door/id_card/attack_hand(mob/user)
 	to_chat(user, SPAN_WARNING("You need a id card to operate."))
 	flick("doorid-denied",src)
 
@@ -268,7 +268,7 @@
 	name = "remote emitter control"
 	desc = "It controls emitters, remotely."
 
-/obj/machinery/button/remote/emitter/trigger(mob/user as mob)
+/obj/machinery/button/remote/emitter/trigger(mob/user)
 	for(var/obj/machinery/power/emitter/E in GLOB.machines)
 		if(E.id == id)
 			spawn(0)
@@ -283,7 +283,7 @@
 	desc = "A remote control switch for a mass driver."
 	icon_state = "launcher0"
 
-/obj/machinery/button/remote/driver/trigger(mob/user as mob)
+/obj/machinery/button/remote/driver/trigger(mob/user)
 	active = 1
 	update_icon()
 

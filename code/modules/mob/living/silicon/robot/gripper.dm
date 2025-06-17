@@ -91,14 +91,14 @@
 
 		underlays += MA
 
-/obj/item/gripper/attack_self(mob/user as mob)
+/obj/item/gripper/attack_self(mob/user)
 	if(wrapped)
 		.=wrapped.attack_self(user)
 		update_icon()
 		return
 	return ..()
 
-/obj/item/gripper/AltClick(mob/user as mob)
+/obj/item/gripper/AltClick(mob/user)
 	if(wrapped)
 		.=wrapped.AltClick(user)
 		update_icon()
@@ -139,7 +139,7 @@
 				//Slow,powerful attack for borgs. No spamclicking
 	return FALSE
 
-/obj/item/gripper/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/gripper/attackby(var/obj/item/O as obj, var/mob/user)
 	if(wrapped)
 		var/resolved = wrapped.attackby(O,user)
 		if(!resolved && wrapped && O)
@@ -310,7 +310,7 @@
 
 /obj/item/gripper/no_use //Used when you want to hold and put items in other things, but not able to 'use' the item
 
-/obj/item/gripper/no_use/attack_self(mob/user as mob)
+/obj/item/gripper/no_use/attack_self(mob/user)
 	return
 
 /obj/item/gripper/no_use/loader //This is used to disallow building with metal.

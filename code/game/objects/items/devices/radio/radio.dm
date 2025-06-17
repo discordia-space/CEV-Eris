@@ -88,7 +88,7 @@
 
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/item/device/radio/attack_self(mob/user as mob)
+/obj/item/device/radio/attack_self(mob/user)
 	user.set_machine(src)
 	add_fingerprint(user)
 	interact(user)

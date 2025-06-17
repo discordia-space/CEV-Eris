@@ -9,17 +9,14 @@
 	shipside_only = TRUE
 	req_access = list()
 
-/obj/machinery/shieldwallgen/excelsior/can_stun(var/mob/M)
+/obj/machinery/shieldwallgen/excelsior/can_stun(mob/M)
 	if(is_excelsior(M))
 		return FALSE
-
 	return TRUE
 
-
-/obj/machinery/shieldwallgen/excelsior/allowed(var/mob/user)
+/obj/machinery/shieldwallgen/excelsior/allowed(mob/user)
 	if(is_excelsior(user))
 		return TRUE
-
 	return FALSE
 
 /obj/machinery/shieldwallgen/excelsior/emag_act()
@@ -34,12 +31,10 @@
 		return
 
 	stunmode = !stunmode
-
 	if(stunmode)
 		to_chat(usr, SPAN_NOTICE("You toggle on [src]'s stun mode."))
 	else
 		to_chat(usr, SPAN_NOTICE("You toggle off [src]'s stun mode."))
-
 
 //Special variant that allows excelsior people to walk though
 /obj/machinery/shieldwall/excelsior

@@ -139,7 +139,7 @@
 			if(UpdateNeighbors)
 				R.update_icon(0)
 
-/obj/structure/railing/update_icon(/UpdateNeighbors = 1)
+/obj/structure/railing/update_icon(UpdateNeighbors = 1)
 	NeighborsCheck(UpdateNeighbors)
 	cut_overlays()
 	if(!check || !anchored)

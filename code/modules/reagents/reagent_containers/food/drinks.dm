@@ -22,7 +22,7 @@
 	update_icon()
 	return
 
-/obj/item/reagent_containers/food/drinks/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/drinks/attack_self(mob/user)
 	if(!is_open_container())
 		open(user)
 
@@ -34,18 +34,17 @@
 	verbs += /obj/item/reagent_containers/food/drinks/proc/gulp_whole
 	update_icon()
 
-/obj/item/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/drinks/attack(mob/M, mob/user, def_zone)
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 
 	if(standard_feed_mob(user, M))
 		return
-
 	return 0
 
 /obj/item/reagent_containers/food/drinks/afterattack(obj/target, mob/user, proximity)
-	if(!proximity) return
-
+	if(!proximity)
+		return
 	if(standard_pour_into(user, target))
 		return
 	if(standard_dispenser_refill(user, target))
@@ -55,10 +54,10 @@
 /obj/item/reagent_containers/food/drinks/is_closed_message(mob/user)
 	to_chat(user, SPAN_NOTICE("You need to open [src] first!"))
 
-/obj/item/reagent_containers/food/drinks/self_feed_message(var/mob/user)
+/obj/item/reagent_containers/food/drinks/self_feed_message(mob/user)
 	to_chat(user, SPAN_NOTICE("You swallow a gulp from \the [src]."))
 
-/obj/item/reagent_containers/food/drinks/feed_sound(var/mob/user)
+/obj/item/reagent_containers/food/drinks/feed_sound(mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
 /obj/item/reagent_containers/food/drinks/update_icon()

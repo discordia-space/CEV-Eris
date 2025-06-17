@@ -182,7 +182,6 @@ var/list/ship_scanners = list()
 
 /obj/machinery/power/shipside/long_range_scanner/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
-
 	data["running"] = running
 	data["logs"] = get_logs()
 	data["max_energy"] = round(max_energy / 1000000, 0.1)
@@ -201,18 +200,15 @@ var/list/ship_scanners = list()
 		ui.open()
 		ui.set_auto_update(1)
 
-
-/obj/machinery/power/shipside/long_range_scanner/attack_hand(var/mob/user)
+/obj/machinery/power/shipside/long_range_scanner/attack_hand(mob/user)
 	nano_ui_interact(user)
 	if(panel_open)
 		wires.Interact(user)
 
-
-/obj/machinery/power/shipside/long_range_scanner/CanUseTopic(var/mob/user)
+/obj/machinery/power/shipside/long_range_scanner/CanUseTopic(mob/user)
 	if(issilicon(user) && !Adjacent(user) && ai_control_disabled)
 		return STATUS_UPDATE
 	return ..()
-
 
 /obj/machinery/power/shipside/long_range_scanner/Topic(href, href_list)
 	if(..())
@@ -280,8 +276,6 @@ var/list/ship_scanners = list()
 		return (current_energy / max_energy) * 100
 	return 0
 
-
-
 /obj/machinery/power/shipside/long_range_scanner/proc/get_logs()
 	var/list/all_logs = list()
 	for(var/i = event_log.len; i > 1; i--)
@@ -294,7 +288,6 @@ var/list/ship_scanners = list()
 /obj/machinery/power/shipside/long_range_scanner/log_event(var/event_type, var/atom/origin_atom)
 	var/logstring = "[stationtime2text()]: "
 	switch (event_type)
-
 		if(EVENT_ENABLED to EVENT_RECONFIGURED)
 			switch (event_type)
 				if(EVENT_ENABLED)
@@ -319,7 +312,6 @@ var/list/ship_scanners = list()
 				if(origin_atom)
 					logstring += ", [origin_atom.x ? origin_atom.x : "unknown"],[origin_atom.y ? origin_atom.y : "unknown"],[origin_atom.z ? origin_atom.z : "unknown"]"
 
-
 	if(logstring != "")
 		//Insert this string into the log
 		event_log.Add(logstring)
@@ -333,7 +325,6 @@ var/list/ship_scanners = list()
 		current_energy -= round(ENERGY_PER_SCAN * as_energy_multiplier)
 		return TRUE
 	return FALSE
-
 
 /obj/machinery/power/conduit/scanner_conduit
 	name = "scanner conduit"

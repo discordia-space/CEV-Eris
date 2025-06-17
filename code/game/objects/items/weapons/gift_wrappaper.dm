@@ -95,7 +95,7 @@
 		to_chat(user, SPAN_WARNING("The gift was empty!"))
 	qdel(src)
 
-/obj/effect/spresent/relaymove(mob/user as mob)
+/obj/effect/spresent/relaymove(mob/user)
 	if(user.stat)
 		return
 	to_chat(user, SPAN_WARNING("You can't move."))

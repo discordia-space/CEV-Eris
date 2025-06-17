@@ -8,7 +8,6 @@
 
 /datum/category_item/player_setup_item/physical/flavor/load_character(var/savefile/S)
 	from_file(S["flavor_text"], pref.flavor_text)
-
 	//Flavour text for robots.
 	from_file(S["flavour_texts_robot_Default"], pref.flavour_texts_robot["Default"])
 	for(var/module in robot_modules)
@@ -27,14 +26,14 @@
 	if(!istype(pref.flavour_texts_robot))
 		pref.flavour_texts_robot = list()
 
-/datum/category_item/player_setup_item/physical/flavor/content(var/mob/user)
+/datum/category_item/player_setup_item/physical/flavor/content(mob/user)
 	. = list()
 	. += "<b>Flavor:</b><br>"
 	. += "<a href='?src=\ref[src];flavor_text=open'>Set Flavor Text</a><br/>"
 	. += "<a href='?src=\ref[src];flavour_text_robot=open'>Set Robot Flavor Text</a><br/>"
 	return jointext(.,null)
 
-/datum/category_item/player_setup_item/physical/flavor/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/physical/flavor/OnTopic(href, list/href_list, mob/user)
 	if(href_list["flavor_text"] && href_list["flavor_text"] == "open")
 		var/msg = sanitize(input(usr,"Give a general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text", pref.flavor_text, "message"), extra = 0)
 		if(CanUseTopic(user))
@@ -55,7 +54,6 @@
 					pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
 		SetFlavourTextRobot(user)
 		return TOPIC_HANDLED
-
 	return ..()
 
 /datum/category_item/player_setup_item/physical/flavor/proc/SetFlavourTextRobot(mob/user)
@@ -73,4 +71,3 @@
 	HTML += "<hr />"
 	HTML += "<tt>"
 	user << browse(HTML, "window=flavour_text_robot;size=430x300")
-	return

@@ -61,7 +61,7 @@
 	set desc = "Set jukebox volume"
 	set_new_volume(usr)
 
-/client/proc/set_new_volume(var/mob/user)
+/client/proc/set_new_volume(mob/user)
 	if(!QDELETED(src.media) || !istype(src.media))
 		to_chat(user, "<span class='warning'>You have no media datum to change, if you're not in the lobby tell an admin.</span>")
 		return
@@ -83,7 +83,7 @@
 	if(client && client.media)
 		client.media.stop_music()
 
-/mob/proc/force_music(var/url, var/start, var/volume=1)
+/mob/proc/force_music(url, start, volume = 1)
 	if(client && client.media)
 		if(url == "")
 			client.media.forced = 0
@@ -91,12 +91,10 @@
 		else
 			client.media.forced = 1
 			client.media.push_music(url, start, volume)
-	return
 
 //
 // ### Media Manager Datum
 //
-
 /datum/media_manager
 	var/url = ""				// URL of currently playing media
 	var/start_time = 0			// world.time when it started playing *in the source* (Not when started playing for us)
@@ -108,9 +106,9 @@
 	var/playerstyle				// Choice of which player plugin to use
 	var/const/WINDOW_ID = "outputwindow.mediapanel"	// Which elem in skin.dmf to use
 
-/datum/media_manager/New(var/client/C)
+/datum/media_manager/New(client/C)
 	ASSERT(istype(C))
-	src.owner = C
+	owner = C
 
 // Actually pop open the player in the background.
 /datum/media_manager/proc/open()
@@ -148,7 +146,7 @@
 /datum/media_manager/proc/stop_music()
 	push_music("", 0, 1)
 
-/datum/media_manager/proc/update_volume(var/value)
+/datum/media_manager/proc/update_volume(value)
 	volume = value
 	send_update()
 

@@ -174,7 +174,7 @@
 	p_area.Add(BP_GROIN, BP_HEAD)
 	return p_area
 
-/obj/item/shield/buckler/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/shield/buckler/attackby(obj/item/W as obj, mob/user)
 	if(istype(W, /obj/item/melee/baton))
 		on_bash(W, user)
 	else
@@ -278,7 +278,7 @@
 		visible_message("[picking_human] raises [gender_datums[picking_human.gender].his] [src.name] to cover [gender_datums[picking_human.gender].him]self!")
 	update_wear_icon()
 
-/obj/item/shield/riot/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/shield/riot/attackby(obj/item/W as obj, mob/user)
 	if(istype(W, /obj/item/melee/baton))
 		on_bash(W, user)
 	else
@@ -311,7 +311,7 @@
 	shield_integrity = 230
 	slowdown_hold = 1
 
-/obj/item/shield/riot/dozershield/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/shield/riot/dozershield/attackby(obj/item/W as obj, mob/user)
 	if(istype(W, /obj/item/tool/hammer) || istype(W, /obj/item/tool/sword))
 		on_bash(W, user)
 	else
@@ -358,7 +358,7 @@
 /obj/item/shield/hardsuit/get_partial_protected_area(mob/user)
 	return BP_ALL_LIMBS
 
-/obj/item/shield/hardsuit/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/shield/hardsuit/attackby(obj/item/W as obj, mob/user)
 	if(istype(W, /obj/item/melee/baton))
 		on_bash(W, user)
 	else
@@ -416,7 +416,7 @@
 	shield_difficulty = 65
 	shield_integrity = 170
 
-/obj/item/shield/buckler/handmade/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/shield/buckler/handmade/attackby(obj/item/W as obj, mob/user)
 	if(istype(W, /obj/item/extinguisher) || istype(W, /obj/item/storage/toolbox) || istype(W, /obj/item/melee))
 		on_bash(W, user)
 	else

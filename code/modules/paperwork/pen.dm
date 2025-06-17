@@ -25,7 +25,6 @@
 	rarity_value = 6
 	var/colour = "black"	//what colour the ink is!
 
-
 /obj/item/pen/blue
 	desc = "A normal blue ink pen."
 	icon_state = "pen_blue"
@@ -46,19 +45,16 @@
 		selectedColor = 1
 
 	colour = colors[selectedColor]
-
 	if(colour == "black")
 		icon_state = "pen"
 	else
 		icon_state = "pen_[colour]"
-
 	to_chat(user, SPAN_NOTICE("Changed color to '[colour].'"))
 
 /obj/item/pen/invisible
 	desc = "An invisble pen marker."
 	icon_state = "pen"
 	colour = "white"
-
 
 /obj/item/pen/attack(mob/M, mob/user)
 	if(!ismob(M))
@@ -68,7 +64,6 @@
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been stabbed with [name]  by [user.name] ([user.ckey])</font>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to stab [M.name] ([M.ckey])</font>")
 	msg_admin_attack("[user.name] ([user.ckey]) Used the [name] to stab [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-	return
 
 /*
  * Reagent pens
@@ -85,7 +80,6 @@
 	create_reagents(30)
 
 /obj/item/pen/reagent/attack(mob/living/M, mob/user)
-
 	if(!istype(M))
 		return
 
@@ -108,7 +102,6 @@
 /obj/item/pen/reagent/sleepy/New()
 	..()
 	reagents.add_reagent("chloralhydrate", 22)	//Used to be 100 sleep toxin//30 Chloral seems to be fatal, reducing it to 22./N
-
 
 /*
  * Parapens
@@ -142,10 +135,10 @@
 	*/
 	signature = sanitize(input("Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature))
 
-/obj/item/pen/proc/get_signature(var/mob/user)
+/obj/item/pen/proc/get_signature(mob/user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
 
-/obj/item/pen/chameleon/get_signature(var/mob/user)
+/obj/item/pen/chameleon/get_signature(mob/user)
 	return signature ? signature : "Anonymous"
 
 /obj/item/pen/chameleon/verb/set_colour()
@@ -154,7 +147,6 @@
 
 	var/list/possible_colours = list ("Yellow", "Green", "Pink", "Blue", "Orange", "Cyan", "Red", "Invisible", "Black")
 	var/selected_type = input("Pick new colour.", "Pen Colour", null, null) as null|anything in possible_colours
-
 	if(selected_type)
 		switch(selected_type)
 			if("Yellow")
@@ -177,11 +169,9 @@
 				colour = COLOR_BLACK
 		to_chat(usr, "<span class='info'>You select the [lowertext(selected_type)] ink container.</span>")
 
-
 /*
  * Crayons
  */
-
 /obj/item/pen/crayon
 	name = "crayon"
 	desc = "A colourful crayon. Please refrain from eating it or putting it in your nose."

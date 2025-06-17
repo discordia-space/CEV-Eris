@@ -80,7 +80,7 @@
 	update_turfs()
 	return ..()
 
-/obj/machinery/shield_diffuser/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/shield_diffuser/attackby(obj/item/O as obj, mob/user)
 	if(default_deconstruction(O, user))
 		return
 	if(default_part_replacement(O, user))

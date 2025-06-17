@@ -27,7 +27,8 @@
 	set name = "Eject ID Card"
 	set src in oview(1)
 
-	if(!usr || usr.stat || usr.lying)	return
+	if(!usr || usr.stat || usr.lying)
+		return
 
 	if(scan)
 		to_chat(usr, "You remove \the [scan] from \the [src].")
@@ -37,7 +38,6 @@
 		scan = null
 	else
 		to_chat(usr, "There is nothing to remove from the console.")
-	return
 
 /obj/machinery/computer/secure_data/attackby(obj/item/O as obj, user as mob)
 	if(istype(O, /obj/item/card/id) && !scan)
@@ -54,7 +54,7 @@
 	nano_ui_interact(user)
 
 /obj/machinery/computer/secure_data/nano_ui_interact(user)
-	if(src.z > 6)
+	if(z > 6)
 		to_chat(user, "<span class='warning'>Unable to establish a connection:</span> You're too far away from the station!")
 		return
 
@@ -70,20 +70,20 @@
 					dat += text("<A href='?src=\ref[];choice=Search Records'>Search Records</A><BR>", src)
 					dat += text("<A href='?src=\ref[];choice=New Record (General)'>New Record</A><BR>", src)
 					dat += {"
-</p>
-<table style="text-align:center;" cellspacing="0" width="100%">
-<tr>
-<th>Records:</th>
-</tr>
-</table>
-<table style="text-align:center;" border="1" cellspacing="0" width="100%">
-<tr>
-<th><A href='?src=\ref[src];choice=Sorting;sort=name'>Name</A></th>
-<th><A href='?src=\ref[src];choice=Sorting;sort=id'>ID</A></th>
-<th><A href='?src=\ref[src];choice=Sorting;sort=rank'>Rank</A></th>
-<th><A href='?src=\ref[src];choice=Sorting;sort=fingerprint'>Fingerprints</A></th>
-<th>Criminal Status</th>
-</tr>"}
+					</p>
+					<table style="text-align:center;" cellspacing="0" width="100%">
+					<tr>
+					<th>Records:</th>
+					</tr>
+					</table>
+					<table style="text-align:center;" border="1" cellspacing="0" width="100%">
+					<tr>
+					<th><A href='?src=\ref[src];choice=Sorting;sort=name'>Name</A></th>
+					<th><A href='?src=\ref[src];choice=Sorting;sort=id'>ID</A></th>
+					<th><A href='?src=\ref[src];choice=Sorting;sort=rank'>Rank</A></th>
+					<th><A href='?src=\ref[src];choice=Sorting;sort=fingerprint'>Fingerprints</A></th>
+					<th>Criminal Status</th>
+					</tr>"}
 					if(!isnull(data_core.general))
 						for(var/datum/data/record/R in sortRecord(data_core.general, sortBy, order))
 							var/crimstat = ""
@@ -122,33 +122,33 @@
 						user << browse_rsc(active1.fields["photo_front"], "front.png")
 						user << browse_rsc(active1.fields["photo_side"], "side.png")
 						dat += {"
-							<table><tr><td>
-							Name: <A href='?src=\ref[src];choice=Edit;field=name'>[active1.fields["name"]]</A><BR>
-							ID: <A href='?src=\ref[src];choice=Edit;field=id'>[active1.fields["id"]]</A><BR>
-							Sex: <A href='?src=\ref[src];choice=Edit;field=sex'>[active1.fields["sex"]]</A><BR>
-							Age: <A href='?src=\ref[src];choice=Edit;field=age'>[active1.fields["age"]]</A><BR>
-							Rank: <A href='?src=\ref[src];choice=Edit;field=rank'>[active1.fields["rank"]]</A><BR>
-							Fingerprint: <A href='?src=\ref[src];choice=Edit;field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>
-							Physical Status: [active1.fields["p_stat"]]<BR>
-							Mental Status: [active1.fields["m_stat"]]<BR></td>
-							<td align = center valign = top>Photo:<br>
-							<table><td align = center><img src=front.png height=80 width=80 border=4><BR>
-							<A href='?src=\ref[src];choice=Edit;field=photo front'>Update front photo</A></td>
-							<td align = center><img src=side.png height=80 width=80 border=4><BR>
-							<A href='?src=\ref[src];choice=Edit;field=photo side'>Update side photo</A></td></table>
-							</td></tr></table>
+						<table><tr><td>
+						Name: <A href='?src=\ref[src];choice=Edit;field=name'>[active1.fields["name"]]</A><BR>
+						ID: <A href='?src=\ref[src];choice=Edit;field=id'>[active1.fields["id"]]</A><BR>
+						Sex: <A href='?src=\ref[src];choice=Edit;field=sex'>[active1.fields["sex"]]</A><BR>
+						Age: <A href='?src=\ref[src];choice=Edit;field=age'>[active1.fields["age"]]</A><BR>
+						Rank: <A href='?src=\ref[src];choice=Edit;field=rank'>[active1.fields["rank"]]</A><BR>
+						Fingerprint: <A href='?src=\ref[src];choice=Edit;field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>
+						Physical Status: [active1.fields["p_stat"]]<BR>
+						Mental Status: [active1.fields["m_stat"]]<BR></td>
+						<td align = center valign = top>Photo:<br>
+						<table><td align = center><img src=front.png height=80 width=80 border=4><BR>
+						<A href='?src=\ref[src];choice=Edit;field=photo front'>Update front photo</A></td>
+						<td align = center><img src=side.png height=80 width=80 border=4><BR>
+						<A href='?src=\ref[src];choice=Edit;field=photo side'>Update side photo</A></td></table>
+						</td></tr></table>
 						"}
 					else
 						dat += "<B>General Record Lost!</B><BR>"
 					if((istype(active2, /datum/data/record) && data_core.security.Find(active2)))
 						dat += "<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: \
-								<A href='?src=\ref[src];choice=Edit;field=criminal'>[active2.fields["criminal"]]</A><BR>\n<BR>\n \
-								Minor Crimes: <A href='?src=\ref[src];choice=Edit;field=mi_crim'>[active2.fields["mi_crim"]]</A><BR>\n \
-								Details: <A href='?src=\ref[src];choice=Edit;field=mi_crim_d'>[active2.fields["mi_crim_d"]]</A><BR>\n<BR>\n\
-								Major Crimes: <A href='?src=\ref[src];choice=Edit;field=ma_crim'>[active2.fields["ma_crim"]]</A><BR>\n \
-								Details: <A href='?src=\ref[src];choice=Edit;field=ma_crim_d'>[active2.fields["ma_crim_d"]]</A><BR>\n<BR>\n \
-								Important Notes:<BR>\n\t<A href='?src=\ref[src];choice=Edit;field=notes'>[decode(active2.fields["notes"])]</A><BR>\n<BR>\n\
-								<CENTER><B>Comments/Log</B></CENTER><BR>"
+						<A href='?src=\ref[src];choice=Edit;field=criminal'>[active2.fields["criminal"]]</A><BR>\n<BR>\n \
+						Minor Crimes: <A href='?src=\ref[src];choice=Edit;field=mi_crim'>[active2.fields["mi_crim"]]</A><BR>\n \
+						Details: <A href='?src=\ref[src];choice=Edit;field=mi_crim_d'>[active2.fields["mi_crim_d"]]</A><BR>\n<BR>\n\
+						Major Crimes: <A href='?src=\ref[src];choice=Edit;field=ma_crim'>[active2.fields["ma_crim"]]</A><BR>\n \
+						Details: <A href='?src=\ref[src];choice=Edit;field=ma_crim_d'>[active2.fields["ma_crim_d"]]</A><BR>\n<BR>\n \
+						Important Notes:<BR>\n\t<A href='?src=\ref[src];choice=Edit;field=notes'>[decode(active2.fields["notes"])]</A><BR>\n<BR>\n\
+						<CENTER><B>Comments/Log</B></CENTER><BR>"
 						var/counter = 1
 						while(active2.fields["com_[counter]"])
 							dat += text("[]<BR><A href='?src=\ref[];choice=Delete Entry;del_c=[]'>Delete Entry</A><BR><BR>", active2.fields["com_[counter]"], src, counter)
@@ -159,24 +159,24 @@
 						dat += "<B>Security Record Lost!</B><BR>"
 						dat += "<A href='?src=\ref[src];choice=New Record (Security)'>New Security Record</A><BR><BR>"
 					dat += "<A href='?src=\ref[src];choice=Delete Record (ALL)'>Delete Record (ALL)</A><BR><BR> \
-							<A href='?src=\ref[src];choice=Print Record'>Print Record</A><BR> \
-							<A href='?src=\ref[src];choice=Print Poster'>Print Wanted Poster</A><BR> \
-							<A href='?src=\ref[src];choice=Return'>Back</A><BR>"
+					<A href='?src=\ref[src];choice=Print Record'>Print Record</A><BR> \
+					<A href='?src=\ref[src];choice=Print Poster'>Print Wanted Poster</A><BR> \
+					<A href='?src=\ref[src];choice=Return'>Back</A><BR>"
 				if(4)
 					if(!Perp.len)
 						dat += text("ERROR.  String could not be located.<br><br><A href='?src=\ref[];choice=Return'>Back</A>", src)
 					else
 						dat += {"
-							<table style="text-align:center;" cellspacing="0" width="100%">
-							<tr><th>Search Results for '[tempname]':</th></tr></table>
-							<table style="text-align:center;" border="1" cellspacing="0" width="100%">
-							<tr>
-							<th>Name</th>
-							<th>ID</th>
-							<th>Rank</th>
-							<th>Fingerprints</th>
-							<th>Criminal Status</th>
-							</tr>
+						<table style="text-align:center;" cellspacing="0" width="100%">
+						<tr><th>Search Results for '[tempname]':</th></tr></table>
+						<table style="text-align:center;" border="1" cellspacing="0" width="100%">
+						<tr>
+						<th>Name</th>
+						<th>ID</th>
+						<th>Rank</th>
+						<th>Fingerprints</th>
+						<th>Criminal Status</th>
+						</tr>
 						"}
 						for(var/i=1, i<=Perp.len, i += 2)
 							var/crimstat = ""
@@ -211,7 +211,6 @@
 			dat += text("<A href='?src=\ref[];choice=Log In'>{Log In}</A>", src)
 	user << browse(text("<HEAD><TITLE>Security Records</TITLE></HEAD><TT>[]</TT>", dat), "window=secure_rec;size=600x400")
 	onclose(user, "secure_rec")
-	return
 
 /*Revised /N
 I can't be bothered to look more of the actual code outside of switch but that probably needs revising too.
@@ -226,7 +225,6 @@ What a mess.*/
 	if((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))) || (issilicon(usr)))
 		usr.set_machine(src)
 		switch(href_list["choice"])
-// SORTING!
 			if("Sorting")
 				// Reverse the order if clicked twice
 				if(sortBy == href_list["sort"])
@@ -238,7 +236,6 @@ What a mess.*/
 				// New sorting order!
 					sortBy = href_list["sort"]
 					order = initial(order)
-//BASIC FUNCTIONS
 			if("Clear Screen")
 				temp = null
 
@@ -287,7 +284,6 @@ What a mess.*/
 						authenticated = scan.registered_name
 						rank = scan.assignment
 						screen = 1
-//RECORD FUNCTIONS
 			if("Search Records")
 				var/t1 = input("Search String: (Partial Name or ID or Fingerprints or Rank)", "Secure. records", null, null)  as text
 				if((!( t1 ) || usr.stat || !( authenticated ) || usr.restrained() || !in_range(src, usr)))
@@ -329,24 +325,6 @@ What a mess.*/
 					active1 = R
 					active2 = S
 					screen = 3
-
-/*			if("Search Fingerprints")
-				var/t1 = input("Search String: (Fingerprint)", "Secure. records", null, null)  as text
-				if((!( t1 ) || usr.stat || !( authenticated ) || usr.restrained() || (!in_range(src, usr)) && (!issilicon(usr))))
-					return
-				active1 = null
-				active2 = null
-				t1 = lowertext(t1)
-				for(var/datum/data/record/R in data_core.general)
-					if(lowertext(R.fields["fingerprint"]) == t1)
-						active1 = R
-				if(!( active1 ))
-					temp = text("Could not locate record [].", t1)
-				else
-					for(var/datum/data/record/E in data_core.security)
-						if((E.fields["name"] == active1.fields["name"] || E.fields["id"] == active1.fields["id"]))
-							active2 = E
-					screen = 3	*/
 
 			if("Print Record")
 				if(!( printing ))
@@ -411,7 +389,7 @@ What a mess.*/
 							if((istype(active1, /datum/data/record) && data_core.general.Find(active1)))//make sure the record still exists.
 								new /obj/item/contraband/poster/wanted(src.loc, active1.fields["photo_front"], wanted_name, default_description)
 							printing = 0
-//RECORD DELETE
+
 			if("Delete All Records")
 				temp = ""
 				temp += "Are you sure you wish to delete all Security records?<br>"
@@ -450,7 +428,7 @@ What a mess.*/
 			if("Delete Entry")
 				if((istype(active2, /datum/data/record) && active2.fields[text("com_[]", href_list["del_c"])]))
 					active2.fields[text("com_[]", href_list["del_c"])] = "<B>Deleted</B>"
-//RECORD CREATE
+
 			if("New Record (Security)")
 				if((istype(active1, /datum/data/record) && !( istype(active2, /datum/data/record) )))
 					active2 = data_core.CreateSecurityRecord(active1.fields["name"], active1.fields["id"])
@@ -460,7 +438,6 @@ What a mess.*/
 				active1 = data_core.CreateGeneralRecord()
 				active2 = null
 
-//FIELD FUNCTIONS
 			if("Edit")
 				if(is_not_allowed(usr))
 					return
@@ -563,8 +540,6 @@ What a mess.*/
 						if(photo)
 							active1.fields["photo_side"] = photo
 
-
-//TEMPORARY MENU FUNCTIONS
 			else//To properly clear as per clear screen.
 				temp=null
 				switch(href_list["choice"])
@@ -605,15 +580,13 @@ What a mess.*/
 							qdel(active2)
 					else
 						temp = "This function does not appear to be working at the moment. Our apologies."
-
 	add_fingerprint(usr)
 	updateUsrDialog()
-	return
 
-/obj/machinery/computer/secure_data/proc/is_not_allowed(var/mob/user)
-	return !src.authenticated || user.stat || user.restrained() || (!in_range(src, user) && (!issilicon(user)))
+/obj/machinery/computer/secure_data/proc/is_not_allowed(mob/user)
+	return !authenticated || user.stat || user.restrained() || (!in_range(src, user) && (!issilicon(user)))
 
-/obj/machinery/computer/secure_data/proc/get_photo(var/mob/user)
+/obj/machinery/computer/secure_data/proc/get_photo(mob/user)
 	if(istype(user.get_active_hand(), /obj/item/photo))
 		var/obj/item/photo/photo = user.get_active_hand()
 		return photo.img

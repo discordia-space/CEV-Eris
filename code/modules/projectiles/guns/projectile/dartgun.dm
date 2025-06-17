@@ -98,7 +98,7 @@
 					extra_description += SPAN_NOTICE("\n[R.volume] units of [R.name]")
 	..(user, extra_description)
 
-/obj/item/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user)
 	if(istype(I, /obj/item/reagent_containers/glass))
 		if(!istype(I, beaker_type))
 			to_chat(user, SPAN_NOTICE("[I] doesn't seem to fit into [src]."))

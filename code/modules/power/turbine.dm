@@ -40,13 +40,10 @@
 	var/door_status = 0
 
 // the inlet stage of the gas turbine electricity generator
-
 /obj/machinery/compressor/New()
 	..()
-
 	gas_contained = new
 	inturf = get_step(src, dir)
-
 	spawn(5)
 		turbine = locate() in get_step(src, get_dir(inturf, src))
 		if(!turbine)
@@ -54,7 +51,6 @@
 		else
 			turbine.stat &= !BROKEN
 			turbine.compressor = src
-
 
 #define COMPFRICTION 5e5
 #define COMPSTARTERLOAD 2800
@@ -74,10 +70,7 @@
 	//var/transfer_moles = rpm/10000*capacity
 	var/datum/gas_mixture/removed = inturf.remove_air(transfer_moles)
 	gas_contained.merge(removed)
-
 	rpm = max(0, rpm - (rpm*rpm)/COMPFRICTION)
-
-
 	if(starter && !(stat & NOPOWER))
 		use_power(2800)
 		if(rpm<1000)
@@ -85,8 +78,6 @@
 	else
 		if(rpm<1000)
 			rpmtarget = 0
-
-
 
 	if(rpm>50000)
 		overlays += image('icons/obj/pipes.dmi', "comp-o4", FLY_LAYER)
@@ -100,11 +91,8 @@
 
 /obj/machinery/power/turbine/New()
 	..()
-
 	outturf = get_step(src, dir)
-
 	spawn(5)
-
 		compressor = locate() in get_step(src, get_dir(outturf, src))
 		if(!compressor)
 			stat |= BROKEN
@@ -112,11 +100,9 @@
 			compressor.stat &= !BROKEN
 			compressor.turbine = src
 
-
 #define TURBPRES 9000000
 #define TURBGENQ 20000
 #define TURBGENG 0.8
-
 /obj/machinery/power/turbine/Process()
 	if(!compressor.starter)
 		return
@@ -143,36 +129,26 @@
 	if(lastgen > 100)
 		overlays += image('icons/obj/pipes.dmi', "turb-o", FLY_LAYER)
 
-
 	for(var/mob/M in viewers(1, src))
 		if((M.client && M.machine == src))
 			src.interact(M)
 	AutoUpdateAI(src)
 
 /obj/machinery/power/turbine/interact(mob/user)
-
-	if( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && (!isAI(user)) )
+	if((get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && (!isAI(user)))
 		user.machine = null
 		user << browse(null, "window=turbine")
 		return
 
 	user.machine = src
-
 	var/t = "<TT><B>Gas Turbine Generator</B><HR><PRE>"
-
 	t += "Generated power : [round(lastgen)] W<BR><BR>"
-
 	t += "Turbine: [round(compressor.rpm)] RPM<BR>"
-
 	t += "Starter: [ compressor.starter ? "<A href='?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref[src];str=1'>On</A>"]"
-
 	t += "</PRE><HR><A href='?src=\ref[src];close=1'>Close</A>"
-
 	t += "</TT>"
 	user << browse(t, "window=turbine")
 	onclose(user, "turbine")
-
-	return
 
 /obj/machinery/power/turbine/Topic(href, href_list)
 	..()
@@ -195,21 +171,9 @@
 			for(var/mob/M in viewers(1, src))
 				if((M.client && M.machine == src))
 					src.interact(M)
-
 	else
 		usr << browse(null, "window=turbine")
 		usr.machine = null
-
-	return
-
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 /obj/machinery/computer/turbine_computer/New()
 	..()
@@ -222,8 +186,7 @@
 			if(P.id == id)
 				doors += P
 
-
-/obj/machinery/computer/turbine_computer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/turbine_computer/attack_hand(mob/user)
 	user.machine = src
 	var/dat
 	if(src.compressor)
@@ -243,17 +206,13 @@
 
 	user << browse(dat, "window=computer;size=400x500")
 	onclose(user, "computer")
-	return
-
-
 
 /obj/machinery/computer/turbine_computer/Topic(href, href_list)
 	if(..())
 		return 1
 
 	usr.machine = src
-
-	if( href_list["view"] )
+	if(href_list["view"])
 		usr.client.eye = src.compressor
 	else if( href_list["str"] )
 		src.compressor.starter = !src.compressor.starter
@@ -271,9 +230,7 @@
 		usr << browse(null, "window=computer")
 		usr.machine = null
 		return
-
-	src.updateUsrDialog()
+	updateUsrDialog()
 
 /obj/machinery/computer/turbine_computer/Process()
-	src.updateDialog()
-	return
+	updateDialog()

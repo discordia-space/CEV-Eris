@@ -29,12 +29,12 @@
 
 	old_turf = NewLoc
 
-/obj/machinery/floorlayer/attack_hand(mob/user as mob)
+/obj/machinery/floorlayer/attack_hand(mob/user)
 	on=!on
 	user.visible_message("<span class='notice'>[user] has [!on?"de":""]activated \the [src].</span>", "<span class='notice'>You [!on?"de":""]activate \the [src].</span>")
 	return
 
-/obj/machinery/floorlayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/floorlayer/attackby(var/obj/item/W as obj, var/mob/user)
 
 	if(istype(W, /obj/item/tool/wrench))
 		var/m = input("Choose work mode", "Mode") as null|anything in mode

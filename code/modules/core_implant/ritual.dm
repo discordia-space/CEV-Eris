@@ -90,7 +90,7 @@
 /datum/ritual/proc/is_on_cooldown(mob/living/carbon/human/user)
 	if(GLOB.global_ritual_cooldowns[cooldown_category])
 		return TRUE
-	if(user.personal_ritual_cooldowns[.cooldown_category] > world.time)
+	if(user.personal_ritual_cooldowns[cooldown_category] > world.time)
 		return TRUE
 	return FALSE
 

@@ -110,7 +110,7 @@
 	icon_state = "wm_[state]"
 
 
-/obj/machinery/washing_machine/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/washing_machine/attackby(obj/item/W as obj, mob/user)
 	if(istype(W,/obj/item/pen/crayon))
 		if(state in list(WASHSTATE_EMPTYOPENDOOR, WASHSTATE_FULLOPENDOOR))
 			if(!crayon)
@@ -136,7 +136,7 @@
 	..()
 
 
-/obj/machinery/washing_machine/attack_hand(mob/user as mob)
+/obj/machinery/washing_machine/attack_hand(mob/user)
 	switch(state)
 		if(WASHSTATE_EMPTYOPENDOOR)
 			state = WASHSTATE_EMPTYCLOSEDDOOR

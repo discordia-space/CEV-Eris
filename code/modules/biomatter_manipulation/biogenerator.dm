@@ -173,7 +173,7 @@
 			metrics["wires"] = FALSE
 
 
-/obj/machinery/multistructure/biogenerator_part/console/attack_hand(mob/user as mob)
+/obj/machinery/multistructure/biogenerator_part/console/attack_hand(mob/user)
 	if(MS)
 		return nano_ui_interact(user)
 
@@ -500,7 +500,7 @@
 	update_icon()
 
 
-/obj/machinery/power/biogenerator_core/attack_hand(mob/user as mob)
+/obj/machinery/power/biogenerator_core/attack_hand(mob/user)
 	var/datum/multistructure/biogenerator/biogenerator = generator.MS
 	if(biogenerator && biogenerator.working && !coil_frame)
 		shock(user, 100)

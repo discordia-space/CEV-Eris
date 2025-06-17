@@ -45,7 +45,7 @@
 	w_class = initial(w_class)
 	update_wear_icon()
 
-/obj/item/melee/energy/attack_self(mob/living/user as mob)
+/obj/item/melee/energy/attack_self(mob/living/user)
 	if(active)
 /*		if((CLUMSY in user.mutations) && prob(50))
 			user.visible_message(SPAN_DANGER("\The [user] accidentally cuts \himself with \the [src]."),\
@@ -111,7 +111,7 @@
 	edge = TRUE
 	var/blade_color
 
-/obj/item/melee/energy/sword/dropped(var/mob/user)
+/obj/item/melee/energy/sword/dropped(mob/user)
 	..()
 	deactivate(user)
 
@@ -156,10 +156,9 @@
 	attack_verb = list()
 	tool_qualities = initial(tool_qualities)
 
-/obj/item/melee/energy/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/energy/sword/handle_shield(mob/user, damage, atom/damage_source, mob/attacker, def_zone, attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
 		user.visible_message(SPAN_DANGER("\The [user] parries [attack_text] with \the [src]!"))
-
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
@@ -172,17 +171,12 @@
 	desc = "Arrrr matey."
 	icon_state = "cutlass0"
 
-
 /obj/item/melee/energy/sword/sabre
 	name = "laser sabre"
 	desc = "You feel the radiant glow below your skin."
 	origin_tech = list(TECH_MAGNET = 5, TECH_POWER = 6, TECH_COMBAT = 3)
 	active_force = WEAPON_FORCE_ROBUST
 	active_throwforce = WEAPON_FORCE_ROBUST
-
-/*
- *Energy Blade
- */
 
 //Can't be activated or deactivated, so no reason to be a subtype of energy
 /obj/item/melee/energy/blade
@@ -250,7 +244,7 @@
 
 /obj/item/melee/energy/blade/organ_module/attack_self(mob/user)
 
-/obj/item/melee/energy/blade/attack_self(mob/user as mob)
+/obj/item/melee/energy/blade/attack_self(mob/user)
 	if(stunmode)
 		desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 		icon_state = "blade"
@@ -268,7 +262,6 @@
 		attack_verb = list("beaten", "battered", "struck")
 		stunmode = TRUE
 	update_wear_icon()
-
 
 /obj/item/melee/energy/blade/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	if(!istype(target))

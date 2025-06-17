@@ -44,13 +44,13 @@
 	return
 
 
-/obj/structure/displaycase/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/displaycase/attackby(obj/item/W as obj, mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	take_damage(W.force)
 	..()
 	return
 
-/obj/structure/displaycase/attack_hand(mob/user as mob)
+/obj/structure/displaycase/attack_hand(mob/user)
 	if(src.destroyed && src.occupied)
 		new /obj/item/gun/energy/captain( src.loc )
 		to_chat(user, SPAN_NOTICE("You deactivate the hover field built into the case."))

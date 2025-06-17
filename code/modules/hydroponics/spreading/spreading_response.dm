@@ -1,6 +1,5 @@
 
-/obj/effect/plant/HasProximity(var/atom/movable/AM)
-
+/obj/effect/plant/HasProximity(atom/movable/AM)
 	if(seed.get_trait(TRAIT_CHEM_SPRAYER))
 		spawn(0)
 			var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
@@ -26,11 +25,10 @@
 		spawn(1)
 			entangle(M)
 
-
 /*************************
 	Attack procs
 **************************/
-/obj/effect/plant/attack_hand(var/mob/user)
+/obj/effect/plant/attack_hand(mob/user)
 	manual_unbuckle(user)
 
 /obj/effect/plant/attack_generic(mob/M, damage, attack_message)
@@ -43,15 +41,13 @@
 	else
 		manual_unbuckle(M)
 
-/obj/effect/plant/attackby(var/obj/item/W, var/mob/user)
+/obj/effect/plant/attackby(obj/item/W, mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	plant_controller.add_plant(src)
 	if(istype(W, /obj/item/reagent_containers/syringe))
 		return
 
 	if((W.has_quality(QUALITY_CUTTING) || W.has_quality(QUALITY_WIRE_CUTTING) || W.has_quality(QUALITY_LASER_CUTTING)) && user.a_intent != I_HURT)
-
-
 		var/list/options = list()
 		options += "Sample plant"
 		options += "Sample seed"
@@ -60,9 +56,7 @@
 		options[options[1]] = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "plant_sample")
 		options[options[2]] = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "seed_sample")
 		options[options[3]] = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "plant_kill")
-
 		var/choice = show_radial_menu(user, src, options, radius = 32)
-
 		if(choice == "Cut down")
 			//Cutting tools can cut down vines quickly
 			var/tool_type = null
@@ -103,7 +97,6 @@
 				seed.harvest(user,0, 1)
 				health -= (rand(3,5)*2)
 				check_health()
-		return
 	else
 		//Gardening tools can cut down vines quickly
 		var/tool_type = null
@@ -124,8 +117,6 @@
 				die_off()
 				return
 			return
-
-
 		..()
 		if(W.force && ! (W.flags & NOBLUDGEON))
 			var/damage = W.force
@@ -135,12 +126,9 @@
 			health -= damage
 			check_health()
 
-
-
 /*************
 	ACT PROCS
 **************/
-
 /obj/effect/plant/explosion_act(target_power, explosion_handler/handler)
 	if(target_power > 100)
 		die_off()
@@ -153,8 +141,7 @@
 	health -= max_health * RAND_DECIMAL(0.5, 1.5)
 	check_health()
 
-
-/obj/effect/plant/proc/trodden_on(var/mob/living/victim)
+/obj/effect/plant/proc/trodden_on(mob/living/victim)
 	if(!is_mature())
 		return
 	var/mob/living/carbon/human/H = victim
@@ -170,9 +157,8 @@
 			buckled_mob.anchored = initial(buckled_mob.anchored)
 			buckled_mob.update_lying_buckled_and_verb_status()
 		buckled_mob = null
-	return
 
-/obj/effect/plant/proc/manual_unbuckle(mob/user as mob)
+/obj/effect/plant/proc/manual_unbuckle(mob/user)
 	if(buckled_mob)
 		if(prob(seed ? min(max(0,100 - seed.get_trait(TRAIT_POTENCY)/2),100) : 50))
 			if(buckled_mob.buckled == src)
@@ -193,10 +179,8 @@
 				SPAN_NOTICE("[user.name] [text]s at \the [src]."),\
 				SPAN_NOTICE("You [text] at \the [src]."),\
 				SPAN_WARNING("You hear shredding and ripping."))
-	return
 
-/obj/effect/plant/proc/entangle(var/mob/living/victim)
-
+/obj/effect/plant/proc/entangle(mob/living/victim)
 	if(buckled_mob)
 		return
 

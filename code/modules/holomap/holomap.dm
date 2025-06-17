@@ -28,13 +28,11 @@
 	var/image/station_map
 	var/image/cursor
 
-
 /obj/machinery/holomap/Initialize()
 	. = ..()
 	original_zLevel = loc.z
 	flags |= ON_BORDER // Why? It doesn't help if its not density
 	setup_holomap()
-
 
 /obj/machinery/holomap/Destroy()
 	stopWatching()
@@ -47,13 +45,10 @@
 		return
 
 	initialize_holomap(T, reinit = TRUE)
-
-//	small_station_map = image(SSmapping.holomaps_of_individual_z_levels["[HOLOMAP_DOWNSCALED_OVERLAY]_[original_zLevel]"])
-
 	spawn(1) //When built from frames, need to allow time for it to set pixel_x and pixel_y
 		update_icon()
 
-/obj/machinery/holomap/attack_hand(var/mob/user)
+/obj/machinery/holomap/attack_hand(mob/user)
 	if(watching_mob && (watching_mob != user))
 		to_chat(user, SPAN_WARNING("Someone else is currently watching the holomap."))
 		return
@@ -62,13 +57,11 @@
 		return
 	startWatching(user)
 
-
 /obj/machinery/holomap/proc/initialize_holomap(turf/T, reinit = FALSE)
 	if(!station_map || reinit)
 		station_map = image(SSmapping.holomap)
 	if(!cursor || reinit)
 		cursor = image('icons/holomap_markers.dmi', "you")
-
 		var/list/cursor_offsets = SSmapping.holomap_offsets_per_z_level["[T.z]"]
 		if(cursor_offsets && LAZYLEN(cursor_offsets)) // Holomaps can exist off-ship
 			// Offsets from the list above will get us to the bottom left corner of this Z-level
@@ -77,19 +70,17 @@
 			// Cursor is 16x16, but getting that info from /image is inconvenient to say the least, hence the use of magic number
 			cursor.pixel_x = cursor_offsets[1] + T.x - 8
 			cursor.pixel_y = cursor_offsets[2] + T.y - 8
-
 	station_map.overlays |= cursor
 
-
 // Let people bump up against it to watch
-/obj/machinery/holomap/Bumped(var/atom/movable/AM)
+/obj/machinery/holomap/Bumped(atom/movable/AM)
 	if(!watching_mob && isliving(AM) && AM.loc == loc)
 		startWatching(AM)
 
 // In order to actually get Bumped() we need to block movement.  We're (visually) on a wall, so people
 // couldn't really walk into us anyway.  But in reality we are on the turf in front of the wall, so bumping
 // against where we seem is actually trying to *exit* our real loc
-/obj/machinery/holomap/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
+/obj/machinery/holomap/CheckExit(atom/movable/mover as mob|obj, turf/target)
 	// log_debug("[src] (dir=[dir]) CheckExit([mover], [target])  get_dir() = [get_dir(target, loc)]")
 	if(get_dir(target, loc) == dir) // Opposite of "normal" since we are visually in the next turf over
 		return FALSE
@@ -197,7 +188,6 @@
 
 /obj/machinery/holomap/attackby(obj/item/I, mob/user)
 	add_fingerprint(user)
-
 	var/list/usable_qualities = list()
 	if(buildstage == 2)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
@@ -208,10 +198,8 @@
 	if(buildstage == 0)
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
 
-
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
-
 		if(QUALITY_SCREW_DRIVING)
 			if(buildstage == 2)
 				var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
@@ -275,7 +263,6 @@
 				buildstage = 1
 				update_icon()
 				return
-
 	return ..()
 
 /obj/machinery/holomap/take_damage(damage)

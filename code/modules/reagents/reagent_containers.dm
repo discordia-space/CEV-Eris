@@ -27,7 +27,7 @@
 		src.verbs -= /obj/item/reagent_containers/verb/set_APTFT
 
 
-/obj/item/reagent_containers/attack_self(mob/user as mob)
+/obj/item/reagent_containers/attack_self(mob/user)
 	return
 
 /obj/item/reagent_containers/afterattack(obj/target, mob/user, flag)

@@ -128,7 +128,7 @@
 	set_frequency(frequency)
 	..()
 
-/obj/machinery/atmospherics/trinary/filter/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/trinary/filter/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	var/datum/gas_mixture/int_air = return_air()
@@ -191,7 +191,6 @@
 
 	user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_filter")
 	onclose(user, "atmo_filter")
-	return
 
 /obj/machinery/atmospherics/trinary/filter/Topic(href, href_list) // -- TLE
 	if(..())
@@ -215,24 +214,17 @@
 				filtered_out += "sleeping_agent"
 
 	if(href_list["temp"])
-		src.temp = null
+		temp = null
 	if(href_list["set_flow_rate"])
-		var/new_flow_rate = input(usr, "Enter new flow rate (0-[air1.volume]L/s)", "Flow Rate Control", src.set_flow_rate) as num
-		src.set_flow_rate = max(0, min(air1.volume, new_flow_rate))
+		var/new_flow_rate = input(usr, "Enter new flow rate (0-[air1.volume]L/s)", "Flow Rate Control", set_flow_rate) as num
+		set_flow_rate = max(0, min(air1.volume, new_flow_rate))
 	if(href_list["power"])
 		use_power=!use_power
-	src.update_icon()
-	src.updateUsrDialog()
-/*
-	for(var/mob/M in viewers(1, src))
-		if((M.client && M.machine == src))
-			src.attack_hand(M)
-*/
-	return
+	update_icon()
+	updateUsrDialog()
 
 /obj/machinery/atmospherics/trinary/filter/m_filter
 	icon_state = "mmap"
-
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|EAST
 
@@ -250,13 +242,12 @@ obj/machinery/atmospherics/trinary/filter/m_filter/New()
 
 /obj/machinery/atmospherics/trinary/filter/m_filter/atmos_init()
 	set_frequency(frequency)
-
-	if(node1 && node2 && node3) return
+	if(node1 && node2 && node3)
+		return
 
 	var/node1_connect = turn(dir, -180)
 	var/node2_connect = turn(dir, 90)
 	var/node3_connect = dir
-
 	for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
 		if(target.initialize_directions & get_dir(target, src))
 			node1 = target

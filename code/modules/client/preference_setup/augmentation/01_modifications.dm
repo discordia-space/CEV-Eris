@@ -10,11 +10,11 @@
 	name = "Augmentation"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/augmentation/modifications/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/augmentation/modifications/load_character(savefile/S)
 	from_file(S["modifications_data"], pref.modifications_data)
 	from_file(S["modifications_colors"], pref.modifications_colors)
 
-/datum/category_item/player_setup_item/augmentation/modifications/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/augmentation/modifications/save_character(savefile/S)
 	to_file(S["modifications_data"], pref.modifications_data)
 	to_file(S["modifications_colors"], pref.modifications_colors)
 
@@ -29,8 +29,7 @@
 		if(!iscolor(pref.modifications_colors[tag]))
 			pref.modifications_colors[tag] = "#000000"
 
-
-/datum/category_item/player_setup_item/augmentation/modifications/content(var/mob/user)
+/datum/category_item/player_setup_item/augmentation/modifications/content(mob/user)
 	if(!pref.preview_icon)
 		pref.update_preview_icon(naked = TRUE)
 	if(pref.preview_north && pref.preview_south && pref.preview_east && pref.preview_west)
@@ -40,7 +39,6 @@
 		user << browse_rsc(pref.preview_west, "new_previewicon[WEST].png")
 
 	var/dat = list()
-
 	dat += "<style>div.block{margin: 3px 0px;padding: 4px 0px;}"
 	dat += "span.color_holder_box{display: inline-block; width: 20px; height: 8px; border:1px solid #000; padding: 0px;}<"
 	dat += "a.Organs_active {background: #cc5555;}</style>"
@@ -93,7 +91,8 @@
 	dat += "<tr align='center'>"
 	var/counter = 0
 	for(var/organ in pref.internal_organs)
-		if(!(organ in body_modifications)) continue
+		if(!(organ in body_modifications))
+			continue
 
 		var/datum/body_modification/mod = pref.get_modification(organ)
 		var/organ_name = capitalize(organ_tag_to_name[organ])
@@ -112,8 +111,7 @@
 			counter = 0
 	dat += "</tr></table>"
 	dat += "</span></div>"
-
-	return jointext(dat,null)
+	return jointext(dat, null)
 
 /datum/preferences/proc/modifications_allowed()
 	for(var/category in setup_options)
@@ -123,12 +121,12 @@
 			return FALSE
 	return TRUE
 
-/datum/preferences/proc/get_modification(var/organ)
+/datum/preferences/proc/get_modification(organ)
 	if(!modifications_allowed() || !organ || !modifications_data[organ])
 		return new/datum/body_modification/none
 	return modifications_data[organ]
 
-/datum/preferences/proc/check_child_modifications(var/organ = BP_CHEST)
+/datum/preferences/proc/check_child_modifications(organ = BP_CHEST)
 	var/list/organ_data = organ_structure[organ]
 	if(!organ_data)
 		return
@@ -143,7 +141,7 @@
 			check_child_modifications(child_organ)
 	return
 
-/datum/category_item/player_setup_item/augmentation/modifications/OnTopic(var/href, list/href_list, mob/user)
+/datum/category_item/player_setup_item/augmentation/modifications/OnTopic(href, list/href_list, mob/user)
 	if(href_list["organ"])
 		pref.current_organ = href_list["organ"]
 		return TOPIC_REFRESH_UPDATE_PREVIEW

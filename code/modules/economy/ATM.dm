@@ -93,7 +93,7 @@ log transactions
 	to_chat(user, "<span class='warning'>\icon[src] The [src] beeps: \"[response]\"</span>")
 	return 1
 
-/obj/machinery/atm/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/atm/attackby(obj/item/I as obj, mob/user)
 	if(istype(I, /obj/item/card))
 		if(stat & NOPOWER)
 			return

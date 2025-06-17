@@ -252,7 +252,7 @@
 	..()
 
 
-/obj/machinery/smelter/attack_hand(mob/user as mob)
+/obj/machinery/smelter/attack_hand(mob/user)
 	return nano_ui_interact(user)
 
 

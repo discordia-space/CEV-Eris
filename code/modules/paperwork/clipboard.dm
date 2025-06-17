@@ -27,7 +27,7 @@
 	overlays += "clipboard_over"
 	return
 
-/obj/item/clipboard/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clipboard/attackby(obj/item/W as obj, mob/user)
 
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo))
 		user.drop_item()
@@ -43,7 +43,7 @@
 
 	return
 
-/obj/item/clipboard/attack_self(mob/user as mob)
+/obj/item/clipboard/attack_self(mob/user)
 	var/dat = "<title>Clipboard</title>"
 	if(haspen)
 		dat += "<A href='?src=\ref[src];pen=1'>Remove Pen</A><BR><HR>"

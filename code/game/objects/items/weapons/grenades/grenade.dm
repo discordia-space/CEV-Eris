@@ -36,7 +36,7 @@
 			extra_description += "The timer is set for instant detonation."
 	..(user, extra_description)
 
-/obj/item/grenade/attack_self(mob/user as mob)
+/obj/item/grenade/attack_self(mob/user)
 	if(!active)
 		if(clown_check(user))
 			to_chat(user, SPAN_WARNING("You prime \the [name]! [det_time/10] seconds!"))
@@ -49,7 +49,7 @@
 	return
 
 
-/obj/item/grenade/proc/activate(mob/user as mob)
+/obj/item/grenade/proc/activate(mob/user)
 	if(active)
 		return
 
@@ -70,7 +70,7 @@
 		return
 
 
-/obj/item/grenade/proc/prime(mob/user as mob)
+/obj/item/grenade/proc/prime(mob/user)
 	var/turf/T = get_turf(src)
 	if(T)
 		T.hotspot_expose(700,125)
@@ -78,7 +78,7 @@
 		user.hud_used.updatePlaneMasters(user)
 
 
-/obj/item/grenade/attackby(obj/item/I, mob/user as mob)
+/obj/item/grenade/attackby(obj/item/I, mob/user)
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
 			switch(det_time)

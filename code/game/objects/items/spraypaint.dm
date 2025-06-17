@@ -9,7 +9,7 @@
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
 
-/obj/item/spraypaint/afterattack(atom/target, mob/user as mob, proximity)
+/obj/item/spraypaint/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return
 	if(istype(target,/turf))
 		var/graffititype = input("Choose what you'd like to paint") in list("Kot","Onestar","Carrion","Doodle","Piss","Clown","Skull","Heart","Excelsior","IronHammer","Moebius","NeoTheology","Technomancer","Aster","Ancap yes","Ancap no")

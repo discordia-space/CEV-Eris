@@ -67,8 +67,7 @@
 	else
 		verb_holder.forceMove(src)
 
-/obj/item/rig_module/ai_container/accepts_item(var/obj/item/input_device, var/mob/living/user)
-
+/obj/item/rig_module/ai_container/accepts_item(obj/item/input_device, mob/living/user)
 	// Check if there's actually an AI to deal with.
 	var/mob/living/silicon/ai/target_ai
 	if(isAI(input_device))
@@ -127,16 +126,13 @@
 		else
 			integrate_ai(input_device,user)
 		return 1
-
 	return 0
 
 /obj/item/rig_module/ai_container/engage(atom/target)
-
 	if(!..())
 		return 0
 
 	var/mob/living/carbon/human/H = holder.wearer
-
 	if(!target)
 		if(ai_card)
 			if(istype(ai_card,/obj/item/device/aicard))
@@ -148,15 +144,13 @@
 
 	if(accepts_item(target,H))
 		return 1
-
 	return 0
 
 /obj/item/rig_module/ai_container/uninstalled()
 	eject_ai()
 	..()
 
-/obj/item/rig_module/ai_container/proc/eject_ai(var/mob/user)
-
+/obj/item/rig_module/ai_container/proc/eject_ai(mob/user)
 	if(ai_card)
 		if(istype(ai_card, /obj/item/device/aicard))
 			if(integrated_ai && !integrated_ai.stat)
@@ -179,17 +173,15 @@
 	integrated_ai = null
 	update_verb_holder()
 
-/obj/item/rig_module/ai_container/proc/integrate_ai(var/obj/item/ai,var/mob/user)
-	if(!ai) return
+/obj/item/rig_module/ai_container/proc/integrate_ai(obj/item/ai, mob/user)
+	if(!ai)
+		return
 
 	// The ONLY THING all the different AI systems have in common is that they all store the mob inside an item.
 	var/mob/living/ai_mob = locate(/mob/living) in ai.contents
 	if(ai_mob)
-
 		if(ai_mob.key && ai_mob.client)
-
 			if(istype(ai, /obj/item/device/aicard))
-
 				if(!ai_card)
 					ai_card = new /obj/item/device/aicard(src)
 
@@ -210,7 +202,6 @@
 				to_chat(user, "<font color='blue'>You load [ai_mob] into \the [holder]'s [src].</font>")
 
 			integrated_ai = ai_mob
-
 			if(!(locate(integrated_ai) in ai_card))
 				integrated_ai = null
 				eject_ai()
@@ -219,7 +210,6 @@
 	else
 		to_chat(user, SPAN_WARNING("There is no active AI within \the [ai]."))
 	update_verb_holder()
-	return
 
 /obj/item/rig_module/datajack
 	name = "datajack module"
@@ -254,7 +244,6 @@
 	return 1
 
 /obj/item/rig_module/datajack/accepts_item(obj/item/input_device, mob/living/user)
-
 	if(istype(input_device, /obj/item/computer_hardware/hard_drive))
 		to_chat(user, "You connect the disk to [src].")
 		var/obj/item/computer_hardware/hard_drive/disk = input_device
@@ -363,7 +352,6 @@
 	return ..()
 
 /obj/item/rig_module/power_sink/engage(atom/target)
-
 	if(!..())
 		return 0
 
@@ -386,13 +374,11 @@
 	to_chat(H, "<span class = 'danger'>You begin draining power from [target]!</span>")
 	interfaced_with = target
 	drain_loc = interfaced_with.loc
-
 	holder.spark_system.start()
 	playsound(H.loc, 'sound/effects/sparks2.ogg', 50, 1)
-
 	return 1
 
-/obj/item/rig_module/power_sink/accepts_item(var/obj/item/input_device, var/mob/living/user)
+/obj/item/rig_module/power_sink/accepts_item(obj/item/input_device, mob/living/user)
 	var/can_drain = input_device.drain_power(1)
 	if(can_drain > 0)
 		engage(input_device)
@@ -400,7 +386,6 @@
 	return 0
 
 /obj/item/rig_module/power_sink/Process()
-
 	if(!interfaced_with)
 		return ..()
 
@@ -439,45 +424,14 @@
 
 	holder.cell.give(target_drained * CELLRATE)
 	total_power_drained += target_drained
-
 	return 1
 
-/obj/item/rig_module/power_sink/proc/drain_complete(var/mob/living/M)
-
+/obj/item/rig_module/power_sink/proc/drain_complete(mob/living/M)
 	if(!interfaced_with)
 		if(M) to_chat(M, "<font color='blue'><b>Total power drained:</b> [round(total_power_drained/1000)]kJ.</font>")
 	else
 		if(M) to_chat(M, "<font color='blue'><b>Total power drained from [interfaced_with]:</b> [round(total_power_drained/1000)]kJ.</font>")
 		interfaced_with.drain_power(0,1,0) // Damage the victim.
-
 	drain_loc = null
 	interfaced_with = null
 	total_power_drained = 0
-
-/*
-//Maybe make this use power when active or something
-/obj/item/rig_module/emp_shielding
-	name = "\improper EMP dissipation module"
-	desc = "A bewilderingly complex bundle of fiber optics and chips."
-	toggleable = 1
-	usable = 0
-
-	activate_string = "Enable active EMP shielding"
-	deactivate_string = "Disable active EMP shielding"
-
-	interface_name = "Active EMP shielding system"
-	interface_desc = "A highly experimental system that augments the hardsuit's existing EM shielding."
-	var/protection_amount = 20
-
-/obj/item/rig_module/emp_shielding/activate()
-	if(!..())
-		return
-
-	holder.emp_protection += protection_amount
-
-/obj/item/rig_module/emp_shielding/deactivate()
-	if(!..())
-		return
-
-	holder.emp_protection = max(0,(holder.emp_protection - protection_amount))
-*/

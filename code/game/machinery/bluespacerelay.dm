@@ -33,7 +33,7 @@
 	else
 		on = TRUE
 
-/obj/machinery/bluespacerelay/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/bluespacerelay/attackby(var/obj/item/I, var/mob/user)
 
 	if(default_deconstruction(I, user))
 		return

@@ -61,7 +61,7 @@ Tryed to code it without duplication, but it doesn't worked.
 Another builds like baystation12 also have a duplication.
 */
 
-/obj/item/dice/attack_self(mob/user as mob)
+/obj/item/dice/attack_self(mob/user)
 	var/result = rand(1, sides)
 	var/comment = ""
 	if(result == 1 && sides == 20)

@@ -102,7 +102,7 @@
 	src.name = (name_action + name_part1 + name_part2)
 
 
-/obj/machinery/computer/arcade/battle/attack_hand(mob/user as mob)
+/obj/machinery/computer/arcade/battle/attack_hand(mob/user)
 	if(..())
 		return
 	user.set_machine(src)

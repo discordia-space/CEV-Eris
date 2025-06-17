@@ -113,7 +113,7 @@
 	var/list/missed = req_parts - parts
 	return !missed.len
 
-/obj/item/robot_parts/robot_suit/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/robot_parts/robot_suit/attackby(obj/item/W as obj, mob/user)
 	..()
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MATERIAL_STEEL && !parts.len)
 		var/obj/item/stack/material/M = W
@@ -286,7 +286,7 @@
 				to_chat(user, SPAN_WARNING("There is no wire inside!"))
 
 
-/obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user)
 	..()
 	if(istype(W, /obj/item/device/flash))
 		if(isrobot(user))
@@ -320,7 +320,7 @@
 
 
 //Made into a seperate proc to avoid copypasta
-/obj/item/robot_parts/head/proc/add_flashes(obj/item/W as obj, mob/user as mob)
+/obj/item/robot_parts/head/proc/add_flashes(obj/item/W as obj, mob/user)
 	if(src.flash1 && src.flash2)
 		to_chat(user, SPAN_NOTICE("You have already inserted the eyes!"))
 		return

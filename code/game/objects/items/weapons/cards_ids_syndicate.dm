@@ -6,7 +6,7 @@
 	var/electronic_warfare = 1
 	var/mob/registered_user = null
 
-/obj/item/card/id/syndicate/New(mob/user as mob)
+/obj/item/card/id/syndicate/New(mob/user)
 	..()
 	access = syndicate_access.Copy()
 
@@ -17,7 +17,7 @@
 /obj/item/card/id/syndicate/prevent_tracking()
 	return electronic_warfare
 
-/obj/item/card/id/syndicate/afterattack(var/obj/item/O as obj, mob/user as mob, proximity)
+/obj/item/card/id/syndicate/afterattack(obj/item/O, mob/user, proximity)
 	if(!proximity) return
 	if(istype(O, /obj/item/card/id))
 		var/obj/item/card/id/I = O
@@ -25,7 +25,7 @@
 		if(player_is_antag(user.mind))
 			to_chat(user, SPAN_NOTICE("The microscanner activates as you pass it over the ID, copying its access."))
 
-/obj/item/card/id/syndicate/attack_self(mob/user as mob)
+/obj/item/card/id/syndicate/attack_self(mob/user)
 	// We use the fact that registered_name is not unset should the owner be vaporized, to ensure the id doesn't magically become unlocked.
 	if(!registered_user && register_user(user))
 		to_chat(user, SPAN_NOTICE("The microscanner marks you as its owner, preventing others from accessing its internals."))
@@ -38,7 +38,7 @@
 	else
 		..()
 
-/obj/item/card/id/syndicate/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/card/id/syndicate/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS)
 	var/data[0]
 	var/entries[0]
 	entries[++entries.len] = list("name" = "Age", 				"value" = age)
@@ -60,7 +60,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/item/card/id/syndicate/proc/register_user(var/mob/user)
+/obj/item/card/id/syndicate/proc/register_user(mob/user)
 	if(!istype(user) || user == registered_user)
 		return FALSE
 	unset_registered_user()
@@ -69,7 +69,7 @@
 	GLOB.destroyed_event.register(user, src, /obj/item/card/id/syndicate/proc/unset_registered_user)
 	return TRUE
 
-/obj/item/card/id/syndicate/proc/unset_registered_user(var/mob/user)
+/obj/item/card/id/syndicate/proc/unset_registered_user(mob/user)
 	if(!registered_user || (user && user != registered_user))
 		return
 	GLOB.destroyed_event.unregister(registered_user, src)
@@ -80,7 +80,7 @@
 		return STATUS_CLOSE
 	return ..()
 
-/obj/item/card/id/syndicate/Topic(href, href_list, var/datum/nano_topic_state/state)
+/obj/item/card/id/syndicate/Topic(href, href_list, datum/nano_topic_state/state)
 	if(..())
 		return 1
 
@@ -176,7 +176,6 @@
 					sex = initial(sex)
 					to_chat(user, SPAN_NOTICE("All information has been deleted from \the [src]."))
 					. = 1
-
 	// Always update the UI, or buttons will spin indefinitely
 	SSnano.update_uis(src)
 

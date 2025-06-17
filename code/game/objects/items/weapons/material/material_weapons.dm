@@ -108,7 +108,7 @@ Commenting this out pending rebalancing of radiation based on small objects.
 	health -= material.combustion_effect(get_turf(src), temperature, 0.1)
 	check_health(1)
 
-/obj/item/material/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/material/attackby(obj/item/W as obj, mob/user)
 	if(istype(W,/obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 		if(material.ignition_point && WT.remove_fuel(0, user))

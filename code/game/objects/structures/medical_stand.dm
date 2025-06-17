@@ -33,7 +33,6 @@
 
 /obj/structure/medical_stand/update_icon()
 	cut_overlays()
-
 	if(tank)
 		if(breather)
 			overlays += "tube_active"
@@ -94,11 +93,11 @@
 	beaker = null
 	return ..()
 
-/obj/structure/medical_stand/attack_robot(var/mob/user)
+/obj/structure/medical_stand/attack_robot(mob/user)
 	if(Adjacent(user))
 		attack_hand(user)
 
-/obj/structure/medical_stand/MouseDrop(var/mob/living/carbon/human/target, src_location, over_location)
+/obj/structure/medical_stand/MouseDrop(mob/living/carbon/human/target, src_location, over_location)
 	..()
 	if(istype(target))
 		if(usr.stat == DEAD || !CanMouseDrop(target))
@@ -169,7 +168,7 @@
 				update_icon()
 
 
-/obj/structure/medical_stand/attack_hand(mob/user as mob)
+/obj/structure/medical_stand/attack_hand(mob/user)
 	var/list/available_options = list()
 	if(tank)
 		available_options += "Toggle valve"
@@ -260,7 +259,7 @@
 				internalsHud = breather.HUDneed["internal"]
 			return TRUE
 
-/obj/structure/medical_stand/proc/can_apply_to_target(var/mob/living/carbon/human/target, var/mob/user)
+/obj/structure/medical_stand/proc/can_apply_to_target(mob/living/carbon/human/target, mob/user)
 	if(!user)
 		user = target
 	// Check target validity
@@ -446,4 +445,3 @@
 	spawn_type = /obj/item/tank/anesthetic
 	mask_type = /obj/item/clothing/mask/breath/medical
 	is_loosen = FALSE
-

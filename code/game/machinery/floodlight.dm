@@ -69,7 +69,7 @@
 	if(loud)
 		visible_message("\The [src] shuts down.")
 
-/obj/machinery/floodlight/attack_ai(mob/user as mob)
+/obj/machinery/floodlight/attack_ai(mob/user)
 	if(isrobot(user) && Adjacent(user))
 		return attack_hand(user)
 

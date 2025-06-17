@@ -201,19 +201,17 @@ if [ "$pcre2_support" -eq 1 ]; then
 		echo
 		echo -e "${RED}ERROR: TIMER_OVERRIDE used without TIMER_UNIQUE.${NC}"
 		st=1
-	fi
+	fi;
 	part "trailing newlines"
 	if $grep -PU '[^\n]$(?!\n)' $code_files; then
 		echo
 		echo -e "${RED}ERROR: File(s) with no trailing newline detected, please add one.${NC}"
 		st=1
-	fi
-fi;
-
+	fi;
 else
 	echo -e "${RED}pcre2 not supported, skipping checks requiring pcre2"
 	echo -e "if you want to run these checks install ripgrep with pcre2 support.${NC}"
-fi
+fi;
 
 if [ $st = 0 ]; then
     echo

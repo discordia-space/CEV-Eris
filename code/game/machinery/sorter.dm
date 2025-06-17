@@ -195,7 +195,7 @@
 
 	..()
 
-/obj/machinery/sorter/attack_hand(mob/user as mob)
+/obj/machinery/sorter/attack_hand(mob/user)
 	return nano_ui_interact(user)
 
 

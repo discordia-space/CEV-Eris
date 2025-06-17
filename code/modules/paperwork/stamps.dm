@@ -56,7 +56,7 @@
 	icon_state = "stamp-lus"
 
 // Syndicate stamp to forge documents.
-/obj/item/stamp/chameleon/attack_self(mob/user as mob)
+/obj/item/stamp/chameleon/attack_self(mob/user)
 
 	var/list/stamp_types = typesof(/obj/item/stamp) - src.type // Get all stamp types except our own
 	var/list/stamps = list()

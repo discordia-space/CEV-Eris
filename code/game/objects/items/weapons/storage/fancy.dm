@@ -124,7 +124,7 @@
 	for(var/obj/item/pen/crayon/crayon in contents)
 		overlays += image('icons/obj/crayons.dmi',crayon.colourName)
 
-/obj/item/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user)
 	if(istype(W,/obj/item/pen/crayon))
 		switch(W:colourName)
 			if("mime")

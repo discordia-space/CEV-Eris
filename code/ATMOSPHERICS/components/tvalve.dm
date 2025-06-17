@@ -13,7 +13,6 @@
 
 	// like a trinary component, node1 is input, node2 is side output, node3 is straight output
 	var/obj/machinery/atmospherics/node3
-
 	var/datum/pipe_network/network_node1
 	var/datum/pipe_network/network_node2
 	var/datum/pipe_network/network_node3
@@ -167,10 +166,10 @@
 
 	return 1
 
-/obj/machinery/atmospherics/tvalve/attack_ai(mob/user as mob)
+/obj/machinery/atmospherics/tvalve/attack_ai(mob/user)
 	return
 
-/obj/machinery/atmospherics/tvalve/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/tvalve/attack_hand(mob/user)
 	add_fingerprint(usr)
 	update_icon(1)
 	sleep(10)
@@ -299,10 +298,10 @@
 	if(!powered())
 		icon_state = "tvalvenopower"
 
-/obj/machinery/atmospherics/tvalve/digital/attack_ai(mob/user as mob)
+/obj/machinery/atmospherics/tvalve/digital/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/atmospherics/tvalve/digital/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/tvalve/digital/attack_hand(mob/user)
 	if(!powered())
 		return
 	if(!src.allowed(user))
@@ -311,14 +310,11 @@
 	..()
 
 //Radio remote control
-
 /obj/machinery/atmospherics/tvalve/digital/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	if(frequency)
 		radio_connection = SSradio.add_object(src, frequency, RADIO_ATMOSIA)
-
-
 
 /obj/machinery/atmospherics/tvalve/digital/atmos_init()
 	..()
@@ -344,7 +340,7 @@
 			else
 				go_to_side()
 
-/obj/machinery/atmospherics/tvalve/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/tvalve/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if(istype(src, /obj/machinery/atmospherics/tvalve/digital))
@@ -438,10 +434,10 @@
 	if(!powered())
 		icon_state = "tvalvemnopower"
 
-/obj/machinery/atmospherics/tvalve/mirrored/digital/attack_ai(mob/user as mob)
+/obj/machinery/atmospherics/tvalve/mirrored/digital/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/atmospherics/tvalve/mirrored/digital/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/tvalve/mirrored/digital/attack_hand(mob/user)
 	if(!powered())
 		return
 	if(!src.allowed(user))

@@ -6,7 +6,7 @@
 	name = T_BOARD("R&D control console")
 	build_path = /obj/machinery/computer/rdconsole/core
 
-/obj/item/electronics/circuitboard/rdconsole/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/electronics/circuitboard/rdconsole/attackby(obj/item/I as obj, mob/user)
 	if(istype(I,/obj/item/tool/screwdriver))
 		user.visible_message(
 			SPAN_NOTICE("\The [user] adjusts the jumper on \the [src]'s access protocol pins."),

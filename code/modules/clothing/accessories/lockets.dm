@@ -10,7 +10,7 @@
 	var/open
 	var/obj/item/held //Item inside locket.
 
-/obj/item/clothing/accessory/locket/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/locket/attack_self(mob/user)
 	if(!base_icon)
 		base_icon = icon_state
 
@@ -29,7 +29,7 @@
 	else
 		icon_state = "[base_icon]"
 
-/obj/item/clothing/accessory/locket/attackby(var/obj/item/O as obj, mob/user as mob)
+/obj/item/clothing/accessory/locket/attackby(var/obj/item/O as obj, mob/user)
 	if(!open)
 		to_chat(user, "You have to open it first.")
 		return

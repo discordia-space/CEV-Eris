@@ -52,7 +52,7 @@
 				break
 
 
-/obj/item/emp_mine/attack_self(mob/user as mob)
+/obj/item/emp_mine/attack_self(mob/user)
 	add_fingerprint(user)
 	if(armed)
 		disarm()

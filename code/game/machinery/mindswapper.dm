@@ -28,7 +28,7 @@
 	else
 		icon_state = "mindswap_off"
 
-/obj/machinery/mindswapper/attack_hand(mob/user as mob)
+/obj/machinery/mindswapper/attack_hand(mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
@@ -57,7 +57,7 @@
 		swap_time = 200
 	return 1
 
-/obj/machinery/mindswapper/proc/startswapping(mob/user as mob)
+/obj/machinery/mindswapper/proc/startswapping(mob/user)
 	if(operating)
 		return
 
@@ -71,7 +71,7 @@
 
 	addtimer(CALLBACK(src, PROC_REF(performswapping)), swap_time, TIMER_STOPPABLE)
 
-/obj/machinery/mindswapper/proc/performswapping(mob/user as mob)
+/obj/machinery/mindswapper/proc/performswapping(mob/user)
 	operating = FALSE
 	playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 	operating = FALSE

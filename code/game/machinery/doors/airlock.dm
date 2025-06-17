@@ -825,7 +825,7 @@ There are 9 wires.
 				s.start()
 	return ..()
 
-/obj/machinery/door/airlock/attack_hand(mob/userb)
+/obj/machinery/door/airlock/attack_hand(mob/user)
 	if(!issilicon(user) && isElectrified() && shock(user, 100))
 		return
 

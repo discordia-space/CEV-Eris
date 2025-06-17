@@ -31,7 +31,7 @@
 		var/stunmode = FALSE
 		var/stun_chance = 1
 
-/obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
+/obj/machinery/shieldwallgen/attack_hand(mob/user)
 	if(state != 1)
 		to_chat(user, "\red \The [src] needs to be firmly secured to the floor first.")
 		return 1
@@ -294,7 +294,7 @@
 	update_nearby_tiles()
 	. = ..()
 
-/obj/machinery/shieldwall/attack_hand(mob/user as mob)
+/obj/machinery/shieldwall/attack_hand(mob/user)
 	return
 
 

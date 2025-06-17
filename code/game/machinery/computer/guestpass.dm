@@ -80,7 +80,7 @@
 		return
 	..()
 
-/obj/machinery/computer/guestpass/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/guestpass/attack_hand(mob/user)
 	if(..())
 		return
 
@@ -194,4 +194,3 @@
 				else
 					to_chat(usr, SPAN_WARNING("Cannot issue pass without issuing ID."))
 	updateUsrDialog()
-	return

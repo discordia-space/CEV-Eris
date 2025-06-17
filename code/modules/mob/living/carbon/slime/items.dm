@@ -158,7 +158,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle19"
 
-	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
+	attack(mob/living/carbon/slime/M as mob, mob/user)
 		if(!isslime(M))//If target is not a slime.
 			to_chat(user, SPAN_WARNING(" The potion only works on baby slimes!"))
 			return ..()
@@ -192,7 +192,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle19"
 
-	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
+	attack(mob/living/carbon/slime/M as mob, mob/user)
 		if(!istype(M, /mob/living/carbon/slime/))//If target is not a slime.
 			to_chat(user, SPAN_WARNING(" The potion only works on slimes!"))
 			return ..()
@@ -224,7 +224,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 
-	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
+	attack(mob/living/carbon/slime/M as mob, mob/user)
 		if(!isslime(M))//If target is not a slime.
 			to_chat(user, SPAN_WARNING(" The steroid only works on baby slimes!"))
 			return ..()

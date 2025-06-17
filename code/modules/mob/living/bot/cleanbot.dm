@@ -65,14 +65,11 @@
 		step_to(src, path[1])
 		path -= path[1]
 		return 1
-	return
 
 /mob/living/bot/cleanbot/Life()
 	..()
-
 	if(!on)
 		return
-
 	if(client)
 		return
 	if(cleaning)
@@ -94,7 +91,6 @@
 			ignorelist -= gib
 
 		// Find a target
-
 	if(pulledby) // Don't wiggle if someone pulls you
 		patrol_path = list()
 		return
@@ -121,7 +117,6 @@
 	if(!found_spot && target_in_view && world.time > give_up_cooldown)
 		visible_message("[src] can't reach the target and is giving up.")
 		give_up_cooldown = world.time + 300
-
 
 	if(!found_spot && !target) // No targets in range
 		if(!patrol_path || !patrol_path.len)
@@ -156,9 +151,7 @@
 			if(moved)
 				patrol_path -= patrol_path[1]
 
-
-
-/mob/living/bot/cleanbot/UnarmedAttack(var/obj/effect/decal/cleanable/D, var/proximity)
+/mob/living/bot/cleanbot/UnarmedAttack(obj/effect/decal/cleanable/D, proximity)
 	if(!..())
 		return
 
@@ -199,7 +192,6 @@
 	s.set_up(3, 1, src)
 	s.start()
 	qdel(src)
-	return
 
 /mob/living/bot/cleanbot/update_icons()
 	if(cleaning)
@@ -214,7 +206,7 @@
 	path = list()
 	patrol_path = list()
 
-/mob/living/bot/cleanbot/attack_hand(var/mob/user)
+/mob/living/bot/cleanbot/attack_hand(mob/user)
 	var/dat
 	dat += "<TT><B>Automatic Ship Cleaner v1.0</B></TT><BR><BR>"
 	dat += "Status: <A href='?src=\ref[src];operation=start'>[on ? "On" : "Off"]</A><BR>"
@@ -260,7 +252,7 @@
 			to_chat(usr, SPAN_NOTICE("You press the weird button."))
 	attack_hand(usr)
 
-/mob/living/bot/cleanbot/emag_act(var/remaining_uses, var/mob/user)
+/mob/living/bot/cleanbot/emag_act(remaining_uses, mob/user)
 	. = ..()
 	if(!screwloose || !oddbutton)
 		if(user)
@@ -272,7 +264,6 @@
 
 /mob/living/bot/cleanbot/proc/get_targets()
 	target_types = list()
-
 	target_types += /obj/effect/decal/cleanable/blood/oil
 	target_types += /obj/effect/decal/cleanable/vomit
 	target_types += /obj/effect/decal/cleanable/crayon
@@ -290,7 +281,7 @@
 	var/mob/living/bot/cleanbot/cleanbot = null
 	var/list/memorized = list()
 
-/obj/cleanbot_listener/receive_signal(var/datum/signal/signal)
+/obj/cleanbot_listener/receive_signal(datum/signal/signal)
 	var/recv = signal.data["beacon"]
 	var/valid = signal.data["patrol"]
 	if(!recv || !valid || !cleanbot)
@@ -298,13 +289,11 @@
 
 	var/dist = get_dist(cleanbot, signal.source.loc)
 	memorized[recv] = signal.source.loc
-
 	if(dist < cleanbot.closest_dist) // We check all signals, choosing the closest beakon; then we move to the NEXT one after the closest one
 		cleanbot.closest_dist = dist
 		cleanbot.next_dest = signal.data["next_patrol"]
 
 /* Assembly */
-
 /obj/item/bucket_sensor
 	desc = "A bucket with a sensor attached."
 	name = "proxy bucket"
@@ -317,7 +306,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	var/created_name = "Cleanbot"
 
-/obj/item/bucket_sensor/attackby(var/obj/item/O, var/mob/user)
+/obj/item/bucket_sensor/attackby(obj/item/O, mob/user)
 	..()
 	if(istype(O, /obj/item/robot_parts/l_arm) || istype(O, /obj/item/robot_parts/r_arm))
 		user.drop_item()

@@ -23,7 +23,7 @@
 	. = ..()
 	src.verbs -= /obj/item/reagent_containers/verb/set_APTFT
 
-/obj/item/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
+/obj/item/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user, proximity)
 	if(proximity)
 		if(standard_dispenser_refill(user, A))
 			return
@@ -53,9 +53,8 @@
 	if(reagents.has_reagent("lube"))
 		message_admins("[key_name_admin(user)] fired Space lube from \a [src].")
 		log_game("[key_name(user)] fired Space lube from \a [src].")
-	return
 
-/obj/item/reagent_containers/spray/proc/Spray_at(atom/A as mob|obj, mob/user as mob, proximity)
+/obj/item/reagent_containers/spray/proc/Spray_at(atom/A as mob|obj, mob/user, proximity)
 	if(A.density && proximity)
 		A.visible_message("[usr] sprays [A] with [src].")
 		reagents.splash(A, amount_per_transfer_from_this)
@@ -69,9 +68,8 @@
 			reagents.trans_to_obj(D, amount_per_transfer_from_this)
 			D.set_color()
 			D.set_up(my_target, spray_size, 10)
-	return
 
-/obj/item/reagent_containers/spray/attack_self(var/mob/user)
+/obj/item/reagent_containers/spray/attack_self(mob/user)
 	if(!possible_transfer_amounts)
 		return
 	amount_per_transfer_from_this = next_list_item(amount_per_transfer_from_this, possible_transfer_amounts)
@@ -84,7 +82,6 @@
 	..(user, extra_description)
 
 /obj/item/reagent_containers/spray/verb/empty()
-
 	set name = "Empty Spray Bottle"
 	set category = "Object"
 	set src in usr
@@ -127,7 +124,7 @@
 		extra_description += "\nThe safety is [safety ? "on" : "off"]."
 	..(user, extra_description)
 
-/obj/item/reagent_containers/spray/pepper/attack_self(var/mob/user)
+/obj/item/reagent_containers/spray/pepper/attack_self(mob/user)
 	safety = !safety
 	to_chat(usr, "<span class = 'notice'>You switch the safety [safety ? "on" : "off"].</span>")
 
@@ -168,7 +165,6 @@
 	var/turf/T1 = get_step(T,turn(direction, 90))
 	var/turf/T2 = get_step(T,turn(direction, -90))
 	var/list/the_targets = list(T, T1, T2)
-
 	for(var/a = 1 to 3)
 		spawn(0)
 			if(reagents.total_volume < 1) break
@@ -180,7 +176,6 @@
 			reagents.trans_to_obj(D, amount_per_transfer_from_this)
 			D.set_color()
 			D.set_up(my_target, rand(6, 8), 2)
-	return
 
 /obj/item/reagent_containers/spray/plantbgone
 	name = "Plant-B-Gone"
@@ -191,13 +186,12 @@
 	volume = 100
 	preloaded_reagents = list("plantbgone" = 100)
 
-/obj/item/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
-	if(!proximity) return
-
+/obj/item/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, mob/user, proximity)
+	if(!proximity)
+		return
 	if(istype(A, /obj/effect/blob)) // blob damage in blob code
 		return
 	..()
-
 
 /obj/item/reagent_containers/spray/vvd40
 	name = "VVD-40"

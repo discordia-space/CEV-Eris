@@ -439,7 +439,7 @@
 			else
 				to_chat(usr, SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets."))
 
-/obj/machinery/door/blast/attack_hand(mob/user as mob)
+/obj/machinery/door/blast/attack_hand(mob/user)
 	to_chat(usr, SPAN_WARNING("You can't [density ? "open" : "close"] [src] by your own hands only."))
 	return
 

@@ -197,7 +197,7 @@
 	else
 		icon_state = "door_closed"
 
-/obj/structure/inflatable/door/deflate()
+/obj/structure/inflatable/door/deflate(violent)
 	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
 	if(violent)
 		visible_message("[src] rapidly deflates!")

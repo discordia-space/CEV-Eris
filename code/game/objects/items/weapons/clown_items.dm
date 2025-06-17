@@ -51,7 +51,7 @@
 			return
 		M.slip("the [src.name]",3)
 
-/obj/item/soap/afterattack(atom/target, mob/user as mob, proximity)
+/obj/item/soap/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return
 /*
 	else if(istype(target,/obj/effect/decal/cleanable))

@@ -1,19 +1,17 @@
 /datum/category_item/player_setup_item/player_global/pai
 	name = "pAI"
 	sort_order = 3
-
 	var/datum/paiCandidate/candidate
 
-/datum/category_item/player_setup_item/player_global/pai/load_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/player_global/pai/load_preferences(savefile/S)
 	if(!candidate)
 		candidate = new()
 
 	if(!preference_mob())
 		return
-
 	candidate.savefile_load(preference_mob())
 
-/datum/category_item/player_setup_item/player_global/pai/save_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/player_global/pai/save_preferences(savefile/S)
 	if(!candidate)
 		return
 
@@ -22,10 +20,9 @@
 
 	candidate.savefile_save(preference_mob())
 
-/datum/category_item/player_setup_item/player_global/pai/content(var/mob/user)
+/datum/category_item/player_setup_item/player_global/pai/content(mob/user)
 	if(!candidate)
 		candidate = new()
-
 	. += "<b>pAI:</b><br>"
 	if(!candidate)
 		log_debug("[user] pAI prefs have a null candidate var.")
@@ -35,7 +32,7 @@
 	. += "Role: <a href='?src=\ref[src];option=role'>[candidate.role ? TextPreview(candidate.role, 40) : "None Set"]</a><br>"
 	. += "OOC Comments: <a href='?src=\ref[src];option=ooc'>[candidate.comments ? TextPreview(candidate.comments, 40) : "None Set"]</a><br>"
 
-/datum/category_item/player_setup_item/player_global/pai/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/player_global/pai/OnTopic(href, list/href_list, mob/user)
 	if(href_list["option"])
 		var/t
 		switch(href_list["option"])
@@ -56,5 +53,4 @@
 				if(!isnull(t) && CanUseTopic(user))
 					candidate.comments = sanitize(t)
 		return TOPIC_REFRESH
-
 	return ..()

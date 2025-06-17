@@ -235,7 +235,7 @@
 	while(repeat > 0)
 	playing = 0
 
-/obj/item/device/violin/attack_self(mob/user as mob)
+/obj/item/device/violin/attack_self(mob/user)
 	if(!isliving(user) || user.stat || user.restrained() || user.lying)	return
 	user.set_machine(src)
 

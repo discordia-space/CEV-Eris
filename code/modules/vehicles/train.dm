@@ -97,7 +97,7 @@
 
 	return 1
 
-/obj/vehicle/train/MouseDrop_T(var/atom/movable/C, mob/user as mob)
+/obj/vehicle/train/MouseDrop_T(var/atom/movable/C, mob/user)
 	if(user.buckled || user.stat || user.restrained() || !Adjacent(user) || !user.Adjacent(C) || !istype(C) || (user == C && !user.canmove))
 		return
 	if(istype(C,/obj/vehicle/train))
@@ -106,7 +106,7 @@
 		if(!load(C))
 			to_chat(user, "\red You were unable to load [C] on [src].")
 
-/obj/vehicle/train/attack_hand(mob/user as mob)
+/obj/vehicle/train/attack_hand(mob/user)
 	if(user.stat || user.restrained() || !Adjacent(user))
 		return 0
 

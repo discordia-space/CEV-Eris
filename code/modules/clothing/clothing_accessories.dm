@@ -8,9 +8,8 @@
 			if(AC.slot == A.slot)
 				return 0
 
-/obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
+/obj/item/clothing/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/clothing/accessory))
-
 		if(!valid_accessory_slots || !valid_accessory_slots.len)
 			to_chat(usr, SPAN_WARNING("You cannot attach accessories of any kind to \the [src]."))
 			return
@@ -29,7 +28,6 @@
 		for(var/obj/item/clothing/accessory/A in accessories)
 			A.attackby(I, user)
 		return
-
 	..()
 
 /**
@@ -41,12 +39,12 @@
 /obj/item/clothing/proc/attach_accessory(mob/user, obj/item/clothing/accessory/A)
 	accessories += A
 	A.on_attached(src, user)
-	src.verbs |= /obj/item/clothing/proc/removetie_verb
-	src.update_wear_icon()
+	verbs |= /obj/item/clothing/proc/removetie_verb
+	update_wear_icon()
 
-/obj/item/clothing/attack_hand(var/mob/user)
+/obj/item/clothing/attack_hand(mob/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
-	if(accessories.len && src.loc == user)
+	if(accessories.len && loc == user)
 		for(var/obj/item/clothing/accessory/A in accessories)
 			A.attack_hand(user)
 		return
@@ -68,7 +66,6 @@
 		A.on_removed(user)
 		accessories -= A
 		update_wear_icon()
-	return
 
 /obj/item/clothing/proc/removetie_verb()
 	set name = "Remove Accessory"
@@ -85,9 +82,9 @@
 		A = input("Select an accessory to remove from [src]") as null|anything in accessories
 	else
 		A = accessories[1]
-	src.remove_accessory(usr,A)
+	remove_accessory(usr,A)
 	if(!accessories.len)
-		src.verbs -= /obj/item/clothing/proc/removetie_verb
+		verbs -= /obj/item/clothing/proc/removetie_verb
 
 /obj/item/clothing/emp_act(severity)
 	if(accessories.len)

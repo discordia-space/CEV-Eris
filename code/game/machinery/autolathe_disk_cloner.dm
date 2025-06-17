@@ -88,7 +88,7 @@
 	return AD
 
 
-/obj/machinery/autolathe_disk_cloner/attack_hand(mob/user as mob)
+/obj/machinery/autolathe_disk_cloner/attack_hand(mob/user)
 	if(..())
 		return TRUE
 

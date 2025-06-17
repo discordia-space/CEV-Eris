@@ -5,15 +5,12 @@
 /obj/machinery/atmospherics/unary/vent_scrubber
 	icon = 'icons/atmos/vent_scrubber.dmi'
 	icon_state = "map_scrubber_off"
-
 	name = "air scrubber"
 	desc = "Has a valve and pump attached to it"
 	use_power = NO_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 12000		//12000 W ~ 16 HP
-
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SCRUBBER //connects to regular and scrubber pipes
-
 	level = BELOW_PLATING_LEVEL
 	layer = GAS_SCRUBBER_LAYER
 
@@ -24,17 +21,13 @@
 	var/current_linked_zone = null
 	var/currently_processing = FALSE
 	var/last_zas_update = null
-
 	var/scrubbing = SCRUBBING
 	var/list/scrubbing_gas = list("carbon_dioxide","sleeping_agent","plasma")
 	var/expanded_range = FALSE
-
 	var/panic = FALSE //is this scrubber panicked?
-
 	var/area_uid
 	var/radio_filter_out
 	var/radio_filter_in
-
 	var/welded = FALSE
 
 /obj/machinery/atmospherics/unary/vent_scrubber/on
@@ -44,7 +37,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/LateInitialize()
 	..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_FILTER * 2
-
 	initial_loc = get_area(loc)
 	area_uid = initial_loc.uid
 	if(!id_tag)
@@ -109,15 +101,13 @@
 		"filter_co2" = ("carbon_dioxide" in scrubbing_gas),
 		"filter_plasma" = ("plasma" in scrubbing_gas),
 		"filter_n2o" = ("sleeping_agent" in scrubbing_gas),
-		"sigtype" = "status"
-	)
+		"sigtype" = "status")
 	if(!initial_loc.air_scrub_names[id_tag])
 		var/new_name = "[initial_loc.name] Air Scrubber #[initial_loc.air_scrub_names.len+1]"
 		initial_loc.air_scrub_names[id_tag] = new_name
-		src.name = new_name
+		name = new_name
 	initial_loc.air_scrub_info[id_tag] = signal.data
 	radio_connection.post_signal(src, signal, radio_filter_out)
-
 	return 1
 
 /obj/machinery/atmospherics/unary/vent_scrubber/atmos_init()
@@ -126,11 +116,10 @@
 	radio_filter_out = frequency==initial(frequency)?(RADIO_TO_AIRALARM):null
 	if(frequency)
 		set_frequency(frequency)
-		src.broadcast_status()
+		broadcast_status()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Process()
 	..()
-
 	if(!node1)
 		use_power = NO_POWER_USE
 		return
@@ -150,7 +139,6 @@
 
 	var/power_draw = 0
 	var/transfer_happened = FALSE
-
 	for(var/e in environments)
 		var/datum/gas_mixture/environment = e
 		if(!environment)
@@ -173,10 +161,9 @@
 		use_power(power_draw)
 		if(network)
 			network.update = TRUE
-
 	return TRUE
 
-/obj/machinery/atmospherics/unary/vent_scrubber/hide(var/i) //to make the little pipe section invisible, the icon changes.
+/obj/machinery/atmospherics/unary/vent_scrubber/hide(i) //to make the little pipe section invisible, the icon changes.
 	update_icon()
 	update_underlays()
 
@@ -218,7 +205,6 @@
 			panic = FALSE
 
 	var/list/toggle = list()
-
 	if(!isnull(signal.data["o2_scrub"]) && text2num(signal.data["o2_scrub"]) != ("oxygen" in scrubbing_gas))
 		toggle += "oxygen"
 	else if(signal.data["toggle_o2_scrub"])
@@ -245,7 +231,6 @@
 		toggle += "sleeping_agent"
 
 	scrubbing_gas ^= toggle
-
 	if(signal.data["init"] != null)
 		name = signal.data["init"]
 		return
@@ -254,12 +239,9 @@
 		spawn(2)
 			broadcast_status()
 		return //do not update_icon
-
-//			log_admin("DEBUG \[[world.timeofday]\]: vent_scrubber/receive_signal: unknown command \"[signal.data["command"]]\"\n[signal.debug_print()]")
 	spawn(2)
 		broadcast_status()
 	update_icon()
-	return
 
 /obj/machinery/atmospherics/unary/vent_scrubber/power_change()
 	var/old_stat = stat
@@ -267,10 +249,9 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/unary/vent_scrubber/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/vent_scrubber/attackby(obj/item/I, mob/user)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING, QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
-
 		if(QUALITY_WELDING)
 			to_chat(user, SPAN_NOTICE("Now welding the vent."))
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))

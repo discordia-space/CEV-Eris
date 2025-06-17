@@ -58,7 +58,7 @@
 			return
 	return
 
-/obj/machinery/ai_slipper/attack_hand(mob/user as mob)
+/obj/machinery/ai_slipper/attack_hand(mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if( (get_dist(src, user) > 1 ))

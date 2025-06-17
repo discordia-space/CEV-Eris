@@ -1,7 +1,7 @@
 /datum/admin_secret_item/admin_secret/launch_shuttle
 	name = "Launch a Shuttle"
 
-/datum/admin_secret_item/admin_secret/launch_shuttle/execute(var/mob/user)
+/datum/admin_secret_item/admin_secret/launch_shuttle/execute(mob/user)
 	. = ..()
 	if(!.)
 		return

@@ -132,11 +132,11 @@
 		/obj/item/seeds/random = 6
 	)
 
-/obj/machinery/seed_storage/attack_hand(mob/user as mob)
+/obj/machinery/seed_storage/attack_hand(mob/user)
 	user.set_machine(src)
 	interact(user)
 
-/obj/machinery/seed_storage/interact(mob/user as mob)
+/obj/machinery/seed_storage/interact(mob/user)
 	if(..())
 		return
 
@@ -276,7 +276,7 @@
 			break
 	updateUsrDialog()
 
-/obj/machinery/seed_storage/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/seed_storage/attackby(var/obj/item/O as obj, var/mob/user)
 	if(istype(O, /obj/item/seeds))
 		add(O)
 		user.visible_message("[user] puts \the [O.name] into \the [src].", "You put \the [O] into \the [src].")

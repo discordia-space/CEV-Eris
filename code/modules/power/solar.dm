@@ -24,7 +24,7 @@
 /obj/machinery/power/solar/drain_power()
 	return -1
 
-/obj/machinery/power/solar/New(var/turf/loc, var/obj/item/solar_assembly/S)
+/obj/machinery/power/solar/New(turf/loc, obj/item/solar_assembly/S)
 	..(loc)
 	Make(S)
 	connect_to_network()
@@ -46,7 +46,7 @@
 		control.connected_panels.Remove(src)
 	control = null
 
-/obj/machinery/power/solar/proc/Make(var/obj/item/solar_assembly/S)
+/obj/machinery/power/solar/proc/Make(obj/item/solar_assembly/S)
 	if(!S)
 		S = new /obj/item/solar_assembly(src)
 		S.glass_type = /obj/item/stack/material/glass
@@ -55,8 +55,6 @@
 	if(S.glass_type == /obj/item/stack/material/glass/reinforced) //if the panel is in reinforced glass
 		health *= 2 								 //this need to be placed here, because panels already on the map don't have an assembly linked to
 	update_icon()
-
-
 
 /obj/machinery/power/solar/attackby(obj/item/I, mob/user)
 	if(QUALITY_PRYING in I.tool_qualities)
@@ -75,7 +73,6 @@
 		src.healthcheck()
 	..()
 
-
 /obj/machinery/power/solar/proc/healthcheck()
 	if(src.health <= 0)
 		if(!(stat & BROKEN))
@@ -85,9 +82,6 @@
 			new /obj/item/stack/rods(loc)
 			new /obj/item/stack/rods(loc)
 			qdel(src)
-			return
-	return
-
 
 /obj/machinery/power/solar/update_icon()
 	..()
@@ -96,8 +90,7 @@
 		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel-b", layer = FLY_LAYER)
 	else
 		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel", layer = FLY_LAYER)
-		src.set_dir(angle2dir(adir))
-	return
+		set_dir(angle2dir(adir))
 
 //calculates the fraction of the sunlight that the panel recieves
 /obj/machinery/power/solar/proc/update_solar_exposure()
@@ -145,16 +138,14 @@
 	broken()
 	return 0
 
-/obj/machinery/power/solar/fake/New(var/turf/loc, var/obj/item/solar_assembly/S)
+/obj/machinery/power/solar/fake/New(turf/loc, obj/item/solar_assembly/S)
 	..(loc, S, 0)
 
 /obj/machinery/power/solar/fake/Process()
 	. = PROCESS_KILL
-	return
 
 //trace towards sun to see if we're in shadow
 /obj/machinery/power/solar/proc/occlusion()
-
 	var/ax = x		// start at the solar panel
 	var/ay = y
 	var/turf/T = null
@@ -162,9 +153,7 @@
 	for(var/i = 1 to 20)		// 20 steps is enough
 		ax += SSsun.dx	// do step
 		ay += SSsun.dy
-
 		T = locate( round(ax,0.5),round(ay,0.5),z)
-
 		if(!T || T.x == 1 || T.x==world.maxx || T.y==1 || T.y==world.maxy)		// not obscured if we reach the edge
 			break
 
@@ -175,11 +164,9 @@
 	obscured = 0		// if hit the edge or stepped 20 times, not obscured
 	update_solar_exposure()
 
-
 //
 // Solar Assembly - For construction of solar arrays.
 //
-
 /obj/item/solar_assembly
 	name = "solar panel assembly"
 	desc = "A solar panel assembly kit, allows constructions of a solar panel, or with a tracking circuit board, a solar tracker"
@@ -193,20 +180,18 @@
 	var/tracker = 0
 	var/glass_type = null
 
-/obj/item/solar_assembly/attack_hand(var/mob/user)
+/obj/item/solar_assembly/attack_hand(mob/user)
 	if(!anchored && isturf(loc)) // You can't pick it up
 		..()
 
 // Give back the glass type we were supplied with
 /obj/item/solar_assembly/proc/give_glass()
 	if(glass_type)
-		var/obj/item/stack/material/S = new glass_type(src.loc)
+		var/obj/item/stack/material/S = new glass_type(loc)
 		S.amount = 2
 		glass_type = null
 
-
-/obj/item/solar_assembly/attackby(var/obj/item/I, var/mob/user)
-
+/obj/item/solar_assembly/attackby(obj/item/I, mob/user)
 	var/list/usable_qualities = list(QUALITY_BOLT_TURNING)
 	if(tracker)
 		usable_qualities.Add(QUALITY_PRYING)
@@ -266,7 +251,6 @@
 //
 // Solar Control Computer
 //
-
 /obj/machinery/power/solar_control
 	name = "solar panel control"
 	desc = "A controller for solar panel arrays."
@@ -343,10 +327,10 @@
 	set_panels(cdir)
 	updateDialog()
 
-
 /obj/machinery/power/solar_control/Initialize()
 	. = ..()
-	if(!connect_to_network()) return
+	if(!connect_to_network())
+		return
 	set_panels(cdir)
 
 /obj/machinery/power/solar_control/update_icon()
@@ -374,7 +358,6 @@
 		interact(user)
 
 /obj/machinery/power/solar_control/interact(mob/user)
-
 	var/t = "<B><span class='highlight'>Generated power</span></B> : [round(lastgen)] W<BR>"
 	t += "<B><span class='highlight'>Star Orientation</span></B>: [SSsun.angle]&deg ([angle2text(SSsun.angle)])<BR>"
 	t += "<B><span class='highlight'>Array Orientation</span></B>: [rate_control(src,"cdir","[cdir]&deg",1,15)] ([angle2text(cdir)])<BR>"
@@ -388,20 +371,14 @@
 			t += "<A href='?src=\ref[src];track=0'>Off</A> <A href='?src=\ref[src];track=1'>Timed</A> <span class='linkOn'>Auto</span><BR>"
 
 	t += "Tracking Rate: [rate_control(src,"tdir","[trackrate] deg/h ([trackrate<0 ? "CCW" : "CW"])",1,30,180)]</div><BR>"
-
 	t += "<B><span class='highlight'>Connected devices:</span></B><div class='statusDisplay'>"
-
 	t += "<A href='?src=\ref[src];search_connected=1'>Search for devices</A><BR>"
 	t += "Solar panels : [connected_panels.len] connected<BR>"
 	t += "Solar tracker : [connected_tracker ? "<span class='good'>Found</span>" : "<span class='bad'>Not found</span>"]</div><BR>"
-
 	t += "<A href='?src=\ref[src];close=1'>Close</A>"
-
 	var/datum/browser/popup = new(user, "solar", name)
 	popup.set_content(t)
 	popup.open()
-
-	return
 
 /obj/machinery/power/solar_control/attackby(obj/item/I, mob/user)
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING), src))
@@ -430,13 +407,11 @@
 				A.anchored = TRUE
 				qdel(src)
 	else
-		src.attack_hand(user)
-	return
+		attack_hand(user)
 
 /obj/machinery/power/solar_control/Process()
 	lastgen = gen
 	gen = 0
-
 	if(stat & (NOPOWER | BROKEN))
 		return
 
@@ -448,7 +423,6 @@
 		if(nexttime <= world.time) //every time we need to increase/decrease the angle by 1�...
 			targetdir = (targetdir + trackrate/abs(trackrate) + 360) % 360 	//... do it
 			nexttime += 36000/abs(trackrate) //reset the counter for the next 1�
-
 	updateDialog()
 
 /obj/machinery/power/solar_control/Topic(href, href_list)
@@ -494,20 +468,17 @@
 	return 1
 
 //rotates the panel to the passed angle
-/obj/machinery/power/solar_control/proc/set_panels(var/cdir)
-
+/obj/machinery/power/solar_control/proc/set_panels(cdir)
 	for(var/obj/machinery/power/solar/S in connected_panels)
 		S.adir = cdir //instantly rotates the panel
 		S.occlusion()//and
 		S.update_icon() //update it
-
 	update_icon()
 
 
 /obj/machinery/power/solar_control/power_change()
 	..()
 	update_icon()
-
 
 /obj/machinery/power/solar_control/proc/broken()
 	stat |= BROKEN
@@ -526,20 +497,19 @@
 /obj/machinery/power/solar_control/autostart/New()
 	..()
 	spawn(150) // Wait 15 seconds to ensure everything was set up properly (such as, powernets, solar panels, etc.
-		src.search_for_connected()
+		search_for_connected()
 		if(connected_tracker && track == 2)
 			connected_tracker.set_angle(SSsun.angle)
-		src.set_panels(cdir)
+		set_panels(cdir)
 
 //
 // MISC
 //
-
 /obj/item/paper/solar
 	name = "paper- 'Going green! Setup your own solar array instructions.'"
 	info = "<h1>Welcome</h1><p>At greencorps we love the environment, and space. With this package you are able to help mother nature and produce energy without any usage of fossil fuel or plasma! Singularity energy is dangerous while solar energy is safe, which is why it's better. Now here is how you setup your own solar array.</p><p>You can make a solar panel by wrenching the solar assembly onto a cable node. Adding a glass panel, reinforced or regular glass will do, will finish the construction of your solar panel. It is that easy!</p><p>Now after setting up 19 more of these solar panels you will want to create a solar tracker to keep track of our mother nature's gift, the sun. These are the same steps as before except you insert the tracker equipment circuit into the assembly before performing the final step of adding the glass. You now have a tracker! Now the last step is to add a computer to calculate the sun's movements and to send commands to the solar panels to change direction with the sun. Setting up the solar computer is the same as setting up any computer, so you should have no trouble in doing that. You do need to put a wire node under the computer, and the wire needs to be connected to the tracker.</p><p>Congratulations, you should have a working solar array. If you are having trouble, here are some tips. Make sure all solar equipment are on a cable node, even the computer. You can always deconstruct your creations if you make a mistake.</p><p>That's all to it, be safe, be green!</p>"
 
-/proc/rate_control(var/S, var/V, var/C, var/Min=1, var/Max=5, var/Limit=null) //How not to name vars
+/proc/rate_control(S, V, C, Min=1, Max=5, Limit) //How not to name vars
 	var/href = "<A href='?src=\ref[S];rate control=1;[V]"
 	var/rate = "[href]=-[Max]'>-</A>[href]=-[Min]'>-</A> [(C?C : 0)] [href]=[Min]'>+</A>[href]=[Max]'>+</A>"
 	if(Limit) return "[href]=-[Limit]'>-</A>"+rate+"[href]=[Limit]'>+</A>"

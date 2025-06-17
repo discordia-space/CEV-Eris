@@ -128,11 +128,11 @@
 		to_chat(usr, "You need to stand in front of console's keyboard!")
 		return 1
 
-/obj/proc/keyboardsound(mob/user as mob)
+/obj/proc/keyboardsound(mob/user)
 	if(!issilicon(user))
 		playsound(src, "keyboard", 100, 1, 0)
 
-/obj/machinery/computer/attack_hand(mob/user as mob)//check mob direction
+/obj/machinery/computer/attack_hand(mob/user)//check mob direction
 	if(..())
 		return 1
 	if(!issilicon(user))

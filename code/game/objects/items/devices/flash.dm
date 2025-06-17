@@ -18,7 +18,7 @@
 	var/broken = 0     //Is the flash burnt out?
 	var/last_used = 0 //last world.time it was used.
 
-/obj/item/device/flash/proc/clown_check(var/mob/user)
+/obj/item/device/flash/proc/clown_check(mob/user)
 //	if(user && (CLUMSY in user.mutations) && prob(50))
 //		to_chat(user, SPAN_WARNING("\The [src] slips out of your hand."))
 //		user.drop_item()
@@ -36,23 +36,22 @@
 	times_used = max(0,round(times_used)) //sanity
 
 //attack_as_weapon
-/obj/item/device/flash/attack(mob/living/M, mob/living/user, var/target_zone)
-	if(!user || !M)	return	//sanity
+/obj/item/device/flash/attack(mob/living/M, mob/living/user, target_zone)
+	if(!user || !M)
+		return
 
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been flashed (attempt) with [src.name]  by [user.name] ([user.ckey])</font>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to flash [M.name] ([M.ckey])</font>")
 	msg_admin_attack("[user.name] ([user.ckey]) Used the [src.name] to flash [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(M)
-
-	if(!clown_check(user))	return
+	if(!clown_check(user))
+		return
 	if(broken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken."))
 		return
 
 	flash_recharge()
-
 	//spamming the flash before it's fully charged (60seconds) increases the chance of it  breaking
 	//It will never break on the first use.
 	switch(times_used)
@@ -110,28 +109,20 @@
 
 			user.visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>")
 		else
-
 			user.visible_message(SPAN_NOTICE("[user] overloads [M]'s sensors with the flash!"))
 	else
-
 		user.visible_message(SPAN_NOTICE("[user] fails to blind [M] with the flash!"))
 
-	return
-
-
-
-
 /obj/item/device/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
-	if(!user || !clown_check(user)) 	return
+	if(!user || !clown_check(user))
+		return
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-
 	if(broken)
 		user.show_message(SPAN_WARNING("The [src.name] is broken"), 2)
 		return
 
 	flash_recharge()
-
 	//spamming the flash before it's fully charged (60seconds) increases the chance of it  breaking
 	//It will never break on the first use.
 	switch(times_used)
@@ -163,10 +154,9 @@
 		if(safety < FLASH_PROTECTION_MODERATE)
 			M.flash(0, FALSE, FALSE, TRUE)
 
-	return
-
 /obj/item/device/flash/emp_act(severity)
-	if(broken)	return
+	if(broken)
+		return
 	flash_recharge()
 	switch(times_used)
 		if(0 to 5)

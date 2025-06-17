@@ -30,7 +30,7 @@
 		desc = "This is a space piano, like a regular piano, but always in tune! Even if the musician isn't."
 		icon_state = "piano"
 
-/obj/structure/device/piano/proc/playnote(var/note as text)
+/obj/structure/device/piano/proc/playnote(note as text)
 	var/soundfile
 	/*BYOND loads resource files at compile time if they are ''. This means you can't really manipulate them dynamically.
 	Tried doing it dynamically at first but its more trouble than its worth. Would have saved many lines tho.*/
@@ -254,13 +254,12 @@
 	playing = 0
 	updateUsrDialog()
 
-/obj/structure/device/piano/attack_hand(var/mob/user)
+/obj/structure/device/piano/attack_hand(mob/user)
 	if(!anchored)
 		return
 
 	usr.machine = src
 	var/dat = "<HEAD><TITLE>Piano</TITLE></HEAD><BODY>"
-
 	if(song)
 		if(song.lines.len > 0 && !(playing))
 			dat += "<A href='?src=\ref[src];play=1'>Play Song</A><BR><BR>"
@@ -308,7 +307,6 @@
 	onclose(user, "piano")
 
 /obj/structure/device/piano/Topic(href, href_list)
-
 	if(!in_range(src, usr) || issilicon(usr) || !anchored || !usr.canmove || usr.restrained())
 		usr << browse(null, "window=piano;size=700x300")
 		onclose(usr, "piano")
@@ -409,7 +407,6 @@
 
 	add_fingerprint(usr)
 	updateUsrDialog()
-	return
 
 /obj/structure/device/piano/attackby(var/obj/item/tool/tool, mob/user)
 	if(tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))

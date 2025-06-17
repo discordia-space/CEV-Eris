@@ -46,7 +46,7 @@
 	locked = 0
 	return 1
 
-/obj/item/electronics/circuitboard/security/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/electronics/circuitboard/security/attackby(obj/item/I as obj, mob/user)
 	if(istype(I,/obj/item/card/id))
 		if(emagged)
 			user << SPAN_WARNING("Circuit lock does not respond.")

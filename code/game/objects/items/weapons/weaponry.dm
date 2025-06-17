@@ -13,9 +13,7 @@
 
 /obj/item/energy_net/throw_impact(atom/hit_atom)
 	..()
-
 	var/mob/living/M = hit_atom
-
 	if(!istype(M) || locate(/obj/effect/energy_net) in M.loc)
 		qdel(src)
 		return 0
@@ -38,13 +36,11 @@
 	desc = "A net made of green energy."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "energynet"
-
 	density = TRUE
 	opacity = 0
 	mouse_opacity = 1
 	anchored = TRUE
 	layer = ABOVE_ALL_MOB_LAYER
-
 	var/health = 25
 	var/mob/living/affecting //Who it is currently affecting, if anyone.
 	var/mob/living/master    //Who shot web. Will let this person know if the net was successful.
@@ -58,7 +54,6 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/energy_net/Destroy()
-
 	if(affecting)
 		var/mob/living/carbon/M = affecting
 		M.anchored = initial(affecting.anchored)
@@ -69,15 +64,12 @@
 	. = ..()
 
 /obj/effect/energy_net/proc/healthcheck()
-
 	if(health <=0)
 		density = FALSE
 		src.visible_message("The energy net is torn apart!")
 		qdel(src)
-	return
 
 /obj/effect/energy_net/Process()
-
 	if(isnull(affecting) || affecting.loc != loc)
 		qdel(src)
 		return
@@ -92,7 +84,7 @@
 		countdown--
 		return
 
-/obj/effect/energy_net/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/energy_net/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	healthcheck()
 	return 0
@@ -101,8 +93,7 @@
 	health = 0
 	healthcheck()
 
-/obj/effect/energy_net/attack_hand(var/mob/user)
-
+/obj/effect/energy_net/attack_hand(mob/user)
 	var/mob/living/carbon/human/H = user
 	if(istype(H))
 		if(H.species.can_shred(H))
@@ -110,18 +101,12 @@
 			health -= rand(10, 20)
 		else
 			health -= rand(1,3)
-
-//	else if(HULK in user.mutations)
-//		health = 0
 	else
 		health -= rand(5,8)
-
 	to_chat(H, "<span class='danger'>You claw at the energy net.</span>")
-
 	healthcheck()
-	return
 
-/obj/effect/energy_net/attackby(obj/item/W as obj, mob/user as mob)
+/obj/effect/energy_net/attackby(obj/item/W, mob/user)
 	health -= W.force
 	healthcheck()
 	..()

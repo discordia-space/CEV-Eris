@@ -76,7 +76,7 @@
 		reload = 1
 	..(user, allow_dump=1)
 
-/obj/item/gun/projectile/shotgun/bull/attack_self(mob/user as mob)
+/obj/item/gun/projectile/shotgun/bull/attack_self(mob/user)
 	if(reload)
 		pump(user)
 	else

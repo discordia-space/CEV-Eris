@@ -13,7 +13,7 @@
 	set_light(1, 2, COLOR_LIGHTING_BLUE_MACHINERY)
 
 
-/obj/machinery/multistructure/bioreactor_part/console/attack_hand(mob/user as mob)
+/obj/machinery/multistructure/bioreactor_part/console/attack_hand(mob/user)
 	if(MS)
 		nano_ui_interact(user)
 

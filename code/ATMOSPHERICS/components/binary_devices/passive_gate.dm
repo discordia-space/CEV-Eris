@@ -6,10 +6,8 @@
 	icon = 'icons/atmos/passive_gate.dmi'
 	icon_state = "map"
 	level = BELOW_PLATING_LEVEL
-
 	name = "pressure regulator"
 	desc = "A one-way air valve that can be used to regulate input or output pressure, and flow rate. Does not require power."
-
 	use_power = NO_POWER_USE
 	interact_offline = 1
 	var/unlocked = 0	//If 0, then the valve is locked closed, otherwise it is open(-able, it's a one-way valve so it closes if gas would flow backwards).
@@ -17,9 +15,7 @@
 	var/max_pressure_setting = 15000	//kPa
 	var/set_flow_rate = ATMOS_DEFAULT_VOLUME_PUMP * 2.5
 	var/regulate_mode = REGULATE_OUTPUT
-
 	var/flowing = 0	//for icons - becomes zero if the valve closes itself due to regulation mode
-
 	var/frequency = 0
 	var/id
 	var/datum/radio_frequency/radio_connection
@@ -41,14 +37,12 @@
 		add_underlay(T, node1, turn(dir, 180))
 		add_underlay(T, node2, dir)
 
-/obj/machinery/atmospherics/binary/passive_gate/hide(var/i)
+/obj/machinery/atmospherics/binary/passive_gate/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/binary/passive_gate/Process()
 	..()
-
 	last_flow_rate = 0
-
 	if(!unlocked)
 		return 0
 
@@ -98,7 +92,6 @@
 
 
 //Radio remote control
-
 /obj/machinery/atmospherics/binary/passive_gate/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
@@ -112,7 +105,6 @@
 	var/datum/signal/signal = new
 	signal.transmission_method = 1 //radio signal
 	signal.source = src
-
 	signal.data = list(
 		"tag" = id,
 		"device" = "AGP",
@@ -120,11 +112,8 @@
 		"target_output" = target_pressure,
 		"regulate_mode" = regulate_mode,
 		"set_flow_rate" = set_flow_rate,
-		"sigtype" = "status"
-	)
-
+		"sigtype" = "status")
 	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
-
 	return 1
 
 /obj/machinery/atmospherics/binary/passive_gate/atmos_init()
@@ -166,7 +155,6 @@
 	spawn(2)
 		broadcast_status()
 	update_icon()
-	return
 
 /obj/machinery/atmospherics/binary/passive_gate/attack_hand(user as mob)
 	if(..())
@@ -185,7 +173,6 @@
 
 	// this is the data which will be sent to the ui
 	var/data[0]
-
 	data = list(
 		"on" = unlocked,
 		"pressure_set" = round(target_pressure*100),	//Nano UI can't handle rounded non-integers, apparently.
@@ -194,8 +181,7 @@
 		"output_pressure" = round(air2.return_pressure()*100),
 		"regulate_mode" = regulate_mode,
 		"set_flow_rate" = round(set_flow_rate*10),
-		"last_flow_rate" = round(last_flow_rate*10),
-	)
+		"last_flow_rate" = round(last_flow_rate*10),)
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -206,7 +192,6 @@
 		ui.set_initial_data(data)	// when the ui is first opened this is the data it will use
 		ui.open()					// open the new ui window
 		ui.set_auto_update(1)		// auto update every Master Controller tick
-
 
 /obj/machinery/atmospherics/binary/passive_gate/Topic(href, href_list)
 	if(..()) return 1
@@ -243,11 +228,10 @@
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	usr.set_machine(src)	//Is this even needed with NanoUI?
-	src.update_icon()
+	update_icon()
 	add_fingerprint(usr)
-	return
 
-/obj/machinery/atmospherics/binary/passive_gate/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/binary/passive_gate/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if(unlocked)

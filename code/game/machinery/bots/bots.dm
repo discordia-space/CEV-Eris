@@ -53,7 +53,7 @@
 			extra_description += SPAN_DANGER("[src]'s parts look very loose!")
 	..(user, extra_description)
 
-/obj/machinery/bot/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/bot/attackby(obj/item/W as obj, mob/user)
 	if(istype(W, /obj/item/tool/screwdriver))
 		if(!locked)
 			open = !open
@@ -107,7 +107,7 @@
 			turn_on()
 
 
-/obj/machinery/bot/attack_ai(mob/user as mob)
+/obj/machinery/bot/attack_ai(mob/user)
 	src.attack_hand(user)
 
 /obj/machinery/bot/attack_hand(var/mob/living/carbon/human/user)

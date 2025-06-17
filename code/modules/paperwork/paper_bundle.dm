@@ -14,7 +14,7 @@
 	var/list/pages = list()  // Ordered list of pages as they are to be displayed. Can be different order than src.contents.
 
 
-/obj/item/paper_bundle/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/paper_bundle/attackby(obj/item/W as obj, mob/user)
 	..()
 
 	if(istype(W, /obj/item/paper/carbon))
@@ -99,7 +99,7 @@
 		extra_description += SPAN_NOTICE("It is too far away.")
 	..(user, extra_description)
 
-/obj/item/paper_bundle/proc/show_content(mob/user as mob)
+/obj/item/paper_bundle/proc/show_content(mob/user)
 	var/dat
 	var/obj/item/W = pages[page]
 
@@ -135,7 +135,7 @@
 		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : null]"\
 		+ "</body></html>", "window=[name]; size=[32*P.photo_size]x[32*P.photo_size]")
 
-/obj/item/paper_bundle/attack_self(mob/user as mob)
+/obj/item/paper_bundle/attack_self(mob/user)
 	src.show_content(user)
 	add_fingerprint(usr)
 	update_icon()

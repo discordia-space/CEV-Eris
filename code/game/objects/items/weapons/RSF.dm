@@ -22,7 +22,7 @@ RSF
 		extra_description += "It holds [stored_matter] out of [max_stored_matter] charges."
 	..(user, extra_description)
 
-/obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/rsf/attackby(obj/item/W as obj, mob/user)
 	var/obj/item/stack/material/M = W
 	if(istype(M) && M.material.name == MATERIAL_COMPRESSED)
 		var/amount = min(M.get_amount(), round(max_stored_matter - stored_matter))
@@ -32,7 +32,7 @@ RSF
 			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src]</span>.")
 	else
 		..()
-/obj/item/rsf/attack_self(mob/user as mob)
+/obj/item/rsf/attack_self(mob/user)
 	playsound(loc, 'sound/effects/pop.ogg', 50, 0)
 	if(mode == 1)
 		mode = 2
@@ -55,7 +55,7 @@ RSF
 		to_chat(user, "Changed dispensing mode to 'Cigarette'")
 		return
 
-/obj/item/rsf/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/rsf/afterattack(atom/A, mob/user, proximity)
 
 	if(!proximity) return
 

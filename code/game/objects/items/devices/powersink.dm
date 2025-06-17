@@ -22,7 +22,6 @@
 	var/max_power = 5e9				// Detonation point.
 	var/mode = 0					// 0 = off, 1=clamped (off), 2=operating
 	var/drained_this_tick = 0		// This is unfortunately necessary to ensure we process powersinks BEFORE other machinery such as APCs.
-
 	var/datum/powernet/PN			// Our powernet
 	var/obj/structure/cable/attached		// the attached cable
 
@@ -63,7 +62,7 @@
 /obj/item/device/powersink/attack_ai()
 	return
 
-/obj/item/device/powersink/attack_hand(var/mob/user)
+/obj/item/device/powersink/attack_hand(mob/user)
 	switch(mode)
 		if(0)
 			..()
@@ -85,10 +84,9 @@
 
 	if(drained_this_tick)
 		return 1
+
 	drained_this_tick = 1
-
 	var/drained = 0
-
 	if(!PN)
 		return 1
 
@@ -112,7 +110,6 @@
 					drained += drain_val
 	power_drained += drained
 	return 1
-
 
 /obj/item/device/powersink/Process()
 	drained_this_tick = 0

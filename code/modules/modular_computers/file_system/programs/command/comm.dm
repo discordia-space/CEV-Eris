@@ -75,14 +75,6 @@
 		security_setup["ref"] = any2ref(security_level)
 		security_levels[++security_levels.len] = security_setup
 	data["security_levels"] = security_levels
-/*
-	var/datum/comm_message_listener/l = obtain_message_listener()
-	data["messages"] = l.messages
-	data["message_deletion_allowed"] = l != global_message_listener
-	data["message_current_id"] = current_viewing_message_id
-	if(current_viewing_message)
-		data["message_current"] = current_viewing_message
-*/
 	var/list/processed_evac_options = list()
 	if(!isnull(evacuation_controller))
 		for(var/datum/evacuation_option/EO in evacuation_controller.available_evac_options())
@@ -101,7 +93,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/nano_module/program/comm/proc/is_autenthicated(var/mob/user)
+/datum/nano_module/program/comm/proc/is_autenthicated(mob/user)
 	if(program)
 		return program.can_run(user)
 	return 1
@@ -260,7 +252,6 @@ var/last_message_id = 0
 	var/datum/signal/status_signal = new
 	status_signal.transmission_method = 1
 	status_signal.data["command"] = command
-
 	switch(command)
 		if("message")
 			status_signal.data["msg1"] = data1

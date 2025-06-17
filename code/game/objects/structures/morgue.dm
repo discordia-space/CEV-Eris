@@ -195,7 +195,7 @@
 	current_storage += newcap
 	AM.forceMove(src)
 
-/obj/structure/morgue/attackby(P as obj, mob/user as mob)
+/obj/structure/morgue/attackby(P as obj, mob/user)
 	if(istype(P, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", name), null)  as text
 		if(user.get_active_hand() != P)
@@ -210,7 +210,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/structure/morgue/relaymove(mob/user as mob)
+/obj/structure/morgue/relaymove(mob/user)
 	if(user.stat)
 		return
 	connected = new /obj/structure/m_tray( loc )
@@ -247,11 +247,11 @@
 	connected = null
 	return ..()
 
-/obj/structure/m_tray/attack_hand(mob/user as mob)
+/obj/structure/m_tray/attack_hand(mob/user)
 	if(connected)
 		connected.attack_hand(user)
 
-/obj/structure/m_tray/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
+/obj/structure/m_tray/MouseDrop_T(atom/movable/O as mob|obj, mob/user)
 	if((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src) || user.contents.Find(O)))
 		return
 	if(!ismob(O) && !istype(O, /obj/structure/closet/body_bag))
@@ -318,7 +318,7 @@
 			A.explosion_act(health - (health - target_power), handler)
 	. = ..()
 
-/obj/structure/crematorium/attack_hand(mob/user as mob)
+/obj/structure/crematorium/attack_hand(mob/user)
 //	if(cremating) AWW MAN! THIS WOULD BE SO MUCH MORE FUN ... TO WATCH
 //		user.show_message(SPAN_WARNING("Uh-oh, that was a bad idea."), 1)
 //		//usr << "Uh-oh, that was a bad idea."
@@ -353,7 +353,7 @@
 	add_fingerprint(user)
 	update()
 
-/obj/structure/crematorium/attackby(P as obj, mob/user as mob)
+/obj/structure/crematorium/attackby(P as obj, mob/user)
 	if(istype(P, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", name), null)  as text
 		if(user.get_active_hand() != P)
@@ -368,7 +368,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/structure/crematorium/relaymove(mob/user as mob)
+/obj/structure/crematorium/relaymove(mob/user)
 	if(user.stat || locked)
 		return
 	connected = new /obj/structure/c_tray( loc )
@@ -386,7 +386,7 @@
 		connected = null
 	return
 
-/obj/structure/crematorium/proc/cremate(atom/A, mob/user as mob)
+/obj/structure/crematorium/proc/cremate(atom/A, mob/user)
 //	for(var/obj/machinery/crema_switch/O in src) //trying to figure a way to call the switch, too drunk to sort it out atm
 //		if(var/on == TRUE)
 //		return
@@ -457,7 +457,7 @@
 	connected = null
 	return ..()
 
-/obj/structure/c_tray/attack_hand(mob/user as mob)
+/obj/structure/c_tray/attack_hand(mob/user)
 	if(connected)
 		for(var/atom/movable/A as mob|obj in loc)
 			if(!( A.anchored ))
@@ -471,7 +471,7 @@
 		return
 	return
 
-/obj/structure/c_tray/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
+/obj/structure/c_tray/MouseDrop_T(atom/movable/O as mob|obj, mob/user)
 	if((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src) || user.contents.Find(O)))
 		return
 	if(!ismob(O) && !istype(O, /obj/structure/closet/body_bag))
@@ -497,7 +497,7 @@
 /obj/machinery/button/crematorium/update_icon()
 	return
 
-/obj/machinery/button/crematorium/attack_hand(mob/user as mob)
+/obj/machinery/button/crematorium/attack_hand(mob/user)
 	if(..())
 		return
 	if(allowed(user))

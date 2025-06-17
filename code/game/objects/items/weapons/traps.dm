@@ -142,7 +142,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		return
 	.=..()
 
-/obj/item/beartrap/attack_hand(mob/user as mob)
+/obj/item/beartrap/attack_hand(mob/user)
 	if(buckled_mob)
 		attempt_release(user)
 		return
@@ -201,7 +201,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	Deployment
 ***********************************/
 
-/obj/item/beartrap/attack_self(mob/user as mob)
+/obj/item/beartrap/attack_self(mob/user)
 	..()
 	if(locate(/obj/structure/multiz/ladder) in get_turf(user))
 		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, there is a ladder."))

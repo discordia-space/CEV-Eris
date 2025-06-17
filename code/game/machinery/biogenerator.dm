@@ -108,7 +108,7 @@
 	update_icon()
 
 
-/obj/machinery/biogenerator/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, vforce_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.outside_state)
+/obj/machinery/biogenerator/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.outside_state)
 	user.set_machine(src)
 	var/list/data = list()
 	data["points"] = points

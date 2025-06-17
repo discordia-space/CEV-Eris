@@ -35,8 +35,7 @@ particle whenever the target moves
 	GLOB.moved_event.register(holder, src, /datum/effect/effect/system/trail/proc/holder_moved)
 	active = TRUE
 
-
-/datum/effect/effect/system/trail/proc/holder_movedatom/A, atom/old_loc)
+/datum/effect/effect/system/trail/proc/holder_moved(atom/A, atom/old_loc)
 	var/obj/effect/trail_particle/E = do_effect(old_loc, get_dir(A, old_loc))
 	if(fromback && ismob(holder.loc)) //Makes jetpack particles draw over the user when facing north
 		var/mob/M = holder.loc

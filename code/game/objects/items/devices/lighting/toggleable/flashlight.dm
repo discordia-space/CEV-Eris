@@ -173,7 +173,7 @@
 	dir = WEST
 	return ..()
 
-/obj/item/device/lighting/toggleable/flashlight/dropped(mob/user as mob)
+/obj/item/device/lighting/toggleable/flashlight/dropped(mob/user)
 	if(light_direction)
 		set_dir(light_direction)
 	..()

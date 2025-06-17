@@ -225,7 +225,7 @@
 	QDEL_LIST(stored_ammo)
 	return ..()
 
-/obj/item/ammo_magazine/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/ammo_magazine/attackby(obj/item/W as obj, mob/user)
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(stored_ammo.len >= max_ammo)

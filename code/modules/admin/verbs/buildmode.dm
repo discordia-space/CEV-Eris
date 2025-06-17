@@ -151,7 +151,7 @@
 	var/objholder = /obj/structure/closet
 	var/objsay = 1
 
-/obj/effect/bmode/buildhelp/Click(location, control, params)
+/obj/effect/bmode/buildmode/Click(location, control, params)
 	var/list/pa = params2list(params)
 
 	if(pa.Find("middle"))
@@ -283,8 +283,6 @@
 			if(pa.Find("middle"))
 				holder.buildmode.objholder = text2path("[object.type]")
 				if(holder.buildmode.objsay)	to_chat(usr, "[object.type]")
-
-
 		if(3)
 			if(pa.Find("left")) //I cant believe this shit actually compiles.
 				if(object.vars.Find(holder.buildmode.varholder))
@@ -298,7 +296,6 @@
 					object.vars[holder.buildmode.varholder] = initial(object.vars[holder.buildmode.varholder])
 				else
 					to_chat(usr, "\red [initial(object.name)] does not have a var called '[holder.buildmode.varholder]'")
-
 		if(4)
 			if(pa.Find("left"))
 				if(istype(object, /atom/movable))

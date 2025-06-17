@@ -31,7 +31,7 @@ var/datum/admin_secrets/admin_secrets = new()
 	..()
 	items = list()
 
-/datum/admin_secret_category/proc/can_view(var/mob/user)
+/datum/admin_secret_category/proc/can_view(mob/user)
 	for(var/datum/admin_secret_item/item in items)
 		if(item.can_view(user))
 			return 1
@@ -51,16 +51,16 @@ var/datum/admin_secrets/admin_secrets = new()
 /datum/admin_secret_item/proc/name()
 	return name
 
-/datum/admin_secret_item/proc/can_view(var/mob/user)
+/datum/admin_secret_item/proc/can_view(mob/user)
 	return check_rights(permissions, 0, user)
 
-/datum/admin_secret_item/proc/can_execute(var/mob/user)
+/datum/admin_secret_item/proc/can_execute(mob/user)
 	if(can_view(user))
 		if(!warn_before_use || alert("Execute the command '[name]'?", name, "No","Yes") == "Yes")
 			return 1
 	return 0
 
-/datum/admin_secret_item/proc/execute(var/mob/user)
+/datum/admin_secret_item/proc/execute(mob/user)
 	if(!can_execute(user))
 		return 0
 

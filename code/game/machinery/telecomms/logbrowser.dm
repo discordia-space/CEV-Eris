@@ -37,7 +37,7 @@
 
 	req_access = list(access_tcomsat)
 
-	attack_hand(mob/user as mob)
+	attack_hand(mob/user)
 		if(stat & (BROKEN|NOPOWER))
 			return
 		user.set_machine(src)

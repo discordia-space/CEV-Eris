@@ -41,7 +41,7 @@
 			extra_description += "It's completely empty."
 	..(user, extra_description)
 
-/obj/machinery/cash_register/attack_hand(mob/user as mob)
+/obj/machinery/cash_register/attack_hand(mob/user)
 	// Don't be accessible from the wrong side of the machine
 	if(get_dir(src, user) & reverse_dir[src.dir]) return
 
@@ -61,7 +61,7 @@
 		open_cash_box()
 
 
-/obj/machinery/cash_register/interact(mob/user as mob)
+/obj/machinery/cash_register/interact(mob/user)
 	var/dat = "<h2>Cash Register<hr></h2>"
 	if(locked)
 		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Unlock</a><br>"

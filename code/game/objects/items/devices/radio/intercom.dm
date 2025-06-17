@@ -64,12 +64,12 @@
 	..()
 	internal_channels[num2text(SYND_FREQ)] = list(access_syndicate)
 
-/obj/item/device/radio/intercom/attack_ai(mob/user as mob)
+/obj/item/device/radio/intercom/attack_ai(mob/user)
 	add_fingerprint(user)
 	spawn (0)
 		attack_self(user)
 
-/obj/item/device/radio/intercom/attack_hand(mob/user as mob)
+/obj/item/device/radio/intercom/attack_hand(mob/user)
 	add_fingerprint(user)
 	spawn (0)
 		attack_self(user)

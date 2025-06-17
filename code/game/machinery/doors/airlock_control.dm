@@ -288,7 +288,7 @@
 	. = ..()
 	icon_state = "[base_of_state]_[on?"standby":"off"]"
 
-/obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/access_button/attackby(obj/item/I as obj, mob/user)
 	//Swiping ID on the access button
 	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/modular_computer))
 		attack_hand(user)

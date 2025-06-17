@@ -116,7 +116,7 @@
 		D.error = "Connection to quantum relay severed"
 	..()
 
-/obj/machinery/ntnet_relay/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/ntnet_relay/attackby(var/obj/item/W as obj, var/mob/user)
 	if(default_deconstruction(W, user))
 		return
 	if(default_part_replacement(W, user))

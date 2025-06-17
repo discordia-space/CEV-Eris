@@ -52,7 +52,7 @@
 
 	attack_hand(user)
 
-/obj/machinery/account_database/attack_hand(mob/user as mob)
+/obj/machinery/account_database/attack_hand(mob/user)
 	if(stat & (NOPOWER|BROKEN)) return
 	nano_ui_interact(user)
 

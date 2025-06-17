@@ -43,7 +43,7 @@
 	else
 		..()
 
-/obj/machinery/computer/med_data/attack_hand(mob/user as mob)
+/obj/machinery/computer/med_data/attack_hand(mob/user)
 	if(..())
 		return
 	nano_ui_interact(user)

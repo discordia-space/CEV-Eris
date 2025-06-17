@@ -11,7 +11,6 @@
 
 	verbs |= /obj/item/verb/verb_pickup
 	verbs |= /obj/item/verb/move_to_top
-
 	verbs |= /obj/item/modular_computer/verb/emergency_shutdown
 
 /obj/item/modular_computer/can_interact(mob/user)
@@ -24,7 +23,6 @@
 		return FALSE
 
 	return TRUE
-
 
 // Forcibly shut down the device. To be used when something bugs out and the UI is nonfunctional.
 /obj/item/modular_computer/verb/emergency_shutdown()
@@ -43,7 +41,6 @@
 		spawn(2 SECONDS)
 			bsod = 0
 			update_icon()
-
 
 // Eject ID card from computer, if it has ID slot with card inside.
 /obj/item/modular_computer/verb/eject_id()
@@ -141,7 +138,7 @@
 	ai_slot.update_power_usage()
 	update_uis()
 
-/obj/item/modular_computer/attack_ghost(var/mob/observer/ghost/user)
+/obj/item/modular_computer/attack_ghost(mob/observer/ghost/user)
 	if(enabled)
 		nano_ui_interact(user)
 	else if(check_rights(R_ADMIN, 0, user))
@@ -149,16 +146,16 @@
 		if(response == "Yes")
 			turn_on(user)
 
-/obj/item/modular_computer/attack_ai(var/mob/user)
+/obj/item/modular_computer/attack_ai(mob/user)
 	return attack_self(user)
 
-/obj/item/modular_computer/attack_hand(var/mob/user)
+/obj/item/modular_computer/attack_hand(mob/user)
 	if(anchored)
 		return attack_self(user)
 	return ..()
 
 // On-click handling. Turns on the computer if it's off and opens the GUI.
-/obj/item/modular_computer/attack_self(var/mob/user)
+/obj/item/modular_computer/attack_self(mob/user)
 	if(enabled && screen_on)
 		nano_ui_interact(user)
 	else if(!enabled && screen_on)
@@ -185,8 +182,8 @@
 		if(sound_mute == FALSE) // This is here so that the sound doesn't play every time you spawn in because ID's now get moved in to PDA's on spawn.
 			playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
 		to_chat(user, "You insert [I] into [src].")
-
 		return
+
 	if(istype(W, /obj/item/pen) && stores_pen)
 		if(istype(stored_pen))
 			to_chat(user, "<span class='notice'>There is already a pen in [src].</span>")

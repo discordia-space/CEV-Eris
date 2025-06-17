@@ -1,13 +1,10 @@
 /obj/item/rig/attackby(obj/item/I, mob/user)
-
 	if(!isliving(user))
 		return
 
 	if(electrified != 0)
 		if(shock(user)) //Handles removing charge from the cell, as well. No need to do that here.
 			return
-
-
 
 	// Lock or unlock the access panel.
 	if(I.GetIdCard())
@@ -203,8 +200,7 @@
 			return
 	..()
 
-
-/obj/item/rig/attack_hand(var/mob/user)
+/obj/item/rig/attack_hand(mob/user)
 	if(electrified != 0)
 		if(shock(user)) //Handles removing charge from the cell, as well. No need to do that here.
 			return
@@ -216,9 +212,8 @@
 			return
 	.=..()
 
-
 //For those pesky items which incur effects on the rigsuit, an altclick will force them to go in if possible
-/obj/item/rig/AltClick(var/mob/user)
+/obj/item/rig/AltClick(mob/user)
 	if(storage && user.get_active_hand())
 		if(user == loc || Adjacent(user)) //Rig must be on or near you
 			storage.accepts_item(user.get_active_hand())
@@ -231,7 +226,7 @@
 		return TRUE
 	return ..()
 
-/obj/item/rig/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/rig/emag_act(remaining_charges, mob/user)
 	if(!subverted)
 		req_access.Cut()
 		req_one_access.Cut()
@@ -247,7 +242,5 @@
 
 	var/ablative_stack = max((ablative_armor * 8) - power, 0) // Used to determine damage to RIG
 	power = ablative_armor * 8
-
 	ablative_armor -= max(-(ablative_stack - ablative_armor * 8) / ablation, 0) // Damage blocked (not halloss) reduces ablative armor
-
 	return power

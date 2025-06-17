@@ -84,7 +84,7 @@
 			update_locked = 0
 	busy = 0
 
-/obj/machinery/power/breakerbox/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/power/breakerbox/attackby(var/obj/item/W as obj, var/mob/user)
 	if(default_deconstruction(W, user))
 		return
 	if(default_part_replacement(W, user))

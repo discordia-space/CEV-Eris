@@ -3,23 +3,18 @@
 	icon_state = "map"
 	density = FALSE
 	level = BELOW_PLATING_LEVEL
-
 	name = "Gas mixer"
-
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 3700	//This also doubles as a measure of how powerful the mixer is, in Watts. 3700 W ~ 5 HP
-
 	var/set_flow_rate = ATMOS_DEFAULT_VOLUME_MIXER
 	var/list/mixing_inputs
-
 	//for mapping
 	var/node1_concentration = 0.5
 	var/node2_concentration = 0.5
-
 	//node 3 is the outlet, nodes 1 & 2 are intakes
 
-/obj/machinery/atmospherics/trinary/mixer/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/trinary/mixer/update_icon(safety = 0)
 	if(istype(src, /obj/machinery/atmospherics/trinary/mixer/m_mixer))
 		icon_state = "m"
 	else if(istype(src, /obj/machinery/atmospherics/trinary/mixer/t_mixer))
@@ -51,10 +46,9 @@
 			add_underlay(T, node2, turn(dir, 90))
 		else
 			add_underlay(T, node2, turn(dir, -90))
-
 		add_underlay(T, node3, dir)
 
-/obj/machinery/atmospherics/trinary/mixer/hide(var/i)
+/obj/machinery/atmospherics/trinary/mixer/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/trinary/mixer/power_change()
@@ -68,22 +62,18 @@
 	air1.volume = ATMOS_DEFAULT_VOLUME_MIXER
 	air2.volume = ATMOS_DEFAULT_VOLUME_MIXER
 	air3.volume = ATMOS_DEFAULT_VOLUME_MIXER * 1.5
-
 	if(!mixing_inputs)
 		mixing_inputs = list(src.air1 = node1_concentration, src.air2 = node2_concentration)
 
 /obj/machinery/atmospherics/trinary/mixer/Process()
 	..()
-
 	last_power_draw = 0
 	last_flow_rate = 0
-
 	if((stat & (NOPOWER|BROKEN)) || !use_power)
 		return
 
 	//Figure out the amount of moles to transfer
 	var/transfer_moles = (set_flow_rate*mixing_inputs[air1]/air1.volume)*air1.total_moles + (set_flow_rate*mixing_inputs[air1]/air2.volume)*air2.total_moles
-
 	var/power_draw = -1
 	if(transfer_moles > MINIMUM_MOLES_TO_FILTER)
 		power_draw = mix_gas(src, mixing_inputs, air3, transfer_moles, power_rating)
@@ -100,10 +90,9 @@
 	if(power_draw >= 0)
 		last_power_draw = power_draw
 		use_power(power_draw)
-
 	return 1
 
-/obj/machinery/atmospherics/trinary/mixer/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/atmospherics/trinary/mixer/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	var/datum/gas_mixture/int_air = return_air()
@@ -152,37 +141,34 @@
 
 	user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_mixer")
 	onclose(user, "atmo_mixer")
-	return
 
 /obj/machinery/atmospherics/trinary/mixer/Topic(href, href_list)
-	if(..()) return 1
+	if(..())
+		return 1
 	if(href_list["power"])
 		use_power = !use_power
 	if(href_list["set_press"])
 		var/max_flow_rate = min(air1.volume, air2.volume)
-		var/new_flow_rate = input(usr, "Enter new flow rate limit (0-[max_flow_rate]L/s)", "Flow Rate Control", src.set_flow_rate) as num
-		src.set_flow_rate = max(0, min(max_flow_rate, new_flow_rate))
+		var/new_flow_rate = input(usr, "Enter new flow rate limit (0-[max_flow_rate]L/s)", "Flow Rate Control", set_flow_rate) as num
+		set_flow_rate = max(0, min(max_flow_rate, new_flow_rate))
 	if(href_list["node1_c"])
 		var/value = text2num(href_list["node1_c"])
-		src.mixing_inputs[air1] = max(0, min(1, src.mixing_inputs[air1] + value))
-		src.mixing_inputs[air2] = 1 - mixing_inputs[air1]
+		mixing_inputs[air1] = max(0, min(1, mixing_inputs[air1] + value))
+		mixing_inputs[air2] = 1 - mixing_inputs[air1]
 	if(href_list["node2_c"])
 		var/value = text2num(href_list["node2_c"])
-		src.mixing_inputs[air2] = max(0, min(1, src.mixing_inputs[air2] + value))
-		src.mixing_inputs[air1] = 1 - mixing_inputs[air2]
-	src.update_icon()
-	src.updateUsrDialog()
-	return
+		mixing_inputs[air2] = max(0, min(1, mixing_inputs[air2] + value))
+		mixing_inputs[air1] = 1 - mixing_inputs[air2]
+	update_icon()
+	updateUsrDialog()
 
-obj/machinery/atmospherics/trinary/mixer/t_mixer
+/obj/machinery/atmospherics/trinary/mixer/t_mixer
 	icon_state = "tmap"
-
 	dir = SOUTH
 	initialize_directions = SOUTH|EAST|WEST
 
-	//node 3 is the outlet, nodes 1 & 2 are intakes
-
-obj/machinery/atmospherics/trinary/mixer/t_mixer/New()
+//node 3 is the outlet, nodes 1 & 2 are intakes
+/obj/machinery/atmospherics/trinary/mixer/t_mixer/New()
 	..()
 	switch(dir)
 		if(NORTH)
@@ -194,14 +180,14 @@ obj/machinery/atmospherics/trinary/mixer/t_mixer/New()
 		if(WEST)
 			initialize_directions = WEST|NORTH|SOUTH
 
-obj/machinery/atmospherics/trinary/mixer/t_mixer/atmos_init()
+/obj/machinery/atmospherics/trinary/mixer/t_mixer/atmos_init()
 	..()
-	if(node1 && node2 && node3) return
+	if(node1 && node2 && node3)
+		return
 
 	var/node1_connect = turn(dir, -90)
 	var/node2_connect = turn(dir, 90)
 	var/node3_connect = dir
-
 	for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
 		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
@@ -220,7 +206,7 @@ obj/machinery/atmospherics/trinary/mixer/t_mixer/atmos_init()
 	update_icon()
 	update_underlays()
 
-obj/machinery/atmospherics/trinary/mixer/m_mixer
+/obj/machinery/atmospherics/trinary/mixer/m_mixer
 	icon_state = "mmap"
 
 	dir = SOUTH
@@ -228,7 +214,7 @@ obj/machinery/atmospherics/trinary/mixer/m_mixer
 
 	//node 3 is the outlet, nodes 1 & 2 are intakes
 
-obj/machinery/atmospherics/trinary/mixer/m_mixer/New()
+/obj/machinery/atmospherics/trinary/mixer/m_mixer/New()
 	..()
 	switch(dir)
 		if(NORTH)
@@ -240,14 +226,14 @@ obj/machinery/atmospherics/trinary/mixer/m_mixer/New()
 		if(WEST)
 			initialize_directions = WEST|SOUTH|EAST
 
-obj/machinery/atmospherics/trinary/mixer/m_mixer/atmos_init()
+/obj/machinery/atmospherics/trinary/mixer/m_mixer/atmos_init()
 	..()
-	if(node1 && node2 && node3) return
+	if(node1 && node2 && node3)
+		return
 
 	var/node1_connect = turn(dir, -180)
 	var/node2_connect = turn(dir, 90)
 	var/node3_connect = dir
-
 	for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
 		if(target.initialize_directions & get_dir(target, src))
 			node1 = target

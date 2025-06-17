@@ -109,14 +109,14 @@
 			if(occupant && (src.loc != occupant.loc))
 				src.forceMove(occupant.loc) // Failsafe to make sure the wheelchair stays beneath the occupant after driving
 
-/obj/structure/bed/chair/wheelchair/attack_hand(mob/living/user as mob)
+/obj/structure/bed/chair/wheelchair/attack_hand(mob/living/user)
 	if(pulling)
 		MouseDrop(usr)
 	else
 		user_unbuckle_mob(user)
 	return
 
-/obj/structure/bed/chair/wheelchair/CtrlClick(var/mob/user)
+/obj/structure/bed/chair/wheelchair/CtrlClick(mob/user)
 	if(in_range(src, user))
 		if(!ishuman(user))	return
 		if(user == buckled_mob)
@@ -133,40 +133,33 @@
 			to_chat(usr, "You let go of \the [name]'s handles.")
 			pulling.pulledby = null
 			pulling = null
-		return
 
 /obj/structure/bed/chair/wheelchair/Bump(atom/A)
 	..()
-	if(!buckled_mob)	return
+	if(!buckled_mob)
+		return
 
 	if(propelled || (pulling && (pulling.a_intent == I_HURT)))
 		var/mob/living/occupant = unbuckle_mob()
-
 		if(pulling && (pulling.a_intent == I_HURT))
 			occupant.throw_at(A, 3, 3, pulling)
 		else if(propelled)
 			occupant.throw_at(A, 3, 3, propelled)
 
 		var/def_zone = ran_zone()
-
 		occupant.throw_at(A, 3, propelled)
 		occupant.apply_effect(6, STUN, occupant.getarmor(def_zone, ARMOR_MELEE))
 		occupant.apply_effect(6, WEAKEN, occupant.getarmor(def_zone, ARMOR_MELEE))
 		occupant.apply_effect(6, STUTTER, occupant.getarmor(def_zone, ARMOR_MELEE))
 		occupant.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
-
 		playsound(loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
-
 		if(isliving(A))
-
 			var/mob/living/victim = A
 			def_zone = ran_zone()
-
 			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_MELEE))
 			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_MELEE))
 			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_MELEE))
 			victim.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
-
 		if(pulling)
 			occupant.visible_message(SPAN_DANGER("[pulling] has thrusted \the [name] into \the [A], throwing \the [occupant] out of it!"))
 			admin_attack_log(pulling, occupant, "Crashed their victim into \an [A].", "Was crashed into \an [A].", "smashed into \the [A] using")
@@ -187,7 +180,7 @@
 		B.set_dir(newdir)
 	bloodiness--
 
-/obj/structure/bed/chair/wheelchair/buckle_mob(mob/M as mob, mob/user as mob)
+/obj/structure/bed/chair/wheelchair/buckle_mob(mob/M, mob/user)
 	if(M == pulling)
 		pulling = null
 		usr.pulledby = null
@@ -221,10 +214,9 @@
 			return 0
 		if(pulling)
 			return 0 // You can't fold a wheelchair when somebody holding the handles.
-		visible_message("[usr] collapses \the [src.name].")
+		visible_message("[usr] collapses \the [name].")
 		var/obj/item/wheelchair/R = new/obj/item/wheelchair(get_turf(src))
-		R.name = src.name
-		R.color = src.color
+		R.name = name
+		R.color = color
 		R.unfolded = src
-		src.forceMove(R)
-		return
+		forceMove(R)

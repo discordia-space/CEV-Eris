@@ -50,7 +50,7 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/singularity/attack_hand(mob/user as mob)
+/obj/singularity/attack_hand(mob/user)
 	consume(user)
 	return 1
 

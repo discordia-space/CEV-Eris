@@ -68,7 +68,7 @@
 	if(standard_dispenser_refill(user, target))
 		return 1
 
-/obj/item/reagent_containers/drywet/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/drywet/attack(mob/M as mob, mob/user, def_zone)
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 

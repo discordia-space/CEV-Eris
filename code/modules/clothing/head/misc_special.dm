@@ -103,7 +103,7 @@
 	if(istype(location, /turf))
 		location.hotspot_expose(700, 1)
 
-/obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
+/obj/item/clothing/head/cakehat/attack_self(mob/user)
 	src.onfire = !( src.onfire )
 	if(src.onfire)
 		src.force = 3

@@ -149,7 +149,7 @@
 		update_icon()
 	add_avail(effective_gen)
 
-/obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user)
 	if(istype(W, /obj/item/tool/wrench))
 		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
 		anchored = !anchored

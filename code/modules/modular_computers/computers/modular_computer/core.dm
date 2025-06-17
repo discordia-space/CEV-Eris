@@ -59,7 +59,6 @@
 
 /obj/item/modular_computer/Initialize()
 	START_PROCESSING(SSobj, src)
-
 	if(stores_pen && ispath(stored_pen))
 		stored_pen = new stored_pen(src)
 
@@ -79,7 +78,6 @@
 	kill_program(forced=TRUE)
 	QDEL_LIST(terminals)
 	STOP_PROCESSING(SSobj, src)
-
 	if(stored_pen && !ispath(stored_pen))
 		QDEL_NULL(stored_pen)
 
@@ -94,7 +92,7 @@
 		qdel(CH)
 	QDEL_NULL(cell)
 
-/obj/item/modular_computer/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/modular_computer/emag_act(remaining_charges, mob/user)
 	if(computer_emagged)
 		to_chat(user, "\The [src] was already emagged.")
 		return NO_EMAG_ACT
@@ -152,8 +150,7 @@
 	else
 		..(range, brightness, color)
 
-
-/obj/item/modular_computer/proc/turn_on(var/mob/user)
+/obj/item/modular_computer/proc/turn_on(mob/user)
 	if(bsod)
 		return
 	if(tesla_link)
@@ -190,20 +187,19 @@
 	update_icon()
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
-/obj/item/modular_computer/proc/get_ntnet_status(var/specific_action = FALSE)
+/obj/item/modular_computer/proc/get_ntnet_status(specific_action = FALSE)
 	if(network_card)
 		return network_card.get_signal(specific_action)
 	else
 		return FALSE
 
-/obj/item/modular_computer/proc/add_log(var/text)
+/obj/item/modular_computer/proc/add_log(text)
 	if(!get_ntnet_status())
 		return FALSE
 	return ntnet_global.add_log(text, network_card)
 
 /obj/item/modular_computer/proc/shutdown_computer(loud = FALSE)
 	QDEL_LIST(terminals)
-
 	kill_program(forced=TRUE)
 	for(var/p in all_threads)
 		var/datum/computer_file/program/PRG = p
@@ -230,7 +226,6 @@
 
 	// Autorun feature
 	autorun_program(hard_drive)
-
 	if(user)
 		nano_ui_interact(user)
 
@@ -304,7 +299,6 @@
 	if(istype(I))
 		SetName("[initial(name)]-[I.registered_name] ([I.assignment])")
 		return
-
 	SetName(initial(name))
 
 /obj/item/modular_computer/proc/update_uis()
@@ -351,7 +345,7 @@
 		update_uis()
 
 // Used by camera monitor program
-/obj/item/modular_computer/check_eye(var/mob/user)
+/obj/item/modular_computer/check_eye(mob/user)
 	if(active_program)
 		return active_program.check_eye(user)
 	else
@@ -381,31 +375,26 @@
 		return
 	LAZYADD(terminals, new /datum/terminal/(user, src))
 
-
-/obj/item/modular_computer/proc/getProgramByType(type, include_portable=TRUE)
+/obj/item/modular_computer/proc/getProgramByType(type, include_portable = TRUE)
 	var/datum/computer_file/F = null
-
 	if(hard_drive?.check_functionality())
 		F = locate(type) in hard_drive.stored_files
 
 	if(!F && include_portable && portable_drive?.check_functionality())
 		F = locate(type) in portable_drive.stored_files
-
 	return F
 
-/obj/item/modular_computer/proc/getFileByName(name, include_portable=TRUE)
+/obj/item/modular_computer/proc/getFileByName(name, include_portable = TRUE)
 	var/datum/computer_file/F = null
-
 	if(hard_drive?.check_functionality())
 		F = hard_drive.find_file_by_name(name)
 
 	if(!F && include_portable && portable_drive?.check_functionality())
 		F = portable_drive.find_file_by_name(name)
-
 	return F
 
 // accepts either name or type
-/obj/item/modular_computer/proc/getNanoModuleByFile(var/name)
+/obj/item/modular_computer/proc/getNanoModuleByFile(name)
 	var/datum/computer_file/program/P
 	if(ispath(name))
 		P = getProgramByType(name)
@@ -414,6 +403,5 @@
 	if(!P || !istype(P))
 		return null
 	var/datum/nano_module/module = P.NM
-	if(!module)
-		return null
-	return module
+	if(module)
+		return module

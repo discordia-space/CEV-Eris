@@ -54,7 +54,7 @@
 		icon_state = "freezer_0"
 	return
 
-/obj/machinery/atmospherics/unary/freezer/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/unary/freezer/attack_hand(mob/user)
 	nano_ui_interact(user)
 
 /obj/machinery/atmospherics/unary/freezer/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)

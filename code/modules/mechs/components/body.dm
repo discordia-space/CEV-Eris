@@ -5,13 +5,13 @@
 	use_sound = 'sound/effects/storage/toolbox.ogg'
 	anchored = TRUE
 
-/obj/item/mech_component/chassis/Adjacent(var/atom/neighbor, var/recurse = 1) //For interaction purposes we consider body to be adjacent to whatever holder mob is adjacent
+/obj/item/mech_component/chassis/Adjacent(atom/neighbor, recurse = 1) //For interaction purposes we consider body to be adjacent to whatever holder mob is adjacent
 	var/mob/living/exosuit/E = loc
 	if(istype(E))
 		. = E.Adjacent(neighbor, recurse)
 	return . || ..()
 
-/obj/item/storage/mech/Adjacent(var/atom/neighbor, var/recurse = 1) //in order to properly retrieve items
+/obj/item/storage/mech/Adjacent(atom/neighbor, recurse = 1) //in order to properly retrieve items
 	var/obj/item/mech_component/chassis/C = loc
 	if(istype(C))
 		. = C.Adjacent(neighbor, recurse-1)
@@ -99,7 +99,7 @@
 	diagnostics = locate() in src
 	storage_compartment = locate() in src
 
-/obj/item/mech_component/chassis/show_missing_parts(var/mob/user)
+/obj/item/mech_component/chassis/show_missing_parts(mob/user)
 	if(!cell)
 		to_chat(user, SPAN_WARNING("It is missing a power cell."))
 	if(!computer)
@@ -116,7 +116,6 @@
 		cockpit.equalize(loc.return_air())
 
 /obj/item/mech_component/chassis/proc/update_air(take_from_supply)
-
 	var/changed
 	if(!take_from_supply || pilot_coverage < 100)
 		var/turf/T = get_turf(src)
@@ -201,9 +200,10 @@
 	else
 		to_chat(user, SPAN_WARNING(" Control Module Missing or Non-functional."))
 /obj/item/mech_component/chassis/MouseDrop(atom/over)
-	if(!usr || !over) return
-	if(!Adjacent(usr) || !over.Adjacent(usr)) return
-
+	if(!usr || !over)
+		return
+	if(!Adjacent(usr) || !over.Adjacent(usr))
+		return
 	if(storage_compartment)
 		return storage_compartment.MouseDrop(over)
 

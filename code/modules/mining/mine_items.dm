@@ -84,7 +84,7 @@
 	singular_name = "green flag"
 	icon_state = "greenflag"
 
-/obj/item/stack/flag/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/stack/flag/attackby(obj/item/W as obj, mob/user)
 	if(upright && istype(W,src.type))
 		src.attack_hand(user)
 	else
@@ -99,7 +99,7 @@
 	else
 		..()
 
-/obj/item/stack/flag/attack_self(mob/user as mob)
+/obj/item/stack/flag/attack_self(mob/user)
 
 	var/obj/item/stack/flag/F = locate() in get_turf(src)
 

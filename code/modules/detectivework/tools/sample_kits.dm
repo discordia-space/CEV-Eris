@@ -10,7 +10,7 @@
 		copy_evidence(supplied)
 		name = "[initial(name)] (\the [supplied])"
 
-/obj/item/sample/print/New(newloc, vatom/supplied)
+/obj/item/sample/print/New(newloc, atom/supplied)
 	..(newloc, supplied)
 	if(evidence && evidence.len)
 		icon_state = "fingerprint1"

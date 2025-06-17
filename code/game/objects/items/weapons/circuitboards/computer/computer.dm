@@ -154,11 +154,6 @@
 	build_path = /obj/machinery/computer/area_atmos
 	origin_tech = list(TECH_DATA = 2)
 
-/obj/item/electronics/circuitboard/prison_shuttle
-	name = T_BOARD("prison shuttle control console")
-	build_path = /obj/machinery/computer/prison_shuttle
-	origin_tech = list(TECH_DATA = 2)
-
 /obj/item/electronics/circuitboard/engines
 	name = T_BOARD("engine control console")
 	build_path = /obj/machinery/computer/engines

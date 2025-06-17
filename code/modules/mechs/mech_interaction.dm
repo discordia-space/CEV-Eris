@@ -152,11 +152,8 @@
 			var/ore_box = locate(/obj/structure/ore_box) in holder.carrying
 			if(ore_box)
 				return ore_box
-	return null
 
-
-
-/mob/living/exosuit/proc/set_hardpoint(var/hardpoint_tag)
+/mob/living/exosuit/proc/set_hardpoint(hardpoint_tag)
 	clear_selected_hardpoint()
 	if(hardpoints[hardpoint_tag])
 		// Set the new system.
@@ -167,10 +164,10 @@
 	return FALSE
 
 /mob/living/exosuit/proc/clear_selected_hardpoint()
-
 	if(selected_hardpoint)
 		for(var/hardpoint in hardpoints)
-			if(hardpoint != selected_hardpoint) continue
+			if(hardpoint != selected_hardpoint)
+				continue
 			var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[hardpoint]
 			if(istype(H))
 				H.icon_state = "hardpoint"
@@ -187,7 +184,7 @@
 		return ME.get_effective_obj()
 	return ..()
 
-/mob/living/exosuit/proc/check_enter(var/mob/user)
+/mob/living/exosuit/proc/check_enter(mob/user)
 	if(!user || user.incapacitated())	return FALSE
 	if(!user.Adjacent(src)) 			return FALSE
 	if(issilicon(user))					return FALSE
@@ -211,14 +208,13 @@
 			return FALSE
 	return TRUE
 
-/mob/living/exosuit/proc/enter(var/mob/user)
+/mob/living/exosuit/proc/enter(mob/user)
 	if(!check_enter(user))
 		return
 	to_chat(user, SPAN_NOTICE("You start climbing into \the [src]..."))
 	if(!do_after(user, body.climb_time) || !check_enter(user)) //allows for specialized cockpits for rapid entry/exit, or slower for more armored ones
 		return
 	to_chat(user, SPAN_NOTICE("You climb into \the [src]."))
-
 	user.drop_r_hand()
 	user.drop_l_hand()
 	user.forceMove(src)
@@ -257,7 +253,6 @@
 		to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
 
 	user.forceMove(get_turf(src))
-
 	if(mech_death)
 		user.apply_damages(30, 30)	//Give them bruises and burns
 		//Mobs process every 2 seconds but both handle_statuses() and handle_status_effects() decrements by 1
@@ -276,7 +271,6 @@
 	return 1
 
 /mob/living/exosuit/attackby(obj/item/I, mob/living/user)
-
 	if(user.a_intent != I_HURT && istype(I, /obj/item/mech_equipment))
 		if(hardpoints_locked)
 			to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
@@ -394,7 +388,6 @@
 			chosen.attackby(I, user)
 		return
 
-
 	else if(attack_tool(I, user))
 		return
 	// we use BP_CHEST cause we dont need to convert targeted organ to mech format def zoning
@@ -473,26 +466,7 @@
 		if(do_mob(user, src, 30) && paste.use(2))
 			mc.repair_burn_damage(15)
 			mc.repair_brute_damage(15)
-/*
-Use this if you turn on armor ablation for mechs:
 
-	else if(istype(I, material.stack_type))
-		var/obj/item/mech_component/mc = get_targeted_part(user)
-		var/obj/item/stack/material/fix_mat = I
-		if(mc.cur_armor < mc.max_armor)
-			if(mc.new_armor >= mc.max_armor)
-				to_chat(user, SPAN_WARNING("The armor plating has already been replaced, you need to weld it to the frame."))
-				return TRUE
-			var/mats_required = mc.max_armor - mc.cur_armor
-			if(mats_required > fix_mat.amount)
-				mc.new_armor += fix_mat.amount
-				fix_mat.use(fix_mat.amount)
-				to_chat(user, SPAN_WARNING("You replace some of the damaged armor plating, but not all. You need [mats_required-fix_mat.amount] more sheets of [fix_mat]."))
-				return TRUE
-			to_chat(user, SPAN_NOTICE("You replace the damaged armor plating. Now you need to weld it to the frame."))
-			mc.new_armor = mc.max_armor
-			fix_mat.use(mats_required)
-*/
 	else if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = I
 		if(coil.amount < 5)
@@ -533,7 +507,6 @@ Use this if you turn on armor ablation for mechs:
 		return
 
 	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_WELDING)
-
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 		if(QUALITY_PULSING)
@@ -561,7 +534,6 @@ Use this if you turn on armor ablation for mechs:
 						to_chat(user, SPAN_NOTICE("You hack [src]'s hatch locking. It is now unlocked."))
 						toggle_hatch_lock()
 						return TRUE
-
 
 		if(QUALITY_BOLT_TURNING)
 			if(!maintenance_protocols)
@@ -596,16 +568,6 @@ Use this if you turn on armor ablation for mechs:
 				visible_message(SPAN_WARNING("\The [mc] has been repaired by [user]!"),"You hear welding.")
 				mc.repair_brute_damage(15)
 				return TRUE
-				/*
-				Uncomment this block and put the if line just inside if(I.use_tool) if you decide to use armor ablation for mechs
-
-				if(mc.cur_armor >= mc.max_armor)
-				else
-					visible_message(SPAN_WARNING("Fresh armor has been welded\the [mc]'s frame by [user]!"),"You hear welding.")
-					mc.cur_armor = min(mc.max_armor, mc.cur_armor + mc.new_armor)
-					mc.new_armor = 0
-					return TRUE
-					*/
 
 		if(QUALITY_PRYING)
 			if(!body)
@@ -713,7 +675,6 @@ Use this if you turn on armor ablation for mechs:
 		var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
 		if(H && istype(H)) H.update_icon()
 		update_icon()
-		return
 
 /mob/living/exosuit/proc/attack_self(mob/user)
 	return visible_message("\The [src] pokes itself.")

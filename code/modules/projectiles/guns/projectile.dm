@@ -266,7 +266,7 @@
 	update_held_icon()
 
 // Modular guns overwrite this
-/obj/item/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/attackby(var/obj/item/A as obj, mob/user)
 	.=..()
 	if(QUALITY_SAWING in A.tool_qualities)
 		to_chat(user, SPAN_NOTICE("You begin to saw down \the [src]."))
@@ -294,13 +294,13 @@
 		load_ammo(A, user)
 		update_held_icon()
 
-/obj/item/gun/projectile/attack_self(mob/user as mob)
+/obj/item/gun/projectile/attack_self(mob/user)
 	if(firemodes.len > 1)
 		..()
 	else
 		unload_ammo(user)
 
-/obj/item/gun/projectile/attack_hand(mob/user as mob)
+/obj/item/gun/projectile/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src)
 		unload_ammo(user, allow_dump=0)
 	else

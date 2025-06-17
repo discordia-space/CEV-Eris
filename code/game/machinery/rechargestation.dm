@@ -103,7 +103,7 @@
 		return 0
 	return cell.percent()
 
-/obj/machinery/recharge_station/relaymove(mob/user as mob)
+/obj/machinery/recharge_station/relaymove(mob/user)
 	if(user.incapacitated())
 		return
 	if(world.time < exit_timer)
@@ -119,7 +119,7 @@
 		cell.emp_act(severity)
 	..(severity)
 
-/obj/machinery/recharge_station/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/recharge_station/attackby(var/obj/item/I, var/mob/user)
 	if(occupant)
 		to_chat(user, SPAN_NOTICE("You cant do anything with [src] while someone inside of it."))
 		return

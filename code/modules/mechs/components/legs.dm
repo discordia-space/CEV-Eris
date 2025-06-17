@@ -23,7 +23,7 @@
 	if(can_strafe != MECH_STRAFING_NONE)
 		to_chat(user, SPAN_NOTICE(can_strafe == MECH_STRAFING_BACK ? "Can only strafe foward and backwards" : "Can strafe in all directions."))
 
-/obj/item/mech_component/propulsion/show_missing_parts(var/mob/user)
+/obj/item/mech_component/propulsion/show_missing_parts(mob/user)
 	if(!motivator)
 		to_chat(user, SPAN_WARNING("It is missing an actuator."))
 
@@ -46,7 +46,7 @@
 /obj/item/mech_component/propulsion/prebuild()
 	motivator = new(src)
 
-/obj/item/mech_component/propulsion/proc/can_move_on(var/turf/location, var/turf/target_loc)
+/obj/item/mech_component/propulsion/proc/can_move_on(turf/location, turf/target_loc)
 	if(!location) //Unsure on how that'd even work
 		return FALSE
 	if(!istype(location))
@@ -85,7 +85,6 @@
 	can_climb = FALSE
 	armor = list(melee = 20, bullet = 10, energy = 5, bomb = 60, bio = 100, rad = 0)
 	shielding = 5
-
 	front_mult = 1.2
 	rear_mult = 0.8
 
@@ -119,7 +118,6 @@
 	can_climb = TRUE
 	armor = list(melee = 26, bullet = 22, energy = 16, bomb = 100, bio = 100, rad = 100)
 	shielding = 10
-
 	front_mult = 1.2
 	rear_mult = 0.8
 
@@ -137,7 +135,6 @@
 	can_climb = FALSE
 	armor = list(melee = 32, bullet = 24, energy = 20, bomb = 160, bio = 100, rad = 100)
 	shielding = 15
-
 	front_mult = 1.2
 	rear_mult = 0.8
 

@@ -53,7 +53,8 @@ SUBSYSTEM_DEF(job)
 	set category = "Admin"
 	set name = "Allow client to bypass all job requirement playtimes"
 
-	if(!holder)	return
+	if(!holder)
+		return
 
 	var/client/the_chosen_one = input(usr, "Select player to whitelist for jobs", "THE CHOSEN ONE!", null) in clients
 	if(!the_chosen_one)
@@ -65,7 +66,8 @@ SUBSYSTEM_DEF(job)
 	set category = "Admin"
 	set name = "Unwhitelist a client from all job requirement playtimes"
 
-	if(!holder)	return
+	if(!holder)
+		return
 
 	var/client/the_disavowed_one = input(usr, "Select player to unwhitelist from jobs", "THE DISAVOWED ONE!", null) in clients
 	if(!the_disavowed_one)
@@ -82,8 +84,8 @@ SUBSYSTEM_DEF(job)
 		return
 
 	var/client_key = ckey
-
-	if(!client_key) return
+	if(!client_key)
+		return
 
 	var/htmlContent = {"<html>
 	<head>
@@ -180,8 +182,6 @@ SUBSYSTEM_DEF(job)
 		else if(name)
 			job_to_playtime_requirement[name] = 0
 
-
-
 	/// failsafe for non-existant config folders.
 	for(var/occupation in occupations_by_name)
 		if(!isnum(job_to_playtime_requirement[occupation]))
@@ -254,7 +254,6 @@ SUBSYSTEM_DEF(job)
 	if(!LAZYLEN(occupations))
 		to_chat(world, SPAN_WARNING("Error setting up jobs, no job datums found!"))
 		return FALSE
-
 	return TRUE
 
 /datum/controller/subsystem/job/proc/Debug(text)
@@ -322,7 +321,6 @@ SUBSYSTEM_DEF(job)
 		if(!job)
 			continue
 
-
 		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 			continue
 
@@ -361,7 +359,6 @@ SUBSYSTEM_DEF(job)
 	SetupOccupations()
 	unassigned = list()
 
-
 ///This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check
 /datum/controller/subsystem/job/proc/FillHeadPosition()
 	for(var/level = 1 to 3)
@@ -399,7 +396,6 @@ SUBSYSTEM_DEF(job)
 				return TRUE
 	return FALSE
 
-
 	///This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level
 /datum/controller/subsystem/job/proc/CheckHeadPositions(level)
 	for(var/command_position in command_positions)
@@ -411,7 +407,6 @@ SUBSYSTEM_DEF(job)
 			continue
 		var/mob/new_player/candidate = pick(candidates)
 		AssignRole(candidate, command_position)
-
 
 /** Proc DivideOccupations
  *  fills var "assigned_role" for all ready players.
@@ -433,7 +428,6 @@ SUBSYSTEM_DEF(job)
 
 	//Shuffle players and jobs
 	unassigned = shuffle(unassigned)
-
 	HandleFeedbackGathering()
 
 	//People who wants to be assistants, sure, go on.
@@ -454,7 +448,6 @@ SUBSYSTEM_DEF(job)
 
 	//Other jobs are now checked
 	Debug("DO, Running Standard Check")
-
 
 	// New job giving system by Donkie
 	// This will cause lots of more loops, but since it's only done once it shouldn't really matter much at all.
@@ -631,7 +624,7 @@ SUBSYSTEM_DEF(job)
 
 	return H
 
-/proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
+/proc/EquipCustomLoadout(mob/living/carbon/human/H, datum/job/job)
 	if(!H || !H.client)
 		return
 
@@ -733,17 +726,13 @@ SUBSYSTEM_DEF(job)
  *  preference is not set, or the preference is not appropriate for the rank, in
  *  which case a fallback will be selected.
  */
-/datum/controller/subsystem/job/proc/get_spawnpoint_for(var/client/C, var/rank, late = FALSE)
-
+/datum/controller/subsystem/job/proc/get_spawnpoint_for(client/C, rank, late = FALSE)
 	if(!C)
 		CRASH("Null client passed to get_spawnpoint_for() proc!")
 
 	var/mob/H = C.mob
 	var/pref_spawn = C.prefs.spawnpoint
-
 	var/datum/spawnpoint/SP
-
-
 
 	//First of all, lets try to get the "default" spawning point.
 	if(late)
@@ -759,7 +748,6 @@ SUBSYSTEM_DEF(job)
 	//Feeding true to the report var here will allow the user to choose to spawn anyway
 	if(SP && SP.can_spawn(H, rank, TRUE))
 		return SP
-
 	else
 		//The above didn't work, okay lets start testing spawnpoints at random until we find a place we can spawn
 		//Todo: Add in pref options to specify an ordered priority list for spawning locations
@@ -774,7 +762,6 @@ SUBSYSTEM_DEF(job)
 			var/spawn_name = pick(possibilities)
 			SP = possibilities[spawn_name]
 			possibilities -= spawn_name //Then remove them from that list of course
-
 			if(SP.can_spawn(H, rank))
 				return SP
 			else
@@ -789,12 +776,9 @@ SUBSYSTEM_DEF(job)
 	if(!SP)
 		var/list/possibilities = get_late_spawntypes()
 		SP = possibilities[possibilities[1]]
-
 	return SP
 
-
-
-/datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)
+/datum/controller/subsystem/job/proc/ShouldCreateRecords(title)
 	if(!title) return 0
 	var/datum/job/job = GetJob(title)
 	if(!job || job == ASSISTANT_TITLE)

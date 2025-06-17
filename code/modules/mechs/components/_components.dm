@@ -157,7 +157,7 @@
 	if(RC.take_damage(brute, burn))
 		QDEL_NULL(RC)
 
-/obj/item/mech_component/proc/return_diagnostics(var/mob/user)
+/obj/item/mech_component/proc/return_diagnostics(mob/user)
 	to_chat(user, SPAN_NOTICE("[capitalize(name)]:"))
 	to_chat(user, SPAN_NOTICE(" - Hull Integrity: <b>[round((((max_damage - total_damage) / max_damage)) * 100)]%</b>" ))
 //	if(cur_armor > 0)
@@ -202,7 +202,6 @@
 
 /obj/item/mech_component/proc/update_components()
 	return
-
 
 /obj/item/mech_component/proc/repair_brute_generic(obj/item/I, mob/user)
 	var/weld_amt = round(max(0, 10, 5 + user.stats.getStat(STAT_MEC) / 3))
