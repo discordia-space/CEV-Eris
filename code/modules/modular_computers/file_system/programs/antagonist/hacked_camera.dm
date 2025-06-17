@@ -16,7 +16,6 @@
 		return
 
 	var/datum/nano_module/camera_monitor/hacked/HNM = NM
-
 	// The program is active and connected to one of the station's networks. Has a very small chance to trigger IDS alarm every tick.
 	if(HNM && HNM.current_network && (HNM.current_network in station_networks) && prob((STAT_LEVEL_MAX - operator_skill) * 0.05))
 		if(ntnet_global.intrusion_detection_enabled)
@@ -31,11 +30,11 @@
 	name = "Hacked Camera Monitoring Program"
 	available_to_ai = FALSE
 
-/datum/nano_module/camera_monitor/hacked/can_access_network(var/mob/user, var/network_access)
+/datum/nano_module/camera_monitor/hacked/can_access_network(mob/user, network_access)
 	return 1
 
 // The hacked variant has access to all commonly used networks.
-/datum/nano_module/camera_monitor/hacked/modify_networks_list(var/list/networks)
+/datum/nano_module/camera_monitor/hacked/modify_networks_list(list/networks)
 	networks.Add(list(list("tag" = NETWORK_MERCENARY, "has_access" = 1)))
 	//networks.Add(list(list("tag" = NETWORK_ERT, "has_access" = 1)))	//TODO: replace this
 	networks.Add(list(list("tag" = NETWORK_CRESCENT, "has_access" = 1)))

@@ -22,23 +22,21 @@
 	var/mob/living/affecting
 	var/mob/living/carbon/human/assailant
 	var/state = GRAB_PASSIVE
-
 	var/allow_upgrade = 1
 	var/last_action = 0
 	var/last_hit_zone = 0
 	var/force_down //determines if the affecting mob will be pinned to the ground
 	var/dancing //determines if assailant and affecting keep looking at each other.
-
 	var/counter_timer = 3 SECONDS //sets to 3 seconds after being grabbed
 
 /obj/item/grab/Process()
 	counter_timer--
 	..()
 
-/obj/proc/affect_grab(var/mob/user, var/mob/target, var/state)
+/obj/proc/affect_grab(mob/user, mob/target, state)
 	return FALSE
 
-/obj/item/grab/resolve_attackby(obj/O, mob/user, var/click_params)
+/obj/item/grab/resolve_attackby(obj/O, mob/user, click_params)
 	if(ismob(O))
 		return ..()
 	if(get_dist(O, affecting) > 1)
@@ -53,12 +51,10 @@
 	loc = user
 	assailant = user
 	affecting = victim
-
 	if(!confirm())
 		return
 
 	affecting.grabbed_by += src
-
 	hud = new /obj/screen/grab(src)
 	hud.icon_state = "reinforce"
 	icon_state = "grabbed"
@@ -84,17 +80,11 @@
 		if(state >= GRAB_AGGRESSIVE)
 			animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1)
 			return affecting
-	return null
-
 
 //This makes sure that the grab screen object is displayed in the correct hand.
 /obj/item/grab/proc/synch()
 	if(affecting)
-		hud.screen_loc = src.screen_loc
-//		if(assailant.r_hand == src)
-//			hud.screen_loc = src.screen_loc
-//		else
-//			hud.screen_loc = src.screen_loc
+		hud.screen_loc = screen_loc
 
 /obj/item/grab/Process()
 	if(gc_destroyed) // GC is trying to delete us, we'll kill our processing so we can cleanly GC
@@ -140,7 +130,6 @@
 	if(state >= GRAB_AGGRESSIVE)
 		affecting.drop_l_hand()
 		affecting.drop_r_hand()
-
 		if(iscarbon(affecting))
 			handle_eye_mouth_covering(affecting, assailant, assailant.targeted_organ)
 
@@ -166,11 +155,10 @@
 	update_slowdown()
 	adjust_position()
 
-/obj/item/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, var/target_zone)
+/obj/item/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, target_zone)
 	//only display messages when switching between different target zones
 	var/announce = (target_zone != last_hit_zone)
 	last_hit_zone = target_zone
-
 	switch(target_zone)
 		if(BP_MOUTH)
 			if(announce)
@@ -185,7 +173,6 @@
 
 /obj/item/grab/attack_self()
 	return s_click(hud)
-
 
 //Updating pixelshift, position and direction
 //Gets called on process, when the grab gets upgraded or the assailant moves
@@ -350,12 +337,10 @@
 	if(!assailant || !affecting)
 		qdel(src)
 		return 0
-
 	else
 		if(!isturf(assailant.loc) || !isturf(affecting.loc) || get_dist(assailant, affecting) > 1)
 			qdel(src)
 			return 0
-
 	return 1
 
 // Function to compute the current slowdown and is more adjustable and uses number as starting value
@@ -370,7 +355,6 @@
 	var/affecting_stat = affecting.stats.getStat(STAT_ROB)	// Victim
 	var/assailant_stat = assailant.stats.getStat(STAT_ROB)	// Grabber
 	var/difference_stat = assailant_stat - affecting_stat
-
 	// Early exit to save processing time
 	if(!(affecting.check_gravity() && assailant.check_gravity()))
 		slowdown = 0
@@ -378,7 +362,6 @@
 
 	// initial value for slowdown
 	slowdown = 2
-
 	if(affecting.lying)	//putting in lying for the victim will cause the assailant to expend more effort
 		slowdown += 1
 
@@ -401,7 +384,6 @@
 
 	last_action = world.time
 	reset_kill_state() //using special grab moves will interrupt choking them
-
 	//clicking on the victim while grabbing them
 	if(M == affecting)
 		if(ishuman(affecting))
@@ -494,7 +476,6 @@
 	hud = null
 	destroying = 1 // stops us calling qdel(src) on dropped()
 	return ..()
-
 
 //A stub for bay grab system. This is supposed to check a var on the associated grab datum
 /obj/item/grab/proc/force_stand()

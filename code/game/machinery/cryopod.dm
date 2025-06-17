@@ -62,7 +62,6 @@
 	onclose(user, "cryopod_console")
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
-
 	if(..())
 		return
 
@@ -374,15 +373,15 @@
 	occupant.despawn()
 	set_occupant(null)
 
-/obj/machinery/cryopod/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/cryopod/affect_grab(mob/user, mob/target)
 	try_put_inside(target, user)
 	return TRUE
 
-/obj/machinery/cryopod/MouseDrop_T(var/mob/living/L, mob/living/user)
+/obj/machinery/cryopod/MouseDrop_T(mob/living/L, mob/living/user)
 	if(istype(L) && istype(user))
 		try_put_inside(L, user)
 
-/obj/machinery/cryopod/proc/try_put_inside(var/mob/living/affecting, var/mob/living/user)
+/obj/machinery/cryopod/proc/try_put_inside(mob/living/affecting, mob/living/user)
 	if(occupant)
 		to_chat(user, "<span class='notice'>\The [src] is in use.</span>")
 		return
@@ -394,7 +393,6 @@
 		return
 
 	var/willing = null //We don't want to allow people to be forced into despawning.
-
 	if(affecting != user && affecting.client)
 		if(alert(affecting,"Would you like to enter long-term storage?",,"Yes","No") == "Yes")
 			if(!affecting)
@@ -428,7 +426,6 @@
 		add_fingerprint(user)
 
 
-
 /obj/machinery/cryopod/verb/eject()
 	set name = "Eject Pod"
 	set category = "Object"
@@ -458,7 +455,7 @@
 	add_fingerprint(usr)
 
 	name = initial(name)
-	return
+
 
 /obj/machinery/cryopod/verb/move_inside()
 	set name = "Enter Pod"
@@ -493,7 +490,6 @@
 
 		add_fingerprint(usr)
 
-	return
 
 /obj/machinery/cryopod/relaymove(mob/user)
 	/// Why isn't it just eject ? because it somehow breaks SSchunks. ForceMoving out of these does not get registered properly
@@ -510,7 +506,6 @@
 
 
 /obj/machinery/cryopod/proc/go_out()
-
 	if(!occupant)
 		return
 
@@ -555,7 +550,6 @@
 				to_chat(occupant, SPAN_DANGER("<b>Because you are not in perfect health, respawn time reduction is low. \
 				If you wish to respawn as a different crewmember sooner, you should treat your injuries first</b>"))
 		occupant.forceMove(src)
-
 	else
 		if(!QDELETED(occupant))
 			occupant.forceMove(get_turf(src))
@@ -564,5 +558,4 @@
 				var/mob/living/carbon/human/H = occupant
 				H.ExitStasis()
 		occupant = null
-
 	update_icon()

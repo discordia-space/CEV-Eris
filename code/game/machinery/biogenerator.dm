@@ -13,8 +13,6 @@
 	var/menustat = "menu"
 	var/build_eff = 1
 	var/eat_eff = 1
-
-
 	var/list/recipes = list(
 		"Food",
 			list(name="Milk, 30u", cost=60, reagent="milk"),
@@ -63,8 +61,7 @@
 		icon_state = "biogen-work"
 	return
 
-/obj/machinery/biogenerator/attackby(var/obj/item/I, var/mob/user)
-
+/obj/machinery/biogenerator/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
 		return
 
@@ -96,7 +93,6 @@
 			if(i < 10)
 				to_chat(user, SPAN_NOTICE("You empty \the [I] into \the [src]."))
 
-
 	else if(!istype(I, /obj/item/reagent_containers/food/snacks/grown))
 		to_chat(user, SPAN_NOTICE("You cannot put this in \the [src]."))
 	else
@@ -110,32 +106,28 @@
 			I.loc = src
 			to_chat(user, SPAN_NOTICE("You put \the [I] in \the [src]"))
 	update_icon()
-	return
 
-/obj/machinery/biogenerator/nano_ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state =GLOB.outside_state)
+
+/obj/machinery/biogenerator/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, vforce_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.outside_state)
 	user.set_machine(src)
 	var/list/data = list()
 	data["points"] = points
 	if(menustat == "menu")
 		data["beaker"] = beaker
 		if(beaker)
-
 			var/list/tmp_recipes = list()
 			for(var/smth in recipes)
 				if(istext(smth))
 					tmp_recipes += list(list(
 						"is_category" = 1,
-						"name" = smth,
-					))
+						"name" = smth))
 				else
 					var/list/L = smth
 					tmp_recipes += list(list(
 						"is_category" = 0,
 						"name" = L["name"],
 						"cost" = round(L["cost"]/build_eff),
-						"allow_multiple" = L["allow_multiple"],
-					))
-
+						"allow_multiple" = L["allow_multiple"]))
 			data["recipes"] = tmp_recipes
 
 	data["processing"] = processing
@@ -153,7 +145,7 @@
 		// open the new ui window
 		ui.open()
 
-/obj/machinery/biogenerator/attack_hand(mob/user as mob)
+/obj/machinery/biogenerator/attack_hand(mob/user)
 	if(..())
 		return TRUE
 
@@ -188,7 +180,7 @@
 		menustat = "void"
 	return
 
-/obj/machinery/biogenerator/proc/create_product(var/item, var/amount)
+/obj/machinery/biogenerator/proc/create_product(item, amount)
 	var/list/recipe = null
 	if(processing)
 		return
@@ -230,11 +222,14 @@
 	return 1
 
 /obj/machinery/biogenerator/Topic(href, href_list)
-	if(stat & BROKEN) return
-	if(usr.stat || usr.restrained()) return
-	if(!in_range(src, usr)) return
-	usr.set_machine(src)
+	if(stat & BROKEN)
+		return
+	if(usr.stat || usr.restrained())
+		return
+	if(!in_range(src, usr))
+		return
 
+	usr.set_machine(src)
 	switch(href_list["action"])
 		if("activate")
 			activate()

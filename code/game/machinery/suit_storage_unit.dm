@@ -41,26 +41,21 @@
 /obj/machinery/suit_storage_unit/Initialize()
 	. = ..()
 	door_overlay = new(src)
-
 	if(SUIT_TYPE)
 		SUIT = new SUIT_TYPE(src)
 	if(HELMET_TYPE)
 		HELMET = new HELMET_TYPE(src)
 	if(MASK_TYPE)
 		MASK = new MASK_TYPE(src)
-
 	if(icon_state == "suit_storage_map")
 		icon_state = "suit_storage"
-
 	update_icon()
 
 /obj/machinery/suit_storage_unit/Destroy()
 	QDEL_NULL(door_overlay)
-
 	QDEL_NULL(HELMET)
 	QDEL_NULL(SUIT)
 	QDEL_NULL(MASK)
-
 	return ..()
 
 /obj/machinery/suit_storage_unit/power_change()
@@ -77,7 +72,6 @@
 
 	if(panel_open)
 		add_overlay("panel")
-
 	if(HELMET)
 		add_overlay("helmet")
 	if(SUIT)
@@ -102,7 +96,7 @@
 		dump_everything()
 	. = ..()
 
-/obj/machinery/suit_storage_unit/attack_hand(mob/user as mob)
+/obj/machinery/suit_storage_unit/attack_hand(mob/user)
 	var/dat
 	if(..())
 		return
@@ -118,7 +112,6 @@
 	else if(isUV) //The thing is running its cauterisation cycle. You have to wait.
 		dat += "<HEAD><TITLE>Suit storage unit</TITLE></HEAD>"
 		dat += "<font color ='red'><B>Unit is cauterising contents with selected UV ray intensity. Please wait.</font></B><BR>"
-
 	else
 		dat += "<HEAD><TITLE>Suit storage unit</TITLE></HEAD>"
 		dat += "<font color='blue'><font size = 4><B>Suit Storage Unit</B></FONT><HR>"
@@ -144,7 +137,6 @@
 
 	user << browse(dat, "window=suit_storage_unit;size=400x500")
 	onclose(user, "suit_storage_unit")
-	return
 
 
 /obj/machinery/suit_storage_unit/Topic(href, href_list) //I fucking HATE this proc
@@ -174,7 +166,6 @@
 	update_icon()
 
 
-
 /obj/machinery/suit_storage_unit/proc/toggleUV(mob/user)
 	if(!panel_open)
 		return
@@ -185,7 +176,6 @@
 	else
 		to_chat(user, "You crank the dial all the way up to \"15nm\".")
 		issuperUV = TRUE
-
 
 
 /obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user)
@@ -213,11 +203,9 @@
 
 /obj/machinery/suit_storage_unit/proc/dump_everything()
 	locked = FALSE
-
 	dispense_object(MASK)
 	dispense_object(HELMET)
 	dispense_object(SUIT)
-
 	eject_occupant(OCCUPANT)
 
 
@@ -229,7 +217,6 @@
 		eject_occupant(user)
 		return  // eject_occupant opens the door, so we need to return
 	isopen = !isopen
-
 	flick(isopen ? "anim_open" : "anim_close", door_overlay)
 	playsound(loc, 'sound/machines/Custom_openunit.ogg', 50, 0)
 
@@ -244,7 +231,7 @@
 	playsound(loc, 'sound/machines/Custom_unitclose.ogg', 50, 0)
 
 
-/obj/machinery/suit_storage_unit/proc/start_UV(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/start_UV(mob/user)
 	if(isUV || isopen) //I'm bored of all these sanity checks
 		return
 	if(OCCUPANT && safeties)
@@ -259,10 +246,8 @@
 		locked = TRUE //Let's lock it for good measure
 
 	set_power_use(ACTIVE_POWER_USE)
-
 	update_icon()
 	updateUsrDialog()
-
 	for(var/i in 1 to 4)
 		sleep(50)
 		if(OCCUPANT)
@@ -299,12 +284,8 @@
 /obj/machinery/suit_storage_unit/proc/eject_occupant(mob/user)
 	if(locked)
 		return
-
 	if(!OCCUPANT)
 		return
-//	for(var/obj/O in src)
-//		O.loc = src.loc
-
 	if(OCCUPANT.client)
 		if(user != OCCUPANT)
 			to_chat(OCCUPANT, "<font color='blue'>The machine kicks you out!</font>")
@@ -354,22 +335,18 @@
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
 		usr.loc = src
-//		usr.metabslow = 1
 		src.OCCUPANT = usr
 		src.isopen = 0 //Close the thing after the guy gets inside
 		src.update_icon()
-
-//		for(var/obj/O in src)
-//			qdel(O)
 
 		add_fingerprint(usr)
 		src.updateUsrDialog()
 		return
 	else
 		src.OCCUPANT = null //Testing this as a backup sanity test
-	return
 
-/obj/machinery/suit_storage_unit/affect_grab(var/mob/user, var/mob/target)
+
+/obj/machinery/suit_storage_unit/affect_grab(mob/user, mob/target)
 	if(!isopen)
 		to_chat(user, SPAN_WARNING("The unit's doors are shut."))
 		return
@@ -432,7 +409,6 @@
 /obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
 		return
-
 	if(stat & NOPOWER)
 		return
 	else if(istype(I, /obj/item/clothing/suit))
@@ -442,13 +418,11 @@
 	else if(istype(I, /obj/item/clothing/mask))
 		load(I, user, LOAD_SLOT_MASK)
 
-
 #undef LOAD_SLOT_HELMET
 #undef LOAD_SLOT_SUIT
 #undef LOAD_SLOT_MASK
 
 // Unit subtypes
-
 /obj/machinery/suit_storage_unit/standard_unit
 	overlay_color = "#B0B0B0"
 	SUIT_TYPE = /obj/item/clothing/suit/space
@@ -459,18 +433,15 @@
 	overlay_color = "#E0E0E0"
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/medical
 
-
 /obj/machinery/suit_storage_unit/security
 	overlay_color = "#50649A"
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/security
-
 
 /obj/machinery/suit_storage_unit/engineering
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/engineering
 
 /obj/machinery/suit_storage_unit/engineering/atmos
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/atmos
-
 
 /obj/machinery/suit_storage_unit/moebius
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/hazardsuit/moebius
@@ -488,14 +459,11 @@
 	SUIT_TYPE = /obj/item/clothing/suit/armor/custodian
 	HELMET_TYPE = /obj/item/clothing/head/armor/custodian
 
-
 /obj/machinery/suit_storage_unit/mining
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/mining
 
-
 /obj/machinery/suit_storage_unit/excelsior
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/excelsior
-
 
 /obj/machinery/suit_storage_unit/merc
 	overlay_color = "#D04044"

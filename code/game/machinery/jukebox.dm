@@ -24,16 +24,13 @@
 	// Vars for hacking
 	var/datum/wires/jukebox/wires
 	var/freq = 0 // Currently no effect, will return in phase II of mediamanager.
-
 	var/loop_mode = JUKEMODE_PLAY_ONCE			// Behavior when finished playing a song
 	var/max_queue_len = 3						// How many songs are we allowed to queue up?
 	var/datum/track/current_track				// Currently playing song
 	var/list/datum/track/queue = list()			// Queued songs
 	var/list/datum/track/tracks = list()		// Available tracks
 	var/list/datum/track/secret_tracks = list() // Only visible if hacked
-
 	var/obj/item/music_tape/my_tape //Jukebox tape
-
 	var/sanity_value = 2
 
 /obj/machinery/media/jukebox/New()
@@ -58,7 +55,6 @@
 				secret_tracks |= T
 			else if(!T.playlist)
 				tracks |= T
-
 
 /obj/machinery/media/jukebox/Process()
 	if(!playing)
@@ -106,7 +102,7 @@
 		media_start_time = 0
 	update_music()
 
-/obj/machinery/media/jukebox/proc/set_hacked(var/newhacked)
+/obj/machinery/media/jukebox/proc/set_hacked(newhacked)
 	if(hacked == newhacked) return
 	hacked = newhacked
 	if(hacked)
@@ -115,11 +111,9 @@
 		tracks.Remove(secret_tracks)
 	updateDialog()
 
-/obj/machinery/media/jukebox/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/media/jukebox/attackby(obj/item/W, mob/user)
 	add_fingerprint(user)
-
 	var/tool_type = W.get_tool_type(user, list(QUALITY_WIRE_CUTTING, QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING), src)
-
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
 			user.visible_message("<span class='warning'>[user] has [panel_open ? "" : "un"]screwed [src]'s maintenance pannel[panel_open ? " back" : ""].</span>", "<span class='notice'>You [panel_open ? "" : "un"]screw [src]'s maintenance panel[panel_open ? " back" : ""].</span>")
@@ -153,8 +147,7 @@
 			update_tape()
 	return ..()
 
-
-/obj/machinery/media/jukebox/proc/update_tape(var/removed)
+/obj/machinery/media/jukebox/proc/update_tape(removed)
 	if(!removed)
 		tracks.Add(get_tape_playlist())
 	else
@@ -165,7 +158,6 @@
 //Added as a separate proc instead of just reading the var for a future feature
 /obj/machinery/media/jukebox/proc/get_tape_playlist()
 	return my_tape.tracklist
-
 
 /obj/machinery/media/jukebox/power_change()
 	if(!powered(power_channel) || !anchored)
@@ -252,7 +244,6 @@
 			to_chat(usr, "No track selected.")
 		else
 			StartPlaying()
-
 	return 1
 
 /obj/machinery/media/jukebox/interact(mob/user)
@@ -261,10 +252,9 @@
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/media/jukebox/nano_ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/media/jukebox/nano_ui_interact(mob/user, ui_key = "jukebox", datum/nanoui/ui, force_open = 1)
 	var/title = "RetroBox - Space Style"
 	var/data[0]
-
 	if(operable())
 		data["playing"] = playing
 		data["hacked"] = hacked
@@ -290,10 +280,10 @@
 		ui.open()
 		ui.set_auto_update(playing)
 
-/obj/machinery/media/jukebox/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+/obj/machinery/media/jukebox/attack_ai(mob/user)
+	return attack_hand(user)
 
-/obj/machinery/media/jukebox/attack_hand(var/mob/user as mob)
+/obj/machinery/media/jukebox/attack_hand(mob/user)
 	interact(user)
 
 /obj/machinery/media/jukebox/proc/explode()
@@ -308,7 +298,7 @@
 	new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	qdel(src)
 
-/obj/machinery/media/jukebox/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/media/jukebox/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		emagged = 1
 		StopPlaying()
@@ -355,7 +345,6 @@
 		start_stop_song()
 	updateDialog()
 
-
 /obj/machinery/media/jukebox/verb/eject()
 	set src in oview(1)
 	set category = "Object"
@@ -370,4 +359,3 @@
 		my_tape = null
 	else
 		to_chat(usr, SPAN_NOTICE("There is no tape inside [src]."))
-

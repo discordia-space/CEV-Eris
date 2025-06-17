@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
+/mob/living/carbon/human/proc/get_unarmed_attack(mob/living/carbon/human/target, hit_zone)
 	for(var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
 		if(u_attack.is_usable(src, target, hit_zone))
 			if(holding_back)
@@ -6,10 +6,8 @@
 				if(soft_variant)
 					return soft_variant
 			return u_attack
-	return null
 
-/mob/living/carbon/human/attack_hand(mob/living/carbon/M as mob)
-
+/mob/living/carbon/human/attack_hand(mob/living/carbon/M)
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_ARM]
@@ -19,7 +17,6 @@
 			to_chat(H, "\red You can't use your hand.")
 			return
 		H.stop_blocking()
-
 	..()
 
 	// Should this all be in Touch()?
@@ -36,19 +33,12 @@
 				visible_message("\red <B>[H] has attempted to punch [src]!</B>")
 				return 0
 			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.targeted_organ))
-
-//			if(HULK in H.mutations)
-//				damage += 5
-
 			playsound(loc, "punch", 25, 1, -1)
-
 			visible_message("\red <B>[H] has punched [src]!</B>")
-
 			damage_through_armor(damage, HALLOSS, affecting, ARMOR_MELEE)
 			if(damage >= 9)
 				visible_message("\red <B>[H] has weakened [src]!</B>")
 				apply_effect(4, WEAKEN, getarmor(affecting, ARMOR_MELEE))
-
 			return
 
 	switch(M.a_intent)
@@ -80,7 +70,6 @@
 					cpr_time = 1
 
 				H.visible_message(SPAN_DANGER("\The [H] is trying perform CPR on \the [src]!"))
-
 				if(!do_after(H, 30, src))
 					return
 
@@ -104,9 +93,7 @@
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
 
-
 			for(var/obj/item/grab/g in get_both_hands(src)) //countering a grab
-
 				if(g.counter_timer>0 && g.affecting == M) //were we grabbed by src in a span of 3 seconds?
 					if(prob(max(30 + H.stats.getStat(STAT_ROB) - stats.getStat(STAT_ROB) ** 0.7, 1))) // Harder between low rob, easier between high rob wrestlers
 						var/obj/item/grab/G = new /obj/item/grab(M, src)
@@ -117,9 +104,7 @@
 						M.put_in_active_hand(G)
 						G.synch()
 						LAssailant = M
-
 						break_all_grabs(H)
-
 						H.do_attack_animation(src)
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						visible_message(SPAN_DANGER("With a quick grapple, [M] reversed [src]'s grab!"))
@@ -127,11 +112,9 @@
 						M.attack_log += "\[[time_stamp()]\] <font color='red'>Counter-grabbed [src.name] ([src.ckey])</font>"
 						msg_admin_attack("[M] countered [src]'s grab.")
 						return 1
-
 					else //uh oh! our resist is now also on cooldown(we are dead)
 						setClickCooldown(40)
 						visible_message(SPAN_WARNING("[M] tried to counter [src]'s grab, but failed!"))
-
 				return
 			//usual grabs
 			var/obj/item/grab/G = new /obj/item/grab(M, src)
@@ -142,7 +125,6 @@
 			M.put_in_active_hand(G)
 			G.synch()
 			LAssailant = M
-
 			H.do_attack_animation(src)
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
@@ -176,7 +158,6 @@
 			var/hit_zone = H.targeted_organ
 			var/obj/item/organ/external/affecting = get_organ(hit_zone)
 			var/obj/item/organ/external/current_hand = H.organs_by_name[H.hand ? BP_L_ARM : BP_R_ARM]
-
 			if(current_hand)
 				limb_efficiency_multiplier = 1 * (current_hand.limb_efficiency / 100)
 
@@ -289,22 +270,19 @@
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 			visible_message(SPAN_WARNING("[M] attempted to disarm [src]"))
-	return
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
 	return
 
-/mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message, var/wallbreaker = FALSE, var/is_sharp = FALSE, var/is_edge = FALSE, var/wounding = 1)
-
+/mob/living/carbon/human/attack_generic(mob/user, damage, attack_message, wallbreaker = FALSE, is_sharp = FALSE, is_edge = FALSE, wounding = 1)
 	if(!damage || !istype(user))
 		return
 
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
-	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
-	src.visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
+	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
+	visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
 
 	user.do_attack_animation(src)
-
 	var/penetration = 0
 	if(istype(user, /mob/living))
 		var/mob/living/L = user
@@ -319,7 +297,7 @@
 	return TRUE
 
 //Used to attack a joint's nerve through grabbing, 10 seconds of crippling(depression)
-/mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)
+/mob/living/carbon/human/proc/grab_joint(mob/living/user, def_zone)
 	var/has_grab = 0
 	var/obj/item/grab/G
 	for(G in list(user.l_hand, user.r_hand))//we do not check for grab level
@@ -339,11 +317,10 @@
 		return 0
 
 	user.visible_message(SPAN_WARNING("[user] hits [src]'s [organ.joint] right in the nerve!")) //everyone knows where it is, obviously
-
 	organ.nerve_strike_add(1)
-	src.visible_message(SPAN_DANGER("[src]'s [organ.joint] [pick("jitters","convulses","stirs","shakes")] and dangles about!"), (SPAN_DANGER("As [user]'s hit connects with your [organ.joint], you feel it painfully tingle before going numb!")))
+	visible_message(SPAN_DANGER("[src]'s [organ.joint] [pick("jitters","convulses","stirs","shakes")] and dangles about!"), (SPAN_DANGER("As [user]'s hit connects with your [organ.joint], you feel it painfully tingle before going numb!")))
 	playsound(user, 'sound/weapons/throwtap.ogg', 50, 1)
-	src.damage_through_armor(rand(5,10), HALLOSS, target_zone, ARMOR_MELEE, wounding_multiplier = 2)
+	damage_through_armor(rand(5,10), HALLOSS, target_zone, ARMOR_MELEE, wounding_multiplier = 2)
 
 	//kill the grab
 	user.drop_from_inventory(G)
@@ -351,10 +328,9 @@
 	qdel(G)
 
 	//admin messaging
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Nervestruck [src.name] ([src.ckey])</font>")
-	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Nervestruck by [user.name] ([user.ckey])</font>")
+	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Nervestruck [name] ([ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] <font color='orange'>Nervestruck by [user.name] ([user.ckey])</font>")
 	msg_admin_attack("[key_name(user)] nervestruck [key_name(src)] in [organ.joint]")
-
 	return 1
 
 //Breaks all grips and pulls that the mob currently has.
@@ -380,4 +356,3 @@
 		spawn(1)
 			qdel(rgrab)
 	return success
-

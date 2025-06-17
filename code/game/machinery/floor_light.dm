@@ -23,15 +23,13 @@ var/list/floor_light_cache = list()
 /obj/machinery/floor_light/prebuilt
 	anchored = TRUE
 
-/obj/machinery/floor_light/attackby(var/obj/item/I, var/mob/user)
-
+/obj/machinery/floor_light/attackby(obj/item/I, mob/user)
 	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_SCREW_DRIVING)
 	if((damaged || (stat & BROKEN)))
 		usable_qualities.Add(QUALITY_WELDING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
-
 		if(QUALITY_PULSING)
 			if(on)
 				to_chat(user, SPAN_WARNING("\The [src] must be turn off to change a color."))
@@ -65,10 +63,8 @@ var/list/floor_light_cache = list()
 
 	if(I.force && user.a_intent == "hurt")
 		attack_hand(user)
-	return
 
-/obj/machinery/floor_light/attack_hand(var/mob/user)
-
+/obj/machinery/floor_light/attack_hand(mob/user)
 	if(user.a_intent == I_HURT && !issmall(user))
 		if(!isnull(damaged) && !(stat & BROKEN))
 			visible_message(SPAN_DANGER("\The [user] smashes \the [src]!"))
@@ -81,7 +77,6 @@ var/list/floor_light_cache = list()
 		update_brightness()
 		return
 	else
-
 		if(!anchored)
 			to_chat(user, SPAN_WARNING("\The [src] must be screwed down first."))
 			return

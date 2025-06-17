@@ -56,7 +56,7 @@
 /obj/machinery/door/can_prevent_fall(above)
 	return above ? density : null
 
-/obj/machinery/door/attack_generic(mob/user, var/damage)
+/obj/machinery/door/attack_generic(mob/user, damage)
 	if(damage >= resistance)
 		visible_message(SPAN_DANGER("\The [user] smashes into \the [src]!"))
 		take_damage(damage)
@@ -65,7 +65,6 @@
 		playsound(src, 'sound/weapons/Genhit.ogg', 15, 1,-1)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	attack_animation(user)
-
 
 /obj/machinery/door/LateInitialize()
 	if(width > 1)
@@ -81,11 +80,9 @@
 	update_nearby_tiles(need_rebuild = TRUE)
 	power_change()
 
-
 /obj/machinery/door/Destroy()
 	density = FALSE
 	update_nearby_tiles()
-
 	return ..()
 
 /obj/machinery/door/Process()
@@ -108,7 +105,8 @@
 	return TRUE
 
 /obj/machinery/door/Bumped(atom/AM)
-	if(operating) return
+	if(operating)
+		return
 	if(ismob(AM))
 		var/mob/M = AM
 		if(world.time - M.last_bumped <= 10) return	//Can bump-open one airlock per second. This is to prevent shock spam.
@@ -146,16 +144,12 @@
 				open()
 			else
 				do_animate("deny")
-		return
-	return
 
-
-/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group) return !block_air_zones
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return !opacity
 	return !density
-
 
 /obj/machinery/door/proc/bumpopen(mob/user)
 	if(operating)
@@ -171,15 +165,13 @@
 			do_animate("deny")
 	return TRUE
 
-/obj/machinery/door/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/door/bullet_act(obj/item/projectile/Proj)
 	..()
-
 	var/damage = Proj.get_structure_damage()
 	if(Proj.damage_types[BRUTE])
 		damage -= bullet_resistance
 
-	// Emitter Blasts - these will eventually completely destroy the door, given enough time.
-	if(damage > 90)
+	if(damage > 90) // Emitter Blasts - these will eventually completely destroy the door, given enough time.
 		destroy_hits--
 		if(destroy_hits <= 0)
 			visible_message(SPAN_DANGER("\The [src.name] disintegrates!"))
@@ -197,9 +189,7 @@
 		//cap projectile damage so that there's still a minimum number of hits required to break the door
 			take_damage(min(damage, 100))
 
-
-
-/obj/machinery/door/proc/hit_by_living(var/mob/living/M)
+/obj/machinery/door/proc/hit_by_living(mob/living/M)
 	var/body_part = pick(BP_HEAD, BP_CHEST, BP_GROIN)
 	visible_message(SPAN_DANGER("[M] slams against \the [src]!"))
 	if(prob(30))
@@ -207,8 +197,7 @@
 	M.damage_through_armor(rand(5,8), BRUTE, body_part, ARMOR_MELEE)
 	take_damage(M.mob_size)
 
-/obj/machinery/door/hitby(AM as mob|obj, var/speed=5)
-
+/obj/machinery/door/hitby(AM as mob|obj, speed=5)
 	..()
 	var/damage = 5
 	if(istype(AM, /obj/item))
@@ -219,7 +208,6 @@
 		hit_by_living(M)
 		return
 	take_damage(damage)
-	return
 
 /obj/machinery/door/attack_hand(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -238,7 +226,6 @@
 
 /obj/machinery/door/attackby(obj/item/I, mob/user)
 	add_fingerprint(user)
-
 	//Harm intent overrides other actions
 	if(src.density && user.a_intent == I_HURT && !I.GetIdCard())
 		hit(user, I)
@@ -252,7 +239,6 @@
 	if(repairing)
 		var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_WELDING), src)
 		switch(tool_type)
-
 			if(QUALITY_WELDING)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You finish repairing the damage to \the [src]."))
@@ -262,7 +248,6 @@
 					repairing = null
 					return
 				return
-
 			if(QUALITY_PRYING)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_ROB))
 					to_chat(user, SPAN_NOTICE("You remove \the [repairing]."))
@@ -270,7 +255,6 @@
 					repairing = null
 					return
 				return
-
 			if(ABORT_CHECK)
 				return
 
@@ -288,7 +272,6 @@
 		//figure out how much metal we need
 		var/amount_needed = (maxHealth - health) / DOOR_REPAIR_AMOUNT
 		amount_needed = CEILING(amount_needed, 1)
-
 		var/obj/item/stack/stack = I
 		var/transfer
 		if(repairing)
@@ -303,20 +286,18 @@
 
 		if(transfer)
 			to_chat(user, SPAN_NOTICE("You fit [transfer] [stack.singular_name]\s to damaged and broken parts on \the [src]."))
-
 		return
 
+	if(operating > 0 || isrobot(user))
+		return //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
 
+	if(operating)
+		return
 
-	if(src.operating > 0 || isrobot(user))	return //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
-
-	if(src.operating) return
-
-	if(src.density)
+	if(density)
 		do_animate("deny")
-	return
 
-/obj/machinery/door/emag_act(var/remaining_charges)
+/obj/machinery/door/emag_act(remaining_charges)
 	if(density && operable())
 		do_animate("spark")
 		sleep(6)
@@ -324,9 +305,7 @@
 		operating = -1
 		return 1
 
-
-
-/obj/machinery/door/proc/hit(var/mob/user, var/obj/item/I, var/thrown = FALSE)
+/obj/machinery/door/proc/hit(mob/user, obj/item/I, thrown = FALSE)
 	var/obj/item/W = I
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	var/calc_damage
@@ -337,7 +316,6 @@
 		if(user)user.do_attack_animation(src)
 
 	calc_damage -= resistance
-
 	if(calc_damage <= 0)
 		if(user)user.visible_message(SPAN_DANGER("\The [user] hits \the [src] with \the [W] with no visible effect."))
 		playsound(loc, hitsound, 20, 1)
@@ -383,12 +361,10 @@
 		extra_description += "\The [src] looks seriously damaged!"
 	else if(health < maxHealth * 3/4)
 		extra_description += "\The [src] shows signs of damage!"
-
 	..(user, extra_description)
 
 /obj/machinery/door/proc/set_broken()
 	stat |= BROKEN
-
 	if(health <= 0 && open_on_break)
 		visible_message(SPAN_WARNING("\The [src.name] breaks open!"))
 		open(TRUE)
@@ -404,7 +380,6 @@
 /obj/machinery/door/update_icon()
 	icon_state = "door[density]"
 	update_openspace()
-
 
 /obj/machinery/door/proc/do_animate(animation)
 	switch(animation)
@@ -425,10 +400,8 @@
 			if(density && !(stat & (NOPOWER|BROKEN)))
 				flick("door_deny", src)
 				playsound(loc, 'sound/machines/Custom_deny.ogg', 50, 0)
-	return
 
-
-/obj/machinery/door/proc/open(var/forced = 0)
+/obj/machinery/door/proc/open(forced = 0)
 	if(!can_open(forced))
 		return FALSE
 	operating = TRUE
@@ -454,7 +427,7 @@
 		addtimer(CALLBACK(src, PROC_REF(close)), wait)
 	return TRUE
 
-/obj/machinery/door/proc/close(var/forced = 0)
+/obj/machinery/door/proc/close(forced = 0)
 	set waitfor = FALSE
 	if(!can_close(forced))
 		return
@@ -477,12 +450,10 @@
 		f6?.set_opacity(1)
 
 	operating = FALSE
-
 	//I shall not add a check every x ticks if a door has closed over some fire.
 	var/obj/fire/fire = locate() in loc
 	if(fire)
 		qdel(fire)
-	return
 
 /obj/machinery/door/proc/requiresID()
 	return 1
@@ -515,9 +486,7 @@
 		else
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
-
 	update_nearby_tiles()
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
-

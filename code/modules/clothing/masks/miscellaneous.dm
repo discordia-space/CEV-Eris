@@ -28,7 +28,7 @@
     say_verbs = list("mumbles", "says")
 
 // Clumsy folks can't take the mask off themselves.
-/obj/item/clothing/mask/muzzle/attack_hand(mob/user as mob)
+/obj/item/clothing/mask/muzzle/attack_hand(mob/user)
 	if(user.wear_mask == src && !user.IsAdvancedToolUser())
 		return 0
 	..()
@@ -102,8 +102,7 @@
 		energy = 15,
 		bomb = 75,
 		bio = 100,
-		rad = 30
-	)
+		rad = 30)
 
 /obj/item/clothing/mask/thief/adminspawn/wolf
 	name = "technician's mask"
@@ -268,17 +267,16 @@
 	. = ..()
 	eye = new(src)
 
-/obj/item/clothing/mask/ai/equipped(var/mob/user, var/slot)
+/obj/item/clothing/mask/ai/equipped(mob/user, slot)
 	..(user, slot)
 	if(slot == slot_wear_mask)
 		eye.owner = user
 		user.eyeobj = eye
-
 		for(var/datum/chunk/c in eye.visibleChunks)
 			c.remove(eye)
 		eye.setLoc(user)
 
-/obj/item/clothing/mask/ai/dropped(var/mob/user)
+/obj/item/clothing/mask/ai/dropped(mob/user)
 	..()
 	if(eye.owner == user)
 		for(var/datum/chunk/c in eye.visibleChunks)
@@ -302,7 +300,7 @@
 	style = STYLE_LOW
 	muffle_voice = TRUE
 
-/obj/item/clothing/mask/bandana/equipped(var/mob/user, var/slot)
+/obj/item/clothing/mask/bandana/equipped(mob/user, slot)
 	switch(slot)
 		if(slot_wear_mask) //Mask is the default for all the settings
 			flags_inv = HIDEFACE
@@ -316,7 +314,6 @@
 			icon_state = "[initial(icon_state)]_up"
 			item_state = "[initial(item_state)]_up"
 			style_coverage = COVERS_HAIR
-
 	return ..()
 
 /obj/item/clothing/mask/bandana/red

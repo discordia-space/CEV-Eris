@@ -3,15 +3,15 @@
 	var/required_slot_flags
 	var/required_free_body_parts
 
-/obj/item/underwear/afterattack(var/atom/target, var/mob/user, var/proximity)
+/obj/item/underwear/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return // Might as well check
 	DelayedEquipUnderwear(user, target)
 
-/obj/item/underwear/MouseDrop(var/atom/target)
+/obj/item/underwear/MouseDrop(atom/target)
 	DelayedEquipUnderwear(usr, target)
 
-/obj/item/underwear/proc/CanEquipUnderwear(var/mob/user, var/mob/living/carbon/human/H)
+/obj/item/underwear/proc/CanEquipUnderwear(mob/user, mob/living/carbon/human/H)
 	if(!CanAdjustUnderwear(user, H, "put on"))
 		return FALSE
 	if(!(H.species && (H.species.appearance_flags & HAS_UNDERWEAR)))
@@ -22,7 +22,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/underwear/proc/CanRemoveUnderwear(var/mob/user, var/mob/living/carbon/human/H)
+/obj/item/underwear/proc/CanRemoveUnderwear(mob/user, mob/living/carbon/human/H)
 	if(!CanAdjustUnderwear(user, H, "remove"))
 		return FALSE
 	if(!(src in H.worn_underwear))
@@ -30,7 +30,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/underwear/proc/CanAdjustUnderwear(var/mob/user, var/mob/living/carbon/human/H, var/adjustment_verb)
+/obj/item/underwear/proc/CanAdjustUnderwear(mob/user, mob/living/carbon/human/H, adjustment_verb)
 	if(!istype(H))
 		return FALSE
 	if(user != H && !CanPhysicallyInteractWith(user, H))
@@ -43,10 +43,9 @@
 		if(adjustment_verb)
 			to_chat(user, "<span class='warning'>Cannot [adjustment_verb] \the [src]. [english_list(covering_items)] [covering_items.len == 1 ? G.is : "are"] in the way.</span>")
 		return FALSE
-
 	return TRUE
 
-/obj/item/underwear/proc/DelayedRemoveUnderwear(var/mob/user, var/mob/living/carbon/human/H)
+/obj/item/underwear/proc/DelayedRemoveUnderwear(mob/user, mob/living/carbon/human/H)
 	if(!CanRemoveUnderwear(user, H))
 		return
 	if(user != H)
@@ -58,7 +57,7 @@
 		user.visible_message("<span class='warning'>\The [user] has removed \the [src] from \the [H].</span>", "<span class='notice'>You have removed \the [src] from \the [H].</span>")
 		admin_attack_log(user, H, "Removed \a [src]", "Had \a [src] removed.", "removed \a [src] from")
 
-/obj/item/underwear/proc/DelayedEquipUnderwear(var/mob/user, var/mob/living/carbon/human/H)
+/obj/item/underwear/proc/DelayedEquipUnderwear(mob/user, mob/living/carbon/human/H)
 	if(!CanEquipUnderwear(user, H))
 		return
 	if(user != H)
@@ -70,34 +69,30 @@
 		user.visible_message("<span class='warning'>\The [user] has put \the [src] on \the [H].</span>", "<span class='notice'>You have put \the [src] on \the [H].</span>")
 		admin_attack_log(user, H, "Put on \a [src]", "Had \a [src] put on.", "put on \a [src] on")
 
-/obj/item/underwear/proc/EquipUnderwear(var/mob/user, var/mob/living/carbon/human/H)
+/obj/item/underwear/proc/EquipUnderwear(mob/user, mob/living/carbon/human/H)
 	if(!CanEquipUnderwear(user, H))
 		return FALSE
 	if(!user.unEquip(src))
 		return FALSE
 	return ForceEquipUnderwear(H)
 
-/obj/item/underwear/proc/ForceEquipUnderwear(var/mob/living/carbon/human/H, var/update_icons = TRUE)
+/obj/item/underwear/proc/ForceEquipUnderwear(mob/living/carbon/human/H, update_icons = TRUE)
 	// No matter how forceful, we still don't allow multiples of the same underwear type
 	if(is_path_in_list(type, H.worn_underwear))
 		return FALSE
-
 	H.worn_underwear += src
 	forceMove(H)
 	if(update_icons)
 		H.update_underwear()
-
 	return TRUE
 
-/obj/item/underwear/proc/RemoveUnderwear(var/mob/user, var/mob/living/carbon/human/H)
+/obj/item/underwear/proc/RemoveUnderwear(mob/user, mob/living/carbon/human/H)
 	if(!CanRemoveUnderwear(user, H))
 		return FALSE
-
 	H.worn_underwear -= src
 	forceMove(H.loc)
 	user.put_in_hands(src)
 	H.update_underwear()
-
 	return TRUE
 
 /obj/item/underwear/verb/RemoveSocks()

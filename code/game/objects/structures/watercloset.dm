@@ -17,7 +17,7 @@
 	open = round(rand(0, 1))
 	update_icon()
 
-/obj/structure/toilet/attack_hand(mob/living/user as mob)
+/obj/structure/toilet/attack_hand(mob/living/user)
 	if(swirlie)
 		usr.visible_message(
 			SPAN_DANGER("[user] slams the toilet seat onto [swirlie.name]'s head!"),
@@ -40,14 +40,13 @@
 			to_chat(user, SPAN_NOTICE("You find \an [I] in the cistern."))
 			w_items -= I.w_class
 			return
-
 	open = !open
 	update_icon()
 
 /obj/structure/toilet/update_icon()
 	icon_state = "toilet[open][cistern]"
 
-/obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
+/obj/structure/toilet/attackby(obj/item/I, mob/living/user)
 	if(QUALITY_PRYING in I.tool_qualities)
 		to_chat(user, "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>")
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_MEC))
@@ -67,9 +66,8 @@
 		I.loc = src
 		w_items += I.w_class
 		to_chat(user, "You carefully place \the [I] into the cistern.")
-		return
 
-/obj/structure/toilet/AltClick(var/mob/living/user)
+/obj/structure/toilet/AltClick(mob/living/user)
 	if(!open)
 		return
 	var/H = user.get_active_hand()
@@ -80,7 +78,7 @@
 			to_chat(user, SPAN_NOTICE("You empty the [O] into the [src]."))
 
 
-/obj/structure/toilet/affect_grab(var/mob/user, var/mob/living/target, var/state)
+/obj/structure/toilet/affect_grab(mob/user, mob/living/target, state)
 	if(state == GRAB_PASSIVE)
 		to_chat(user, SPAN_NOTICE("You need a tighter grip."))
 		return FALSE
@@ -125,7 +123,7 @@
 	density = FALSE
 	anchored = TRUE
 
-/obj/structure/urinal/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+/obj/structure/urinal/affect_grab(mob/living/user, mob/living/target, state)
 	if(state == GRAB_PASSIVE)
 		to_chat(user, SPAN_NOTICE("You need a tighter grip."))
 		return FALSE
@@ -134,13 +132,11 @@
 		return
 	user.visible_message(
 		SPAN_DANGER("[user] slams [target] into the [src]!"),
-		SPAN_NOTICE("You slam [target] into the [src]!")
-	)
+		SPAN_NOTICE("You slam [target] into the [src]!"))
 	admin_attack_log(user, target,
 		"slams <b>[key_name(target)]</b> into the [src]",
 		"Was slamed by <b>[key_name(user)] into the [src]</b>",
-		"slamed into the [src]"
-	)
+		"slamed into the [src]")
 	target.adjustBruteLoss(8)
 	return TRUE
 
@@ -164,8 +160,6 @@
 	..()
 	create_reagents(50)
 
-//add heat controls? when emagged, you can freeze to death in it?
-
 /obj/effect/mist
 	name = "mist"
 	icon = 'icons/obj/watercloset.dmi'
@@ -174,7 +168,7 @@
 	anchored = TRUE
 	mouse_opacity = 0
 
-/obj/machinery/shower/attack_hand(mob/M as mob)
+/obj/machinery/shower/attack_hand(mob/M)
 	on = !on
 	update_icon()
 	if(on)
@@ -221,8 +215,8 @@
 
 //Yes, showers are super powerful as far as washing goes.
 /obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)
-	if(!on) return
-
+	if(!on)
+		return
 	if(isliving(O))
 		var/mob/living/L = O
 		L.ExtinguishMob()
@@ -315,8 +309,8 @@
 	reagents.splash(O, 10)
 
 /obj/machinery/shower/Process()
-	if(!on) return
-
+	if(!on)
+		return
 	for(var/thing in loc)
 		var/atom/movable/AM = thing
 		var/mob/living/L = thing
@@ -338,12 +332,11 @@
 		is_washing = 0
 
 /obj/machinery/shower/proc/process_heat(mob/living/M)
-	if(!on || !istype(M)) return
-
+	if(!on || !istype(M))
+		return
 	var/temperature = temperature_settings[watertemp]
 	var/temp_adj = between(BODYTEMP_COOLING_MAX, temperature - M.bodytemperature, BODYTEMP_HEATING_MAX)
 	M.bodytemperature += temp_adj
-
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(temperature >= H.species.heat_level_1)
@@ -358,8 +351,6 @@
 	icon_state = "rubberducky"
 	item_state = "rubberducky"
 
-
-
 /obj/structure/sink
 	name = "sink"
 	icon = 'icons/obj/watercloset.dmi'
@@ -369,7 +360,7 @@
 	reagent_flags = OPENCONTAINER
 	var/busy = 0 	//Something's being washed at the moment
 
-/obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
+/obj/structure/sink/MouseDrop_T(obj/item/thing, mob/user)
 	. = ..()
 	if(!istype(thing) || !thing.is_drainable())
 		return
@@ -382,7 +373,7 @@
 	visible_message(SPAN_NOTICE("\The [usr] tips the contents of \the [thing] into \the [src]."))
 	thing.reagents.clear_reagents()
 
-/obj/structure/sink/attack_hand(mob/user as mob)
+/obj/structure/sink/attack_hand(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_ARM]
@@ -403,14 +394,12 @@
 		return
 
 	to_chat(usr, SPAN_NOTICE("You start washing your hands."))
-
 	playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)
-
 	busy = 1
 	sleep(40)
 	busy = 0
-
-	if(!Adjacent(user)) return		//Person has moved away from the sink
+	if(!Adjacent(user))
+		return //Person has moved away from the sink
 
 	user.clean_blood()
 	if(ishuman(user))
@@ -418,8 +407,7 @@
 	for(var/mob/V in viewers(src, null))
 		V.show_message(SPAN_NOTICE("[user] washes their hands using \the [src]."))
 
-
-/obj/structure/sink/attackby(obj/item/O as obj, mob/living/user as mob)
+/obj/structure/sink/attackby(obj/item/O, mob/living/user)
 	if(busy)
 		to_chat(user, SPAN_WARNING("Someone's already washing here."))
 		return
@@ -453,34 +441,36 @@
 		return
 
 	var/turf/location = user.loc
-	if(!isturf(location)) return
+	if(!isturf(location))
+		return
 
 	var/obj/item/I = O
-	if(!I || !istype(I,/obj/item)) return
+	if(!I || !istype(I,/obj/item))
+		return
 
 	to_chat(usr, SPAN_NOTICE("You start washing \the [I]."))
-
 	busy = 1
 	sleep(40)
 	busy = 0
-
-	if(user.loc != location) return				//User has moved
-	if(!I) return 								//Item's been destroyed while washing
-	if(user.get_active_hand() != I) return		//Person has switched hands or the item in their hands
+	if(user.loc != location)
+		return				//User has moved
+	if(!I)
+		return 								//Item's been destroyed while washing
+	if(user.get_active_hand() != I)
+		return		//Person has switched hands or the item in their hands
 
 	O.clean_blood()
 	user.visible_message( \
 		SPAN_NOTICE("[user] washes \a [I] using \the [src]."), \
 		SPAN_NOTICE("You wash \a [I] using \the [src]."))
 
-/obj/structure/sink/AltClick(var/mob/living/user)
+/obj/structure/sink/AltClick(mob/living/user)
 	var/H = user.get_active_hand()
 	if(istype(H,/obj/item/reagent_containers/glass) || istype(H,/obj/item/reagent_containers/food/drinks))
 		var/obj/item/reagent_containers/O = user.get_active_hand()
 		if(O.reagents && O.reagents.total_volume)
 			O.reagents.clear_reagents()
 			to_chat(user, SPAN_NOTICE("You empty the [O] into the [src]."))
-
 
 /obj/structure/sink/kitchen
 	name = "kitchen sink"
@@ -495,7 +485,7 @@
 	..()
 	icon_state = "puddle"
 
-/obj/structure/sink/puddle/attackby(obj/item/O as obj, mob/user as mob)
+/obj/structure/sink/puddle/attackby(obj/item/O, mob/user)
 	icon_state = "puddle-splash"
 	..()
 	icon_state = "puddle"

@@ -50,11 +50,9 @@ var/bomb_set
 			spawn
 				explode()
 		SSnano.update_uis(src)
-	return
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
 	add_fingerprint(user)
-
 	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
 	if(anchored && (removal_stage == 0 || removal_stage == 2))
 		usable_qualities.Add(QUALITY_WELDING)
@@ -65,7 +63,6 @@ var/bomb_set
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
-
 		if(QUALITY_SCREW_DRIVING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				if(src.auth)
@@ -130,20 +127,19 @@ var/bomb_set
 	if(panel_open && (istool(I)))
 		return attack_hand(user)
 
-	if(src.extended)
+	if(extended)
 		if(istype(I, /obj/item/disk/nuclear))
 			usr.drop_item()
 			I.loc = src
-			src.auth = I
+			auth = I
 			add_fingerprint(user)
 			return attack_hand(user)
-
 	..()
 
-/obj/machinery/nuclearbomb/attack_ghost(mob/user as mob)
+/obj/machinery/nuclearbomb/attack_ghost(mob/user)
 	attack_hand(user)
 
-/obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
+/obj/machinery/nuclearbomb/attack_hand(mob/user)
 	if(extended)
 		if(panel_open)
 			wires.Interact(user)
@@ -159,9 +155,8 @@ var/bomb_set
 		if(!src.lighthack)
 			flick("nuclearbombc", src)
 			update_icon()
-	return
 
-/obj/machinery/nuclearbomb/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/nuclearbomb/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS)
 	var/data[0]
 	data["hacking"] = 0
 	data["auth"] = is_auth(user)
@@ -202,15 +197,15 @@ var/bomb_set
 	if(usr.incapacitated())
 		return
 
-	if(src.deployable)
+	if(deployable)
 		to_chat(usr, SPAN_WARNING("You close several panels to make [src] undeployable."))
-		src.deployable = 0
+		deployable = 0
 	else
 		to_chat(usr, SPAN_WARNING("You adjust some panels to make [src] deployable."))
-		src.deployable = 1
-	return
+		deployable = 1
 
-/obj/machinery/nuclearbomb/proc/is_auth(var/mob/user)
+
+/obj/machinery/nuclearbomb/proc/is_auth(mob/user)
 	if(auth)
 		return 1
 	if(user.can_admin_interact())
@@ -232,6 +227,7 @@ var/bomb_set
 				usr.drop_item()
 				I.loc = src
 				auth = I
+
 	if(is_auth(usr))
 		if(href_list["type"])
 			if(href_list["type"] == "E")
@@ -314,7 +310,6 @@ var/bomb_set
 						visible_message(SPAN_WARNING("The anchoring bolts slide back into the depths of [src]."))
 				else
 					to_chat(usr, SPAN_WARNING("There is nothing to anchor to!"))
-
 	SSnano.update_uis(src)
 
 /obj/machinery/nuclearbomb/proc/secure_device()
@@ -363,10 +358,7 @@ var/bomb_set
 
 		SSticker.ship_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
 														//kinda shit but I couldn't  get permission to do what I wanted to do.
-
 		SSticker.station_explosion_cinematic(off_station)
-
-	return
 
 /obj/machinery/nuclearbomb/update_icon()
 	if(lighthack)
@@ -381,11 +373,6 @@ var/bomb_set
 		icon_state = "nuclearbomb1"
 	else
 		icon_state = "nuclearbomb0"
-/*
-if(!N.lighthack)
-	if(N.icon_state == "nuclearbomb2")
-		N.icon_state = "nuclearbomb1"
-		*/
 
 //====The nuclear authentication disc====
 /obj/item/disk/nuclear

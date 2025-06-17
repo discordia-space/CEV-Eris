@@ -30,7 +30,6 @@ var/list/name_to_material
 //Returns the material the object is made of, if applicable.
 //Will we ever need to return more than one value here? Or should we just return the "dominant" material.
 /obj/proc/get_material()
-	return null
 
 //mostly for convenience
 /obj/proc/get_material_name()
@@ -39,8 +38,9 @@ var/list/name_to_material
 		return material.name
 
 // Builds the datum list above.
-/proc/populate_material_list(force_remake=0)
-	if(name_to_material && !force_remake) return // Already set up!
+/proc/populate_material_list(force_remake)
+	if(name_to_material && !force_remake)
+		return // Already set up!
 	name_to_material = list()
 	for(var/type in typesof(/material) - /material)
 		var/material/new_mineral = new type
@@ -66,19 +66,16 @@ var/list/name_to_material
 		var/material/M = name_to_material[name]
 		if(M.stack_type == stype)
 			return M.name
-	return null
 
 /proc/material_display_name(name)
 	var/material/material = get_material_by_name(name)
 	if(material)
 		return material.display_name
-	return null
 
 /proc/material_stack_type(name)
 	var/material/material = get_material_by_name(name)
 	if(material)
 		return material.stack_type
-	return null
 
 // Material definition and procs follow.
 /material
@@ -120,8 +117,7 @@ var/list/name_to_material
 		energy = 1,
 		bomb = 1,
 		bio = 1,
-		rad = 1
-	)
+		rad = 1)
 
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
 	var/created_window
@@ -143,7 +139,7 @@ var/list/name_to_material
 	var/stack_type
 
 // Placeholders for light tiles and rglass.
-/material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
+/material/proc/build_rod_product(mob/user, obj/item/stack/used_stack, obj/item/stack/target_stack)
 	if(!rod_product)
 		to_chat(user, SPAN_WARNING("You cannot make anything out of \the [target_stack]"))
 		return
@@ -156,7 +152,7 @@ var/list/name_to_material
 	S.add_fingerprint(user)
 	S.add_to_stacks(user)
 
-/material/proc/build_wired_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
+/material/proc/build_wired_product(mob/user, obj/item/stack/used_stack, obj/item/stack/target_stack)
 	if(!wire_product)
 		to_chat(user, SPAN_WARNING("You cannot make anything out of \the [target_stack]"))
 		return
@@ -182,7 +178,7 @@ var/list/name_to_material
 		shard_icon = shard_type
 
 // This is a placeholder for proper integration of windows/windoors into the system.
-/material/proc/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
+/material/proc/build_windows(mob/living/user, obj/item/stack/used_stack)
 	return 0
 
 // Weapons handle applying a divisor for this value locally.
@@ -203,9 +199,8 @@ var/list/name_to_material
 /material/proc/products_need_process()
 	return (radioactivity>0) //todo
 
-
 // Use this to drop a given amount of material.
-/material/proc/place_material(target, amount=1, mob/living/user = null)
+/material/proc/place_material(target, amount = 1, mob/living/user)
 	// Drop the integer amount of sheets
 	var/obj/sheets = place_sheet(target, round(amount))
 	if(sheets)
@@ -225,13 +220,13 @@ var/list/name_to_material
 // As above.
 /material/proc/place_shard(target, amount=1)
 	if(shard_type)
-		return new /obj/item/material/shard(target, src.name, amount)
+		return new /obj/item/material/shard(target, name, amount)
 
 // Used by walls and weapons to determine if they break or not.
 /material/proc/is_brittle()
 	return !!(flags & MATERIAL_BRITTLE)
 
-/material/proc/combustion_effect(var/turf/T, var/temperature)
+/material/proc/combustion_effect(turf/T, temperature)
 	return
 
 // Datum definitions follow.
@@ -254,8 +249,7 @@ var/list/name_to_material
 		energy = 10,
 		bomb = 25,
 		bio = 25,
-		rad = 0
-	)
+		rad = 0)
 
 /material/diamond
 	name = MATERIAL_DIAMOND
@@ -275,8 +269,7 @@ var/list/name_to_material
 		energy = 0,
 		bomb = 80,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/gold
 	name = MATERIAL_GOLD
@@ -294,8 +287,7 @@ var/list/name_to_material
 		energy = 1,
 		bomb = 1,
 		bio = 45,
-		rad = 1
-	)
+		rad = 1)
 
 /material/gold/bronze //placeholder for ashtrays
 	name = "bronze"
@@ -307,8 +299,7 @@ var/list/name_to_material
 		energy = 3,
 		bomb = 10,
 		bio = 30,
-		rad = 0
-	)
+		rad = 0)
 
 /material/silver
 	name = MATERIAL_SILVER
@@ -326,8 +317,7 @@ var/list/name_to_material
 		energy = 2,
 		bomb = 10,
 		bio = 80,
-		rad = 0
-	)
+		rad = 0)
 
 /material/plasma
 	name = MATERIAL_PLASMA
@@ -349,25 +339,7 @@ var/list/name_to_material
 		energy = 6,
 		bomb = 1,
 		bio = 80,
-		rad = 45
-	)
-
-/*
-// Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
-/material/plasma/combustion_effect(var/turf/T, var/temperature, var/effect_multiplier)
-	if(isnull(ignition_point))
-		return 0
-	if(temperature < ignition_point)
-		return 0
-	var/totalPlasma = 0
-	for(var/turf/floor/target_tile in RANGE_TURFS(2, T))
-		var/plasmaToDeduce = (temperature/30) * effect_multiplier
-		totalPlasma += plasmaToDeduce
-		target_tile.assume_gas("plasma", plasmaToDeduce, 200+T0C)
-		spawn (0)
-			target_tile.hotspot_expose(temperature, 400)
-	return round(totalPlasma/100)
-*/
+		rad = 45)
 
 /material/stone
 	name = MATERIAL_SANDSTONE
@@ -389,8 +361,7 @@ var/list/name_to_material
 		energy = 1,
 		bomb = 25,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/stone/marble
 	name = MATERIAL_MARBLE
@@ -417,8 +388,7 @@ var/list/name_to_material
 		energy = 5,
 		bomb = 35,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/steel/holographic
 	name = "holo" + MATERIAL_STEEL
@@ -432,8 +402,7 @@ var/list/name_to_material
 		energy = 0,
 		bomb = 0,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/plasteel
 	name = MATERIAL_PLASTEEL
@@ -455,8 +424,7 @@ var/list/name_to_material
 		energy = 4,
 		bomb = 75,
 		bio = 35,
-		rad = 25
-	)
+		rad = 25)
 
 /material/plasteel/titanium
 	name = "titanium"
@@ -475,8 +443,7 @@ var/list/name_to_material
 		energy = 6,
 		bomb = 125,
 		bio = 35,
-		rad = 0
-	)
+		rad = 0)
 
 /material/glass
 	name = MATERIAL_GLASS
@@ -502,8 +469,7 @@ var/list/name_to_material
 		energy = 0,
 		bomb = 0,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/glass/build_windows(mob/living/user, obj/item/stack/used_stack)
 	if(!user || !used_stack || !created_window || !window_options.len)
@@ -600,8 +566,7 @@ var/list/name_to_material
 		energy = 0,
 		bomb = 35,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/glass/plasma
 	name = MATERIAL_PLASMAGLASS
@@ -623,8 +588,7 @@ var/list/name_to_material
 		energy = 0,
 		bomb = 45,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/glass/plasma/reinforced
 	name = MATERIAL_RPLASMAGLASS
@@ -644,8 +608,7 @@ var/list/name_to_material
 		energy = 0,
 		bomb = 50,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/plastic
 	name = MATERIAL_PLASTIC
@@ -665,8 +628,7 @@ var/list/name_to_material
 		energy = 3,
 		bomb = 20,
 		bio = 5,
-		rad = 0
-	)
+		rad = 0)
 
 /material/plastic/holographic
 	name = "holoplastic"
@@ -680,8 +642,7 @@ var/list/name_to_material
 		energy = 0,
 		bomb = 0,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/osmium
 	name = MATERIAL_OSMIUM
@@ -702,8 +663,7 @@ var/list/name_to_material
 		energy = 7,
 		bomb = 200,
 		bio = 0,
-		rad = 25
-	)
+		rad = 25)
 
 /material/tritium
 	name = MATERIAL_TRITIUM
@@ -719,8 +679,7 @@ var/list/name_to_material
 		energy = 10,
 		bomb = 0,
 		bio = 100,
-		rad = 50
-	)
+		rad = 50)
 
 /material/mhydrogen
 	name = MATERIAL_MHYDROGEN
@@ -737,8 +696,7 @@ var/list/name_to_material
 		energy = 8,
 		bomb = 350,
 		bio = 0,
-		rad = 35
-	)
+		rad = 35)
 
 /material/platinum
 	name = MATERIAL_PLATINUM
@@ -755,8 +713,7 @@ var/list/name_to_material
 		energy = 15,
 		bomb = 25,
 		bio = 55,
-		rad = 25
-	)
+		rad = 25)
 
 /material/iron
 	name = MATERIAL_IRON
@@ -774,8 +731,7 @@ var/list/name_to_material
 		energy = 3,
 		bomb = 35,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 // Adminspawn only, do not let anyone get this.
 /material/voxalloy
@@ -793,8 +749,7 @@ var/list/name_to_material
 		energy = 25,
 		bomb = 500,
 		bio = 0,
-		rad = 85
-	)
+		rad = 85)
 
 /material/wood
 	name = MATERIAL_WOOD
@@ -823,8 +778,7 @@ var/list/name_to_material
 		energy = 5,
 		bomb = 10,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/wood/holographic
 	name = "holowood"
@@ -838,8 +792,7 @@ var/list/name_to_material
 		energy = 0,
 		bomb = 0,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/cardboard
 	name = MATERIAL_CARDBOARD
@@ -864,8 +817,7 @@ var/list/name_to_material
 		energy = 0,
 		bomb = 5,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/cloth //todo
 	name = MATERIAL_CLOTH
@@ -882,9 +834,7 @@ var/list/name_to_material
 		energy = 1,
 		bomb = 5,
 		bio = 0,
-		rad = 0
-	)
-
+		rad = 0)
 
 /material/biomatter
 	name = MATERIAL_BIOMATTER
@@ -899,8 +849,7 @@ var/list/name_to_material
 		energy = 2,
 		bomb = 15,
 		bio = 100,
-		rad = 0
-	)
+		rad = 0)
 
 /material/compressed
 	name = MATERIAL_COMPRESSED
@@ -915,8 +864,7 @@ var/list/name_to_material
 		energy = 10,
 		bomb = 150,
 		bio = 0,
-		rad = 100
-	)
+		rad = 100)
 
 //TODO PLACEHOLDERS:
 /material/leather
@@ -932,8 +880,7 @@ var/list/name_to_material
 		energy = 2,
 		bomb = 10,
 		bio = 10,
-		rad = 0
-	)
+		rad = 0)
 
 /material/carpet
 	name = "carpet"
@@ -952,8 +899,7 @@ var/list/name_to_material
 		energy = 0,
 		bomb = 5,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/cotton
 	name = "cotton"
@@ -969,8 +915,7 @@ var/list/name_to_material
 		energy = 0,
 		bomb = 0,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/cloth_teal
 	name = "teal"
@@ -987,8 +932,7 @@ var/list/name_to_material
 		energy = 1,
 		bomb = 5,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/cloth_black
 	name = "black"
@@ -1005,8 +949,7 @@ var/list/name_to_material
 		energy = 1,
 		bomb = 5,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/cloth_green
 	name = "green"
@@ -1023,8 +966,7 @@ var/list/name_to_material
 		energy = 1,
 		bomb = 5,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/cloth_puple
 	name = "purple"
@@ -1041,8 +983,7 @@ var/list/name_to_material
 		energy = 1,
 		bomb = 5,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/cloth_blue
 	name = "blue"
@@ -1059,8 +1000,7 @@ var/list/name_to_material
 		energy = 1,
 		bomb = 5,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/cloth_beige
 	name = "beige"
@@ -1077,8 +1017,7 @@ var/list/name_to_material
 		energy = 1,
 		bomb = 5,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)
 
 /material/cloth_lime
 	name = "lime"
@@ -1095,5 +1034,4 @@ var/list/name_to_material
 		energy = 1,
 		bomb = 5,
 		bio = 0,
-		rad = 0
-	)
+		rad = 0)

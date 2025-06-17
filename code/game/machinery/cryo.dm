@@ -82,8 +82,7 @@
 *
 * @return nothing
 */
-/obj/machinery/atmospherics/unary/cryo_cell/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-
+/obj/machinery/atmospherics/unary/cryo_cell/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS)
 	if(user == occupant || user.stat)
 		return
 
@@ -105,7 +104,6 @@
 		occupantData["fireLoss"] = occupant.getFireLoss()
 		occupantData["bodyTemperature"] = occupant.bodytemperature
 	data["occupant"] = occupantData;
-
 	data["cellTemperature"] = round(air_contents.temperature)
 	data["cellTemperatureStatus"] = "good"
 	if(air_contents.temperature > T0C) // if greater than 273.15 kelvin (0 celcius)
@@ -114,13 +112,6 @@
 		data["cellTemperatureStatus"] = "average"
 
 	data["isBeakerLoaded"] = beaker ? 1 : 0
-	/* // Removing beaker contents list from front-end, replacing with a total remaining volume
-	var beakerContents[0]
-	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
-		for(var/datum/reagent/R in beaker.reagents.reagent_list)
-			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
-	data["beakerContents"] = beakerContents
-	*/
 	data["beakerLabel"] = null
 	data["beakerVolume"] = 0
 	if(beaker)
@@ -173,14 +164,14 @@
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/atmospherics/unary/cryo_cell/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/atmospherics/unary/cryo_cell/affect_grab(mob/user, mob/target)
 	for(var/mob/living/carbon/slime/M in range(1,target))
 		if(M.Victim == target)
 			to_chat(user, "[target] will not fit into the cryo because they have a slime latched onto their head.")
 			return
 	return put_mob(target)
 
-/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/cryo_cell/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/reagent_containers/glass))
 		if(beaker)
 			to_chat(user, SPAN_WARNING("A beaker is already loaded into the machine."))
@@ -189,9 +180,8 @@
 			beaker = W
 			user.visible_message(
 				"[user] adds \a [W] to \the [src]!",
-				"You add \a [W] to \the [src]!"
-			)
-	return
+				"You add \a [W] to \the [src]!")
+
 
 /obj/machinery/atmospherics/unary/cryo_cell/update_icon()
 	overlays.Cut()
@@ -258,13 +248,6 @@
 /obj/machinery/atmospherics/unary/cryo_cell/proc/expel_gas()
 	if(air_contents.total_moles < 1)
 		return
-//	var/datum/gas_mixture/expel_gas = new
-//	var/remove_amount = air_contents.total_moles()/50
-//	expel_gas = air_contents.remove(remove_amount)
-
-	// Just have the gas disappear to nowhere.
-	//expel_gas.temperature = T20C // Lets expel hot gas and see if that helps people not die as they are removed
-	//loc.assume_air(expel_gas)
 
 /obj/machinery/atmospherics/unary/cryo_cell/proc/go_out()
 	if(!( occupant ))
@@ -316,7 +299,7 @@
 	update_icon()
 	return 1
 
-/obj/machinery/atmospherics/unary/cryo_cell/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/atmospherics/unary/cryo_cell/MouseDrop_T(mob/target, mob/user)
 	if(!ismob(target))
 		return
 	if(target.buckled)
@@ -329,7 +312,6 @@
 	if(!do_after(user, 30, src) || !Adjacent(target))
 		return
 	put_mob(target)
-	return
 
 
 /obj/machinery/atmospherics/unary/cryo_cell/verb/move_eject()
@@ -372,13 +354,11 @@
 	//draws from the cryo tube's environment, instead of the cold internal air.
 	if(loc)
 		return loc.return_air()
-	else
-		return null
 
 /datum/data/function/proc/reset()
 	return
 
-/datum/data/function/proc/r_input(href, href_list, mob/user as mob)
+/datum/data/function/proc/r_input(href, href_list, mob/user)
 	return
 
 /datum/data/function/proc/display()

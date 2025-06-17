@@ -79,8 +79,6 @@
 	check_weapons = 1
 	check_anomalies = 1
 
-
-
 /obj/machinery/porta_turret/stationary
 	ailock = 1
 	lethal = 1
@@ -120,7 +118,7 @@
 	projectile = installation.projectile_type
 	shot_sound = installation.fire_sound
 
-/obj/machinery/porta_turret/proc/weapon_setup(var/guntype)
+/obj/machinery/porta_turret/proc/weapon_setup(guntype)
 	switch(guntype)
 		if(/obj/item/gun/energy/laser/practice)
 			iconholder = 1
@@ -193,7 +191,6 @@ var/list/turret_icons
 	if(locked && !issilicon(user))
 		to_chat(user, SPAN_NOTICE("Access denied."))
 		return 1
-
 	return 0
 
 /obj/machinery/porta_turret/attack_hand(mob/user)
@@ -202,7 +199,7 @@ var/list/turret_icons
 
 	nano_ui_interact(user)
 
-/obj/machinery/porta_turret/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/porta_turret/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS)
 	var/data[0]
 	data["access"] = !isLocked(user)
 	data["locked"] = locked
@@ -231,7 +228,7 @@ var/list/turret_icons
 	var/area/A = get_area(src)
 	return A && A.turret_controls.len > 0
 
-/obj/machinery/porta_turret/CanUseTopic(var/mob/user)
+/obj/machinery/porta_turret/CanUseTopic(mob/user)
 	if(HasController())
 		to_chat(user, SPAN_NOTICE("Turrets can only be controlled using the assigned turret controller."))
 		return STATUS_CLOSE
@@ -242,9 +239,7 @@ var/list/turret_icons
 	if(!anchored)
 		to_chat(usr, SPAN_NOTICE("\The [src] has to be secured first!"))
 		return STATUS_CLOSE
-
 	return ..()
-
 
 /obj/machinery/porta_turret/Topic(href, href_list)
 	if(..())
@@ -269,7 +264,6 @@ var/list/turret_icons
 			check_access = value
 		else if(href_list["command"] == "check_anomalies")
 			check_anomalies = value
-
 		return 1
 
 /obj/machinery/porta_turret/power_change()
@@ -281,11 +275,8 @@ var/list/turret_icons
 			stat |= NOPOWER
 			update_icon()
 
-
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user)
-
 	var/obj/item/card/id/ID = I.GetIdCard()
-
 	if(user.a_intent == I_HELP)
 		if(stat & BROKEN)
 			if(QUALITY_PRYING in I.tool_qualities)
@@ -441,7 +432,7 @@ var/list/turret_icons
 		return TRUE
 	..()
 
-/obj/machinery/porta_turret/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/porta_turret/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		//Emagging the turret makes it go bonkers and stun everyone. It also makes
 		//the turret shoot much, much faster.
@@ -455,10 +446,9 @@ var/list/turret_icons
 		enabled = 1 //turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here
 		return 1
 
-/obj/machinery/porta_turret/take_damage(var/force)
+/obj/machinery/porta_turret/take_damage(force)
 	if(!raised && !raising)
 		force = force / 8
-
 
 	force -= resistance
 	if(force <= 0)
@@ -473,7 +463,6 @@ var/list/turret_icons
 
 /obj/machinery/porta_turret/bullet_act(obj/item/projectile/Proj)
 	var/damage = Proj.get_structure_damage()
-
 	if(!damage)
 		if(istype(Proj, /obj/item/projectile/ion))
 			Proj.on_hit(loc)
@@ -485,9 +474,7 @@ var/list/turret_icons
 			spawn()
 				sleep(60)
 				attacked = 0
-
 	..()
-
 	take_damage(damage*Proj.structure_damage_factor)
 
 /obj/machinery/porta_turret/emp_act(severity)
@@ -502,13 +489,11 @@ var/list/turret_icons
 		if(prob(5))
 			emagged = 1
 
-		enabled=0
+		enabled = 0
 		spawn(rand(60,600))
 			if(!enabled)
 				enabled=1
-
 	..()
-
 
 /obj/machinery/porta_turret/proc/die()	//called when the turret dies, ie, health <= 0
 	health = 0
@@ -518,7 +503,6 @@ var/list/turret_icons
 
 /obj/machinery/porta_turret/Process()
 	//the main machinery process
-
 	if(stat & (NOPOWER|BROKEN))
 		//if the turret has no power or is broken, make the turret pop down if it hasn't already
 		popDown()
@@ -531,7 +515,6 @@ var/list/turret_icons
 
 	var/list/targets = list()			//list of primary targets
 	var/list/secondarytargets = list()	//targets that are least important
-
 	for(var/mob/M in mobs_in_view(world.view, src))
 		assess_and_assign(M, targets, secondarytargets)
 
@@ -544,14 +527,14 @@ var/list/turret_icons
 		use_power(20000)
 		health = min(health+1, maxHealth) // 1HP for 20kJ
 
-/obj/machinery/porta_turret/proc/assess_and_assign(var/mob/living/L, var/list/targets, var/list/secondarytargets)
+/obj/machinery/porta_turret/proc/assess_and_assign(mob/living/L, list/targets, list/secondarytargets)
 	switch(assess_living(L))
 		if(TURRET_PRIORITY_TARGET)
 			targets += L
 		if(TURRET_SECONDARY_TARGET)
 			secondarytargets += L
 
-/obj/machinery/porta_turret/proc/assess_living(var/mob/living/L)
+/obj/machinery/porta_turret/proc/assess_living(mob/living/L)
 	var/obj/item/card/id/id_card = L.GetIdCard()
 
 	if(id_card && (id_card.registered_name in registered_names))
@@ -610,12 +593,12 @@ var/list/turret_icons
 
 	return TURRET_PRIORITY_TARGET	//if the perp has passed all previous tests, congrats, it is now a "shoot-me!" nominee
 
-/obj/machinery/porta_turret/One_star/assess_living(var/mob/living/L)
+/obj/machinery/porta_turret/One_star/assess_living(mob/living/L)
 	if(L.faction == "onestar")
 		return TURRET_NOT_TARGET
 	return ..()
 
-/obj/machinery/porta_turret/proc/assess_perp(var/mob/living/carbon/human/H)
+/obj/machinery/porta_turret/proc/assess_perp(mob/living/carbon/human/H)
 	if(!H || !istype(H))
 		return 0
 
@@ -624,7 +607,7 @@ var/list/turret_icons
 
 	return H.assess_perp(src, check_access, check_weapons, check_records, check_arrest)
 
-/obj/machinery/porta_turret/proc/tryToShootAt(var/list/mob/living/targets)
+/obj/machinery/porta_turret/proc/tryToShootAt(list/mob/living/targets)
 	if(targets.len && last_target && (last_target in targets) && target(last_target))
 		return 1
 
@@ -633,7 +616,6 @@ var/list/turret_icons
 		targets -= M
 		if(target(M))
 			return 1
-
 
 /obj/machinery/porta_turret/proc/popUp()	//pops the turret up
 	if(disabled)
@@ -650,7 +632,6 @@ var/list/turret_icons
 	flick("popup", flick_holder)
 	sleep(10)
 	qdel(flick_holder)
-
 	set_raised_raising(1, 0)
 	update_icon()
 
@@ -674,12 +655,12 @@ var/list/turret_icons
 	set_raised_raising(0, 0)
 	update_icon()
 
-/obj/machinery/porta_turret/proc/set_raised_raising(var/raised, var/raising)
+/obj/machinery/porta_turret/proc/set_raised_raising(raised, raising)
 	src.raised = raised
 	src.raising = raising
 	density = raised || raising
 
-/obj/machinery/porta_turret/proc/target(var/mob/living/target)
+/obj/machinery/porta_turret/proc/target(mob/living/target)
 	if(disabled)
 		return
 	if(target)
@@ -690,9 +671,8 @@ var/list/turret_icons
 		spawn()
 			shootAt(target)
 		return 1
-	return
 
-/obj/machinery/porta_turret/proc/shootAt(var/mob/living/target)
+/obj/machinery/porta_turret/proc/shootAt(mob/living/target)
 	//any emagged turrets will shoot extremely fast! This not only is deadly, but drains a lot power!
 	if(!(emagged || attacked))		//if it hasn't been emagged or attacked, it has to obey a cooldown rate
 		if(last_fired || !raised)	//prevents rapid-fire shooting, unless it's been emagged
@@ -709,7 +689,6 @@ var/list/turret_icons
 
 	if(!raised) //the turret has to be raised in order to fire - makes sense, right?
 		return
-
 	launch_projectile(target)
 
 /obj/machinery/porta_turret/proc/launch_projectile(mob/living/target)
@@ -743,13 +722,12 @@ var/list/turret_icons
 	var/check_anomalies
 	var/ailock
 
-/obj/machinery/porta_turret/proc/setState(var/datum/turret_checks/TC)
+/obj/machinery/porta_turret/proc/setState(datum/turret_checks/TC)
 	if(controllock)
 		return
-	src.enabled = TC.enabled
-	src.lethal = TC.lethal
-	src.iconholder = TC.lethal
-
+	enabled = TC.enabled
+	lethal = TC.lethal
+	iconholder = TC.lethal
 	check_synth = TC.check_synth
 	check_access = TC.check_access
 	check_records = TC.check_records
@@ -757,14 +735,11 @@ var/list/turret_icons
 	check_weapons = TC.check_weapons
 	check_anomalies = TC.check_anomalies
 	ailock = TC.ailock
-
-	src.power_change()
-
+	power_change()
 /*
 		Portable turret constructions
 		Known as "turret frame"s
 */
-
 /obj/machinery/porta_turret_construct
 	name = "turret frame"
 	icon = 'icons/obj/turrets.dmi'
@@ -775,9 +750,7 @@ var/list/turret_icons
 	var/obj/item/gun/energy/installation		//the gun type installed
 	var/gun_charge = 0			//the gun charge of the gun type installed
 
-
 /obj/machinery/porta_turret_construct/attackby(obj/item/I, mob/user)
-
 	var/list/usable_qualities = list()
 	if((build_step == 0 && !anchored) || build_step == 1 || build_step == 2 || build_step == 3)
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
@@ -790,7 +763,6 @@ var/list/turret_icons
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
-
 		if(QUALITY_BOLT_TURNING)
 			if(build_step == 0 && !anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -872,7 +844,6 @@ var/list/turret_icons
 		if(ABORT_CHECK)
 			return
 
-
 	switch(build_step)
 		if(1)
 			if(istype(I, /obj/item/stack/material) && I.get_material_name() == MATERIAL_STEEL)
@@ -910,9 +881,7 @@ var/list/turret_icons
 				to_chat(user, SPAN_NOTICE("You add the prox sensor to the turret."))
 				qdel(I)
 				return
-
 			//attack_hand() removes the prox sensor
-
 		if(6)
 			if(istype(I, /obj/item/stack/material) && I.get_material_name() == MATERIAL_STEEL)
 				var/obj/item/stack/M = I
@@ -932,9 +901,7 @@ var/list/turret_icons
 
 		finish_name = t
 		return
-
 	..()
-
 
 /obj/machinery/porta_turret_construct/attack_hand(mob/user)
 	switch(build_step)
@@ -959,7 +926,6 @@ var/list/turret_icons
 
 /atom/movable/porta_turret_cover
 	icon = 'icons/obj/turrets.dmi'
-
 
 #undef TURRET_PRIORITY_TARGET
 #undef TURRET_SECONDARY_TARGET

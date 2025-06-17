@@ -35,8 +35,6 @@
 	price_tag = 300
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5)
 
-
-
 /obj/item/tool/sword/nt/longsword
 	name = "NT Spatha"
 	desc = "This saintly-looking longsword is the first choice of experienced crusaders."
@@ -47,7 +45,6 @@
 	w_class = ITEM_SIZE_HUGE
 	price_tag = 1200
 	matter = list(MATERIAL_BIOMATTER = 75, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 5, MATERIAL_DIAMOND = 1)
-
 
 /obj/item/tool/knife/dagger/nt
 	name = "NT Pugio"
@@ -61,14 +58,12 @@
 	price_tag = 120
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 1)
 
-
 /obj/item/tool/knife/dagger/nt/equipped(mob/living/H)
 	..()
 	if(is_held() && is_neotheology_disciple(H))
 		embed_mult = 0.2
 	else
 		embed_mult = initial(embed_mult)
-
 
 /obj/item/tool/sword/nt/halberd
 	name = "NT Halebarda"
@@ -186,7 +181,6 @@
 		throwforce = throwforce_broken
 		visible_message(SPAN_DANGER("The spear-tip of the [src] bends into a useless shape!"))
 
-
 /obj/item/tool/sword/nt/spear/examine(mob/user, extra_description = "")
 	if(tipbroken)
 		extra_description += SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a hammer.")
@@ -235,10 +229,10 @@
 	container.master_item = src
 	..()
 
-/obj/item/shield/riot/nt/proc/handle_attack_hand(mob/user as mob)
+/obj/item/shield/riot/nt/proc/handle_attack_hand(mob/user)
 	return container.handle_attack_hand(user)
 
-/obj/item/shield/riot/nt/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+/obj/item/shield/riot/nt/proc/handle_mousedrop(mob/user, atom/over_object)
 	return container.handle_mousedrop(user, over_object)
 
 /obj/item/shield/riot/nt/MouseDrop(obj/over_object)
@@ -246,7 +240,7 @@
 		return TRUE
 	return ..()
 
-/obj/item/shield/riot/nt/attack_hand(mob/user as mob)
+/obj/item/shield/riot/nt/attack_hand(mob/user)
 	if(loc == user)
 		container.open(user)
 	else
@@ -256,7 +250,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/shield/riot/nt/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/shield/riot/nt/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/melee/baton) || istype(W, /obj/item/tool/sword/nt))
 		on_bash(W, user)
 	else
@@ -296,10 +290,10 @@
 	container.master_item = src
 	..()
 
-/obj/item/shield/buckler/nt/proc/handle_attack_hand(mob/user as mob)
+/obj/item/shield/buckler/nt/proc/handle_attack_hand(mob/user)
 	return container.handle_attack_hand(user)
 
-/obj/item/shield/buckler/nt/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+/obj/item/shield/buckler/nt/proc/handle_mousedrop(mob/user, atom/over_object)
 	return container.handle_mousedrop(user, over_object)
 
 /obj/item/shield/buckler/nt/MouseDrop(obj/over_object)
@@ -307,7 +301,7 @@
 		return TRUE
 	return ..()
 
-/obj/item/shield/buckler/nt/attack_hand(mob/user as mob)
+/obj/item/shield/buckler/nt/attack_hand(mob/user)
 	if(loc == user)
 		container.open(user)
 	else
@@ -317,7 +311,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/shield/riot/nt/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/shield/riot/nt/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/melee/baton) || istype(W, /obj/item/tool/sword/nt))
 		on_bash(W, user)
 	else
@@ -354,7 +348,6 @@
 	wielded_icon = "nt_verutum_wielded"
 	force = 20
 	force_wielded_multiplier = 1.08
-
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT
 	throwforce = WEAPON_FORCE_LETHAL

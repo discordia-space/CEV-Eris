@@ -15,7 +15,7 @@
 	var/datum/computer_file/report/crew_record/active_record
 	var/message = null
 
-/datum/nano_module/records/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, state = GLOB.default_state)
+/datum/nano_module/records/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS, state = GLOB.default_state)
 	var/list/data = host.initial_data()
 	var/list/user_access = get_record_access(user)
 
@@ -47,17 +47,15 @@
 		ui.open()
 
 
-/datum/nano_module/records/proc/get_record_access(var/mob/user)
+/datum/nano_module/records/proc/get_record_access(mob/user)
 	var/list/user_access = using_access || user.GetAccess()
-
 	var/obj/item/modular_computer/PC = nano_host()
 	if(istype(PC) && PC.computer_emagged)
 		user_access = user_access.Copy()
 		user_access |= access_syndicate
-
 	return user_access
 
-/datum/nano_module/records/proc/edit_field(var/mob/user, var/field_ID)
+/datum/nano_module/records/proc/edit_field(mob/user, field_ID)
 	var/datum/computer_file/report/crew_record/R = active_record
 	if(!R)
 		return
@@ -129,7 +127,7 @@
 		edit_field(usr, text2num(href_list["edit_field"]))
 		return 1
 
-/datum/nano_module/records/proc/get_photo(var/mob/user)
+/datum/nano_module/records/proc/get_photo(mob/user)
 	if(istype(user.get_active_hand(), /obj/item/photo))
 		var/obj/item/photo/photo = user.get_active_hand()
 		return photo.img

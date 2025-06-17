@@ -6,7 +6,7 @@
 /mob/living/silicon/ai/var/stored_locations[0]
 
 /mob/living/silicon/ai/proc/get_camera_list()
-	if(src.stat == 2)
+	if(stat == 2)
 		return
 
 	cameranet.process_sort()
@@ -15,7 +15,6 @@
 		var/list/tempnetwork = C.network&src.network
 		if(tempnetwork.len)
 			T[text("[][]", C.c_tag, (C.can_use() ? null : " (Deactivated)"))] = C
-
 	track = new()
 	track.cameras = T
 	return T
@@ -33,9 +32,7 @@
 	if(!camera)
 		return
 	var/obj/machinery/camera/C = track.cameras[camera]
-	src.eyeobj.setLoc(C)
-
-	return
+	eyeobj.setLoc(C)
 
 /mob/living/silicon/ai/proc/ai_store_location(loc as text)
 	set category = "Silicon Commands"
@@ -76,7 +73,7 @@
 		return
 
 	var/L = stored_locations[loc]
-	src.eyeobj.setLoc(L)
+	eyeobj.setLoc(L)
 
 /mob/living/silicon/ai/proc/ai_remove_location(loc in sorted_stored_locations())
 	set category = "Silicon Commands"
@@ -122,7 +119,7 @@
 			TB.others[name] = M
 
 	var/list/targets = sortList(TB.humans) + sortList(TB.others)
-	src.track = TB
+	track = TB
 	return targets
 
 /mob/living/silicon/ai/proc/ai_camera_track()
@@ -131,17 +128,17 @@
 	set desc = "Select who you would like to track."
 
 	var/target_name = input(src, "Select who you would like to track.", "Follow with cameras") as null|anything in trackable_mobs()
-	if(src.stat == 2)
+	if(stat == 2)
 		to_chat(src, "You can't follow [target_name] with cameras because you are dead!")
 		return
 	if(!target_name)
-		src.cameraFollow = null
+		cameraFollow = null
 
 	var/mob/target = (isnull(track.humans[target_name]) ? track.others[target_name] : track.humans[target_name])
-	src.track = null
+	track = null
 	ai_actual_track(target)
 
-/mob/living/silicon/ai/proc/ai_cancel_tracking(var/forced = 0)
+/mob/living/silicon/ai/proc/ai_cancel_tracking(forced = 0)
 	if(!cameraFollow)
 		return
 
@@ -149,7 +146,7 @@
 	cameraFollow.tracking_cancelled()
 	cameraFollow = null
 
-/mob/living/silicon/ai/proc/ai_actual_track(mob/living/target as mob)
+/mob/living/silicon/ai/proc/ai_actual_track(mob/living/target)
 	if(!istype(target))	return
 	var/mob/living/silicon/ai/U = usr
 
@@ -183,21 +180,19 @@
 				return
 			sleep(10)
 
-/obj/machinery/camera/attack_ai(var/mob/living/silicon/ai/user as mob)
+/obj/machinery/camera/attack_ai(mob/living/silicon/ai/user)
 	if(!istype(user))
 		return
 	if(!src.can_use())
 		return
 	user.eyeobj.setLoc(get_turf(src))
 
-
-/mob/living/silicon/ai/attack_ai(var/mob/user as mob)
+/mob/living/silicon/ai/attack_ai(mob/user)
 	ai_camera_list()
 
 /proc/camera_sort(list/L)
 	var/obj/machinery/camera/a
 	var/obj/machinery/camera/b
-
 	for(var/i = L.len, i > 0, i--)
 		for(var/j = 1 to i - 1)
 			a = L[j]
@@ -209,7 +204,6 @@
 				if(sorttext(a.c_tag, b.c_tag) < 0)
 					L.Swap(j, j + 1)
 	return L
-
 
 /mob/living/proc/near_camera()
 	if(!isturf(loc))
@@ -232,7 +226,6 @@
 		return TRACKING_TERMINATE
 	if(istype(loc,/obj/effect/dummy))
 		return TRACKING_TERMINATE
-
 	 // Now, are they viewable by a camera? (This is last because it's the most intensive check)
 	return near_camera() ? TRACKING_POSSIBLE : TRACKING_NO_COVERAGE
 
@@ -247,7 +240,6 @@
 		var/obj/item/clothing/head/space/rig/helmet = head
 		if(helmet.prevent_track())
 			return TRACKING_TERMINATE
-
 	. = ..()
 	if(. == TRACKING_TERMINATE)
 		return
@@ -256,16 +248,16 @@
 		if(IS_SHIP_LEVEL(z) && hassensorlevel(src, SUIT_SENSOR_TRACKING))
 			return TRACKING_POSSIBLE
 
-mob/living/proc/tracking_initiated()
+/mob/living/proc/tracking_initiated()
 
-mob/living/silicon/robot/tracking_initiated()
+/mob/living/silicon/robot/tracking_initiated()
 	tracking_entities++
 	if(tracking_entities == 1 && has_zeroth_law())
 		to_chat(src, SPAN_WARNING("Internal camera is currently being accessed."))
 
-mob/living/proc/tracking_cancelled()
+/mob/living/proc/tracking_cancelled()
 
-mob/living/silicon/robot/tracking_cancelled()
+/mob/living/silicon/robot/tracking_cancelled()
 	tracking_entities--
 	if(!tracking_entities && has_zeroth_law())
 		to_chat(src, SPAN_NOTICE("Internal camera is no longer being accessed."))

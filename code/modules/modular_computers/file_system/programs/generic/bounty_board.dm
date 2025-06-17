@@ -1,7 +1,3 @@
-/*
-
-*/
-
 /datum/computer_file/program/bounty_board_app
 	filename = "bountyBoard"
 	filedesc = "Bounty board"
@@ -13,7 +9,6 @@
 	available_on_ntnet = 1
 	nanomodule_path = /datum/nano_module/bounty_board
 	usage_flags = PROGRAM_ALL
-
 
 /datum/nano_module/bounty_board
 	name = "Bounty board"
@@ -52,9 +47,8 @@
 	data["claimed_bounties"] = claimed_bounties
 	return data
 
-/datum/nano_module/bounty_board/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
+/datum/nano_module/bounty_board/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = 1, state = GLOB.default_state)
 	var/list/data = nano_ui_data(user)
-
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "bounty_board.tmpl", name, 700, 540, state = state)
@@ -62,18 +56,15 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-
-/datum/nano_module/bounty_board/proc/get_record_access(var/mob/user)
+/datum/nano_module/bounty_board/proc/get_record_access(mob/user)
 	var/list/user_access = using_access || user.GetAccess()
-
 	var/obj/item/modular_computer/PC = nano_host()
 	if(istype(PC) && PC.computer_emagged)
 		user_access = user_access.Copy()
 		user_access |= access_syndicate
-
 	return user_access
 
-/datum/nano_module/bounty_board/proc/edit_field(var/mob/user, var/field_ID)
+/datum/nano_module/bounty_board/proc/edit_field(mob/user, field_ID)
 	if(!selectedEntry)
 		return
 	var/datum/report_field/F = selectedEntry.field_from_ID(field_ID)

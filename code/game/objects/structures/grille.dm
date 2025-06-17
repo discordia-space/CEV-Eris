@@ -25,12 +25,10 @@
 /obj/structure/grille/Bumped(atom/user)
 	if(ismob(user)) shock(user, 70)
 
-/obj/structure/grille/attack_hand(mob/user as mob)
-
+/obj/structure/grille/attack_hand(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
 	user.do_attack_animation(src)
-
 	var/damage_dealt = 1
 	var/attack_message = "kicks"
 	if(ishuman(user))
@@ -41,11 +39,6 @@
 
 	if(shock(user, 70))
 		return
-
-//	if(HULK in user.mutations)
-//		damage_dealt += 5
-//	else
-//		damage_dealt += 1
 
 	attack_generic(user,damage_dealt,attack_message)
 
@@ -59,14 +52,15 @@
 		else
 			return !density
 
-/obj/structure/grille/bullet_act(var/obj/item/projectile/Proj)
-	if(!Proj)	return
+/obj/structure/grille/bullet_act(obj/item/projectile/Proj)
+	if(!Proj)
+		return
 
 	//Flimsy grilles aren't so great at stopping projectiles. However they can absorb some of the impact
 	var/damage = Proj.get_structure_damage()
 	var/passthrough = 0
-
-	if(!damage) return
+	if(!damage)
+		return
 
 	//20% chance that the grille provides a bit more cover than usual. Support structure for example might take up 20% of the grille's area.
 	//If they click on the grille itself then we assume they are aiming at the grille itself and the extra cover behaviour is always used.
@@ -99,7 +93,6 @@
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
-
 		if(QUALITY_WIRE_CUTTING)
 			if(!shock(user, 100))
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -160,8 +153,6 @@
 				var/obj/structure/window/WD = new wtype(loc, dir_to_set, 1)
 				to_chat(user, SPAN_NOTICE("You place the [WD] on [src]."))
 				WD.update_icon()
-		return
-//window placing end
 
 	else if(!(I.flags & CONDUCT) || !shock(user, 70))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -169,8 +160,6 @@
 		playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
 		take_damage(I.force * I.structure_damage_factor)
 	..()
-	return
-
 
 /obj/structure/grille/take_damage(damage)
 	. = health - damage < 0 ? damage - (damage - health) : damage
@@ -185,14 +174,10 @@
 		else if(health <= -6)
 			new /obj/item/stack/rods(get_turf(src))
 			qdel(src)
-			return
-	return
 
 // shock user with probability prb (if all connections & power are working)
 // returns 1 if shocked, 0 otherwise
-
-/obj/structure/grille/proc/shock(mob/user as mob, prb)
-
+/obj/structure/grille/proc/shock(mob/user, prb)
 	if(!anchored || destroyed)		// anchored/destroyed grilles are never connected
 		return 0
 	if(!prob(prb))
@@ -220,7 +205,7 @@
 			take_damage(1)
 	..()
 
-/obj/structure/grille/attack_generic(var/mob/user, var/damage, var/attack_verb)
+/obj/structure/grille/attack_generic(mob/user, damage, attack_verb)
 	visible_message(SPAN_DANGER("[user] [attack_verb] the [src]!"))
 	attack_animation(user)
 	take_damage(damage)
@@ -238,30 +223,8 @@
 		tforce = I.throwforce
 	take_damage(tforce)
 
-// Used in mapping to avoid
-/obj/structure/grille/broken
-	destroyed = 1
-	icon_state = "grille-b"
-	density = FALSE
-	New()
-		..()
-		take_damage(rand(5,1))
-
-/obj/structure/grille/cult
-	name = "cult grille"
-	desc = "A matrice built out of an unknown material, with some sort of force field blocking air around it"
-	icon_state = "grillecult"
-	health = 40 //Make it strong enough to avoid people breaking in too easily
-
-/obj/structure/grille/cult/CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
-	if(air_group)
-		return 0 //Make sure air doesn't drain
-	..()
-
-/obj/structure/grille/get_fall_damage(var/turf/from, var/turf/dest)
+/obj/structure/grille/get_fall_damage(turf/from, turf/dest)
 	var/damage = health * 0.4 * get_health_ratio()
-
 	if(from && dest)
 		damage *= abs(from.z - dest.z)
-
 	return damage

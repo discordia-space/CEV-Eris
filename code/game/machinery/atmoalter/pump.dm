@@ -1,20 +1,15 @@
 /obj/machinery/portable_atmospherics/powered/pump
 	name = "portable air pump"
-
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "psiphon:0"
 	density = TRUE
 	w_class = ITEM_SIZE_NORMAL
-
 	var/on = FALSE
 	var/direction_out = 0 //0 = siphoning, 1 = releasing
 	var/target_pressure = ONE_ATMOSPHERE
-
 	var/pressuremin = 0
 	var/pressuremax = 10 * ONE_ATMOSPHERE
-
 	volume = 1000
-
 	power_rating = 7500 //7500 W ~ 10 HP
 	power_losses = 150
 
@@ -24,13 +19,11 @@
 /obj/machinery/portable_atmospherics/powered/pump/New()
 	..()
 	cell = new/obj/item/cell/medium/high(src)
-
 	var/list/air_mix = StandardAirMix()
-	src.air_contents.adjust_multi("oxygen", air_mix["oxygen"], "nitrogen", air_mix["nitrogen"])
+	air_contents.adjust_multi("oxygen", air_mix["oxygen"], "nitrogen", air_mix["nitrogen"])
 
 /obj/machinery/portable_atmospherics/powered/pump/update_icon()
-	src.overlays = 0
-
+	cut_overlays()
 	if(on && cell && cell.charge)
 		icon_state = "psiphon:1"
 	else
@@ -41,8 +34,6 @@
 
 	if(connected_port)
 		overlays += "siphon-connector"
-
-	return
 
 /obj/machinery/portable_atmospherics/powered/pump/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
@@ -63,7 +54,6 @@
 /obj/machinery/portable_atmospherics/powered/pump/Process()
 	..()
 	var/power_draw = -1
-
 	if(on && cell && cell.charge)
 		var/datum/gas_mixture/environment
 		if(holding)
@@ -84,7 +74,6 @@
 			air_temperature = air_contents.temperature? air_contents.temperature : environment.temperature
 
 		var/transfer_moles = pressure_delta*output_volume/(air_temperature * R_IDEAL_GAS_EQUATION)
-
 		if(pressure_delta > 0.01)
 			if(direction_out)
 				power_draw = pump_gas(src, air_contents, environment, transfer_moles, power_rating)
@@ -98,30 +87,27 @@
 		power_draw = max(power_draw, power_losses)
 		cell.use(power_draw * CELLRATE)
 		last_power_draw = power_draw
-
 		update_connected_network()
-
 		//ran out of charge
 		if(!cell.charge)
 			power_change()
 			update_icon()
-
-	src.updateDialog()
+	updateDialog()
 
 /obj/machinery/portable_atmospherics/powered/pump/return_air()
 	return air_contents
 
-/obj/machinery/portable_atmospherics/powered/pump/attack_ai(var/mob/user)
-	src.add_hiddenprint(user)
-	return src.attack_hand(user)
+/obj/machinery/portable_atmospherics/powered/pump/attack_ai(mob/user)
+	add_hiddenprint(user)
+	return attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/pump/attack_ghost(var/mob/user)
-	return src.attack_hand(user)
+/obj/machinery/portable_atmospherics/powered/pump/attack_ghost(mob/user)
+	return attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/pump/attack_hand(var/mob/user)
+/obj/machinery/portable_atmospherics/powered/pump/attack_hand(mob/user)
 	nano_ui_interact(user)
 
-/obj/machinery/portable_atmospherics/powered/pump/nano_ui_interact(mob/user, ui_key = "rcon", datum/nanoui/ui=null, force_open=NANOUI_FOCUS)
+/obj/machinery/portable_atmospherics/powered/pump/nano_ui_interact(mob/user, ui_key = "rcon", datum/nanoui/ui, force_open = NANOUI_FOCUS)
 	var/list/data[0]
 	data["portConnected"] = connected_port ? 1 : 0
 	data["tankPressure"] = round(air_contents.return_pressure() > 0 ? air_contents.return_pressure() : 0)
@@ -164,6 +150,5 @@
 		var/diff = text2num(href_list["pressure_adj"])
 		target_pressure = min(10*ONE_ATMOSPHERE, max(0, target_pressure+diff))
 		. = 1
-
 	if(.)
 		update_icon()

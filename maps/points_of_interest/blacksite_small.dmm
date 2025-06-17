@@ -638,7 +638,6 @@
 /turf/floor/tiled/derelict/red_white_edges/airless,
 /area/outpost/blacksite/small)
 "Fr" = (
-/obj/structure/grille/broken,
 /turf/floor/plating/under/airless,
 /area/outpost/blacksite/small)
 "FZ" = (

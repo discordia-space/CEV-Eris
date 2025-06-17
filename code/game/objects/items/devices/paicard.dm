@@ -11,10 +11,10 @@
 	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai
 
-/obj/item/device/paicard/relaymove(var/mob/user, var/direction)
+/obj/item/device/paicard/relaymove(mob/user, direction)
 	if(user.stat || user.stunned)
 		return
-	var/obj/item/rig/rig = src.get_rig()
+	var/obj/item/rig/rig = get_rig()
 	if(istype(rig))
 		rig.forced_move(direction, user)
 
@@ -225,7 +225,6 @@
 	return
 
 /obj/item/device/paicard/Topic(href, href_list)
-
 	if(!usr || usr.stat)
 		return
 
@@ -268,10 +267,6 @@
 			to_chat(pai, "Supplemental Directives: <br>[pai.pai_laws]")
 	attack_self(usr)
 
-// 		WIRE_SIGNAL = 1
-//		WIRE_RECEIVE = 2
-//		WIRE_TRANSMIT = 4
-
 /obj/item/device/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
 	src.pai = personality
 	src.overlays += "pai-happy"
@@ -283,7 +278,8 @@
 
 /obj/item/device/paicard
 	var/current_emotion = 1
-/obj/item/device/paicard/proc/setEmotion(var/emotion)
+
+/obj/item/device/paicard/proc/setEmotion(emotion)
 	if(pai)
 		src.overlays.Cut()
 		switch(emotion)
@@ -305,7 +301,7 @@
 		current_emotion = emotion
 
 /obj/item/device/paicard/proc/alertUpdate()
-	var/turf/T = get_turf_or_move(src.loc)
+	var/turf/T = get_turf_or_move(loc)
 	for(var/mob/M in viewers(T))
 		M.show_message("<span class='notice'>\The [src] flashes a message across its screen, \"Additional personalities available for download.\"</span>", 3, SPAN_NOTICE("\The [src] bleeps electronically."), 2)
 

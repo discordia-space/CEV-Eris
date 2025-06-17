@@ -11,10 +11,8 @@
 	w_class = ITEM_SIZE_NORMAL
 	max_w_class = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_HOLSTER
-
 	var/sound_in = 'sound/effects/holsterin.ogg'
 	var/sound_out = 'sound/effects/holsterout.ogg'
-
 	can_hold = list(
 		/obj/item/gun/projectile/selfload,
 		/obj/item/gun/projectile/colt,
@@ -60,9 +58,7 @@
 		/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
 		/obj/item/reagent_containers/food/snacks/meatpizzaslice,
 		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice,
-		/obj/item/bananapeel
-		)
-
+		/obj/item/bananapeel)
 	sliding_behavior = TRUE
 
 /obj/item/storage/pouch/holster/baton
@@ -71,18 +67,14 @@
 	icon_state = "baton_holster"
 	item_state = "baton_holster"
 	rarity_value = 50
-
 	storage_slots = 1
 	max_w_class = ITEM_SIZE_BULKY
-
 	can_hold = list(
 		/obj/item/melee,
 		/obj/item/tool/crowbar,
 		/obj/item/tool/hammer/,
 		/obj/item/tool/hatchet,
-		/obj/item/melee/energy/sword
-		)
-
+		/obj/item/melee/energy/sword)
 
 /obj/item/storage/pouch/holster/belt
 	name = "belt holster"
@@ -90,16 +82,12 @@
 	icon_state = "belt_holster"
 	item_state = "belt_holster"
 	rarity_value = 40
-
 	slot_flags = SLOT_BELT | SLOT_DENYPOCKET
 	price_tag = 240
 	matter = list(MATERIAL_BIOMATTER = 5)
-
 	sound_in = 'sound/effects/holsterin.ogg'
 	sound_out = 'sound/effects/holsterout.ogg'
-
 	max_w_class = ITEM_SIZE_HUGE
-
 	storage_slots = 2
 
 /obj/item/storage/pouch/holster/belt/knife
@@ -109,28 +97,20 @@
 	item_state = "knife"
 	rarity_value = 69
 	price_tag = 100
-
 	storage_slots = 4
-
 	can_hold = list(
-		/obj/item/stack/thrown/throwing_knife
-		)
+		/obj/item/stack/thrown/throwing_knife)
 
-//Sheath
 /obj/item/storage/pouch/holster/belt/sheath
 	name = "sheath"
 	desc = "A sturdy brown leather sheath with a gold trim, made to house a variety of swords."
 	icon = 'icons/obj/sheath.dmi'
 	icon_state = "sheath_0"
 	item_state = "sheath_0"
-
 	price_tag = 120
-
 	storage_slots = 1
-
 	sound_in = 'sound/effects/sheathin.ogg'
 	sound_out = 'sound/effects/sheathout.ogg'
-
 	can_hold = list(
 		/obj/item/tool/sword/nt,
 		/obj/item/tool/sword/nt_sword,
@@ -139,13 +119,11 @@
 		/obj/item/tool/sword/katana/nano,
 		/obj/item/tool/sword,
 		/obj/item/toy/katana,
-		/obj/item/tool/sword/improvised
-		)
+		/obj/item/tool/sword/improvised)
 	cant_hold = list(
 		/obj/item/tool/knife/dagger/nt,
 		/obj/item/tool/sword/nt/halberd,
-		/obj/item/tool/sword/nt/spear
-		)
+		/obj/item/tool/sword/nt/spear)
 
 /obj/item/storage/pouch/holster/belt/sheath/improvised
 	name = "makeshift sheath"
@@ -155,7 +133,6 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	can_hold = list(/obj/item/tool/sword/improvised)
 
-//Accessory holsters
 /obj/item/clothing/accessory/holster
 	name = "concealed carry holster"
 	desc = "An inconspicious holster that can be attached to your uniform, right under your armpit. Can fit a handgun... And maybe something else, too."
@@ -167,10 +144,8 @@
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_HOLSTER
 	var/storage_slots = 1
-
 	var/sound_in = 'sound/effects/holsterin.ogg'
 	var/sound_out = 'sound/effects/holsterout.ogg'
-
 	var/obj/item/storage/internal/holster
 	var/list/can_hold = list(
 		/obj/item/gun/projectile/selfload,
@@ -217,8 +192,7 @@
 		/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
 		/obj/item/reagent_containers/food/snacks/meatpizzaslice,
 		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice,
-		/obj/item/bananapeel
-		)
+		/obj/item/bananapeel)
 	var/list/cant_hold = list()
 
 /obj/item/clothing/accessory/holster/knife
@@ -226,10 +200,8 @@
 	desc = "A rig for professionals at knife throwing."
 	price_tag = 100
 	storage_slots = 2
-
 	can_hold = list(
-		/obj/item/stack/thrown/throwing_knife
-		)
+		/obj/item/stack/thrown/throwing_knife)
 
 /obj/item/clothing/accessory/holster/scabbard
 	name = "uniform scabbard"
@@ -242,9 +214,7 @@
 	cant_hold = list(
 		/obj/item/tool/knife/dagger/nt,
 		/obj/item/tool/sword/nt/halberd,
-		/obj/item/tool/sword/nt/spear
-		)
-
+		/obj/item/tool/sword/nt/spear)
 	price_tag = 300
 	sound_in = 'sound/effects/sheathin.ogg'
 	sound_out = 'sound/effects/sheathout.ogg'
@@ -268,14 +238,13 @@
 		/obj/item/tool/hammer,
 		/obj/item/tool/hatchet,
 		/obj/item/tool/makeshiftaxe,
-		/obj/item/melee/energy/sword/sabre
-		)
+		/obj/item/melee/energy/sword/sabre)
 	price_tag = 20
 
-/obj/item/clothing/accessory/holster/proc/handle_attack_hand(mob/user as mob)
+/obj/item/clothing/accessory/holster/proc/handle_attack_hand(mob/user)
 	return holster.handle_attack_hand(user)
 
-/obj/item/clothing/accessory/holster/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+/obj/item/clothing/accessory/holster/proc/handle_mousedrop(mob/user, atom/over_object)
 	return holster.handle_mousedrop(user, over_object)
 
 /obj/item/clothing/accessory/holster/MouseDrop(obj/over_object)
@@ -287,7 +256,7 @@
 	holster.attackby(I, user)
 	playsound(user, "[src.sound_in]", 30, 0)
 
-/obj/item/clothing/accessory/holster/attack_hand(mob/user as mob)
+/obj/item/clothing/accessory/holster/attack_hand(mob/user)
 	add_fingerprint(user)
 	if(loc == has_suit)
 		if(holster.contents.len)
@@ -316,7 +285,7 @@
 	holster.attackby(I, user)
 
 //For the holster hotkey in human.dm
-/obj/item/storage/pouch/holster/proc/holster_verb(var/mob/living/carbon/human/H)
+/obj/item/storage/pouch/holster/proc/holster_verb(mob/living/carbon/human/H)
 	if(!istype(H))
 		return
 
@@ -327,9 +296,7 @@
 	H.s_store,
 	H.belt,
 	H.l_store,
-	H.r_store,
-	)
-
+	H.r_store)
 	var/holster_handled = FALSE
 	for(var/obj/item/storage/pouch/holster/holster in holster_priority)
 		if(H.get_active_hand())

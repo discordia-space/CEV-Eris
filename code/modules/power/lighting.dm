@@ -41,9 +41,7 @@
 	..(user, extra_description)
 
 /obj/machinery/light_construct/attackby(obj/item/I, mob/user)
-
 	add_fingerprint(user)
-
 	var/list/usable_qualities = list()
 	if(stage == 2)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
@@ -52,10 +50,8 @@
 	if(stage == 1)
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
 
-
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
-
 		if(QUALITY_SCREW_DRIVING)
 			if(stage == 2)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -69,7 +65,6 @@
 						"You close [src]'s casing.", "You hear a noise.")
 
 					switch(fixture_type)
-
 						if("tube")
 							if(!istype(src, /obj/machinery/light_construct/floor))
 								newlight = new /obj/machinery/light/built(src.loc)
@@ -254,7 +249,6 @@
 	. = ..()
 
 /obj/machinery/light/update_icon()
-
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
 			if(firealarmed && on && cmptext(base_state,"tube"))
@@ -272,7 +266,6 @@
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
 			on = FALSE
-	return
 
 /obj/machinery/light/proc/set_blue()
 	if(on)
@@ -302,13 +295,10 @@
 
 			else
 				brightness_color = COLOR_LIGHTING_DEFAULT_BRIGHT
-
 		update()
 
-
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update(var/trigger = 1)
-
+/obj/machinery/light/proc/update(trigger = 1)
 	update_icon()
 	if(on == TRUE)
 		if(needsound == 1)
@@ -346,7 +336,7 @@
 	if(on != on_gs)
 		on_gs = on
 
-/obj/machinery/light/attack_generic(var/mob/user, var/damage)
+/obj/machinery/light/attack_generic(mob/user, damage)
 	if(!damage)
 		return
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
@@ -380,7 +370,6 @@
 
 // attack with item - insert light (if right type), otherwise try to break the light
 /obj/machinery/light/attackby(obj/item/I, mob/user)
-
 	//Light replacer code
 	if(istype(I, /obj/item/device/lightreplacer))
 		var/obj/item/device/lightreplacer/LR = I
@@ -430,10 +419,7 @@
 		//If xenos decide they want to smash a light bulb with a toolbox, who am I to stop them? /N
 
 	else if(status != LIGHT_BROKEN && status != LIGHT_EMPTY)
-
-
 		if(prob(1+I.force * 5))
-
 			to_chat(user, "You hit the light, and it smashes!")
 			for(var/mob/M in viewers(src))
 				if(M == user)
@@ -480,7 +466,6 @@
 			if(prob(75))
 				electrocute_mob(user, get_area(src), src, rand(0.7,1))
 
-
 // returns whether this light has power
 // true if area has power and lightswitch is on
 /obj/machinery/light/proc/has_power()
@@ -510,15 +495,12 @@
 // ai attack - make lights flick_light, because why not
 
 /obj/machinery/light/attack_ai(mob/user)
-	src.flick_light(1)
-	return
+	flick_light(1)
 
 // attack with hand - remove tube/bulb
 // if hands aren't protected and the light is on, burn the player
 /obj/machinery/light/attack_hand(mob/user)
-
 	add_fingerprint(user)
-
 	if(status == LIGHT_EMPTY)
 		to_chat(user, "There is no [fitting] in this light.")
 		return
@@ -559,7 +541,6 @@
 
 	drop_light_tube(user)
 
-
 /obj/machinery/light/attack_tk(mob/user)
 	if(status == LIGHT_EMPTY)
 		to_chat(user, "There is no [fitting] in this light.")
@@ -567,7 +548,6 @@
 
 	to_chat(user, SPAN_NOTICE("You telekinetically remove the light [fitting]."))
 	drop_light_tube()
-
 
 // create a light tube/bulb item and put it in the drop location
 /obj/machinery/light/proc/drop_light_tube(mob/living/user)
@@ -581,9 +561,7 @@
 	// light item inherits the switchcount, then zero it
 	L.switchcount = switchcount
 	switchcount = 0
-
 	L.update()
-
 	status = LIGHT_EMPTY
 	set_light(0, 0)
 	update()
@@ -596,7 +574,7 @@
 
 // break the light and make sparks if was on
 
-/obj/machinery/light/proc/broken(var/skip_sound_and_sparks = 0)
+/obj/machinery/light/proc/broken(skip_sound_and_sparks = 0)
 	if(status == LIGHT_EMPTY)
 		return
 
@@ -732,24 +710,18 @@
 
 // attack bulb/tube with object
 // if a syringe, can inject plasma to make it explode
-/obj/item/light/attackby(var/obj/item/I, var/mob/user)
+/obj/item/light/attackby(obj/item/I, mob/user)
 	..()
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I
-
 		to_chat(user, "You inject the solution into [src].")
-
 		if(S.reagents.has_reagent("plasma", 5))
-
 			log_admin("LOG: [user.name] ([user.ckey]) injected a light with plasma, rigging it to explode.")
 			message_admins("LOG: [user.name] ([user.ckey]) injected a light with plasma, rigging it to explode.")
-
 			rigged = 1
-
 		S.reagents.clear_reagents()
 	else
 		..()
-	return
 
 // called after an attack with a light item
 // shatter light, unless it was an attempt to put it in a light socket
@@ -761,7 +733,6 @@
 		return
 	if(user.a_intent != I_HURT)
 		return
-
 	shatter()
 
 /obj/item/light/proc/shatter()
@@ -773,14 +744,12 @@
 		playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		update()
 
-
 /atom/proc/auto_turn_destructive()
 	//Automatically turns based on nearby walls, destroys if not found.
 	var/turf/wall/T = null
 	var/gotdir = 0
 	for(var/i = 1, i <= 8; i += i)
 		T = get_ranged_target_turf(src, i, 1)
-
 		if(istype(T))
 			//If someone knows a better way to do this, let me know. -Giacom
 			switch(i)

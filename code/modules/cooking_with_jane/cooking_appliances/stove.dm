@@ -17,20 +17,14 @@
 	var/list/switches = list(0, 0, 0, 0)
 	var/list/cooking_timestamp = list(0, 0, 0, 0) //Timestamp of when cooking initialized so we know if the prep was disturbed at any point.
 	var/list/items[4]
-
 	var/reference_time = 0 //The exact moment when we call the process routine, just to account for lag.
 	var/power_cost = 2500 //Power cost per process step for a particular burner
 	var/check_on_10 = 0
-
 	var/on_fire = FALSE //if the stove has caught fire or not.
-
 	circuit = /obj/item/electronics/circuitboard/cooking_with_jane/stove
 
 //Did not want to use this...
 /obj/machinery/cooking_with_jane/stove/Process()
-
-	//if(on_fire)
-		//Do bad things if it is on fire.
 	for(var/i=1, i<=4, i++)
 		if(switches[i])
 			handle_cooking(null, i, FALSE)
@@ -61,7 +55,7 @@
 	quality_mod = round(man_rating/2)
 
 //Process how a specific stove is interacting with material
-/obj/machinery/cooking_with_jane/stove/proc/cook_checkin(var/input)
+/obj/machinery/cooking_with_jane/stove/proc/cook_checkin(input)
 	#ifdef CWJ_DEBUG
 	log_debug("/cooking_with_jane/stove/proc/cook_checkin called on burner [input]")
 	#endif
@@ -75,7 +69,6 @@
 				spawn(CWJ_IGNITE_TIME_LOW)
 					if(cooking_timestamp[input] == old_timestamp)
 						handle_ignition(input)
-
 			if("Medium")
 				spawn(CWJ_BURN_TIME_MEDIUM)
 					if(cooking_timestamp[input] == old_timestamp)
@@ -83,7 +76,6 @@
 				spawn(CWJ_IGNITE_TIME_MEDIUM)
 					if(cooking_timestamp[input] == old_timestamp)
 						handle_ignition(input)
-
 			if("High")
 				spawn(CWJ_BURN_TIME_HIGH)
 					if(cooking_timestamp[input] == old_timestamp)
@@ -95,14 +87,12 @@
 /obj/machinery/cooking_with_jane/stove/proc/handle_burning(input)
 	if(!(items[input] && istype(items[input], /obj/item/reagent_containers/cooking_with_jane/cooking_container)))
 		return
-
 	var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = items[input]
 	container.handle_burning()
 
 /obj/machinery/cooking_with_jane/stove/proc/handle_ignition(input)
 	if(!(items[input] && istype(items[input], /obj/item/reagent_containers/cooking_with_jane/cooking_container)))
 		return
-
 	var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = items[input]
 	if(container.handle_ignition())
 		on_fire = TRUE
@@ -127,12 +117,11 @@
 	#endif
 	return input
 
-/obj/machinery/cooking_with_jane/stove/attackby(var/obj/item/used_item, var/mob/user, params)
+/obj/machinery/cooking_with_jane/stove/attackby(obj/item/used_item, mob/user, params)
 	if(default_deconstruction(used_item, user))
 		return
 
 	var/input = getInput(params)
-
 	if(items[input] != null)
 		var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = items[input]
 		container.process_item(used_item, params)
@@ -148,7 +137,7 @@
 			cooking_timestamp[input] = world.time
 	update_icon()
 
-/obj/machinery/cooking_with_jane/stove/attack_hand(mob/user as mob, params)
+/obj/machinery/cooking_with_jane/stove/attack_hand(mob/user, params)
 	var/input = getInput(params)
 	if(items[input] != null)
 		if(switches[input] == 1)
@@ -167,7 +156,7 @@
 		items[input] = null
 		update_icon()
 
-/obj/machinery/cooking_with_jane/stove/CtrlClick(var/mob/user, params)
+/obj/machinery/cooking_with_jane/stove/CtrlClick(mob/user, params)
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
 
@@ -183,18 +172,17 @@
 			handle_timer(user, input)
 
 //Switch the cooking device on or off
-/obj/machinery/cooking_with_jane/stove/CtrlShiftClick(var/mob/user, params)
+/obj/machinery/cooking_with_jane/stove/CtrlShiftClick(mob/user, params)
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
 	var/input = getInput(params)
-
 	#ifdef CWJ_DEBUG
 	log_debug("/cooking_with_jane/stove/CtrlShiftClick called on burner [input]")
 	#endif
 	handle_switch(user, input)
 
 //Empty a container without a tool
-/obj/machinery/cooking_with_jane/stove/AltClick(var/mob/user, params)
+/obj/machinery/cooking_with_jane/stove/AltClick(mob/user, params)
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
 
@@ -202,7 +190,6 @@
 	if(!(items[input] && istype(items[input], /obj/item/reagent_containers/cooking_with_jane/cooking_container)))
 		return
 	var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = items[input]
-
 	#ifdef CWJ_DEBUG
 	log_debug("/cooking_with_jane/stove/AltClick called on burner [input] [container]")
 	#endif
@@ -221,7 +208,6 @@
 			log_debug("Timerstamp no. [input] set! New timerstamp: [timerstamp[input]]")
 			#endif
 
-
 /obj/machinery/cooking_with_jane/stove/proc/handle_timer(user, input)
 	var/old_time = timer[input]? round((timer[input]/(1 SECONDS)), 1 SECONDS): 1
 	timer[input] = (input(user, "Enter a timer for burner #[input] (In Seconds, 0 Stays On)","Set Timer", old_time) as num) SECONDS
@@ -230,9 +216,8 @@
 	update_icon()
 
 //input: 1 thru 4, depends on which burner was selected
-/obj/machinery/cooking_with_jane/stove/proc/timer_act(var/mob/user, var/input)
-
-	timerstamp[input]=round(world.time)
+/obj/machinery/cooking_with_jane/stove/proc/timer_act(mob/user, input)
+	timerstamp[input] = round(world.time)
 	#ifdef CWJ_DEBUG
 	log_debug("Timerstamp no. [input] set! New timerstamp: [timerstamp[input]]")
 	#endif
@@ -243,7 +228,6 @@
 		#endif
 		if(old_timerstamp == timerstamp[input])
 			playsound(src, 'sound/items/lighter.ogg', 100, 1, 0)
-
 			handle_cooking(user, input, TRUE) //Do a check in the cooking interface
 			switches[input] = 0
 			timerstamp[input]=world.time
@@ -269,10 +253,7 @@
 			timer_act(user, input)
 	update_icon()
 
-
-
-/obj/machinery/cooking_with_jane/stove/proc/handle_cooking(var/mob/user, var/input, set_timer=FALSE)
-
+/obj/machinery/cooking_with_jane/stove/proc/handle_cooking(mob/user, input, set_timer)
 	if(!(items[input] && istype(items[input], /obj/item/reagent_containers/cooking_with_jane/cooking_container)))
 		return
 
@@ -281,7 +262,6 @@
 		reference_time = timer[input]
 	else
 		reference_time = world.time - cooking_timestamp[input]
-
 
 	#ifdef CWJ_DEBUG
 	log_debug("stove/proc/handle_cooking data:")
@@ -292,25 +272,20 @@
 	log_debug("     stove_data: [container.stove_data]")
 	#endif
 
-
 	if(container.stove_data[temperature[input]])
 		container.stove_data[temperature[input]] += reference_time
 	else
 		container.stove_data[temperature[input]] = reference_time
-
 
 	if(user && user.Adjacent(src))
 		container.process_item(src, user, send_message=TRUE)
 	else
 		container.process_item(src, user)
 
-
-
 /obj/machinery/cooking_with_jane/stove/update_icon()
 	cut_overlays()
-
 	for(var/obj/item/our_item in vis_contents)
-		src.remove_from_visible(our_item)
+		remove_from_visible(our_item)
 
 	if(panel_open)
 		icon_state="stove_open"
@@ -322,11 +297,10 @@
 		if(switches[i] == TRUE)
 			if(!stove_on)
 				stove_on = TRUE
-			add_overlay(image(src.icon, icon_state="[panel_open?"open_":""]burner_[i]"))
+			add_overlay(image(icon, icon_state="[panel_open?"open_":""]burner_[i]"))
 
 	if(stove_on)
-		add_overlay(image(src.icon, icon_state="indicator"))
-
+		add_overlay(image(icon, icon_state="indicator"))
 
 	for(var/i=1, i<=4, i++)
 		if(!(items[i]))
@@ -345,24 +319,24 @@
 			if(4)
 				our_item.pixel_x = 7
 				our_item.pixel_y = 9
-		src.add_to_visible(our_item, i)
+		add_to_visible(our_item, i)
 		if(switches[i] == 1)
-			add_overlay(image(src.icon, icon_state="steam_[i]", layer=ABOVE_OBJ_LAYER))
+			add_overlay(image(icon, icon_state="steam_[i]", layer=ABOVE_OBJ_LAYER))
 
-/obj/machinery/cooking_with_jane/stove/proc/add_to_visible(var/obj/item/our_item, input)
+/obj/machinery/cooking_with_jane/stove/proc/add_to_visible(obj/item/our_item, input)
 	our_item.vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
-	src.vis_contents += our_item
+	vis_contents += our_item
 	if(input == 2 || input == 4)
 		var/matrix/M = matrix()
 		M.Scale(-1,1)
 		our_item.transform = M
 	our_item.transform *= 0.8
 
-/obj/machinery/cooking_with_jane/stove/proc/remove_from_visible(var/obj/item/our_item, input)
+/obj/machinery/cooking_with_jane/stove/proc/remove_from_visible(obj/item/our_item, input)
 	our_item.vis_flags = 0
 	our_item.blend_mode = 0
 	our_item.transform =  null
-	src.vis_contents.Remove(our_item)
+	vis_contents.Remove(our_item)
 
 /obj/machinery/cooking_with_jane/stove/verb/toggle_burner_1()
 	set src in view(1)
@@ -507,5 +481,6 @@
 	if(!ishuman(usr) && !isrobot(usr))
 		return
 	handle_timer(usr, 4)
+
 #undef ICON_SPLIT_X
 #undef ICON_SPLIT_Y

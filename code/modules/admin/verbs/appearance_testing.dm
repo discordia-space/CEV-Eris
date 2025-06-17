@@ -18,7 +18,7 @@ var/datum/appearance_test/appearance_test = new
 	for(var/mob/living/carbon/human/H in SShumans.mob_list)
 		H.update_body()
 
-/datum/appearance_test/proc/interact(var/mob/user)
+/datum/appearance_test/proc/interact(mob/user)
 	var/list/dat = list()
 	dat += "<html><head><title>Appearance</title><body>"
 	dat += "Build body from organs sprite - <a href='?src=\ref[src];build=1'>[TOGGLE(build_body)]</a><br>"
@@ -33,10 +33,9 @@ var/datum/appearance_test/appearance_test = new
 	dat += "<br><a href='?src=\ref[src];test_cache=1'>Test cache</a>"
 	dat += " (<a href='?src=\ref[src];test_cache=1;draw_icons=1'>Output icons</a>)<br>."
 	dat += "</body></html>"
-
 	user << browse(jointext(dat, null), "window=test_sprite;size=330x220")
 
-/datum/appearance_test/proc/output_cachelist(var/mob/user, var/draw_icons = FALSE)
+/datum/appearance_test/proc/output_cachelist(mob/user, draw_icons = FALSE)
 	var/list/dat = list()
 	dat += "<html><head><title>Cache list contents</title><body>"
 	for(var/elem in human_icon_cache)
@@ -47,7 +46,6 @@ var/datum/appearance_test/appearance_test = new
 			user << browse_rsc(c_icon, "[elem].png")
 			dat += "<img src = \"[elem].png\"><br>"
 	dat += "</body></html>"
-
 	user << browse(jointext(dat, null), "window=cache_list;size=1270x770")
 
 /datum/appearance_test/proc/Log(string)
@@ -56,7 +54,7 @@ var/datum/appearance_test/appearance_test = new
 		if(log_sprite_gen_to_world)
 			to_chat(world, string)
 
-/datum/appearance_test/proc/show_log(var/mob/user)
+/datum/appearance_test/proc/show_log(mob/user)
 	user << browse(cache_generation_log, "window=cache_log;size=1270x770")
 
 /client/proc/debug_human_sprite()

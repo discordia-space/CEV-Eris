@@ -47,14 +47,12 @@
 		else
 			linked.decelerate()
 
-		return
-
-/obj/machinery/computer/helm/relaymove(var/mob/user, direction)
+/obj/machinery/computer/helm/relaymove(mob/user, direction)
 	if(manual_control && linked)
 		linked.relaymove(user,direction)
 		return 1
 
-/obj/machinery/computer/helm/check_eye(var/mob/user as mob)
+/obj/machinery/computer/helm/check_eye(mob/user)
 	if(isAI(user))
 		user.unset_machine()
 		if(!manual_control)
@@ -85,16 +83,14 @@
 
 	nano_ui_interact(user)
 
-/obj/machinery/computer/helm/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/helm/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS)
 	if(!linked)
 		to_chat(user, SPAN_WARNING("Unable to connect to ship control systems."))
 		return
 
 	var/data[0]
-
 	var/turf/T = get_turf(linked)
 	var/obj/effect/overmap/sector/current_sector = locate() in T
-
 	data["sector"] = current_sector ? current_sector.name : "Deep Space"
 	data["sector_info"] = current_sector ? current_sector.desc : "Not Available"
 	data["s_x"] = linked.x
@@ -128,7 +124,6 @@
 		locations.Add(list(rdata))
 
 	data["locations"] = locations
-
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "helm.tmpl", "[linked.name] Helm Control", 380, 530)
@@ -229,7 +224,6 @@
 
 	updateUsrDialog()
 
-
 /obj/machinery/computer/navigation
 	name = "navigation console"
 	circuit = /obj/item/electronics/circuitboard/nav
@@ -238,17 +232,14 @@
 	icon_keyboard = "generic_key"
 	icon_screen = "helm"
 
-/obj/machinery/computer/navigation/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/navigation/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS)
 	if(!linked)
 		to_chat(user, SPAN_WARNING("Unable to connect to ship control systems."))
 		return
 
 	var/data[0]
-
-
 	var/turf/T = get_turf(linked)
 	var/obj/effect/overmap/sector/current_sector = locate() in T
-
 	data["sector"] = current_sector ? current_sector.name : "Deep Space"
 	data["sector_info"] = current_sector ? current_sector.desc : "Not Available"
 	data["s_x"] = linked.x

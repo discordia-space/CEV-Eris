@@ -16,7 +16,6 @@
 	brainmob.stat = 0
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
-	return
 
 /obj/item/device/mmi
 	name = "man-machine interface"
@@ -28,16 +27,13 @@
 	origin_tech = list(TECH_BIO = 3)
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 3)
 	req_access = list(access_robotics)
-
 	//Revised. Brainmob is now contained directly within object of transfer. MMI in this case.
-
 	var/locked = 0
 	var/mob/living/carbon/brain/brainmob = null//The current occupant.
 	var/obj/item/organ/internal/vital/brain/brainobj = null	//The current brain organ.
 
-/obj/item/device/mmi/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/device/mmi/attackby(var/obj/item/O, mob/user)
 	if(istype(O,/obj/item/organ/internal/vital/brain) && !brainmob) //Time to stick a brain in it --NEO
-
 		var/obj/item/organ/internal/vital/brain/B = O
 		if(B.health <= 0)
 			to_chat(user, "\red That brain is well and truly dead.")
@@ -64,18 +60,12 @@
 		brainmob.stat = 0
 		GLOB.dead_mob_list -= brainmob//Update dem lists
 		GLOB.living_mob_list += brainmob
-
 		user.drop_item()
 		brainobj = O
 		brainobj.loc = src
-
 		name = "Man-Machine Interface: [brainmob.real_name]"
 		icon_state = "mmi_full"
-
 		locked = 1
-
-
-
 		return
 
 	if((istype(O,/obj/item/card/id)||istype(O,/obj/item/modular_computer/pda)) && brainmob)
@@ -90,8 +80,8 @@
 		return
 	..()
 
-	//TODO: ORGAN REMOVAL UPDATE. Make the brain remain in the MMI so it doesn't lose organ data.
-/obj/item/device/mmi/attack_self(mob/user as mob)
+//TODO: ORGAN REMOVAL UPDATE. Make the brain remain in the MMI so it doesn't lose organ data.
+/obj/item/device/mmi/attack_self(mob/user)
 	if(!brainmob)
 		to_chat(user, "\red You upend the MMI, but there's nothing in it.")
 	else if(locked)
@@ -114,7 +104,7 @@
 		icon_state = "mmi_empty"
 		name = "Man-Machine Interface"
 
-/obj/item/device/mmi/proc/transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
+/obj/item/device/mmi/proc/transfer_identity(mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
@@ -122,13 +112,11 @@
 	brainmob.dna_trace = H.dna_trace
 	brainmob.fingers_trace = H.fingers_trace
 	brainmob.container = src
-
 	name = "Man-Machine Interface: [brainmob.real_name]"
 	icon_state = "mmi_full"
 	locked = 1
-	return
 
-/obj/item/device/mmi/relaymove(var/mob/user, var/direction)
+/obj/item/device/mmi/relaymove(mob/user, direction)
 	if(user.stat || user.stunned)
 		return
 	var/obj/item/rig/rig = src.get_rig()
@@ -148,8 +136,7 @@
 	name = "radio-enabled man-machine interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
 	origin_tech = list(TECH_BIO = 4)
-
-	var/obj/item/device/radio/radio = null//Let's give it a radio.
+	var/obj/item/device/radio/radio
 
 /obj/item/device/mmi/radio_enabled/New()
 	. = ..()

@@ -8,21 +8,18 @@
 /obj/machinery/drone_fabricator
 	name = "drone fabricator"
 	desc = "A large automated factory for producing maintenance drones."
-
+	icon = 'icons/obj/machines/drone_fab.dmi'
+	icon_state = "drone_fab_idle"
 	density = TRUE
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	active_power_usage = 5000
-
 	var/fabricator_tag = "Eris"
 	var/drone_progress = 0
 	var/produce_drones = 1
 	var/time_last_drone = 500
 	var/drone_type = /mob/living/silicon/robot/drone
-
-	icon = 'icons/obj/machines/drone_fab.dmi'
-	icon_state = "drone_fab_idle"
 
 /obj/machinery/drone_fabricator/New()
 	..()
@@ -33,7 +30,6 @@
 		icon_state = "drone_fab_nopower"
 
 /obj/machinery/drone_fabricator/Process()
-
 	if(SSticker.current_state < GAME_STATE_PLAYING)
 		return
 
@@ -57,8 +53,7 @@
 		extra_description += "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
 	..(user, extra_description)
 
-/obj/machinery/drone_fabricator/proc/create_drone(var/client/player, var/aibound = FALSE)
-
+/obj/machinery/drone_fabricator/proc/create_drone(client/player, aibound = FALSE)
 	if(stat & NOPOWER)
 		return
 
@@ -99,8 +94,7 @@
 	set desc = "If there is a powered, enabled fabricator in the game world with a prepared chassis, join as a maintenance drone."
 	try_drone_spawn(src)
 
-/proc/try_drone_spawn(var/mob/user, var/obj/machinery/drone_fabricator/fabricator, var/aibound = FALSE)
-
+/proc/try_drone_spawn(mob/user, obj/machinery/drone_fabricator/fabricator, aibound = FALSE)
 	if(SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(user, SPAN_DANGER("The game hasn't started yet!"))
 		return
@@ -137,4 +131,3 @@
 		fabricator.create_drone(user.client, aibound)
 		fabricator.use_power(fabricator.active_power_usage)
 		return 1
-	return

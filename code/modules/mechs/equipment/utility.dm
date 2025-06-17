@@ -8,7 +8,6 @@
 	var/carrying_capacity = 5
 	var/list/obj/carrying = list()
 
-
 /obj/item/mech_equipment/clamp/resolve_attackby(atom/A, mob/user, click_params)
 	if(isturf(A))
 		var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in owner
@@ -18,7 +17,6 @@
 	if(istype(A, /obj/structure/closet) || istype(A, /obj/item/storage) || istype(A, /obj/structure/scrap_cube) && owner)
 		return FALSE
 	. = ..()
-
 
 /obj/item/mech_equipment/clamp/afterattack(atom/target, mob/living/user, inrange, params)
 	if(!inrange) return
@@ -84,8 +82,7 @@
 					to_chat(user, "You push [target] out of the way.")
 					owner.visible_message("[owner] pushes [target] out of the way.")
 
-
-/obj/item/mech_equipment/clamp/attack_self(var/mob/user)
+/obj/item/mech_equipment/clamp/attack_self(mob/user)
 	. = ..()
 	if(.)
 		drop_carrying(user, TRUE)
@@ -96,7 +93,7 @@
 	else
 		..()
 
-/obj/item/mech_equipment/clamp/proc/drop_carrying(var/mob/user, var/choose_object)
+/obj/item/mech_equipment/clamp/proc/drop_carrying(mob/user, choose_object)
 	if(!length(carrying))
 		to_chat(user, SPAN_WARNING("You are not carrying anything in \the [src]."))
 		return
@@ -104,12 +101,7 @@
 	if(choose_object)
 		chosen_obj = input(user, "Choose an object to set down.", "Clamp Claw") as null|anything in carrying
 	if(!chosen_obj)
-		return/*
-	if(chosen_obj.density)
-		for(var/atom/A in get_turf(src))
-			if(A != owner && A.density && !(A.atom_flags & ATOM_FLAG_CHECKS_BORDER))
-				to_chat(user, SPAN_WARNING("\The [A] blocks you from putting down \the [chosen_obj]."))
-				return */
+		return
 
 	owner.visible_message(SPAN_NOTICE("\The [owner] unloads \the [chosen_obj]."))
 	playsound(src, 'sound/mechs/hydraulic.ogg', 50, 1)
@@ -119,7 +111,6 @@
 /obj/item/mech_equipment/clamp/get_hardpoint_status_value()
 	if(length(carrying) > 1)
 		return length(carrying)/carrying_capacity
-	return null
 
 /obj/item/mech_equipment/clamp/get_hardpoint_maptext()
 	if(length(carrying) == 1)
@@ -153,14 +144,13 @@
 	icon_state = "mech_floodlight"
 	item_state = "mech_floodlight"
 	restricted_hardpoints = list(HARDPOINT_HEAD, HARDPOINT_RIGHT_SHOULDER, HARDPOINT_LEFT_SHOULDER)
-
 	var/on = FALSE
 	var/l_max_bright = 1.2
 	var/l_inner_range = 1
 	var/l_outer_range = 9
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 
-/obj/item/mech_equipment/light/attack_self(var/mob/user)
+/obj/item/mech_equipment/light/attack_self(mob/user)
 	. = ..()
 	if(.)
 		on = !on
@@ -245,19 +235,16 @@
 	else string += "Push"
 	return string
 
-
-/obj/item/mech_equipment/catapult/attack_self(var/mob/user)
+/obj/item/mech_equipment/catapult/attack_self(mob/user)
 	. = ..()
 	if(.)
 		mode = mode == CATAPULT_SINGLE ? CATAPULT_AREA : CATAPULT_SINGLE
 		to_chat(user, SPAN_NOTICE("You set \the [src] to [mode == CATAPULT_SINGLE ? "single" : "multi"]-target mode."))
 		update_icon()
 
-
-/obj/item/mech_equipment/catapult/afterattack(var/atom/target, var/mob/living/user, var/inrange, var/params)
+/obj/item/mech_equipment/catapult/afterattack(atom/target, mob/living/user, inrange, params)
 	. = ..()
 	if(.)
-
 		switch(mode)
 			if(CATAPULT_SINGLE)
 				if(!locked)
@@ -299,11 +286,8 @@
 				if(istype(C))
 					C.use(active_power_use * CELLRATE * 2) //bit more expensive to throw all
 
-
-
 #undef CATAPULT_SINGLE
 #undef CATAPULT_AREA
-
 
 /obj/item/material/drill_head
 	var/durability = 0
@@ -312,26 +296,20 @@
 	icon_state = "exodrillhead"
 	default_material = MATERIAL_STEEL
 
-/obj/item/material/drill_head/Initialize()
-	. = ..()
-
-	//durability = 3 * (material ? material.integrity : 1)
-
-/obj/item/material/drill_head/Created(var/creator)
+/obj/item/material/drill_head/Created(creator)
 	ApplyDurability()
 
-/obj/item/material/drill_head/steel/New(var/newloc)
+/obj/item/material/drill_head/steel/New(newloc)
 	..(newloc,MATERIAL_STEEL)
 	ApplyDurability()
 
-/obj/item/material/drill_head/plasteel/New(var/newloc)
+/obj/item/material/drill_head/plasteel/New(newloc)
 	..(newloc,MATERIAL_PLASTEEL)
 	ApplyDurability()
 
-/obj/item/material/drill_head/diamond/New(var/newloc)
+/obj/item/material/drill_head/diamond/New(newloc)
 	..(newloc,MATERIAL_DIAMOND)
 	ApplyDurability()
-
 
 /obj/item/material/drill_head/verb/ApplyDurability()
 	durability = 3 * (material ? material.integrity : 1)
@@ -354,13 +332,12 @@
 	drill_head = new /obj/item/material/drill_head(src, "steel")//You start with a basic steel head
 	drill_head.ApplyDurability()
 
-/obj/item/mech_equipment/drill/attack_self(var/mob/user)
+/obj/item/mech_equipment/drill/attack_self(mob/user)
 	. = ..()
 	if(.)
 		if(drill_head)
 			owner.visible_message(SPAN_WARNING("[owner] revs the [drill_head], menancingly."))
 			playsound(src, 'sound/weapons/circsawhit.ogg', 50, 1)
-
 
 /obj/item/mech_equipment/drill/afterattack(atom/target, mob/living/user, adjacent, params)
 	. = ..()
@@ -426,7 +403,6 @@
 	//Funny event where the drill just keeps drilling into space if you let it keep going; also to prevent infinite loop with base turfs
 	if(isturf(target) && (istype(target, /turf/space) || istype(target, /turf/open) || get_base_turf_by_area(target) == target))
 		return FALSE
-
 	return TRUE
 
 /obj/item/mech_equipment/drill/proc/mine(atom/target, mob/living/user, adjacent)
@@ -436,7 +412,6 @@
 	for(var/turf/mineral/rock in range(1, get_turf(src)))
 		rock.GetDrilled()
 		drill_head.durability -= 1
-
 	gather_ores(target, user)
 
 /obj/item/mech_equipment/drill/proc/use_drill(atom/target, user, adjacent, show_message)
@@ -482,7 +457,6 @@
 		drill_head.shatter()
 		drill_head = null
 		return FALSE
-
 	return TRUE
 
 ///Call to scoop up any ores in front of the mech
@@ -550,7 +524,6 @@
 		var/obj/item/cell/batt = owner.get_cell(TRUE)
 		if(batt && batt != internal_cell)
 			batt.give(internal_cell.use(batt.maxcharge - batt.charge))
-
 	return ungiven_power
 
 /obj/item/mech_equipment/power_generator/fueled
@@ -693,7 +666,6 @@
 	create_reagents(200)
 	chamberReagent = new(1, src)
 
-
 /obj/item/mech_equipment/power_generator/fueled/welding/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	/// Only needed when we attack from outside
@@ -710,7 +682,6 @@
 		return FALSE
 	else
 		to_chat(user, SPAN_NOTICE("You need to be on GRAB intent to drain from \the [src]."))
-
 
 /obj/item/mech_equipment/power_generator/fueled/welding/pretick()
 	// dont run if we aren't on
@@ -909,7 +880,6 @@
 		QDEL_NULL(platform)
 	. = ..()
 
-
 /obj/item/mech_equipment/forklifting_system/proc/ejectLifting(atom/target)
 	currentlyLifting.forceMove(target)
 	currentlyLifting.transform = null
@@ -944,7 +914,6 @@
 		ejectLifting(get_turf(owner))
 	. = ..()
 
-
 /obj/structure/forklift_platform
 	layer = TURF_LAYER + 0.5
 	icon = MECH_EQUIPMENT_ICON
@@ -954,7 +923,7 @@
 	density = FALSE
 	anchored = TRUE
 	health = 200
-	var/obj/item/mech_equipment/forklifting_system/master = null
+	var/obj/item/mech_equipment/forklifting_system/master
 
 /obj/structure/forklift_platform/Destroy()
 	if(master)
@@ -973,7 +942,6 @@
 		if(isstructure(mover))
 			return TRUE
 	return FALSE
-
 
 /obj/item/mech_equipment/forklifting_system/update_icon()
 	. = ..()
@@ -1102,10 +1070,3 @@
 			if(do_after(user, 2 SECONDS, target))
 				startLifting(target)
 			update_icon()
-
-
-
-
-
-
-

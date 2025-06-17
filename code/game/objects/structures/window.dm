@@ -19,15 +19,12 @@
 	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
 	var/silicate = 0 // number of units of silicate
 	var/no_color = FALSE //If true, don't apply a color to the base
-
 	atmos_canpass = CANPASS_PROC
 
-/obj/structure/window/get_fall_damage(var/turf/from, var/turf/dest)
+/obj/structure/window/get_fall_damage(turf/from, turf/dest)
 	var/damage = health * 0.4 * get_health_ratio()
-
 	if(from && dest)
 		damage *= abs(from.z - dest.z)
-
 	return damage
 
 /obj/structure/window/examine(mob/user, extra_description = "")
@@ -60,12 +57,10 @@
 	. *= explosion_coverage
 	damage = damage * (1 - silicate / 200) // up to 50% damage resistance
 	damage -= resistance // then flat resistance from material
-
 	if(damage <= 0)
 		return 0
 
 	health -= damage
-
 	if(health <= 0)
 		if(health < -100)
 			shatter(FALSE, TRUE)
@@ -79,9 +74,8 @@
 			visible_message("[src] looks seriously damaged!" )
 		else if(health < maxHealth * 3/4 && initialhealth >= maxHealth * 3/4)
 			visible_message("Cracks begin to appear in [src]!" )
-	return
 
-/obj/structure/window/proc/apply_silicate(var/amount)
+/obj/structure/window/proc/apply_silicate(amount)
 	if(health < maxHealth) // Mend the damage
 		health = min(health + amount * 3, maxHealth)
 		if(health == maxHealth)
@@ -96,13 +90,13 @@
 	if(overlays)
 		overlays.Cut()
 
-	var/image/img = image(src.icon, src.icon_state)
+	var/image/img = image(icon, icon_state)
 	img.color = "#ffffff"
 	img.alpha = silicate * 255 / 100
 	overlays += img
 
 //Setting the explode var makes the shattering louder and more violent, possibly injuring surrounding mobs
-/obj/structure/window/proc/shatter(var/display_message = 1, var/explode = FALSE)
+/obj/structure/window/proc/shatter(display_message = 1, explode = FALSE)
 	alpha = 0
 	if(explode)
 		playsound(src, "shatter", 100, 1, 5,5)
@@ -135,11 +129,8 @@
 		if(reinf)
 			new /obj/item/stack/rods(loc)
 	qdel(src)
-	return
 
-
-/obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
-
+/obj/structure/window/bullet_act(obj/item/projectile/Proj)
 	if(config.z_level_shooting && Proj.height)
 		if(Proj.height == HEIGHT_LOW)// Bullet is too low
 			return TRUE
@@ -156,9 +147,7 @@
 		if(proj_damage)
 			hit(proj_damage)
 		..()
-
 	return TRUE
-
 
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
@@ -176,14 +165,12 @@
 	else
 		return 1
 
-
 /obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(O.loc, target) == dir)
 		return !density
 	return 1
-
 
 /obj/structure/window/hitby(AM as mob|obj)
 	..()
@@ -203,14 +190,13 @@
 		step(src, get_dir(AM, src))
 	mount_check()
 
-/obj/structure/window/attack_tk(mob/user as mob)
+/obj/structure/window/attack_tk(mob/user)
 	user.visible_message(SPAN_NOTICE("Something knocks on [src]."))
 	playsound(loc, 'sound/effects/Glasshit.ogg', 50, 1)
 
-/obj/structure/window/attack_hand(mob/user as mob)
+/obj/structure/window/attack_hand(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(user.a_intent == I_HURT)
-
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.species.can_shred(H))
@@ -226,9 +212,8 @@
 		user.visible_message("[user.name] knocks on the [src.name].",
 							"You knock on the [src.name].",
 							"You hear a knocking sound.")
-	return
 
-/obj/structure/window/attack_generic(var/mob/user, var/damage)
+/obj/structure/window/attack_generic(mob/user, damage)
 	if(istype(user))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
@@ -291,8 +276,7 @@
 	admin_attack_log(user, target,
 		"Smashed [key_name(target)] against \the [src]",
 		"Smashed against \the [src] by [key_name(user)]",
-		"smashed [key_name(target)] against \the [src]."
-	)
+		"smashed [key_name(target)] against \the [src].")
 	end_grab_onto(user, target)
 	return TRUE
 
@@ -329,7 +313,8 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		M.damage_through_armor(5, BRUTE, body_part, ARMOR_MELEE) // just a scratch
 		tforce *= 2
 
-	if(reinf) tforce *= 0.25
+	if(reinf)
+		tforce *= 0.25
 	if(hit(tforce) && health <= 7 && !reinf)
 		set_anchored(FALSE)
 		step(src, direction)
@@ -338,7 +323,6 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	mount_check()
 
 /obj/structure/window/attackby(obj/item/I, mob/user)
-
 	var/list/usable_qualities = list()
 	if(!anchored && (!state || !reinf))
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
@@ -402,9 +386,10 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 			if(ABORT_CHECK)
 				return
 
-	if(!istype(I)) return//I really wish I did not need this
-	if(I.flags & NOBLUDGEON) return
-
+	if(!istype(I))
+		return//I really wish I did not need this
+	if(I.flags & NOBLUDGEON)
+		return
 	else
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if(I.damtype == BRUTE || I.damtype == BURN)
@@ -416,14 +401,12 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		else
 			playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		..()
-	return
 
 /obj/structure/window/proc/hit(damage, sound_effect = TRUE, ignore_resistance = FALSE)
 	damage = take_damage(damage, TRUE, ignore_resistance)
 	if(sound_effect && loc) // If the window was shattered and, thus, nullspaced, don't try to play hit sound
 		playsound(loc, 'sound/effects/glasshit.ogg', damage*4.5, 1, damage*0.6, damage*0.6) //The harder the hit, the louder and farther travelling the sound
 	return damage
-
 
 /obj/structure/window/proc/rotate()
 	set name = "Rotate Window Counter-Clockwise"
@@ -432,17 +415,13 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 
 	if(usr.incapacitated())
 		return 0
-
 	if(anchored)
 		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
-
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
 	set_dir(turn(dir, 90))
 	updateSilicate()
 	update_nearby_tiles(need_rebuild=1)
-	return
-
 
 /obj/structure/window/proc/revrotate()
 	set name = "Rotate Window Clockwise"
@@ -451,35 +430,27 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 
 	if(usr.incapacitated())
 		return 0
-
 	if(anchored)
 		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
-
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
 	set_dir(turn(dir, 270))
 	updateSilicate()
 	update_nearby_tiles(need_rebuild=1)
-	return
 
-/obj/structure/window/New(Loc, start_dir=null)
+/obj/structure/window/New(Loc, start_dir)
 	..()
-
 	//player-constructed windows
-
 	if(start_dir)
 		set_dir(start_dir)
 
 	health = maxHealth
-
 	ini_dir = dir
-
 	update_nearby_tiles(need_rebuild=1)
 	update_nearby_icons()
 
 /obj/structure/window/Created()
 	set_anchored(FALSE)
-
 
 /obj/structure/window/Destroy()
 	density = FALSE
@@ -491,7 +462,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	loc = location
 	. = ..()
 
-/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	var/ini_dir = dir
 	update_nearby_tiles(need_rebuild=1)
 	. = ..()
@@ -538,7 +509,6 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 /obj/structure/window/plasmabasic
 	name = "plasma window"
 	desc = "A borosilicate alloy window. It seems to be quite strong."
-
 	icon_state = "plasmawindow"
 	shardtype = /obj/item/material/shard/plasma
 	glasstype = /obj/item/stack/material/glass/plasmaglass
@@ -546,7 +516,6 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	damage_per_fire_tick = 1.5 // Lowest per-tick damage so overheated supermatter chambers have some time to respond to it. Will still shatter before a delam.
 	maxHealth = 150
 	resistance = RESISTANCE_AVERAGE
-
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -556,13 +525,11 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	maximal_heat = T0C + 750	// Fused quartz.
 	damage_per_fire_tick = 2
 	glasstype = /obj/item/stack/material/glass/reinforced
-
 	maxHealth = 50
 	resistance = RESISTANCE_FRAGILE
 
 /obj/structure/window/New(Loc, constructed=0)
 	..()
-
 	//player-constructed windows
 	if(constructed)
 		state = 0
@@ -633,11 +600,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	if(!A.has_gravity)
 		//No gravity, cant fall here
 		return
-
-
-	//We're good, lets do this
 	shatterfall()
-
 
 //Used when the window finds itself no longer on a tile. For example if someone drags it out of the wall
 //The window will do a litle animation of falling to the floor, giving them a brief moment to regret their mistake

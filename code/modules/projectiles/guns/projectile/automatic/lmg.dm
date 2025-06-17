@@ -50,21 +50,21 @@
 	update_icon()
 	update_held_icon()
 
-/obj/item/gun/projectile/automatic/lmg/attack_self(mob/user as mob)
+/obj/item/gun/projectile/automatic/lmg/attack_self(mob/user)
 	if(cover_open)
 		toggle_cover(user) //close the cover
 		playsound(loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, 1)
 	else
 		return ..() //once closed, behave like normal
 
-/obj/item/gun/projectile/automatic/lmg/attack_hand(mob/user as mob)
+/obj/item/gun/projectile/automatic/lmg/attack_hand(mob/user)
 	if(!cover_open && user.get_inactive_hand() == src)
 		toggle_cover(user) //open the cover
 		playsound(loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, 1)
 	else
 		return ..() //once open, behave like normal
 
-/obj/item/gun/projectile/automatic/lmg/equipped(var/mob/user, var/slot)
+/obj/item/gun/projectile/automatic/lmg/equipped(mob/user, slot)
 	.=..()
 	update_icon()
 
@@ -74,13 +74,13 @@
 	wielded_item_state = "_doble_[cover_open ? "open" : ""][ammo_magazine ? "mag" : ""]"
 	update_wear_icon()
 
-/obj/item/gun/projectile/automatic/lmg/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/automatic/lmg/load_ammo(obj/item/A, mob/user)
 	if(!cover_open)
 		to_chat(user, SPAN_WARNING("You need to open the cover to load [src]."))
 		return
 	..()
 
-/obj/item/gun/projectile/automatic/lmg/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/automatic/lmg/unload_ammo(mob/user, allow_dump=1)
 	if(!cover_open)
 		to_chat(user, SPAN_WARNING("You need to open the cover to unload [src]."))
 		return
@@ -112,7 +112,6 @@
 	set_item_state(ammo_magazine ? null : "-empty")
 	update_wear_icon()
 
-
 /obj/item/gun/projectile/automatic/lmg/tk
 	name = "FS LMG .25 CS Takeshi"
 	desc = "The \"Takeshi LMG\" is FS's answer to PMC's needs for mass supression and meat grinding, a fine oiled machine of war and death."
@@ -125,7 +124,6 @@
 	init_recoil = LMG_RECOIL(1)
 	damage_multiplier = 1.2
 	penetration_multiplier = -0.1
-
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/machinegun = 1, /obj/item/part/gun/modular/barrel/clrifle = 1)
 	serial_type = "FS"

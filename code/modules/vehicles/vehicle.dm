@@ -12,7 +12,6 @@
 	anchored = TRUE
 	animate_movement=1
 	light_range = 3
-
 	can_buckle = TRUE
 	buckle_movable = 1
 	buckle_lying = 0
@@ -29,7 +28,6 @@
 	var/emagged = 0
 	var/powered = 0		//set if vehicle is powered and should use fuel when moving
 	var/move_delay = 1	//set this to limit the speed of the vehicle
-
 	var/passenger_allowed = 1
 
 	var/obj/item/cell/large/cell
@@ -48,7 +46,7 @@
 	..()
 	//spawn the cell you want in each vehicle
 
-/obj/vehicle/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/vehicle/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	if(world.time > l_move_time + move_delay)
 		var/old_loc = get_turf(src)
 		if(on && powered && cell.charge < charge_use)
@@ -71,23 +69,19 @@
 		if(load && !istype(load, /datum/vehicle_dummy_load))
 			load.forceMove(loc, glide_size_override=DELAY2GLIDESIZE(move_delay))
 			load.set_dir(dir)
-
 		return 1
 	else
 		return 0
 
 /obj/vehicle/attackby(obj/item/I, mob/user)
-
 	var/list/usable_qualities = list(QUALITY_PRYING, QUALITY_SCREW_DRIVING)
 	if(open)
 		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 	if(open && health < maxhealth)
 		usable_qualities.Add(QUALITY_WELDING)
 
-
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
-
 		if(QUALITY_PRYING)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 				remove_cell(user)
@@ -140,7 +134,7 @@
 	else
 		..()
 
-/obj/vehicle/bullet_act(var/obj/item/projectile/Proj)
+/obj/vehicle/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	..()
 	healthcheck()
@@ -154,9 +148,7 @@
 /obj/vehicle/emp_act(severity)
 	var/was_on = on
 	stat |= EMPED
-
 	new /obj/effect/overlay/pulse(loc)
-
 	if(on)
 		turn_off()
 	spawn(severity*300)
@@ -164,7 +156,7 @@
 		if(was_on)
 			turn_on()
 
-/obj/vehicle/attack_ai(mob/user as mob)
+/obj/vehicle/attack_ai(mob/user)
 	return
 
 // For downstream compatibility (in particular Paradise)
@@ -189,7 +181,7 @@
 	set_light(0)
 	update_icon()
 
-/obj/vehicle/emag_act(var/remaining_charges, mob/user as mob)
+/obj/vehicle/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		emagged = 1
 		if(locked)
@@ -205,7 +197,6 @@
 		new /obj/item/stack/rods(Tsec)
 
 	new /obj/item/stack/cable_coil/cut(Tsec)
-
 	if(cell)
 		cell.forceMove(Tsec)
 		cell.update_icon()
@@ -217,10 +208,8 @@
 		M.apply_effects(5, 5)
 
 	unload()
-
 	new /obj/effect/gibspawner/robot(Tsec)
 	new /obj/effect/decal/cleanable/blood/oil(src.loc)
-
 	qdel(src)
 
 /obj/vehicle/proc/healthcheck()
@@ -243,7 +232,7 @@
 		turn_on()
 		return
 
-/obj/vehicle/proc/insert_cell(var/obj/item/cell/large/C, var/mob/living/carbon/human/H)
+/obj/vehicle/proc/insert_cell(obj/item/cell/large/C, mob/living/carbon/human/H)
 	if(cell)
 		return
 	if(!istype(C))
@@ -251,11 +240,11 @@
 
 	H.drop_from_inventory(C)
 	C.forceMove(src)
-	src.cell = C
+	cell = C
 	powercheck()
 	to_chat(usr, SPAN_NOTICE("You install [C] in [src]."))
 
-/obj/vehicle/proc/remove_cell(var/mob/living/carbon/human/H)
+/obj/vehicle/proc/remove_cell(mob/living/carbon/human/H)
 	if(!cell)
 		return
 
@@ -265,7 +254,7 @@
 	cell = null
 	powercheck()
 
-/obj/vehicle/proc/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/proc/RunOver(mob/living/carbon/human/H)
 	return		//write specifics for different vehicles
 
 //-------------------------------------------
@@ -275,7 +264,7 @@
 // the vehicle load() definition before
 // calling this parent proc.
 //-------------------------------------------
-/obj/vehicle/proc/load(var/atom/movable/C)
+/obj/vehicle/proc/load(atom/movable/C)
 	//This loads objects onto the vehicle so they can still be interacted with.
 	//Define allowed items for loading in specific vehicle definitions.
 	if(!isturf(C.loc)) //To prevent loading things from someone's inventory, which wouldn't get handled properly.
@@ -308,12 +297,11 @@
 	return 1
 
 
-/obj/vehicle/proc/unload(var/mob/user, var/direction)
+/obj/vehicle/proc/unload(mob/user, direction)
 	if(!load)
 		return
 
 	var/turf/dest = null
-
 	//find a turf to unload to
 	if(direction)	//if direction specified, unload in that direction
 		dest = get_step(src, direction)
@@ -349,9 +337,7 @@
 		unbuckle_mob(load)
 
 	load = null
-
 	return 1
-
 
 //-------------------------------------------------------
 // Stat update procs
@@ -359,7 +345,7 @@
 /obj/vehicle/proc/update_stats()
 	return
 
-/obj/vehicle/attack_generic(var/mob/user, var/damage, var/attack_message)
+/obj/vehicle/attack_generic(mob/user, damage, attack_message)
 	if(!damage)
 		return
 	visible_message(SPAN_DANGER("\The [user] [attack_message] the \the [src]!"))

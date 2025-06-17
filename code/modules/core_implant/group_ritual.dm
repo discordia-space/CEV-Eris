@@ -4,7 +4,6 @@
 	phrase = null
 	power = 0
 	category = "Group"
-
 	cooldown = TRUE
 	cooldown_time = 1 SECONDS
 	cooldown_category = "group"
@@ -38,11 +37,11 @@
 		qdel(GR)
 		return FALSE
 
-/datum/ritual/group/proc/get_group_say_phrase(var/ind)
+/datum/ritual/group/proc/get_group_say_phrase(ind)
 	return phrases[ind]
 
 //returns phrase to display in bible
-/datum/ritual/group/proc/get_group_display_phrase(var/ind)
+/datum/ritual/group/proc/get_group_display_phrase(ind)
 	return phrases[ind]
 
 /datum/ritual/group/get_say_phrase()
@@ -51,8 +50,6 @@
 //returns phrase to display in bible
 /datum/ritual/group/get_display_phrase()
 	return ""
-
-/////////////////////////////////
 
 /datum/core_module/group_ritual
 	implant_type = /obj/item/implant/core_implant
@@ -70,15 +67,13 @@
 /datum/core_module/group_ritual/can_install()
 	if(!effect)
 		return FALSE
-
 	return TRUE
 
 /datum/core_module/group_ritual/uninstall()
 	if(!effect)
 		return
 
-
-/datum/core_module/group_ritual/proc/hear(var/mob/user, var/phrase)
+/datum/core_module/group_ritual/proc/hear(mob/user, phrase)
 	if(!(locate(implant_type) in user))
 		return
 
@@ -104,7 +99,6 @@
 			else
 				participants.Remove(user)
 
-
 /datum/core_module/group_ritual/proc/next_phrase()
 	phrases = phrases.Copy(2)
 	first = FALSE
@@ -112,43 +106,37 @@
 	correct_participants = list()
 	to_chat(implant.wearer, SPAN_NOTICE("There is [participants.len] followers continuing the ritual."))
 
-
-////////////////////////
-
 /datum/group_ritual_effect
 	var/succ_message = ""
 	var/fail_message = ""
-
 	var/starter_succ_message = null
 	var/starter_fail_message = null
 
-/datum/group_ritual_effect/proc/trigger_success(var/mob/starter, var/list/participants)
+/datum/group_ritual_effect/proc/trigger_success(mob/starter, list/participants)
 	if(!starter_succ_message)
 		starter_succ_message = succ_message
 
 	to_chat(starter, starter_succ_message)
 	success(starter, participants.len)
 	SEND_SIGNAL_OLD(starter, COMSIG_GROUP_RITUAL)
-
 	for(var/mob/affected in participants)
 		to_chat(affected, succ_message)
 		success(affected, participants.len)
 		SEND_SIGNAL_OLD(affected, COMSIG_GROUP_RITUAL)
 	GLOB.grup_ritual_performed++
 
-/datum/group_ritual_effect/proc/success(var/mob/affected, var/part_len)
+/datum/group_ritual_effect/proc/success(mob/affected, part_len)
 	return
 
-/datum/group_ritual_effect/proc/trigger_fail(var/mob/starter, var/list/participants)
+/datum/group_ritual_effect/proc/trigger_fail(mob/starter, list/participants)
 	if(!starter_fail_message)
 		starter_fail_message = fail_message
 
 	to_chat(starter, starter_fail_message)
 	fail(starter, participants.len)
-
 	for(var/mob/affected in participants)
 		to_chat(affected, fail_message)
 		fail(affected, participants.len)
 
-/datum/group_ritual_effect/proc/fail(var/mob/affected, var/part_len)
+/datum/group_ritual_effect/proc/fail(mob/affected, part_len)
 	return

@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	damage_smoke = TRUE
 
 
-/obj/machinery/door/airlock/attack_generic(var/mob/user, var/damage)
+/obj/machinery/door/airlock/attack_generic(mob/user, damage)
 	if(stat & (BROKEN|NOPOWER))
 		if(damage >= 10)
 			if(src.density)
@@ -422,7 +422,7 @@ There are 9 wires.
 		return 1
 	return 0
 
-/obj/machinery/door/airlock/proc/isWireCut(var/wireIndex)
+/obj/machinery/door/airlock/proc/isWireCut(wireIndex)
 	// You can find the wires in the datum folder.
 	return wires.IsIndexCut(wireIndex)
 
@@ -513,7 +513,7 @@ There are 9 wires.
 	if(feedback && message)
 		to_chat(usr, message)
 
-/obj/machinery/door/airlock/proc/set_idscan(var/activate, var/feedback = 0)
+/obj/machinery/door/airlock/proc/set_idscan(activate, feedback = 0)
 	var/message = ""
 	if(isWireCut(AIRLOCK_WIRE_IDSCAN))
 		message = "The IdScan wire is cut - IdScan feature permanently disabled."
@@ -527,7 +527,7 @@ There are 9 wires.
 	if(feedback && message)
 		to_chat(usr, message)
 
-/obj/machinery/door/airlock/proc/set_safeties(var/activate, var/feedback = 0)
+/obj/machinery/door/airlock/proc/set_safeties(activate, feedback = 0)
 	var/message = ""
 	// Safeties!  We don't need no stinking safeties!
 	if(isWireCut(AIRLOCK_WIRE_SAFETY))
@@ -690,11 +690,11 @@ There are 9 wires.
 				playsound(loc, 'sound/machines/Custom_deny.ogg', 50, 1, -2)
 	return
 
-/obj/machinery/door/airlock/attack_ai(mob/user as mob)
+/obj/machinery/door/airlock/attack_ai(mob/user)
 	if(!isblitzshell(user))
 		nano_ui_interact(user)
 
-/obj/machinery/door/airlock/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.default_state)
+/obj/machinery/door/airlock/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 	var/data[0]
 
 	data["main_power_loss"]		= round(main_power_lost_until 	> 0 ? max(main_power_lost_until - world.time,	0) / 10 : main_power_lost_until,	1)
@@ -767,7 +767,7 @@ There are 9 wires.
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/door/airlock/proc/hack(mob/user as mob)
+/obj/machinery/door/airlock/proc/hack(mob/user)
 	if(aiHacking == 0)
 		aiHacking = 1
 		spawn(20)
@@ -825,7 +825,7 @@ There are 9 wires.
 				s.start()
 	return ..()
 
-/obj/machinery/door/airlock/attack_hand(mob/user as mob)
+/obj/machinery/door/airlock/attack_hand(mob/userb)
 	if(!issilicon(user) && isElectrified() && shock(user, 100))
 		return
 
@@ -856,7 +856,7 @@ There are 9 wires.
 		..(user)
 	return
 
-/obj/machinery/door/airlock/CanUseTopic(var/mob/user)
+/obj/machinery/door/airlock/CanUseTopic(mob/user)
 	if(operating < 0) //emagged
 		to_chat(user, SPAN_WARNING("Unable to interface: Internal error."))
 		return STATUS_CLOSE
@@ -1141,7 +1141,7 @@ There are 9 wires.
 	health -= crush_damage
 	healthcheck()
 
-/obj/structure/closet/airlock_crush(var/crush_damage)
+/obj/structure/closet/airlock_crush(crush_damage)
 	..()
 	damage(crush_damage)
 	for(var/atom/movable/AM in src)
@@ -1152,7 +1152,7 @@ There are 9 wires.
 	. = ..()
 	health += crush_damage * degradation * (1 - get_tool_quality(QUALITY_PRYING) * 0.01) * 0.4
 
-/mob/living/airlock_crush(var/crush_damage)
+/mob/living/airlock_crush(crush_damage)
 	. = ..()
 
 	damage_through_armor(0.7 * crush_damage, BRUTE, BP_HEAD, ARMOR_MELEE)
@@ -1166,16 +1166,16 @@ There are 9 wires.
 	var/turf/T = get_turf(src)
 	T.add_blood(src)
 
-/mob/living/carbon/airlock_crush(var/crush_damage)
+/mob/living/carbon/airlock_crush(crush_damage)
 	. = ..()
 	if(!(species && (species.flags & NO_PAIN)))
 		emote("scream")
 
-/mob/living/silicon/robot/airlock_crush(var/crush_damage)
+/mob/living/silicon/robot/airlock_crush(crush_damage)
 	adjustBruteLoss(crush_damage)
 	return 0
 
-/obj/machinery/door/airlock/close(var/forced=0)
+/obj/machinery/door/airlock/close(forced = 0)
 	if(!can_close(forced))
 		return 0
 
@@ -1230,7 +1230,7 @@ There are 9 wires.
 
 	..()
 
-/obj/machinery/door/airlock/proc/lock(var/forced=0)
+/obj/machinery/door/airlock/proc/lock(forced = 0)
 	if(locked)
 		return 0
 
@@ -1243,12 +1243,13 @@ There are 9 wires.
 	update_icon()
 	return 1
 
-/obj/machinery/door/airlock/proc/unlock(var/forced=0)
+/obj/machinery/door/airlock/proc/unlock(forced=  0)
 	if(!src.locked)
 		return
 
 	if(!forced)
-		if(operating || !src.arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_DOOR_BOLTS)) return
+		if(operating || !src.arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_DOOR_BOLTS))
+			return
 
 	src.locked = 0
 	playsound(loc, 'sound/machines/Custom_boltsup.ogg', 40, 1, 5)
@@ -1367,7 +1368,7 @@ There are 9 wires.
 
 
 //Override to check locked var
-/obj/machinery/door/airlock/hit(var/mob/user, var/obj/item/I)
+/obj/machinery/door/airlock/hit(mob/user, obj/item/I)
 	var/obj/item/W = I
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	var/calc_damage = W.force*W.structure_damage_factor
@@ -1389,9 +1390,8 @@ There are 9 wires.
 		take_damage(W.force)
 
 
-/obj/machinery/door/airlock/take_damage(var/damage)
+/obj/machinery/door/airlock/take_damage(damage)
 	if(isnum(damage) && locked)
 		damage *= 0.66 //The bolts reinforce the door, reducing damage taken
-
 	return ..(damage)
 

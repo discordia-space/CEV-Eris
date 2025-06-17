@@ -20,22 +20,19 @@
 	gun_tags = list(GUN_SILENCABLE, GUN_GILDABLE)
 	gun_parts = list(/obj/item/part/gun/frame/atreides = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "FS"
-
 	damage_multiplier = 0.9
 	penetration_multiplier = -0.2
 	init_recoil = SMG_RECOIL(0.4)
-
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_300,
 		)
-/obj/item/gun/projectile/automatic/atreides/equipped(var/mob/user, var/slot)
+/obj/item/gun/projectile/automatic/atreides/equipped(mob/user, slot)
 	.=..()
 	update_icon()
 
 /obj/item/gun/projectile/automatic/atreides/update_icon()
 	..()
-
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
@@ -58,7 +55,6 @@
 		iconstring += "_s"
 		itemstring += "_s"
 		wielded_item_state += "_s"
-
 
 	icon_state = iconstring
 	set_item_state(itemstring)

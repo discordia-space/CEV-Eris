@@ -31,27 +31,20 @@
 // access to them, and only one of them can emag their device.
 //
 // The explosion cannot insta-kill anyone with 30% or more health.
-
 #define LIGHT_OK 0
 #define LIGHT_EMPTY 1
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
-
-
 /obj/item/device/lightreplacer
-
 	name = "light replacer"
 	desc = "A device to automatically replace lights. Refill with working lightbulbs or sheets of glass."
-
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "lightreplacer0"
 	item_state = "electronic"
-
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_MAGNET = 3, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
-
 	var/max_uses = 32
 	var/uses = 32
 	var/emagged = 0
@@ -87,51 +80,36 @@
 				to_chat(user, "You insert \the [L.name] into \the [src.name]. You have [uses] light\s remaining.")
 				user.drop_item()
 				qdel(L)
-				return
 		else
 			to_chat(user, "You need a working light.")
-			return
 
 /obj/item/device/lightreplacer/attack_self(mob/user)
-	/* // This would probably be a bit OP. If you want it though, uncomment the code.
-	if(isrobot(user))
-		var/mob/living/silicon/robot/R = user
-		if(R.emagged)
-			src.Emag()
-			to_chat(usr, "You shortcircuit the [src].")
-			return
-	*/
 	to_chat(usr, "It has [uses] lights remaining.")
 
 /obj/item/device/lightreplacer/update_icon()
 	icon_state = "lightreplacer[emagged]"
 
-
-/obj/item/device/lightreplacer/proc/Use(var/mob/user)
-
+/obj/item/device/lightreplacer/proc/Use(mob/user)
 	playsound(loc, 'sound/machines/click.ogg', 50, 1)
 	AddUses(-1)
 	return 1
 
-// Negative numbers will subtract
-/obj/item/device/lightreplacer/proc/AddUses(var/amount = 1)
-	uses = min(max(uses + amount, 0), max_uses)
+/obj/item/device/lightreplacer/proc/AddUses(amount = 1)
+	uses = min(max(uses + amount, 0), max_uses) // Negative numbers will subtract
 
-/obj/item/device/lightreplacer/proc/Charge(var/mob/user, var/amount = 1)
+/obj/item/device/lightreplacer/proc/Charge(mob/user, amount = 1)
 	charge += amount
 	if(charge > 3)
 		AddUses(1)
 		charge = 0
 
-/obj/item/device/lightreplacer/proc/ReplaceLight(var/obj/machinery/light/target, var/mob/living/U)
-
+/obj/item/device/lightreplacer/proc/ReplaceLight(obj/machinery/light/target, mob/living/U)
 	if(target.status != LIGHT_OK)
 		if(CanUse(U))
-			if(!Use(U)) return
+			if(!Use(U))
+				return
 			to_chat(U, SPAN_NOTICE("You replace the [target.fitting] with the [src]."))
-
 			if(target.status != LIGHT_EMPTY)
-
 				var/obj/item/light/L1 = new target.light_type(target.loc)
 				L1.status = target.status
 				L1.rigged = target.rigged
@@ -141,12 +119,10 @@
 				L1.switchcount = target.switchcount
 				target.switchcount = 0
 				L1.update()
-
 				target.status = LIGHT_EMPTY
 				target.update()
 
 			var/obj/item/light/L2 = new target.light_type()
-
 			target.status = L2.status
 			target.switchcount = L2.switchcount
 			target.rigged = emagged
@@ -159,30 +135,20 @@
 
 			if(target.on && target.rigged)
 				target.explode()
-			return
-
 		else
 			to_chat(U, failmsg)
-			return
 	else
 		to_chat(U, "There is a working [target.fitting] already inserted.")
-		return
 
-/obj/item/device/lightreplacer/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/device/lightreplacer/emag_act(remaining_charges, mob/user)
 	emagged = !emagged
 	playsound(loc, "sparks", 100, 1)
 	update_icon()
 	return 1
 
-//Can you use it?
-
-/obj/item/device/lightreplacer/proc/CanUse(var/mob/living/user)
+/obj/item/device/lightreplacer/proc/CanUse(mob/living/user)
 	add_fingerprint(user)
-	//Not sure what else to check for. Maybe if clumsy?
-	if(uses > 0)
-		return 1
-	else
-		return 0
+	return uses ? TRUE : FALSE
 
 #undef LIGHT_OK
 #undef LIGHT_EMPTY
