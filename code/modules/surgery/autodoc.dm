@@ -116,6 +116,7 @@
 		if(patchnote.surgery_operations & AUTODOC_TOXIN)
 			to_chat(patient, SPAN_NOTICE("Administering anti-toxin to patient."))
 			patient.adjustToxLoss(-damage_heal_amount)
+			patient.add_chemical_effect(CE_ANTITOX, damage_heal_amount/10)
 			if(!patient.getToxLoss())
 				patchnote.surgery_operations &= ~AUTODOC_TOXIN
 
@@ -164,7 +165,9 @@
 		if(istype(patchnote.organ, /obj/item/organ/internal))
 			var/obj/item/organ/internal/I = patchnote.organ
 			to_chat(patient, SPAN_NOTICE("Treating internal wounds in the patient's [I.name]."))
-			SEND_SIGNAL_OLD(I, COMSIG_IWOUND_TREAT, TRUE, TRUE)
+			var/datum/internal_wound/wound = I.wounddatums[pick(I.wounddatums)]
+			if(istype(wound))
+				wound.treatment(TRUE, TRUE)
 			patchnote.surgery_operations &= ~AUTODOC_INTERNAL_WOUNDS
 
 /datum/autodoc/Process()
