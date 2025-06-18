@@ -27,8 +27,8 @@
 	name = "HM BR \"Riose\""
 	result = /obj/item/gun/projectile/boltgun/handmade
 	steps = list(
-		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
-		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
+		list(CRAFT_MATERIAL, 13, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD),
 		list(QUALITY_HAMMERING, 10),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
