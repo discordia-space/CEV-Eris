@@ -40,6 +40,7 @@
 	.=..()
 	if (amount)
 		src.amount = amount
+	update_icon()
 
 /obj/item/stack/Initialize()
 	. = ..()
@@ -49,15 +50,6 @@
 	if (rand_min || rand_max)
 		amount = rand(rand_min, rand_max)
 		amount = round(amount, 1) //Just in case
-	update_icon()
-	if(automerge)
-		return INITIALIZE_HINT_LATELOAD
-
-//do this a little later because trying to merge with uninitialized stacks is an easy way to cause runtimes
-/obj/item/stack/LateInitialize()
-	. = ..()
-	if(automerge)
-		merge_loc_stacks()
 
 /obj/item/stack/update_icon()
 	if(novariants)
@@ -300,7 +292,7 @@
 	return 0
 
 //creates a new stack with the specified amount
-/obj/item/stack/proc/split(var/tamount, var/stack_loc)
+/obj/item/stack/proc/split(var/tamount)
 	if (!splittable)
 		return null
 	if (!amount)
@@ -312,7 +304,7 @@
 
 	var/orig_amount = src.amount
 	if (transfer && src.use(transfer))
-		var/obj/item/stack/S = new src.type(stack_loc, transfer)
+		var/obj/item/stack/S = new src.type(src.loc, transfer)
 		S.color = color
 
 		if (prob(transfer/orig_amount * 100))
@@ -363,7 +355,7 @@
 
 /obj/item/stack/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
-		var/obj/item/stack/F = src.split(1, user.get_active_hand_slot())
+		var/obj/item/stack/F = src.split(1)
 		if (F)
 			user.put_in_hands(F)
 			src.add_fingerprint(user)
@@ -404,8 +396,6 @@
 	if (!usr.IsAdvancedToolUser())
 		return
 
-
-
 	var/quantity = input(usr,
 	"This stack contains [amount]/[max_amount]. How many would you like to split off into a new stack?\n\
 	The new stack will be put into your hands if possible", "Split Stack", round(amount * 0.5)) as null|num
@@ -420,7 +410,7 @@
 	if (!isnum(quantity) || quantity < 1)
 		return
 
-	var/obj/item/stack/S = split(round(quantity, 1), NULLSPACE)
+	var/obj/item/stack/S = split(round(quantity, 1))
 	if (istype(S))
 		//Try to put the new stack into the user's hands
 		if (!(usr.put_in_hands(S)))
