@@ -278,8 +278,10 @@
 /obj/item/stack/proc/transfer_to(obj/item/stack/S, var/tamount=null, var/type_verified)
 	if (!get_amount())
 		return 0
+
 	if ((stacktype != S.stacktype) && !type_verified)
 		return 0
+
 	if (isnull(tamount))
 		tamount = src.get_amount()
 
@@ -298,7 +300,7 @@
 	return 0
 
 //creates a new stack with the specified amount
-/obj/item/stack/proc/split(var/tamount)
+/obj/item/stack/proc/split(var/tamount, var/stack_loc)
 	if (!splittable)
 		return null
 	if (!amount)
@@ -310,14 +312,16 @@
 
 	var/orig_amount = src.amount
 	if (transfer && src.use(transfer))
-		var/obj/item/stack/S = new src.type(loc, transfer)
+		var/obj/item/stack/S = new src.type(stack_loc, transfer)
 		S.color = color
+
 		if (prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(S)
 			if(blood_DNA)
 				if(!S.blood_DNA || !istype(S.blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
 					S.blood_DNA = list()
 				S.blood_DNA |= blood_DNA
+
 		return S
 	return null
 
@@ -359,31 +363,32 @@
 
 /obj/item/stack/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
-		var/obj/item/stack/F = src.split(1)
+		var/obj/item/stack/F = src.split(1, user.get_active_hand_slot())
 		if (F)
 			user.put_in_hands(F)
 			src.add_fingerprint(user)
 			F.add_fingerprint(user)
+
 			spawn(0)
-				if (src && usr.machine==src)
-					src.interact(usr)
+			if (src && usr.machine==src)
+				src.interact(usr)
 	else
 		..()
-	return
 
 /obj/item/stack/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
+
 		if (user.get_inactive_hand()==src)
 			src.transfer_to(S, 1)
 		else
 			src.transfer_to(S)
 
 		spawn(0) //give the stacks a chance to delete themselves if necessary
-			if (S && usr.machine==S)
-				S.interact(usr)
-			if (src && usr.machine==src)
-				src.interact(usr)
+		if (S && usr.machine==S)
+			S.interact(usr)
+		if (src && usr.machine==src)
+			src.interact(usr)
 	else
 		return ..()
 
@@ -415,7 +420,7 @@
 	if (!isnum(quantity) || quantity < 1)
 		return
 
-	var/obj/item/stack/S = split(round(quantity, 1))
+	var/obj/item/stack/S = split(round(quantity, 1), NULLSPACE)
 	if (istype(S))
 		//Try to put the new stack into the user's hands
 		if (!(usr.put_in_hands(S)))
@@ -469,6 +474,3 @@
 	New(title, recipes)
 		src.title = title
 		src.recipes = recipes
-
-
-

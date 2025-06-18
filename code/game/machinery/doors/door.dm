@@ -296,9 +296,8 @@
 			if (!transfer)
 				to_chat(user, SPAN_WARNING("You must weld or remove \the [repairing] from \the [src] before you can add anything else."))
 		else
-			repairing = stack.split(amount_needed)
+			repairing = stack.split(amount_needed, src)
 			if (repairing)
-				repairing.loc = src
 				transfer = repairing.amount
 
 		if (transfer)
