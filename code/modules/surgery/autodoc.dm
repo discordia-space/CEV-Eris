@@ -173,24 +173,23 @@
 /datum/autodoc/Process()
 	if(!patient)
 		stop()
+	else if(current_step > picked_patchnotes.len)
+		stop()
+		scan_user(patient)
+		return
 
 	while(!(picked_patchnotes[current_step].surgery_operations))
-		if(current_step + 1 > picked_patchnotes.len)
+		current_step++
+		if(current_step > picked_patchnotes.len)
 			stop()
 			scan_user(patient)
 			return
-		else
-			current_step++
 
 	if(world.time > (start_op_time + processing_speed))
 		start_op_time = world.time
 		patient.updatehealth()
 		if(process_note(picked_patchnotes[current_step]))
-			if(current_step + 1 > picked_patchnotes.len)
-				stop()
-				scan_user(patient)
-			else
-				current_step++
+			current_step++
 
 /datum/autodoc/proc/fail()
 	current_step++
