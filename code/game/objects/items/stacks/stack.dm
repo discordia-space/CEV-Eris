@@ -362,8 +362,8 @@
 			F.add_fingerprint(user)
 
 			spawn(0)
-			if (src && usr.machine==src)
-				src.interact(usr)
+			if (src && user.machine == src)
+				interact(user)
 	else
 		..()
 
