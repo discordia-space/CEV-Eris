@@ -304,7 +304,7 @@
 
 	var/orig_amount = src.amount
 	if (transfer && src.use(transfer))
-		var/obj/item/stack/S = new src.type(src.loc, transfer)
+		var/obj/item/stack/S = new src.type(loc, transfer)
 		S.color = color
 
 		if (prob(transfer/orig_amount * 100))
