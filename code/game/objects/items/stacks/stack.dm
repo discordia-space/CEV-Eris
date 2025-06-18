@@ -377,10 +377,10 @@
 			src.transfer_to(S)
 
 		spawn(0) //give the stacks a chance to delete themselves if necessary
-		if (S && usr.machine==S)
-			S.interact(usr)
-		if (src && usr.machine==src)
-			src.interact(usr)
+		if(S && user.machine == S)
+			S.interact(user)
+		if(src && user.machine == src)
+			interact(user)
 	else
 		return ..()
 
