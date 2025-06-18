@@ -102765,7 +102765,7 @@
 	pump_direction = 0;
 	use_power = 1
 	},
-/turf/wall/reinforced,
+/turf/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "qdC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
