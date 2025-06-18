@@ -302,12 +302,12 @@
 
 	var/transfer = max(min(tamount, src.amount, initial(max_amount)), 0)
 
-	var/orig_amount = src.amount
-	if (transfer && src.use(transfer))
+	var/orig_amount = amount
+	if(transfer && use(transfer))
 		var/obj/item/stack/S = new src.type(loc, transfer)
 		S.color = color
 
-		if (prob(transfer/orig_amount * 100))
+		if(prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(S)
 			if(blood_DNA)
 				if(!S.blood_DNA || !istype(S.blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
