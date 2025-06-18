@@ -298,7 +298,7 @@
 		else
 			repairing = stack.split(amount_needed)
 			if (repairing)
-				repairing.loc = src;
+				repairing.loc = src
 				transfer = repairing.amount
 
 		if (transfer)
