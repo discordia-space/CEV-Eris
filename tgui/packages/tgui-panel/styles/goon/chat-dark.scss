@@ -24,15 +24,15 @@ img.icon {
 }
 
 a {
-  color: #397ea5;
+  color: hsl(202, 49%, 44%);
 }
 
 a.visited {
-  color: #7c00e6;
+ color: hsl(272, 100%, 45%);
 }
 
 a:visited {
-  color: #7c00e6;
+  color: hsl(272, 100%, 45%);
 }
 
 a.popt {
@@ -45,7 +45,7 @@ a.popt {
   position: fixed;
   top: 50%;
   left: 50%;
-  background: #ddd;
+  background: hsl(0, 0%, 87%);
 }
 
 .popup .close {
@@ -53,7 +53,7 @@ a.popt {
   background: #aaa;
   top: 0;
   right: 0;
-  color: #333;
+  color: hsl(0, 0%, 20%);
   text-decoration: none;
   z-index: 2;
   padding: 0 10px;
@@ -62,40 +62,40 @@ a.popt {
 }
 
 .popup .close:hover {
-  background: #999;
+  background: hsl(0, 0%, 60%);
 }
 
 .popup .head {
-  background: #999;
-  color: #ddd;
+  background: hsl(0, 0%, 60%);
+  color: hsl(0, 0%, 87%);
   padding: 0 10px;
   height: 30px;
   line-height: 30px;
   text-transform: uppercase;
   font-size: 0.9em;
   font-weight: bold;
-  border-bottom: 2px solid green;
+  border-bottom: 2px solid hsl(120, 100%, 25%);
 }
 
 .popup input {
-  border: 1px solid #999;
-  background: #fff;
+  border: 1px solid hsl(0, 0%, 60%);
+  background: hsl(0, 0%, 100%);
   margin: 0;
   padding: 5px;
   outline: none;
-  color: #333;
+  color: hsl(0, 0%, 20%);
 }
 
 .popup input[type='text']:hover,
 .popup input[type='text']:active,
 .popup input[type='text']:focus {
-  border-color: green;
+  border-color: hsl(120, 100%, 25%);
 }
 
 .popup input[type='submit'] {
   padding: 5px 10px;
-  background: #999;
-  color: #ddd;
+  background: hsl(0, 0%, 60%);
+  color: hsl(0, 0%, 87%);
   text-transform: uppercase;
   font-size: 0.9em;
   font-weight: bold;
@@ -104,7 +104,7 @@ a.popt {
 .popup input[type='submit']:hover,
 .popup input[type='submit']:focus,
 .popup input[type='submit']:active {
-  background: #aaa;
+  background: hsl(0, 0%, 67%);
   cursor: pointer;
 }
 
@@ -116,11 +116,11 @@ a.popt {
   display: block;
   text-decoration: none;
   padding: 3px;
-  color: #333;
+  color: hsl(0, 0%, 20%);
 }
 
 .changeFont a:hover {
-  background: #ccc;
+  background: hsl(0, 0%, 80%);
 }
 
 .highlightPopup {
@@ -136,7 +136,7 @@ a.popt {
 }
 
 .highlightPopup input.highlightColor {
-  background-color: #ffff00;
+  background-color: hsl(60, 100%, 50%);
 }
 
 .highlightPopup input.highlightTermSubmit {
@@ -146,7 +146,7 @@ a.popt {
 /* ADMIN CONTEXT MENU */
 
 .contextMenu {
-  background-color: #ddd;
+  background-color: hsl(0, 0%, 87%);
   position: fixed;
   margin: 2px;
   width: 150px;
@@ -156,11 +156,11 @@ a.popt {
   display: block;
   padding: 2px 5px;
   text-decoration: none;
-  color: #333;
+  color: hsl(0, 0%, 20%);
 }
 
 .contextMenu a:hover {
-  background-color: #ccc;
+  background-color: hsl(0, 0%, 80%);
 }
 
 /* ADMIN FILTER MESSAGES MENU */
@@ -190,7 +190,7 @@ a.popt {
 /* MOTD */
 
 .motd {
-  color: #a4bad6;
+  color: hsl(214, 38%, 74%);
   font-family: Verdana, sans-serif;
   white-space: normal;
 }
@@ -201,7 +201,7 @@ a.popt {
 .motd h4,
 .motd h5,
 .motd h6 {
-  color: #a4bad6;
+  color: hsl(214, 38%, 74%);
   text-decoration: underline;
 }
 
@@ -210,7 +210,7 @@ a.popt {
 .motd a:visited,
 .motd a:active,
 .motd a:hover {
-  color: #a4bad6;
+  color: hsl(214, 38%, 74%);
 }
 
 /* ADD HERE FOR BOLD */
@@ -246,13 +246,13 @@ h3,
 h4,
 h5,
 h6 {
-  color: #a4bad6;
+  color: hsl(214, 38%, 74%);
   font-family: Georgia, Verdana, sans-serif;
 }
 
 h1.alert,
 h2.alert {
-  color: #a4bad6;
+  color: hsl(214, 38%, 74%);
 }
 
 em {
@@ -266,22 +266,27 @@ em {
 }
 
 .adminobserverooc {
-  color: #0099cc;
+  color: hsl(195, 100%, 40%);
   font-weight: bold;
 }
 
 .adminooc {
-  color: #3d5bc3;
+  color: hsl(227, 53%, 50%);
   font-weight: bold;
 }
 
 .adminsay {
-  color: #ff4500;
+  color: hsl(281, 85%, 45%);
   font-weight: bold;
 }
 
 .admin {
-  color: #5975da;
+  color: hsl(227, 64%, 60%);
+  font-weight: bold;
+}
+
+.niche {
+  color: hsl(227, 64%, 60%);
   font-weight: bold;
 }
 
@@ -297,63 +302,63 @@ em {
 }
 
 .deadsay {
-  color: #e2c1ff;
+  color: hsl(272, 100%, 88%);
 }
 
 .binarysay {
-  color: #1e90ff;
+  color: hsl(210, 100%, 56%);
 }
 
 .binarysay a {
-  color: #00ff00;
+  color: hsl(120, 100%, 50%);
 }
 
 .binarysay a:active,
 .binarysay a:visited {
-  color: #88ff88;
+  color: hsl(120, 100%, 77%);
 }
 
 /* RADIO COLORS */
 /* IF YOU CHANGE THIS KEEP IT IN SYNC WITH TGUI CONSTANTS */
 
 .radio {
-  color: #1ecc43;
+  color: hsl(133, 74%, 46%);
 }
 
 .sciradio {
-  color: #c68cfa;
+  color: hsl(272, 92%, 76%);
 }
 
 .comradio {
-  color: #fcdf03;
+  color: hsl(53, 98%, 50%);
 }
 
 .secradio {
-  color: #dd3535;
+  color: hsl(0, 71%, 54%);
 }
 
 .medradio {
-  color: #57b8f0;
+  color: hsl(202, 84%, 64%);
 }
 
 .engradio {
-  color: #f37746;
+  color: hsl(17, 88%, 61%);
 }
 
 .suppradio {
-  color: #b88646;
+  color: hsl(34, 45%, 50%);
 }
 
 .servradio {
-  color: #6ca729;
+  color: hsl(88, 61%, 41%);
 }
 
 .syndradio {
-  color: #8f4a4b;
+  color: hsl(359, 32%, 43%);
 }
 
 .gangradio {
-  color: #ac2ea1;
+  color: hsl(305, 58%, 43%);
 }
 
 .centcomradio {

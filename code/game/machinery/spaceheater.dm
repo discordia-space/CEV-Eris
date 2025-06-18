@@ -95,9 +95,9 @@
 		var/dat
 		dat = "Power cell: "
 		if(cell)
-			dat += "<a href='byond://byond://?src=\ref[src];op=cellremove'>Installed</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];op=cellremove'>Installed</A><BR>"
 		else
-			dat += "<a href='byond://byond://?src=\ref[src];op=cellinstall'>Removed</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];op=cellinstall'>Removed</A><BR>"
 
 		dat += "Power Level: [cell ? round(cell.percent(),1) : 0]%<BR><BR>"
 

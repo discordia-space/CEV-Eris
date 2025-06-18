@@ -113,16 +113,16 @@
 <a href='byond://?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
 <B>Frequency/Code</B> for electropack:<BR>
 Frequency:
-<a href='byond://byond://?src=\ref[src];freq=-10'>-</A>
-<a href='byond://byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
-<a href='byond://byond://?src=\ref[src];freq=2'>+</A>
-<a href='byond://byond://?src=\ref[src];freq=10'>+</A><BR>
+<a href='byond://?src=\ref[src];freq=-10'>-</A>
+<a href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
+<a href='byond://?src=\ref[src];freq=2'>+</A>
+<a href='byond://?src=\ref[src];freq=10'>+</A><BR>
 
 Code:
-<a href='byond://byond://?src=\ref[src];code=-5'>-</A>
-<a href='byond://byond://?src=\ref[src];code=-1'>-</A> [code]
-<a href='byond://byond://?src=\ref[src];code=1'>+</A>
-<a href='byond://byond://?src=\ref[src];code=5'>+</A><BR>
+<a href='byond://?src=\ref[src];code=-5'>-</A>
+<a href='byond://?src=\ref[src];code=-1'>-</A> [code]
+<a href='byond://?src=\ref[src];code=1'>+</A>
+<a href='byond://?src=\ref[src];code=5'>+</A><BR>
 </TT>"}
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")

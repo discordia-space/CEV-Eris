@@ -199,22 +199,22 @@
 		dat += "Power level: [cell ? cell.percent() : 0]%<BR>"
 
 		if(locked && !ai)
-			dat += "<HR>Controls are locked <a href='byond://byond://?src=\ref[src];op=unlock'><I>(unlock)</I></A>"
+			dat += "<HR>Controls are locked <a href='byond://?src=\ref[src];op=unlock'><I>(unlock)</I></A>"
 		else
-			dat += "<HR>Controls are unlocked <a href='byond://byond://?src=\ref[src];op=lock'><I>(lock)</I></A><BR><BR>"
+			dat += "<HR>Controls are unlocked <a href='byond://?src=\ref[src];op=lock'><I>(lock)</I></A><BR><BR>"
 
-			dat += "<a href='byond://byond://?src=\ref[src];op=power'>Toggle Power</A><BR>"
-			dat += "<a href='byond://byond://?src=\ref[src];op=stop'>Stop</A><BR>"
-			dat += "<a href='byond://byond://?src=\ref[src];op=go'>Proceed</A><BR>"
-			dat += "<a href='byond://byond://?src=\ref[src];op=home'>Return to Home</A><BR>"
-			dat += "<a href='byond://byond://?src=\ref[src];op=destination'>Set Destination</A><BR>"
-			dat += "<a href='byond://byond://?src=\ref[src];op=setid'>Set Bot ID</A><BR>"
-			dat += "<a href='byond://byond://?src=\ref[src];op=sethome'>Set Home</A><BR>"
-			dat += "<a href='byond://byond://?src=\ref[src];op=autoret'>Toggle Auto Return Home</A> ([auto_return ? "On":"Off"])<BR>"
-			dat += "<a href='byond://byond://?src=\ref[src];op=autopick'>Toggle Auto Pickup Crate</A> ([auto_pickup ? "On":"Off"])<BR>"
+			dat += "<a href='byond://?src=\ref[src];op=power'>Toggle Power</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];op=stop'>Stop</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];op=go'>Proceed</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];op=home'>Return to Home</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];op=destination'>Set Destination</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];op=setid'>Set Bot ID</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];op=sethome'>Set Home</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];op=autoret'>Toggle Auto Return Home</A> ([auto_return ? "On":"Off"])<BR>"
+			dat += "<a href='byond://?src=\ref[src];op=autopick'>Toggle Auto Pickup Crate</A> ([auto_pickup ? "On":"Off"])<BR>"
 
 			if(load)
-				dat += "<a href='byond://byond://?src=\ref[src];op=unload'>Unload Now</A><BR>"
+				dat += "<a href='byond://?src=\ref[src];op=unload'>Unload Now</A><BR>"
 			dat += "<HR>The maintenance hatch is closed.<BR>"
 
 	else
@@ -222,9 +222,9 @@
 			dat += "The maintenance hatch is open.<BR><BR>"
 			dat += "Power cell: "
 			if(cell)
-				dat += "<a href='byond://byond://?src=\ref[src];op=cellremove'>Installed</A><BR>"
+				dat += "<a href='byond://?src=\ref[src];op=cellremove'>Installed</A><BR>"
 			else
-				dat += "<a href='byond://byond://?src=\ref[src];op=cellinsert'>Removed</A><BR>"
+				dat += "<a href='byond://?src=\ref[src];op=cellinsert'>Removed</A><BR>"
 
 			dat += wires.GetInteractWindow(user)
 		else

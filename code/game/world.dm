@@ -311,9 +311,11 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	s += "<b>[station_name]</b>";
 	s += " ("
-	s += "<a href='byond://\"http://\">" //Change this to wherever you want the hub to link to.
-//	s += "[game_version]"
-	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
+	if(config.discordurl)
+		s += "<a href=\"[config.discordurl]\">" // Change this to wherever you want the hub to link to.
+	else
+		s += "<a href=\"https://discord.gg/TJguWMtcBj \">" // CEV Eris discord
+	s += "Discord"
 	s += "</a>"
 	s += ")"
 

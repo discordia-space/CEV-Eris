@@ -57,7 +57,7 @@
   right: 0;
   left: 0;
   padding: 0.5em;
-  color: #fff;
+  color: hsl(0, 0%, 100%);
   background-color: rgba(255, 0, 0, 0.1);
   text-align: center;
   visibility: hidden;
@@ -80,7 +80,7 @@
 }
 
 .PersonalCraftingGridItem--craftable .PersonalCraftingGridItem__name {
-  color: #fff;
+  color: hsl(0, 0%, 100%);
 }
 
 .PersonalCraftingGridItem__prereq {

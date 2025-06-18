@@ -19,16 +19,16 @@
 
 	var/dat = "Photocopier<BR><BR>"
 	if(copyitem)
-		dat += "<a href='byond://byond://?src=\ref[src];remove=1'>Remove Item</a><BR>"
+		dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Item</a><BR>"
 		if(toner)
-			dat += "<a href='byond://byond://?src=\ref[src];copy=1'>Copy</a><BR>"
+			dat += "<a href='byond://?src=\ref[src];copy=1'>Copy</a><BR>"
 			dat += "Printing: [copies] copies."
-			dat += "<a href='byond://byond://?src=\ref[src];min=1'>-</a> "
-			dat += "<a href='byond://byond://?src=\ref[src];add=1'>+</a><BR><BR>"
+			dat += "<a href='byond://?src=\ref[src];min=1'>-</a> "
+			dat += "<a href='byond://?src=\ref[src];add=1'>+</a><BR><BR>"
 	else if(toner)
 		dat += "Please insert something to copy.<BR><BR>"
 	if(issilicon(user))
-		dat += "<a href='byond://byond://?src=\ref[src];aipic=1'>Print photo from database</a><BR><BR>"
+		dat += "<a href='byond://?src=\ref[src];aipic=1'>Print photo from database</a><BR><BR>"
 	dat += "Current toner level: [toner]"
 	if(!toner)
 		dat +="<BR>Please insert a new toner cartridge!"

@@ -256,10 +256,6 @@
 
 	dat += "<BR><HR>"
 
-/*	if(species.hud.has_hands)
-		dat += "<BR><b>Left hand:</b> <a href='byond://?src=\ref[src];item=[slot_l_hand]'>[istype(l_hand) ? l_hand : "nothing"]</A>"
-		dat += "<BR><b>Right hand:</b> <a href='byond://?src=\ref[src];item=[slot_r_hand]'>[istype(r_hand) ? r_hand : "nothing"]</A>"*/
-
 	// Do they get an option to set internals?
 	if(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/space))
 		if(istype(back, /obj/item/tank) || istype(belt, /obj/item/tank) || istype(s_store, /obj/item/tank))
@@ -281,7 +277,6 @@
 	var/datum/browser/panel = new(user, "mob[name]", "Mob", 340, 540)
 	panel.set_content(dat)
 	panel.open()
-
 
 // called when something steps onto a human
 // this handles mulebots and vehicles
@@ -1220,7 +1215,7 @@ var/list/rank_prefix = list(\
 		if(length(msg) <= 40)
 			return "<font color='blue'>[msg]</font>"
 		else
-			return "<font color='blue'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
+			return "<font color='blue'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
 	return ..()
 
 /mob/living/carbon/human/has_brain()

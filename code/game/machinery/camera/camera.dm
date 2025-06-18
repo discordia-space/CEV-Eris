@@ -245,7 +245,7 @@
 					if(U.name == "Unknown")
 						to_chat(O, "<b>[U]</b> holds \a [I.name] up to one of your cameras ...")
 					else
-						to_chat(O, "<b><a href='byond://byond://?src=\ref[O];track2=\ref[O];track=\ref[U];trackname=[U.name]'>[U]</a></b> holds \a [I.name] up to one of your cameras ...")
+						to_chat(O, "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U];trackname=[U.name]'>[U]</a></b> holds \a [I.name] up to one of your cameras ...")
 				else
 					to_chat(O, "<b>[U]</b> holds \a [I.name] up to the camera ...")
 

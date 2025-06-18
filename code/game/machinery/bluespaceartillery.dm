@@ -25,7 +25,7 @@
 	var/dat = "<B>Bluespace Artillery Control:</B><BR>"
 	dat += "Locked on<BR>"
 	dat += "<B>Charge progress: [reload]/180:</B><BR>"
-	dat += "<a href='byond://byond://?src=\ref[src];fire=1'>Open Fire</A><BR>"
+	dat += "<a href='byond://?src=\ref[src];fire=1'>Open Fire</A><BR>"
 	dat += "Deployment of weapon authorized by <br>[company_name] Naval Command<br><br>Remember, friendly fire is grounds for termination of your contract and life.<HR>"
 	user << browse(dat, "window=scroll")
 	onclose(user, "scroll")

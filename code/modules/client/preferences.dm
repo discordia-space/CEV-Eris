@@ -254,6 +254,17 @@
 
 	character.post_prefinit()
 
+/datum/preferences/proc/character_load_path(savefile/S, slot)
+	var/original_cd = S.cd
+	S.cd = "/"
+	. = private_use_legacy_saves(S, slot) ? "/character[slot]" : "/eris/character[slot]"
+	S.cd = original_cd // Attempting to make this call as side-effect free as possible
+
+/datum/preferences/proc/private_use_legacy_saves(savefile/S, slot)
+	if(!S.dir.Find("eris")) // If we cannot find the map path folder, load the legacy save
+		return TRUE
+	S.cd = "/eris" // Finally, if we cannot find the character slot in the map path folder, load the legacy save
+	return !S.dir.Find("character[slot]")
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	var/dat  = list()
@@ -265,7 +276,7 @@
 		dat += "<b>Select a character slot to load</b><hr>"
 		var/name
 		for(var/i=1, i<= config.character_slots, i++)
-			S.cd = SSmapping.character_load_path(S, i)
+			S.cd = character_load_path(S, i)
 			S["real_name"] >> name
 			if(!name)	name = "Character[i]"
 			if(i==default_slot)

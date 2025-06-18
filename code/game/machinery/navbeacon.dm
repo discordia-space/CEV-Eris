@@ -152,20 +152,20 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 		t = {"<TT><B>Navigation Beacon</B><HR><BR>
 		<i>(swipe card to lock controls)</i><BR>
 		Frequency:
-		<a href='byond://byond://?src=\ref[src];freq=-10'>-</A>
-		<a href='byond://byond://?src=\ref[src];freq=-2'>-</A>
+		<a href='byond://?src=\ref[src];freq=-10'>-</A>
+		<a href='byond://?src=\ref[src];freq=-2'>-</A>
 		[format_frequency(freq)]
-		<a href='byond://byond://?src=\ref[src];freq=2'>+</A>
-		<a href='byond://byond://?src=\ref[src];freq=10'>+</A><BR>
+		<a href='byond://?src=\ref[src];freq=2'>+</A>
+		<a href='byond://?src=\ref[src];freq=10'>+</A><BR>
 		<HR>
-		Location: <a href='byond://byond://?src=\ref[src];locedit=1'>[location ? location : "(none)"]</A><BR>
+		Location: <a href='byond://?src=\ref[src];locedit=1'>[location ? location : "(none)"]</A><BR>
 		Transponder Codes:<UL>"}
 
 		for(var/key in codes)
 			t += "<LI>[key] ... [codes[key]]"
-			t += " <small><a href='byond://byond://?src=\ref[src];edit=1;code=[key]'>(edit)</A>"
-			t += " <a href='byond://byond://?src=\ref[src];delete=1;code=[key]'>(delete)</A></small><BR>"
-		t += "<small><a href='byond://byond://?src=\ref[src];add=1;'>(add new)</A></small><BR>"
+			t += " <small><a href='byond://?src=\ref[src];edit=1;code=[key]'>(edit)</A>"
+			t += " <a href='byond://?src=\ref[src];delete=1;code=[key]'>(delete)</A></small><BR>"
+		t += "<small><a href='byond://?src=\ref[src];add=1;'>(add new)</A></small><BR>"
 		t+= "<UL></TT>"
 
 	user << browse(t, "window=navbeacon")
