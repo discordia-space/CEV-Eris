@@ -242,6 +242,8 @@
 /obj/item/grab/proc/upgrade_grab(delay_time, icon_state_after, state_after)
 	if(!allow_upgrade)
 		return // upgrading now is not allowed!
+	if(affecting.stat > CONSCIOUS) // KO'd or dead people can't resist
+		delay_time /= 2
 	delay_time = round(delay_time / 8) // the sprites have eight configurations for timer
 	var/original_icon = hud.icon_state
 	var/original_loc = get_turf(assailant) // used to see if the assailant moved and thus disrupted the upgrade
