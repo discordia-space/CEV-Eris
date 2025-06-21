@@ -273,9 +273,9 @@
 
 #define any2ref(x) "\ref[x]"
 
-#define MAP_IMAGE_PATH "nano/images/[SSmapping.path]/"
+#define MAP_IMAGE_PATH "nano/images/eris/"
 
-#define map_image_file_name(z_level) "[SSmapping.path]-[z_level].png"
+#define map_image_file_name(z_level) "eris-[z_level].png"
 
 // Spawns multiple objects of the same type
 #define cast_new(type, num, args...) if((num) == 1) { new type(args) } else { for(var/i in 1 to num) { new type(args) } }
