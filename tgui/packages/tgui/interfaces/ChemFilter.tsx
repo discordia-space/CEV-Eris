@@ -1,96 +1,86 @@
-import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from '../backend';
-import { Button, Input, Section, Stack } from '../components';
+import { Fragment } from 'react';
+import { Button, Section, Stack } from 'tgui-core/components';
+
+import { useBackend } from '../backend';
+import { CssColor } from '../constants';
 import { Window } from '../layouts';
 
 type Data = {
-  left: string[];
-  right: string[];
+	left: string[];
+	right: string[];
 };
 
 type Props = {
-  title: string;
-  list: string[];
-  reagentName: string;
-  onReagentInput: (str: string) => void;
+	title: string;
+	list: string[];
+	buttonColor: CssColor;
 };
 
-export const ChemFilterPane = (props: Props, context) => {
-  const { act } = useBackend(context);
-  const { title, list, reagentName, onReagentInput } = props;
-  const titleKey = title.toLowerCase();
+export const ChemFilterPane = (props: Props) => {
+	const { act } = useBackend();
+	const { title, list, buttonColor } = props;
+	const titleKey = title.toLowerCase();
 
-  return (
-    <Section
-      title={title}
-      minHeight="240px"
-      buttons={
-        <>
-          <Input
-            placeholder="Reagent"
-            width="140px"
-            onInput={(_, value) => onReagentInput(value)}
-          />
-          <Button
-            ml={1}
-            icon="plus"
-            onClick={() =>
-              act('add', {
-                which: titleKey,
-                name: reagentName,
-              })
-            }
-          />
-        </>
-      }
-    >
-      {list.map((filter) => (
-        <Fragment key={filter}>
-          <Button
-            fluid
-            icon="minus"
-            content={filter}
-            onClick={() =>
-              act('remove', {
-                which: titleKey,
-                reagent: filter,
-              })
-            }
-          />
-        </Fragment>
-      ))}
-    </Section>
-  );
+	return (
+		<Section
+			title={title}
+			minHeight="240px"
+			buttons={
+				<Button
+					content="Add Reagent"
+					icon="plus"
+					color={buttonColor}
+					onClick={() =>
+						act('add', {
+							which: titleKey,
+						})
+					}
+				/>
+			}
+		>
+			{list.map((filter) => (
+				<Fragment key={filter}>
+					<Button
+						fluid
+						icon="minus"
+						content={filter}
+						onClick={() =>
+							act('remove', {
+								which: titleKey,
+								reagent: filter,
+							})
+						}
+					/>
+				</Fragment>
+			))}
+		</Section>
+	);
 };
 
-export const ChemFilter = (props, context) => {
-  const { data } = useBackend<Data>(context);
-  const { left = [], right = [] } = data;
-  const [leftName, setLeftName] = useLocalState(context, 'leftName', '');
-  const [rightName, setRightName] = useLocalState(context, 'rightName', '');
+export const ChemFilter = (props) => {
+	const { data } = useBackend<Data>();
+	const { left = [], right = [] } = data;
 
-  return (
-    <Window width={500} height={300}>
-      <Window.Content scrollable>
-        <Stack>
-          <Stack.Item grow>
-            <ChemFilterPane
-              title="Left"
-              list={left}
-              reagentName={leftName}
-              onReagentInput={(value) => setLeftName(value)}
-            />
-          </Stack.Item>
-          <Stack.Item grow>
-            <ChemFilterPane
-              title="Right"
-              list={right}
-              reagentName={rightName}
-              onReagentInput={(value) => setRightName(value)}
-            />
-          </Stack.Item>
-        </Stack>
-      </Window.Content>
-    </Window>
-  );
+	return (
+		<Window width={500} height={300}>
+			<Window.Content scrollable>
+				<Stack>
+					<Stack.Item grow>
+						<ChemFilterPane
+							title="Left"
+							list={left}
+							buttonColor="yellow"
+						/>
+					</Stack.Item>
+					<Stack.Item grow>
+						<ChemFilterPane
+							title="Right"
+							list={right}
+							buttonColor="red"
+						/>
+					</Stack.Item>
+				</Stack>
+			</Window.Content>
+		</Window>
+	);
 };

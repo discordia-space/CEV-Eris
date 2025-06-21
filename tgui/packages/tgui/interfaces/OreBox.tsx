@@ -1,118 +1,66 @@
-import { toTitleCase } from 'common/string';
-import { Box, Button, NumberInput, Section, Stack } from '../components';
-import { useBackend, useLocalState } from '../backend';
+import { Box, Button, Section, Table } from 'tgui-core/components';
+import { toTitleCase } from 'tgui-core/string';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-type Data = {
-  materials: Material[];
-};
-
 type Material = {
-  type: string;
-  name: string;
-  amount: number;
+	name: string;
+	amount: number;
 };
 
-export const OreBox = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
-  const { materials } = data;
-
-  return (
-    <Window width={460} height={265}>
-      <Window.Content>
-        <Section
-          fill
-          scrollable
-          title="Ores"
-          buttons={
-            <Button
-              content="Eject All Ores"
-              onClick={() => act('ejectallores')}
-            />
-          }
-        >
-          <Stack direction="column">
-            <Stack.Item>
-              <Section>
-                <Stack vertical>
-                  <Stack align="start">
-                    <Stack.Item basis="30%">
-                      <Box bold>Ore</Box>
-                    </Stack.Item>
-                    <Stack.Item basis="20%">
-                      <Section align="center">
-                        <Box bold>Amount</Box>
-                      </Section>
-                    </Stack.Item>
-                  </Stack>
-                  {materials.map((material) => (
-                    <OreRow
-                      key={material.type}
-                      material={material}
-                      onRelease={(type, amount) =>
-                        act('eject', {
-                          type: type,
-                          qty: amount,
-                        })
-                      }
-                      onReleaseAll={(type) =>
-                        act('ejectall', {
-                          type: type,
-                        })
-                      }
-                    />
-                  ))}
-                </Stack>
-              </Section>
-            </Stack.Item>
-          </Stack>
-        </Section>
-      </Window.Content>
-    </Window>
-  );
+type Data = {
+	materials: Material[];
 };
 
-const OreRow = (props, context) => {
-  const { material, onRelease, onReleaseAll } = props;
+export const OreBox = (props) => {
+	const { act, data } = useBackend<Data>();
+	const { materials } = data;
 
-  const [amount, setAmount] = useLocalState(
-    context,
-    'amount' + material.name,
-    1,
-  );
-
-  const amountAvailable = Math.floor(material.amount);
-  return (
-    <Stack.Item>
-      <Stack align="center">
-        <Stack.Item basis="30%">{toTitleCase(material.name)}</Stack.Item>
-        <Stack.Item basis="20%">
-          <Section align="center">
-            <Box mr={0} color="label" inline>
-              {amountAvailable}
-            </Box>
-          </Section>
-        </Stack.Item>
-        <Stack.Item basis="50%">
-          <NumberInput
-            width="32px"
-            step={1}
-            stepPixelSize={5}
-            minValue={1}
-            maxValue={100}
-            value={amount}
-            onChange={(e, value) => setAmount(value)}
-          />
-          <Button
-            content="Eject Amount"
-            onClick={() => onRelease(material.type, amount)}
-          />
-          <Button
-            content="Eject All"
-            onClick={() => onReleaseAll(material.type)}
-          />
-        </Stack.Item>
-      </Stack>
-    </Stack.Item>
-  );
+	return (
+		<Window width={335} height={415}>
+			<Window.Content scrollable>
+				<Section
+					title="Ores & Boulders"
+					buttons={
+						<Button
+							disabled={materials.length === 0}
+							onClick={() => act('removeall')}
+						>
+							Empty
+						</Button>
+					}
+				>
+					<Table>
+						<Table.Row header>
+							<Table.Cell>Item</Table.Cell>
+							<Table.Cell collapsing textAlign="right">
+								Amount
+							</Table.Cell>
+						</Table.Row>
+						{materials.map((material, id) => (
+							<Table.Row key={id}>
+								<Table.Cell>
+									{toTitleCase(material.name)}
+								</Table.Cell>
+								<Table.Cell collapsing textAlign="right">
+									<Box color="label" inline>
+										{material.amount}
+									</Box>
+								</Table.Cell>
+							</Table.Row>
+						))}
+					</Table>
+				</Section>
+				<Section>
+					<Box>
+						Ores can be loaded here via a mining satchel or by hand.
+						Boulders can also be stored here
+						<br />
+						Gibtonite is not accepted.
+					</Box>
+				</Section>
+			</Window.Content>
+		</Window>
+	);
 };

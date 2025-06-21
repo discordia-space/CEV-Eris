@@ -1,58 +1,56 @@
-@use '../colors.scss';
-
 $department_map: (
-  'Command': colors.$yellow,
-  'Security': colors.$red,
-  'Engineering': colors.$orange,
-  'Medical': colors.$teal,
-  'Misc': colors.$white,
-  'Science': colors.$purple,
-  'Supply': colors.$brown,
-  'Service': colors.$green,
-  'Silicon': colors.$pink,
+	'Cargo': var(--color-brown),
+	'Command': var(--color-yellow),
+	'Security': var(--color-red),
+	'Engineering': var(--color-orange),
+	'Medical': var(--color-teal),
+	'Misc': var(--color-white),
+	'Science': var(--color-purple),
+	'Service': var(--color-green),
+	'Silicon': var(--color-pink),
 );
 
 .CrewManifest {
-  @each $department-name, $color-value in $department_map {
-    &--#{$department-name} {
-      .Section {
-        &__title {
-          border-color: $color-value;
-        }
-        &__titleText {
-          color: $color-value;
-        }
-      }
-    }
-  }
+	@each $department-name, $color-value in $department_map {
+		&--#{$department-name} {
+			.Section {
+				&__title {
+					border-color: $color-value;
+				}
+				&__titleText {
+					color: $color-value;
+				}
+			}
+		}
+	}
 
-  &__Cell {
-    padding: 3px 0;
+	&__Cell {
+		padding: var(--space-s) 0;
 
-    &--Rank {
-      color: colors.$label;
-    }
-  }
+		&--Rank {
+			color: var(--color-label);
+		}
+	}
 
-  &__Icons {
-    padding: 3px 9px;
-    text-align: right;
-  }
+	&__Icons {
+		padding: var(--space-s) var(--space-l);
+		text-align: right;
+	}
 
-  &__Icon {
-    color: colors.$label;
-    position: relative;
+	&__Icon {
+		color: var(--color-label);
+		position: relative;
 
-    &:not(:last-child) {
-      margin-right: 7px;
-    }
+		&:not(:last-child) {
+			margin-right: var(--space-m);
+		}
 
-    &--Chevron {
-      padding-right: 2px;
-    }
+		&--Chevron {
+			padding-right: var(--space-xs);
+		}
 
-    &--Command {
-      color: colors.$yellow;
-    }
-  }
+		&--Command {
+			color: var(--color-yellow);
+		}
+	}
 }

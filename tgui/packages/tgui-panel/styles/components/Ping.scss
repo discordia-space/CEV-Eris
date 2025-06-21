@@ -3,31 +3,26 @@
  * SPDX-License-Identifier: MIT
  */
 
-@use 'sass:color';
 @use 'sass:math';
 
-$border-color: hsla(0, 0%, 55%, 0.5) !default;
-
 .Ping {
-  position: relative;
-  padding: 0.125em 0.25em;
-  border: math.div(1em, 12) solid $border-color;
-  border-radius: 0.25em;
-  width: 3.75em;
-  user-select: none;
-  text-align: right;
-  &:hover {
-    background-color: color.scale($border-color, $lightness: 66.6666666667%);
-  }
+	position: relative;
+	padding: var(--space-xs) var(--space-sm);
+	border: var(--border-thickness-tiny) solid
+		hsl(from var(--color-border-primary) h 10 50 / 0.33);
+	border-radius: var(--border-radius-medium);
+	min-width: 4em;
+	max-width: 5em;
+	text-align: right;
 }
 
 .Ping__indicator {
-  content: '';
-  position: absolute;
-  top: 0.5em;
-  left: 0.5em;
-  width: 0.5em;
-  height: 0.5em;
-  background-color: hsl(0, 0%, 53%);
-  border-radius: 0.25em;
+	content: '';
+	position: absolute;
+	top: var(--space-m);
+	left: var(--space-m);
+	width: 0.5em;
+	height: 0.5em;
+	background-color: hsl(0, 0%, 53.3%);
+	border-radius: var(--border-radius-medium);
 }

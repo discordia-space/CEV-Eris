@@ -1,14 +1,14 @@
-import { BooleanLike } from 'common/react';
+import { BooleanLike } from 'tgui-core/react';
 
-export type Data = {
-  available: ReadonlyArray<{ name: string; value: number }>;
-  directives: string;
-  door_jack: string | null;
-  emagged: BooleanLike;
-  image: string;
-  installed: ReadonlyArray<string>;
-  languages: BooleanLike;
-  master_dna: string | null;
-  master_name: string | null;
-  ram: number;
+export type PaiData = {
+	available: Record<string, number>;
+	directives: string;
+	door_jack: string | null;
+	emagged: BooleanLike;
+	screen_image_interface_icon: string;
+	installed: ReadonlyArray<string>;
+	languages: BooleanLike;
+	master_dna: string | null;
+	master_name: string | null;
+	ram: number;
 };

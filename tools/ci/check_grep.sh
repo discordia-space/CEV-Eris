@@ -161,7 +161,6 @@ if $grep 'Hansa' $code_files; then
     echo -e "${RED}ERROR: Misspelling(s) of Hanza detected in code.${NC}"
     st=1
 fi;
-# Leaving other factions for now, otherwise we'll have to edit job names and that may mess with the preferences
 if $grep -i'eciev' $code_files; then
 	echo
     echo -e "${RED}ERROR: Common I-before-E typo detected in code.${NC}"

@@ -259,7 +259,7 @@
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "DisposalUnit")
+		ui = new(user, src, "TrashCan")
 		ui.set_autoupdate(TRUE)
 		ui.open()
 

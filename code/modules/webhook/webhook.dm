@@ -10,7 +10,7 @@
 		query_string += "&msg=[url_encode(message)]"
 		world.Export("[config.webhook_url]?[query_string]")
 
-/proc/lobby_message(var/message = "Debug Message", var/color = "#FFFFFF", var/sender)
+/proc/lobby_message(message = "Debug Message", color = "#FFFFFF", sender)
 	if(!config.webhook_url || !config.webhook_key)
 		return
 	spawn(0)
@@ -51,7 +51,7 @@
 		query_string += "&admin_number_afk=[afkmins.len]"
 		world.Export("[config.webhook_url]?[query_string]")
 
-/proc/send_adminalert2adminchat(var/message = "Debug Message", var/color = "#FFFFFF", var/sender)
+/proc/send_adminalert2adminchat(message = "Debug Message", color = "#FFFFFF", sender)
 	if(!config.webhook_url || !config.webhook_key)
 		return
 	spawn(0)
@@ -76,7 +76,7 @@
 		else
 			.["present"] += X
 
-/proc/send2coders(var/message = "Debug Message", var/color = "#FFFFFF", var/sender, var/admiralty = 0)
+/proc/send2coders(message = "Debug Message", color = "#FFFFFF", sender, admiralty = 0)
 	if(!config.webhook_url || !config.webhook_key)
 		return
 	spawn(0)

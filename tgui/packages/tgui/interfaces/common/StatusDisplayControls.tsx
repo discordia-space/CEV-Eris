@@ -1,103 +1,135 @@
+import { Button, Flex, Input, Section } from 'tgui-core/components';
+
 import { useBackend, useSharedState } from '../../backend';
-import { Flex, Input, Section, Button } from '../../components';
 
 type Data = {
-  upperText: string;
-  lowerText: string;
-  maxStatusLineLength: number;
+	upperText: string;
+	lowerText: string;
+	maxStatusLineLength: number;
 };
 
-export const StatusDisplayControls = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
-  const {
-    upperText: initialUpper,
-    lowerText: initialLower,
-    maxStatusLineLength,
-  } = data;
+export function StatusDisplayControls(props) {
+	const { act, data } = useBackend<Data>();
+	const {
+		upperText: initialUpper,
+		lowerText: initialLower,
+		maxStatusLineLength,
+	} = data;
 
-  const [upperText, setUpperText] = useSharedState(
-    context,
-    'statusUpperText',
-    initialUpper,
-  );
-  const [lowerText, setLowerText] = useSharedState(
-    context,
-    'statusLowerText',
-    initialLower,
-  );
+	const [upperText, setUpperText] = useSharedState(
+		'statusUpperText',
+		initialUpper,
+	);
+	const [lowerText, setLowerText] = useSharedState(
+		'statusLowerText',
+		initialLower,
+	);
 
-  return (
-    <>
-      <Section>
-        <Button
-          icon="toggle-off"
-          content="Off"
-          color="bad"
-          onClick={() => act('setStatusPicture', { picture: 'blank' })}
-        />
-        <Button
-          icon="space-shuttle"
-          content="Shuttle ETA / Off"
-          color=""
-          onClick={() => act('setStatusPicture', { picture: 'shuttle' })}
-        />
-      </Section>
+	return (
+		<>
+			<Section>
+				<Button
+					icon="toggle-off"
+					color="bad"
+					onClick={() =>
+						act('setStatusPicture', { picture: 'blank' })
+					}
+				>
+					Off
+				</Button>
+				<Button
+					icon="space-shuttle"
+					color=""
+					onClick={() =>
+						act('setStatusPicture', { picture: 'shuttle' })
+					}
+				>
+					Shuttle ETA / Off
+				</Button>
+			</Section>
 
-      <Section title="Graphics">
-        <Button
-          icon="flag"
-          content="Logo"
-          onClick={() => act('setStatusPicture', { picture: 'default' })}
-        />
+			<Section title="Graphics">
+				<Button
+					icon="flag"
+					onClick={() =>
+						act('setStatusPicture', { picture: 'default' })
+					}
+				>
+					Logo
+				</Button>
 
-        <Button
-          icon="bell-o"
-          content="Red Alert"
-          onClick={() => act('setStatusPicture', { picture: 'redalert' })}
-        />
+				<Button
+					icon="exclamation"
+					onClick={() =>
+						act('setStatusPicture', { picture: 'currentalert' })
+					}
+				>
+					Security Alert Level
+				</Button>
 
-        <Button
-          icon="exclamation-triangle"
-          content="Lockdown"
-          onClick={() => act('setStatusPicture', { picture: 'lockdown' })}
-        />
+				<Button
+					icon="exclamation-triangle"
+					onClick={() =>
+						act('setStatusPicture', { picture: 'lockdown' })
+					}
+				>
+					Lockdown
+				</Button>
 
-        <Button
-          icon="biohazard"
-          content="Biohazard"
-          onClick={() => act('setStatusPicture', { picture: 'biohazard' })}
-        />
-      </Section>
+				<Button
+					icon="biohazard"
+					onClick={() =>
+						act('setStatusPicture', { picture: 'biohazard' })
+					}
+				>
+					Biohazard
+				</Button>
 
-      <Section title="Message">
-        <Flex direction="column" align="stretch">
-          <Flex.Item mb={1}>
-            <Input
-              fluid
-              maxLength={maxStatusLineLength}
-              value={upperText}
-              onChange={(_, value) => setUpperText(value)}
-            />
-          </Flex.Item>
+				<Button
+					icon="radiation"
+					onClick={() =>
+						act('setStatusPicture', { picture: 'radiation' })
+					}
+				>
+					Radiation
+				</Button>
+			</Section>
 
-          <Flex.Item mb={1}>
-            <Input
-              fluid
-              maxLength={maxStatusLineLength}
-              value={lowerText}
-              onChange={(_, value) => setLowerText(value)}
-            />
-          </Flex.Item>
+			<Section title="Message">
+				<Flex direction="column" align="stretch">
+					<Flex.Item mb={1}>
+						<Input
+							fluid
+							maxLength={maxStatusLineLength}
+							value={upperText}
+							onChange={setUpperText}
+						/>
+					</Flex.Item>
 
-          <Flex.Item>
-            <Button
-              icon="comment-o"
-              onClick={() => act('setStatusMessage', { upperText, lowerText })}
-              content="Send"
-            />
-          </Flex.Item>
-        </Flex>
-      </Section>
-    </>
-  );
-};
+					<Flex.Item mb={1}>
+						<Input
+							fluid
+							maxLength={maxStatusLineLength}
+							value={lowerText}
+							onChange={setLowerText}
+						/>
+					</Flex.Item>
+
+					<Flex.Item>
+						<Button
+							icon="comment-o"
+							onClick={() =>
+								act('setStatusMessage', {
+									upperText,
+									lowerText,
+								})
+							}
+						>
+							Send
+						</Button>
+					</Flex.Item>
+				</Flex>
+			</Section>
+		</>
+	);
+}

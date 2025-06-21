@@ -19,17 +19,18 @@
  */
 
 export type Antagonist = {
-  // the antag_flag, made lowercase, and with non-alphanumerics removed.
-  key: string;
+	// the antag_flag, made lowercase, and with non-alphanumerics removed.
+	// or from non_ruleset_antagonists
+	key: string;
 
-  name: string;
-  description: string[];
-  category: Category;
-  priority?: number;
+	name: string;
+	description: string[];
+	category: Category;
+	priority?: number;
 };
 
 export enum Category {
-  Roundstart,
-  Midround,
-  Latejoin,
+	Roundstart,
+	Midround,
+	Latejoin,
 }

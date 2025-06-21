@@ -1,12 +1,12 @@
-import { SignalerContent } from './Signaler';
 import { NtosWindow } from '../layouts';
+import { SignalerContent } from './Signaler';
 
 export const NtosSignaler = () => {
-  return (
-    <NtosWindow width={400} height={300}>
-      <NtosWindow.Content>
-        <SignalerContent />
-      </NtosWindow.Content>
-    </NtosWindow>
-  );
+	return (
+		<NtosWindow width={400} height={300}>
+			<NtosWindow.Content>
+				<SignalerContent />
+			</NtosWindow.Content>
+		</NtosWindow>
+	);
 };
