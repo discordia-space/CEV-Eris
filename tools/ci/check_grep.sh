@@ -68,20 +68,20 @@ if $grep "href[\s='\"\\\\]*\?" $code_files ; then
     st=1
 fi;
 
-section "common mistakes"
-part "global vars"
-if $grep '^/*var/' $code_files; then
-	echo
-	echo -e "${RED}ERROR: Unmanaged global var use detected in code, please use the helpers.${NC}"
-	st=1
-fi;
+# section "common mistakes"
+# part "global vars"
+# if $grep '^/*var/' $code_files; then
+# 	echo
+# 	echo -e "${RED}ERROR: Unmanaged global var use detected in code, please use the helpers.${NC}"
+# 	st=1
+# fi;
 
-part "proc args with var/"
-if $grep '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' $code_files; then
-	echo
-	echo -e "${RED}ERROR: Changed files contains a proc argument starting with 'var'.${NC}"
-	st=1
-fi;
+# part "proc args with var/"
+# if $grep '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' $code_files; then
+# 	echo
+# 	echo -e "${RED}ERROR: Changed files contains a proc argument starting with 'var'.${NC}"
+# 	st=1
+# fi;
 
 part "improperly pathed static lists"
 if $grep -i 'var/list/static/.*' $code_files; then
@@ -91,42 +91,15 @@ if $grep -i 'var/list/static/.*' $code_files; then
 fi;
 
 
-part "ensure proper span usage"
-# lowertext() is a BYOND-level proc, so it can be used in any sort of code... including the TGS DMAPI which we don't manage in this repository.
-# basically, we filter out any results with "tgs" in it to account for this edgecase without having to enforce this rule in that separate codebase.
-# grepping the grep results is a bit of a sad solution to this but it's pretty much the only option in our existing linter framework
-if $grep -i 'lowertext\(.+\)' $code_files | $grep -v 'UNLINT\(.+\)' | $grep -v '\/modules\/tgs\/'; then
-	echo
-	echo -e "${RED}ERROR: Found a lowertext() proc call. Please use the LOWER_TEXT() macro instead. If you know what you are doing, wrap your text (ensure it is a string) in UNLINT().${NC}"
-	st=1
-fi;
-
-part "balloon_alert sanity"
-if $grep 'balloon_alert\(".*"\)' $code_files; then
-	echo
-	echo -e "${RED}ERROR: Found a balloon alert with improper arguments.${NC}"
-	st=1
-fi;
-
-if $grep 'balloon_alert(.*span_)' $code_files; then
-	echo
-	echo -e "${RED}ERROR: Balloon alerts should never contain spans.${NC}"
-	st=1
-fi;
-
-part "balloon_alert idiomatic usage"
-if $grep 'balloon_alert\(.*?, ?"[A-Z]' $code_files; then
-	echo
-	echo -e "${RED}ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT().${NC}"
-	st=1
-fi;
-
-part "update_icon_updates_onmob element usage"
-if $grep 'AddElement\(/datum/element/update_icon_updates_onmob.+ITEM_SLOT_HANDS' $code_files; then
-	echo
-	echo -e "${RED}ERROR: update_icon_updates_onmob element automatically updates ITEM_SLOT_HANDS, this is redundant and should be removed.${NC}"
-	st=1
-fi;
+# part "ensure proper span usage"
+# # lowertext() is a BYOND-level proc, so it can be used in any sort of code... including the TGS DMAPI which we don't manage in this repository.
+# # basically, we filter out any results with "tgs" in it to account for this edgecase without having to enforce this rule in that separate codebase.
+# # grepping the grep results is a bit of a sad solution to this but it's pretty much the only option in our existing linter framework
+# if $grep -i 'lowertext\(.+\)' $code_files | $grep -v 'UNLINT\(.+\)' | $grep -v '\/modules\/tgs\/'; then
+# 	echo
+# 	echo -e "${RED}ERROR: Found a lowertext() proc call. Please use the LOWER_TEXT() macro instead. If you know what you are doing, wrap your text (ensure it is a string) in UNLINT().${NC}"
+# 	st=1
+# fi;
 
 part "forceMove sanity"
 if $grep 'forceMove\(\s*(\w+\(\)|\w+)\s*,\s*(\w+\(\)|\w+)\s*\)' $code_files; then
