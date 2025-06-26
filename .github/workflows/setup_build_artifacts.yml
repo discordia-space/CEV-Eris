@@ -1,4 +1,4 @@
-name: Setup build artifacts
+name: Setup artifacts
 
 on:
   workflow_call:

@@ -3,16 +3,46 @@ name: Run Regular BYOND Version Tests
 on:
   workflow_call:
     inputs:
+      major:
+        required: false
+        type: string
+      minor:
+        required: false
+        type: string
       max_required_byond_client:
         required: true
         type: string
 
 jobs:
-  run:
-    uses: ./.github/workflows/run_integration_tests.yml
-
-    strategy:
-      fail-fast: false
-
-    with:
-      max_required_byond_client: ${{ inputs.max_required_byond_client }}
+  run_integration_tests:
+    # If `inputs.major` is specified, this will output `Run Tests (major.minor; max)`.
+    # For example, `Run Tests (515.1627; 515)`.
+    #
+    # Otherwise, it will output `Run Tests (max)`.
+    # For example, `Run Tests (515)`.
+    name: Run Tests (${{ inputs.major && format('{0}.{1}; ', inputs.major, inputs.minor) || '' }}${{ inputs.max_required_byond_client }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore BYOND from Cache
+        uses: ./.github/actions/restore_or_install_byond
+        with:
+          major: ${{ inputs.major }}
+          minor: ${{ inputs.minor }}
+      - name: Download build outputs
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifact-${{ inputs.major || env.BYOND_MAJOR }}-${{ inputs.minor || env.BYOND_MINOR}}
+          path: ./
+      - name: Install rust-g
+        run: |
+          bash tools/ci/install_rust_g.sh
+      - name: Install dreamluau
+        run: |
+          bash tools/ci/install_dreamluau.sh
+      - name: Run Tests
+        id: run_tests
+        run: |
+          source $HOME/BYOND/byond/bin/byondsetup
+          bash tools/ci/run_server.sh

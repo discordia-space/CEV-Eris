@@ -28,19 +28,12 @@ jobs:
 
 
   collect_data:
-    name: Collect data and setup caches for other tasks
+    name: Setup caches for other tasks
     needs: start_gate
     uses: ./.github/workflows/collect_data.yml
 
-  compile_all_maps:
-    name: Compile Maps
-    needs: collect_data
-    uses: ./.github/workflows/compile_all_maps.yml
-    with:
-      max_required_byond_client: ${{ needs.collect_data.outputs.max_required_byond_client }}
-
   setup_build_artifacts:
-    name: Setup build artifacts
+    name: Setup artifacts
     needs: collect_data
     uses: ./.github/workflows/setup_build_artifacts.yml
     with:
@@ -57,7 +50,6 @@ jobs:
     name: Completion Gate
     needs:
       [
-        compile_all_maps,
         run_all_tests,
         run_linters,
       ]

@@ -1,5 +1,3 @@
-name: Collect Data
-
 on:
   workflow_call:
     outputs:
@@ -12,6 +10,7 @@ on:
 
 jobs:
   collect_data:
+    name: Collect Data
     runs-on: ubuntu-22.04
     timeout-minutes: 5
     outputs:
