@@ -188,6 +188,7 @@
 #define IWOUND_3_MINUTES 90
 #define IWOUND_4_MINUTES 120
 #define IWOUND_5_MINUTES 150
+#define IWOUND_HALF_MINUTE 15
 
 // Organ generation
 #define ORGAN_HAS_BONES			(1<<0)
