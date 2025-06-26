@@ -28,7 +28,6 @@ cp cev_eris.dmb cev_eris.rsc $1/
 cp -r maps/* $1/maps/
 cp -r icons/* $1/icons/
 cp -r tgui/public/* $1/tgui/public/
-cp -r tgui/packages/tgfont/dist/* $1/tgui/packages/tgfont/dist/
 
 #remove .dm files from /maps
 

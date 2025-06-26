@@ -5,9 +5,6 @@ name: Run Integration Tests
 on:
   workflow_call:
     inputs:
-      map:
-        required: true
-        type: string
       major:
         required: false
         type: string
@@ -25,7 +22,7 @@ jobs:
     #
     # Otherwise, it will output `Run Tests (map; max)`.
     # For example, `Run Tests (runtimestation; 515)`.
-    name: Run Tests (${{ inputs.major && format('{0}.{1}; ', inputs.major, inputs.minor) || '' }}${{ inputs.map }}; ${{ inputs.max_required_byond_client }})
+    name: Run Tests (${{ inputs.major && format('{0}.{1}; ', inputs.major, inputs.minor) || '' }}${{ inputs.max_required_byond_client }})
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -50,7 +47,7 @@ jobs:
         id: run_tests
         run: |
           source $HOME/BYOND/byond/bin/byondsetup
-          bash tools/ci/run_server.sh ${{ inputs.map }}
+          bash tools/ci/run_server.sh
       - name: On test fail, write a step summary
         if: always() && steps.run_tests.outcome == 'failure'
         run: |
