@@ -16,7 +16,7 @@
 	sleeper.forceMove(src)
 
 /obj/item/mech_equipment/sleeper/Destroy()
-	sleeper.go_out() //If for any reason you weren't outside already.
+	sleeper?.go_out() //If for any reason you weren't outside already.
 	QDEL_NULL(sleeper)
 	. = ..()
 
