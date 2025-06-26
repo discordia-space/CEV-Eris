@@ -39,8 +39,8 @@
 	var/runlevels = RUNLEVELS_DEFAULT //points of the game at which the SS can fire
 
 	/*
-	 * The following variables are managed by the MC and should not be modified directly.
-	 */
+	* The following variables are managed by the MC and should not be modified directly.
+	*/
 
 	/// Last world.time the subsystem completed a run (as in wasn't paused by [MC_TICK_CHECK])
 	var/last_fire = 0

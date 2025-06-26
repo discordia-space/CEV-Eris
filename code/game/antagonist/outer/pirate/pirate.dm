@@ -27,7 +27,7 @@
 	possible_objectives = list()
 	survive_objective = null
 
-    // A bunch of rowdy pirates should be somewhat equivalent to roundstart IH operative
+	// A bunch of rowdy pirates should be somewhat equivalent to roundstart IH operative
 	stat_modifiers = list(
 		STAT_ROB = 25,
 		STAT_TGH = 20,

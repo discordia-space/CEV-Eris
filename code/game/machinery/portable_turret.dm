@@ -43,7 +43,7 @@
 	var/check_weapons = 0	//checks if it can shoot people that have a weapon they aren't authorized to have
 	var/check_access = 1	//if this is active, the turret shoots everything that does not meet the access requirements
 	var/check_anomalies = 1	//checks if it can shoot at unidentified lifeforms (ie xenos)
-	var/check_synth	 = 0 	//if active, will shoot at anything not an AI or cyborg
+	var/check_synth = 0 	//if active, will shoot at anything not an AI or cyborg
 	var/ailock = 0 			// AI cannot use this
 
 	var/attacked = 0		//if set to 1, the turret gets pissed off and shoots at people nearby (unless they have sec access!)
@@ -72,7 +72,7 @@
 /obj/machinery/porta_turret/crescent
 	enabled = 0
 	ailock = 1
-	check_synth	 = 0
+	check_synth = 0
 	check_access = 1
 	check_arrest = 1
 	check_records = 1

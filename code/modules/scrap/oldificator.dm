@@ -108,7 +108,7 @@
 		desc += pick("Its shaped rather strangely.",
 			"The fine details on this thing have been erased.",
 			"Looks completely crooked.",
-	 		"Looks like it could break at any moment.")
+			"Looks like it could break at any moment.")
 
 	price_tag *= RAND_DECIMAL(0.1, 0.6) //Tank the price of it
 

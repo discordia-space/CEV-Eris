@@ -12,7 +12,7 @@
 	var/display_color   // Display color for vending machine listing
 	var/category = CAT_NORMAL  // CAT_HIDDEN for contraband, CAT_COIN for premium
 	var/obj/machinery/vending/vending_machine   // The vending machine we belong to
-	var/list/instances = list()		   // Stores inserted items. Instances are only used for things added during the round, and not for things spawned at initialize
+	var/list/instances = list() // Stores inserted items. Instances are only used for things added during the round, and not for things spawned at initialize
 
 
 /datum/data/vending_product/New(vending_machine, path, name = null, amount = 1, price = 0, color = null, category = CAT_NORMAL)
@@ -200,14 +200,14 @@
 	power_change()
 
 
-/**
- * Add item to the machine
- *
- * Checks if item is vendable in this machine should be performed before
- * calling. W is the item being inserted, R is the associated vending_product entry.
- 	R can be null, in which case the user is inserting something that wasnt previously here.
- 	In that case we create a new inventory record for the item
- */
+/*
+* Add item to the machine
+*
+* Checks if item is vendable in this machine should be performed before
+* calling. W is the item being inserted, R is the associated vending_product entry.
+*R can be null, in which case the user is inserting something that wasnt previously here.
+*In that case we create a new inventory record for the item
+*/
 /obj/machinery/vending/proc/stock(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
 	if(!user.unEquip(W))
 		return FALSE
@@ -1155,30 +1155,27 @@
 					/obj/item/reagent_containers/glass/beaker/vial/vape/berry = 10,
 					/obj/item/reagent_containers/glass/beaker/vial/vape/banana = 10,
 					/obj/item/reagent_containers/glass/beaker/vial/vape/lemon = 10,
-					/obj/item/reagent_containers/glass/beaker/vial/vape/nicotine = 5
-				   )
+					/obj/item/reagent_containers/glass/beaker/vial/vape/nicotine = 5)
 	contraband = list(/obj/item/storage/fancy/cigarettes/homeless = 3,
-					  /obj/item/storage/fancy/cigcartons/homeless = 1,
-					)
+					/obj/item/storage/fancy/cigcartons/homeless = 1,)
 	prices = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 200,
-				  /obj/item/storage/fancy/cigarettes = 100,
-				  /obj/item/storage/fancy/cigcartons = 800,
-				  /obj/item/storage/box/matches = 10,
-				  /obj/item/flame/lighter/random = 5,
-				  /obj/item/storage/fancy/cigar = 450,
-				  /obj/item/storage/fancy/cigarettes/killthroat = 100,
-				  /obj/item/storage/fancy/cigcartons/killthroat = 800,
-				  /obj/item/storage/fancy/cigarettes/dromedaryco = 100,
-				  /obj/item/storage/fancy/cigcartons/dromedaryco = 800,
-				  /obj/item/flame/lighter/zippo = 250,
-				  /obj/item/clothing/mask/vape = 300,
-				  /obj/item/reagent_containers/glass/beaker/vial/vape/berry = 100,
-				  /obj/item/reagent_containers/glass/beaker/vial/vape/banana = 100,
-				  /obj/item/reagent_containers/glass/beaker/vial/vape/lemon = 100,
-				  /obj/item/reagent_containers/glass/beaker/vial/vape/nicotine = 100,
-				  /obj/item/storage/fancy/cigarettes/homeless = 300,
-				  /obj/item/storage/fancy/cigcartons/homeless = 2400
-				  )
+					/obj/item/storage/fancy/cigarettes = 100,
+					/obj/item/storage/fancy/cigcartons = 800,
+					/obj/item/storage/box/matches = 10,
+					/obj/item/flame/lighter/random = 5,
+					/obj/item/storage/fancy/cigar = 450,
+					/obj/item/storage/fancy/cigarettes/killthroat = 100,
+					/obj/item/storage/fancy/cigcartons/killthroat = 800,
+					/obj/item/storage/fancy/cigarettes/dromedaryco = 100,
+					/obj/item/storage/fancy/cigcartons/dromedaryco = 800,
+					/obj/item/flame/lighter/zippo = 250,
+					/obj/item/clothing/mask/vape = 300,
+					/obj/item/reagent_containers/glass/beaker/vial/vape/berry = 100,
+					/obj/item/reagent_containers/glass/beaker/vial/vape/banana = 100,
+					/obj/item/reagent_containers/glass/beaker/vial/vape/lemon = 100,
+					/obj/item/reagent_containers/glass/beaker/vial/vape/nicotine = 100,
+					/obj/item/storage/fancy/cigarettes/homeless = 300,
+					/obj/item/storage/fancy/cigcartons/homeless = 2400)
 
 
 /obj/machinery/vending/medical
@@ -1358,7 +1355,7 @@
 					/obj/item/seeds/lemonseed = 3,/obj/item/seeds/orangeseed = 3,/obj/item/seeds/grassseed = 3,/obj/item/seeds/cocoapodseed = 3,/obj/item/seeds/plumpmycelium = 2,
 					/obj/item/seeds/cabbageseed = 3,/obj/item/seeds/grapeseed = 3,/obj/item/seeds/pumpkinseed = 3,/obj/item/seeds/cherryseed = 3,/obj/item/seeds/plastiseed = 3,/obj/item/seeds/riceseed = 3, /obj/item/seeds/tobaccoseed = 3)
 	contraband = list(/obj/item/seeds/amanitamycelium = 2,/obj/item/seeds/glowshroom = 2,/obj/item/seeds/libertymycelium = 2,/obj/item/seeds/mtearseed = 2,
-					  /obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2,)
+					/obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2,)
 	premium = list(/obj/item/toy/waterflower = 1)
 	auto_price = FALSE
 
@@ -1636,8 +1633,8 @@
 					)
 	prices = list(
 					/obj/item/reagent_containers/food/drinks/bottle/vodka = 200,
-          			/obj/item/storage/deferred/crate/uniform_green = 2000,
-          			/obj/item/storage/deferred/crate/uniform_brown = 2000,
+					/obj/item/storage/deferred/crate/uniform_green = 2000,
+					/obj/item/storage/deferred/crate/uniform_brown = 2000,
 					/obj/item/storage/deferred/crate/uniform_black = 2000,
 					/obj/item/storage/deferred/crate/uniform_flak  = 2200,
 					/obj/item/storage/deferred/crate/uniform_light = 1800,

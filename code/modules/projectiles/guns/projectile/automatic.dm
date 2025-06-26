@@ -107,6 +107,6 @@
 		//Create and assign the click handler
 		//A click handler intercepts mouseup/drag/down events which allow fullauto firing
 		CH = new /datum/click_handler/fullauto()
-		CH.reciever = gun //Reciever is the gun that gets the fire events
+		CH.receiver = gun //receiver is the gun that gets the fire events
 		L.client.CH = CH //Put it on the client
 		CH.owner = L.client //And tell it where it is

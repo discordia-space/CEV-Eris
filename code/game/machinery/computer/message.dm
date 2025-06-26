@@ -176,13 +176,13 @@
 
 			var/index = 0
 			/* 	data_rc_msg
-				X												 - 5%
+				X												- 5%
 				var/rec_dpt = "Unspecified" //name of the person - 15%
 				var/send_dpt = "Unspecified" //name of the sender- 15%
-				var/message = "Blank" //transferred message		 - 300px
-				var/stamp = "Unstamped"							 - 15%
-				var/id_auth = "Unauthenticated"					 - 15%
-				var/priority = "Normal"							 - 10%
+				var/message = "Blank" //transferred message		- 300px
+				var/stamp = "Unstamped"							- 15%
+				var/id_auth = "Unauthenticated"					- 15%
+				var/priority = "Normal"							- 10%
 			*/
 			dat += "<center><a href='byond://?src=\ref[src];back=1'>Back</a> - <a href='byond://?src=\ref[src];refresh=1'>Refresh</center><hr>"
 			dat += {"<table border='1' width='100%'><tr><th width = '5%'>X</th><th width='15%'>Sending Dep.</th><th width='15%'>Receiving Dep.</th>

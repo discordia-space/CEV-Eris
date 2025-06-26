@@ -245,7 +245,7 @@
 		fail("You feel stupid.",user,C,targets)
 		return FALSE
 
-	var/text = input(user, "What message will you send to the target? The message will be recieved telepathically and they will not know who it is from unless you reveal yourself.", "Sending a message") as text|null
+	var/text = input(user, "What message will you send to the target? The message will be received telepathically and they will not know who it is from unless you reveal yourself.", "Sending a message") as text|null
 	if(!text)
 		return
 	log_and_message_admins("sent a message to [H] with text \"[text]\"")

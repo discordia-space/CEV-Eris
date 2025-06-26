@@ -56,37 +56,14 @@
 	pulse(0)
 
 
-/obj/item/device/assembly/mousetrap/attack_self(mob/living/user as mob)
+/obj/item/device/assembly/mousetrap/attack_self(mob/living/user)
 	if(!armed)
 		to_chat(user, "<span class='notice'>You arm [src].</span>")
 	else
-/*		if((CLUMSY in user.mutations)&& prob(50))
-			var/which_hand = "l_hand"
-			if(!user.hand)
-				which_hand = "r_hand"
-			triggered(user, which_hand)
-			user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
-								 "<span class='warning'>You accidentally trigger [src]!</span>")
-			return
-*/
 		to_chat(user, "<span class='notice'>You disarm [src].</span>")
 	armed = !armed
 	update_icon()
 	playsound(user.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -3)
-
-
-/obj/item/device/assembly/mousetrap/attack_hand(mob/living/user as mob)
-/*	if(armed)
-		if((CLUMSY in user.mutations) && prob(50))
-			var/which_hand = "l_hand"
-			if(!user.hand)
-				which_hand = "r_hand"
-			triggered(user, which_hand)
-			user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
-								 "<span class='warning'>You accidentally trigger [src]!</span>")
-			return
-*/
-	..()
 
 
 /obj/item/device/assembly/mousetrap/Crossed(AM as mob|obj)
@@ -100,15 +77,14 @@
 				return ..()
 			triggered(L)
 			L.visible_message("<span class='warning'>[L] accidentally steps on [src].</span>", \
-							  "<span class='warning'>You accidentally step on [src]</span>")
-
+							"<span class='warning'>You accidentally step on [src]</span>")
 	..()
 
 
 /obj/item/device/assembly/mousetrap/on_found(mob/finder as mob)
 	if(armed)
 		finder.visible_message("<span class='warning'>[finder] accidentally sets off [src], breaking their fingers.</span>", \
-							   "<span class='warning'>You accidentally trigger [src]!</span>")
+								"<span class='warning'>You accidentally trigger [src]!</span>")
 		triggered(finder, finder.hand ? "l_hand" : "r_hand")
 		return TRUE	//end the search!
 	return FALSE

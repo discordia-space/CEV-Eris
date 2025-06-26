@@ -353,11 +353,11 @@ steam.start() -- spawns the effect
 /////////////////////////////////////////////
 
 /obj/effect/effect/smoke/white_phosphorous
-    name = "white phosphorous smoke"
+	name = "white phosphorous smoke"
 
 /obj/effect/effect/smoke/white_phosphorous/affect(mob/living/carbon/M)
-    M.fire_stacks += 5
-    M.fire_act()
+	M.fire_stacks += 5
+	M.fire_act()
 
 /////////////////////////////////////////////
 // Mustard Gas
@@ -436,7 +436,7 @@ steam.start() -- spawns the effect
 	smoke_type = /obj/effect/effect/smoke/mustard
 
 /datum/effect/effect/system/smoke_spread/white_phosphorous
-    smoke_type = /obj/effect/effect/smoke/white_phosphorous
+	smoke_type = /obj/effect/effect/smoke/white_phosphorous
 
 
 

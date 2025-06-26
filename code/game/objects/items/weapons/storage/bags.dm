@@ -122,11 +122,11 @@
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GOLD = 4, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
 	origin_tech = list(TECH_BLUESPACE = 4)
 	can_hold = list(/obj/item/ore,
-	                /obj/item/reagent_containers/food/snacks/grown,
-	                /obj/item/seeds,
-	                /obj/item/grown,
-	                /obj/item/reagent_containers/food/snacks/egg,
-	                /obj/item/reagent_containers/food/snacks/meat)
+					/obj/item/reagent_containers/food/snacks/grown,
+					/obj/item/seeds,
+					/obj/item/grown,
+					/obj/item/reagent_containers/food/snacks/egg,
+					/obj/item/reagent_containers/food/snacks/meat)
 
 /obj/item/storage/bag/ore/holding/New()
 	..()
@@ -240,7 +240,7 @@
 	if(!istype(S)) return 0
 
 	//I would prefer to drop a new stack, but the item/attack_hand code
-	// that calls this can't recieve a different object than you clicked on.
+	// that calls this can't receive a different object than you clicked on.
 	//Therefore, make a new stack internally that has the remainder.
 	// -Sayu
 

@@ -155,8 +155,8 @@
 /datum/teleport/instant/science/setPrecision(aprecision)
 	..()
 	if(istype(teleatom, /obj/item/storage/backpack/holding) || istype(teleatom, /obj/item/storage/pouch/holding/) || \
-	   istype(teleatom, /obj/item/storage/belt/holding) || istype(teleatom, /obj/item/storage/bag/trash/holding) || \
-	   istype(teleatom, /obj/item/storage/bag/ore/holding))
+		istype(teleatom, /obj/item/storage/belt/holding) || istype(teleatom, /obj/item/storage/bag/trash/holding) || \
+		istype(teleatom, /obj/item/storage/bag/ore/holding))
 		precision = rand(1, 100)
 
 	var/ofholding = 0

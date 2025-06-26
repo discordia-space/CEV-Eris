@@ -429,8 +429,8 @@
 //Hive + Cyborg
 //Special ability: none...
 //Have a few types of attack: Default one.
-//							  Claw, that press down the victims.
-//							  Splash attack, that slash everything around!
+//							Claw, that press down the victims.
+//							Splash attack, that slash everything around!
 //Decent chance of malfunction
 //Default speaking chance
 //Slower than average

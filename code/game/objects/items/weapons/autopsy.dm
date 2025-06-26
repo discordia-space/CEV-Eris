@@ -22,7 +22,7 @@
 /datum/autopsy_data_scanner
 	var/weapon // this is the DEFINITE weapon type that was used
 	var/list/organs_scanned = list() // this maps a number of scanned organs to
-									 // the wounds to those organs with this data's weapon type
+									// the wounds to those organs with this data's weapon type
 	var/organ_names = ""
 
 /datum/autopsy_data

@@ -14,7 +14,7 @@
 	var/swap_time = 200  // Time from starting until minds are swapped
 	var/swap_range = 1
 	var/list/swap_blacklist = list(/mob/living/simple_animal/hostile/megafauna,
-	                               /mob/living/simple_animal/cat/runtime)
+									/mob/living/simple_animal/cat/runtime)
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2

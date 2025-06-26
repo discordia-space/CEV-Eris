@@ -63,27 +63,27 @@
 	msg = sanitize(msg)
 	if(!msg)	return
 
-	var/recieve_pm_type = "Player"
+	var/receive_pm_type = "Player"
 	if(holder)
 		msg = emoji_parse(msg)
 		//mod PMs are maroon
 		//PMs sent from admins and mods display their rank
 		if(holder)
 			if(!C.holder && holder && holder.fakekey)
-				recieve_pm_type = "Admin"
+				receive_pm_type = "Admin"
 			else
-				recieve_pm_type = holder.rank
+				receive_pm_type = holder.rank
 
 	else if(!C.holder)
 		to_chat(src, "<font color='red'>Error: Admin-PM: Non-admin to non-admin PM communication is forbidden.</font>")
 		return
 
-	var/recieve_message
+	var/receive_message
 
 	if(holder && !C.holder)
-		recieve_message = "<span class='pm'><span class='howto'><b>-- Click the [recieve_pm_type]'s name to reply --</b></span></span>\n"
+		receive_message = "<span class='pm'><span class='howto'><b>-- Click the [receive_pm_type]'s name to reply --</b></span></span>\n"
 		if(C.adminhelped)
-			to_chat(C, recieve_message)
+			to_chat(C, receive_message)
 			C.adminhelped = 0
 
 		//AdminPM popup for ApocStation and anybody else who wants to use it. Set it with POPUP_ADMIN_PM in config.txt ~Carn
@@ -91,7 +91,7 @@
 			spawn(0)	//so we don't hold the caller proc up
 				var/sender = src
 				var/sendername = key
-				var/reply = sanitize(input(C, msg,"[recieve_pm_type] PM from [sendername]", "") as text|null)		//show message and await a reply
+				var/reply = sanitize(input(C, msg,"[receive_pm_type] PM from [sendername]", "") as text|null)		//show message and await a reply
 				if(C && reply)
 					if(sender)
 						C.cmd_admin_pm(sender,reply)										//sender is still about, let's reply to them
@@ -99,7 +99,7 @@
 						adminhelp(reply)													//sender has left, adminhelp instead
 				return
 
-	to_chat(C, "<span class='pm'><span class='in'>" + create_text_tag("pm_in", "", C) + " <b>\[[recieve_pm_type] PM\]</b> <span class='name'>[key_name(src, TRUE, C.holder ? 1 : 0)]</span>: <span class='message linkify'>[msg]</span></span></span>")
+	to_chat(C, "<span class='pm'><span class='in'>" + create_text_tag("pm_in", "", C) + " <b>\[[receive_pm_type] PM\]</b> <span class='name'>[key_name(src, TRUE, C.holder ? 1 : 0)]</span>: <span class='message linkify'>[msg]</span></span></span>")
 	to_chat(src, "<span class='pm'><span class='out'>" + create_text_tag("pm_out_alt", "PM", src) + " to <span class='name'>[get_options_bar(C, holder ? 1 : 0, holder ? 1 : 0, 1)]</span>: <span class='message linkify'>[msg]</span></span></span>")
 
 	//play the recieving admin the adminhelp sound (if they have them enabled)

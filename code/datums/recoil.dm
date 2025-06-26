@@ -27,7 +27,7 @@
 	tag = RECOILID
 
 /datum/recoil/proc/setRating(_recoil_buildup = 0, _brace_penalty = 0, _one_hand_penalty = 0)
-  return getRecoil(	(isnull(_recoil_buildup)	? recoil_buildup	: _recoil_buildup)	,\
+	return getRecoil((isnull(_recoil_buildup)	? recoil_buildup	: _recoil_buildup)	,\
 					(isnull(_brace_penalty)		? brace_penalty		: _brace_penalty)	,\
 					(isnull(_one_hand_penalty)	? one_hand_penalty	: _one_hand_penalty))
 

@@ -1101,13 +1101,6 @@
 	W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC)
 	qdel(src)	// remove the pipe item
 
-	return
-	 //TODO: DEFERRED
-
-// ensure that setterm() is called for a newly connected pipeline
-
-
-
 /obj/item/pipe_meter
 	name = "meter"
 	desc = "A meter that can be laid on pipes"

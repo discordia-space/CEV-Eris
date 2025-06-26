@@ -3,7 +3,7 @@
 	wire_count = 3
 	descriptions = list(
 		new /datum/wire_description(WIRE_SIGNAL, "Power"),
-		new /datum/wire_description(WIRE_RECEIVE, "Reciever"),
+		new /datum/wire_description(WIRE_RECEIVE, "receiver"),
 		new /datum/wire_description(WIRE_TRANSMIT, "Transmitter")
 	)
 

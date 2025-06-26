@@ -43,26 +43,25 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	return "weak"
 
 
-/proc/dust_swarm(var/strength = "weak")
+/proc/dust_swarm(strength = "weak")
 	var/numbers = 1
 	switch(strength)
 		if("weak")
-		 numbers = rand(8,15)
-		 for(var/i = 0 to numbers)
-		 	new/obj/effect/space_dust/weak()
+			numbers = rand(8,15)
+			for(var/i = 0 to numbers)
+				new/obj/effect/space_dust/weak()
 		if("norm")
-		 numbers = rand(20,40)
-		 for(var/i = 0 to numbers)
-		 	new/obj/effect/space_dust()
+			numbers = rand(20,40)
+		for(var/i = 0 to numbers)
+			new/obj/effect/space_dust()
 		if("strong")
-		 numbers = rand(40,60)
-		 for(var/i = 0 to numbers)
-		 	new/obj/effect/space_dust/strong()
+			numbers = rand(40,60)
+			for(var/i = 0 to numbers)
+				new/obj/effect/space_dust/strong()
 		if("super")
-		 numbers = rand(60,100)
-		 for(var/i = 0 to numbers)
-		 	new/obj/effect/space_dust/super()
-	return
+			numbers = rand(60,100)
+			for(var/i = 0 to numbers)
+				new/obj/effect/space_dust/super()
 
 
 /obj/effect/space_dust

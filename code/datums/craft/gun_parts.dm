@@ -691,7 +691,7 @@ semi accepts weird caliber - +1 points
 /obj/item/part/gun/modular/barrel/srifle/steel
 	name = "cheap .20 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .20 caliber. \
-			 This one does not look as high quality."
+			This one does not look as high quality."
 	matter = list(MATERIAL_STEEL = 5)
 
 /obj/item/part/gun/modular/barrel/clrifle/steel

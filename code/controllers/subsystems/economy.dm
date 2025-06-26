@@ -121,9 +121,9 @@ SUBSYSTEM_DEF(economy)
 	var/address = R.get_email()
 
 	var/datum/computer_file/data/email_message/message = new()
-	message.title = "You have recieved funds"
+	message.title = "You have received funds"
 
-	message.stored_data = "You have recieved a payment\n\n \
+	message.stored_data = "You have received a payment\n\n \
 	From: [sender]\n \
 	Reason: Regular Wages\n\n \
 	----------------------------\n \

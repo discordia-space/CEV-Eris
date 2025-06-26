@@ -648,9 +648,9 @@
 	icon_state = "blueold"
 
 /area/eris/engineering/atmos
- 	name = "\improper Atmospherics"
- 	icon_state = "atmos"
- 	sound_env = LARGE_ENCLOSED
+	name = "\improper Atmospherics"
+	icon_state = "atmos"
+	sound_env = LARGE_ENCLOSED
 
 /area/eris/engineering/atmos/monitoring
 	name = "\improper Atmospherics Monitoring Room"

@@ -152,7 +152,7 @@
 	for(var/obj/machinery/power/shipside/shield_generator/G in GLOB.machines)
 		if(G.running != SHIELD_OFF)
 			G.take_shield_damage(250, SHIELD_DAMTYPE_SPECIAL, "UNKNOWN") // ALRIGHT LISTEN WEATHER CAN LAST AT MAXIMUM 450 TICKS, AVERAGE AT 375 SHIELD HITS
-														 	// BY DEFAULT 1000 DAMAGE EQUALS 1 PERCENT, SO 0.25% * 375 = 93.75%, THIS WILL KNOCK SHIELDS OUT IF THEY'RE NOT AT FULL CAPACITY OR NOT CHARGING WELL
+		// BY DEFAULT 1000 DAMAGE EQUALS 1 PERCENT, SO 0.25% * 375 = 93.75%, THIS WILL KNOCK SHIELDS OUT IF THEY'RE NOT AT FULL CAPACITY OR NOT CHARGING WELL
 /datum/storyevent/micro_debris
 	id = "micro_debris"
 	name = "micro debris field"
@@ -236,7 +236,7 @@
 					"Blessed Angels, guide us to safety!",
 					"Comrades, we have captured the last survivors on this wreck. Expecting extraction at-",
 					"Whoever hears this, RUN WHILE YOU STILL CAN!",
-					"We are barely managing to keep this place safe. Please, whoever recieves this signal, pick us up at-",
+					"We are barely managing to keep this place safe. Please, whoever receives this signal, pick us up at-",
 					"Our food and water supplies are going to run out soon. We have money. Just help us, anyone, please...",
 					"TO ANYONE STILL LOYAL LEFT, WE MAKE OUR FINAL STAND IN THE CONTROL ROOM.",
 					"Weld the vents. Weld The vents! WELD THE VENTS!!",

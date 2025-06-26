@@ -28,7 +28,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 		if(QUALITY_BOLT_TURNING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				user.visible_message("<span class='warning'>[user] has [anchored ? "" : "un" ]secured \the [src]!</span>",
-									  "You have [anchored ? "" : "un" ]secured \the [src]!")
+									"You have [anchored ? "" : "un" ]secured \the [src]!")
 				anchored = !anchored
 				update_icon()
 				return
@@ -71,7 +71,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 		if(anchored)
 			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message(SPAN_WARNING("[user] has inserted a circuit into \the [src]!"),
-								  "You have inserted the circuit into \the [src]!")
+								"You have inserted the circuit into \the [src]!")
 			new /obj/machinery/door/firedoor(src.loc)
 			qdel(I)
 			qdel(src)

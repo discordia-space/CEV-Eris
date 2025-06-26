@@ -69,7 +69,7 @@
 	var/mineral_name
 	var/oremult = 1
 
-	var/targetrecievedtime = -250
+	var/targetreceivedtime = -250
 
 /mob/living/carbon/superior_animal/golem/Initialize(mapload, var/datum/cave_difficulty_level/difficulty)
 	if(mineral_name && (mineral_name in ore_data))
@@ -132,7 +132,7 @@
 					if(!ally.target_mob)
 						ally.stance = HOSTILE_STANCE_ATTACK
 						ally.target_mob = target_mob
-						ally.targetrecievedtime = world.time
+						ally.targetreceivedtime = world.time
 						ally.try_activate_ai() // otherwise we attack alone even if a target is set
 
 		if(HOSTILE_STANCE_ATTACK)
@@ -151,7 +151,7 @@
 			if(retreat_on_too_close)
 				updatePathFinding() //retreating enemies need to update their pathfinding way more often
 
-			if(((targetrecievedtime + 5 SECONDS) > world.time) && (target_mob.z == z)) // golems will disregard target validity temporarily after another golem gives them a target, so that they don't immediately lose their target
+			if(((targetreceivedtime + 5 SECONDS) > world.time) && (target_mob.z == z)) // golems will disregard target validity temporarily after another golem gives them a target, so that they don't immediately lose their target
 				attemptAttackOnTarget()
 			else
 				prepareAttackOnTarget()

@@ -137,7 +137,7 @@ var/global/list/big_deepmaint_room_templates = list()
 // If nothing ever fulfills the above requirements, functionally, nothing will happen for the rest of the function
 	var/list/wall_line = list()
 	if(nicheline.len > 3)
-	 wall_line = checkForWalls(nicheline) //Checks whether 4 turf tiles are walls in the chosen direction from tiles adjacent to the second tile. If this is not met in any direction, the function is functionally done
+		wall_line = checkForWalls(nicheline) //Checks whether 4 turf tiles are walls in the chosen direction from tiles adjacent to the second tile. If this is not met in any direction, the function is functionally done
 	if(wall_line.len)
 		for(var/turf/W in nicheline) //Every turf in the path returned by findNicheTurfs has a 30% chance of becoming a random deepmaint machine
 			if(prob(30))

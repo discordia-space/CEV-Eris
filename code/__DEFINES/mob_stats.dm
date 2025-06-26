@@ -21,9 +21,4 @@
 #define STAT_LEVEL_MAX      60 // Max stat value selectable
 
 /// Bitflag for shared perk abilities
- #define PERK_SHARED_SEE_REAGENTS 0x1
- /*
- #define PERK_SHARED_SEE_CONSUMER_REAGENTS 0x2
- */
-
-
+#define PERK_SHARED_SEE_REAGENTS 0x1

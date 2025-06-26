@@ -46,8 +46,7 @@
 		switch(screen)
 
 
-		  // --- Main Menu ---
-
+			// --- Main Menu ---
 			if(0)
 				dat += "<br>[temp]<br>"
 				dat += "<br>Current Network: <a href='byond://?src=\ref[src];network=1'>[network]</a><br>"
@@ -62,7 +61,7 @@
 					dat += "<br>No servers detected. Scan for servers: <a href='byond://?src=\ref[src];operation=scan'>\[Scan\]</a>"
 
 
-		  // --- Viewing Server ---
+			// --- Viewing Server ---
 
 			if(1)
 				dat += "<br>[temp]<br>"
@@ -89,7 +88,7 @@
 
 						// -- Determine race of orator --
 
-						var/race = C.parameters["race"]			   // The actual race of the mob
+						var/race = C.parameters["race"] // The actual race of the mob
 						var/language = C.parameters["language"] // The language spoken, or null/""
 
 						// -- If the orator is a human, or universal translate is active, OR mob has universal speech on --

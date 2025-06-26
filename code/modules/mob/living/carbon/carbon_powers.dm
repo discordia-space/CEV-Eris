@@ -39,7 +39,7 @@
 	if(B.host_brain.ckey)
 		text = input("What would you like to say?", "Speak to captive host", null, null)
 		text = capitalize(sanitize(text))
-		if(!text) 
+		if(!text)
 			return
 		log_say("Borer said to its host [text]")
 
@@ -73,4 +73,3 @@
 
 	else
 		to_chat(src, "You do not have enough chemicals stored to reproduce. (You need [reproduce_cost]).")
-		return

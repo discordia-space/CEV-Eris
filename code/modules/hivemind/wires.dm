@@ -64,7 +64,7 @@
 			anim_shake(machine_on_my_tile)
 			return
 
-		 //only one machine per turf
+		//only one machine per turf
 		if(can_assimilate && !locate(/obj/machinery/hivemind_machine) in loc)
 			assimilate(machine_on_my_tile)
 			return

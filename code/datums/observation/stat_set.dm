@@ -14,14 +14,3 @@ GLOBAL_DATUM_INIT(stat_set_event, /decl/observ/stat_set, new)
 	name = "Stat Set"
 	expected_type = /mob/living
 
-/****************
-* Stat Handling *
-****************/
-//TODO: enable after baymed
-/*
-/mob/living/set_stat(var/new_stat)
-	var/old_stat = stat
-	. = ..()
-	if(stat != old_stat)
-		GLOB.stat_set_event.raise_event(src, old_stat, new_stat)
-*/

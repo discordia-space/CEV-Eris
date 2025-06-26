@@ -1,6 +1,6 @@
 /*
 	Radiation storm is a really severe event that forces everyone to flee into maintenance or a similar
-	shielded area. Anyone caught outside a shielded area will recieve lethal doses of radiation,
+	shielded area. Anyone caught outside a shielded area will receive lethal doses of radiation,
 	and will die without medical attention
 */
 /datum/storyevent/radiation_storm

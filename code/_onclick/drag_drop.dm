@@ -14,7 +14,7 @@
 	spawn(0)
 		over.MouseDrop_T(src, usr, src_location, over_location, src_control, over_control, params)
 
-// recieve a mousedrop
+// receive a mousedrop
 /atom/proc/MouseDrop_T(atom/dropping, mob/user, src_location, over_location, src_control, over_control, params)
 	return
 

@@ -32,7 +32,7 @@ A staunch entrepreneur, you are motivated by profit, for the guild and especiall
 <br>\
 The guild also operates all the vendors on the ship, every credit paid into them goes to your guild account. Naturally operating is a two way street, you are expected, when necessary, to refill those vendors. Or send a technician to do it<br>\
 <br>\
-You do not recieve a salary, but the local guild funds are yours to use. You may pay yourself as much as you like from that account, take the funds and use them for any purpose.  Bribery is a good one, you can get people to do a lot of things if you flash some cash, and its a good idea to keep a few thousand credits on hand in-cash to bribe your way through potentially difficult situations.<br>\
+You do not receive a salary, but the local guild funds are yours to use. You may pay yourself as much as you like from that account, take the funds and use them for any purpose.  Bribery is a good one, you can get people to do a lot of things if you flash some cash, and its a good idea to keep a few thousand credits on hand in-cash to bribe your way through potentially difficult situations.<br>\
 <br>\
 Things to bear in mind:<br>\
 	-Nobody has a right to free stuff. You are well within your rights to charge for anything you distribute, and you won't make a penny if you don't.<br>\
@@ -49,7 +49,7 @@ Counsel the captain on directing the ship towards profitable opportunities"
 Your second loyalty is to the guild. Ensure it retains good relations with privateers like the captain of Eris, and don't embarass it. This means limiting your price gouging to only moderate levels. If you make an enemy of everyone, it may prove a costly mistake"
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
-							 ///datum/computer_file/program/deck_management,
+							///datum/computer_file/program/deck_management,
 							/datum/computer_file/program/trade,
 							/datum/computer_file/program/scanner,
 							/datum/computer_file/program/wordprocessor,
@@ -92,7 +92,7 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 	perks = list(/datum/perk/deep_connection)
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
-							 ///datum/computer_file/program/deck_management,
+							///datum/computer_file/program/deck_management,
 							/datum/computer_file/program/scanner,
 							/datum/computer_file/program/wordprocessor,
 							/datum/computer_file/program/reports)
@@ -167,7 +167,7 @@ Character Expectations:<br>\
 	perks = list(/datum/perk/deep_connection)
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
-							 ///datum/computer_file/program/deck_management,
+							///datum/computer_file/program/deck_management,
 							/datum/computer_file/program/wordprocessor,
 							/datum/computer_file/program/reports)
 

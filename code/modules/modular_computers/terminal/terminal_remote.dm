@@ -29,5 +29,4 @@
 		return FALSE
 	if(!ntnet_global.check_function())
 		return FALSE
-
 	return TRUE

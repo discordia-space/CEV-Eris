@@ -15,17 +15,18 @@
 #define TASTE_SLIMEY "creamy drink"
 #define TASTE_REFRESHING "refreshing drink"
 #define TASTE_DRY "dry drink"
-var/global/list/all_taste_drinks = list(TASTE_SOUR,
-								 TASTE_BITTER,
-								 TASTE_SWEET,
-								 TASTE_STRONG,
-								 TASTE_LIGHT,
-								 TASTE_BUBBLY,
-								 TASTE_SPICY,
-								 TASTE_SALTY,
-								 TASTE_SLIMEY, //for dense,creamy, solid stuff
-								 TASTE_REFRESHING,
-								 TASTE_DRY) //for stuff like martinis
+var/global/list/all_taste_drinks = list(
+	TASTE_SOUR,
+	TASTE_BITTER,
+	TASTE_SWEET,
+	TASTE_STRONG,
+	TASTE_LIGHT,
+	TASTE_BUBBLY,
+	TASTE_SPICY,
+	TASTE_SALTY,
+	TASTE_SLIMEY, //for dense,creamy, solid stuff
+	TASTE_REFRESHING,
+	TASTE_DRY) //for stuff like martinis
 
 #define SWEET_FOOD "sweet food"
 #define MEAT_FOOD "meat food"

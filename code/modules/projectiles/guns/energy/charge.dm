@@ -1,15 +1,15 @@
 /**
 	Energy weapon charge attack
-	 - User holds down their attack button to charge their weapon
-	 - Weapon begins charging, starting at 0% and ending at 100%
-	 - Charge rate is determined both by the weapons standard charge rate, and the users vigilance rating. (gun.charge_rate+user.stats.getStat(STAT_VIG)*0.01
-	 - User eleases mouse button, weapon fires
+	- User holds down their attack button to charge their weapon
+	- Weapon begins charging, starting at 0% and ending at 100%
+	- Charge rate is determined both by the weapons standard charge rate, and the users vigilance rating. (gun.charge_rate+user.stats.getStat(STAT_VIG)*0.01
+	- User eleases mouse button, weapon fires
 **/
 
 /datum/firemode/charge
 	var/datum/click_handler/charge/CH = null
 
-/datum/firemode/charge/update(var/force_state = null)
+/datum/firemode/charge/update(force_state = null)
 	var/mob/living/L
 	if(gun)
 		// bit of a hack here, but we want mounted systems to work properly
@@ -80,7 +80,7 @@
 		//Create and assign the click handler
 		//A click handler intercepts mouseup/drag/down events which allow fullauto firing
 		CH = new /datum/click_handler/charge()
-		CH.reciever = gun //Reciever is the gun that gets the fire events
+		CH.receiver = gun //receiver is the gun that gets the fire events
 		L.client.CH = CH //Put it on the client
 		CH.owner = L.client //And tell it where it is
 
@@ -91,14 +91,14 @@
 /datum/click_handler/charge
 	handler_name = "charge mode"
 	var/atom/target = null
-	var/obj/item/gun/energy/reciever
+	var/obj/item/gun/energy/receiver
 
 /datum/click_handler/charge/Click()
 	return TRUE //As we don't use the normal click, but the MouseDown/MouseUp, this function is not needed at all. This also bypasses the delete on use check
 
 //Begin charging
 /datum/click_handler/charge/MouseDown(object,location,control,params)
-	reciever.begin_charge(owner.mob)
+	receiver.begin_charge(owner.mob)
 
 //Fire charged attack
 /datum/click_handler/charge/MouseUp(object,location,control,params)
@@ -107,17 +107,17 @@
 		var/atom/target = object
 		target = object
 		owner.mob.face_atom(target)
-	reciever.release_charge(object, owner.mob)
+	receiver.release_charge(object, owner.mob)
 
 /******************
 	The actual code
 ******************/
 
-/obj/item/gun/energy/proc/begin_charge(var/mob/living/user)
+/obj/item/gun/energy/proc/begin_charge(mob/living/user)
 	to_chat(user, SPAN_NOTICE("You begin charging \the [src]."))
 	overcharge_timer = addtimer(CALLBACK(src, PROC_REF(add_charge), user), 1 SECONDS, TIMER_STOPPABLE)
 
-/obj/item/gun/energy/proc/add_charge(var/mob/living/user)
+/obj/item/gun/energy/proc/add_charge(mob/living/user)
 	deltimer(overcharge_timer)
 	if((get_holding_mob() == user || istype(loc, /obj/item/mech_equipment/mounted_system)) && get_cell() && cell.checked_use(1))
 		overcharge_level = min(overcharge_max, overcharge_level + get_overcharge_add(user))
@@ -131,10 +131,10 @@
 	visible_message(SPAN_WARNING("\The [src] sputters out."))
 	overcharge_level = 0
 
-/obj/item/gun/energy/proc/get_overcharge_add(var/mob/living/user)
+/obj/item/gun/energy/proc/get_overcharge_add(mob/living/user)
 	return overcharge_rate+user.stats.getStat(STAT_VIG)*VIG_OVERCHARGE_GEN
 
-/obj/item/gun/energy/proc/release_charge(var/atom/target, var/mob/living/user)
+/obj/item/gun/energy/proc/release_charge(atom/target, mob/living/user)
 	deltimer(overcharge_timer)
 	var/overcharge_add = overcharge_level_to_mult()
 	damage_multiplier += overcharge_add

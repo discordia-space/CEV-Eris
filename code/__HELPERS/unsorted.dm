@@ -559,13 +559,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //returns random gauss number
 /proc/GaussRand(sigma)
-  var/x, y, rsq
-  do
-    x=2*rand()-1
-    y=2*rand()-1
-    rsq=x*x+y*y
-  while(rsq>1 || !rsq)
-  return sigma*y*sqrt(-2*log(rsq)/rsq)
+	var/x, y, rsq
+	do
+		x=2*rand()-1
+		y=2*rand()-1
+		rsq=x*x+y*y
+	while(rsq>1 || !rsq)
+	return sigma*y*sqrt(-2*log(rsq)/rsq)
 
 //returns random gauss number, rounded to 'roundto'
 /proc/GaussRandRound(sigma, roundto)
@@ -708,8 +708,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	//Takes: Area. Optional: turf type to leave behind.
 	//Returns: Nothing.
 	//Notes: Attempts to move the contents of one area to another area.
-	//       Movement based on lower left corner. Tiles that do not fit
-	//		 into the new area will not be moved.
+	//		Movement based on lower left corner. Tiles that do not fit
+	//		into the new area will not be moved.
 
 	if(!A || !src) return 0
 

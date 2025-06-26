@@ -143,8 +143,8 @@
 			return
 
 	else if(istype(I,/obj/item/reagent_containers/glass) || \
-	        istype(I,/obj/item/reagent_containers/food/drinks) || \
-	        istype(I,/obj/item/reagent_containers/food/condiment) \
+			istype(I,/obj/item/reagent_containers/food/drinks) || \
+			istype(I,/obj/item/reagent_containers/food/condiment) \
 		)
 		if(!I.reagents)
 			return 1

@@ -55,7 +55,7 @@
 						else if(ishuman(eat_target))
 							busy_time = 5 MINUTES
 							// how much time it takes to it a corpse
-		    				// Set to 5 minutes to let the crew enough time to get the corpse
+							// Set to 5 minutes to let the crew enough time to get the corpse
 							// Several roaches eating at the same time do not speed up the process
 							// If disturbed the roach has to start back from 0
 

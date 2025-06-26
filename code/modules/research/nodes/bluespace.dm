@@ -198,5 +198,4 @@
 	unlocks_designs = list(	/datum/design/research/item/belt_holding,
 							/datum/design/research/item/pouch_holding,
 							/datum/design/research/item/trashbag_holding,
-							/datum/design/research/item/oresatchel_holding
-						    )
+							/datum/design/research/item/oresatchel_holding)

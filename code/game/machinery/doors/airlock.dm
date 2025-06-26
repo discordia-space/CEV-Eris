@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 
 	var/hackProof = 0 // if 1, this door can't be hacked by the AI
 	var/electrified_until = 0			//World time when the door is no longer electrified. -1 if it is permanently electrified until someone fixes it.
-	var/main_power_lost_until = 0	 	//World time when main power is restored.
+	var/main_power_lost_until = 0		//World time when main power is restored.
 	var/backup_power_lost_until = -1	//World time when backup power is restored.
 	var/next_beep_at = 0				//World time when we may next beep due to doors being blocked by mobs
 	var/spawnPowerRestoreRunning = 0
@@ -956,7 +956,7 @@ There are 9 wires.
 						if(istype(da, /obj/structure/door_assembly/multi_tile))
 							da.set_dir(dir)
 
-		 				da.anchored = TRUE
+						da.anchored = TRUE
 						if(mineral)
 							da.glass = mineral
 						else if(glass && !da.glass)

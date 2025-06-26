@@ -1,5 +1,4 @@
 /datum/hud_data
-
 	var/list/equip_slots = list() // Checked by mob_can_equip().
 	var/list/ProcessHUD = list(
 		"health","nutrition","body temperature","pressure","toxin","oxygen","fire","internal","sanity","neural system accumulation",
@@ -60,11 +59,9 @@
 
 
 /datum/hud_data/monkey
-
 	gear = list(
 		"Left Hand" =       slot_l_hand,
 		"Right Hand" =       slot_r_hand,
 		"Hat" =          slot_head,
 		"Mask" =         slot_wear_mask,
-		"Back" =         slot_back
-		)
+		"Back" =         slot_back)

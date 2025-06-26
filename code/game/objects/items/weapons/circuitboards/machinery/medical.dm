@@ -19,5 +19,4 @@
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/stock_parts/console_screen = 1,
 		/obj/item/stock_parts/micro_laser = 2,
-		/obj/item/reagent_containers/glass/beaker/large = 1
-		)
+		/obj/item/reagent_containers/glass/beaker/large = 1)

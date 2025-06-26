@@ -200,9 +200,9 @@
 		else
 			if(prob(5))
 				var/msg5 = (pick("nuzzles [friend].",
-								   "brushes against [friend].",
-								   "rubs against [friend].",
-								   "purrs."))
+								"brushes against [friend].",
+								"rubs against [friend].",
+								"purrs."))
 				src.visible_message("<span class='name'>[src]</span> [msg5].")
 	else if(friend.health <= 50)
 		if(prob(10))

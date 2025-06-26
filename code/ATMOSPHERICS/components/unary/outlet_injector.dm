@@ -111,11 +111,8 @@
 		"device" = "AO",
 		"power" = use_power,
 		"volume_rate" = volume_rate,
-		"sigtype" = "status"
-	 )
-
+		"sigtype" = "status")
 	radio_connection.post_signal(src, signal)
-
 	return 1
 
 /obj/machinery/atmospherics/unary/outlet_injector/atmos_init()

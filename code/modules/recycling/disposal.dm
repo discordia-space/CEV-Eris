@@ -548,7 +548,7 @@
 				// Hurt any living creature jumping down disposals
 				var/multiplier = 1
 
-				// STAT_MEC or STAT_TGH help you reduce disposal damage, with no damage being recieved at all at STAT_LEVEL_EXPERT
+				// STAT_MEC or STAT_TGH help you reduce disposal damage, with no damage being received at all at STAT_LEVEL_EXPERT
 				if(H.stats)
 					multiplier = min(H.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT), H.stats.getMult(STAT_TGH, STAT_LEVEL_EXPERT))
 

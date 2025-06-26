@@ -52,7 +52,7 @@
 	. = 1
 	if(fruit && fruit.len)
 		var/list/checklist = list()
-		 // You should trust Copy().
+		// You should trust Copy().
 		checklist = fruit.Copy()
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in container)
 			if(!G.seed || !G.seed.kitchen_tag || isnull(checklist[G.seed.kitchen_tag]))

@@ -51,4 +51,3 @@
 	if(weapon1)
 		new weapon1 (src.loc)
 	qdel(src)
-	return

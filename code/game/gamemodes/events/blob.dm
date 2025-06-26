@@ -451,7 +451,7 @@
 		return
 
 	var/absorbed_damage //The amount of damage that will be subtracted from the projectile
-	var/taken_damage //The amount of damage the blob will recieve
+	var/taken_damage //The amount of damage the blob will receive
 	for(var/i in Proj.damage_types)
 		if(i == BRUTE)
 			absorbed_damage = min(health * brute_resist, Proj.damage_types[i])

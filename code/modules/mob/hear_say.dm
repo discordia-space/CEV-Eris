@@ -170,7 +170,7 @@
 		return .
 
 	if(. != speaker.real_name && !isAI(speaker))
-	 //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
+		//Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
 		. = "[speaker.real_name] ([.])"
 	return "[.] ([ghost_follow_link(speaker, src)])"
 

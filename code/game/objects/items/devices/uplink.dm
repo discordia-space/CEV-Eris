@@ -144,7 +144,7 @@ Then check if it's true, if true return. This will stop the normal menu appearin
 	data["crystals"] = uses
 	data["menu"] = nanoui_menu
 	data["has_contracts"] = uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT_VIEW)\
-	                                     : !!length(owner_roles & ROLES_CONTRACT_VIEW)
+										: !!length(owner_roles & ROLES_CONTRACT_VIEW)
 	data += nanoui_data
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -243,8 +243,8 @@ Then check if it's true, if true return. This will stop the normal menu appearin
 		for(var/datum/data/record/L in data_core.locked)
 			if(L.fields["id"] == exploit_id)
 				nanoui_data["exploit"] = list()  // Setting this to equal L.fields passes it's variables that are lists as reference instead of value.
-								 // We trade off being able to automatically add shit for more control over what gets passed to json
-								 // and if it's sanitized for html.
+								// We trade off being able to automatically add shit for more control over what gets passed to json
+								// and if it's sanitized for html.
 				nanoui_data["exploit"]["nanoui_exploit_record"] = html_encode(L.fields["exploit_record"])                         		// Change stuff into html
 				nanoui_data["exploit"]["nanoui_exploit_record"] = replacetext(nanoui_data["exploit"]["nanoui_exploit_record"], "\n", "<br>")    // change line breaks into <br>
 				nanoui_data["exploit"]["name"] =  html_encode(L.fields["name"])

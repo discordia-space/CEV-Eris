@@ -229,7 +229,7 @@
 /obj/item/gun/projectile/boltgun/obrez
 	name = "sawn-off Excelsior BR .30 \"Kardashev-Mosin\""
 	desc = "Weapon for hunting, or endless trench warfare. \
-		 This one has been sawed down into an \"Obrez\" style."
+			This one has been sawed down into an \"Obrez\" style."
 	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
 	icon_state = "obrez"
 	item_state = "obrez"

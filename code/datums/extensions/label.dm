@@ -20,7 +20,7 @@
 	LAZYADD(labels, label)
 
 	user.visible_message("<span class='notice'>\The [user] attaches a label to \the [atom_holder].</span>", \
-						 "<span class='notice'>You attach a label, '[label]', to \the [atom_holder].</span>")
+						"<span class='notice'>You attach a label, '[label]', to \the [atom_holder].</span>")
 
 	var/old_name = atom_holder.name
 	atom_holder.name = "[atom_holder.name] ([label])"
@@ -40,7 +40,7 @@
 		return
 
 	user.visible_message("<span class='notice'>\The [user] removes a label from \the [atom_holder].</span>", \
-						 "<span class='notice'>You remove a label, '[label]', from \the [atom_holder].</span>")
+						"<span class='notice'>You remove a label, '[label]', from \the [atom_holder].</span>")
 
 	var/old_name = atom_holder.name
 	// We find and replace the first instance, since that's the one we removed from the list

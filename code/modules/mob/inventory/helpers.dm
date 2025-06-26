@@ -36,5 +36,4 @@
 
 	if(!skip_covering_check && !slot_is_accessible(slot, Item, disable_warning? null : src))
 		return FALSE
-
 	return ..()

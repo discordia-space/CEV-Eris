@@ -17,11 +17,11 @@
 	/*
 	Filter types:
 	-1: Nothing
-	 0: Plasma: Plasma, Oxygen Agent B
-	 1: Oxygen: Oxygen ONLY
-	 2: Nitrogen: Nitrogen ONLY
-	 3: Carbon Dioxide: Carbon Dioxide ONLY
-	 4: Sleeping Agent (N2O)
+	0: Plasma: Plasma, Oxygen Agent B
+	1: Oxygen: Oxygen ONLY
+	2: Nitrogen: Nitrogen ONLY
+	3: Carbon Dioxide: Carbon Dioxide ONLY
+	4: Sleeping Agent (N2O)
 	*/
 	var/filter_type = -1
 	var/list/filtered_out = list()

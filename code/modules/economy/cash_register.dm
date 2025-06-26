@@ -479,27 +479,25 @@
 	manipulating = 1
 	if(!anchored)
 		user.visible_message("\The [user] begins securing \the [src] to the floor.",
-	                         "You begin securing \the [src] to the floor.")
+							"You begin securing \the [src] to the floor.")
 	else
 		user.visible_message(SPAN_WARNING("\The [user] begins unsecuring \the [src] from the floor."),
-	                         "You begin unsecuring \the [src] from the floor.")
+							"You begin unsecuring \the [src] from the floor.")
 	playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 	if(!do_after(user, 20))
 		manipulating = 0
 		return
 	if(!anchored)
 		user.visible_message(SPAN_NOTICE("\The [user] has secured \the [src] to the floor."),
-	                         SPAN_NOTICE("You have secured \the [src] to the floor."))
+							SPAN_NOTICE("You have secured \the [src] to the floor."))
 	else
 		user.visible_message(SPAN_WARNING("\The [user] has unsecured \the [src] from the floor."),
-	                         SPAN_NOTICE("You have unsecured \the [src] from the floor."))
+							SPAN_NOTICE("You have unsecured \the [src] from the floor."))
 	anchored = !anchored
 	manipulating = 0
-	return
 
 
-
-/obj/machinery/cash_register/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/cash_register/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		src.visible_message(SPAN_DANGER("The [src]'s cash box springs open as [user] swipes the card through the scanner!"))
 		playsound(src, "sparks", 50, 1)

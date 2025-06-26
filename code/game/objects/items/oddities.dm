@@ -712,7 +712,7 @@
 		if(alert(user, "Flip the coin?", "seven-sided coin", "Yes", "No") == "Yes")
 			if(prob(1))
 				user.visible_message(SPAN_NOTICE("[user] has thrown \the [src]. It lands on its side?! "), \
-						 SPAN_NOTICE("You throw \the [src]. It lands on its side?! "))
+						SPAN_NOTICE("You throw \the [src]. It lands on its side?! "))
 				if(!was_flipped)
 					oddity_stats = sideways_stats
 					desc = "An odd seven-sided coin with somewhat sharp edges and blank sides. Holding it gives you a strange sense of nonspecific closure."
@@ -731,7 +731,7 @@
 					comment = "heads"
 
 				user.visible_message(SPAN_NOTICE("[user] has thrown \the [src]. It lands on [comment]! "), \
-									 SPAN_NOTICE("You throw \the [src]. It lands on [comment]! "))
+									SPAN_NOTICE("You throw \the [src]. It lands on [comment]! "))
 			was_flipped = TRUE
 			var/datum/component/inspiration/odd = GetComponent(/datum/component/inspiration)
 			odd.stats = oddity_stats

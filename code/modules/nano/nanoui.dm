@@ -407,7 +407,7 @@ nanoui is used to open and update nano browser uis
 		<script type='text/javascript'>
 			function receiveUpdateData(jsonString)
 			{
-				// We need both jQuery and NanoStateManager to be able to recieve data
+				// We need both jQuery and NanoStateManager to be able to receive data
 				// At the moment any data received before those libraries are loaded will be lost
 				if(typeof NanoStateManager != 'undefined' && typeof jQuery != 'undefined')
 				{
@@ -415,7 +415,7 @@ nanoui is used to open and update nano browser uis
 				}
 				//else
 				//{
-				//	alert('browser.recieveUpdateData failed due to jQuery or NanoStateManager being unavailiable.');
+				//	alert('browser.receiveUpdateData failed due to jQuery or NanoStateManager being unavailiable.');
 				//}
 			}
 		</script>

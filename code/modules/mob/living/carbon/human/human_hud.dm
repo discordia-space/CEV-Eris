@@ -210,8 +210,8 @@
 		var/HUDtype = HUDdatum.HUDoverlays[techobject]["type"]
 
 		var/obj/screen/HUD = new HUDtype(techobject,H,\
-		 HUDdatum.HUDoverlays[techobject]["icon"] ? HUDdatum.HUDoverlays[techobject]["icon"] : null,\
-		 HUDdatum.HUDoverlays[techobject]["icon_state"] ? HUDdatum.HUDoverlays[techobject]["icon_state"] : null)
+		HUDdatum.HUDoverlays[techobject]["icon"] ? HUDdatum.HUDoverlays[techobject]["icon"] : null,\
+		HUDdatum.HUDoverlays[techobject]["icon_state"] ? HUDdatum.HUDoverlays[techobject]["icon_state"] : null)
 		HUD.layer = FLASH_LAYER
 
 		H.HUDtech[HUD.name] += HUD

@@ -327,9 +327,9 @@
 #define NEWorINITIAL(variable, newvalue) variable = newvalue ? newvalue : initial(variable)
 
 //Matricies
-#define MATRIX_GREYSCALE list(0.33, 0.33, 0.33,\
-                              0.33, 0.33, 0.33,\
-                              0.33, 0.33, 0.33)
+#define MATRIX_GREYSCALE list(	0.33, 0.33, 0.33,\
+								0.33, 0.33, 0.33,\
+								0.33, 0.33, 0.33)
 
 //different types of atom colorations
 #define ADMIN_COLOUR_PRIORITY 		1 //only used by rare effects like greentext coloring mobs and when admins varedit color

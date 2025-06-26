@@ -62,10 +62,10 @@
 		infectedMachine.categories = 7 //This unlocks coin/contraband content
 		if(ISMULTIPLE(activeFor, 12))
 			originMachine.speak(pick("Try our aggressive new marketing strategies!", \
-									 "You should buy products to feed your lifestyle obsession!", \
-									 "Consume!", \
-									 "Your money can buy happiness!", \
-									 "Engage direct marketing!", \
-									 "Advertising is legalized lying! But don't let that put you off our great deals!", \
-									 "You don't want to buy anything? Yeah, well I didn't want to buy your mom either.",
-									 "Come and buy our products ~nya"))
+									"You should buy products to feed your lifestyle obsession!", \
+									"Consume!", \
+									"Your money can buy happiness!", \
+									"Engage direct marketing!", \
+									"Advertising is legalized lying! But don't let that put you off our great deals!", \
+									"You don't want to buy anything? Yeah, well I didn't want to buy your mom either.",
+									"Come and buy our products ~nya"))

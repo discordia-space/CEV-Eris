@@ -18,8 +18,8 @@
 			for(var/atom/movable/AM in contents)
 				if(AM.simulated) AM.forceMove(T)
 			user.visible_message(SPAN_NOTICE("[user] pries \the [src] open."), \
-								 SPAN_NOTICE("You pry open \the [src]."), \
-								 SPAN_NOTICE("You hear splitting wood."))
+								SPAN_NOTICE("You pry open \the [src]."), \
+								SPAN_NOTICE("You hear splitting wood."))
 			qdel(src)
 	else
 		return attack_hand(user)

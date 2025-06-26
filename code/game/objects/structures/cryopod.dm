@@ -86,5 +86,4 @@
 	stat_modifiers = list(
 		STAT_ROB = 40,
 		STAT_TGH = 30,
-		STAT_VIG = 40,
-	)
+		STAT_VIG = 40)

@@ -359,7 +359,7 @@ area/space/atmosalert()
 	dynamic_lighting = TRUE
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 	ambience = list('sound/ambience/technoambient1.ogg','sound/ambience/technoambient2.ogg',
-	                'sound/ambience/technoambient3.ogg','sound/ambience/technoambient4.ogg',
+					'sound/ambience/technoambient3.ogg','sound/ambience/technoambient4.ogg',
 					'sound/ambience/technoambient5.ogg','sound/ambience/technoambient6.ogg')
 
 /area/outpost/pulsar/maintenance
@@ -854,8 +854,8 @@ area/space/atmosalert()
 
 /////////////////////////////////////////////////////////////////////
 /*
- Lists of areas to be used with is_type_in_list.
- Used in gamemodes code at the moment. --rastaf0
+Lists of areas to be used with is_type_in_list.
+Used in gamemodes code at the moment. --rastaf0
 */
 
 // CENTCOM

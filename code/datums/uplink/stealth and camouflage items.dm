@@ -52,11 +52,11 @@
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/item/stealth_items/silencer
-    name = "Silencer"
-    item_cost = 2
-    path = /obj/item/gun_upgrade/muzzle/silencer
+	name = "Silencer"
+	item_cost = 2
+	path = /obj/item/gun_upgrade/muzzle/silencer
 
 /datum/uplink_item/item/stealth_items/killer
-    name = "Syndicate \"Profesional Killer\" scope"
-    item_cost = 2
-    path = /obj/item/gun_upgrade/scope/killer
+	name = "Syndicate \"Profesional Killer\" scope"
+	item_cost = 2
+	path = /obj/item/gun_upgrade/scope/killer

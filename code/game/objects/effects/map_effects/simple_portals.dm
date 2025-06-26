@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(simple_portals)
 			counterpart = M
 			M.counterpart = src
 			break
-        //Not finding a counterpart is possible if we want to use these in maps instaced mid game, so it just needs to be accounted for.
+		//Not finding a counterpart is possible if we want to use these in maps instaced mid game, so it just needs to be accounted for.
 
 /obj/effect/map_effect/simple_portal/proc/try_activate(recursive = TRUE) //If recursive is set false from the get-go the portals will be one way.
 	if(!counterpart || active)

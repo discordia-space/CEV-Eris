@@ -83,8 +83,8 @@
 	var/nsa_target = get_nsa_target()
 	if(nsa_target != nsa_current)
 		nsa_current = nsa_target > nsa_current \
-		            ? min(nsa_current + nsa_target / 30, nsa_target) \
-		            : max(nsa_current - 6.66, nsa_target)
+					? min(nsa_current + nsa_target / 30, nsa_target) \
+					: max(nsa_current - 6.66, nsa_target)
 		nsa_changed()
 	if(get_nsa() > nsa_threshold)
 		nsa_breached_effect()

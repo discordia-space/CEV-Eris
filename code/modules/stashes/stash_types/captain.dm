@@ -46,7 +46,7 @@
 
 
 /datum/stash/command/mutiny
- 	lore = "Killed that tee-totaling bastard good, we did.<br>\
+	lore = "Killed that tee-totaling bastard good, we did.<br>\
 	<br>\
 	Teach him to cut the rum ration. Like how rowdy we were now ya screaming pig?<br>\
 	<br>\

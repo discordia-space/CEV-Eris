@@ -350,15 +350,15 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	/*
 	Response
 		A successful request will return, by default, the following:
-		 1: success
-		 2: COUNTRY
-		 3: COUNTRY CODE
-		 4: REGION CODE
-		 5: REGION NAME
-		 6: CITY
-		 7: ZIP CODE
-		 8: LATITUDE
-		 9: LONGITUDE
+		1: success
+		2: COUNTRY
+		3: COUNTRY CODE
+		4: REGION CODE
+		5: REGION NAME
+		6: CITY
+		7: ZIP CODE
+		8: LATITUDE
+		9: LONGITUDE
 		10: TIME ZONE
 		11: ISP NAME
 		12: ORGANIZATION NAME

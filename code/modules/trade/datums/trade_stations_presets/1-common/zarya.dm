@@ -98,7 +98,7 @@
 			/obj/item/stack/tile/carpet/turcarpet/full = custom_good_price(50),
 			/obj/item/stack/tile/carpet/purcarpet/full = custom_good_price(50),
 			/obj/item/stack/tile/grass/full = custom_good_price(100),
-		    /obj/item/stack/tile/wood/full = custom_good_price(150),
+			/obj/item/stack/tile/wood/full = custom_good_price(150),
 			/obj/item/stack/tile/carpet/gaycarpet/full = custom_good_price(150),
 		)
 	)

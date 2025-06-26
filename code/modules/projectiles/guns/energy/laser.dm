@@ -85,7 +85,7 @@
 	name = "sawn down OS LG \"Cog\""
 	icon = 'icons/obj/guns/energy/obrez_retro.dmi'
 	desc = "A modified One Star cheaply produced laser gun. \
-		 In the distant past - this was the main weapon of low-rank police forces, and thus widely used by criminals."
+			In the distant past - this was the main weapon of low-rank police forces, and thus widely used by criminals."
 	icon_state = "shorty"
 	item_state = "shorty"
 	slot_flags = SLOT_BACK|SLOT_HOLSTER

@@ -1,7 +1,7 @@
 var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called manually after an event.
 
 #define CELLRATE 0.002 // Multiplier for watts per tick <> cell storage (e.g., 0.02 means if there is a load of 1000 watts, 20 units will be taken from a cell per second)
-                       // It's a conversion constant. power_used*CELLRATE = charge_provided, or charge_used/CELLRATE = power_provided
+// It's a conversion constant. power_used*CELLRATE = charge_provided, or charge_used/CELLRATE = power_provided
 
 // Doors!
 #define DOOR_CRUSH_DAMAGE 15

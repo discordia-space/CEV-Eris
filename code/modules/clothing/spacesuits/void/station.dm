@@ -485,7 +485,7 @@
 	slowdown = 0.3
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-	    melee = 12,
+		melee = 12,
 		bullet = 11,
 		energy = 12,
 		bomb = 50,

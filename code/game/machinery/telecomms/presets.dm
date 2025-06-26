@@ -53,7 +53,7 @@
 	network = "eris"
 	produces_heat = 0
 	autolinkers = list("hub_cent", "c_relay", "s_relay", "m_relay", "r_relay", "p_relay",
-	 "centcom", "receiverCent", "broadcasterCent")
+	"centcom", "receiverCent", "broadcasterCent")
 
 //Receivers
 

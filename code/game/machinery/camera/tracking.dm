@@ -226,7 +226,7 @@
 		return TRACKING_TERMINATE
 	if(istype(loc,/obj/effect/dummy))
 		return TRACKING_TERMINATE
-	 // Now, are they viewable by a camera? (This is last because it's the most intensive check)
+	// Now, are they viewable by a camera? (This is last because it's the most intensive check)
 	return near_camera() ? TRACKING_POSSIBLE : TRACKING_NO_COVERAGE
 
 /mob/living/silicon/robot/tracking_status()

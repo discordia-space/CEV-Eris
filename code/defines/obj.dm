@@ -55,7 +55,7 @@
 	name = "mobl"
 	var/master
 
-	var/list/container = list(  )
+	var/list/container = list()
 
 /obj/effect/projection
 	name = "Projection"
@@ -66,7 +66,7 @@
 /obj/effect/shut_controller
 	name = "shut controller"
 	var/moving
-	var/list/parts = list(  )
+	var/list/parts = list()
 
 /obj/structure/showcase
 	name = "Showcase"

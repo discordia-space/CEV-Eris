@@ -478,7 +478,7 @@ This function completely restores a damaged organ to perfect condition.
 			wounds += W
 
 /****************************************************
-			   PROCESSING & UPDATING
+			PROCESSING & UPDATING
 ****************************************************/
 
 //external organs handle brokenness a bit differently when it comes to damage. Instead brute_dam is checked inside process()
@@ -656,7 +656,7 @@ This function completely restores a damaged organ to perfect condition.
 	return "[tbrute][tburn]"
 
 /****************************************************
-			   HELPERS
+					HELPERS
 ****************************************************/
 
 /obj/item/organ/external/proc/is_stump()

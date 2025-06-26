@@ -23,13 +23,13 @@ var/global/floorIsLava = 0
 				var/msg = rendered
 				to_chat(C, msg)
 
-/**
- * Sends a message to the staff able to see admin tickets
- * Arguments:
- * msg - The message being send
- * important - If the message is important. If TRUE it will ignore the PREF_HEAR preferences,
-               send a sound and flash the window. Defaults to FALSE
- */
+/*
+* Sends a message to the staff able to see admin tickets
+* Arguments:
+* msg - The message being send
+* important - If the message is important. If TRUE it will ignore the PREF_HEAR preferences,
+*send a sound and flash the window. Defaults to FALSE
+*/
 /proc/message_adminTicket(msg, important = FALSE)
 	for(var/client/C in admins)
 		if(R_ADMIN & C.holder.rights)
@@ -37,13 +37,13 @@ var/global/floorIsLava = 0
 			if(important || (C.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR))
 				sound_to(C, 'sound/effects/adminhelp.ogg')
 
-/**
- * Sends a message to the staff able to see mentor tickets
- * Arguments:
- * msg - The message being send
- * important - If the message is important. If TRUE it will ignore the PREF_HEAR preferences,
-               send a sound and flash the window. Defaults to FALSE
- */
+/*
+* Sends a message to the staff able to see mentor tickets
+* Arguments:
+* msg - The message being send
+* important - If the message is important. If TRUE it will ignore the PREF_HEAR preferences,
+* send a sound and flash the window. Defaults to FALSE
+*/
 /proc/message_mentorTicket(msg, important = FALSE)
 	for(var/client/C in admins)
 		if(check_rights(R_ADMIN | R_MENTOR | R_MOD, 0, C.mob))

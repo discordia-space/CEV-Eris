@@ -62,7 +62,7 @@
 	var/area/overmap/A = new
 	A.contents.Add(turfs)
 
-    // Spawn star at the center of the overmap
+	// Spawn star at the center of the overmap
 	var/turf/T = locate(round(OVERMAP_SIZE/2),round(OVERMAP_SIZE/2),SSmapping.overmap_z)
 	new /obj/effect/star(T)
 

@@ -56,7 +56,7 @@
 
 	var/mob/living/carbon/M = input(src,"Who do you wish to infest?") in null|choices
 
-	 //non-humanoids disabled due to not working.
+	//non-humanoids disabled due to not working.
 	if(!M || !Adjacent(M) || !iscarbon(M))
 		return
 

@@ -97,7 +97,7 @@
 
 	/*
 		The guild account represents the holdings of the local branch, and merchant.
-		He recieves no funding, infact later he will pay guild fees out of his earnings
+		He receives no funding, infact later he will pay guild fees out of his earnings
 	*/
 	account_initial_balance = 7500
 

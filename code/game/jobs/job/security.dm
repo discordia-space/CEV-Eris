@@ -29,7 +29,7 @@
 	)
 
 	perks = list(PERK_SURVIVOR,
-				 PERK_CODESPEAK_COP)
+				PERK_CODESPEAK_COP)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							/datum/computer_file/program/digitalwarrant,
@@ -87,7 +87,7 @@
 	)
 
 	perks = list(PERK_SURVIVOR,
-				 PERK_CODESPEAK_COP)
+				PERK_CODESPEAK_COP)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							/datum/computer_file/program/camera_monitor)
@@ -140,7 +140,7 @@
 	)
 
 	perks = list(PERK_SURVIVOR,
-				 PERK_CODESPEAK_COP)
+				PERK_CODESPEAK_COP)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							/datum/computer_file/program/audio,
@@ -194,7 +194,7 @@
 	)
 
 	perks = list(PERK_SURVIVOR,
-				 PERK_CODESPEAK_COP)
+				PERK_CODESPEAK_COP)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							/datum/computer_file/program/suit_sensors,
@@ -247,7 +247,7 @@
 	)
 
 	perks = list(PERK_SURVIVOR,
-				 PERK_CODESPEAK_COP)
+				PERK_CODESPEAK_COP)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							/datum/computer_file/program/camera_monitor)

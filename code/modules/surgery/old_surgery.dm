@@ -134,8 +134,7 @@ proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			H.update_surgery()
-		return	1	  												//don't want to do weapony things after surgery
-
+		return	1 //don't want to do weapony things after surgery
 	return 0
 
 proc/sort_surgeries()

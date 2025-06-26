@@ -114,7 +114,7 @@
 		if(success && istype(I, /obj/item/storage))
 			var/obj/item/storage/todump = I
 			for(var/obj/item/emptyit in todump.contents)
-				 // there are better options than to lie when you cannot see a way to get what you want.
+				// there are better options than to lie when you cannot see a way to get what you want.
 				if(evaluate_stored_item(emptyit))
 					todump.remove_from_storage(emptyit, src)
 				else

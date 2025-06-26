@@ -59,13 +59,13 @@
 
 	/*
 	(x,y+isize)----(x+hsize,y+isize)----(x+size,y+isize)
-	  |                 |                  |
-	  |                 |                  |
-	  |                 |                  |
+		|                 |                  |
+		|                 |                  |
+		|                 |                  |
 	(x,y+hsize)----(x+hsize,y+hsize)----(x+isize,y)
-	  |                 |                  |
-	  |                 |                  |
-	  |                 |                  |
+		|                 |                  |
+		|                 |                  |
+		|                 |                  |
 	(x,y)----------(x+hsize,y)----------(x+isize,y)
 	*/
 	// Central edge values become average of corners.

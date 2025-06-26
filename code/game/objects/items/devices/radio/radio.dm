@@ -282,7 +282,7 @@
 		actually transmit large mass. Headsets are the only radio devices capable
 		of sending subspace transmissions to the Communications Satellite.
 
-		A headset sends a signal to a subspace listener/reciever elsewhere in space,
+		A headset sends a signal to a subspace listener/receiver elsewhere in space,
 		the signal gets processed and logged, and an audible transmission gets sent
 		to each individual headset.
 	*/
@@ -336,10 +336,10 @@
 		// First, we want to generate a new radio signal
 		var/datum/signal/signal = new
 		signal.transmission_method = 2 // 2 would be a subspace transmission.
-									   // transmission_method could probably be enumerated through #define. Would be neater.
+										// transmission_method could probably be enumerated through #define. Would be neater.
 		// --- Finally, tag the actual signal with the appropriate values ---
 		signal.data = list(
-		  // Identity-associated tags:
+			// Identity-associated tags:
 			"mob" = M, // store a reference to the mob
 			"mobtype" = M.type, 	// the mob's type
 			"realname" = real_name, // the mob's real name
@@ -352,7 +352,7 @@
 
 			// We store things that would otherwise be kept in the actual mob
 			// so that they can be logged even AFTER the mob is deleted or something
-		  // Other tags:
+			// Other tags:
 			"compression" = rand(45,50), // compressed radio signal
 			"message" = message, // the actual sent message
 			"connection" = connection, // the radio connection to use
@@ -369,7 +369,7 @@
 		)
 		signal.frequency = connection.frequency // Quick frequency set
 
-	  //#### Sending the signal to all subspace receivers ####//
+		//#### Sending the signal to all subspace receivers ####//
 		for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
 			R.receive_signal(signal)
 
@@ -427,8 +427,8 @@
 	//THIS IS TEMPORARY. YEAH RIGHT. STATE OF SS13 DEVELOPMENT...
 	if(!connection)	return 0	//~Carn
 	return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
-					  src, message, displayname, jobname, real_name, M.voice_name,
-					  filter_type, signal.data["compression"], list(position.z), connection.frequency,verb,speaking, speech_volume)
+						src, message, displayname, jobname, real_name, M.voice_name,
+						filter_type, signal.data["compression"], list(position.z), connection.frequency,verb,speaking, speech_volume)
 
 
 /obj/item/device/radio/hear_talk(mob/M, msg, verb = "says", datum/language/speaking, speech_volume)
@@ -453,15 +453,15 @@
 		if(!syndie && !merc && !pirate)//Checks to see if it's allowed on that frequency, based on the encryption keys
 			return -1
 
-	var/can_recieve = (freq == frequency)
-	if(!can_recieve)
+	var/can_receive = (freq == frequency)
+	if(!can_receive)
 		for(var/i in channels)
 			var/datum/radio_frequency/RF = secure_radio_connections[i]
 			if(RF && RF.frequency == freq && (channels[i] & FREQ_LISTENING))
-				can_recieve = TRUE
+				can_receive = TRUE
 				break
 
-		if(!can_recieve)
+		if(!can_receive)
 			return -1
 	return canhear_range
 

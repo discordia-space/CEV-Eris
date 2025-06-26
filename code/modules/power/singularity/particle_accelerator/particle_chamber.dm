@@ -7,4 +7,3 @@
 
 /obj/structure/particle_accelerator/fuel_chamber/update_icon()
 	..()
-	return

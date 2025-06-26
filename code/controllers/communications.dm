@@ -41,7 +41,7 @@ procs:
 obj/proc/receive_signal(datum/signal/signal, var/receive_method as num, var/receive_param)
 	Handler from received signals. By default does nothing. Define your own for your object.
 	Avoid of sending signals directly from this proc, use spawn(-1). DO NOT use sleep() here or call procs that sleep please. If you must, use spawn()
-	  parameters:
+	parameters:
 		signal - see description below. Extract all needed data from the signal before doing sleep(), spawn() or return!
 		receive_method - may be TRANSMISSION_WIRE or TRANSMISSION_RADIO.
 		TRANSMISSION_WIRE is currently unused.
@@ -198,7 +198,7 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, NT_FREQ, SEC_
 //Other devices can then choose to send signals to only those devices that belong to a particular filter.
 //This is done for performance, so we don't send signals to lots of machines unnecessarily.
 
-//This filter is special because devices belonging to default also recieve signals sent to any other filter.
+//This filter is special because devices belonging to default also receive signals sent to any other filter.
 var/const/RADIO_DEFAULT = "radio_default"
 
 var/const/RADIO_TO_AIRALARM = "radio_airalarm" //air alarms

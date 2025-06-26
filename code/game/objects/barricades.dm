@@ -13,7 +13,7 @@
 	health = 100
 	maxHealth = 100
 	var/resistance = RESISTANCE_AVERAGE // Flat reduction on incoming damage. Some day it will be moved to /obj, but not today...
-	var/is_damaged // Recieved enough damage for it to be visible on the sprite
+	var/is_damaged // received enough damage for it to be visible on the sprite
 	var/is_open // Some barricades have open and closed states
 	var/block_vehicles = TRUE // Prevent mechs and legacy vehicles from moving past, even if not dense
 

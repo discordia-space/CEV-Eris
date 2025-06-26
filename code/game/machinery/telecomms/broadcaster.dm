@@ -53,12 +53,12 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 			/* ###### Broadcast a message using signal.data ###### */
 			Broadcast_Message(signal.data["connection"], signal.data["mob"],
-							  signal.data["vmask"], signal.data["vmessage"],
-							  signal.data["radio"], signal.data["message"],
-							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"],,
-							  signal.data["compression"], signal.data["level"], signal.frequency,
-							  signal.data["verb"], signal.data["language"], signal.data["speech_volume"])
+							signal.data["vmask"], signal.data["vmessage"],
+							signal.data["radio"], signal.data["message"],
+							signal.data["name"], signal.data["job"],
+							signal.data["realname"], signal.data["vname"],,
+							signal.data["compression"], signal.data["level"], signal.frequency,
+							signal.data["verb"], signal.data["language"], signal.data["speech_volume"])
 
 
 		/** #### - Simple Broadcast - #### **/
@@ -67,8 +67,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 			/* ###### Broadcast a message using signal.data ###### */
 			Broadcast_SimpleMessage(signal.data["name"], signal.frequency,
-								  signal.data["message"],null, null,
-								  signal.data["compression"], listening_levels)
+									signal.data["message"],null, null,
+									signal.data["compression"], listening_levels)
 
 
 		/** #### - Artificial Broadcast - #### **/
@@ -80,12 +80,12 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 				// Parameter "data" as 4: AI can't track this person/mob
 
 			Broadcast_Message(signal.data["connection"], signal.data["mob"],
-							  signal.data["vmask"], signal.data["vmessage"],
-							  signal.data["radio"], signal.data["message"],
-							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"], 4,
-							  signal.data["compression"], signal.data["level"], signal.frequency,
-							  signal.data["verb"], signal.data["language"], signal.data["speech_volume"])
+							signal.data["vmask"], signal.data["vmessage"],
+							signal.data["radio"], signal.data["message"],
+							signal.data["name"], signal.data["job"],
+							signal.data["realname"], signal.data["vname"], 4,
+							signal.data["compression"], signal.data["level"], signal.frequency,
+							signal.data["verb"], signal.data["language"], signal.data["speech_volume"])
 
 		if(!message_delay)
 			message_delay = 1
@@ -142,19 +142,19 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		if(connection.frequency in ANTAG_FREQS) // if antag broadcast, just
 			Broadcast_Message(signal.data["connection"], signal.data["mob"],
-							  signal.data["vmask"], signal.data["vmessage"],
-							  signal.data["radio"], signal.data["message"],
-							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"],, signal.data["compression"], list(0), connection.frequency,
-							  signal.data["verb"], signal.data["language"])
+							signal.data["vmask"], signal.data["vmessage"],
+							signal.data["radio"], signal.data["message"],
+							signal.data["name"], signal.data["job"],
+							signal.data["realname"], signal.data["vname"],, signal.data["compression"], list(0), connection.frequency,
+							signal.data["verb"], signal.data["language"])
 		else
 			if(intercept)
 				Broadcast_Message(signal.data["connection"], signal.data["mob"],
-							  signal.data["vmask"], signal.data["vmessage"],
-							  signal.data["radio"], signal.data["message"],
-							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"], 3, signal.data["compression"], list(0), connection.frequency,
-							  signal.data["verb"], signal.data["language"])
+							signal.data["vmask"], signal.data["vmessage"],
+							signal.data["radio"], signal.data["message"],
+							signal.data["name"], signal.data["job"],
+							signal.data["realname"], signal.data["vname"], 3, signal.data["compression"], list(0), connection.frequency,
+							signal.data["verb"], signal.data["language"])
 
 
 
@@ -221,7 +221,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 						data, compression, list/level, freq, verbage = "says",
 						datum/language/speaking = null, text_size, use_text_to_speech = TRUE)
 
-  /* ###### Prepare the radio connection ###### */
+	/* ###### Prepare the radio connection ###### */
 
 	var/display_freq = freq
 
@@ -267,7 +267,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	// Get a list of mobs who can hear from the radios we collected.
 	var/list/receive = get_mobs_in_radio_ranges(radios)
 
-  /* ###### Organize the receivers into categories for displaying the message ###### */
+	/* ###### Organize the receivers into categories for displaying the message ###### */
 
   	// Understood the message:
 	var/list/heard_masked 	= list() // masked name or no real name
@@ -280,7 +280,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	for(var/mob/R in receive)
 		SEND_SIGNAL_OLD(radio, COMSIG_MESSAGE_RECEIVED, R)
-	  /* --- Loop through the receivers and categorize them --- */
+		/* --- Loop through the receivers and categorize them --- */
 		if(isnewplayer(R)) // we don't want new players to hear messages. rare but generates runtimes.
 			continue
 
@@ -316,7 +316,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			else
 				heard_garbled += R
 
-  /* ###### Begin formatting and sending the message ###### */
+	/* ###### Begin formatting and sending the message ###### */
 	if(length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled) || length(heard_gibberish))
 		var/seed = TTS_SEED_ANNOUNCER
 		var/voice
@@ -351,7 +351,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(text_size)
 			message = "<FONT size='[max(text_size, 1)]'>[message]</FONT>"
 
-	  /* --- Some miscellaneous variables to format the string output --- */
+		/* --- Some miscellaneous variables to format the string output --- */
 		var/freq_text = get_frequency_name(display_freq)
 
 		var/part_b_extra = ""
@@ -407,10 +407,10 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		//End of research and feedback code.
 
-	 /* ###### Send the message ###### */
+		/* ###### Send the message ###### */
 
 
-	  	/* --- Process all the mobs that heard a masked voice (understood) --- */
+		/* --- Process all the mobs that heard a masked voice (understood) --- */
 
 		if(length(heard_masked))
 			for(var/mob/R in heard_masked)
@@ -456,7 +456,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 /proc/Broadcast_SimpleMessage(var/source, var/frequency, var/text, var/data, var/mob/M, var/compression, var/list/levels)
 
-  /* ###### Prepare the radio connection ###### */
+	/* ###### Prepare the radio connection ###### */
 
 	if(!M)
 		var/mob/living/carbon/human/H = new
@@ -510,7 +510,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 				receive |= R.send_hear(display_freq)
 
 
-  /* ###### Organize the receivers into categories for displaying the message ###### */
+	/* ###### Organize the receivers into categories for displaying the message ###### */
 
 	// Understood the message:
 	var/list/heard_normal 	= list() // normal message
@@ -521,7 +521,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	for(var/mob/R in receive)
 
-	  /* --- Loop through the receivers and categorize them --- */
+		/* --- Loop through the receivers and categorize them --- */
 		// --- Check for compression ---
 		if(compression > 0)
 
@@ -542,10 +542,10 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			heard_garbled += R
 
 
-  /* ###### Begin formatting and sending the message ###### */
+	/* ###### Begin formatting and sending the message ###### */
 	if(length(heard_normal) || length(heard_garbled) || length(heard_gibberish))
 
-	  /* --- Some miscellaneous variables to format the string output --- */
+		/* --- Some miscellaneous variables to format the string output --- */
 		var/part_a = "<span class='[frequency_span_class(display_freq)]'><span class='name'>" // goes in the actual output
 		var/freq_text = get_frequency_name(display_freq)
 
@@ -596,7 +596,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		//End of research and feedback code.
 
-	 /* ###### Send the message ###### */
+		/* ###### Send the message ###### */
 
 		/* --- Process all the mobs that heard the voice normally (understood) --- */
 
@@ -653,7 +653,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	)
 	signal.frequency = PUB_FREQ// Common channel
 
-  //#### Sending the signal to all subspace receivers ####//
+	//#### Sending the signal to all subspace receivers ####//
 	for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
 		R.receive_signal(signal)
 

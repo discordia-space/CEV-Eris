@@ -2,7 +2,7 @@
 #define NO_BLOOD          0x1    // Vessel var is not filled with blood, cannot bleed out.
 #define NO_BREATHE        0x2    // Cannot suffocate or take oxygen loss.
 #define NO_SCAN           0x4    // Cannot be scanned in a DNA machine/genome-stolen.
-#define NO_PAIN           0x8    // Cannot suffer halloss/recieves deceptive health indicator.
+#define NO_PAIN           0x8    // Cannot suffer halloss/receives deceptive health indicator.
 #define NO_SLIP           0x10   // Cannot fall over.
 #define NO_POISON         0x20   // Cannot not suffer toxloss.
 #define IS_PLANT          0x40   // Is a treeperson.

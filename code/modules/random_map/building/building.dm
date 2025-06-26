@@ -51,5 +51,3 @@
 			placing_door = pick(possible_doors)
 			possible_doors -= placing_door
 			target_map.map[placing_door] = DOOR_CHAR
-
-	return

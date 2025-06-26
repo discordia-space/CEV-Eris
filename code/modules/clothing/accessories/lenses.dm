@@ -62,7 +62,7 @@
 
 
 /*
- Good example of how to make a subtype of googles that handles everything.
+Good example of how to make a subtype of googles that handles everything.
 
 /obj/item/clothing/glasses/attachable_lenses/explosive
 	name = "explosive lenses"

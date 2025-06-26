@@ -13,7 +13,7 @@
 	var/list/transaction_log = list()
 	var/suspended = 0
 	var/employer // Linked department account's define. DEPARTMENT_COMMAND or some such
-	var/wage = 0 // How much money account should recieve on a payday
+	var/wage = 0 // How much money account should receive on a payday
 	var/wage_original // Value passed from job datum on account creation
 	var/wage_manual = FALSE // If wage have been set manually. Prevents wage auto update on players joining/leaving deparment
 	var/debt = 0 // How much money employer owe us

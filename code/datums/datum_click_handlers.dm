@@ -74,7 +74,7 @@
 *****************************/
 /datum/click_handler/fullauto
 	var/atom/target = null
-	var/obj/item/gun/reciever // The thing we send firing signals to, spelled reciever instead of receiver for some reason
+	var/obj/item/gun/receiver // The thing we send firing signals to, spelled receiver instead of receiver for some reason
 	var/time_since_last_init // Time since last start of full auto fire , used to prevent ANGRY smashing of M1 to fire faster.
 	//Todo: Make this work with callbacks
 	var/time_since_last_shot // Keeping track of last shot to determine next one
@@ -85,12 +85,12 @@
 //Next loop will notice these vars and stop shooting
 /datum/click_handler/fullauto/proc/stop_firing()
 	target = null
-	if(reciever)
-		if(isliving(reciever.loc))
-			reciever.check_safety_cursor(reciever.loc)
+	if(receiver)
+		if(isliving(receiver.loc))
+			receiver.check_safety_cursor(receiver.loc)
 
 /datum/click_handler/fullauto/proc/do_fire()
-	reciever.afterattack(target, owner.mob, FALSE)
+	receiver.afterattack(target, owner.mob, FALSE)
 
 /datum/click_handler/fullauto/MouseDown(object, location, control, params)
 	if(!isturf(owner.mob.loc) && !ismech(owner.mob.loc)) // This stops from firing full auto weapons inside closets, in /obj/effect/dummy/chameleon chameleon projector or in a mech
@@ -103,7 +103,7 @@
 		target = object
 		time_since_last_shot = world.time
 		shooting_loop()
-		time_since_last_init = world.time + (reciever.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : reciever.fire_delay) * min(world.tick_lag, 1)
+		time_since_last_init = world.time + (receiver.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : receiver.fire_delay) * min(world.tick_lag, 1)
 	return TRUE
 
 /datum/click_handler/fullauto/proc/shooting_loop()
@@ -114,14 +114,14 @@
 		var/mob/exosuit = owner.mob.loc
 		// If we are in a mech and we do not share any straight-foward angles in a 45 degree cone , then stop firing so mechs cant fire backwards
 		// Aka N-facing mech can do NE, NW, N ,  S facing mech can do S , SW,  SE , E facing mech can do SE, E, NE.
-		if(!(exosuit.dir & get_dir(reciever, target)))
+		if(!(exosuit.dir & get_dir(receiver, target)))
 			return FALSE
 	if(target)
 		owner.mob.face_atom(target)
 
 	while(time_since_last_shot < world.time)
 		do_fire()
-		time_since_last_shot = world.time + (reciever.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : reciever.fire_delay) * min(world.tick_lag, 1)
+		time_since_last_shot = world.time + (receiver.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : receiver.fire_delay) * min(world.tick_lag, 1)
 
 	spawn(1)
 		shooting_loop()

@@ -28,7 +28,7 @@
 	var/list/also_known_languages = list()	// additional chance based languages to all jobs.
 
 	var/account_allowed = 1					// Does this job type come with a station account?
-	var/wage = WAGE_LABOUR					// How much base wage does this job recieve per payday
+	var/wage = WAGE_LABOUR					// How much base wage does this job receive per payday
 	var/initial_balance	=	-1				// If set to a value other than -1, overrides the wage based initial balance calculation
 
 	var/outfit_type							// The outfit the employee will be dressed in, if any

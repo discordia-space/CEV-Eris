@@ -30,12 +30,12 @@
 	return getArmor(melee+modifier, bullet+modifier, energy+modifier, bomb+modifier, bio+modifier, rad+modifier)
 
 /datum/armor/proc/setRating(melee, bullet, energy, bomb, bio, rad)
-  return getArmor((isnull(melee) ? src.melee : melee),\
-				  (isnull(bullet) ? src.bullet : bullet),\
-				  (isnull(energy) ? src.energy : energy),\
-				  (isnull(bomb) ? src.bomb : bomb),\
-				  (isnull(bio) ? src.bio : bio),\
-				  (isnull(rad) ? src.rad : rad))
+	return getArmor((isnull(melee) ? src.melee : melee),\
+					(isnull(bullet) ? src.bullet : bullet),\
+					(isnull(energy) ? src.energy : energy),\
+					(isnull(bomb) ? src.bomb : bomb),\
+					(isnull(bio) ? src.bio : bio),\
+					(isnull(rad) ? src.rad : rad))
 
 /datum/armor/proc/getRating(rating)
 	return vars[rating]

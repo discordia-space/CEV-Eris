@@ -21,10 +21,7 @@
 		var/dat = "<TITLE>Telecommunications Monitor</TITLE><center><b>Telecommunications Monitor</b></center>"
 
 		switch(screen)
-
-
-		  // --- Main Menu ---
-
+			// --- Main Menu ---
 			if(0)
 				dat += "<br>[temp]<br><br>"
 				dat += "<br>Current Network: <a href='byond://?src=\ref[src];network=1'>[network]</a><br>"
@@ -37,9 +34,7 @@
 				else
 					dat += "<a href='byond://?src=\ref[src];operation=probe'>\[Probe Network\]</a>"
 
-
-		  // --- Viewing Machine ---
-
+			// --- Viewing Machine ---
 			if(1)
 				dat += "<br>[temp]<br>"
 				dat += "<center><a href='byond://?src=\ref[src];operation=mainmenu'>\[Main Menu\]</a></center>"

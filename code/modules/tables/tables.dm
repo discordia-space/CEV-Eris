@@ -297,9 +297,8 @@ var/list/custom_table_appearance = list(
 		to_chat(user, SPAN_WARNING("You are unable to remove the [what] from this table!"))
 		return M
 	user.visible_message(SPAN_NOTICE("\The [user] removes the [M.display_name] [what] from \the [src]."),
-								  SPAN_NOTICE("You remove the [M.display_name] [what] from \the [src]."))
+						SPAN_NOTICE("You remove the [M.display_name] [what] from \the [src]."))
 	new M.stack_type(src.loc)
-	return null
 
 /obj/structure/table/proc/remove_reinforced(obj/item/I, mob/user)
 	reinforced = common_material_remove(user, reinforced, 40, "reinforcements", "screws")

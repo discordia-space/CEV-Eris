@@ -11,14 +11,3 @@ GLOBAL_DATUM_INIT(death_event, /decl/observ/death, new)
 /decl/observ/death
 	name = "Death"
 	expected_type = /mob
-
-/*****************
-* Death Handling *
-*****************/
-// TODO: enable after baymed
-/*
-/mob/living/add_to_dead_mob_list()
-	. = ..()
-	if(.)
-		GLOB.death_event.raise_event(src)
-*/

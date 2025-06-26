@@ -79,25 +79,25 @@
 	var/knockout_message = "has been knocked unconscious!"
 
 	// Environment tolerance/life processes vars.
-	var/reagent_tag                                   //Used for metabolizing reagents.
-	var/breath_pressure = 16                          // Minimum partial pressure safe for breathing, kPa
-	var/breath_type = "oxygen"                        // Non-oxygen gas breathed, if any.
-	var/poison_type = "plasma"                        // Poisonous air.
-	var/exhale_type = "carbon_dioxide"                // Exhaled gas type.
-	var/cold_level_1 = 260                            // Cold damage level 1 below this point.
-	var/cold_level_2 = 200                            // Cold damage level 2 below this point.
-	var/cold_level_3 = 120                            // Cold damage level 3 below this point.
-	var/heat_level_1 = 360                            // Heat damage level 1 above this point.
-	var/heat_level_2 = 400                            // Heat damage level 2 above this point.
-	var/heat_level_3 = 1000                           // Heat damage level 3 above this point.
-	var/passive_temp_gain = 0		                  // Species will gain this much temperature every second
-	var/hazard_high_pressure = HAZARD_HIGH_PRESSURE   // Dangerously high pressure.
-	var/warning_high_pressure = WARNING_HIGH_PRESSURE // High pressure warning.
-	var/warning_low_pressure = WARNING_LOW_PRESSURE   // Low pressure warning.
-	var/hazard_low_pressure = HAZARD_LOW_PRESSURE     // Dangerously low pressure.
-	var/light_dam                                     // If set, mob will be damaged in light over this value and heal in light below its negative.
-	var/body_temperature = 310.15	                  // Non-IS_SYNTHETIC species will try to stabilize at this temperature.
-	                                                  // (also affects temperature processing)
+	var/reagent_tag										//Used for metabolizing reagents.
+	var/breath_pressure = 16							// Minimum partial pressure safe for breathing, kPa
+	var/breath_type = "oxygen"							// Non-oxygen gas breathed, if any.
+	var/poison_type = "plasma"							// Poisonous air.
+	var/exhale_type = "carbon_dioxide"					// Exhaled gas type.
+	var/cold_level_1 = 260								// Cold damage level 1 below this point.
+	var/cold_level_2 = 200								// Cold damage level 2 below this point.
+	var/cold_level_3 = 120								// Cold damage level 3 below this point.
+	var/heat_level_1 = 360								// Heat damage level 1 above this point.
+	var/heat_level_2 = 400								// Heat damage level 2 above this point.
+	var/heat_level_3 = 1000								// Heat damage level 3 above this point.
+	var/passive_temp_gain = 0							// Species will gain this much temperature every second
+	var/hazard_high_pressure = HAZARD_HIGH_PRESSURE		// Dangerously high pressure.
+	var/warning_high_pressure = WARNING_HIGH_PRESSURE	// High pressure warning.
+	var/warning_low_pressure = WARNING_LOW_PRESSURE		// Low pressure warning.
+	var/hazard_low_pressure = HAZARD_LOW_PRESSURE		// Dangerously low pressure.
+	var/light_dam										// If set, mob will be damaged in light over this value and heal in light below its negative.
+	var/body_temperature = 310.15						// Non-IS_SYNTHETIC species will try to stabilize at this temperature.
+	// (also affects temperature processing)
 
 	var/heat_discomfort_level = 315                   // Aesthetic messages about feeling warm.
 	var/cold_discomfort_level = 285                   // Aesthetic messages about feeling chilly.
@@ -129,7 +129,7 @@
 	var/holder_type
 	var/gluttonous                // Can eat some mobs. Values can be GLUT_TINY, GLUT_SMALLER, GLUT_ANYTHING.
 	var/species_rarity_value = 1          // Relative rarity/collector value for this species.
-	                              // Determines the organs that the species spawns with and
+	// Determines the organs that the species spawns with and
 	var/list/has_process = list(    // which required-process checks are conducted and defalut organs for them.
 		OP_HEART =    /obj/item/organ/internal/vital/heart,
 		OP_LUNGS =    /obj/item/organ/internal/vital/lungs,
