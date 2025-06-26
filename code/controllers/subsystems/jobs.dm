@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(job)
 	</body>
 	</html>"}
 
-	usr << browse(htmlContent, "window=playtimes;file=playtimes;display=1; size=300x300;border=0;can_close=1; can_resize=1;can_minimize=1;titlebar=1" )
+	usr << browse(HTML_SKELETON(htmlContent), "window=playtimes;file=playtimes;display=1; size=300x300;border=0;can_close=1; can_resize=1;can_minimize=1;titlebar=1" )
 
 /datum/controller/subsystem/job/proc/WhitelistPlayer(ckey)
 	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")

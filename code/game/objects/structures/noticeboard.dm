@@ -75,5 +75,5 @@
 	if(href_list["read"])
 		var/obj/item/paper/P = locate(href_list["read"])
 		if((P && P.loc == src))
-			usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY><TT>[P.info]</TT></BODY></HTML>", "window=[P.name]")
+			usr << browse(HTML_SKELETON_TITLE(P.name, "<TT>[P.info]</TT>", "window=[P.name]")
 			onclose(usr, "[P.name]")

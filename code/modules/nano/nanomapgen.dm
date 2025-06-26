@@ -66,7 +66,7 @@
 
 	var/mapFilename = "new_[map_image_file_name(currentZ)]"
 	log_world("NanoMapGen: <B>sending [mapFilename] to client</B>")
-	usr << browse(Tile, "window=picture;file=[mapFilename];display=0")
+	usr << browse(HTML_SKELETON(Tile), "window=picture;file=[mapFilename];display=0")
 	log_world("NanoMapGen: <B>Done.</B>")
 	to_chat(usr, "NanoMapGen: <B>Done. File [mapFilename] uploaded to your cache.</B>")
 	if(Tile.Width() != NANOMAP_MAX_ICON_DIMENSION || Tile.Height() != NANOMAP_MAX_ICON_DIMENSION)

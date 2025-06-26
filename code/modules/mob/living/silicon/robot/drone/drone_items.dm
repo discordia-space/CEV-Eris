@@ -187,4 +187,4 @@
 
 	dat += resources
 
-	src << browse(dat, "window=robotmod")
+	src << browse(HTML_SKELETON(dat), "window=robotmod")

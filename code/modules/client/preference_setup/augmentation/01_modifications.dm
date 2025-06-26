@@ -60,7 +60,7 @@
 		if(!pref.modifications_allowed())
 			dat += "<a class='linkOff'><b>[organ_name]</b></a>"
 		else if(organ == pref.current_organ)
-			dat += "<div><a class='Organs_active' href='?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
+			dat += "<div><a class='Organs_active' href='byond://?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
 		else
 			dat += "<a href='byond://?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
 		if(mod.hascolor)
@@ -80,7 +80,7 @@
 		if(!pref.modifications_allowed())
 			dat += "<a class='linkOff'><b>[organ_name]</b></a>"
 		else if(organ == pref.current_organ)
-			dat += "<div><a class='Organs_active' href='?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
+			dat += "<div><a class='Organs_active' href='byond://?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
 		else
 			dat += "<a href='byond://?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
 		dat += "<br><div>[disp_name]</div></div>"

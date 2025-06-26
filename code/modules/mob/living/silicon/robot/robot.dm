@@ -423,7 +423,7 @@
 	if(!cell_use_power(CO.active_usage))
 		to_chat(src, SPAN_DANGER("Low Power."))
 	var/dat = self_diagnosis()
-	src << browse(dat, "window=robotdiagnosis")
+	src << browse(HTML_SKELETON(dat), "window=robotdiagnosis")
 
 
 /mob/living/silicon/robot/verb/toggle_component()
@@ -857,7 +857,7 @@
 			dat += text("[module.emag]: <B>Activated</B><BR>")
 		else
 			dat += text("[module.emag]: <a href='byond://?src=\ref[src];act=\ref[module.emag]>Activate</A><BR>")
-	src << browse(dat, "window=robotmod")
+	src << browse(HTML_SKELETON(dat), "window=robotmod")
 
 /mob/living/silicon/robot/Topic(href, href_list)
 	if(..())

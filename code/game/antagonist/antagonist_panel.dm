@@ -49,7 +49,7 @@
 	return dat
 
 /datum/antagonist/proc/antagonist_panel()
-	usr << browse(get_panel_entry(),"window=\ref[src]antag")
+	usr << browse(HTML_SKELETON(get_panel_entry()),"window=\ref[src]antag")
 
 /datum/antagonist/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))

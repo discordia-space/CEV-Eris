@@ -399,7 +399,7 @@
 	body += source.formatJobGroup(M, "Antagonist Positions", "ffeeaa", "Syndicate", jobban_list)
 
 	dat = "<head>[header]</head><body><tt><table width='100%'>[body.Join(null)]</table></tt></body>"
-	usr << browse(dat, "window=jobban2;size=800x490")
+	usr << browse(HTML_SKELETON(dat), "window=jobban2;size=800x490")
 
 
 /datum/admin_topic/jobban3
@@ -741,7 +741,7 @@
 	for(var/mode in config.storytellers)
 		dat += {"<a href='byond://?src=\ref[source];c_mode2=[mode]'>[config.storyteller_names[mode]]</A><br>"}
 	dat += {"Now: [master_storyteller]"}
-	usr << browse(dat, "window=c_mode")
+	usr << browse(HTML_SKELETON(dat), "window=c_mode")
 
 
 /datum/admin_topic/c_mode2
@@ -1059,7 +1059,7 @@
 			var/obj/pageobj = B.pages[page]
 			data += "<a href='byond://?src=\ref[source];AdminFaxViewPage=[page];paper_bundle=\ref[B]'>Page [page] - [pageobj.name]</A><BR>"
 
-		usr << browse(data, "window=[B.name]")
+		usr << browse(HTML_SKELETON(data), "window=[B.name]")
 	else
 		to_chat(usr, "\red The faxed item is not viewable. This is probably a bug, and should be reported on the tracker: [fax.type]")
 

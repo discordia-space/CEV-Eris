@@ -108,7 +108,7 @@
 		</html>
 		"}
 
-	usr << browse(html, "window=variables\ref[D];size=475x650")
+	usr << browse(HTML_SKELETON(html), "window=variables\ref[D];size=475x650")
 
 
 /proc/make_view_variables_var_list(datum/D)

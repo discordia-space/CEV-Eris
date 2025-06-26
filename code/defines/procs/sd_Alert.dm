@@ -148,7 +148,7 @@ sd_alert
 
 		html += "</th></tr></table></body>"
 
-		target << browse(html, "window=\ref[src];size=[size];can_close=0")
+		target << browse(HTML_SKELETON(html), "window=\ref[src];size=[size];can_close=0")
 
 	proc/Response()
 		var/validated

@@ -207,7 +207,7 @@ SUBSYSTEM_DEF(pai)
 	<body>
 	"}
 
-	M << browse(dat, "window=paiRecruit;size=580x580;")
+	M << browse(HTML_SKELETON(dat), "window=paiRecruit;size=580x580;")
 
 /datum/controller/subsystem/pai/proc/findPAI(obj/item/device/paicard/p, mob/user)
 	requestRecruits(user)

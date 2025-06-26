@@ -358,7 +358,7 @@
 			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
 
 	dat += "</center>"
-	src << browse(dat, "window=latechoices;size=400x640;can_close=1")
+	src << browse(HTML_SKELETON(dat), "window=latechoices;size=400x640;can_close=1")
 
 
 /mob/new_player/proc/create_character()

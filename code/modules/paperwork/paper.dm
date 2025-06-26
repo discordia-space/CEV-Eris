@@ -317,11 +317,8 @@
 		playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg',40,1)
 		update_space(t)
 
-		usr << browse("<HTML><meta charset=\"utf-8\"><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
-
+		usr << browse(HTML_SKELETON_TITLE(name, "[info_links][stamps]"), "window=[name]") // Update the window
 		update_icon()
-
-
 
 
 /obj/item/paper/attackby(obj/item/P as obj, mob/user)
@@ -389,7 +386,7 @@
 		if( istype(RP) && RP.mode == 2 )
 			RP.RenamePaper(user,src)
 		else
-			user << browse(HTML_SKELETON("<HTML><meta charset=\"utf-8\"><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[info_links][stamps]</BODY></HTML>"), "window=[name]")
+			user << browse(HTML_SKELETON_TITLE(name, "[info_links][stamps]"), "window=[name]")
 		return
 
 	else if(istype(P, /obj/item/stamp))

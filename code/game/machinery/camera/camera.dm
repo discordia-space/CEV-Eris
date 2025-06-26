@@ -251,7 +251,7 @@
 
 				if(istype(I, /obj/item/paper))
 					var/obj/item/paper/X = I
-					O << browse("<HTML><HEAD><TITLE>[X.name]</TITLE></HEAD><BODY><TT>[X.info]</TT></BODY></HTML>", "window=[X.name]")
+					O << browse(HTML_SKELETON_TITLE("[X.name]", "<TT>[X.info]</TT>"), "window=[X.name]")
 				else
 					I.examine(O)
 			last_shown_time = world.time + 2 SECONDS

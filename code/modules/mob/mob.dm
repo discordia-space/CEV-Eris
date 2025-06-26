@@ -389,17 +389,6 @@
 		var/obj/item/device/lighting/toggleable/flashlight/flashlight = item
 		flashlight.attack_self(src)
 
-/*
-/mob/verb/dump_source()
-
-	var/master = "<PRE>"
-	for(var/t in typesof(/area))
-		master += text("[]\n", t)
-		//Foreach goto(26)
-	src << browse(master)
-	return
-*/
-
 /mob/verb/memory()
 	set name = "Notes"
 	set category = "IC"
@@ -450,13 +439,6 @@
 			return "<font color='blue'>[msg]</font>"
 		else
 			return "<font color='blue'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
-
-/*
-/mob/verb/help()
-	set name = "Help"
-	src << browse('html/help.html', "window=help")
-	return
-*/
 
 /mob/verb/observe()
 	set name = "Observe"
@@ -560,7 +542,7 @@
 				<body><tt>[replacetext(flavor_text, "\n", "<br>")]</tt></body>
 				</html>
 			"}
-			usr << browse(dat, "window=[name];size=500x200")
+			usr << browse(HTML_SKELETON(dat), "window=[name];size=500x200")
 			onclose(usr, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()

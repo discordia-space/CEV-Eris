@@ -542,4 +542,4 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 			output += "</table></div>"
 
-	usr << browse(output,"window=lookupbans;size=900x700")
+	usr << browse(HTML_SKELETON(output), "window=lookupbans;size=900x700")

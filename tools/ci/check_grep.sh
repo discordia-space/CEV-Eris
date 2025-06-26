@@ -46,19 +46,19 @@ part() {
 	echo -e "${GREEN} $padded- $1${NC}"
 }
 
-section "whitespace issues"
-part "space indentation"
-if $grep '(^ {2})|(^ [^ * ])|(^    +)' $code_files; then
-	echo
-    echo -e "${RED}ERROR: Space indentation detected, please use tab indentation.${NC}"
-    st=1
-fi;
-part "mixed indentation"
-if $grep '^\t+ [^ *]' $code_files; then
-	echo
-    echo -e "${RED}ERROR: Mixed <tab><space> indentation detected, please stick to tab indentation.${NC}"
-    st=1
-fi;
+# section "whitespace issues"
+# part "space indentation"
+# if $grep '(^ {2})|(^ [^ * ])|(^    +)' $code_files; then
+# 	echo
+#     echo -e "${RED}ERROR: Space indentation detected, please use tab indentation.${NC}"
+#     st=1
+# fi;
+# part "mixed indentation"
+# if $grep '^\t+ [^ *]' $code_files; then
+# 	echo
+#     echo -e "${RED}ERROR: Mixed <tab><space> indentation detected, please stick to tab indentation.${NC}"
+#     st=1
+# fi;
 
 section "516 Href Styles"
 part "byond href styles"

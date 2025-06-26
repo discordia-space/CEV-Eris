@@ -308,7 +308,7 @@
 		O.update_explanation()
 		data += "[i]. [O.get_panel_entry()]<br>"
 
-	usr << browse(data,"window=[id]faction")
+	usr << browse(HTML_SKELETON(data), "window=[id]faction")
 
 /datum/faction/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))
