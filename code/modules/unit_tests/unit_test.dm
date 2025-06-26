@@ -172,7 +172,3 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 	file(file_name) << json_encode(test_results)
 
 	global.universe_has_ended = TRUE
-
-/datum/map_template/unit_tests
-	name = "Unit Tests Zone"
-	mappath = "_maps/templates/unit_tests.dmm"

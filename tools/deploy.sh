@@ -24,19 +24,16 @@ if [ -d ".git" ]; then
   cp -r .git/logs/* $1/.git/logs/
 fi
 
-cp tgstation.dmb tgstation.rsc $1/
-cp -r _maps/* $1/_maps/
-cp -r code/datums/greyscale/json_configs/* $1/code/datums/greyscale/json_configs/
+cp cev_eris.dmb cev_eris.rsc $1/
+cp -r maps/* $1/maps/
 cp -r icons/* $1/icons/
-cp -r sound/runtime/* $1/sound/runtime/
-cp -r strings/* $1/strings/
 cp -r tgui/public/* $1/tgui/public/
 cp -r tgui/packages/tgfont/dist/* $1/tgui/packages/tgfont/dist/
 
-#remove .dm files from _maps
+#remove .dm files from /maps
 
 #this regrettably doesn't work with windows find
-#find $1/_maps -name "*.dm" -type f -delete
+#find $1/maps -name "*.dm" -type f -delete
 
 #dlls on windows
 if [ "$(uname -o)" = "Msys" ]; then

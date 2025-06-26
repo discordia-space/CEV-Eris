@@ -28,7 +28,7 @@ jobs:
         id: map_finder
         run: |
           > maps_output.txt
-          for file in _maps/*.json; do
+          for file in maps/*.json; do
             if ! jq -e '.exclude_from_ci == true' "$file" >/dev/null 2>&1; then
               echo "\"$(basename "$file" .json)\"" >> maps_output.txt
             else

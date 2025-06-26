@@ -13,10 +13,10 @@ mkdir -p ci_test/data
 cp tools/ci/ci_config.txt ci_test/config/config.txt
 
 #set the map
-cp _maps/$MAP.json ci_test/data/next_map.json
+cp maps/json/$MAP.json ci_test/data/next_map.json
 
 cd ci_test
-DreamDaemon tgstation.dmb -close -trusted -verbose -params "log-directory=ci"
+DreamDaemon cev_eris.dmb -close -trusted -verbose -params "log-directory=ci"
 
 cd ..
 
