@@ -364,3 +364,19 @@ There are important things regarding this file:
 	name = "large bolt"
 	damage_types = list(BRUTE = 34)
 	matter = list(MATERIAL_STEEL = 5)
+
+/obj/item/projectile/foam_dart
+	name = "foam dart"
+	desc = ""
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "foamdart"
+	damage_types = list(HALLOSS = 0)
+	mob_hit_sound = list('sound/weapons/pinground.ogg')
+	hitsound_wall = "hitobject"
+	matter = list(MATERIAL_PLASTIC = 0.1)
+
+/obj/item/projectile/foam_dart/on_impact(atom/A)
+	. = ..()
+	new /obj/item/ammo_casing/crossbow/foam(get_turf(src))
+	
+	
