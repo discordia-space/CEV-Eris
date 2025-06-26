@@ -71,7 +71,7 @@
 	else
 		t += "<a href='byond://?src=\ref[src];auth=1'>*Authenticate*</A> (Requires an appropriate access ID)<BR>"
 	t += "<a href='byond://?src=\ref[src];close=1'>Close</A><BR>"
-	user << browse(t, "window=camcircuit;size=500x400")
+	user << browse(HTML_SKELETON(t), "window=camcircuit;size=500x400")
 	onclose(user, "camcircuit")
 
 /obj/item/electronics/circuitboard/camera/Topic(href, href_list)

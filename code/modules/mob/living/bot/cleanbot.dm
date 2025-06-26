@@ -219,7 +219,7 @@
 		dat += "Odd looking screw twiddled: <a href='byond://?src=\ref[src];operation=screw'>[screwloose ? "Yes" : "No"]</A><BR>"
 		dat += "Weird button pressed: <a href='byond://?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A>"
 
-	user << browse("<HEAD><TITLE>Cleaner v1.0 controls</TITLE></HEAD>[dat]", "window=autocleaner")
+	user << browse(HTML_SKELETON("<HEAD><TITLE>Cleaner v1.0 controls</TITLE></HEAD>[dat]"), "window=autocleaner")
 	onclose(user, "autocleaner")
 	return
 

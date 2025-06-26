@@ -70,4 +70,4 @@
 		HTML += "<br>"
 	HTML += "<hr />"
 	HTML += "<tt>"
-	user << browse(HTML, "window=flavour_text_robot;size=430x300")
+	user << browse(HTML_SKELETON(HTML), "window=flavour_text_robot;size=430x300")

@@ -67,7 +67,7 @@
 ///// Z-Level stuff
 //What number the make points to is in the define # at the top of construction.dm in same folder
 
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
+	user << browse(HTML_SKELETON("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>"), "window=pipedispenser")
 	onclose(user, "pipedispenser")
 	return
 
@@ -175,7 +175,7 @@ Nah
 "}
 ///// Z-Level stuff
 
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
+	user << browse(HTML_SKELETON("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>"), "window=pipedispenser")
 	return
 
 // 0=straight, 1=bent, 2=junction-j1, 3=junction-j2, 4=junction-y, 5=trunk

@@ -1,21 +1,19 @@
-import { Button, NumberInput, Section, Stack } from 'tgui-core/components';
+import { Box, Button, NumberInput, Section, Stack } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-type Data = {
-	code: number;
-	frequency: number;
-	cooldown: number;
-	minFrequency: number;
+interface SignalerData {
 	maxFrequency: number;
-};
+	minFrequency: number;
+	frequency: number;
+	code: number;
+}
 
-export const Signaler = (props) => {
-	const { act, data } = useBackend();
+export const Signaler = (props: any) => {
 	return (
-		<Window width={280} height={128}>
+		<Window width={340} height={145}>
 			<Window.Content>
 				<SignalerContent />
 			</Window.Content>
@@ -23,95 +21,151 @@ export const Signaler = (props) => {
 	);
 };
 
-export const SignalerContent = (props) => {
-	const { act, data } = useBackend<Data>();
-	const { code, frequency, cooldown, minFrequency, maxFrequency } = data;
+export const SignalerContent = (props: any) => {
+	const { act } = useBackend<SignalerData>();
 
-	const color = 'rgba(13, 13, 213, 0.7)';
-	const backColor = 'rgba(0, 0, 69, 0.5)';
 	return (
-		<Section>
-			<Stack>
-				<Stack.Item color="label">Frequency:</Stack.Item>
+		<Section fill>
+			<Stack vertical justify="space-between">
 				<Stack.Item>
-					<NumberInput
-						animated
-						unit="kHz"
-						step={0.2}
-						stepPixelSize={6}
-						minValue={minFrequency / 10}
-						maxValue={maxFrequency / 10}
-						value={frequency / 10}
-						format={(value) => toFixed(value, 1)}
-						width="80px"
-						onDrag={(value) =>
-							act('freq', {
-								freq: value,
-							})
-						}
-					/>
+					<FrequencyContent />
 				</Stack.Item>
 				<Stack.Item>
+					<CodeContent />
+				</Stack.Item>
+				<Stack.Item bold fontSize="1.5rem">
 					<Button
-						ml={1.3}
-						icon="sync"
-						content="Reset"
-						onClick={() =>
-							act('reset', {
-								reset: 'freq',
-							})
-						}
-					/>
-				</Stack.Item>
-			</Stack>
-			<Stack mt={0.6}>
-				<Stack.Item pr={5.3} color="label">
-					Code:
-				</Stack.Item>
-				<Stack.Item>
-					<NumberInput
-						animated
-						step={1}
-						stepPixelSize={6}
-						minValue={1}
-						maxValue={100}
-						value={code}
-						width="80px"
-						onDrag={(value) =>
-							act('code', {
-								code: value,
-							})
-						}
-					/>
-				</Stack.Item>
-				<Stack.Item>
-					<Button
-						ml={1.3}
-						icon="sync"
-						content="Reset"
-						onClick={() =>
-							act('reset', {
-								reset: 'code',
-							})
-						}
-					/>
-				</Stack.Item>
-			</Stack>
-			<Stack mt={0.8}>
-				<Stack.Item ml={10.5}>
-					<Button
-						mb={-0.1}
 						fluid
-						tooltip={
-							cooldown && `Cooldown: ${cooldown * 0.1} seconds`
-						}
-						icon="arrow-up"
-						content="Send Signal"
+						icon="broadcast-tower"
+						color="green"
+						content="Send"
 						textAlign="center"
 						onClick={() => act('signal')}
 					/>
 				</Stack.Item>
 			</Stack>
 		</Section>
+	);
+};
+
+const FrequencyContent = (props: any) => {
+	const { act, data } = useBackend<SignalerData>();
+	const { frequency, maxFrequency, minFrequency } = data;
+
+	return (
+		<Stack justify="space-between">
+			<Stack.Item width="19%">
+				<Box color="label" textAlign="left">
+					Frequency:
+				</Box>
+			</Stack.Item>
+			<Stack.Item>
+				<Button
+					icon="fast-backward"
+					onClick={() =>
+						act('adjust', {
+							freq: -10,
+						})
+					}
+				/>
+				<Button
+					icon="backward"
+					onClick={() =>
+						act('adjust', {
+							freq: -2,
+						})
+					}
+				/>
+				<NumberInput
+					animated
+					width="80px"
+					unit="kHz"
+					step={3}
+					stepPixelSize={6}
+					minValue={minFrequency}
+					maxValue={maxFrequency}
+					value={frequency}
+					format={(value: number) => toFixed(value / 10, 1)}
+					onChange={(value: number) =>
+						act('adjust', { freq: -frequency + value })
+					}
+				/>
+				<Button
+					icon="forward"
+					onClick={() =>
+						act('adjust', {
+							freq: 2,
+						})
+					}
+				/>
+				<Button
+					icon="fast-forward"
+					onClick={() =>
+						act('adjust', {
+							freq: 10,
+						})
+					}
+				/>
+			</Stack.Item>
+			<Stack.Item>
+				<Button
+					icon="sync"
+					color="red"
+					onClick={() => act('reset', { freq: true })}
+				/>
+			</Stack.Item>
+		</Stack>
+	);
+};
+
+const CodeContent = (props: any) => {
+	const { act, data } = useBackend<SignalerData>();
+	const { code } = data;
+
+	return (
+		<Stack justify="space-between">
+			<Stack.Item width="19%">
+				<Box color="label" textAlign="left">
+					Code:
+				</Box>
+			</Stack.Item>
+			<Stack.Item>
+				<Button
+					icon="fast-backward"
+					onClick={() => act('adjust', { code: -10 })}
+				/>
+				<Button
+					icon="backward"
+					onClick={() => act('adjust', { code: -1 })}
+				/>
+				<NumberInput
+					animated
+					step={1}
+					stepPixelSize={6}
+					minValue={1}
+					maxValue={100}
+					value={code}
+					width="80px"
+					onDrag={(value: number) =>
+						act('adjust', { code: -code + value })
+					}
+				/>
+				<Button
+					icon="forward"
+					onClick={() => act('adjust', { code: 1 })}
+				/>
+				<Button
+					icon="fast-forward"
+					onClick={() => act('adjust', { code: 10 })}
+				/>
+			</Stack.Item>
+			<Stack.Item>
+				<Button
+					icon="sync"
+					color="red"
+					onClick={() => act('reset', { code: true })}
+				/>
+			</Stack.Item>
+		</Stack>
 	);
 };

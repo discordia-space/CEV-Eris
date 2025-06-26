@@ -74,7 +74,7 @@
 		else
 			dat += "<br><br>Reconstruction in process, please wait.<br>"
 	dat += {" <a href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
-	user << browse(dat, "window=computer;size=400x500")
+	user << browse(HTML_SKELETON(dat), "window=computer;size=400x500")
 	onclose(user, "computer")
 
 /obj/machinery/computer/aifixer/Process()

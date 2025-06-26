@@ -239,7 +239,7 @@
 		<a href='byond://?src=\ref[src];action=cook'>Turn on!<BR>\
 		<a href='byond://?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
 		"}
-	user << browse("<HEAD><TITLE>[src] Controls</TITLE></HEAD><TT>[dat]</TT>", "window=[src]")
+	user << browse(HTML_SKELETON("<HEAD><TITLE>[src] Controls</TITLE></HEAD><TT>[dat]</TT>"), "window=[src]")
 	onclose(user, "[src]")
 
 

@@ -147,7 +147,7 @@
 	t += "Starter: [ compressor.starter ? "<a href='byond://?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <a href='byond://?src=\ref[src];str=1'>On</A>"]"
 	t += "</PRE><HR><a href='byond://?src=\ref[src];close=1'>Close</A>"
 	t += "</TT>"
-	user << browse(t, "window=turbine")
+	user << browse(HTML_SKELETON(t), "window=turbine")
 	onclose(user, "turbine")
 
 /obj/machinery/power/turbine/Topic(href, href_list)
@@ -204,7 +204,7 @@
 	else
 		dat += SPAN_DANGER("No compatible attached compressor found.")
 
-	user << browse(dat, "window=computer;size=400x500")
+	user << browse(HTML_SKELETON(dat), "window=computer;size=400x500")
 	onclose(user, "computer")
 
 /obj/machinery/computer/turbine_computer/Topic(href, href_list)

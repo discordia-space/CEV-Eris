@@ -297,11 +297,10 @@
 		else
 			dat += "<a href='byond://?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A>"
 	if(!condi)
-		user << browse("<TITLE>Chemmaster 3000</TITLE>Chemmaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
+		user << browse(HTML_SKELETON_TITLE("Chemmaster 3000", "Chemmaster menu:<BR><BR>[dat]"), "window=chem_master;size=575x400")
 	else
-		user << browse("<TITLE>Condimaster 3000</TITLE>Condimaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
+		user << browse(HTML_SKELETON_TITLE("Condimaster 3000","Condimaster menu:<BR><BR>[dat]"), "window=chem_master;size=575x400")
 	onclose(user, "chem_master")
-	return
 
 /obj/machinery/chem_master/condimaster
 	name = "CondiMaster 3000"

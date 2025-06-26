@@ -48,7 +48,7 @@
 	var/dat = "[src]<br><br>"
 	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<a href='byond://?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
 	dat += "Plasma tanks: [plasmatanks] - [plasmatanks ? "<a href='byond://?src=\ref[src];plasma=1'>Dispense</A>" : "empty"]"
-	user << browse(dat, "window=dispenser")
+	user << browse(HTML_SKELETON(dat), "window=dispenser")
 	onclose(user, "dispenser")
 
 

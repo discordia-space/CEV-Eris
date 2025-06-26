@@ -1854,7 +1854,6 @@
 /area/eris/security/armory)
 "aeD" = (
 /obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
 	},
 /turf/floor/tiled/dark,
 /area/eris/security/prison)
@@ -97268,7 +97267,6 @@
 /area/eris/crew_quarters/kitchen)
 "fvg" = (
 /obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
 	},
 /turf/floor/grass,
 /area/eris/crew_quarters/hydroponics/garden)
@@ -100644,7 +100642,6 @@
 /area/eris/quartermaster/hangarsupply)
 "lQM" = (
 /obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
 	},
 /turf/floor/wood,
 /area/eris/crew_quarters/hydroponics)

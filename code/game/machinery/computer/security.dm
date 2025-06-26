@@ -209,7 +209,7 @@
 				else
 		else
 			dat += text("<a href='byond://?src=\ref[];choice=Log In'>{Log In}</A>", src)
-	user << browse(text("<HEAD><TITLE>Security Records</TITLE></HEAD><TT>[]</TT>", dat), "window=secure_rec;size=600x400")
+	user << browse(HTML_SKELETON(text("<HEAD><TITLE>Security Records</TITLE></HEAD><TT>[]</TT>", dat)), "window=secure_rec;size=600x400")
 	onclose(user, "secure_rec")
 
 /*Revised /N

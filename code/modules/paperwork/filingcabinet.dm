@@ -64,7 +64,7 @@
 	for(var/obj/item/P in src)
 		dat += "<tr><td><a href='byond://?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
 	dat += "</table></center>"
-	user << browse("<html><head><title>[name]</title></head><body>[jointext(dat,null)]</body></html>", "window=filingcabinet;size=350x300")
+	user << browse(HTML_SKELETON("<html><head><title>[name]</title></head><body>[jointext(dat,null)]</body></html>"), "window=filingcabinet;size=350x300")
 
 /obj/structure/filingcabinet/attack_tk(mob/user)
 	if(anchored)

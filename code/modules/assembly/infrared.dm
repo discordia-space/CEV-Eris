@@ -109,7 +109,7 @@
 		<br><br><a href='byond://?src=\ref[src];refresh=1'>Refresh</a>
 		<br><br><a href='byond://?src=\ref[src];close=1'>Close</a>
 	"}
-	user << browse(dat, "window=infra")
+	user << browse(HTML_SKELETON(dat), "window=infra")
 	onclose(user, "infra")
 
 

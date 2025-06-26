@@ -93,7 +93,7 @@
 	if(!src.locked)
 		message = "*****"
 	dat += text("<HR>\n>[]<BR>\n<a href='byond://?src=\ref[];type=1'>1</A>-<a href='byond://?src=\ref[];type=2'>2</A>-<a href='byond://?src=\ref[];type=3'>3</A><BR>\n<a href='byond://?src=\ref[];type=4'>4</A>-<a href='byond://?src=\ref[];type=5'>5</A>-<a href='byond://?src=\ref[];type=6'>6</A><BR>\n<a href='byond://?src=\ref[];type=7'>7</A>-<a href='byond://?src=\ref[];type=8'>8</A>-<a href='byond://?src=\ref[];type=9'>9</A><BR>\n<a href='byond://?src=\ref[];type=R'>R</A>-<a href='byond://?src=\ref[];type=0'>0</A>-<a href='byond://?src=\ref[];type=E'>E</A><BR>\n</TT>", message, src, src, src, src, src, src, src, src, src, src, src, src)
-	user << browse(dat, "window=caselock;size=300x280")
+	user << browse(HTML_SKELETON(dat), "window=caselock;size=300x280")
 
 /obj/item/storage/secure/Topic(href, href_list)
 	..()

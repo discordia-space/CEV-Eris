@@ -90,7 +90,7 @@
 		dat += "Operating Mode: <a href='byond://?src=\ref[src];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A><BR>"
 		dat += "Report Arrests: <a href='byond://?src=\ref[src];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A><BR>"
 		dat += "Auto Patrol: <a href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>"
-	user << browse("<HEAD><TITLE>Securitron v[bot_version] controls</TITLE></HEAD>[dat]", "window=autosec")
+	user << browse(HTML_SKELETON("<HEAD><TITLE>Securitron v[bot_version] controls</TITLE></HEAD>[dat]"), "window=autosec")
 	onclose(user, "autosec")
 
 /mob/living/bot/secbot/Topic(href, href_list)

@@ -168,7 +168,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 		t += "<small><a href='byond://?src=\ref[src];add=1;'>(add new)</A></small><BR>"
 		t+= "<UL></TT>"
 
-	user << browse(t, "window=navbeacon")
+	user << browse(HTML_SKELETON(t), "window=navbeacon")
 	onclose(user, "navbeacon")
 
 

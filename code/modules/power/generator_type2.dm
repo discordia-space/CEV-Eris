@@ -117,7 +117,7 @@
 	t += "<BR><HR><a href='byond://?src=\ref[src];close=1'>Close</A>"
 
 	t += "</PRE>"
-	user << browse(t, "window=teg;size=460x300")
+	user << browse(HTML_SKELETON(t), "window=teg;size=460x300")
 	onclose(user, "teg")
 	return 1
 

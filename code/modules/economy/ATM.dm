@@ -237,7 +237,7 @@ log transactions
 				dat += "<input type='submit' value='Submit'><br>"
 				dat += "</form>"
 
-		user << browse(dat,"window=atm;size=600x650")
+		user << browse(HTML_SKELETON(dat),"window=atm;size=600x650")
 	else
 		user << browse(null,"window=atm")
 

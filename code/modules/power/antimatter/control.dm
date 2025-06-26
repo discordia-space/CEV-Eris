@@ -272,7 +272,7 @@
 		dat += "- <a href='byond://?src=\ref[src];strengthdown=1'>--</A>|<a href='byond://?src=\ref[src];strengthup=1'>++</A><BR><BR>"
 
 
-	user << browse(dat, "window=AMcontrol;size=420x500")
+	user << browse(HTML_SKELETON(dat), "window=AMcontrol;size=420x500")
 	onclose(user, "AMcontrol")
 	return
 

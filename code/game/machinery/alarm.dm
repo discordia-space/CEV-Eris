@@ -1216,7 +1216,7 @@ Just a object used in constructing fire alarms
 		var/second = time % 60
 		var/minute = (time - second) / 60
 		var/dat = text("<HTML><HEAD></HEAD><BODY><TT><B>Party Button</B> []\n<HR>\nTimer System: []<BR>\nTime Left: [][] <a href='byond://?src=\ref[];tp=-30'>-</A> <a href='byond://?src=\ref[];tp=-1'>-</A> <a href='byond://?src=\ref[];tp=1'>+</A> <a href='byond://?src=\ref[];tp=30'>+</A>\n</TT></BODY></HTML>", d1, d2, (minute ? text("[]:", minute) : null), second, src, src, src, src)
-		user << browse(dat, "window=partyalarm")
+		user << browse(HTML_SKELETON(dat), "window=partyalarm")
 		onclose(user, "partyalarm")
 	else
 		if(A.fire)
@@ -1241,7 +1241,7 @@ Just a object used in constructing fire alarms
 			<a href='byond://?src=\ref[src];tp=1'>+</A> <a href='byond://?src=\ref[src];tp=30'>+</A>
 			</TT></BODY></HTML>
 		"}
-		user << browse(dat, "window=partyalarm")
+		user << browse(HTML_SKELETON(dat), "window=partyalarm")
 		onclose(user, "partyalarm")
 	return
 

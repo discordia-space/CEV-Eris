@@ -63,7 +63,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td>[id]</td></tr>"
 				dat += "</table><BR>"
 			dat += "<a href='byond://?src=\ref[src];back=1'>\[Go Back\]</A><BR>"
-	user << browse(dat, "window=publiclibrary")
+	user << browse(HTML_SKELETON(dat), "window=publiclibrary")
 	onclose(user, "publiclibrary")
 
 /obj/machinery/librarypubliccomp/Topic(href, href_list)
@@ -225,7 +225,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 			<a href='byond://?src=\ref[src];switchscreen=0'>No.</A><BR>"}
 
 	//dat += "<a href='byond://?src=\ref[user];mach_close=library'>Close</A><br><br>"
-	user << browse(dat, "window=library")
+	user << browse(HTML_SKELETON(dat), "window=library")
 	onclose(user, "library")
 
 /obj/machinery/librarycomp/emag_act(remaining_charges, mob/user)
@@ -411,7 +411,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 		dat += "       <a href='byond://?src=\ref[src];clear=1'>\[Clear Memory\]</A><BR><BR><a href='byond://?src=\ref[src];eject=1'>\[Remove Book\]</A>"
 	else
 		dat += "<BR>"
-	user << browse(dat, "window=scanner")
+	user << browse(HTML_SKELETON(dat), "window=scanner")
 	onclose(user, "scanner")
 
 /obj/machinery/libraryscanner/Topic(href, href_list)

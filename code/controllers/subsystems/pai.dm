@@ -323,7 +323,7 @@ SUBSYSTEM_DEF(pai)
 		</html>
 	"}
 
-	user << browse(dat, "window=findPai")
+	user << browse(HTML_SKELETON(dat), "window=findPai")
 
 
 /datum/controller/subsystem/pai/proc/requestRecruits(mob/user)

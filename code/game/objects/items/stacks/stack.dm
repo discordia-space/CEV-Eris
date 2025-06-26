@@ -143,7 +143,7 @@
 					t1 += " <a href='byond://?src=\ref[src];make=[i];multiplier=[max_multiplier]'>[max_multiplier*R.res_amount]x</A>"
 
 	t1 += "</TT></body></HTML>"
-	user << browse(t1, "window=stack")
+	user << browse(HTML_SKELETON(t1), "window=stack")
 	onclose(user, "stack")
 	return
 

@@ -162,7 +162,7 @@
 			dat = SPAN_WARNING("Error: No Body Scanner connected.")
 
 	dat += text("<BR><a href='byond://?src=\ref[];mach_close=scanconsole'>Close</A>", user)
-	user << browse(dat, "window=scanconsole;size=430x600")
+	user << browse(HTML_SKELETON(dat), "window=scanconsole;size=430x600")
 
 
 /obj/machinery/body_scanconsole/Topic(href, href_list)

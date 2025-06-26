@@ -126,7 +126,7 @@
 				else
 		else
 			dat += text("<a href='byond://?src=\ref[];login=1'>{Log In}</A>", src)
-	user << browse(text("<HEAD><TITLE>Medical Records</TITLE></HEAD><TT>[]</TT>", dat), "window=med_rec")
+	user << browse(HTML_SKELETON(text("<HEAD><TITLE>Medical Records</TITLE></HEAD><TT>[]</TT>", dat)), "window=med_rec")
 	onclose(user, "med_rec")
 	return
 

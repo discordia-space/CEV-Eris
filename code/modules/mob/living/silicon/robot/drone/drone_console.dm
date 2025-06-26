@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(drones, list())
 
 	dat += "<BR><BR><B>Drone fabricator</B>: "
 	dat += "[dronefab ? "<a href='byond://?src=\ref[src];toggle_fab=1'>[(dronefab.produce_drones && !(dronefab.stat & NOPOWER)) ? "ACTIVE" : "INACTIVE"]</A>" : "<font color='red'><b>FABRICATOR NOT DETECTED.</b></font> (<a href='byond://?src=\ref[src];search_fab=1'>search</a>)"]"
-	user << browse(dat, "window=computer;size=400x500")
+	user << browse(HTML_SKELETON(dat), "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
 

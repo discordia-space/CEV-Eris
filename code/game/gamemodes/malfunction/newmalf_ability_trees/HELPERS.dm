@@ -70,7 +70,7 @@
 		help = "Error loading help (file html/ingame_manuals/malf_ai.html is probably missing). Please report this to server administration staff."
 		error("Failed to load html/ingame_manuals/malf_ai.html.")
 
-	user << browse(help, "window=malf_ai_help;size=600x500")
+	user << browse(HTML_SKELETON(help), "window=malf_ai_help;size=600x500")
 
 
 // Verb: ai_select_research()

@@ -11,4 +11,4 @@
 		if(H.ckey)
 			dat += "<tr><td>[H]</td><td>[H.fingers_trace]</td></tr>"
 	dat += "</table>"
-	user << browse(dat, "window=fingerprints;size=440x410")
+	user << browse(HTML_SKELETON(dat), "window=fingerprints;size=440x410")

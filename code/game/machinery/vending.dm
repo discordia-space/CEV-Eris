@@ -5,6 +5,8 @@
 	var/product_name = "generic" // Display name for the product
 	var/product_desc
 	var/product_path
+	var/icon
+	var/icon_state
 	var/amount = 0            // The original amount held in the vending machine
 	var/price = 0              // Price to buy one
 	var/display_color   // Display color for vending machine listing
@@ -25,10 +27,15 @@
 
 	var/obj/tmp = path
 
+	icon = initial(tmp.icon)
+	icon_state = initial(tmp.icon_state)
+
 	if(ispath(tmp, /obj/item/ammo_magazine))
 		// On New() magazine gets a proper name assigned
 		var/obj/item/ammo_magazine/AM = new tmp
 		product_name = AM.name
+		icon = AM.icon
+		icon_state = AM.icon_state
 		qdel(AM) // Don't need it anymore
 
 	if(!product_name)
@@ -646,7 +653,8 @@
 		listed_products.Add(list(list(
 			"key" = key,
 			"name" = strip_improper(I.product_name),
-			"icon" = icon2base64html(I.product_path),
+			"icon" = I.icon,
+			"icon_state" = I.icon_state,
 			"price" = I.price,
 			"color" = I.display_color,
 			"amount" = I.get_amount())))

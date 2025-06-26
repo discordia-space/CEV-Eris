@@ -112,7 +112,7 @@
 	"}
 	///// Z-Level stuff
 	//What number the make points to is in the define # at the top of construction.dm in same folder
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
+	user << browse(HTML_SKELETON("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>"), "window=pipedispenser")
 	onclose(user, "pipedispenser")
 
 /obj/item/rpd/Topic(href, href_list)

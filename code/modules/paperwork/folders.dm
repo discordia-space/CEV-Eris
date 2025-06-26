@@ -52,7 +52,7 @@
 		dat += "<a href='byond://?src=\ref[src];remove=\ref[Ph]'>Remove</A> <a href='byond://?src=\ref[src];rename=\ref[Ph]'>Rename</A> - <a href='byond://?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
 	for(var/obj/item/paper_bundle/Pb in src)
 		dat += "<a href='byond://?src=\ref[src];remove=\ref[Pb]'>Remove</A> <a href='byond://?src=\ref[src];rename=\ref[Pb]'>Rename</A> - <a href='byond://?src=\ref[src];browse=\ref[Pb]'>[Pb.name]</A><BR>"
-	user << browse(dat, "window=folder")
+	user << browse(HTML_SKELETON(dat), "window=folder")
 	onclose(user, "folder")
 	add_fingerprint(usr)
 	return

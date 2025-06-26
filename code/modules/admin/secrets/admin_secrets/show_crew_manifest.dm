@@ -9,4 +9,4 @@
 	dat += "<h4>Crew Manifest</h4>"
 	dat += data_core.get_manifest()
 
-	user << browse(dat, "window=manifest;size=370x420;can_close=1")
+	user << browse(HTML_SKELETON(dat), "window=manifest;size=370x420;can_close=1")

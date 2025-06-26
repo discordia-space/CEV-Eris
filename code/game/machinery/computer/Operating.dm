@@ -69,7 +69,7 @@
 <BR>
 <B>No Patient Detected</B>
 "}
-	user << browse(dat, "window=op")
+	user << browse(HTML_SKELETON(dat), "window=op")
 	onclose(user, "op")
 
 

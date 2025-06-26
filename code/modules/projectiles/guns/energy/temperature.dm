@@ -44,7 +44,7 @@
 	Target output temperature: <a href='byond://?src=\ref[src];temp=-100'>-</A> <a href='byond://?src=\ref[src];temp=-10'>-</A> <a href='byond://?src=\ref[src];temp=-1'>-</A> [current_temperature] <a href='byond://?src=\ref[src];temp=1'>+</A> <a href='byond://?src=\ref[src];temp=10'>+</A> <a href='byond://?src=\ref[src];temp=100'>+</A><BR>
 	"}
 
-	user << browse(dat, "window=freezegun;size=450x300;can_resize=1;can_close=1;can_minimize=1")
+	user << browse(HTML_SKELETON(dat), "window=freezegun;size=450x300;can_resize=1;can_close=1;can_minimize=1")
 	onclose(user, "window=freezegun", src)
 
 

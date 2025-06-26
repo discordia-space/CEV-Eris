@@ -135,7 +135,7 @@
 		dat += "Unit status: <B>[locked? "<font color ='red'>**LOCKED**</font>" : "<font color ='green'>**UNLOCKED**</font>"]</B><BR>"
 		dat += "<a href='byond://?src=\ref[src];start_UV=1'>Start Disinfection cycle</A><BR>"
 
-	user << browse(dat, "window=suit_storage_unit;size=400x500")
+	user << browse(HTML_SKELETON(dat), "window=suit_storage_unit;size=400x500")
 	onclose(user, "suit_storage_unit")
 
 

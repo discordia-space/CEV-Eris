@@ -31364,7 +31364,6 @@
 	dir = 8
 	},
 /obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
 	},
 /turf/floor/dirt,
 /area/eris/crew_quarters/hydroponics)
@@ -37410,7 +37409,6 @@
 /area/eris/command/tcommsat/chamber)
 "bLP" = (
 /obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
 	},
 /turf/floor/tiled/dark/cargo,
 /area/eris/security/prison)
@@ -69635,7 +69633,6 @@
 /area/eris/crew_quarters/kitchen)
 "dlX" = (
 /obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
 	},
 /obj/machinery/light{
 	dir = 8

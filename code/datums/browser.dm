@@ -119,7 +119,7 @@
 		SSassets.transport.send_assets(user, stylesheets)
 	if(scripts.len)
 		SSassets.transport.send_assets(user, scripts)
-	user << browse(get_content(), "window=[window_id];[window_size][window_options]")
+	user << browse(HTML_SKELETON(get_content()), "window=[window_id];[window_size][window_options]")
 	if(use_onclose)
 		setup_onclose()
 

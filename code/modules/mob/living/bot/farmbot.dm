@@ -59,7 +59,7 @@
 		dat += "Remove dead plants: <a href='byond://?src=\ref[src];removedead=1'>[removes_dead ? "Yes" : "No"]</A><BR>"
 		dat += "</TT>"
 
-	user << browse("<HEAD><TITLE>Farmbot v1.0 controls</TITLE></HEAD>[dat]", "window=autofarm")
+	user << browse(HTML_SKELETON("<HEAD><TITLE>Farmbot v1.0 controls</TITLE></HEAD>[dat]"), "window=autofarm")
 	onclose(user, "autofarm")
 	return
 

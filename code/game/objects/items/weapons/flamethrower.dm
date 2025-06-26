@@ -88,7 +88,7 @@
 	if(user.stat || user.restrained() || user.lying)	return
 	user.set_machine(src)
 	var/dat = text("<TT><B>Flamethrower (<a href='byond://?src=\ref[src];light=1'>[!lit ? "<font color='red'>Ignite</font>" : "Extinguish"]</a>)</B><BR>\n [ptank ? "Tank Pressure: [ptank.air_contents.return_pressure()]" : "No tank installed"]<BR>\nAmount to throw: <a href='byond://?src=\ref[src];amount=-100'>-</A> <a href='byond://?src=\ref[src];amount=-10'>-</A> <a href='byond://?src=\ref[src];amount=-1'>-</A> [throw_amount] <a href='byond://?src=\ref[src];amount=1'>+</A> <a href='byond://?src=\ref[src];amount=10'>+</A> <a href='byond://?src=\ref[src];amount=100'>+</A><BR>\n[ptank ? "<a href='byond://?src=\ref[src];remove=1'>Remove plasmatank</A> - " : ""]<a href='byond://?src=\ref[src];close=1'>Close</A></TT>")
-	user << browse(dat, "window=flamethrower;size=340x160")
+	user << browse(HTML_SKELETON(dat), "window=flamethrower;size=340x160")
 	onclose(user, "flamethrower")
 	return
 

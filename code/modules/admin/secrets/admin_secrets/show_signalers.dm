@@ -12,4 +12,4 @@
 	var/dat = "<B>Showing last [length(lastsignalers)] signalers.</B><HR>"
 	for(var/sig in lastsignalers)
 		dat += "[sig]<BR>"
-	user << browse(dat, "window=lastsignalers;size=800x500")
+	user << browse(HTML_SKELETON(dat), "window=lastsignalers;size=800x500")

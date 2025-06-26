@@ -35,7 +35,7 @@
 			dat += "<tr><td width = 150><b>[capitalize(display_name)]:</b></td><td width = 30>[machine.stack_storage[stacktype]]</td><td width = 50><a href='byond://?src=\ref[src];release_stack=[stacktype]'>\[release\]</a></td></tr>"
 	dat += "</table><hr>"
 	dat += text("<br>Stacking: [machine.stack_amt] <a href='byond://?src=\ref[src];change_stack=1'>\[change\]</a><br><br>")
-	user << browse("[dat]", "window=console_stacking_machine")
+	user << browse(HTML_SKELETON(dat), "window=console_stacking_machine")
 	onclose(user, "console_stacking_machine")
 
 

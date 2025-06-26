@@ -284,7 +284,7 @@
 		else
 			dat += "<a href='byond://?src=\ref[src];help=2'>Show Help</A><BR>"
 	dat += "</BODY></HTML>"
-	user << browse(dat, "window=violin;size=700x300")
+	user << browse(HTML_SKELETON(dat), "window=violin;size=700x300")
 	onclose(user, "violin")
 
 /obj/item/device/violin/Topic(href, href_list)
