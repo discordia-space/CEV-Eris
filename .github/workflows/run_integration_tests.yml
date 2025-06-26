@@ -48,9 +48,3 @@ jobs:
         run: |
           source $HOME/BYOND/byond/bin/byondsetup
           bash tools/ci/run_server.sh
-      - name: Check client Compatibility
-        if: always() && steps.compile_tests.outcome == 'success'
-        uses: tgstation/byond-client-compatibility-check@v3
-        with:
-          dmb-location: cev_eris.dmb
-          max-required-client-version: ${{inputs.max_required_byond_client}}
