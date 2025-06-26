@@ -233,7 +233,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 			//If we get here both lists must have been empty
 			return null
 
-		if(candidate.target || candidate.recieving)
+		if(candidate.target || candidate.receiving)
 			continue
 
 		// just nop.
@@ -276,7 +276,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 			return null
 
 		//Burrow is already busy
-		if(candidate.target || candidate.recieving)
+		if(candidate.target || candidate.receiving)
 			continue
 
 		// Burrow is closed

@@ -8300,7 +8300,7 @@
 /area/eris/maintenance/fueltankstorage)
 "atx" = (
 /obj/machinery/camera{
-	c_tag = "Cargo Recieving Dock";
+	c_tag = "Cargo receiving Dock";
 	dir = 4
 	},
 /obj/machinery/button/remote/blast_door{

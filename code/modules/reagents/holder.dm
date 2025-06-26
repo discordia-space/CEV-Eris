@@ -189,7 +189,7 @@
 		for(var/datum/chemical_reaction/C in used_reagents[R])
 			active_reactions[C] = max(counter, active_reactions[C])
 			counter-- //so the next reaction we execute uses more of the remaining reagents
-			// Note: this is not guaranteed to maximize the size of the reactions we do (if one reaction is limited by reagent A, we may be over-allocating reagent B to it)
+			// Note: this is not guaranteed to maximize the size of the reactions we do if one reaction is limited by reagent A, we may be over-allocating reagent B to it
 			// However, we are guaranteed to fully use up the most profligate reagent if possible.
 			// Further reactions may occur on the next tick, when this runs again.
 

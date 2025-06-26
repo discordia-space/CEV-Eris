@@ -35,7 +35,7 @@
 	//Vars for migration
 	var/processing = FALSE
 	var/obj/structure/burrow/target //Burrow we're currently sending mobs to
-	var/obj/structure/burrow/recieving	//Burrow currently sending mobs to us
+	var/obj/structure/burrow/receiving	//Burrow currently sending mobs to us
 	var/datum/weakref/lastleader // for mob AI
 
 	var/list/sending_mobs = list()
@@ -99,7 +99,7 @@
 	unpopulated_burrows -= src
 	distressed_burrows -= src
 	target = null
-	recieving = null
+	receiving = null
 	//Eject any mobs that tunnelled through us
 	for(var/atom/movable/a in sending_mobs)
 		if(a.loc == src)
@@ -178,8 +178,8 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	if(!_target)
 		return
 
-	//We're already busy sending or recieving a migration, can't start another
-	if(target || recieving)
+	//We're already busy sending or receiving a migration, can't start another
+	if(target || receiving)
 		return
 
 	target = _target
@@ -246,7 +246,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 /obj/structure/burrow/proc/prepare_reception(start_time, _duration, sender)
 	migration_initiated = start_time
 	duration = _duration
-	recieving = sender
+	receiving = sender
 	START_PROCESSING(SSobj, src)
 	processing = TRUE
 
@@ -258,7 +258,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	if(!processing)
 		return
 
-	//Burrows process when they are either sending or recieving mobs.
+	//Burrows process when they are either sending or receiving mobs.
 	//One or the other, cant do both at once
 	var/progress = (world.time - migration_initiated) / duration
 
@@ -302,8 +302,8 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 			//We're done, its time to send them
 			complete_migration()
 
-	//Processing on the recieving end is done to make sounds and visual FX
-	else if(recieving)
+	//Processing on the receiving end is done to make sounds and visual FX
+	else if(receiving)
 		//Do audio, but not every second
 		if(prob(45))
 			audio("crumble", progress*100)
@@ -335,8 +335,8 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		target.complete_migration()
 
 
-	if(recieving)
-		//If we're the burrow recieving the migration, then the above code will have put lots of mobs inside us. Lets move them out into surrounding turfs
+	if(receiving)
+		//If we're the burrow receiving the migration, then the above code will have put lots of mobs inside us. Lets move them out into surrounding turfs
 		//First, make sure we clear the destination area
 		break_open()
 
@@ -384,7 +384,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	STOP_PROCESSING(SSobj, src)
 	processing = FALSE
 	target = null
-	recieving = null
+	receiving = null
 
 	sending_mobs = list()
 	migration_initiated = 0
@@ -398,7 +398,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	STOP_PROCESSING(SSobj, src)
 	processing = FALSE
 	target = null
-	recieving = null
+	receiving = null
 	lastleader = null
 
 	sending_mobs = list()
@@ -413,8 +413,8 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 //Called when an area becomes uninhabitable
 /obj/structure/burrow/proc/evacuate(force_nonmaint = TRUE)
-	//We're already busy sending or recieving a migration, can't start another or closed
-	if(target || recieving || is_sealed)
+	//We're already busy sending or receiving a migration, can't start another or closed
+	if(target || receiving || is_sealed)
 		return
 
 	//Lets check there's anyone to evacuate
@@ -498,7 +498,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 			user.visible_message("[user] attempts to weld [src] with the [I]", "You start welding [src] with the [I]")
 			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC) && is_sealed)
 				user.visible_message("[user] welds [src] with the [I].", "You welds [src] with the [I].")
-				if(recieving)
+				if(receiving)
 					if(prob(33))
 						qdel(src)
 					else	// false welding, critters will create new cracks
@@ -706,7 +706,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	playsound(src, soundtype, maintenance ? volume*0.5 : volume, TRUE,maintenance ? -3 : 0)
 
 /obj/structure/burrow/examine(mob/user, extra_description = "")
-	if(is_sealed && recieving)
+	if(is_sealed && receiving)
 		extra_description += SPAN_WARNING("You can see something move behind the cracks. You should weld them shut before it breaks through.")
 	..(user, extra_description)
 

@@ -202,7 +202,7 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, NT_FREQ, SEC_
 var/const/RADIO_DEFAULT = "radio_default"
 
 var/const/RADIO_TO_AIRALARM = "radio_airalarm" //air alarms
-var/const/RADIO_FROM_AIRALARM = "radio_airalarm_rcvr" //devices interested in recieving signals from air alarms
+var/const/RADIO_FROM_AIRALARM = "radio_airalarm_rcvr" //devices interested in receiving signals from air alarms
 var/const/RADIO_CHAT = "radio_telecoms"
 var/const/RADIO_ATMOSIA = "radio_atmos"
 var/const/RADIO_NAVBEACONS = "radio_navbeacon"
