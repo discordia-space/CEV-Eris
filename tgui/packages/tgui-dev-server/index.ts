@@ -5,8 +5,8 @@
  */
 import fs from 'node:fs';
 
-import { reloadByondCache } from './reloader.js';
-import { createCompiler } from './webpack.js';
+import { reloadByondCache } from './reloader';
+import { createCompiler } from './webpack';
 
 const reloadOnce = process.argv.includes('--reload');
 

@@ -26,7 +26,7 @@ jobs:
       - name: Check client Compatibility
         uses: tgstation/byond-client-compatibility-check@v3
         with:
-          dmb-location: tgstation.dmb
+          dmb-location: cev_eris.dmb
           max-required-client-version: ${{inputs.max_required_byond_client}}
 
   compile_all_templates:

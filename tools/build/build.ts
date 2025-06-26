@@ -140,18 +140,17 @@ export const IconCutterTarget = new Juke.Target({
 export const DmMapsIncludeTarget = new Juke.Target({
 	executes: async () => {
 		const folders = [
-			...Juke.glob("_maps/map_files/**/modular_pieces/*.dmm"),
-			...Juke.glob("_maps/RandomRuins/**/*.dmm"),
-			...Juke.glob("_maps/RandomZLevels/**/*.dmm"),
-			...Juke.glob("_maps/shuttles/**/*.dmm"),
-			...Juke.glob("_maps/templates/**/*.dmm"),
+			...Juke.glob("maps/main_ship/*.dmm"),
+			...Juke.glob("maps/dungeons/*.dmm"),
+			...Juke.glob("maps/points_of_interest/*.dmm"),
+			...Juke.glob("maps/submaps/**/*.dmm"),
 		];
 		const content =
 			folders
-				.map((file) => file.replace("_maps/", ""))
+				.map((file) => file.replace("maps/", ""))
 				.map((file) => `#include "${file}"`)
 				.join("\n") + "\n";
-		fs.writeFileSync("_maps/templates.dm", content);
+		fs.writeFileSync("maps/templates.dm", content);
 	},
 });
 
@@ -287,8 +286,8 @@ export const AutowikiTarget = new Juke.Target({
 export const BunTarget = new Juke.Target({
 	parameters: [CiParameter],
 	inputs: ["tgui/**/package.json"],
-	executes: ({ get }) => {
-		return bun("install", get(CiParameter));
+	executes: () => {
+		return bun("install", "--frozen-lockfile", "--ignore-scripts");
 	},
 });
 
@@ -423,7 +422,7 @@ export const CleanTarget = new Juke.Target({
 	dependsOn: [TguiCleanTarget],
 	executes: async () => {
 		Juke.rm("*.{dmb,rsc}");
-		Juke.rm("_maps/templates.dm");
+		Juke.rm("maps/templates.dm");
 	},
 });
 
