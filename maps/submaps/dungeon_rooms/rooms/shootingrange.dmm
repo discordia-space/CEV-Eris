@@ -71,9 +71,8 @@
 /turf/floor/bluegrid,
 /area/crawler)
 "r" = (
-/obj/structure/safe/floor{
-	contents = newlist(/obj/spawner/credits/c1000)
-	},
+/obj/structure/safe/floor,
+/obj/spawner/credits/c1000,
 /obj/item/tool/crowbar/onestar,
 /turf/floor/tiled/derelict,
 /area/crawler)
