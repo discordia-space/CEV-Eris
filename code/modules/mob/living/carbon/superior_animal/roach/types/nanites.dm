@@ -21,7 +21,7 @@
 	min_bodytemperature = 0
 
 	spawn_tags = SPAWN_TAG_ROACH_NANITE
-	rarity_value = 22.5
+	rarity_value = 11.25
 
 	var/list/nanite_swarms = list()
 	var/max_swarms = 5
