@@ -9,7 +9,7 @@
 	melee_damage_upper = 4
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/seuche
 	meat_amount = 3
-	rarity_value = 11.25
+	rarity_value = 5.625
 	var/datum/reagents/gas_sac //Stores gas. Can't use the default reagents since that is now bloodstream
 
 	// Armor related variables

@@ -12,7 +12,7 @@ Has ability of every roach.
 	icon_dead = "kaiser_roach_dead"
 	density = TRUE
 	spawn_blacklisted = TRUE
-	rarity_value = 100
+	rarity_value = 50
 
 	turns_per_move = 6
 	maxHealth = 1500

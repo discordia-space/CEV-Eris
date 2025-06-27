@@ -12,7 +12,7 @@
 			var/mob/living/carbon/superior_animal/roach/buddy = new(loc)
 			buddy.friends = tocopy.Copy()
 		else if(istype(spawned,/obj/item/reagent_containers/food/snacks/roachcube/kampfer))
-			var/obj/item/reagent_containers/food/snacks/roachcube/kampfer/secondcube = new(loc)
+			new /obj/item/reagent_containers/food/snacks/roachcube/kampfer(loc)
 
 /obj/spawner/mob/roaches/low_chance
 	name = "low chance random roach"
