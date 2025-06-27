@@ -102750,23 +102750,6 @@
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass/plasma_reinforced,
 /area/eris/rnd/mixing)
-"qdw" = (
-/obj/machinery/door/airlock/maintenance_engineering{
-	name = "Atmospherics Maintenance";
-	req_access = list(24)
-	},
-/obj/machinery/atmospherics/unary/vent_pump{
-	external_pressure_bound = 0;
-	frequency = 1441;
-	icon_state = "in";
-	id_tag = "propulsion_out";
-	internal_pressure_bound = 4000;
-	internal_pressure_bound_default = 4000;
-	pump_direction = 0;
-	use_power = 1
-	},
-/turf/wall/reinforced,
-/area/eris/maintenance/section4deck5port)
 "qdC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -103647,19 +103630,6 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
-"rON" = (
-/obj/machinery/atmospherics/unary/vent_pump{
-	external_pressure_bound = 0;
-	frequency = 1441;
-	icon_state = "in";
-	id_tag = "propulsion_out";
-	internal_pressure_bound = 4000;
-	internal_pressure_bound_default = 4000;
-	pump_direction = 0;
-	use_power = 1
-	},
-/turf/wall/reinforced,
-/area/eris/maintenance/section4deck5port)
 "rOR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -121456,7 +121426,7 @@ hbi
 avu
 aai
 avr
-rON
+aai
 avu
 aai
 trS
@@ -121658,7 +121628,7 @@ aai
 avu
 oov
 avu
-qdw
+oov
 avu
 aai
 aai
