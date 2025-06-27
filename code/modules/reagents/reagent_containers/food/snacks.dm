@@ -1976,43 +1976,43 @@
 
 /obj/item/reagent_containers/food/snacks/roachcube/roachling
 	name = "roachling cube"
-	rarity_value = 60
+	rarity_value = 30
 	icon_state = "roachling"
 	roach_type = /mob/living/carbon/superior_animal/roach/roachling
 
 /obj/item/reagent_containers/food/snacks/roachcube/jager
 	name = "jager cube"
-	rarity_value = 80
+	rarity_value = 40
 	icon_state = "jager"
 	roach_type = /mob/living/carbon/superior_animal/roach/hunter
 
 /obj/item/reagent_containers/food/snacks/roachcube/panzer
 	name = "panzer cube"
-	rarity_value = 85
+	rarity_value = 42.5
 	icon_state = "panzer"
 	roach_type = /mob/living/carbon/superior_animal/roach/tank
 
 /obj/item/reagent_containers/food/snacks/roachcube/seuche
 	name = "seuche cube"
-	rarity_value = 80
+	rarity_value = 40
 	icon_state = "seuche"
 	roach_type = /mob/living/carbon/superior_animal/roach/support
 
 /obj/item/reagent_containers/food/snacks/roachcube/gestrahlte
 	name = "gestrahlte cube"
-	rarity_value = 85
+	rarity_value = 42.5
 	icon_state = "toxic"
 	roach_type = /mob/living/carbon/superior_animal/roach/toxic
 
 /obj/item/reagent_containers/food/snacks/roachcube/kraftwerk
 	name = "kraftwerk cube"
-	rarity_value = 85
+	rarity_value = 42.5
 	icon_state = "techno"
 	roach_type = /mob/living/carbon/superior_animal/roach/nanite
 
 /obj/item/reagent_containers/food/snacks/roachcube/fuhrer
 	name = "fuhrer cube"
-	rarity_value = 98
+	rarity_value = 49
 	icon_state = "fuhrer"
 	roach_type = /mob/living/carbon/superior_animal/roach/fuhrer
 
