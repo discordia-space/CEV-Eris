@@ -13,7 +13,7 @@
 /datum/component/clothing_sanity_protection/proc/handle_sanity_buffs(mob/living/carbon/human/user)
 	SIGNAL_HANDLER
 	var/obj/item/current_parent = parent
-	if(current_parent.is_worn())
+	if(current_parent.is_worn() && user.sanity)
 		user.sanity.environment_cap_coeff *= environment_cap_buff
 		RegisterSignal(user, COMSIG_CLOTH_DROPPED, PROC_REF(handle_sanity_debuff))
 		current_user = user
