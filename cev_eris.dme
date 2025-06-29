@@ -171,6 +171,7 @@
 #include "code\ATMOSPHERICS\he_pipes.dm"
 #include "code\ATMOSPHERICS\mainspipe.dm"
 #include "code\ATMOSPHERICS\pipes.dm"
+#include "code\ATMOSPHERICS\tanks.dm"
 #include "code\ATMOSPHERICS\components\portables_connector.dm"
 #include "code\ATMOSPHERICS\components\tvalve.dm"
 #include "code\ATMOSPHERICS\components\valve.dm"

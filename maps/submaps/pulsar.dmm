@@ -1141,7 +1141,7 @@
 /turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "LT" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/tank/air{
 	dir = 8
 	},
 /turf/floor/tiled/steel/brown_platform,
