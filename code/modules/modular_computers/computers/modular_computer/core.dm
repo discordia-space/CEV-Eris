@@ -308,6 +308,8 @@
 	SetName(initial(name))
 
 /obj/item/modular_computer/proc/update_uis()
+	if(active_program && istype(active_program?.nanomodule_path, /datum/nano_module/tgui))
+		return FALSE
 	if(active_program) //Should we update program ui or computer ui?
 		SSnano.update_uis(active_program)
 		if(active_program.NM)

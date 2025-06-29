@@ -84,9 +84,6 @@
 	var/equipment_prescription				// Eye prescription granted by equipped items
 	var/list/equipment_overlays = list()	// Extra overlays from equipped items
 
-	var/med_record = ""
-	var/sec_record = ""
-	var/gen_record = ""
 	var/exploit_record = ""
 
 	var/stance_damage = 0 //Whether this mob's ability to stand has been affected

@@ -137,10 +137,10 @@
 /datum/gear/suit/guild/black
 	display_name = "black guild coat"
 	path = /obj/item/clothing/suit/storage/cargo_jacket/black
-	allowed_roles = list(JOBS_CARGO)
+	allowed_roles = list(JOBS_GUILD)
 
 /datum/gear/suit/guild/black/old
 	display_name = "old black guild coat"
 	path = /obj/item/clothing/suit/storage/cargo_jacket/black/old
-	allowed_roles = list(JOBS_CARGO)
+	allowed_roles = list(JOBS_GUILD)
 

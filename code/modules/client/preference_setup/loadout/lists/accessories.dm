@@ -43,7 +43,7 @@
 /datum/gear/accessory/guild
 	display_name = "armband, Aster's Guild"
 	path = /obj/item/clothing/accessory/armband/cargo
-	allowed_roles = list(JOBS_CARGO)
+	allowed_roles = list(JOBS_GUILD)
 
 /datum/gear/accessory/engineering
 	display_name = "armband, Technomancer League"

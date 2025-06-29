@@ -276,26 +276,21 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		mind.name = newname
 
 	if(oldname)
-		//update the datacore records! This is goig to be a bit costly.
-		for(var/list/L in list(data_core.general, data_core.medical, data_core.security, data_core.locked))
-			for(var/datum/data/record/R in L)
-				if(R.fields["name"] == oldname)
-					R.fields["name"] = newname
-					break
+		for(var/datum/computer_file/report/crew_record/R in GLOB.all_crew_records)
+			if(R.get_name() == oldname)
+				R.set_name(newname)
 
 		//update our pda and id if we have them on our person
-		var/list/searching = GetAllContents(searchDepth = 3)
-		var/search_id = 1
-		var/search_pda = 1
-
-		for(var/A in searching)
-			if( search_id && istype(A,/obj/item/card/id) )
+		for(var/obj/A in GetAllContents(searchDepth = 3))
+			if(istype(A,/obj/item/card/id))
 				var/obj/item/card/id/ID = A
 				if(ID.registered_name == oldname)
 					ID.registered_name = newname
 					ID.name = "[newname]'s ID Card ([ID.assignment])"
-					if(!search_pda)	break
-					search_id = 0
+					if(istype(A.loc, /obj/item/modular_computer))
+						var/obj/item/modular_computer/tolabel = A.loc
+						tolabel.update_label()
+					break
 	return 1
 
 

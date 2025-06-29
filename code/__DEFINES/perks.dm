@@ -1,6 +1,6 @@
 //fate perks
 #define PERK_PAPER_WORM /datum/perk/fate/paper_worm
-#define PERK_FREELACER /datum/perk/fate/freelancer
+#define PERK_FREELANCER /datum/perk/fate/freelancer
 #define PERK_NIHILIST /datum/perk/fate/nihilist
 #define PERK_MORALIST /datum/perk/fate/moralist
 #define PERK_ALCOHOLIC /datum/perk/fate/alcoholic
@@ -49,6 +49,8 @@
 #define PERK_CODESPEAK_COP /datum/perk/codespeak
 #define PERK_CODESPEAK_SERB /datum/perk/codespeak/serbian
 #define PERK_TECHNOMANCER /datum/perk/inspiration
+#define PERK_NEAT /datum/perk/neat
+#define PERK_GREEN_THUMB  /datum/perk/greenthumb
 #define PERK_CLUB /datum/perk/job/club
 #define PERK_CHANNELING /datum/perk/channeling
 

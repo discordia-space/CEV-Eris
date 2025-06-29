@@ -234,14 +234,14 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		nanoui_data["items"] = items
 	else if(nanoui_menu == 2)
 		var/permanentData[0]
-		for(var/datum/data/record/L in sortRecord(data_core.locked))
-			permanentData[++permanentData.len] = list(Name = L.fields["name"],"id" = L.fields["id"])
+		for(var/datum/computer_file/report/crew_record/L in GLOB.all_crew_records)
+			permanentData[++permanentData.len] = list(Name = L.get_name(), "id" = jointext(L.get_name(), L.get_job()))
 		nanoui_data["exploit_records"] = permanentData
 	else if(nanoui_menu == 21)
 		nanoui_data["exploit_exists"] = 0
 
-		for(var/datum/data/record/L in data_core.locked)
-			if(L.fields["id"] == exploit_id)
+		for(var/datum/computer_file/report/crew_record/L in GLOB.all_crew_records)
+			if(jointext(L.get_name(), L.get_job()) == exploit_id) // datacore used name and job to make their IDs, so this would be the same level of specificity as it was in datacore
 				nanoui_data["exploit"] = list()  // Setting this to equal L.fields passes it's variables that are lists as reference instead of value.
 								 // We trade off being able to automatically add shit for more control over what gets passed to json
 								 // and if it's sanitized for html.

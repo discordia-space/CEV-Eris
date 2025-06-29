@@ -17,7 +17,7 @@
 
 /datum/technology/basic_med_machines
 	name = "Basic Medical Machines"
-	desc = "Basic medical databases and surgical monitoring."
+	desc = "Basic surgical monitoring."
 	tech_type = RESEARCH_BIOTECH
 
 	x = 0.25
@@ -28,9 +28,7 @@
 	required_tech_levels = list()
 	cost = 200
 
-	unlocks_designs = list(	/datum/design/research/circuit/med_data,
-							/datum/design/research/circuit/operating
-						)
+	unlocks_designs = list(/datum/design/research/circuit/operating)
 /*
 /datum/technology/virology
 	name = "Virology"
