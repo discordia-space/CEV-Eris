@@ -93,7 +93,7 @@
 
 	if(toxin_damage > 0 && liver)
 		liver.take_damage(toxin_damage, TOX)
-	else if(liver?.damage)
+	else if(liver)
 		for(var/tocheck in liver.wounddatums)
 			if(ispath(tocheck, /datum/internal_wound/organic/hepatitis)) // low level inflammation
 				var/datum/internal_wound/treathis = liver.wounddatums[tocheck]
