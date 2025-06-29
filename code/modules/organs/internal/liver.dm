@@ -17,3 +17,15 @@
 	organ_efficiency = list(OP_LIVER = 150)
 	specific_organ_size = 1.2
 	desc = "You will need twice the amount of booze for this one to fail."
+
+/obj/item/organ/internal/liver/get_possible_wounds(damage_type, sharp, edge)
+	if(damage_type == TOX) // partial override
+		var/list/possible_wounds = list()
+		if(BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src))
+			possible_wounds += /datum/internal_wound/organic/hepatitis
+		. = possible_wounds
+	else
+		. = ..()
+	
+
+

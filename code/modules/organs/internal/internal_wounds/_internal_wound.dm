@@ -144,7 +144,7 @@
 			return // then return
 	else if(!(characteristic_flag & IWOUND_PROGRESS)) // but if the aggravation tag IS present, but progress tag isn't, then custom process
 		++current_progression_tick
-		if(current_progression_tick >= progression_threshold)
+		if(current_progression_tick >= progression_threshold || severity == severity_max)
 			current_progression_tick = 0
 		else
 			return
@@ -230,9 +230,18 @@
 		if(initial(characteristic_flag) & IWOUND_PROGRESS)
 			characteristic_flag |= IWOUND_PROGRESS
 	else
-		if(!used_autodoc && scar && ispath(scar, /datum/component))
+		if(!used_autodoc && scar && ispath(scar, /datum/internal_wound))
 			SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_ADD_WOUND, pick(subtypesof(scar)))
 		SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_REMOVE_WOUND, src)
+
+/datum/internal_wound/proc/treatment_slow(amount = 1)
+	var/treatmentamount = min(amount, current_progression_tick)
+	current_progression_tick = current_progression_tick - treatmentamount
+	if(current_progression_tick <= 0)
+		current_progression_tick = progression_threshold-1
+		treatment()
+	if(!QDELING(src) && treatmentamount < amount)
+		treatment_slow(amount - treatmentamount)
 
 /datum/internal_wound/proc/apply_effects()
 	var/obj/item/organ/internal/O = parent
