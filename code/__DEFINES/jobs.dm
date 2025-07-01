@@ -2,6 +2,7 @@
 
 //Jobs depatment lists for use in constant expressions
 #define JOBS_SECURITY "Ironhammer Commander","Ironhammer Gunnery Sergeant","Ironhammer Inspector","Ironhammer Medical Specialist","Ironhammer Operative"
+#define JOBS_ARMORY "Captain","First Officer","Ironhammer Commander","Ironhammer Gunnery Sergeant"
 #define JOBS_COMMAND "Captain","First Officer","Ironhammer Commander","Guild Merchant","Technomancer Exultant","Moebius Biolab Officer","Moebius Expedition Overseer","NeoTheology Preacher"
 #define JOBS_ENGINEERING "Technomancer Exultant","Technomancer"
 #define JOBS_MEDICAL "Moebius Biolab Officer","Moebius Doctor","Moebius Psychiatrist","Moebius Chemist","Moebius Paramedic","Moebius Bio-Engineer"
