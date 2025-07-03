@@ -1669,7 +1669,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass{
 	name = "Prison Hydroponics";
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/dark/cargo,
 /area/eris/security/prison)
@@ -3610,7 +3610,7 @@
 	id = "maint_hatch_ihsinter";
 	name = "Maintenance Hatch Control";
 	pixel_x = 24;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/dark,
 /area/eris/security/exerooms)
@@ -5322,7 +5322,7 @@
 	id = "maint_hatch_maintpost";
 	name = "Maintenance Hatch Control";
 	pixel_x = -24;
-	req_access = newlist()
+	req_access = list()
 	},
 /obj/item/modular_computer/console/preset/security/records{
 	dir = 4
@@ -10662,7 +10662,7 @@
 	id = "maint_hatch_escapecor1";
 	name = "Maintenance Hatch Control";
 	pixel_x = 24;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/steel,
 /area/eris/hallway/side/eschangara)
@@ -10713,7 +10713,7 @@
 	name = "Incernator Vent";
 	pixel_x = 26;
 	pixel_y = 6;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/steel,
 /area/eris/maintenance/disposal)
@@ -11443,7 +11443,7 @@
 	id = "maint_hatch_brigcells";
 	name = "Maintenance Hatch Control";
 	pixel_y = 24;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/steel/bluecorner,
 /area/eris/security/prisoncells)
@@ -13180,7 +13180,7 @@
 	id = "maint_hatch_atmos";
 	name = "Maintenance Hatch Control";
 	pixel_y = 24;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/dark/techfloor,
 /area/eris/engineering/atmos)
@@ -13574,7 +13574,7 @@
 	id = "Skynet_launch";
 	name = "Mech Bay Door Control";
 	pixel_x = 24;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/steel,
 /area/eris/rnd/chargebay)
@@ -13738,7 +13738,7 @@
 	id = "maint_hatch_aicore1";
 	name = "Maintenance Hatch Control";
 	pixel_y = 24;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/dark/danger,
 /area/turret_protected/ai)
@@ -15446,7 +15446,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /turf/floor/tiled/dark/cargo,
@@ -17969,7 +17969,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /turf/floor/tiled/dark/techfloor_grid,
@@ -21343,7 +21343,7 @@
 /obj/machinery/power/terminal,
 /obj/machinery/door/airlock/command{
 	name = "AI Core";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(30,56)
 	},
 /obj/structure/cable,
@@ -23979,7 +23979,7 @@
 	id = "Skynet_launch";
 	name = "Mech Bay Door Control";
 	pixel_x = 24;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/steel/techfloor,
 /area/eris/rnd/chargebay)
@@ -27434,7 +27434,7 @@
 /obj/machinery/door/airlock/glass_medical{
 	id_tag = "MedbayFoyer";
 	name = "Medbay";
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/white/techfloor_grid,
 /area/eris/maintenance/section3deck1central)
@@ -29209,7 +29209,7 @@
 	name = "Cargo Hatch";
 	pixel_x = 7;
 	pixel_y = 25;
-	req_access = newlist()
+	req_access = list()
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -35625,7 +35625,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /turf/floor/tiled/steel,
@@ -35891,7 +35891,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -42048,7 +42048,7 @@
 "bYr" = (
 /obj/machinery/door/airlock/command{
 	name = "AI Core";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(30,56)
 	},
 /obj/machinery/door/firedoor,
@@ -42426,7 +42426,7 @@
 	id = "maint_hatch_aicore2";
 	name = "Maintenance Hatch Control";
 	pixel_x = -24;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/bluegrid,
 /area/turret_protected/ai)
@@ -43688,8 +43688,8 @@
 	name = "AI Maintenance Hatch";
 	pixel_x = 17;
 	pixel_y = 25;
-	req_access = newlist();
-	req_one_access = newlist()
+	req_access = list();
+	req_one_access = list()
 	},
 /obj/structure/cable/cyan{
 	d2 = 4;
@@ -44761,7 +44761,7 @@
 /obj/machinery/door/airlock/glass_medical{
 	name = "Operating Theatre";
 	req_access = list(45);
-	req_one_access = newlist()
+	req_one_access = list()
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -47619,7 +47619,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/medical{
 	name = "Medical Bay";
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/dark/cargo,
 /area/eris/hallway/side/morguehallway)
@@ -53904,7 +53904,7 @@
 "cCr" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /obj/machinery/door/firedoor,
@@ -58749,7 +58749,7 @@
 	id = "maint_hatch_engbedroom";
 	name = "Maintenance Hatch Control";
 	pixel_x = 24;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/steel/techfloor,
 /area/eris/engineering/breakroom)
@@ -66493,7 +66493,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
 	name = "AI Core";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(30,56)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -67097,7 +67097,7 @@
 /obj/machinery/door/airlock/engineering{
 	name = "Bridge Substation";
 	req_access = list(10,19);
-	req_one_access = newlist()
+	req_one_access = list()
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -74016,7 +74016,7 @@
 	id = "maint_hatch_mbo";
 	name = "Maintenance Hatch Control";
 	pixel_y = -24;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/white,
 /area/eris/command/mbo)
@@ -77267,7 +77267,7 @@
 "dIa" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /obj/machinery/door/firedoor,
@@ -77296,7 +77296,7 @@
 "dIe" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /obj/machinery/door/firedoor,
@@ -77357,7 +77357,7 @@
 "dIk" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /obj/machinery/door/firedoor,
@@ -77375,7 +77375,7 @@
 "dIm" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /obj/machinery/door/firedoor,
@@ -77502,7 +77502,7 @@
 "dIw" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /obj/machinery/door/firedoor,
@@ -77549,7 +77549,7 @@
 "dIF" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /obj/machinery/door/firedoor,
@@ -81511,7 +81511,7 @@
 "dUI" = (
 /obj/structure/closet/secure_closet/personal/hydroponics{
 	name = "gardener's locker";
-	req_access = newlist()
+	req_access = list()
 	},
 /obj/item/storage/bag/produce,
 /obj/item/reagent_containers/glass/bucket,
@@ -82877,7 +82877,7 @@
 /obj/machinery/door/airlock/maintenance{
 	name = "Technical Storage";
 	req_access = list(5);
-	req_one_access = newlist()
+	req_one_access = list()
 	},
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/rnd/docking)
@@ -86694,7 +86694,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
 	name = "Theatre";
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/wood,
 /area/eris/crew_quarters/clownoffice)
@@ -91470,7 +91470,7 @@
 "etL" = (
 /obj/machinery/door/airlock{
 	name = "Theatre";
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/wood,
 /area/eris/hallway/side/section3deck2port)
@@ -92336,7 +92336,7 @@
 "evQ" = (
 /obj/structure/closet/secure_closet/personal/hydroponics{
 	name = "gardener's locker";
-	req_access = newlist()
+	req_access = list()
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -97366,7 +97366,7 @@
 	id = "maint_hatch_medchem";
 	name = "Maintenance Hatch Control";
 	pixel_y = 24;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/white,
 /area/eris/medical/chemistry)
@@ -99680,7 +99680,7 @@
 	name = "Emergency Fuel Vent";
 	pixel_x = -26;
 	pixel_y = -6;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/propulsion/left)
@@ -102831,7 +102831,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /turf/floor/tiled/dark/cargo,
@@ -103701,7 +103701,7 @@
 	name = "Emergency Fuel Vent";
 	pixel_x = 26;
 	pixel_y = -6;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/propulsion/right)
@@ -106014,7 +106014,7 @@
 	name = "Fuel Vent";
 	pixel_x = -26;
 	pixel_y = -6;
-	req_access = newlist()
+	req_access = list()
 	},
 /turf/floor/tiled/dark/techfloor,
 /area/eris/engineering/wastingroom)
@@ -106135,7 +106135,7 @@
 "weL" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /turf/floor/tiled/dark/techfloor_grid,
@@ -107314,7 +107314,7 @@
 "yfT" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
-	req_access = newlist();
+	req_access = list();
 	req_one_access = list(24,10)
 	},
 /obj/machinery/door/firedoor,
