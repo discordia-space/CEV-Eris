@@ -1,0 +1,5 @@
+author: Chickenish
+delete-after: true
+changes:
+  - bugfix: High intelligence characters can now comprehend the possibility of a
+      beaker not containing any reagents.
