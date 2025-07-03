@@ -12,8 +12,8 @@
 	var/output_dir = null
 
 
-/obj/machinery/mineral/unloading_machine/New()
-	..()
+/obj/machinery/mineral/unloading_machine/Initialize()
+	. = ..()
 	spawn()
 		//Locate our output and input machinery.
 		var/obj/marker = null
