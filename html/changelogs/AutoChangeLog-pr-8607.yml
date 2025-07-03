@@ -1,0 +1,5 @@
+author: Chickenish
+delete-after: true
+changes:
+  - rscadd: Liver now self-regenerates while under toxic capacity, at a rate 
+      boosted by anti-tox.
