@@ -120,7 +120,7 @@
 		if(is_usable())
 			owner.internal_organs_by_efficiency[process] |= src
 		else
-			owner.internal_organs_by_efficiency[process] -= src
+			owner?.internal_organs_by_efficiency[process] -= src // dead organs don't necessarily have an owner
 
 /obj/item/organ/internal/proc/get_process_efficiency(process_define)
 	var/organ_eff = organ_efficiency[process_define]
