@@ -127,9 +127,9 @@
 			bad_message = "<b> \[UNAVAILABLE]</b>"
 		else if(jobban_isbanned(user, rank))
 			bad_message = "<b> \[BANNED]</b>"
-		else if(IsGuestKey(user.client.ckey) && SSjob.job_to_playtime_requirement[job.title])
-			bad_message = "<b> \[ACCOUNT REQUIRED </b>"
-		else if(!SSjob.ckey_to_job_to_can_play[user.client.ckey][job.title])
+		else if(IsGuestKey(user.key) && SSjob.job_to_playtime_requirement[job.title])
+			bad_message = "<b> \[ACCOUNT REQUIRED] </b>"
+		else if(SSjob.ckey_to_job_to_can_play[user.client.ckey] && !SSjob.ckey_to_job_to_can_play[user.client.ckey][job.title])
 			bad_message = "\[PLAYTIME REQUIRED : [SSjob.job_to_playtime_requirement[job.title]] Minutes as [job.department]]"
 		/*else if(!job.player_old_enough(user.client))
 			var/available_in_days = job.available_in_days(user.client)
