@@ -388,8 +388,10 @@ its easier to just keep the beam vertical.
 						output += span_notice("\n[R.volume] units of [R.name]")
 				else
 					output += span_notice("\nIt contains [reagents.total_volume] units of various reagents.")
-			else
+			else if(length(reagents.reagent_list))
 				output += span_notice("\nIt contains [reagents.total_volume] units of [user.can_see_reagents() ? reagents.reagent_list[1].name : "something"]")
+			else
+				output += span_notice("\nIt's dry.")
 		else if(reagent_flags & AMOUNT_VISIBLE)
 			output += span_notice("[reagents.total_volume ? "\nIt has [reagents.total_volume] units left." : "\nIt's empty."]")
 
