@@ -131,5 +131,5 @@
 						else if(overseer && !comrade.overseer)
 							comrade.joinOvermind(overseer)
 				else
-					if(!overseer && istype(comrade, /mob/living/carbon/superior_animal/roach/fuhrer) || istype(comrade, /mob/living/carbon/superior_animal/roach/kaiser) && comrade.overseer)
+					if(!overseer && (istype(comrade, /mob/living/carbon/superior_animal/roach/fuhrer) || istype(comrade, /mob/living/carbon/superior_animal/roach/kaiser)) && comrade.overseer)
 						joinOvermind(comrade.overseer)
