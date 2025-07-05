@@ -120,7 +120,7 @@
 							comrade.joinOvermind(overseer)
 							overseer.leader = comrade
 						else if(!overseer && comrade.overseer) // or if they have an overmind and we don't, we join
-							joinOvermind(overseer)
+							joinOvermind(comrade.overseer)
 				if(/mob/living/carbon/superior_animal/roach/kaiser) // only one possibility requires code with kaiser
 					if(istype(comrade, /mob/living/carbon/superior_animal/roach/fuhrer))
 						if(overseer && comrade.overseer)
