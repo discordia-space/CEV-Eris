@@ -107,24 +107,23 @@ Has ability of every roach.
 	return TRUE
 
 /mob/living/carbon/superior_animal/roach/kaiser/leaveOvermind()
-	var/mob/living/carbon/superior_animal/roach/new_leader
-	var/list/secondaries = list()
+	var/mob/living/carbon/superior_animal/roach/backup
+	overseer.removeHarrier(src)
 	for(var/mob/living/carbon/superior_animal/roach/tocheck in overseer.members)
 		if(istype(tocheck, /mob/living/carbon/superior_animal/roach/kaiser))
-			new_leader = tocheck
-			overseer.leader = new_leader
-			break
+			overseer.leader = tocheck
+			overseer?.casualties.Remove(src)
+			overseer = null
+			return
 		else if(istype(tocheck, /mob/living/carbon/superior_animal/roach/fuhrer))
-			secondaries.Add()
-	if((!new_leader) && length(secondaries))
-		new_leader = secondaries[1]
-	if(!istype(new_leader, /mob/living/carbon/superior_animal/roach/kaiser))
-		for(var/datum/overmind/roachmind/subordinate in overseer.subordinates)
-			subordinate.superior = null
+			backup = tocheck
+	for(var/datum/overmind/roachmind/subordinate in overseer.subordinates) //by this point if there even is a new leader, it is a "mere fuhrer".
+		subordinate.superior = null
 	overseer.subordinates.Cut()
-	if(!new_leader && !QDELETED(overseer)) // kaiser is always the leader
+	overseer.leader = backup
+	if(!backup && !QDELETED(overseer)) // kaiser is always the leader
 		qdel(overseer) // disband
-	. = ..()
+	overseer = null
 
 /mob/living/carbon/superior_animal/roach/kaiser/findTarget()
 	. = ..()
