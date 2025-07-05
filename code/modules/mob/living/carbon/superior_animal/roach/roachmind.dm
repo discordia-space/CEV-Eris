@@ -33,7 +33,7 @@
 	var/list/highest[] // an overmind ruled by a fuhrer is subordinate to one ruled by a kaiser.
 	if(istype(leader, /mob/living/carbon/superior_animal/roach/kaiser))
 		highest += src
-	if(!istype(collatewith.leader, /mob/living/carbon/superior_animal/roach/kaiser))
+	if(istype(collatewith.leader, /mob/living/carbon/superior_animal/roach/kaiser))
 		highest += collatewith
 	if(length(highest) == 1)
 		if(highest[1] == src)
