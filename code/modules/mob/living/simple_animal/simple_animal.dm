@@ -155,6 +155,50 @@
 	if (health <= 0 && stat != DEAD)
 		death()
 
+/mob/living/simple_animal/adjustBruteLoss(amount)
+	..()
+	updatehealth()
+
+/mob/living/simple_animal/adjustOxyLoss(amount)
+	..()
+	updatehealth()
+
+/mob/living/simple_animal/setOxyLoss(amount)
+	..()
+	updatehealth()
+
+/mob/living/simple_animal/adjustToxLoss(amount)
+	..()
+	updatehealth()
+
+/mob/living/simple_animal/setToxLoss(amount)
+	..()
+	updatehealth()
+
+/mob/living/simple_animal/adjustFireLoss(amount)
+	..()
+	updatehealth()
+
+/mob/living/simple_animal/adjustCloneLoss(amount)
+	..()
+	updatehealth()
+
+/mob/living/simple_animal/setCloneLoss(amount)
+	..()
+	updatehealth()
+
+/mob/living/simple_animal/adjustBrainLoss(amount)
+	..()
+	updatehealth()
+
+/mob/living/simple_animal/setBrainLoss(amount)
+	..()
+	updatehealth()
+
+/mob/living/simple_animal/adjustHalLoss(amount)
+	..()
+	updatehealth()
+
 /mob/living/simple_animal/examine(mob/user, extra_description = "")
 	if(hunger_enabled)
 		if(!nutrition)
