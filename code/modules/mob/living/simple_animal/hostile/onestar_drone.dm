@@ -105,23 +105,6 @@
 	melee_damage_upper = 15
 	rarity_value = 39.66
 	move_to_delay = 5
-	
-
-/mob/living/simple_animal/hostile/onestar_custodian/engineer/Life()
-	if(!stasis && !AI_inactive)
-		if(!stat)
-			switch(stance)
-				if(HOSTILE_STANCE_IDLE)
-					target_mob = FindTarget()
-
-				if(HOSTILE_STANCE_ATTACK)
-					if(destroy_surroundings)
-						DestroySurroundings()
-					MoveToTarget()
-				if(HOSTILE_STANCE_ATTACKING)
-					if(destroy_surroundings)
-						DestroySurroundings()
-					MoveToTarget()
 
 /mob/living/simple_animal/hostile/onestar_custodian/engineer/MoveToTarget()
 	if(!target_mob || SA_attackable(target_mob))
