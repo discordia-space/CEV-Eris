@@ -32,6 +32,7 @@
 /obj/item/organ/internal/carrion
 	max_damage = 15 //resilient
 	scanner_hidden = TRUE //sneaky
+	origin_tech = list(TECH_BIO = 5)
 
 /obj/item/organ/internal/carrion/chemvessel
 	name = "chemical vessel"
@@ -376,12 +377,17 @@
 		to_chat(owner, SPAN_WARNING("You can't eat nothing."))
 		return
 
-	if(istype(food, /obj/item/grab))
+	var/obj/item/holder/overcomplicated = istype(food, /obj/item/holder) ? food : null
+	if(istype(food, /obj/item/grab) || overcomplicated && ishuman(overcomplicated.contained))
 		var/obj/item/grab/grab = food
-		var/mob/living/carbon/human/H = grab.affecting
-		if (grab.state < GRAB_AGGRESSIVE)
-			to_chat(owner, SPAN_WARNING("Your grip upon [H.name] is too weak."))
-			return
+		var/mob/living/carbon/human/H
+		if(istype(grab))
+			H = grab.affecting
+			if (grab.state < GRAB_AGGRESSIVE)
+				to_chat(owner, SPAN_WARNING("Your grip upon [H.name] is too weak."))
+				return
+		else if(overcomplicated)
+			H = overcomplicated.contained
 		if(istype(H))
 			var/obj/item/organ/external/E = H.get_organ(owner.targeted_organ)
 			if (tearing) // one at a time, thank you.
@@ -418,7 +424,7 @@
 			to_chat(owner, SPAN_WARNING("You can only tear flesh out of humanoids!"))
 			return
 
-	if(istype(food, /obj/item/organ) || istype(food, /obj/item/reagent_containers/food/snacks/meat))
+	if(istype(food, /obj/item/organ) || istype(food, /obj/item/reagent_containers/food/snacks/meat) || istype(food, /obj/item/holder))
 		var/geneticpointgain = 0
 		var/chemgain = 0
 		var/taste_description = ""
@@ -467,9 +473,17 @@
 			taste_description = "human meat is satisfying."
 
 		else
-			chemgain = 5
-			owner.carrion_hunger -= 1 //Prevents meat eating spam for infinate chems
-			taste_description = "this meat is bland."
+			if(istype(food, /mob/living/simple_animal/spider_core))
+				owner.carrion_hunger += 9
+				geneticpointgain = 10
+				chemgain = 50
+				var/obj/item/organ/internal/carrion/core/devoured = locate(/obj/item/organ/internal/carrion/core) in contents
+				G.absorbed_dna |= devoured.absorbed_dna
+				taste_description = "carrions taste heavenly, if only there was more!"
+			else
+				chemgain = 5
+				owner.carrion_hunger -= 1 //Prevents meat eating spam for infinate chems
+				taste_description = "this meat is bland."
 
 		var/obj/item/organ/internal/carrion/core/C = owner.random_organ_by_process(BP_SPCORE)
 		if(C)
