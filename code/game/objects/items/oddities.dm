@@ -795,3 +795,25 @@
 				user.visible_message(SPAN_WARNING("A collection of strange items appears out of nowhere!"), SPAN_DANGER("The card disintegrates, leaving behind several strange objects!"))
 				qdel(src)
 
+/obj/item/oddity/onestar
+	name = "One Star oddity"
+	desc = "You shouldn't be seeing this. Report to your nearest reeducation camp comrade (report it on discord)."
+	spawn_blacklisted = TRUE
+	bad_type = /obj/item/oddity/onestar
+
+
+/obj/item/oddity/onestar/mechcore
+	name = "Encrypted Quantum Core"
+	desc = "An armored CPU, at least that's what you think it is."
+	random_stats = FALSE
+	icon_state = "box"
+	w_class = ITEM_SIZE_NORMAL
+	oddity_stats = list(
+		STAT_VIG = 10,
+		STAT_MEC = 10,
+		STAT_TGH = 10
+	)
+	//perk = /datum/perk/hive_oddity/hive_born (maybe we'll add a perk for this one)
+	origin_tech = list(
+        TECH_MATERIAL = 12, TECH_ENGINEERING = 5, TECH_POWER = 6, TECH_BLUESPACE = 1, TECH_COMBAT = 8, TECH_MAGNET = 5, TECH_DATA = 10
+    )
