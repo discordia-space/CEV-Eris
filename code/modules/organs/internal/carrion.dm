@@ -473,12 +473,15 @@
 			taste_description = "human meat is satisfying."
 
 		else
-			if(istype(food, /mob/living/simple_animal/spider_core))
+			if(istype(food, /obj/item/holder/carrion))
 				owner.carrion_hunger += 9
 				geneticpointgain = 10
 				chemgain = 50
-				var/obj/item/organ/internal/carrion/core/devoured = locate(/obj/item/organ/internal/carrion/core) in contents
-				G.absorbed_dna |= devoured.absorbed_dna
+				var/obj/item/tastyspider = food
+				var/obj/item/organ/internal/carrion/core/devoured = locate(/obj/item/organ/internal/carrion/core) in tastyspider.contents
+				var/obj/item/organ/internal/carrion/core/C = owner.random_organ_by_process(BP_SPCORE)
+				if(devoured && C)
+					C.absorbed_dna |= devoured.absorbed_dna
 				taste_description = "carrions taste heavenly, if only there was more!"
 			else
 				chemgain = 5
