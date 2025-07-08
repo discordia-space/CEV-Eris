@@ -401,8 +401,7 @@
 				for (var/obj/item/organ/internal/to_blacklist in E.internal_organs)
 					if (istype(to_blacklist, /obj/item/organ/internal/bone/))
 						blacklist += to_blacklist
-						continue
-					if (istype(to_blacklist, /obj/item/organ/internal/vital/brain/))
+					else if (istype(to_blacklist, /obj/item/organ/internal/vital/brain/))
 						blacklist += to_blacklist// removing bones from a valid_organs list based on
 				var/list/valid_organs = E.internal_organs - blacklist// E.internal_organs gibs the victim.
 				if (!valid_organs.len)
@@ -437,11 +436,15 @@
 				var/obj/item/organ/internal/carrion/core/G = owner.random_organ_by_process(BP_SPCORE)
 				if(O in G.associated_carrion_organs)
 					taste_description = "albeit delicious, your own organs carry no new genetic material"
+					chemgain = 50
 				else
 					owner.carrion_hunger += 3
 					geneticpointgain = 4
 					chemgain = 50
 					taste_description = "carrion organs taste heavenly, you need more!"
+					if(istype(O, /obj/item/organ/internal/carrion/core))
+						var/obj/item/organ/internal/carrion/core/devoured = O
+						G.absorbed_dna |= devoured.absorbed_dna
 			else if(istype(O, /obj/item/organ/internal))
 				var/organ_rotten = FALSE
 				if (O.status & ORGAN_DEAD)
@@ -477,7 +480,7 @@
 
 		var/chemvessel_efficiency = owner.get_organ_efficiency(OP_CHEMICALS)
 		if(chemvessel_efficiency > 1)
-			owner.carrion_stored_chemicals = min(owner.carrion_stored_chemicals + 0.01 * chemvessel_efficiency , 0.5 * chemvessel_efficiency)
+			owner.carrion_stored_chemicals = min(owner.carrion_stored_chemicals + 0.01 * chemvessel_efficiency * chemgain , 0.5 * chemvessel_efficiency)
 
 		to_chat(owner, SPAN_NOTICE("You consume \the [food], [taste_description]."))
 		visible_message(SPAN_DANGER("[owner] devours \the [food]!"))
@@ -555,7 +558,7 @@
 			continue
 		toxin_attack(creature, rand(1, 3))
 
-/obj/effect/decal/cleanable/solid_biomass/attackby(var/obj/item/I, var/mob/user)
+/obj/effect/decal/cleanable/carrion_puddle/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap))
 		to_chat(user, SPAN_NOTICE("You started cleaning this [src]."))
 		if(do_after(user, 3 SECONDS, src))
