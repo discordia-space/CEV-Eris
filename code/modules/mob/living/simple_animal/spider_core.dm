@@ -37,9 +37,10 @@
 
 /mob/living/simple_animal/spider_core/death()
 	var/obj/item/organ/internal/core = locate(/obj/item/organ/internal/carrion/core) in contents
-	core.forceMove(loc)
-	core.status |= ORGAN_DEAD // todo: make wound somehow
-	core.refresh_damage()
+	if(core)
+		core.forceMove(loc)
+		core.status |= ORGAN_DEAD // todo: make wound somehow
+		core.refresh_damage()
 	playsound(loc, 'sound/voice/shriek1.ogg', 50)
 	qdel(src)
 	
