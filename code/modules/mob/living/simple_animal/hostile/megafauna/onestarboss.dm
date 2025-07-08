@@ -105,7 +105,7 @@
 	var/timer = 50
 	var/walk_direction
 	while(walk_direction == null && timer != 0)
-		sleep(1 SECOND)
+		sleep(10)
 		walk_direction = get_dir(prev_position, get_turf(target))
 		timer--
 	walk(src, walk_direction, target.move_to_delay * 0.8, target.move_to_delay)
@@ -227,7 +227,7 @@
 	var/pellets = 2
 	for(pellets, pellets > 0, pellets--)
 		var/obj/item/projectile/P = new /obj/item/projectile/bullet/pellet/shotgun(loc)
-		P.launch(get_step(src, src.dir), def_zone)
+		P.launch(get_step(src, dir))
 	playsound(src, "sound/weapons/guns/fire/shotgunp_fire.ogg", 100, 1)
 
 
@@ -236,7 +236,7 @@
 	icon = 'icons/effects/alerts.dmi'
 	icon_state = "telegraph"
 	flick("telegraph_flick", src)
-	spawn(10 SECONDS)
+	spawn(100)
 		qdel(src)
 
 /obj/effect/effect/telegraph/Crossed(mob/living/simple_animal/hostile/megafauna/one_star/boss)
@@ -271,7 +271,7 @@
 		pixel_x = default_pixel_x + rand(-amplitude, amplitude)
 		pixel_y = default_pixel_y + rand(-amplitude/3, amplitude/3)
 
-		sleep(100 MILLISECONDS)
+		sleep(1)
 	//endwhile - reset the pixel offsets to zero
 	is_jittery = 0
 	pixel_x = default_pixel_x
@@ -318,6 +318,9 @@
 
 /mob/living/simple_animal/hostile/megafauna/one_star/proc/dying()
 	icon_state = icon_dead 
+	var/obj/item/oddity/onestar/mechcore/F = new /obj/item/oddity/onestar/mechcore(loc)
+	spawn(5) // so it wont get deleted by explosion
+		F.throw_at(get_edge_target_turf(F, rand(1, 6)), 3, 1)
 	playsound(src, "sound/effects/Explosion1.ogg", 100, 1)
 	explosion(src, 350, 75, 0)
 	stasis = TRUE
@@ -370,7 +373,7 @@
 					if(hologram_exists == FALSE)
 						F = new /obj/effect/effect/telegraph(target_mob.loc)
 						hologram_exists = TRUE
-						spawn(10 SECONDS)
+						spawn(100)
 							hologram_exists = FALSE
 					move_lock = TRUE
 					for(F in orange(src, 30))
@@ -396,7 +399,7 @@
 					var/obj/effect/effect/crosshair/C = new /obj/effect/effect/crosshair(target_mob.loc)
 					C.StayOn(target_mob)
 					playsound(C.loc, 'sound/weapons/guns/interact/batrifle_cock.ogg', 100, 1)
-					spawn(2 SECONDS) 
+					spawn(20) 
 						shoot_sniper(target_mob)
 						qdel(C)
 						doing_something = FALSE
@@ -404,7 +407,7 @@
 					doing_something = TRUE
 					var/obj/effect/effect/mech_aiming/S = new /obj/effect/effect/mech_aiming(target_mob.loc)
 					playsound(target_mob.loc, 'sound/machines/onestar/boss/rocket_lock.ogg', 50, 1)
-					spawn(2 SECONDS)
+					spawn(20)
 						shoot_rocket(get_turf(S), src)
 						spawn(10) 
 							qdel(S)
@@ -419,7 +422,7 @@
 					doing_something = TRUE
 					switch(LAZYLEN(minigun_target))
 						if(0)
-							sleep(500 MILLISECONDS)
+							sleep(10)
 							error(SPAN_DANGER("[src] is fucking up, tell c*ders!"))
 							doing_something = FALSE
 						if(1)
@@ -457,23 +460,23 @@
 									step(B, SOUTH)
 									step(A, NORTH)
 									step(B, SOUTH)
-							spawn(6 SECONDS)
+							spawn(12)
 								step_towards(A, target_location)
 								step_towards(B, target_location)
-							spawn(10 SECONDS)
+							spawn(16)
 								step_towards(A, target_location)
 								step_towards(B, target_location)
-							spawn(1400 MILLISECONDS)
+							spawn(20)
 								step_towards(A, target_location)
 								step_towards(B, target_location)
 							var/i = 15
 							playsound(loc, 'sound/machines/onestar/boss/minigun_windup.ogg', 75)
-							sleep(500 MILLISECONDS)
+							sleep(10)
 							while(i != 0 && src.stat != DEAD)
 								i--
 								shoot_minigun(A)
 								shoot_minigun(B)
-								sleep(100 MILLISECONDS)
+								sleep(1)
 							qdel(A)
 							qdel(B)
 							doing_something = FALSE
@@ -488,12 +491,12 @@
 							B.StayOn(target2)
 							var/i = 15
 							playsound(src.loc, 'sound/machines/onestar/boss/minigun_windup.ogg', 75)
-							sleep(500 MILLISECONDS)
+							sleep(10)
 							while(i != 0)
 								i--
 								shoot_minigun(A)
 								shoot_minigun(B)
-								sleep(100 MILLISECONDS)
+								sleep(1)
 							qdel(A)
 							qdel(B)
 							doing_something = FALSE
@@ -516,7 +519,7 @@
 						sparks.set_up(3, 0, get_turf(newmob.loc))
 						sparks.start()
 						mobs_to_spawn--
-					playsound(src.loc, 'sound/effects/EMPulse.ogg', 50, 1)
+					playsound(loc, 'sound/effects/EMPulse.ogg', 50, 1)
 			if(!move_lock && stat != DEAD) // I fucking hate what I am doing with this code
 				target_mob = FindTarget()
 						
