@@ -803,17 +803,17 @@
 
 
 /obj/item/oddity/onestar/mechcore
-	name = "Encrypted Quantum Core"
-	desc = "An armored CPU, at least that's what you think it is."
+	name = "Armored \"Distant Star\" Subpersona Core"
+	desc = "Remnants of circuitry salvaged from the terrifying robotic One Star beast. You hope it's disabled now and nothing more than a trophy..."
 	random_stats = FALSE
-	icon_state = "box"
+	icon_state = "box" // I beg for a new sprite this sucks a bit but will do as a temporary thing
 	w_class = ITEM_SIZE_NORMAL
 	oddity_stats = list(
 		STAT_VIG = 10,
 		STAT_MEC = 10,
 		STAT_TGH = 10
 	)
-	//perk = /datum/perk/hive_oddity/hive_born (maybe we'll add a perk for this one)
+	perk = /datum/perk/oddity/balls_of_plasteel // (maybe we'll add another perk later (prolly additional dungeon access/navigation), I dont want to see a quiet-as-mouse on this one...)
 	origin_tech = list(
-        TECH_MATERIAL = 12, TECH_ENGINEERING = 5, TECH_POWER = 6, TECH_BLUESPACE = 1, TECH_COMBAT = 8, TECH_MAGNET = 5, TECH_DATA = 10
+        TECH_MATERIAL = 12, TECH_ENGINEERING = 5, TECH_POWER = 6, TECH_BLUESPACE = 1, TECH_COMBAT = 8, TECH_MAGNET = 5, TECH_DATA = 10 // 16200 total
     )
