@@ -116,6 +116,7 @@
 		if(patchnote.surgery_operations & AUTODOC_TOXIN)
 			to_chat(patient, SPAN_NOTICE("Administering anti-toxin to patient."))
 			patient.adjustToxLoss(-damage_heal_amount)
+			patient.add_chemical_effect(CE_ANTITOX, damage_heal_amount/10)
 			if(!patient.getToxLoss())
 				patchnote.surgery_operations &= ~AUTODOC_TOXIN
 
@@ -132,8 +133,8 @@
 		else if (patchnote.surgery_operations & AUTODOC_BLOOD)
 			to_chat(patient, SPAN_NOTICE("Administering blood IV to patient."))
 			var/datum/reagent/organic/blood/blood = patient.vessel.reagent_list[1]
-			blood.volume += damage_heal_amount
-			if(blood.volume >= patient.vessel.total_volume)
+			blood.volume = min(blood.volume + damage_heal_amount, patient.vessel.maximum_volume)
+			if(blood.volume == patient.vessel.maximum_volume)
 				patchnote.surgery_operations &= ~AUTODOC_BLOOD
 
 	else if(patchnote.surgery_operations & AUTODOC_DAMAGE)
@@ -164,30 +165,31 @@
 		if(istype(patchnote.organ, /obj/item/organ/internal))
 			var/obj/item/organ/internal/I = patchnote.organ
 			to_chat(patient, SPAN_NOTICE("Treating internal wounds in the patient's [I.name]."))
-			SEND_SIGNAL_OLD(I, COMSIG_IWOUND_TREAT, TRUE, TRUE)
-			patchnote.surgery_operations &= ~AUTODOC_INTERNAL_WOUNDS
+			var/datum/internal_wound/wound = I.wounddatums[pick(I.wounddatums)]
+			if(istype(wound))
+				wound.treatment(TRUE, TRUE)
+			if(!length(I.wounddatums)) patchnote.surgery_operations &= ~AUTODOC_INTERNAL_WOUNDS
 
 /datum/autodoc/Process()
 	if(!patient)
 		stop()
+	else if(current_step > picked_patchnotes.len)
+		stop()
+		scan_user(patient)
+		return
 
 	while(!(picked_patchnotes[current_step].surgery_operations))
-		if(current_step + 1 > picked_patchnotes.len)
+		current_step++
+		if(current_step > picked_patchnotes.len)
 			stop()
 			scan_user(patient)
 			return
-		else
-			current_step++
 
 	if(world.time > (start_op_time + processing_speed))
 		start_op_time = world.time
 		patient.updatehealth()
 		if(process_note(picked_patchnotes[current_step]))
-			if(current_step + 1 > picked_patchnotes.len)
-				stop()
-				scan_user(patient)
-			else
-				current_step++
+			current_step++
 
 /datum/autodoc/proc/fail()
 	current_step++
