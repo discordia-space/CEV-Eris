@@ -44,7 +44,7 @@
 		W.forceMove(get_turf(src))
 		W.layer = initial(W.layer)
 		W.set_plane(initial(W.plane))
-		W.dropped(usr)
+		W.dropped(src)
 
 // Removes an item from inventory and places it in the target atom.
 // If canremove or other conditions need to be checked then use unEquip instead.
