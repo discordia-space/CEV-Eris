@@ -407,6 +407,7 @@
 
 /obj/item/organ/internal/rejuvenate()
 	status = null
+	current_blood = initial(current_blood)
 	for(var/woundtype in wounddatums)
 		remove_wound(wounddatums[woundtype])
 
