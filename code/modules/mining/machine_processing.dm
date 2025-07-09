@@ -149,8 +149,9 @@
 		for(var/oretype in typesof(/ore)-/ore)
 			var/ore/OD = new oretype()
 			ore_data[OD.name] = OD
-			ores_processing[OD.name] = 0
-			ores_stored[OD.name] = 0
+	for(var/ore/OD in ore_data)
+		ores_processing[OD.name] = 0
+		ores_stored[OD.name] = 0
 
 	spawn()
 		//Locate our output and input machinery.
