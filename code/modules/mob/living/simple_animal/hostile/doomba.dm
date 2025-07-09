@@ -66,6 +66,7 @@
 	. = ..()
 	if(.)
 		playsound(src, pick('sound/weapons/melee/heavystab.ogg', 'sound/weapons/melee/lightstab.ogg', 'sound/weapons/melee/sharphit.ogg'), 50, 1)
+		spawn(5) AttackTarget() // yes I am aware what that does with perfect clarity of mind dont fucking kill me
 
 /mob/living/simple_animal/hostile/roomba/boomba
 	name = "One Star RMB-A unit"
