@@ -9857,7 +9857,8 @@
 /area/eris/maintenance/disposal)
 "ayd" = (
 /obj/structure/table/woodentable,
-/obj/item/device/lighting/toggleable/lamp/green,
+/obj/item/folder/red,
+/obj/item/pen/red,
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "aye" = (
@@ -9915,13 +9916,10 @@
 /turf/floor/tiled/steel,
 /area/eris/hallway/side/eschangara)
 "ayj" = (
-/obj/structure/bookcase,
-/turf/floor/wood,
-/area/eris/crew_quarters/library)
-"ayk" = (
-/obj/structure/bookcase{
-	name = "bookcase (Reports)"
-	},
+/obj/structure/table/woodentable,
+/obj/item/hand_labeler,
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "ayl" = (
@@ -10038,8 +10036,8 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5port)
 "ayz" = (
-/obj/structure/bookcase{
-	name = "bookcase (Tactics)"
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
 	},
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
@@ -10222,26 +10220,22 @@
 /turf/wall/low/with_glass/smart,
 /area/eris/maintenance/junk)
 "aza" = (
-/obj/structure/bookcase{
-	name = "bookcase (Reference)"
-	},
+/obj/structure/table/woodentable,
+/obj/item/folder,
+/obj/item/pen,
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "azb" = (
 /obj/structure/table/woodentable,
-/obj/item/pen/blue{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/pen/red{
-	pixel_x = 2;
-	pixel_y = 6
-	},
+/obj/item/folder/cyan,
+/obj/item/pen/multi,
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "azc" = (
-/obj/structure/table/woodentable,
-/obj/item/paper_bin,
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/obj/machinery/light,
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "azd" = (
@@ -10260,9 +10254,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
 "azg" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 8
-	},
+/obj/machinery/bookbinder,
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "azi" = (
@@ -10477,9 +10469,9 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "azH" = (
-/obj/structure/bookcase{
-	name = "bookcase (Religious)"
-	},
+/obj/structure/table/woodentable,
+/obj/item/folder/blue,
+/obj/item/pen/blue,
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "azI" = (
@@ -10509,12 +10501,15 @@
 /turf/floor/tiled/dark,
 /area/eris/security/warden)
 "azK" = (
-/obj/structure/table/woodentable,
-/obj/item/device/camera_film,
+/obj/machinery/light,
+/obj/structure/bookcase{
+	name = "bookcase (Reference)"
+	},
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "azL" = (
 /obj/machinery/photocopier,
+/obj/machinery/light,
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "azM" = (
@@ -82535,9 +82530,6 @@
 /turf/floor/wood,
 /area/eris/crew_quarters/kitchen)
 "dXa" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -82552,6 +82544,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/light,
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/crew_quarters/kitchen_storage)
 "dXb" = (
@@ -90098,9 +90091,6 @@
 /turf/floor/tiled/white/gray_perforated,
 /area/eris/medical/paramedic)
 "eqG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -90108,6 +90098,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
@@ -90213,6 +90206,8 @@
 	pixel_y = -28
 	},
 /obj/structure/cable/green,
+/obj/structure/table/woodentable,
+/obj/item/paper_bin,
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "eqP" = (
@@ -91770,13 +91765,7 @@
 /turf/floor/tiled/white/gray_perforated,
 /area/eris/medical/paramedic)
 "euu" = (
-/obj/structure/table/woodentable,
-/obj/item/hand_labeler,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/item/packageWrap,
-/obj/item/device/destTagger,
+/obj/machinery/braingym,
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "euv" = (
@@ -93572,11 +93561,11 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "eyQ" = (
-/obj/machinery/bookbinder,
 /obj/item/device/radio/intercom{
 	dir = 8;
 	pixel_x = 22
 	},
+/obj/machinery/vending/gym,
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "eyR" = (
@@ -96389,14 +96378,12 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck2port)
 "eFr" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/braingym/mechanical,
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "eFs" = (
@@ -96413,6 +96400,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/machinery/braingym/biology,
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "eFu" = (
@@ -96465,35 +96453,37 @@
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "eFz" = (
-/obj/structure/bed/chair/comfy/black,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/bookcase{
+	name = "bookcase (Tactics)"
 	},
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "eFA" = (
-/obj/structure/bed/chair/comfy/black,
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/bookcase{
+	name = "bookcase (Religious)"
 	},
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "eFD" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
@@ -96510,6 +96500,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
@@ -243248,9 +243241,9 @@ axB
 eym
 dGw
 eFs
-ayj
-ayj
-ayj
+ayA
+ayl
+ayW
 ayg
 abF
 aCM
@@ -243652,9 +243645,9 @@ gxX
 voZ
 awr
 eFw
-ayk
-ayz
-ayW
+axW
+axW
+azK
 ayg
 ayg
 abF
@@ -243856,9 +243849,9 @@ awr
 eFr
 axW
 axW
-axW
-axW
-dHk
+ayz
+ayz
+ayg
 abF
 cAO
 dgM
@@ -244055,12 +244048,12 @@ lds
 njW
 voZ
 awr
-eFs
-ayl
-ayA
+eFA
+axW
+axW
 aza
 azH
-ayg
+dHk
 abF
 cAO
 aDb
@@ -244260,8 +244253,8 @@ awr
 eFt
 eFx
 eFy
-axW
-axW
+ayz
+azc
 ayg
 abF
 cAO
@@ -244459,12 +244452,12 @@ uls
 xhf
 fqH
 awr
-axW
-axW
 eFz
+axW
+eFs
 azb
 ayd
-ayg
+dHk
 abF
 cAO
 aDb
@@ -244661,11 +244654,11 @@ jZP
 rAx
 reR
 awr
-axX
-aym
-eFA
-azc
-azK
+euu
+axW
+eFs
+axW
+aya
 ayg
 abF
 cAO
@@ -244863,12 +244856,12 @@ jlN
 qoW
 rnF
 awr
-euu
-axW
+axX
+aym
 eFD
+axW
 azg
-azg
-ayg
+dHk
 abF
 cAO
 aDb
@@ -245065,8 +245058,8 @@ ksh
 lwM
 rqg
 awr
-axZ
-ayn
+ayj
+ayo
 eFE
 eqL
 eqO
@@ -245267,8 +245260,8 @@ oEI
 pvG
 ris
 awr
-aya
-ayo
+axZ
+ayn
 eqG
 axW
 azL
