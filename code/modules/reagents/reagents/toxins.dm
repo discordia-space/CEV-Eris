@@ -122,7 +122,7 @@
 	strength = 3
 	touch_met = 5
 
-/datum/reagent/toxin/plasma/touch_mob(mob/living/L, var/amount)
+/datum/reagent/toxin/plasma/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
@@ -275,7 +275,7 @@
 			W.visible_message(span_notice("The fungi are completely dissolved by the solution!"))
 	return TRUE
 
-/datum/reagent/toxin/plantbgone/touch_obj(obj/O, var/volume)
+/datum/reagent/toxin/plantbgone/touch_obj(obj/O, volume)
 	if(istype(O, /obj/effect/plant) && !istype(O, /obj/effect/plant/hivemind))
 		qdel(O)
 	if(istype(O, /obj/machinery/portable_atmospherics/hydroponics))
@@ -365,7 +365,7 @@
 /datum/reagent/toxin/mutagen/moeball/get_data()
 	return list("gene_type" = gene_type, "gene_value" = gene_value)
 
-/datum/reagent/toxin/mutagen/moeball/mix_data(var/newdata, var/newamount)
+/datum/reagent/toxin/mutagen/moeball/mix_data(newdata, newamount)
 	if(!(newdata["gene_value"] == data["gene_value"]))
 		gene_value = pick(subtypesof(/datum/mutation/t0))
 		gene_type = "mutation"

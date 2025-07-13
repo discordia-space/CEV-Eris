@@ -20,7 +20,7 @@
 	implant_type = /obj/item/implant/core_implant/cruciform
 
 
-/obj/item/coreimplant_upgrade/cruciform/obey/on_install(var/target,var/mob/living/user_mob)
+/obj/item/coreimplant_upgrade/cruciform/obey/on_install(target,mob/living/user_mob)
 	if(istype(user_mob))
 		user = user_mob
 		module.user = user
@@ -41,7 +41,7 @@
 	var/obj/item/implant/core_implant/cruciform/cruciform
 	var/active = FALSE
 
-/obj/item/cruciform_upgrade/proc/install(var/mob/living/target, var/obj/item/implant/core_implant/cruciform/_cruciform)
+/obj/item/cruciform_upgrade/proc/install(mob/living/target, obj/item/implant/core_implant/cruciform/_cruciform)
 	forceMove(_cruciform)
 	_cruciform.upgrade = src
 	wearer = target
@@ -61,7 +61,7 @@
 	active = FALSE
 	return active
 
-/obj/item/cruciform_upgrade/proc/OnInstall(var/disciple, var/_cruciform)
+/obj/item/cruciform_upgrade/proc/OnInstall(disciple, _cruciform)
 
 /obj/item/cruciform_upgrade/proc/OnUninstall()
 
@@ -73,7 +73,7 @@
 	var/cooldown = 1 SECONDS // Just to make sure that upgrade don't go berserk.
 	var/initial_time
 
-/obj/item/cruciform_upgrade/natures_blessing/OnInstall(var/disciple, var/_cruciform)
+/obj/item/cruciform_upgrade/natures_blessing/OnInstall(disciple, _cruciform)
 	..()
 	START_PROCESSING(SSobj, src)
 
@@ -109,7 +109,7 @@
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_GOLD = 5, MATERIAL_PLASTEEL = 10)
 	var/shield_mod = 0.2
 
-/obj/item/cruciform_upgrade/faiths_shield/OnInstall(var/disciple, var/_cruciform)
+/obj/item/cruciform_upgrade/faiths_shield/OnInstall(disciple, _cruciform)
 	..()
 	wearer.species.brute_mod -= shield_mod
 	wearer.species.burn_mod -= shield_mod
@@ -126,7 +126,7 @@
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_GOLD = 5, MATERIAL_PLASTEEL = 5)
 	var/area_radius = 5
 
-/obj/item/cruciform_upgrade/cleansing_presence/OnInstall(var/disciple, var/_cruciform)
+/obj/item/cruciform_upgrade/cleansing_presence/OnInstall(disciple, _cruciform)
 	..()
 	START_PROCESSING(SSobj, src)
 
@@ -157,7 +157,7 @@
 	var/damage_mod = 0.2
 	var/receive_damage_mod = 0.1
 
-/obj/item/cruciform_upgrade/wrath_of_god/OnInstall(var/disciple, var/_cruciform)
+/obj/item/cruciform_upgrade/wrath_of_god/OnInstall(disciple, _cruciform)
 	..()
 	wearer.damage_multiplier += damage_mod
 	wearer.species.brute_mod += receive_damage_mod

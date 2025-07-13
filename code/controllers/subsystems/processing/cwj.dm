@@ -66,7 +66,7 @@ PROCESSING_SUBSYSTEM_DEF(cwj)
 	createCookingCatalogs()
 	return TRUE
 
-/datum/controller/subsystem/processing/cwj/proc/create_catalog_entry(var/datum/thing, var/catalog_id)
+/datum/controller/subsystem/processing/cwj/proc/create_catalog_entry(datum/thing, catalog_id)
 	if(catalog_id && !GLOB.catalogs[catalog_id])
 		GLOB.catalogs[catalog_id] = new /datum/catalog(catalog_id)
 	if(!GLOB.all_catalog_entries_by_type[thing.type])
@@ -94,6 +94,6 @@ PROCESSING_SUBSYSTEM_DEF(cwj)
 			C.add_entry(GLOB.all_catalog_entries_by_type[thing.type])
 	return TRUE
 
-/datum/controller/subsystem/processing/cwj/proc/get_catalog_entry(var/type)
+/datum/controller/subsystem/processing/cwj/proc/get_catalog_entry(type)
 	if(GLOB.all_catalog_entries_by_type[type])
 		return GLOB.all_catalog_entries_by_type[type]

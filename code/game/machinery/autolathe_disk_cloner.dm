@@ -44,7 +44,7 @@
 	if(laser_rating >= 4 && scanner_rating >= 2)
 		hacked = TRUE
 
-/obj/machinery/autolathe_disk_cloner/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/autolathe_disk_cloner/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
 		return
 
@@ -81,7 +81,7 @@
 /obj/machinery/autolathe_disk_cloner/Process()
 	update_icon()
 
-/obj/machinery/autolathe_disk_cloner/proc/put_disk(obj/item/computer_hardware/hard_drive/portable/AD, var/mob/user)
+/obj/machinery/autolathe_disk_cloner/proc/put_disk(obj/item/computer_hardware/hard_drive/portable/AD, mob/user)
 	ASSERT(istype(AD))
 
 	user.unEquip(AD,src)

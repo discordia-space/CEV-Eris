@@ -94,7 +94,7 @@
 	temp_proj.temperature = current_temperature
 	return temp_proj
 
-/obj/item/gun/energy/temperature/update_icon(var/ignore_inhands)
+/obj/item/gun/energy/temperature/update_icon(ignore_inhands)
 	if(charge_meter)
 		var/ratio = 0
 

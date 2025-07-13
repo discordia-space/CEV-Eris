@@ -1,5 +1,5 @@
 /* Vital */
-/datum/crew_sensor_modifier/vital/process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
+/datum/crew_sensor_modifier/vital/process_crew_data(mob/living/carbon/human/H, obj/item/clothing/under/C, turf/pos, list/crew_data)
 	crew_data["true_pulse"] = -1
 	crew_data["pulse"] = "N/A"
 	crew_data["pulse_span"] = "neutral"
@@ -47,7 +47,7 @@
 	crew_data["bodytemp"] = H.bodytemperature - T0C
 	return ..()
 
-/datum/crew_sensor_modifier/vital/proc/set_healthy(var/list/crew_data)
+/datum/crew_sensor_modifier/vital/proc/set_healthy(list/crew_data)
 	crew_data["alert"] = FALSE
 	if(crew_data["true_pulse"] != -1)
 		crew_data["true_pulse"] = PULSE_NORM
@@ -59,7 +59,7 @@
 	crew_data["trauma"] = 0
 	crew_data["poisoning"] = 0
 
-/datum/crew_sensor_modifier/vital/proc/set_dead(var/list/crew_data)
+/datum/crew_sensor_modifier/vital/proc/set_dead(list/crew_data)
 	crew_data["alert"] = TRUE
 	if(crew_data["true_pulse"] != -1)
 		crew_data["true_pulse"] = PULSE_NONE
@@ -75,12 +75,12 @@
 /datum/crew_sensor_modifier/vital/jamming
 	priority = 5
 
-/datum/crew_sensor_modifier/vital/jamming/healthy/process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
+/datum/crew_sensor_modifier/vital/jamming/healthy/process_crew_data(mob/living/carbon/human/H, obj/item/clothing/under/C, turf/pos, list/crew_data)
 	. = ..()
 	set_healthy(crew_data)
 	return MOD_SUIT_SENSORS_HANDLED
 
-/datum/crew_sensor_modifier/vital/jamming/dead/process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
+/datum/crew_sensor_modifier/vital/jamming/dead/process_crew_data(mob/living/carbon/human/H, obj/item/clothing/under/C, turf/pos, list/crew_data)
 	. = ..()
 	set_dead(crew_data)
 	return MOD_SUIT_SENSORS_HANDLED
@@ -95,7 +95,7 @@
 /datum/crew_sensor_modifier/vital/jamming/random/major
 	error_prob = 100
 
-/datum/crew_sensor_modifier/vital/jamming/random/process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
+/datum/crew_sensor_modifier/vital/jamming/random/process_crew_data(mob/living/carbon/human/H, obj/item/clothing/under/C, turf/pos, list/crew_data)
 	. = ..()
 	if(prob(error_prob))
 		pick(set_healthy(crew_data), set_dead(crew_data))

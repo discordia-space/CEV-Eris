@@ -10,12 +10,12 @@
 
 	var/safety = 1
 
-/obj/machinery/computer/robotics/attack_hand(var/mob/user)
+/obj/machinery/computer/robotics/attack_hand(mob/user)
 	if(..())
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/computer/robotics/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/robotics/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 	data["robots"] = get_cyborgs(user)
 	data["safety"] = safety
@@ -162,7 +162,7 @@
 // Proc: get_cyborgs()
 // Parameters: 1 (operator - mob which is operating the console.)
 // Description: Returns NanoUI-friendly list of accessible cyborgs.
-/obj/machinery/computer/robotics/proc/get_cyborgs(var/mob/operator)
+/obj/machinery/computer/robotics/proc/get_cyborgs(mob/operator)
 	var/list/robots = list()
 
 	for(var/mob/living/silicon/robot/R in SSmobs.mob_list)
@@ -203,7 +203,7 @@
 // Proc: get_cyborg_by_name()
 // Parameters: 1 (name - Cyborg we are trying to find)
 // Description: Helper proc for finding cyborg by name
-/obj/machinery/computer/robotics/proc/get_cyborg_by_name(var/name)
+/obj/machinery/computer/robotics/proc/get_cyborg_by_name(name)
 	if (!name)
 		return
 	for(var/mob/living/silicon/robot/R in SSmobs.mob_list)

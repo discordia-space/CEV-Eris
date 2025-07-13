@@ -15,7 +15,7 @@
 	var/attacktext = "drills"
 	var/environment_smash = 1
 
-/mob/living/bot/miningonestar/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/bot/miningonestar/UnarmedAttack(atom/A, proximity)
 	if(istype(A, /turf/floor/asteroid))
 		sleep(rand(10,20))
 		A:gets_dug()

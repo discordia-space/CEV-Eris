@@ -28,7 +28,7 @@
 	shock_stage = 0
 	..()
 
-/mob/living/carbon/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/carbon/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	if(.)
 		if (src.nutrition && src.stat != 2)
@@ -40,7 +40,7 @@
 			reset_view(null)
 			is_watching = FALSE
 
-/mob/living/carbon/relaymove(var/mob/living/user, direction)
+/mob/living/carbon/relaymove(mob/living/user, direction)
 	if((user in src.stomach_contents) && istype(user))
 		if(user.last_special <= world.time)
 			user.last_special = world.time + 50
@@ -87,7 +87,7 @@
 			return
 
 
-/mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1, var/def_zone = null)
+/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, def_zone = null)
 	if(status_flags & GODMODE)	return 0	//godmode
 	shock_damage *= siemens_coeff
 	if (shock_damage<1)
@@ -143,7 +143,7 @@
 
 	return TRUE
 
-/mob/living/carbon/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
+/mob/living/carbon/proc/activate_hand(selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
 
 	if(istext(selhand))
 		selhand = lowertext(selhand)
@@ -359,7 +359,7 @@
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap
 
-/mob/living/carbon/Bump(var/atom/movable/AM, yes)
+/mob/living/carbon/Bump(atom/movable/AM, yes)
 	if(now_pushing || !yes)
 		return
 	..()
@@ -367,7 +367,7 @@
 /mob/living/carbon/cannot_use_vents()
 	return
 
-/mob/living/carbon/slip(var/slipped_on,stun_duration=8)
+/mob/living/carbon/slip(slipped_on,stun_duration=8)
 	if(buckled)
 		return FALSE
 	stop_pulling()
@@ -378,7 +378,7 @@
 
 	return TRUE
 
-/mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
+/mob/living/carbon/proc/add_chemical_effect(effect, magnitude = 1)
 	if(effect == CE_ALCOHOL)
 		if(stats.getPerk(/datum/perk/inspiration))
 			stats.addPerk(/datum/perk/active_inspiration)
@@ -416,10 +416,10 @@
 	panel.set_content(dat)
 	panel.open()
 
-/mob/living/carbon/proc/should_have_process(var/organ_check)
+/mob/living/carbon/proc/should_have_process(organ_check)
 	return 0
 
-/mob/living/carbon/proc/has_appendage(var/limb_check)
+/mob/living/carbon/proc/has_appendage(limb_check)
 	return 0
 
 /mob/living/carbon/proc/need_breathe()

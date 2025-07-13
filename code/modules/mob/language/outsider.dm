@@ -10,7 +10,7 @@
 	flags = RESTRICTED | HIVEMIND
 	shorthand = "N/A"
 
-/datum/language/corticalborer/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
+/datum/language/corticalborer/broadcast(mob/living/speaker,message,speaker_mask)
 
 	var/mob/living/simple_animal/borer/B
 

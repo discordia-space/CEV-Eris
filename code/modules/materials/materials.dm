@@ -143,7 +143,7 @@ var/list/name_to_material
 	var/stack_type
 
 // Placeholders for light tiles and rglass.
-/material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
+/material/proc/build_rod_product(mob/user, obj/item/stack/used_stack, obj/item/stack/target_stack)
 	if(!rod_product)
 		to_chat(user, span_warning("You cannot make anything out of \the [target_stack]"))
 		return
@@ -156,7 +156,7 @@ var/list/name_to_material
 	S.add_fingerprint(user)
 	S.add_to_stacks(user)
 
-/material/proc/build_wired_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
+/material/proc/build_wired_product(mob/user, obj/item/stack/used_stack, obj/item/stack/target_stack)
 	if(!wire_product)
 		to_chat(user, span_warning("You cannot make anything out of \the [target_stack]"))
 		return
@@ -182,7 +182,7 @@ var/list/name_to_material
 		shard_icon = shard_type
 
 // This is a placeholder for proper integration of windows/windoors into the system.
-/material/proc/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
+/material/proc/build_windows(mob/living/user, obj/item/stack/used_stack)
 	return 0
 
 // Weapons handle applying a divisor for this value locally.
@@ -231,7 +231,7 @@ var/list/name_to_material
 /material/proc/is_brittle()
 	return !!(flags & MATERIAL_BRITTLE)
 
-/material/proc/combustion_effect(var/turf/T, var/temperature)
+/material/proc/combustion_effect(turf/T, temperature)
 	return
 
 // Datum definitions follow.
@@ -354,7 +354,7 @@ var/list/name_to_material
 
 /*
 // Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
-/material/plasma/combustion_effect(var/turf/T, var/temperature, var/effect_multiplier)
+/material/plasma/combustion_effect(turf/T, temperature, effect_multiplier)
 	if(isnull(ignition_point))
 		return 0
 	if(temperature < ignition_point)

@@ -45,7 +45,7 @@
 	implant = /obj/item/implant/excelsior/broken
 
 //The excelsior implant converts humans into antags, but it also protects mobs from excelsior turrets and shields
-/obj/item/implant/excelsior/can_install(var/mob/living/carbon/human/target, var/obj/item/organ/external/E)
+/obj/item/implant/excelsior/can_install(mob/living/carbon/human/target, obj/item/organ/external/E)
 	//First of all, handling of human players
 	if(istype(target))
 		//Human players have minds. If it doesnt have a mind, its probably a monkey
@@ -77,7 +77,7 @@
 
 
 
-/obj/item/implant/excelsior/on_install(var/mob/living/target)
+/obj/item/implant/excelsior/on_install(mob/living/target)
 	var/datum/faction/F = get_faction_by_id(faction_id)
 
 	if(!wearer || !wearer.mind)

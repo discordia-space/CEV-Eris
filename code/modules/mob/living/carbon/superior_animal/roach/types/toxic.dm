@@ -32,7 +32,7 @@
 		rad = 100
 	)
 
-/mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(atom/A, var/proximity)
+/mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(atom/A, proximity)
 	. = ..()
 	if(prob(25))
 		if(isliving(A))

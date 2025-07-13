@@ -19,7 +19,7 @@
 
 	nano_ui_interact(user)
 
-/obj/machinery/computer/shuttle_control/proc/get_ui_data(var/datum/shuttle/autodock/shuttle)
+/obj/machinery/computer/shuttle_control/proc/get_ui_data(datum/shuttle/autodock/shuttle)
 	var/shuttle_state
 	switch(shuttle.moving_status)
 		if(SHUTTLE_IDLE) shuttle_state = "idle"
@@ -52,7 +52,7 @@
 		"can_force" = shuttle.can_force(),
 	)
 
-/obj/machinery/computer/shuttle_control/proc/handle_topic_href(var/datum/shuttle/autodock/shuttle, var/list/href_list, var/user)
+/obj/machinery/computer/shuttle_control/proc/handle_topic_href(datum/shuttle/autodock/shuttle, list/href_list, user)
 	if(!istype(shuttle))
 		return TOPIC_NOACTION
 
@@ -71,7 +71,7 @@
 		shuttle.cancel_launch(src)
 		return TOPIC_REFRESH
 
-/obj/machinery/computer/shuttle_control/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/shuttle_control/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/datum/shuttle/autodock/shuttle = SSshuttle.shuttles[shuttle_tag]
 	if (!istype(shuttle))
 		to_chat(user, span_warning("Unable to establish link with the shuttle."))
@@ -89,7 +89,7 @@
 /obj/machinery/computer/shuttle_control/Topic(user, href_list)
 	return handle_topic_href(SSshuttle.shuttles[shuttle_tag], href_list, user)
 
-/obj/machinery/computer/shuttle_control/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/shuttle_control/emag_act(remaining_charges, mob/user)
 	if (!hacked)
 		req_access = list()
 		req_one_access = list()
@@ -97,7 +97,7 @@
 		to_chat(user, "You short out the console's ID checking system. It's now available to everyone!")
 		return 1
 
-/obj/machinery/computer/shuttle_control/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/computer/shuttle_control/bullet_act(obj/item/projectile/Proj)
 	visible_message("\The [Proj] ricochets off \the [src]!")
 
 /obj/machinery/computer/shuttle_control/explosion_act(target_power, explosion_handler/handler)

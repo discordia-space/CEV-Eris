@@ -99,7 +99,7 @@
 			update_coverage()
 			START_PROCESSING(SSmachines, src)
 
-/obj/machinery/camera/bullet_act(var/obj/item/projectile/P)
+/obj/machinery/camera/bullet_act(obj/item/projectile/P)
 	take_damage(P.get_structure_damage())
 
 /obj/machinery/camera/explosion_act(target_power, explosion_handler/handler)
@@ -115,7 +115,7 @@
 			visible_message(span_warning("<B>[src] was hit by [O].</B>"))
 		take_damage(O.throwforce)
 
-/obj/machinery/camera/proc/setViewRange(var/num = 7)
+/obj/machinery/camera/proc/setViewRange(num = 7)
 	src.view_range = num
 	GLOB.cameranet.updateVisibility(src, 0)
 
@@ -279,7 +279,7 @@
 	else
 		..()
 
-/obj/machinery/camera/proc/deactivate(mob/user, var/choice = 1)
+/obj/machinery/camera/proc/deactivate(mob/user, choice = 1)
 	// The only way for AI to reactivate cameras are malf abilities, this gives them different messages.
 	if(isAI(user))
 		user = null
@@ -305,7 +305,7 @@
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = initial(icon_state)
 
-/obj/machinery/camera/take_damage(var/force, var/message)
+/obj/machinery/camera/take_damage(force, message)
 	//prob(25) gives an average of 3-4 hits
 	if (force >= toughness && (force > toughness*4 || prob(25)))
 		destroy()
@@ -326,7 +326,7 @@
 	spark_system.start()
 	playsound(loc, "sparks", 50, 1)
 
-/obj/machinery/camera/proc/set_status(var/newstatus)
+/obj/machinery/camera/proc/set_status(newstatus)
 	if (status != newstatus)
 		status = newstatus
 		update_coverage()
@@ -344,7 +344,7 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/machinery/camera/proc/triggerCameraAlarm(var/duration = 0)
+/obj/machinery/camera/proc/triggerCameraAlarm(duration = 0)
 	alarm_on = 1
 	camera_alarm.triggerAlarm(loc, src, duration)
 
@@ -395,13 +395,13 @@
 
 //Return a working camera that can see a given mob
 //or null if none
-/proc/seen_by_camera(var/mob/M)
+/proc/seen_by_camera(mob/M)
 	for(var/obj/machinery/camera/C in oview(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
 	return null
 
-/proc/near_range_camera(var/mob/M)
+/proc/near_range_camera(mob/M)
 
 	for(var/obj/machinery/camera/C in range(4, M))
 		if(C.can_use())	// check if camera disabled
@@ -419,13 +419,13 @@
 	user.set_machine(src)
 	wires.Interact(user)
 
-/obj/machinery/camera/proc/add_network(var/network_name)
+/obj/machinery/camera/proc/add_network(network_name)
 	add_networks(list(network_name))
 
-/obj/machinery/camera/proc/remove_network(var/network_name)
+/obj/machinery/camera/proc/remove_network(network_name)
 	remove_networks(list(network_name))
 
-/obj/machinery/camera/proc/add_networks(var/list/networks)
+/obj/machinery/camera/proc/add_networks(list/networks)
 	var/network_added
 	network_added = 0
 	for(var/network_name in networks)
@@ -436,7 +436,7 @@
 	if(network_added)
 		update_coverage(1)
 
-/obj/machinery/camera/proc/remove_networks(var/list/networks)
+/obj/machinery/camera/proc/remove_networks(list/networks)
 	var/network_removed
 	network_removed = 0
 	for(var/network_name in networks)
@@ -447,7 +447,7 @@
 	if(network_removed)
 		update_coverage(1)
 
-/obj/machinery/camera/proc/replace_networks(var/list/networks)
+/obj/machinery/camera/proc/replace_networks(list/networks)
 	if(networks.len != network.len)
 		network = networks
 		update_coverage(1)
@@ -474,7 +474,7 @@
 	cam["z"] = z
 	return cam
 
-/obj/machinery/camera/proc/update_coverage(var/network_change = 0)
+/obj/machinery/camera/proc/update_coverage(network_change = 0)
 	if(network_change)
 		var/list/open_networks = difflist(network, restricted_camera_networks)
 		// Add or remove camera from the camera net as necessary

@@ -27,7 +27,7 @@
 
 	whisper_say(message, speaking)
 
-/mob/living/proc/whisper_say(var/message, var/datum/language/speaking = null, var/alt_name="", var/verb="whispers")
+/mob/living/proc/whisper_say(message, datum/language/speaking = null, alt_name="", verb="whispers")
 	if (istype(src.wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/grenade))
 		to_chat(src, span_danger("You're muzzled and cannot speak!"))
 		return

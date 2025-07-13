@@ -15,7 +15,7 @@
 	taste_tag = list()  // list the tastes the thing got there
 	color = "#664330"
 
-/datum/reagent/organic/nutriment/mix_data(var/list/newdata, var/newamount)
+/datum/reagent/organic/nutriment/mix_data(list/newdata, newamount)
 	if(!islist(newdata) || !newdata.len)
 		return
 	..()

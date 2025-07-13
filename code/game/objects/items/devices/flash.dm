@@ -18,7 +18,7 @@
 	var/broken = 0     //Is the flash burnt out?
 	var/last_used = 0 //last world.time it was used.
 
-/obj/item/device/flash/proc/clown_check(var/mob/user)
+/obj/item/device/flash/proc/clown_check(mob/user)
 //	if(user && (CLUMSY in user.mutations) && prob(50))
 //		to_chat(user, span_warning("\The [src] slips out of your hand."))
 //		user.drop_item()
@@ -36,7 +36,7 @@
 	times_used = max(0,round(times_used)) //sanity
 
 //attack_as_weapon
-/obj/item/device/flash/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/device/flash/attack(mob/living/M, mob/living/user, target_zone)
 	if(!user || !M)	return	//sanity
 
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been flashed (attempt) with [src.name]  by [user.name] ([user.ckey])</font>")

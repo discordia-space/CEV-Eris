@@ -84,7 +84,7 @@
 
 		add_underlay(T, node3, dir)
 
-/obj/machinery/atmospherics/trinary/filter/hide(var/i)
+/obj/machinery/atmospherics/trinary/filter/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/trinary/filter/power_change()
@@ -128,7 +128,7 @@
 	set_frequency(frequency)
 	..()
 
-/obj/machinery/atmospherics/trinary/filter/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/trinary/filter/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	var/datum/gas_mixture/int_air = return_air()

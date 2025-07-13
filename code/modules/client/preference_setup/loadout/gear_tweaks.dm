@@ -1,19 +1,19 @@
-/datum/gear_tweak/proc/get_contents(var/metadata)
+/datum/gear_tweak/proc/get_contents(metadata)
 	return
 
-/datum/gear_tweak/proc/get_metadata(var/user, var/list/metadata, var/title)
+/datum/gear_tweak/proc/get_metadata(user, list/metadata, title)
 	return
 
 /datum/gear_tweak/proc/get_default()
 	return
 
-/datum/gear_tweak/proc/tweak_gear_data(var/metadata, var/datum/gear_data)
+/datum/gear_tweak/proc/tweak_gear_data(metadata, datum/gear_data)
 	return
 
-/datum/gear_tweak/proc/tweak_item(var/obj/item/I, var/metadata)
+/datum/gear_tweak/proc/tweak_item(obj/item/I, metadata)
 	return
 
-/datum/gear_tweak/proc/tweak_description(var/description, var/metadata)
+/datum/gear_tweak/proc/tweak_description(description, metadata)
 	return description
 
 /*
@@ -23,22 +23,22 @@
 /datum/gear_tweak/color
 	var/list/valid_colors
 
-/datum/gear_tweak/color/New(var/list/valid_colors)
+/datum/gear_tweak/color/New(list/valid_colors)
 	src.valid_colors = valid_colors
 	..()
 
-/datum/gear_tweak/color/get_contents(var/metadata)
+/datum/gear_tweak/color/get_contents(metadata)
 	return "Color: <font color='[metadata]'>&#9899;</font>"
 
 /datum/gear_tweak/color/get_default()
 	return valid_colors ? valid_colors[1] : COLOR_WHITE
 
-/datum/gear_tweak/color/get_metadata(var/user, var/metadata, var/title = CHARACTER_PREFERENCE_INPUT_TITLE)
+/datum/gear_tweak/color/get_metadata(user, metadata, title = CHARACTER_PREFERENCE_INPUT_TITLE)
 	if(valid_colors)
 		return input(user, "Choose a color.", title, metadata) as null|anything in valid_colors
 	return input(user, "Choose a color.", title, metadata) as color|null
 
-/datum/gear_tweak/color/tweak_item(var/obj/item/I, var/metadata)
+/datum/gear_tweak/color/tweak_item(obj/item/I, metadata)
 	if(valid_colors && !(metadata in valid_colors))
 		return
 	I.color = sanitize_hexcolor(metadata, I.color)
@@ -50,7 +50,7 @@
 /datum/gear_tweak/path
 	var/list/valid_paths
 
-/datum/gear_tweak/path/New(var/list/valid_paths)
+/datum/gear_tweak/path/New(list/valid_paths)
 	if(!valid_paths.len)
 		CRASH("No type paths given")
 	var/list/duplicate_keys = duplicates(valid_paths)
@@ -67,33 +67,33 @@
 			CRASH("Expected an /obj/item path, was [log_info_line(selection_type)]")
 	src.valid_paths = sortAssoc(valid_paths)
 
-/datum/gear_tweak/path/type/New(var/type_path)
+/datum/gear_tweak/path/type/New(type_path)
 	..(atomtype2nameassoclist(type_path))
 
-/datum/gear_tweak/path/subtype/New(var/type_path)
+/datum/gear_tweak/path/subtype/New(type_path)
 	..(atomtypes2nameassoclist(subtypesof(type_path)))
 
-/datum/gear_tweak/path/specified_types_list/New(var/type_paths)
+/datum/gear_tweak/path/specified_types_list/New(type_paths)
 	..(atomtypes2nameassoclist(type_paths))
 
 /datum/gear_tweak/path/specified_types_args/New()
 	..(atomtypes2nameassoclist(args))
 
-/datum/gear_tweak/path/get_contents(var/metadata)
+/datum/gear_tweak/path/get_contents(metadata)
 	return "Type: [metadata]"
 
 /datum/gear_tweak/path/get_default()
 	return valid_paths[1]
 
-/datum/gear_tweak/path/get_metadata(var/user, var/list/metadata, var/title)
+/datum/gear_tweak/path/get_metadata(user, list/metadata, title)
 	return input(user, "Choose a type.", CHARACTER_PREFERENCE_INPUT_TITLE, metadata) as null|anything in valid_paths
 
-/datum/gear_tweak/path/tweak_gear_data(var/metadata, var/datum/gear_data/gear_data)
+/datum/gear_tweak/path/tweak_gear_data(metadata, datum/gear_data/gear_data)
 	if(!(metadata in valid_paths))
 		return
 	gear_data.path = valid_paths[metadata]
 
-/datum/gear_tweak/path/tweak_description(var/description, var/metadata)
+/datum/gear_tweak/path/tweak_description(description, metadata)
 	if(!(metadata in valid_paths))
 		return ..()
 	var/obj/O = valid_paths[metadata]
@@ -110,7 +110,7 @@
 	valid_contents = args.Copy()
 	..()
 
-/datum/gear_tweak/contents/get_contents(var/metadata)
+/datum/gear_tweak/contents/get_contents(metadata)
 	return "Contents: [english_list(metadata, and_text = ", ")]"
 
 /datum/gear_tweak/contents/get_default()
@@ -118,7 +118,7 @@
 	for(var/i = 1 to valid_contents.len)
 		. += "Random"
 
-/datum/gear_tweak/contents/get_metadata(var/user, var/list/metadata, var/title)
+/datum/gear_tweak/contents/get_metadata(user, list/metadata, title)
 	. = list()
 	for(var/i = metadata.len to (valid_contents.len - 1))
 		metadata += "Random"
@@ -129,7 +129,7 @@
 		else
 			return metadata
 
-/datum/gear_tweak/contents/tweak_item(var/obj/item/I, var/list/metadata)
+/datum/gear_tweak/contents/tweak_item(obj/item/I, list/metadata)
 	if(length(metadata) != length(valid_contents))
 		return
 	for(var/i = 1 to valid_contents.len)
@@ -154,22 +154,22 @@
 /datum/gear_tweak/reagents
 	var/list/valid_reagents
 
-/datum/gear_tweak/reagents/New(var/list/reagents)
+/datum/gear_tweak/reagents/New(list/reagents)
 	valid_reagents = reagents.Copy()
 	..()
 
-/datum/gear_tweak/reagents/get_contents(var/metadata)
+/datum/gear_tweak/reagents/get_contents(metadata)
 	return "Reagents: [metadata]"
 
 /datum/gear_tweak/reagents/get_default()
 	return "Random"
 
-/datum/gear_tweak/reagents/get_metadata(var/user, var/list/metadata, var/title)
+/datum/gear_tweak/reagents/get_metadata(user, list/metadata, title)
 	. = input(user, "Choose an entry.", CHARACTER_PREFERENCE_INPUT_TITLE, metadata) as null|anything in (valid_reagents + list("Random", "None"))
 	if(!.)
 		return metadata
 
-/datum/gear_tweak/reagents/tweak_item(var/obj/item/I, var/list/metadata)
+/datum/gear_tweak/reagents/tweak_item(obj/item/I, list/metadata)
 	if(metadata == "None")
 		return
 	var/reagent
@@ -189,7 +189,7 @@
 	var/list/ValidCardSlots = list(null, /obj/item/computer_hardware/card_slot)
 	var/list/ValidTeslaLinks = list(null, /obj/item/computer_hardware/tesla_link)
 
-/datum/gear_tweak/tablet/get_contents(var/list/metadata)
+/datum/gear_tweak/tablet/get_contents(list/metadata)
 	var/list/names = list()
 	var/obj/O = ValidProcessors[metadata[1]]
 	if(O)
@@ -214,7 +214,7 @@
 		names += initial(O.name)
 	return "[english_list(names, and_text = ", ")]"
 
-/datum/gear_tweak/tablet/get_metadata(var/user, var/list/metadata, var/title)
+/datum/gear_tweak/tablet/get_metadata(user, list/metadata, title)
 	. = list()
 
 	var/list/names = list()
@@ -306,7 +306,7 @@
 	for(var/i in 1 to TWEAKABLE_COMPUTER_PART_SLOTS)
 		. += 1
 
-/datum/gear_tweak/tablet/tweak_item(var/obj/item/modular_computer/tablet/I, var/list/metadata)
+/datum/gear_tweak/tablet/tweak_item(obj/item/modular_computer/tablet/I, list/metadata)
 	if(length(metadata) < TWEAKABLE_COMPUTER_PART_SLOTS)
 		return
 	if(ValidProcessors[metadata[1]])

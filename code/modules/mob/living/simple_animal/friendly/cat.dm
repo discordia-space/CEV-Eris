@@ -85,7 +85,7 @@
 					if (prob(75))
 						break//usually only kill one mouse per proc
 
-/mob/living/simple_animal/cat/beg(var/atom/thing, var/atom/holder)
+/mob/living/simple_animal/cat/beg(atom/thing, atom/holder)
 	visible_emote("licks its lips and hungrily glares at [holder]'s [thing.name]")
 
 /mob/living/simple_animal/cat/Released()
@@ -111,7 +111,7 @@
 		flee_target = A
 		turns_since_move = 5
 
-/mob/living/simple_animal/cat/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_animal/cat/attackby(obj/item/O, mob/user)
 	. = ..()
 	if(O.force)
 		set_flee_target(user? user : src.loc)
@@ -127,7 +127,7 @@
 		return
 	set_flee_target(get_turf(src))
 
-/mob/living/simple_animal/cat/bullet_act(var/obj/item/projectile/proj)
+/mob/living/simple_animal/cat/bullet_act(obj/item/projectile/proj)
 	. = ..()
 	set_flee_target(proj.firer? proj.firer : src.loc)
 
@@ -314,7 +314,7 @@ var/cat_number = 0
 	cat_number -= 1
 	return ..()
 
-/mob/living/simple_animal/cat/runtime/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_animal/cat/runtime/attackby(obj/item/O, mob/user)
 	visible_message(span_danger("[user]'s [O.name] harmlessly passes through \the [src]."))
 	strike_back(user)
 
@@ -347,7 +347,7 @@ var/cat_number = 0
 
 	return
 
-/mob/living/simple_animal/cat/runtime/proc/strike_back(var/mob/target_mob)
+/mob/living/simple_animal/cat/runtime/proc/strike_back(mob/target_mob)
 	if(!Adjacent(target_mob))
 		return
 	if(isliving(target_mob))
@@ -366,7 +366,7 @@ var/cat_number = 0
 /mob/living/simple_animal/cat/runtime/set_flee_target(atom/A)
 	return
 
-/mob/living/simple_animal/cat/runtime/bullet_act(var/obj/item/projectile/proj)
+/mob/living/simple_animal/cat/runtime/bullet_act(obj/item/projectile/proj)
 	return PROJECTILE_FORCE_MISS
 
 /mob/living/simple_animal/cat/runtime/explosion_act(target_power)

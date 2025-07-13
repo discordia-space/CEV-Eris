@@ -44,14 +44,14 @@
 		else
 			to_chat(usr, "<font color='purple'>You have already opted in.<font>")
 
-/datum/storyevent/roleset/proc/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
+/datum/storyevent/roleset/proc/antagonist_suitable(datum/mind/player, datum/antagonist/antag)
 	return TRUE
 
-/datum/storyevent/roleset/proc/get_candidates_count(var/a_type)	//For internal using
+/datum/storyevent/roleset/proc/get_candidates_count(a_type)	//For internal using
 	var/list/L = get_candidates_list(a_type)
 	return L.len
 
-/datum/storyevent/roleset/proc/get_candidates_list(var/antag, var/report)
+/datum/storyevent/roleset/proc/get_candidates_list(antag, report)
 	var/datum/antagonist/A = GLOB.all_antag_types[role_id]
 
 	if (A.outer)
@@ -59,7 +59,7 @@
 	else
 		return candidates_list(role_id)
 
-/datum/storyevent/roleset/proc/candidates_list(var/antag, var/act_test = TRUE, var/report)
+/datum/storyevent/roleset/proc/candidates_list(antag, act_test = TRUE, report)
 	var/datum/antagonist/temp = GLOB.all_antag_types[antag]
 	if(!istype(temp))
 		if(report)
@@ -127,7 +127,7 @@
 
 	return shuffle(candidates)
 
-/datum/storyevent/roleset/proc/ghost_candidates_list(var/antag, var/act_test = TRUE, var/report)
+/datum/storyevent/roleset/proc/ghost_candidates_list(antag, act_test = TRUE, report)
 
 	var/datum/antagonist/temp = GLOB.all_antag_types[antag]
 	if(!istype(temp))
@@ -180,7 +180,7 @@
 
 
 //We will first calculate how many antags to spawn, and then attempt to make that many
-/datum/storyevent/roleset/trigger_event(var/severity = EVENT_LEVEL_ROLESET)
+/datum/storyevent/roleset/trigger_event(severity = EVENT_LEVEL_ROLESET)
 
 	calc_target_quantity()
 	if (!target_quantity || target_quantity <= 0)
@@ -252,7 +252,7 @@
 			return FALSE
 
 //Tests if its possible for us to trigger, by compiling candidate lists but doing nothing with them
-/datum/storyevent/roleset/can_trigger(var/severity = EVENT_LEVEL_ROLESET, var/report)
+/datum/storyevent/roleset/can_trigger(severity = EVENT_LEVEL_ROLESET, report)
 	var/list/possible_candidates = list()
 	if(GLOB.outer_antag_types[role_id])
 		possible_candidates = ghost_candidates_list(role_id, FALSE, report) //We set act check to false so it doesn't ask ghosts

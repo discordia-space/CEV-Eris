@@ -151,7 +151,7 @@
 	var/facial_haircolor
 	var/skin_tone
 
-/obj/effect/mob_spawn/human/proc/add_stats(var/mob/living/carbon/human/target)
+/obj/effect/mob_spawn/human/proc/add_stats(mob/living/carbon/human/target)
 	for(var/name in src.stat_modifiers)
 		target.stats.changeStat(name, stat_modifiers[name])
 	return TRUE

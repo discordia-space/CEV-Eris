@@ -54,7 +54,7 @@
 	// Display the results.
 	return text
 
-/datum/antagonist/proc/print_objectives(var/append_success = TRUE)
+/datum/antagonist/proc/print_objectives(append_success = TRUE)
 	var/text = get_special_objective_text()
 
 	var/list/contracts = list()

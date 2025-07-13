@@ -16,7 +16,7 @@
 		/obj/item/paper_bundle = 3,
 		)
 
-/obj/machinery/papershredder/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/papershredder/attackby(obj/item/W, mob/user)
 
 	if(istype(W, /obj/item/storage))
 		empty_bin(user, W)
@@ -59,7 +59,7 @@
 
 	empty_bin(usr)
 
-/obj/machinery/papershredder/proc/empty_bin(var/mob/living/user, var/obj/item/storage/empty_into)
+/obj/machinery/papershredder/proc/empty_bin(mob/living/user, obj/item/storage/empty_into)
 
 	// Sanity.
 	if(empty_into && !istype(empty_into))
@@ -95,13 +95,13 @@
 /obj/machinery/papershredder/update_icon()
 	icon_state = "papershredder[max(0,min(5,FLOOR(paperamount * 0.5, 1)))]"
 
-/obj/item/shreddedp/attackby(var/obj/item/W as obj, var/mob/user)
+/obj/item/shreddedp/attackby(obj/item/W as obj, mob/user)
 	if(istype(W, /obj/item/flame/lighter))
 		burnpaper(W, user)
 	else
 		..()
 
-/obj/item/shreddedp/proc/burnpaper(var/obj/item/flame/lighter/P, var/mob/user)
+/obj/item/shreddedp/proc/burnpaper(obj/item/flame/lighter/P, mob/user)
 	if(user.restrained())
 		return
 	if(!P.lit)

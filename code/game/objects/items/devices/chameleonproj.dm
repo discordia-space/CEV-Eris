@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 			return
 		to_chat(user, span_warning("\The [target] is an invalid target."))
 
-/obj/item/device/chameleon/proc/scan_item(var/obj/item/I)
+/obj/item/device/chameleon/proc/scan_item(obj/item/I)
 	if(!istype(I))
 		return FALSE
 	if(GLOB.champroj_blacklist.Find(I.type))
@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 		START_PROCESSING(SSobj, src)
 		spawn(8) qdel(T)
 
-/obj/item/device/chameleon/proc/disrupt(var/delete_dummy = 1)
+/obj/item/device/chameleon/proc/disrupt(delete_dummy = 1)
 	if(active_dummy)
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
 		spark_system.set_up(5, 0, src)
@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	anchored = TRUE
 	var/obj/item/device/chameleon/master = null
 
-/obj/effect/dummy/chameleon/proc/activate(var/obj/O, var/mob/M, new_icon, new_iconstate, new_overlays, var/obj/item/device/chameleon/C)
+/obj/effect/dummy/chameleon/proc/activate(obj/O, mob/M, new_icon, new_iconstate, new_overlays, obj/item/device/chameleon/C)
 	name = O.name
 	desc = O.desc
 	icon = new_icon
@@ -162,7 +162,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	..()
 	master.disrupt()
 
-/obj/effect/dummy/chameleon/relaymove(var/mob/user, direction)
+/obj/effect/dummy/chameleon/relaymove(mob/user, direction)
 	if(istype(loc, /turf/space)) return //No magical space movement!
 	var/move_delay = 0
 	switch(user.bodytemperature)

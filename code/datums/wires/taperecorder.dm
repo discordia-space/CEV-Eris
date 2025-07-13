@@ -13,7 +13,7 @@ var/const/TAPE_WIRE_PLAY = 2
 var/const/TAPE_WIRE_RECORD = 4
 var/const/TAPE_WIRE_WIPE = 8
 
-/datum/wires/taperecorder/UpdatePulsed(var/index)
+/datum/wires/taperecorder/UpdatePulsed(index)
 	var/obj/item/device/taperecorder/T = holder
 	switch(index)
 		if(TAPE_WIRE_STOP)

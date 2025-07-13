@@ -98,7 +98,7 @@
 		return 1
 
 
-/obj/machinery/power/emitter/emp_act(var/severity)//Emitters are hardened but still might have issues
+/obj/machinery/power/emitter/emp_act(severity)//Emitters are hardened but still might have issues
 //	add_load(1000)
 /*	if((severity == 1)&&prob(1)&&prob(1))
 		if(src.active)
@@ -214,7 +214,7 @@
 	..()
 	return
 
-/obj/machinery/power/emitter/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/power/emitter/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		locked = 0
 		emagged = 1

@@ -75,7 +75,7 @@
 		set_light(0)
 	..()
 
-/mob/living/bot/secbot/attack_hand(var/mob/user)
+/mob/living/bot/secbot/attack_hand(mob/user)
 	user.set_machine(src)
 	var/dat
 	dat += "<TT><B>Automatic Security Unit v[bot_version]</B></TT><BR><BR>"
@@ -123,7 +123,7 @@
 			declare_arrests = !declare_arrests
 	attack_hand(usr)
 
-/mob/living/bot/secbot/attackby(var/obj/item/O, var/mob/user)
+/mob/living/bot/secbot/attackby(obj/item/O, mob/user)
 	var/curhealth = health
 	..()
 	if(health < curhealth)
@@ -251,7 +251,7 @@
 				patrol_step()
 			return
 
-/mob/living/bot/secbot/UnarmedAttack(var/mob/M, var/proximity)
+/mob/living/bot/secbot/UnarmedAttack(mob/M, proximity)
 	if(!..())
 		return
 
@@ -336,12 +336,12 @@
 			break
 	return
 
-/mob/living/bot/secbot/proc/calc_path(var/turf/avoid = null)
+/mob/living/bot/secbot/proc/calc_path(turf/avoid = null)
 	path = AStar(loc, patrol_target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 120, id=botcard, exclude=avoid)
 	if(!path)
 		path = list()
 
-/mob/living/bot/secbot/proc/check_threat(var/mob/living/M)
+/mob/living/bot/secbot/proc/check_threat(mob/living/M)
 	if(!M || !istype(M) || M.stat || src == M)
 		return 0
 
@@ -397,10 +397,10 @@
 /obj/secbot_listener
 	var/mob/living/bot/secbot/secbot = null
 
-/obj/secbot_listener/proc/post_signal(var/freq, var/key, var/value) // send a radio signal with a single data key/value pair
+/obj/secbot_listener/proc/post_signal(freq, key, value) // send a radio signal with a single data key/value pair
 	post_signal_multiple(freq, list("[key]" = value))
 
-/obj/secbot_listener/proc/post_signal_multiple(var/freq, var/list/keyval) // send a radio signal with multiple data key/values
+/obj/secbot_listener/proc/post_signal_multiple(freq, list/keyval) // send a radio signal with multiple data key/values
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(freq)
 	if(!frequency)
 		return
@@ -477,7 +477,7 @@
 
 //Secbot Construction
 
-/obj/item/clothing/head/armor/helmet/attackby(var/obj/item/device/assembly/signaler/S, mob/user as mob)
+/obj/item/clothing/head/armor/helmet/attackby(obj/item/device/assembly/signaler/S, mob/user as mob)
 	..()
 	if(!issignaler(S))
 		..()

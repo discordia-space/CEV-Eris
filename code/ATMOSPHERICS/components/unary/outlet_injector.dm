@@ -150,5 +150,5 @@
 		broadcast_status()
 	update_icon()
 
-/obj/machinery/atmospherics/unary/outlet_injector/hide(var/i)
+/obj/machinery/atmospherics/unary/outlet_injector/hide(i)
 	update_underlays()

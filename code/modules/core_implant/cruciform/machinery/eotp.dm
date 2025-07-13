@@ -97,11 +97,11 @@ var/global/obj/machinery/power/eotp/eotp
 
 	updatePower()
 
-/obj/machinery/power/eotp/proc/addObservation(var/number)
+/obj/machinery/power/eotp/proc/addObservation(number)
 	observation += number
 	return observation
 
-/obj/machinery/power/eotp/proc/removeObservation(var/number)
+/obj/machinery/power/eotp/proc/removeObservation(number)
 	observation -= number
 	return observation
 

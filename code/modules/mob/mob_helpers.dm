@@ -39,7 +39,7 @@
 			return 1
 	return 0
 
-/proc/hassensorlevel(A, var/level)
+/proc/hassensorlevel(A, level)
 	var/mob/living/carbon/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
@@ -265,7 +265,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return 0
 
 
-/mob/proc/abiotic(var/full_body = 0)
+/mob/proc/abiotic(full_body = 0)
 	if(full_body && ((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )) || (src.back || src.wear_mask)))
 		return 1
 
@@ -322,13 +322,13 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			return 1
 	return 0
 
-/proc/broadcast_security_hud_message(var/message, var/broadcast_source)
+/proc/broadcast_security_hud_message(message, broadcast_source)
 	broadcast_hud_message(message, broadcast_source, GLOB.sec_hud_users, /obj/item/clothing/glasses/hud/security)
 
-/proc/broadcast_medical_hud_message(var/message, var/broadcast_source)
+/proc/broadcast_medical_hud_message(message, broadcast_source)
 	broadcast_hud_message(message, broadcast_source, GLOB.med_hud_users, /obj/item/clothing/glasses/hud/health)
 
-/proc/broadcast_hud_message(var/message, var/broadcast_source, var/list/targets, var/icon)
+/proc/broadcast_hud_message(message, broadcast_source, list/targets, icon)
 	var/turf/sourceturf = get_turf(broadcast_source)
 	var/htmlicon = icon2html(icon, targets)
 	for(var/mob/M in targets)
@@ -336,7 +336,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		if((targetturf.z == sourceturf.z))
 			M.show_message(span_info("[htmlicon] [message]"), 1)
 
-/proc/mobs_in_area(var/area/A)
+/proc/mobs_in_area(area/A)
 	var/list/mobs = new
 	for(var/mob/living/M in SSmobs.mob_list | SShumans.mob_list)
 		if(get_area(M) == A)
@@ -344,7 +344,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 	return mobs
 
 //Announces that a ghost has joined/left, mainly for use with wizards
-/proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
+/proc/announce_ghost_joinleave(O, joined_ghosts = 1, message = "")
 	var/client/C
 	//Accept any type, sort what we want here
 	if(ismob(O))
@@ -378,13 +378,13 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		else
 			deadchat_broadcast("[span_name("[name]")] no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
 
-/mob/proc/switch_to_camera(var/obj/machinery/camera/C)
+/mob/proc/switch_to_camera(obj/machinery/camera/C)
 	if (!C.can_use() || stat || (get_dist(C, src) > 1 || machine != src || blinded || !canmove))
 		return 0
 	check_eye(src)
 	return 1
 
-/mob/living/silicon/ai/switch_to_camera(var/obj/machinery/camera/C)
+/mob/living/silicon/ai/switch_to_camera(obj/machinery/camera/C)
 	if(!C.can_use() || !is_in_chassis())
 		return 0
 
@@ -392,7 +392,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 	return 1
 
 // Returns true if the mob has a client which has been active in the last given X minutes.
-/mob/proc/is_client_active(var/active = 1)
+/mob/proc/is_client_active(active = 1)
 	return client && client.inactivity < active MINUTES
 
 /mob/proc/can_eat()
@@ -402,19 +402,19 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 	return 1
 
 #define SAFE_PERP -50
-/mob/living/proc/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/proc/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	if(stat == DEAD)
 		return SAFE_PERP
 
 	return 0
 
-/mob/living/carbon/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/carbon/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	if(handcuffed)
 		return SAFE_PERP
 
 	return ..()
 
-/mob/living/carbon/human/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/carbon/human/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
@@ -457,7 +457,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 
 	return threatcount
 
-/mob/living/simple_animal/hostile/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/simple_animal/hostile/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
@@ -471,7 +471,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 
 #undef SAFE_PERP
 
-/mob/proc/get_multitool(var/obj/item/tool/multitool/P)
+/mob/proc/get_multitool(obj/item/tool/multitool/P)
 	if(istype(P))
 		return P
 
@@ -588,7 +588,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 
 
 // Steps used to modify wounding multiplier. Should be used alongside edge/sharp when determining final damage of BRUTE-type attacks.
-/proc/step_wounding(var/wounding, var/is_increase = FALSE) // Usually mobs are the ones attacking (no), so this should be okay here? If it gets lucky a macro would be slightly faster
+/proc/step_wounding(wounding, is_increase = FALSE) // Usually mobs are the ones attacking (no), so this should be okay here? If it gets lucky a macro would be slightly faster
 	if(is_increase)
 		switch(wounding)
 			if(WOUNDING_TRIVIAL)
@@ -622,7 +622,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			if(WOUNDING_EXTREME)
 				return WOUNDING_WIDE
 
-/proc/step_wounding_double(var/wounding, var/is_increase = FALSE)
+/proc/step_wounding_double(wounding, is_increase = FALSE)
 	if(is_increase)
 		switch(wounding)
 			if(WOUNDING_TRIVIAL)
@@ -657,7 +657,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 				return WOUNDING_NORMAL
 
 // Determine wounding level. If var/wounding is provided, the attack should come from a projectile. This isn't the case yet, as we default to var/wounding = 1 until melee rework.
-/proc/wound_check(var/injurytype, var/wounding, var/edge, var/sharp)
+/proc/wound_check(injurytype, wounding, edge, sharp)
 	if(sharp && (!edge)) // impaling/piercing, 2x damage, affected by injurytype
 		switch(injurytype)
 			if(INJURY_TYPE_HOMOGENOUS)

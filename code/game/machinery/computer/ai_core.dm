@@ -201,7 +201,7 @@
 		empty_playable_ai_cores -= src
 	. = ..()
 
-/obj/structure/AIcore/deactivated/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/device/aicard/card, var/mob/user)
+/obj/structure/AIcore/deactivated/proc/load_ai(mob/living/silicon/ai/transfer, obj/item/device/aicard/card, mob/user)
 
 	if(!istype(transfer) || locate(/mob/living/silicon/ai) in src)
 		return
@@ -220,7 +220,7 @@
 
 	qdel(src)
 
-/obj/structure/AIcore/deactivated/attackby(var/obj/item/W, var/mob/user)
+/obj/structure/AIcore/deactivated/attackby(obj/item/W, mob/user)
 
 	if(istype(W, /obj/item/device/aicard))
 		var/obj/item/device/aicard/card = W

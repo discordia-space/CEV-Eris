@@ -104,7 +104,7 @@
 
 	mob_classification = CLASSIFICATION_ORGANIC
 
-/mob/living/simple_animal/proc/beg(var/atom/thing, var/atom/holder)
+/mob/living/simple_animal/proc/beg(atom/thing, atom/holder)
 	visible_emote("gazes longingly at [holder]'s [thing]")
 
 /mob/living/simple_animal/New()
@@ -139,7 +139,7 @@
 	turns_since_move = turns_per_move
 	..()
 
-/mob/living/simple_animal/Initialize(var/mapload)
+/mob/living/simple_animal/Initialize(mapload)
 	.=..()
 	if (mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
@@ -327,7 +327,7 @@
 /mob/living/simple_animal/gib()
 	..(icon_gib,1)
 
-/mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple_animal/bullet_act(obj/item/projectile/Proj)
 	if(!Proj)
 		return
 
@@ -384,7 +384,7 @@
 
 	return
 
-/mob/living/simple_animal/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_animal/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/gripper))
 		return ..(O, user)
 
@@ -398,7 +398,7 @@
 	else
 		O.attack(src, user, user.targeted_organ)
 
-/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
 
 	if(effective_force <= resistance)
 		to_chat(user, span_danger("This weapon is ineffective, it does no damage."))
@@ -458,15 +458,15 @@
 		if(B.health > 0)
 			return FALSE
 
-/mob/living/simple_animal/get_speech_ending(verb, var/ending)
+/mob/living/simple_animal/get_speech_ending(verb, ending)
 	return verb
 
-/mob/living/simple_animal/put_in_hands(var/obj/item/W) // No hands.
+/mob/living/simple_animal/put_in_hands(obj/item/W) // No hands.
 	W.loc = get_turf(src)
 	return 1
 
 // Harvest an animal's delicious byproducts
-/mob/living/simple_animal/proc/harvest(var/mob/user)
+/mob/living/simple_animal/proc/harvest(mob/user)
 	var/actual_meat_amount = max(1,(meat_amount/2))
 	if(meat_type && actual_meat_amount>0 && (stat == DEAD))
 		for(var/i=0;i<actual_meat_amount;i++)
@@ -579,7 +579,7 @@
 
 //I wanted to call this proc alert but it already exists.
 //Basically makes the mob pay attention to the world, resets sleep timers, awakens it from a sleeping state sometimes
-/mob/living/simple_animal/proc/poke(var/force_wake = 0)
+/mob/living/simple_animal/proc/poke(force_wake = 0)
 	if (stat != DEAD)
 		if (force_wake || (!client && prob(30)))
 			wake_up()

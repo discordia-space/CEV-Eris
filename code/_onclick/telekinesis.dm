@@ -81,7 +81,7 @@ var/const/tk_maxrange = 15
 	QDEL_IN(src, 1)
 
 //stops TK grabs being equipped anywhere but into hands
-/obj/item/tk_grab/equipped(mob/user, var/slot)
+/obj/item/tk_grab/equipped(mob/user, slot)
 	..()
 	if( (slot == slot_l_hand) || (slot== slot_r_hand) )	return
 	qdel(src)

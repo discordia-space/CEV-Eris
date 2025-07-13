@@ -159,7 +159,7 @@
 
 //Returns a new instance of the item for this design
 //This is to allow additional initialization to be performed, including possibly additional contructor arguments.
-/datum/design/proc/Fabricate(newloc, mat_efficiency, var/obj/machinery/autolathe/fabricator, oldify_result, high_quality_print, machine_rating)
+/datum/design/proc/Fabricate(newloc, mat_efficiency, obj/machinery/autolathe/fabricator, oldify_result, high_quality_print, machine_rating)
 	if(!build_path)
 		return
 

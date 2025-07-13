@@ -49,7 +49,7 @@
 
 
 //Builds an empty map
-/datum/rogue/asteroid/New(var/core, var/tw, var/tu)
+/datum/rogue/asteroid/New(core, tw, tu)
 
 	if(core)
 		coresize = core
@@ -72,7 +72,7 @@
 /datum/rogue/asteroid/predef/New() //Basically just ignore what we're told.
 	map = new/list(width,width,0)
 
-/datum/rogue/asteroid/proc/spot_add(var/x,var/y,var/thing)
+/datum/rogue/asteroid/proc/spot_add(x,y,thing)
 	if(!x || !y || !thing)
 		return
 
@@ -227,12 +227,12 @@
 	var/teleporter = pick(myarea.teleporter_spawns)
 	generate_teleporter(teleporter)
 
-/obj/asteroid_generator/proc/generate_teleporter(var/obj/asteroid_spawner/rogue_teleporter/TP)
+/obj/asteroid_generator/proc/generate_teleporter(obj/asteroid_spawner/rogue_teleporter/TP)
 	var/TPPREFAB = /datum/rogue/asteroid/predef/teleporter
 	var/TPBUILD = new TPPREFAB(null)
 	place_asteroid(TPBUILD, TP)
 
-/obj/asteroid_generator/proc/generate_asteroid(var/core_min = 2, var/core_max = 5)
+/obj/asteroid_generator/proc/generate_asteroid(core_min = 2, core_max = 5)
 	if(prob(15))
 		var/prefab = pick(prefabs)
 		var/prefabinst = new prefab(null)
@@ -276,7 +276,7 @@
 	return A
 
 
-/obj/asteroid_generator/proc/place_asteroid(var/datum/rogue/asteroid/A,var/obj/asteroid_spawner/SP)
+/obj/asteroid_generator/proc/place_asteroid(datum/rogue/asteroid/A,obj/asteroid_spawner/SP)
 	ASSERT(SP && A)
 
 	SP.myasteroid = A

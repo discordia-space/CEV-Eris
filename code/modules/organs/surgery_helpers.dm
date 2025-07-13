@@ -56,7 +56,7 @@
 /obj/item/organ/proc/get_conditions()
 	return list()
 
-/obj/item/organ/proc/get_actions(var/obj/item/organ/external/parent)
+/obj/item/organ/proc/get_actions(obj/item/organ/external/parent)
 	var/list/actions_list = list()
 
 	if(BP_IS_ROBOTIC(src))
@@ -96,6 +96,6 @@
 
 // Handling of attacks in organ-centric surgery - called from attackby and attack_hand
 // To be overridden in subtypes
-/obj/item/organ/proc/do_surgery(mob/living/user, obj/item/tool, var/surgery_status = CAN_OPERATE_ALL)
+/obj/item/organ/proc/do_surgery(mob/living/user, obj/item/tool, surgery_status = CAN_OPERATE_ALL)
 	return FALSE
 

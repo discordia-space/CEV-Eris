@@ -33,7 +33,7 @@
 	return
 
 
-/obj/machinery/am_shielding/proc/controllerscan(var/priorscan = 0)
+/obj/machinery/am_shielding/proc/controllerscan(priorscan = 0)
 	//Make sure we are the only one here
 	if(!istype(src.loc, /turf))
 		qdel(src)

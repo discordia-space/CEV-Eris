@@ -91,7 +91,7 @@ SUBSYSTEM_DEF(tips)
 	var/tipsAndTricks/T = pick(allTips)
 	return T
 
-/datum/controller/subsystem/tips/proc/getSmartTip(var/mob/target)
+/datum/controller/subsystem/tips/proc/getSmartTip(mob/target)
 	if(!target)
 		return
 	// We need types
@@ -122,18 +122,18 @@ SUBSYSTEM_DEF(tips)
 	var/tipsAndTricks/result = pickweight(options)
 	return result
 
-/datum/controller/subsystem/tips/proc/formatTip(var/tipsAndTricks/T, var/startText, var/plainText = FALSE)
+/datum/controller/subsystem/tips/proc/formatTip(tipsAndTricks/T, startText, plainText = FALSE)
 	if(plainText)
 		return "[startText ? "<b>[startText]</b>" : ""][T.getText()]"
 	else
 		return custom_boxed_message("blue_box", span_blue("<span class='oocplain'><b>[startText ? "[startText]: " : ""]</b>[T.getText()]</span>"))
 
-/datum/controller/subsystem/tips/proc/getGameplayTip(var/startText)
+/datum/controller/subsystem/tips/proc/getGameplayTip(startText)
 	if(GLOB.gameplayTips)
 		var/tipsAndTricks/T = pick(GLOB.gameplayTips)
 		return T
 
-/datum/controller/subsystem/tips/proc/getRoleTip(var/datum/antagonist/role)
+/datum/controller/subsystem/tips/proc/getRoleTip(datum/antagonist/role)
 	if(!istype(role))
 		error("Not role type variable was passed to tips subsystem. No tips for you.")
 	var/list/tipsAndTricks/candidates = list()
@@ -144,7 +144,7 @@ SUBSYSTEM_DEF(tips)
 		var/tipsAndTricks/T = pick(candidates)
 		return T
 
-/datum/controller/subsystem/tips/proc/getJobTip(var/datum/job/job)
+/datum/controller/subsystem/tips/proc/getJobTip(datum/job/job)
 	if(!istype(job))
 		error("Not job type variable was passed to tips subsystem. No tips for you.")
 	var/list/tipsAndTricks/candidates = list()
@@ -155,7 +155,7 @@ SUBSYSTEM_DEF(tips)
 		var/tipsAndTricks/T = pick(candidates)
 		return T
 
-/datum/controller/subsystem/tips/proc/getMobTip(var/mob/mob)
+/datum/controller/subsystem/tips/proc/getMobTip(mob/mob)
 	if(!istype(mob))
 		error("Not mob type variable was passed to tips subsystem. No tips for you.")
 	var/list/tipsAndTricks/candidates = list()

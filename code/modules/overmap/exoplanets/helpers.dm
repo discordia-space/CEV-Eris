@@ -35,7 +35,7 @@ var/list/exoplanet_map_data = list()
 
 GLOBAL_LIST_EMPTY(banned_ruin_ids)
 
-/proc/seedRuins(list/z_levels = null, budget = 0, whitelist = /area/space, list/potentialRuins, var/maxx = world.maxx, var/maxy = world.maxy)
+/proc/seedRuins(list/z_levels = null, budget = 0, whitelist = /area/space, list/potentialRuins, maxx = world.maxx, maxy = world.maxy)
 	if(!z_levels || !z_levels.len)
 		testing("No Z levels provided - Not generating ruins")
 		return
@@ -153,7 +153,7 @@ GLOBAL_LIST_EMPTY(banned_ruin_ids)
 
 /obj/effect/landmark/ruin/automatic/clearing/New(loc, my_ruin_template, ruin_radius)
 	. = ..(loc, my_ruin_template)
-	radius = ruin_radius	
+	radius = ruin_radius
 
 /obj/effect/landmark/ruin/automatic/clearing/Initialize()
 	..()

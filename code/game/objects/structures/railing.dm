@@ -36,7 +36,7 @@
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 
-/obj/structure/railing/Created(var/mob/user)
+/obj/structure/railing/Created(mob/user)
 	anchored = FALSE
 	// this way its much easier to build it, and there is no need to update_icon after that, flip will take care of that
 	spawn()
@@ -104,7 +104,7 @@
 		qdel(src)
 	return
 
-/obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = 1)
+/obj/structure/railing/proc/NeighborsCheck(UpdateNeighbors = 1)
 	check = 0
 	var/Rturn = turn(src.dir, -90)
 	var/Lturn = turn(src.dir, 90)
@@ -141,7 +141,7 @@
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
-/obj/structure/railing/update_icon(var/UpdateNeighbors = 1)
+/obj/structure/railing/update_icon(UpdateNeighbors = 1)
 	NeighborsCheck(UpdateNeighbors)
 	cut_overlays()
 	if (!check || !anchored)
@@ -198,7 +198,7 @@
 	update_icon()
 	return
 
-/obj/structure/railing/verb/flip(var/mob/living/user as mob) // This will help push railing to remote places, such as open space turfs
+/obj/structure/railing/verb/flip(mob/living/user as mob) // This will help push railing to remote places, such as open space turfs
 	set name = "Flip Railing"
 	set category = "Object"
 	set src in oview(1)
@@ -228,7 +228,7 @@
 		return 0
 	return 1
 
-/obj/structure/railing/affect_grab(var/mob/user, var/mob/living/target, var/state)
+/obj/structure/railing/affect_grab(mob/user, mob/living/target, state)
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
 		to_chat(user, span_danger("There's \a [occupied] in the way."))
@@ -375,7 +375,7 @@
 	if(!anchored)	take_damage(maxHealth) // Fatboy
 	climbers -= user
 
-/obj/structure/railing/get_fall_damage(var/turf/from, var/turf/dest)
+/obj/structure/railing/get_fall_damage(turf/from, turf/dest)
 	var/damage = health * 0.4
 
 	if (from && dest)

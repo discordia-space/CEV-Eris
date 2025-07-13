@@ -59,7 +59,7 @@
 		else
 			return !density
 
-/obj/structure/grille/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/grille/bullet_act(obj/item/projectile/Proj)
 	if(!Proj)	return
 
 	//Flimsy grilles aren't so great at stopping projectiles. However they can absorb some of the impact
@@ -220,7 +220,7 @@
 			take_damage(1)
 	..()
 
-/obj/structure/grille/attack_generic(var/mob/user, var/damage, var/attack_verb)
+/obj/structure/grille/attack_generic(mob/user, damage, attack_verb)
 	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	attack_animation(user)
 	take_damage(damage)
@@ -258,7 +258,7 @@
 		return 0 //Make sure air doesn't drain
 	..()
 
-/obj/structure/grille/get_fall_damage(var/turf/from, var/turf/dest)
+/obj/structure/grille/get_fall_damage(turf/from, turf/dest)
 	var/damage = health * 0.4 * get_health_ratio()
 
 	if (from && dest)

@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(PB_bypass) //Handles ckey
 	if (CONFIG_GET(flag/ip_reputation) && (!SSdbcore.IsConnected()))
 		message_admins("The database is not connected! IP reputation logging will not be able to allow existing players to bypass the reputation checks (if that is enabled).")
 
-/client/proc/toggle_vpn_white(var/ckey as text)
+/client/proc/toggle_vpn_white(ckey as text)
 	set category = "Server"
 	set name = "Whitelist ckey from VPN Checks"
 

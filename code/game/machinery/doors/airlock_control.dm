@@ -36,7 +36,7 @@
 		completing = TRUE
 	return FALSE
 
-/obj/machinery/door/airlock/proc/do_command(var/command)
+/obj/machinery/door/airlock/proc/do_command(command)
 	switch(command)
 		if("open")
 			open()
@@ -62,7 +62,7 @@
 
 	send_status()
 
-/obj/machinery/door/airlock/proc/command_completed(var/command)
+/obj/machinery/door/airlock/proc/command_completed(command)
 	switch(command)
 		if("open")
 			return !density
@@ -84,7 +84,7 @@
 
 	return 1	//Unknown command. Just assume it's completed.
 
-/obj/machinery/door/airlock/proc/send_status(var/bumped = 0)
+/obj/machinery/door/airlock/proc/send_status(bumped = 0)
 	if(radio_connection)
 		var/datum/signal/signal = new
 		signal.transmission_method = 1 //radio signal
@@ -255,7 +255,7 @@
 	var/max_steps = 3
 
 //Checks for walls and closed airlocks blocking the tile. Ignores other dense objects
-/obj/machinery/airlock_sensor/shuttle_exterior/proc/turf_open(var/turf/T)
+/obj/machinery/airlock_sensor/shuttle_exterior/proc/turf_open(turf/T)
 	if (T.is_wall)
 		return FALSE
 

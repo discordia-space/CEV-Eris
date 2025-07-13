@@ -280,7 +280,7 @@
 		return FALSE
 	return TRUE
 
-/mob/new_player/proc/AttemptLateSpawn(rank, var/spawning_at)
+/mob/new_player/proc/AttemptLateSpawn(rank, spawning_at)
 	if(src != usr)
 		return FALSE
 	if(!SSticker.IsRoundInProgress())
@@ -437,7 +437,7 @@
 
 	return new_character
 
-/mob/new_player/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/new_player/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	return FALSE
 
 /mob/new_player/proc/close_spawn_windows()
@@ -461,10 +461,10 @@
 /mob/new_player/is_ready()
 	return ready && ..()
 
-/mob/new_player/hear_say(var/message, var/verb = src.verb_say, var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
+/mob/new_player/hear_say(message, verb = src.verb_say, datum/language/language = null, alt_name = "",italics = 0, mob/speaker = null)
 	return
 
-/mob/new_player/hear_radio(var/message, var/verb = src.verb_say, var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0)
+/mob/new_player/hear_radio(message, verb = src.verb_say, datum/language/language=null, part_a, part_b, mob/speaker = null, hard_to_hear = 0)
 	return
 
 /mob/new_player/MayRespawn()

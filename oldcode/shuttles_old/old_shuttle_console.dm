@@ -19,7 +19,7 @@
 
 	nano_ui_interact(user)
 
-/obj/machinery/computer/shuttle_control/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/shuttle_control/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if (!istype(shuttle))
@@ -84,7 +84,7 @@
 	else if(href_list["cancel"])
 		shuttle.cancel_launch(src)
 
-/obj/machinery/computer/shuttle_control/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/shuttle_control/emag_act(remaining_charges, mob/user)
 	if (!hacked)
 		req_access = list()
 		req_one_access = list()
@@ -92,7 +92,7 @@
 		user << "You short out the console's ID checking system. It's now available to everyone!"
 		return 1
 
-/obj/machinery/computer/shuttle_control/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/computer/shuttle_control/bullet_act(obj/item/projectile/Proj)
 	visible_message("\The [Proj] ricochets off \the [src]!")
 
 /obj/machinery/computer/shuttle_control/explosion_act(target_power, explosion_handler/handler)

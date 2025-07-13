@@ -205,7 +205,7 @@
 	title = "External Airlock Controls"
 	req_access = list(access_syndicate)
 
-/obj/machinery/computer/pod/old/syndicate/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/pod/old/syndicate/attack_hand(mob/user as mob)
 	if(!allowed(user))
 		to_chat(user, span_warning("Access Denied"))
 		return

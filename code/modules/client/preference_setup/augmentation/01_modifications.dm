@@ -10,11 +10,11 @@
 	name = "Augmentation"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/augmentation/modifications/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/augmentation/modifications/load_character(savefile/S)
 	from_file(S["modifications_data"], pref.modifications_data)
 	from_file(S["modifications_colors"], pref.modifications_colors)
 
-/datum/category_item/player_setup_item/augmentation/modifications/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/augmentation/modifications/save_character(savefile/S)
 	to_file(S["modifications_data"], pref.modifications_data)
 	to_file(S["modifications_colors"], pref.modifications_colors)
 
@@ -30,7 +30,7 @@
 			pref.modifications_colors[tag] = "#000000"
 
 
-/datum/category_item/player_setup_item/augmentation/modifications/content(var/mob/user)
+/datum/category_item/player_setup_item/augmentation/modifications/content(mob/user)
 	if(!pref.preview_icon)
 		pref.update_preview_icon(naked = TRUE)
 	if(pref.preview_north && pref.preview_south && pref.preview_east && pref.preview_west)
@@ -123,12 +123,12 @@
 			return FALSE
 	return TRUE
 
-/datum/preferences/proc/get_modification(var/organ)
+/datum/preferences/proc/get_modification(organ)
 	if(!modifications_allowed() || !organ || !modifications_data[organ])
 		return new/datum/body_modification/none
 	return modifications_data[organ]
 
-/datum/preferences/proc/check_child_modifications(var/organ = BP_CHEST)
+/datum/preferences/proc/check_child_modifications(organ = BP_CHEST)
 	var/list/organ_data = GLOB.organ_structure[organ]
 	if(!organ_data)
 		return
@@ -143,7 +143,7 @@
 			check_child_modifications(child_organ)
 	return
 
-/datum/category_item/player_setup_item/augmentation/modifications/OnTopic(var/href, list/href_list, mob/user)
+/datum/category_item/player_setup_item/augmentation/modifications/OnTopic(href, list/href_list, mob/user)
 	if(href_list["organ"])
 		pref.current_organ = href_list["organ"]
 		return TOPIC_REFRESH_UPDATE_PREVIEW

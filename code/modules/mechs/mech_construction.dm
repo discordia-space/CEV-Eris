@@ -67,7 +67,7 @@
 	return TRUE
 
 
-/mob/living/exosuit/proc/install_system(var/obj/item/mech_equipment/system, system_hardpoint, mob/user)
+/mob/living/exosuit/proc/install_system(obj/item/mech_equipment/system, system_hardpoint, mob/user)
 
 	if(hardpoints_locked || hardpoints[system_hardpoint])
 		if(user) to_chat(user, span_warning("\The [src]'s hardpoints are locked, or that hardpoint is already occupied."))

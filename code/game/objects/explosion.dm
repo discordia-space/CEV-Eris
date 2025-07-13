@@ -147,7 +147,7 @@
 	for(var/turf/tile in range(range, epicenter))
 		tile.explosion_act(500, null)
 
-/proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount = 100, var/f_damage = null, var/f_step = 2, var/same_turf_hit_chance = 20)
+/proc/fragment_explosion(turf/epicenter, range, f_type, f_amount = 100, f_damage = null, f_step = 2, same_turf_hit_chance = 20)
 	if(!isturf(epicenter))
 		epicenter = get_turf(epicenter)
 

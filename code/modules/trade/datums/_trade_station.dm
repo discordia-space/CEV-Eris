@@ -51,7 +51,7 @@
 	if(init_on_new)
 		init_src()
 
-/datum/trade_station/proc/init_src(var/turf/station_loc = null, var/force_discovered = FALSE)
+/datum/trade_station/proc/init_src(turf/station_loc = null, force_discovered = FALSE)
 	if(name)
 		CRASH("Somebody gived trade station a name before init_src, overriding name_pool. ([type])")
 	for(var/datum/trade_station/S in SStrade.all_stations)
@@ -258,7 +258,7 @@
 					var/list/good_packet = category[item_path]
 					. += good_packet["price"]
 
-/datum/trade_station/proc/add_to_wealth(var/income, is_offer = FALSE)
+/datum/trade_station/proc/add_to_wealth(income, is_offer = FALSE)
 	if(!isnum(income))
 		return
 	wealth += income
@@ -271,7 +271,7 @@
 	if(!recommendation_unlocked)
 		try_recommendation()
 
-/datum/trade_station/proc/subtract_from_wealth(var/cost)
+/datum/trade_station/proc/subtract_from_wealth(cost)
 	if(!isnum(cost))
 		return
 	wealth -= cost

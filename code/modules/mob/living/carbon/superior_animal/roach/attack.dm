@@ -1,4 +1,4 @@
-/mob/living/carbon/superior_animal/roach/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/carbon/superior_animal/roach/UnarmedAttack(atom/A, proximity)
 	if(isliving(A))
 		var/mob/living/L = A
 		var/mob/living/carbon/human/H

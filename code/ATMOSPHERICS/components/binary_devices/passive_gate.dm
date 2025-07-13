@@ -41,7 +41,7 @@
 		add_underlay(T, node1, turn(dir, 180))
 		add_underlay(T, node2, dir)
 
-/obj/machinery/atmospherics/binary/passive_gate/hide(var/i)
+/obj/machinery/atmospherics/binary/passive_gate/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/binary/passive_gate/Process()
@@ -179,7 +179,7 @@
 	nano_ui_interact(user)
 	return
 
-/obj/machinery/atmospherics/binary/passive_gate/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/atmospherics/binary/passive_gate/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(stat & (BROKEN|NOPOWER))
 		return
 
@@ -247,7 +247,7 @@
 	src.add_fingerprint(usr)
 	return
 
-/obj/machinery/atmospherics/binary/passive_gate/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/binary/passive_gate/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if (unlocked)

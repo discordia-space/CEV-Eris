@@ -9,7 +9,7 @@
 	var/archived			// Set to 1 for older stuff
 	var/cover				//filename of cover.
 
-/datum/computer_file/data/news_article/New(var/load_from_file = 0)
+/datum/computer_file/data/news_article/New(load_from_file = 0)
 	..()
 	if(server_file_path && load_from_file)
 		stored_data = file2text(server_file_path)

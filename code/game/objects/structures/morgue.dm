@@ -54,15 +54,15 @@
 
 //No network connection. Robots can physically open it, but not remotely
 //AI can't open it at all, anything inside a morgue drawer is hidden from the AI
-/obj/structure/morgue/attack_ai(var/mob/living/user)
+/obj/structure/morgue/attack_ai(mob/living/user)
 	if(Adjacent(user))
 		toggle(user)
 
-/obj/structure/morgue/attack_hand(var/mob/living/user)
+/obj/structure/morgue/attack_hand(mob/living/user)
 	toggle(user)
 	add_fingerprint(user)
 
-/obj/structure/morgue/proc/toggle(var/mob/living/user)
+/obj/structure/morgue/proc/toggle(mob/living/user)
 	if(world.time < next_toggle)
 		return
 	next_toggle = world.time + 15 //Throttle toggling to reduce lag and potential exploits
@@ -103,7 +103,7 @@
 
 	current_storage = 0
 
-/obj/structure/morgue/proc/close(var/mob/living/user)
+/obj/structure/morgue/proc/close(mob/living/user)
 	//We only allow one mob or bodybag containing a mob, per morgue drawer
 	occupant = null
 	var/glidesize = DELAY2GLIDESIZE(5)
@@ -141,7 +141,7 @@
 
 
 
-/obj/structure/morgue/proc/store_atom(var/atom/movable/AM)
+/obj/structure/morgue/proc/store_atom(atom/movable/AM)
 	if (AM.anchored)
 		return
 		//Allowing it to suck up any non anchored object is probably open to exploits,

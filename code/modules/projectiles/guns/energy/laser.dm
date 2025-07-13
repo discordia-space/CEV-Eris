@@ -280,7 +280,7 @@
 	twohanded = FALSE
 	init_recoil = HANDGUN_RECOIL(1)
 
-/obj/item/gun/energy/psychic/mindflayer/update_icon(var/ignore_inhands)
+/obj/item/gun/energy/psychic/mindflayer/update_icon(ignore_inhands)
 	if(charge_meter)
 		var/ratio = 0
 

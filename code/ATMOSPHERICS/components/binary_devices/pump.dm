@@ -81,7 +81,7 @@ Thus, the two variables affect pump operation are set in New():
 		add_underlay(T, node1, turn(dir, -180))
 		add_underlay(T, node2, dir)
 
-/obj/machinery/atmospherics/binary/pump/hide(var/i)
+/obj/machinery/atmospherics/binary/pump/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/binary/pump/Process()
@@ -139,7 +139,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	return 1
 
-/obj/machinery/atmospherics/binary/pump/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/atmospherics/binary/pump/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(stat & (BROKEN|NOPOWER))
 		return
 
@@ -244,7 +244,7 @@ Thus, the two variables affect pump operation are set in New():
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/binary/pump/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/binary/pump/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if (!(stat & NOPOWER) && use_power)

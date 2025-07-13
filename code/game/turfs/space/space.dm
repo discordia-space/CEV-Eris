@@ -21,7 +21,7 @@
 /turf/space/update_plane()
 	return
 
-/turf/space/set_plane(var/np)
+/turf/space/set_plane(np)
 	plane = np
 
 /turf/space/is_space()

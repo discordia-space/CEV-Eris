@@ -76,7 +76,7 @@
 	spawn(1) //When built from frames, need to allow time for it to set pixel_x and pixel_y
 		update_icon()
 
-/obj/machinery/holomap/attack_hand(var/mob/user)
+/obj/machinery/holomap/attack_hand(mob/user)
 	if(watching_mob && (watching_mob != user))
 		to_chat(user, span_warning("Someone else is currently watching the holomap."))
 		return
@@ -86,7 +86,7 @@
 	startWatching(user)
 
 // Let people bump up against it to watch
-/obj/machinery/holomap/Bumped(var/atom/movable/AM)
+/obj/machinery/holomap/Bumped(atom/movable/AM)
 	if(!watching_mob && isliving(AM) && AM.loc == loc)
 		startWatching(AM)
 

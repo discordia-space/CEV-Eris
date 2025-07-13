@@ -120,7 +120,7 @@ An object will be shown if it can ever hide under floors, regardless of whether 
 While this has some increased performance cost, it allows pipes to be clearly seen even in cases where they
 are technically visible but obscured, for example by catwalks or trash sitting on them.
 */
-/obj/item/device/t_scanner/proc/get_scanned_objects(var/scan_dist)
+/obj/item/device/t_scanner/proc/get_scanned_objects(scan_dist)
 	. = list()
 
 	var/turf/center = get_turf(loc)
@@ -150,11 +150,11 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 	//set_enabled(!enabled)
 
 //Alt click provides a rapid way to turn it on and off
-/obj/item/device/t_scanner/AltClick(var/mob/M)
+/obj/item/device/t_scanner/AltClick(mob/M)
 	if(loc == M)
 		set_enabled(!enabled)
 
-/obj/item/device/t_scanner/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/t_scanner/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["enabled"] = enabled ? 1 : 0
@@ -219,7 +219,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 	check_active(enabled)
 	update_icon()
 
-/obj/item/device/t_scanner/proc/check_active(var/targetstate = TRUE)
+/obj/item/device/t_scanner/proc/check_active(targetstate = TRUE)
 	//First of all, check if its being turned off. This is simpler
 	if(!targetstate)
 		if(!active)

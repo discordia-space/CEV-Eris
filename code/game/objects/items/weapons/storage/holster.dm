@@ -275,7 +275,7 @@
 /obj/item/clothing/accessory/holster/proc/handle_attack_hand(mob/user as mob)
 	return holster.handle_attack_hand(user)
 
-/obj/item/clothing/accessory/holster/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+/obj/item/clothing/accessory/holster/proc/handle_mousedrop(mob/user, atom/over_object)
 	return holster.handle_mousedrop(user, over_object)
 
 /obj/item/clothing/accessory/holster/MouseDrop(obj/over_object)
@@ -316,7 +316,7 @@
 	holster.attackby(I, user)
 
 //For the holster hotkey in human.dm
-/obj/item/storage/pouch/holster/proc/holster_verb(var/mob/living/carbon/human/H)
+/obj/item/storage/pouch/holster/proc/holster_verb(mob/living/carbon/human/H)
 	if(!istype(H))
 		return
 

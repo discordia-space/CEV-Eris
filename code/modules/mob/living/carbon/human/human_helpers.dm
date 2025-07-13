@@ -7,7 +7,7 @@
 	flash_protection += C.flash_protection; \
 	equipment_tint_total += C.tint;
 
-/mob/living/carbon/human/can_eat(var/food, var/feedback = 1)
+/mob/living/carbon/human/can_eat(food, feedback = 1)
 	var/list/status = can_eat_status()
 	if(status[1] == HUMAN_EATING_NO_ISSUE)
 		return 1
@@ -33,7 +33,7 @@
 	*/
 	return FALSE
 
-/mob/living/carbon/human/can_force_feed(var/feeder, var/food, var/feedback = 1)
+/mob/living/carbon/human/can_force_feed(feeder, food, feedback = 1)
 	var/list/status = can_eat_status()
 	if(status[1] == HUMAN_EATING_NO_ISSUE)
 		return 1
@@ -109,7 +109,7 @@
 		add_clothing_protection(G)
 		G.process_hud(src)
 
-/mob/living/carbon/human/proc/process_rig(var/obj/item/rig/O)
+/mob/living/carbon/human/proc/process_rig(obj/item/rig/O)
 	if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
 		if((O.offline && O.offline_vision_restriction == 2) || (!O.offline && O.vision_restriction == 2))
 			equipment_tint_total += TINT_BLIND

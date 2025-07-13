@@ -174,10 +174,10 @@
 /proc/is_operable(obj/machinery/M, mob/user)
 	return istype(M) && M.operable()
 
-/obj/machinery/proc/operable(var/additional_flags = 0)
+/obj/machinery/proc/operable(additional_flags = 0)
 	return !inoperable(additional_flags)
 
-/obj/machinery/proc/inoperable(var/additional_flags = 0)
+/obj/machinery/proc/inoperable(additional_flags = 0)
 	return (stat & (NOPOWER|BROKEN|additional_flags))
 
 /obj/machinery/ui_state(mob/user)
@@ -256,7 +256,7 @@
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
 	return
 
-/obj/machinery/proc/max_part_rating(var/type) //returns max rating of installed part type or null on error(keep in mind that all parts have to match that raiting).
+/obj/machinery/proc/max_part_rating(type) //returns max rating of installed part type or null on error(keep in mind that all parts have to match that raiting).
 	if(!type)
 		error("max_part_rating() wrong usage")
 		return
@@ -280,7 +280,7 @@
 	uid = gl_uid
 	gl_uid++
 
-/obj/machinery/proc/state(var/msg)
+/obj/machinery/proc/state(msg)
 	var/listeners = hearers(get_turf(src))
 	for(var/mob/O in listeners)
 		O.show_message("[icon2html(src, listeners)] <span class = 'notice'>[msg]</span>", 2)

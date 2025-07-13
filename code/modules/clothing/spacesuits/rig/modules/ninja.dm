@@ -80,7 +80,7 @@
 	interface_desc = "An advanced teleportation system. It is capable of pinpoint precision or random leaps forward."
 	spawn_blacklisted = TRUE
 
-/obj/item/rig_module/teleporter/proc/phase_in(var/mob/M,var/turf/T)
+/obj/item/rig_module/teleporter/proc/phase_in(mob/M,turf/T)
 
 	if(!M || !T)
 		return
@@ -90,7 +90,7 @@
 	playsound(T, 'sound/effects/sparks2.ogg', 50, 1)
 	anim(T,M,'icons/mob/mob.dmi',,"phasein",,M.dir)
 
-/obj/item/rig_module/teleporter/proc/phase_out(var/mob/M,var/turf/T)
+/obj/item/rig_module/teleporter/proc/phase_out(mob/M,turf/T)
 
 	if(!M || !T)
 		return
@@ -200,7 +200,7 @@
 	if(holder.wearer.stat == 2)
 		engage(1)
 
-/obj/item/rig_module/self_destruct/engage(var/skip_check)
+/obj/item/rig_module/self_destruct/engage(skip_check)
 	if(!skip_check && usr && alert(usr, "Are you sure you want to push that button?", "Self-destruct", "No", "Yes") == "No")
 		return
 	explosion(get_turf(src), explosion_power, explosion_falloff, explosion_flags)

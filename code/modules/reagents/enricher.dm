@@ -85,7 +85,7 @@
 			return TRUE
 	return ..()
 
-/obj/item/reagent_containers/enricher/afterattack(var/obj/target, var/mob/user, var/flag)
+/obj/item/reagent_containers/enricher/afterattack(obj/target, mob/user, flag)
 	if(!flag)
 		return
 	if(standard_pour_into(user, target))

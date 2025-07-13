@@ -98,7 +98,7 @@
 
 
 //How much does this person's vote count for?
-/datum/poll/proc/get_vote_power(var/client/C)
+/datum/poll/proc/get_vote_power(client/C)
 	return 1
 
 //How many unique people have cast votes?

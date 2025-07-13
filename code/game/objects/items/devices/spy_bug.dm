@@ -48,7 +48,7 @@
 	else
 		..()
 
-/obj/item/device/spy_bug/hear_talk(mob/M, var/msg, verb, datum/language/speaking, speech_volume)
+/obj/item/device/spy_bug/hear_talk(mob/M, msg, verb, datum/language/speaking, speech_volume)
 	radio.hear_talk(M, msg, speaking, speech_volume = speech_volume)
 
 
@@ -98,7 +98,7 @@
 	else
 		return ..()
 
-/obj/item/device/spy_monitor/proc/pair(var/obj/item/device/spy_bug/SB, var/mob/living/user)
+/obj/item/device/spy_monitor/proc/pair(obj/item/device/spy_bug/SB, mob/living/user)
 	if(SB.camera in cameras)
 		to_chat(user, span_notice("\The [SB] has been unpaired from \the [src]."))
 		cameras -= SB.camera
@@ -146,7 +146,7 @@
 
 	return 1
 
-/obj/item/device/spy_monitor/hear_talk(mob/M, var/msg, verb, datum/language/speaking, speech_volume)
+/obj/item/device/spy_monitor/hear_talk(mob/M, msg, verb, datum/language/speaking, speech_volume)
 	return radio.hear_talk(M, msg, speaking, speech_volume = speech_volume)
 
 

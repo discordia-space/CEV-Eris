@@ -259,7 +259,7 @@
 	return ..()
 
 //Returning anything but true will make the mob unable to resist out of this buckle
-/atom/proc/resist_buckle(var/mob/living/user)
+/atom/proc/resist_buckle(mob/living/user)
 	return TRUE
 
 /mob/living/proc/escape_buckle()

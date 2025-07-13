@@ -192,7 +192,7 @@
 	return (damage >= min_broken_damage || (status & ORGAN_CUT_AWAY) || (status & ORGAN_BROKEN))
 
 //Adds autopsy data for used_weapon.
-/obj/item/organ/proc/add_autopsy_data(var/used_weapon, var/damage)
+/obj/item/organ/proc/add_autopsy_data(used_weapon, damage)
 	var/datum/autopsy_data/W = autopsy_data[used_weapon]
 	if(!W)
 		W = new()

@@ -19,7 +19,7 @@ var/const/VENDING_WIRE_CONTRABAND = 2
 var/const/VENDING_WIRE_ELECTRIFY = 4
 var/const/VENDING_WIRE_IDSCAN = 8
 
-/datum/wires/vending/CanUse(var/mob/living/L)
+/datum/wires/vending/CanUse(mob/living/L)
 	var/obj/machinery/vending/V = holder
 	if(!issilicon(L))
 		if(V.seconds_electrified)
@@ -37,7 +37,7 @@ var/const/VENDING_WIRE_IDSCAN = 8
 	. += "The green light is [(V.categories & CAT_HIDDEN) ? "on" : "off"].<BR>"
 	. += "The [V.scan_id ? "purple" : "yellow"] light is on.<BR>"
 
-/datum/wires/vending/UpdatePulsed(var/index)
+/datum/wires/vending/UpdatePulsed(index)
 	var/obj/machinery/vending/V = holder
 	switch(index)
 		if(VENDING_WIRE_THROW)
@@ -49,7 +49,7 @@ var/const/VENDING_WIRE_IDSCAN = 8
 		if(VENDING_WIRE_IDSCAN)
 			V.scan_id = !V.scan_id
 
-/datum/wires/vending/UpdateCut(var/index, var/mended)
+/datum/wires/vending/UpdateCut(index, mended)
 	var/obj/machinery/vending/V = holder
 	switch(index)
 		if(VENDING_WIRE_THROW)
@@ -115,7 +115,7 @@ var/const/VENDING_INT_WIRE_POWER = 64
 	. += "The [is_signal_securely_cut ? "blue" : "pink"] light is on.<BR>"
 	. += "The suspicious light is [is_contraband_securely_pulsed ? "blinking" : "on"].<BR>"
 
-/datum/wires/vending/intermediate/UpdatePulsed(var/index)
+/datum/wires/vending/intermediate/UpdatePulsed(index)
 	if(is_powered)
 		var/obj/machinery/vending/V = holder
 		switch(index)
@@ -133,7 +133,7 @@ var/const/VENDING_INT_WIRE_POWER = 64
 		if(!is_contraband_securely_pulsed)
 			is_signal_securely_cut = FALSE
 
-/datum/wires/vending/intermediate/UpdateCut(var/index, var/mended)
+/datum/wires/vending/intermediate/UpdateCut(index, mended)
 	var/obj/machinery/vending/V = holder
 	switch(index)
 		if(VENDING_INT_WIRE_THROW)

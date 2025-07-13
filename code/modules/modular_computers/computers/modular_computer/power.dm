@@ -1,4 +1,4 @@
-/obj/item/modular_computer/proc/power_failure(var/malfunction = 0)
+/obj/item/modular_computer/proc/power_failure(malfunction = 0)
 	if(enabled) // Shut down the computer
 		visible_message(span_danger("\The [src]'s screen flickers briefly and then goes dark."), vision_distance = 1)
 		for(var/p in all_threads)

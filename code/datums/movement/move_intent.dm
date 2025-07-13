@@ -6,7 +6,7 @@
 	var/move_delay = 1
 	var/hud_icon_state
 
-/decl/move_intent/proc/can_enter(var/mob/living/L, var/warnings = FALSE)
+/decl/move_intent/proc/can_enter(mob/living/L, warnings = FALSE)
 	return TRUE
 
 /decl/move_intent/walk

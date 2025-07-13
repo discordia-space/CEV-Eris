@@ -65,7 +65,7 @@ var/list/VVckey_edit = list("key", "ckey")
 	return var_value
 
 
-/client/proc/mod_list_add(var/list/L, atom/O, original_name, objectvar)
+/client/proc/mod_list_add(list/L, atom/O, original_name, objectvar)
 
 	var/class = "text"
 	var/list/class_input = list("text","num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default")
@@ -122,7 +122,7 @@ var/list/VVckey_edit = list("key", "ckey")
 	log_admin("[key_name(src)] modified [original_name]'s [objectvar]: ADDED=[var_value]")
 	message_admins("[key_name_admin(src)] modified [original_name]'s [objectvar]: ADDED=[var_value]")
 
-/client/proc/mod_list(var/list/L, atom/O, original_name, objectvar)
+/client/proc/mod_list(list/L, atom/O, original_name, objectvar)
 	if(!check_rights(R_ADMIN))
 		return
 	if(!istype(L,/list)) src << "Not a List."
@@ -346,7 +346,7 @@ var/list/VVckey_edit = list("key", "ckey")
 	log_admin("[key_name(src)] modified [original_name]'s [objectvar]: [original_var]=[new_var]")
 	message_admins("[key_name_admin(src)] modified [original_name]'s varlist [objectvar]: [original_var]=[new_var]")
 
-/client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = 0)
+/client/proc/modify_variables(atom/O, param_var_name = null, autodetect_class = 0)
 	if(!check_rights(R_ADMIN))
 		return
 

@@ -6,7 +6,7 @@
 	mechanical = 0
 	tray_light = 0
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(obj/item/I, mob/user)
 	//You cant move soil with wrench
 	if((QUALITY_BOLT_TURNING in I.tool_qualities) && ((istype(I, /obj/item/tank) && !( src.destroyed ))))
 		..()
@@ -31,7 +31,7 @@
 	icon = 'icons/obj/seeds.dmi'
 	icon_state = "blank"
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/New(var/newloc,var/datum/seed/newseed)
+/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/New(newloc,datum/seed/newseed)
 	..()
 	seed = newseed
 	dead = 0

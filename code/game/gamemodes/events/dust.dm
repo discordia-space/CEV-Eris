@@ -43,7 +43,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	return "weak"
 
 
-/proc/dust_swarm(var/strength = "weak")
+/proc/dust_swarm(strength = "weak")
 	var/numbers = 1
 	switch(strength)
 		if("weak")

@@ -203,7 +203,7 @@
 
 	return TRUE
 
-/datum/ritual/targeted/cruciform/priest/atonement/process_target(var/index, var/obj/item/implant/core_implant/target, var/text)
+/datum/ritual/targeted/cruciform/priest/atonement/process_target(index, obj/item/implant/core_implant/target, text)
 	target.update_address()
 	if(index == 1 && target.address == text)
 		if(target.wearer && (target.loc && (target.locs[1] in view())))
@@ -484,7 +484,7 @@
 
 	return TRUE
 
-/datum/ritual/targeted/cruciform/priest/excommunication/process_target(var/index, var/obj/item/implant/core_implant/target, var/text)
+/datum/ritual/targeted/cruciform/priest/excommunication/process_target(index, obj/item/implant/core_implant/target, text)
 	if(index == 1 && target.address == text && target.active)
 		if(target.wearer && target.wearer.stat != DEAD)
 			return target

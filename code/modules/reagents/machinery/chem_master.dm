@@ -50,7 +50,7 @@
 		return
 	. = ..()
 
-/obj/machinery/chem_master/attackby(var/obj/item/B as obj, var/mob/user as mob)
+/obj/machinery/chem_master/attackby(obj/item/B as obj, mob/user as mob)
 	if(default_deconstruction(B, user))
 		return
 

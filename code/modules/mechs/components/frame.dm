@@ -27,7 +27,7 @@
 	if(material)
 		LAZYAPLUS(., material.name, 10)
 
-/obj/structure/heavy_vehicle_frame/proc/set_colour(var/new_colour)
+/obj/structure/heavy_vehicle_frame/proc/set_colour(new_colour)
 	var/painted_component = FALSE
 	for(var/obj/item/mech_component/comp in list(body, arms, legs, head))
 		if(comp.set_colour(new_colour))

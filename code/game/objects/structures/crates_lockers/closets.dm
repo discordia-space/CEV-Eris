@@ -254,10 +254,10 @@
 	if(Adjacent(user))
 		src.togglelock(user)
 
-/obj/structure/closet/proc/CanToggleLock(var/mob/user)
+/obj/structure/closet/proc/CanToggleLock(mob/user)
 	return allowed(user)
 
-/obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
+/obj/structure/closet/proc/set_locked(newlocked, mob/user = null)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
 	if(!secure)
 		return
@@ -276,7 +276,7 @@
 	update_icon()
 
 //Cham Projector Exception
-/obj/structure/closet/proc/store_misc(var/stored_units)
+/obj/structure/closet/proc/store_misc(stored_units)
 	var/added_units = 0
 	for(var/obj/effect/dummy/chameleon/AD in src.loc)
 		if((stored_units + added_units) > storage_capacity)
@@ -285,7 +285,7 @@
 		added_units++
 	return added_units
 
-/obj/structure/closet/proc/store_items(var/stored_units)
+/obj/structure/closet/proc/store_items(stored_units)
 	var/added_units = 0
 	for(var/obj/item/I in src.loc)
 		var/item_size = CEILING(I.w_class / 2, 1)
@@ -296,7 +296,7 @@
 			added_units += item_size
 	return added_units
 
-/obj/structure/closet/proc/store_mobs(var/stored_units)
+/obj/structure/closet/proc/store_mobs(stored_units)
 	var/added_units = 0
 	for(var/mob/living/M in src.loc)
 		if(M.buckled || M.pinned.len)
@@ -534,7 +534,7 @@
 	if(!src.toggle())
 		to_chat(usr, span_notice("It won't budge!"))
 
-/obj/structure/closet/emag_act(var/remaining_charges, var/mob/user)
+/obj/structure/closet/emag_act(remaining_charges, mob/user)
 	if(!broken)
 		locked = FALSE
 		broken = TRUE
@@ -627,7 +627,7 @@
 		return 0 //closed but not welded...
 	return 1
 
-/obj/structure/closet/proc/mob_breakout(var/mob/living/escapee)
+/obj/structure/closet/proc/mob_breakout(mob/living/escapee)
 	var/breakout_time = 2 //2 minutes by default
 
 	if(breakout || !req_breakout())

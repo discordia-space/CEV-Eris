@@ -115,7 +115,7 @@
 	. = (body && body.pilot_coverage >= 100 && hatch_closed) ? FALSE : ..()
 */
 
-/mob/living/exosuit/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame)
+/mob/living/exosuit/Initialize(mapload, obj/structure/heavy_vehicle_frame/source_frame)
 	. = ..()
 
 	material = get_material_by_name("[material]")

@@ -139,7 +139,7 @@
 	projectile_accuracy = initial(projectile_accuracy) * newmult
 
 // bullet/pellets redefines this
-/obj/item/projectile/proc/adjust_damages(var/list/newdamages)
+/obj/item/projectile/proc/adjust_damages(list/newdamages)
 	if(!newdamages.len)
 		return
 	for(var/damage_type in newdamages)
@@ -178,7 +178,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/projectile/proc/get_structure_damage(var/injury_type)
+/obj/item/projectile/proc/get_structure_damage(injury_type)
 	if(!injury_type) // Assume homogenous
 		return (damage_types[BRUTE] + damage_types[BURN]) * wound_check(INJURY_TYPE_HOMOGENOUS, wounding_mult, edge, sharp) * 2
 	else
@@ -553,7 +553,7 @@
 
 	transform = turn(transform, -(trajectory.return_angle() + 90)) //no idea why 90 needs to be added, but it works
 
-/obj/item/projectile/proc/muzzle_effect(var/matrix/T)
+/obj/item/projectile/proc/muzzle_effect(matrix/T)
 	//This can happen when firing inside a wall, safety check
 	if (!location)
 		return
@@ -574,7 +574,7 @@
 			M.pixel_y = location.pixel_y
 			M.activate()
 
-/obj/item/projectile/proc/tracer_effect(var/matrix/M)
+/obj/item/projectile/proc/tracer_effect(matrix/M)
 
 	//This can happen when firing inside a wall, safety check
 	if (!location)
@@ -606,7 +606,7 @@
     else if(luminosity_range && luminosity_power && luminosity_color)
         attached_effect = new /obj/effect/effect/light(src.loc, luminosity_range, luminosity_power, luminosity_color)
 
-/obj/item/projectile/proc/impact_effect(var/matrix/M)
+/obj/item/projectile/proc/impact_effect(matrix/M)
 	//This can happen when firing inside a wall, safety check
 	if (!location)
 		return
@@ -624,7 +624,7 @@
 			P.pixel_y = location.pixel_y
 			P.activate(P.lifetime)
 
-/obj/item/projectile/proc/block_damage(var/amount, atom/A)
+/obj/item/projectile/proc/block_damage(amount, atom/A)
 	amount /= armor_divisor
 	var/dmg_total = 0
 	var/dmg_remaining = 0
@@ -712,7 +712,7 @@
 				return 1
 
 //Helper proc to check if you can hit them or not.
-/proc/check_trajectory(atom/target as mob|obj, atom/firer as mob|obj, var/pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)
+/proc/check_trajectory(atom/target as mob|obj, atom/firer as mob|obj, pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)
 	if(!istype(target) || !istype(firer))
 		return 0
 
@@ -727,7 +727,7 @@
 	qdel(trace) //No need for it anymore
 	return output //Send it back to the gun!
 
-/proc/get_proj_icon_by_color(var/obj/item/projectile/P, var/color)
+/proc/get_proj_icon_by_color(obj/item/projectile/P, color)
 	var/icon/I = new(P.icon, P.icon_state)
 	I.Blend(color)
 	return I

@@ -7,7 +7,7 @@
 	desc = description
 	..(loc, new /datum/poster/wanted (person_icon, wanted_name, description))
 
-/datum/poster/wanted/New(var/icon/person_icon, var/person_name, var/description)
+/datum/poster/wanted/New(icon/person_icon, person_name, description)
 	name = person_name
 	desc = description
 	person_icon = icon(person_icon, dir = SOUTH)//copy the image so we don't mess with the one in the record.
@@ -24,6 +24,6 @@
 	the_icon.Insert('icons/obj/contraband.dmi', "poster_ripped")
 	icon = the_icon
 
-/datum/poster/wanted/set_design(var/obj/item/contraband/poster/P)
+/datum/poster/wanted/set_design(obj/item/contraband/poster/P)
 	..()
 	P.name = "wanted poster ([name])"

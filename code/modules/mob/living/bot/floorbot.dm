@@ -29,7 +29,7 @@
 		icon_state = "floorbot[on]e"
 	..()
 
-/mob/living/bot/floorbot/attack_hand(var/mob/user)
+/mob/living/bot/floorbot/attack_hand(mob/user)
 	user.set_machine(src)
 	var/dat
 	dat += "<TT><B>Automatic Station Floor Repairer v1.0</B></TT><BR><BR>"
@@ -52,7 +52,7 @@
 	onclose(user, "autorepair")
 	return
 
-/mob/living/bot/floorbot/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/bot/floorbot/emag_act(remaining_charges, mob/user)
 	. = ..()
 	if(!emagged)
 		emagged = 1
@@ -184,7 +184,7 @@
 		path -= path[1]
 
 
-/mob/living/bot/floorbot/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/bot/floorbot/UnarmedAttack(atom/A, proximity)
 	if(!..())
 		return
 
@@ -339,7 +339,7 @@
 	s.start()
 	qdel(src)
 
-/mob/living/bot/floorbot/proc/addTiles(var/am)
+/mob/living/bot/floorbot/proc/addTiles(am)
 	amount += am
 	if(amount < 0)
 		amount = 0
@@ -348,7 +348,7 @@
 
 /* Assembly */
 
-/obj/item/storage/toolbox/mechanical/attackby(var/obj/item/stack/tile/floor/T, mob/user as mob)
+/obj/item/storage/toolbox/mechanical/attackby(obj/item/stack/tile/floor/T, mob/user as mob)
 	if(!istype(T, /obj/item/stack/tile/floor))
 		..()
 		return
@@ -379,7 +379,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	var/created_name = "Floorbot"
 
-/obj/item/toolbox_tiles/attackby(var/obj/item/W, mob/user as mob)
+/obj/item/toolbox_tiles/attackby(obj/item/W, mob/user as mob)
 	..()
 	if(isproxsensor(W))
 		qdel(W)
@@ -410,7 +410,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	var/created_name = "Floorbot"
 
-/obj/item/toolbox_tiles_sensor/attackby(var/obj/item/W, mob/user as mob)
+/obj/item/toolbox_tiles_sensor/attackby(obj/item/W, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm))
 		qdel(W)

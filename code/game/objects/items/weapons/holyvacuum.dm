@@ -49,14 +49,14 @@
 /obj/item/holyvacuum/proc/refill()
 	reagents.add_reagent("cleaner", 10)  // Need to have cleaner in it for /turf/proc/clean
 
-/obj/item/holyvacuum/attack_self(var/mob/user)
+/obj/item/holyvacuum/attack_self(mob/user)
 	.=..()
 	if(amount==0)
 		to_chat(user, span_notice("The storage tank of the [src] is already empty."))
 	else
 		empty(user)
 
-/obj/item/holyvacuum/proc/empty(var/mob/user)
+/obj/item/holyvacuum/proc/empty(mob/user)
 	var/obj/item/compressedfilth/CF = new(user.loc)  // Drop the content of the vacuum cleaner on the ground
 	CF.matter[MATERIAL_BIOMATTER] = amount
 	amount = 0

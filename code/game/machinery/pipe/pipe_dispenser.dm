@@ -97,7 +97,7 @@
 				wait = 0
 	return
 
-/obj/machinery/pipedispenser/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/pipedispenser/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(usr)
 	if (istype(I, /obj/item/pipe) || istype(I, /obj/item/pipe_meter))
 		to_chat(usr, span_notice("You put [I] back to [src]."))
@@ -131,7 +131,7 @@
 
 /*
 //Allow you to push disposal pipes into it (for those with density 1)
-/obj/machinery/pipedispenser/disposal/Crossed(var/obj/structure/disposalconstruct/pipe as obj)
+/obj/machinery/pipedispenser/disposal/Crossed(obj/structure/disposalconstruct/pipe as obj)
 	if(istype(pipe) && !pipe.anchored)
 		qdel(pipe)
 
@@ -139,7 +139,7 @@ Nah
 */
 
 //Allow you to drag-drop disposal pipes into it
-/obj/machinery/pipedispenser/disposal/MouseDrop_T(var/obj/structure/disposalconstruct/pipe as obj, mob/usr as mob)
+/obj/machinery/pipedispenser/disposal/MouseDrop_T(obj/structure/disposalconstruct/pipe as obj, mob/usr as mob)
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return
 

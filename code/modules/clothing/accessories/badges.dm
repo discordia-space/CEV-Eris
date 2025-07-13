@@ -21,7 +21,7 @@
 	icon_state = "badge_round"
 	badge_string = "Nanotrasen Security Division"
 
-/obj/item/clothing/accessory/badge/proc/set_name(var/new_name)
+/obj/item/clothing/accessory/badge/proc/set_name(new_name)
 	stored_name = new_name
 	name = "[initial(name)] ([stored_name])"
 
@@ -61,7 +61,7 @@
 		return
 	return ..()
 
-/obj/item/clothing/accessory/badge/holo/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/clothing/accessory/badge/holo/emag_act(remaining_charges, mob/user)
 	if (emagged)
 		to_chat(user, span_danger("\The [src] is already cracked."))
 		return
@@ -70,7 +70,7 @@
 		to_chat(user, span_danger("You crack the holobadge security checks."))
 		return 1
 
-/obj/item/clothing/accessory/badge/holo/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/clothing/accessory/badge/holo/attackby(obj/item/O as obj, mob/user as mob)
 	var/obj/item/card/id/id_card = O.GetIdCard()
 	if(!id_card)
 		return

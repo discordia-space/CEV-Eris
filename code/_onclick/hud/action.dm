@@ -26,7 +26,7 @@
 	var/background_icon_state = "bg_default"
 	var/mob/living/owner
 
-/datum/action/New(var/Target)
+/datum/action/New(Target)
 	target = Target
 
 /datum/action/Destroy()
@@ -79,7 +79,7 @@
 			if(target && procname)
 				if(!arguments)
 					arguments = usr
-				call(target, procname)(arguments)		
+				call(target, procname)(arguments)
 	return
 
 /datum/action/proc/Activate()
@@ -175,7 +175,7 @@
 	usr.update_action_buttons()
 
 
-/obj/screen/movable/action_button/hide_toggle/proc/InitialiseIcon(var/mob/living/user)
+/obj/screen/movable/action_button/hide_toggle/proc/InitialiseIcon(mob/living/user)
 	icon_state = "bg_default"
 	UpdateIcon()
 	return
@@ -194,7 +194,7 @@
 #define AB_NORTH_OFFSET 26
 #define AB_MAX_COLUMNS 10
 
-/datum/hud/proc/ButtonNumberToScreenCoords(var/number) // TODO : Make this zero-indexed for readabilty
+/datum/hud/proc/ButtonNumberToScreenCoords(number) // TODO : Make this zero-indexed for readabilty
 	var/row = round((number-1)/AB_MAX_COLUMNS)
 	var/col = ((number - 1)%(AB_MAX_COLUMNS)) + 1
 	var/coord_col = "+[col-1]"
@@ -203,7 +203,7 @@
 	var/coord_row_offset = AB_NORTH_OFFSET
 	return "WEST[coord_col]:[coord_col_offset],NORTH[coord_row]:[coord_row_offset]"
 
-/datum/hud/proc/SetButtonCoords(var/obj/screen/button, var/number)
+/datum/hud/proc/SetButtonCoords(obj/screen/button, number)
 	var/row = round((number-1)/AB_MAX_COLUMNS)
 	var/col = ((number - 1)%(AB_MAX_COLUMNS)) + 1
 	var/x_offset = 32*(col-1) + AB_WEST_OFFSET + 2*col

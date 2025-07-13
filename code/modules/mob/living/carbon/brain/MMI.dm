@@ -35,7 +35,7 @@
 	var/mob/living/carbon/brain/brainmob = null//The current occupant.
 	var/obj/item/organ/internal/vital/brain/brainobj = null	//The current brain organ.
 
-/obj/item/device/mmi/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/device/mmi/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O,/obj/item/organ/internal/vital/brain) && !brainmob) //Time to stick a brain in it --NEO
 
 		var/obj/item/organ/internal/vital/brain/B = O
@@ -114,7 +114,7 @@
 		icon_state = "mmi_empty"
 		name = "Man-Machine Interface"
 
-/obj/item/device/mmi/proc/transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
+/obj/item/device/mmi/proc/transfer_identity(mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
@@ -128,7 +128,7 @@
 	locked = 1
 	return
 
-/obj/item/device/mmi/relaymove(var/mob/user, var/direction)
+/obj/item/device/mmi/relaymove(mob/user, direction)
 	if(user.stat || user.stunned)
 		return
 	var/obj/item/rig/rig = src.get_rig()

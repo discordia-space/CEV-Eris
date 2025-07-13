@@ -36,7 +36,7 @@
 			if("Cargo")
 				build_path = /obj/machinery/computer/security/cargo
 
-/obj/item/electronics/circuitboard/camera/attackby(var/obj/item/I, var/mob/user)//if(health > 50)
+/obj/item/electronics/circuitboard/camera/attackby(obj/item/I, mob/user)//if(health > 50)
 	..()
 	else if(istype(I,/obj/item/tool/screwdriver))
 		secured = !secured
@@ -44,12 +44,12 @@
 		updateBuildPath()
 	return
 
-/obj/item/electronics/circuitboard/camera/attack_self(var/mob/user)
+/obj/item/electronics/circuitboard/camera/attack_self(mob/user)
 	if(!secured && ishuman(user))
 		user.machine = src
 		interact(user, 0)
 
-/obj/item/electronics/circuitboard/camera/proc/interact(var/mob/user, var/ai=0)
+/obj/item/electronics/circuitboard/camera/proc/interact(mob/user, ai=0)
 	if(secured)
 		return
 	if (!ishuman(user))
@@ -104,7 +104,7 @@
 	if(ismob(src.loc))
 		attack_self(src.loc)
 
-/obj/item/electronics/circuitboard/camera/emag_act(var/remaining_charges, mob/user)
+/obj/item/electronics/circuitboard/camera/emag_act(remaining_charges, mob/user)
 	if(network)
 		authorised = 1
 		user << span_notice("You authorised the circuit network!")

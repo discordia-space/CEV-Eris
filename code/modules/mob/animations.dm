@@ -8,11 +8,11 @@ value of dizziness ranges from 0 to 1000
 below 100 is not dizzy
 */
 
-/mob/proc/make_dizzy(var/amount)
+/mob/proc/make_dizzy(amount)
 	return
 
 // for the moment, only humans get dizzy
-/mob/living/carbon/human/make_dizzy(var/amount)
+/mob/living/carbon/human/make_dizzy(amount)
 	dizziness = min(1000, dizziness + amount)	// store what will be new value
 													// clamped to max 1000
 	if(dizziness > 100 && !is_dizzy)
@@ -45,14 +45,14 @@ note dizziness decrements automatically in the mob's Life() proc.
 		client.pixel_y = 0
 
 // jitteriness - copy+paste of dizziness
-/mob/proc/make_jittery(var/amount)
+/mob/proc/make_jittery(amount)
 	return
 
 /mob/living/carbon
 	var/is_jittery = 0
 	var/jitteriness = 0
 
-/mob/living/carbon/human/make_jittery(var/amount)
+/mob/living/carbon/human/make_jittery(amount)
 	jitteriness = min(1000, jitteriness + amount)	// store what will be new value
 													// clamped to max 1000
 	if(jitteriness > 100 && !is_jittery)
@@ -81,7 +81,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 //You can pass in true or false in a case where you've already done the calculations and can skip some checking here
 //Its perfectly fine to call this proc with no input, it will figure out what it needs to do
-/mob/proc/update_floating(var/setstate = null)
+/mob/proc/update_floating(setstate = null)
 	if (!isnull(setstate))
 		make_floating(setstate)
 		return
@@ -97,7 +97,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	make_floating(1)
 	return
 
-/mob/proc/make_floating(var/n)
+/mob/proc/make_floating(n)
 	floatiness = n
 
 	if(floatiness && !is_floating)
@@ -126,7 +126,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	//reset the pixel offsets to zero
 	is_floating = 0
 
-/atom/movable/proc/do_attack_animation(atom/A, var/use_item = TRUE, var/depth = 8)
+/atom/movable/proc/do_attack_animation(atom/A, use_item = TRUE, depth = 8)
 	var/prev_x = pixel_x
 	var/prev_y = pixel_y
 	var/pixel_x_diff = 0
@@ -156,7 +156,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
 	animate(pixel_x = prev_x, pixel_y = prev_y, time = 2)
 
-/mob/do_attack_animation(atom/A, var/use_item = TRUE)
+/mob/do_attack_animation(atom/A, use_item = TRUE)
 	..()
 	is_floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
 
@@ -219,7 +219,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 //Shakes the mob's camera
 //Strength is not recommended to set higher than 4, and even then its a bit wierd
-/proc/shake_camera(mob/M, duration, strength = 1, var/taper = 0.25)
+/proc/shake_camera(mob/M, duration, strength = 1, taper = 0.25)
 	if(!M || !M.client || M.shakecamera || M.stat || isEye(M) || isAI(M))
 		return
 

@@ -26,7 +26,7 @@
 		if (istype(L))
 			return handle_z_crawl(L, direction)
 
-/obj/machinery/atmospherics/pipe/zpipe/proc/check_ventcrawl(var/turf/target)
+/obj/machinery/atmospherics/pipe/zpipe/proc/check_ventcrawl(turf/target)
 	if(!istype(target))
 		return
 	if(node1 in target)
@@ -35,20 +35,20 @@
 		return node2
 	return
 
-/obj/machinery/atmospherics/proc/can_z_crawl(var/mob/living/L, var/direction)
+/obj/machinery/atmospherics/proc/can_z_crawl(mob/living/L, direction)
 	return FALSE
 
-/obj/machinery/atmospherics/pipe/zpipe/can_z_crawl(var/mob/living/L, var/direction)
+/obj/machinery/atmospherics/pipe/zpipe/can_z_crawl(mob/living/L, direction)
 	if(L.is_ventcrawling && L.loc == src)
 		if(node2 && check_connect_types(node2,src))
 			if(direction == travel_direction)
 				return TRUE
 
 
-/obj/machinery/atmospherics/proc/handle_z_crawl(var/mob/living/L, var/direction)
+/obj/machinery/atmospherics/proc/handle_z_crawl(mob/living/L, direction)
 	return
 
-/obj/machinery/atmospherics/pipe/zpipe/handle_z_crawl(var/mob/living/L, var/direction)
+/obj/machinery/atmospherics/pipe/zpipe/handle_z_crawl(mob/living/L, direction)
 	if (!can_z_crawl(L, direction))
 		to_chat(L, span("notice", "You can't climb that way!"))
 		return

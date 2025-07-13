@@ -94,7 +94,7 @@
 		var/area/crawler/A = loc.loc
 		A.room_controllers += src
 
-/obj/crawler/room_controller/proc/connect(var/obj/crawler/room_controller/neighbor)
+/obj/crawler/room_controller/proc/connect(obj/crawler/room_controller/neighbor)
 	var/rc_dir = get_dir(src, neighbor)
 	var/turf/T1
 	var/turf/T2

@@ -6,7 +6,7 @@
 	var/registered_name
 	var/list/access_occupy = list()
 
-/obj/structure/closet/secure_closet/personal/CanToggleLock(var/mob/user)
+/obj/structure/closet/secure_closet/personal/CanToggleLock(mob/user)
 	var/obj/item/card/id/id_card = user.GetIdCard()
 
 	if(id_card && id_card.registered_name == registered_name)
@@ -37,7 +37,7 @@
 
 	return ..()
 
-/obj/structure/closet/secure_closet/personal/emag_act(var/remaining_charges, var/mob/user, var/visual_feedback, var/audible_feedback)
+/obj/structure/closet/secure_closet/personal/emag_act(remaining_charges, mob/user, visual_feedback, audible_feedback)
 	if(!broken)
 		broken = TRUE
 		locked = FALSE

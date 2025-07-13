@@ -252,7 +252,7 @@
 	return C && C.installed == 1 && C.toggled && C.is_powered()
 
 // Returns component by it's string name
-/mob/living/silicon/robot/proc/get_component(var/component_name)
+/mob/living/silicon/robot/proc/get_component(component_name)
 	var/datum/robot_component/C = components[component_name]
 	return C
 
@@ -285,7 +285,7 @@
 	var/total_dam = 0
 	var/max_dam = 30
 
-/obj/item/robot_parts/robot_component/take_damage(var/brute_amt, var/burn_amt)
+/obj/item/robot_parts/robot_component/take_damage(brute_amt, burn_amt)
 	brute += brute_amt
 	burn += burn_amt
 	total_dam = brute+burn

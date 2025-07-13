@@ -114,7 +114,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		linked_destroy = null
 	return ..()
 
-/obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj, var/mob/user as mob)
+/obj/machinery/computer/rdconsole/attackby(obj/item/D as obj, mob/user as mob)
 	//Loading a disk into it.
 	if(istype(D, /obj/item/computer_hardware/hard_drive/portable))
 		if(disk)
@@ -139,7 +139,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	SSnano.update_uis(src)
 	return
 
-/obj/machinery/computer/rdconsole/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/rdconsole/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		playsound(loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = TRUE

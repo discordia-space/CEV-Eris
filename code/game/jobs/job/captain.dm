@@ -52,7 +52,7 @@ Your second loyalty is to your command officers. The heads of each faction. List
 							 /datum/computer_file/program/reports)
 
 
-/datum/job/captain/equip(var/mob/living/carbon/human/H)
+/datum/job/captain/equip(mob/living/carbon/human/H)
 	if(!..())	return 0
 	if(H.age>49)
 		var/obj/item/clothing/under/U = H.w_uniform

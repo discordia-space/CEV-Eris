@@ -59,7 +59,7 @@
 	icon_state = "seashallow"
 	var/reagent_type = /datum/reagent/water
 
-/turf/floor/exoplanet/water/shallow/attackby(obj/item/O, var/mob/living/user)
+/turf/floor/exoplanet/water/shallow/attackby(obj/item/O, mob/living/user)
 	var/obj/item/reagent_containers/RG = O
 	if (reagent_type && istype(RG) && RG.is_open_container() && RG.reagents)
 		RG.reagents.add_reagent(reagent_type, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
@@ -74,7 +74,7 @@
 	. = ..()
 	update_icon(1)
 
-/turf/floor/exoplanet/update_icon(var/update_neighbors)
+/turf/floor/exoplanet/update_icon(update_neighbors)
 	cut_overlays()
 	if(LAZYLEN(decals))
 		overlays += decals
@@ -205,6 +205,6 @@
 	else
 		..(C,user)
 
-/turf/floor/exoplanet/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
+/turf/floor/exoplanet/take_damage(damage, damage_type = BRUTE, ignore_resistance = FALSE)
 	// Exoplanet turfs are indestructible, otherwise they can be destroyed at some point and expose metal plating
 	return

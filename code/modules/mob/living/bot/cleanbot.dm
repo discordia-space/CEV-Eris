@@ -158,7 +158,7 @@
 
 
 
-/mob/living/bot/cleanbot/UnarmedAttack(var/obj/effect/decal/cleanable/D, var/proximity)
+/mob/living/bot/cleanbot/UnarmedAttack(obj/effect/decal/cleanable/D, proximity)
 	if(!..())
 		return
 
@@ -214,7 +214,7 @@
 	path = list()
 	patrol_path = list()
 
-/mob/living/bot/cleanbot/attack_hand(var/mob/user)
+/mob/living/bot/cleanbot/attack_hand(mob/user)
 	var/dat
 	dat += "<TT><B>Automatic Ship Cleaner v1.0</B></TT><BR><BR>"
 	dat += "Status: <A href='byond://?src=\ref[src];operation=start'>[on ? "On" : "Off"]</A><BR>"
@@ -260,7 +260,7 @@
 			to_chat(usr, span_notice("You press the weird button."))
 	attack_hand(usr)
 
-/mob/living/bot/cleanbot/emag_act(var/remaining_uses, var/mob/user)
+/mob/living/bot/cleanbot/emag_act(remaining_uses, mob/user)
 	. = ..()
 	if(!screwloose || !oddbutton)
 		if(user)
@@ -290,7 +290,7 @@
 	var/mob/living/bot/cleanbot/cleanbot = null
 	var/list/memorized = list()
 
-/obj/cleanbot_listener/receive_signal(var/datum/signal/signal)
+/obj/cleanbot_listener/receive_signal(datum/signal/signal)
 	var/recv = signal.data["beacon"]
 	var/valid = signal.data["patrol"]
 	if(!recv || !valid || !cleanbot)
@@ -317,7 +317,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	var/created_name = "Cleanbot"
 
-/obj/item/bucket_sensor/attackby(var/obj/item/O, var/mob/user)
+/obj/item/bucket_sensor/attackby(obj/item/O, mob/user)
 	..()
 	if(istype(O, /obj/item/robot_parts/l_arm) || istype(O, /obj/item/robot_parts/r_arm))
 		user.drop_item()

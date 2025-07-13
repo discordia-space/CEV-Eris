@@ -36,7 +36,7 @@
 	//IE, if this is 0.2 a stack of 120 will deal 24 base damage when falling on a mob
 	var/fall_damage_per_amount = 0.2
 
-/obj/item/stack/New(var/loc, var/amount=null)
+/obj/item/stack/New(loc, amount=null)
 	.=..()
 	if (amount)
 		src.amount = amount
@@ -147,7 +147,7 @@
 	onclose(user, "stack")
 	return
 
-/obj/item/stack/proc/produce_recipe(datum/stack_recipe/recipe, var/quantity, mob/user)
+/obj/item/stack/proc/produce_recipe(datum/stack_recipe/recipe, quantity, mob/user)
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
 
@@ -229,12 +229,12 @@
 
 //Return 1 if an immediate subsequent call to use() would succeed.
 //Ensures that code dealing with stacks uses the same logic
-/obj/item/stack/proc/can_use(var/used)
+/obj/item/stack/proc/can_use(used)
 	if (get_amount() < used)
 		return 0
 	return 1
 
-/obj/item/stack/proc/use(var/used)
+/obj/item/stack/proc/use(used)
 	if (!can_use(used))
 		return 0
 	if(!uses_charge)
@@ -253,7 +253,7 @@
 			S.use_charge(charge_costs[i] * used) // Doesn't need to be deleted
 		return 1
 
-/obj/item/stack/proc/add(var/extra)
+/obj/item/stack/proc/add(extra)
 	if(!uses_charge)
 		if(amount + extra > get_max_amount())
 			return 0
@@ -275,7 +275,7 @@
 */
 
 //attempts to transfer amount to S, and returns the amount actually transferred
-/obj/item/stack/proc/transfer_to(obj/item/stack/S, var/tamount=null, var/type_verified)
+/obj/item/stack/proc/transfer_to(obj/item/stack/S, tamount=null, type_verified)
 	if (!get_amount())
 		return 0
 	if ((stacktype != S.stacktype) && !type_verified)
@@ -298,7 +298,7 @@
 	return 0
 
 //creates a new stack with the specified amount
-/obj/item/stack/proc/split(var/tamount)
+/obj/item/stack/proc/split(tamount)
 	if (!splittable)
 		return null
 	if (!amount)

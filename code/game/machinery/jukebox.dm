@@ -106,7 +106,7 @@
 		media_start_time = 0
 	update_music()
 
-/obj/machinery/media/jukebox/proc/set_hacked(var/newhacked)
+/obj/machinery/media/jukebox/proc/set_hacked(newhacked)
 	if (hacked == newhacked) return
 	hacked = newhacked
 	if (hacked)
@@ -154,7 +154,7 @@
 	return ..()
 
 
-/obj/machinery/media/jukebox/proc/update_tape(var/removed)
+/obj/machinery/media/jukebox/proc/update_tape(removed)
 	if (!removed)
 		tracks.Add(get_tape_playlist())
 	else
@@ -261,7 +261,7 @@
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/media/jukebox/nano_ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/media/jukebox/nano_ui_interact(mob/user, ui_key = "jukebox", datum/nanoui/ui = null, force_open = 1)
 	var/title = "RetroBox - Space Style"
 	var/data[0]
 
@@ -293,7 +293,7 @@
 /obj/machinery/media/jukebox/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/media/jukebox/attack_hand(var/mob/user as mob)
+/obj/machinery/media/jukebox/attack_hand(mob/user as mob)
 	interact(user)
 
 /obj/machinery/media/jukebox/proc/explode()
@@ -308,7 +308,7 @@
 	new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	qdel(src)
 
-/obj/machinery/media/jukebox/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/media/jukebox/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		emagged = 1
 		StopPlaying()

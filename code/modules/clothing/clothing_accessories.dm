@@ -8,7 +8,7 @@
 			if (AC.slot == A.slot)
 				return 0
 
-/obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
+/obj/item/clothing/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/clothing/accessory))
 
 		if(!valid_accessory_slots || !valid_accessory_slots.len)
@@ -44,7 +44,7 @@
 	src.verbs |= /obj/item/clothing/proc/removetie_verb
 	src.update_wear_icon()
 
-/obj/item/clothing/attack_hand(var/mob/user)
+/obj/item/clothing/attack_hand(mob/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
 	if(accessories.len && src.loc == user)
 		for(var/obj/item/clothing/accessory/A in accessories)

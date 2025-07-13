@@ -107,7 +107,7 @@
 
 
 
-/obj/machinery/power/am_control_unit/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/power/am_control_unit/bullet_act(obj/item/projectile/Proj)
 	if(Proj.check_armour != ARMOR_BULLET)
 		stability -= Proj.force
 	return 0
@@ -172,7 +172,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/proc/add_shielding(var/obj/machinery/am_shielding/AMS, var/AMS_linking = 0)
+/obj/machinery/power/am_control_unit/proc/add_shielding(obj/machinery/am_shielding/AMS, AMS_linking = 0)
 	if(!istype(AMS)) return 0
 	if(!anchored) return 0
 	if(!AMS_linking && !AMS.link_control(src)) return 0
@@ -181,7 +181,7 @@
 	return 1
 
 
-/obj/machinery/power/am_control_unit/proc/remove_shielding(var/obj/machinery/am_shielding/AMS)
+/obj/machinery/power/am_control_unit/proc/remove_shielding(obj/machinery/am_shielding/AMS)
 	if(!istype(AMS)) return 0
 	linked_shielding.Remove(AMS)
 	update_shield_icons = 2

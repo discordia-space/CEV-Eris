@@ -51,7 +51,7 @@
 /obj/screen/update_plane()
 	return
 
-/obj/screen/set_plane(var/np)
+/obj/screen/set_plane(np)
 	plane = np
 
 

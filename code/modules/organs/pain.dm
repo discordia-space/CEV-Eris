@@ -11,7 +11,7 @@
 
 // partname is the name of a body part
 // amount is a num from 1 to 100
-/mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0)
+/mob/living/carbon/proc/pain(partname, amount, force, burning = 0)
 	if(stat >= UNCONSCIOUS)
 		return
 	if(species && (species.flags & NO_PAIN))

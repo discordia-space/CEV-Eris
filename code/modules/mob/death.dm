@@ -21,7 +21,7 @@
 		flick(anim, animation)
 	addtimer(CALLBACK(src, PROC_REF(check_delete), animation), 15)
 
-/mob/proc/check_delete(var/atom/movable/overlay/animation)
+/mob/proc/check_delete(atom/movable/overlay/animation)
 	if(animation)	qdel(animation)
 	if(src)			qdel(src)
 
@@ -121,14 +121,14 @@
 
 
 //This proc retrieves the relevant time of death from
-/mob/proc/get_death_time(var/which)
+/mob/proc/get_death_time(which)
 	var/datum/preferences/P = get_preferences(src)
 	if (!P)
 		return FALSE
 
 	return P.time_of_death[which]
 
-/mob/proc/set_death_time(var/which, var/value)
+/mob/proc/set_death_time(which, value)
 	var/datum/preferences/P = get_preferences(src)
 	if (!P)
 		return FALSE
@@ -139,7 +139,7 @@
 
 //These functions get and set the bonuses to respawn time
 //Bonuses can be applied by things like going to cryosleep
-/mob/proc/get_respawn_bonus(var/which)
+/mob/proc/get_respawn_bonus(which)
 	var/datum/preferences/P = get_preferences(src)
 	if (!P)
 		return FALSE
@@ -154,7 +154,7 @@
 			total += P.crew_respawn_bonuses[v]
 		return total
 
-/mob/proc/set_respawn_bonus(var/which, var/value)
+/mob/proc/set_respawn_bonus(which, value)
 	var/datum/preferences/P = get_preferences(src)
 	if (!P)
 		return FALSE

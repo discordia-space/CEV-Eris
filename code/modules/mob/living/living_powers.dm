@@ -26,7 +26,7 @@
 		activate_ai()
 
 
-/mob/living/proc/check_surrounding_area(var/dist = 7)
+/mob/living/proc/check_surrounding_area(dist = 7)
 
 	if(faction == "neutral")
 		return TRUE

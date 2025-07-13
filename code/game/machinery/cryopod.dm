@@ -376,15 +376,15 @@
 	occupant.despawn()
 	set_occupant(null)
 
-/obj/machinery/cryopod/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/cryopod/affect_grab(mob/user, mob/target)
 	try_put_inside(target, user)
 	return TRUE
 
-/obj/machinery/cryopod/MouseDrop_T(var/mob/living/L, mob/living/user)
+/obj/machinery/cryopod/MouseDrop_T(mob/living/L, mob/living/user)
 	if(istype(L) && istype(user))
 		try_put_inside(L, user)
 
-/obj/machinery/cryopod/proc/try_put_inside(var/mob/living/affecting, var/mob/living/user)
+/obj/machinery/cryopod/proc/try_put_inside(mob/living/affecting, mob/living/user)
 	if(occupant)
 		to_chat(user, span_notice("\The [src] is in use."))
 		return

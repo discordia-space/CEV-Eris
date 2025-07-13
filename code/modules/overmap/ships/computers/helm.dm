@@ -55,12 +55,12 @@
 
 		return
 
-/obj/machinery/computer/helm/relaymove(var/mob/user, direction)
+/obj/machinery/computer/helm/relaymove(mob/user, direction)
 	if(manual_control && linked)
 		linked.relaymove(user,direction)
 		return 1
 
-/obj/machinery/computer/helm/check_eye(var/mob/user as mob)
+/obj/machinery/computer/helm/check_eye(mob/user as mob)
 	if (isAI(user))
 		user.unset_machine()
 		if (!manual_control)
@@ -93,7 +93,7 @@
 
 	nano_ui_interact(user)
 
-/obj/machinery/computer/helm/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/helm/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(!linked)
 		return
 
@@ -245,7 +245,7 @@
 	icon_keyboard = "generic_key"
 	icon_screen = "helm"
 
-/obj/machinery/computer/navigation/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/navigation/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(!linked)
 		return
 
@@ -276,7 +276,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/computer/navigation/check_eye(var/mob/user as mob)
+/obj/machinery/computer/navigation/check_eye(mob/user as mob)
 	if (isAI(user))
 		user.unset_machine()
 		if (!viewing)
@@ -289,7 +289,7 @@
 		return -1
 	return 0
 
-/obj/machinery/computer/navigation/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/navigation/attack_hand(mob/user as mob)
 	if(..())
 		user.unset_machine()
 		viewing = 0

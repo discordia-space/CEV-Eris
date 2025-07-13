@@ -23,7 +23,7 @@
 	for(var/mob/p in pilots)
 		p.setClickCooldown(timeout)
 
-/mob/living/exosuit/ClickOn(var/atom/A, var/params, var/mob/user = usr)
+/mob/living/exosuit/ClickOn(atom/A, params, mob/user = usr)
 	if(!user || incapacitated() || user.incapacitated())
 		return
 
@@ -156,7 +156,7 @@
 
 
 
-/mob/living/exosuit/proc/set_hardpoint(var/hardpoint_tag)
+/mob/living/exosuit/proc/set_hardpoint(hardpoint_tag)
 	clear_selected_hardpoint()
 	if(hardpoints[hardpoint_tag])
 		// Set the new system.
@@ -187,7 +187,7 @@
 		return ME.get_effective_obj()
 	return ..()
 
-/mob/living/exosuit/proc/check_enter(var/mob/user)
+/mob/living/exosuit/proc/check_enter(mob/user)
 	if(!user || user.incapacitated())	return FALSE
 	if(!user.Adjacent(src)) 			return FALSE
 	if(issilicon(user))					return FALSE
@@ -211,7 +211,7 @@
 			return FALSE
 	return TRUE
 
-/mob/living/exosuit/proc/enter(var/mob/user)
+/mob/living/exosuit/proc/enter(mob/user)
 	if(!check_enter(user))
 		return
 	to_chat(user, span_notice("You start climbing into \the [src]..."))

@@ -68,7 +68,7 @@
 	target_mob = null
 	stance = HOSTILE_STANCE_IDLE
 
-/mob/living/carbon/superior_animal/proc/isValidAttackTarget(var/atom/O)
+/mob/living/carbon/superior_animal/proc/isValidAttackTarget(atom/O)
 	if (isliving(O))
 		var/mob/living/L = O
 		if((L.stat != CONSCIOUS) || (L.health <= (ishuman(L) ? CONFIG_GET(number/health_threshold_crit) : 0)) || (!attack_same && (L.faction == src.faction)) || (L in friends))

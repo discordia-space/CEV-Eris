@@ -16,7 +16,7 @@
 			H.take_damage(rand(10,30))
 	qdel(src)
 
-/obj/item/modular_computer/take_damage(var/amount, var/component_probability, var/damage_casing = 1, var/randomize = 1)
+/obj/item/modular_computer/take_damage(amount, component_probability, damage_casing = 1, randomize = 1)
 	if(!modifiable)
 		return
 
@@ -37,13 +37,13 @@
 		break_apart()
 
 // EMPs are similar to explosions, but don't cause physical damage to the casing. Instead they screw up the components
-/obj/item/modular_computer/emp_act(var/severity)
+/obj/item/modular_computer/emp_act(severity)
 	take_damage(rand(100,200) / severity, 50 / severity, 0)
 
 // "Stun" weapons can cause minor damage to components (short-circuits?)
 // "Burn" damage is equally strong against internal components and exterior casing
 // "Brute" damage mostly damages the casing.
-/obj/item/modular_computer/bullet_act(var/obj/item/projectile/P)
+/obj/item/modular_computer/bullet_act(obj/item/projectile/P)
 	for(var/i in P.damage_types)
 		if(i == BRUTE)
 			take_damage(P.damage_types[i], P.damage_types[i] / 2)

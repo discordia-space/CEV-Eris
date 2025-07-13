@@ -27,7 +27,7 @@
 		if(prob(40))
 			S.set_trait(TRAIT_STINGS,1)
 
-/obj/effect/overmap/sector/exoplanet/garbage/adapt_animal(var/mob/living/simple_animal/A)
+/obj/effect/overmap/sector/exoplanet/garbage/adapt_animal(mob/living/simple_animal/A)
 	..()
 	A.faction = "Guardian" //stops bots form hitting each other
 
@@ -48,12 +48,12 @@
 	//megafauna_types = list(/mob/living/simple_animal/hostile/hivebot/mega)
 	var/fallout = 0
 
-/datum/random_map/noise/exoplanet/garbage/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce, var/never_be_priority = 0)
+/datum/random_map/noise/exoplanet/garbage/New(seed, tx, ty, tz, tlx, tly, do_not_apply, do_not_announce, never_be_priority = 0)
 	if(prob(60))
 		fallout = rand(10, 37.5)
 	..()
 
-/datum/random_map/noise/exoplanet/garbage/get_additional_spawns(var/value, var/turf/T)
+/datum/random_map/noise/exoplanet/garbage/get_additional_spawns(value, turf/T)
 	..()
 /*	if(is_edge_turf(T))
 		return
@@ -80,7 +80,7 @@
 		S.range = limit_x
 		SSradiation.add_source(S)*/
 
-/datum/random_map/noise/exoplanet/garbage/get_appropriate_path(var/value)
+/datum/random_map/noise/exoplanet/garbage/get_appropriate_path(value)
 	var/v = noise2value(value)
 	if(v > 6)
 		return /turf/floor/exoplanet/concrete

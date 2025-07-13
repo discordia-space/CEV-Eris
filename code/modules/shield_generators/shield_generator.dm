@@ -314,7 +314,7 @@
 			S.fail(1)
 
 
-/obj/machinery/power/shipside/shield_generator/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/power/shipside/shield_generator/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["running"] = running
@@ -366,13 +366,13 @@
 	mode_list.Add(temp)
 
 
-/obj/machinery/power/shipside/shield_generator/attack_hand(var/mob/user)
+/obj/machinery/power/shipside/shield_generator/attack_hand(mob/user)
 	nano_ui_interact(user)
 	if(panel_open)
 		wires.Interact(user)
 
 
-/obj/machinery/power/shipside/shield_generator/CanUseTopic(var/mob/user)
+/obj/machinery/power/shipside/shield_generator/CanUseTopic(mob/user)
 	if(issilicon(user) && !Adjacent(user) && ai_control_disabled)
 		return STATUS_UPDATE
 	return ..()
@@ -685,7 +685,7 @@
 
 
 //This proc keeps an internal log of shield impacts, activations, deactivations, and a vague log of config changes
-/obj/machinery/power/shipside/shield_generator/log_event(var/event_type, var/atom/origin_atom)
+/obj/machinery/power/shipside/shield_generator/log_event(event_type, atom/origin_atom)
 	var/logstring = "[stationtime2text()]: "
 	switch (event_type)
 		if(EVENT_DAMAGE_PHYSICAL to EVENT_DAMAGE_SPECIAL)

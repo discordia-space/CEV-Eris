@@ -72,7 +72,7 @@
 	if(S)
 		S.close(clientMob)
 
-/obj/item/storage/proc/setupItemBackground(var/HUD_element/itemBackground, atom/item, itemCount)
+/obj/item/storage/proc/setupItemBackground(HUD_element/itemBackground, atom/item, itemCount)
 	itemBackground.setClickProc(TYPE_PROC_REF(/obj/item/storage, itemBackgroundClick), src)
 	itemBackground.setData("item", item)
 

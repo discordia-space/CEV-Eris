@@ -9,7 +9,7 @@
 /datum/firemode/charge
 	var/datum/click_handler/charge/CH = null
 
-/datum/firemode/charge/update(var/force_state = null)
+/datum/firemode/charge/update(force_state = null)
 	var/mob/living/L
 	if (gun)
 		// bit of a hack here, but we want mounted systems to work properly
@@ -113,11 +113,11 @@
 	The actual code
 ******************/
 
-/obj/item/gun/energy/proc/begin_charge(var/mob/living/user)
+/obj/item/gun/energy/proc/begin_charge(mob/living/user)
 	to_chat(user, span_notice("You begin charging \the [src]."))
 	overcharge_timer = addtimer(CALLBACK(src, PROC_REF(add_charge), user), 1 SECONDS, TIMER_STOPPABLE)
 
-/obj/item/gun/energy/proc/add_charge(var/mob/living/user)
+/obj/item/gun/energy/proc/add_charge(mob/living/user)
 	deltimer(overcharge_timer)
 	if((get_holding_mob() == user || istype(loc, /obj/item/mech_equipment/mounted_system)) && get_cell() && cell.checked_use(1))
 		overcharge_level = min(overcharge_max, overcharge_level + get_overcharge_add(user))
@@ -131,10 +131,10 @@
 	visible_message(span_warning("\The [src] sputters out."))
 	overcharge_level = 0
 
-/obj/item/gun/energy/proc/get_overcharge_add(var/mob/living/user)
+/obj/item/gun/energy/proc/get_overcharge_add(mob/living/user)
 	return overcharge_rate+user.stats.getStat(STAT_VIG)*VIG_OVERCHARGE_GEN
 
-/obj/item/gun/energy/proc/release_charge(var/atom/target, var/mob/living/user)
+/obj/item/gun/energy/proc/release_charge(atom/target, mob/living/user)
 	deltimer(overcharge_timer)
 	var/overcharge_add = overcharge_level_to_mult()
 	damage_multiplier += overcharge_add

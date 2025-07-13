@@ -8,7 +8,7 @@ var/command_name
 	command_name = name
 	return name
 
-/proc/change_command_name(var/name)
+/proc/change_command_name(name)
 
 	command_name = name
 
@@ -35,7 +35,7 @@ var/command_name
 	else
 		world.name = html_decode(GLOB.station_name)
 
-/proc/world_name(var/name)
+/proc/world_name(name)
 	GLOB.station_name = name
 
 	if (config && CONFIG_GET(string/servername))

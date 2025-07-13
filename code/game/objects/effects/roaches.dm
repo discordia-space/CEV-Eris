@@ -20,7 +20,7 @@
 	user.drop_from_inventory(src)
 	qdel(src)
 
-/obj/item/roach_egg/attackby(var/obj/item/I, var/mob/user)
+/obj/item/roach_egg/attackby(obj/item/I, mob/user)
 	if(I.attack_verb.len)
 		visible_message(span_warning("\The [src] have been [pick(I.attack_verb)] with \the [I][(user ? " by [user]." : ".")]"))
 	else
@@ -29,7 +29,7 @@
 	health -= (I.force / 2)
 	healthcheck()
 
-/obj/item/roach_egg/bullet_act(var/obj/item/projectile/Proj)
+/obj/item/roach_egg/bullet_act(obj/item/projectile/Proj)
 	..()
 	health -= Proj.get_structure_damage()
 	healthcheck()
@@ -47,7 +47,7 @@
 
 
 
-/obj/item/roach_egg/New(var/location, var/atom/parent)
+/obj/item/roach_egg/New(location, atom/parent)
 	pixel_x = rand(3,-3)
 	pixel_y = rand(3,-3)
 	START_PROCESSING(SSobj, src)

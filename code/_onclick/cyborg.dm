@@ -6,7 +6,7 @@
 	adjacency code.
 */
 
-/mob/living/silicon/robot/ClickOn(var/atom/A, var/params)
+/mob/living/silicon/robot/ClickOn(atom/A, params)
 	if(!can_click())
 		return
 	next_click = world.time + 1
@@ -116,7 +116,7 @@
 	Gripper Handling
 	This is used when a gripper is used on anything. It does all the handling for it
 */
-/mob/living/silicon/robot/proc/GripperClickOn(var/atom/A, var/params, var/obj/item/gripper/G)
+/mob/living/silicon/robot/proc/GripperClickOn(atom/A, params, obj/item/gripper/G)
 
 	var/obj/item/W = G.wrapped
 	if (!grippersafety(G))return
@@ -155,64 +155,64 @@
 
 
 //Middle click cycles through selected modules.
-/mob/living/silicon/robot/MiddleClickOn(var/atom/A)
+/mob/living/silicon/robot/MiddleClickOn(atom/A)
 	cycle_modules()
 	return
 
 //Give cyborgs hotkey clicks without breaking existing uses of hotkey clicks
 // for non-doors/apcs
-/mob/living/silicon/robot/CtrlShiftClickOn(var/atom/A)
+/mob/living/silicon/robot/CtrlShiftClickOn(atom/A)
 	if(ai_access)
 		return A.BorgCtrlShiftClick(src)
 	..()
 
-/mob/living/silicon/robot/ShiftClickOn(var/atom/A)
+/mob/living/silicon/robot/ShiftClickOn(atom/A)
 	if(ai_access)
 		return A.BorgShiftClick(src)
 	..()
 
-/mob/living/silicon/robot/CtrlClickOn(var/atom/A)
+/mob/living/silicon/robot/CtrlClickOn(atom/A)
 	if(ai_access)
 		return A.BorgCtrlClick(src)
 	..()
 
-/mob/living/silicon/robot/AltClickOn(var/atom/A)
+/mob/living/silicon/robot/AltClickOn(atom/A)
 	if(ai_access)
 		return A.BorgAltClick(src)
 	..()
 
-/atom/proc/BorgCtrlShiftClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
+/atom/proc/BorgCtrlShiftClick(mob/living/silicon/robot/user) //forward to human click if not overriden
 	CtrlShiftClick(user)
 
-/obj/machinery/door/airlock/BorgCtrlShiftClick(var/mob/living/silicon/robot/user)
+/obj/machinery/door/airlock/BorgCtrlShiftClick(mob/living/silicon/robot/user)
 	AICtrlShiftClick(user)
 
-/atom/proc/BorgShiftClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
+/atom/proc/BorgShiftClick(mob/living/silicon/robot/user) //forward to human click if not overriden
 	ShiftClick(user)
 
-/obj/machinery/door/airlock/BorgShiftClick(var/mob/living/silicon/robot/user)  // Opens and closes doors! Forwards to AI code.
+/obj/machinery/door/airlock/BorgShiftClick(mob/living/silicon/robot/user)  // Opens and closes doors! Forwards to AI code.
 	AIShiftClick(user)
 
-/atom/proc/BorgCtrlClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
+/atom/proc/BorgCtrlClick(mob/living/silicon/robot/user) //forward to human click if not overriden
 	CtrlClick(user)
 
-/obj/machinery/door/airlock/BorgCtrlClick(var/mob/living/silicon/robot/user) // Bolts doors. Forwards to AI code.
+/obj/machinery/door/airlock/BorgCtrlClick(mob/living/silicon/robot/user) // Bolts doors. Forwards to AI code.
 	AICtrlClick(user)
 
-/obj/machinery/power/apc/BorgCtrlClick(var/mob/living/silicon/robot/user) // turns off/on APCs. Forwards to AI code.
+/obj/machinery/power/apc/BorgCtrlClick(mob/living/silicon/robot/user) // turns off/on APCs. Forwards to AI code.
 	AICtrlClick(user)
 
-/obj/machinery/turretid/BorgCtrlClick(var/mob/living/silicon/robot/user) //turret control on/off. Forwards to AI code.
+/obj/machinery/turretid/BorgCtrlClick(mob/living/silicon/robot/user) //turret control on/off. Forwards to AI code.
 	AICtrlClick(user)
 
-/atom/proc/BorgAltClick(var/mob/living/silicon/robot/user)
+/atom/proc/BorgAltClick(mob/living/silicon/robot/user)
 	AltClick(user)
 	return
 
-/obj/machinery/door/airlock/BorgAltClick(var/mob/living/silicon/robot/user) // Eletrifies doors. Forwards to AI code.
+/obj/machinery/door/airlock/BorgAltClick(mob/living/silicon/robot/user) // Eletrifies doors. Forwards to AI code.
 	AIAltClick(user)
 
-/obj/machinery/turretid/BorgAltClick(var/mob/living/silicon/robot/user) //turret lethal on/off. Forwards to AI code.
+/obj/machinery/turretid/BorgAltClick(mob/living/silicon/robot/user) //turret lethal on/off. Forwards to AI code.
 	AIAltClick(user)
 
 /*
@@ -235,53 +235,53 @@
 //
 //	On Ctrl-Click will turn on if off otherwise will switch between Filtering and Panic Siphon
 //
-/obj/machinery/alarm/BorgCtrlClick(var/mob/living/silicon/robot/user)
+/obj/machinery/alarm/BorgCtrlClick(mob/living/silicon/robot/user)
 	AICtrlClick(user)
 
 //
 //	On Alt-Click will cycle through modes
 //
-/obj/machinery/alarm/BorgAltClick(var/mob/living/silicon/robot/user)
+/obj/machinery/alarm/BorgAltClick(mob/living/silicon/robot/user)
 	AIAltClick(user)
 
 //
 //	On Ctrl-Click will turn on if off otherwise will switch between Filtering and Panic Siphon
 //
-/obj/machinery/firealarm/BorgCtrlClick(var/mob/living/silicon/robot/user)
+/obj/machinery/firealarm/BorgCtrlClick(mob/living/silicon/robot/user)
 	AICtrlClick(user)
 
 //
 //	On Ctrl-Click will turn on or off SMES input
 //
-/obj/machinery/power/smes/BorgCtrlClick(var/mob/living/silicon/robot/user)
+/obj/machinery/power/smes/BorgCtrlClick(mob/living/silicon/robot/user)
 	AICtrlClick(user)
 
 //
 //	On Alt-Click will turn on or off SMES output
 //
-/obj/machinery/power/smes/BorgAltClick(var/mob/living/silicon/robot/user)
+/obj/machinery/power/smes/BorgAltClick(mob/living/silicon/robot/user)
 	AIAltClick(user)
 
 //
 //	On Ctrl-Click will turn on or off gas cooling system
 //
-/obj/machinery/atmospherics/unary/freezer/BorgCtrlClick(var/mob/living/silicon/robot/user)
+/obj/machinery/atmospherics/unary/freezer/BorgCtrlClick(mob/living/silicon/robot/user)
 	AICtrlClick(user)
 
 //
 //	On Ctrl-Click will turn on or off telecomms machinery
 //	ENABLE WHEN TCOMS UI WILL BE UPDATED TO NANOUI
 /*
-/obj/machinery/telecomms/BorgCtrlClick(var/mob/living/silicon/robot/user)
+/obj/machinery/telecomms/BorgCtrlClick(mob/living/silicon/robot/user)
 	AICtrlClick(user)
 */
 
 //QOL feature, clicking on turf can toogle doors
-/turf/BorgCtrlClick(var/mob/living/silicon/robot/user)
+/turf/BorgCtrlClick(mob/living/silicon/robot/user)
 	AICtrlClick(user)
 
-/turf/BorgAltClick(var/mob/living/silicon/robot/user)
+/turf/BorgAltClick(mob/living/silicon/robot/user)
 	AIAltClick(user)
 
-/turf/BorgShiftClick(var/mob/living/silicon/robot/user)
+/turf/BorgShiftClick(mob/living/silicon/robot/user)
 	AIShiftClick(user)

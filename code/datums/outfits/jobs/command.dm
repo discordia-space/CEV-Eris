@@ -16,7 +16,7 @@
 	backpack_overrides[/decl/backpack_outfit/backpack]      = /obj/item/storage/backpack/captain
 	backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/storage/backpack/satchel/captain
 
-/decl/hierarchy/outfit/job/captain/post_equip(var/mob/living/carbon/human/H)
+/decl/hierarchy/outfit/job/captain/post_equip(mob/living/carbon/human/H)
 	..()
 	if(H.age>49)
 		// Since we can have something other than the default uniform at this

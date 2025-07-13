@@ -77,7 +77,7 @@ log transactions
 	else
 		icon_state = "atm"
 
-/obj/machinery/atm/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/atm/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		return
 
@@ -241,7 +241,7 @@ log transactions
 	else
 		user << browse(null,"window=atm")
 
-/obj/machinery/atm/Topic(var/href, var/href_list)
+/obj/machinery/atm/Topic(href, href_list)
 	if (..())
 		return
 	if(href_list["choice"])
@@ -437,7 +437,7 @@ log transactions
 	held_card = null
 	update_icon()
 
-/obj/machinery/atm/proc/spawn_ewallet(var/sum, loc, mob/living/carbon/human/human_user as mob)
+/obj/machinery/atm/proc/spawn_ewallet(sum, loc, mob/living/carbon/human/human_user as mob)
 	var/obj/item/spacecash/ewallet/E = new /obj/item/spacecash/ewallet(loc)
 	if(ishuman(human_user) && !human_user.get_active_held_item())
 		human_user.put_in_hands(E)

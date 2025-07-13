@@ -66,10 +66,10 @@
 	if(has_lid())
 		to_chat(user, span_notice("You need to take the lid off [src] first!"))
 
-/obj/item/reagent_containers/glass/self_feed_message(var/mob/user)
+/obj/item/reagent_containers/glass/self_feed_message(mob/user)
 	to_chat(user, span_notice("You swallow a gulp from \the [src]."))
 
-/obj/item/reagent_containers/glass/feed_sound(var/mob/user)
+/obj/item/reagent_containers/glass/feed_sound(mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
 /obj/item/reagent_containers/glass/examine(mob/user, extra_description = "")
@@ -111,7 +111,7 @@
 
 	return 0
 
-/obj/item/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/flag)
+/obj/item/reagent_containers/glass/afterattack(obj/target, mob/user, flag)
 	if(!flag)
 		return
 	for(var/type in can_be_placed_into)

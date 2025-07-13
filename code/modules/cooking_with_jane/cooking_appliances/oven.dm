@@ -100,7 +100,7 @@
 	var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = items
 	if(container.handle_ignition())
 		on_fire = TRUE
-/obj/machinery/cooking_with_jane/oven/attackby(var/obj/item/used_item, var/mob/user, params)
+/obj/machinery/cooking_with_jane/oven/attackby(obj/item/used_item, mob/user, params)
 	if(default_deconstruction(used_item, user))
 		return
 
@@ -177,7 +177,7 @@
 			handle_open(user)
 	update_icon()
 
-/obj/machinery/cooking_with_jane/oven/CtrlClick(var/mob/user, params)
+/obj/machinery/cooking_with_jane/oven/CtrlClick(mob/user, params)
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
 
@@ -192,7 +192,7 @@
 			handle_timer(user)
 
 //Switch the cooking device on or off
-/obj/machinery/cooking_with_jane/oven/CtrlShiftClick(var/mob/user, params)
+/obj/machinery/cooking_with_jane/oven/CtrlShiftClick(mob/user, params)
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
 
@@ -202,7 +202,7 @@
 	handle_switch(user)
 
 //Empty a container without a tool
-/obj/machinery/cooking_with_jane/oven/AltClick(var/mob/user, params)
+/obj/machinery/cooking_with_jane/oven/AltClick(mob/user, params)
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
 
@@ -220,7 +220,7 @@
 					#endif
 					container.do_empty(user)
 
-/obj/machinery/cooking_with_jane/oven/proc/handle_open(var/mob/user)
+/obj/machinery/cooking_with_jane/oven/proc/handle_open(mob/user)
 	if(opened)
 		opened = FALSE
 	else
@@ -228,7 +228,7 @@
 		if(switches == 1)
 			handle_switch(user)
 
-/obj/machinery/cooking_with_jane/oven/proc/handle_temperature(var/mob/user)
+/obj/machinery/cooking_with_jane/oven/proc/handle_temperature(mob/user)
 	var/old_temp = temperature
 	var/choice = input(user,"Select a heat setting for burner #.\nCurrent temp :[old_temp]","Select Temperature",old_temp) in list("High","Medium","Low","Cancel")
 	if(choice && choice != "Cancel" && choice != old_temp)
@@ -242,14 +242,14 @@
 			#endif
 
 
-/obj/machinery/cooking_with_jane/oven/proc/handle_timer(var/mob/user)
+/obj/machinery/cooking_with_jane/oven/proc/handle_timer(mob/user)
 	var/old_time = timer? round((timer/(1 SECONDS)), 1 SECONDS): 1
 	timer = (input(user, "Enter a timer for burner # (In Seconds, 0 Stays On)","Set Timer", old_time) as num) SECONDS
 	if(timer != 0 && switches == 1)
 		timer_act(user)
 	update_icon()
 
-/obj/machinery/cooking_with_jane/oven/proc/timer_act(var/mob/user)
+/obj/machinery/cooking_with_jane/oven/proc/timer_act(mob/user)
 
 	timerstamp=round(world.time)
 	#ifdef CWJ_DEBUG
@@ -295,7 +295,7 @@
 
 
 
-/obj/machinery/cooking_with_jane/oven/proc/handle_cooking(var/mob/user, set_timer=FALSE)
+/obj/machinery/cooking_with_jane/oven/proc/handle_cooking(mob/user, set_timer=FALSE)
 
 	if(!(items && istype(items, /obj/item/reagent_containers/cooking_with_jane/cooking_container)))
 		return
@@ -344,12 +344,12 @@
 	if(!opened)
 		add_overlay(image(src.icon, icon_state="oven_hatch[switches?"_on":""]", layer=ABOVE_OBJ_LAYER))
 
-/obj/machinery/cooking_with_jane/oven/proc/add_to_visible(var/obj/item/our_item)
+/obj/machinery/cooking_with_jane/oven/proc/add_to_visible(obj/item/our_item)
 	our_item.vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
 	src.vis_contents += our_item
 	our_item.transform *= 0.8
 
-/obj/machinery/cooking_with_jane/oven/proc/remove_from_visible(var/obj/item/our_item)
+/obj/machinery/cooking_with_jane/oven/proc/remove_from_visible(obj/item/our_item)
 	our_item.vis_flags = 0
 	our_item.blend_mode = 0
 	our_item.transform =  null

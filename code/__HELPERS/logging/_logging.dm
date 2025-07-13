@@ -303,7 +303,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 /mob/get_log_info_line()
 	return ckey ? "[..()] ([ckey])" : ..()
 
-/proc/log_info_line(var/datum/d)
+/proc/log_info_line(datum/d)
 	if(isnull(d))
 		return "*null*"
 	if(islist(d))

@@ -19,9 +19,9 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
 
-/datum/recipe/donkpocket/proc/warm_up(var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
+/datum/recipe/donkpocket/proc/warm_up(obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
 	being_cooked.heat()
-/datum/recipe/donkpocket/make_food(var/obj/container as obj)
+/datum/recipe/donkpocket/make_food(obj/container as obj)
 	var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked = ..(container)
 	warm_up(being_cooked)
 	return being_cooked
@@ -33,7 +33,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
 
-/datum/recipe/donkpocket/warm/make_food(var/obj/container as obj)
+/datum/recipe/donkpocket/warm/make_food(obj/container as obj)
 	var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked = locate() in container
 	if(being_cooked && !being_cooked.warm)
 		warm_up(being_cooked)
@@ -74,7 +74,7 @@
 		/obj/item/paper,
 	)
 	result = /obj/item/reagent_containers/food/snacks/fortunecookie
-/datum/recipe/fortunecookie/make_food(var/obj/container as obj)
+/datum/recipe/fortunecookie/make_food(obj/container as obj)
 	var/obj/item/paper/paper = locate() in container
 	paper.loc = null //prevent deletion
 	var/obj/item/reagent_containers/food/snacks/fortunecookie/being_cooked = ..(container)
@@ -82,7 +82,7 @@
 	being_cooked.trash = paper //so the paper is left behind as trash without special-snowflake(TM Nodrak) code ~carn
 	return being_cooked
 
-/datum/recipe/fortunecookie/check_items(var/obj/container as obj)
+/datum/recipe/fortunecookie/check_items(obj/container as obj)
 	. = ..()
 	if (.)
 		var/obj/item/paper/paper = locate() in container

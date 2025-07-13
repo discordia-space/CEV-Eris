@@ -36,7 +36,7 @@
  * @return	TRUE if the mob has been successfully moved a Z-level.
  *			FALSE otherwise.
  */
-/mob/proc/zMove(direction, var/method = 0)
+/mob/proc/zMove(direction, method = 0)
 	// In the case of an active eyeobj, move that instead.
 	if (eyeobj)
 		return eyeobj.zMove(direction)
@@ -148,13 +148,13 @@
  * @return	TRUE if the mob can move a Z-level of its own volition.
  *			FALSE otherwise.
  */
-/mob/proc/can_ztravel(var/direction)
+/mob/proc/can_ztravel(direction)
 	return FALSE
 
-/mob/observer/can_ztravel(var/direction)
+/mob/observer/can_ztravel(direction)
 	return TRUE
 
-/mob/living/carbon/human/can_ztravel(var/direction)
+/mob/living/carbon/human/can_ztravel(direction)
 	if(incapacitated())
 		return FALSE
 
@@ -166,7 +166,7 @@
 			if(check_shoegrip(FALSE))
 				return TRUE
 
-/mob/living/silicon/robot/can_ztravel(var/direction)
+/mob/living/silicon/robot/can_ztravel(direction)
 	if(incapacitated() || is_dead())
 		return FALSE
 

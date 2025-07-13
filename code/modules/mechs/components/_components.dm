@@ -157,7 +157,7 @@
 	if(RC.take_damage(brute, burn))
 		QDEL_NULL(RC)
 
-/obj/item/mech_component/proc/return_diagnostics(var/mob/user)
+/obj/item/mech_component/proc/return_diagnostics(mob/user)
 	to_chat(user, span_notice("[capitalize(name)]:"))
 	to_chat(user, span_notice(" - Hull Integrity: <b>[round((((max_damage - total_damage) / max_damage)) * 100)]%</b>" ))
 //	if(cur_armor > 0)

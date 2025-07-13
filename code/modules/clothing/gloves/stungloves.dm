@@ -27,7 +27,7 @@
 		cell = null
 		update_icon()
 
-/obj/item/clothing/gloves/stungloves/proc/deductcharge(var/power_drain)
+/obj/item/clothing/gloves/stungloves/proc/deductcharge(power_drain)
 	if(cell)
 		if(cell.checked_use(power_drain))
 			//do we have enough power for another hit?
@@ -72,7 +72,7 @@
 			to_chat(user, span_warning("[src] is out of charge."))
 	add_fingerprint(user)
 
-/obj/item/clothing/gloves/stungloves/Touch(mob/living/L, var/proximity)
+/obj/item/clothing/gloves/stungloves/Touch(mob/living/L, proximity)
 	if(!status)
 		return FALSE
 	if(!istype(L) || !proximity)

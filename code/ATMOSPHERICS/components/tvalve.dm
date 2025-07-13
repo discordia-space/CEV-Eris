@@ -43,7 +43,7 @@
 
 		add_underlay(T, node3, dir)
 
-/obj/machinery/atmospherics/tvalve/hide(var/i)
+/obj/machinery/atmospherics/tvalve/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/tvalve/New()
@@ -344,7 +344,7 @@
 			else
 				go_to_side()
 
-/obj/machinery/atmospherics/tvalve/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/tvalve/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/tvalve/digital))

@@ -4,7 +4,7 @@
 	var/last_cache_rebuild_time = 0
 	category = /datum/shuttle/autodock/multi
 
-/datum/shuttle/autodock/multi/proc/set_destination(var/destination_key, mob/user)
+/datum/shuttle/autodock/multi/proc/set_destination(destination_key, mob/user)
 	if(moving_status != SHUTTLE_IDLE)
 		return
 	next_location = destinations_cache[destination_key]
@@ -60,7 +60,7 @@
 		return
 	command_announcement.Announce(arrival_message, announcer || "[GLOB.boss_name]")
 
-/datum/shuttle/autodock/multi/antag/set_destination(var/destination_key, mob/user)
+/datum/shuttle/autodock/multi/antag/set_destination(destination_key, mob/user)
 	if(!return_warning && destination_key == home_waypoint.name && current_location != home_waypoint)
 		to_chat(user, span_danger("Returning to your home base will end your mission. If you are sure, press the button again."))
 		return_warning = 1

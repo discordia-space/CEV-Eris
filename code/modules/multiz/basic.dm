@@ -1,26 +1,26 @@
 var/list/z_levels = list()	//Each item represents connection between index z-layer and next z-layer
 
 // The storage of connections between adjacent levels means some bitwise magic is needed.
-/proc/HasAbove(var/z)
+/proc/HasAbove(z)
 	if(z >= world.maxz || z > length(z_levels)-1 || z < 1)
 		return FALSE
 	var/datum/level_data/LD = z_levels[z]
 	return !isnull(LD) && LD.height + LD.original_level - 1 > z
 
-/proc/HasBelow(var/z)
+/proc/HasBelow(z)
 	if(z > world.maxz || z > length(z_levels) || z < 2)
 		return FALSE
 	var/datum/level_data/LD = z_levels[z]
 	return !isnull(LD) && LD.original_level < z
 
 // Thankfully, no bitwise magic is needed here.
-/proc/GetAbove(var/atom/atom)
+/proc/GetAbove(atom/atom)
 	var/turf/turf = get_turf(atom)
 	if(!turf)
 		return null
 	return HasAbove(turf.z) ? get_step(turf, UP) : null
 
-/proc/GetBelow(var/atom/atom)
+/proc/GetBelow(atom/atom)
 	var/turf/turf = get_turf(atom)
 	if(!turf)
 		return null
@@ -41,5 +41,5 @@ var/list/z_levels = list()	//Each item represents connection between index z-lay
 	else
 		. = get_step(ref, dir)
 
-/proc/AreConnectedZLevels(var/zA, var/zB)
+/proc/AreConnectedZLevels(zA, zB)
 	return zA == zB || (zB in GetConnectedZlevels(zA))

@@ -26,7 +26,7 @@
 			return body.pilot_coverage * body.coverage_multipliers[2]
 
 
-/mob/living/exosuit/attack_generic(mob/user, var/damage, var/attack_message)
+/mob/living/exosuit/attack_generic(mob/user, damage, attack_message)
 	if(!damage || !istype(user))
 		return
 
@@ -58,7 +58,7 @@
 	updatehealth()
 	return TRUE
 
-/mob/living/exosuit/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/exosuit/standard_weapon_hit_effects(obj/item/I, mob/living/user, effective_force, hit_zone)
 	var/hit_dir = get_dir(user, src)
 	var/obj/item/mech_component/comp = zoneToComponent(hit_zone)
 	var/dir_mult = get_dir_mult(hit_dir, comp)

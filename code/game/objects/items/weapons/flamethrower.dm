@@ -132,7 +132,7 @@
 
 
 //Called from turf.dm turf/dblclick
-/obj/item/flamethrower/proc/flame_turf(var/list/turflist)
+/obj/item/flamethrower/proc/flame_turf(list/turflist)
 	if(!lit || operating)	return
 	operating = 1
 	for(var/turf/T in turflist)
@@ -164,7 +164,7 @@
 	target.hotspot_expose((ptank.air_contents.temperature*2) + 380,500) // -- More of my "how do I shot fire?" dickery. -- TLE
 	return
 
-/obj/item/flamethrower/full/New(var/loc)
+/obj/item/flamethrower/full/New(loc)
 	..()
 	ptank = new /obj/item/tank/plasma/(src)
 	update_icon()

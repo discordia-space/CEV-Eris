@@ -11,13 +11,13 @@
 	wield_delay = 0 SECOND
 	wield_delay_factor = 0
 
-/obj/item/gun/projectile/shotgun/twohanded_check(var/mob/living/user)
+/obj/item/gun/projectile/shotgun/twohanded_check(mob/living/user)
 	if(twohanded && !wielded)
 		user.recoil += 10
 		fired_one_handed = TRUE
 	return TRUE
 
-/obj/item/gun/projectile/shotgun/handle_post_fire(var/mob/living/user)
+/obj/item/gun/projectile/shotgun/handle_post_fire(mob/living/user)
 	..()
 	if(fired_one_handed)
 		fired_one_handed = FALSE

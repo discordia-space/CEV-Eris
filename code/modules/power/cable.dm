@@ -48,7 +48,7 @@ var/list/possible_cable_coil_colours = list(
 	color = COLOR_RED_LIGHT
 	var/obj/machinery/power/breakerbox/breaker_box
 
-/obj/structure/cable/drain_power(var/drain_check, var/surge, var/amount = 0)
+/obj/structure/cable/drain_power(drain_check, surge, amount = 0)
 
 	if(drain_check)
 		return 1
@@ -106,7 +106,7 @@ var/list/possible_cable_coil_colours = list(
 ///////////////////////////////////
 
 //If underfloor, hide the cable
-/obj/structure/cable/hide(var/i)
+/obj/structure/cable/hide(i)
 	if(istype(loc, /turf))
 		invisibility = i ? 101 : 0
 	updateicon()
@@ -209,7 +209,7 @@ var/list/possible_cable_coil_colours = list(
 		if (I.flags & CONDUCT)
 			shock(user, 50, 0.7)
 
-/obj/structure/cable/proc/spawnSplicing(var/messiness = 1)
+/obj/structure/cable/proc/spawnSplicing(messiness = 1)
 	var/obj/structure/wire_splicing/splicing = new (src.loc)
 	splicing.messiness = messiness
 	splicing.icon_state = "wire_splicing[messiness]"
@@ -254,7 +254,7 @@ var/list/possible_cable_coil_colours = list(
 	return
 
 // shock the user with probability prb
-/obj/structure/cable/proc/shock(mob/user, prb, var/siemens_coeff = 1)
+/obj/structure/cable/proc/shock(mob/user, prb, siemens_coeff = 1)
 	if(!prob(prb))
 		return 0
 	if (electrocute_mob(user, powernet, src, siemens_coeff))
@@ -277,7 +277,7 @@ var/list/possible_cable_coil_colours = list(
 /obj/structure/cable/take_damage(amount)
 	..()
 
-/obj/structure/cable/proc/cableColor(var/colorC)
+/obj/structure/cable/proc/cableColor(colorC)
 	var/color_n = "#DD0000"
 	if(colorC)
 		color_n = colorC
@@ -289,7 +289,7 @@ var/list/possible_cable_coil_colours = list(
 
 //handles merging diagonally matching cables
 //for info : direction^3 is flipping horizontally, direction^12 is flipping vertically
-/obj/structure/cable/proc/mergeDiagonalsNetworks(var/direction)
+/obj/structure/cable/proc/mergeDiagonalsNetworks(direction)
 
 	//search for and merge diagonally matching cables from the first direction component (north/south)
 	var/turf/T  = get_step(src, direction&3)//go north/south
@@ -333,7 +333,7 @@ var/list/possible_cable_coil_colours = list(
 				C.powernet.add_cable(src) //else, we simply connect to the matching cable powernet
 
 // merge with the powernets of power objects in the given direction
-/obj/structure/cable/proc/mergeConnectedNetworks(var/direction)
+/obj/structure/cable/proc/mergeConnectedNetworks(direction)
 
 	var/fdir = direction ? GLOB.reverse_dir[direction] : 0 //flip the direction, to match with the source position on its turf
 
@@ -407,7 +407,7 @@ var/list/possible_cable_coil_colours = list(
 //////////////////////////////////////////////
 
 //if powernetless_only = 1, will only get connections without powernet
-/obj/structure/cable/proc/get_connections(var/powernetless_only = 0)
+/obj/structure/cable/proc/get_connections(powernetless_only = 0)
 	. = list()	// this will be a list of all connected power objects
 	var/turf/T
 
@@ -539,7 +539,7 @@ var/list/possible_cable_coil_colours = list(
 	charge_costs = list(1)
 	spawn_frequency = 0
 
-/obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
+/obj/item/stack/cable_coil/New(loc, length = MAXCOIL, param_color = null)
 	..()
 	src.amount = length
 	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
@@ -554,7 +554,7 @@ var/list/possible_cable_coil_colours = list(
 ///////////////////////////////////
 
 //you can use wires to heal robotics
-/obj/item/stack/cable_coil/afterattack(var/mob/M, var/mob/user)
+/obj/item/stack/cable_coil/afterattack(mob/M, mob/user)
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -606,7 +606,7 @@ var/list/possible_cable_coil_colours = list(
 		icon_state = "coil"
 		name = "cable coil"
 
-/obj/item/stack/cable_coil/proc/set_cable_color(var/selected_color, var/user)
+/obj/item/stack/cable_coil/proc/set_cable_color(selected_color, user)
 	if(!selected_color)
 		return
 
@@ -661,7 +661,7 @@ var/list/possible_cable_coil_colours = list(
 // Items usable on a cable coil :
 //   - Wirecutters : cut them duh !
 //   - Cable coil : merge cables
-/obj/item/stack/cable_coil/proc/can_merge(var/obj/item/stack/cable_coil/C)
+/obj/item/stack/cable_coil/proc/can_merge(obj/item/stack/cable_coil/C)
 	return color == C.color
 
 /obj/item/stack/cable_coil/cyborg/can_merge()

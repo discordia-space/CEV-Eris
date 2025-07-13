@@ -14,7 +14,7 @@
 		return E
 	return null
 
-/obj/item/device/radio/exosuit/attack_self(var/mob/user)
+/obj/item/device/radio/exosuit/attack_self(mob/user)
 	var/mob/living/exosuit/exosuit = loc
 	if(istype(exosuit) && exosuit.head && exosuit.head.radio && exosuit.head.radio.is_functional())
 		user.set_machine(src)

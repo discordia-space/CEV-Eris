@@ -97,7 +97,7 @@
 			return FALSE
 
 // Code to prevent a role from being picked by the storyteller.
-/datum/storyevent/roleset/faction/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
+/datum/storyevent/roleset/faction/antagonist_suitable(datum/mind/player, datum/antagonist/antag)
 	if(player.assigned_role in antag.story_ineligible)
 		return FALSE
 	return TRUE

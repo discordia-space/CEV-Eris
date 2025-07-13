@@ -18,7 +18,7 @@ GLOBAL_DATUM_INIT(invisibility_set_event, /decl/observ/invisibility_set, new)
 * Invisibility Set Handling *
 *****************************/
 
-/atom/proc/set_invisibility(var/new_invisibility = 0)
+/atom/proc/set_invisibility(new_invisibility = 0)
 	var/old_invisibility = invisibility
 	if(old_invisibility != new_invisibility)
 		invisibility = new_invisibility

@@ -36,7 +36,7 @@
 		if(0)
 			to_chat(usr, "The scanner no longer shows limb damage.")
 
-/proc/medical_scan_action(atom/target, mob/living/user, obj/scanner, var/mode)
+/proc/medical_scan_action(atom/target, mob/living/user, obj/scanner, mode)
 	if (!user.IsAdvancedToolUser())
 		to_chat(user, span_warning("You are not nimble enough to use this device."))
 		return
@@ -79,7 +79,7 @@
 	user.visible_message(span_notice("[user] has analyzed [target]'s vitals."),span_notice("You have analyzed [target]'s vitals."))
 	. = medical_scan_results(scan_subject, mode)
 
-/proc/medical_scan_results(var/mob/living/M, var/mode)
+/proc/medical_scan_results(mob/living/M, mode)
 	. = list()
 	var/dat = list()
 	if (!ishuman(M) || M.isSynthetic())

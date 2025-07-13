@@ -97,7 +97,7 @@
 		return
 	print_report(user)
 
-/obj/item/device/scanner/OnTopic(var/user, var/list/href_list)
+/obj/item/device/scanner/OnTopic(user, list/href_list)
 	if(href_list["print"])
 		print_report(user)
 		return 1

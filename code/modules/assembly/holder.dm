@@ -21,16 +21,16 @@
 	remove_hearing()
 	. = ..()
 
-/obj/item/device/assembly_holder/proc/attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
+/obj/item/device/assembly_holder/proc/attach(obj/item/device/D, obj/item/device/D2, mob/user)
 	return
 
-/obj/item/device/assembly_holder/proc/process_activation(var/obj/item/device/D)
+/obj/item/device/assembly_holder/proc/process_activation(obj/item/device/D)
 	return
 
 /obj/item/device/assembly_holder/proc/detached()
 	return
 
-/obj/item/device/assembly_holder/attach(var/obj/item/device/assembly/D, var/obj/item/device/assembly/D2, var/mob/user)
+/obj/item/device/assembly_holder/attach(obj/item/device/assembly/D, obj/item/device/assembly/D2, mob/user)
 	if(!(D.is_attachable() || D.is_attachable()))
 		return FALSE
 	user.remove_from_mob(D)
@@ -91,7 +91,7 @@
 		right_assembly.on_found(finder)
 
 
-/obj/item/device/assembly_holder/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/item/device/assembly_holder/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	if(left_assembly && right_assembly)
 		left_assembly.holder_movement()
@@ -152,7 +152,7 @@
 	return
 
 
-/obj/item/device/assembly_holder/process_activation(var/obj/D, var/normal = 1, var/special = 1)
+/obj/item/device/assembly_holder/process_activation(obj/D, normal = 1, special = 1)
 	if(!D)	return 0
 	if(!secured)
 		visible_message("[icon2html(src, hearers(get_turf(src)))] *beep* *beep*", "*beep* *beep*")

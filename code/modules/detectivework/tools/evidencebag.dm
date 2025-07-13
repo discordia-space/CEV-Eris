@@ -10,7 +10,7 @@
 	var/obj/item/stored_item = null
 	price_tag = 5
 
-/obj/item/evidencebag/MouseDrop(var/obj/item/I as obj)
+/obj/item/evidencebag/MouseDrop(obj/item/I as obj)
 	if (!ishuman(usr))
 		return
 

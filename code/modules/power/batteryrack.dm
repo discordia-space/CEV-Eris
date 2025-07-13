@@ -128,7 +128,7 @@
 	return round(4 * charge/(capacity ? capacity : 5e6))
 
 
-/obj/machinery/power/smes/batteryrack/attackby(var/obj/item/W as obj, var/mob/user as mob) //these can only be moved by being reconstructed, solves having to remake the powernet.
+/obj/machinery/power/smes/batteryrack/attackby(obj/item/W as obj, mob/user as mob) //these can only be moved by being reconstructed, solves having to remake the powernet.
 	..() //SMES attackby for now handles screwdriver, cable coils and wirecutters, no need to repeat that here
 	// we need to update icon incase we get opened in the parent call
 	update_icon()

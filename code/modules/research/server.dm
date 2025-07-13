@@ -95,7 +95,7 @@
 
 			env.merge(removed)
 
-/obj/machinery/r_n_d/server/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/r_n_d/server/attackby(obj/item/I, mob/user as mob)
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
 	switch(tool_type)
@@ -289,7 +289,7 @@
 	onclose(user, "server_control")
 	return
 
-/obj/machinery/computer/rdservercontrol/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/rdservercontrol/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1

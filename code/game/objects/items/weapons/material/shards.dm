@@ -36,7 +36,7 @@
 	matter = list(material.name = amount)
 	update_icon()
 
-/obj/item/material/shard/set_material(var/new_material, var/update)
+/obj/item/material/shard/set_material(new_material, update)
 	..(new_material)
 	if(!istype(material))
 		return

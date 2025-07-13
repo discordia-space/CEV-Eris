@@ -16,7 +16,7 @@
 /datum/armament/proc/get_cost()
 	return max(min_cost, cost - discount)
 
-/datum/armament/proc/purchase(var/mob/living/carbon/H)
+/datum/armament/proc/purchase(mob/living/carbon/H)
 	if (!eotp)
 		error("No EOTP found to purchase from.")
 		return FALSE
@@ -52,7 +52,7 @@
 
 
 //maybe buying buffs, blessings, miracles, etc instead of just items
-/datum/armament/proc/on_purchase(var/mob/living/carbon/H)
+/datum/armament/proc/on_purchase(mob/living/carbon/H)
 	return
 
 

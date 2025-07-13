@@ -289,7 +289,7 @@
 	var/datum/ghosttrap/G = get_ghost_trap("cortical borer")
 	G.request_player(src, "A cortical borer needs a player.", ANIMAL)
 
-/mob/living/simple_animal/borer/proc/borer_add_exp(var/num)
+/mob/living/simple_animal/borer/proc/borer_add_exp(num)
 	borer_exp += num
 	update_borer_level()
 

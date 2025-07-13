@@ -1,4 +1,4 @@
-/mob/living/carbon/slime/say(var/message)
+/mob/living/carbon/slime/say(message)
 
 	message = sanitize(message)
 	message = trim_left(message)
@@ -14,7 +14,7 @@
 
 	return ..(message, null, verb)
 
-/mob/living/carbon/slime/say_quote(var/text)
+/mob/living/carbon/slime/say_quote(text)
 	var/ending = copytext(text, length(text))
 
 	if (ending == "?")
@@ -24,17 +24,17 @@
 
 	return "chirps";
 
-/mob/living/carbon/slime/say_understands(var/other)
+/mob/living/carbon/slime/say_understands(other)
 	return isslime(other) || ..()
 
-/mob/living/carbon/slime/hear_say(var/message, var/verb = src.verb_say, var/datum/language/language, var/alt_name = "", var/italics = 0, var/mob/speaker, var/sound/speech_sound, var/sound_vol, speech_volume)
+/mob/living/carbon/slime/hear_say(message, verb = src.verb_say, datum/language/language, alt_name = "", italics = 0, mob/speaker, sound/speech_sound, sound_vol, speech_volume)
 	if (speaker in Friends)
 		speech_buffer = list()
 		speech_buffer.Add(speaker)
 		speech_buffer.Add(lowertext(message))
 	..()
 
-/mob/living/carbon/slime/hear_radio(var/message, var/verb = src.verb_say, var/datum/language/language, var/part_a, var/part_b, var/mob/speaker, var/hard_to_hear = 0, var/vname ="")
+/mob/living/carbon/slime/hear_radio(message, verb = src.verb_say, datum/language/language, part_a, part_b, mob/speaker, hard_to_hear = 0, vname ="")
 	if (speaker in Friends)
 		speech_buffer = list()
 		speech_buffer.Add(speaker)

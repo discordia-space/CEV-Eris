@@ -18,7 +18,7 @@ var/datum/appearance_test/appearance_test = new
 	for(var/mob/living/carbon/human/H in SShumans.mob_list)
 		H.update_body()
 
-/datum/appearance_test/proc/interact(var/mob/user)
+/datum/appearance_test/proc/interact(mob/user)
 	var/list/dat = list()
 	dat += "Build body from organs sprite - <a href='byond://?src=\ref[src];[HrefToken()];build=1'>[TOGGLE(build_body)]</a><br>"
 	dat += "Get species sprite for organs - <a href='byond://?src=\ref[src];[HrefToken()];species=1'>[TOGGLE(get_species_sprite)]</a><br>"
@@ -34,7 +34,7 @@ var/datum/appearance_test/appearance_test = new
 
 	user << browse(HTML_SKELETON_TITLE("Appearance", jointext(dat, null)), "window=test_sprite;size=330x220")
 
-/datum/appearance_test/proc/output_cachelist(var/mob/user, var/draw_icons = FALSE)
+/datum/appearance_test/proc/output_cachelist(mob/user, draw_icons = FALSE)
 	var/list/dat = list()
 	for(var/elem in human_icon_cache)
 		dat += "KEY: [elem]<br>"
@@ -52,7 +52,7 @@ var/datum/appearance_test/appearance_test = new
 		if(log_sprite_gen_to_world)
 			to_chat(world, string)
 
-/datum/appearance_test/proc/show_log(var/mob/user)
+/datum/appearance_test/proc/show_log(mob/user)
 	user << browse(HTML_SKELETON(cache_generation_log), "window=cache_log;size=1270x770")
 
 /client/proc/debug_human_sprite()

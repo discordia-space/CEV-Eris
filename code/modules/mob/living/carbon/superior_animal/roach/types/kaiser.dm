@@ -152,11 +152,11 @@ Has ability of every roach.
 			overseer.casualties.Remove(src)
 
 
-/mob/living/carbon/superior_animal/roach/kaiser/slip(var/slipped_on)
+/mob/living/carbon/superior_animal/roach/kaiser/slip(slipped_on)
 	return FALSE
 
 //RIDING
-/mob/living/carbon/superior_animal/roach/kaiser/try_tame(var/mob/living/carbon/user, var/obj/item/reagent_containers/food/snacks/grown/thefood)
+/mob/living/carbon/superior_animal/roach/kaiser/try_tame(mob/living/carbon/user, obj/item/reagent_containers/food/snacks/grown/thefood)
 	if(!istype(thefood))
 		return FALSE
 	if(prob(40))

@@ -46,7 +46,7 @@ var/global/list/big_deepmaint_room_templates = list()
 	Finds a line of walls adjacent to the line of turfs given
 */
 
-/obj/procedural/jp_DungeonGenerator/deepmaint/proc/checkForWalls(var/list/line)
+/obj/procedural/jp_DungeonGenerator/deepmaint/proc/checkForWalls(list/line)
 	var/turf/t1 = line[1]
 	var/turf/t2 = line[2]
 	var/direction = get_dir(t1, t2)
@@ -124,7 +124,7 @@ var/global/list/big_deepmaint_room_templates = list()
 	Exactly what it says in the procname - makes a niche
 */
 
-/obj/procedural/jp_DungeonGenerator/deepmaint/proc/makeNiche(var/turf/T)
+/obj/procedural/jp_DungeonGenerator/deepmaint/proc/makeNiche(turf/T)
 	var/list/nicheline = list()
 	for(var/i in list(NORTH,EAST,SOUTH,WEST)) //Checks range of 5 tiles in all 4 directions from the turf tile being passed
 		switch(i)
@@ -159,7 +159,7 @@ var/global/list/big_deepmaint_room_templates = list()
 	else
 		return FALSE
 
-/obj/procedural/jp_DungeonGenerator/deepmaint/proc/findNicheTurfs(var/list/turfs) //Checks turf type of turf list passed to it to make sure none of them are walls or nonexistant.
+/obj/procedural/jp_DungeonGenerator/deepmaint/proc/findNicheTurfs(list/turfs) //Checks turf type of turf list passed to it to make sure none of them are walls or nonexistant.
     var/list/L = list()
     for(var/turf/F in turfs)
         if(F.is_wall || !(F in path_turfs))

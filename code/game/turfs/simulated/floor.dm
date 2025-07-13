@@ -61,7 +61,7 @@
 		add_statverb(/datum/statverb/remove_plating)
 
 //If the update var is false we don't call update icons
-/turf/floor/proc/set_flooring(var/decl/flooring/newflooring, var/update = TRUE)
+/turf/floor/proc/set_flooring(decl/flooring/newflooring, update = TRUE)
 	flooring = newflooring
 	name = flooring.name
 	maxHealth = flooring.health
@@ -89,7 +89,7 @@
 
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
 //This proc auto corrects the grass tiles' siding.
-/turf/floor/proc/make_plating(var/place_product, var/defer_icon_update, var/scraped)
+/turf/floor/proc/make_plating(place_product, defer_icon_update, scraped)
 
 	overlays.Cut()
 	if(islist(decals))

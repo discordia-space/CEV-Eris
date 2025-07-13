@@ -35,7 +35,7 @@
 			height = bounds[MAP_MAXY]
 	return bounds
 
-/datum/map_template/proc/initTemplateBounds(var/list/bounds)
+/datum/map_template/proc/initTemplateBounds(list/bounds)
 	if (SSatoms.initialized == INITIALIZATION_INSSATOMS)
 		return // let proper initialisation handle it later
 
@@ -73,7 +73,7 @@
 
 	admin_notice(span_danger("Submap initializations finished."), R_DEBUG)
 
-/datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = 0)
+/datum/map_template/proc/load_new_z(centered = FALSE, orientation = 0)
 	var/x = 1
 	var/y = 1
 
@@ -142,12 +142,12 @@
 
 //for your ever biggening badminnery kevinz000
 //? - Cyberboss
-/proc/load_new_z_level(var/file, var/name, var/orientation = 0)
+/proc/load_new_z_level(file, name, orientation = 0)
 	var/datum/map_template/template = new(file, name)
 	template.load_new_z(orientation)
 
 // Very similar to the /tg/ version.
-/proc/seed_submaps(var/list/z_levels, var/budget = 0, var/whitelist = /area/space, var/desired_map_template_type = null)
+/proc/seed_submaps(list/z_levels, budget = 0, whitelist = /area/space, desired_map_template_type = null)
 	set background = TRUE
 
 	if(!z_levels || !z_levels.len)

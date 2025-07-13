@@ -120,7 +120,7 @@
 	return
 
 
-/obj/machinery/power/singularity_beacon/attack_hand(var/mob/user as mob)
+/obj/machinery/power/singularity_beacon/attack_hand(mob/user as mob)
 	if(anchored)
 		return active ? Deactivate(user) : Activate(user)
 	else

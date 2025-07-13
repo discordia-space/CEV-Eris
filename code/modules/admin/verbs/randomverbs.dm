@@ -58,7 +58,7 @@
 
 
 //send text directly to a player with no padding. Useful for narratives and fluff-text
-/client/proc/cmd_admin_direct_narrate(var/mob/M)	// Targetted narrate -- TLE
+/client/proc/cmd_admin_direct_narrate(mob/M)	// Targetted narrate -- TLE
 	set category = "Special Verbs"
 	set name = "Direct Narrate"
 

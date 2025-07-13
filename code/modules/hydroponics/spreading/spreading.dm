@@ -63,7 +63,7 @@
 /obj/effect/plant/single
 	spread_chance = 0
 
-/obj/effect/plant/New(var/newloc, var/datum/seed/newseed, var/obj/effect/plant/newparent)
+/obj/effect/plant/New(newloc, datum/seed/newseed, obj/effect/plant/newparent)
 	..()
 
 	if(!newparent)
@@ -209,7 +209,7 @@ var/list/global/cutoff_plant_icons = list()
 //Used for wall hugger plants. Retrieves or creates an icon used for plants growing on the north side of a wall
 //This allows them to be cutoff and appear to draw under the wall
 
-/obj/effect/plant/proc/get_cutoff_plant_icon(var/icon_base)
+/obj/effect/plant/proc/get_cutoff_plant_icon(icon_base)
 	if (!icon_base)
 		return icon //This is not unlikely
 
@@ -305,7 +305,7 @@ var/list/global/cutoff_plant_icons = list()
 
 
 
-/obj/effect/plant/proc/check_health(var/iconupdate = TRUE)
+/obj/effect/plant/proc/check_health(iconupdate = TRUE)
 	if(health <= 0)
 		die_off()
 	else

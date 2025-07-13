@@ -48,7 +48,7 @@
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT, 10 SECONDS, "flashbang")
 	M.update_icons()
 
-/obj/item/proc/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG", var/stat_reduction = TRUE, var/intensity = FALSE) //Bang made into an item proc so lot's of stuff can use it wtihout copy - paste
+/obj/item/proc/flashbang_bang(turf/T, mob/living/carbon/M, explosion_text = "BANG", stat_reduction = TRUE, intensity = FALSE) //Bang made into an item proc so lot's of stuff can use it wtihout copy - paste
 	to_chat(M, span_danger(explosion_text))								// Called during the loop that bangs people in lockers/containers and when banging
 	playsound(loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
 																// -- Polymorph
@@ -151,7 +151,7 @@
 		return
 	..()
 
-/obj/item/grenade/flashbang/nt/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG", var/stat_reduction = TRUE, var/intensity = FALSE)
+/obj/item/grenade/flashbang/nt/flashbang_bang(turf/T, mob/living/carbon/M, explosion_text = "BANG", stat_reduction = TRUE, intensity = FALSE)
 	if(M.get_core_implant(/obj/item/implant/core_implant/cruciform))
 		intensity += 1
 	..()

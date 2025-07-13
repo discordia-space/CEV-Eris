@@ -8,7 +8,7 @@
 
 	var/obj/effect/decal/typing_indicator
 
-/mob/proc/set_typing_indicator(var/state)
+/mob/proc/set_typing_indicator(state)
 	if(!typing_indicator)
 		typing_indicator = new
 		typing_indicator.icon = 'icons/mob/talk.dmi'

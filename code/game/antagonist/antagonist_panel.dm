@@ -155,7 +155,7 @@
 	return
 
 /* !TODO: This should be implemented in storyteller_print.dm (GLOB.storyteller.antagonist_report())
-/datum/antagonist/proc/get_check_antag_output(var/datum/admins/requester)
+/datum/antagonist/proc/get_check_antag_output(datum/admins/requester)
 
 	if(!current_antagonists || !current_antagonists.len)
 		return ""
@@ -195,5 +195,5 @@
 	return dat
 */
 //Overridden elsewhere.
-/datum/antagonist/proc/get_additional_check_antag_output(var/datum/admins/requester)
+/datum/antagonist/proc/get_additional_check_antag_output(datum/admins/requester)
 	return ""

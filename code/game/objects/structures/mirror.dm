@@ -40,7 +40,7 @@
 	desc = "Oh no, seven years of bad luck!"
 
 
-/obj/structure/mirror/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/mirror/bullet_act(obj/item/projectile/Proj)
 
 	if(prob(Proj.get_structure_damage() * 2))
 		if(!shattered)
@@ -61,7 +61,7 @@
 		visible_message(span_warning("[user] hits [src] with [I]!"))
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 70, 1)
 
-/obj/structure/mirror/attack_generic(var/mob/user, var/damage)
+/obj/structure/mirror/attack_generic(mob/user, damage)
 	attack_animation(user)
 	if(shattered)
 		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)

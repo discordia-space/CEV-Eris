@@ -47,7 +47,7 @@
 	generate_network_log("Began downloading file [file_info] from [server].")
 	downloaded_file = PRG.clone()
 
-/datum/computer_file/program/downloader/proc/check_file_download(var/filename)
+/datum/computer_file/program/downloader/proc/check_file_download(filename)
 	//returns 1 if file can be downloaded, returns 0 if download prohibited
 	var/datum/computer_file/program/PRG = ntnet_global.find_ntnet_file_by_name(filename)
 
@@ -146,7 +146,7 @@
 	name = "Software Download Tool"
 	var/obj/item/modular_computer/my_computer = null
 
-/datum/nano_module/program/computer_ntnetdownload/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.default_state)
+/datum/nano_module/program/computer_ntnetdownload/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 	if(program)
 		my_computer = program.computer
 

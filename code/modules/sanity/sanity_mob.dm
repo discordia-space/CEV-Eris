@@ -453,7 +453,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
 	hud?.update_icon()
 
-/datum/sanity/proc/breakdown(var/positive_breakdown = FALSE)
+/datum/sanity/proc/breakdown(positive_breakdown = FALSE)
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
 
 	if(owner.stats.getPerk(PERK_NJOY))

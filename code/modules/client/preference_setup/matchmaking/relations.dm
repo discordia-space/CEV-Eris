@@ -6,11 +6,11 @@
 	name = "Matchmaking"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/relations/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/relations/load_character(savefile/S)
 	S["relations"]	>> pref.relations
 	S["relations_info"]	>> pref.relations_info
 
-/datum/category_item/player_setup_item/relations/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/relations/save_character(savefile/S)
 	S["relations"]	<< pref.relations
 	S["relations_info"]	<< pref.relations_info
 
@@ -42,7 +42,7 @@
 		. += "<hr>"
 	. = jointext(.,null)
 
-/datum/category_item/player_setup_item/relations/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/relations/OnTopic(href,list/href_list, mob/user)
 	if(href_list["relation"])
 		var/R = href_list["relation"]
 		pref.relations ^= R
@@ -55,7 +55,7 @@
 		return TOPIC_REFRESH
 	return ..()
 
-/datum/category_item/player_setup_item/relations/update_setup(var/savefile/preferences, var/savefile/character)
+/datum/category_item/player_setup_item/relations/update_setup(savefile/preferences, savefile/character)
 	if(preferences["version"] < 18)
 		// Remove old relation types
 		for(var/i in pref.relations)

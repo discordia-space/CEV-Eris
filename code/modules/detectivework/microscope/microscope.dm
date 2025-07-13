@@ -85,7 +85,7 @@
 			to_chat(user, report.info)
 	return
 
-/obj/machinery/microscope/proc/remove_sample(var/mob/living/remover)
+/obj/machinery/microscope/proc/remove_sample(mob/living/remover)
 	if(!istype(remover) || remover.incapacitated() || !Adjacent(remover))
 		return
 	if(!sample)
@@ -100,7 +100,7 @@
 /obj/machinery/microscope/AltClick()
 	remove_sample(usr)
 
-/obj/machinery/microscope/MouseDrop(var/atom/other)
+/obj/machinery/microscope/MouseDrop(atom/other)
 	if(usr == other)
 		remove_sample(usr)
 	else

@@ -35,7 +35,7 @@
 		add_underlay(T, node1, get_dir(src, node1))
 		add_underlay(T, node2, get_dir(src, node2))
 
-/obj/machinery/atmospherics/valve/hide(var/i)
+/obj/machinery/atmospherics/valve/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/valve/New()
@@ -288,7 +288,7 @@
 			else
 				open()
 
-/obj/machinery/atmospherics/valve/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/atmospherics/valve/attackby(obj/item/I, mob/user as mob)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/valve/digital))

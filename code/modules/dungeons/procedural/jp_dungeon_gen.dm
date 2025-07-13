@@ -107,7 +107,7 @@
 
 */
 
-/obj/procedural/jp_DungeonGenerator/proc/getAdjacentFurther(turf/t, var/num = 1)
+/obj/procedural/jp_DungeonGenerator/proc/getAdjacentFurther(turf/t, num = 1)
 	//Doesn't just go list(get_step(blah blah), get_step(blah blah) etc. because that could return null if on the border of the map
 	.=list()
 	var/counter = num
@@ -489,7 +489,7 @@
 	return walltype
 
 
-/obj/procedural/jp_DungeonGenerator/proc/getNeighboringRegions(var/list/R)
+/obj/procedural/jp_DungeonGenerator/proc/getNeighboringRegions(list/R)
 	var/list/regs = list()
 	if(R.len == 1)
 		regs += R[1]
@@ -764,7 +764,7 @@
 /*
 	Checks if two jp_DungeonRooms are too close to each other
 */
-/obj/procedural/jp_DungeonGenerator/proc/intersects(var/obj/procedural/jp_DungeonRoom/newroom, var/list/obj/procedural/jp_DungeonRoom/rooms)
+/obj/procedural/jp_DungeonGenerator/proc/intersects(obj/procedural/jp_DungeonRoom/newroom, list/obj/procedural/jp_DungeonRoom/rooms)
 	for(var/obj/procedural/jp_DungeonRoom/r in rooms)
 		. = newroom.getSize() + r.getSize() + 2
 		if((. > abs(newroom.getX() - r.getX())) && (. > abs(newroom.getY() - r.getY())))
@@ -816,7 +816,7 @@
 	Returns an X by X square of turfs with initial turf being in bottom right
 */
 
-/obj/procedural/jp_DungeonGenerator/proc/GetSquare(var/turf/T, var/side_size = 2)
+/obj/procedural/jp_DungeonGenerator/proc/GetSquare(turf/T, side_size = 2)
 	var/list/square_turfs = list()
 	for(var/turf/N in block(T,locate(T.x + side_size - 1, T.y + side_size - 1, T.z)))
 		square_turfs += N
@@ -825,7 +825,7 @@
 /*
 	Constructs a path between two jp_DungeonRegions.
 */
-/obj/procedural/jp_DungeonGenerator/proc/getPath(var/obj/procedural/jp_DungeonRegion/region1, var/obj/procedural/jp_DungeonRegion/region2)
+/obj/procedural/jp_DungeonGenerator/proc/getPath(obj/procedural/jp_DungeonRegion/region1, obj/procedural/jp_DungeonRegion/region2)
 	set background = 1
 	//We pick our start on the border of our first room
 	var/turf/start = pick(region1.getBorder())
@@ -905,7 +905,7 @@
 			CHECK_TICK
 	return retPath(end, previous, pathWidth, start, end)
 
-/obj/procedural/jp_DungeonGenerator/proc/retPath(var/list/end, var/list/previous, var/pathWidth, var/turf/start, var/turf/end)
+/obj/procedural/jp_DungeonGenerator/proc/retPath(list/end, list/previous, pathWidth, turf/start, turf/end)
 	var/list/ret = list()
 	ret += GetSquare(end, pathWidth)
 	var/turf/last = end
@@ -1004,7 +1004,7 @@ has several assumptions embedded in it - think carefully before making changes
 /*
 Make a new jp_DungeonRegion, and set its reference to its generator object
 */
-/obj/procedural/jp_DungeonRegion/New(var/obj/procedural/jp_DungeonGenerator/g)
+/obj/procedural/jp_DungeonRegion/New(obj/procedural/jp_DungeonGenerator/g)
 	gen = g
 
 
@@ -1057,7 +1057,7 @@ want to create new jp_DungeonRooms. Consult the helpfile for more information
 /*
 Make a new jp_DungeonRoom, size 's', centre 'c', generator 'g'
 */
-/obj/procedural/jp_DungeonRoom/New(s, turf/c, var/obj/procedural/jp_DungeonGenerator/g)
+/obj/procedural/jp_DungeonRoom/New(s, turf/c, obj/procedural/jp_DungeonGenerator/g)
 	size = s
 	centre = c
 	gen = g

@@ -35,7 +35,7 @@
 			return
 		add_underlay(T, node, dir)
 
-/obj/machinery/atmospherics/portables_connector/hide(var/i)
+/obj/machinery/atmospherics/portables_connector/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/portables_connector/Process()
@@ -131,7 +131,7 @@
 	return null
 
 
-/obj/machinery/atmospherics/portables_connector/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/portables_connector/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if (connected_device)

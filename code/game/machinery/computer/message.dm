@@ -39,7 +39,7 @@
 	..()
 	return
 
-/obj/machinery/computer/message_monitor/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/message_monitor/emag_act(remaining_charges, mob/user)
 	// Will create sparks and print out the console's password. You will then have to wait a while for the console to be back online.
 	// It'll take more time if there's more characters in the password..
 	if(!emag && operable())
@@ -73,7 +73,7 @@
 		if(message_servers && message_servers.len > 0)
 			linkedServer = message_servers[1]
 
-/obj/machinery/computer/message_monitor/attack_hand(var/mob/living/user as mob)
+/obj/machinery/computer/message_monitor/attack_hand(mob/living/user as mob)
 	if(..())
 		return
 	if(!istype(user))

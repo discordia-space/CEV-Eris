@@ -83,7 +83,7 @@
 	pixel_x = 0
 	pixel_y = 0
 
-/mob/living/carbon/superior_animal/stalker/attackby(var/obj/item/O, var/mob/user)
+/mob/living/carbon/superior_animal/stalker/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/gripper))
 		return ..(O, user)
 

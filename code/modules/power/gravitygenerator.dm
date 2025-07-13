@@ -34,7 +34,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	return "off"
 
 // You aren't allowed to move.
-/obj/machinery/gravity_generator/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/gravity_generator/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	qdel(src)
 
@@ -258,7 +258,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	update_icon()
 
 // Set the state of the gravity.
-/obj/machinery/gravity_generator/main/proc/set_state(var/new_state)
+/obj/machinery/gravity_generator/main/proc/set_state(new_state)
 	charging_state = POWER_IDLE
 	on = new_state
 	if(new_state) // If we turned on
@@ -296,7 +296,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	message_admins("The gravity generator was brought offline with no backup generator. [ADMIN_JMP(src)]")
 	shake_everyone()
 
-/obj/machinery/gravity_generator/main/proc/update_gravity(var/is_on)
+/obj/machinery/gravity_generator/main/proc/update_gravity(is_on)
 	for(var/area/A in world)
 		if(isStationLevel(A.z))
 			A.update_gravity()

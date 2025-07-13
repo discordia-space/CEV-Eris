@@ -8,7 +8,7 @@ var/list/cached_space = list()
 	invisibility = 101
 	known = 0
 
-/obj/effect/overmap/sector/temporary/New(var/nx, var/ny, var/nz)
+/obj/effect/overmap/sector/temporary/New(nx, ny, nz)
 	loc = locate(nx, ny, GLOB.maps_data.overmap_z)
 	x = nx
 	y = ny
@@ -21,7 +21,7 @@ var/list/cached_space = list()
 	testing("Temporary sector at [x],[y] was deleted.")
 	. = ..()
 
-/obj/effect/overmap/sector/temporary/proc/can_die(var/mob/observer)
+/obj/effect/overmap/sector/temporary/proc/can_die(mob/observer)
 	testing("Checking if sector at [map_z[1]] can die.")
 	for(var/mob/M in GLOB.player_list)
 		if(M != observer && (M.z in map_z))
@@ -51,7 +51,7 @@ var/list/cached_space = list()
 /mob/lost_in_space()
 	return isnull(client)
 
-/proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
+/proc/overmap_spacetravel(turf/space/T, atom/movable/A)
 	if (!T || !A)
 		return
 

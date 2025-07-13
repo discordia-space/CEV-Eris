@@ -10,7 +10,7 @@ var/list/flooring_cache = list()
 	update_icon(TRUE, TRUE)
 */
 
-/turf/floor/update_icon(var/update_neighbors)
+/turf/floor/update_icon(update_neighbors)
 	icon_updates_count++
 	var/has_smooth = 0 //This is just the has_border bitfield inverted for easier logic
 	if(lava) //Wtf why
@@ -143,7 +143,7 @@ var/list/flooring_cache = list()
 
 //Tests whether this flooring will smooth with the specified turf
 //You can override this if you want a flooring to have super special snowflake smoothing behaviour
-/decl/flooring/proc/test_link(var/turf/origin, var/turf/T, var/countercheck = FALSE)
+/decl/flooring/proc/test_link(turf/origin, turf/T, countercheck = FALSE)
 
 	var/is_linked = FALSE
 	if (countercheck)
@@ -309,7 +309,7 @@ var/list/flooring_cache = list()
 
 
 
-/turf/floor/proc/get_damage_overlay(var/cache_key, var/icon_base	)
+/turf/floor/proc/get_damage_overlay(cache_key, icon_base	)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = 'icons/turf/damage_overlays.dmi', icon_state = icon_base)
 
@@ -319,7 +319,7 @@ var/list/flooring_cache = list()
 	return flooring_cache[cache_key]
 
 
-/turf/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0, var/external = FALSE)
+/turf/floor/proc/get_flooring_overlay(cache_key, icon_base, icon_dir = 0, external = FALSE)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = flooring.icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer+0.01

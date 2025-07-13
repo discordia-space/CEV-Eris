@@ -94,11 +94,11 @@
 	beaker = null
 	return ..()
 
-/obj/structure/medical_stand/attack_robot(var/mob/user)
+/obj/structure/medical_stand/attack_robot(mob/user)
 	if(Adjacent(user))
 		attack_hand(user)
 
-/obj/structure/medical_stand/MouseDrop(var/mob/living/carbon/human/target, src_location, over_location)
+/obj/structure/medical_stand/MouseDrop(mob/living/carbon/human/target, src_location, over_location)
 	..()
 	if(istype(target))
 		if(usr.stat == DEAD || !CanMouseDrop(target))
@@ -250,7 +250,7 @@
 	if(N)
 		transfer_amount = N
 
-/obj/structure/medical_stand/proc/attach_mask(var/mob/living/carbon/C)
+/obj/structure/medical_stand/proc/attach_mask(mob/living/carbon/C)
 	if(C && istype(C))
 		if(C.equip_to_slot_if_possible(contained, slot_wear_mask))
 			if(tank)
@@ -260,7 +260,7 @@
 				internalsHud = breather.HUDneed["internal"]
 			return TRUE
 
-/obj/structure/medical_stand/proc/can_apply_to_target(var/mob/living/carbon/human/target, var/mob/user)
+/obj/structure/medical_stand/proc/can_apply_to_target(mob/living/carbon/human/target, mob/user)
 	if(!user)
 		user = target
 	// Check target validity

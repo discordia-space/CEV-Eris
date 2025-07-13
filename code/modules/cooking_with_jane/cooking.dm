@@ -391,93 +391,93 @@ Food quality is calculated based on the steps taken.
 
 //-----------------------------------------------------------------------------------
 //Add reagent step shortcut commands
-/datum/cooking_with_jane/recipe/proc/create_step_add_reagent(var/reagent_id, var/amount, var/optional)
+/datum/cooking_with_jane/recipe/proc/create_step_add_reagent(reagent_id, amount, optional)
 	var/datum/cooking_with_jane/recipe_step/add_reagent/step = new (reagent_id, amount, src)
 	return src.add_step(step, optional)
 
 //-----------------------------------------------------------------------------------
 //Add item step shortcut commands
-/datum/cooking_with_jane/recipe/proc/create_step_add_item(var/item_type, var/optional)
+/datum/cooking_with_jane/recipe/proc/create_step_add_item(item_type, optional)
 	var/datum/cooking_with_jane/recipe_step/add_item/step = new (item_type, src)
 	return src.add_step(step, optional)
 //-----------------------------------------------------------------------------------
 //Use item step shortcut commands
-/datum/cooking_with_jane/recipe/proc/create_step_use_item(var/item_type, var/optional)
+/datum/cooking_with_jane/recipe/proc/create_step_use_item(item_type, optional)
 	var/datum/cooking_with_jane/recipe_step/use_item/step = new (item_type, src)
 	return src.add_step(step, optional)
 
 //-----------------------------------------------------------------------------------
 //Add produce step shortcut commands
-/datum/cooking_with_jane/recipe/proc/create_step_add_produce(var/produce, var/optional)
+/datum/cooking_with_jane/recipe/proc/create_step_add_produce(produce, optional)
 	var/datum/cooking_with_jane/recipe_step/add_produce/step = new /datum/cooking_with_jane/recipe_step/add_produce(produce, src)
 	return src.add_step(step, optional)
 //-----------------------------------------------------------------------------------
 //Use Tool step shortcut commands
-/datum/cooking_with_jane/recipe/proc/create_step_use_tool(var/type, var/quality, var/optional)
+/datum/cooking_with_jane/recipe/proc/create_step_use_tool(type, quality, optional)
 	var/datum/cooking_with_jane/recipe_step/use_tool/step = new (type, quality, src)
 	return src.add_step(step, optional)
 
 //-----------------------------------------------------------------------------------
 //Use Stove step shortcut commands
-/datum/cooking_with_jane/recipe/proc/create_step_use_stove(var/heat, var/time, var/optional)
+/datum/cooking_with_jane/recipe/proc/create_step_use_stove(heat, time, optional)
 	var/datum/cooking_with_jane/recipe_step/use_stove/step = new (heat, time, src)
 	return src.add_step(step, optional)
 //-----------------------------------------------------------------------------------
 //Use Grill step shortcut commands
-/datum/cooking_with_jane/recipe/proc/create_step_use_grill(var/heat, var/time, var/optional)
+/datum/cooking_with_jane/recipe/proc/create_step_use_grill(heat, time, optional)
 	var/datum/cooking_with_jane/recipe_step/use_grill/step = new (heat, time, src)
 	return src.add_step(step, optional)
 //-----------------------------------------------------------------------------------
 //Use Oven step shortcut commands
-/datum/cooking_with_jane/recipe/proc/create_step_use_oven(var/heat, var/time, var/optional)
+/datum/cooking_with_jane/recipe/proc/create_step_use_oven(heat, time, optional)
 	var/datum/cooking_with_jane/recipe_step/use_oven/step = new (heat, time, src)
 	return src.add_step(step, optional)
 //-----------------------------------------------------------------------------------
 //Customize the last step created
-/datum/cooking_with_jane/recipe/proc/set_step_desc(var/new_description)
+/datum/cooking_with_jane/recipe/proc/set_step_desc(new_description)
 	last_created_step.desc = new_description
 
-/datum/cooking_with_jane/recipe/proc/set_step_max_quality(var/quality)
+/datum/cooking_with_jane/recipe/proc/set_step_max_quality(quality)
 	last_created_step.flags |= CWJ_BASE_QUALITY_ENABLED
 	last_created_step.max_quality_award = quality
 
-/datum/cooking_with_jane/recipe/proc/set_step_base_quality(var/quality)
+/datum/cooking_with_jane/recipe/proc/set_step_base_quality(quality)
 	last_created_step.flags |= CWJ_MAX_QUALITY_ENABLED
 	last_created_step.base_quality_award = quality
 
-/datum/cooking_with_jane/recipe/proc/set_step_custom_result_desc(var/new_description)
+/datum/cooking_with_jane/recipe/proc/set_step_custom_result_desc(new_description)
 	last_created_step.custom_result_desc = new_description
 
 
-/datum/cooking_with_jane/recipe/proc/set_exact_type_required(var/boolean)
+/datum/cooking_with_jane/recipe/proc/set_exact_type_required(boolean)
 	if((last_created_step.class == CWJ_ADD_ITEM) || (last_created_step.class == CWJ_USE_ITEM))
 		last_created_step?:exact_path = boolean
 		return TRUE
 	else
 		return FALSE
 
-/datum/cooking_with_jane/recipe/proc/set_reagent_skip(var/boolean)
+/datum/cooking_with_jane/recipe/proc/set_reagent_skip(boolean)
 	if((last_created_step.class == CWJ_ADD_ITEM) || (last_created_step.class == CWJ_ADD_PRODUCE))
 		last_created_step?:reagent_skip = boolean
 		return TRUE
 	else
 		return FALSE
 
-/datum/cooking_with_jane/recipe/proc/set_exclude_reagents(var/list/exclude_list)
+/datum/cooking_with_jane/recipe/proc/set_exclude_reagents(list/exclude_list)
 	if((last_created_step.class == CWJ_ADD_ITEM) || (last_created_step.class == CWJ_ADD_PRODUCE))
 		last_created_step?:exclude_reagents = exclude_list
 		return TRUE
 	else
 		return FALSE
 
-/datum/cooking_with_jane/recipe/proc/set_inherited_quality_modifier(var/modifier)
+/datum/cooking_with_jane/recipe/proc/set_inherited_quality_modifier(modifier)
 	if(last_created_step.class == CWJ_ADD_ITEM || last_created_step.class == CWJ_USE_TOOL || last_created_step.class == CWJ_ADD_PRODUCE)
 		last_created_step?:inherited_quality_modifier = modifier
 		return TRUE
 	else
 		return FALSE
 
-/datum/cooking_with_jane/recipe/proc/set_remain_percent_modifier(var/modifier)
+/datum/cooking_with_jane/recipe/proc/set_remain_percent_modifier(modifier)
 	if(last_created_step.class == CWJ_ADD_REAGENT)
 		last_created_step?:remain_percent = modifier
 		return TRUE
@@ -556,7 +556,7 @@ Food quality is calculated based on the steps taken.
 
 //-----------------------------------------------------------------------------------
 //Function that dynamically adds a step into a given recipe matrix.
-/datum/cooking_with_jane/recipe/proc/add_step(var/datum/cooking_with_jane/recipe_step/step, var/optional)
+/datum/cooking_with_jane/recipe/proc/add_step(datum/cooking_with_jane/recipe_step/step, optional)
 
 	//Required steps can't have exclusive options.
 	//If a given recipe needs to split into two branching required steps, it should be split into two different recipes.
@@ -618,7 +618,7 @@ Food quality is calculated based on the steps taken.
 
 //-----------------------------------------------------------------------------------
 //default function for creating a product
-/datum/cooking_with_jane/recipe/proc/create_product(var/datum/cooking_with_jane/recipe_pointer/pointer)
+/datum/cooking_with_jane/recipe/proc/create_product(datum/cooking_with_jane/recipe_pointer/pointer)
 	var/datum/cooking_with_jane/recipe_tracker/parent = pointer.parent_ref.resolve()
 	var/obj/item/container = parent.holder_ref.resolve()
 	if(container)
@@ -746,7 +746,7 @@ Food quality is calculated based on the steps taken.
 
 //Extra Reagents in a recipe take away recipe quality for every extra unit added to the concoction.
 //Reagents are calculated in two areas. Here and /datum/cooking_with_jane/recipe_step/add_reagent/calculate_quality
-/datum/cooking_with_jane/recipe/proc/calculate_reagent_quality(var/datum/cooking_with_jane/recipe_pointer/pointer)
+/datum/cooking_with_jane/recipe/proc/calculate_reagent_quality(datum/cooking_with_jane/recipe_pointer/pointer)
 	if(!GLOB.cwj_step_dictionary_ordered["[CWJ_ADD_REAGENT]"])
 		return 0
 	var/datum/cooking_with_jane/recipe_tracker/parent = pointer.parent_ref.resolve()
@@ -769,7 +769,7 @@ Food quality is calculated based on the steps taken.
 
 
 //-----------------------------------------------------------------------------------
-/datum/cooking_with_jane/proc/get_class_string(var/code)
+/datum/cooking_with_jane/proc/get_class_string(code)
 	switch(code)
 		if(CWJ_ADD_ITEM)
 			return "Add Item"

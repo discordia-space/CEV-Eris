@@ -4,7 +4,7 @@
 	universal_understand = 1
 	stat = 0
 
-/mob/living/captive_brain/say(var/message)
+/mob/living/captive_brain/say(message)
 	message = sanitize(message)
 
 	if (src.client)
@@ -50,7 +50,7 @@
 				to_chat(M, "The captive mind of [src] whispers, \"[message]\"")
 
 
-/mob/living/captive_brain/emote(var/message)
+/mob/living/captive_brain/emote(message)
 	return
 
 /mob/living/captive_brain/process_resist()

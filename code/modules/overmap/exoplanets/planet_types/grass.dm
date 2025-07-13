@@ -17,7 +17,7 @@
 /obj/effect/overmap/sector/exoplanet/grass/get_surface_color()
 	return grass_color
 
-/obj/effect/overmap/sector/exoplanet/grass/adapt_seed(var/datum/seed/S)
+/obj/effect/overmap/sector/exoplanet/grass/adapt_seed(datum/seed/S)
 	..()
 	var/carnivore_prob = rand(100)
 	if(carnivore_prob < 30)
@@ -45,7 +45,7 @@
 	base_turf = /turf/floor/exoplanet/grass
 	ambience = list('sound/effects/wind/wind_2_1.ogg','sound/effects/wind/wind_2_2.ogg','sound/effects/wind/wind_3_1.ogg','sound/effects/wind/wind_4_1.ogg','sound/ambience/eeriejungle2.ogg','sound/ambience/eeriejungle1.ogg')
 
-/area/exoplanet/grass/play_ambience(var/mob/living/L)
+/area/exoplanet/grass/play_ambience(mob/living/L)
 	..()
 	if(!L.ear_deaf && L.client && !L.client.ambience_playing)
 		L.client.ambience_playing = 1

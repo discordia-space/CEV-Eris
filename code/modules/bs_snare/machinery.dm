@@ -109,7 +109,7 @@
 	if(connected_hub) connected_hub.sync_with_parts()
 	nano_ui_interact(user)
 
-/obj/machinery/computer/bssilk_control/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/bssilk_control/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 	var/list/data = nano_ui_data()
 
 	if(!connected_hub)

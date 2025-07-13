@@ -12,14 +12,14 @@
     overdose = REAGENTS_OVERDOSE
     metabolism = 0.1
 
-/datum/reagent/medicine/atropine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/medicine/atropine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
     M.add_chemical_effect(CE_STABLE)
     M.add_chemical_effect(CE_PAINKILLER, 20 * effect_multiplier)
     M.add_chemical_effect(CE_PULSE, 1)
     M.adjustOxyLoss(-1 * effect_multiplier)
     M.add_chemical_effect(CE_OXYGENATED, 1)
 
-/datum/reagent/medicine/atropine/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/medicine/atropine/overdose(mob/living/carbon/M, alien)
     ..()
     //just right that dexaline could counter act it
     M.adjustOxyLoss(1.4)

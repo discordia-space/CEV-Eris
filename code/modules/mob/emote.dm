@@ -1,7 +1,7 @@
 // All mobs should have custom emote, really..
 //m_type == 1 --> visual.
 //m_type == 2 --> audible
-/mob/proc/custom_emote(var/m_type=1,var/message = null)
+/mob/proc/custom_emote(m_type=1,message = null)
 	if(usr && stat || !use_me && usr == src)
 		to_chat(src, "You are unable to emote.")
 		return
@@ -25,7 +25,7 @@
 
 		send_emote(message, m_type)
 
-/mob/proc/emote_dead(var/message)
+/mob/proc/emote_dead(message)
 
 	if(client.prefs.muted & MUTE_DEADCHAT)
 		to_chat(src, span_danger("You cannot send deadchat emotes (muted)."))
@@ -52,7 +52,7 @@
 		deadchat_broadcast(input, src)
 
 //This is a central proc that all emotes are run through. This handles sending the messages to living mobs
-/mob/proc/send_emote(var/message, var/type)
+/mob/proc/send_emote(message, type)
 	var/list/messageturfs = list()//List of turfs we broadcast to.
 	var/list/messagemobs = list()//List of living mobs nearby who can hear it, and distant ghosts who've chosen to hear it
 	var/list/messagemobs_neardead = list()//List of nearby ghosts who can hear it. Those that qualify ONLY go in this list

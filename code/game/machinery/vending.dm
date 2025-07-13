@@ -53,7 +53,7 @@
 /datum/data/vending_product/proc/get_amount()
 	return amount
 
-/datum/data/vending_product/proc/add_product(var/atom/movable/product)
+/datum/data/vending_product/proc/add_product(atom/movable/product)
 	if(product.type != product_path)
 		return 0
 	playsound(vending_machine.loc, 'sound/machines/vending_drop.ogg', 100, 1)
@@ -61,7 +61,7 @@
 	product.forceMove(vending_machine)
 	amount += 1
 
-/datum/data/vending_product/proc/get_product(var/product_location)
+/datum/data/vending_product/proc/get_product(product_location)
 	if(get_amount() <= 0 || !product_location)
 		return
 	var/atom/movable/product
@@ -201,7 +201,7 @@
  	R can be null, in which case the user is inserting something that wasnt previously here.
  	In that case we create a new inventory record for the item
  */
-/obj/machinery/vending/proc/stock(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
+/obj/machinery/vending/proc/stock(obj/item/W, datum/data/vending_product/R, mob/user)
 	if(!user.unEquip(W))
 		return FALSE
 
@@ -213,7 +213,7 @@
 
 	return TRUE
 
-/obj/machinery/vending/proc/try_to_buy(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
+/obj/machinery/vending/proc/try_to_buy(obj/item/W, datum/data/vending_product/R, mob/user)
 	if(!earnings_account)
 		to_chat(user, span_warning("[src] flashes a message: Vendomat not registered to an account."))
 		return
@@ -268,7 +268,7 @@
 
 
 //This is used when a user inserts something during the round which wasn't previously a product
-/obj/machinery/vending/proc/new_inventory(var/obj/item/I)
+/obj/machinery/vending/proc/new_inventory(obj/item/I)
 	var/datum/data/vending_product/product = new/datum/data/vending_product(src, I.type, I.name)
 	product.amount = 1
 	product.price = I.get_item_cost()
@@ -300,7 +300,7 @@
 	// Blocks 60% at most
 	return round(take_damage(target_power) * 0.6)
 
-/obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/vending/emag_act(remaining_charges, mob/user)
 	if(machine_vendor_account || vendor_department || earnings_account)
 		to_chat(user, "You override the ownership protocols on \the [src] and unlock it. You can now register it in your name.")
 		log_econ("[user] has overridden the ownership protocols on [src]")
@@ -465,7 +465,7 @@
 /**
  *  Receive payment with cashmoney.
  */
-/obj/machinery/vending/proc/pay_with_cash(var/obj/item/spacecash/bundle/cashmoney)
+/obj/machinery/vending/proc/pay_with_cash(obj/item/spacecash/bundle/cashmoney)
 	if(currently_vending.price > cashmoney.worth)
 		// This is not a status display message, since it's something the character
 		// themselves is meant to see BEFORE putting the money in
@@ -492,7 +492,7 @@
  * Takes payment for whatever is the currently_vending item. Returns 1 if
  * successful, 0 if failed.
  */
-/obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet)
+/obj/machinery/vending/proc/pay_with_ewallet(obj/item/spacecash/ewallet/wallet)
 	visible_message(span_info("\The [usr] swipes \the [wallet] through \the [src]."))
 	if(currently_vending.price > wallet.worth)
 		purchase_message = "Insufficient funds on chargecard."
@@ -509,7 +509,7 @@
  * Takes payment for whatever is the currently_vending item. Returns 1 if
  * successful, 0 if failed
  */
-/obj/machinery/vending/proc/pay_with_card(var/obj/item/card/id/I, var/obj/item/ID_container)
+/obj/machinery/vending/proc/pay_with_card(obj/item/card/id/I, obj/item/ID_container)
 	if(I==ID_container || ID_container == null)
 		visible_message(span_info("\The [usr] swipes \the [I] through \the [src]."))
 	else

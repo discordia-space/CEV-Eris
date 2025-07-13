@@ -111,7 +111,7 @@
 	heat_damage = 40
 	icon_state = "mech_plasma"
 
-/obj/item/projectile/plasma/check_penetrate(var/atom/A)
+/obj/item/projectile/plasma/check_penetrate(atom/A)
 	if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
 		var/loss = round(S.shield_integrity / 8)

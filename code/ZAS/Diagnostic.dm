@@ -17,7 +17,7 @@
 
 /client/var/list/zone_debug_images
 
-/client/proc/Test_ZAS_Connection(var/turf/T as turf)
+/client/proc/Test_ZAS_Connection(turf/T as turf)
 	set category = "Debug"
 	if(!istype(T))
 		return

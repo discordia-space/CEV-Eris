@@ -41,5 +41,5 @@
 
 
 // Panzers won't slip over on water or soap.
-/mob/living/carbon/superior_animal/roach/tank/slip(var/slipped_on,stun_duration=8)
+/mob/living/carbon/superior_animal/roach/tank/slip(slipped_on,stun_duration=8)
 	return FALSE

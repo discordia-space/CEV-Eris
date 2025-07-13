@@ -5,5 +5,5 @@
 	var/needs_syscontrol = FALSE
 	var/silicon_allowed = TRUE
 
-/datum/evacuation_option/proc/execute(var/mob/user)
+/datum/evacuation_option/proc/execute(mob/user)
 	return

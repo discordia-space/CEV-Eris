@@ -222,7 +222,7 @@ var/global/photo_count = 0
 	p.desc = mobs
 	printpicture(user, p)
 
-/proc/createpicture(atom/target, mob/user, var/capturemode = CAPTURE_MODE_REGULAR, var/radius = 3)
+/proc/createpicture(atom/target, mob/user, capturemode = CAPTURE_MODE_REGULAR, radius = 3)
 	var/x_c = target.x - radius
 	var/y_c = target.y - radius
 	var/z_c	= target.z
@@ -265,7 +265,7 @@ var/global/photo_count = 0
 	else
 		p.forceMove(get_turf(src))
 
-/obj/item/photo/proc/copy(var/copy_id = 0)
+/obj/item/photo/proc/copy(copy_id = 0)
 	var/obj/item/photo/p = new/obj/item/photo()
 
 	p.name = name

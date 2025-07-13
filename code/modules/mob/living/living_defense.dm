@@ -154,13 +154,13 @@
 	return dealt_damage
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
-/mob/living/proc/getarmor(var/def_zone, var/type)
+/mob/living/proc/getarmor(def_zone, type)
 	return FALSE
 
-/mob/living/proc/getarmorablative(var/def_zone, var/type)
+/mob/living/proc/getarmorablative(def_zone, type)
 	return FALSE
 
-/mob/living/proc/damageablative(var/def_zone, var/damage)
+/mob/living/proc/damageablative(def_zone, damage)
 	return FALSE
 
 /mob/living/proc/hit_impact(damage, dir)
@@ -169,7 +169,7 @@
 	shake_animation(damage)
 
  // return PROJECTILE_CONTINUE if bullet should continue flying
-/mob/living/bullet_act(obj/item/projectile/P, var/def_zone_hit)
+/mob/living/bullet_act(obj/item/projectile/P, def_zone_hit)
 	var/hit_dir = get_dir(P, src)
 
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
@@ -214,7 +214,7 @@
 	return PROJECTILE_CONTINUE
 
 //Handles the effects of "stun" weapons
-/mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon)
+/mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone, used_weapon)
 	flash_pain()
 
 	//For not bloating damage_through_armor here is simple armor calculation for stun time
@@ -235,7 +235,7 @@
 		apply_effect(STUTTER, agony_amount * armor_coefficient)
 		apply_effect(EYE_BLUR, agony_amount * armor_coefficient)
 
-/mob/living/proc/electrocute_act(var/shock_damage, obj/source, var/siemens_coeff = 1)
+/mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1)
 	  return 0 //only carbon liveforms have this proc
 
 /mob/living/emp_act(severity)
@@ -244,11 +244,11 @@
 		O.emp_act(severity)
 	..()
 
-/mob/living/proc/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
+/mob/living/proc/resolve_item_attack(obj/item/I, mob/living/user, target_zone)
 	return target_zone
 
 //Called when the mob is hit with an item in combat.
-/mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone)
 	visible_message(span_danger("[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
 
 	standard_weapon_hit_effects(I, user, effective_force, hit_zone)
@@ -260,7 +260,7 @@
 	return
 
 //returns 0 if the effects failed to apply for some reason, 1 otherwise.
-/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, effective_force, hit_zone)
 	if(!effective_force)
 		return FALSE
 
@@ -275,7 +275,7 @@
 		return FALSE
 
 //this proc handles being hit by a thrown atom
-/mob/living/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
+/mob/living/hitby(atom/movable/AM as mob|obj,speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
 	if(istype(AM,/obj))
 		var/obj/O = AM
 		var/dtype = O.damtype
@@ -326,7 +326,7 @@
 					src.anchored = TRUE
 					src.pinned += O
 
-/mob/living/proc/embed(obj/item/O, var/def_zone)
+/mob/living/proc/embed(obj/item/O, def_zone)
 	if(O.wielded)
 		return
 	if(ismob(O.loc))
@@ -340,10 +340,10 @@
 	O.on_embed(src)
 
 //This is called when the mob is thrown into a dense turf
-/mob/living/proc/turf_collision(var/turf/T, var/speed)
+/mob/living/proc/turf_collision(turf/T, speed)
 	src.take_organ_damage(speed*5)
 
-/mob/living/proc/near_wall(var/direction,var/distance=1)
+/mob/living/proc/near_wall(direction,distance=1)
 	var/turf/T = get_step(get_turf(src),direction)
 	var/turf/last_turf = src.loc
 	var/i = 1
@@ -359,7 +359,7 @@
 
 // End BS12 momentum-transfer code.
 
-/mob/living/attack_generic(mob/user, var/damage, var/attack_message)
+/mob/living/attack_generic(mob/user, damage, attack_message)
 
 	if(!damage || !istype(user))
 		return

@@ -111,7 +111,7 @@
 	edge = TRUE
 	var/blade_color
 
-/obj/item/melee/energy/sword/dropped(var/mob/user)
+/obj/item/melee/energy/sword/dropped(mob/user)
 	..()
 	deactivate(user)
 
@@ -156,7 +156,7 @@
 	attack_verb = list()
 	tool_qualities = initial(tool_qualities)
 
-/obj/item/melee/energy/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/energy/sword/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
 		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 

@@ -26,7 +26,7 @@ var/list/LIGHTING_CORNER_DIAGONAL = list(NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHW
 
 	var/update_gen = 0
 
-/datum/lighting_corner/New(var/turf/new_turf, var/diagonal)
+/datum/lighting_corner/New(turf/new_turf, diagonal)
 	. = ..()
 
 	masters[new_turf] = turn(diagonal, 180)
@@ -84,7 +84,7 @@ var/list/LIGHTING_CORNER_DIAGONAL = list(NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHW
 			return
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
-/datum/lighting_corner/proc/update_lumcount(var/delta_r, var/delta_g, var/delta_b)
+/datum/lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b)
 	lum_r += delta_r
 	lum_g += delta_g
 	lum_b += delta_b

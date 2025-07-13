@@ -32,7 +32,7 @@
 	for (var/mob/M in viewers(T))
 		M.show_message(span_notice("The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?"))
 
-/obj/item/device/mmi/digital/posibrain/attack_ghost(var/mob/observer/ghost/user)
+/obj/item/device/mmi/digital/posibrain/attack_ghost(mob/observer/ghost/user)
 	if(src.brainmob && src.brainmob.key)
 		return
 	if(!searching)

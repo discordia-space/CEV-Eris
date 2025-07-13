@@ -134,7 +134,7 @@
 
 
 //Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.
-/datum/gas_mixture/proc/add_thermal_energy(var/thermal_energy)
+/datum/gas_mixture/proc/add_thermal_energy(thermal_energy)
 	if (total_moles == 0)
 		return 0
 
@@ -148,7 +148,7 @@
 	return thermal_energy
 
 //Returns the thermal energy change required to get to a new temperature
-/datum/gas_mixture/proc/get_thermal_energy_change(var/new_temperature)
+/datum/gas_mixture/proc/get_thermal_energy_change(new_temperature)
 	return heat_capacity()*(max(new_temperature, 0) - temperature)
 
 
@@ -178,7 +178,7 @@
 	So returning a constant/(partial pressure) would probably do what most players expect. Although the version I have implemented below is a bit more nuanced than simply 1/P in that it scales in a way
 	which is bit more realistic (natural log), and returns a fairly accurate entropy around room temperatures and pressures.
 */
-/datum/gas_mixture/proc/specific_entropy_gas(var/gasid)
+/datum/gas_mixture/proc/specific_entropy_gas(gasid)
 	if (!(gasid in gas) || gas[gasid] == 0)
 		return SPECIFIC_ENTROPY_VACUUM	//that gas isn't here
 

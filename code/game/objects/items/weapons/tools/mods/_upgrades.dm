@@ -181,7 +181,7 @@
 		return FALSE
 	return TRUE
 
-/datum/component/item_upgrade/proc/check_modulargun(var/obj/item/gun/projectile/automatic/modular/MG, mob/living/user)
+/datum/component/item_upgrade/proc/check_modulargun(obj/item/gun/projectile/automatic/modular/MG, mob/living/user)
 	if(istype(parent, /obj/item/part/gun/modular))
 		// Caliber check coming for barrels
 		if(istype(parent, /obj/item/part/gun/modular/barrel))
@@ -314,7 +314,7 @@
 	T.switched_on_force = initial(T.switched_on_force) * T.force_upgrade_mults + T.force_upgrade_mods
 	T.prefixes |= prefix
 
-/datum/component/item_upgrade/proc/apply_values_gun(var/obj/item/gun/G)
+/datum/component/item_upgrade/proc/apply_values_gun(obj/item/gun/G)
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS])
 		G.damage_multiplier += weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS]
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])

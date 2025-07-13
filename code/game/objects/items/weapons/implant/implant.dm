@@ -44,7 +44,7 @@
 /obj/item/implant/proc/deactivate()
 	return TRUE
 
-/obj/item/implant/proc/malfunction(var/severity)
+/obj/item/implant/proc/malfunction(severity)
 
 /obj/item/implant/proc/is_external()
 	return external
@@ -87,10 +87,10 @@
 		SEND_SIGNAL_OLD(H, COMSIG_HUMAN_INSTALL_IMPLANT, target, src)
 	return TRUE
 
-/obj/item/implant/proc/can_install(var/mob/living/target, var/obj/item/organ/external/E)
+/obj/item/implant/proc/can_install(mob/living/target, obj/item/organ/external/E)
 	return TRUE
 
-/obj/item/implant/proc/on_install(var/mob/living/target, var/obj/item/organ/external/E)
+/obj/item/implant/proc/on_install(mob/living/target, obj/item/organ/external/E)
 
 /obj/item/implant/proc/uninstall()
 	on_uninstall()
@@ -129,7 +129,7 @@
 	icon_state = initial(icon_state)
 	malfunction = initial(malfunction)
 
-/obj/item/implant/proc/get_mob_overlay(var/gender)
+/obj/item/implant/proc/get_mob_overlay(gender)
 	return null
 
 /obj/item/implant/Destroy()

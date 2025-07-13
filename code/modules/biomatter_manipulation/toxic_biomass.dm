@@ -2,7 +2,7 @@
 
 
 //toxin attack proc, it's used for attacking people with checking their armor
-/proc/toxin_attack(mob/living/victim, var/damage = rand(2, 4))
+/proc/toxin_attack(mob/living/victim, damage = rand(2, 4))
 	if(istype(victim))
 		var/hazard_protection = 100 - victim.getarmor(null, ARMOR_BIO)
 		victim.apply_damage(max(0, damage * hazard_protection / 100 * victim.reagent_permeability()), TOX)
@@ -10,7 +10,7 @@
 
 //this proc spill some biomass on the floor
 //dirs_to_spread - list with dirs where biomass should expand after creation
-/proc/spill_biomass(turf/target_location, var/dirs_to_spread = null)
+/proc/spill_biomass(turf/target_location, dirs_to_spread = null)
 	if(locate(/obj/effect/decal/cleanable/solid_biomass) in target_location)
 		return
 	new /obj/effect/decal/cleanable/solid_biomass(target_location)
@@ -55,7 +55,7 @@
 		toxin_attack(creature, rand(8, 16))
 
 
-/obj/effect/decal/cleanable/solid_biomass/attackby(var/obj/item/I, var/mob/user)
+/obj/effect/decal/cleanable/solid_biomass/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap))
 		to_chat(user, span_notice("You started removing this [src]. U-ugh. Disgusting..."))
 		if(do_after(user, 3 SECONDS, src))

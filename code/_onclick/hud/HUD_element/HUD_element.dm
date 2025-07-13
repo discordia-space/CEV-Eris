@@ -73,7 +73,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/_onToggledInteraction = FALSE
 	var/_onToggledState = FALSE
 
-/HUD_element/New(var/identifier)
+/HUD_element/New(identifier)
 	_elements = new
 	_identifier = identifier
 	updateIconInformation()
@@ -125,12 +125,12 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 				return
 
 // override if needed
-/HUD_element/DblClick(var/location, var/control, var/params)
+/HUD_element/DblClick(location, control, params)
 	return
 
 /HUD_element/update_plane()
 	return
 
-/HUD_element/set_plane(var/np)
+/HUD_element/set_plane(np)
 	plane = np
 

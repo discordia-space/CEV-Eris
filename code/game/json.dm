@@ -68,7 +68,7 @@ var/makejson = 1 //temp
 	text = copytext(text,1,loc)
 	text += "\n[xpath]"
 	text += rest
-/*	for(var/A in lines)
+/*	for(A in lines)
 		if(findtext(A,path,1,0))
 			lineloc = lines.Find(A,1,0)
 			lines[lineloc] = xpath
@@ -90,7 +90,7 @@ var/makejson = 1 //temp
 //	Just removing these to try and fix the occasional JSON -> WORLD issue.
 //	world << M.name
 //	world << M.mapname
-/client/proc/ChangeMap(var/X as text)
+/client/proc/ChangeMap(X as text)
 	set name = "Change Map"
 	set category  = "Admin"
 	switchmap(X,X)

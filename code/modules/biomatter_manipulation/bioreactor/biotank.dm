@@ -67,7 +67,7 @@
 		biotank.reagents.trans_to_holder(biotank.canister.reagents, 100)
 
 
-/obj/machinery/multistructure/bioreactor_part/biotank_platform/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/multistructure/bioreactor_part/biotank_platform/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop))
 		var/dirtiness_lvl = get_dirtiness_level()
 		to_chat(user, span_notice("You begin cleaning pipes with [I]... O-of, what a smell!"))
@@ -93,7 +93,7 @@
 
 //Pipe wearout. Wearout var - is amount of 'dirt' that will be applied to our pipes
 //Warning, when you apply wearout, there is only a chance that it will be applied. Use forced to avoid this check
-/obj/machinery/multistructure/bioreactor_part/biotank_platform/proc/pipes_wearout(var/wearout, var/forced = FALSE)
+/obj/machinery/multistructure/bioreactor_part/biotank_platform/proc/pipes_wearout(wearout, forced = FALSE)
 	if(forced || prob(WEAROUT_CHANCE))
 		pipes_cleanness -= wearout
 	if(pipes_cleanness <= 0)

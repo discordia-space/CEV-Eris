@@ -84,17 +84,17 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 
 //Puts the item into our active hand if possible. returns 1 on success.
-/mob/living/carbon/human/put_in_active_hand(var/obj/item/W)
+/mob/living/carbon/human/put_in_active_hand(obj/item/W)
 	var/value = hand ? put_in_l_hand(W) : put_in_r_hand(W)
 	if(value)
 		W.swapped_to(src)
 	return value
 
 //Puts the item into our inactive hand if possible. returns 1 on success.
-/mob/living/carbon/human/put_in_inactive_hand(var/obj/item/W)
+/mob/living/carbon/human/put_in_inactive_hand(obj/item/W)
 	return (hand ? put_in_r_hand(W) : put_in_l_hand(W))
 
-/mob/living/carbon/human/put_in_hands(var/obj/item/W)
+/mob/living/carbon/human/put_in_hands(obj/item/W)
 	if(!W)
 		return FALSE
 	if(put_in_active_hand(W) || put_in_inactive_hand(W))
@@ -102,18 +102,18 @@ This saves us from having to call add_fingerprint() any time something is put in
 	else
 		return ..()
 
-/mob/living/carbon/human/put_in_l_hand(var/obj/item/W)
+/mob/living/carbon/human/put_in_l_hand(obj/item/W)
 	W.add_fingerprint(src)
 	return equip_to_slot_if_possible(W, slot_l_hand)
 
-/mob/living/carbon/human/put_in_r_hand(var/obj/item/W)
+/mob/living/carbon/human/put_in_r_hand(obj/item/W)
 	W.add_fingerprint(src)
 	return equip_to_slot_if_possible(W, slot_r_hand)
 
 
 
 //Find HUD position on screen
-/mob/living/carbon/human/proc/find_inv_position(var/slot_id)
+/mob/living/carbon/human/proc/find_inv_position(slot_id)
 	for(var/obj/screen/inventory/HUDinv in HUDinventory)
 		if (HUDinv.slot_id == slot_id)
 			return (HUDinv.invisibility == 101) ? null : HUDinv.screen_loc
@@ -122,7 +122,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	return "7,7"
 
 //Mannequins have no hud, this was causing a lot of spam in the logs
-/mob/living/carbon/human/dummy/mannequin/find_inv_position(var/slot_id)
+/mob/living/carbon/human/dummy/mannequin/find_inv_position(slot_id)
 	return "7,7"
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
@@ -246,7 +246,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	else
 		return get_organ(BP_R_ARM)
 
-/mob/living/carbon/human/proc/get_holding_hand(var/obj/item/W)
+/mob/living/carbon/human/proc/get_holding_hand(obj/item/W)
 	switch(get_inventory_slot(W))
 		if(slot_l_hand)
 			return BP_L_ARM
@@ -367,7 +367,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	return TRUE
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
-/mob/living/carbon/human/slot_is_accessible(var/slot, var/obj/item/I, mob/user)
+/mob/living/carbon/human/slot_is_accessible(slot, obj/item/I, mob/user)
 	var/obj/item/covering = null
 	var/check_flags = 0
 

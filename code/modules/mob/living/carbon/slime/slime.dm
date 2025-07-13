@@ -67,7 +67,7 @@
 
 	injury_type = INJURY_TYPE_HOMOGENOUS
 
-/mob/living/carbon/slime/New(var/location, var/colour="grey")
+/mob/living/carbon/slime/New(location, colour="grey")
 
 	add_verb(src, /mob/living/proc/ventcrawl)
 
@@ -82,7 +82,7 @@
 	regenerate_icons()
 	..(location)
 
-/mob/living/carbon/slime/proc/set_mutation(var/colour="grey")
+/mob/living/carbon/slime/proc/set_mutation(colour="grey")
 	src.colour = colour
 	name = "[colour] [is_adult ? "adult" : "baby"] slime ([number])"
 	slime_mutation = mutation_table(colour)
@@ -171,7 +171,7 @@
 	..(-abs(amount)) // Heals them
 	return
 
-/mob/living/carbon/slime/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/carbon/slime/bullet_act(obj/item/projectile/Proj)
 	attacked += 10
 	..(Proj)
 	return 0

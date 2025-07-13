@@ -57,7 +57,7 @@
 			return TRUE
 	return ..()
 
-/obj/item/reagent_containers/drywet/afterattack(var/obj/target, var/mob/user, var/flag)
+/obj/item/reagent_containers/drywet/afterattack(obj/target, mob/user, flag)
 	if(!flag)
 		return
 	for(var/type in can_be_placed_into)

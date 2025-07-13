@@ -143,7 +143,7 @@
 	nano_ui_interact(user)
 	return
 
-/obj/structure/janitorialcart/nano_ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/structure/janitorialcart/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 	data["name"] = capitalize(name)
 	data["bag"] = mybag ? capitalize(mybag.name) : null
@@ -234,7 +234,7 @@
 
 
 //This is called if the cart is caught in an explosion, or destroyed by weapon fire
-/obj/structure/janitorialcart/proc/spill(var/chance = 100)
+/obj/structure/janitorialcart/proc/spill(chance = 100)
 	var/turf/dropspot = get_turf(src)
 	if (mymop && prob(chance))
 		mymop.forceMove(dropspot)
@@ -277,7 +277,7 @@
 
 
 
-/obj/structure/janitorialcart/proc/dismantle(var/mob/user = null)
+/obj/structure/janitorialcart/proc/dismantle(mob/user = null)
 	if (!dismantled)
 		if (has_items)
 			spill()
@@ -346,7 +346,7 @@
 		to_chat(user, span_notice("You'll need the keys in one of your hands to drive this [callme]."))
 
 
-/obj/structure/bed/chair/janicart/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/bed/chair/janicart/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
@@ -394,7 +394,7 @@
 				buckled_mob.pixel_y = 7
 
 
-/obj/structure/bed/chair/janicart/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/bed/chair/janicart/bullet_act(obj/item/projectile/Proj)
 	if(buckled_mob)
 		if(prob(85))
 			return buckled_mob.bullet_act(Proj)

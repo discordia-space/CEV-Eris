@@ -126,7 +126,7 @@
 	to_chat(user, span_notice("You add [total_used] of [stack]\s to \the [src]."))
 
 
-/obj/machinery/neotheology/cruciformforge/proc/flick_anim(var/animation)
+/obj/machinery/neotheology/cruciformforge/proc/flick_anim(animation)
 
 	if(animation == WORK)
 		flick("[initial(icon_state)]_start", src)

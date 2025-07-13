@@ -141,7 +141,7 @@
 	src.track = null
 	ai_actual_track(target)
 
-/mob/living/silicon/ai/proc/ai_cancel_tracking(var/forced = 0)
+/mob/living/silicon/ai/proc/ai_cancel_tracking(forced = 0)
 	if(!cameraFollow)
 		return
 
@@ -183,7 +183,7 @@
 				return
 			sleep(10)
 
-/obj/machinery/camera/attack_ai(var/mob/living/silicon/ai/user as mob)
+/obj/machinery/camera/attack_ai(mob/living/silicon/ai/user as mob)
 	if (!istype(user))
 		return
 	if (!src.can_use())
@@ -191,7 +191,7 @@
 	user.eyeobj.setLoc(get_turf(src))
 
 
-/mob/living/silicon/ai/attack_ai(var/mob/user as mob)
+/mob/living/silicon/ai/attack_ai(mob/user as mob)
 	ai_camera_list()
 
 /proc/camera_sort(list/L)

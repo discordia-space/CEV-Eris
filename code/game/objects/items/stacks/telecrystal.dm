@@ -15,7 +15,7 @@
 	rand_min = 3
 	rand_max = 15
 
-/obj/item/stack/telecrystal/afterattack(var/obj/item/I, mob/user as mob, proximity)
+/obj/item/stack/telecrystal/afterattack(obj/item/I, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if(istype(I, /obj/item))

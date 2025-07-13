@@ -68,7 +68,7 @@
 	else
 		attack_hand(M)
 
-/obj/structure/bookcase/attack_hand(var/mob/user as mob)
+/obj/structure/bookcase/attack_hand(mob/user as mob)
 	if(contents.len)
 		var/obj/item/book/choice = input("Which book would you like to remove from the shelf?") as null|obj in contents
 		if(choice)
@@ -150,7 +150,7 @@
 	var/obj/item/store	//What's in the book?
 	var/window_size = null // Specific window size for the book, i.e: "1920x1080", Size x Width
 
-/obj/item/book/attack_self(var/mob/user as mob)
+/obj/item/book/attack_self(mob/user as mob)
 	playsound(src.loc, pick('sound/items/BOOK_Turn_Page_1.ogg',\
 		'sound/items/BOOK_Turn_Page_2.ogg',\
 		'sound/items/BOOK_Turn_Page_3.ogg',\

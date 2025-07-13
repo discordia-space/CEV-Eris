@@ -14,7 +14,7 @@ GLOBAL_DATUM_INIT(moved_event, /decl/observ/moved, new)
 	name = "Moved"
 	expected_type = /atom/movable
 
-/decl/observ/moved/register(var/atom/movable/mover, var/datum/listener, var/proc_call)
+/decl/observ/moved/register(atom/movable/mover, datum/listener, proc_call)
 	. = ..()
 
 	// Listen to the parent if possible.
@@ -26,7 +26,7 @@ GLOBAL_DATUM_INIT(moved_event, /decl/observ/moved, new)
 ********************/
 
 // Entered() typically lifts the moved event, but in the case of null-space we'll have to handle it.
-/atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	var/old_loc = loc
 	. = ..()
 	if(. && !loc)

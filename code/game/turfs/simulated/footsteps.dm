@@ -1,8 +1,8 @@
 //Only humans make footstep sounds
-/mob/proc/handle_footstep(var/turf/T)
+/mob/proc/handle_footstep(turf/T)
 	return
 
-/mob/living/carbon/human/handle_footstep(var/turf/T)
+/mob/living/carbon/human/handle_footstep(turf/T)
 	if(!istype(T))
 		return
 

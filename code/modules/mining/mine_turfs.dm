@@ -52,7 +52,7 @@
 		mined_ore = 1
 		GetDrilled()
 
-/turf/mineral/bullet_act(var/obj/item/projectile/Proj)
+/turf/mineral/bullet_act(obj/item/projectile/Proj)
 
 	// Emitter blasts
 	if(istype(Proj, /obj/item/projectile/beam/emitter))
@@ -150,7 +150,7 @@
 	var/obj/item/ore/O = new mineral.ore (src)
 	return O
 
-/turf/mineral/proc/GetDrilled(var/artifact_fail = 0)
+/turf/mineral/proc/GetDrilled(artifact_fail = 0)
 	//var/destroyed = 0 //used for breaking strange rocks
 	if (mineral && mineral.result_amount)
 
@@ -247,7 +247,7 @@
 	icon_state = "asteroid_dug"
 	return
 
-/turf/floor/asteroid/proc/updateMineralOverlays(var/update_neighbors)
+/turf/floor/asteroid/proc/updateMineralOverlays(update_neighbors)
 
 	overlays.Cut()
 
@@ -285,6 +285,6 @@
 /turf/floor/asteroid/proc/check_radial_dig()
 	return FALSE
 
-/turf/floor/asteroid/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
+/turf/floor/asteroid/take_damage(damage, damage_type = BRUTE, ignore_resistance = FALSE)
 	// Asteroid turfs are indestructible, otherwise they can be destroyed at some point and expose metal plating
 	return

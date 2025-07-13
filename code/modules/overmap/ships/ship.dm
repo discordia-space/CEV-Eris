@@ -22,7 +22,7 @@
 	var/scan_range = PASSIVE_SCAN_RANGE
 	var/pulsing = FALSE
 
-/obj/effect/overmap/ship/Crossed(var/obj/effect/overmap_event/movable/ME)
+/obj/effect/overmap/ship/Crossed(obj/effect/overmap_event/movable/ME)
 	..()
 	if(ME)
 		if(istype(ME, /obj/effect/overmap_event/movable))
@@ -30,7 +30,7 @@
 				if(istype(src, /obj/effect/overmap/ship))
 					ME.OE:enter(src)
 
-/obj/effect/overmap/ship/Uncrossed(var/obj/effect/overmap_event/movable/ME)
+/obj/effect/overmap/ship/Uncrossed(obj/effect/overmap_event/movable/ME)
 	..()
 	if(ME)
 		if(istype(ME, /obj/effect/overmap_event/movable))
@@ -241,7 +241,7 @@
     if(T)
         forceMove(T)
 
-/obj/effect/overmap/ship/Bump(var/atom/A)
+/obj/effect/overmap/ship/Bump(atom/A)
 	if(istype(A,/turf/map/edge))
 		handle_wraparound()
 	..()

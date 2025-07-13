@@ -1,9 +1,9 @@
-/proc/analyze_gases(var/obj/A, var/mob/user)
+/proc/analyze_gases(obj/A, mob/user)
 	var/air_contents = A.return_air()
 	var/list/result = atmosanalyzer_scan(A, air_contents)
 	return result
 
-/proc/atmosanalyzer_scan(var/obj/target, var/datum/gas_mixture/mixture, var/mob/user)
+/proc/atmosanalyzer_scan(obj/target, datum/gas_mixture/mixture, mob/user)
 	. = list()
 	. += span_notice("Results of the analysis of \the [target]:")
 	if(!mixture)
@@ -21,20 +21,20 @@
 			return
 	. += span_notice("\The [target] is empty!")
 
-/obj/proc/atmosanalyze(var/mob/user)
+/obj/proc/atmosanalyze(mob/user)
 	return
 
-/obj/item/tank/atmosanalyze(var/mob/user)
+/obj/item/tank/atmosanalyze(mob/user)
 	return atmosanalyzer_scan(src, src.air_contents, user)
 
-/obj/machinery/portable_atmospherics/atmosanalyze(var/mob/user)
+/obj/machinery/portable_atmospherics/atmosanalyze(mob/user)
 	return atmosanalyzer_scan(src, src.air_contents, user)
 
-/obj/machinery/atmospherics/pipe/atmosanalyze(var/mob/user)
+/obj/machinery/atmospherics/pipe/atmosanalyze(mob/user)
 	return atmosanalyzer_scan(src, src.parent.air, user)
 
-/obj/machinery/power/rad_collector/atmosanalyze(var/mob/user)
+/obj/machinery/power/rad_collector/atmosanalyze(mob/user)
 	if(P)	return atmosanalyzer_scan(src, src.P.air_contents, user)
 
-/obj/item/flamethrower/atmosanalyze(var/mob/user)
+/obj/item/flamethrower/atmosanalyze(mob/user)
 	if(ptank)	return atmosanalyzer_scan(src, ptank.air_contents, user)

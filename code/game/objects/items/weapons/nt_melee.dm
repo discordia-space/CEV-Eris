@@ -192,7 +192,7 @@
 		extra_description += span_warning("\The [src] is broken. It looks like it could be repaired with a hammer.")
 	..(user, extra_description)
 
-/obj/item/tool/sword/nt/spear/attackby(obj/item/I, var/mob/user)
+/obj/item/tool/sword/nt/spear/attackby(obj/item/I, mob/user)
 	..()
 	if (I.has_quality(QUALITY_HAMMERING))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_HAMMERING, FAILCHANCE_EASY, STAT_MEC))
@@ -238,7 +238,7 @@
 /obj/item/shield/riot/nt/proc/handle_attack_hand(mob/user as mob)
 	return container.handle_attack_hand(user)
 
-/obj/item/shield/riot/nt/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+/obj/item/shield/riot/nt/proc/handle_mousedrop(mob/user, atom/over_object)
 	return container.handle_mousedrop(user, over_object)
 
 /obj/item/shield/riot/nt/MouseDrop(obj/over_object)
@@ -299,7 +299,7 @@
 /obj/item/shield/buckler/nt/proc/handle_attack_hand(mob/user as mob)
 	return container.handle_attack_hand(user)
 
-/obj/item/shield/buckler/nt/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+/obj/item/shield/buckler/nt/proc/handle_mousedrop(mob/user, atom/over_object)
 	return container.handle_mousedrop(user, over_object)
 
 /obj/item/shield/buckler/nt/MouseDrop(obj/over_object)

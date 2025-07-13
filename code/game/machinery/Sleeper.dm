@@ -39,13 +39,13 @@
 /obj/machinery/sleeper/update_icon()
 	icon_state = "sleeper_[occupant ? "1" : "0"]"
 
-/obj/machinery/sleeper/attack_hand(var/mob/user)
+/obj/machinery/sleeper/attack_hand(mob/user)
 	if(..())
 		return 1
 
 	nano_ui_interact(user)
 
-/obj/machinery/sleeper/nano_ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state =GLOB.outside_state)
+/obj/machinery/sleeper/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state =GLOB.outside_state)
 	var/data[0]
 
 	data["power"] = stat & (NOPOWER|BROKEN) ? 0 : 1
@@ -125,7 +125,7 @@
 	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	return 1
 
-/obj/machinery/sleeper/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/sleeper/attackby(obj/item/I, mob/user)
 	add_fingerprint(user)
 	if(istype(I, /obj/item/reagent_containers/glass))
 		if(!beaker)
@@ -137,18 +137,18 @@
 			to_chat(user, span_warning("\The [src] has a beaker already."))
 		return
 
-/obj/machinery/sleeper/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/sleeper/affect_grab(mob/user, mob/target)
 	go_in(target, user)
 
-/obj/machinery/sleeper/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/sleeper/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target))
 		return
 	go_in(target, user)
 
-/obj/machinery/sleeper/relaymove(var/mob/user)
+/obj/machinery/sleeper/relaymove(mob/user)
 	go_out()
 
-/obj/machinery/sleeper/emp_act(var/severity)
+/obj/machinery/sleeper/emp_act(severity)
 	if(filtering)
 		toggle_filter()
 
@@ -166,7 +166,7 @@
 		return
 	filtering = !filtering
 
-/obj/machinery/sleeper/proc/go_in(var/mob/M, var/mob/user)
+/obj/machinery/sleeper/proc/go_in(mob/M, mob/user)
 	if(!M)
 		return
 	if(stat & (BROKEN|NOPOWER))
@@ -215,7 +215,7 @@
 		beaker = null
 		toggle_filter()
 
-/obj/machinery/sleeper/proc/inject_chemical(var/mob/living/user, var/chemical, var/amount)
+/obj/machinery/sleeper/proc/inject_chemical(mob/living/user, chemical, amount)
 	if(stat & (BROKEN|NOPOWER))
 		return
 

@@ -45,21 +45,21 @@ var/list/ventcrawl_machinery = list(
 		return FALSE
 	. = ..()
 
-/mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+/mob/living/proc/is_allowed_vent_crawl_item(obj/item/carried_item)
 	if(is_type_in_list(carried_item, can_enter_vent_with))
 		return !get_inventory_slot(carried_item)
 
-/mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+/mob/living/carbon/is_allowed_vent_crawl_item(obj/item/carried_item)
 	if(carried_item in stomach_contents)
 		return 1
 	return ..()
 
-/mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+/mob/living/carbon/human/is_allowed_vent_crawl_item(obj/item/carried_item)
 	if(carried_item in list(l_hand,r_hand))
 		return carried_item.w_class <= ITEM_SIZE_NORMAL
 	return ..()
 
-/mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+/mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(obj/item/carried_item)
 	if(carried_item in list(held_item, radio, connected_ai, cell, camera, mmi))
 		return 1
 	return ..()
@@ -71,7 +71,7 @@ var/list/ventcrawl_machinery = list(
 			return FALSE
 	return TRUE
 
-/mob/living/AltClickOn(var/atom/A)
+/mob/living/AltClickOn(atom/A)
 	if(is_type_in_list(A,ventcrawl_machinery))
 		handle_ventcrawl(A)
 		return 1
@@ -93,7 +93,7 @@ var/list/ventcrawl_machinery = list(
 	if(!is_physically_disabled() && pipe)
 		return pipe
 
-/mob/living/proc/handle_ventcrawl(var/atom/clicked_on)
+/mob/living/proc/handle_ventcrawl(atom/clicked_on)
 	if(!can_ventcrawl())
 		return
 

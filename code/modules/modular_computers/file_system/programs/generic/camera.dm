@@ -1,5 +1,5 @@
 // Returns which access is relevant to passed network. Used by the program.
-/proc/get_camera_access(var/network)
+/proc/get_camera_access(network)
 	if(!network)
 		return 0
 	switch(network)
@@ -72,10 +72,10 @@
 		ui.open()
 
 // Intended to be overriden by subtypes to manually add non-station networks to the list.
-/datum/nano_module/camera_monitor/proc/modify_networks_list(var/list/networks)
+/datum/nano_module/camera_monitor/proc/modify_networks_list(list/networks)
 	return networks
 
-/datum/nano_module/camera_monitor/proc/can_access_network(var/mob/user, var/network_access)
+/datum/nano_module/camera_monitor/proc/can_access_network(mob/user, network_access)
 	// No access passed, or 0 which is considered no access requirement. Allow it.
 	if(!network_access)
 		return 1
@@ -109,7 +109,7 @@
 		usr.reset_view(current_camera)
 		return 1
 
-/datum/nano_module/camera_monitor/proc/switch_to_camera(var/mob/user, var/obj/machinery/camera/C)
+/datum/nano_module/camera_monitor/proc/switch_to_camera(mob/user, obj/machinery/camera/C)
 	//don't need to check if the camera works for AI because the AI jumps to the camera location and doesn't actually look through cameras.
 	if(isAI(user))
 		var/mob/living/silicon/ai/A = user
@@ -126,7 +126,7 @@
 	user.reset_view(C)
 	return 1
 
-/datum/nano_module/camera_monitor/proc/set_current(var/obj/machinery/camera/C)
+/datum/nano_module/camera_monitor/proc/set_current(obj/machinery/camera/C)
 	if(current_camera == C)
 		return
 
@@ -146,7 +146,7 @@
 			L.tracking_cancelled()
 	current_camera = null
 
-/datum/nano_module/camera_monitor/check_eye(var/mob/user as mob)
+/datum/nano_module/camera_monitor/check_eye(mob/user as mob)
 	if(!current_camera)
 		return 0
 	var/viewflag = current_camera.check_eye(user)
@@ -169,7 +169,7 @@
 	available_to_ai = FALSE
 
 // The ERT variant has access to ERT and crescent cams, but still checks for accesses. ERT members should be able to use it.
-/datum/nano_module/camera_monitor/ert/modify_networks_list(var/list/networks)
+/datum/nano_module/camera_monitor/ert/modify_networks_list(list/networks)
 	..()
 	//networks.Add(list(list("tag" = NETWORK_ERT, "has_access" = 1)))	//TODO: replace this
 	networks.Add(list(list("tag" = NETWORK_CRESCENT, "has_access" = 1)))

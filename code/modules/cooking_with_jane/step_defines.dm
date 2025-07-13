@@ -33,7 +33,7 @@
 
 
 
-/datum/cooking_with_jane/recipe_step/New(var/datum/cooking_with_jane/recipe/our_recipe)
+/datum/cooking_with_jane/recipe_step/New(datum/cooking_with_jane/recipe/our_recipe)
 	parent_recipe = our_recipe
 	unique_id = sequential_id("recipe_step")
 
@@ -50,7 +50,7 @@
 	tooltip_image = image('icons/emoji.dmi', icon_state="gear")
 
 //Calculate how well the recipe step was followed to the letter.
-/datum/cooking_with_jane/recipe_step/proc/calculate_quality(var/obj/added_item, var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container, var/mob/living/user)
+/datum/cooking_with_jane/recipe_step/proc/calculate_quality(obj/added_item, obj/item/reagent_containers/cooking_with_jane/cooking_container/container, mob/living/user)
 	return 0
 
 //Check if the conditions of a recipe step was followed correctly.
@@ -58,7 +58,7 @@
 	return CWJ_CHECK_VALID
 
 //Check if a given step is in the same option chain as another step.
-/datum/cooking_with_jane/recipe_step/proc/in_option_chain(var/datum/cooking_with_jane/recipe_step/step)
+/datum/cooking_with_jane/recipe_step/proc/in_option_chain(datum/cooking_with_jane/recipe_step/step)
 	if(!step)
 		return FALSE
 	if(!(flags & CWJ_IS_OPTION_CHAIN) || !(step.flags & CWJ_IS_OPTION_CHAIN))
@@ -82,7 +82,7 @@
 	return FALSE
 
 //Automatically clamps food based on their maximum and minimum quality, if they are set.
-/datum/cooking_with_jane/recipe_step/proc/clamp_quality(var/raw_quality)
+/datum/cooking_with_jane/recipe_step/proc/clamp_quality(raw_quality)
 	if((flags & CWJ_BASE_QUALITY_ENABLED) && (flags & CWJ_MAX_QUALITY_ENABLED))
 		return CLAMP(raw_quality, base_quality_award, max_quality_award)
 	if(flags & CWJ_BASE_QUALITY_ENABLED)
@@ -91,15 +91,15 @@
 		return min(raw_quality, max_quality_award)
 	return raw_quality
 
-/datum/cooking_with_jane/recipe_step/proc/get_step_result_text(var/obj/used_obj, step_quality)
+/datum/cooking_with_jane/recipe_step/proc/get_step_result_text(obj/used_obj, step_quality)
 	if(custom_result_desc)
 		return custom_result_desc
 	else
 		return "skip"
 
-/datum/cooking_with_jane/recipe_step/proc/follow_step(var/obj/added_item, var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container)
+/datum/cooking_with_jane/recipe_step/proc/follow_step(obj/added_item, obj/item/reagent_containers/cooking_with_jane/cooking_container/container)
 	return CWJ_SUCCESS
 
 //Special function to check if the step has been satisfied. Sometimed just following the step is enough, but not always.
-/datum/cooking_with_jane/recipe_step/proc/is_complete(var/obj/added_item, var/datum/cooking_with_jane/recipe_tracker/tracker)
+/datum/cooking_with_jane/recipe_step/proc/is_complete(obj/added_item, datum/cooking_with_jane/recipe_tracker/tracker)
 	return TRUE

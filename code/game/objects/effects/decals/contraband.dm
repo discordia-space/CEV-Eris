@@ -21,7 +21,7 @@
 	var/datum/poster/design
 	matter = list(MATERIAL_PLASTIC = 1)
 
-/obj/item/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
+/obj/item/contraband/poster/New(turf/loc, datum/poster/new_design = null)
 	switch(poster_datum)
 		if ("all")
 			if(!new_design)
@@ -104,7 +104,7 @@
 
 
 //Places the poster on a wall
-/obj/item/contraband/poster/afterattack(var/turf/wall/W, var/mob/user, var/adjacent, var/clickparams)
+/obj/item/contraband/poster/afterattack(turf/wall/W, mob/user, adjacent, clickparams)
 	if (!adjacent)
 		return
 
@@ -168,7 +168,7 @@
 /datum/poster/asters
 	description_fluff = "Appears to been produced by members of the Aster's Guild."
 
-/datum/poster/proc/set_design(var/obj/item/contraband/poster/poster)
+/datum/poster/proc/set_design(obj/item/contraband/poster/poster)
 	poster.name = "poster - [name]"
 	poster.desc = desc
 	poster.description_fluff = description_fluff

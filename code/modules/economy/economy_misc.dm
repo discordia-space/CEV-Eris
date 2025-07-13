@@ -104,7 +104,7 @@ var/global/datum/computer_file/data/email_account/service/payroll/payroll_mailer
 	return 1
 
 
-/proc/create_department_account(var/datum/department/department)
+/proc/create_department_account(datum/department/department)
 	next_account_number = rand(111111, 999999)
 
 	var/datum/money_account/department_account = new()

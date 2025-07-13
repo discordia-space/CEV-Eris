@@ -554,10 +554,10 @@
 		I.was_bloodied = null
 	M.was_bloodied = null
 
-/datum/reagent/medicine/sterilizine/touch_obj(var/obj/O)
+/datum/reagent/medicine/sterilizine/touch_obj(obj/O)
 	O.was_bloodied = null
 
-/datum/reagent/medicine/sterilizine/touch_turf(var/turf/T)
+/datum/reagent/medicine/sterilizine/touch_turf(turf/T)
 	for(var/obj/item/I in T.contents)
 		I.was_bloodied = null
 	for(var/obj/effect/decal/cleanable/blood/B in T)

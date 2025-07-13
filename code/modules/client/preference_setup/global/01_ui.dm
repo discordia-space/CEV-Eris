@@ -18,7 +18,7 @@
 	name = "UI"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/player_global/ui/load_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/player_global/ui/load_preferences(savefile/S)
 	S["UI_style"]				>> pref.UI_style
 	S["UI_style_color"]			>> pref.UI_style_color
 	S["UI_style_alpha"]			>> pref.UI_style_alpha
@@ -32,7 +32,7 @@
 	//S["clientfps"]		>> pref.clientfps
 
 
-/datum/category_item/player_setup_item/player_global/ui/save_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/player_global/ui/save_preferences(savefile/S)
 	S["UI_style"]				<< pref.UI_style
 	S["UI_style_color"]			<< pref.UI_style_color
 	S["UI_style_alpha"]			<< pref.UI_style_alpha
@@ -58,7 +58,7 @@
 	pref.asaycolor				= sanitize_hexcolor(pref.asaycolor, DEFAULT_ASAY_COLOR)
 	//pref.clientfps			= sanitize_integer(pref.clientfps, CLIENT_MIN_FPS, CLIENT_MAX_FPS, initial(pref.clientfps))
 
-/datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
+/datum/category_item/player_setup_item/player_global/ui/content(mob/user)
 	. += "<b>UI Settings</b><br>"
 	. += "<b>UI Style:</b> <a href='byond://?src=\ref[src];select_style=1'><b>[pref.UI_style]</b></a><br>"
 	. += "<b>Custom UI</b> (recommended for White UI):<br>"
@@ -86,7 +86,7 @@
 	. += "<b>Show LOOC on Map:</b> <a href='byond://?src=\ref[src];select_rc_looc_on_map=1'><b>[pref.RC_see_looc_on_map ? "Enabled" : "Disabled"]</b></a><br>"
 
 
-/datum/category_item/player_setup_item/player_global/ui/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/player_global/ui/OnTopic(href,list/href_list, mob/user)
 	if(href_list["select_style"])
 		var/UI_style_new = input(user, "Choose UI style.", CHARACTER_PREFERENCE_INPUT_TITLE, pref.UI_style) as null|anything in all_ui_styles
 		if(!UI_style_new || !CanUseTopic(user)) return TOPIC_NOACTION
@@ -172,8 +172,8 @@
 
 	return ..()
 
-/proc/can_select_ooc_color(var/mob/user)
+/proc/can_select_ooc_color(mob/user)
 	return CONFIG_GET(flag/allow_admin_ooccolor) && check_rights(R_ADMIN, 0, user)
 
-/proc/can_select_asay_color(var/mob/user)
+/proc/can_select_asay_color(mob/user)
 	return CONFIG_GET(flag/allow_admin_asaycolor) && check_rights(R_ADMIN, 0, user)

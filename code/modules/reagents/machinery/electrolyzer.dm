@@ -16,7 +16,7 @@
 
 
 // returns FALSE on errors TRUE on success and -1 if nothing to do
-/proc/electrolysis(var/obj/item/reagent_containers/primary_beaker, var/obj/item/reagent_containers/secondary_beaker, var/amount)
+/proc/electrolysis(obj/item/reagent_containers/primary_beaker, obj/item/reagent_containers/secondary_beaker, amount)
 	if(!primary_beaker || !secondary_beaker)
 		return FALSE
 	//check if has reagents

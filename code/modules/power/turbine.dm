@@ -223,7 +223,7 @@
 				doors += P
 
 
-/obj/machinery/computer/turbine_computer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/turbine_computer/attack_hand(mob/user as mob)
 	user.machine = src
 	var/dat
 	if(src.compressor)

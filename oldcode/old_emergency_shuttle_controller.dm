@@ -54,7 +54,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 		pods_arrived = TRUE
 
 //begins the launch countdown and sets the amount of time left until launch
-/datum/emergency_shuttle_controller/proc/set_launch_countdown(var/seconds)
+/datum/emergency_shuttle_controller/proc/set_launch_countdown(seconds)
 	pods_armed = TRUE
 	launch_time = world.time + seconds*10
 	lockdown_time = 0
@@ -62,7 +62,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 /datum/emergency_shuttle_controller/proc/stop_launch_countdown()
 	pods_armed = FALSE
 
-/datum/emergency_shuttle_controller/proc/set_lockdown_countdown(var/seconds)
+/datum/emergency_shuttle_controller/proc/set_lockdown_countdown(seconds)
 	lockdown_time = world.time + seconds*10
 
 //calls the shuttle for an emergency evacuation

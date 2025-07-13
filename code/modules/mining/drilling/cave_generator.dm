@@ -739,7 +739,7 @@
 		return
 	. = ..()
 
-/obj/structure/multiz/ladder/cave_hole/attack_hand(var/mob/M)
+/obj/structure/multiz/ladder/cave_hole/attack_hand(mob/M)
 	if(!cave_gen || !((cave_gen.status == CAVE_OPENED) || (cave_gen.status == CAVE_COLLAPSING)))
 		to_chat(M, span_notice("The cave system is not opened yet."))
 		return

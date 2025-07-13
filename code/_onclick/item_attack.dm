@@ -26,7 +26,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 // Called at the start of resolve_attackby(), before the actual attack.
 // Return a nonzero value to abort the attack
-/obj/item/proc/pre_attack(atom/a, mob/user, var/params)
+/obj/item/proc/pre_attack(atom/a, mob/user, params)
 	return
 
 //I would prefer to rename this to attack(), but that would involve touching hundreds of files.
@@ -195,10 +195,10 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		. = TRUE
 
 
-/obj/item/attackby(obj/item/I, mob/living/user, var/params)
+/obj/item/attackby(obj/item/I, mob/living/user, params)
 	return
 
-/mob/living/attackby(obj/item/I, mob/living/user, var/params)
+/mob/living/attackby(obj/item/I, mob/living/user, params)
 	if(!ismob(user))
 		return FALSE
 	var/surgery_check = can_operate(src, user)
@@ -208,7 +208,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		return I.attack(src, user, user.targeted_organ)
 
 //Used by Area of effect attacks, if it returns FALSE, it failed
-/obj/item/proc/attack_with_multiplier(mob/living/user, var/atom/target, var/modifier = 1)
+/obj/item/proc/attack_with_multiplier(mob/living/user, atom/target, modifier = 1)
 	if(!wielded && modifier > 0)
 		return FALSE
 	var/original_force = force
@@ -219,7 +219,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return TRUE
 
 //Same as above but for mobs
-/obj/item/proc/attack_with_multiplier_mob(mob/living/user, var/mob/living/target, var/modifier = 1)
+/obj/item/proc/attack_with_multiplier_mob(mob/living/user, mob/living/target, modifier = 1)
 	if(!wielded && modifier > 0)
 		return FALSE
 	var/original_force = force
@@ -230,7 +230,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return TRUE
 
 //Area of effect attacks (swinging), return remaining damage
-/obj/item/proc/tileattack(mob/living/user, turf/targetarea, var/modifier = 1, var/swing_degradation = 0.2, var/original_target)
+/obj/item/proc/tileattack(mob/living/user, turf/targetarea, modifier = 1, swing_degradation = 0.2, original_target)
 	if(istype(targetarea, /turf/wall))
 		var/turf/W = targetarea
 		if(attack_with_multiplier(user, W, modifier))
@@ -313,7 +313,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return TRUE
 
 //Called when a weapon is used to make a successful melee attack on a mob. Returns the blocked result
-/obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	if(hitsound)
 		playsound(loc, hitsound, 50, 1, -1)
 

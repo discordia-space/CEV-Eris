@@ -16,7 +16,7 @@ var/global/list/stool_cache = list() //haha stool
 /obj/item/stool/padded
 	icon_state = "stool_padded_preview" //set for the map
 
-/obj/item/stool/New(var/newloc, var/new_material, var/new_padding_material)
+/obj/item/stool/New(newloc, new_material, new_padding_material)
 	..(newloc)
 	if(!new_material)
 		new_material = MATERIAL_STEEL
@@ -29,7 +29,7 @@ var/global/list/stool_cache = list() //haha stool
 	force = round(material.get_blunt_damage()*0.4)
 	update_icon()
 
-/obj/item/stool/padded/New(var/newloc, var/new_material)
+/obj/item/stool/padded/New(newloc, new_material)
 	..(newloc, MATERIAL_STEEL, MATERIAL_CARPET)
 
 /obj/item/stool/update_icon()
@@ -59,7 +59,7 @@ var/global/list/stool_cache = list() //haha stool
 		name = "[material.display_name] [initial(name)]"
 		desc = "A stool. Apply butt with care. It's made of [material.use_name]."
 
-/obj/item/stool/proc/add_padding(var/padding_type)
+/obj/item/stool/proc/add_padding(padding_type)
 	padding_material = get_material_by_name(padding_type)
 	update_icon()
 

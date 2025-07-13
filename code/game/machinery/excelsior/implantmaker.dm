@@ -20,7 +20,7 @@
 
 	build_time = max(10, 70-total)
 
-/obj/machinery/complant_maker/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/complant_maker/attackby(obj/item/I, mob/user)
 	if(working)
 		to_chat(user, span_warning("[src] is active. Wait for it to finish."))
 		return

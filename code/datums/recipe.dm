@@ -37,7 +37,7 @@
 	var/result        // example: = /obj/item/reagent_containers/food/snacks/donut/normal
 	var/time = 100    // 1/10 part of second
 
-/datum/recipe/proc/check_reagents(var/datum/reagents/avail_reagents)
+/datum/recipe/proc/check_reagents(datum/reagents/avail_reagents)
 	. = 1
 	for (var/r_r in reagents)
 		var/aval_r_amnt = avail_reagents.get_reagent_amount(r_r)
@@ -50,7 +50,7 @@
 		return 0
 	return .
 
-/datum/recipe/proc/check_fruit(var/obj/container)
+/datum/recipe/proc/check_fruit(obj/container)
 	. = 1
 	if(fruit && fruit.len)
 		var/list/checklist = list()
@@ -69,7 +69,7 @@
 					break
 	return .
 
-/datum/recipe/proc/check_items(var/obj/container as obj)
+/datum/recipe/proc/check_items(obj/container as obj)
 	. = 1
 	if (items && items.len)
 		var/list/checklist = list()
@@ -91,7 +91,7 @@
 	return .
 
 //general version
-/datum/recipe/proc/make(var/obj/container as obj)
+/datum/recipe/proc/make(obj/container as obj)
 	var/obj/result_obj = new result(container)
 	for (var/obj/O in (container.contents-result_obj))
 		O.reagents.trans_to_obj(result_obj, O.reagents.total_volume)
@@ -100,7 +100,7 @@
 	return result_obj
 
 // food-related
-/datum/recipe/proc/make_food(var/obj/container as obj)
+/datum/recipe/proc/make_food(obj/container as obj)
 	if(!result)
 		to_chat(world, span_danger("Recipe [type] is defined without a result, please bug this."))
 		return
@@ -114,7 +114,7 @@
 	container.reagents.clear_reagents()
 	return result_obj
 
-/proc/select_recipe(var/list/datum/recipe/avaiable_recipes, var/obj/obj as obj, var/exact)
+/proc/select_recipe(list/datum/recipe/avaiable_recipes, obj/obj as obj, exact)
 	var/list/datum/recipe/possible_recipes = new
 	var/target = exact ? 0 : 1
 	for (var/datum/recipe/recipe in avaiable_recipes)

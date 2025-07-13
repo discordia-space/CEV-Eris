@@ -19,7 +19,7 @@
 	W = new(src)
 	..()
 
-/obj/machinery/pipelayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/pipelayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 
 	if(on && a_dis)
@@ -37,7 +37,7 @@
 	user.visible_message(span_notice("[user] has [!on?"de":""]activated \the [src]."), span_notice("You [!on?"de":""]activate \the [src]."))
 	return
 
-/obj/machinery/pipelayer/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/pipelayer/attackby(obj/item/I, mob/user)
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_PRYING, QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
@@ -104,7 +104,7 @@
 	on=0
 	return
 
-/obj/machinery/pipelayer/proc/load_metal(var/obj/item/stack/MM)
+/obj/machinery/pipelayer/proc/load_metal(obj/item/stack/MM)
 	if(istype(MM) && MM.get_amount())
 		var/cur_amount = metal
 		var/to_load = max(max_metal - round(cur_amount),0)
@@ -124,14 +124,14 @@
 	metal-=amount
 	return 1
 
-/obj/machinery/pipelayer/proc/dismantleFloor(var/turf/new_turf)
+/obj/machinery/pipelayer/proc/dismantleFloor(turf/new_turf)
 	if(istype(new_turf, /turf/floor))
 		var/turf/floor/T = new_turf
 		if(!T.is_plating())
 			T.make_plating(!(T.broken || T.burnt))
 	return new_turf.is_plating()
 
-/obj/machinery/pipelayer/proc/layPipe(var/turf/w_turf,var/M_Dir,var/old_dir)
+/obj/machinery/pipelayer/proc/layPipe(turf/w_turf,M_Dir,old_dir)
 	if(!on || !(M_Dir in list(1, 2, 4, 8)) || M_Dir==old_dir)
 		return reset()
 	if(!use_metal(0.25))

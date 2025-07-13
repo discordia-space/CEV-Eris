@@ -128,7 +128,7 @@
 /obj/machinery/light_switch/dimmer_switch/attack_hand(mob/user)
 	return nano_ui_interact(user)
 
-/obj/machinery/light_switch/dimmer_switch/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/light_switch/dimmer_switch/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data = list()
 	data["on"] = on
 	data["input_color"] = input_color

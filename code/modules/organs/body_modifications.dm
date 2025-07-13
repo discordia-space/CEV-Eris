@@ -18,7 +18,7 @@ var/global/list/modifications_types = list(
 		for(var/part in BM.body_parts)
 			modifications_types[part] += "<div style = 'padding:2px' onclick=\"set('body_modification', '[BM.id]');\" class='block[class]'><b>[BM.name]</b><br>[BM.desc]</div>"
 
-/proc/get_default_modificaton(var/nature = MODIFICATION_ORGANIC)
+/proc/get_default_modificaton(nature = MODIFICATION_ORGANIC)
 	switch(nature)
 		if(MODIFICATION_ORGANIC)
 			return body_modifications["nothing"]
@@ -68,7 +68,7 @@ var/global/list/modifications_types = list(
 
 	return TRUE
 
-/datum/body_modification/proc/create_organ(var/mob/living/carbon/holder, var/organ, var/color)
+/datum/body_modification/proc/create_organ(mob/living/carbon/holder, organ, color)
 	return null
 
 /datum/body_modification/none
@@ -78,7 +78,7 @@ var/global/list/modifications_types = list(
 	desc = "Normal organ."
 	allowed_species = null
 
-/datum/body_modification/none/create_organ(var/mob/living/carbon/holder, var/datum/organ_description/OD, var/color)
+/datum/body_modification/none/create_organ(mob/living/carbon/holder, datum/organ_description/OD, color)
 	if(istype(OD))
 		return OD.create_organ(holder,OD)
 	else if(ispath(OD))
@@ -87,7 +87,7 @@ var/global/list/modifications_types = list(
 		return null
 
 
-/datum/body_modification/limb/create_organ(var/mob/living/carbon/holder, var/datum/organ_description/OD, var/color)
+/datum/body_modification/limb/create_organ(mob/living/carbon/holder, datum/organ_description/OD, color)
 	if(replace_limb)
 		return new replace_limb(holder,OD)
 	else
@@ -171,7 +171,7 @@ var/global/list/modifications_types = list(
 	allow_nt = FALSE
 	var/module_type = null
 
-/datum/body_modification/limb/organ_module/create_organ(var/mob/living/carbon/holder, var/datum/organ_description/OD, var/color)
+/datum/body_modification/limb/organ_module/create_organ(mob/living/carbon/holder, datum/organ_description/OD, color)
 	var/obj/item/organ/external/E = ..()
 	if(module_type)
 		var/obj/item/organ_module/OM = new module_type()
@@ -179,7 +179,7 @@ var/global/list/modifications_types = list(
 	return E
 
 ////Internals////
-/datum/body_modification/organ/create_organ(var/mob/living/carbon/holder, var/organ, var/color)
+/datum/body_modification/organ/create_organ(mob/living/carbon/holder, organ, color)
 	if(replace_limb)
 		return new replace_limb(holder)
 	else
@@ -193,7 +193,7 @@ var/global/list/modifications_types = list(
 	body_parts = list(OP_HEART, OP_LUNGS, OP_KIDNEY_LEFT, OP_KIDNEY_RIGHT, OP_STOMACH, BP_BRAIN, OP_LIVER, OP_EYES)
 	allow_nt = FALSE
 
-/datum/body_modification/organ/assisted/create_organ(var/mob/living/carbon/holder, var/O, var/color)
+/datum/body_modification/organ/assisted/create_organ(mob/living/carbon/holder, O, color)
 	var/obj/item/organ/I = ..(holder,O,color)
 	I.nature = MODIFICATION_ASSISTED
 	I.name = "assisted [I.name]"
@@ -214,7 +214,7 @@ var/global/list/modifications_types = list(
 	nature = MODIFICATION_SILICON
 	allow_nt = FALSE
 
-/datum/body_modification/organ/robotize_organ/create_organ(var/mob/living/carbon/holder, O, color)
+/datum/body_modification/organ/robotize_organ/create_organ(mob/living/carbon/holder, O, color)
 	var/obj/item/organ/I = ..(holder,O,color)
 	I.nature = MODIFICATION_SILICON
 	if(istype(I, /obj/item/organ/internal/appendix))
@@ -245,7 +245,7 @@ var/global/list/modifications_types = list(
 	I.Blend(color, ICON_ADD)
 	return I
 
-/datum/body_modification/organ/oneeye/create_organ(var/mob/living/carbon/human/holder, var/organ, var/color)
+/datum/body_modification/organ/oneeye/create_organ(mob/living/carbon/human/holder, organ, color)
 	var/obj/item/organ/internal/eyes/E = ..(holder,organ,color)
 	E.eyes_color = color
 	return E
@@ -276,7 +276,7 @@ var/global/list/modifications_types = list(
 	I.Blend(color, ICON_ADD)
 	return I
 
-/datum/body_modification/organ/heterochromia/create_organ(var/mob/living/carbon/holder, organ_type, color)
+/datum/body_modification/organ/heterochromia/create_organ(mob/living/carbon/holder, organ_type, color)
 	var/obj/item/organ/internal/eyes/heterohromia/E = new(holder,organ_type,color)
 	E.second_color = color
 	return E

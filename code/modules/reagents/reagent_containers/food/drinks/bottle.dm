@@ -138,7 +138,7 @@
 		else
 			icon_state = icon_state_empty
 
-/obj/item/reagent_containers/food/drinks/bottle/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/reagent_containers/food/drinks/bottle/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	..()
 
 	if(user.a_intent != I_HURT)

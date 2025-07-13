@@ -67,7 +67,7 @@
 	aux.volume = volume
 	aux.nodes.len = nodes.len
 
-/obj/machinery/atmospherics/mains_pipe/hide(var/i)
+/obj/machinery/atmospherics/mains_pipe/hide(i)
 	if(level == BELOW_PLATING_LEVEL && istype(loc, /turf))
 		invisibility = i ? 101 : 0
 	update_icon()

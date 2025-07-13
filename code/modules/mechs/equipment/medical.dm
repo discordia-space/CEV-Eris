@@ -24,12 +24,12 @@
 	. = ..()
 	sleeper.go_out()
 
-/obj/item/mech_equipment/sleeper/attack_self(var/mob/user)
+/obj/item/mech_equipment/sleeper/attack_self(mob/user)
 	. = ..()
 	if(.)
 		sleeper.nano_ui_interact(user)
 
-/obj/item/mech_equipment/sleeper/attackby(var/obj/item/I, var/mob/user)
+/obj/item/mech_equipment/sleeper/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers/glass))
 		sleeper.attackby(I, user)
 	else return ..()
@@ -67,7 +67,7 @@
 	return null
 
 //You cannot modify these, it'd probably end with something in nullspace. In any case basic meds are plenty for an ambulance
-/obj/machinery/sleeper/mounted/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/sleeper/mounted/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers/glass))
 		if(!user.unEquip(I, src))
 			return

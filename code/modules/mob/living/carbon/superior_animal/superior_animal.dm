@@ -122,7 +122,7 @@
 	pixel_x = RAND_DECIMAL(-randpixel, randpixel)
 	pixel_y = RAND_DECIMAL(-randpixel, randpixel)
 
-/mob/living/carbon/superior_animal/Initialize(var/mapload)
+/mob/living/carbon/superior_animal/Initialize(mapload)
 	if(islist(armor))
 		armor = getArmor(arglist(armor))
 	else if(!armor)

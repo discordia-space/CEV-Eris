@@ -13,7 +13,7 @@
 	..()
 	update_icon()
 
-/obj/machinery/computer/aifixer/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/device/aicard/card, var/mob/user)
+/obj/machinery/computer/aifixer/proc/load_ai(mob/living/silicon/ai/transfer, obj/item/device/aicard/card, mob/user)
 
 	if(!transfer)
 		return
@@ -59,7 +59,7 @@
 	..()
 	return
 
-/obj/machinery/computer/aifixer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/aifixer/attack_hand(mob/user as mob)
 	if(..())
 		return
 

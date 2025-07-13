@@ -43,7 +43,7 @@
 		set_broken()
 	return 0
 
-/obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/computer/bullet_act(obj/item/projectile/Proj)
 	if(prob(Proj.get_structure_damage()))
 		if(!(stat & BROKEN))
 			var/datum/effect/effect/system/smoke_spread/S = new/datum/effect/effect/system/smoke_spread()

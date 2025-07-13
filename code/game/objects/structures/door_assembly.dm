@@ -323,7 +323,7 @@
 	. = ..()
 	update_dir()
 
-/obj/structure/door_assembly/multi_tile/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/door_assembly/multi_tile/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	update_dir()
 

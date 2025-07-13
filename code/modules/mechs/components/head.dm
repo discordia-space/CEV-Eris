@@ -20,7 +20,7 @@
 	QDEL_NULL(radio)
 	. = ..()
 
-/obj/item/mech_component/sensors/show_missing_parts(var/mob/user)
+/obj/item/mech_component/sensors/show_missing_parts(mob/user)
 	if(!radio)
 		to_chat(user, span_warning("It is missing a radio."))
 	if(!camera)

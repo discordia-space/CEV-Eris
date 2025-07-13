@@ -46,7 +46,7 @@
 	A.nano_ui_interact(user, state = hack_state)
 	return 1
 
-/obj/item/tool/multitool/hacktool/proc/attempt_hack(var/mob/user, var/atom/target)
+/obj/item/tool/multitool/hacktool/proc/attempt_hack(mob/user, atom/target)
 	if(is_hacking)
 		to_chat(user, span_warning("You are already hacking!"))
 		return 0
@@ -84,13 +84,13 @@
 			GLOB.destroyed_event.unregister(A, src)
 		known_targets.Cut(max_known_targets + 1)
 
-/obj/item/tool/multitool/hacktool/proc/on_target_destroy(var/target)
+/obj/item/tool/multitool/hacktool/proc/on_target_destroy(target)
 	known_targets -= target
 
 /datum/nano_topic_state/default/must_hack
 	var/obj/item/tool/multitool/hacktool/hacktool
 
-/datum/nano_topic_state/default/must_hack/New(var/hacktool)
+/datum/nano_topic_state/default/must_hack/New(hacktool)
 	src.hacktool = hacktool
 	..()
 
@@ -98,7 +98,7 @@
 	hacktool = null
 	return ..()
 
-/datum/nano_topic_state/default/must_hack/can_use_topic(var/src_object, var/mob/user)
+/datum/nano_topic_state/default/must_hack/can_use_topic(src_object, mob/user)
 	if(!hacktool || !hacktool.in_hack_mode || !(src_object in hacktool.known_targets))
 		return STATUS_CLOSE
 	return ..()

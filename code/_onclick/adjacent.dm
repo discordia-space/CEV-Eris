@@ -10,11 +10,11 @@
 	Note that in all cases the neighbor is handled simply; this is usually the user's mob, in which case it is up to you
 	to check that the mob is not inside of something
 */
-/atom/proc/Adjacent(var/atom/neighbor) // basic inheritance, unused
+/atom/proc/Adjacent(atom/neighbor) // basic inheritance, unused
 	return FALSE
 
 // Not a sane use of the function and (for now) indicative of an error elsewhere
-/area/Adjacent(var/atom/neighbor)
+/area/Adjacent(atom/neighbor)
 	CRASH("Call to /area/Adjacent(), unimplemented proc")
 
 
@@ -25,7 +25,7 @@
 	* If you are diagonally adjacent, ensure you can pass through at least one of the mutually adjacent square.
 		* Passing through in this case ignores anything with the throwpass flag, such as tables, racks, and morgue trays.
 */
-/turf/Adjacent(var/atom/neighbor, var/atom/target = null)
+/turf/Adjacent(atom/neighbor, atom/target = null)
 	var/turf/T0 = get_turf(neighbor)
 
 	if(T0 == src)
@@ -66,7 +66,7 @@ Quick adjacency (to turf):
 * If you are in the same turf, always true
 * If you are not adjacent, then false
 */
-/turf/proc/AdjacentQuick(var/atom/neighbor, var/atom/target = null)
+/turf/proc/AdjacentQuick(atom/neighbor, atom/target = null)
 	var/turf/T0 = get_turf(neighbor)
 	if(T0 == src)
 		return TRUE
@@ -84,7 +84,7 @@ Quick adjacency (to turf):
 	Note: Multiple-tile objects are created when the bound_width and bound_height are creater than the tile size.
 	This is not used in stock /tg/station currently.
 */
-/atom/movable/Adjacent(var/atom/neighbor)
+/atom/movable/Adjacent(atom/neighbor)
 	if(neighbor == loc)
 		return TRUE
 	if(!isturf(loc))
@@ -97,7 +97,7 @@ Quick adjacency (to turf):
 	return FALSE
 
 // This is necessary for storage items not on your person.
-/obj/item/Adjacent(var/atom/neighbor, var/recurse = 1)
+/obj/item/Adjacent(atom/neighbor, recurse = 1)
 	if(neighbor == loc)
 		return TRUE
 	if(istype(loc,/obj/item))
@@ -122,7 +122,7 @@ Quick adjacency (to turf):
 	This is defined as any dense ON_BORDER object, or any dense object without throwpass.
 	The border_only flag allows you to not objects (for source and destination squares)
 */
-/turf/proc/ClickCross(var/target_dir, var/border_only, var/target_atom = null)
+/turf/proc/ClickCross(target_dir, border_only, target_atom = null)
 	for(var/obj/O in src)
 		// throwpass is used for anything you can click through
 		if(!O.density || O == target_atom || O.throwpass)

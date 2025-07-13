@@ -6,7 +6,7 @@
 	anchored = TRUE
 	random_rotation = 0
 
-/obj/effect/decal/cleanable/crayon/New(location,main = "#FFFFFF",shade = "#000000",var/type = "graffiti")
+/obj/effect/decal/cleanable/crayon/New(location,main = "#FFFFFF",shade = "#000000",type = "graffiti")
 	..()
 	loc = location
 

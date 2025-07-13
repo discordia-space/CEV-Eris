@@ -78,7 +78,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/omni/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/omni/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 
@@ -163,7 +163,7 @@
 
 	update_icon()
 
-/obj/machinery/atmospherics/omni/proc/select_port_icons(var/datum/omni_port/P)
+/obj/machinery/atmospherics/omni/proc/select_port_icons(datum/omni_port/P)
 	if(!istype(P))
 		return
 
@@ -203,7 +203,7 @@
 		P.update = 1
 	update_ports()
 
-/obj/machinery/atmospherics/omni/hide(var/i)
+/obj/machinery/atmospherics/omni/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/omni/proc/update_ports()

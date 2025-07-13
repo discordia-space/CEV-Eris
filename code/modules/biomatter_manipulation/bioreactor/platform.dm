@@ -82,7 +82,7 @@
 			MS_bioreactor.pump_solution(forced = 1)
 
 
-/obj/machinery/multistructure/bioreactor_part/platform/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/multistructure/bioreactor_part/platform/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/material/glass/reinforced))
 		var/obj/item/stack/material/glass = I
 		var/list/glassless_dirs = get_opened_dirs()
@@ -157,7 +157,7 @@
 
 
 //There we apply sprites and directions to created glass
-/obj/machinery/multistructure/bioreactor_part/platform/proc/apply_window(obj/structure/window/reinforced/glass, var/direction)
+/obj/machinery/multistructure/bioreactor_part/platform/proc/apply_window(obj/structure/window/reinforced/glass, direction)
 	if(MS_bioreactor.platform_enter_side == direction)
 		glass.icon_state = "platform_door"
 	else
@@ -218,7 +218,7 @@
 		overlays += default
 
 
-/obj/structure/window/reinforced/bioreactor/proc/apply_dirt(var/amount)
+/obj/structure/window/reinforced/bioreactor/proc/apply_dirt(amount)
 	contamination_level += amount
 	if(contamination_level >= max_contamination_lvl)
 		contamination_level = max_contamination_lvl
@@ -229,7 +229,7 @@
 	update_icon()
 
 
-/obj/structure/window/reinforced/bioreactor/attackby(var/obj/item/I, var/mob/user)
+/obj/structure/window/reinforced/bioreactor/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap))
 		if(istype(I, /obj/item/mop))
 			if(I.reagents && !I.reagents.total_volume)

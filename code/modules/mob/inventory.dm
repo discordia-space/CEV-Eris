@@ -135,7 +135,7 @@
 	return slot
 
 //This differs from remove_from_mob() in that it checks if the item can be unequipped first.
-/mob/proc/unEquip(obj/item/I, var/atom/Target = null, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.
+/mob/proc/unEquip(obj/item/I, atom/Target = null, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.
 	if(!canUnEquip(I))
 		return
 	SEND_SIGNAL_OLD(src, COMSIG_CLOTH_DROPPED, I)

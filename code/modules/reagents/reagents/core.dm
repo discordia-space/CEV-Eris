@@ -13,7 +13,7 @@
 	affects_dead = TRUE
 	nerve_system_accumulations = 0
 
-/datum/reagent/organic/blood/initialize_data(var/newdata)
+/datum/reagent/organic/blood/initialize_data(newdata)
 	..()
 	if(data && data["blood_colour"])
 		color = data["blood_colour"]
@@ -89,7 +89,7 @@
 		if(!cube.wrapped)
 			cube.Expand()
 
-/datum/reagent/water/touch_mob(mob/living/L, var/amount)
+/datum/reagent/water/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		L.fire_stacks = 0
 		L.ExtinguishMob()
@@ -136,7 +136,7 @@
 /datum/reagent/toxin/fuel/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_TOXIN, 2 * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 
-/datum/reagent/toxin/fuel/touch_mob(mob/living/L, var/amount)
+/datum/reagent/toxin/fuel/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 10) // Splashing people with welding fuel to make them easy to ignite!
 

@@ -17,7 +17,7 @@
 	icon_state = "nboard0[notices]"
 
 //attaching papers!!
-/obj/structure/noticeboard/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/structure/noticeboard/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/paper))
 		if(notices < 5)
 			O.add_fingerprint(user)
@@ -30,7 +30,7 @@
 		else
 			to_chat(user, span_notice("You reach to pin your paper to the board but hesitate. You are certain your paper will not be seen among the many others already attached."))
 
-/obj/structure/noticeboard/attack_hand(var/mob/user)
+/obj/structure/noticeboard/attack_hand(mob/user)
 	examine(user)
 
 // Since Topic() never seems to interact with usr on more than a superficial

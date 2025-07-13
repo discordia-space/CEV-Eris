@@ -1,7 +1,7 @@
 
 /datum/preferences
 	//The mob should have a gender you want before running this proc. Will run fine without H
-/datum/preferences/proc/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
+/datum/preferences/proc/randomize_appearance_and_body_for(mob/living/carbon/human/H)
 	var/datum/species/current_species = GLOB.all_species[species]
 	if(!current_species) current_species = GLOB.all_species[SPECIES_HUMAN]
 	gender = pick(current_species.genders)
@@ -29,7 +29,7 @@
 		copy_to(H)
 
 
-/datum/preferences/proc/randomize_hair_color(var/target = "hair")
+/datum/preferences/proc/randomize_hair_color(target = "hair")
 	if(prob (75) && target == "facial") // Chance to inherit hair color
 		facial_color = hair_color
 		return
@@ -175,7 +175,7 @@
 
 	skin_color = rgb(red, green, blue)
 
-/datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin, naked = FALSE)
+/datum/preferences/proc/dress_preview_mob(mob/living/carbon/human/mannequin, naked = FALSE)
 	var/update_icon = FALSE
 	copy_to(mannequin, TRUE)
 

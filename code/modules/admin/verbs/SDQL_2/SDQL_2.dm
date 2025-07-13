@@ -136,7 +136,7 @@
 
 // Used by update statements, this is to handle shit like preventing editing the /datum/admins though SDQL but WITHOUT +PERMISSIONS.
 // Assumes the variable actually exists.
-/datum/proc/SDQL_update(var/const/var_name, var/new_value)
+/datum/proc/SDQL_update(const/var_name, new_value)
 	vars[var_name] = new_value
 	return TRUE
 
@@ -572,7 +572,7 @@
 	return v
 
 
-/proc/SDQL_function(var/object, var/procname, var/list/arguments, source)
+/proc/SDQL_function(object, procname, list/arguments, source)
 	set waitfor = FALSE
 
 	var/list/new_args = list()

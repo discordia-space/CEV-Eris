@@ -40,7 +40,7 @@
 /obj/machinery/librarypubliccomp/Initialize(mapload, d)
 	return INITIALIZE_HINT_QDEL
 
-/obj/machinery/librarypubliccomp/attack_hand(var/mob/user as mob)
+/obj/machinery/librarypubliccomp/attack_hand(mob/user as mob)
 	usr.set_machine(src)
 	var/dat = "" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
@@ -139,7 +139,7 @@
 
 	var/bibledelay = 0 // LOL NO SPAM (1 minute delay) -- Doohl
 
-/obj/machinery/librarycomp/attack_hand(var/mob/user as mob)
+/obj/machinery/librarycomp/attack_hand(mob/user as mob)
 	usr.set_machine(src)
 	var/dat = "" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
@@ -236,7 +236,7 @@
 	user << browse(HTML_SKELETON_TITLE("Book Inventory Management", dat), "window=library")
 	onclose(user, "library")
 
-/obj/machinery/librarycomp/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/librarycomp/emag_act(remaining_charges, mob/user)
 	if (src.density && !src.emagged)
 		src.emagged = 1
 		return 1
@@ -404,12 +404,12 @@
 	density = TRUE
 	var/obj/item/book/cache		// Last scanned book
 
-/obj/machinery/libraryscanner/attackby(var/obj/O as obj, var/mob/user as mob)
+/obj/machinery/libraryscanner/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
 
-/obj/machinery/libraryscanner/attack_hand(var/mob/user as mob)
+/obj/machinery/libraryscanner/attack_hand(mob/user as mob)
 	usr.set_machine(src)
 	var/dat = ""
 	if(cache)
@@ -453,7 +453,7 @@
 	anchored = TRUE
 	density = TRUE
 
-/obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
+/obj/machinery/bookbinder/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/paper))
 		user.drop_item()
 		O.loc = src

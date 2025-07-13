@@ -22,7 +22,7 @@ var/prison_shuttle_timeleft = 0
 	var/allowedtocall = 0
 	var/prison_break = 0
 
-/obj/machinery/computer/prison_shuttle/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/prison_shuttle/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
 /obj/machinery/computer/prison_shuttle/attackby(I as obj, user as mob)
@@ -51,7 +51,7 @@ var/prison_shuttle_timeleft = 0
 		return src.attack_hand(user)
 
 
-/obj/machinery/computer/prison_shuttle/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/prison_shuttle/attack_hand(mob/user as mob)
 	if(!src.allowed(user) && (!hacked))
 		to_chat(user, span_warning("Access Denied."))
 		return
@@ -141,7 +141,7 @@ var/prison_shuttle_timeleft = 0
 			prison_break = 0
 
 
-/obj/machinery/computer/prison_shuttle/proc/post_signal(var/command)
+/obj/machinery/computer/prison_shuttle/proc/post_signal(command)
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(1311)
 	if(!frequency) return
 	var/datum/signal/status_signal = new
@@ -233,7 +233,7 @@ var/prison_shuttle_timeleft = 0
 			start_location.move_contents_to(end_location)
 	return
 
-/obj/machinery/computer/prison_shuttle/emag_act(var/charges, var/mob/user)
+/obj/machinery/computer/prison_shuttle/emag_act(charges, mob/user)
 	if(!hacked)
 		hacked = 1
 		to_chat(user, span_notice("You disable the lock."))

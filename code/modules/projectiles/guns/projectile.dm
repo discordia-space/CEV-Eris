@@ -233,7 +233,7 @@
 	update_held_icon()
 
 //attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
-/obj/item/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/proc/unload_ammo(mob/user, allow_dump=1)
 	if(ammo_magazine)
 		user.put_in_hands(ammo_magazine)
 
@@ -266,7 +266,7 @@
 	update_held_icon()
 
 // Modular guns overwrite this
-/obj/item/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/attackby(obj/item/A as obj, mob/user as mob)
 	.=..()
 	if(QUALITY_SAWING in A.tool_qualities)
 		to_chat(user, span_notice("You begin to saw down \the [src]."))

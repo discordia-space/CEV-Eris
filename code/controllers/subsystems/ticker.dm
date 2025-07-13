@@ -348,7 +348,7 @@ SUBSYSTEM_DEF(ticker)
 		pregame_timeleft = newtime
 
 // Provides an easy way to make cinematics for other events. Just use this as a template :)
-/datum/controller/subsystem/ticker/proc/station_explosion_cinematic(var/ship_missed = 0)
+/datum/controller/subsystem/ticker/proc/station_explosion_cinematic(ship_missed = 0)
 	if(cinematic)
 		return	//already a cinematic in progress!
 

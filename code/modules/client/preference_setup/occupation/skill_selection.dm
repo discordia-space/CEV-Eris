@@ -80,7 +80,7 @@
 			pref.skills_saved["[job.type]"] = L
 
 //Sets up skills_allocated
-/datum/preferences/proc/sanitize_skills(var/list/input)
+/datum/preferences/proc/sanitize_skills(list/input)
 	. = list()
 	var/datum/species/S = GLOB.all_species[species]
 	var/jobs_by_type = decls_repository.get_decls(GLOB.using_map.allowed_jobs)

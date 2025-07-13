@@ -11,7 +11,7 @@
 	var/deployed
 	var/turf/origin_turf
 
-/obj/structure/droppod_door/New(var/newloc, var/autoopen, var/origin)
+/obj/structure/droppod_door/New(newloc, autoopen, origin)
 	..(newloc)
 
 	origin_turf = origin
@@ -19,16 +19,16 @@
 		spawn(100)
 			deploy()
 
-/obj/structure/droppod_door/attack_ai(var/mob/user)
+/obj/structure/droppod_door/attack_ai(mob/user)
 	if(!user.Adjacent(src))
 		return
 	attack_hand(user)
 
-/obj/structure/droppod_door/attack_generic(var/mob/user)
+/obj/structure/droppod_door/attack_generic(mob/user)
 	if(istype(user))
 		attack_hand(user)
 
-/obj/structure/droppod_door/attack_hand(var/mob/user)
+/obj/structure/droppod_door/attack_hand(mob/user)
 	if(deploying) return
 	to_chat(user, span_danger("You prime the explosive bolts. Better get clear!"))
 	sleep(30)

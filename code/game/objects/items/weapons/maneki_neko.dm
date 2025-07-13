@@ -49,7 +49,7 @@
 			new /obj/item/clothing/head/collectable/kitty(get_turf(src))
 			qdel(src)
 
-/obj/item/maneki_neko/afterattack(obj/target, mob/user, var/flag)
+/obj/item/maneki_neko/afterattack(obj/target, mob/user, flag)
 	if(user.a_intent == I_HURT)
 		playsound(src, "shatter", 70, 1)
 		new /obj/item/clothing/head/collectable/kitty(get_turf(src))

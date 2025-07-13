@@ -84,7 +84,7 @@
 
 //This silly special case override is needed to make vines work with portals.
 //Code is copied from /atoms_movable.dm, but a spawn call is removed, making it completely synchronous
-/obj/effect/plant/Bump(var/atom/A, yes)
+/obj/effect/plant/Bump(atom/A, yes)
 	if (A && yes)
 		A.last_bumped = world.time
 		A.Bumped(src)
@@ -208,7 +208,7 @@
 
 
 //Once created, the new vine moves to destination turf
-/obj/effect/plant/proc/handle_move(var/turf/origin, var/turf/destination)
+/obj/effect/plant/proc/handle_move(turf/origin, turf/destination)
 	//First of all lets ensure we still exist.
 	//We may have been deleted by another vine doing postmove cleanup
 	if (QDELETED(src))

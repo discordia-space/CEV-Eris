@@ -23,7 +23,7 @@
 
     qdel(src)
 
-/obj/item/grenade/heatwave/proc/on_explosion(var/turf/O)
+/obj/item/grenade/heatwave/proc/on_explosion(turf/O)
     heatwave(O, heavy_range, weak_range, heat_damage, fire_stacks, penetration)
 
 

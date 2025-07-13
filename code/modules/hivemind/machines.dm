@@ -76,7 +76,7 @@
 		return TRUE
 
 
-/obj/machinery/hivemind_machine/state(var/msg)
+/obj/machinery/hivemind_machine/state(msg)
 	. = ..()
 	playsound(src, "robot_talk_heavy", 50, 1)
 
@@ -86,7 +86,7 @@
 //Deleting things is a bad idea and cause lot of problems
 //So, now we just hide our assimilated machine and make it broken (temporary)
 //When our machine dies, assimilated machinery just unhide back
-/obj/machinery/hivemind_machine/proc/consume(var/obj/victim)
+/obj/machinery/hivemind_machine/proc/consume(obj/victim)
 	assimilated_machinery = victim
 	victim.alpha = 0
 	victim.anchored = TRUE
@@ -149,7 +149,7 @@
 			name = "[name] [hive_mind_ai.surname] - [rand(999)]"
 
 
-/obj/machinery/hivemind_machine/proc/start_rebuild(var/new_machine_path, var/time_in_seconds = 5)
+/obj/machinery/hivemind_machine/proc/start_rebuild(new_machine_path, time_in_seconds = 5)
 	stun()
 	var/obj/effect/overlay/rebuild_anim = new /obj/effect/overlay(loc)
 	rebuild_anim.icon = 'icons/obj/hivemind_machines.dmi'
@@ -160,7 +160,7 @@
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), rebuild_anim), time_in_seconds SECONDS)
 
 
-/obj/machinery/hivemind_machine/proc/finish_rebuild(var/new_machine_path)
+/obj/machinery/hivemind_machine/proc/finish_rebuild(new_machine_path)
 	var/obj/machinery/hivemind_machine/new_machine = new new_machine_path(get_turf(loc))
 	if(assimilated_machinery["path"])
 		new_machine.assimilated_machinery = assimilated_machinery
@@ -172,7 +172,7 @@
 
 
 //Returns list of mobs in range or hearers (include in vehicles)
-/obj/machinery/hivemind_machine/proc/targets_in_range(var/range = world.view, var/in_hear_range = FALSE)
+/obj/machinery/hivemind_machine/proc/targets_in_range(range = world.view, in_hear_range = FALSE)
 	var/list/range_list = list()
 	var/list/target_list = list()
 	if(in_hear_range)
@@ -215,7 +215,7 @@
 		sparks.start()
 
 
-/obj/machinery/hivemind_machine/take_damage(var/amount, var/on_damage_react = TRUE)
+/obj/machinery/hivemind_machine/take_damage(amount, on_damage_react = TRUE)
 	health -= amount
 	time_until_regen = world.time + regen_cooldown_time
 	if(on_damage_react)
@@ -236,7 +236,7 @@
 
 //Stunned machines can't do anything
 //Amount must be a number in seconds
-/obj/machinery/hivemind_machine/proc/stun(var/amount)
+/obj/machinery/hivemind_machine/proc/stun(amount)
 	set_light(0)
 	stat |= EMPED
 	can_regenerate = FALSE

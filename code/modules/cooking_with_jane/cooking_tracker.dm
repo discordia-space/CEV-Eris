@@ -11,7 +11,7 @@
 	var/list/completed_list = list()//List of recipes marked as complete.
 	var/recipe_started = FALSE 	//Tells if steps have been taken for this recipe
 
-/datum/cooking_with_jane/recipe_tracker/New(var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container)
+/datum/cooking_with_jane/recipe_tracker/New(obj/item/reagent_containers/cooking_with_jane/cooking_container/container)
 
 	#ifdef CWJ_DEBUG
 	log_debug("Called /datum/cooking_with_jane/recipe_tracker/New")
@@ -21,7 +21,7 @@
 	src.populate_step_flags()
 
 //Call when a method is done incorrectly that provides a flat debuff to the whole meal.
-/datum/cooking_with_jane/recipe_tracker/proc/apply_flat_penalty(var/penalty)
+/datum/cooking_with_jane/recipe_tracker/proc/apply_flat_penalty(penalty)
 	if(active_recipe_pointers.len == 0)
 		return
 
@@ -83,7 +83,7 @@
 	return active_recipe_pointers.len
 
 //Wrapper function for analyzing process_item internally.
-/datum/cooking_with_jane/recipe_tracker/proc/process_item_wrap(var/obj/used_object, var/mob/user)
+/datum/cooking_with_jane/recipe_tracker/proc/process_item_wrap(obj/used_object, mob/user)
 
 	#ifdef CWJ_DEBUG
 	log_debug("/datum/cooking_with_jane/recipe_tracker/proc/process_item_wrap called!")
@@ -97,7 +97,7 @@
 	return response
 
 //Core function that checks if a object meets all the requirements for certain recipe actions.
-/datum/cooking_with_jane/recipe_tracker/proc/process_item(var/obj/used_object, var/mob/user)
+/datum/cooking_with_jane/recipe_tracker/proc/process_item(obj/used_object, mob/user)
 	#ifdef CWJ_DEBUG
 	log_debug("Called /datum/cooking_with_jane/recipe_tracker/proc/process_item")
 	#endif
@@ -292,7 +292,7 @@
 
 	var/list/steps_taken = list() //built over the course of following a recipe, tracks what has been done to the object. Format is unique_id:result
 
-/datum/cooking_with_jane/recipe_pointer/New(start_type, recipe_id, var/datum/cooking_with_jane/recipe_tracker/parent)
+/datum/cooking_with_jane/recipe_pointer/New(start_type, recipe_id, datum/cooking_with_jane/recipe_tracker/parent)
 
 	#ifdef CWJ_DEBUG
 	log_debug("Called /datum/cooking_with_jane/recipe_pointer/pointer/New([start_type], [recipe_id], parent)")
@@ -409,7 +409,7 @@
 			return_flags |= step.class
 	return return_flags
 
-/datum/cooking_with_jane/recipe_pointer/proc/has_option_by_id(var/id)
+/datum/cooking_with_jane/recipe_pointer/proc/has_option_by_id(id)
 	if(!GLOB.cwj_step_dictionary["[id]"])
 		return FALSE
 	var/datum/cooking_with_jane/recipe_step/active_step = GLOB.cwj_step_dictionary["[id]"]
@@ -418,7 +418,7 @@
 		return TRUE
 	return FALSE
 
-/datum/cooking_with_jane/recipe_pointer/proc/traverse(var/id, var/obj/used_obj)
+/datum/cooking_with_jane/recipe_pointer/proc/traverse(id, obj/used_obj)
 	#ifdef CWJ_DEBUG
 	log_debug("/recipe_pointer/traverse: Traversing pointer from [current_step.unique_id] to [id].")
 	#endif

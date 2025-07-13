@@ -69,7 +69,7 @@
 	else
 		time = stationtime2text()
 
-/datum/transaction/proc/apply_to(var/datum/money_account/account)
+/datum/transaction/proc/apply_to(datum/money_account/account)
 	if(!istype(account) || !account.is_valid())
 		return FALSE
 
@@ -81,7 +81,7 @@
 	account.transaction_log.Add(src.Copy())
 	return TRUE
 
-/datum/transaction/proc/set_amount(var/amount, var/update_time = TRUE)
+/datum/transaction/proc/set_amount(amount, update_time = TRUE)
 	src.amount = amount
 	if(update_time)
 		src.time = stationtime2text()

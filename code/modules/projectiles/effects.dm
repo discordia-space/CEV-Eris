@@ -5,17 +5,17 @@
 	var/lifetime = 3
 	mouse_opacity = 0
 
-/obj/effect/projectile/New(var/turf/location)
+/obj/effect/projectile/New(turf/location)
 	init_plane()
 	if(istype(location))
 		loc = location
 	update_plane()
 
-/obj/effect/projectile/proc/set_transform(var/matrix/M)
+/obj/effect/projectile/proc/set_transform(matrix/M)
 	if(istype(M))
 		transform = M
 
-/obj/effect/projectile/proc/activate(var/kill_delay = lifetime)
+/obj/effect/projectile/proc/activate(kill_delay = lifetime)
 	QDEL_IN(src, kill_delay) //see effect_system.dm - sets loc to null and lets GC handle removing these effects
 
 

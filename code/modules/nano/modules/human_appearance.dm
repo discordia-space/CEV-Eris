@@ -8,7 +8,7 @@
 	var/list/valid_facial_hairstyles = list()
 
 
-/datum/nano_module/appearance_changer/New(var/location, var/mob/living/carbon/human/H)
+/datum/nano_module/appearance_changer/New(location, mob/living/carbon/human/H)
 	..()
 	owner = H
 
@@ -17,7 +17,7 @@
 	topic_manager = null	// The mob is the topic manager and should not be deleted
 	..()
 
-/datum/nano_module/appearance_changer/Topic(ref, href_list, var/datum/nano_topic_state/state = GLOB.default_state)
+/datum/nano_module/appearance_changer/Topic(ref, href_list, datum/nano_topic_state/state = GLOB.default_state)
 	if(..())
 		return 1
 
@@ -79,7 +79,7 @@
 
 	return 0
 
-/datum/nano_module/appearance_changer/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.default_state)
+/datum/nano_module/appearance_changer/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 	if(!owner || !owner.species)
 		return
 
@@ -133,7 +133,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/nano_module/appearance_changer/proc/can_change(var/flag)
+/datum/nano_module/appearance_changer/proc/can_change(flag)
 	return owner && (flags & flag)
 
 /datum/nano_module/appearance_changer/proc/can_change_skin_tone()

@@ -42,7 +42,7 @@
 		"precise" = 0
 		)
 
-/obj/item/device/floor_painter/afterattack(var/atom/A, var/mob/user, proximity, params)
+/obj/item/device/floor_painter/afterattack(atom/A, mob/user, proximity, params)
 	if(!proximity)
 		return
 
@@ -103,7 +103,7 @@
 
 	new painting_decal(F, painting_dir, painting_colour)
 
-/obj/item/device/floor_painter/attack_self(var/mob/user)
+/obj/item/device/floor_painter/attack_self(mob/user)
 	var/choice = input("Do you wish to change the decal type, paint direction, or paint colour?") as null|anything in list("Decal","Direction", "Colour")
 	if(choice == "Decal")
 		choose_decal()
@@ -162,7 +162,7 @@
 	icon_state = "mechpainter"
 	matter = list(MATERIAL_STEEL = 1,MATERIAL_GLASS = 1)
 
-/obj/item/device/floor_painter/mech_painter/afterattack(var/atom/A, var/mob/user, proximity, params)
+/obj/item/device/floor_painter/mech_painter/afterattack(atom/A, mob/user, proximity, params)
 	if(!proximity)
 		return
 
@@ -181,5 +181,5 @@
 		MC.set_colour(paint_colour)
 		return
 
-/obj/item/device/floor_painter/mech_painter/attack_self(var/mob/user)
+/obj/item/device/floor_painter/mech_painter/attack_self(mob/user)
 	choose_colour()

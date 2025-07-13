@@ -4,7 +4,7 @@
 	var/list/user_predicates
 	var/expected_type = /datum
 
-/datum/extension/New(var/datum/holder, var/host_predicates = list(), var/user_predicates = list(), var/additional_arguments = list())
+/datum/extension/New(datum/holder, host_predicates = list(), user_predicates = list(), additional_arguments = list())
 	if(!istype(holder, expected_type))
 		CRASH("Invalid holder type. Expected [expected_type], was [holder.type]")
 	src.holder = holder
@@ -19,7 +19,7 @@
 	user_predicates.Cut()
 	return ..()
 
-/datum/extension/proc/extension_status(var/mob/user)
+/datum/extension/proc/extension_status(mob/user)
 	if(!holder || !user)
 		return STATUS_CLOSE
 	if(!all_predicates_true(list(holder), host_predicates))
@@ -31,10 +31,10 @@
 
 	return STATUS_INTERACTIVE
 
-/datum/extension/proc/extension_act(var/href, var/list/href_list, var/mob/user)
+/datum/extension/proc/extension_act(href, list/href_list, mob/user)
 	return extension_status(user) == STATUS_CLOSE
 
-/datum/extension/Topic(var/href, var/list/href_list)
+/datum/extension/Topic(href, list/href_list)
 	if(..())
 		return TRUE
 	return extension_act(href, href_list, usr)
@@ -53,12 +53,12 @@
 		extensions.Cut()
 	return ..()
 
-/proc/set_extension(var/datum/source, var/base_type, var/expansion_type, var/host_predicates, var/user_predicates, var/list/additional_argments)
+/proc/set_extension(datum/source, base_type, expansion_type, host_predicates, user_predicates, list/additional_argments)
 	if(!source.extensions)
 		source.extensions = list()
 	source.extensions[base_type] = list(expansion_type, host_predicates, user_predicates, additional_argments)
 
-/proc/get_extension(var/datum/source, var/base_type)
+/proc/get_extension(datum/source, base_type)
 	if(!source.extensions)
 		return
 	var/list/expansion = source.extensions[base_type]
@@ -70,11 +70,11 @@
 		source.extensions[base_type] = expansion
 	return expansion
 
-/proc/get_or_create_extension(var/datum/source, var/base_type, var/extension_type)
+/proc/get_or_create_extension(datum/source, base_type, extension_type)
 	if(!has_extension(source, base_type))
 		set_extension(arglist(args))
 	return get_extension(source, base_type)
 
 //Fast way to check if it has an extension, also doesn't trigger instantiation of lazy loaded extensions
-/proc/has_extension(var/datum/source, var/base_type)
+/proc/has_extension(datum/source, base_type)
 	return (source.extensions && source.extensions[base_type])

@@ -176,7 +176,7 @@
 
 	return TRUE
 
-/obj/machinery/atmospherics/unary/vent_scrubber/hide(var/i) //to make the little pipe section invisible, the icon changes.
+/obj/machinery/atmospherics/unary/vent_scrubber/hide(i) //to make the little pipe section invisible, the icon changes.
 	update_icon()
 	update_underlays()
 
@@ -267,7 +267,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/unary/vent_scrubber/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/vent_scrubber/attackby(obj/item/I, mob/user as mob)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING, QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
 

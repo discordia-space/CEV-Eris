@@ -26,7 +26,7 @@
 /obj/item/rpd/attack()
 	return 0
 
-/obj/item/rpd/proc/can_use(var/mob/user,var/turf/T)
+/obj/item/rpd/proc/can_use(mob/user,turf/T)
 	return (user.Adjacent(T) && user.get_active_held_item() == src && !user.stat && !user.restrained())
 
 /obj/item/rpd/MouseDrop(over_object)
@@ -46,7 +46,7 @@
 		return 0
 	return 1
 
-/obj/item/rpd/proc/deletePipe(var/turf/T)
+/obj/item/rpd/proc/deletePipe(turf/T)
 	if(istype(T, /obj/item/pipe) || istype(T, /obj/item/pipe_meter))
 		qdel(T)
 		return 1
@@ -170,5 +170,5 @@
 /obj/item/rpd/borg/attackby()
 	return
 
-/obj/item/rpd/borg/can_use(var/mob/user,var/turf/T)
+/obj/item/rpd/borg/can_use(mob/user,turf/T)
 	return (user.Adjacent(T) && !user.stat)

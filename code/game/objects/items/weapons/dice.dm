@@ -73,7 +73,7 @@ Another builds like baystation12 also have a duplication.
 						 span_notice("You throw [src]. It lands on a [result]. [comment]"), \
 						 span_notice("You hear [src] landing on a [result]. [comment]"))
 
-/obj/item/dice/throw_impact(atom/hit_atom, var/speed)
+/obj/item/dice/throw_impact(atom/hit_atom, speed)
 	..()
 	var/result = rand(1,sides)
 	var/comment = ""

@@ -119,7 +119,7 @@ var/list/despised = list()
 				assert_dominance(M)
 	return
 
-/mob/living/simple_animal/iriska/proc/assert_dominance(var/mob/target_mob)
+/mob/living/simple_animal/iriska/proc/assert_dominance(mob/target_mob)
 	if(prob(15)) say("HSSSSS")
 	if(!Adjacent(target_mob))
 		return
@@ -144,7 +144,7 @@ var/list/despised = list()
 			visible_emote("looks at [M] approvingly.")
 			tolerated += M.real_name
 
-/mob/living/simple_animal/iriska/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_animal/iriska/attackby(obj/item/O, mob/user)
 	. = ..()
 	if(O.force)
 		despise(user)
@@ -156,7 +156,7 @@ var/list/despised = list()
 	if((M.a_intent == I_HELP) && (M in tolerated))
 		if(prob(15)) say("PRRRR")
 
-/mob/living/simple_animal/iriska/bullet_act(var/obj/item/projectile/proj)
+/mob/living/simple_animal/iriska/bullet_act(obj/item/projectile/proj)
 	. = ..()
 	despise(proj.firer)
 

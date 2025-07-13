@@ -20,7 +20,7 @@
 
     qdel(src)
 
-/obj/item/grenade/explosive/proc/on_explosion(var/turf/O)
+/obj/item/grenade/explosive/proc/on_explosion(turf/O)
 	explosion(O, explosion_power, explosion_falloff, explosion_flags)
 
 /obj/item/grenade/explosive/nt

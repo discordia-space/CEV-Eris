@@ -33,7 +33,7 @@
 	//else
 	//	majorChunkChange(c, 0)
 
-/datum/visualnet/camera/onMajorChunkChange(atom/c, var/choice, var/datum/chunk/camera/chunk)
+/datum/visualnet/camera/onMajorChunkChange(atom/c, choice, datum/chunk/camera/chunk)
 // Only add actual cameras to the list of cameras
 	if(istype(c, /obj/machinery/camera))
 		if(choice == 0)

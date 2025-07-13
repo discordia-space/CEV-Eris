@@ -454,7 +454,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	return TRUE
 
 
-/proc/Broadcast_SimpleMessage(var/source, var/frequency, var/text, var/data, var/mob/M, var/compression, var/list/levels)
+/proc/Broadcast_SimpleMessage(source, frequency, text, data, mob/M, compression, list/levels)
 
   /* ###### Prepare the radio connection ###### */
 
@@ -633,7 +633,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	var/turf/position = get_turf(src)
 	return (position.z in signal.data["level"] && signal.data["done"])
 
-/atom/proc/telecomms_process(var/do_sleep = 1)
+/atom/proc/telecomms_process(do_sleep = 1)
 
 	// First, we want to generate a new radio signal
 	var/datum/signal/signal = new

@@ -1,4 +1,4 @@
-/mob/living/carbon/slime/proc/Wrap(var/mob/living/M) // This is a proc for the clicks
+/mob/living/carbon/slime/proc/Wrap(mob/living/M) // This is a proc for the clicks
 	if (Victim == M || src == M)
 		Feedstop()
 		return
@@ -14,7 +14,7 @@
 
 	Feedon(M)
 
-/mob/living/carbon/slime/proc/invalidFeedTarget(var/mob/living/M)
+/mob/living/carbon/slime/proc/invalidFeedTarget(mob/living/M)
 	if (!M || !istype(M))
 		return "This subject is incomparable..."
 	if (isslime(M)) // No cannibalism... yet
@@ -28,7 +28,7 @@
 			return "The [met.name] is already feeding on this subject..."
 	return 0
 
-/mob/living/carbon/slime/proc/Feedon(var/mob/living/M)
+/mob/living/carbon/slime/proc/Feedon(mob/living/M)
 	Victim = M
 	loc = M.loc
 	canmove = 0
@@ -101,7 +101,7 @@
 		if(Victim.client) Victim << "[src] has let go of your head!"
 		Victim = null
 
-/mob/living/carbon/slime/proc/UpdateFeed(var/mob/M)
+/mob/living/carbon/slime/proc/UpdateFeed(mob/M)
 	if(Victim)
 		if(Victim == M)
 			loc = M.loc // simple "attach to head" effect!

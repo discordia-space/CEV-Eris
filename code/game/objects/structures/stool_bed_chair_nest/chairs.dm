@@ -125,31 +125,31 @@
 	desc = "A chair. It looks comfy."
 	icon_state = "comfychair_preview"
 
-/obj/structure/bed/chair/comfy/brown/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/brown/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL, MATERIAL_LEATHER)
 
-/obj/structure/bed/chair/comfy/red/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/red/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL, MATERIAL_CARPET)
 
-/obj/structure/bed/chair/comfy/teal/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/teal/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"teal")
 
-/obj/structure/bed/chair/comfy/black/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/black/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"black")
 
-/obj/structure/bed/chair/comfy/green/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/green/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"green")
 
-/obj/structure/bed/chair/comfy/purp/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/purp/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"purple")
 
-/obj/structure/bed/chair/comfy/blue/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/blue/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"blue")
 
-/obj/structure/bed/chair/comfy/beige/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/beige/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"beige")
 
-/obj/structure/bed/chair/comfy/lime/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/lime/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"lime")
 
 /obj/structure/bed/chair/office
@@ -164,7 +164,7 @@
 		return
 	..()
 
-/obj/structure/bed/chair/office/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/bed/chair/office/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	if(buckled_mob)
 		var/mob/living/occupant = buckled_mob
@@ -239,7 +239,7 @@
 		return
 	..()
 
-/obj/structure/bed/chair/wood/New(var/newloc)
+/obj/structure/bed/chair/wood/New(newloc)
 	..(newloc, MATERIAL_WOOD)
 	var/image/I = image(icon, "[icon_state]_over")
 	I.layer = FLY_LAYER
@@ -262,7 +262,7 @@
 		return
 	..()
 
-/obj/structure/bed/chair/custom/New(var/newloc)
+/obj/structure/bed/chair/custom/New(newloc)
 	. = ..()
 	var/image/I = image(icon, "[icon_state]_over")
 	I.layer = FLY_LAYER
@@ -275,7 +275,7 @@
 	desc = "Old is never too old to not be in fashion."
 	icon_state = "wooden_chair"
 
-/obj/structure/bed/chair/custom/wood/New(var/newloc)
+/obj/structure/bed/chair/custom/wood/New(newloc)
 	..(newloc, MATERIAL_WOOD)
 
 

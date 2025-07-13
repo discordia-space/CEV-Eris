@@ -298,7 +298,7 @@ world
 	Blend(M, ICON_ADD)
 
 //	paints all non transparent pixels into color
-/icon/proc/PlainPaint(var/color)
+/icon/proc/PlainPaint(color)
 	var/list/rgb = ReadRGB(color)
 	MapColors(0,	0,	0,	0, //-\  Ignore
 			0,	0,	0,	0, //--> The
@@ -870,7 +870,7 @@ The _flatIcons list is a cache for generated icon files.
 		overlays += I//And finally add the overlay.
 		// add_overlay(I)//And finally add the overlay.
 
-/proc/getHologramIcon(icon/A, safety=1, var/hologram_opacity = 0.5, var/hologram_color)//If safety is on, a new icon is not created.
+/proc/getHologramIcon(icon/A, safety=1, hologram_opacity = 0.5, hologram_color)//If safety is on, a new icon is not created.
 	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
 	flat_icon.ColorTone(hologram_color || rgb(125, 180, 225))//Let's make it bluish.
 	flat_icon.ChangeOpacity(hologram_opacity)//Make it half transparent.
@@ -886,7 +886,7 @@ The _flatIcons list is a cache for generated icon files.
 		composite.Blend(icon(I.icon, I.icon_state, I.dir, 1), ICON_OVERLAY)
 	return composite
 
-/proc/adjust_brightness(var/color, var/value)
+/proc/adjust_brightness(color, value)
 	if (!color) return "#FFFFFF"
 	if (!value) return color
 
@@ -898,7 +898,7 @@ The _flatIcons list is a cache for generated icon files.
 
 
 //Adds a list of values to the HSV of a color
-/proc/adjust_HSV(var/color, var/list/values)
+/proc/adjust_HSV(color, list/values)
 	if (!color) return "#FFFFFF"
 	if (!values || !values.len) return color
 
@@ -911,7 +911,7 @@ The _flatIcons list is a cache for generated icon files.
 
 //Uses a list of values to overwrite HSV components of a color
 //A null entry won't overwrite anything
-/proc/set_HSV(var/color, var/list/values)
+/proc/set_HSV(color, list/values)
 	if (!color) return "#FFFFFF"
 	if (!values || !values.len) return color
 
@@ -925,7 +925,7 @@ The _flatIcons list is a cache for generated icon files.
 		HSV[3] = CLAMP(values[3], 0, 255)
 	return HSVtoRGB(hsv(HSV[1],HSV[2],HSV[3], null))
 
-/proc/sort_atoms_by_layer(var/list/atoms)
+/proc/sort_atoms_by_layer(list/atoms)
 	// Comb sort icons based on levels
 	var/list/result = atoms.Copy()
 	var/gap = result.len
@@ -950,7 +950,7 @@ cap_mode is capturing mode (optional), user is capturing mob (requred only wehen
 lighting determines lighting capturing (optional), suppress_errors suppreses errors and continues to capture (optional).
 non_blocking var, if true, will allow sleeping to prevent server freeze, at the cost of taking longer
 */
-/proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as num, var/cap_mode = CAPTURE_MODE_PARTIAL, var/mob/living/user, var/suppress_errors = 1, var/non_blocking = FALSE)
+/proc/generate_image(tx as num, ty as num, tz as num, range as num, cap_mode = CAPTURE_MODE_PARTIAL, mob/living/user, suppress_errors = 1, non_blocking = FALSE)
 	var/list/turfstocapture = list()
 	//Lines below determine what tiles will be rendered
 	for(var/xoff = 0 to range)
@@ -1004,7 +1004,7 @@ non_blocking var, if true, will allow sleeping to prevent server freeze, at the 
 //Sets the atom's pixel offset so it is visually about the same spot as where the user clicked
 //Can optionally animate the offsetting. This should be used when the object is moving between turfs,
 //but not when being dropped from a mob
-/proc/set_pixel_click_offset(var/atom/A, var/params, var/animate = FALSE)
+/proc/set_pixel_click_offset(atom/A, params, animate = FALSE)
 	var/list/click_params = params2list(params)
 	//Center the icon where the user clicked.
 	if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
@@ -1031,7 +1031,7 @@ non_blocking var, if true, will allow sleeping to prevent server freeze, at the 
 		A.pixel_y = CLAMP(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 
 //Calculate average color of an icon and store it in global list for future use
-/proc/get_average_color(var/icon, var/icon_state, var/image_dir)
+/proc/get_average_color(icon, icon_state, image_dir)
 	var/icon/I = icon(icon, icon_state, image_dir)
 	if (!istype(I))
 		return

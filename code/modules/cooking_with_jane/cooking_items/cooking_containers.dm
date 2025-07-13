@@ -32,7 +32,7 @@
 	appearance_flags |= KEEP_TOGETHER
 
 
-/obj/item/reagent_containers/cooking_with_jane/cooking_container/examine(var/mob/user, extra_description = "")
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/examine(mob/user, extra_description = "")
 	if(!..(user, extra_description))
 		return FALSE
 	if(contents)
@@ -48,7 +48,7 @@
 /obj/item/reagent_containers/cooking_with_jane/cooking_container/proc/get_reagent_info()
 	return "It contains [reagents.total_volume] units of reagents."
 
-/obj/item/reagent_containers/cooking_with_jane/cooking_container/attackby(var/obj/item/used_item, var/mob/user)
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/attackby(obj/item/used_item, mob/user)
 
 	#ifdef CWJ_DEBUG
 	log_debug("cooking_container/attackby() called!")
@@ -84,7 +84,7 @@
 	. = ..(user, target)
 
 
-/obj/item/reagent_containers/cooking_with_jane/cooking_container/afterattack(var/obj/target, var/mob/user, var/flag)
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/afterattack(obj/target, mob/user, flag)
 	if(!istype(target, /obj/item/reagent_containers))
 		return
 	if(!flag)
@@ -94,7 +94,7 @@
 	if(standard_pour_into(user, target))
 		return 1
 
-/obj/item/reagent_containers/cooking_with_jane/cooking_container/proc/process_item(var/obj/I, var/mob/user, var/lower_quality_on_fail = 0, var/send_message = TRUE)
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/proc/process_item(obj/I, mob/user, lower_quality_on_fail = 0, send_message = TRUE)
 
 
 	#ifdef CWJ_DEBUG
@@ -161,7 +161,7 @@
 	set desc = "Removes items from the container, excluding reagents."
 	do_empty(usr)
 
-/obj/item/reagent_containers/cooking_with_jane/cooking_container/proc/do_empty(mob/user, var/atom/target = null, var/reagent_clear = TRUE)
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/proc/do_empty(mob/user, atom/target = null, reagent_clear = TRUE)
 	#ifdef CWJ_DEBUG
 	log_debug("cooking_container/do_empty() called!")
 	#endif
@@ -202,7 +202,7 @@
 		to_chat(user, span_notice("You remove all the solid items from [src]."))
 
 
-/obj/item/reagent_containers/cooking_with_jane/cooking_container/AltClick(var/mob/user)
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/AltClick(mob/user)
 	do_empty(user)
 
 //Deletes contents of container.
@@ -221,7 +221,7 @@
 	stove_data = list("High"=0 , "Medium" = 0, "Low"=0)
 	grill_data = list("High"=0 , "Medium" = 0, "Low"=0)
 
-/obj/item/reagent_containers/cooking_with_jane/cooking_container/proc/label(var/number, var/CT = null)
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/proc/label(number, CT = null)
 	//This returns something like "Fryer basket 1 - empty"
 	//The latter part is a brief reminder of contents
 	//This is used in the removal menu
@@ -245,7 +245,7 @@
 	if(lip)
 		add_overlay(image(src.icon, icon_state=lip, layer=ABOVE_OBJ_LAYER))
 
-/obj/item/reagent_containers/cooking_with_jane/cooking_container/proc/add_to_visible(var/obj/item/our_item)
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/proc/add_to_visible(obj/item/our_item)
 	our_item.pixel_x = initial(our_item.pixel_x)
 	our_item.pixel_y = initial(our_item.pixel_y)
 	our_item.vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
@@ -253,7 +253,7 @@
 	our_item.transform *= 0.6
 	src.vis_contents += our_item
 
-/obj/item/reagent_containers/cooking_with_jane/cooking_container/proc/remove_from_visible(var/obj/item/our_item)
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/proc/remove_from_visible(obj/item/our_item)
 	our_item.vis_flags = 0
 	our_item.blend_mode = 0
 	our_item.transform = null

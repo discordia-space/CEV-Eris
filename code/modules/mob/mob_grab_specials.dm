@@ -1,5 +1,5 @@
 
-/obj/item/grab/proc/inspect_organ(mob/living/carbon/human/H, mob/user, var/target_zone)
+/obj/item/grab/proc/inspect_organ(mob/living/carbon/human/H, mob/user, target_zone)
 
 	var/obj/item/organ/external/E = H.get_organ(target_zone)
 
@@ -61,7 +61,7 @@
 		if(!bad)
 			to_chat(user, span_notice("[H]'s skin is normal."))
 
-/obj/item/grab/proc/slow_bleeding(mob/living/carbon/human/H, mob/user, var/obj/item/organ/external/bodypart)
+/obj/item/grab/proc/slow_bleeding(mob/living/carbon/human/H, mob/user, obj/item/organ/external/bodypart)
 
 	if(bodypart.is_stump() || !bodypart)
 		to_chat(user, span_warning("They are missing that limb!"))
@@ -95,7 +95,7 @@
 		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Forced to vomit by [attacker.name] ([attacker.ckey])</font>")
 		//do not kill the grab
 
-/obj/item/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
+/obj/item/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, target_zone)
 	if(state < GRAB_AGGRESSIVE)
 		to_chat(attacker, span_warning("You require a better grab to do this."))
 		return
@@ -230,7 +230,7 @@
 	qdel(src)
 	return
 
-/obj/item/grab/proc/nerve_strike(mob/living/carbon/human/target, mob/living/attacker, var/target_zone)
+/obj/item/grab/proc/nerve_strike(mob/living/carbon/human/target, mob/living/attacker, target_zone)
 	if(target.grab_joint(attacker, target_zone))
 		return
 

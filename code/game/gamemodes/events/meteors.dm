@@ -174,7 +174,7 @@ var/list/meteors_cataclysm = list(\
 //Meteor spawning global procs
 ///////////////////////////////
 
-/proc/spawn_meteors(var/number = 1, var/list/meteortypes, var/startSide, var/zlevel)
+/proc/spawn_meteors(number = 1, list/meteortypes, startSide, zlevel)
 	for(var/i = 0; i < number; i++)
 		//If no target zlevel is specified, then we'll throw each meteor at an individually randomly selected ship zlevel
 		var/target_level
@@ -184,7 +184,7 @@ var/list/meteors_cataclysm = list(\
 			target_level = pick(GLOB.maps_data.station_levels)
 		spawn_meteor(meteortypes, startSide, target_level)
 
-/proc/spawn_meteor(var/list/meteortypes, var/startSide, var/zlevel)
+/proc/spawn_meteor(list/meteortypes, startSide, zlevel)
 	var/turf/pickedstart = spaceDebrisStartLoc(startSide, zlevel)
 	var/turf/pickedgoal = spaceDebrisFinishLoc(startSide, zlevel)
 	var/Me = pickweight(meteortypes)
@@ -333,7 +333,7 @@ var/list/comet_mini = list(\
 	z_original = z
 
 
-/obj/effect/meteor/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/effect/meteor/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..() //process movement...
 	move_count++
 	if(loc == dest)
@@ -361,7 +361,7 @@ var/list/comet_mini = list(\
 /obj/effect/meteor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return istype(mover, /obj/effect/meteor) ? 1 : ..()
 
-/obj/effect/meteor/proc/ram_turf(var/turf/T)
+/obj/effect/meteor/proc/ram_turf(turf/T)
 	//first bust whatever is in the turf
 	for(var/atom/A in T)
 		if(A != src && !A.CanPass(src, src.loc, 0.5, 0)) //only ram stuff that would actually block us

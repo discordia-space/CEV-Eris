@@ -15,16 +15,16 @@
 	center_of_mass = list("x"=16, "y"=6)
 	volume = 50
 
-/obj/item/reagent_containers/food/condiment/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/reagent_containers/food/condiment/attackby(obj/item/W as obj, mob/user as mob)
 	return
 
-/obj/item/reagent_containers/food/condiment/attack_self(var/mob/user as mob)
+/obj/item/reagent_containers/food/condiment/attack_self(mob/user as mob)
 	return
 
-/obj/item/reagent_containers/food/condiment/attack(var/mob/M as mob, var/mob/user as mob, var/def_zone)
+/obj/item/reagent_containers/food/condiment/attack(mob/M as mob, mob/user as mob, def_zone)
 	standard_feed_mob(user, M)
 
-/obj/item/reagent_containers/food/condiment/afterattack(var/obj/target, var/mob/user, var/proximity)
+/obj/item/reagent_containers/food/condiment/afterattack(obj/target, mob/user, proximity)
 	if(!proximity)
 		return
 
@@ -47,10 +47,10 @@
 	else
 		..()
 
-/obj/item/reagent_containers/food/condiment/feed_sound(var/mob/user)
+/obj/item/reagent_containers/food/condiment/feed_sound(mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
-/obj/item/reagent_containers/food/condiment/self_feed_message(var/mob/user)
+/obj/item/reagent_containers/food/condiment/self_feed_message(mob/user)
 	to_chat(user, span_notice("You swallow some of contents of \the [src]."))
 
 /obj/item/reagent_containers/food/condiment/on_reagent_change()

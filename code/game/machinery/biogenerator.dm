@@ -63,7 +63,7 @@
 		icon_state = "biogen-work"
 	return
 
-/obj/machinery/biogenerator/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/biogenerator/attackby(obj/item/I, mob/user)
 
 	if(default_deconstruction(I, user))
 		return
@@ -112,7 +112,7 @@
 	update_icon()
 	return
 
-/obj/machinery/biogenerator/nano_ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state =GLOB.outside_state)
+/obj/machinery/biogenerator/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state =GLOB.outside_state)
 	user.set_machine(src)
 	var/list/data = list()
 	data["points"] = points
@@ -188,7 +188,7 @@
 		menustat = "void"
 	return
 
-/obj/machinery/biogenerator/proc/create_product(var/item, var/amount)
+/obj/machinery/biogenerator/proc/create_product(item, amount)
 	var/list/recipe = null
 	if(processing)
 		return

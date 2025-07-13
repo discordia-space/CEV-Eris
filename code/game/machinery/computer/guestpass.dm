@@ -80,7 +80,7 @@
 		return
 	..()
 
-/obj/machinery/computer/guestpass/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/guestpass/attack_hand(mob/user as mob)
 	if(..())
 		return
 

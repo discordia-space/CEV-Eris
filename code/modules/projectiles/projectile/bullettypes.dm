@@ -237,7 +237,7 @@ There are important things regarding this file:
 	kill_count = 30
 	matter = list(MATERIAL_PLASTEEL = 2)
 
-/obj/item/projectile/bullet/antim/breach/proc/get_tiles_passed(var/distance)
+/obj/item/projectile/bullet/antim/breach/proc/get_tiles_passed(distance)
 	var/tiles_passed = distance
 	return ROUND_PROB(tiles_passed)
 

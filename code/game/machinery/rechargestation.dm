@@ -119,7 +119,7 @@
 		cell.emp_act(severity)
 	..(severity)
 
-/obj/machinery/recharge_station/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/recharge_station/attackby(obj/item/I, mob/user as mob)
 	if(occupant)
 		to_chat(user, span_notice("You cant do anything with [src] while someone inside of it."))
 		return
@@ -190,10 +190,10 @@
 	if(icon_update_tick == 0)
 		build_overlays()
 
-/obj/machinery/recharge_station/Bumped(var/mob/living/silicon/robot/R)
+/obj/machinery/recharge_station/Bumped(mob/living/silicon/robot/R)
 	go_in(R)
 
-/obj/machinery/recharge_station/proc/go_in(var/mob/M)
+/obj/machinery/recharge_station/proc/go_in(mob/M)
 	if(occupant)
 		return
 	if(!hascell(M))
@@ -207,7 +207,7 @@
 	exit_timer = world.time + 10 //magik numbers, yey
 	return 1
 
-/obj/machinery/recharge_station/proc/hascell(var/mob/M)
+/obj/machinery/recharge_station/proc/hascell(mob/M)
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.cell)
@@ -244,7 +244,7 @@
 		return
 	go_in(usr)
 
-/obj/machinery/recharge_station/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/recharge_station/MouseDrop_T(mob/target, mob/user)
 	if(!CanMouseDrop(target, user))
 		return
 	if(!istype(target,/mob/living/silicon))

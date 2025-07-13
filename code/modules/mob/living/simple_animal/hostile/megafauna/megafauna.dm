@@ -34,7 +34,7 @@
 /mob/living/simple_animal/hostile/megafauna/proc/prevent_content_explosion()
 	return TRUE
 
-/mob/living/simple_animal/hostile/megafauna/death(gibbed, var/list/force_grant)
+/mob/living/simple_animal/hostile/megafauna/death(gibbed, list/force_grant)
 	..()
 
 /mob/living/simple_animal/hostile/megafauna/gib()
@@ -125,7 +125,7 @@
 		firedir = alldirs[dirpoint]
 		sleep(rand(1,3))
 
-/mob/living/simple_animal/hostile/megafauna/proc/shoot_projectile(turf/marker, var/dir)
+/mob/living/simple_animal/hostile/megafauna/proc/shoot_projectile(turf/marker, dir)
 	if(!marker || marker == loc)
 		return
 	var/turf/startloc = get_turf(src)

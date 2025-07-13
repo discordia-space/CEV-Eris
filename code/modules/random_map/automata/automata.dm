@@ -11,10 +11,10 @@
 	for(var/i=1;i<=iterations;i++)
 		iterate(i)
 
-/datum/random_map/automata/get_additional_spawns(var/value, var/turf/T)
+/datum/random_map/automata/get_additional_spawns(value, turf/T)
 	return
 
-/datum/random_map/automata/proc/iterate(var/iteration)
+/datum/random_map/automata/proc/iterate(iteration)
 	var/list/next_map[limit_x*limit_y]
 	for(var/x = 1, x <= limit_x, x++)
 		for(var/y = 1, y <= limit_y, y++)
@@ -52,15 +52,15 @@
 	map = next_map
 
 // Check if a given tile counts as alive for the automata generations.
-/datum/random_map/automata/proc/cell_is_alive(var/value)
+/datum/random_map/automata/proc/cell_is_alive(value)
 	return (value == cell_live_value) && (value != cell_dead_value)
 
-/datum/random_map/automata/proc/revive_cell(var/target_cell, var/list/use_next_map, var/final_iter)
+/datum/random_map/automata/proc/revive_cell(target_cell, list/use_next_map, final_iter)
 	if(!use_next_map)
 		use_next_map = map
 	use_next_map[target_cell] = cell_live_value
 
-/datum/random_map/automata/proc/kill_cell(var/target_cell, var/list/use_next_map, var/final_iter)
+/datum/random_map/automata/proc/kill_cell(target_cell, list/use_next_map, final_iter)
 	if(!use_next_map)
 		use_next_map = map
 	use_next_map[target_cell] = cell_dead_value

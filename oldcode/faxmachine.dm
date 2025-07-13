@@ -133,7 +133,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	updateUsrDialog()
 
-/obj/machinery/photocopier/faxmachine/proc/sendfax(var/destination)
+/obj/machinery/photocopier/faxmachine/proc/sendfax(destination)
 	if(stat & (BROKEN|NOPOWER))
 		return
 
@@ -150,7 +150,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	else
 		visible_message("[src] beeps, \"Error transmitting message.\"")
 
-/obj/machinery/photocopier/faxmachine/proc/recievefax(var/obj/item/incoming)
+/obj/machinery/photocopier/faxmachine/proc/recievefax(obj/item/incoming)
 	if(stat & (BROKEN|NOPOWER))
 		return 0
 
@@ -175,7 +175,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	use_power(active_power_usage)
 	return 1
 
-/obj/machinery/photocopier/faxmachine/proc/send_admin_fax(var/mob/sender, var/destination)
+/obj/machinery/photocopier/faxmachine/proc/send_admin_fax(mob/sender, destination)
 	if(stat & (BROKEN|NOPOWER))
 		return
 
@@ -210,7 +210,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
 
 
-/obj/machinery/photocopier/faxmachine/proc/message_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
+/obj/machinery/photocopier/faxmachine/proc/message_admins(mob/sender, faxname, obj/item/sent, reply_type, font_colour="#006100")
 	var/msg = span_blue("<b><font color='[font_colour]'>[faxname]: </font>[key_name(sender, 1)] [ADMIN_PP(sender)] [ADMIN_VV(sender)] [ADMIN_SM(sender)] ([admin_jump_link(sender, src)]) (<A href='byond://?_src_=holder;[HrefToken()];secretsadmin=check_antagonist'>CA</A>) (<a href='byond://?_src_=holder;[HrefToken()];[reply_type]=\ref[sender];originfax=\ref[src]'>REPLY</a>)</b>: Receiving '[sent.name]' via secure connection ... <a href='byond://?_src_=holder;[HrefToken()];AdminFaxView=\ref[sent]'>view message</a>")
 
 	for(var/client/C in GLOB.admins)
@@ -248,7 +248,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 /**
  * Call the chat webhook to transmit a notification of an admin fax to the admin chat.
  */
-/obj/machinery/photocopier/faxmachine/proc/message_chat_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/faxid, font_colour="#006100")
+/obj/machinery/photocopier/faxmachine/proc/message_chat_admins(mob/sender, faxname, obj/item/sent, faxid, font_colour="#006100")
 	if (config.webhook_url)
 		spawn(0)
 			var/query_string = "type=fax"

@@ -51,7 +51,7 @@
 			return TRUE
 	return ..()
 
-/obj/item/reagent_containers/atomic_distillery/afterattack(var/obj/target, var/mob/user, var/flag)
+/obj/item/reagent_containers/atomic_distillery/afterattack(obj/target, mob/user, flag)
 	if(!flag)
 		return
 	if(standard_pour_into(user, target))

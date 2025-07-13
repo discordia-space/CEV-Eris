@@ -50,7 +50,7 @@
 
 	usr << browse(output,"window=editrights;size=600x500")
 
-/datum/admins/proc/log_admin_rank_modification(var/admin_ckey, var/new_rank)
+/datum/admins/proc/log_admin_rank_modification(admin_ckey, new_rank)
 	if(CONFIG_GET(flag/admin_legacy_system))
 		return
 
@@ -96,7 +96,7 @@
 		log_admin("[key_name(usr)] changed [key_name(admin_ckey)] admin rank to [new_rank]")
 		to_chat(usr, span_notice("Admin rank changed."))
 
-/datum/admins/proc/log_admin_permission_modification(var/admin_ckey, var/new_permission, var/nominal)
+/datum/admins/proc/log_admin_permission_modification(admin_ckey, new_permission, nominal)
 	if(CONFIG_GET(flag/admin_legacy_system))
 		return
 

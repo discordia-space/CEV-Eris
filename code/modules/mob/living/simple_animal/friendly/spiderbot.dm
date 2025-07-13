@@ -49,7 +49,7 @@
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
 
-/mob/living/simple_animal/spiderbot/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/spiderbot/attackby(obj/item/O as obj, mob/user as mob)
 
 	if(istype(O, /obj/item/device/mmi))
 		var/obj/item/device/mmi/B = O
@@ -130,7 +130,7 @@
 	else
 		O.attack(src, user, user.targeted_organ)
 
-/mob/living/simple_animal/spiderbot/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/simple_animal/spiderbot/emag_act(remaining_charges, mob/user)
 	if (emagged)
 		to_chat(user, span_warning("[src] is already overloaded - better run."))
 		return 0
@@ -140,7 +140,7 @@
 		spawn(200)	to_chat(src, span_danger("Internal heat sensors are spiking! Something is badly wrong with your cell!"))
 		spawn(300)	src.explode()
 
-/mob/living/simple_animal/spiderbot/proc/transfer_personality(var/obj/item/device/mmi/M as obj)
+/mob/living/simple_animal/spiderbot/proc/transfer_personality(obj/item/device/mmi/M as obj)
 
 		src.mind = M.brainmob.mind
 		src.mind.key = M.brainmob.key

@@ -22,7 +22,7 @@
 	if(holder)
 		holder.update_icon()
 
-/obj/item/device/assembly/mousetrap/proc/triggered(var/mob/living/target, var/type = "feet")
+/obj/item/device/assembly/mousetrap/proc/triggered(mob/living/target, type = "feet")
 	if(!armed || !istype(target))
 		return
 

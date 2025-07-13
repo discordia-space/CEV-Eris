@@ -20,12 +20,12 @@
 
 	var/repair = 0
 
-/obj/machinery/mech_recharger/Crossed(var/mob/living/exosuit/M)
+/obj/machinery/mech_recharger/Crossed(mob/living/exosuit/M)
 	. = ..()
 	if(istype(M) && charging != M)
 		start_charging(M)
 
-/obj/machinery/mech_recharger/Uncrossed(var/mob/living/exosuit/M)
+/obj/machinery/mech_recharger/Uncrossed(mob/living/exosuit/M)
 	. = ..()
 	if(M == charging)
 		stop_charging()
@@ -79,7 +79,7 @@
 		stop_charging()
 	return
 
-/obj/machinery/mech_recharger/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/mech_recharger/attackby(obj/item/I, mob/user)
 	. = ..()
 	if(default_deconstruction(I, user))
 		return
@@ -87,7 +87,7 @@
 	if(default_part_replacement(I, user))
 		return
 
-/obj/machinery/mech_recharger/proc/start_charging(var/mob/living/exosuit/M)
+/obj/machinery/mech_recharger/proc/start_charging(mob/living/exosuit/M)
 	if(stat & (NOPOWER | BROKEN))
 		M.occupant_message(span_warning("Power port not responding. Terminating."))
 		return

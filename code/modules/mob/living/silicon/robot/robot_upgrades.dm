@@ -58,7 +58,7 @@
 /obj/item/borg/upgrade/rename/attack_self(mob/user as mob)
 	heldname = sanitizeSafe(input(user, "Enter new robot name", "Robot Reclassification", heldname), MAX_NAME_LEN)
 
-/obj/item/borg/upgrade/rename/action(var/mob/living/silicon/robot/R)
+/obj/item/borg/upgrade/rename/action(mob/living/silicon/robot/R)
 	if(..()) return 0
 	R.notify_ai(ROBOT_NOTIFICATION_NEW_NAME, R.name, heldname)
 	R.name = heldname
@@ -98,7 +98,7 @@
 	permanent = FALSE
 
 
-/obj/item/borg/upgrade/restart/action(var/mob/living/silicon/robot/R)
+/obj/item/borg/upgrade/restart/action(mob/living/silicon/robot/R)
 	if(R.health < 0)
 		to_chat(usr, "You have to repair the robot before using this module!")
 		return 0
@@ -126,7 +126,7 @@
 	var/speed_buff = 0.1
 	robot_traits = CYBORG_TRAIT_SPEED_BOOSTED
 
-/obj/item/borg/upgrade/vtec/action(var/mob/living/silicon/robot/R)
+/obj/item/borg/upgrade/vtec/action(mob/living/silicon/robot/R)
 	if(..())
 		return 0
 
@@ -147,7 +147,7 @@
 	var/cooling_buff = 4
 
 
-/obj/item/borg/upgrade/tasercooler/action(var/mob/living/silicon/robot/R)
+/obj/item/borg/upgrade/tasercooler/action(mob/living/silicon/robot/R)
 	if(..()) return 0
 
 	if(!R.module || !(type in R.module.supported_upgrades))
@@ -196,7 +196,7 @@
 	require_module = TRUE
 	var/ref_to_jetpack = null
 
-/obj/item/borg/upgrade/jetpack/action(var/mob/living/silicon/robot/R)
+/obj/item/borg/upgrade/jetpack/action(mob/living/silicon/robot/R)
 	if(..()) return 0
 
 	if(!R.module || !(type in R.module.supported_upgrades))
@@ -229,7 +229,7 @@
 	require_module = TRUE
 	var/ref_to_rcd = null
 
-/obj/item/borg/upgrade/rcd/action(var/mob/living/silicon/robot/R)
+/obj/item/borg/upgrade/rcd/action(mob/living/silicon/robot/R)
 	if(..()) return 0
 
 	if(!R.module || !(type in R.module.supported_upgrades))

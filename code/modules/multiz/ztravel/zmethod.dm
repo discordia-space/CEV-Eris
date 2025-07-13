@@ -143,7 +143,7 @@
 
 
 //Combines testing and starting. Autostarts if possible
-/datum/vertical_travel_method/proc/attempt(var/dir)
+/datum/vertical_travel_method/proc/attempt(dir)
 	.=can_perform(dir)
 	if (.)
 		spawn()
@@ -158,7 +158,7 @@
 	Like if they're wearing a jetpack but it's empty or not turned on.
 	Generally, use a message in a case where a user would expect it to work, to explain why it doesn't.
 */
-/datum/vertical_travel_method/proc/can_perform(var/dir)
+/datum/vertical_travel_method/proc/can_perform(dir)
 	if(M.used_now)
 		to_chat(M, span_notice("You are busy at the moment."))
 		return FALSE
@@ -178,7 +178,7 @@
 	return TRUE
 
 
-/datum/vertical_travel_method/proc/start(var/dir)
+/datum/vertical_travel_method/proc/start(dir)
 	direction = dir
 	calculate_time()
 	announce_start()
@@ -246,7 +246,7 @@
 
 	mob.visible_message(span_notice(visible), span_notice(personal))
 
-/datum/vertical_travel_method/proc/format_message(var/string)
+/datum/vertical_travel_method/proc/format_message(string)
 	string = replacetext(string, "%m", M.name)
 	string = replacetext(string, "%d3", direction == UP ? "ascen" : "descen")
 	string = replacetext(string, "%d2", direction == UP ? "above" : "below")

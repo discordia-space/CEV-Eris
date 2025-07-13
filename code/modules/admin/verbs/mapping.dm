@@ -34,7 +34,7 @@ var/intercom_range_display_status = 0
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "yellow"
 
-/obj/effect/debugging/marker/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/effect/debugging/marker/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	return 0
 
 /client/proc/do_not_use_these()
@@ -138,7 +138,7 @@ var/intercom_range_display_status = 0
 	var/usedZAScolors = 0
 	var/list/image/ZAScolors = list()
 
-/client/proc/recurse_zone(var/datum/zone/Z, var/recurse_level =1)
+/client/proc/recurse_zone(datum/zone/Z, recurse_level =1)
 	testZAScolors_zones += Z
 	if(recurse_level > 10)
 		return

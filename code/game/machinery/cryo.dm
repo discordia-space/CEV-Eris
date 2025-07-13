@@ -82,7 +82,7 @@
   *
   * @return nothing
   */
-/obj/machinery/atmospherics/unary/cryo_cell/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/atmospherics/unary/cryo_cell/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 
 	if(user == occupant || user.stat)
 		return
@@ -173,14 +173,14 @@
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/atmospherics/unary/cryo_cell/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/atmospherics/unary/cryo_cell/affect_grab(mob/user, mob/target)
 	for(var/mob/living/carbon/slime/M in range(1,target))
 		if(M.Victim == target)
 			to_chat(user, "[target] will not fit into the cryo because they have a slime latched onto their head.")
 			return
 	return put_mob(target)
 
-/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/cryo_cell/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/reagent_containers/glass))
 		if(beaker)
 			to_chat(user, span_warning("A beaker is already loaded into the machine."))
@@ -316,7 +316,7 @@
 	update_icon()
 	return 1
 
-/obj/machinery/atmospherics/unary/cryo_cell/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/atmospherics/unary/cryo_cell/MouseDrop_T(mob/target, mob/user)
 	if(!ismob(target))
 		return
 	if (target.buckled)

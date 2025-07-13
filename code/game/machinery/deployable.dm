@@ -303,7 +303,7 @@ for reference:
 	if(src)
 		qdel(src)
 
-/obj/machinery/deployable/barrier/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/deployable/barrier/emag_act(remaining_charges, mob/user)
 	if(emagged == 0)
 		emagged = 1
 		req_access.Cut()

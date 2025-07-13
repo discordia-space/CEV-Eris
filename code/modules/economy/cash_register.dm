@@ -88,7 +88,7 @@
 	onclose(user, "cash_register")
 
 
-/obj/machinery/cash_register/Topic(var/href, var/href_list)
+/obj/machinery/cash_register/Topic(href, href_list)
 	if(..())
 		return
 
@@ -397,7 +397,7 @@
 	return dat
 
 
-/obj/machinery/cash_register/proc/add_transaction_log(var/c_name, var/p_method, var/t_amount)
+/obj/machinery/cash_register/proc/add_transaction_log(c_name, p_method, t_amount)
 	var/dat = {"
 	<head><style>
 		.tx-title {text-align: center; background-color:#ddddff; font-weight: bold}
@@ -499,7 +499,7 @@
 
 
 
-/obj/machinery/cash_register/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/cash_register/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		src.visible_message(span_danger("The [src]'s cash box springs open as [user] swipes the card through the scanner!"))
 		playsound(src, "sparks", 50, 1)

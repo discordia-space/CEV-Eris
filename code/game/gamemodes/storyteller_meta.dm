@@ -23,7 +23,7 @@ var/global/list/scheduled_events = list()
 
 
 //This is a global thing so that scheduled events won't get lost in a storyteller change
-/proc/fire_event(var/datum/storyevent/C, event_type)
+/proc/fire_event(datum/storyevent/C, event_type)
 	if(!C.can_trigger(event_type))
 		//Something has changed, it was valid before but not now
 		//This shouldnt happen often

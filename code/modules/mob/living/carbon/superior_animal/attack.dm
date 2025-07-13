@@ -70,7 +70,7 @@
 	target_mob = null
 	return
 
-/mob/living/carbon/superior_animal/proc/Shoot(var/target, var/start, var/user, var/bullet = 0)
+/mob/living/carbon/superior_animal/proc/Shoot(target, start, user, bullet = 0)
 	if(target == start)
 		return
 

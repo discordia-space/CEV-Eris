@@ -1,25 +1,25 @@
 GLOBAL_LIST_EMPTY(ui_styles)
 
 /*
-/datum/interface/createUsingStyle(var/datum/UI_style/style)
+/datum/interface/createUsingStyle(datum/UI_style/style)
 
 /datum/interface/getElementByID()
 
-/datum/interface/hide(var/id)
+/datum/interface/hide(id)
 
-/datum/interface/show(var/id)
+/datum/interface/show(id)
 
 /datum/interface/validate()
 
 /datum/interface/update()
 
-/datum/interface/moveOnTop(var/id)
+/datum/interface/moveOnTop(id)
 
-/datum/interface/moveToBottom(var/id)
+/datum/interface/moveToBottom(id)
 
 
 ###########################################
-/client/proc/create_UI(var/mob_type)
+/client/proc/create_UI(mob_type)
 	used in:
 		/datum/mind/proc/transfer_to(mob/living/new_character)
 		/datum/admins/proc/cmd_ghost_drag(var/mob/observer/ghost/frommob, var/mob/living/tomob)
@@ -61,7 +61,7 @@ TODO: LATER
 
 	var/list/storageData = list()
 
-/datum/interface/New(var/client/observer)
+/datum/interface/New(client/observer)
 	if(!observer || !istype(observer))
 		error("Passed incorrect observer to interface.")
 		qdel(src)
@@ -96,14 +96,14 @@ TODO: LATER
 		E.setClickedInteraction(TRUE, iconData, 2)
 
 
-/datum/interface/proc/getElementByID(var/id)
+/datum/interface/proc/getElementByID(id)
 	RETURN_TYPE(/HUD_element)
 	for(var/HUD_element/element in _elements)
 		if(element.getIdentifier() == id)
 			return element
 	error("No element found with id \"[id]\".")
 
-/datum/interface/proc/hide(var/id)
+/datum/interface/proc/hide(id)
 	if (!id)
 		for(var/HUD_element/element in _elements)
 			element.hide()
@@ -114,7 +114,7 @@ TODO: LATER
 		else
 			error("No element with id \"[id]\" found.")
 
-/datum/interface/proc/show(var/id)
+/datum/interface/proc/show(id)
 	if(!_observer)
 		error("Interface has no observer.")
 		return FALSE
@@ -132,7 +132,7 @@ TODO: LATER
 /datum/interface/proc/update()
 	//TODO: THIS
 
-/datum/interface/proc/moveOnTop(var/id)
+/datum/interface/proc/moveOnTop(id)
 	var/HUD_element/E = getElementByID(id)
 	if(istype(E, /HUD_element))
 		if(E.getElements())
@@ -146,7 +146,7 @@ TODO: LATER
 	else
 		error("moveOnTop(): No element with id \"[id]\" found.")
 
-/datum/interface/proc/moveToBottom(var/id)
+/datum/interface/proc/moveToBottom(id)
 	var/HUD_element/E = getElementByID(id)
 	if(istype(E, /HUD_element))
 		if(E.getElements())
@@ -166,7 +166,7 @@ TODO: LATER
 //	To properly align UI to the screen YOU HAVE TO align planes or elements to either main screen or already aligned planes or elements to main screen
 //	STRONGLY KEEP THAT IN MIND otherwise UI will fucked up when client.view var is changed
 
-/datum/interface/proc/newUIElement(var/name, var/ui_type, var/iconData, var/x = 0, var/y = 0, var/list/icon_overlays, var/list/icon_underlays, var/data)
+/datum/interface/proc/newUIElement(name, ui_type, iconData, x = 0, y = 0, list/icon_overlays, list/icon_underlays, data)
 	if(!name || !ui_type)
 		error("interface element will not be created, incorrect data for either name or type")
 		return FALSE
@@ -204,7 +204,7 @@ TODO: LATER
 
 	return element
 
-/datum/interface/proc/addUIElement(var/HUD_element/element)
+/datum/interface/proc/addUIElement(HUD_element/element)
 	if(!element)
 		error("Passed null element")
 		return

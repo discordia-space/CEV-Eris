@@ -14,7 +14,7 @@
 		return FALSE
 	return ..()
 
-/mob/living/silicon/ai/DblClickOn(var/atom/A, params)
+/mob/living/silicon/ai/DblClickOn(atom/A, params)
 	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked
 		build_click(src, client.buildmode, params, A)
 		return
@@ -25,7 +25,7 @@
 		A.move_camera_by_click()
 
 
-/mob/living/silicon/ai/ClickOn(var/atom/A, params)
+/mob/living/silicon/ai/ClickOn(atom/A, params)
 	if(!can_click())
 		return
 	next_click = world.time + 1
@@ -96,22 +96,22 @@
 	for AI shift, ctrl, and alt clicking.
 */
 
-/mob/living/silicon/ai/ShiftClickOn(var/atom/A)
+/mob/living/silicon/ai/ShiftClickOn(atom/A)
 	if(A.AIShiftClick(src))
 		return
 	..()
 
-/mob/living/silicon/ai/CtrlClickOn(var/atom/A)
+/mob/living/silicon/ai/CtrlClickOn(atom/A)
 	if(A.AICtrlClick(src))
 		return
 	..()
 
-/mob/living/silicon/ai/AltClickOn(var/atom/A)
+/mob/living/silicon/ai/AltClickOn(atom/A)
 	if(A.AIAltClick(src))
 		return
 	..()
 
-/mob/living/silicon/ai/MiddleClickOn(var/atom/A)
+/mob/living/silicon/ai/MiddleClickOn(atom/A)
 	if(A.AIMiddleClick(src))
 		return
 	..()
@@ -124,27 +124,27 @@
 /atom/proc/AICtrlShiftClick()
 	return
 
-/atom/proc/AIShiftClick(var/mob/user)
+/atom/proc/AIShiftClick(mob/user)
 	user.examinate(src)
 
-/obj/machinery/door/airlock/AIShiftClick(var/mob/user)  // Opens and closes doors!
+/obj/machinery/door/airlock/AIShiftClick(mob/user)  // Opens and closes doors!
 	if(density)
 		Topic(src, list("command"="open", "activate" = "1"))
 	else
 		Topic(src, list("command"="open", "activate" = "0"))
 	return 1
 
-/atom/proc/AICtrlClick(var/mob/user)
+/atom/proc/AICtrlClick(mob/user)
 	return
 
-/obj/machinery/door/airlock/AICtrlClick(var/mob/user) // Bolts doors
+/obj/machinery/door/airlock/AICtrlClick(mob/user) // Bolts doors
 	if(locked)
 		Topic(src, list("command"="bolts", "activate" = "0"))
 	else
 		Topic(src, list("command"="bolts", "activate" = "1"))
 	return 1
 
-/obj/machinery/power/apc/AICtrlClick(var/mob/user) // turns off/on APCs.
+/obj/machinery/power/apc/AICtrlClick(mob/user) // turns off/on APCs.
 	if(failure_timer)
 		failure_timer = 0
 		to_chat(user, "APC system restarted.")
@@ -152,14 +152,14 @@
 	Topic(src, list("breaker"="1"))
 	return 1
 
-/obj/machinery/turretid/AICtrlClick(var/mob/user) //turns off/on Turrets
+/obj/machinery/turretid/AICtrlClick(mob/user) //turns off/on Turrets
 	Topic(src, list("command"="enable", "value"="[!enabled]"))
 	return 1
 
-/atom/proc/AIAltClick(var/mob/user)
+/atom/proc/AIAltClick(mob/user)
 	return AltClick(user)
 
-/obj/machinery/door/airlock/AIAltClick(var/mob/user) // Electrifies doors.
+/obj/machinery/door/airlock/AIAltClick(mob/user) // Electrifies doors.
 	if(!electrified_until)
 		// permanent shock
 		Topic(src, list("command"="electrify_permanently", "activate" = "1"))
@@ -168,14 +168,14 @@
 		Topic(src, list("command"="electrify_permanently", "activate" = "0"))
 	return 1
 
-/obj/machinery/turretid/AIAltClick(var/mob/user) //toggles lethal on turrets
+/obj/machinery/turretid/AIAltClick(mob/user) //toggles lethal on turrets
 	Topic(src, list("command"="lethal", "value"="[!lethal]"))
 	return 1
 
-/atom/proc/AIMiddleClick(var/mob/living/silicon/user)
+/atom/proc/AIMiddleClick(mob/living/silicon/user)
 	return 0
 
-/obj/machinery/door/airlock/AIMiddleClick(var/mob/user) // Toggles door bolt lights.
+/obj/machinery/door/airlock/AIMiddleClick(mob/user) // Toggles door bolt lights.
 
 	if(..())
 		return
@@ -190,13 +190,13 @@
 // Override AdjacentQuick for AltClicking
 //
 
-/mob/living/silicon/ai/TurfAdjacent(var/turf/T)
+/mob/living/silicon/ai/TurfAdjacent(turf/T)
 	return (GLOB.cameranet && GLOB.cameranet.checkTurfVis(T))
 
 //
 //	On Ctrl-Click will turn on if off otherwise will switch between Filtering and Panic Siphon
 //
-/obj/machinery/alarm/AICtrlClick(var/mob/user)
+/obj/machinery/alarm/AICtrlClick(mob/user)
 	if(mode == AALARM_MODE_OFF)
 		Topic(src, list("command"="mode", "mode" = AALARM_MODE_SCRUBBING))
 	else
@@ -206,7 +206,7 @@
 //
 //	On Alt-Click will cycle through modes
 //
-/obj/machinery/alarm/AIAltClick(var/mob/user)
+/obj/machinery/alarm/AIAltClick(mob/user)
 	if(mode == AALARM_MODE_LAST)
 		Topic(src, list("command"="mode", "mode" = AALARM_MODE_FIRST))
 	else
@@ -216,7 +216,7 @@
 //
 //	On Ctrl-Click will turn on if off otherwise will switch between Filtering and Panic Siphon
 //
-/obj/machinery/firealarm/AICtrlClick(var/mob/user)
+/obj/machinery/firealarm/AICtrlClick(mob/user)
 	var/area/A = get_area(src)
 	if(A.fire)
 		Topic(src, list("status"="reset"))
@@ -227,21 +227,21 @@
 //
 //	On Ctrl-Click will turn on or off SMES input
 //
-/obj/machinery/power/smes/AICtrlClick(var/mob/user)
+/obj/machinery/power/smes/AICtrlClick(mob/user)
 	Topic(src, list("cmode"="1"))
 	return 1
 
 //
 //	On Alt-Click will turn on or off SMES output
 //
-/obj/machinery/power/smes/AIAltClick(var/mob/user)
+/obj/machinery/power/smes/AIAltClick(mob/user)
 	Topic(src, list("online"="1"))
 	return 1
 
 //
 //	On Ctrl-Click will turn on or off gas cooling system
 //
-/obj/machinery/atmospherics/unary/freezer/AICtrlClick(var/mob/user)
+/obj/machinery/atmospherics/unary/freezer/AICtrlClick(mob/user)
 	Topic(src, list("toggleStatus"="1"))
 	return 1
 
@@ -249,13 +249,13 @@
 //	On Ctrl-Click will turn on or off telecomms machinery
 //	ENABLE WHEN TCOMS UI WILL BE UPDATED TO NANOUI
 /*
-/obj/machinery/telecomms/AICtrlClick(var/mob/user)
+/obj/machinery/telecomms/AICtrlClick(mob/user)
 	Topic(src, list("input"="toggle"))
 	return 1
 */
 
 //QOL feature, clicking on turf can toogle doors
-/turf/AICtrlClick(var/mob/user)
+/turf/AICtrlClick(mob/user)
 	var/obj/machinery/door/airlock/AL = locate(/obj/machinery/door/airlock) in src.contents
 	if(AL)
 		AL.AICtrlClick(user)
@@ -266,7 +266,7 @@
 		return
 	return ..()
 
-/turf/AIAltClick(var/mob/user)
+/turf/AIAltClick(mob/user)
 	var/obj/machinery/door/airlock/AL = locate(/obj/machinery/door/airlock) in src.contents
 	if(AL)
 		AL.AIAltClick(user)
@@ -277,7 +277,7 @@
 		return
 	return ..()
 
-/turf/AIShiftClick(var/mob/user)
+/turf/AIShiftClick(mob/user)
 	var/obj/machinery/door/airlock/AL = locate(/obj/machinery/door/airlock) in src.contents
 	if(AL)
 		AL.AIShiftClick(user)

@@ -13,7 +13,7 @@
 /obj/machinery/door/unpowered/simple/proc/TemperatureAct(temperature)
 	take_damage(100*material.combustion_effect(get_turf(src),temperature, 0.3))
 
-/obj/machinery/door/unpowered/simple/New(var/newloc, var/material_name)
+/obj/machinery/door/unpowered/simple/New(newloc, material_name)
 	..()
 	if(!material_name)
 		material_name = MATERIAL_STEEL
@@ -44,7 +44,7 @@
 /obj/machinery/door/unpowered/simple/get_material_name()
 	return material.name
 
-/obj/machinery/door/unpowered/simple/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/door/unpowered/simple/bullet_act(obj/item/projectile/Proj)
 	var/damage = Proj.get_structure_damage()
 	if(damage)
 		//cap projectile damage so that there's still a minimum number of hits required to break the door
@@ -142,29 +142,29 @@
 	return
 
 
-/obj/machinery/door/unpowered/simple/iron/New(var/newloc,var/material_name)
+/obj/machinery/door/unpowered/simple/iron/New(newloc,material_name)
 	..(newloc, MATERIAL_IRON)
 
-/obj/machinery/door/unpowered/simple/silver/New(var/newloc,var/material_name)
+/obj/machinery/door/unpowered/simple/silver/New(newloc,material_name)
 	..(newloc, MATERIAL_SILVER)
 
-/obj/machinery/door/unpowered/simple/gold/New(var/newloc,var/material_name)
+/obj/machinery/door/unpowered/simple/gold/New(newloc,material_name)
 	..(newloc, MATERIAL_GOLD)
 
-/obj/machinery/door/unpowered/simple/uranium/New(var/newloc,var/material_name)
+/obj/machinery/door/unpowered/simple/uranium/New(newloc,material_name)
 	..(newloc, MATERIAL_URANIUM)
 
-/obj/machinery/door/unpowered/simple/sandstone/New(var/newloc,var/material_name)
+/obj/machinery/door/unpowered/simple/sandstone/New(newloc,material_name)
 	..(newloc, MATERIAL_SANDSTONE)
 
-/obj/machinery/door/unpowered/simple/diamond/New(var/newloc,var/material_name)
+/obj/machinery/door/unpowered/simple/diamond/New(newloc,material_name)
 	..(newloc, MATERIAL_DIAMOND)
 
 /obj/machinery/door/unpowered/simple/wood
 	icon_state = "wood"
 	color = "#824B28"
 
-/obj/machinery/door/unpowered/simple/wood/New(var/newloc,var/material_name)
+/obj/machinery/door/unpowered/simple/wood/New(newloc,material_name)
 	..(newloc, MATERIAL_WOOD)
 
 /obj/machinery/door/unpowered/simple/wood/saloon
@@ -172,7 +172,7 @@
 	autoclose = 1
 	normalspeed = 0
 
-/obj/machinery/door/unpowered/simple/wood/saloon/New(var/newloc,var/material_name)
+/obj/machinery/door/unpowered/simple/wood/saloon/New(newloc,material_name)
 	..(newloc, MATERIAL_WOOD)
 	glass = 1
 	set_opacity(0)

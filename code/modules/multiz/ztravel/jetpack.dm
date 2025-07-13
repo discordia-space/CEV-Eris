@@ -40,7 +40,7 @@
 		base_time *= 2.5 //Heavier still
 	.=..()
 
-/datum/vertical_travel_method/jetpack/can_perform(var/mob/living/L, var/dir)
+/datum/vertical_travel_method/jetpack/can_perform(mob/living/L, dir)
 	.=..()
 	if (.)
 		if (!istype(thrust))

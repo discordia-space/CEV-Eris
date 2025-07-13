@@ -118,7 +118,7 @@
 	breakable = FALSE
 	var/obj/item/tool/sword/nt_sword/sword
 
-/obj/structure/nt_pedestal/New(var/loc, var/turf/anchor)
+/obj/structure/nt_pedestal/New(loc, turf/anchor)
 	..()
 	sword = new /obj/item/tool/sword/nt_sword(src)
 	update_icon()

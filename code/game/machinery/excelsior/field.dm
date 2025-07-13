@@ -9,14 +9,14 @@
 	shipside_only = TRUE
 	req_access = list()
 
-/obj/machinery/shieldwallgen/excelsior/can_stun(var/mob/M)
+/obj/machinery/shieldwallgen/excelsior/can_stun(mob/M)
 	if(is_excelsior(M))
 		return FALSE
 
 	return TRUE
 
 
-/obj/machinery/shieldwallgen/excelsior/allowed(var/mob/user)
+/obj/machinery/shieldwallgen/excelsior/allowed(mob/user)
 	if(is_excelsior(user))
 		return TRUE
 

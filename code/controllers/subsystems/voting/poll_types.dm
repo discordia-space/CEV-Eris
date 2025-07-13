@@ -179,7 +179,7 @@
 	can_unvote = TRUE
 
 
-/datum/poll/evac/get_vote_power(var/client/C)
+/datum/poll/evac/get_vote_power(client/C)
 	if (!istype(C))
 		return 0 //Shouldnt be possible, but safety
 

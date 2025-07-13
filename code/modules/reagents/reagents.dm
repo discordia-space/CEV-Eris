@@ -117,7 +117,7 @@
 // "Removed" to multiplier
 // will return multiplier of how much value is more or less than default metabolism amount
 // all chem effects should be multiplied by return of this proc
-/datum/reagent/proc/RTM(var/removed, var/location)
+/datum/reagent/proc/RTM(removed, location)
 	if(ingest_met && location == CHEM_INGEST)
 		return removed/ingest_met
 	if(touch_met && location == CHEM_TOUCH)
@@ -125,7 +125,7 @@
 	return removed/metabolism
 
 // reverse convertion
-/datum/reagent/proc/MTR(var/RTM, var/location)
+/datum/reagent/proc/MTR(RTM, location)
 	if(ingest_met && location == CHEM_INGEST)
 		return ingest_met * RTM
 	if(touch_met && location == CHEM_TOUCH)

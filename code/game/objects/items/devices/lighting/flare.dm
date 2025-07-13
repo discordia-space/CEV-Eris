@@ -32,7 +32,7 @@
 			span_notice("You pull the cord on the flare, activating it!")
 		)
 
-/obj/item/device/lighting/glowstick/flare/turn_on(var/mob/user)
+/obj/item/device/lighting/glowstick/flare/turn_on(mob/user)
 	. = ..()
 	if(.)
 		force = on_damage

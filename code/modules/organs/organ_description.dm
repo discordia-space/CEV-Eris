@@ -25,7 +25,7 @@
 	var/functions = NONE
 	var/list/drop_on_remove = null
 
-/datum/organ_description/proc/create_organ(var/mob/living/carbon/human/H)
+/datum/organ_description/proc/create_organ(mob/living/carbon/human/H)
 	return new default_type(H,src)
 
 /datum/organ_description/chest

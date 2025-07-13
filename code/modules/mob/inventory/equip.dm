@@ -153,7 +153,7 @@ var/list/slot_equipment_priority = list(
 		if(equip_to_slot_if_possible(Item, slot_s_store))
 			return TRUE
 
-/mob/living/carbon/human/proc/equip_to_from_bag(var/obj/item/Item, obj/item/storage/store)
+/mob/living/carbon/human/proc/equip_to_from_bag(obj/item/Item, obj/item/storage/store)
 	if(Item)
 		store.attackby(Item,src)
 		return TRUE

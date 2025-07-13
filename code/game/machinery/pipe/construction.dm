@@ -19,7 +19,7 @@
 		pipe_below = locate(/obj/machinery/atmospherics/pipe/zpipe/up) in below
 	return !(anchored || pipe_below)
 
-/obj/item/pipe/New(var/loc, var/pipe_type as num, var/dir as num, var/obj/machinery/atmospherics/make_from = null)
+/obj/item/pipe/New(loc, pipe_type as num, dir as num, obj/machinery/atmospherics/make_from = null)
 	..()
 	if (make_from)
 		src.set_dir(make_from.dir)
@@ -291,7 +291,7 @@
 	//src.pipe_set_dir(get_pipe_dir())
 	return
 
-/obj/item/pipe/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/item/pipe/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	if ((pipe_type in list (PIPE_SIMPLE_BENT, PIPE_SUPPLY_BENT, PIPE_SCRUBBERS_BENT, PIPE_HE_BENT, PIPE_INSULATED_BENT)) \
 		&& (src.dir in GLOB.cardinal))
@@ -382,7 +382,7 @@
 /obj/item/pipe/attack_self(mob/user as mob)
 	return rotate()
 
-/obj/item/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/pipe/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	//*
 	var/obj/item/tool/tool = W
@@ -1116,7 +1116,7 @@
 	item_state = "buildpipe"
 	w_class = ITEM_SIZE_BULKY
 
-/obj/item/pipe_meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/pipe_meter/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
 	var/obj/item/tool/tool = W

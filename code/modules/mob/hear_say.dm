@@ -1,6 +1,6 @@
 // At minimum every mob has a hear_say proc.
 
-/mob/proc/hear_say(var/message, var/verb = src.verb_say, var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol, var/speech_volume)
+/mob/proc/hear_say(message, verb = src.verb_say, datum/language/language = null, alt_name = "", italics = 0, mob/speaker = null, sound/speech_sound, sound_vol, speech_volume)
 	if(!client)
 		return
 
@@ -65,14 +65,14 @@
 		var/turf/source = speaker ? get_turf(speaker) : get_turf(src)
 		src.playsound_local(source, speech_sound, sound_vol, 1)
 
-/mob/proc/on_hear_say(var/message)
+/mob/proc/on_hear_say(message)
 	to_chat(src, message)
 
-/mob/living/silicon/on_hear_say(var/message)
+/mob/living/silicon/on_hear_say(message)
 	var/time = say_timestamp()
 	to_chat(src,"[time] [message]")
 
-/mob/proc/hear_radio(var/message, var/verb = src.verb_say, var/datum/language/language,\
+/mob/proc/hear_radio(message, verb = src.verb_say, datum/language/language,\
 		var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/voice_name ="")
 
 	if(!client)
@@ -107,7 +107,7 @@
 
 	on_hear_radio(part_a, speaker_name, part_b, message)
 
-/mob/proc/get_hear_name(var/mob/speaker, hard_to_hear, voice_name)
+/mob/proc/get_hear_name(mob/speaker, hard_to_hear, voice_name)
 	if(hard_to_hear)
 		return "Unknown"
 	if(!speaker)
@@ -174,7 +174,7 @@
 	else
 		return "<a href=\"byond://?src=\ref[src];trackname=[speaker_name];track=\ref[speaker]\">[speaker_name] ([jobname])</a>"
 
-/mob/observer/ghost/get_hear_name(var/mob/speaker, hard_to_hear, voice_name)
+/mob/observer/ghost/get_hear_name(mob/speaker, hard_to_hear, voice_name)
 	. = ..()
 	if(!speaker)
 		return .
@@ -196,7 +196,7 @@
 	to_chat(src,"[time][part_a][speaker_name][part_b][message]")
 
 
-/mob/proc/hear_signlang(var/message, var/verb = "signs", var/datum/language/language, var/mob/speaker = null)
+/mob/proc/hear_signlang(message, verb = "signs", datum/language/language, mob/speaker = null)
 	if(!client)
 		return
 

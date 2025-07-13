@@ -71,7 +71,7 @@
 
 	var/targetrecievedtime = -250
 
-/mob/living/carbon/superior_animal/golem/Initialize(mapload, var/datum/cave_difficulty_level/difficulty)
+/mob/living/carbon/superior_animal/golem/Initialize(mapload, datum/cave_difficulty_level/difficulty)
 	if(mineral_name && (mineral_name in ore_data))
 		mineral = ore_data[mineral_name]
 

@@ -252,7 +252,7 @@
 			piece.item_flags &= ~(STOPPRESSUREDAMAGE|AIRTIGHT)
 	update_icon(1)
 
-/obj/item/rig/proc/toggle_seals(var/mob/initiator,var/instant)
+/obj/item/rig/proc/toggle_seals(mob/initiator,instant)
 
 	if(sealing) return
 
@@ -438,7 +438,7 @@
 	for(var/obj/item/rig_module/module in installed_modules)
 		cell.use(module.Process()*10)
 
-/obj/item/rig/proc/check_power_cost(var/mob/living/user, var/cost, var/use_unconcious, var/obj/item/rig_module/mod, var/user_is_ai)
+/obj/item/rig/proc/check_power_cost(mob/living/user, cost, use_unconcious, obj/item/rig_module/mod, user_is_ai)
 
 	if(!istype(user))
 		return 0
@@ -473,7 +473,7 @@
 	cell.use(cost*10)
 	return 1
 
-/obj/item/rig/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/nano_state =GLOB.inventory_state)
+/obj/item/rig/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, nano_state =GLOB.inventory_state)
 	if(!user)
 		return
 
@@ -551,13 +551,13 @@
 /obj/item/rig/proc/get_species_icon()
 	return 'icons/mob/rig_back.dmi'
 
-/obj/item/rig/update_icon(var/update_mob_icon)
+/obj/item/rig/update_icon(update_mob_icon)
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay && !module.suit_overlay_mob_only)
 				chest.overlays += image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay, "dir" = SOUTH)
 
-/obj/item/rig/proc/check_suit_access(var/mob/living/carbon/human/user)
+/obj/item/rig/proc/check_suit_access(mob/living/carbon/human/user)
 
 	if(!security_check_enabled)
 		return 1
@@ -631,14 +631,14 @@
 	add_fingerprint(usr)
 	return 0
 
-/obj/item/rig/proc/notify_ai(var/message)
+/obj/item/rig/proc/notify_ai(message)
 	for(var/obj/item/rig_module/ai_container/module in installed_modules)
 		if(module.integrated_ai && module.integrated_ai.client && !module.integrated_ai.stat)
 			to_chat(module.integrated_ai, "[message]")
 			. = 1
 
 //Delayed equipping of rigs
-/obj/item/rig/pre_equip(var/mob/user, var/slot)
+/obj/item/rig/pre_equip(mob/user, slot)
 	if (active)
 		//Can't take it off while it's engaged
 		return TRUE
@@ -663,7 +663,7 @@
 				return TRUE //A nonzero return value will cause the equipping operation to fail
 
 
-/obj/item/rig/equipped(var/mob/user, var/slot)
+/obj/item/rig/equipped(mob/user, slot)
 	..()
 	if (slot == rig_wear_slot)
 		user.visible_message(
@@ -749,7 +749,7 @@
 	if(piece == "helmet" && helmet)
 		helmet.update_light(wearer)
 
-/obj/item/rig/proc/deploy(mob/M,var/sealed)
+/obj/item/rig/proc/deploy(mob/M,sealed)
 
 	var/mob/living/carbon/human/H = M
 
@@ -786,7 +786,7 @@
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
 		toggle_piece(piece, H, ONLY_DEPLOY)
 
-/obj/item/rig/dropped(var/mob/user)
+/obj/item/rig/dropped(mob/user)
 	..()
 	remove()
 
@@ -831,7 +831,7 @@
 			return 1
 	return 0
 
-/obj/item/rig/block_bullet(mob/user, var/obj/item/projectile/P, def_zone)
+/obj/item/rig/block_bullet(mob/user, obj/item/projectile/P, def_zone)
 	if(!active || !ablative_armor)
 		return FALSE
 
@@ -901,7 +901,7 @@
 			to_chat(wearer, span_warning("The [source] has damaged your [dam_module.interface_name]!"))
 	dam_module.deactivate()
 
-/obj/item/rig/proc/malfunction_check(var/mob/living/carbon/human/user)
+/obj/item/rig/proc/malfunction_check(mob/living/carbon/human/user)
 	if(malfunction_delay)
 		if(offline)
 			to_chat(user, span_danger("The suit is completely unresponsive."))
@@ -913,7 +913,7 @@
 /obj/item/rig/get_cell()
 	return cell
 
-/obj/item/rig/proc/ai_can_move_suit(var/mob/user, var/check_user_module = 0, var/check_for_ai = 0)
+/obj/item/rig/proc/ai_can_move_suit(mob/user, check_user_module = 0, check_for_ai = 0)
 
 	if(check_for_ai)
 		if(!(locate(/obj/item/rig_module/ai_container) in contents))
@@ -947,13 +947,13 @@
 		return 0
 	return 1
 
-/obj/item/rig/proc/force_rest(var/mob/user)
+/obj/item/rig/proc/force_rest(mob/user)
 	if(!ai_can_move_suit(user, check_user_module = 1))
 		return
 	wearer.lay_down()
 	to_chat(user, span_notice("\The [wearer] is now [wearer.resting ? "resting" : "getting up"]."))
 
-/obj/item/rig/proc/forced_move(var/direction, var/mob/user)
+/obj/item/rig/proc/forced_move(direction, mob/user)
 	if(malfunctioning)
 		direction = pick(GLOB.cardinal)
 
@@ -984,14 +984,14 @@
 
 //Used in random rig spawning for cargo
 //Randomly deletes modules
-/obj/item/rig/proc/lose_modules(var/probability)
+/obj/item/rig/proc/lose_modules(probability)
 	for(var/obj/item/rig_module/module in installed_modules)
 		if (probability)
 			qdel(module)
 
 
 //Fiddles with some wires to possibly make the suit malfunction a little
-/obj/item/rig/proc/misconfigure(var/probability)
+/obj/item/rig/proc/misconfigure(probability)
 	if (prob(probability))
 		wires.UpdatePulsed(RIG_SECURITY)//Fiddle with access
 	if (prob(probability))

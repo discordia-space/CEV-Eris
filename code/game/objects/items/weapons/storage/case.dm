@@ -17,7 +17,7 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/item/storage/case/open(var/mob/user)
+/obj/item/storage/case/open(mob/user)
 	if(!opened)
 		return
 	..()

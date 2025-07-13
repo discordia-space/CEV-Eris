@@ -38,11 +38,11 @@
 		qdel(GR)
 		return FALSE
 
-/datum/ritual/group/proc/get_group_say_phrase(var/ind)
+/datum/ritual/group/proc/get_group_say_phrase(ind)
 	return phrases[ind]
 
 //returns phrase to display in bible
-/datum/ritual/group/proc/get_group_display_phrase(var/ind)
+/datum/ritual/group/proc/get_group_display_phrase(ind)
 	return phrases[ind]
 
 /datum/ritual/group/get_say_phrase()
@@ -78,7 +78,7 @@
 		return
 
 
-/datum/core_module/group_ritual/proc/hear(var/mob/user, var/phrase)
+/datum/core_module/group_ritual/proc/hear(mob/user, phrase)
 	if(!(locate(implant_type) in user))
 		return
 
@@ -122,7 +122,7 @@
 	var/starter_succ_message = null
 	var/starter_fail_message = null
 
-/datum/group_ritual_effect/proc/trigger_success(var/mob/starter, var/list/participants)
+/datum/group_ritual_effect/proc/trigger_success(mob/starter, list/participants)
 	if(!starter_succ_message)
 		starter_succ_message = succ_message
 
@@ -136,10 +136,10 @@
 		SEND_SIGNAL_OLD(affected, COMSIG_GROUP_RITUAL)
 	GLOB.grup_ritual_performed++
 
-/datum/group_ritual_effect/proc/success(var/mob/affected, var/part_len)
+/datum/group_ritual_effect/proc/success(mob/affected, part_len)
 	return
 
-/datum/group_ritual_effect/proc/trigger_fail(var/mob/starter, var/list/participants)
+/datum/group_ritual_effect/proc/trigger_fail(mob/starter, list/participants)
 	if(!starter_fail_message)
 		starter_fail_message = fail_message
 
@@ -150,5 +150,5 @@
 		to_chat(affected, fail_message)
 		fail(affected, participants.len)
 
-/datum/group_ritual_effect/proc/fail(var/mob/affected, var/part_len)
+/datum/group_ritual_effect/proc/fail(mob/affected, part_len)
 	return

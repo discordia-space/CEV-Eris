@@ -180,7 +180,7 @@ var/list/ship_scanners = list()
 		current_energy = 0
 
 
-/obj/machinery/power/shipside/long_range_scanner/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/power/shipside/long_range_scanner/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["running"] = running
@@ -202,13 +202,13 @@ var/list/ship_scanners = list()
 		ui.set_auto_update(1)
 
 
-/obj/machinery/power/shipside/long_range_scanner/attack_hand(var/mob/user)
+/obj/machinery/power/shipside/long_range_scanner/attack_hand(mob/user)
 	nano_ui_interact(user)
 	if(panel_open)
 		wires.Interact(user)
 
 
-/obj/machinery/power/shipside/long_range_scanner/CanUseTopic(var/mob/user)
+/obj/machinery/power/shipside/long_range_scanner/CanUseTopic(mob/user)
 	if(issilicon(user) && !Adjacent(user) && ai_control_disabled)
 		return STATUS_UPDATE
 	return ..()
@@ -291,7 +291,7 @@ var/list/ship_scanners = list()
 	return all_logs
 
 //This proc keeps an internal log of scanner activations, deactivations, and a vague log of config changes
-/obj/machinery/power/shipside/long_range_scanner/log_event(var/event_type, var/atom/origin_atom)
+/obj/machinery/power/shipside/long_range_scanner/log_event(event_type, atom/origin_atom)
 	var/logstring = "[stationtime2text()]: "
 	switch (event_type)
 
@@ -344,7 +344,7 @@ var/list/ship_scanners = list()
 	anchored = FALSE //Will be set true just after deploying
 	circuit = /obj/item/electronics/circuitboard/scanner_conduit
 	var/rating //average rating of all capacitors
-	
+
 /obj/machinery/power/conduit/scanner_conduit/no_light()
 	set_light(0)
 

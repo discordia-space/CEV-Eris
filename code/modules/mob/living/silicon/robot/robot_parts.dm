@@ -19,7 +19,7 @@
 	. = ..()
 	name = "robot [initial(name)]"
 
-/obj/item/robot_parts/proc/is_ready(var/mob/living/user)
+/obj/item/robot_parts/proc/is_ready(mob/living/user)
 	return TRUE
 
 /obj/item/robot_parts/l_arm
@@ -51,7 +51,7 @@
 	var/wires = 0
 	var/obj/item/cell/large/cell
 
-/obj/item/robot_parts/chest/is_ready(var/mob/living/user)
+/obj/item/robot_parts/chest/is_ready(mob/living/user)
 	if(!wires)
 		to_chat(user, span_warning("You need to attach wires to it first!"))
 		return FALSE
@@ -68,7 +68,7 @@
 	var/obj/item/device/flash/flash1 = null
 	var/obj/item/device/flash/flash2 = null
 
-/obj/item/robot_parts/head/is_ready(var/mob/living/user)
+/obj/item/robot_parts/head/is_ready(mob/living/user)
 	if(!flash1 || !flash2)
 		to_chat(user, span_warning("You need to attach a flash to it first!"))
 		return FALSE

@@ -52,7 +52,7 @@
 	anchored = FALSE
 	var/turf/origin
 
-/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/New(newLoc, _amount = 1, d = 0, var/turf/_origin)
+/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/New(newLoc, _amount = 1, d = 0, turf/_origin)
 	origin = _origin
 	set_dir(d) //Setting this direction means you won't get torched by your own flamethrower.
 	. = ..()

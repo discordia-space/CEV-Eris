@@ -662,7 +662,7 @@ SUBSYSTEM_DEF(job)
 
 	return H
 
-/proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
+/proc/EquipCustomLoadout(mob/living/carbon/human/H, datum/job/job)
 	if(!H || !H.client)
 		return
 
@@ -765,7 +765,7 @@ SUBSYSTEM_DEF(job)
  *  preference is not set, or the preference is not appropriate for the rank, in
  *  which case a fallback will be selected.
  */
-/datum/controller/subsystem/job/proc/get_spawnpoint_for(var/client/C, var/rank, late = FALSE)
+/datum/controller/subsystem/job/proc/get_spawnpoint_for(client/C, rank, late = FALSE)
 
 	if(!C)
 		CRASH("Null client passed to get_spawnpoint_for() proc!")
@@ -826,7 +826,7 @@ SUBSYSTEM_DEF(job)
 
 
 
-/datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)
+/datum/controller/subsystem/job/proc/ShouldCreateRecords(title)
 	if(!title) return 0
 	var/datum/job/job = GetJob(title)
 	if(!job || job == ASSISTANT_TITLE)

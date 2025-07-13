@@ -1,8 +1,8 @@
 // TODO: just remove this and rename story_debug calls to log_storyteller
-/datum/storyteller/proc/story_debug(var/message)
+/datum/storyteller/proc/story_debug(message)
 	log_storyteller(message)
 /*
-/datum/storyteller/proc/log_spawn(var/list/spawned)
+/datum/storyteller/proc/log_spawn(list/spawned)
 	var/list/log = list()
 
 	log["storyteller"] = config_tag
@@ -29,7 +29,7 @@
 
 	spawn_log["log[world.time]_[event_spawn_stage]"] = list2params(log)
 
-/datum/storyteller/proc/set_param(var/ptag, var/value)
+/datum/storyteller/proc/set_param(ptag, value)
 	spawnparams["[ptag]"] = value
 */
 

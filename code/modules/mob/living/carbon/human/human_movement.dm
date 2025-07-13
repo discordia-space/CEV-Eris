@@ -92,7 +92,7 @@
 	//If no working jetpack then use the other checks
 	return ..()
 
-/mob/living/carbon/human/slip_chance(var/prob_slip = 5)
+/mob/living/carbon/human/slip_chance(prob_slip = 5)
 	if(!..())
 		return 0
 

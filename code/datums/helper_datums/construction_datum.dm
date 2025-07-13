@@ -84,7 +84,7 @@
 		set_desc(index)
 	return
 
-/datum/construction/reversible/is_right_key(var/mob/living/user, atom/used_atom) // returns index step
+/datum/construction/reversible/is_right_key(mob/living/user, atom/used_atom) // returns index step
 	var/list/L = steps[index]
 	var/list/possibleWays = list()
 	if(ispath(L["key"]))

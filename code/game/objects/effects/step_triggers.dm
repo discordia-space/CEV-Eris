@@ -6,7 +6,7 @@
 	invisibility = 101 // nope cant see this shit
 	anchored = TRUE
 
-/obj/effect/step_trigger/proc/Trigger(var/atom/movable/A)
+/obj/effect/step_trigger/proc/Trigger(atom/movable/A)
 	return 0
 
 /obj/effect/step_trigger/Crossed(H as mob|obj)
@@ -32,7 +32,7 @@
 	var/nostop = 0 // if 1: will only be stopped by teleporters
 	var/list/affecting = list()
 
-/obj/effect/step_trigger/thrower/Trigger(var/atom/A)
+/obj/effect/step_trigger/thrower/Trigger(atom/A)
 	if(!A || !istype(A, /atom/movable))
 		return
 	var/atom/movable/AM = A
@@ -95,7 +95,7 @@
 	var/teleport_y = 0
 	var/teleport_z = 0
 
-/obj/effect/step_trigger/teleporter/Trigger(var/atom/movable/A)
+/obj/effect/step_trigger/teleporter/Trigger(atom/movable/A)
 	if(teleport_x && teleport_y && teleport_z)
 
 		A.x = teleport_x
@@ -109,7 +109,7 @@
 	var/teleport_y_offset = 0
 	var/teleport_z_offset = 0
 
-/obj/effect/step_trigger/teleporter/random/Trigger(var/atom/movable/A)
+/obj/effect/step_trigger/teleporter/random/Trigger(atom/movable/A)
 	if(teleport_x && teleport_y && teleport_z)
 		if(teleport_x_offset && teleport_y_offset && teleport_z_offset)
 

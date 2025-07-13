@@ -55,7 +55,7 @@
 	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP + 800
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP + 800
 
-/obj/machinery/atmospherics/binary/dp_vent_pump/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/binary/dp_vent_pump/update_icon(safety = 0)
 	if(!check_icon_cache())
 		return
 
@@ -95,7 +95,7 @@
 			else
 				add_underlay(T, node2, dir)
 
-/obj/machinery/atmospherics/binary/dp_vent_pump/hide(var/i)
+/obj/machinery/atmospherics/binary/dp_vent_pump/hide(i)
 	update_icon()
 	update_underlays()
 

@@ -30,7 +30,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/pre_attack(atom/a, mob/user, var/params)
+/obj/item/pre_attack(atom/a, mob/user, params)
 	if(overslot)
 		var/obj/item/clothing/i = a
 		if (istype(i))

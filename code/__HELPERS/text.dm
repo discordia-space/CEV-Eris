@@ -22,7 +22,7 @@
  */
 
 //Used for preprocessing entered text
-/proc/sanitize(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)
+/proc/sanitize(input, max_length = MAX_MESSAGE_LEN, encode = 1, trim = 1, extra = 1)
 	if(!input)
 		return
 
@@ -53,7 +53,7 @@
 //Best used for sanitize object names, window titles.
 //If you have a problem with sanitize() in chat, when quotes and >, < are displayed as html entites -
 //this is a problem of double-encode(when & becomes &amp;), use sanitize() with encode=0, but not the sanitizeSafe()!
-/proc/sanitizeSafe(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)
+/proc/sanitizeSafe(input, max_length = MAX_MESSAGE_LEN, encode = 1, trim = 1, extra = 1)
 	return sanitize(replace_characters(input, list(">"=" ", "<"=" ", "\""="'","&lt;" = " ","&gt;" = " ")), max_length, encode, trim, extra)
 
 //Filters out undesirable characters from names
@@ -148,7 +148,7 @@
 
 
 //Old variant. Haven't dared to replace in some places.
-/proc/sanitize_old(var/t, var/list/repl_chars = list("\n"="#", "\t"="#"))
+/proc/sanitize_old(t, list/repl_chars = list("\n"="#", "\t"="#"))
 	return html_encode(replace_characters(t, repl_chars))
 
 /proc/sanitize_filename(text)
@@ -199,7 +199,7 @@
  * Text modification
  */
 
-/proc/replace_characters(var/t, var/list/repl_chars)
+/proc/replace_characters(t, list/repl_chars)
 	for(var/char in repl_chars)
 		t = replacetext(t, char, repl_chars[char])
 	return t
@@ -250,7 +250,7 @@
 	return trim_left(trim_right(text))
 
 //Returns a string with the first element of the string capitalized.
-/proc/capitalize(var/t as text)
+/proc/capitalize(t as text)
 	return uppertext(copytext_char(t, 1, 2)) + copytext_char(t, 2)
 
 // Used to get a properly sanitized input, of max_length
@@ -264,7 +264,7 @@
 
 //This proc strips html properly, remove < > and all text between
 //for complete text sanitizing should be used sanitize()
-/proc/strip_html_properly(var/input)
+/proc/strip_html_properly(input)
 	if(!input)
 		return
 	var/opentag = 1 //These store the position of < and > respectively.
@@ -362,7 +362,7 @@
 
 //Used in preferences' SetFlavorText and human's set_flavor verb
 //Previews a string of len or less length
-/proc/TextPreview(var/string, var/len=40)
+/proc/TextPreview(string, len=40)
 	if(length(string) <= len)
 		if(!length(string))
 			return "\[...\]"
@@ -372,19 +372,19 @@
 		return "[copytext_preserve_html(string, 1, 37)]..."
 
 //alternative copytext() for encoded text, doesn't break html entities (&#34; and other)
-/proc/copytext_preserve_html(var/text, var/first, var/last)
+/proc/copytext_preserve_html(text, first, last)
 	return html_encode(copytext(html_decode(text), first, last))
 
 //For generating neat chat tag-images
 //The icon var could be local in the proc, but it's a waste of resources
 //	to always create it and then throw it out.
 var/icon/text_tag_icons = new('./icons/chattags.dmi')
-/proc/create_text_tag(var/tagname, var/tagdesc = tagname, var/client/C = null)
+/proc/create_text_tag(tagname, tagdesc = tagname, client/C = null)
 	if(!(C && C.get_preference_value(/datum/client_preference/chat_tags) == GLOB.PREF_SHOW))
 		return tagdesc
 	return icon2html(icon(text_tag_icons, tagname), world)
 
-/proc/contains_az09(var/input)
+/proc/contains_az09(input)
 	for(var/i=1, i<=length(input), i++)
 		var/ascii_char = text2ascii(input, i)
 		switch(ascii_char)
@@ -402,7 +402,7 @@ var/icon/text_tag_icons = new('./icons/chattags.dmi')
 
 
 //Takes a direction define and returns the name of it
-/proc/direction_to_text(var/D)
+/proc/direction_to_text(D)
 	switch (D)
 		if (NORTH)
 			return "North"
@@ -427,7 +427,7 @@ var/icon/text_tag_icons = new('./icons/chattags.dmi')
  * Strip out the special beyond characters for \proper and \improper
  * from text that will be sent to the browser.
  */
-/proc/strip_improper(var/text)
+/proc/strip_improper(text)
 	return replacetext(replacetext(text, "\proper", ""), "\improper", "")
 
 #define gender2text(gender) capitalize(gender)
@@ -543,7 +543,7 @@ var/icon/text_tag_icons = new('./icons/chattags.dmi')
 
 //Generates a clickable link which will jump the camera/ghost to the target atom
 //Useful for admin procs
-/proc/jumplink(var/atom/target)
+/proc/jumplink(atom/target)
 	if (QDELETED(target))
 		return ""
 	var/turf/T = get_turf(target)

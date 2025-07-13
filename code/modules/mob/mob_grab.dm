@@ -35,10 +35,10 @@
 	counter_timer--
 	..()
 
-/obj/proc/affect_grab(var/mob/user, var/mob/target, var/state)
+/obj/proc/affect_grab(mob/user, mob/target, state)
 	return FALSE
 
-/obj/item/grab/resolve_attackby(obj/O, mob/user, var/click_params)
+/obj/item/grab/resolve_attackby(obj/O, mob/user, click_params)
 	if(ismob(O))
 		return ..()
 	if(get_dist(O, affecting) > 1)
@@ -166,7 +166,7 @@
 	update_slowdown()
 	adjust_position()
 
-/obj/item/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, var/target_zone)
+/obj/item/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, target_zone)
 	//only display messages when switching between different target zones
 	var/announce = (target_zone != last_hit_zone)
 	last_hit_zone = target_zone

@@ -7,11 +7,11 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	..()
 	sound_tokens_by_sound_id = list()
 
-/decl/sound_player/proc/play_datum(var/atom/source, var/sound_id, var/sound/sound, var/range, var/prefer_mute)
+/decl/sound_player/proc/play_datum(atom/source, sound_id, sound/sound, range, prefer_mute)
 	var/token_type = isnum(sound.environment) ? /datum/sound_token : /datum/sound_token/static_environment
 	return new token_type(source, sound_id, sound, range, prefer_mute)
 
-/decl/sound_player/proc/play_looping(var/atom/source, var/sound_id, var/sound, var/volume, var/range, var/falloff = 1, var/echo, var/frequency, var/prefer_mute)
+/decl/sound_player/proc/play_looping(atom/source, sound_id, sound, volume, range, falloff = 1, echo, frequency, prefer_mute)
 	var/sound/s = istype(sound, /sound) ? sound : new(sound)
 	s.environment = 0
 	s.volume = volume
@@ -21,7 +21,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	s.repeat = TRUE
 	return play_datum(source, sound_id, s, range, prefer_mute)
 
-/decl/sound_player/proc/stop_sound(var/datum/sound_token/sound_token)
+/decl/sound_player/proc/stop_sound(datum/sound_token/sound_token)
 	var/channel = sound_token.sound.channel
 	var/sound_id = sound_token.sound_id
 
@@ -33,7 +33,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 		GLOB.sound_channels.release(channel)
 		sound_tokens_by_sound_id -= sound_id
 
-/decl/sound_player/proc/get_channel(var/datum/sound_token/sound_token)
+/decl/sound_player/proc/get_channel(datum/sound_token/sound_token)
 	var/sound_id = sound_token.sound_id
 
 	. = GLOB.sound_channels.get_by_key(sound_id)
@@ -62,7 +62,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	var/datum/proximity_trigger/square/proxy_listener
 	var/list/can_be_heard_from
 
-/datum/sound_token/New(var/atom/source, var/sound_id, var/sound/sound, var/range = 4, var/prefer_mute = FALSE)
+/datum/sound_token/New(atom/source, sound_id, sound/sound, range = 4, prefer_mute = FALSE)
 	..()
 	if(!istype(source))
 		CRASH("Invalid sound source: [log_info_line(source)]")
@@ -100,7 +100,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	stop()
 	return ..()
 
-/datum/sound_token/proc/set_volume(var/new_volume)
+/datum/sound_token/proc/set_volume(new_volume)
 	new_volume = CLAMP(new_volume, 0, 100)
 	if(sound.volume != new_volume)
 		sound.volume = new_volume
@@ -135,7 +135,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 
 	GLOB.sound_player.stop_sound(src)
 
-/datum/sound_token/proc/locate_listeners(var/list/prior_turfs, var/list/current_turfs)
+/datum/sound_token/proc/locate_listeners(list/prior_turfs, list/current_turfs)
 	if(status & SOUND_STOPPED)
 		return
 
@@ -153,13 +153,13 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	for(var/listener in current_listeners)
 		update_listener_loc(listener)
 
-/datum/sound_token/proc/set_status(var/new_status)
+/datum/sound_token/proc/set_status(new_status)
 	if((status & SOUND_STOPPED) || (new_status == status))
 		return
 	status = new_status
 	update_listeners()
 
-/datum/sound_token/proc/add_listener(var/atom/listener)
+/datum/sound_token/proc/add_listener(atom/listener)
 	if(ismob(listener))
 		var/mob/l_mob = listener
 		if(l_mob.ear_deaf > 0)
@@ -176,14 +176,14 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 
 	update_listener_loc(listener)
 
-/datum/sound_token/proc/remove_listener(var/atom/listener, var/sound/null_sound)
+/datum/sound_token/proc/remove_listener(atom/listener, sound/null_sound)
 	null_sound = null_sound || new(channel = sound.channel)
 	sound_to(listener, null_sound)
 	GLOB.moved_event.unregister(listener, src, /datum/sound_token/proc/update_listener_loc)
 	GLOB.destroyed_event.unregister(listener, src, /datum/sound_token/proc/remove_listener)
 	listeners -= listener
 
-/datum/sound_token/proc/update_listener_loc(var/atom/listener)
+/datum/sound_token/proc/update_listener_loc(atom/listener)
 	var/turf/source_turf = get_turf(source)
 	var/turf/listener_turf = get_turf(listener)
 
@@ -207,16 +207,16 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	for(var/listener in listeners)
 		update_listener(listener)
 
-/datum/sound_token/proc/update_listener(var/listener)
+/datum/sound_token/proc/update_listener(listener)
 	sound.environment = get_environment(listener)
 	sound.status = status | listener_status[listener] | SOUND_UPDATE
 	sound_to(listener, sound)
 
-/datum/sound_token/proc/get_environment(var/listener)
+/datum/sound_token/proc/get_environment(listener)
 	var/area/a = get_area(listener)
 	return (a && is_environment(a.sound_env)) ? a.sound_env : sound.environment
 
-/datum/sound_token/proc/is_environment(var/environment)
+/datum/sound_token/proc/is_environment(environment)
 	if(islist(environment) && length(environment) != 23)
 		return FALSE
 	if(!isnum(environment) || (environment < 0) || (environment > 25))

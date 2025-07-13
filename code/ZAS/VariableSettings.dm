@@ -191,7 +191,7 @@ var/global/datum/vs_control/vsc = new
 	for(var/V in plc.settings)
 		plc.Randomize(V)
 
-/datum/vs_control/proc/SetDefault(var/mob/user)
+/datum/vs_control/proc/SetDefault(mob/user)
 	var/list/setting_choices = list("Plasma - Standard", "Plasma - Low Hazard", "Plasma - High Hazard", "Plasma - Oh Shit!",\
 	"ZAS - Normal", "ZAS - Forgiving", "ZAS - Dangerous", "ZAS - Hellish", "ZAS/Plasma - Initial")
 	var/def = input(user, "Which of these presets should be used?") as null|anything in setting_choices

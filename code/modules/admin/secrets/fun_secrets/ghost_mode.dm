@@ -6,7 +6,7 @@
 	..()
 	affected_mobs = list()
 
-/datum/admin_secret_item/fun_secret/ghost_mode/execute(var/mob/user)
+/datum/admin_secret_item/fun_secret/ghost_mode/execute(mob/user)
 	. = ..()
 	if(!.)
 		return

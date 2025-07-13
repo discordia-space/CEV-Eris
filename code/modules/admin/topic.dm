@@ -11,7 +11,7 @@
 		return TRUE
 	log_admin("[key_name(usr)] clicked an href with [msg] authorization key! [href]")
 
-/datum/admins/proc/formatJob(var/mob/mob, var/title, var/bantype)
+/datum/admins/proc/formatJob(mob/mob, title, bantype)
 	if(!bantype)
 		bantype = title
 	var/red = jobban_isbanned(mob, bantype)
@@ -20,7 +20,7 @@
 		[red ? "<font color=red>" : null][replacetext(title, " ", "&nbsp")][red ? "</font>" : null]\
 		</a> "
 
-/datum/admins/proc/formatJobGroup(var/mob/mob, var/title, var/color, var/bantype, var/list/joblist)
+/datum/admins/proc/formatJobGroup(mob/mob, title, color, bantype, list/joblist)
 	. += "<tr bgcolor='[color]'><th><a href='byond://?src=\ref[src];[HrefToken()];jobban3=[bantype];jobban4=\ref[mob]'>[title]</a></th></tr><tr><td class='jobs'>"
 	for(var/jobPos in joblist)
 		. += formatJob(mob, jobPos, GLOB.joblist[jobPos])
@@ -115,15 +115,15 @@
 /atom/proc/extra_admin_link()
 	return
 
-/mob/extra_admin_link(var/source)
+/mob/extra_admin_link(source)
 	if(client && eyeobj)
 		return "|<A href='byond://?[source];[HrefToken()];adminobservejump=\ref[eyeobj]'>EYE</A>"
 
-/mob/observer/ghost/extra_admin_link(var/source)
+/mob/observer/ghost/extra_admin_link(source)
 	if(mind && mind.current)
 		return "|<A href='byond://?[source];[HrefToken()];adminobservejump=\ref[mind.current]'>BDY</A>"
 
-/proc/admin_jump_link(var/atom/target, var/source)
+/proc/admin_jump_link(atom/target, source)
 	if(!target) return
 	// The way admin jump links handle their src is weirdly inconsistent...
 	if(istype(source, /datum/admins))

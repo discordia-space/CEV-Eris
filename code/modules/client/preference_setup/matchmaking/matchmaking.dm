@@ -75,7 +75,7 @@ var/global/datum/matchmaker/matchmaker = new()
 
 	return TRUE
 
-/datum/relation/proc/can_connect(var/datum/relation/R)
+/datum/relation/proc/can_connect(datum/relation/R)
 	for(var/datum/relation/D in matchmaker.relations) //have to check all connections between us and them
 		if(D.holder == R.holder && D.other && D.other.holder == holder)
 			if(D.type in incompatible)
@@ -182,7 +182,7 @@ var/global/datum/matchmaker/matchmaker = new()
 	popup.set_content(jointext(dat,null))
 	popup.open()
 
-/mob/living/proc/see_relationship_info_with(var/mob/living/other)
+/mob/living/proc/see_relationship_info_with(mob/living/other)
 	if(!other.mind)
 		return
 	var/list/relations = matchmaker.get_relationships(mind,other.mind,TRUE)

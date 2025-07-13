@@ -112,12 +112,12 @@ see external_procs.dm for usable procs and documentation on how to use them
 
 	return observer.HUD_elements
 
-/HUD_element/proc/_setObserver(var/client/C)
+/HUD_element/proc/_setObserver(client/C)
 	_observer = C
 
 	return src
 
-/HUD_element/proc/_connectElement(var/HUD_element/E)
+/HUD_element/proc/_connectElement(HUD_element/E)
 	if (!E)
 		log_to_dd("Error: Invalid HUD element '[E]'")
 		return
@@ -137,7 +137,7 @@ see external_procs.dm for usable procs and documentation on how to use them
 
 	return src
 
-/HUD_element/proc/_disconnectElement(var/HUD_element/E)
+/HUD_element/proc/_disconnectElement(HUD_element/E)
 	if (!E)
 		log_to_dd("Error: Invalid HUD element '[E]'")
 		return
@@ -147,10 +147,10 @@ see external_procs.dm for usable procs and documentation on how to use them
 		elements.Remove(E)
 
 	E._unsetParent()
-	
+
 	return src
 
-/HUD_element/proc/_setParent(var/HUD_element/E)
+/HUD_element/proc/_setParent(HUD_element/E)
 	_parent = E
 
 	return src
@@ -160,7 +160,7 @@ see external_procs.dm for usable procs and documentation on how to use them
 
 	return src
 
-/HUD_element/proc/_addAdditionIcon(var/additionType, var/additionName)
+/HUD_element/proc/_addAdditionIcon(additionType, additionName)
 	if(!_iconsBuffer["[additionType]_[additionName]"])
 		if(getIconAdditionData(additionType, additionName))
 			error("Icon for [additionType]_[additionName] is not buffered.")
@@ -170,7 +170,7 @@ see external_procs.dm for usable procs and documentation on how to use them
 	else if(additionType == HUD_ICON_OVERLAY)
 		overlays += _iconsBuffer["[additionType]_[additionName]"]
 
-/HUD_element/proc/_assembleAndBufferIcon(var/additionType, var/additionName, var/list/data)
+/HUD_element/proc/_assembleAndBufferIcon(additionType, additionName, list/data)
 	if(!data)
 		error("Nothing was passed to buffer")
 		return

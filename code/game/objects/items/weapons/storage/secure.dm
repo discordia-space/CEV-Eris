@@ -128,7 +128,7 @@
 			return
 	return
 
-/obj/item/storage/secure/emag_act(var/remaining_charges, var/mob/user, var/feedback)
+/obj/item/storage/secure/emag_act(remaining_charges, mob/user, feedback)
 	if(!emagged)
 		emagged = 1
 		src.overlays += image('icons/obj/storage.dmi', icon_sparking)

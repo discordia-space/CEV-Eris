@@ -107,7 +107,7 @@
 	SEND_SIGNAL_OLD(user, COMSIG_EMPTY_POCKETS, src)
 
 // Remove all splints.
-/mob/living/carbon/human/proc/remove_splints(var/mob/living/user)
+/mob/living/carbon/human/proc/remove_splints(mob/living/user)
 	var/can_reach_splints = 1
 	if(istype(wear_suit,/obj/item/clothing/suit/space))
 		var/obj/item/clothing/suit/space/suit = wear_suit
@@ -130,7 +130,7 @@
 			to_chat(user, span_warning("\The [src] has no splints to remove."))
 
 // Set internals on or off.
-/mob/living/carbon/human/proc/toggle_internals(var/mob/living/user)
+/mob/living/carbon/human/proc/toggle_internals(mob/living/user)
 	if(internal)
 		visible_message(span_danger("\The [user] disables \the [src]'s internals!"))
 		internal.add_fingerprint(user)

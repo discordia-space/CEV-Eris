@@ -137,11 +137,11 @@
 			P.shot_from = src
 			P.launch(M)
 
-/obj/machinery/shieldwallgen/proc/can_stun(var/mob/M)
+/obj/machinery/shieldwallgen/proc/can_stun(mob/M)
 	return TRUE
 
 
-/obj/machinery/shieldwallgen/proc/setup_field(var/f_dir = 0)
+/obj/machinery/shieldwallgen/proc/setup_field(f_dir = 0)
 	if(!f_dir)//Make sure its ran right
 		return
 
@@ -179,7 +179,7 @@
 		CF.set_dir(f_dir)
 
 
-/obj/machinery/shieldwallgen/proc/cleanup(var/c_dir)
+/obj/machinery/shieldwallgen/proc/cleanup(c_dir)
 
 	var/turf/T = src.loc
 
@@ -246,7 +246,7 @@
 	src.cleanup(EAST)
 	. = ..()
 
-/obj/machinery/shieldwallgen/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/shieldwallgen/bullet_act(obj/item/projectile/Proj)
 	storedpower -= 400 * Proj.get_structure_damage()
 	..()
 	return
@@ -276,7 +276,7 @@
 		var/power_usage = 2500	//how much power it takes to sustain the shield
 		var/generate_power_usage = 7500	//how much power it takes to start up the shield
 
-/obj/machinery/shieldwall/New(var/obj/machinery/shieldwallgen/A, var/obj/machinery/shieldwallgen/B)
+/obj/machinery/shieldwall/New(obj/machinery/shieldwallgen/A, obj/machinery/shieldwallgen/B)
 	..()
 	update_nearby_tiles()
 	src.gen_primary = A
@@ -314,7 +314,7 @@
 			gen_secondary.storedpower -= power_usage
 
 
-/obj/machinery/shieldwall/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/shieldwall/bullet_act(obj/item/projectile/Proj)
 	if(needs_power)
 		var/obj/machinery/shieldwallgen/G
 		if(prob(50))

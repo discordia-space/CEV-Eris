@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(plants)
 	..()
 
 // Proc for creating a random seed type.
-/datum/controller/subsystem/plants/proc/create_random_seed(var/survive_on_station)
+/datum/controller/subsystem/plants/proc/create_random_seed(survive_on_station)
 	var/datum/seed/seed = new()
 	seed.randomize()
 	seed.uid = SSplants.seeds.len + 1
@@ -135,8 +135,8 @@ SUBSYSTEM_DEF(plants)
 			plant.Process()
 			processed++
 
-/datum/controller/subsystem/plants/proc/add_plant(var/obj/effect/plant/plant)
+/datum/controller/subsystem/plants/proc/add_plant(obj/effect/plant/plant)
 	plant_queue |= plant
 
-/datum/controller/subsystem/plants/proc/remove_plant(var/obj/effect/plant/plant)
+/datum/controller/subsystem/plants/proc/remove_plant(obj/effect/plant/plant)
 	plant_queue -= plant

@@ -186,7 +186,7 @@ Basic field subtypes.
 /datum/report_field/array
 	var/list/value_list = list()
 
-/datum/report_field/array/proc/get_raw(var/position)
+/datum/report_field/array/proc/get_raw(position)
 	if(position)
 		return value_list[position]
 	else
@@ -204,10 +204,10 @@ Basic field subtypes.
 	error("Use add_value()")
 	return
 
-/datum/report_field/array/proc/add_value(var/given_value)
+/datum/report_field/array/proc/add_value(given_value)
 	value_list.Add(given_value)
 
-/datum/report_field/array/proc/remove_value(var/given_value)
+/datum/report_field/array/proc/remove_value(given_value)
 	value_list.Remove(given_value)
 
 /datum/report_field/array/ask_value(mob/user)

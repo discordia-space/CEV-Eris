@@ -63,7 +63,7 @@
 /obj/item/device/powersink/attack_ai()
 	return
 
-/obj/item/device/powersink/attack_hand(var/mob/user)
+/obj/item/device/powersink/attack_hand(mob/user)
 	switch(mode)
 		if(0)
 			..()

@@ -191,7 +191,7 @@
 	return ..()
 
 
-/obj/structure/reagent_dispensers/fueltank/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
 		if(istype(Proj.firer))
 			message_admins("[key_name_admin(Proj.firer)] shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) [ADMIN_JMP(loc)].")
@@ -221,7 +221,7 @@
 		explode()
 	return ..()
 
-/obj/structure/reagent_dispensers/fueltank/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/reagent_dispensers/fueltank/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	if ((. = ..()) && modded)
 		leak_fuel(amount_per_transfer_from_this/10)
 

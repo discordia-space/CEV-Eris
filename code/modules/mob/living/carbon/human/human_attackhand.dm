@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
+/mob/living/carbon/human/proc/get_unarmed_attack(mob/living/carbon/human/target, hit_zone)
 	for(var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
 		if(u_attack.is_usable(src, target, hit_zone))
 			if(holding_back)
@@ -294,7 +294,7 @@
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
 	return
 
-/mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message, var/wallbreaker = FALSE, var/is_sharp = FALSE, var/is_edge = FALSE, var/wounding = 1)
+/mob/living/carbon/human/attack_generic(mob/user, damage, attack_message, wallbreaker = FALSE, is_sharp = FALSE, is_edge = FALSE, wounding = 1)
 
 	if(!damage || !istype(user))
 		return
@@ -319,7 +319,7 @@
 	return TRUE
 
 //Used to attack a joint's nerve through grabbing, 10 seconds of crippling(depression)
-/mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)
+/mob/living/carbon/human/proc/grab_joint(mob/living/user, def_zone)
 	var/has_grab = 0
 	var/obj/item/grab/G
 	for(G in list(user.l_hand, user.r_hand))//we do not check for grab level

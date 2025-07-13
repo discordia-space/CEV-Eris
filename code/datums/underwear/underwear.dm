@@ -56,10 +56,10 @@
 		return "~"+name
 	return name
 
-/datum/category_item/underwear/proc/is_default(var/gender)
+/datum/category_item/underwear/proc/is_default(gender)
 	return is_default
 
-/datum/category_item/underwear/proc/create_underwear(var/atom/location, var/list/metadata, var/iconfile)	//we iconfile from bodybuild
+/datum/category_item/underwear/proc/create_underwear(atom/location, list/metadata, iconfile)	//we iconfile from bodybuild
 	if(!underwear_type)
 		return
 

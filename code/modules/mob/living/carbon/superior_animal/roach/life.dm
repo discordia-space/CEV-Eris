@@ -2,7 +2,7 @@
 #define EATING_TARGET 2
 #define LAYING_EGG 3
 
-/mob/living/carbon/superior_animal/roach/proc/GiveUp(var/C)
+/mob/living/carbon/superior_animal/roach/proc/GiveUp(C)
 	if(busy == MOVING_TO_TARGET)
 		if(eat_target == C && get_dist(src,eat_target) > 1)
 			clearEatTarget()

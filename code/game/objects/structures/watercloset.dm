@@ -69,7 +69,7 @@
 		to_chat(user, "You carefully place \the [I] into the cistern.")
 		return
 
-/obj/structure/toilet/AltClick(var/mob/living/user)
+/obj/structure/toilet/AltClick(mob/living/user)
 	if(!open)
 		return
 	var/H = user.get_active_held_item()
@@ -80,7 +80,7 @@
 			to_chat(user, span_notice("You empty the [O] into the [src]."))
 
 
-/obj/structure/toilet/affect_grab(var/mob/user, var/mob/living/target, var/state)
+/obj/structure/toilet/affect_grab(mob/user, mob/living/target, state)
 	if(state == GRAB_PASSIVE)
 		to_chat(user, span_notice("You need a tighter grip."))
 		return FALSE
@@ -125,7 +125,7 @@
 	density = FALSE
 	anchored = TRUE
 
-/obj/structure/urinal/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+/obj/structure/urinal/affect_grab(mob/living/user, mob/living/target, state)
 	if(state == GRAB_PASSIVE)
 		to_chat(user, span_notice("You need a tighter grip."))
 		return FALSE
@@ -369,7 +369,7 @@
 	reagent_flags = OPENCONTAINER
 	var/busy = 0 	//Something's being washed at the moment
 
-/obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
+/obj/structure/sink/MouseDrop_T(obj/item/thing, mob/user)
 	. = ..()
 	if(!istype(thing) || !thing.is_drainable())
 		return
@@ -473,7 +473,7 @@
 		span_notice("[user] washes \a [I] using \the [src]."), \
 		span_notice("You wash \a [I] using \the [src]."))
 
-/obj/structure/sink/AltClick(var/mob/living/user)
+/obj/structure/sink/AltClick(mob/living/user)
 	var/H = user.get_active_held_item()
 	if(istype(H,/obj/item/reagent_containers/glass) || istype(H,/obj/item/reagent_containers/food/drinks))
 		var/obj/item/reagent_containers/O = user.get_active_held_item()

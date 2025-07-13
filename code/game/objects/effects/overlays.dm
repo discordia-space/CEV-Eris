@@ -21,7 +21,7 @@
 	anchored = TRUE
 	density = FALSE
 
-/obj/effect/overlay/pulse/New(loc, var/lifetime = 10)
+/obj/effect/overlay/pulse/New(loc, lifetime = 10)
 	..(loc)
 	set_dir(pick(GLOB.cardinal))
 	QDEL_IN(src, lifetime)

@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/stat_entry(msg)
 	msg += "S:[LAZYLEN(shuttles)], L:[LAZYLEN(registered_shuttle_landmarks)]"
 
-/datum/controller/subsystem/shuttle/proc/get_shuttle(var/needle)
+/datum/controller/subsystem/shuttle/proc/get_shuttle(needle)
 	for (var/S in shuttles)
 		if (S == needle)
 			return shuttles[S]

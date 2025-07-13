@@ -1,4 +1,4 @@
-/mob/observer/eye/angel/say(var/message)
+/mob/observer/eye/angel/say(message)
 	message = sanitize(message)
 
 	if (!message)
@@ -30,7 +30,7 @@
 	say_angel_direct("[pick("beeps","buzzes","echoes","fizzes")], [span_message("\"[message]\"")]", src)
 
 
-/mob/observer/eye/angel/emote(var/act, var/type, var/message)
+/mob/observer/eye/angel/emote(act, type, message)
 	//message = sanitize(message) - already sanitized in verb/me_verb()
 
 	if(!message)
@@ -75,7 +75,7 @@
 
 
 
-/proc/say_angel_direct(var/message, var/mob/subject = null)
+/proc/say_angel_direct(message, mob/subject = null)
 	var/name
 	var/keyname
 	if(subject && subject.client)

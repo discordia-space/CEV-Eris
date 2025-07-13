@@ -3,7 +3,7 @@
 */
 GLOBAL_DATUM_INIT(deep_inventory_state, /datum/nano_topic_state/deep_inventory_state, new)
 
-/datum/nano_topic_state/deep_inventory_state/can_use_topic(var/src_object, var/mob/user)
+/datum/nano_topic_state/deep_inventory_state/can_use_topic(src_object, mob/user)
 	if(!user.contains(src_object))
 		return STATUS_CLOSE
 

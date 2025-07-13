@@ -27,7 +27,7 @@
 				break
 	..()
 
-/obj/machinery/shield_capacitor/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/shield_capacitor/emag_act(remaining_charges, mob/user)
 	if(prob(75))
 		src.locked = !src.locked
 		user << "Controls are now [src.locked ? "locked." : "unlocked."]"

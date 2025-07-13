@@ -90,7 +90,7 @@ semi accepts weird caliber - +1 points
 	I.removal_time = WORKTIME_SLOW
 	I.removal_difficulty = FAILCHANCE_NORMAL
 
-/obj/item/part/gun/modular/set_quality(var/quality = 0)
+/obj/item/part/gun/modular/set_quality(quality = 0)
 	old_quality = CLAMP(quality, -2, max_quality) // Some parts, such as One Star will permit +3 parts
 	price_tag = initial(price_tag) * (2 ** old_quality) // From a quarter of the price for junk, to quadruple the price for antag-grade parts.
 
@@ -301,13 +301,13 @@ semi accepts weird caliber - +1 points
 	var/type_of_grip = "wood" // Placeholder
 	part_itemstring = TRUE
 
-/obj/item/part/gun/modular/grip/New(location, var/quality = 0)
+/obj/item/part/gun/modular/grip/New(location, quality = 0)
 	..(quality)
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_GRIP] = type_of_grip
 	I.weapon_upgrades[GUN_UPGRADE_OFFSET] = -15 // Without a grip the gun shoots funny, players are legally allowed to not use a grip
 	I.gun_loc_tag = PART_GRIP
 
-/obj/item/part/gun/modular/grip/set_quality(var/quality = 0)
+/obj/item/part/gun/modular/grip/set_quality(quality = 0)
 	..(quality)
 	if(old_quality)
 		var/damage_name
@@ -380,7 +380,7 @@ semi accepts weird caliber - +1 points
 	var/damage_bonus = 0
 	var/list/bonus_firemodes = list()
 
-/obj/item/part/gun/modular/mechanism/New(location, var/quality = 0)
+/obj/item/part/gun/modular/mechanism/New(location, quality = 0)
 	..(quality)
 	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = bonus_firemodes
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = mag_well
@@ -391,7 +391,7 @@ semi accepts weird caliber - +1 points
 		I.weapon_upgrades[GUN_UPGRADE_RECOIL] = recoil_bonus
 	I.gun_loc_tag = PART_MECHANISM
 
-/obj/item/part/gun/modular/mechanism/set_quality(var/quality = 0)
+/obj/item/part/gun/modular/mechanism/set_quality(quality = 0)
 	..(quality)
 	if(old_quality)
 		var/damage_name
@@ -584,13 +584,13 @@ semi accepts weird caliber - +1 points
 	rarity_value = 15
 	var/caliber = CAL_357
 
-/obj/item/part/gun/modular/barrel/New(location, var/quality = 0)
+/obj/item/part/gun/modular/barrel/New(location, quality = 0)
 	..(quality)
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER] = caliber
 	I.gun_loc_tag = PART_BARREL
 
 
-/obj/item/part/gun/modular/barrel/set_quality(var/quality = 0)
+/obj/item/part/gun/modular/barrel/set_quality(quality = 0)
 	..(quality)
 	if(old_quality)
 		var/damage_name
@@ -721,7 +721,7 @@ semi accepts weird caliber - +1 points
 	part_overlay = "stock"
 	needs_grip_type = TRUE
 
-/obj/item/part/gun/modular/stock/New(location, var/quality = 0)
+/obj/item/part/gun/modular/stock/New(location, quality = 0)
 	..() // No stat change, so no need for price change either
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_STOCK] = TRUE
 	I.gun_loc_tag = PART_STOCK

@@ -28,7 +28,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	sort_order = 2
 	var/hide_species = TRUE
 
-/datum/category_item/player_setup_item/physical/body/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/physical/body/load_character(savefile/S)
 	from_file(S["species"], pref.species)
 	from_file(S["skin_tone"], pref.s_tone)
 	from_file(S["skin_base"], pref.s_base)
@@ -44,7 +44,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	from_file(S["facial_color"], pref.facial_color)
 
 
-/datum/category_item/player_setup_item/physical/body/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/physical/body/save_character(savefile/S)
 	to_file(S["species"], pref.species)
 	to_file(S["skin_tone"], pref.s_tone)
 	to_file(S["skin_base"], pref.s_base)
@@ -58,7 +58,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	to_file(S["hair_color"], pref.hair_color)
 	to_file(S["facial_color"], pref.facial_color)
 
-/datum/category_item/player_setup_item/physical/body/sanitize_character(var/savefile/S)
+/datum/category_item/player_setup_item/physical/body/sanitize_character(savefile/S)
 	pref.h_style		= sanitize_inlist(pref.h_style, GLOB.hair_styles_list, initial(pref.h_style))
 	pref.f_style		= sanitize_inlist(pref.f_style, GLOB.facial_hair_styles_list, initial(pref.f_style))
 	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
@@ -79,7 +79,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(!pref.bgstate || !(pref.bgstate in pref.bgstate_options))
 		pref.bgstate = "black"
 
-/datum/category_item/player_setup_item/physical/body/content(var/mob/user)
+/datum/category_item/player_setup_item/physical/body/content(mob/user)
 	if(!pref.preview_icon)
 		pref.update_preview_icon()
 	user << browse_rsc(pref.preview_icon, "previewicon.png")
@@ -127,10 +127,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 
 
-/datum/category_item/player_setup_item/physical/body/proc/has_flag(var/datum/species/mob_species, var/flag)
+/datum/category_item/player_setup_item/physical/body/proc/has_flag(datum/species/mob_species, flag)
 	return mob_species && (mob_species.appearance_flags & flag)
 
-/datum/category_item/player_setup_item/physical/body/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/physical/body/OnTopic(href,list/href_list, mob/user)
 
 	var/datum/species/mob_species = GLOB.all_species[pref.species]
 	if(href_list["toggle_species_verbose"])

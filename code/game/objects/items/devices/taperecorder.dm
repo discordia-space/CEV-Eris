@@ -75,7 +75,7 @@
 	else
 		icon_state = "taperecorder_idle"
 
-/obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verb="says", datum/language/speaking=null, speech_volume)
+/obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, verb="says", datum/language/speaking=null, speech_volume)
 	if(speech_volume)
 		msg = "<FONT size='[speech_volume]'>[msg]</FONT>"
 	if(audio_file && recording)
@@ -86,7 +86,7 @@
 		else
 			audio_file.storedinfo += "\[[time2text(audio_file.used_capacity*10,"mm:ss",NO_TIMEZONE)]\] [M.name] [verb], \"[msg]\""
 
-/obj/item/device/taperecorder/see_emote(mob/M as mob, text, var/emote_type)
+/obj/item/device/taperecorder/see_emote(mob/M as mob, text, emote_type)
 	if(emote_type != 2) //only hearable emotes
 		return
 	if(audio_file && recording)
@@ -105,7 +105,7 @@
 		audio_file.timestamp += audio_file.used_capacity
 		audio_file.storedinfo += "*\[[time2text(audio_file.used_capacity*10,"mm:ss",NO_TIMEZONE)]\] *[strip_html_properly(recordedtext)]*" //"*" at front as a marker
 
-/obj/item/device/taperecorder/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/device/taperecorder/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		emagged = 1
 		recording = 0
@@ -169,7 +169,7 @@
 		audio_file = null
 		update_icon()
 
-/obj/item/device/taperecorder/proc/record(var/show_message = 1)
+/obj/item/device/taperecorder/proc/record(show_message = 1)
 
 	if(usr.stat)
 		return
@@ -212,7 +212,7 @@
 		to_chat(usr, span_notice("The file is full."))
 
 
-/obj/item/device/taperecorder/proc/stop(var/show_message = 1)
+/obj/item/device/taperecorder/proc/stop(show_message = 1)
 
 	if(usr.stat)
 		return
@@ -240,7 +240,7 @@
 		return
 
 
-/obj/item/device/taperecorder/proc/clear_memory(var/show_message = 1)
+/obj/item/device/taperecorder/proc/clear_memory(show_message = 1)
 
 	if(usr.is_dead())
 		return
@@ -263,7 +263,7 @@
 	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 
 
-/obj/item/device/taperecorder/proc/playback_memory(var/show_message = 1)
+/obj/item/device/taperecorder/proc/playback_memory(show_message = 1)
 
 	if(usr.stat)
 		return
@@ -332,7 +332,7 @@
 		sleep(10)
 		explode()
 
-/obj/item/device/taperecorder/proc/change_audio(var/show_message = 1)
+/obj/item/device/taperecorder/proc/change_audio(show_message = 1)
 
 	if(emagged)
 		if(show_message)
@@ -361,7 +361,7 @@
 	else
 		create_audio_file(show_message)
 
-/obj/item/device/taperecorder/proc/create_audio_file(var/show_message = 1)
+/obj/item/device/taperecorder/proc/create_audio_file(show_message = 1)
 	var/audio_title
 	if(show_message)
 		audio_title = sanitizeSafe(input(usr, "What do you want to name the recording? If you leave this blank, the title will be the current time.", "Audio file") as null|text, MAX_NAME_LEN)

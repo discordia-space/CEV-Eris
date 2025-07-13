@@ -110,7 +110,7 @@ var/global/list/default_medbay_channels = list(
 
 	return nano_ui_interact(user)
 
-/obj/item/device/radio/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/radio/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["mic_status"] = broadcasting
@@ -135,10 +135,10 @@ var/global/list/default_medbay_channels = list(
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/item/device/radio/proc/list_channels(var/mob/user)
+/obj/item/device/radio/proc/list_channels(mob/user)
 	return list_internal_channels(user)
 
-/obj/item/device/radio/proc/list_secure_channels(var/mob/user)
+/obj/item/device/radio/proc/list_secure_channels(mob/user)
 	var/dat[0]
 
 	for(var/ch_name in channels)
@@ -149,7 +149,7 @@ var/global/list/default_medbay_channels = list(
 
 	return dat
 
-/obj/item/device/radio/proc/list_internal_channels(var/mob/user)
+/obj/item/device/radio/proc/list_internal_channels(mob/user)
 	var/dat[0]
 	for(var/internal_chan in internal_channels)
 		if(has_channel_access(user, internal_chan))
@@ -157,7 +157,7 @@ var/global/list/default_medbay_channels = list(
 
 	return dat
 
-/obj/item/device/radio/proc/has_channel_access(var/mob/user, var/freq)
+/obj/item/device/radio/proc/has_channel_access(mob/user, freq)
 	if(!user)
 		return 0
 
@@ -166,11 +166,11 @@ var/global/list/default_medbay_channels = list(
 
 	return user.has_internal_radio_channel_access(internal_channels[freq])
 
-/mob/proc/has_internal_radio_channel_access(var/list/req_one_accesses)
+/mob/proc/has_internal_radio_channel_access(list/req_one_accesses)
 	var/obj/item/card/id/I = GetIdCard()
 	return has_access(list(), req_one_accesses, I ? I.GetAccess() : list())
 
-/mob/observer/ghost/has_internal_radio_channel_access(var/list/req_one_accesses)
+/mob/observer/ghost/has_internal_radio_channel_access(list/req_one_accesses)
 	return can_admin_interact()
 
 /obj/item/device/radio/proc/text_wires()
@@ -179,7 +179,7 @@ var/global/list/default_medbay_channels = list(
 	return
 
 
-/obj/item/device/radio/proc/text_sec_channel(var/chan_name, var/chan_stat)
+/obj/item/device/radio/proc/text_sec_channel(chan_name, chan_stat)
 	var/list = !!(chan_stat&FREQ_LISTENING)!=0
 	return {"
 			<B>[chan_name]</B><br>
@@ -281,7 +281,7 @@ var/global/list/default_medbay_channels = list(
 	// If we were to send to a channel we don't have, drop it.
 	return null
 
-/obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, var/verb = src.verb_say, var/datum/language/speaking = null, var/speech_volume)
+/obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, verb = src.verb_say, datum/language/speaking = null, speech_volume)
 	if(!on) return 0 // the device has to be on
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
 	if(!M || !message) return 0
@@ -485,7 +485,7 @@ var/global/list/default_medbay_channels = list(
 					  filter_type, signal.data["compression"], list(position.z), connection.frequency,verb,speaking, speech_volume)
 
 
-/obj/item/device/radio/hear_talk(mob/M as mob, msg, var/verb = src.verb_say, var/datum/language/speaking = null, speech_volume)
+/obj/item/device/radio/hear_talk(mob/M as mob, msg, verb = src.verb_say, datum/language/speaking = null, speech_volume)
 	if (broadcasting)
 		if(get_dist(src, M) <= canhear_range)
 			talk_into(M, msg,null,verb,speaking, speech_volume)
@@ -592,7 +592,7 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/borg/list_channels(mob/user)
 	return list_secure_channels(user)
 
-/obj/item/device/radio/borg/talk_into(mob/living/M, message, channel, var/verb = src.verb_say, var/datum/language/speaking = null, var/speech_volume)
+/obj/item/device/radio/borg/talk_into(mob/living/M, message, channel, verb = src.verb_say, datum/language/speaking = null, speech_volume)
 	. = ..()
 	if (isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
@@ -704,7 +704,7 @@ var/global/list/default_medbay_channels = list(
 
 	. = ..()
 
-/obj/item/device/radio/borg/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/radio/borg/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["mic_status"] = broadcasting

@@ -124,7 +124,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/remove_ai_verbs()
 	remove_verb(src, ai_verbs_default)
 
-/mob/living/silicon/ai/MiddleClickOn(var/atom/A)
+/mob/living/silicon/ai/MiddleClickOn(atom/A)
 	if(!control_disabled && A.AIMiddleClick(src))
 		return
 
@@ -133,7 +133,7 @@ var/list/ai_verbs_default = list(
 		return
 	. = ..()
 
-/mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
+/mob/living/silicon/ai/New(loc, datum/ai_laws/L, obj/item/device/mmi/B, safety = 0)
 	announcement = new()
 	announcement.title = "A.I. Announcement"
 	announcement.announcement_type = "A.I. Announcement"
@@ -300,7 +300,7 @@ var/list/ai_verbs_default = list(
 	var/mob/living/silicon/ai/powered_ai
 	invisibility = 100
 
-/obj/machinery/ai_powersupply/New(var/mob/living/silicon/ai/ai)
+/obj/machinery/ai_powersupply/New(mob/living/silicon/ai/ai)
 	powered_ai = ai
 	powered_ai.psupply = src
 	forceMove(powered_ai.loc)
@@ -403,7 +403,7 @@ var/list/ai_verbs_default = list(
 		emergency_message_cooldown = 0
 
 
-/mob/living/silicon/ai/check_eye(var/mob/user as mob)
+/mob/living/silicon/ai/check_eye(mob/user as mob)
 	if (!camera)
 		return -1
 	return 0
@@ -465,7 +465,7 @@ var/list/ai_verbs_default = list(
 			A.set_light(0)
 
 
-/mob/living/silicon/ai/proc/switchCamera(var/obj/machinery/camera/C)
+/mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
 	if (!C || stat == DEAD) //C.can_use())
 		return 0
 
@@ -503,7 +503,7 @@ var/list/ai_verbs_default = list(
 	sortAssoc(cameralist)
 	return cameralist
 
-/mob/living/silicon/ai/proc/ai_network_change(var/network in get_camera_network_list())
+/mob/living/silicon/ai/proc/ai_network_change(network in get_camera_network_list())
 	set category = "Silicon Commands"
 	set name = "Jump To Network"
 	unset_machine()
@@ -678,7 +678,7 @@ var/list/ai_verbs_default = list(
 	hologram_follow = !hologram_follow
 	to_chat(usr, span_info("Your hologram will now [hologram_follow ? "follow" : "no longer follow"] you."))
 
-/mob/living/silicon/ai/proc/check_unable(var/flags = 0, var/feedback = 1)
+/mob/living/silicon/ai/proc/check_unable(flags = 0, feedback = 1)
 	if(stat == DEAD)
 		if(feedback) to_chat(src, span_warning("You are dead!"))
 		return 1
@@ -739,7 +739,7 @@ var/list/ai_verbs_default = list(
 
 // Handles all necessary power checks: Area power, inteliCard and Malf AI APU power and manual override.
 //just a plug for now untill baymed arrives
-/mob/living/silicon/ai/proc/has_power(var/respect_override = 1)
+/mob/living/silicon/ai/proc/has_power(respect_override = 1)
 	return 1
 
 // shortcuts for UI

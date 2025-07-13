@@ -317,7 +317,7 @@
 	rarity_value = 5
 	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
-/obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item, var/mob/living/user)
+/obj/item/rig_module/chem_dispenser/accepts_item(obj/item/input_item, mob/living/user)
 
 	if(!input_item.is_drainable())
 		return 0

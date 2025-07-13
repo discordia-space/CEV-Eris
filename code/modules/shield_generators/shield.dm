@@ -58,7 +58,7 @@ Like for example singulo act and whatever.
 
 // Prevents shuttles, singularities and pretty much everything else from moving the field segments away.
 // The only thing that is allowed to move us is the Destroy() proc.
-/obj/effect/shield/forceMove(var/newloc, var/qdeled = 0)
+/obj/effect/shield/forceMove(newloc, qdeled = 0)
 	if(qdeled)
 		return ..()
 	return 0
@@ -83,7 +83,7 @@ Like for example singulo act and whatever.
 
 
 // Temporarily collapses this shield segment.
-/obj/effect/shield/proc/fail(var/duration)
+/obj/effect/shield/proc/fail(duration)
 	if(duration <= 0)
 		return
 
@@ -116,7 +116,7 @@ Like for example singulo act and whatever.
 			L.shield_impact(src)
 
 
-/obj/effect/shield/proc/diffuse(var/duration)
+/obj/effect/shield/proc/diffuse(duration)
 	// The shield is trying to counter diffusers. Cause lasting stress on the shield.
 	if(gen.check_flag(MODEFLAG_BYPASS) && !diffused_for && !disabled_for)
 		take_damage(duration * rand(8, 12), SHIELD_DAMTYPE_EM, src)
@@ -129,7 +129,7 @@ Like for example singulo act and whatever.
 	update_nearby_tiles()
 	update_icon()
 
-/obj/effect/shield/attack_generic(var/source, var/damage, var/emote)
+/obj/effect/shield/attack_generic(source, damage, emote)
 	take_damage(damage, SHIELD_DAMTYPE_PHYSICAL, src)
 	if(gen.check_flag(MODEFLAG_OVERCHARGE) && istype(source, /mob/living/))
 		overcharge_shock(source)
@@ -137,7 +137,7 @@ Like for example singulo act and whatever.
 
 
 // Fails shield segments in specific range. Range of 1 affects the shielded turf only.
-/obj/effect/shield/proc/fail_adjacent_segments(var/range, var/hitby = null)
+/obj/effect/shield/proc/fail_adjacent_segments(range, hitby = null)
 	if(hitby)
 		visible_message(span_danger("\The [src] flashes a bit as \the [hitby] collides with it, eventually fading out in a rain of sparks!"))
 	else
@@ -197,7 +197,7 @@ Like for example singulo act and whatever.
 		return TRUE
 
 // As we have various shield modes, this handles whether specific things can pass or not.
-/obj/effect/shield/CanPass(var/atom/movable/mover, var/turf/target, var/height=0, var/air_group=0)
+/obj/effect/shield/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	// Somehow we don't have a generator. This shouldn't happen. Delete the shield.
 	if (isInactive())
 		return TRUE
@@ -212,7 +212,7 @@ Like for example singulo act and whatever.
 		return mover.can_pass_shield(gen)
 	return TRUE
 
-/obj/effect/shield/proc/CanActThrough(var/atom/movable/actor)
+/obj/effect/shield/proc/CanActThrough(atom/movable/actor)
 	if (isInactive())
 		return TRUE
 	if(actor)
@@ -224,7 +224,7 @@ Like for example singulo act and whatever.
 
 
 // EMP. It may seem weak but keep in mind that multiple shield segments are likely to be affected.
-/obj/effect/shield/emp_act(var/severity)
+/obj/effect/shield/emp_act(severity)
 	if (!isInactive())
 		take_damage(rand(30,60) / severity, SHIELD_DAMTYPE_EM, src)
 
@@ -242,7 +242,7 @@ Like for example singulo act and whatever.
 
 
 // Projectiles
-/obj/effect/shield/bullet_act(var/obj/item/projectile/proj)
+/obj/effect/shield/bullet_act(obj/item/projectile/proj)
 	if(proj.damage_types[BURN])
 		take_damage(proj.damage_types[BURN], SHIELD_DAMTYPE_HEAT, proj)
 	if(proj.damage_types[BRUTE])
@@ -252,7 +252,7 @@ Like for example singulo act and whatever.
 
 
 // Attacks with hand tools. Blocked by Hyperkinetic flag.
-/obj/effect/shield/attackby(var/obj/item/I as obj, var/mob/user as mob)
+/obj/effect/shield/attackby(obj/item/I as obj, mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(src)
 
@@ -269,7 +269,7 @@ Like for example singulo act and whatever.
 
 
 // Special treatment for meteors because they would otherwise penetrate right through the shield.
-/obj/effect/shield/Bumped(var/atom/movable/mover)
+/obj/effect/shield/Bumped(atom/movable/mover)
 	if(!gen)
 		qdel(src)
 		return 0
@@ -284,7 +284,7 @@ Like for example singulo act and whatever.
 		qdel(src)
 
 
-/obj/effect/shield/proc/overcharge_shock(var/mob/living/M)
+/obj/effect/shield/proc/overcharge_shock(mob/living/M)
 	M.adjustFireLoss(rand(20, 40))
 	M.Weaken(5)
 	M.updatehealth()
@@ -306,44 +306,44 @@ Like for example singulo act and whatever.
 
 // Shield collision checks below
 
-/atom/movable/proc/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
+/atom/movable/proc/can_pass_shield(obj/machinery/power/shipside/shield_generator/gen)
 	return 1
 
 
 // Other mobs
-/mob/living/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
+/mob/living/can_pass_shield(obj/machinery/power/shipside/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_NONHUMANS)
 
 // Human mobs
-/mob/living/carbon/human/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
+/mob/living/carbon/human/can_pass_shield(obj/machinery/power/shipside/shield_generator/gen)
 	if(isSynthetic())
 		return !gen.check_flag(MODEFLAG_ANORGANIC)
 	return !gen.check_flag(MODEFLAG_HUMANOIDS)
 
 // Silicon mobs
-/mob/living/silicon/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
+/mob/living/silicon/can_pass_shield(obj/machinery/power/shipside/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_ANORGANIC)
 
 
 // Generic objects. Also applies to bullets and meteors.
-/obj/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
+/obj/can_pass_shield(obj/machinery/power/shipside/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_HYPERKINETIC)
 
 // Beams
-/obj/item/projectile/beam/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
+/obj/item/projectile/beam/can_pass_shield(obj/machinery/power/shipside/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_PHOTONIC)
 
 
 // Shield on-impact logic here. This is called only if the object is actually blocked by the field (can_pass_shield applies first)
-/atom/movable/proc/shield_impact(var/obj/effect/shield/S)
+/atom/movable/proc/shield_impact(obj/effect/shield/S)
 	return
 
-/mob/living/shield_impact(var/obj/effect/shield/S)
+/mob/living/shield_impact(obj/effect/shield/S)
 	if(!S.gen.check_flag(MODEFLAG_OVERCHARGE))
 		return
 	S.overcharge_shock(src)
 
-/obj/effect/meteor/shield_impact(var/obj/effect/shield/S)
+/obj/effect/meteor/shield_impact(obj/effect/shield/S)
 	if(!S.gen.check_flag(MODEFLAG_HYPERKINETIC))
 		return
 	/*
@@ -363,6 +363,6 @@ Like for example singulo act and whatever.
 
 
 //This function takes a turf to prevent race conditions, as the object calling it will probably be deleted in the same frame
-/proc/shield_impact_sound(var/turf/T, var/range, var/volume = 100)
+/proc/shield_impact_sound(turf/T, range, volume = 100)
 	//The supplied volume is reduced by an amount = distance - viewrange * 2, viewrange is 7 i think
 	playsound(T, 'sound/effects/impacts/shield_impact_1.ogg', volume, 1,extrarange = range * 1.5, falloff = range, use_pressure = 0)

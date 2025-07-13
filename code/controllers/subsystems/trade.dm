@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(trade)
 	init_stations_by_list(stations2init)
 
 // Add a random trading station after the start of the round among pool of stations not already spawned
-/datum/controller/subsystem/trade/proc/AddStation(var/turf/station_loc)
+/datum/controller/subsystem/trade/proc/AddStation(turf/station_loc)
 	var/list/availablestationlist = collect_available_trade_stations()
 
 	if(length(availablestationlist))

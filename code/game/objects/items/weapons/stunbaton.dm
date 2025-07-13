@@ -50,7 +50,7 @@
 		cell = null
 		update_icon()
 
-/obj/item/melee/baton/proc/deductcharge(var/power_drain)
+/obj/item/melee/baton/proc/deductcharge(power_drain)
 	if(cell)
 		. = cell.checked_use(power_drain) //try to use enough power
 		if(!cell.check_charge(hitcost))	//do we have enough power for another hit?
@@ -99,7 +99,7 @@
 */
 	return ..()
 
-/obj/item/melee/baton/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/baton/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	if(isrobot(target))
 		return ..()
 

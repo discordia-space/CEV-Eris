@@ -307,7 +307,7 @@
 
 
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update(var/trigger = 1)
+/obj/machinery/light/proc/update(trigger = 1)
 
 	update_icon()
 	if(on == TRUE)
@@ -346,7 +346,7 @@
 	if(on != on_gs)
 		on_gs = on
 
-/obj/machinery/light/attack_generic(var/mob/user, var/damage)
+/obj/machinery/light/attack_generic(mob/user, damage)
 	if(!damage)
 		return
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
@@ -596,7 +596,7 @@
 
 // break the light and make sparks if was on
 
-/obj/machinery/light/proc/broken(var/skip_sound_and_sparks = 0)
+/obj/machinery/light/proc/broken(skip_sound_and_sparks = 0)
 	if(status == LIGHT_EMPTY)
 		return
 
@@ -732,7 +732,7 @@
 
 // attack bulb/tube with object
 // if a syringe, can inject plasma to make it explode
-/obj/item/light/attackby(var/obj/item/I, var/mob/user)
+/obj/item/light/attackby(obj/item/I, mob/user)
 	..()
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I

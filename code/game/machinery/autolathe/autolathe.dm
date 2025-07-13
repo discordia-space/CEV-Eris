@@ -242,7 +242,7 @@
 	return data
 
 
-/obj/machinery/autolathe/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/autolathe/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/list/data = nano_ui_data(user, ui_key)
 
 	var/datum/asset/designIcons = get_asset_datum(/datum/asset/simple/design_icons)

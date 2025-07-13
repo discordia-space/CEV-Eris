@@ -48,7 +48,7 @@
 	)
 
 
-/datum/objective/steal/set_target(var/item_name)
+/datum/objective/steal/set_target(item_name)
 	target_name = item_name
 	steal_target = possible_items[target_name]
 	if(!steal_target)
@@ -61,7 +61,7 @@
 	return set_target(pick(valid_items))
 
 
-/datum/objective/steal/proc/select_target(var/mob/user)
+/datum/objective/steal/proc/select_target(mob/user)
 	var/list/possible_items_all = possible_items + possible_items_special
 	var/new_target = input(user, "Select target:", "Objective target", target_name) as null|anything in possible_items_all
 	if(!new_target)

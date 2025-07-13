@@ -30,7 +30,7 @@
 	if(reinforced)
 		overlays += "[icon_state]-duct_tape"
 
-/obj/item/melee/toolbox_maul/proc/break_apart(var/mob/living/user)
+/obj/item/melee/toolbox_maul/proc/break_apart(mob/living/user)
 	qdel(src)
 	var/obj/item/mop/mop = new(user.loc)
 	if(!user.get_active_held_item())

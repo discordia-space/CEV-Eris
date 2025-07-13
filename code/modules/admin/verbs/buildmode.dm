@@ -43,7 +43,7 @@
 	icon = 'icons/misc/buildmode.dmi'
 	var/obj/effect/bmode/buildholder/master = null
 
-/obj/effect/bmode/set_plane(var/np)
+/obj/effect/bmode/set_plane(np)
 	plane = np
 
 /obj/effect/bmode/update_plane()
@@ -210,7 +210,7 @@
 						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as turf in world
 	return 1
 
-/proc/build_click(var/mob/user, buildmode, params, var/obj/object)
+/proc/build_click(mob/user, buildmode, params, obj/object)
 	var/obj/effect/bmode/buildholder/holder
 	for(var/obj/effect/bmode/buildholder/H)
 		if(H.cl == user.client)

@@ -66,7 +66,7 @@
 /obj/structure/inflatable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return 0
 
-/obj/structure/inflatable/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/inflatable/bullet_act(obj/item/projectile/Proj)
 	var/proj_damage = Proj.get_structure_damage()
 	if(!proj_damage) return
 	take_damage(proj_damage)
@@ -96,7 +96,7 @@
 /obj/structure/inflatable/CtrlClick()
 	hand_deflate()
 
-/obj/structure/inflatable/proc/deflate(var/violent=0)
+/obj/structure/inflatable/proc/deflate(violent=0)
 	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
 	if(violent)
 		visible_message("[src] rapidly deflates!")
@@ -126,7 +126,7 @@
 	verbs -= /obj/structure/inflatable/verb/hand_deflate
 	deflate()
 
-/obj/structure/inflatable/attack_generic(var/mob/user, var/damage, var/attack_verb)
+/obj/structure/inflatable/attack_generic(mob/user, damage, attack_verb)
 	attack_animation(user)
 	take_damage(damage)
 	if(health <= 0)
@@ -209,7 +209,7 @@
 	else
 		icon_state = "door_closed"
 
-/obj/structure/inflatable/door/deflate(var/violent=0)
+/obj/structure/inflatable/door/deflate(violent=0)
 	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
 	if(violent)
 		visible_message("[src] rapidly deflates!")

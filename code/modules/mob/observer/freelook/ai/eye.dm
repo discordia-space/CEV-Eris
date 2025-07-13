@@ -11,7 +11,7 @@
 	..()
 	visualnet = GLOB.cameranet
 
-/mob/observer/eye/aiEye/setLoc(var/T, var/cancel_tracking = 1)
+/mob/observer/eye/aiEye/setLoc(T, cancel_tracking = 1)
 	if(..())
 		var/mob/living/silicon/ai/ai = owner
 		if(cancel_tracking)
@@ -34,7 +34,7 @@
 /mob/living/silicon/ai
 	var/obj/machinery/hologram/holopad/holo = null
 
-/mob/living/silicon/ai/proc/destroy_eyeobj(var/atom/new_eye)
+/mob/living/silicon/ai/proc/destroy_eyeobj(atom/new_eye)
 	if(!eyeobj) return
 	if(!new_eye)
 		new_eye = src
@@ -44,7 +44,7 @@
 	if(client)
 		client.eye = new_eye
 
-/mob/living/silicon/ai/proc/create_eyeobj(var/newloc)
+/mob/living/silicon/ai/proc/create_eyeobj(newloc)
 	if(eyeobj) destroy_eyeobj()
 	if(!newloc) newloc = src.loc
 	eyeobj = new /mob/observer/eye/aiEye(newloc)

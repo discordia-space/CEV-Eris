@@ -34,7 +34,7 @@
 	rarity_value = 16.66
 	spawn_tags = SPAWN_ITEM_CONTRABAND
 
-/obj/item/material/wirerod/attackby(var/obj/item/I, mob/user)
+/obj/item/material/wirerod/attackby(obj/item/I, mob/user)
 	..()
 	var/obj/item/finished
 	if((QUALITY_CUTTING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities))

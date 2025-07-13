@@ -2,7 +2,7 @@
 //These are shared by various items that have shield-like behaviour
 
 //bad_arc is the ABSOLUTE arc of directions from which we cannot block. If you want to fix it to e.g. the user's facing you will need to rotate the dirs yourself.
-/proc/check_parry_arc(mob/user, var/bad_arc, atom/damage_source = null, mob/attacker = null)
+/proc/check_parry_arc(mob/user, bad_arc, atom/damage_source = null, mob/attacker = null)
 	//check attack direction
 	var/attack_dir = 0 //direction from the user to the source of the attack
 	if(istype(damage_source, /obj/item/projectile))
@@ -57,7 +57,7 @@
 
 	return 1 //STAT_LEVEL_MIN doesn't work due to division by zero error
 
-/obj/item/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/shield/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 
 	if(istype(damage_source, /obj/item/projectile) || (attacker && get_dist(user, attacker) > 1) || user.incapacitated())
 		return 0
@@ -70,7 +70,7 @@
 			return 1
 	return 0
 
-/obj/item/shield/block_bullet(mob/user, var/obj/item/projectile/damage_source, def_zone)
+/obj/item/shield/block_bullet(mob/user, obj/item/projectile/damage_source, def_zone)
 	var/bad_arc = reverse_direction(user.dir)
 	var/list/protected_area
 	if(prob(50))
@@ -83,7 +83,7 @@
 			return 1
 	return 0
 
-/obj/item/shield/proc/check_shield_arc(mob/user, var/bad_arc, atom/damage_source = null, mob/attacker = null)
+/obj/item/shield/proc/check_shield_arc(mob/user, bad_arc, atom/damage_source = null, mob/attacker = null)
 	//shield direction
 
 	var/shield_dir = 0
@@ -180,7 +180,7 @@
 	else
 		..()
 
-/obj/item/shield/buckler/proc/on_bash(var/obj/item/W, var/mob/user)
+/obj/item/shield/buckler/proc/on_bash(obj/item/W, mob/user)
 	if(cooldown < world.time - 25)
 		user.visible_message(span_warning("[user] bashes [src] with \his [W]!"))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
@@ -284,7 +284,7 @@
 	else
 		..()
 
-/obj/item/shield/riot/proc/on_bash(var/obj/item/W, var/mob/user)
+/obj/item/shield/riot/proc/on_bash(obj/item/W, mob/user)
 	if(cooldown < world.time - 25)
 		user.visible_message(span_warning("[user] bashes [src] with [W]!"))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
@@ -364,7 +364,7 @@
 	else
 		..()
 
-/obj/item/shield/hardsuit/proc/on_bash(var/obj/item/W, var/mob/user)
+/obj/item/shield/hardsuit/proc/on_bash(obj/item/W, mob/user)
 	if(cooldown < world.time - 25)
 		user.visible_message(span_warning("[user] bashes [src] with \his [W]!"))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)

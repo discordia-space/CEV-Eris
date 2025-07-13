@@ -193,7 +193,7 @@
 
 	return ..()
 
-/obj/item/tool/karl/proc/shootAt(var/mob/living/target, def_zone)
+/obj/item/tool/karl/proc/shootAt(mob/living/target, def_zone)
 
 	// Check source and destination
 	var/turf/T = get_turf(src)

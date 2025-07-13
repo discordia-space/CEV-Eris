@@ -19,7 +19,7 @@
 
 	//node 3 is the outlet, nodes 1 & 2 are intakes
 
-/obj/machinery/atmospherics/trinary/mixer/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/trinary/mixer/update_icon(safety = 0)
 	if(istype(src, /obj/machinery/atmospherics/trinary/mixer/m_mixer))
 		icon_state = "m"
 	else if(istype(src, /obj/machinery/atmospherics/trinary/mixer/t_mixer))
@@ -54,7 +54,7 @@
 
 		add_underlay(T, node3, dir)
 
-/obj/machinery/atmospherics/trinary/mixer/hide(var/i)
+/obj/machinery/atmospherics/trinary/mixer/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/trinary/mixer/power_change()
@@ -103,7 +103,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/trinary/mixer/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/atmospherics/trinary/mixer/attackby(obj/item/I, mob/user as mob)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	var/datum/gas_mixture/int_air = return_air()

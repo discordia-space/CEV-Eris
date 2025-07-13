@@ -41,7 +41,7 @@
 					deck_size += 1
 
 
-/datum/storyteller/erida/proc/pick_storyevent(var/list/L)
+/datum/storyteller/erida/proc/pick_storyevent(list/L)
 	var/max = 0
 	var/target = 0
 

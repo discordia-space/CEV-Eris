@@ -36,7 +36,7 @@
 				O.implants += S
 
 
-/mob/living/carbon/superior_animal/giant_spider/nurse/proc/GiveUp(var/C)
+/mob/living/carbon/superior_animal/giant_spider/nurse/proc/GiveUp(C)
 	if(busy == MOVING_TO_TARGET)
 		if(cocoon_target == C && get_dist(src,cocoon_target) > 1)
 			cocoon_target = null

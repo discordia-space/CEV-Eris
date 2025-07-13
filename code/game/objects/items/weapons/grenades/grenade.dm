@@ -16,7 +16,7 @@
 	var/det_time = 40
 	var/variance = 0 //How much the fuse time varies up or down. Punishes cooking with makeshift nades, proper ones should have 0
 
-/obj/item/grenade/proc/clown_check(var/mob/living/user)
+/obj/item/grenade/proc/clown_check(mob/living/user)
 /*	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, span_warning("Huh? How does this thing work?"))
 

@@ -59,7 +59,7 @@
 	..()
 	open_chamber()
 
-/obj/item/gun/projectile/handmade_pistol/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/handmade_pistol/load_ammo(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ammo_casing))
 		if(!chamber_open)
 			to_chat(user, span_warning("You need to open chamber first."))

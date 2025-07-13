@@ -45,7 +45,7 @@
 
 
 
-/obj/item/device/megaphone/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/device/megaphone/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		to_chat(user, span_warning("You overload \the [src]'s voice synthesizer."))
 		emagged = TRUE

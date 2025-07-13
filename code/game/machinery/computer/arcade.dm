@@ -253,7 +253,7 @@
 	return
 
 
-/obj/machinery/computer/arcade/battle/emag_act(var/charges, var/mob/user)
+/obj/machinery/computer/arcade/battle/emag_act(charges, mob/user)
 	if(!emagged)
 		temp = "If you die in the game, you die for real!"
 		player_hp = 30

@@ -23,7 +23,7 @@ var/list/floor_light_cache = list()
 /obj/machinery/floor_light/prebuilt
 	anchored = TRUE
 
-/obj/machinery/floor_light/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/floor_light/attackby(obj/item/I, mob/user)
 
 	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_SCREW_DRIVING)
 	if((damaged || (stat & BROKEN)))
@@ -67,7 +67,7 @@ var/list/floor_light_cache = list()
 		attack_hand(user)
 	return
 
-/obj/machinery/floor_light/attack_hand(var/mob/user)
+/obj/machinery/floor_light/attack_hand(mob/user)
 
 	if(user.a_intent == I_HURT && !issmall(user))
 		if(!isnull(damaged) && !(stat & BROKEN))

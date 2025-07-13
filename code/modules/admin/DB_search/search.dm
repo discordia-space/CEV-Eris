@@ -2,7 +2,7 @@
 	var/datum/browser/panel
 	var/empty = 1
 
-/datum/DB_search/verb/new_search_related(var/ckey as text)
+/datum/DB_search/verb/new_search_related(ckey as text)
 	set category = "Admin"
 	set name = "Search related accounts"
 	set desc = "Search players with same IP or CID"

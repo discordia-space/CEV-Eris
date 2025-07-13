@@ -11,7 +11,7 @@
 	..()
 	SETUP_SUBTYPE_DECLS_BY_NAME(/decl/prefix, prefix_by_name)
 
-/datum/category_item/player_setup_item/player_global/prefixes/load_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/player_global/prefixes/load_preferences(savefile/S)
 	var/list/prefix_keys_by_name
 	from_file(S["prefix_keys"], prefix_keys_by_name)
 
@@ -22,7 +22,7 @@
 			if(prefix_instance)
 				pref.prefix_keys_by_type[prefix_instance.type] = prefix_keys_by_name[prefix_name]
 
-/datum/category_item/player_setup_item/player_global/prefixes/save_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/player_global/prefixes/save_preferences(savefile/S)
 	var/list/prefix_keys_by_name = list()
 	for(var/prefix_type in pref.prefix_keys_by_type)
 		var/decl/prefix/prefix_instance = decls_repository.get_decl(prefix_type)
@@ -44,7 +44,7 @@
 	// In case of overlap, all affected prefixes are given their default key
 	reset_duplicate_keys()
 
-/datum/category_item/player_setup_item/player_global/prefixes/content(var/mob/user)
+/datum/category_item/player_setup_item/player_global/prefixes/content(mob/user)
 	. += "<b>Prefix Keys:</b><br>"
 	. += "<table>"
 	for(var/prefix_name in prefix_by_name)
@@ -68,7 +68,7 @@
 		. += "</td></tr>"
 	. += "</table>"
 
-/datum/category_item/player_setup_item/player_global/prefixes/OnTopic(var/href, var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/player_global/prefixes/OnTopic(href, list/href_list, mob/user)
 	if(href_list["change_prefix"])
 		var/decl/prefix/prefix_instance = locate(href_list["change_prefix"])
 		if(!istype(prefix_instance) || prefix_instance.is_locked)
@@ -136,7 +136,7 @@
 				var/decl/prefix/prefix_instance = decls_repository.get_decl(prefix_type)
 				pref.prefix_keys_by_type[prefix_instance.type] = prefix_instance.default_key
 
-/mob/proc/get_prefix_key(var/prefix_type)
+/mob/proc/get_prefix_key(prefix_type)
 	if(client && client.prefs)
 		return client.prefs.prefix_keys_by_type[prefix_type]
 	var/decl/prefix/prefix_instance = decls_repository.get_decl(prefix_type)

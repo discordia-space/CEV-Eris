@@ -10,7 +10,7 @@
 		query_string += "&msg=[url_encode(message)]"
 		world.Export("[CONFIG_GET(string/webhook_url)]?[query_string]")
 
-/proc/lobby_message(var/message = "Debug Message", var/color = "#FFFFFF", var/sender)
+/proc/lobby_message(message = "Debug Message", color = "#FFFFFF", sender)
 	if (!CONFIG_GET(string/webhook_url) || !CONFIG_GET(string/webhook_key))
 		return
 	spawn(0)
@@ -34,7 +34,7 @@
 		lobby_message(message = msg, color = "#79FE5F")
 
 
-/proc/send2adminchat(var/initiator, var/original_msg)
+/proc/send2adminchat(initiator, original_msg)
 	if (!CONFIG_GET(string/webhook_url) || !CONFIG_GET(string/webhook_key))
 		return
 
@@ -51,7 +51,7 @@
 		query_string += "&admin_number_afk=[afkmins.len]"
 		world.Export("[CONFIG_GET(string/webhook_url)]?[query_string]")
 
-/proc/send_adminalert2adminchat(var/message = "Debug Message", var/color = "#FFFFFF", var/sender)
+/proc/send_adminalert2adminchat(message = "Debug Message", color = "#FFFFFF", sender)
 	if (!CONFIG_GET(string/webhook_url) || !CONFIG_GET(string/webhook_key))
 		return
 	spawn(0)
@@ -63,7 +63,7 @@
 			query_string += "&from=[url_encode(sender)]"
 		world.Export("[CONFIG_GET(string/webhook_url)]?[query_string]")
 
-/proc/send2coders(var/message = "Debug Message", var/color = "#FFFFFF", var/sender, var/admiralty = 0)
+/proc/send2coders(message = "Debug Message", color = "#FFFFFF", sender, admiralty = 0)
 	if (!CONFIG_GET(string/webhook_url) || !CONFIG_GET(string/webhook_key))
 		return
 	spawn(0)

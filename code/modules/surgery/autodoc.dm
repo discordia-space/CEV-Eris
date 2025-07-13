@@ -22,7 +22,7 @@
 	var/surgery_operations = 0
 	var/obj/item/organ/organ = null
 
-/datum/autodoc_patchnote/proc/Copy(var/blank = TRUE)
+/datum/autodoc_patchnote/proc/Copy(blank = TRUE)
 	var/datum/autodoc_patchnote/copy = new()
 	copy.organ = organ
 	if(!blank)
@@ -47,7 +47,7 @@
 	. = ..()
 	holder = new_holder
 
-/datum/autodoc/proc/set_patient(var/mob/living/carbon/human/human = null)
+/datum/autodoc/proc/set_patient(mob/living/carbon/human/human = null)
 	patient = human
 
 /datum/autodoc/proc/scan_user()
@@ -107,7 +107,7 @@
 			scanned_patchnotes.Add(patchnote)
 			picked_patchnotes.Add(patchnote.Copy())
 
-/datum/autodoc/proc/process_note(var/datum/autodoc_patchnote/patchnote)
+/datum/autodoc/proc/process_note(datum/autodoc_patchnote/patchnote)
 	if(!patchnote.surgery_operations)
 		to_chat(patient, span_notice("Treatment complete."))
 		return TRUE
@@ -192,7 +192,7 @@
 /datum/autodoc/proc/fail()
 	current_step++
 
-/datum/autodoc/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 2, var/datum/nano_topic_state/state)
+/datum/autodoc/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 2, datum/nano_topic_state/state)
 	if(!patient)
 		if(ui)
 			ui.close()
@@ -369,7 +369,7 @@
 
 	return data
 
-/datum/autodoc/capitalist_autodoc/proc/charge(var/amount = 100)
+/datum/autodoc/capitalist_autodoc/proc/charge(amount = 100)
 	if(linked_account && !linked_account.is_valid())
 		to_chat(patient, "Autodoc is out of service. Error code: #0x09")
 		return FALSE
@@ -391,7 +391,7 @@
 	custom_cost = 0
 	total_cost = recalc_costs(scanned_patchnotes)
 
-/datum/autodoc/capitalist_autodoc/proc/recalc_costs(var/list/notes)
+/datum/autodoc/capitalist_autodoc/proc/recalc_costs(list/notes)
 	var/cost = 0
 	for(var/datum/autodoc_patchnote/patchnote in notes)
 		if(patchnote.surgery_operations & AUTODOC_TOXIN)

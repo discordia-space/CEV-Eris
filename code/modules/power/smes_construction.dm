@@ -134,7 +134,7 @@
 // Proc: total_system_failure()
 // Parameters: 2 (intensity - how strong the failure is, user - person which caused the failure)
 // Description: Checks the sensors for alerts. If change (alerts cleared or detected) occurs, calls for icon update.
-/obj/machinery/power/smes/buildable/proc/total_system_failure(var/intensity = 0, var/mob/user as mob)
+/obj/machinery/power/smes/buildable/proc/total_system_failure(intensity = 0, mob/user as mob)
 	// SMESs store very large amount of power. If someone screws up (ie: Disables safeties and attempts to modify the SMES) very bad things happen.
 	// Bad things are based on charge percentage.
 	// Possible effects:
@@ -255,7 +255,7 @@
 // Proc: apcs_overload()
 // Parameters: 3 (failure_chance - chance to actually break the APC, overload_chance - Chance of breaking lights, reboot_chance - Chance of temporarily disabling the APC)
 // Description: Damages output powernet by power surge. Destroys few APCs and lights, depending on parameters.
-/obj/machinery/power/smes/buildable/proc/apcs_overload(var/failure_chance, var/overload_chance, var/reboot_chance)
+/obj/machinery/power/smes/buildable/proc/apcs_overload(failure_chance, overload_chance, reboot_chance)
 	if (!src.powernet)
 		return
 
@@ -282,7 +282,7 @@
 // Proc: attackby()
 // Parameters: 2 (W - object that was used on this machine, user - person which used the object)
 // Description: Handles tool interaction. Allows deconstruction/upgrading/fixing.
-/obj/machinery/power/smes/buildable/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/power/smes/buildable/attackby(obj/item/W as obj, mob/user as mob)
 	// No more disassembling of overloaded SMESs. You broke it, now enjoy the consequences.
 	if (failing)
 		to_chat(user, span_warning("The [src]'s screen is flashing with alerts. It seems to be overloaded! Touching it now is probably not a good idea."))

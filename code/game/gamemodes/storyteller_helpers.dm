@@ -1,6 +1,6 @@
 
 //Sets the storyteller to a new one, and does any heavy lifting for a handover
-/proc/set_storyteller(var/datum/storyteller/newST, var/announce = TRUE)
+/proc/set_storyteller(datum/storyteller/newST, announce = TRUE)
 	if (!newST)
 		//You can call this without passing anything, we'll go fetch it ourselves
 		newST = config.pick_storyteller(STORYTELLER_BASE) //This function is in code/controllers/configuration.dm
@@ -68,7 +68,7 @@
 
 
 
-/datum/storyteller/proc/calculate_event_weight(var/datum/storyevent/R)
+/datum/storyteller/proc/calculate_event_weight(datum/storyevent/R)
 	var/new_weight = R.weight
 
 	new_weight *= weight_mult(crew,R.req_crew)
@@ -89,7 +89,7 @@
 	return new_weight
 
 
-/datum/storyteller/proc/calculate_event_cost(var/datum/storyevent/R, var/severity)
+/datum/storyteller/proc/calculate_event_cost(datum/storyevent/R, severity)
 	var/new_cost = R.get_cost(severity)
 
 	//Factoring in tag-based cost modifiers
@@ -100,7 +100,7 @@
 
 	return new_cost
 
-/datum/storyteller/proc/weight_mult(var/val, var/req)
+/datum/storyteller/proc/weight_mult(val, req)
 	if(req <= 0)
 		return 1
 	if(val <= 0)	//We need to spawn anything
@@ -109,7 +109,7 @@
 
 
 //Since severity are no longer numbers, we need a proc for incrementing it
-/proc/get_next_severity(var/input)
+/proc/get_next_severity(input)
 	switch (input)
 		if (EVENT_LEVEL_MUNDANE)
 			return EVENT_LEVEL_MODERATE

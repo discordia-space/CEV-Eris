@@ -230,7 +230,7 @@
 	var/amount = 25.0
 
 
-/obj/item/packageWrap/afterattack(var/obj/target as obj, mob/user as mob, proximity)
+/obj/item/packageWrap/afterattack(obj/target as obj, mob/user as mob, proximity)
 	if(!proximity) return
 	if(!istype(target))	//this really shouldn't be necessary (but it is).	-Pete
 		return
@@ -395,7 +395,7 @@
 /obj/machinery/disposal/deliveryChute/update()
 	return
 
-/obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
+/obj/machinery/disposal/deliveryChute/Bumped(atom/movable/AM) //Go straight into the chute
 	if(istype(AM, /obj/item/projectile) || istype(AM, /obj/effect))	return
 	if(AM.loc && src.loc)
 		switch(dir)
@@ -437,7 +437,7 @@
 /obj/machinery/disposal/deliveryChute/get_eject_turf()
 	return get_ranged_target_turf(src, dir, 10)
 
-/obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/disposal/deliveryChute/attackby(obj/item/I, mob/user)
 
 	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
 	if(c_mode == 1)

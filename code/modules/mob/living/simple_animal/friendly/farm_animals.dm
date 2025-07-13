@@ -25,7 +25,7 @@
 	udder.my_atom = src
 	..()
 
-/mob/living/simple_animal/hostile/retaliate/goat/beg(var/atom/thing, var/atom/holder)
+/mob/living/simple_animal/hostile/retaliate/goat/beg(atom/thing, atom/holder)
 	visible_emote("butts insistently at [holder]'s legs and reaches towards their [thing].")
 
 /mob/living/simple_animal/hostile/retaliate/goat/Life()
@@ -64,13 +64,13 @@
 	if(stat == CONSCIOUS)
 		visible_message(span_warning("[src] gets an evil-looking gleam in their eye."))
 
-/mob/living/simple_animal/hostile/retaliate/goat/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/simple_animal/hostile/retaliate/goat/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	if(!stat)
 		for(var/obj/effect/plant/SV in loc)
 			SV.die_off(1)
 
-/mob/living/simple_animal/hostile/retaliate/goat/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/hostile/retaliate/goat/attackby(obj/item/O as obj, mob/user as mob)
 	var/obj/item/reagent_containers/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_refillable())
 		user.visible_message(span_notice("[user] milks [src] using \the [O]."))
@@ -108,7 +108,7 @@
 	udder.my_atom = src
 	..()
 
-/mob/living/simple_animal/cow/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/cow/attackby(obj/item/O as obj, mob/user as mob)
 	var/obj/item/reagent_containers/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_refillable())
 		user.visible_message(span_notice("[user] milks [src] using \the [O]."))
@@ -222,7 +222,7 @@ var/global/chicken_count = 0
 	..()
 	chicken_count -= 1
 
-/mob/living/simple_animal/chicken/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/chicken/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/grown)) //feedin' dem chickens
 		var/obj/item/reagent_containers/food/snacks/grown/G = O
 		if(G.seed && G.seed.kitchen_tag == "wheat")

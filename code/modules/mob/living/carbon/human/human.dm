@@ -755,7 +755,7 @@ var/list/rank_prefix = list(\
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/human/vomit(var/forced = 0)
+/mob/living/carbon/human/vomit(forced = 0)
 
 	if(!check_has_mouth())
 		return
@@ -1248,7 +1248,7 @@ var/list/rank_prefix = list(\
 			return TRUE
 	return FALSE
 
-/mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
+/mob/living/carbon/human/slip(slipped_on, stun_duration=8)
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
 		return FALSE
 	return ..(slipped_on,stun_duration)
@@ -1270,7 +1270,7 @@ var/list/rank_prefix = list(\
 		return 1
 	return 0
 
-/mob/living/carbon/human/MouseDrop(var/atom/over_object)
+/mob/living/carbon/human/MouseDrop(atom/over_object)
 	var/mob/living/carbon/human/H = over_object
 	if(holder_type && istype(H) && H.a_intent == I_HELP && !H.lying && !issmall(H) && Adjacent(H))
 		get_scooped(H, (usr == src))
@@ -1454,7 +1454,7 @@ var/list/rank_prefix = list(\
 //	else
 	return FALSE
 
-/mob/living/carbon/human/proc/set_remoteview(var/atom/A)
+/mob/living/carbon/human/proc/set_remoteview(atom/A)
 	remoteview_target = A
 	reset_view(A)
 

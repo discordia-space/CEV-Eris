@@ -3,7 +3,7 @@
 	var/hunger = 0
 	var/list/prey = list()
 
-/mob/living/simple_animal/hostile/retaliate/beast/ListTargets(var/dist = 7)
+/mob/living/simple_animal/hostile/retaliate/beast/ListTargets(dist = 7)
 	var/list/see = ..()
 	if(see.len)
 		return see

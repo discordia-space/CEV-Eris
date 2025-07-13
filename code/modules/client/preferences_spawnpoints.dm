@@ -6,7 +6,7 @@
 
 
 //Called by spawnpoint landmarks. A landmark creates a new /datum/spawnpoint, or adds its own data to an existing one
-/proc/landmark_create_spawn_point(var/obj/landmark/join/LM, late = FALSE, silenced = FALSE)
+/proc/landmark_create_spawn_point(obj/landmark/join/LM, late = FALSE, silenced = FALSE)
 	if (!istype(LM))
 		return
 

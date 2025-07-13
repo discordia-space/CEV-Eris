@@ -32,7 +32,7 @@
 	QDEL_NULL(keyslot2)
 	return ..()
 
-/obj/item/device/radio/headset/list_channels(var/mob/user)
+/obj/item/device/radio/headset/list_channels(mob/user)
 	return list_secure_channels()
 
 /obj/item/device/radio/headset/examine(mob/user, extra_description = "")
@@ -270,7 +270,7 @@
 		recalculateChannels()
 
 
-/obj/item/device/radio/headset/proc/recalculateChannels(var/setDescription = 0)
+/obj/item/device/radio/headset/proc/recalculateChannels(setDescription = 0)
 	src.channels = list()
 	src.translate_binary = FALSE
 	src.translate_hive = FALSE

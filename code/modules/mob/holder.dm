@@ -97,7 +97,7 @@ var/list/holder_mob_icon_cache = list()
 //is_unsafe_container should be checked before calling this
 //This function releases mobs into wherever the holder currently is. Its not safe to call from a lot of places
 //Use release_to_floor for a simple, safe release
-/obj/item/holder/proc/release_mob(var/des_self = TRUE)
+/obj/item/holder/proc/release_mob(des_self = TRUE)
 	for(var/mob/living/M in contents)
 		var/atom/movable/mob_container
 		mob_container = M
@@ -149,11 +149,11 @@ var/list/holder_mob_icon_cache = list()
 	if (isturf(loc))
 		release_mob()
 
-/obj/item/holder/equipped(var/mob/user, var/slot)
+/obj/item/holder/equipped(mob/user, slot)
 	..()
 	update_location(slot)
 
-/obj/item/holder/proc/update_location(var/slotnumber)
+/obj/item/holder/proc/update_location(slotnumber)
 	if(!slotnumber)
 		if(ismob(loc))
 			slotnumber = get_equip_slot()
@@ -176,7 +176,7 @@ var/list/holder_mob_icon_cache = list()
 		to_chat(M, "[contained] is dead.")
 
 
-/obj/item/holder/show_message(var/message, var/m_type)
+/obj/item/holder/show_message(message, m_type)
 	for(var/mob/living/M in contents)
 		M.show_message(message,m_type)
 
@@ -184,7 +184,7 @@ var/list/holder_mob_icon_cache = list()
 /mob/living/var/holder_type
 
 
-/obj/item/holder/proc/held_death(var/show_deathmessage = 0)
+/obj/item/holder/proc/held_death(show_deathmessage = 0)
 	//This function is called when the mob in the holder dies somehow.
 	isalive = 0
 
@@ -206,7 +206,7 @@ var/list/holder_mob_icon_cache = list()
 	//update_icon()
 
 
-/mob/living/proc/get_scooped(var/mob/living/carbon/grabber, var/mob/user = null)
+/mob/living/proc/get_scooped(mob/living/carbon/grabber, mob/user = null)
 	if(!holder_type || buckled || pinned.len || !Adjacent(grabber))
 		return
 
@@ -279,7 +279,7 @@ var/list/holder_mob_icon_cache = list()
 	slot_flags = SLOT_BACK
 
 
-/obj/item/holder/proc/sync(var/mob/living/M)
+/obj/item/holder/proc/sync(mob/living/M)
 	dir = 2
 	overlays.Cut()
 	icon = M.icon
@@ -306,7 +306,7 @@ var/list/holder_mob_icon_cache = list()
 
 
 //This function provides a verbose message describing where something is on a person. Intended for mobs in holders
-/obj/proc/report_onmob_location(var/justmoved, var/slot = null, var/mob/reportto)
+/obj/proc/report_onmob_location(justmoved, slot = null, mob/reportto)
 	var/mob/living/carbon/human/H//The person who the item is on
 	var/newlocation
 	var/preposition= ""
@@ -713,7 +713,7 @@ var/list/holder_mob_icon_cache = list()
 
 //The block below is for resomi, not currently relevant
 /*
-/obj/item/holder/human/sync(var/mob/living/M)
+/obj/item/holder/human/sync(mob/living/M)
 	cut_overlays()
 	// Generate appropriate on-mob icons.
 	var/mob/living/carbon/human/owner = M

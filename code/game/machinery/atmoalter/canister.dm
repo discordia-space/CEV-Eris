@@ -233,13 +233,13 @@ update_flag
 		return GM.return_pressure()
 	return 0
 
-/obj/machinery/portable_atmospherics/canister/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/portable_atmospherics/canister/bullet_act(obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
 		src.health -= round(Proj.get_structure_damage() / 2)
 		healthcheck()
 	..()
 
-/obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/portable_atmospherics/canister/attackby(obj/item/I, mob/user)
 
 	if(isrobot(user) && istype(I, /obj/item/tank/jetpack))
 		var/datum/gas_mixture/thejetpack = I:air_contents
@@ -281,13 +281,13 @@ update_flag
 
 	SSnano.update_uis(src) // Update all NanoUIs attached to src
 
-/obj/machinery/portable_atmospherics/canister/attack_ai(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/canister/attack_hand(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attack_hand(mob/user as mob)
 	return src.nano_ui_interact(user)
 
-/obj/machinery/portable_atmospherics/canister/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/portable_atmospherics/canister/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if (src.destroyed)
 		return
 

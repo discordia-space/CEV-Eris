@@ -49,7 +49,7 @@
 	else
 		icon_state = initial(icon_state)
 
-/proc/mass_spectrometer_scan(var/datum/reagents/reagents, mob/user, var/details)
+/proc/mass_spectrometer_scan(datum/reagents/reagents, mob/user, details)
 	if(!reagents || !reagents.total_volume)
 		return span_warning("No sample to scan.</span>")
 	else

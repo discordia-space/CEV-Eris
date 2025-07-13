@@ -22,7 +22,7 @@
 	var/drops_debris = 1
 	var/furniture_icon  //icon states for non-material colorable overlay, i.e. handles
 
-/obj/item/material/New(var/newloc, var/material_key)
+/obj/item/material/New(newloc, material_key)
 	..(newloc)
 	if(!material_key)
 		material_key = default_material
@@ -50,7 +50,7 @@
 	//spawn(1)
 	//	world << "[src] has force [force] and throwforce [throwforce] when made from default material [material.name]"
 
-/obj/item/material/proc/set_material(var/new_material)
+/obj/item/material/proc/set_material(new_material)
 	material = get_material_by_name(new_material)
 	if(!material)
 		qdel(src)
@@ -76,11 +76,11 @@
 			health--
 		check_health()
 
-/obj/item/material/proc/check_health(var/consumed)
+/obj/item/material/proc/check_health(consumed)
 	if(health<=0)
 		shatter(consumed)
 
-/obj/item/material/proc/shatter(var/consumed)
+/obj/item/material/proc/shatter(consumed)
 	var/turf/T = get_turf(src)
 	T.visible_message(span_danger("\The [src] [material.destruction_desc]!"))
 	if(isliving(loc))

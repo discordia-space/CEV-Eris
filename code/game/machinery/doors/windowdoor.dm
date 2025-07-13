@@ -26,7 +26,7 @@
 		src.base_state = src.icon_state
 	return
 
-/obj/machinery/door/window/proc/shatter(var/display_message = 1)
+/obj/machinery/door/window/proc/shatter(display_message = 1)
 	new /obj/item/material/shard(src.loc)
 	var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src.loc)
 	CC.amount = 2
@@ -144,7 +144,7 @@
 	src.operating = FALSE
 	return TRUE
 
-/obj/machinery/door/window/take_damage(var/damage)
+/obj/machinery/door/window/take_damage(damage)
 	src.health = max(0, src.health - damage)
 	if (src.health <= 0)
 		shatter()
@@ -174,7 +174,7 @@
 								"You hear a knocking sound.")
 
 
-/obj/machinery/door/window/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/door/window/emag_act(remaining_charges, mob/user)
 	if (density && operable())
 		operating = -1
 		flick("[src.base_state]spark", src)

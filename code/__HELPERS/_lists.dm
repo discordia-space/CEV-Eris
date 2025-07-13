@@ -164,7 +164,7 @@
 			return TRUE
 	return FALSE
 
-/proc/instances_of_type_in_list(var/atom/A, var/list/L)
+/proc/instances_of_type_in_list(atom/A, list/L)
 	var/instances = 0
 	for(var/type in L)
 		if(istype(A, type))
@@ -842,7 +842,7 @@ Checks if a list has the same entries and values as an element of big.
 			checked += value
 
 //Checks for specific paths in a list
-/proc/is_path_in_list(var/path, var/list/L)
+/proc/is_path_in_list(path, list/L)
 	for(var/type in L)
 		if(ispath(path, type))
 			return 1

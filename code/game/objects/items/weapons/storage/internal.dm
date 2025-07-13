@@ -50,13 +50,13 @@
 	close_all()
 	return 1
 
-/obj/item/storage/internal/Adjacent(var/atom/neighbor)
+/obj/item/storage/internal/Adjacent(atom/neighbor)
 	return master_item.Adjacent(neighbor)
 
 //Returns true if the thing is in a suitable location
 //If its worn and not in a pocket, its suitable
 //If its on a turf next to the user, its also suitable
-/obj/item/storage/internal/proc/openable_location(var/mob/user)
+/obj/item/storage/internal/proc/openable_location(mob/user)
 	.=FALSE
 	if (master_item.loc == user)
 		if(ishuman(user))

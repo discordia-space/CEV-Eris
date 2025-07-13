@@ -15,7 +15,7 @@
 	var/playsleepseconds = 0
 	var/error
 
-/datum/computer_file/program/audio/proc/open_audio(var/filename)
+/datum/computer_file/program/audio/proc/open_audio(filename)
 	var/datum/computer_file/data/audio/F = get_file(filename)
 	if(F)
 		selected_audio = F
@@ -131,7 +131,7 @@
 /datum/nano_module/program/audio
 	name = "Audio Player"
 
-/datum/nano_module/program/audio/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.default_state)
+/datum/nano_module/program/audio/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 
 	var/datum/computer_file/program/audio/PRG
 	var/list/data = host.initial_data()

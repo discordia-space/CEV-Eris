@@ -103,11 +103,11 @@
 //These are hackish but they help clean up code elsewhere.
 
 //module_selected(module) - Checks whether the module slot specified by "module" is currently selected.
-/mob/living/silicon/robot/proc/module_selected(var/module) //Module is 1-3
+/mob/living/silicon/robot/proc/module_selected(module) //Module is 1-3
 	return module == get_selected_module()
 
 //module_active(module) - Checks whether there is a module active in the slot specified by "module".
-/mob/living/silicon/robot/proc/module_active(var/module) //Module is 1-3
+/mob/living/silicon/robot/proc/module_active(module) //Module is 1-3
 	if(module < 1 || module > 3) return 0
 
 	switch(module)
@@ -134,7 +134,7 @@
 	return 0
 
 //select_module(module) - Selects the module slot specified by "module"
-/mob/living/silicon/robot/proc/select_module(var/module) //Module is 1-3
+/mob/living/silicon/robot/proc/select_module(module) //Module is 1-3
 	if(module < 1 || module > 3) return
 
 	if(!module_active(module)) return
@@ -165,7 +165,7 @@
 	return
 
 //deselect_module(module) - Deselects the module slot specified by "module"
-/mob/living/silicon/robot/proc/deselect_module(var/module) //Module is 1-3
+/mob/living/silicon/robot/proc/deselect_module(module) //Module is 1-3
 	if(module < 1 || module > 3) return
 
 	switch(module)
@@ -187,7 +187,7 @@
 	return
 
 //toggle_module(module) - Toggles the selection of the module slot specified by "module".
-/mob/living/silicon/robot/proc/toggle_module(var/module) //Module is 1-3
+/mob/living/silicon/robot/proc/toggle_module(module) //Module is 1-3
 	if(module < 1 || module > 3) return
 
 	if(module_selected(module))
@@ -222,7 +222,7 @@
 
 	return
 
-/mob/living/silicon/robot/proc/find_inv_position(var/invnum)
+/mob/living/silicon/robot/proc/find_inv_position(invnum)
 	if (!src.HUDinventory.len)
 		return
 	var/obj/screen/silicon/module/inv
@@ -234,7 +234,7 @@
 		log_admin("some error has been occure in /mob/living/silicon/robot/proc/find_inv_position, because invnum [invnum]")
 		return "7,7"
 
-/mob/living/silicon/robot/proc/activate_module(var/obj/item/O)
+/mob/living/silicon/robot/proc/activate_module(obj/item/O)
 	if(!(locate(O) in src.module.modules) && O != src.module.emag)
 		return
 	if(activated(O))
@@ -282,7 +282,7 @@
 
 //Attempt to grip the item in a gripper.
 //Parent call will drop it on the floor if gripper can't hold it
-/mob/living/silicon/robot/put_in_hands(var/obj/item/W)
+/mob/living/silicon/robot/put_in_hands(obj/item/W)
 	var/obj/item/gripper/G = locate() in list(module_state_1, module_state_2, module_state_3)
 	if (G && G.grip_item(W, src, 1))
 		return 1

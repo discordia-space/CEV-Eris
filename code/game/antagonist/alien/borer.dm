@@ -17,7 +17,7 @@
 	outer = FALSE
 	mob_path = /mob/living/simple_animal/borer
 
-/datum/antagonist/borer/create_objectives(var/survive = FALSE)
+/datum/antagonist/borer/create_objectives(survive = FALSE)
 	new /datum/objective/borer_survive (src)
 	new /datum/objective/borer_reproduce (src)
 

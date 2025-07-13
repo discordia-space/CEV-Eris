@@ -105,7 +105,7 @@
 	Consume(AM)
 
 
-/turf/wall/dummy/supermatter/proc/Consume(var/mob/living/user)
+/turf/wall/dummy/supermatter/proc/Consume(mob/living/user)
 	if(isobserver(user))
 		return
 

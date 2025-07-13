@@ -156,22 +156,22 @@
 
 //Called before the module is installed in a suit
 //Return FALSE to deny the installation
-/obj/item/rig_module/proc/can_install(var/obj/item/rig/rig, var/mob/user, var/feedback = FALSE)
+/obj/item/rig_module/proc/can_install(obj/item/rig/rig, mob/user, feedback = FALSE)
 	return TRUE
 
 //Called before the module is removed from a suit
 //Return FALSE to deny the removal
-/obj/item/rig_module/proc/can_uninstall(var/obj/item/rig/rig, var/mob/user, var/feedback = FALSE)
+/obj/item/rig_module/proc/can_uninstall(obj/item/rig/rig, mob/user, feedback = FALSE)
 	return TRUE
 
 // Called after the module is installed into a suit. The holder var is already set to the new suit
-/obj/item/rig_module/proc/installed(var/mob/living/user)
+/obj/item/rig_module/proc/installed(mob/living/user)
 	return
 
 // Called after the module is removed from a suit.
 //The holder var is already set null
 //Former contains the suit we came from
-/obj/item/rig_module/proc/uninstalled(var/obj/item/rig/former, var/mob/living/user)
+/obj/item/rig_module/proc/uninstalled(obj/item/rig/former, mob/living/user)
 	return
 
 
@@ -264,7 +264,7 @@
 	var/module_mode = ""
 	var/obj/item/rig_module/module
 
-/stat_rig_module/New(var/obj/item/rig_module/module)
+/stat_rig_module/New(obj/item/rig_module/module)
 	..()
 	src.module = module
 
@@ -274,7 +274,7 @@
 		module = null
 	return ..()
 
-/stat_rig_module/proc/AddHref(var/list/href_list)
+/stat_rig_module/proc/AddHref(list/href_list)
 	return
 
 /stat_rig_module/proc/CanUse()
@@ -293,7 +293,7 @@
 /stat_rig_module/DblClick()
 	return Click()
 
-/stat_rig_module/activate/New(var/obj/item/rig_module/module)
+/stat_rig_module/activate/New(obj/item/rig_module/module)
 	..()
 	name = module.activate_string
 	if(module.active_power_cost)
@@ -303,7 +303,7 @@
 /stat_rig_module/activate/CanUse()
 	return module.toggleable && !module.active
 
-/stat_rig_module/deactivate/New(var/obj/item/rig_module/module)
+/stat_rig_module/deactivate/New(obj/item/rig_module/module)
 	..()
 	name = module.deactivate_string
 	// Show cost despite being 0, if it means changing from an active cost.
@@ -315,7 +315,7 @@
 /stat_rig_module/deactivate/CanUse()
 	return module.toggleable && module.active
 
-/stat_rig_module/engage/New(var/obj/item/rig_module/module)
+/stat_rig_module/engage/New(obj/item/rig_module/module)
 	..()
 	name = module.engage_string
 	if(module.use_power_cost)
@@ -341,7 +341,7 @@
 	name = "Change Charge"
 	module_mode = "select_charge_type"
 
-/stat_rig_module/charge/AddHref(var/list/href_list)
+/stat_rig_module/charge/AddHref(list/href_list)
 	var/charge_index = module.charges.Find(module.charge_selected)
 	if(!charge_index)
 		charge_index = 0

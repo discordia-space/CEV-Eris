@@ -88,7 +88,7 @@
 			start_msg = "%USER% starts attaching %ITEM% to %TARGET%"
 			end_msg = "%USER% attached %ITEM% to %TARGET%"
 
-/datum/craft_step/proc/announce_action(var/msg, mob/living/user, obj/item/tool, atom/target)
+/datum/craft_step/proc/announce_action(msg, mob/living/user, obj/item/tool, atom/target)
 	msg = replacetext(msg,"%USER%","[user]")
 	msg = replacetext(msg,"%ITEM%","\improper [tool]")
 	msg = replacetext(msg,"%TARGET%","\improper [target]")

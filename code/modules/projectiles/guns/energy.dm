@@ -103,7 +103,7 @@
 		extra_description += span_notice("Has no battery cell inserted.")
 	..(user, extra_description)
 
-/obj/item/gun/energy/update_icon(var/ignore_inhands)
+/obj/item/gun/energy/update_icon(ignore_inhands)
 	if(charge_meter)
 		var/ratio = 0
 

@@ -73,7 +73,7 @@
 						last_newpatient_speak = world.time
 					break
 
-/mob/living/bot/medbot/UnarmedAttack(var/mob/living/carbon/human/H, var/proximity)
+/mob/living/bot/medbot/UnarmedAttack(mob/living/carbon/human/H, proximity)
 	if(!..())
 		return
 
@@ -124,7 +124,7 @@
 		icon_state = "medibot[on]"
 	..()
 
-/mob/living/bot/medbot/attack_hand(var/mob/user)
+/mob/living/bot/medbot/attack_hand(mob/user)
 	var/dat
 	dat += "<TT><B>Automatic Medical Unit v1.0</B></TT><BR><BR>"
 	dat += "Status: <A href='byond://?src=\ref[src];power=1'>[on ? "On" : "Off"]</A><BR>"
@@ -161,7 +161,7 @@
 	onclose(user, "automed")
 	return
 
-/mob/living/bot/medbot/attackby(var/obj/item/O, var/mob/user)
+/mob/living/bot/medbot/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/reagent_containers/glass))
 		if(locked)
 			to_chat(user, span_notice("You cannot insert a beaker because the panel is locked."))
@@ -224,7 +224,7 @@
 	attack_hand(usr)
 	return
 
-/mob/living/bot/medbot/emag_act(var/remaining_uses, var/mob/user)
+/mob/living/bot/medbot/emag_act(remaining_uses, mob/user)
 	. = ..()
 	if(!emagged)
 		if(user)
@@ -262,7 +262,7 @@
 	qdel(src)
 	return
 
-/mob/living/bot/medbot/proc/valid_healing_target(var/mob/living/carbon/human/H)
+/mob/living/bot/medbot/proc/valid_healing_target(mob/living/carbon/human/H)
 	if(H.stat == DEAD) // He's dead, Jim
 		return null
 
@@ -293,7 +293,7 @@
 
 /* Construction */
 
-/obj/item/storage/firstaid/attackby(var/obj/item/robot_parts/S, mob/user as mob)
+/obj/item/storage/firstaid/attackby(obj/item/robot_parts/S, mob/user as mob)
 	if ((!istype(S, /obj/item/robot_parts/l_arm)) && (!istype(S, /obj/item/robot_parts/r_arm)))
 		..()
 		return

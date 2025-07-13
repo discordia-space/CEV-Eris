@@ -34,7 +34,7 @@
 /datum/ritual/proc/failed(mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets, on_chance = FALSE)
 	return
 
-/datum/ritual/proc/activate(mob/living/carbon/human/H, obj/item/implant/core_implant/C, var/list/targets, var/force = FALSE)
+/datum/ritual/proc/activate(mob/living/carbon/human/H, obj/item/implant/core_implant/C, list/targets, force = FALSE)
 	if(!pre_check(H,C,targets))
 		return
 	if(!force && !check_success(C))
@@ -45,7 +45,7 @@
 			C.use_power(src.power)
 			to_chat(H, span_notice("[success_message]"))
 
-/datum/ritual/proc/fail(var/message, mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
+/datum/ritual/proc/fail(message, mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
 	if(!message)
 		message = fail_message
 	to_chat(H, span_danger("[message]"))
@@ -66,11 +66,11 @@
 	return phrase
 
 //returns true, if text is phrase of this ritual
-/datum/ritual/proc/compare(var/text)
+/datum/ritual/proc/compare(text)
 	return phrase && phrase != "" && text == phrase
 
 //returns list of targets, specified in text
-/datum/ritual/proc/get_targets(var/text)
+/datum/ritual/proc/get_targets(text)
 	return list()
 
 
@@ -102,24 +102,24 @@
 
 
 //Getting mobs
-/proc/get_grabbed_mob(var/mob/living/carbon/human/user)
+/proc/get_grabbed_mob(mob/living/carbon/human/user)
 	var/obj/item/grab/G = locate(/obj/item/grab) in user
 
 	if (G && G.affecting && istype(G.affecting, /mob/living))
 		return G.affecting
 	return null
 
-/proc/get_front_mob(var/mob/living/carbon/human/user)
+/proc/get_front_mob(mob/living/carbon/human/user)
 	var/turf/T = get_step(user,user.dir)
 	return (locate(/mob/living) in T)
 
-/proc/get_victim(var/mob/living/carbon/human/user)
+/proc/get_victim(mob/living/carbon/human/user)
 	var/mob/living/L = get_grabbed_mob(user)
 	if (!L)
 		L = get_front_mob(user)
 	return L
 
-/proc/get_front_human_in_range(var/mob/living/carbon/human/user, nrange = 1)
+/proc/get_front_human_in_range(mob/living/carbon/human/user, nrange = 1)
 	var/turf/T = get_step(user,user.dir)
 	for(var/i=1, i<=nrange, i++)
 		var/mob/living/carbon/human/H = locate(/mob/living) in T
@@ -152,12 +152,12 @@
 
 
 //Getting other objects
-/proc/get_front(var/mob/living/carbon/human/user)
+/proc/get_front(mob/living/carbon/human/user)
 	var/turf/T = get_step(user,user.dir)
 	return T.contents
 
 
-/proc/pick_disciple_global(var/mob/user, var/allow_dead = TRUE)
+/proc/pick_disciple_global(mob/user, allow_dead = TRUE)
 	var/list/candidates = list()
 	for(var/mob/living/L in disciples)
 		if(QDELETED(L))

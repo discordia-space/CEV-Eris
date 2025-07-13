@@ -30,7 +30,7 @@
 	var/destroyed           // Whether we are destroyed and need to stop emitting light.
 	var/force_update
 
-/datum/light_source/New(var/atom/owner, var/atom/top)
+/datum/light_source/New(atom/owner, atom/top)
 	source_atom = owner // Set our new owner.
 	if (!source_atom.light_sources)
 		source_atom.light_sources = list()
@@ -77,7 +77,7 @@
 	}
 
 // This proc will cause the light source to update the top atom, and add itself to the update queue.
-/datum/light_source/proc/update(var/atom/new_top_atom)
+/datum/light_source/proc/update(atom/new_top_atom)
 	// This top atom is different.
 	if (new_top_atom && new_top_atom != top_atom)
 		if(top_atom != source_atom) // Remove ourselves from the light sources of that top atom.
@@ -238,7 +238,7 @@
 
 	effect_str.Cut()
 
-/datum/light_source/proc/recalc_corner(var/datum/lighting_corner/C)
+/datum/light_source/proc/recalc_corner(datum/lighting_corner/C)
 	if(effect_str.Find(C)) // Already have one.
 		REMOVE_CORNER(C)
 

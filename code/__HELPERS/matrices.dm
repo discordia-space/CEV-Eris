@@ -4,7 +4,7 @@
 
 
 
-/atom/proc/shake_animation(var/intensity = 8)
+/atom/proc/shake_animation(intensity = 8)
 	var/init_px = pixel_x
 	var/shake_dir = pick(-1, 1)
 	animate(src, transform=turn(matrix(), intensity*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
@@ -110,7 +110,7 @@ var/list/delta_index = list(
 
 
 //Changes our pixel offset by offset pixels towards the target atom
-/atom/proc/offset_to(var/atom/target, var/offset = 1)
+/atom/proc/offset_to(atom/target, offset = 1)
 	if (target.x < x)
 		pixel_x -= offset
 	else if (target.x > x)

@@ -54,7 +54,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/item/paper_bundle/proc/insert_sheet_at(mob/user, var/index, obj/item/sheet)
+/obj/item/paper_bundle/proc/insert_sheet_at(mob/user, index, obj/item/sheet)
 	if(istype(sheet, /obj/item/paper))
 		to_chat(user, span_notice("You add [(sheet.name == "paper") ? "the paper" : sheet.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name]."))
 	else if(istype(sheet, /obj/item/photo))

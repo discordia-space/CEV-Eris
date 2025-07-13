@@ -1,5 +1,5 @@
 
-/obj/effect/plant/HasProximity(var/atom/movable/AM)
+/obj/effect/plant/HasProximity(atom/movable/AM)
 
 	if(seed.get_trait(TRAIT_CHEM_SPRAYER))
 		spawn(0)
@@ -30,7 +30,7 @@
 /*************************
 	Attack procs
 **************************/
-/obj/effect/plant/attack_hand(var/mob/user)
+/obj/effect/plant/attack_hand(mob/user)
 	manual_unbuckle(user)
 
 /obj/effect/plant/attack_generic(mob/M, damage, attack_message)
@@ -43,7 +43,7 @@
 	else
 		manual_unbuckle(M)
 
-/obj/effect/plant/attackby(var/obj/item/W, var/mob/user)
+/obj/effect/plant/attackby(obj/item/W, mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	SSplants.add_plant(src)
 	if(istype(W, /obj/item/reagent_containers/syringe))
@@ -154,7 +154,7 @@
 	check_health()
 
 
-/obj/effect/plant/proc/trodden_on(var/mob/living/victim)
+/obj/effect/plant/proc/trodden_on(mob/living/victim)
 	if(!is_mature())
 		return
 	var/mob/living/carbon/human/H = victim
@@ -195,7 +195,7 @@
 				span_warning("You hear shredding and ripping."))
 	return
 
-/obj/effect/plant/proc/entangle(var/mob/living/victim)
+/obj/effect/plant/proc/entangle(mob/living/victim)
 
 	if(buckled_mob)
 		return

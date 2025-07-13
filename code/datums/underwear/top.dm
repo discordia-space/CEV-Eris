@@ -50,8 +50,8 @@
 	name = "sport bra, cyan"
 	icon_state = "top_2c"
 
-/datum/category_item/underwear/top/none/is_default(var/gender)
+/datum/category_item/underwear/top/none/is_default(gender)
 	return gender != FEMALE
 
-/datum/category_item/underwear/top/bra/black/is_default(var/gender)
+/datum/category_item/underwear/top/bra/black/is_default(gender)
 	return gender == FEMALE

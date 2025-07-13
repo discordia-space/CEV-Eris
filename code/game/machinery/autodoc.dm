@@ -76,7 +76,7 @@
 	set_power_use(IDLE_POWER_USE)
 	update_icon()
 
-/obj/machinery/autodoc/proc/set_occupant(var/mob/living/L)
+/obj/machinery/autodoc/proc/set_occupant(mob/living/L)
 	L.forceMove(src)
 	src.occupant = L
 	src.add_fingerprint(usr)
@@ -90,7 +90,7 @@
 		L.set_machine(src)
 	update_icon()
 
-/obj/machinery/autodoc/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/autodoc/affect_grab(mob/user, mob/target)
 	if (src.occupant)
 		to_chat(user, span_notice("The autodoc is already occupied!"))
 		return
@@ -104,7 +104,7 @@
 	src.add_fingerprint(user)
 	return TRUE
 
-/obj/machinery/autodoc/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/autodoc/MouseDrop_T(mob/target, mob/user)
 	if(!ismob(target))
 		return
 	if (src.occupant)
@@ -135,7 +135,7 @@
 		locked = autodoc_processor.active
 	update_icon()
 
-/obj/machinery/autodoc/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FORCE_OPEN, var/datum/nano_topic_state/state = GLOB.default_state)
+/obj/machinery/autodoc/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FORCE_OPEN, datum/nano_topic_state/state = GLOB.default_state)
 	autodoc_processor.nano_ui_interact(user, ui_key, ui, force_open, state)
 
 /obj/machinery/autodoc/Topic(href, href_list)

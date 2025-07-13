@@ -18,23 +18,23 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/list/datum/catalog_entry/entry_list = list()
 	var/associated_template
 
-/datum/catalog/New(var/_id)
+/datum/catalog/New(_id)
 	. = ..()
 	id = _id
 
 // accepts either type or datum
-/datum/catalog/proc/get_entry(var/datum/thing)
+/datum/catalog/proc/get_entry(datum/thing)
 	for(var/datum/catalog_entry/E in entry_list)
 		if(E.thing_type == ispath(thing) ? thing : thing.type)
 			return E
 
-/datum/catalog/proc/add_entry(var/datum/catalog_entry/entry)
+/datum/catalog/proc/add_entry(datum/catalog_entry/entry)
 	entry_list.Add(entry)
 
-/datum/catalog/proc/remove_entry(var/datum/catalog_entry/entry)
+/datum/catalog/proc/remove_entry(datum/catalog_entry/entry)
 	entry_list.Remove(entry)
 
-/datum/catalog/nano_ui_data(mob/user, ui_key = "main", var/search_value)
+/datum/catalog/nano_ui_data(mob/user, ui_key = "main", search_value)
 	var/list/data = list()
 	var/list/entries_data = list()
 	for(var/datum/catalog_entry/E in entry_list)
@@ -51,10 +51,10 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/associated_template
 	var/thing_nature 	// reagent/weapon/device/etc.
 
-/datum/catalog_entry/New(var/datum/V)
+/datum/catalog_entry/New(datum/V)
 	thing_type = V.type
 
-/datum/catalog_entry/proc/search_value(var/value)
+/datum/catalog_entry/proc/search_value(value)
 	if(findtext(title, value))
 		return TRUE
 	if(findtext(thing_nature, value))
@@ -99,13 +99,13 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/list/result_of_decomposition_in
 	var/list/can_be_used_in
 
-/datum/catalog_entry/reagent/search_value(var/value)
+/datum/catalog_entry/reagent/search_value(value)
 	if(..())
 		return TRUE
 	if(findtext(reagent_type, value))
 		return TRUE
 
-/datum/catalog_entry/reagent/proc/add_decomposition_from(var/reagent_type)
+/datum/catalog_entry/reagent/proc/add_decomposition_from(reagent_type)
 	if(!result_of_decomposition_in)
 		result_of_decomposition_in = list()
 	for(var/V in result_of_decomposition_in)
@@ -113,7 +113,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 			return
 	result_of_decomposition_in.Add(reagent_type)
 
-/datum/catalog_entry/reagent/proc/add_can_be_used_in(var/reagent_type)
+/datum/catalog_entry/reagent/proc/add_can_be_used_in(reagent_type)
 	if(!can_be_used_in)
 		can_be_used_in = list()
 	for(var/V in can_be_used_in)
@@ -211,7 +211,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 /datum/catalog_entry/atom
 	associated_template = "catalog_entry_atom.tmpl"
 
-/datum/catalog_entry/atom/New(var/atom/V)
+/datum/catalog_entry/atom/New(atom/V)
 	if(!istype(V))
 		error("wrong usage of [src.type]")
 		qdel(src)
@@ -244,7 +244,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/list/recipe_data
 	var/list/taste_tag
 
-/datum/catalog_entry/drink/search_value(var/value)
+/datum/catalog_entry/drink/search_value(value)
 	if(..())
 		return TRUE
 	if(findtext(strength, value))
@@ -253,7 +253,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		if(findtext(i, value))
 			return TRUE
 
-/datum/catalog_entry/drink/New(var/datum/reagent/V)
+/datum/catalog_entry/drink/New(datum/reagent/V)
 	if(!istype(V))
 		error("wrong usage of [src.type]")
 		qdel(src)

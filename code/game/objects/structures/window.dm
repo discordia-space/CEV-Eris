@@ -22,7 +22,7 @@
 
 	atmos_canpass = CANPASS_PROC
 
-/obj/structure/window/get_fall_damage(var/turf/from, var/turf/dest)
+/obj/structure/window/get_fall_damage(turf/from, turf/dest)
 	var/damage = health * 0.4 * get_health_ratio()
 
 	if (from && dest)
@@ -81,7 +81,7 @@
 			visible_message("Cracks begin to appear in [src]!" )
 	return
 
-/obj/structure/window/proc/apply_silicate(var/amount)
+/obj/structure/window/proc/apply_silicate(amount)
 	if(health < maxHealth) // Mend the damage
 		health = min(health + amount * 3, maxHealth)
 		if(health == maxHealth)
@@ -102,7 +102,7 @@
 	overlays += img
 
 //Setting the explode var makes the shattering louder and more violent, possibly injuring surrounding mobs
-/obj/structure/window/proc/shatter(var/display_message = 1, var/explode = FALSE)
+/obj/structure/window/proc/shatter(display_message = 1, explode = FALSE)
 	alpha = 0
 	if (explode)
 		playsound(src, "shatter", 100, 1, 5,5)
@@ -138,7 +138,7 @@
 	return
 
 
-/obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/window/bullet_act(obj/item/projectile/Proj)
 
 	if(CONFIG_GET(flag/z_level_shooting) && Proj.height)
 		if(Proj.height == HEIGHT_LOW)// Bullet is too low
@@ -230,7 +230,7 @@
 							"You hear a knocking sound.")
 	return
 
-/obj/structure/window/attack_generic(var/mob/user, var/damage)
+/obj/structure/window/attack_generic(mob/user, damage)
 	if(istype(user))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
@@ -493,7 +493,7 @@
 	loc = location
 	. = ..()
 
-/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	var/ini_dir = dir
 	update_nearby_tiles(need_rebuild=1)
 	. = ..()

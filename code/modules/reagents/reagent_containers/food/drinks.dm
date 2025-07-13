@@ -55,10 +55,10 @@
 /obj/item/reagent_containers/food/drinks/is_closed_message(mob/user)
 	to_chat(user, span_notice("You need to open [src] first!"))
 
-/obj/item/reagent_containers/food/drinks/self_feed_message(var/mob/user)
+/obj/item/reagent_containers/food/drinks/self_feed_message(mob/user)
 	to_chat(user, span_notice("You swallow a gulp from \the [src]."))
 
-/obj/item/reagent_containers/food/drinks/feed_sound(var/mob/user)
+/obj/item/reagent_containers/food/drinks/feed_sound(mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
 /obj/item/reagent_containers/food/drinks/update_icon()

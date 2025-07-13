@@ -51,7 +51,7 @@
 					reagent_volumes[T] = min(reagent_volumes[T] + 5, volume)
 	return TRUE
 
-/obj/item/reagent_containers/borghypo/attack(var/mob/living/M, var/mob/user)
+/obj/item/reagent_containers/borghypo/attack(mob/living/M, mob/user)
 	if(!istype(M))
 		return
 
@@ -85,7 +85,7 @@
 
 	return
 
-/obj/item/reagent_containers/borghypo/Topic(var/href, var/list/href_list)
+/obj/item/reagent_containers/borghypo/Topic(href, list/href_list)
 	if(href_list["reagent"])
 		var/t = reagent_ids.Find(href_list["reagent"])
 		if(t)
@@ -111,10 +111,10 @@
 	possible_transfer_amounts = list(5, 10, 20, 30)
 	reagent_ids = list("beer", "kahlua", "whiskey", "wine", "vodka", "gin", "rum", "tequilla", "vermouth", "cognac", "ale", "mead", "water", "sugar", "ice", "tea", "greentea", "icetea", "icegreentea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic", "sodawater", "lemon_lime", "orangejuice", "limejuice", "watermelonjuice")
 
-/obj/item/reagent_containers/borghypo/service/attack(var/mob/M, var/mob/user)
+/obj/item/reagent_containers/borghypo/service/attack(mob/M, mob/user)
 	return
 
-/obj/item/reagent_containers/borghypo/service/afterattack(var/obj/target, var/mob/user, var/proximity)
+/obj/item/reagent_containers/borghypo/service/afterattack(obj/target, mob/user, proximity)
 	if(!proximity)
 		return
 

@@ -30,7 +30,7 @@
 		return 1
 	nano_ui_interact(user)
 
-/obj/machinery/computer/atmoscontrol/emag_act(var/remaining_carges, var/mob/user)
+/obj/machinery/computer/atmoscontrol/emag_act(remaining_carges, mob/user)
 	if(!emagged)
 		user.visible_message(span_warning("\The [user] does something \the [src], causing the screen to flash!"),\
 			span_warning("You cause the screen to flash as you gain full control."),\
@@ -38,7 +38,7 @@
 		atmos_control.emagged = 1
 		return 1
 
-/obj/machinery/computer/atmoscontrol/nano_ui_interact(var/mob/user)
+/obj/machinery/computer/atmoscontrol/nano_ui_interact(mob/user)
 	if(!atmos_control)
 		atmos_control = new(src, req_access, req_one_access, monitored_alarm_ids)
 	atmos_control.nano_ui_interact(user)

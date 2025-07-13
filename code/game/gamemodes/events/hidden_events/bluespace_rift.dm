@@ -34,7 +34,7 @@ They are unstable and be used only few times, and after that they die out on bot
 		new /obj/effect/portal/wormhole/rift(enterence.random_space(), exit.random_space())
 
 
-/datum/event/bluespace_rift/proc/prepare_event_areas(var/number)
+/datum/event/bluespace_rift/proc/prepare_event_areas(number)
 	var/list/candidates = GLOB.all_areas.Copy()
 	var/area/candidate
 	for(candidate in candidates)

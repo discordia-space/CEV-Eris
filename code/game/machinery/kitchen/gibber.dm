@@ -34,7 +34,7 @@
 		else
 			log_runtime("a [src] didn't find an input plate.")
 
-/obj/machinery/gibber/autogibber/Bumped(var/atom/A)
+/obj/machinery/gibber/autogibber/Bumped(atom/A)
 	if(!input_dir)
 		return
 

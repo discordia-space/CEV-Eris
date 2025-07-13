@@ -28,10 +28,10 @@
 		return 0
 	return round(cell.charge*(1 - damage/max_damage))
 
-/obj/item/organ/internal/cell/proc/check_charge(var/amount)
+/obj/item/organ/internal/cell/proc/check_charge(amount)
 	return get_charge() >= amount
 
-/obj/item/organ/internal/cell/proc/use(var/amount)
+/obj/item/organ/internal/cell/proc/use(amount)
 	if(check_charge(amount))
 		cell.use(amount)
 		return 1

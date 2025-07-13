@@ -25,7 +25,7 @@
 
 	death_message = "becomes completely motionless..."
 
-/datum/species/golem/handle_post_spawn(var/mob/living/carbon/human/H)
+/datum/species/golem/handle_post_spawn(mob/living/carbon/human/H)
 	if(H.mind)
 		H.mind.assigned_role = "Golem"
 	H.real_name = "adamantine golem ([rand(1, 1000)])"

@@ -243,11 +243,11 @@ var/list/global_huds
 	mymob.instantiate_hud(src, ui_style, ui_color, ui_alpha)
 	mymob.HUD_create()
 */
-/mob/proc/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
+/mob/proc/instantiate_hud(datum/hud/HUD, ui_style, ui_color, ui_alpha)
 	return
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
-/mob/verb/button_pressed_F12(var/full = 0 as null)
+/mob/verb/button_pressed_F12(full = 0 as null)
 	set name = "F12"
 	set hidden = 1
 

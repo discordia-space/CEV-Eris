@@ -107,7 +107,7 @@
 
 	take_victim(usr,usr)
 
-/obj/machinery/optable/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/optable/affect_grab(mob/user, mob/target)
 	take_victim(target,user)
 	return TRUE
 

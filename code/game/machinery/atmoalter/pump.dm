@@ -111,14 +111,14 @@
 /obj/machinery/portable_atmospherics/powered/pump/return_air()
 	return air_contents
 
-/obj/machinery/portable_atmospherics/powered/pump/attack_ai(var/mob/user)
+/obj/machinery/portable_atmospherics/powered/pump/attack_ai(mob/user)
 	src.add_hiddenprint(user)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/pump/attack_ghost(var/mob/user)
+/obj/machinery/portable_atmospherics/powered/pump/attack_ghost(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/pump/attack_hand(var/mob/user)
+/obj/machinery/portable_atmospherics/powered/pump/attack_hand(mob/user)
 	nano_ui_interact(user)
 
 /obj/machinery/portable_atmospherics/powered/pump/nano_ui_interact(mob/user, ui_key = "rcon", datum/nanoui/ui=null, force_open=NANOUI_FOCUS)

@@ -53,7 +53,7 @@
 	desc = "Impact resistant server rack. You might be able to pry a disk out."
 	var/disk_looted
 
-/obj/structure/backup_server/attackby(obj/item/W, mob/user, var/click_params)
+/obj/structure/backup_server/attackby(obj/item/W, mob/user, click_params)
 	if(isCrowbar(W))
 		to_chat(user, span_notice("You pry out the data drive from \the [src]."))
 		playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)

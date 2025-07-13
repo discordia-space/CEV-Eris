@@ -87,7 +87,7 @@
 		else if (mergeCasing(I, 1, user))
 			return TRUE
 
-/obj/item/ammo_casing/proc/mergeCasing(var/obj/item/ammo_casing/AC, var/amountToMerge, var/mob/living/user, var/noMessage = FALSE, var/noIconUpdate = FALSE)
+/obj/item/ammo_casing/proc/mergeCasing(obj/item/ammo_casing/AC, amountToMerge, mob/living/user, noMessage = FALSE, noIconUpdate = FALSE)
 	if(!AC)
 		return FALSE
 	if(!user && noMessage == FALSE)
@@ -288,7 +288,7 @@
 		return
 	..()
 
-/obj/item/ammo_magazine/AltClick(var/mob/living/user)
+/obj/item/ammo_magazine/AltClick(mob/living/user)
 	var/obj/item/W = user.get_active_held_item()
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
@@ -309,7 +309,7 @@
 			if(AC)
 				user.put_in_active_hand(AC)
 
-/obj/item/ammo_magazine/proc/insertCasing(var/obj/item/ammo_casing/C)
+/obj/item/ammo_magazine/proc/insertCasing(obj/item/ammo_casing/C)
 	if(!istype(C))
 		return FALSE
 	if(C.caliber != caliber)
@@ -360,7 +360,7 @@
 		return
 	dump_it(T, usr)
 
-/obj/item/ammo_magazine/proc/dump_it(var/turf/target) //bogpilled
+/obj/item/ammo_magazine/proc/dump_it(turf/target) //bogpilled
 	if(!istype(target))
 		return
 	if(!Adjacent(usr))

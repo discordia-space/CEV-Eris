@@ -22,7 +22,7 @@
 /obj/machinery/keycard_auth/attack_ai(mob/user as mob)
 	return
 
-/obj/machinery/keycard_auth/inoperable(var/additional_flags = 0)
+/obj/machinery/keycard_auth/inoperable(additional_flags = 0)
 	return (stat & (BROKEN|additional_flags))
 
 /obj/machinery/keycard_auth/attack_hand(mob/user)
@@ -33,7 +33,7 @@
 	user.set_machine(src)
 	nano_ui_interact(user)
 
-/obj/machinery/keycard_auth/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/keycard_auth/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 	var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
 

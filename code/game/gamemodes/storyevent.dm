@@ -65,7 +65,7 @@
 
 
 //Check if we can trigger
-/datum/storyevent/proc/can_trigger(var/severity, var/mob/report, var/manual)
+/datum/storyevent/proc/can_trigger(severity, mob/report, manual)
 	.=TRUE
 	if (!enabled)
 		if (report) to_chat(report, span_notice("Failure: The event is disabled"))
@@ -93,11 +93,11 @@
 		qdel(E)
 	return
 
-/datum/storyevent/proc/get_special_weight(var/weight)
+/datum/storyevent/proc/get_special_weight(weight)
 	return weight
 
 
-/datum/storyevent/proc/create(var/severity)
+/datum/storyevent/proc/create(severity)
 	if(trigger_event(severity))
 		occurrences++
 		last_trigger_time = world.time
@@ -107,12 +107,12 @@
 
 	return FALSE
 
-/datum/storyevent/proc/cancel(var/type, var/completion = 0)
+/datum/storyevent/proc/cancel(type, completion = 0)
 	//This proc refunds the cost of this event
 	if (GLOB.storyteller)
 		GLOB.storyteller.modify_points(get_cost(type)*(1 - completion), type)
 
-/datum/storyevent/proc/trigger_event(var/severity = EVENT_LEVEL_MUNDANE)
+/datum/storyevent/proc/trigger_event(severity = EVENT_LEVEL_MUNDANE)
 	if (event_type)
 		var/datum/event/E = new event_type(src, severity)
 		if (!E.can_trigger())
@@ -133,12 +133,12 @@
 /datum/storyevent/proc/is_ended()
 	return TRUE
 
-/datum/storyevent/proc/start_processing(var/announce = FALSE)
+/datum/storyevent/proc/start_processing(announce = FALSE)
 	GLOB.storyteller.add_processing(src)
 	if(announce)
 		announce()
 
-/datum/storyevent/proc/stop_processing(var/announce = FALSE)
+/datum/storyevent/proc/stop_processing(announce = FALSE)
 	GLOB.storyteller.remove_processing(src)
 	if(announce)
 		announce_end()
@@ -150,7 +150,7 @@
 
 /datum/storyevent/proc/announce_end()
 
-/datum/storyevent/proc/weight_mult(var/val, var/req, var/min, var/max)
+/datum/storyevent/proc/weight_mult(val, req, min, max)
 	if(req < 0)
 		return 1
 	if(val < min || val > max)
@@ -158,5 +158,5 @@
 	var/mod = (min+max/2)**2
 	return max(mod-(abs(val-req)**2),0)/mod
 
-/datum/storyevent/proc/get_cost(var/event_type)
+/datum/storyevent/proc/get_cost(event_type)
 	return max(event_pools[event_type] * GLOB.storyteller.repetition_multiplier ** occurrences, 1)

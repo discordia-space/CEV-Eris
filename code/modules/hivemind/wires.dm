@@ -243,7 +243,7 @@
 		return ..()
 
 
-/obj/effect/plant/hivemind/Adjacent(var/atom/neighbor)
+/obj/effect/plant/hivemind/Adjacent(atom/neighbor)
 	var/turf/T = get_turf(neighbor)
 	if(locate(/obj/machinery/door) in T)
 		for(var/obj/O in T)
@@ -265,7 +265,7 @@
 
 
 //assimilation process
-/obj/effect/plant/hivemind/proc/assimilate(var/atom/subject)
+/obj/effect/plant/hivemind/proc/assimilate(atom/subject)
 	//Machinery infestation
 	if(istype(subject, /obj/machinery) || istype(subject, /obj/item/modular_computer/console))
 		var/obj/machinery/hivemind_machine/created_machine

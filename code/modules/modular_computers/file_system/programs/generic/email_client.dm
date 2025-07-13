@@ -175,7 +175,7 @@
 
 // Returns 0 if no new messages were received, 1 if there is an unread message but notification has already been sent.
 // and 2 if there is a new message that appeared in this tick (and therefore notification should be sent by the program).
-/datum/nano_module/email_client/proc/check_for_new_messages(var/messages_read = FALSE)
+/datum/nano_module/email_client/proc/check_for_new_messages(messages_read = FALSE)
 	if(!current_account)
 		return 0
 
@@ -300,7 +300,7 @@
 		data["stored_password"] = stars(stored_password, 0)
 	return data
 
-/datum/nano_module/email_client/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.default_state)
+/datum/nano_module/email_client/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 	var/list/data = nano_ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -312,7 +312,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/nano_module/email_client/proc/find_message_by_fuid(var/fuid)
+/datum/nano_module/email_client/proc/find_message_by_fuid(fuid)
 	if(!istype(current_account))
 		return
 
@@ -332,7 +332,7 @@
 	msg_attachment = null
 	current_message = null
 
-/datum/nano_module/email_client/proc/relayed_process(var/netspeed)
+/datum/nano_module/email_client/proc/relayed_process(netspeed)
 	download_speed = netspeed
 	if(!downloading)
 		return

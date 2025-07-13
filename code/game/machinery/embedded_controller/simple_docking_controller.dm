@@ -11,7 +11,7 @@
 	docking_program = new progtype(src)
 	program = docking_program
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/embedded_controller/radio/simple_docking_controller/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data = list(
@@ -53,7 +53,7 @@
 
 	var/undocking_attempts = 0 //Once an undocking request reaches 5 attempts, it force undocks, to prevent airlock deadlock.
 
-/datum/computer/file/embedded_program/docking/simple/New(var/obj/machinery/embedded_controller/M)
+/datum/computer/file/embedded_program/docking/simple/New(obj/machinery/embedded_controller/M)
 	..(M)
 	memory["door_status"] = list(state = "closed", lock = "locked")		//assume closed and locked in case the doors dont report in
 
@@ -92,7 +92,7 @@
 				enable_override()
 
 
-/datum/computer/file/embedded_program/docking/simple/proc/signal_door(var/command)
+/datum/computer/file/embedded_program/docking/simple/proc/signal_door(command)
 	var/datum/signal/signal = new
 	signal.data["tag"] = tag_door
 	signal.data["command"] = command
@@ -146,7 +146,7 @@
 	set src in view(1)
 	src.program:print_state()
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/verb/spoof_signal(var/command as text, var/sender as text)
+/obj/machinery/embedded_controller/radio/simple_docking_controller/verb/spoof_signal(command as text, sender as text)
 	set category = "Debug"
 	set src in view(1)
 	var/datum/signal/signal = new
@@ -156,7 +156,7 @@
 
 	src.program:receive_signal(signal)
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/verb/debug_init_dock(var/target as text)
+/obj/machinery/embedded_controller/radio/simple_docking_controller/verb/debug_init_dock(target as text)
 	set category = "Debug"
 	set src in view(1)
 	src.program:initiate_docking(target)

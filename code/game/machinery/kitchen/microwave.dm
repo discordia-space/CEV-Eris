@@ -55,7 +55,7 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/microwave/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/microwave/attackby(obj/item/I, mob/user)
 	if(src.broken > 0)
 
 		var/list/usable_qualities = list()
@@ -177,7 +177,7 @@
 	..()
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/microwave/affect_grab(mob/user, mob/target)
 	to_chat(user, span_warning("This is ridiculous. You can not fit \the [target] in this [src]."))
 	return FALSE
 
@@ -316,7 +316,7 @@
 			cooked.loc = src.loc
 		return
 
-/obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
+/obj/machinery/microwave/proc/wzhzhzh(seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
 	for (var/i=1 to seconds)
 		if(stat & (NOPOWER|BROKEN))
 			return 0

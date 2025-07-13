@@ -356,7 +356,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// FOOD END
 ////////////////////////////////////////////////////////////////////////////////
-/obj/item/reagent_containers/food/snacks/attack_generic(var/mob/living/user)
+/obj/item/reagent_containers/food/snacks/attack_generic(mob/living/user)
 	if(!isanimal(user))
 		return
 
@@ -653,7 +653,7 @@
 	nutriment_amt = 3
 	preloaded_reagents = list("sprinkles" = 2)
 
-/obj/item/reagent_containers/food/snacks/donut/stat_buff/On_Consume(var/mob/eater, var/mob/feeder = null)
+/obj/item/reagent_containers/food/snacks/donut/stat_buff/On_Consume(mob/eater, mob/feeder = null)
 	..()
 	if(eater.stats)
 		for(var/stat in stats_buff)

@@ -11,7 +11,7 @@
 	var/valve_open = 0
 	var/toggle = 1
 
-/obj/item/device/transfer_valve/proc/process_activation(var/obj/item/device/D)
+/obj/item/device/transfer_valve/proc/process_activation(obj/item/device/D)
 
 
 /obj/item/device/transfer_valve/attackby(obj/item/item, mob/user)
@@ -106,7 +106,7 @@
 			remove_tank(tank_two)
 			. = TRUE
 
-/obj/item/device/transfer_valve/process_activation(var/obj/item/device/D)
+/obj/item/device/transfer_valve/process_activation(obj/item/device/D)
 	if(toggle)
 		toggle = 0
 		toggle_valve()

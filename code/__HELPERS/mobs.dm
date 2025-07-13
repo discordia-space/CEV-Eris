@@ -11,7 +11,7 @@
 /mob/get_mob()
 	return src
 
-/proc/mobs_in_view(var/range, var/source)
+/proc/mobs_in_view(range, source)
 	var/list/mobs = list()
 	for(var/atom/movable/AM in view(range, source))
 		var/M = AM.get_mob()
@@ -150,7 +150,7 @@ Proc for attack log creation, because really why not
 6 is additional information, anything that needs to be added
 */
 
-/proc/add_logs(mob/user, mob/target, what_done, var/admin=1, var/object, var/addition)
+/proc/add_logs(mob/user, mob/target, what_done, admin=1, object, addition)
 	if(user && ismob(user))
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has [what_done] [target ? "[target.name][(ismob(target) && target.ckey) ? "([target.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition]</font>")
 	if(target && ismob(target))
@@ -159,13 +159,13 @@ Proc for attack log creation, because really why not
 		log_attack("<font color='red'>[user ? "[user.name][(ismob(user) && user.ckey) ? "([user.ckey])" : ""]" : "NON-EXISTANT SUBJECT"] [what_done] [target ? "[target.name][(ismob(target) && target.ckey)? "([target.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition]</font>")
 
 //checks whether this item is a module of the robot it is located in.
-/proc/is_robot_module(var/obj/item/thing)
+/proc/is_robot_module(obj/item/thing)
 	if (!thing || !isrobot(thing.loc))
 		return 0
 	var/mob/living/silicon/robot/R = thing.loc
 	return (thing in R.module.modules)
 
-/proc/get_exposed_defense_zone(var/atom/movable/target)
+/proc/get_exposed_defense_zone(atom/movable/target)
 	var/obj/item/grab/G = locate() in target
 	if(G && G.state >= GRAB_NECK) //works because mobs are currently not allowed to upgrade to NECK if they are grabbing two people.
 		return pick(BP_ALL_LIMBS - list(BP_CHEST, BP_GROIN))
@@ -211,7 +211,7 @@ Proc for attack log creation, because really why not
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, immobile = 1)
+/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, incapacitation_flags = INCAPACITATION_DEFAULT, immobile = 1)
 	if(!user)
 		return 0
 
@@ -265,10 +265,10 @@ Proc for attack log creation, because really why not
 		qdel(progbar)
 
 //Defined at mob level for ease of use
-/mob/proc/body_part_covered(var/bodypart)
+/mob/proc/body_part_covered(bodypart)
 	return FALSE
 
-/mob/living/carbon/body_part_covered(var/bodypart)
+/mob/living/carbon/body_part_covered(bodypart)
 	var/list/bodyparts = list(
 	BP_HEAD = HEAD,
 	BP_CHEST = UPPER_TORSO,
@@ -322,14 +322,14 @@ Proc for attack log creation, because really why not
 
 	return FALSE
 
-/proc/is_excelsior(var/mob/M)
+/proc/is_excelsior(mob/M)
 	var/obj/item/implant/excelsior/E = locate(/obj/item/implant/excelsior) in M
 	if (E && E.wearer == M)
 		return TRUE
 
 	return FALSE
 
-/proc/mob_hearers(var/atom/movable/heard_atom, var/range = world.view)
+/proc/mob_hearers(atom/movable/heard_atom, range = world.view)
 	. = list()
 
 	for(var/mob/hmob in hearers(range, heard_atom))
@@ -385,7 +385,7 @@ Proc for attack log creation, because really why not
 	return GLOB.dead_mob_list.Remove(src)
 
 //Find a dead mob with a brain and client.
-/proc/find_dead_player(var/find_key, var/include_observers = 0)
+/proc/find_dead_player(find_key, include_observers = 0)
 	if(isnull(find_key))
 		return
 

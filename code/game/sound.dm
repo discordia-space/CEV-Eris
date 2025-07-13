@@ -287,7 +287,7 @@ var/list/rummage_sound = list(\
 		'sound/effects/interaction/rummage6.ogg')
 
 
-/proc/footstep_sound(var/sound)
+/proc/footstep_sound(sound)
 	var/toplay
 	switch (sound)
 		if ("asteroid")
@@ -560,7 +560,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 
 	var/self_id
 
-/datum/repeating_sound/New(var/_interval, var/duration, var/interval_variance = 0, var/atom/_source, var/_soundin, var/_vol, var/_vary, var/_extrarange, var/_falloff, var/_is_global, var/_use_pressure = TRUE)
+/datum/repeating_sound/New(_interval, duration, interval_variance = 0, atom/_source, _soundin, _vol, _vary, _extrarange, _falloff, _is_global, _use_pressure = TRUE)
 	end_time = world.time + duration
 	source = "\ref[_source]"
 	interval = _interval

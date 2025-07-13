@@ -10,7 +10,7 @@ var/list/datum/ai_icon/ai_icons
 	var/dead_icon = "ai-crash"
 	var/dead_light = "#000099"
 
-/datum/ai_icon/New(var/name, var/alive_icon, var/nopower_icon, var/dead_icon, var/alive_light, var/nopower_light, var/dead_light)
+/datum/ai_icon/New(name, alive_icon, nopower_icon, dead_icon, alive_light, nopower_light, dead_light)
 	if(name)
 		src.name = name
 		src.alive_icon = alive_icon

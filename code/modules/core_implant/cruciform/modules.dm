@@ -78,7 +78,7 @@
 	var/fingers_trace = null
 	var/languages = list()
 
-/datum/core_module/cruciform/cloning/proc/write_wearer(var/mob/living/carbon/human/H)
+/datum/core_module/cruciform/cloning/proc/write_wearer(mob/living/carbon/human/H)
 	fingers_trace = H.fingers_trace
 	dna_trace = H.dna_trace
 	real_name = H.real_name

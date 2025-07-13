@@ -50,14 +50,14 @@
 	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 	return amt
 
-/turf/proc/clean_ultimate(var/mob/user)
+/turf/proc/clean_ultimate(mob/user)
 	clean_blood()
 	for(var/obj/effect/O in src)
 		if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 			qdel(O)
 
 //As above, but has limitations. Instead of cleaning the tile completely, it just cleans [count] number of things
-/turf/proc/clean_partial(atom/source, mob/user, var/count = 1)
+/turf/proc/clean_partial(atom/source, mob/user, count = 1)
 	if (!count)
 		return
 
@@ -96,7 +96,7 @@
 
 
 
-/turf/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+/turf/proc/AddTracks(typepath,bloodDNA,comingdir,goingdir,bloodcolor="#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
 	if(!tracks)
 		tracks = new typepath(src)

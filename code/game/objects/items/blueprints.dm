@@ -72,7 +72,7 @@ move an amendment</a> to the drawing.</p>
 	usr << browse(HTML_SKELETON_TITLE("[src]", text), "window=blueprints")
 	onclose(usr, "blueprints")
 
-/obj/item/blueprints/proc/get_area_type(var/area/A = get_area(usr))
+/obj/item/blueprints/proc/get_area_type(area/A = get_area(usr))
 	if(istype(A, /area/space))
 		return AREA_SPACE
 	var/list/SPECIALS = list(
@@ -119,7 +119,7 @@ move an amendment</a> to the drawing.</p>
 	interact()
 
 
-/obj/item/blueprints/proc/move_turfs_to_area(var/list/turf/turfs, var/area/A)
+/obj/item/blueprints/proc/move_turfs_to_area(list/turf/turfs, area/A)
 	A.contents.Add(turfs)
 		//oldarea.contents.Remove(usr.loc) // not needed
 		//T.loc = A //error: cannot change constant value
@@ -143,7 +143,7 @@ move an amendment</a> to the drawing.</p>
 
 
 
-/obj/item/blueprints/proc/set_area_machinery_title(var/area/A,var/title,var/oldtitle)
+/obj/item/blueprints/proc/set_area_machinery_title(area/A,title,oldtitle)
 	if (!oldtitle) // or replacetext goes to infinite loop
 		return
 
@@ -159,7 +159,7 @@ move an amendment</a> to the drawing.</p>
 		M.name = replacetext(M.name,oldtitle,title)
 	//TODO: much much more. Unnamed airlocks, cameras, etc.
 
-/obj/item/blueprints/proc/check_tile_is_border(var/turf/T2,var/dir)
+/obj/item/blueprints/proc/check_tile_is_border(turf/T2,dir)
 	if (istype(T2, /turf/space))
 		return BORDER_SPACE //omg hull breach we all going to die here
 	if (istype(T2, /turf/shuttle))
@@ -184,7 +184,7 @@ move an amendment</a> to the drawing.</p>
 
 	return BORDER_NONE
 
-/obj/item/blueprints/proc/detect_room(var/turf/first)
+/obj/item/blueprints/proc/detect_room(turf/first)
 	var/list/turf/found = new
 	var/list/turf/pending = list(first)
 	while(pending.len)

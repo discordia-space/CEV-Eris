@@ -244,7 +244,7 @@
 	item_cost = 15
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_hp_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_hp_upgrade/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		BS.adjustMaxHealth(30)
@@ -259,7 +259,7 @@
 	item_cost = 10
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_emp_shield/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_emp_shield/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(BS)
@@ -279,7 +279,7 @@
 	item_cost = 10
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_cell_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_cell_upgrade/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		var/obj/item/cell/C = BS.get_cell()
@@ -296,7 +296,7 @@
 	item_cost = 20
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_speed_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_speed_upgrade/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		BS.speed_factor += 0.2
@@ -310,7 +310,7 @@
 	item_cost = 3
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_nanorepair/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_nanorepair/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		var/obj/item/device/nanite_container/NC = locate() in BS.module.modules
@@ -327,7 +327,7 @@
 	item_cost = 8
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_smokescreen/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_smokescreen/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(locate(/obj/item/device/smokescreen) in BS.module.modules)
@@ -348,7 +348,7 @@
 	item_cost = 1
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_smokescharge/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_smokescharge/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		var/obj/item/device/smokescreen/SS = locate() in BS.module.modules
@@ -370,7 +370,7 @@
 	item_cost = 30
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_reinforcements/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_reinforcements/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	to_chat(user, span_notice("Additional Blitzshell inbound to your position."))
 	spawn(5)
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
@@ -387,7 +387,7 @@
 	item_cost = 12
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_harpoon/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_harpoon/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(locate(/obj/item/bluespace_harpoon/mounted/blitz) in BS.module.modules)
@@ -403,7 +403,7 @@
 	item_cost = 8
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_flash_resist/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_flash_resist/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(BS.HasTrait(CYBORG_TRAIT_FLASH_RESISTANT))
@@ -423,7 +423,7 @@
 	item_cost = 15
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_parkour/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_parkour/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(BS.HasTrait(CYBORG_TRAIT_PARKOUR))

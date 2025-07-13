@@ -40,7 +40,7 @@
 		extra_description += "\nIt is empty."
 	..(user, extra_description)
 
-/proc/grippersafety(var/obj/item/gripper/G)
+/proc/grippersafety(obj/item/gripper/G)
 	if (!G || !G.wrapped)//The object must have been lost
 		return FALSE
 
@@ -57,7 +57,7 @@
 
 
 
-/obj/item/gripper/proc/grip_item(obj/item/I, mob/user, var/feedback = 1)
+/obj/item/gripper/proc/grip_item(obj/item/I, mob/user, feedback = 1)
 	//This function returns 1 if we successfully took the item, or 0 if it was invalid. This information is useful to the requester
 	if (!wrapped)
 		if(is_type_in_list(I,can_hold))
@@ -112,7 +112,7 @@
 
 	drop(get_turf(src))
 
-/obj/item/gripper/proc/drop(var/atom/target)
+/obj/item/gripper/proc/drop(atom/target)
 	if(wrapped && wrapped.loc == src)
 		wrapped.forceMove(target)
 	wrapped = null
@@ -139,14 +139,14 @@
 				//Slow,powerful attack for borgs. No spamclicking
 	return FALSE
 
-/obj/item/gripper/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/gripper/attackby(obj/item/O as obj, mob/user as mob)
 	if (wrapped)
 		var/resolved = wrapped.attackby(O,user)
 		if(!resolved && wrapped && O)
 			O.afterattack(wrapped,user,1)//We pass along things targeting the gripper, to objects inside the gripper. So that we can draw chemicals from held beakers for instance
 	return
 
-/obj/item/gripper/afterattack(var/atom/target, var/mob/living/user, proximity, params)
+/obj/item/gripper/afterattack(atom/target, mob/living/user, proximity, params)
 
 	if(!proximity)
 		return // This will prevent them using guns at range but adminbuse can add them directly to modules, so eh.

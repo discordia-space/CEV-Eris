@@ -32,7 +32,7 @@
 	if(!addPiece(I,user))
 		..()
 
-/obj/item/board/proc/addPiece(obj/item/I as obj, mob/user as mob, var/tile = 0)
+/obj/item/board/proc/addPiece(obj/item/I as obj, mob/user as mob, tile = 0)
 	if(I.w_class != ITEM_SIZE_TINY) //only small stuff
 		user.show_message(span_warning("\The [I] is too big to be used as a board piece."))
 		return 0

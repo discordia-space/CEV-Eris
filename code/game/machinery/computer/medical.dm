@@ -35,7 +35,7 @@
 		to_chat(usr, "There is nothing to remove from the console.")
 	return
 
-/obj/machinery/computer/med_data/attackby(var/obj/item/O, var/mob/user)
+/obj/machinery/computer/med_data/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/card/id) && !scan && user.unEquip(O))
 		O.loc = src
 		scan = O

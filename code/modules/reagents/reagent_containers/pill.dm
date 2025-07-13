@@ -23,13 +23,13 @@
 /obj/item/reagent_containers/pill/attack(mob/M as mob, mob/user as mob, def_zone)
 	standard_feed_mob(user, M)
 
-/obj/item/reagent_containers/pill/self_feed_message(var/mob/user)
+/obj/item/reagent_containers/pill/self_feed_message(mob/user)
 	to_chat(user, span_notice("You swallow \the [src]."))
 
-/obj/item/reagent_containers/pill/other_feed_message_start(var/mob/user, var/mob/target)
+/obj/item/reagent_containers/pill/other_feed_message_start(mob/user, mob/target)
 	user.visible_message(span_warning("[user] attempts to force [target] to swallow \the [src]."))
 
-/obj/item/reagent_containers/pill/other_feed_message_finish(var/mob/user, var/mob/target)
+/obj/item/reagent_containers/pill/other_feed_message_finish(mob/user, mob/target)
 	user.visible_message(span_warning("[user] forces [target] to swallow \the [src]."))
 
 /obj/item/reagent_containers/pill/afterattack(obj/target, mob/user, proximity)

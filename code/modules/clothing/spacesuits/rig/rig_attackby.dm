@@ -204,7 +204,7 @@
 	..()
 
 
-/obj/item/rig/attack_hand(var/mob/user)
+/obj/item/rig/attack_hand(mob/user)
 	if(electrified != 0)
 		if(shock(user)) //Handles removing charge from the cell, as well. No need to do that here.
 			return
@@ -218,7 +218,7 @@
 
 
 //For those pesky items which incur effects on the rigsuit, an altclick will force them to go in if possible
-/obj/item/rig/AltClick(var/mob/user)
+/obj/item/rig/AltClick(mob/user)
 	if (storage && user.get_active_held_item())
 		if (user == loc || Adjacent(user)) //Rig must be on or near you
 			storage.accepts_item(user.get_active_held_item())
@@ -231,7 +231,7 @@
 		return TRUE
 	return ..()
 
-/obj/item/rig/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/rig/emag_act(remaining_charges, mob/user)
 	if(!subverted)
 		req_access.Cut()
 		req_one_access.Cut()

@@ -75,7 +75,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 /********************************
 	ROUNDSTART AND SETUP
 *********************************/
-/datum/storyteller/proc/can_start(var/announce = FALSE)	//when TRUE, proc should output reason, by which it can't start, to world
+/datum/storyteller/proc/can_start(announce = FALSE)	//when TRUE, proc should output reason, by which it can't start, to world
 	if(debug_mode || SSticker.start_immediately)
 		return TRUE
 
@@ -165,11 +165,11 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 /****************************
 	SUB PROCESSING: For individual storyevents
 *****************************/
-/datum/storyteller/proc/add_processing(var/datum/storyevent/S)
+/datum/storyteller/proc/add_processing(datum/storyevent/S)
 	ASSERT(istype(S))
 	processing_events.Add(S)
 
-/datum/storyteller/proc/remove_processing(var/datum/storyevent/S)
+/datum/storyteller/proc/remove_processing(datum/storyevent/S)
 	processing_events.Remove(S)
 
 /datum/storyteller/proc/process_events()	//Called in ticker
@@ -194,7 +194,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 		for(var/datum/objective/O in F.objectives)
 			O.update_completion()
 
-/datum/storyteller/proc/update_event_weight(var/datum/storyevent/R)
+/datum/storyteller/proc/update_event_weight(datum/storyevent/R)
 	ASSERT(istype(R))
 
 	R.weight_cache = calculate_event_weight(R)
@@ -216,7 +216,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 *  Points Handling
 ********************/
 
-/datum/storyteller/proc/modify_points(var/delta, var/type = EVENT_LEVEL_ROLESET)
+/datum/storyteller/proc/modify_points(delta, type = EVENT_LEVEL_ROLESET)
 	if (!delta || !isnum(delta))
 		return
 	//Adds delta points to the specified pool.
@@ -262,7 +262,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 ********************/
 
 //First we figure out which pool we're going to take an event from
-/datum/storyteller/proc/handle_event(var/event_type)
+/datum/storyteller/proc/handle_event(event_type)
 	//This is a buffer which will hold a copy of the list we choose.
 	//We will be modifying it and don't want those modifications to go back to the source
 	var/list/temp_pool
@@ -311,7 +311,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 
 /*Sets up an event to be fired in the near future. This keeps things unpredictable
 The actual fire event proc is located in storyteller_meta*/
-/datum/storyteller/proc/schedule_event(var/datum/storyevent/C, var/event_type)
+/datum/storyteller/proc/schedule_event(datum/storyevent/C, event_type)
 	var/delay
 	if (event_type == EVENT_LEVEL_ROLESET)
 		delay = 1 //Basically no delay on these to reduce bugginess
@@ -358,7 +358,7 @@ The actual fire event proc is located in storyteller_meta*/
 	event_pool_major = update_pool_weights(event_pool_major)
 	event_pool_roleset = update_pool_weights(event_pool_roleset)
 
-/datum/storyteller/proc/update_pool_weights(var/list/pool)
+/datum/storyteller/proc/update_pool_weights(list/pool)
 	for(var/datum/storyevent/a in pool)
 		pool[a] = calculate_event_weight(a)
 	return pool

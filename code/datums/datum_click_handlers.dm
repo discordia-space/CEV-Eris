@@ -20,7 +20,7 @@
 //	owner = null
 
 //Return false from these procs to discard the click afterwards
-/datum/click_handler/proc/Click(var/atom/target, location, control, params)
+/datum/click_handler/proc/Click(atom/target, location, control, params)
 	if (!isHUDobj(target))
 		if (mob_check(owner.mob) && use_ability(owner.mob, target))
 			//Ability successful
@@ -54,7 +54,7 @@
 //Tests whether the target thing is valid, and returns it if so.
 //If its not valid, null will be returned
 //In the case of click catchers, we resolve and return the turf under it
-/datum/click_handler/proc/resolve_world_target(var/a)
+/datum/click_handler/proc/resolve_world_target(a)
 
 	if (istype(a, /obj/screen/click_catcher))
 		var/obj/screen/click_catcher/CC = a

@@ -31,7 +31,7 @@
 /atom/movable/proc/get_default_language()
 	return default_language
 
-/atom/movable/proc/set_default_language(var/langname)
+/atom/movable/proc/set_default_language(langname)
 	var/datum/language/L
 	//Support for passing a datum directly, or the name of a language to go fetch. Very flexible proc
 	if (istype(langname, /datum/language))

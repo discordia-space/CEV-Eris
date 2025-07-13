@@ -30,14 +30,14 @@
 /obj/proc/check_access(obj/item/I)
 	return check_access_list(I ? I.GetAccess() : list())
 
-/obj/proc/check_access_list(var/list/L)
+/obj/proc/check_access_list(list/L)
 	if(!req_access)		req_access = list()
 	if(!req_one_access)	req_one_access = list()
 	if(!L)	return 0
 	if(!istype(L, /list))	return 0
 	return has_access(req_access, req_one_access, L)
 
-/proc/has_access(var/list/req_access, var/list/req_one_access, var/list/accesses)
+/proc/has_access(list/req_access, list/req_one_access, list/accesses)
 	for(var/req in req_access)
 		if(!(req in accesses)) //doesn't have this access
 			return 0
@@ -97,7 +97,7 @@ var/list/datum/access/priv_all_access_datums_region
 
 	return priv_all_access_datums_region
 
-/proc/get_access_ids(var/access_types = ACCESS_TYPE_ALL)
+/proc/get_access_ids(access_types = ACCESS_TYPE_ALL)
 	var/list/L = new()
 	for(var/datum/access/A in get_all_access_datums())
 		if(A.access_type & access_types)
@@ -133,7 +133,7 @@ var/list/priv_syndicate_access
 	return priv_syndicate_access.Copy()
 
 var/list/list/priv_region_access
-/proc/get_region_accesses(var/code)
+/proc/get_region_accesses(code)
 	if(code == ACCESS_REGION_ALL)
 		return get_all_station_access()
 
@@ -146,7 +146,7 @@ var/list/list/priv_region_access
 
 	return priv_region_access["[code]"].Copy()
 
-/proc/get_region_accesses_name(var/code)
+/proc/get_region_accesses_name(code)
 	switch(code)
 		if(ACCESS_REGION_ALL)
 			return "All"
@@ -238,7 +238,7 @@ var/obj/item/card/id/all_access/ghost_all_access
 	return idcard
 
 
-/proc/FindNameFromID(var/mob/M, var/missing_id_name = "Unknown")
+/proc/FindNameFromID(mob/M, missing_id_name = "Unknown")
 	var/obj/item/card/id/C = M.GetIdCard()
 	if(C)
 		return C.registered_name

@@ -6,7 +6,7 @@
 // This might be laggy, comment it out if there are problems.
 /mob/living/silicon/var/updating = 0
 
-/mob/living/silicon/robot/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/silicon/robot/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	var/oldLoc = src.loc
 	. = ..()
 	if(.)
@@ -18,7 +18,7 @@
 						GLOB.cameranet.updatePortableCamera(src.camera)
 					updating = 0
 
-/mob/living/silicon/AI/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/silicon/AI/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	var/oldLoc = src.loc
 	. = ..()
 	if(.)
@@ -37,7 +37,7 @@
 
 // An addition to deactivate which removes/adds the camera from the chunk list based on if it works or not.
 
-/obj/machinery/camera/deactivate(user as mob, var/choice = 1)
+/obj/machinery/camera/deactivate(user as mob, choice = 1)
 	..(user, choice)
 	invalidateCameraCache()
 	if(src.can_use())

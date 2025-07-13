@@ -57,7 +57,7 @@
 	else if(severity == EVENT_LEVEL_MODERATE)
 		spawn_fish(50)
 
-/datum/event/carp_migration/proc/spawn_fish(var/number)
+/datum/event/carp_migration/proc/spawn_fish(number)
 	var/list/spawn_locations = pickweight_mult(viable_turfs, number)
 
 	for(var/turf/T in spawn_locations)

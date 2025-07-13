@@ -13,7 +13,7 @@
 	..()
 	set_up()
 
-/obj/item/coreimplant_upgrade/attack(var/mob/living/carbon/human/target, var/mob/living/user, var/target_zone)
+/obj/item/coreimplant_upgrade/attack(mob/living/carbon/human/target, mob/living/user, target_zone)
 	if(!ishuman(target) || !module)
 		to_chat(user, span_warning("This upgrade is blank."))
 		return
@@ -44,7 +44,7 @@
 
 	..()
 
-/obj/item/coreimplant_upgrade/proc/on_install(var/mob/living/carbon/human/target, var/mob/living/user, var/target_zone)
+/obj/item/coreimplant_upgrade/proc/on_install(mob/living/carbon/human/target, mob/living/user, target_zone)
 
 
 /obj/item/coreimplant_upgrade/proc/remove()

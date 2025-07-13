@@ -10,7 +10,7 @@
 /music_track/New()
 	licence = decls_repository.get_decl(licence)
 
-/music_track/proc/play_to(var/listener)
+/music_track/proc/play_to(listener)
 	to_chat(listener, span_good("Now Playing:"))
 	to_chat(listener, span_good("[title][artist ? " by [artist]" : ""][album ? " ([album])" : ""]"))
 	if(url)

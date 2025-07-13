@@ -7,19 +7,19 @@ var/global/universe_has_ended = 0
 
  	decay_rate = 5 // 5% chance of a turf decaying on lighting update/airflow (there's no actual tick for turfs)
 
-/datum/universal_state/supermatter_cascade/OnShuttleCall(var/mob/user)
+/datum/universal_state/supermatter_cascade/OnShuttleCall(mob/user)
 	if(user)
 		to_chat(user, span_sinister("The only thing you hear from the console is static. You are alone."))
 	return 0
 
-/datum/universal_state/supermatter_cascade/OnTurfChange(var/turf/T)
+/datum/universal_state/supermatter_cascade/OnTurfChange(turf/T)
 	var/turf/space/S = T
 	if(istype(S))
 		S.color = "#0066FF"
 	else
 		S.color = initial(S.color)
 
-/datum/universal_state/supermatter_cascade/DecayTurf(var/turf/T)
+/datum/universal_state/supermatter_cascade/DecayTurf(turf/T)
 	if(istype(T,/turf/wall))
 		var/turf/wall/W=T
 		W.melt()

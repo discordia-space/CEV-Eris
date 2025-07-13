@@ -45,27 +45,27 @@
 	var/list/connected_devices
 	var/id
 
-/datum/wifi/New(var/new_id, var/obj/O)
+/datum/wifi/New(new_id, obj/O)
 	connected_devices = new()
 	id = new_id
 	if(istype(O))
 		parent = O
 
-/datum/wifi/Destroy(var/datum/wifi/device)
+/datum/wifi/Destroy(datum/wifi/device)
 	parent = null
 	for(var/datum/wifi/D in connected_devices)
 		D.disconnect_device(src)
 		disconnect_device(D)
 	return ..()
 
-/datum/wifi/proc/connect_device(var/datum/wifi/device)
+/datum/wifi/proc/connect_device(datum/wifi/device)
 	if(connected_devices)
 		connected_devices |= device
 	else
 		connected_devices = new()
 		connected_devices |= device
 
-/datum/wifi/proc/disconnect_device(var/datum/wifi/device)
+/datum/wifi/proc/disconnect_device(datum/wifi/device)
 	if(connected_devices)
 		connected_devices -= device
 
@@ -89,7 +89,7 @@
 	..()
 	send_connection_request()
 
-/datum/wifi/sender/proc/set_target(var/new_target)
+/datum/wifi/sender/proc/set_target(new_target)
 	id = new_target
 
 /datum/wifi/sender/proc/send_connection_request()
@@ -109,7 +109,7 @@
 	var/datum/wifi/sender/source	//wifi/sender object creating the request
 	var/id							//id tag of the target device(s) to try to connect to
 
-/datum/connection_request/New(var/datum/wifi/sender/sender, var/receiver)
+/datum/connection_request/New(datum/wifi/sender/sender, receiver)
 	if(istype(sender))
 		source = sender
 		id = receiver

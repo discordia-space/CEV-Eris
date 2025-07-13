@@ -84,7 +84,7 @@
 			update_locked = 0
 	busy = 0
 
-/obj/machinery/power/breakerbox/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/power/breakerbox/attackby(obj/item/W as obj, mob/user as mob)
 	if(default_deconstruction(W, user))
 		return
 	if(default_part_replacement(W, user))
@@ -95,7 +95,7 @@
 			RCon_tag = newtag
 			to_chat(user, span_notice("You changed the RCON tag to: [newtag]"))
 
-/obj/machinery/power/breakerbox/proc/set_state(var/state)
+/obj/machinery/power/breakerbox/proc/set_state(state)
 	on = state
 	if(on)
 		icon_state = icon_state_on

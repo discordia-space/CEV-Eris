@@ -232,7 +232,7 @@
 	return
 
 //Mobs with objects
-/mob/living/simple_animal/parrot/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/parrot/attackby(obj/item/O as obj, mob/user as mob)
 	..()
 	if(!stat && !client && !istype(O, /obj/item/stack/medical))
 		if(O.force)
@@ -246,7 +246,7 @@
 	return
 
 //Bullets
-/mob/living/simple_animal/parrot/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple_animal/parrot/bullet_act(obj/item/projectile/Proj)
 	..()
 	if(!stat && !client)
 		if(parrot_state == PARROT_PERCH)
@@ -632,7 +632,7 @@
 
 	return
 
-/mob/living/simple_animal/parrot/proc/drop_held_item(var/drop_gently = 1)
+/mob/living/simple_animal/parrot/proc/drop_held_item(drop_gently = 1)
 	set name = "Drop held item"
 	set category = "Parrot"
 	set desc = "Drop the item you're holding."
@@ -696,7 +696,7 @@
 	available_channels = list(":e")
 	..()
 
-/mob/living/simple_animal/parrot/say(var/message)
+/mob/living/simple_animal/parrot/say(message)
 
 	if(stat)
 		return
@@ -729,25 +729,25 @@
 	..(message)
 
 
-/mob/living/simple_animal/parrot/hear_say(var/message, var/verb = src.verb_say, var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
+/mob/living/simple_animal/parrot/hear_say(message, verb = src.verb_say, datum/language/language = null, alt_name = "",italics = 0, mob/speaker = null)
 	if(prob(50))
 		parrot_hear(message)
 	..(message,verb,language,alt_name,italics,speaker)
 
 
 
-/mob/living/simple_animal/parrot/hear_radio(var/message, var/verb= src.verb_say, var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0)
+/mob/living/simple_animal/parrot/hear_radio(message, verb= src.verb_say, datum/language/language=null, part_a, part_b, mob/speaker = null, hard_to_hear = 0)
 	if(prob(50))
 		parrot_hear("[pick(available_channels)] [message]")
 	..(message,verb,language,part_a,part_b,speaker,hard_to_hear)
 
 
-/mob/living/simple_animal/parrot/proc/parrot_hear(var/message="")
+/mob/living/simple_animal/parrot/proc/parrot_hear(message="")
 	if(!message || stat)
 		return
 	speech_buffer.Add(message)
 
-/mob/living/simple_animal/parrot/attack_generic(var/mob/user, var/damage, var/attack_message)
+/mob/living/simple_animal/parrot/attack_generic(mob/user, damage, attack_message)
 
 	var/success = ..()
 

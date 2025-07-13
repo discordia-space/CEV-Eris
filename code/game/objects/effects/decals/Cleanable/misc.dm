@@ -41,13 +41,13 @@
 	bad_type = /obj/effect/decal/cleanable/reagents
 	spawn_tags = null
 
-/obj/effect/decal/cleanable/reagents/proc/add_reagents(var/datum/reagents/reagents_to_add)
+/obj/effect/decal/cleanable/reagents/proc/add_reagents(datum/reagents/reagents_to_add)
 	if(!reagents)
 		create_reagents(reagents_to_add.total_volume)
 
 	reagents_to_add.trans_to_holder(reagents, reagents_to_add.total_volume)
 
-/obj/effect/decal/cleanable/reagents/New(var/datum/reagents/reagents_to_add = null)
+/obj/effect/decal/cleanable/reagents/New(datum/reagents/reagents_to_add = null)
 	. = ..()
 	if(reagents_to_add && reagents_to_add.total_volume)
 		reagents = reagents_to_add
@@ -57,13 +57,13 @@
 	name = "splashed liquid"
 	icon_state = "splashed"
 
-/obj/effect/decal/cleanable/reagents/splashed/New(var/datum/reagents/reagents_to_add = null)
+/obj/effect/decal/cleanable/reagents/splashed/New(datum/reagents/reagents_to_add = null)
 	. = ..()
 	if(reagents)
 		alpha = min(reagents.total_volume * 30, 255)
 		START_PROCESSING(SSobj, src)
 
-/obj/effect/decal/cleanable/reagents/splashed/add_reagents(var/datum/reagents/reagents_to_add)
+/obj/effect/decal/cleanable/reagents/splashed/add_reagents(datum/reagents/reagents_to_add)
 	alpha = min(alpha + reagents_to_add.total_volume * 30, 255)
 	color = BlendRGB(color, reagents_to_add.get_color(), 0.6)
 	..()
@@ -78,7 +78,7 @@
 	name = "powder pile"
 	icon_state = "powderpile"
 
-/obj/effect/decal/cleanable/reagents/piled/add_reagents(var/datum/reagents/reagents_to_add)
+/obj/effect/decal/cleanable/reagents/piled/add_reagents(datum/reagents/reagents_to_add)
 	color = BlendRGB(color, reagents_to_add.get_color(), 0.8)
 	..()
 

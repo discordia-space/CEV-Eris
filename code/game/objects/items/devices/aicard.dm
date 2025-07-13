@@ -22,7 +22,7 @@
 
 	nano_ui_interact(user)
 
-/obj/item/device/aicard/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state =GLOB.inventory_state)
+/obj/item/device/aicard/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state =GLOB.inventory_state)
 	var/data[0]
 	data["has_ai"] = carded_ai != null
 	if(carded_ai)
@@ -89,7 +89,7 @@
 	else
 		icon_state = "aicard"
 
-/obj/item/device/aicard/proc/grab_ai(var/mob/living/silicon/ai/ai, var/mob/living/user)
+/obj/item/device/aicard/proc/grab_ai(mob/living/silicon/ai/ai, mob/living/user)
 	if(!ai.client)
 		to_chat(user, "[span_danger("ERROR:")] AI [ai.name] is offline. Unable to download.")
 		return 0
@@ -145,7 +145,7 @@
 		carded_ai.show_message(rendered, type)
 	..()
 
-/obj/item/device/aicard/relaymove(var/mob/user, var/direction)
+/obj/item/device/aicard/relaymove(mob/user, direction)
 	if(user.stat || user.stunned)
 		return
 	var/obj/item/rig/rig = src.get_rig()

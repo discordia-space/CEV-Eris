@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(economy)
 
 
 //Sent to a head of staff when their department account fails to pay out wages
-/proc/payroll_failure_mail(var/datum/computer_file/report/crew_record/R, var/datum/money_account/fail_account, var/amount)
+/proc/payroll_failure_mail(datum/computer_file/report/crew_record/R, datum/money_account/fail_account, amount)
 	var/address = R.get_email()
 
 	var/datum/computer_file/data/email_message/message = new()
@@ -115,7 +115,7 @@ SUBSYSTEM_DEF(economy)
 	return TRUE
 
 
-/proc/payroll_mail_account_holder(var/datum/computer_file/report/crew_record/R, var/sender, var/amount)
+/proc/payroll_mail_account_holder(datum/computer_file/report/crew_record/R, sender, amount)
 	//In future, this will be expanded to include a report on penalties, bonuses and taxes that affected your wages
 
 	var/address = R.get_email()

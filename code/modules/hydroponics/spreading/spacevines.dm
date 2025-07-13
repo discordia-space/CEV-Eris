@@ -1,7 +1,7 @@
 //This has to be here because it uses defines in _hydro_setup.dm which are later undefined
 //It is used for the spacevine event
 
-/proc/spacevine_infestation(var/turf/T = null, var/potency_min=70, var/potency_max=100, var/maturation_min=5, var/maturation_max=15)
+/proc/spacevine_infestation(turf/T = null, potency_min=70, potency_max=100, maturation_min=5, maturation_max=15)
 	//Vines will spawn at a burrow
 	var/obj/structure/burrow/origin
 	var/list/burrows = GLOB.all_burrows.Copy()

@@ -85,7 +85,7 @@
 					owner.visible_message("[owner] pushes [target] out of the way.")
 
 
-/obj/item/mech_equipment/clamp/attack_self(var/mob/user)
+/obj/item/mech_equipment/clamp/attack_self(mob/user)
 	. = ..()
 	if(.)
 		drop_carrying(user, TRUE)
@@ -96,7 +96,7 @@
 	else
 		..()
 
-/obj/item/mech_equipment/clamp/proc/drop_carrying(var/mob/user, var/choose_object)
+/obj/item/mech_equipment/clamp/proc/drop_carrying(mob/user, choose_object)
 	if(!length(carrying))
 		to_chat(user, span_warning("You are not carrying anything in \the [src]."))
 		return
@@ -160,7 +160,7 @@
 	var/l_outer_range = 9
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 
-/obj/item/mech_equipment/light/attack_self(var/mob/user)
+/obj/item/mech_equipment/light/attack_self(mob/user)
 	. = ..()
 	if(.)
 		on = !on
@@ -246,7 +246,7 @@
 	return string
 
 
-/obj/item/mech_equipment/catapult/attack_self(var/mob/user)
+/obj/item/mech_equipment/catapult/attack_self(mob/user)
 	. = ..()
 	if(.)
 		mode = mode == CATAPULT_SINGLE ? CATAPULT_AREA : CATAPULT_SINGLE
@@ -254,7 +254,7 @@
 		update_icon()
 
 
-/obj/item/mech_equipment/catapult/afterattack(var/atom/target, var/mob/living/user, var/inrange, var/params)
+/obj/item/mech_equipment/catapult/afterattack(atom/target, mob/living/user, inrange, params)
 	. = ..()
 	if(.)
 
@@ -317,18 +317,18 @@
 
 	//durability = 3 * (material ? material.integrity : 1)
 
-/obj/item/material/drill_head/Created(var/creator)
+/obj/item/material/drill_head/Created(creator)
 	ApplyDurability()
 
-/obj/item/material/drill_head/steel/New(var/newloc)
+/obj/item/material/drill_head/steel/New(newloc)
 	..(newloc,MATERIAL_STEEL)
 	ApplyDurability()
 
-/obj/item/material/drill_head/plasteel/New(var/newloc)
+/obj/item/material/drill_head/plasteel/New(newloc)
 	..(newloc,MATERIAL_PLASTEEL)
 	ApplyDurability()
 
-/obj/item/material/drill_head/diamond/New(var/newloc)
+/obj/item/material/drill_head/diamond/New(newloc)
 	..(newloc,MATERIAL_DIAMOND)
 	ApplyDurability()
 
@@ -354,7 +354,7 @@
 	drill_head = new /obj/item/material/drill_head(src, "steel")//You start with a basic steel head
 	drill_head.ApplyDurability()
 
-/obj/item/mech_equipment/drill/attack_self(var/mob/user)
+/obj/item/mech_equipment/drill/attack_self(mob/user)
 	. = ..()
 	if(.)
 		if(drill_head)

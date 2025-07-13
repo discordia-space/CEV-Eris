@@ -38,7 +38,7 @@
 		rad = 100
 	)
 
-/mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(atom/A, var/proximity)
+/mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(atom/A, proximity)
 	. = ..()
 
 	if(isliving(A))
@@ -101,7 +101,7 @@
 
 	var/mob/living/carbon/superior_animal/roach/nanite/parent
 
-/mob/living/simple_animal/hostile/naniteswarm/New(loc, var/nuparent)
+/mob/living/simple_animal/hostile/naniteswarm/New(loc, nuparent)
 	..()
 	parent = nuparent
 

@@ -132,7 +132,7 @@
 	return pressure_adjustment_coefficient
 
 // Calculate how much of the enviroment pressure-difference affects the human.
-/mob/living/carbon/human/calculate_affecting_pressure(var/pressure)
+/mob/living/carbon/human/calculate_affecting_pressure(pressure)
 	var/pressure_difference
 
 	// First get the absolute pressure difference.
@@ -285,7 +285,7 @@
 
 	/** breathing **/
 
-/mob/living/carbon/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
+/mob/living/carbon/human/handle_chemical_smoke(datum/gas_mixture/environment)
 	if(wear_mask && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT & AIRTIGHT))
 		return
 	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT & AIRTIGHT))
@@ -707,7 +707,7 @@
 	var/thermal_protection_flags = get_cold_protection_flags(temperature)
 	return get_thermal_protection(thermal_protection_flags)
 
-/mob/living/carbon/human/proc/get_thermal_protection(var/flags)
+/mob/living/carbon/human/proc/get_thermal_protection(flags)
 	.=0
 	if(flags)
 		if(flags & HEAD)

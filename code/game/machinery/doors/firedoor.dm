@@ -227,7 +227,7 @@
 	return ..()
 
 
-/obj/machinery/door/firedoor/close(var/forced = 0)
+/obj/machinery/door/firedoor/close(forced = 0)
 	if (blocked) //welded
 		return
 
@@ -239,7 +239,7 @@
 
 	return ..()
 
-/obj/machinery/door/firedoor/open(var/forced = 0)
+/obj/machinery/door/firedoor/open(forced = 0)
 	if (blocked) //welded
 		return
 

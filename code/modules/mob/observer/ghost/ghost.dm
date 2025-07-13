@@ -123,7 +123,7 @@ Works together with spawning an observer, noted above.
 		process_medHUD(src)
 
 
-/mob/observer/ghost/proc/process_medHUD(var/mob/M)
+/mob/observer/ghost/proc/process_medHUD(mob/M)
 	var/client/C = M.client
 	for(var/mob/living/carbon/human/patient in oview(M, 14))
 		C.images += patient.hud_list[HEALTH_HUD]
@@ -137,7 +137,7 @@ Works together with spawning an observer, noted above.
 		C.images += target.hud_list[SPECIALROLE_HUD]
 	return 1
 
-/mob/proc/ghostize(var/can_reenter_corpse = 1)
+/mob/proc/ghostize(can_reenter_corpse = 1)
 	if(key)
 		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse
@@ -324,7 +324,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	ManualFollow(target)
 
 // This is the ghost's follow verb with an argument
-/mob/observer/ghost/proc/ManualFollow(var/atom/movable/target)
+/mob/observer/ghost/proc/ManualFollow(atom/movable/target)
 	if(!target || target == following || target == src)
 		return
 
@@ -462,7 +462,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 
 //Given an origin point to search around, attempts to find a safe vent as close as possible to that point
-/proc/find_mouse_near_spawnpoint(var/turf/T)
+/proc/find_mouse_near_spawnpoint(turf/T)
 	var/obj/machinery/atmospherics/unary/vent_pump/nearest_safe_vent = null
 	var/nearest_dist = 999999
 	for(var/obj/machinery/atmospherics/unary/vent_pump/v in GLOB.machines)
@@ -474,7 +474,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	return nearest_safe_vent
 
-/proc/find_mouse_random_spawnpoint(var/ZLevel)
+/proc/find_mouse_random_spawnpoint(ZLevel)
 	//This function will attempt to find a good spawnpoint for mice, and prevent them from spawning in closed vent systems with no escape
 	//It does this by bruteforce: Picks a random vent, tests if it has enough connections, if not, repeat
 	//Continues either until a valid one is found (in which case we return it), or until we hit a limit on attempts..
@@ -560,7 +560,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	return ..()
 
-/mob/observer/ghost/proc/try_possession(var/mob/living/M)
+/mob/observer/ghost/proc/try_possession(mob/living/M)
 	if(!CONFIG_GET(flag/ghosts_can_possess_animals))
 		to_chat(usr, span_warning("Ghosts are not permitted to possess animals."))
 		return 0
@@ -592,7 +592,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			span_warning("You get the feeling that the ghost can't become any more visible.") \
 		)
 
-/mob/observer/ghost/proc/toggle_icon(var/icon)
+/mob/observer/ghost/proc/toggle_icon(icon)
 	if(!client)
 		return
 
@@ -606,7 +606,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/image/J = image('icons/mob/mob.dmi', loc = src, icon_state = icon)
 		client.images += J
 
-/mob/observer/ghost/proc/toggle_visibility(var/forced = 0)
+/mob/observer/ghost/proc/toggle_visibility(forced = 0)
 	set category = "Ghost"
 	set name = "Toggle Visibility"
 	set desc = "Allows you to turn (in)visible (almost) at will."
@@ -687,7 +687,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		client.images |= ghost_sightless_images
 	client.images -= ghost_image //remove ourself
 
-/mob/observer/ghost/MayRespawn(var/feedback = 0, var/respawn_type = 0)
+/mob/observer/ghost/MayRespawn(feedback = 0, respawn_type = 0)
 	if(!client)
 		return FALSE
 	if(CONFIG_GET(flag/antag_hud_restricted) && has_enabled_antagHUD == 1)
@@ -722,15 +722,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /atom/proc/extra_ghost_link()
 	return
 
-/mob/extra_ghost_link(var/atom/ghost)
+/mob/extra_ghost_link(atom/ghost)
 	if(client && eyeobj)
 		return "|<a href='byond://?src=\ref[ghost];track=\ref[eyeobj]'>eye</a>"
 
-/mob/observer/ghost/extra_ghost_link(var/atom/ghost)
+/mob/observer/ghost/extra_ghost_link(atom/ghost)
 	if(mind && mind.current)
 		return "|<a href='byond://?src=\ref[ghost];track=\ref[mind.current]'>body</a>"
 
-/proc/ghost_follow_link(var/atom/target, var/atom/ghost)
+/proc/ghost_follow_link(atom/target, atom/ghost)
 	if((!target) || (!ghost)) return
 	. = "<a href='byond://?src=\ref[ghost];track=\ref[target]'>(F)</a>"
 	. += target.extra_ghost_link(ghost)

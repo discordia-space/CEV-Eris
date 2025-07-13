@@ -68,7 +68,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 /datum/feed_network/New()
 	CreateFeedChannel("Ship Announcements", "SS13", 1, 1, "New Station Announcement Available")
 
-/datum/feed_network/proc/CreateFeedChannel(var/channel_name, var/author, var/locked, var/adminChannel = 0, var/announcement_message)
+/datum/feed_network/proc/CreateFeedChannel(channel_name, author, locked, adminChannel = 0, announcement_message)
 	var/datum/feed_channel/newChannel = new /datum/feed_channel
 	newChannel.channel_name = channel_name
 	newChannel.author = author
@@ -775,7 +775,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 	var/is_synth = 0
 	var/obj/item/photo/photo = null
 
-/datum/news_photo/New(var/obj/item/photo/p, var/synth)
+/datum/news_photo/New(obj/item/photo/p, synth)
 	is_synth = synth
 	photo = p
 

@@ -26,7 +26,7 @@
 	var/ntnet_speed = 0								// GQ/s - current network connectivity transfer rate
 	var/operator_skill = STAT_LEVEL_MIN				// Holder for skill value of current/recent operator for programs that tick.
 
-/datum/computer_file/program/New(var/obj/item/modular_computer/comp = null)
+/datum/computer_file/program/New(obj/item/modular_computer/comp = null)
 	..()
 	if(comp && istype(comp))
 		computer = comp
@@ -47,7 +47,7 @@
 	return temp
 
 // Used by programs that manipulate files.
-/datum/computer_file/program/proc/get_file(var/filename)
+/datum/computer_file/program/proc/get_file(filename)
 	var/obj/item/computer_hardware/hard_drive/HDD = computer.hard_drive
 	var/obj/item/computer_hardware/hard_drive/portable/RHDD = computer.portable_drive
 	if(!HDD && !RHDD)
@@ -60,7 +60,7 @@
 			return
 	return F
 
-/datum/computer_file/program/proc/create_file(var/newname, var/data = "", var/file_type = /datum/computer_file/data)
+/datum/computer_file/program/proc/create_file(newname, data = "", file_type = /datum/computer_file/data)
 	if(!newname)
 		return
 	var/obj/item/computer_hardware/hard_drive/HDD = computer.hard_drive
@@ -86,7 +86,7 @@
 	update_computer_icon()
 
 // Attempts to create a log in global ntnet datum. Returns 1 on success, 0 on fail.
-/datum/computer_file/program/proc/generate_network_log(var/text)
+/datum/computer_file/program/proc/generate_network_log(text)
 	if(computer)
 		return computer.add_log(text)
 	return 0
@@ -98,7 +98,7 @@
 		return FALSE
 	return TRUE
 
-/datum/computer_file/program/proc/get_signal(var/specific_action = 0)
+/datum/computer_file/program/proc/get_signal(specific_action = 0)
 	if(computer)
 		return computer.get_ntnet_status(specific_action)
 	return 0
@@ -125,7 +125,7 @@
 // Check if the user can run program. Only humans can operate computer. Automatically called in run_program()
 // User has to wear their ID or have it inhand for ID Scan to work.
 // Can also be called manually, with optional parameter being access_to_check to scan the user's ID
-/datum/computer_file/program/proc/can_run(var/mob/living/user, var/loud = 0, var/access_to_check)
+/datum/computer_file/program/proc/can_run(mob/living/user, loud = 0, access_to_check)
 	// Defaults to required_access
 	if(!access_to_check)
 		access_to_check = required_access
@@ -159,7 +159,7 @@
 
 // This is performed on program startup. May be overriden to add extra logic. Remember to include ..() call. Return 1 on success, 0 on failure.
 // When implementing new program based device, use this to run the program.
-/datum/computer_file/program/proc/run_program(var/mob/living/user)
+/datum/computer_file/program/proc/run_program(mob/living/user)
 	if(can_run(user, 1) || !requires_access_to_run)
 		if(nanomodule_path)
 			NM = new nanomodule_path(src, new /datum/topic_manager/program(src), src)
@@ -225,7 +225,7 @@
 		return computer.Topic(href, href_list)
 
 // Relays the call to nano module, if we have one
-/datum/computer_file/program/proc/check_eye(var/mob/user)
+/datum/computer_file/program/proc/check_eye(mob/user)
 	if(NM)
 		return NM.check_eye(user)
 	else
@@ -247,14 +247,14 @@
 	available_to_ai = FALSE
 	var/datum/computer_file/program/program = null	// Program-Based computer program that runs this nano module. Defaults to null.
 
-/datum/nano_module/program/New(var/host, var/topic_manager, var/program)
+/datum/nano_module/program/New(host, topic_manager, program)
 	..()
 	src.program = program
 
 /datum/topic_manager/program
 	var/datum/program
 
-/datum/topic_manager/program/New(var/datum/program)
+/datum/topic_manager/program/New(datum/program)
 	..()
 	src.program = program
 

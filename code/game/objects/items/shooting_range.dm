@@ -18,7 +18,7 @@
 			break
 	. = ..() // delete target
 
-/obj/item/target/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/item/target/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	// After target moves, check for nearby stakes. If associated, move to target
 	for(var/obj/structure/target_stake/M in view(3,src))
@@ -79,7 +79,7 @@
 		desc = "A shooting target with a threatening silhouette."
 		hp = 2350 // alium onest too kinda
 
-/obj/item/target/bullet_act(var/obj/item/projectile/Proj)
+/obj/item/target/bullet_act(obj/item/projectile/Proj)
 	var/p_x = Proj.p_x + pick(0,0,0,0,0,-1,1) // really ugly way of coding "sometimes offset Proj.p_x!"
 	var/p_y = Proj.p_y + pick(0,0,0,0,0,-1,1)
 	var/decaltype = 1 // 1 - scorch, 2 - bullet
@@ -161,7 +161,7 @@
 	var/b2y1 = 0
 	var/b2y2 = 0
 
-/datum/bullethole/New(var/obj/item/target/Target, var/pixel_x = 0, var/pixel_y = 0)
+/datum/bullethole/New(obj/item/target/Target, pixel_x = 0, pixel_y = 0)
 	if(!Target) return
 
 	// Randomize the first box

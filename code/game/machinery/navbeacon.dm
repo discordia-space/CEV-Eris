@@ -62,7 +62,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 
 // called when turf state changes
 // hide the object if turf is intact
-/obj/machinery/navbeacon/hide(var/intact)
+/obj/machinery/navbeacon/hide(intact)
 	invisibility = intact ? 101 : 0
 	updateicon()
 
@@ -108,7 +108,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 	frequency.post_signal(src, signal, filter = RADIO_NAVBEACONS)
 
 
-/obj/machinery/navbeacon/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/navbeacon/attackby(obj/item/I, mob/user)
 	var/turf/T = loc
 	if(!T.is_plating())
 		return		// prevent intraction when T-scanner revealed
@@ -133,17 +133,17 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 			to_chat(user, "You must open the cover first!")
 	return
 
-/obj/machinery/navbeacon/attack_ai(var/mob/user)
+/obj/machinery/navbeacon/attack_ai(mob/user)
 	interact(user, 1)
 
-/obj/machinery/navbeacon/attack_hand(var/mob/user)
+/obj/machinery/navbeacon/attack_hand(mob/user)
 
 	if(!user.IsAdvancedToolUser())
 		return 0
 
 	interact(user, 0)
 
-/obj/machinery/navbeacon/interact(var/mob/user, var/ai = 0)
+/obj/machinery/navbeacon/interact(mob/user, ai = 0)
 	var/turf/T = loc
 	if(!T.is_plating())
 		return		// prevent intraction when T-scanner revealed

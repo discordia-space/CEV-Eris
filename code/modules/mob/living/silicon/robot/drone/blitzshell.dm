@@ -60,7 +60,7 @@
 		/obj/item/stack/telecrystal //To reload the uplink
 		)
 
-/obj/item/gripper/antag/afterattack(atom/target, var/mob/living/user, proximity, params)
+/obj/item/gripper/antag/afterattack(atom/target, mob/living/user, proximity, params)
 	..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -96,7 +96,7 @@
 	extra_description += span_notice("It has [charges] charges left.")
 	..(user, extra_description)
 
-/obj/item/device/nanite_container/attack_self(var/mob/user)
+/obj/item/device/nanite_container/attack_self(mob/user)
 	if(istype(user, /mob/living/silicon))
 		if(charges)
 			if(cooldown > world.time)
@@ -128,7 +128,7 @@
 	extra_description += span_notice("It has [charges] charges left.")
 	..(user, extra_description)
 
-/obj/item/device/smokescreen/attack_self(var/mob/user)
+/obj/item/device/smokescreen/attack_self(mob/user)
 	if(istype(user, /mob/living/silicon))
 		if(charges)
 			to_chat(user, span_notice("You activate \the [src]."))

@@ -141,7 +141,7 @@ steam.start() -- spawns the effect
 		T.hotspot_expose(1000,100)
 	return ..()
 
-/obj/effect/sparks/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/effect/sparks/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	var/turf/T = src.loc
 	if (istype(T, /turf))
@@ -230,12 +230,12 @@ steam.start() -- spawns the effect
 	if(istype(M))
 		affect(M)
 
-/obj/effect/effect/smoke/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/effect/effect/smoke/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	for(var/mob/living/carbon/M in get_turf(src))
 		affect(M)
 
-/obj/effect/effect/smoke/proc/affect(var/mob/living/carbon/M)
+/obj/effect/effect/smoke/proc/affect(mob/living/carbon/M)
 	if (istype(M))
 		return 0
 	if (M.internal != null)
@@ -250,7 +250,7 @@ steam.start() -- spawns the effect
 
 
 // Fades out the smoke smoothly using it's alpha variable.
-/obj/effect/effect/smoke/proc/fade_out(var/frames = 16)
+/obj/effect/effect/smoke/proc/fade_out(frames = 16)
 	if(!alpha) return //already transparent
 	fading = TRUE
 	frames = max(frames, 1) //We will just assume that by 0 frames, the coder meant "during one frame".
@@ -278,7 +278,7 @@ steam.start() -- spawns the effect
 	var/radius = 3
 	var/brightness = 2
 
-/obj/effect/effect/light/New(var/newloc, var/radius, var/brightness, color, selfdestruct_timer)
+/obj/effect/effect/light/New(newloc, radius, brightness, color, selfdestruct_timer)
 	..()
 
 	src.radius = radius
@@ -301,7 +301,7 @@ steam.start() -- spawns the effect
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparks"
 
-/obj/effect/effect/smoke/illumination/New(var/newloc, var/brightness=15, var/lifetime=10, var/color=COLOR_WHITE)
+/obj/effect/effect/smoke/illumination/New(newloc, brightness=15, lifetime=10, color=COLOR_WHITE)
 	time_to_live=lifetime
 	..()
 	set_light(brightness, 1, color)
@@ -313,7 +313,7 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/bad
 	time_to_live = 200
 
-/obj/effect/effect/smoke/bad/affect(var/mob/living/carbon/M)
+/obj/effect/effect/smoke/bad/affect(mob/living/carbon/M)
 	if (!..())
 		return 0
 	M.drop_item()
@@ -367,7 +367,7 @@ steam.start() -- spawns the effect
 	icon_state = "mustard"
 
 
-/obj/effect/effect/smoke/mustard/affect(var/mob/living/carbon/human/R)
+/obj/effect/effect/smoke/mustard/affect(mob/living/carbon/human/R)
 	if (!..())
 		return 0
 	if (R.wear_suit != null)

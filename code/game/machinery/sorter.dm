@@ -159,7 +159,7 @@
 		return
 
 
-/obj/machinery/sorter/proc/eject(var/sorted = FALSE)
+/obj/machinery/sorter/proc/eject(sorted = FALSE)
 	if(!current_item)
 		return
 	var/turf/T
@@ -186,7 +186,7 @@
 	speed = manipulator_rating*10
 
 
-/obj/machinery/sorter/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/sorter/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
 		return
 

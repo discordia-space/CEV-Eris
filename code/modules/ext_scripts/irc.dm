@@ -1,4 +1,4 @@
-/proc/send2irc(var/channel, var/msg)
+/proc/send2irc(channel, msg)
 	if(CONFIG_GET(flag/use_irc_bot) && CONFIG_GET(string/irc_bot_host))
 		if(CONFIG_GET(flag/irc_bot_export))
 			spawn(-1) // spawn here prevents hanging in the case that the bot isn't reachable
@@ -18,12 +18,12 @@
 					ext_python("ircbot_message.py", "[CONFIG_GET(string/comms_key)] [CONFIG_GET(string/irc_bot_host)] [channel] [msg]")
 	return
 
-/proc/send2mainirc(var/msg)
+/proc/send2mainirc(msg)
 	if(CONFIG_GET(string/main_irc))
 		send2irc(CONFIG_GET(string/main_irc), msg)
 	return
 
-/proc/send2adminirc(var/msg)
+/proc/send2adminirc(msg)
 	if(CONFIG_GET(string/admin_irc))
 		send2irc(CONFIG_GET(string/admin_irc), msg)
 	return

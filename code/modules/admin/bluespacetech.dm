@@ -215,7 +215,7 @@
 	else
 		..()
 
-/obj/item/device/radio/headset/ert/bst/recalculateChannels(var/setDescription = FALSE)
+/obj/item/device/radio/headset/ert/bst/recalculateChannels(setDescription = FALSE)
 	..(setDescription)
 	translate_binary = TRUE
 	translate_hive = TRUE

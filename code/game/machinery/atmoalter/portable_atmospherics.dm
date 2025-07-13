@@ -52,7 +52,7 @@
 		"oxygen" = O2STANDARD * MolesForPressure(),
 		"nitrogen" = N2STANDARD *  MolesForPressure())
 
-/obj/machinery/portable_atmospherics/proc/MolesForPressure(var/target_pressure = start_pressure)
+/obj/machinery/portable_atmospherics/proc/MolesForPressure(target_pressure = start_pressure)
 	return (target_pressure * air_contents.volume) / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
 
 /obj/machinery/portable_atmospherics/update_icon()
@@ -105,7 +105,7 @@
 	if (network)
 		network.update = 1
 
-/obj/machinery/portable_atmospherics/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/portable_atmospherics/attackby(obj/item/I, mob/user)
 	if ((istype(I, /obj/item/tank) && !( src.destroyed )))
 		if (src.holding)
 			return

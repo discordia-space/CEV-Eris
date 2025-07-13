@@ -57,7 +57,7 @@
 		extra_description += "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
 	..(user, extra_description)
 
-/obj/machinery/drone_fabricator/proc/create_drone(var/client/player, var/aibound = FALSE)
+/obj/machinery/drone_fabricator/proc/create_drone(client/player, aibound = FALSE)
 
 	if(stat & NOPOWER)
 		return
@@ -99,7 +99,7 @@
 	set desc = "If there is a powered, enabled fabricator in the game world with a prepared chassis, join as a maintenance drone."
 	try_drone_spawn(src)
 
-/proc/try_drone_spawn(var/mob/user, var/obj/machinery/drone_fabricator/fabricator, var/aibound = FALSE)
+/proc/try_drone_spawn(mob/user, obj/machinery/drone_fabricator/fabricator, aibound = FALSE)
 
 	if(SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(user, span_danger("The game hasn't started yet!"))

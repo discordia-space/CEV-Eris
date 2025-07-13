@@ -46,19 +46,19 @@
 
 	var/list/perks = list()
 
-/datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
+/datum/job/proc/equip(mob/living/carbon/human/H, alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit()
 	if(!outfit)
 		return FALSE
 	. = outfit.equip(H, title, alt_title)
 
-/datum/job/proc/get_outfit(var/alt_title)
+/datum/job/proc/get_outfit(alt_title)
 	if(alt_title && alt_titles)
 		. = alt_titles[alt_title]
 	. = . || outfit_type
 	. = outfit_by_type(.)
 
-/datum/job/proc/add_stats(var/mob/living/carbon/human/target, datum/job_flavor/flavor)
+/datum/job/proc/add_stats(mob/living/carbon/human/target, datum/job_flavor/flavor)
 	if(!istype(target))
 		return FALSE
 
@@ -74,7 +74,7 @@
 
 	return TRUE
 
-/datum/job/proc/add_additiional_language(var/mob/living/carbon/human/target)
+/datum/job/proc/add_additiional_language(mob/living/carbon/human/target)
 	if(!ishuman(target))
 		return FALSE
 
@@ -91,7 +91,7 @@
 
 	return TRUE
 
-/datum/job/proc/setup_account(var/mob/living/carbon/human/H)
+/datum/job/proc/setup_account(mob/living/carbon/human/H)
 	if(!account_allowed || (H.mind && H.mind.initial_account))
 		return
 
@@ -121,7 +121,7 @@
 	to_chat(H, span_notice("<b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b>"))
 
 // overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()
-/datum/job/proc/equip_preview(mob/living/carbon/human/H, var/alt_title, var/datum/branch, var/additional_skips)
+/datum/job/proc/equip_preview(mob/living/carbon/human/H, alt_title, datum/branch, additional_skips)
 	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
 	if(!outfit)
 		return FALSE
@@ -130,7 +130,7 @@
 /datum/job/proc/get_access()
 	return src.access.Copy()
 
-/datum/job/proc/apply_fingerprints(var/mob/living/carbon/human/target)
+/datum/job/proc/apply_fingerprints(mob/living/carbon/human/target)
 	if(!istype(target))
 		return 0
 	for(var/obj/item/item in target.contents)
@@ -146,7 +146,7 @@
 		return max(0, minimal_player_age - C.player_age)
 	return 0
 */
-/datum/job/proc/apply_fingerprints_to_item(var/mob/living/carbon/human/holder, var/obj/item/item)
+/datum/job/proc/apply_fingerprints_to_item(mob/living/carbon/human/holder, obj/item/item)
 	item.add_fingerprint(holder,1)
 	if(item.contents.len)
 		for(var/obj/item/sub_item in item.contents)
@@ -211,6 +211,6 @@
 
 	return job_desc
 
-/datum/job/proc/dress_mannequin(var/mob/living/carbon/human/dummy/mannequin/mannequin)
+/datum/job/proc/dress_mannequin(mob/living/carbon/human/dummy/mannequin/mannequin)
 	mannequin.delete_inventory(TRUE)
 	equip_preview(mannequin, additional_skips = OUTFIT_ADJUSTMENT_SKIP_BACKPACK|OUTFIT_ADJUSTMENT_SKIP_SURVIVAL_GEAR)

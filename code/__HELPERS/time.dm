@@ -57,7 +57,7 @@ var/next_station_date_change = 1 DAYS
 
 
 /* Returns 1 if it is the selected month and day */
-/proc/isDay(var/month, var/day)
+/proc/isDay(month, day)
 	if(isnum(month) && isnum(day))
 		var/MM = text2num(time2text(world.timeofday, "MM")) // get the current month
 		var/DD = text2num(time2text(world.timeofday, "DD")) // get the current day
@@ -148,7 +148,7 @@ var/global/rollovercheck_last_timeofday = 0
 		return midnight_rollovers++
 	return midnight_rollovers
 
-/proc/ticks_to_text(var/ticks)
+/proc/ticks_to_text(ticks)
 	if(ticks%1 != 0)
 		return "ERROR"
 	var/response = ""

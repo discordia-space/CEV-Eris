@@ -25,7 +25,7 @@
 	var/list/plantcolors = list("RANDOM")
 	var/list/grass_cache
 
-/datum/random_map/noise/exoplanet/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce, var/never_be_priority = 0, var/_planetary_area, var/list/_plant_colors)
+/datum/random_map/noise/exoplanet/New(seed, tx, ty, tz, tlx, tly, do_not_apply, do_not_announce, never_be_priority = 0, _planetary_area, list/_plant_colors)
 	target_turf_type = world.turf
 	water_level = rand(water_level_min,water_level_max)
 	planetary_area = _planetary_area
@@ -41,24 +41,24 @@
 
 	base_turf_by_z[num2text(tz)] = land_type
 
-/datum/random_map/noise/exoplanet/proc/noise2value(var/value)
+/datum/random_map/noise/exoplanet/proc/noise2value(value)
 	return min(9,max(0,round((value/cell_range)*10)))
 
 /datum/random_map/noise/exoplanet/proc/is_edge_turf(turf/T)
 	return T.x <= TRANSITIONEDGE || T.x >= (limit_x - TRANSITIONEDGE + 1) || T.y <= TRANSITIONEDGE || T.y >= (limit_y - TRANSITIONEDGE + 1)
 
-/datum/random_map/noise/exoplanet/get_map_char(var/value)
+/datum/random_map/noise/exoplanet/get_map_char(value)
 	if(water_type && noise2value(value) < water_level)
 		return "~"
 	return "[noise2value(value)]"
 
-/datum/random_map/noise/exoplanet/get_appropriate_path(var/value)
+/datum/random_map/noise/exoplanet/get_appropriate_path(value)
 	if(water_type && noise2value(value) < water_level)
 		return water_type
 	else
 		return land_type
 
-/datum/random_map/noise/exoplanet/get_additional_spawns(var/value, var/turf/T)
+/datum/random_map/noise/exoplanet/get_additional_spawns(value, turf/T)
 	if(is_edge_turf(T))
 		return
 	var/parsed_value = noise2value(value)
@@ -79,7 +79,7 @@
 			else if(prob(large_flora_prob))
 				spawn_flora(T, 1)
 
-/datum/random_map/noise/exoplanet/proc/spawn_fauna(var/turf/T)
+/datum/random_map/noise/exoplanet/proc/spawn_fauna(turf/T)
 	if(prob(megafauna_spawn_prob) && LAZYLEN(megafauna_types))
 		var/beastie = pick(megafauna_types)
 		new beastie(T)
@@ -135,7 +135,7 @@
 		LAZYSET(grass_cache, grass_num, grass)
 	return grass_cache[grass_num]
 
-/datum/random_map/noise/exoplanet/proc/spawn_flora(var/turf/T, var/big)
+/datum/random_map/noise/exoplanet/proc/spawn_flora(turf/T, big)
 	if(big)
 		if(LAZYLEN(big_flora_types))
 			new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(T, pick(big_flora_types), 1)
@@ -146,7 +146,7 @@
 			new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(T, pick(small_flora_types), 1)
 			spawn_grass(T)
 
-/datum/random_map/noise/exoplanet/proc/spawn_grass(var/turf/T)
+/datum/random_map/noise/exoplanet/proc/spawn_grass(turf/T)
 	if(istype(T, water_type))
 		return
 	if(locate(/obj/effect/floor_decal) in T)

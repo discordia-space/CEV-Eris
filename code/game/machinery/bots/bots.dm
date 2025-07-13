@@ -32,7 +32,7 @@
 	if (src.health <= 0)
 		src.explode()
 
-/obj/machinery/bot/emag_act(var/remaining_charges, var/user)
+/obj/machinery/bot/emag_act(remaining_charges, user)
 	if(locked && !emagged)
 		locked = 0
 		emagged = 1
@@ -81,7 +81,7 @@
 		else
 			..()
 
-/obj/machinery/bot/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/bot/bullet_act(obj/item/projectile/Proj)
 	if(!Proj.get_structure_damage())
 		return
 	health -= Proj.get_structure_damage()
@@ -110,7 +110,7 @@
 /obj/machinery/bot/attack_ai(mob/user as mob)
 	src.attack_hand(user)
 
-/obj/machinery/bot/attack_hand(var/mob/living/carbon/human/user)
+/obj/machinery/bot/attack_hand(mob/living/carbon/human/user)
 
 	if(!istype(user))
 		return ..()
@@ -130,7 +130,7 @@
 
 // Returns the surrounding cardinal turfs with open links
 // Including through doors openable with the ID
-/turf/proc/CardinalTurfsWithAccess(var/obj/item/card/id/ID)
+/turf/proc/CardinalTurfsWithAccess(obj/item/card/id/ID)
 	var/L[] = new()
 
 	//	for(var/turf/t in oview(src,1))
@@ -174,7 +174,7 @@
 
 // Returns true if direction is blocked from loc
 // Checks doors against access with given ID
-/proc/DirBlockedWithAccess(turf/loc,var/dir,var/obj/item/card/id/ID)
+/proc/DirBlockedWithAccess(turf/loc,dir,obj/item/card/id/ID)
 	for(var/obj/structure/window/D in loc)
 		if(!D.density)			continue
 		if(D.dir == SOUTHWEST)	return 1

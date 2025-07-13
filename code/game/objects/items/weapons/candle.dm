@@ -41,7 +41,7 @@
 			light()
 
 
-/obj/item/flame/candle/proc/light(var/flavor_text = span_notice("\The [usr] lights the [name]."))
+/obj/item/flame/candle/proc/light(flavor_text = span_notice("\The [usr] lights the [name]."))
 	if(!src.lit)
 		change_lit(TRUE)
 		//src.damtype = "fire"

@@ -29,15 +29,15 @@
 	network = list("MINE")
 	req_access = list()
 
-/obj/item/electronics/circuitboard/security/construct(var/obj/machinery/computer/security/C)
+/obj/item/electronics/circuitboard/security/construct(obj/machinery/computer/security/C)
 	if (..(C))
 		C.network = network.Copy()
 
-/obj/item/electronics/circuitboard/security/deconstruct(var/obj/machinery/computer/security/C)
+/obj/item/electronics/circuitboard/security/deconstruct(obj/machinery/computer/security/C)
 	if (..(C))
 		network = C.network.Copy()
 
-/obj/item/electronics/circuitboard/security/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/electronics/circuitboard/security/emag_act(remaining_charges, mob/user)
 	if(emagged)
 		user << "Circuit lock is already removed."
 		return

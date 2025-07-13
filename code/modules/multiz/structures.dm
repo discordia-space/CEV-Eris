@@ -110,10 +110,10 @@
 		qdel(target)
 	return ..()
 
-/obj/structure/multiz/ladder/attack_generic(var/mob/M)
+/obj/structure/multiz/ladder/attack_generic(mob/M)
 	attack_hand(M)
 
-/obj/structure/multiz/ladder/proc/throw_through(var/obj/item/C, var/mob/throw_man)
+/obj/structure/multiz/ladder/proc/throw_through(obj/item/C, mob/throw_man)
 	if(istype(throw_man,/mob/living/carbon/human) && throw_man.canUnEquip(C))
 		var/mob/living/carbon/human/user = throw_man
 		var/through =  istop ? "down" : "up"
@@ -145,7 +145,7 @@
 	else
 		attack_hand(user)
 
-/obj/structure/multiz/ladder/attack_hand(var/mob/M)
+/obj/structure/multiz/ladder/attack_hand(mob/M)
 	if (isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		var/new_delay = climb_delay * (R.HasTrait(CYBORG_TRAIT_PARKOUR) ? 0.75 : 1) * (isdrone(M) ? 1 : 3 / R.speed_factor)
@@ -209,7 +209,7 @@
 		M.forceMove(T)
 		try_resolve_mob_pulling(M, src)
 
-/obj/structure/multiz/ladder/AltClick(var/mob/living/carbon/human/user)
+/obj/structure/multiz/ladder/AltClick(mob/living/carbon/human/user)
 	if(get_dist(src, user) <= 3)
 		if(!user.is_physically_disabled())
 			if(target)
@@ -272,7 +272,7 @@
 	target = locate(/obj/structure/multiz/stairs/enter) in targetTurf
 	..()
 
-/obj/structure/multiz/stairs/active/Bumped(var/atom/movable/AM)
+/obj/structure/multiz/stairs/active/Bumped(atom/movable/AM)
 	if(isnull(AM))
 		return
 
@@ -311,7 +311,7 @@
 	. = ..()
 	Bumped(user)
 
-/obj/structure/multiz/stairs/AltClick(var/mob/living/carbon/human/user)
+/obj/structure/multiz/stairs/AltClick(mob/living/carbon/human/user)
 	if(get_dist(src, user) <= 7)
 		if(!user.is_physically_disabled())
 			if(target)

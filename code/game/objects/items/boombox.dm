@@ -112,7 +112,7 @@
 	return ..()
 
 
-/obj/item/media/boombox/proc/update_tape(var/removed)
+/obj/item/media/boombox/proc/update_tape(removed)
 	if (!removed)
 		tracks.Add(get_tape_playlist())
 	else
@@ -154,7 +154,7 @@
 /obj/item/media/boombox/attack_self(mob/user)
 	nano_ui_interact(user)
 
-/obj/item/media/boombox/nano_ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/media/boombox/nano_ui_interact(mob/user, ui_key = "jukebox", datum/nanoui/ui = null, force_open = 1)
 	var/title = "Boombox - Space Style"
 	var/data[0]
 

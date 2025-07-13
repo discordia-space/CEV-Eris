@@ -70,7 +70,7 @@
 		printTip()
 
 
-/datum/antagonist/rogue_ai/can_become_antag(var/datum/mind/player)
+/datum/antagonist/rogue_ai/can_become_antag(datum/mind/player)
 	if(!..())
 		return FALSE
 

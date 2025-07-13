@@ -48,7 +48,7 @@ var/list/escape_pods_by_name = list()
 	var/datum/shuttle/autodock/ferry/escape_pod/pod
 	progtype = /datum/computer/file/embedded_program/docking/simple/escape_pod
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data = list(
@@ -85,7 +85,7 @@ var/list/escape_pods_by_name = list()
 	name = "escape pod berth controller"
 	progtype = /datum/computer/file/embedded_program/docking/simple/escape_pod
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	var/armed = null
@@ -107,7 +107,7 @@ var/list/escape_pods_by_name = list()
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/emag_act(remaining_charges, mob/user)
 	if (!emagged)
 		to_chat(user, span_notice("You emag the [src], arming the escape pod!"))
 		emagged = 1

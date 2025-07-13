@@ -9,7 +9,7 @@
 	var/locked = TRUE
 
 
-/obj/machinery/computer/prisoner/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/prisoner/attack_hand(mob/user as mob)
 	if(..())
 		return
 	user.set_machine(src)

@@ -125,7 +125,7 @@
 		return
 
 //Changes color and luminosity of the light to these values if they were not already set
-/obj/machinery/power/supermatter/proc/shift_light(var/lum, var/clr)
+/obj/machinery/power/supermatter/proc/shift_light(lum, clr)
 	if(lum != light_range || clr != light_color)
 		set_light(lum, l_color = clr)
 
@@ -281,7 +281,7 @@
 	return 1
 
 
-/obj/machinery/power/supermatter/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/power/supermatter/bullet_act(obj/item/projectile/Proj)
 	var/turf/L = loc
 	if(!istype(L))		// We don't run process() when we are in space
 		return 0	// This stops people from being able to really power up the supermatter
@@ -313,7 +313,7 @@
 	Consume(user)
 
 // This is purely informational UI that may be accessed by AIs or robots
-/obj/machinery/power/supermatter/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/power/supermatter/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["integrity_percentage"] = round(get_integrity())
@@ -390,7 +390,7 @@
 	Consume(AM)
 
 
-/obj/machinery/power/supermatter/proc/Consume(var/mob/living/user)
+/obj/machinery/power/supermatter/proc/Consume(mob/living/user)
 	if(istype(user))
 		user.dust()
 		power += 200

@@ -971,7 +971,7 @@
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
-/obj/item/tool/proc/eyecheck(var/mob/user)
+/obj/item/tool/proc/eyecheck(mob/user)
 	if(!iscarbon(user))
 		return TRUE
 	if(ishuman(user))

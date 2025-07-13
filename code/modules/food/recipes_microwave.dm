@@ -74,14 +74,14 @@ Depreciated recipes that had special functions with a microwave I'm trying to re
 	)
 	result = /obj/item/reagent_containers/food/snacks/fortunecookie
 
-/datum/recipe/fortunecookie/make_food(var/obj/container as obj)
+/datum/recipe/fortunecookie/make_food(obj/container as obj)
 	var/obj/item/paper/paper = locate() in container
 	paper.loc = null //prevent deletion
 	var/obj/item/reagent_containers/food/snacks/fortunecookie/being_cooked = ..(container)
 	paper.loc = being_cooked
 	being_cooked.trash = paper //so the paper is left behind as trash without special-snowflake(TM Nodrak) code ~carn
 	return being_cooked
-/datum/recipe/fortunecookie/check_items(var/obj/container as obj)
+/datum/recipe/fortunecookie/check_items(obj/container as obj)
 	. = ..()
 	if (.)
 		var/obj/item/paper/paper = locate() in container

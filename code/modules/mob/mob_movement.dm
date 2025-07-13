@@ -3,7 +3,7 @@
 		return // Moved here to avoid nullrefs below
 	return mob.SelfMove(direction)
 
-/mob/proc/SelfMove(var/direction)
+/mob/proc/SelfMove(direction)
 	if(DoMove(direction, src) & MOVEMENT_HANDLED)
 		return TRUE // Doesn't necessarily mean the mob physically moved
 
@@ -12,7 +12,7 @@
 	var/moving           = FALSE
 
 
-/mob/proc/set_move_cooldown(var/timeout)
+/mob/proc/set_move_cooldown(timeout)
 	var/datum/movement_handler/mob/delay/delay = GetMovementHandler(/datum/movement_handler/mob/delay)
 	if(delay)
 		delay.SetDelay(timeout)
@@ -28,7 +28,7 @@
 	else
 		return (!mover.density || !density || lying)
 
-/mob/proc/add_move_cooldown(var/timeout)
+/mob/proc/add_move_cooldown(timeout)
 	var/datum/movement_handler/mob/delay/delay = GetMovementHandler(/datum/movement_handler/mob/delay)
 	if(delay)
 		delay.AddDelay(timeout)
@@ -199,7 +199,7 @@
 /mob/proc/check_shoegrip()
 	return 0
 
-/mob/proc/slip_chance(var/prob_slip = 5)
+/mob/proc/slip_chance(prob_slip = 5)
 	if(stat)
 		return 0
 	if(check_shoegrip())

@@ -10,7 +10,7 @@
 	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)
 	return
 
-/obj/structure/bed/chair/e_chair/attackby(var/obj/item/tool/tool, var/mob/user)
+/obj/structure/bed/chair/e_chair/attackby(obj/item/tool/tool, mob/user)
 	if(!tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 		return
 	var/obj/structure/bed/chair/C = new /obj/structure/bed/chair(loc)

@@ -1,9 +1,9 @@
-/mob/living/carbon/human/proc/change_appearance(var/flags = APPEARANCE_ALL_HAIR, var/location = src, var/mob/user = src, var/datum/nano_topic_state/state =GLOB.default_state)
+/mob/living/carbon/human/proc/change_appearance(flags = APPEARANCE_ALL_HAIR, location = src, mob/user = src, datum/nano_topic_state/state =GLOB.default_state)
 	var/datum/nano_module/appearance_changer/AC = new(location, src)
 	AC.flags = flags
 	AC.nano_ui_interact(user, state = state)
 
-/mob/living/carbon/human/proc/change_species(var/new_species)
+/mob/living/carbon/human/proc/change_species(new_species)
 	if(!new_species)
 		return
 
@@ -17,7 +17,7 @@
 	reset_hair()
 	return 1
 
-/mob/living/carbon/human/proc/change_name(var/type)
+/mob/living/carbon/human/proc/change_name(type)
 	if (type == "random")
 		var/datum/language/L = get_default_language()
 		L.set_random_name(src)
@@ -27,7 +27,7 @@
 		fully_replace_character_name(real_name, newname)
 	to_chat(src, span_notice("Your name is now [real_name]"))
 
-/mob/living/carbon/human/proc/change_gender(var/gender)
+/mob/living/carbon/human/proc/change_gender(gender)
 	if(src.gender == gender)
 		return
 
@@ -37,7 +37,7 @@
 	//update_body()
 	return 1
 
-/mob/living/carbon/human/proc/change_hair(var/hair_style)
+/mob/living/carbon/human/proc/change_hair(hair_style)
 	if(!hair_style)
 		return
 
@@ -52,7 +52,7 @@
 	update_hair()
 	return 1
 
-/mob/living/carbon/human/proc/change_facial_hair(var/facial_hair_style)
+/mob/living/carbon/human/proc/change_facial_hair(facial_hair_style)
 	if(!facial_hair_style)
 		return
 
@@ -85,7 +85,7 @@
 
 	update_hair()
 
-/mob/living/carbon/human/proc/change_eye_color(var/color)
+/mob/living/carbon/human/proc/change_eye_color(color)
 	if(color == eyes_color)
 		return
 
@@ -95,7 +95,7 @@
 	update_body()
 	return 1
 
-/mob/living/carbon/human/proc/change_hair_color(var/color)
+/mob/living/carbon/human/proc/change_hair_color(color)
 	if(color == hair_color)
 		return
 
@@ -106,7 +106,7 @@
 	update_hair()
 	return 1
 
-/mob/living/carbon/human/proc/change_facial_hair_color(var/color)
+/mob/living/carbon/human/proc/change_facial_hair_color(color)
 	if(color == facial_color)
 		return
 
@@ -115,7 +115,7 @@
 	update_hair()
 	return 1
 
-/mob/living/carbon/human/proc/change_skin_color(var/color)
+/mob/living/carbon/human/proc/change_skin_color(color)
 	if(color == skin_color || !(species.appearance_flags & HAS_SKIN_COLOR))
 		return
 
@@ -125,7 +125,7 @@
 	update_body()
 	return 1
 
-/mob/living/carbon/human/proc/change_skin_tone(var/tone)
+/mob/living/carbon/human/proc/change_skin_tone(tone)
 	if(s_tone == tone || !(species.appearance_flags & HAS_SKIN_TONE))
 		return
 
@@ -138,7 +138,7 @@
 /mob/living/carbon/human/proc/generate_valid_species()
 	return GLOB.all_species
 
-/mob/living/carbon/human/proc/generate_valid_hairstyles(var/check_gender = 1)
+/mob/living/carbon/human/proc/generate_valid_hairstyles(check_gender = 1)
 	. = list()
 	var/list/hair_styles = species.get_hair_styles()
 	for(var/hair_style in hair_styles)

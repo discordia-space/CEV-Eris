@@ -33,7 +33,7 @@
 
 	usr.show_message(t, 1)
 
-/client/proc/cmd_admin_robotize(var/mob/living/M)
+/client/proc/cmd_admin_robotize(mob/living/M)
 	set category = "Fun"
 	set name = "Make Robot"
 
@@ -44,7 +44,7 @@
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_animalize(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
+/client/proc/cmd_admin_animalize(mob/M in SSmobs.mob_list | SShumans.mob_list)
 	set category = "Fun"
 	set name = "Make Simple Animal"
 

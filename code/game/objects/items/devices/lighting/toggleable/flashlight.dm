@@ -109,7 +109,7 @@
 		if(!istype(G.loc,/mob/living))
 			dir = new_dir
 
-/obj/item/device/lighting/toggleable/flashlight/proc/place_lightspot(var/turf/T, var/angle = null)
+/obj/item/device/lighting/toggleable/flashlight/proc/place_lightspot(turf/T, angle = null)
 	if(light_spot && on && !T.is_space())
 		light_spot.forceMove(T)
 		light_spot.icon_state = "nothing"
@@ -143,12 +143,12 @@
 				if(WEST)
 					light_spot.transform = turn(light_spot.transform, -90)
 
-/obj/item/device/lighting/toggleable/flashlight/proc/lightSpotPassable(var/turf/T)
+/obj/item/device/lighting/toggleable/flashlight/proc/lightSpotPassable(turf/T)
 	if(is_opaque(T))
 		return FALSE
 	return TRUE
 
-/obj/item/device/lighting/toggleable/flashlight/proc/lightSpotPlaceable(var/turf/T)	//check if we can place icon there, light will be still applied
+/obj/item/device/lighting/toggleable/flashlight/proc/lightSpotPlaceable(turf/T)	//check if we can place icon there, light will be still applied
 	if(T == get_turf(src) || !isfloor(T))
 		return FALSE
 	for(var/obj/O in T)

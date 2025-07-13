@@ -67,7 +67,7 @@
 					say(temp)
 				winset(client, "input", "text=[null]")
 
-/mob/living/carbon/human/say_understands(var/mob/other, var/datum/language/speaking = null)
+/mob/living/carbon/human/say_understands(mob/other, datum/language/speaking = null)
 
 	if(language_blackout)
 		return 0
@@ -122,7 +122,7 @@
 		return chem_effects[CE_VOICEMIMIC]
 	return real_name
 
-/mob/living/carbon/human/proc/SetSpecialVoice(var/new_voice)
+/mob/living/carbon/human/proc/SetSpecialVoice(new_voice)
 	if(new_voice)
 		special_voice = new_voice
 	return
@@ -144,7 +144,7 @@
    for it but just ignore it.
 */
 
-/mob/living/carbon/human/say_quote(var/message, var/datum/language/speaking = null)
+/mob/living/carbon/human/say_quote(message, datum/language/speaking = null)
 	var/verb = verb_say
 	var/ending = copytext(message, length(message))
 
@@ -158,7 +158,7 @@
 
 	return verb
 
-/mob/living/carbon/human/handle_speech_problems(var/message, var/verb)
+/mob/living/carbon/human/handle_speech_problems(message, verb)
 	if(silent)
 		message = ""
 		speech_problem_flag = 1

@@ -29,7 +29,7 @@
 		FULL_AUTO_400,
 		SEMI_AUTO_300,
 		)
-/obj/item/gun/projectile/automatic/atreides/equipped(var/mob/user, var/slot)
+/obj/item/gun/projectile/automatic/atreides/equipped(mob/user, slot)
 	.=..()
 	update_icon()
 

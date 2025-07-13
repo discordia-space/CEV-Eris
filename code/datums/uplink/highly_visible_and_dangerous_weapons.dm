@@ -134,7 +134,7 @@
 	item_cost = 5
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/visible_weapons/blitz_plasma_burst/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/visible_weapons/blitz_plasma_burst/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		var/obj/item/gun/energy/plasma/mounted/blitz/GUN = locate(/obj/item/gun/energy/plasma/mounted/blitz) in BS.module.modules
@@ -155,7 +155,7 @@
 	item_cost = 8
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/visible_weapons/blitz_plasma_detonate/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/visible_weapons/blitz_plasma_detonate/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		var/obj/item/gun/energy/plasma/mounted/blitz/GUN = locate(/obj/item/gun/energy/plasma/mounted/blitz) in BS.module.modules
@@ -173,7 +173,7 @@
 	item_cost = 8
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/visible_weapons/blitz_plasma_detonate/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/visible_weapons/blitz_plasma_detonate/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		var/obj/item/gun/energy/plasma/mounted/blitz/GUN = locate(/obj/item/gun/energy/plasma/mounted/blitz) in BS.module.modules
@@ -194,7 +194,7 @@
 	item_cost = 8
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/visible_weapons/blitz_plasma_emp/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/visible_weapons/blitz_plasma_emp/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		var/obj/item/gun/energy/plasma/mounted/blitz/GUN = locate(/obj/item/gun/energy/plasma/mounted/blitz) in BS.module.modules
@@ -215,7 +215,7 @@
 	item_cost = 10
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/visible_weapons/blitz_laserweapon/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/visible_weapons/blitz_laserweapon/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(locate(/obj/item/gun/energy/laser/mounted/blitz) in BS.module.modules)
@@ -236,7 +236,7 @@
 	item_cost = 5
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/visible_weapons/blitz_laser_stun/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/visible_weapons/blitz_laser_stun/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		var/obj/item/gun/energy/laser/mounted/blitz/GUN = locate(/obj/item/gun/energy/laser/mounted/blitz) in BS.module.modules
@@ -257,7 +257,7 @@
 	item_cost = 10
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/visible_weapons/blitz_laser_burst/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/visible_weapons/blitz_laser_burst/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		var/obj/item/gun/energy/laser/mounted/blitz/GUN = locate(/obj/item/gun/energy/laser/mounted/blitz) in BS.module.modules
@@ -278,7 +278,7 @@
 	item_cost = 25
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/visible_weapons/blitz_shotgun/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/visible_weapons/blitz_shotgun/get_goods(obj/item/device/uplink/U, loc, mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(locate(/obj/item/gun/energy/shrapnel/mounted) in BS.module.modules)

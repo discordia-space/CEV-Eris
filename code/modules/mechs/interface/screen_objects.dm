@@ -8,7 +8,7 @@
 	icon_state = "base"
 	var/mob/living/exosuit/owner
 
-/obj/screen/movable/exosuit/proc/on_handle_hud(var/mob/living/exosuit/E)
+/obj/screen/movable/exosuit/proc/on_handle_hud(mob/living/exosuit/E)
 	if(E) owner = E
 
 /obj/screen/movable/exosuit/Click()
@@ -37,11 +37,11 @@
 	maptext_y = 3
 	maptext_width = 64
 
-/obj/screen/movable/exosuit/hardpoint/on_handle_hud(var/mob/living/exosuit/E)
+/obj/screen/movable/exosuit/hardpoint/on_handle_hud(mob/living/exosuit/E)
 	. = ..()
 	update_system_info()
 
-/obj/screen/movable/exosuit/hardpoint/Initialize(mapload, var/newtag)
+/obj/screen/movable/exosuit/hardpoint/Initialize(mapload, newtag)
 	. = ..()
 	hardpoint_tag = newtag
 	name = "hardpoint ([hardpoint_tag])"
@@ -123,7 +123,7 @@
 	if(ovrls["hardpoint"]) new_overlays += ovrls["hardpoint"]
 	overlays = new_overlays
 
-/obj/screen/movable/exosuit/hardpoint/Click(var/location, var/control, var/params)
+/obj/screen/movable/exosuit/hardpoint/Click(location, control, params)
 	if(..() && owner && holding)
 		var/modifiers = params2list(params)
 		if(modifiers["ctrl"])
@@ -180,7 +180,7 @@
 	maptext_y = 20
 
 
-/obj/screen/movable/exosuit/power/on_handle_hud(var/mob/living/exosuit/E)
+/obj/screen/movable/exosuit/power/on_handle_hud(mob/living/exosuit/E)
 	. = ..()
 	if(owner)
 		var/obj/item/cell/C = owner.get_cell()
@@ -324,7 +324,7 @@
 				if(MC)
 					MC.return_diagnostics(usr)
 
-/obj/screen/movable/exosuit/health/on_handle_hud(var/mob/living/exosuit/E)
+/obj/screen/movable/exosuit/health/on_handle_hud(mob/living/exosuit/E)
 	. = ..()
 	cut_overlays()
 	var/obj/item/cell/C = owner.get_cell()

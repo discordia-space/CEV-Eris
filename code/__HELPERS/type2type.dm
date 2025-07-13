@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,
 			return null
 
 // Returns the angle in english
-/proc/angle2text(var/degree)
+/proc/angle2text(degree)
 	return dir2text(angle2dir(degree))
 
 /// Returns a list(x, y), being the change in position required to step in the passed in direction
@@ -244,7 +244,7 @@ GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,
 
 
 //Takes a key and attempts to find the mob it currently belongs to
-/proc/key2mob(var/key)
+/proc/key2mob(key)
 	var/client/C = GLOB.directory[key]
 	if (C)
 		//This should work if the mob is currently logged in
@@ -256,13 +256,13 @@ GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,
 				return M
 		return null
 
-/proc/atomtypes2nameassoclist(var/list/atom_types)
+/proc/atomtypes2nameassoclist(list/atom_types)
 	. = list()
 	for(var/atom_type in atom_types)
 		var/atom/A = atom_type
 		.[initial(A.name)] = atom_type
 	sortAssoc(.)
-/proc/atomtype2nameassoclist(var/atom_type)
+/proc/atomtype2nameassoclist(atom_type)
 	return atomtypes2nameassoclist(typesof(atom_type))
 
 //Splits the text of a file at seperator and returns them in a list.

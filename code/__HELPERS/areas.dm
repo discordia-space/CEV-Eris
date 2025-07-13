@@ -1,6 +1,6 @@
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type in the world.
-/proc/get_area_turfs(var/areatype, var/list/predicates)
+/proc/get_area_turfs(areatype, list/predicates)
 	if(!areatype) return null
 	if(istext(areatype)) areatype = text2path(areatype)
 	if(isarea(areatype))
@@ -16,7 +16,7 @@
 	return turfs
 
 //Returns everything in an area based on type, searching recursively
-/proc/get_area_contents(var/areatype)
+/proc/get_area_contents(areatype)
 	var/list/turf/LT = get_area_turfs(areatype)
 	var/list/contents = list()
 	for (var/turf/T in LT)
@@ -25,12 +25,12 @@
 	return contents
 
 
-/proc/pick_area_turf(var/areatype, var/list/predicates)
+/proc/pick_area_turf(areatype, list/predicates)
 	var/list/turfs = get_area_turfs(areatype, predicates)
 	if(turfs && turfs.len)
 		return pick(turfs)
 
-/proc/is_matching_vessel(var/atom/A, var/atom/B)
+/proc/is_matching_vessel(atom/A, atom/B)
 	var/area/area1 = get_area(A)
 	var/area/area2 = get_area(B)
 	if (!area1 || !area2)
@@ -51,7 +51,7 @@
 	//This is useful for spawning, you dont want people to see things pop into existence
 //If filter_maintenance is true, maintenance areas won't be chosen
 	//Since eris maintenance is a labyrinth and people dont hang around there, this defaults true
-/proc/random_ship_area(var/filter_players = FALSE, var/filter_maintenance = TRUE, var/filter_critical = FALSE, need_apc = FALSE)
+/proc/random_ship_area(filter_players = FALSE, filter_maintenance = TRUE, filter_critical = FALSE, need_apc = FALSE)
 	var/list/possible = list()
 	for(var/Y in GLOB.ship_areas)
 		var/area/A = Y

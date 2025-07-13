@@ -201,7 +201,7 @@
 	return TRUE
 
 // if amount_per_reagent is null or zero it will transfer all
-/obj/item/reagent_containers/proc/separate_solution(var/list/obj/item/reagent_containers/accepting_containers, var/amount_per_reagent, var/list/ignore_reagents_ids)
+/obj/item/reagent_containers/proc/separate_solution(list/obj/item/reagent_containers/accepting_containers, amount_per_reagent, list/ignore_reagents_ids)
 	if(!is_drainable())
 		return FALSE
 	if(!reagents.total_volume)

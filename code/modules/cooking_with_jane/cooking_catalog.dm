@@ -77,7 +77,7 @@
 
 	return cmp_catalog_entry_asc(a, b)
 
-/proc/create_cooking_catalog_entry(var/datum/cooking_with_jane/recipe/our_recipe)
+/proc/create_cooking_catalog_entry(datum/cooking_with_jane/recipe/our_recipe)
 	var/catalog_id = CATALOG_COOKING
 	if(!GLOB.catalogs[catalog_id])
 		GLOB.catalogs[catalog_id] = new /datum/catalog(catalog_id)
@@ -94,7 +94,7 @@
 	associated_template = "catalog_entry_cooking.tmpl"
 	var/datum/cooking_with_jane/recipe/recipe
 
-/datum/catalog_entry/cooking/New(var/datum/cooking_with_jane/recipe/our_recipe)
+/datum/catalog_entry/cooking/New(datum/cooking_with_jane/recipe/our_recipe)
 	thing_type = our_recipe.type
 	title = our_recipe.name
 	recipe = our_recipe

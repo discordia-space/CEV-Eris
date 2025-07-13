@@ -21,13 +21,13 @@
 /mob/proc/despawn()
 	return
 
-/mob/get_fall_damage(var/turf/from, var/turf/dest)
+/mob/get_fall_damage(turf/from, turf/dest)
 	return 0
 
-/mob/fall_impact(var/turf/from, var/turf/dest)
+/mob/fall_impact(turf/from, turf/dest)
 	return
 
-/mob/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
+/mob/proc/take_overall_damage(brute, burn, used_weapon = null)
 	return
 
 /mob/Initialize()
@@ -122,7 +122,7 @@
 // If drain_check is set it will not actually drain power, just return a value.
 // If surge is set, it will destroy/damage the recipient and not return any power.
 // Not sure where to define this, so it can sit here for the rest of time.
-/atom/proc/drain_power(var/drain_check,var/surge, var/amount = 0)
+/atom/proc/drain_power(drain_check,surge, amount = 0)
 	return -1
 
 // Show a message to all mobs and objects in earshot of this one
@@ -131,7 +131,7 @@
 // self_message (optional) is what the src mob hears.
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
-/mob/audible_message(var/message, var/deaf_message, var/hearing_distance, var/self_message)
+/mob/audible_message(message, deaf_message, hearing_distance, self_message)
 
 	var/range = world.view
 	if(hearing_distance)
@@ -194,7 +194,7 @@
 /mob/proc/is_physically_disabled()
 	return incapacitated(INCAPACITATION_DISABLED)
 
-/mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
+/mob/proc/incapacitated(incapacitation_flags = INCAPACITATION_DEFAULT)
 	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
 		return 1
 
@@ -602,7 +602,7 @@
 			HUD.update_icon()
 
 
-/mob/proc/start_pulling(var/atom/movable/AM)
+/mob/proc/start_pulling(atom/movable/AM)
 
 	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
@@ -778,7 +778,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	else
 		reset_plane_and_layer()
 
-/mob/facedir(var/ndir)
+/mob/facedir(ndir)
 	if(!canface() || client.moving)
 		return 0
 	set_dir(ndir)
@@ -1108,7 +1108,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 
 	stats?.ui_interact(usr)
 
-/mob/proc/set_face_dir(var/newdir)
+/mob/proc/set_face_dir(newdir)
 	if(!isnull(facing_dir) && newdir == facing_dir)
 		facing_dir = null
 	else if(newdir)
@@ -1209,7 +1209,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 /mob/proc/swap_hand()
 	return
 
-/mob/proc/check_CH(CH_name as text, var/CH_type, var/second_arg = null)
+/mob/proc/check_CH(CH_name as text, CH_type, second_arg = null)
 	if(!src.client.CH || !istype(src.client.CH, CH_type))//(src.client.CH.handler_name != CH_name))
 		src.client.CH = new CH_type(client, second_arg)
 		to_chat(src, span_warning("You prepare [CH_name]."))
@@ -1283,7 +1283,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		data = zones
 	)
 
-/mob/proc/set_stat(var/new_stat)
+/mob/proc/set_stat(new_stat)
 	. = stat != new_stat
 	stat = new_stat
 

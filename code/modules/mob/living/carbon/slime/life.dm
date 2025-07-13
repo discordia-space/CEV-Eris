@@ -530,7 +530,7 @@
 	if (is_adult) return 300
 	else return 200
 
-/mob/living/carbon/slime/proc/will_hunt(var/hunger) // Check for being stopped from feeding and chasing
+/mob/living/carbon/slime/proc/will_hunt(hunger) // Check for being stopped from feeding and chasing
 	if (hunger == 2 || rabid || attacked) return 1
 	if (Leader) return 0
 	if (holding_still) return 0

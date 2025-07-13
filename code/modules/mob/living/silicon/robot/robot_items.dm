@@ -116,7 +116,7 @@
 	icon_state = "autoharvester"
 	bad_type = /obj/item/robot_harvester
 
-/obj/item/robot_harvester/afterattack(var/atom/target, var/mob/living/user, proximity)
+/obj/item/robot_harvester/afterattack(atom/target, mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)
@@ -291,7 +291,7 @@
 /obj/item/form_printer/attack_self(mob/user)
 	deploy_paper(get_turf(src))
 
-/obj/item/form_printer/proc/deploy_paper(var/turf/T)
+/obj/item/form_printer/proc/deploy_paper(turf/T)
 	T.visible_message(span_blue("\The [src.loc] dispenses a sheet of crisp white paper."))
 	new /obj/item/paper(T)
 

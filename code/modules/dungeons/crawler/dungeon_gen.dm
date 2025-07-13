@@ -117,61 +117,61 @@
 		if(RC.room_y == 1)
 			starting_lane += RC
 
-/obj/crawler/map_maker/proc/get_room_by_num(var/num)
+/obj/crawler/map_maker/proc/get_room_by_num(num)
 	for(var/obj/crawler/room_controller/RC in rooms)
 		if(RC.roomnum == num)
 			return RC
 
-/obj/crawler/map_maker/proc/get_room_by_coords(var/rx, var/ry)
+/obj/crawler/map_maker/proc/get_room_by_coords(rx, ry)
 	for(var/obj/crawler/room_controller/RC in rooms)
 		if(RC.room_x == rx && RC.room_y == ry)
 			return RC
 	return 0
 
-/obj/crawler/map_maker/proc/get_room_number_by_coords(var/rx, var/ry)
+/obj/crawler/map_maker/proc/get_room_number_by_coords(rx, ry)
 	for(var/obj/crawler/room_controller/RC in rooms)
 		if(RC.room_x == rx && RC.room_y == ry)
 			return RC.roomnum
 	return 0
 
-/obj/crawler/map_maker/proc/get_room_x_by_num(var/num)
+/obj/crawler/map_maker/proc/get_room_x_by_num(num)
 	for(var/obj/crawler/room_controller/RC in rooms)
 		if(RC.roomnum == num)
 			return RC.room_x
 
-/obj/crawler/map_maker/proc/get_room_y_by_num(var/num)
+/obj/crawler/map_maker/proc/get_room_y_by_num(num)
 	for(var/obj/crawler/room_controller/RC in rooms)
 		if(RC.roomnum == num)
 			return RC.room_y
 
-/obj/crawler/map_maker/proc/get_room_num_above(var/num)
+/obj/crawler/map_maker/proc/get_room_num_above(num)
 	if (get_room_y_by_num(num) == 1)
 		return 0
 	else return get_room_number_by_coords(get_room_x_by_num(num), get_room_y_by_num(num) - 1)
 
-/obj/crawler/map_maker/proc/get_room_num_under(var/num)
+/obj/crawler/map_maker/proc/get_room_num_under(num)
 	if (get_room_y_by_num(num) == max_y)
 		return 0
 	else return get_room_number_by_coords(get_room_x_by_num(num), get_room_y_by_num(num) + 1)
 
-/obj/crawler/map_maker/proc/get_room_num_left(var/num)
+/obj/crawler/map_maker/proc/get_room_num_left(num)
 	if (get_room_x_by_num(num) == 1)
 		return 0
 	else return get_room_number_by_coords(get_room_x_by_num(num) - 1, get_room_y_by_num(num))
 
-/obj/crawler/map_maker/proc/get_room_num_right(var/num)
+/obj/crawler/map_maker/proc/get_room_num_right(num)
 	if (get_room_x_by_num(num) == max_x)
 		return 0
 	else return get_room_number_by_coords(get_room_x_by_num(num) + 1, get_room_y_by_num(num))
 
-/obj/crawler/map_maker/proc/get_lane(var/num)
+/obj/crawler/map_maker/proc/get_lane(num)
 	var/obj/crawler/room_controller/room
 	room = get_room_by_num(num)
 	if (room)
 		return room.room_y
 	else return
 
-/obj/crawler/map_maker/proc/get_adjacent(var/num)
+/obj/crawler/map_maker/proc/get_adjacent(num)
 	var/list/neighbors = list()
 	if (((num - 1) > 0) && (get_lane(num - 1) == get_lane(num)))
 		if(!is_generated(num - 1))
@@ -186,14 +186,14 @@
 		return neighbors
 
 
-/obj/crawler/map_maker/proc/get_all_neighbors(var/num)
+/obj/crawler/map_maker/proc/get_all_neighbors(num)
 	var/list/neighbors = list()
 	neighbors = neighbors + get_adjacent(num)
 	neighbors += get_room_num_above(num)
 	neighbors += get_room_num_under(num)
 	return(neighbors)
 
-/obj/crawler/map_maker/proc/get_all_free_neighbors(var/num)
+/obj/crawler/map_maker/proc/get_all_free_neighbors(num)
 	var/list/neighbors = list()
 	var/list/free_neighbors = list()
 	neighbors = neighbors + get_all_neighbors(num)
@@ -208,7 +208,7 @@
 		return 0
 
 
-/obj/crawler/map_maker/proc/get_relative(var/num, var/r_direction)
+/obj/crawler/map_maker/proc/get_relative(num, r_direction)
 	switch(r_direction)
 		if (NORTH)
 			return get_room_num_above(num)
@@ -219,7 +219,7 @@
 		if (EAST)
 			return get_room_num_right(num)
 
-/obj/crawler/map_maker/proc/is_generated(var/num)
+/obj/crawler/map_maker/proc/is_generated(num)
 	for (var/obj/crawler/room_controller/room in occupied_rooms)
 		if (room.roomnum == num)
 			return 1
@@ -325,7 +325,7 @@
 		W.update_connections(1)
 
 
-/obj/crawler/map_maker/proc/can_generate(var/roomnumber, var/datum/map_template/dungeon_template/r_template)
+/obj/crawler/map_maker/proc/can_generate(roomnumber, datum/map_template/dungeon_template/r_template)
 	var/list/disallowed_dirs = list()
 	var/obj/crawler/room_controller/c_room = get_room_by_num(roomnumber)
 	if(c_room.above)
@@ -339,7 +339,7 @@
 	//testing("CAN GENERATE!")
 	return 1
 
-/obj/crawler/map_maker/proc/can_connect(var/roomnumber, var/prevnum, var/datum/map_template/dungeon_template/r_template)
+/obj/crawler/map_maker/proc/can_connect(roomnumber, prevnum, datum/map_template/dungeon_template/r_template)
 	var/rc_dir = get_dir(get_room_by_num(roomnumber), get_room_by_num(prevnum))
 	var/cr_dir = get_dir(get_room_by_num(prevnum), get_room_by_num(roomnumber))
 	//testing(roomnumber)
@@ -363,7 +363,7 @@
 	else
 		return 0
 
-/obj/crawler/map_maker/proc/generate_room(var/roomnumber, var/roomtype, var/prevnum)
+/obj/crawler/map_maker/proc/generate_room(roomnumber, roomtype, prevnum)
 	var/datum/map_template/r_template = null
 	var/obj/crawler/room_controller/c_room = get_room_by_num(roomnumber)
 	var/turf/T = get_turf(c_room)

@@ -89,7 +89,7 @@
 	player_setup.sanitize_setup()
 	return 1
 
-/datum/preferences/proc/update_setup(var/savefile/preferences, var/savefile/character)
+/datum/preferences/proc/update_setup(savefile/preferences, savefile/character)
 	if(!preferences || !character)
 		return 0
 	return player_setup.update_setup(preferences, character)

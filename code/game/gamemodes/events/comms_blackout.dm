@@ -30,7 +30,7 @@
 		T.emp_act(1)
 
 
-/proc/communications_blackout(var/silent = 1)
+/proc/communications_blackout(silent = 1)
 
 	if(!silent)
 		command_announcement.Announce("Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you-BZZT", new_sound = 'sound/misc/interference.ogg')

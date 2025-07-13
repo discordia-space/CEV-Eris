@@ -37,7 +37,7 @@ var/list/department_radio_keys = list(
 
 
 var/list/channel_to_radio_key = new
-/proc/get_radio_key_from_channel(var/channel)
+/proc/get_radio_key_from_channel(channel)
 	var/key = channel_to_radio_key[channel]
 	if(!key)
 		for(var/radio_key in department_radio_keys)
@@ -73,7 +73,7 @@ var/list/channel_to_radio_key = new
 /mob/living/proc/is_muzzled()
 	return 0
 
-/mob/living/proc/handle_speech_problems(var/message, var/verb)
+/mob/living/proc/handle_speech_problems(message, verb)
 	var/list/returns[3]
 	var/speech_problem_flag = 0
 
@@ -115,7 +115,7 @@ var/list/channel_to_radio_key = new
 	returns[2] = null
 	return returns
 
-/mob/living/proc/get_speech_ending(verb, var/ending)
+/mob/living/proc/get_speech_ending(verb, ending)
 	if(ending=="!")
 		return pick(verb_exclaim, verb_yell)
 	else if(ending=="?")
@@ -124,14 +124,14 @@ var/list/channel_to_radio_key = new
 	return verb
 
 // returns message
-/mob/living/proc/getSpeechVolume(var/message)
+/mob/living/proc/getSpeechVolume(message)
 	var/volume = chem_effects[CE_SPEECH_VOLUME] ? round(chem_effects[CE_SPEECH_VOLUME]) : 2	// 2 is default text size in byond chat
 	var/ending = copytext(message, length(message))
 	if(ending == "!")
 		volume ++
 	return volume
 
-/mob/living/say(var/message, var/datum/language/speaking = null, var/verb = src.verb_say, var/alt_name="")
+/mob/living/say(message, datum/language/speaking = null, verb = src.verb_say, alt_name="")
 	if(client)
 		if(client.prefs.muted&MUTE_IC)
 			to_chat(src, span_red("You cannot speak in IC (Muted)."))
@@ -367,7 +367,7 @@ var/list/channel_to_radio_key = new
 	animate(I, alpha = 0, time = 1, easing = EASE_IN)
 
 
-/mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
+/mob/living/proc/say_signlang(message, verb="gestures", datum/language/language)
 	for (var/mob/O in viewers(get_turf(src)))
 		O.hear_signlang(message, verb, language, src)
 	return 1
@@ -472,7 +472,7 @@ var/list/channel_to_radio_key = new
 
 	..()
 
-/mob/living/proc/hear_sleep(var/message)
+/mob/living/proc/hear_sleep(message)
 	var/heard = ""
 	if(prob(15))
 		var/list/punctuation = list(",", "!", ".", ";", "?")

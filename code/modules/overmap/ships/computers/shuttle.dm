@@ -2,7 +2,7 @@
 /obj/machinery/computer/shuttle_control/explore
 	name = "general shuttle control console"
 
-/obj/machinery/computer/shuttle_control/explore/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/shuttle_control/explore/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 	var/datum/shuttle/autodock/overmap/shuttle = SSshuttle.shuttles[shuttle_tag]
 	if (!istype(shuttle))
@@ -69,7 +69,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/computer/shuttle_control/explore/get_ui_data(var/datum/shuttle/autodock/overmap/shuttle)
+/obj/machinery/computer/shuttle_control/explore/get_ui_data(datum/shuttle/autodock/overmap/shuttle)
 	. = ..()
 	if(istype(shuttle))
 		. += list(
@@ -77,7 +77,7 @@
 			"can_pick" = shuttle.moving_status == SHUTTLE_IDLE,
 		)
 
-/obj/machinery/computer/shuttle_control/explore/handle_topic_href(var/datum/shuttle/autodock/overmap/shuttle, var/list/href_list)
+/obj/machinery/computer/shuttle_control/explore/handle_topic_href(datum/shuttle/autodock/overmap/shuttle, list/href_list)
 	if((. = ..()) != null)
 		return
 

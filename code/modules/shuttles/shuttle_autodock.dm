@@ -20,7 +20,7 @@
 
 	category = /datum/shuttle/autodock
 
-/datum/shuttle/autodock/New(var/_name, var/obj/effect/shuttle_landmark/start_waypoint)
+/datum/shuttle/autodock/New(_name, obj/effect/shuttle_landmark/start_waypoint)
 	..(_name, start_waypoint)
 
 	//Initial dock
@@ -49,7 +49,7 @@
 	force_undock() //bye!
 	..()
 
-/datum/shuttle/autodock/proc/get_docking_target(var/obj/effect/shuttle_landmark/location)
+/datum/shuttle/autodock/proc/get_docking_target(obj/effect/shuttle_landmark/location)
 	if(location && location.special_dock_targets)
 		if(location.special_dock_targets[name])
 			return location.special_dock_targets[name]
@@ -145,7 +145,7 @@
 /*
 	"Public" procs
 */
-/datum/shuttle/autodock/proc/launch(var/user)
+/datum/shuttle/autodock/proc/launch(user)
 	if (!can_launch()) return
 
 	in_use = user	//obtain an exclusive lock on the shuttle
@@ -153,14 +153,14 @@
 	process_state = WAIT_LAUNCH
 	undock()
 
-/datum/shuttle/autodock/proc/force_launch(var/user)
+/datum/shuttle/autodock/proc/force_launch(user)
 	if (!can_force()) return
 
 	in_use = user	//obtain an exclusive lock on the shuttle
 
 	process_state = FORCE_LAUNCH
 
-/datum/shuttle/autodock/proc/cancel_launch(var/user)
+/datum/shuttle/autodock/proc/cancel_launch(user)
 	if (!can_cancel()) return
 
 	moving_status = SHUTTLE_IDLE

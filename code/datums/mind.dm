@@ -371,7 +371,7 @@
 
 
 
-/datum/mind/proc/manifest_status(var/datum/computer_file/report/crew_record/CR)
+/datum/mind/proc/manifest_status(datum/computer_file/report/crew_record/CR)
 	var/inactive_time = world.time - last_activity
 	if (inactive_time >= 60 MINUTES)
 		return null //The server hasn't seen us alive in an hour.

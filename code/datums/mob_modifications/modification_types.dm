@@ -1,10 +1,10 @@
 /datum/mobModification/memory
 	var/_memory = ""
 
-/datum/mobModification/memory/addData(var/value)
+/datum/mobModification/memory/addData(value)
 	_memory += "\n[value]"
 
-/datum/mobModification/memory/apply(var/mob/M)
+/datum/mobModification/memory/apply(mob/M)
 	if(!..())
 		return
 	if(M.mind)
@@ -18,10 +18,10 @@
 	var/list/_stats = list()
 
 // keep "time" null or 0 for permanent buff
-/datum/mobModification/stats/addData(var/name, var/value, var/time = 0)
+/datum/mobModification/stats/addData(name, value, time = 0)
 	_stats[name] = list("value" = value, "time" = time)
 
-/datum/mobModification/stats/apply(var/mob/M)
+/datum/mobModification/stats/apply(mob/M)
 	if(!..())
 		return
 	if(M.stats)
@@ -38,10 +38,10 @@
 /datum/mobModification/languages
 	var/list/_languages = list()
 
-/datum/mobModification/languages/addData(var/value)
+/datum/mobModification/languages/addData(value)
 	_languages.Add(value)
 
-/datum/mobModification/languages/apply(var/mob/M)
+/datum/mobModification/languages/apply(mob/M)
 	if(!..())
 		return
 	var/mob/living/L = M
@@ -59,10 +59,10 @@
 /datum/mobModification/craftingRecipes
 	var/list/_craftingRecipes = list()
 
-/datum/mobModification/craftingRecipes/addData(var/value)
+/datum/mobModification/craftingRecipes/addData(value)
 	_craftingRecipes.Add(value)
 
-/datum/mobModification/craftingRecipes/apply(var/mob/M)
+/datum/mobModification/craftingRecipes/apply(mob/M)
 	if(!..())
 		return
 	for(var/recipe in _craftingRecipes)

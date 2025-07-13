@@ -1,5 +1,5 @@
 // Operates NanoUI
-/obj/item/modular_computer/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/modular_computer/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(!screen_on || !enabled || bsod)
 		if(ui)
 			ui.close()

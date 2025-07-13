@@ -1,4 +1,4 @@
-/datum/extension/multitool/circuitboards/stationalert/get_interact_window(var/obj/item/tool/multitool/M, var/mob/user)
+/datum/extension/multitool/circuitboards/stationalert/get_interact_window(obj/item/tool/multitool/M, mob/user)
 	var/obj/item/electronics/circuitboard/stationalert/SA = holder
 	. += "<b>Alarm Sources</b><br>"
 	. += "<table>"

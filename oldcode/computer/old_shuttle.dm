@@ -8,7 +8,7 @@
 	var/list/authorized = list(  )
 
 
-/obj/machinery/computer/shuttle/attackby(var/obj/item/card/W as obj, var/mob/user as mob)
+/obj/machinery/computer/shuttle/attackby(obj/item/card/W as obj, mob/user as mob)
 	if(stat & (BROKEN|NOPOWER))	return
 	if ((!( istype(W, /obj/item/card) ) || !( ticker ) || emergency_shuttle.location() || !( user )))	return
 	if (istype(W, /obj/item/card/id)||istype(W, /obj/item/modular_computer))

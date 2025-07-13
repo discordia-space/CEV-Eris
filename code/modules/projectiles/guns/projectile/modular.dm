@@ -63,7 +63,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/gun/projectile/automatic/modular/set_quality(var/new_quality = 0, doesReset = TRUE)
+/obj/item/gun/projectile/automatic/modular/set_quality(new_quality = 0, doesReset = TRUE)
 	for(var/part_path in required_parts)
 		var/obj/item/part/gun/modular/gun_part = locate(part_path) in contents
 		if(gun_part)

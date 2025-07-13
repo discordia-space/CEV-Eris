@@ -50,7 +50,7 @@
 				admin_notice("Could not find docking controller for shuttle waypoint '[name]', docking tag was '[docking_tag]'.")
 		SSshuttle.register_landmark(tag, src)
 
-/obj/effect/shuttle_landmark/proc/is_valid(var/datum/shuttle/shuttle)
+/obj/effect/shuttle_landmark/proc/is_valid(datum/shuttle/shuttle)
 	if(shuttle.current_location == src)
 		return FALSE
 	for(var/area/A in shuttle.shuttle_area)
@@ -63,7 +63,7 @@
 	GLOB.shuttle_landmarks_list -= src
 	return ..()
 
-/obj/effect/shuttle_landmark/proc/check_collision(var/list/turf_translation)
+/obj/effect/shuttle_landmark/proc/check_collision(list/turf_translation)
 	for(var/source in turf_translation)
 		var/turf/target = turf_translation[source]
 		if(!target)
@@ -92,7 +92,7 @@
 		return
 	add_to_sector(map_sectors["[z]"])
 
-/obj/effect/shuttle_landmark/automatic/proc/add_to_sector(var/obj/effect/overmap/O, var/tag_only)
+/obj/effect/shuttle_landmark/automatic/proc/add_to_sector(obj/effect/overmap/O, tag_only)
 	if(!istype(O))
 		return
 	if(shuttle_restricted)
@@ -125,7 +125,7 @@
 	light_color = COLOR_LIGHTING_BLUE_MACHINERY
 	var/active
 
-/obj/item/device/spaceflare/attack_self(var/mob/user)
+/obj/item/device/spaceflare/attack_self(mob/user)
 	if(!active)
 		visible_message(span_notice("[user] pulls the cord, activating the [src]."))
 		activate()
@@ -163,5 +163,5 @@
 
 
 //Called when the landmark is added to an overmap sector.
-/obj/effect/shuttle_landmark/proc/sector_set(var/obj/effect/overmap/O, shuttle_name)
+/obj/effect/shuttle_landmark/proc/sector_set(obj/effect/overmap/O, shuttle_name)
 	shuttle_restricted = shuttle_name

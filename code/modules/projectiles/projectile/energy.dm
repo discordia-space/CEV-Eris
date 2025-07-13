@@ -19,7 +19,7 @@
 	var/brightness = 7
 	var/light_duration = 5
 
-/obj/item/projectile/energy/flash/on_impact(var/atom/A)
+/obj/item/projectile/energy/flash/on_impact(atom/A)
 	var/turf/T = flash_range? src.loc : get_turf(A)
 	if(!istype(T)) return
 

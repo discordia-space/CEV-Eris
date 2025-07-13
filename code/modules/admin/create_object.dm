@@ -4,7 +4,7 @@ var/list/create_object_forms = list(/obj, /obj/structure, /obj/machinery,
 								/obj/item/clothing, /obj/item/stack, /obj/item/device,
 								/obj/item/reagent_containers, /obj/item/gun)
 
-/datum/admins/proc/create_object(var/mob/user)
+/datum/admins/proc/create_object(mob/user)
 	if (!create_object_html)
 		var/objectjs = null
 		objectjs = jointext(typesof(/obj), ";")
@@ -13,7 +13,7 @@ var/list/create_object_forms = list(/obj, /obj/structure, /obj/machinery,
 
 	user << browse(replacetext(create_object_html, "/* ref src */", "\ref[src]"), "window=create_object;size=425x475")
 
-/datum/admins/proc/quick_create_object(var/mob/user)
+/datum/admins/proc/quick_create_object(mob/user)
 	var/path = input("Select the path of the object you wish to create.", "Path", /obj) in create_object_forms
 	var/html_form = create_object_forms[path]
 

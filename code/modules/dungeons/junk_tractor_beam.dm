@@ -24,7 +24,7 @@
 		"SpaceWrecks" = 0
 		) // available affinities
 
-/datum/junk_field/New(var/ID, var/field_affinity = null)
+/datum/junk_field/New(ID, field_affinity = null)
 	name = "Junk Field #[ID]"
 	asteroid_belt_status = has_asteroid_belt()
 	if (field_affinity && (field_affinity in affinities))
@@ -126,12 +126,12 @@
 			jf_counter++
 	return
 
-/obj/jtb_generator/proc/add_specific_junk_field(var/field_affinity)
+/obj/jtb_generator/proc/add_specific_junk_field(field_affinity)
 	jf_pool += new /datum/junk_field(jf_counter, field_affinity)
 	jf_counter++
 	return
 
-/obj/jtb_generator/proc/field_capture(var/turf/T)
+/obj/jtb_generator/proc/field_capture(turf/T)
 	beam_state = BEAM_CAPTURING
 	spawn(beam_capture_time)
 		if(src && beam_state == BEAM_CAPTURING)  // Check if jtb_generator has not been destroyed during spawn time and if capture has not been cancelled
@@ -148,7 +148,7 @@
 			beam_state = BEAM_STABILIZED  // Junk field has been created and portals linked
 	return
 
-/obj/jtb_generator/proc/create_link_portal(var/turf/T)
+/obj/jtb_generator/proc/create_link_portal(turf/T)
 	ship_portal = new /obj/effect/portal/jtb(T)  // Spawn portal on ship
 	ship_portal.set_target(get_turf(jtb_portal))  // Link the two portals
 	jtb_portal.set_target(get_turf(ship_portal))
@@ -177,11 +177,11 @@
 		res["[JF.asteroid_belt_status ? "Asteroid Belt - " : ""][JF.affinity] [JF.name]"] = JF
 	return res
 
-/obj/jtb_generator/proc/set_field(var/datum/junk_field/JF)
+/obj/jtb_generator/proc/set_field(datum/junk_field/JF)
 	current_jf = JF
 	return
 
-/obj/jtb_generator/proc/cleanup_junk_field_progressive(var/x1, var/x2, var/y1, var/y2)
+/obj/jtb_generator/proc/cleanup_junk_field_progressive(x1, x2, y1, y2)
 	log_world("Starting junk field cleanup at zlevel [loc.z].")
 	var/n = 10
 	var/dt = beam_cooldown_time / (n+1)
@@ -194,7 +194,7 @@
 
 	log_world("Junk field cleanup is over at zlevel [loc.z].")
 
-/obj/jtb_generator/proc/cleanup_junk_field(var/x1, var/x2, var/y1, var/y2)
+/obj/jtb_generator/proc/cleanup_junk_field(x1, x2, y1, y2)
 
 	for(var/i = x1 to x2)
 		for(var/j = y1 to y2)
@@ -294,7 +294,7 @@
 			sleep(delay)
 
 // Check if the turfs associated with cell (x,y) are empty
-/obj/jtb_generator/proc/check_occupancy(var/x, var/y)
+/obj/jtb_generator/proc/check_occupancy(x, y)
 	for(var/turf/T in block(locate(5 * x - 4 + JTB_OFFSET, 5 * y - 4 + JTB_OFFSET, loc.z), locate(5 * (x + 1) - 4 + JTB_OFFSET, 5 * (y + 1) - 4 + JTB_OFFSET, loc.z)))
 		if(!istype(T,/turf/space))
 			return 1
@@ -420,7 +420,7 @@
 	return
 
 // Fix the stuff the chunk loader does not do properly...
-/obj/jtb_generator/proc/fix_chunk_loading(var/Tx, var/Ty, var/off, var/ori)
+/obj/jtb_generator/proc/fix_chunk_loading(Tx, Ty, off, ori)
 	for(var/turf/TM in block(locate(Tx, Ty, z), locate(Tx + off, Ty + off, z)))
 		// Remove atmosphere
 		TM.oxygen = 0
@@ -510,7 +510,7 @@
 	return
 
 // Detect if the object is a type that should be rotated
-/obj/jtb_generator/proc/intypes(var/obj/O)
+/obj/jtb_generator/proc/intypes(obj/O)
 	return (istype(O, /obj/structure) || istype(O, /obj/machinery/camera) || istype(O, /obj/machinery/light) || istype(O, /obj/machinery/atmospherics/pipe/) || istype(O, /obj/item/modular_computer) || istype(O, /obj/machinery/door/window/))
 
 // Make all junk field mobs friends with one another
@@ -577,7 +577,7 @@
 			if(i==3 && j==3)
 				spot_add(3,3,/obj/effect/portal/jtb)
 
-/proc/load_chunk(turf/corner_turf, datum/map_template/template, var/ori)
+/proc/load_chunk(turf/corner_turf, datum/map_template/template, ori)
 	if(!template)
 		return FALSE
 	if(ori == WEST || ori == EAST)
@@ -587,7 +587,7 @@
 	return TRUE
 
 // Copy of /obj/asteroid_generator/proc/generate_asteroid
-/obj/jtb_generator/proc/generate_asteroid(var/core_min = 2, var/core_max = 5)
+/obj/jtb_generator/proc/generate_asteroid(core_min = 2, core_max = 5)
 	var/datum/rogue/asteroid/A = new(rand(core_min,core_max))
 
 	for(var/x = 1; x <= A.coresize, x++)
@@ -626,7 +626,7 @@
 	return A
 
 // Copy of /obj/asteroid_generator/proc/place_asteroid
-/obj/jtb_generator/proc/place_asteroid(var/datum/rogue/asteroid/A,var/obj/asteroid_spawner/SP)
+/obj/jtb_generator/proc/place_asteroid(datum/rogue/asteroid/A,obj/asteroid_spawner/SP)
 	ASSERT(SP && A)
 
 	SP.myasteroid = A
@@ -697,7 +697,7 @@
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/computer/jtb_console/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/jtb_console/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(!jtb_gen)
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
 		audible_message(span_warning("The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'"))
@@ -835,7 +835,7 @@
 /obj/machinery/computer/jtb_console/proc/get_possible_fields()
 	return jtb_gen.get_possible_fields()
 
-/obj/machinery/computer/jtb_console/proc/set_field(var/datum/junk_field/JF)
+/obj/machinery/computer/jtb_console/proc/set_field(datum/junk_field/JF)
 	jtb_gen.set_field(JF)
 	return
 

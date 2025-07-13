@@ -28,7 +28,7 @@
 	SStgui.close_uis(src)
 	. = ..()
 
-/obj/Topic(href, href_list, var/datum/nano_topic_state/state = GLOB.default_state)
+/obj/Topic(href, href_list, datum/nano_topic_state/state = GLOB.default_state)
 	if(..())
 		return 1
 
@@ -238,7 +238,7 @@
 
 //To be called from things that spill objects on the floor.
 //Makes an object move around randomly for a couple of tiles
-/obj/proc/tumble(var/dist = 2)
+/obj/proc/tumble(dist = 2)
 	set waitfor = FALSE
 	if (dist >= 1)
 		dist += rand(0,1)

@@ -1,10 +1,10 @@
-/proc/cmp_camera_ctag_asc(var/obj/machinery/camera/a, var/obj/machinery/camera/b)
+/proc/cmp_camera_ctag_asc(obj/machinery/camera/a, obj/machinery/camera/b)
 	return sorttext(b.c_tag, a.c_tag)
 
-/proc/cmp_camera_ctag_dsc(var/obj/machinery/camera/a, var/obj/machinery/camera/b)
+/proc/cmp_camera_ctag_dsc(obj/machinery/camera/a, obj/machinery/camera/b)
 	return sorttext(a.c_tag, b.c_tag)
 
-/proc/cmp_crew_sensor_modifier(var/datum/crew_sensor_modifier/a, var/datum/crew_sensor_modifier/b)
+/proc/cmp_crew_sensor_modifier(datum/crew_sensor_modifier/a, datum/crew_sensor_modifier/b)
 	return b.priority - a.priority
 
 /proc/cmp_name_or_type_asc(atom/a, atom/b)

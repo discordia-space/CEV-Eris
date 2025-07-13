@@ -42,7 +42,7 @@
 			diffuse(get_step(src, d))
 
 
-/obj/machinery/shield_diffuser/proc/diffuse(var/turf/T)
+/obj/machinery/shield_diffuser/proc/diffuse(turf/T)
 	if (!T)
 		return
 
@@ -71,7 +71,7 @@
 	update_turfs()
 	. = ..()
 
-/obj/machinery/shield_diffuser/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/shield_diffuser/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	update_turfs()
 
@@ -106,7 +106,7 @@
 	update_icon()
 	to_chat(usr, "You turn \the [src] [enabled ? "on" : "off"].")
 
-/obj/machinery/shield_diffuser/proc/meteor_alarm(var/duration)
+/obj/machinery/shield_diffuser/proc/meteor_alarm(duration)
 	if(!duration)
 		return
 	alarm = round(max(alarm, duration))

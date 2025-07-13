@@ -1,6 +1,6 @@
 var/list/flooring_types
 
-/proc/get_flooring_data(var/flooring_path)
+/proc/get_flooring_data(flooring_path)
 	if(!flooring_types)
 		flooring_types = list()
 		for(var/path in typesof(/decl/flooring))
@@ -110,15 +110,15 @@ var/list/flooring_types
 	var/list/movable_atom_blacklist = list()
 
 //Flooring Procs
-/decl/flooring/proc/get_plating_type(var/turf/location)
+/decl/flooring/proc/get_plating_type(turf/location)
 	return plating_type
 
 //Used to check if we can build the specified type of floor ontop of this one
-/decl/flooring/proc/can_build_floor(var/decl/flooring/newfloor)
+/decl/flooring/proc/can_build_floor(decl/flooring/newfloor)
 	return FALSE
 
 //Used when someone attacks the floor
-/decl/flooring/proc/attackby(var/obj/item/I, var/mob/user, var/turf/T)
+/decl/flooring/proc/attackby(obj/item/I, mob/user, turf/T)
 	return FALSE
 
 /decl/flooring/proc/Entered(mob/living/M as mob)
@@ -182,12 +182,12 @@ var/list/flooring_types
 	movable_atom_whitelist = list(list(/obj/machinery/door/airlock, list(), 2))
 
 //Normal plating allows anything, except other types of plating
-/decl/flooring/reinforced/plating/can_build_floor(var/decl/flooring/newfloor)
+/decl/flooring/reinforced/plating/can_build_floor(decl/flooring/newfloor)
 	if (istype(newfloor, /decl/flooring/reinforced/plating))
 		return FALSE
 	return TRUE
 
-/decl/flooring/reinforced/plating/get_plating_type(var/turf/location)
+/decl/flooring/reinforced/plating/get_plating_type(turf/location)
 	if (turf_is_upper_hull(location))
 		return null
 	return plating_type
@@ -214,12 +214,12 @@ var/list/flooring_types
 	smooth_movable_atom = SMOOTH_NONE
 
 //Underplating can only be upgraded to normal plating
-/decl/flooring/reinforced/plating/under/can_build_floor(var/decl/flooring/newfloor)
+/decl/flooring/reinforced/plating/under/can_build_floor(decl/flooring/newfloor)
 	if (newfloor.type == /decl/flooring/reinforced/plating)
 		return TRUE
 	return FALSE
 
-/decl/flooring/reinforced/plating/under/attackby(var/obj/item/I, var/mob/user, var/turf/T)
+/decl/flooring/reinforced/plating/under/attackby(obj/item/I, mob/user, turf/T)
 	if (istype(I, /obj/item/stack/rods))
 		.=TRUE
 		var/obj/item/stack/rods/R = I
@@ -283,10 +283,10 @@ var/list/flooring_types
 	smooth_movable_atom = SMOOTH_NONE
 
 //Hull can downgrade to underplating
-/decl/flooring/reinforced/plating/hull/can_build_floor(var/decl/flooring/newfloor)
+/decl/flooring/reinforced/plating/hull/can_build_floor(decl/flooring/newfloor)
 	return FALSE //Not allowed to build directly on hull, you must first remove it and then build on the underplating
 
-/decl/flooring/reinforced/plating/hull/get_plating_type(var/turf/location)
+/decl/flooring/reinforced/plating/hull/get_plating_type(turf/location)
 	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
 		return null
 	else if (turf_is_upper_hull(location))

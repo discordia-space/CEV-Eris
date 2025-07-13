@@ -56,7 +56,7 @@
 /obj/machinery/door/can_prevent_fall(above)
 	return above ? density : null
 
-/obj/machinery/door/attack_generic(mob/user, var/damage)
+/obj/machinery/door/attack_generic(mob/user, damage)
 	if(damage >= resistance)
 		visible_message(span_danger("\The [user] smashes into \the [src]!"))
 		take_damage(damage)
@@ -172,7 +172,7 @@
 			do_animate("deny")
 	return TRUE
 
-/obj/machinery/door/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/door/bullet_act(obj/item/projectile/Proj)
 	..()
 
 	var/damage = Proj.get_structure_damage()
@@ -200,7 +200,7 @@
 
 
 
-/obj/machinery/door/proc/hit_by_living(var/mob/living/M)
+/obj/machinery/door/proc/hit_by_living(mob/living/M)
 	var/body_part = pick(BP_HEAD, BP_CHEST, BP_GROIN)
 	visible_message(span_danger("[M] slams against \the [src]!"))
 	if(prob(30))
@@ -208,7 +208,7 @@
 	M.damage_through_armor(rand(5,8), BRUTE, body_part, ARMOR_MELEE)
 	take_damage(M.mob_size)
 
-/obj/machinery/door/hitby(AM as mob|obj, var/speed=5)
+/obj/machinery/door/hitby(AM as mob|obj, speed=5)
 
 	..()
 	var/damage = 5
@@ -317,7 +317,7 @@
 		do_animate("deny")
 	return
 
-/obj/machinery/door/emag_act(var/remaining_charges)
+/obj/machinery/door/emag_act(remaining_charges)
 	if(density && operable())
 		do_animate("spark")
 		sleep(6)
@@ -327,7 +327,7 @@
 
 
 
-/obj/machinery/door/proc/hit(var/mob/user, var/obj/item/I, var/thrown = FALSE)
+/obj/machinery/door/proc/hit(mob/user, obj/item/I, thrown = FALSE)
 	var/obj/item/W = I
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	var/calc_damage
@@ -429,7 +429,7 @@
 	return
 
 
-/obj/machinery/door/proc/open(var/forced = 0)
+/obj/machinery/door/proc/open(forced = 0)
 	if(!can_open(forced))
 		return FALSE
 	operating = TRUE
@@ -455,7 +455,7 @@
 		addtimer(CALLBACK(src, PROC_REF(close)), wait)
 	return TRUE
 
-/obj/machinery/door/proc/close(var/forced = 0)
+/obj/machinery/door/proc/close(forced = 0)
 	set waitfor = FALSE
 	if(!can_close(forced))
 		return
@@ -506,7 +506,7 @@
 		else
 			source.thermal_conductivity = initial(source.thermal_conductivity)
 
-/obj/machinery/door/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/door/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	//update_nearby_tiles()
 	. = ..()
 	if(width > 1)

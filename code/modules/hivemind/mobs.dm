@@ -815,7 +815,7 @@
 
 
 
-/mob/living/simple_animal/hostile/hivemind/mechiver/proc/release_passenger(var/safely = FALSE)
+/mob/living/simple_animal/hostile/hivemind/mechiver/proc/release_passenger(safely = FALSE)
 	if(passenger)
 		if(pilot)
 			flick("mechiver-opening", src)
@@ -1037,7 +1037,7 @@
 
 
 //first part of phase moving is just preparation
-/mob/living/simple_animal/hostile/hivemind/phaser/proc/phase_move_to(atom/target, var/nearby = FALSE)
+/mob/living/simple_animal/hostile/hivemind/phaser/proc/phase_move_to(atom/target, nearby = FALSE)
 	var/turf/new_place
 	var/distance_to_target = get_dist(src, target)
 	var/turf/target_turf = get_turf(target)

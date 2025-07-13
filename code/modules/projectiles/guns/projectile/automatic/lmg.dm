@@ -64,7 +64,7 @@
 	else
 		return ..() //once open, behave like normal
 
-/obj/item/gun/projectile/automatic/lmg/equipped(var/mob/user, var/slot)
+/obj/item/gun/projectile/automatic/lmg/equipped(mob/user, slot)
 	.=..()
 	update_icon()
 
@@ -74,13 +74,13 @@
 	wielded_item_state = "_doble_[cover_open ? "open" : ""][ammo_magazine ? "mag" : ""]"
 	update_wear_icon()
 
-/obj/item/gun/projectile/automatic/lmg/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/automatic/lmg/load_ammo(obj/item/A, mob/user)
 	if(!cover_open)
 		to_chat(user, span_warning("You need to open the cover to load [src]."))
 		return
 	..()
 
-/obj/item/gun/projectile/automatic/lmg/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/automatic/lmg/unload_ammo(mob/user, allow_dump=1)
 	if(!cover_open)
 		to_chat(user, span_warning("You need to open the cover to unload [src]."))
 		return

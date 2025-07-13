@@ -58,7 +58,7 @@ Pipelines + Other Objects -> Pipe network
 		return
 	..()
 
-/obj/machinery/atmospherics/proc/add_underlay(var/turf/T, var/obj/machinery/atmospherics/node, var/direction, var/icon_connect_type)
+/obj/machinery/atmospherics/proc/add_underlay(turf/T, obj/machinery/atmospherics/node, direction, icon_connect_type)
 	if(node)
 		if(T && !T.is_plating() && node.level == BELOW_PLATING_LEVEL && istype(node, /obj/machinery/atmospherics/pipe))
 			//underlays += icon_manager.get_atmos_icon("underlay_down", direction, color_cache_name(node))
@@ -82,7 +82,7 @@ Pipelines + Other Objects -> Pipe network
 /obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/atmospherics/atmos1, obj/item/pipe/pipe2)
 	return (atmos1.connect_types & pipe2.connect_types)
 
-/obj/machinery/atmospherics/proc/check_icon_cache(var/safety = 0)
+/obj/machinery/atmospherics/proc/check_icon_cache(safety = 0)
 	if(!SSatoms.initialized)
 		return 0
 	if(!istype(icon_manager))
@@ -93,7 +93,7 @@ Pipelines + Other Objects -> Pipe network
 
 	return 1
 
-/obj/machinery/atmospherics/proc/color_cache_name(var/obj/machinery/atmospherics/node)
+/obj/machinery/atmospherics/proc/color_cache_name(obj/machinery/atmospherics/node)
 	//Don't use this for standard pipes
 	if(!istype(node))
 		return null

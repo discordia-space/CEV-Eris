@@ -51,10 +51,10 @@
 //	plant.ChangeOpacity(hologram_opacity)
 	overlays += plant
 
-/obj/structure/cyberplant/proc/change_plant(var/state)
+/obj/structure/cyberplant/proc/change_plant(state)
 	plant = prepare_icon(state)
 
-/obj/structure/cyberplant/proc/change_color(var/color)
+/obj/structure/cyberplant/proc/change_color(color)
 	if (!plant)
 		return
 
@@ -89,7 +89,7 @@
 	change_plant()
 	update_icon()
 
-/obj/structure/cyberplant/proc/prepare_icon(var/state)
+/obj/structure/cyberplant/proc/prepare_icon(state)
 	if(!state)
 		state = pick(possible_plants)
 

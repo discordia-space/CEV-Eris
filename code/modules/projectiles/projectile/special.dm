@@ -262,7 +262,7 @@
 		M.IgniteMob()
 		src.visible_message(span_warning("\The [src] sets [target] on fire!"))
 
-/obj/item/projectile/bullet/flare/on_impact(var/atom/A)
+/obj/item/projectile/bullet/flare/on_impact(atom/A)
 	var/turf/T = flash_range? src.loc : get_turf(A)
 	if(!istype(T)) return
 

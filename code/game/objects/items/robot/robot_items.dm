@@ -14,7 +14,7 @@
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 
-/obj/item/borg/stun/apply_hit_effect(mob/living/M, mob/living/silicon/robot/user, var/hit_zone)
+/obj/item/borg/stun/apply_hit_effect(mob/living/M, mob/living/silicon/robot/user, hit_zone)
 	if(!istype(user))
 		return
 

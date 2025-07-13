@@ -2,14 +2,14 @@
 #define SHAKE_ANIMATION_OFFSET 4
 
 //Called when the mob is hit with an item in combat.
-/mob/living/carbon/resolve_item_attack(obj/item/I, mob/living/user, var/hit_zone)
+/mob/living/carbon/resolve_item_attack(obj/item/I, mob/living/user, hit_zone)
 	if(check_attack_throat(I, user))
 		return null
 	if (!hit_zone)
 		hit_zone = "chest"
 	return ..(I, user, hit_zone)
 
-/mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, effective_force, hit_zone)
 
 	if(!effective_force)
 		return 0

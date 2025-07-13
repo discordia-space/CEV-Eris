@@ -99,7 +99,7 @@
 	SSevent.active_events -= src
 	SSevent.event_complete(src)
 
-/datum/event/New(var/datum/storyevent/_SE, var/_severity)
+/datum/event/New(datum/storyevent/_SE, _severity)
 	storyevent = _SE
 	severity = _severity
 

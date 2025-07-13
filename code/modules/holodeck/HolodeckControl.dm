@@ -31,7 +31,7 @@
 	supported_programs = list()
 	restricted_programs = list()
 
-/obj/machinery/computer/HolodeckControl/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/HolodeckControl/attack_hand(mob/user as mob)
 	if(..())
 		return 1
 	user.set_machine(src)
@@ -124,7 +124,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges, var/mob/user as mob)
+/obj/machinery/computer/HolodeckControl/emag_act(remaining_charges, mob/user as mob)
 	playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 	last_to_emag = user //emag again to change the owner
 	if (!emagged)
@@ -201,7 +201,7 @@
 				T.explosion_act(100, null)
 				T.hotspot_expose(1000,500,1)
 
-/obj/machinery/computer/HolodeckControl/proc/derez(var/obj/obj , var/silent = 1)
+/obj/machinery/computer/HolodeckControl/proc/derez(obj/obj , silent = 1)
 	holographic_objs.Remove(obj)
 
 	if(obj == null)
@@ -218,7 +218,7 @@
 		visible_message("The [oldobj.name] fades away!")
 	qdel(obj)
 
-/obj/machinery/computer/HolodeckControl/proc/checkInteg(var/area/A)
+/obj/machinery/computer/HolodeckControl/proc/checkInteg(area/A)
 	for(var/turf/T in A)
 		if(istype(T, /turf/space))
 			return 0
@@ -226,7 +226,7 @@
 	return 1
 
 //Why is it called toggle if it doesn't toggle?
-/obj/machinery/computer/HolodeckControl/proc/togglePower(var/toggleOn = 0)
+/obj/machinery/computer/HolodeckControl/proc/togglePower(toggleOn = 0)
 	if(toggleOn)
 		loadProgram(holodeck_programs["emptycourt"], 0)
 	else
@@ -242,7 +242,7 @@
 		set_power_use(IDLE_POWER_USE)
 
 
-/obj/machinery/computer/HolodeckControl/proc/loadProgram(var/datum/holodeck_program/HP, var/check_delay = 1)
+/obj/machinery/computer/HolodeckControl/proc/loadProgram(datum/holodeck_program/HP, check_delay = 1)
 	if(!HP)
 		return
 	var/area/A = locate(HP.target)
@@ -307,7 +307,7 @@
 		update_projections()
 
 
-/obj/machinery/computer/HolodeckControl/proc/toggleGravity(var/area/A)
+/obj/machinery/computer/HolodeckControl/proc/toggleGravity(area/A)
 	if(world.time < (last_gravity_change + 25))
 		if(world.time < (last_gravity_change + 15))//To prevent super-spam clicking
 			return

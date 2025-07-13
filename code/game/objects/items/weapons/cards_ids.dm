@@ -147,11 +147,11 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/card/id/proc/update_name()
 	name = "[src.registered_name]'s ID Card ([src.assignment])"
 
-/obj/item/card/id/proc/set_id_photo(var/mob/M)
+/obj/item/card/id/proc/set_id_photo(mob/M)
 	front = getFlatIcon(M, SOUTH)
 	side = getFlatIcon(M, WEST)
 
-/mob/proc/set_id_info(var/obj/item/card/id/id_card)
+/mob/proc/set_id_info(obj/item/card/id/id_card)
 	id_card.age = 0
 	id_card.registered_name		= real_name
 	id_card.sex 				= capitalize(gender)
@@ -161,7 +161,7 @@ var/const/NO_EMAG_ACT = -50
 	id_card.fingerprint_hash= fingers_trace
 	id_card.update_name()
 
-/mob/living/carbon/human/set_id_info(var/obj/item/card/id/id_card)
+/mob/living/carbon/human/set_id_info(obj/item/card/id/id_card)
 	..()
 	id_card.age = age
 

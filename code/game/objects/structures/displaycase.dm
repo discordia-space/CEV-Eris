@@ -16,7 +16,7 @@
 	var/absorbed = take_damage(target_power)
 	return absorbed
 
-/obj/structure/displaycase/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/displaycase/bullet_act(obj/item/projectile/Proj)
 	take_damage(Proj.get_structure_damage())
 	..()
 	return

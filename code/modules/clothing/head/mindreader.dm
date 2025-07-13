@@ -31,7 +31,7 @@
 	else
 		return
 
-/obj/item/clothing/head/mindreader/proc/extract_memory(var/user)
+/obj/item/clothing/head/mindreader/proc/extract_memory(user)
 	if (!user) return
 
 	if (src.loc != user || !ishuman(user))

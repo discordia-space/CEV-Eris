@@ -19,7 +19,7 @@
 
 	heat = 100
 
-/obj/item/projectile/beam/check_penetrate(var/atom/A)
+/obj/item/projectile/beam/check_penetrate(atom/A)
 	if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
 		var/loss = round(S.shield_integrity / 8)
@@ -46,7 +46,7 @@
 	tracer_type = /obj/effect/projectile/laser/plasmacutter/tracer
 	impact_type = /obj/effect/projectile/laser/plasmacutter/impact
 
-/obj/item/projectile/beam/cutter/on_impact(var/atom/A)
+/obj/item/projectile/beam/cutter/on_impact(atom/A)
 	if(istype(A, /turf/mineral))
 		var/turf/mineral/M = A
 		M.GetDrilled(5)

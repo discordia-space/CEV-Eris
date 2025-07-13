@@ -147,10 +147,10 @@
 				wearer.say(message)
 
 
-/obj/item/implant/core_implant/proc/use_power(var/value)
+/obj/item/implant/core_implant/proc/use_power(value)
 	power = max(0, power - value)
 
-/obj/item/implant/core_implant/proc/restore_power(var/value)
+/obj/item/implant/core_implant/proc/restore_power(value)
 	power = min(max_power, power + value)
 
 /obj/item/implant/core_implant/proc/auto_restore_power()
@@ -166,7 +166,7 @@
 	else
 		auto_restore_power()
 
-/obj/item/implant/core_implant/proc/get_module(var/m_type)
+/obj/item/implant/core_implant/proc/get_module(m_type)
 	if(!ispath(m_type))
 		return
 	for(var/datum/core_module/CM in modules)
@@ -174,7 +174,7 @@
 			return CM
 	process_modules()
 
-/obj/item/implant/core_implant/proc/add_module(var/datum/core_module/CM)
+/obj/item/implant/core_implant/proc/add_module(datum/core_module/CM)
 	if(!istype(src,CM.implant_type))
 		return FALSE
 
@@ -194,14 +194,14 @@
 	CM.install()
 	return TRUE
 
-/obj/item/implant/core_implant/proc/remove_module(var/datum/core_module/CM)
+/obj/item/implant/core_implant/proc/remove_module(datum/core_module/CM)
 	if(istype(CM) && CM.implant == src)
 		CM.uninstall()
 		modules.Remove(CM)
 		CM.implant = null
 		qdel(CM)
 
-/obj/item/implant/core_implant/proc/remove_modules(var/m_type)
+/obj/item/implant/core_implant/proc/remove_modules(m_type)
 	if(!ispath(m_type))
 		return
 	for(var/datum/core_module/CM in modules)

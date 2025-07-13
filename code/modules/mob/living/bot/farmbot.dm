@@ -33,7 +33,7 @@
 	if(!tank)
 		tank = new /obj/structure/reagent_dispensers/watertank(src)
 
-/mob/living/bot/farmbot/attack_hand(var/mob/user as mob)
+/mob/living/bot/farmbot/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return
@@ -63,7 +63,7 @@
 	onclose(user, "autofarm")
 	return
 
-/mob/living/bot/farmbot/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/bot/farmbot/emag_act(remaining_charges, mob/user)
 	. = ..()
 	if(!emagged)
 		if(user)
@@ -160,7 +160,7 @@
 			if(!path)
 				path = list()
 
-/mob/living/bot/farmbot/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/bot/farmbot/UnarmedAttack(atom/A, proximity)
 	if(!..())
 		return
 	if(attacking)
@@ -285,7 +285,7 @@
 	qdel(src)
 	return
 
-/mob/living/bot/farmbot/proc/process_tray(var/obj/machinery/portable_atmospherics/hydroponics/tray)
+/mob/living/bot/farmbot/proc/process_tray(obj/machinery/portable_atmospherics/hydroponics/tray)
 	if(!tray || !istype(tray))
 		return 0
 
@@ -324,7 +324,7 @@
 		new /obj/structure/reagent_dispensers/watertank(src)
 
 
-/obj/structure/reagent_dispensers/watertank/attackby(var/obj/item/robot_parts/S, mob/user as mob)
+/obj/structure/reagent_dispensers/watertank/attackby(obj/item/robot_parts/S, mob/user as mob)
 	if ((!istype(S, /obj/item/robot_parts/l_arm)) && (!istype(S, /obj/item/robot_parts/r_arm)))
 		..()
 		return

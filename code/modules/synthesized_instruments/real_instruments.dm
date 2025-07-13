@@ -144,7 +144,7 @@
 
 
 
-/datum/real_instrument/proc/ui_call(mob/user, ui_key, var/datum/nanoui/ui = null, var/force_open = 0)
+/datum/real_instrument/proc/ui_call(mob/user, ui_key, datum/nanoui/ui = null, force_open = 0)
 	var/list/data
 	data = list(
 		"playback" = list(
@@ -224,7 +224,7 @@
 	instruments = null
 	. = ..()
 
-/obj/structure/synthesized_instrument/attackby(var/obj/item/tool/tool, mob/user)
+/obj/structure/synthesized_instrument/attackby(obj/item/tool/tool, mob/user)
 	if (tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 		anchored = !anchored
 		user.visible_message( \
@@ -242,7 +242,7 @@
 	src.nano_ui_interact(user)
 
 
-/obj/structure/synthesized_instrument/nano_ui_interact(mob/user, ui_key = "instrument", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/structure/synthesized_instrument/nano_ui_interact(mob/user, ui_key = "instrument", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	real_instrument.ui_call(user,ui_key,ui,force_open)
 
 
@@ -296,7 +296,7 @@
 	src.nano_ui_interact(user)
 
 
-/obj/item/device/synthesized_instrument/nano_ui_interact(mob/user, ui_key = "instrument", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/synthesized_instrument/nano_ui_interact(mob/user, ui_key = "instrument", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	real_instrument.ui_call(user,ui_key,ui,force_open)
 
 

@@ -17,7 +17,7 @@
 		var/mob/living/L = target
 		shake_camera(L, 1, 1, 0.5)
 
-/obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, distance, miss_modifier)
+/obj/item/projectile/bullet/attack_mob(mob/living/target_mob, distance, miss_modifier)
 	if(damage_types[BRUTE] > 20 && prob(damage_types[BRUTE]*penetrating/2))
 		mob_passthrough_check = 1
 	else
@@ -111,14 +111,14 @@
 	. = ..()
 	bumped = 0 //can hit all mobs in a tile. pellets is decremented inside attack_mob so this should be fine.
 
-/obj/item/projectile/bullet/pellet/proc/get_pellets(var/distance)
+/obj/item/projectile/bullet/pellet/proc/get_pellets(distance)
 	var/pellet_loss = round((distance - 1)/range_step) //pellets lost due to distance
 	var/remaining = pellets - pellet_loss
 	if (remaining < 0)
 		return 0
 	return ROUND_PROB(remaining)
 
-/obj/item/projectile/bullet/pellet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
+/obj/item/projectile/bullet/pellet/attack_mob(mob/living/target_mob, distance, miss_modifier)
 
 
 	var/total_pellets = get_pellets(distance)
@@ -157,7 +157,7 @@
 	var/distance = get_dist(loc, starting)
 	return ..() * get_pellets(distance)
 
-/obj/item/projectile/bullet/pellet/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/item/projectile/bullet/pellet/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 
 	//If this is a shrapnel explosion, allow mobs that are prone to get hit, too
@@ -167,7 +167,7 @@
 				if(Bump(M)) //Bump will make sure we don't hit a mob multiple times
 					return
 
-/obj/item/projectile/bullet/pellet/adjust_damages(var/list/newdamages)
+/obj/item/projectile/bullet/pellet/adjust_damages(list/newdamages)
 	if(!newdamages.len)
 		return
 	for(var/damage_type in newdamages)

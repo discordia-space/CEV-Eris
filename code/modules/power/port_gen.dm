@@ -267,7 +267,7 @@
 
 	..()
 
-/obj/machinery/power/port_gen/pacman/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/power/port_gen/pacman/emag_act(remaining_charges, mob/user)
 	if (active && prob(25))
 		explode() //if they're foolish enough to emag while it's running
 
@@ -275,7 +275,7 @@
 		emagged = 1
 		return 1
 
-/obj/machinery/power/port_gen/pacman/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/power/port_gen/pacman/attackby(obj/item/I, mob/user)
 
 	if(!use_reagents_as_fuel && istype(I, sheet_path))
 		var/obj/item/stack/addstack = I
@@ -345,7 +345,7 @@
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/power/port_gen/pacman/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/power/port_gen/pacman/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(IsBroken())
 		return
 

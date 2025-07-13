@@ -141,7 +141,7 @@
 	ai_slot.update_power_usage()
 	update_uis()
 
-/obj/item/modular_computer/attack_ghost(var/mob/observer/ghost/user)
+/obj/item/modular_computer/attack_ghost(mob/observer/ghost/user)
 	if(enabled)
 		nano_ui_interact(user)
 	else if(check_rights(R_ADMIN, 0, user))
@@ -149,16 +149,16 @@
 		if(response == "Yes")
 			turn_on(user)
 
-/obj/item/modular_computer/attack_ai(var/mob/user)
+/obj/item/modular_computer/attack_ai(mob/user)
 	return attack_self(user)
 
-/obj/item/modular_computer/attack_hand(var/mob/user)
+/obj/item/modular_computer/attack_hand(mob/user)
 	if(anchored)
 		return attack_self(user)
 	return ..()
 
 // On-click handling. Turns on the computer if it's off and opens the GUI.
-/obj/item/modular_computer/attack_self(var/mob/user)
+/obj/item/modular_computer/attack_self(mob/user)
 	if(enabled && screen_on)
 		nano_ui_interact(user)
 	else if(!enabled && screen_on)

@@ -51,7 +51,7 @@
 		src.overlays.Cut()
 		return
 
-/obj/structure/closet/body_bag/store_mobs(var/stored_units)
+/obj/structure/closet/body_bag/store_mobs(stored_units)
 	contains_body = ..()
 	return contains_body
 

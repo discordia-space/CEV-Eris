@@ -46,7 +46,7 @@
 	icon_fill20 = "diskfridge-fill20"
 	icon_fill30 = "diskfridge-fill30"
 
-/obj/machinery/smartfridge/disks/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/disks/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/computer_hardware/hard_drive/portable))
 		return 1
 	return 0
@@ -60,7 +60,7 @@
 	name = "\improper Refrigerated Seeds Storage"
 	desc = "When you need seeds fast!"
 
-/obj/machinery/smartfridge/seeds/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/seeds/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/seeds/))
 		return 1
 	return 0
@@ -70,7 +70,7 @@
 	desc = "The panel says it won't allow anyone without access to the kitchen or hydroponics. Holds your seeds, produce, and basic ingredients."
 	req_one_access = list(access_hydroponics,access_kitchen)
 //Going to be a mess till I make different type paths between produce, ingredients, and finished meals. Or rebuild how smartfridges create an accept list like vendors. -Mycah
-/obj/machinery/smartfridge/kitchen/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/kitchen/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/seeds/))
 		return 1
 	if(istype(O,/obj/item/reagent_containers/food/snacks/grown/))
@@ -123,7 +123,7 @@
 	desc = "A refrigerated storage unit for slime extracts"
 	req_access = list(access_moebius)
 
-/obj/machinery/smartfridge/secure/extract/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/secure/extract/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/slime_extract))
 		return 1
 	return 0
@@ -138,7 +138,7 @@
 	desc = "A refrigerated storage unit for storing medicine and chemicals."
 	req_one_access = list(access_moebius,access_chemistry)
 
-/obj/machinery/smartfridge/secure/medbay/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/secure/medbay/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/reagent_containers/glass/))
 		return 1
 	if(istype(O,/obj/item/storage/pill_bottle/))
@@ -151,7 +151,7 @@
 	name = "\improper Smart Chemical Storage"
 	desc = "A refrigerated storage unit for medicine and chemical storage."
 
-/obj/machinery/smartfridge/chemistry/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/chemistry/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers))
 		return 1
 	return 0
@@ -169,7 +169,7 @@
 	icon_panel = "showcase-panel"
 	var/icon_fill = "showcase-fill"
 
-/obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/drinks/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/reagent_containers/glass) || istype(O,/obj/item/reagent_containers/food/drinks) || istype(O,/obj/item/reagent_containers/food/condiment))
 		return 1
 
@@ -199,7 +199,7 @@
 	var/drying_power = 0.1 //should take a bit but. why make people wait a lifetime to DRY PLANTS
 	var/currently_drying = FALSE
 
-/obj/machinery/smartfridge/drying_rack/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/drying_rack/accept_check(obj/item/O as obj)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/))
 		var/obj/item/reagent_containers/food/snacks/S = O
 		if (S.dried_type)
@@ -275,7 +275,7 @@
 	wires = null
 	return ..()
 
-/obj/machinery/smartfridge/proc/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/proc/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/) || istype(O,/obj/item/reagent_containers/food/snacks/meat/) || istype(O,/obj/item/reagent_containers/food/snacks/egg/))
 		return 1
 	return 0
@@ -321,7 +321,7 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/smartfridge/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/smartfridge/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/tool/screwdriver))
 		panel_open = !panel_open
 		user.visible_message("[user] [panel_open ? "opens" : "closes"] the maintenance panel of \the [src].", "You [panel_open ? "open" : "close"] the maintenance panel of \the [src].")
@@ -374,7 +374,7 @@
 		to_chat(user, span_notice("\The [src] smartly refuses [O]."))
 		return 1
 
-/obj/machinery/smartfridge/secure/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/smartfridge/secure/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		emagged = 1
 		locked = -1
@@ -396,7 +396,7 @@
 *   SmartFridge Menu
 ********************/
 
-/obj/machinery/smartfridge/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/smartfridge/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	user.set_machine(src)
 
 	var/data[0]

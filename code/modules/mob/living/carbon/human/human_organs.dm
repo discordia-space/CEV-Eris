@@ -176,7 +176,7 @@
 	return	FALSE
 
 // basically has_limb()
-/mob/living/carbon/human/has_appendage(var/appendage_check)	//returns TRUE if found, type of organ modification if limb is robotic, FALSE if not found
+/mob/living/carbon/human/has_appendage(appendage_check)	//returns TRUE if found, type of organ modification if limb is robotic, FALSE if not found
 
 	if (appendage_check == BP_CHEST)
 		return TRUE
@@ -190,7 +190,7 @@
 		else return TRUE
 	return FALSE
 
-/mob/living/carbon/human/proc/restore_organ(organ_type, var/show_message = FALSE, var/heal = FALSE,)
+/mob/living/carbon/human/proc/restore_organ(organ_type, show_message = FALSE, heal = FALSE,)
 	var/obj/item/organ/E = organs_by_name[organ_type]
 	if(E && E.organ_tag != BP_HEAD && !E.vital && !E.is_usable())	//Skips heads and vital bits...
 		QDEL_NULL(E) //...because no one wants their head to explode to make way for a new one.

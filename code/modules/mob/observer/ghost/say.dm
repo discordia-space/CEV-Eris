@@ -1,4 +1,4 @@
-/mob/observer/ghost/say(var/message)
+/mob/observer/ghost/say(message)
 	message = sanitize(message)
 
 	if(!message)
@@ -16,7 +16,7 @@
 
 	. = src.say_dead(message)
 
-/mob/observer/ghost/hear_say(var/message, var/verb = src.verb_say, var/datum/language/language = null, var/alt_name = "",
+/mob/observer/ghost/hear_say(message, verb = src.verb_say, datum/language/language = null, alt_name = "",
 		var/italics = FALSE, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	if(!client)
 		return
@@ -29,7 +29,7 @@
 	..()
 
 
-/mob/observer/ghost/emote(var/act, var/type, var/message)
+/mob/observer/ghost/emote(act, type, message)
 	//message = sanitize(message) - already sanitized in verb/me_verb()
 
 	if(!message)

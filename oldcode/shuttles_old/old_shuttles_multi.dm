@@ -47,7 +47,7 @@
 /datum/shuttle/multi_shuttle/current_dock_target()
 	return destination_dock_targets[last_location]
 
-/datum/shuttle/multi_shuttle/move(var/area/origin, var/area/destination)
+/datum/shuttle/multi_shuttle/move(area/origin, area/destination)
 	..()
 	last_move = world.time
 	if (destination == src.origin)

@@ -18,7 +18,7 @@
     toggle_active()
     update_icon()
 
-/obj/machinery/excelsior_boombox/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/excelsior_boombox/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
 		return
 

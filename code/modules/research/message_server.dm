@@ -5,7 +5,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	var/sender = "Unspecified" //name of the sender
 	var/message = "Blank" //transferred message
 
-/datum/data_pda_msg/New(var/param_rec = "",var/param_sender = "",var/param_message = "")
+/datum/data_pda_msg/New(param_rec = "",param_sender = "",param_message = "")
 
 	if(param_rec)
 		recipient = param_rec
@@ -22,7 +22,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	var/id_auth = "Unauthenticated"
 	var/priority = "Normal"
 
-/datum/data_rc_msg/New(var/param_rec = "",var/param_sender = "",var/param_message = "",var/param_stamp = "",var/param_id_auth = "",var/param_priority)
+/datum/data_rc_msg/New(param_rec = "",param_sender = "",param_message = "",param_stamp = "",param_id_auth = "",param_priority)
 	if(param_rec)
 		rec_dpt = param_rec
 	if(param_sender)
@@ -89,7 +89,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	return
 
 
-/obj/machinery/message_server/proc/send_rc_message(var/recipient = "",var/sender = "",var/message = "",var/stamp = "", var/id_auth = "", var/priority = 1)
+/obj/machinery/message_server/proc/send_rc_message(recipient = "",sender = "",message = "",stamp = "", id_auth = "", priority = 1)
 	rc_msgs += new/datum/data_rc_msg(recipient,sender,message,stamp,id_auth)
 	var/authmsg = "[message]<br>"
 	if (id_auth)
@@ -205,7 +205,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	. = ..()
 
 // Sanitize inputs to avoid SQL injection attacks
-/proc/sql_sanitize_text(var/text)
+/proc/sql_sanitize_text(text)
 	text = replacetext(text, "'", "''")
 	text = replacetext(text, ";", "")
 	text = replacetext(text, "&", "")

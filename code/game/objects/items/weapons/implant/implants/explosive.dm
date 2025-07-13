@@ -39,7 +39,7 @@
 /obj/item/implant/explosive/hear_talk(mob/M, msg, verb, datum/language/speaking, speech_volume)
 	hear(msg)
 
-/obj/item/implant/explosive/hear(var/msg)
+/obj/item/implant/explosive/hear(msg)
 	var/list/replacechars = list("'" = "","\"" = "",">" = "","<" = "","(" = "",")" = "")
 	msg = replace_characters(msg, replacechars)
 	if(findtext(msg,phrase))

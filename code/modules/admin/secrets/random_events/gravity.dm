@@ -4,13 +4,13 @@
 /datum/admin_secret_item/random_event/gravity
 	name = "Toggle Station Artificial Gravity"
 
-/datum/admin_secret_item/random_event/gravity/can_execute(var/mob/user)
+/datum/admin_secret_item/random_event/gravity/can_execute(mob/user)
 	if(!SSticker.IsRoundInProgress())
 		return 0
 
 	return ..()
 
-/datum/admin_secret_item/random_event/gravity/execute(var/mob/user)
+/datum/admin_secret_item/random_event/gravity/execute(mob/user)
 	. = ..()
 	if(!.)
 		return

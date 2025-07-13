@@ -33,7 +33,7 @@
 		src << browse(HTML_SKELETON(output),"window=playerpolllist;size=500x300")
 
 
-/mob/new_player/proc/poll_player(var/poll_id = -1)
+/mob/new_player/proc/poll_player(poll_id = -1)
 	if(poll_id == -1)
 		return
 
@@ -170,7 +170,7 @@
 				src << browse(HTML_SKELETON(output),"window=playerpoll;size=500x500")
 
 
-/mob/new_player/proc/vote_on_poll(var/poll_id = -1, var/option_id = -1)
+/mob/new_player/proc/vote_on_poll(poll_id = -1, option_id = -1)
 	if(poll_id == -1 || option_id == -1)
 		return
 
@@ -230,7 +230,7 @@
 		usr << browse(null,"window=playerpoll")
 
 
-/mob/new_player/proc/log_text_poll_reply(var/poll_id = -1, var/reply_text = "")
+/mob/new_player/proc/log_text_poll_reply(poll_id = -1, reply_text = "")
 	if(poll_id == -1 || reply_text == "")
 		return
 

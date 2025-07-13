@@ -85,7 +85,7 @@
 
 	return TRUE
 
-/datum/chemical_reaction/proc/calc_reaction_progress(var/datum/reagents/holder, var/reaction_limit)
+/datum/chemical_reaction/proc/calc_reaction_progress(datum/reagents/holder, reaction_limit)
 	var/progress = reaction_limit * reaction_rate //simple exponential progression
 
 	//calculate yield
@@ -149,7 +149,7 @@
 	return reaction_progress
 
 //called when a reaction processes
-/datum/chemical_reaction/proc/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/proc/on_reaction(datum/reagents/holder, created_volume)
 	if(thermal_product)
 		holder.chem_temp += thermal_product
 	var/datum/reagents/to_splash = new()
@@ -169,7 +169,7 @@
 
 
 //called after processing reactions, if they occurred
-/datum/chemical_reaction/proc/post_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/proc/post_reaction(datum/reagents/holder)
 	var/atom/container = holder.my_atom
 	if(mix_message && container && !ismob(container))
 		var/turf/T = get_turf(container)
@@ -181,7 +181,7 @@
 
 //obtains any special data that will be provided to the reaction products
 //this is called just before reactants are removed.
-/datum/chemical_reaction/proc/send_data(var/datum/reagents/holder, var/reaction_limit)
+/datum/chemical_reaction/proc/send_data(datum/reagents/holder, reaction_limit)
 	return null
 
 // UI data used by chemical catalog
@@ -552,7 +552,7 @@
 	required_reagents = list("iron" = 5, "frostoil" = 5, "plasma" = 20)
 	result_amount = 1
 
-/datum/chemical_reaction/plasmasolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/plasmasolidification/on_reaction(datum/reagents/holder, created_volume)
 	new /obj/item/stack/material/plasma(get_turf(holder.my_atom), created_volume)
 	return
 
@@ -561,7 +561,7 @@
 	required_reagents = list("iron" = 5, "frostoil" = 5, "gold" = 20)
 	result_amount = 1
 
-/datum/chemical_reaction/goldsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/goldsolidification/on_reaction(datum/reagents/holder, created_volume)
 	new /obj/item/stack/material/gold(get_turf(holder.my_atom), created_volume)
 	return
 
@@ -570,7 +570,7 @@
 	required_reagents = list("aluminum" = 5, "frostoil" = 10, "uranium" = 20)
 	result_amount = 1
 
-/datum/chemical_reaction/uraniumsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/uraniumsolidification/on_reaction(datum/reagents/holder, created_volume)
 	new /obj/item/stack/material/uranium(get_turf(holder.my_atom), created_volume)
 	return
 
@@ -579,7 +579,7 @@
 	required_reagents = list("iron" = 5, "frostoil" = 5, "silver" = 20)
 	result_amount = 1
 
-/datum/chemical_reaction/silversolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/silversolidification/on_reaction(datum/reagents/holder, created_volume)
 	new /obj/item/stack/material/silver(get_turf(holder.my_atom), created_volume)
 	return
 
@@ -588,7 +588,7 @@
 	required_reagents = list("pacid" = 1, "plasticide" = 2)
 	result_amount = 1
 
-/datum/chemical_reaction/plastication/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/plastication/on_reaction(datum/reagents/holder, created_volume)
 	new /obj/item/stack/material/plastic(get_turf(holder.my_atom), created_volume)
 	return
 
@@ -600,7 +600,7 @@
 	result_amount = 2
 	mix_message = null
 
-/datum/chemical_reaction/explosion_potassium/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/explosion_potassium/on_reaction(datum/reagents/holder, created_volume)
 	var/datum/effect/effect/system/reagents_explosion/e = new()
 	e.set_up(round (created_volume/45, 1), holder.my_atom, 0, 0) // 600/45 = 13.3 , 13/3 = 4-3 light-range , slightly weaker than a cracker.
 	if(isliving(holder.my_atom))
@@ -619,7 +619,7 @@
 	required_reagents = list("aluminum" = 1, "potassium" = 1, "sulfur" = 1 )
 	result_amount = null
 
-/datum/chemical_reaction/flash_powder/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(2, 1, location)
@@ -639,7 +639,7 @@
 	required_reagents = list(MATERIAL_URANIUM = 1, "iron" = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
 	result_amount = 2
 
-/datum/chemical_reaction/emp_pulse/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/emp_pulse/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	// 100 created volume = 4 heavy range & 7 light range. A few tiles smaller than contractor EMP grandes.
 	// 200 created volume = 8 heavy range & 14 light range. 4 tiles larger than contractor EMP grenades.
@@ -653,7 +653,7 @@
 	result_amount = 2
 	log_is_important = 1
 
-/datum/chemical_reaction/nitroglycerin/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/nitroglycerin/on_reaction(datum/reagents/holder, created_volume)
 	var/datum/effect/effect/system/reagents_explosion/e = new()
 	e.set_up(round (created_volume/2, 1), holder.my_atom, 0, 0)
 	if(isliving(holder.my_atom))
@@ -671,7 +671,7 @@
 	required_reagents = list("aluminum" = 1, "plasma" = 1, "sacid" = 1 )
 	result_amount = 1
 
-/datum/chemical_reaction/napalm/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume)
 	var/turf/location = get_turf(holder.my_atom.loc)
 	for(var/turf/floor/target_tile in range(0,location))
 		target_tile.assume_gas("plasma", created_volume, 400+T0C)
@@ -684,7 +684,7 @@
 	required_reagents = list("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
 	result_amount = 0.4
 
-/datum/chemical_reaction/chemsmoke/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/chemsmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect/effect/system/smoke_spread/chem/S = new /datum/effect/effect/system/smoke_spread/chem
 	S.attach(location)
@@ -701,7 +701,7 @@
 	result_amount = 2
 	mix_message = "The solution violently bubbles!"
 
-/datum/chemical_reaction/foam/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
@@ -718,7 +718,7 @@
 	required_reagents = list("aluminum" = 3, "foaming_agent" = 1, "pacid" = 1)
 	result_amount = 5
 
-/datum/chemical_reaction/metalfoam/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/metalfoam/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
@@ -734,7 +734,7 @@
 	required_reagents = list("iron" = 3, "foaming_agent" = 1, "pacid" = 1)
 	result_amount = 5
 
-/datum/chemical_reaction/ironfoam/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/ironfoam/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
@@ -755,14 +755,14 @@
 	dat["required_object"] = required
 	return dat
 
-/datum/chemical_reaction/slime/can_happen(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/can_happen(datum/reagents/holder)
 	if(holder.my_atom && istype(holder.my_atom, required))
 		var/obj/item/slime_extract/T = holder.my_atom
 		if(T.Uses > 0)
 			return ..()
 	return 0
 
-/datum/chemical_reaction/slime/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/on_reaction(datum/reagents/holder)
 	var/obj/item/slime_extract/T = holder.my_atom
 	T.Uses--
 	if(T.Uses <= 0)
@@ -777,7 +777,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/grey
 
-/datum/chemical_reaction/slime/spawn/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/spawn/on_reaction(datum/reagents/holder)
 	holder.my_atom.visible_message(span_warning("Infused with plasma, the core begins to quiver and grow, and soon a new baby slime emerges from it!"))
 	var/mob/living/carbon/slime/S = new /mob/living/carbon/slime
 	S.loc = get_turf(holder.my_atom)
@@ -789,7 +789,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/grey
 
-/datum/chemical_reaction/slime/monkey/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/monkey/on_reaction(datum/reagents/holder)
 	for(var/i = 1, i <= 3, i++)
 		var /obj/item/reagent_containers/food/snacks/monkeycube/M = new /obj/item/reagent_containers/food/snacks/monkeycube
 		M.loc = get_turf(holder.my_atom)
@@ -809,7 +809,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/metal
 
-/datum/chemical_reaction/slime/metal/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/metal/on_reaction(datum/reagents/holder)
 	var/obj/item/stack/material/steel/M = new /obj/item/stack/material/steel
 	M.amount = 15
 	M.loc = get_turf(holder.my_atom)
@@ -826,7 +826,7 @@
 	required = /obj/item/slime_extract/gold
 	mix_message = "The slime extract begins to vibrate violently!"
 
-/datum/chemical_reaction/slime/crit/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/crit/on_reaction(datum/reagents/holder)
 	for(var/i = 1 to 2)
 		var/roachcube = pick(subtypesof(/obj/item/reagent_containers/food/snacks/roachcube))
 		new roachcube(get_turf(holder.my_atom))
@@ -839,7 +839,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/silver
 
-/datum/chemical_reaction/slime/bork/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/bork/on_reaction(datum/reagents/holder)
 	var/list/borks = typesof(/obj/item/reagent_containers/food/snacks) - /obj/item/reagent_containers/food/snacks
 	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 	for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
@@ -871,7 +871,7 @@
 	required = /obj/item/slime_extract/darkblue
 	mix_message = "The slime extract begins to vibrate violently!"
 
-/datum/chemical_reaction/slime/freeze/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/freeze/on_reaction(datum/reagents/holder)
 	..()
 	addtimer(CALLBACK(src, PROC_REF(do_freeze), get_turf(holder.my_atom)), 5 SECONDS)
 
@@ -899,7 +899,7 @@
 	required = /obj/item/slime_extract/orange
 	mix_message = "The slime extract begins to vibrate violently!"
 
-/datum/chemical_reaction/slime/fire/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/fire/on_reaction(datum/reagents/holder)
 	..()
 	addtimer(CALLBACK(src, PROC_REF(do_fire), get_turf(holder.my_atom)), 5 SECONDS)
 
@@ -915,7 +915,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/yellow
 
-/datum/chemical_reaction/slime/overload/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/slime/overload/on_reaction(datum/reagents/holder, created_volume)
 	..()
 	empulse(get_turf(holder.my_atom), 3, 7)
 
@@ -925,7 +925,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/yellow
 
-/datum/chemical_reaction/slime/cell/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/slime/cell/on_reaction(datum/reagents/holder, created_volume)
 	var/obj/item/cell/large/slime/P = new /obj/item/cell/large/slime
 	P.loc = get_turf(holder.my_atom)
 
@@ -936,7 +936,7 @@
 	required = /obj/item/slime_extract/yellow
 	mix_message = "The contents of the slime core harden and begin to emit a warm, bright light."
 
-/datum/chemical_reaction/slime/glow/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/slime/glow/on_reaction(datum/reagents/holder, created_volume)
 	..()
 	var/obj/item/device/slimelight/F = new /obj/item/device/slimelight
 	F.loc = get_turf(holder.my_atom)
@@ -948,7 +948,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/purple
 
-/datum/chemical_reaction/slime/psteroid/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/slime/psteroid/on_reaction(datum/reagents/holder, created_volume)
 	..()
 	var/obj/item/slimesteroid/P = new /obj/item/slimesteroid
 	P.loc = get_turf(holder.my_atom)
@@ -966,7 +966,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/darkpurple
 
-/datum/chemical_reaction/slime/plasma/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/plasma/on_reaction(datum/reagents/holder)
 	..()
 	var/obj/item/stack/material/plasma/P = new /obj/item/stack/material/plasma
 	P.amount = 10
@@ -985,7 +985,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/red
 
-/datum/chemical_reaction/slime/bloodlust/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/bloodlust/on_reaction(datum/reagents/holder)
 	..()
 	for(var/mob/living/carbon/slime/slime in viewers(get_turf(holder.my_atom), null))
 		slime.rabid = 1
@@ -998,7 +998,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/pink
 
-/datum/chemical_reaction/slime/ppotion/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/ppotion/on_reaction(datum/reagents/holder)
 	..()
 	var/obj/item/slimepotion/P = new /obj/item/slimepotion
 	P.loc = get_turf(holder.my_atom)
@@ -1018,7 +1018,7 @@
 	required = /obj/item/slime_extract/oil
 	mix_message = "The slime extract begins to vibrate violently!"
 
-/datum/chemical_reaction/slime/explosion/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/explosion/on_reaction(datum/reagents/holder)
 	..()
 	addtimer(CALLBACK(src, PROC_REF(do_explode), get_turf(holder.my_atom)), 5 SECONDS)
 
@@ -1032,7 +1032,7 @@
 	required = /obj/item/slime_extract/lightpink
 	required_reagents = list("plasma" = 1)
 
-/datum/chemical_reaction/slime/potion2/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/potion2/on_reaction(datum/reagents/holder)
 	..()
 	var/obj/item/slimepotion2/P = new /obj/item/slimepotion2
 	P.loc = get_turf(holder.my_atom)
@@ -1044,7 +1044,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/adamantine
 
-/datum/chemical_reaction/slime/golem/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/golem/on_reaction(datum/reagents/holder)
 	..()
 	var/obj/effect/golemrune/Z = new /obj/effect/golemrune
 	Z.loc = get_turf(holder.my_atom)
@@ -1059,7 +1059,7 @@
 	result_amount = 1
 	blacklist_containers = list(/mob)
 
-/datum/chemical_reaction/tofu/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/tofu/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/tofu(location)
@@ -1070,7 +1070,7 @@
 	result_amount = 1
 	blacklist_containers = list(/mob)
 
-/datum/chemical_reaction/chocolate_bar/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/chocolate_bar/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/chocolatebar(location)
@@ -1081,7 +1081,7 @@
 	result_amount = 1
 	blacklist_containers = list(/mob)
 
-/datum/chemical_reaction/chocolate_bar2/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/chocolate_bar2/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/chocolatebar(location)
@@ -1108,7 +1108,7 @@
 	result_amount = 1
 	blacklist_containers = list(/mob)
 
-/datum/chemical_reaction/cheesewheel/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/cheesewheel/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/sliceable/cheesewheel(location)
@@ -1119,7 +1119,7 @@
 	result_amount = 3
 	blacklist_containers = list(/mob)
 
-/datum/chemical_reaction/meatball/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/meatball/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/rawmeatball(location)
@@ -1130,7 +1130,7 @@
 	result_amount = 1
 	blacklist_containers = list(/mob)
 
-/datum/chemical_reaction/dough/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/dough/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/dough(location)
@@ -1141,7 +1141,7 @@
 	result_amount = 1
 	blacklist_containers = list(/mob)
 
-/datum/chemical_reaction/syntiflesh/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/syntiflesh/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/meat/syntiflesh(location)
@@ -1161,7 +1161,7 @@
 	required_reagents = list("sugar" = 5, "frostoil" = 5)
 	result_amount = 1
 
-/datum/chemical_reaction/mint/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/mint/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/mint(location)
@@ -1171,7 +1171,7 @@
 	required_reagents = list("sugar" = 5, "cornoil" = 5)
 	result_amount = 1
 
-/datum/chemical_reaction/candy_corn/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/candy_corn/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/candy_corn(location)
@@ -1181,7 +1181,7 @@
 	required_reagents = list("water" = 5, "vodka" = 5, "amatoxin" = 5)
 	result_amount = 1
 
-/datum/chemical_reaction/amanitajelly/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/amanitajelly/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/jelly/amanita(location)
@@ -1771,7 +1771,7 @@
 	result_amount = 4
 
 
-/datum/chemical_reaction/instant_ice_with_water/on_reaction(datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/instant_ice_with_water/on_reaction(datum/reagents/holder, created_volume)
 	..()
 	holder.chem_temp = max(223, holder.chem_temp - abs(holder.chem_temp - 223) * created_volume/holder.total_volume) // if someone actually wants to do some physics here they are welcome
 	return 0

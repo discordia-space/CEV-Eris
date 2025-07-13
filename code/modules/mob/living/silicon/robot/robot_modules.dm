@@ -65,7 +65,7 @@ var/global/list/robot_modules = list(
 	)
 
 
-/obj/item/robot_module/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/New(mob/living/silicon/robot/R)
 	..()
 	if(!istype(R))
 		return
@@ -119,7 +119,7 @@ var/global/list/robot_modules = list(
 				C.charge = 999999999
 	// I wanna make component cell holders soooo bad, but it's going to be a big refactor, and I don't have the time -- ACCount
 
-/obj/item/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/proc/Reset(mob/living/silicon/robot/R)
 	if(robot_traits) // removes module-only traits
 		R.RemoveTrait(robot_traits)
 	remove_camera_networks(R)
@@ -162,7 +162,7 @@ var/global/list/robot_modules = list(
 	..()
 	return
 
-/obj/item/robot_module/proc/respawn_consumable(mob/living/silicon/robot/R, var/rate)
+/obj/item/robot_module/proc/respawn_consumable(mob/living/silicon/robot/R, rate)
 	var/obj/item/device/flash/F = locate() in src.modules
 	if(F)
 		if(F.broken)
@@ -185,7 +185,7 @@ var/global/list/robot_modules = list(
 		if(O)
 			modules += O
 
-/obj/item/robot_module/proc/add_languages(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/proc/add_languages(mob/living/silicon/robot/R)
 	// Stores the languages as they were before receiving the module, and whether they could be synthezized.
 	for(var/datum/language/language_datum in R.languages)
 		original_languages[language_datum] = (language_datum in R.speech_synthesizer_langs)
@@ -193,7 +193,7 @@ var/global/list/robot_modules = list(
 	for(var/language in understood_languages)
 		R.add_language(language, languages[language])
 
-/obj/item/robot_module/proc/remove_languages(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/proc/remove_languages(mob/living/silicon/robot/R)
 	// Clear all added languages, whether or not we originally had them.
 	for(var/language in languages)
 		R.remove_language(language)
@@ -203,31 +203,31 @@ var/global/list/robot_modules = list(
 		R.add_language(original_language, original_languages[original_language])
 	original_languages.Cut()
 
-/obj/item/robot_module/proc/add_camera_networks(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/proc/add_camera_networks(mob/living/silicon/robot/R)
 	if(R.camera && (NETWORK_ROBOTS in R.camera.network))
 		for(var/network in networks)
 			if(!(network in R.camera.network))
 				R.camera.add_network(network)
 				added_networks |= network
 
-/obj/item/robot_module/proc/remove_camera_networks(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/proc/remove_camera_networks(mob/living/silicon/robot/R)
 	if(R.camera)
 		R.camera.remove_networks(added_networks)
 	added_networks.Cut()
 
-/obj/item/robot_module/proc/add_subsystems(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/proc/add_subsystems(mob/living/silicon/robot/R)
 	for(var/subsystem_type in subsystems)
 		R.init_subsystem(subsystem_type)
 
-/obj/item/robot_module/proc/remove_subsystems(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/proc/remove_subsystems(mob/living/silicon/robot/R)
 	for(var/subsystem_type in subsystems)
 		R.remove_subsystem(subsystem_type)
 
-/obj/item/robot_module/proc/apply_status_flags(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/proc/apply_status_flags(mob/living/silicon/robot/R)
 	if(!can_be_pushed)
 		R.status_flags &= ~CANPUSH
 
-/obj/item/robot_module/proc/remove_status_flags(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/proc/remove_status_flags(mob/living/silicon/robot/R)
 	if(!can_be_pushed)
 		R.status_flags |= CANPUSH
 
@@ -253,7 +253,7 @@ var/global/list/robot_modules = list(
 	)
 
 
-/obj/item/robot_module/standard/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/standard/New(mob/living/silicon/robot/R)
 
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/melee/baton(src)
@@ -317,7 +317,7 @@ var/global/list/robot_modules = list(
 		STAT_COG = 10
 	)
 
-/obj/item/robot_module/medical/general/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/medical/general/New(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/tool/wrench/robotic(src)
 	src.modules += new /obj/item/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/tool/screwdriver/robotic(src)
@@ -364,7 +364,7 @@ var/global/list/robot_modules = list(
 	..(R)
 
 
-/obj/item/robot_module/medical/general/respawn_consumable(mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/medical/general/respawn_consumable(mob/living/silicon/robot/R, amount)
 	var/obj/item/reagent_containers/syringe/S = locate() in src.modules
 	if(S.mode == 2)
 		S.reagents.clear_reagents()
@@ -414,7 +414,7 @@ var/global/list/robot_modules = list(
 
 //TODO: Give the rescue module some kind of powerful melee weapon to use as a breaching tool.
 //Possibly a robot equivilant of the fire axe
-/obj/item/robot_module/medical/rescue/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/medical/rescue/New(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/hud/med(src)
 	src.modules += new /obj/item/device/scanner/health(src)
@@ -452,7 +452,7 @@ var/global/list/robot_modules = list(
 
 	..(R)
 
-/obj/item/robot_module/medical/rescue/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/medical/rescue/respawn_consumable(mob/living/silicon/robot/R, amount)
 	var/obj/item/reagent_containers/syringe/S = locate() in src.modules
 	if(S.mode == 2)
 		S.reagents.clear_reagents()
@@ -510,7 +510,7 @@ var/global/list/robot_modules = list(
 	journeys through maintenance or around the hull. The heavy chassis and power system comes at a great \
 	toll in speed though."
 
-/obj/item/robot_module/engineering/construction/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/engineering/construction/New(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/extinguisher(src)
@@ -569,7 +569,7 @@ var/global/list/robot_modules = list(
 
 	..(R)
 
-/obj/item/robot_module/engineering/general/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/engineering/general/New(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/extinguisher(src)
@@ -694,7 +694,7 @@ var/global/list/robot_modules = list(
 					"Heavy" = "heavysec"
 				)
 
-/obj/item/robot_module/security/general/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/security/general/New(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/hud/sec(src)
@@ -708,7 +708,7 @@ var/global/list/robot_modules = list(
 	..(R)
 
 
-/obj/item/robot_module/security/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/security/respawn_consumable(mob/living/silicon/robot/R, amount)
 	..()
 	var/obj/item/gun/energy/taser/mounted/cyborg/T = locate() in src.modules
 	if(T.cell.charge < T.cell.maxcharge)
@@ -748,7 +748,7 @@ var/global/list/robot_modules = list(
 	though it is slow and cheaply made"
 
 
-/obj/item/robot_module/custodial/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/custodial/New(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/gripper/service(src)
@@ -768,7 +768,7 @@ var/global/list/robot_modules = list(
 	..(R)
 
 
-/obj/item/robot_module/custodial/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/custodial/respawn_consumable(mob/living/silicon/robot/R, amount)
 	..()
 	var/obj/item/device/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
@@ -814,7 +814,7 @@ var/global/list/robot_modules = list(
 	 significant durability, and they are typically constructed from civilian grade plastics."
 
 
-/obj/item/robot_module/service/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/service/New(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/gripper/service(src)
@@ -860,7 +860,7 @@ var/global/list/robot_modules = list(
 	..(R)
 
 
-/obj/item/robot_module/service/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/service/respawn_consumable(mob/living/silicon/robot/R, amount)
 	..()
 	var/obj/item/reagent_containers/food/condiment/enzyme/E = locate() in src.modules
 	E.reagents.add_reagent("enzyme", 2 * amount)
@@ -896,7 +896,7 @@ var/global/list/robot_modules = list(
 	from falling boulders, and exist for long periods out on an airless rock, often far from a charging \
 	port. It is built with these purposes in mind."
 
-/obj/item/robot_module/miner/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/miner/New(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/material(src)
@@ -937,7 +937,7 @@ var/global/list/robot_modules = list(
 		STAT_MEC = 30
 	)
 
-/obj/item/robot_module/research/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/research/New(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/portable_destructive_analyzer(src)
 	src.modules += new /obj/item/gripper/research(src)
@@ -993,7 +993,7 @@ var/global/list/robot_modules = list(
 					)
 	spawn_blacklisted = TRUE
 
-/obj/item/robot_module/syndicate/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/syndicate/New(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/thermal(src)
 	src.modules += new /obj/item/melee/energy/sword(src)
@@ -1018,7 +1018,7 @@ var/global/list/robot_modules = list(
 	sprites = list("Roller" = "droid-combat")
 	can_be_pushed = 0
 
-/obj/item/robot_module/combat/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/combat/New(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/hud/sec(src)
 	src.modules += new /obj/item/gun/energy/laser/mounted(src)
@@ -1040,7 +1040,7 @@ var/global/list/robot_modules = list(
 		STAT_MEC = 40
 	)
 
-/obj/item/robot_module/drone/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/drone/New(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/tool/robotic_engineering_omnitool(src)
 	src.modules += new /obj/item/tool/shovel/robotic(src)
 	src.modules += new /obj/item/device/t_scanner(src)
@@ -1112,7 +1112,7 @@ var/global/list/robot_modules = list(
 	src.modules += P
 	..(R)
 
-/obj/item/robot_module/drone/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/drone/respawn_consumable(mob/living/silicon/robot/R, amount)
 	var/obj/item/device/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
 	..()
@@ -1166,7 +1166,7 @@ var/global/list/robot_modules = list(
 					"Hunter Seeker" = "hunter_seeker"
 					)
 
-/obj/item/robot_module/hunter_seeker/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/hunter_seeker/New(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/tool/pickaxe/drill(src)
 	src.modules += new /obj/item/borg/sight/thermal(src)

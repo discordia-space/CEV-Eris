@@ -40,7 +40,7 @@
  *
  * Values are found in code/__defines/inventory_sizes.dm
  */
-/obj/structure/get_fall_damage(var/turf/from, var/turf/dest)
+/obj/structure/get_fall_damage(turf/from, turf/dest)
 	var/damage = w_class * 10 * get_health_ratio()
 
 	if (from && dest)
@@ -213,7 +213,7 @@
 			H.updatehealth()
 	return
 
-/obj/structure/proc/can_touch(var/mob/user)
+/obj/structure/proc/can_touch(mob/user)
 	if (!user)
 		return 0
 	if(!Adjacent(user))
@@ -229,7 +229,7 @@
 		return 0
 	return 1
 
-/obj/structure/attack_generic(var/mob/user, var/damage, var/attack_verb, var/wallbreaker)
+/obj/structure/attack_generic(mob/user, damage, attack_verb, wallbreaker)
 	if(!breakable || !damage || !wallbreaker)
 		return 0
 	visible_message(span_danger("[user] [attack_verb] the [src] apart!"))

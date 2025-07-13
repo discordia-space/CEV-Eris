@@ -141,7 +141,7 @@ GLOBAL_PROTECT(admin_ranks)
 	return TRUE
 
 // TODO: finally rework database schema with separate permissions table
-/proc/load_permissions(var/ckey)
+/proc/load_permissions(ckey)
 	var/flag = 0
 
 	if(!SSdbcore.Connect())

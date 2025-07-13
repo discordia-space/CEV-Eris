@@ -108,7 +108,7 @@ var/list/global/tank_gauge_cache = list()
 
 	nano_ui_interact(user)
 
-/obj/item/tank/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/tank/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/mob/living/carbon/location = null
 
 	if(istype(loc, /obj/item/rig))		// check for tanks in rigs
@@ -185,7 +185,7 @@ var/list/global/tank_gauge_cache = list()
 		toggle_valve(loc)
 	return 1
 
-/obj/item/tank/proc/toggle_valve(var/mob/user)
+/obj/item/tank/proc/toggle_valve(mob/user)
 	if(iscarbon(loc))
 		var/mob/living/carbon/location = loc
 		if(location.internal == src)

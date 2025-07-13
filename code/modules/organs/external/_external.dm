@@ -299,7 +299,7 @@
 		if(3)
 			take_damage(5, BURN)
 
-/obj/item/organ/external/attack_self(var/mob/user)
+/obj/item/organ/external/attack_self(mob/user)
 	if(!contents.len)
 		return ..()
 	var/list/removable_objects = list()
@@ -363,7 +363,7 @@
 		return parent.is_nerve_struck()
 	return FALSE
 
-/obj/item/organ/external/proc/nerve_strike_add(var/primary)
+/obj/item/organ/external/proc/nerve_strike_add(primary)
 	if(nerve_struck != -1)
 		if(primary)
 			nerve_struck = 2
@@ -661,7 +661,7 @@ This function completely restores a damaged organ to perfect condition.
 /obj/item/organ/external/proc/is_stump()
 	return FALSE
 
-/obj/item/organ/external/proc/release_restraints(var/mob/living/carbon/human/holder)
+/obj/item/organ/external/proc/release_restraints(mob/living/carbon/human/holder)
 	if(!holder)
 		holder = owner
 	if(!holder)
@@ -800,7 +800,7 @@ This function completely restores a damaged organ to perfect condition.
 		W.add_blood(owner)
 	W.loc = owner
 
-/obj/item/organ/external/proc/disfigure(var/type = "brute")
+/obj/item/organ/external/proc/disfigure(type = "brute")
 	if(disfigured)
 		return
 	if(owner)

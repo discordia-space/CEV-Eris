@@ -154,7 +154,7 @@
 	return TRUE
 
 
-/proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery_status = CAN_OPERATE_ALL)
+/proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, surgery_status = CAN_OPERATE_ALL)
 	if(!istype(M))
 		return FALSE
 	if(user.a_intent != I_HELP)	//check for Hippocratic Oath
@@ -184,7 +184,7 @@
 
 // Some surgery steps can be ran just by clicking a limb with a tool, old surgery style
 // Those are handled here
-/obj/item/organ/external/do_surgery(mob/living/user, obj/item/tool, var/surgery_status = CAN_OPERATE_ALL)
+/obj/item/organ/external/do_surgery(mob/living/user, obj/item/tool, surgery_status = CAN_OPERATE_ALL)
 	if(!tool)
 		if(is_open())
 			nano_ui_interact(user)

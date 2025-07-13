@@ -64,7 +64,7 @@
 	if(Adjacent(user))
 		eject()
 
-/obj/machinery/bodyscanner/proc/set_occupant(var/mob/living/L)
+/obj/machinery/bodyscanner/proc/set_occupant(mob/living/L)
 	L.forceMove(src)
 	src.occupant = L
 	set_power_use(ACTIVE_POWER_USE)
@@ -72,7 +72,7 @@
 	src.add_fingerprint(usr)
 
 
-/obj/machinery/bodyscanner/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/bodyscanner/affect_grab(mob/user, mob/target)
 	if (src.occupant)
 		to_chat(user, span_notice("The scanner is already occupied!"))
 		return
@@ -86,7 +86,7 @@
 	src.add_fingerprint(user)
 	return TRUE
 
-/obj/machinery/bodyscanner/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/bodyscanner/MouseDrop_T(mob/target, mob/user)
 	if(!ismob(target))
 		return
 	if (src.occupant)
@@ -229,7 +229,7 @@
 	return occupant_data
 
 
-/obj/machinery/body_scanconsole/proc/format_occupant_data(var/list/occ)
+/obj/machinery/body_scanconsole/proc/format_occupant_data(list/occ)
 	var/dat = "<font color='blue'><b>Scan performed at [occ["stationtime"]]</b></font><br>"
 	dat += "<font color='blue'><b>Occupant Statistics:</b></font><br>"
 	dat += text("ID Name: <i>[]</i><br>", occ["name"])

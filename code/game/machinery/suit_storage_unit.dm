@@ -369,7 +369,7 @@
 		src.OCCUPANT = null //Testing this as a backup sanity test
 	return
 
-/obj/machinery/suit_storage_unit/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/suit_storage_unit/affect_grab(mob/user, mob/target)
 	if(!isopen)
 		to_chat(user, span_warning("The unit's doors are shut."))
 		return

@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/check_ability(var/chem_cost = 0, var/needs_foundation, var/gene_cost = 0)
+/mob/living/carbon/human/proc/check_ability(chem_cost = 0, needs_foundation, gene_cost = 0)
 	if(stat == DEAD || (status_flags & FAKEDEATH))
 		to_chat(src, span_warning("You are dead"))
 		return FALSE
@@ -555,7 +555,7 @@
 			continue
 		toxin_attack(creature, rand(1, 3))
 
-/obj/effect/decal/cleanable/solid_biomass/attackby(var/obj/item/I, var/mob/user)
+/obj/effect/decal/cleanable/solid_biomass/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap))
 		to_chat(user, span_notice("You started cleaning this [src]."))
 		if(do_after(user, 3 SECONDS, src))

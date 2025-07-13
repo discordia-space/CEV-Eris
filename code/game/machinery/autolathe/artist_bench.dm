@@ -51,7 +51,7 @@
 		ui.open()
 
 
-/obj/machinery/autolathe/artist_bench/Topic(href, href_list)//var/mob/living/carbon/human/H, var/mob/living/user
+/obj/machinery/autolathe/artist_bench/Topic(href, href_list)//mob/living/carbon/human/H, mob/living/user
 	if(..())
 		return
 
