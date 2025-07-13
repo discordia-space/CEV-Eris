@@ -106,7 +106,7 @@
 	dat += player_setup.content(user)
 
 	dat += "</html></body>"
-	var/datum/browser/popup = new(user, "Character Setup","Character Setup", 1200, 800, src)
+	var/datum/browser/popup = new(user, "Character Setup","Character Setup", 1545, 800, src)
 	popup.set_content(dat)
 	popup.open()
 

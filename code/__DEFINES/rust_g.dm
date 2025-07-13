@@ -199,12 +199,17 @@
 #define rustg_http_request_async(method, url, body, headers, options) RUSTG_CALL(RUST_G, "http_request_async")(method, url, body, headers, options)
 #define rustg_http_check_request(req_id) RUSTG_CALL(RUST_G, "http_check_request")(req_id)
 
-/// Generates a spritesheet at: [file_path][spritesheet_name]_[size_id].png
+/// Generates a spritesheet at: [file_path][spritesheet_name]_[size_id].[png or dmi]
 /// The resulting spritesheet arranges icons in a random order, with the position being denoted in the "sprites" return value.
 /// All icons have the same y coordinate, and their x coordinate is equal to `icon_width * position`.
 ///
 /// hash_icons is a boolean (0 or 1), and determines if the generator will spend time creating hashes for the output field dmi_hashes.
-/// These hashes can be heplful for 'smart' caching (see rustg_iconforge_cache_valid), but require extra computation.
+/// These hashes can be helpful for 'smart' caching (see rustg_iconforge_cache_valid), but require extra computation.
+///
+/// generate_dmi is a boolean (0 or 1), and determines if the generator will save the sheet as a DMI or stripped PNG file.
+/// DMI files can be used to replace bulk Insert() operations, PNGs are more useful for asset transport or UIs. DMI generation is slower due to more metadata.
+/// flatten is a boolean (0 or 1), and determines if the DMI output will be flattened to a single frame/dir if unscoped (null/0 dir or frame values).
+/// PNGs are always flattened, regardless of argument.
 ///
 /// Spritesheet will contain all sprites listed within "sprites".
 /// "sprites" format:
@@ -233,9 +238,9 @@
 ///     "error" = "[A string, empty if there were no errors.]"
 /// )
 /// In the case of an unrecoverable panic from within Rust, this function ONLY returns a string containing the error.
-#define rustg_iconforge_generate(file_path, spritesheet_name, sprites, hash_icons) RUSTG_CALL(RUST_G, "iconforge_generate")(file_path, spritesheet_name, sprites, "[hash_icons]")
+#define rustg_iconforge_generate(file_path, spritesheet_name, sprites, hash_icons, generate_dmi, flatten) RUSTG_CALL(RUST_G, "iconforge_generate")(file_path, spritesheet_name, sprites, "[hash_icons]", "[generate_dmi]", "[flatten]")
 /// Returns a job_id for use with rustg_iconforge_check()
-#define rustg_iconforge_generate_async(file_path, spritesheet_name, sprites, hash_icons) RUSTG_CALL(RUST_G, "iconforge_generate_async")(file_path, spritesheet_name, sprites, "[hash_icons]")
+#define rustg_iconforge_generate_async(file_path, spritesheet_name, sprites, hash_icons, generate_dmi, flatten) RUSTG_CALL(RUST_G, "iconforge_generate_async")(file_path, spritesheet_name, sprites, "[hash_icons]", "[generate_dmi]", "[flatten]")
 /// Returns the status of an async job_id, or its result if it is completed. See RUSTG_JOB DEFINEs.
 #define rustg_iconforge_check(job_id) RUSTG_CALL(RUST_G, "iconforge_check")("[job_id]")
 /// Clears all cached DMIs and images, freeing up memory.
@@ -297,6 +302,39 @@
  * 	a width*length length string of 1s and 0s representing a 2D poisson sample collapsed into a 1D string
  */
 #define rustg_noise_poisson_map(seed, width, length, radius) RUSTG_CALL(RUST_G, "noise_poisson_map")(seed, width, length, radius)
+
+/**
+ * Register a list of nodes into a rust library. This list of nodes must have been serialized in a json.
+ * Node {// Index of this node in the list of nodes
+ *  	  unique_id: usize,
+ *  	  // Position of the node in byond
+ *  	  x: usize,
+ *  	  y: usize,
+ *  	  z: usize,
+ *  	  // Indexes of nodes connected to this one
+ *  	  connected_nodes_id: Vec<usize>}
+ * It is important that the node with the unique_id 0 is the first in the json, unique_id 1 right after that, etc.
+ * It is also important that all unique ids follow. {0, 1, 2, 4} is not a correct list and the registering will fail
+ * Nodes should not link across z levels.
+ * A node cannot link twice to the same node and shouldn't link itself either
+ */
+#define rustg_register_nodes_astar(json) RUSTG_CALL(RUST_G, "register_nodes_astar")(json)
+
+/**
+ * Add a new node to the static list of nodes. Same rule as registering_nodes applies.
+ * This node unique_id must be equal to the current length of the static list of nodes
+ */
+#define rustg_add_node_astar(json) RUSTG_CALL(RUST_G, "add_node_astar")(json)
+
+/**
+ * Remove every link to the node with unique_id. Replace that node by null
+ */
+#define rustg_remove_node_astar(unique_id) RUSTG_CALL(RUST_G, "remove_node_astar")("[unique_id]")
+
+/**
+ * Compute the shortest path between start_node and goal_node using A*. Heuristic used is simple geometric distance
+ */
+#define rustg_generate_path_astar(start_node_id, goal_node_id) RUSTG_CALL(RUST_G, "generate_path_astar")("[start_node_id]", "[goal_node_id]")
 
 /*
  * Takes in a string and json_encode()"d lists to produce a sanitized string.
@@ -361,6 +399,14 @@
 #define rustg_time_microseconds(id) text2num(RUSTG_CALL(RUST_G, "time_microseconds")(id))
 #define rustg_time_milliseconds(id) text2num(RUSTG_CALL(RUST_G, "time_milliseconds")(id))
 #define rustg_time_reset(id) RUSTG_CALL(RUST_G, "time_reset")(id)
+
+/// Returns the current timestamp (in local time), formatted with the given format string.
+/// See https://docs.rs/chrono/latest/chrono/format/strftime/index.html for documentation on the formatting syntax.
+#define rustg_formatted_timestamp(format) RUSTG_CALL(RUST_G, "formatted_timestamp")(format)
+
+/// Returns the current timestamp (with the given UTC offset in hours), formatted with the given format string.
+/// See https://docs.rs/chrono/latest/chrono/format/strftime/index.html for documentation on the formatting syntax.
+#define rustg_formatted_timestamp_tz(format, offset) RUSTG_CALL(RUST_G, "formatted_timestamp")(format, offset)
 
 /// Returns the timestamp as a string
 /proc/rustg_unix_timestamp()

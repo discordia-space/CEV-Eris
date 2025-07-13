@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 			return 0
 	if(islist(ban_checks))
 		for(var/bantype in ban_checks)
-			if(jobban_isbanned(candidate, "[bantype]"))
+			if(jobban_isbanned(candidate.ckey, "[bantype]"))
 				to_chat(candidate, span_danger("You are banned from one or more required roles and hence cannot enter play as \a [object]."))
 				return 0
 	if(can_only_use_once && GLOB.ghost_trap_users[candidate.ckey] && (object in GLOB.ghost_trap_users[candidate.ckey]))
@@ -68,7 +68,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 			continue
 		if(islist(ban_checks))
 			for(var/bantype in ban_checks)
-				if(jobban_isbanned(O, "[bantype]"))
+				if(jobban_isbanned(O.ckey, "[bantype]"))
 					to_chat(O, "[request_string] However, you are banned from playing it.")
 					continue
 		if(pref_check && !(pref_check in O.client.prefs.be_special_role))

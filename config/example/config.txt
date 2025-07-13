@@ -28,9 +28,6 @@ HOSTEDBY yournamehere
 ## Add a # infront of this if you want to use the SQL based admin system, the legacy system uses admins.txt. You need to set up your database to use the SQL based system.
 #ADMIN_LEGACY_SYSTEM
 
-## Add a # infront of this if you want to use the SQL based banning system. The legacy systems use the files in the data folder. You need to set up your database to use the SQL based system.
-#BAN_LEGACY_SYSTEM
-
 ## Enables the memo system for admins, used to log on each player
 ADMIN_MEMO_SYSTEM
 
@@ -120,6 +117,7 @@ RESPAWN_DELAY 30
 
 ## Uncomment to allow guests
 #GUESTS_ALLOWED
+
 ## Prevents players form playing as mice
 #DISABLE_PLAYER_MICE
 
@@ -214,6 +212,29 @@ GHOST_INTERACTION
 ## Uncomment to set the number of /world/Reboot()s before the DreamDaemon restarts itself. 0 means restart every round. Requires tgstation server tools.
 #ROUNDS_UNTIL_HARD_RESTART 10
 
+## Client warning and error settings ##
+## These options control client-side warnings and errors shown to users.
+
+## Minimum client version to warn about (e.g. 1554)
+#CLIENT_WARN_VERSION
+
+## Minimum client build to warn about (e.g. 1554)
+#CLIENT_WARN_BUILD
+
+## Message to display when warning about client version/build
+#CLIENT_WARN_MESSAGE
+
+## Show a popup for client warnings (present/nonpresent)
+#CLIENT_WARN_POPUP
+
+## Minimum client version to block (e.g. 1554)
+#CLIENT_ERROR_VERSION
+
+## Message to display when blocking client version/build
+#CLIENT_ERROR_MESSAGE
+
+## Minimum client build to block (e.g. 1554)
+#CLIENT_ERROR_BUILD
 
 ### Miscellaneous ###
 
@@ -222,11 +243,6 @@ GHOST_INTERACTION
 ## Uncomment to use overmap system for zlevel travel
 #USE_OVERMAP
 
-##Clients will be unable to connect unless their version is equal to or higher than this (a number, e.g. 511)
-#MINIMUM_BYOND_VERSION
-
-## Clients will be unable to connect unless their build is equal to or higher than this (a number, e.g. 1000)
-#MINIMUM_BYOND_BUILD
 
 ## Time in minutes before empty server will restart
 EMPTY_SERVER_RESTART_TIME 30

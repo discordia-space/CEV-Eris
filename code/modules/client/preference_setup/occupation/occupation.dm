@@ -125,7 +125,7 @@
 		var/bad_message = ""
 		if(job.total_positions == 0 && job.spawn_positions == 0)
 			bad_message = "<b> \[UNAVAILABLE]</b>"
-		else if(jobban_isbanned(user, rank))
+		else if(jobban_isbanned(user.ckey, rank))
 			bad_message = "<b> \[BANNED]</b>"
 		else if(IsGuestKey(user.client.ckey) && SSjob.job_to_playtime_requirement[job.title])
 			bad_message = "<b> \[ACCOUNT REQUIRED </b>"

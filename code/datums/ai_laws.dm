@@ -91,6 +91,39 @@ var/global/const/base_law_type = /datum/ai_laws/eris
 		if(law)
 			S.laws.add_supplied_law(law.index, law.law)
 
+/**
+ * Generates a list of all laws on this datum, including rendered HTML tags if required
+ *
+ * Arguments:
+ * * include_zeroth - Operator that controls if law 0 or law 666 is returned in the set
+ * * show_numbers - Operator that controls if law numbers are prepended to the returned laws
+ * * render_html - Operator controlling if HTML tags are rendered on the returned laws
+ */
+/datum/ai_laws/proc/get_law_list(include_zeroth = FALSE, show_numbers = TRUE, render_html = TRUE)
+	var/list/data = list()
+
+	if (include_zeroth && zeroth_law)
+		data += "[show_numbers ? "0:" : ""] [render_html ? "<font color='#ff0000'><b>[zeroth_law]</b></font>" : zeroth_law]"
+
+	// for(var/law in hacked)
+	// 	if (length(law) > 0)
+	// 		data += "[show_numbers ? "[ion_num()]:" : ""] [render_html ? "<font color='#c00000'>[law]</font>" : law]"
+
+	for(var/law in ion_laws)
+		if (length(law) > 0)
+			data += "[show_numbers ? "[ion_num()]:" : ""] [render_html ? "<font color='#547DFE'>[law]</font>" : law]"
+
+	var/number = 1
+	for(var/law in inherent_laws)
+		if (length(law) > 0)
+			data += "[show_numbers ? "[number]:" : ""] [law]"
+			number++
+
+	for(var/law in supplied_laws)
+		if (length(law) > 0)
+			data += "[show_numbers ? "[number]:" : ""] [render_html ? "<font color='#990099'>[law]</font>" : law]"
+			number++
+	return data
 
 /mob/living/silicon/proc/sync_zeroth(var/datum/ai_law/zeroth_law, var/datum/ai_law/zeroth_law_borg)
 	if (!is_malf_or_contractor(src))

@@ -74,7 +74,7 @@
 			to_chat(user, span_warning("[O] is dead. Sticking it into the frame would sort of defeat the purpose."))
 			return
 
-		if(jobban_isbanned(B.brainmob, "Robot"))
+		if(jobban_isbanned(B.brainmob.ckey, "Robot"))
 			to_chat(user, span_warning("\The [O] does not seem to fit."))
 			return
 

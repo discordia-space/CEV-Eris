@@ -20,11 +20,13 @@ SUBSYSTEM_DEF(chunks)
 	var/list/datum/chunk/chunk_list_by_zlevel
 
 /datum/controller/subsystem/chunks/Initialize(timeofday)
+	world.log << "meowmeow"
 	chunk_list_by_zlevel = new/list(world.maxz)
 	for(var/i = 1, i <= world.maxz,i++)
 		chunk_list_by_zlevel[i] = new/list(CHUNKSPERLEVEL(world.maxx, world.maxy))
 		for(var/j = 1, j <= CHUNKSPERLEVEL(world.maxx, world.maxy), j++)
 			chunk_list_by_zlevel[i][j] = new /datum/chunk(src)
+	world.log << "meowmeow?"
 	RegisterSignal(SSdcs, COMSIG_MOB_INITIALIZED, PROC_REF(onMobNew))
 	RegisterSignal(SSdcs, COMSIG_WORLD_MAXZ_INCREMENTING, PROC_REF(beforeLevelIncrement))
 	return ..()

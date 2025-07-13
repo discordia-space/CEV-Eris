@@ -32,6 +32,7 @@ SUBSYSTEM_DEF(ticker)
 	var/start_at
 	var/last_player_left_timestamp = 0
 
+	var/end_state = "undefined"
 
 	/// Num of players, used for pregame stats on statpanel
 	var/totalPlayers = 0
@@ -272,6 +273,7 @@ SUBSYSTEM_DEF(ticker)
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_start_events)
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
+	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore,SetRoundStart))
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
@@ -305,7 +307,27 @@ SUBSYSTEM_DEF(ticker)
 
 	round_start_time = world.time //otherwise round_start_time would be 0 for the signals
 
+	PostSetup()
 	return TRUE
+
+/datum/controller/subsystem/ticker/proc/PostSetup()
+	if(SSdbcore.Connect())
+		var/list/to_set = list()
+		var/arguments = list()
+		if(GLOB.storyteller)
+			to_set += "game_mode = :game_mode"
+			arguments["game_mode"] = GLOB.storyteller.name
+		if(GLOB.revdata.originmastercommit)
+			to_set += "commit_hash = :commit_hash"
+			arguments["commit_hash"] = GLOB.revdata.originmastercommit
+		if(to_set.len)
+			arguments["round_id"] = GLOB.round_id
+			var/datum/db_query/query_round_game_mode = SSdbcore.NewQuery(
+				"UPDATE [format_table_name("round")] SET [to_set.Join(", ")] WHERE id = :round_id",
+				arguments
+			)
+			query_round_game_mode.Execute()
+			qdel(query_round_game_mode)
 
 //These callbacks will fire after roundstart key transfer
 /datum/controller/subsystem/ticker/proc/OnRoundstart(datum/callback/cb)
@@ -430,6 +452,7 @@ SUBSYSTEM_DEF(ticker)
 			else if(!player.mind.assigned_role)
 				continue
 			else
+				GLOB.joined_player_list += player.ckey
 				player.create_character()
 				qdel(player)
 
@@ -578,6 +601,7 @@ SUBSYSTEM_DEF(ticker)
 	scoreboard()//scores
 	//Ask the event manager to print round end information
 	SSevent.RoundEnd()
+	SSdbcore.SetRoundEnd()
 
 	//Print a list of antagonists to the server log
 	var/list/total_antagonists = list()
@@ -641,7 +665,7 @@ SUBSYSTEM_DEF(ticker)
 	// var/statspage = CONFIG_GET(string/roundstatsurl)
 	// var/gamelogloc = CONFIG_GET(string/gamelogurl)
 	// if(statspage)
-	// 	to_chat(world, span_info("Round statistics and logs can be viewed <a href=\"[statspage][GLOB.game_id]\">at this website!</a>"))
+	// 	to_chat(world, span_info("Round statistics and logs can be viewed <a href=\"[statspage][GLOB.round_id]\">at this website!</a>"))
 	// else if(gamelogloc)
 	// 	to_chat(world, span_info("Round logs can be located <a href=\"[gamelogloc]\">at this website!</a>"))
 

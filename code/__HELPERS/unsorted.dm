@@ -1224,7 +1224,9 @@ var/list/FLOORITEMS = list(
 			colour += temp_col
 	return "#[colour]"
 
-
+///Picks a string of symbols to display as the law number for hacked or ion laws
+/proc/ion_num() //! is at the start to prevent us from changing say modes via get_message_mode()
+	return "![pick("!","@","#","$","%","^","&")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")]"
 
 
 /proc/CheckFace(atom/Obj1, atom/Obj2)

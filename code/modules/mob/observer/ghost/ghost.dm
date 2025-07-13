@@ -250,7 +250,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, span_red("Admins have disabled this for this round."))
 		return
 	var/mob/observer/ghost/M = src
-	if(jobban_isbanned(M, "AntagHUD"))
+	if(jobban_isbanned(M.ckey, "AntagHUD"))
 		to_chat(src, span_red("<B>You have been banned from using this feature</B>"))
 		return
 	if(CONFIG_GET(flag/antag_hud_restricted) && !M.has_enabled_antagHUD && (!client.holder || mentor))

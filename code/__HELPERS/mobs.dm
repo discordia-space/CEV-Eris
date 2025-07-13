@@ -494,3 +494,69 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	return INITIALIZE_HINT_NORMAL
 
 #define ISADVANCEDTOOLUSER(mob) (mob.IsAdvancedToolUser())
+
+// Displays a message in deadchat, sent by source. source is not linkified, message is, to avoid stuff like character names to be linkified.
+// Automatically gives the class deadsay to the whole message (message + source)
+/proc/deadchat_broadcast(message, source=null, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR, admin_only=FALSE)
+	message = span_deadsay("[source][span_linkify(message)]")
+
+	for(var/mob/M in GLOB.player_list)
+		// var/chat_toggles = TOGGLES_DEFAULT_CHAT
+		// var/toggles = TOGGLES_DEFAULT
+		var/list/ignoring = M.client?.prefs.ignored_players
+		var/speaker_ckey = ckey(speaker_key)
+		// if(M.client?.prefs)
+		// 	var/datum/preferences/prefs = M.client?.prefs
+		// 	chat_toggles = prefs.chat_toggles
+		// 	toggles = prefs.toggles
+		// 	ignoring = prefs.ignoring
+		if(admin_only)
+			if (!check_rights_for(M, R_ADMIN))
+				return
+			else
+				message += span_deadsay(" (This is viewable to admins only).")
+		var/override = FALSE
+		if(check_rights_for(M, R_ADMIN) && (M.client?.get_preference_value(/datum/client_preference/show_dsay)))
+			override = TRUE
+		// if(HAS_TRAIT(M, TRAIT_SIXTHSENSE) && message_type == DEADCHAT_REGULAR)
+		// 	override = TRUE
+		if(SSticker.current_state == GAME_STATE_FINISHED)
+			override = TRUE
+		if(isnewplayer(M) && !override)
+			continue
+		if(M.stat != DEAD && !override)
+			continue
+		if(speaker_ckey && (speaker_ckey in ignoring))
+			continue
+
+		switch(message_type)
+			// if(DEADCHAT_DEATHRATTLE)
+			// 	if(toggles & DISABLE_DEATHRATTLE)
+			// 		continue
+			// if(DEADCHAT_ARRIVALRATTLE)
+			// 	if(toggles & DISABLE_ARRIVALRATTLE)
+			// 		continue
+			if(DEADCHAT_LAWCHANGE)
+				if(!(M.client?.get_preference_value(/datum/client_preference/show_ghostlaws)))
+					continue
+			if(DEADCHAT_LOGIN_LOGOUT)
+				if(!(M.client?.get_preference_value(/datum/client_preference/show_loginout)))
+					continue
+
+		if(isobserver(M))
+			var/rendered_message = message
+
+			if(follow_target)
+				var/F
+				if(turf_target)
+					F = FOLLOW_OR_TURF_LINK(M, follow_target, turf_target)
+				else
+					F = FOLLOW_LINK(M, follow_target)
+				rendered_message = "[F] [message]"
+			else if(turf_target)
+				var/turf_link = TURF_LINK(M, turf_target)
+				rendered_message = "[turf_link] [message]"
+
+			to_chat(M, rendered_message, avoid_highlighting = speaker_ckey == M.key)
+		else
+			to_chat(M, message, avoid_highlighting = speaker_ckey == M.key)

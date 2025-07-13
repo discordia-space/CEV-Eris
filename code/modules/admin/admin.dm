@@ -46,7 +46,7 @@ var/global/floorIsLava = 0
  */
 /proc/message_mentorTicket(msg, important = FALSE)
 	for(var/client/C in GLOB.admins)
-		if(check_rights(R_ADMIN | R_MENTOR | R_MOD, 0, C.mob))
+		if(check_rights(R_ADMIN | R_MENTOR, 0, C.mob))
 			to_chat(C, msg)
 			if(important || (C.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR))
 				sound_to(C, 'sound/effects/adminhelp.ogg')
@@ -108,7 +108,7 @@ var/global/floorIsLava = 0
 	if(M.client)
 		body += " played by <b><a href='http://byond.com/members/[M.client.ckey]'>[M.client]</b></a> "
 		body += "\[<A href='byond://?src=\ref[src];[HrefToken()];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]<br>"
-		body += "<b>Registration date:</b> [M.client.registration_date ? M.client.registration_date : "Unknown"]<br>"
+		body += "<b>Registration date:</b> [M.client.account_join_date ? M.client.account_join_date : "Unknown"]<br>"
 		body += "<b>IP:</b> [M.client.address ? M.client.address : "Unknown"]<br>"
 
 		var/country = M.client.country
@@ -141,11 +141,13 @@ var/global/floorIsLava = 0
 		<b>Mob type</b> = [M.type]<br><br>
 		<A href='byond://?src=\ref[src];[HrefToken()];boot2=\ref[M]'>Kick</A> |
 		<A href='byond://?_src_=holder;[HrefToken()];warn=[M.ckey]'>Warn</A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];newban=\ref[M]'>Ban</A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];jobban2=\ref[M]'>Jobban</A> |
 		<A href='byond://?src=\ref[src];[HrefToken()];notes=show;mob=\ref[M]'>Notes</A> |
-
 	"}
+
+	if(M.client)
+		body += "<A href='byond://?_src_=holder;[HrefToken()];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</A> | "
+	else
+		body += "<A href='byond://?_src_=holder;[HrefToken()];newbankey=[M.key]'>Ban</A> | "
 
 	if(M.client)
 		body += "\ <A href='byond://?_src_=holder;[HrefToken()];sendbacktolobby=\ref[M]'>Send back to Lobby</A> | "
@@ -164,7 +166,7 @@ var/global/floorIsLava = 0
 		<A href='byond://?src=\ref[src];[HrefToken()];jumpto=\ref[M]'><b>Jump to</b></A> |
 		<A href='byond://?src=\ref[src];[HrefToken()];getmob=\ref[M]'>Get</A>
 		<br><br>
-		[check_rights(R_ADMIN|R_MOD,0) ? "<A href='byond://?src=\ref[src];[HrefToken()];contractor=\ref[M]'>Contractor panel</A> | " : "" ]
+		[check_rights(R_ADMIN,0) ? "<A href='byond://?src=\ref[src];[HrefToken()];contractor=\ref[M]'>Contractor panel</A> | " : "" ]
 		<A href='byond://?src=\ref[src];[HrefToken()];narrateto=\ref[M]'>Narrate to</A> |
 		<A href='byond://?src=\ref[src];[HrefToken()];subtlemessage=\ref[M]'>Subtle message</A>
 	"}
@@ -483,21 +485,6 @@ var/global/floorIsLava = 0
 	//world << "Msg: [src.admincaster_feed_message.author] [src.admincaster_feed_message.body]"
 	usr << browse(HTML_SKELETON_TITLE("Admincaster", dat), "window=admincaster_main;size=400x600")
 	onclose(usr, "admincaster_main")
-
-
-
-/datum/admins/proc/Jobbans()
-	if(!check_rights(R_MOD) && !check_rights(R_ADMIN))
-		return
-
-	var/dat = "<B>Job Bans!</B><HR><table>"
-	for(var/t in jobban_keylist)
-		var/r = t
-		if( findtext(r,"##") )
-			r = copytext( r, 1, findtext(r,"##") )//removes the description
-		dat += text("<tr><td>[t] (<A href='byond://?src=\ref[src];[HrefToken()];removejobban=[r]'>unban</A>)</td></tr>")
-	dat += "</table>"
-	usr << browse(HTML_SKELETON_TITLE("Job Bans", dat), "window=ban;size=400x400")
 
 /datum/admins/proc/Game()
 	if(!check_rights(0))
@@ -1200,7 +1187,12 @@ var/global/floorIsLava = 0
 	return result
 
 //This proc checks whether subject has at least ONE of the rights specified in rights_required.
-/proc/check_rights_for(client/subject, rights_required)
+/proc/check_rights_for(_subject, rights_required)
+	var/client/subject
+	if (ismob(_subject))
+		var/mob/M = _subject
+		subject = M?.client
+
 	if(subject && subject.holder)
 		if(rights_required && !(rights_required & subject.holder.rights))
 			return FALSE
@@ -1234,4 +1226,19 @@ var/global/floorIsLava = 0
 	if(!logout)
 		message_admins("Admin login: [key_name(src)]")
 		return
+
+//Kicks all the clients currently in the lobby. The second parameter (kick_only_afk) determins if an is_afk() check is ran, or if all clients are kicked
+//defaults to kicking everyone (afk + non afk clients in the lobby)
+//returns a list of ckeys of the kicked clients
+/proc/kick_clients_in_lobby(message, kick_only_afk = 0)
+	var/list/kicked_client_names = list()
+	for(var/client/C in GLOB.clients)
+		if(isnewplayer(C.mob))
+			if(kick_only_afk && !C.is_afk()) //Ignore clients who are not afk
+				continue
+			if(message)
+				to_chat(C, message, confidential = TRUE)
+			kicked_client_names.Add("[C.key]")
+			qdel(C)
+	return kicked_client_names
 

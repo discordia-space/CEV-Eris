@@ -43,6 +43,8 @@ GLOBAL_LIST_INIT(admin_verbs_server, list(
 	/client/proc/ToRban,
 	/client/proc/reload_admins,
 	/client/proc/reload_mentors,
+	/client/proc/reload_whitelist,
+	/client/proc/reestablish_db_connection, /*reattempt a connection to the database*/
 	/client/proc/toggle_random_events))
 
 GLOBAL_LIST_INIT(admin_verbs_debug, list(
@@ -107,8 +109,8 @@ GLOBAL_LIST_INIT(admin_verbs_debug_extra, list(
 	/client/proc/cmd_admin_areatest,
 	/client/proc/cmd_admin_rejuvenate,
 	/datum/admins/proc/show_contractor_panel,
-	/client/proc/print_jobban_old,
-	/client/proc/print_jobban_old_filter,
+	// /client/proc/print_jobban_old,
+	// /client/proc/print_jobban_old_filter,
 	/client/proc/break_all_air_groups,
 	/client/proc/regroup_all_air_groups,
 	/client/proc/kill_pipe_processing,
@@ -158,6 +160,8 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	/client/proc/invisimin,
 	/datum/verbs/menu/Admin/verb/playerpanel, /* It isn't /datum/admin but it fits no less */
 	/client/proc/storyteller_panel,
+	/client/proc/stickybanpanel,
+	/client/proc/ban_panel,
 	/client/proc/unban_panel,
 	/client/proc/game_panel,
 	/client/proc/secrets,
@@ -240,7 +244,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 		add_verb(src, GLOB.admin_verbs_default)
 		if(check_rights(R_ADMIN, FALSE, src)) // Admin includes all moderator verbs
 			add_verb(src, GLOB.admin_verbs_admin)
-		else if(check_rights(R_MOD, FALSE, src)) // Moderator includes all mentor verbs
 			add_verb(src, GLOB.admin_verbs_mod)
 		else if(check_rights(R_MENTOR, FALSE, src))
 			add_verb(src, GLOB.admin_verbs_mentor)
@@ -344,14 +347,21 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	if(holder)
 		holder.storyteller_panel()
 
-/client/proc/unban_panel()
-	set name = "Unban Panel"
+/client/proc/ban_panel()
+	set name = "Banning Panel"
 	set category = "Admin"
-	if(holder)
-		if(CONFIG_GET(flag/ban_legacy_system))
-			holder.unbanpanel()
-		else
-			holder.DB_ban_panel()
+	if(!check_rights(R_BAN))
+		return
+	holder.ban_panel()
+	// SSblackbox.record_feedback("tally", "admin_verb", 1, "Banning Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/unban_panel()
+	set name = "Unbanning Panel"
+	set category = "Admin"
+	if(!check_rights(R_BAN))
+		return
+	holder.unban_panel()
+	// SSblackbox.record_feedback("tally", "admin_verb", 1, "Unbanning Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //game panel, allows to change game-mode etc
 /client/proc/game_panel()
@@ -451,49 +461,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	set category = "Debug"
 	set name = "Debug Stat Panel"
 	src << output("", "statbrowser:create_debug")
-
-#define MAX_WARNS 3
-#define AUTOBANTIME 10
-
-/client/proc/warn(warned_ckey)
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(!warned_ckey || !istext(warned_ckey))
-		return
-
-	if(warned_ckey in GLOB.admin_datums)
-		to_chat(usr, "<font color='red'>Error: warn(): You can't warn admins.</font>")
-		return
-
-	var/datum/preferences/D
-	var/client/C = GLOB.directory[warned_ckey]
-
-	D = C ? C.prefs : SScharacter_setup.preferences_datums[warned_ckey]
-	if(!D)
-		to_chat(src, "<font color='red'>Error: warn(): No such ckey found.</font>")
-		return
-
-	if(++D.warns >= MAX_WARNS)
-		ban_unban_log_save("[ckey] warned [warned_ckey], resulting in a [AUTOBANTIME] minute autoban.")
-		if(C)
-			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)] resulting in a [AUTOBANTIME] minute ban.")
-			to_chat(C, "<font color='red'><BIG><B>You have been autobanned due to a warning by [ckey].</B></BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes.</font>")
-			del(C)
-		else
-			message_admins("[key_name_admin(src)] has warned [warned_ckey] resulting in a [AUTOBANTIME] minute ban.")
-		AddBan(warned_ckey, D.last_id, "Autobanning due to too many formal warnings", ckey, 1, AUTOBANTIME)
-
-	else
-		var/warns_remain = MAX_WARNS - D.warns
-		if(C)
-			to_chat(C, "<font color='red'><BIG><B>You have been formally warned by an administrator.</B></BIG><br>Further warnings will result in an autoban.</font>")
-			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)]. They have [warns_remain] strikes remaining.")
-		else
-			message_admins("[key_name_admin(src)] has warned [warned_ckey] (DC). They have [warns_remain] strikes remaining.")
-
-#undef MAX_WARNS
-#undef AUTOBANTIME
 
 /client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
 	set category = "Special Verbs"

@@ -22,7 +22,7 @@ DEFINE_BITFIELD(admin_flags, list(
 	"DEBUG" = R_DEBUG,
 	"PERMISSIONS" = R_PERMISSIONS,
 	"MENTOR" = R_MENTOR,
-	"MOD" = R_MOD,
+	"BAN" = R_BAN,
 	"ADMIN" = R_ADMIN,
 	// "AUTOLOGIN" = R_AUTOADMIN,
 	// "BAN" = R_BAN,

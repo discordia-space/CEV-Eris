@@ -53,18 +53,18 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 
 	// Medical record
 	set_bloodtype(H ? H.b_type : "Unset")
-	set_medRecord((H && H.med_record && !jobban_isbanned(H, "Records") ? html_decode(H.med_record) : "No record supplied"))
+	set_medRecord((H && H.med_record && !jobban_isbanned(H.ckey, "Records") ? html_decode(H.med_record) : "No record supplied"))
 
 	// Security record
 	set_criminalStatus(GLOB.default_security_status)
 	set_dna(H ? H.dna_trace : "")
 	set_fingerprint(H ? H.fingers_trace : "")
-	set_secRecord(H && H.sec_record && !jobban_isbanned(H, "Records") ? html_decode(H.sec_record) : "No record supplied")
+	set_secRecord(H && H.sec_record && !jobban_isbanned(H.ckey, "Records") ? html_decode(H.sec_record) : "No record supplied")
 
 	// Employment record
 	var/employment_record = "No record supplied"
 	if(H)
-		if(H.gen_record && !jobban_isbanned(H, "Records"))
+		if(H.gen_record && !jobban_isbanned(H.ckey, "Records"))
 			employment_record = html_decode(H.gen_record)
 		if(H.client && H.client.prefs)
 			var/list/qualifications

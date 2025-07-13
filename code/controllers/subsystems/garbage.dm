@@ -57,6 +57,12 @@ SUBSYSTEM_DEF(garbage)
 	#endif
 	#endif
 
+#if !defined(UNIT_TESTS) && !defined(REFERENCE_TRACKING)
+	/// Toggle for enabling/disabling hard deletes. Objects that don't explicitly request hard deletion with this disabled will leak.
+	var/enable_hard_deletes = FALSE
+#endif
+	var/list/failed_hard_deletes = list()
+
 
 /datum/controller/subsystem/garbage/PreInit()
 	InitQueues()
@@ -261,7 +267,14 @@ SUBSYSTEM_DEF(garbage)
 	queue[++queue.len] = list(gctime, refid) // not += for byond reasons
 
 //this is mainly to separate things profile wise.
-/datum/controller/subsystem/garbage/proc/HardDelete(datum/D)
+/datum/controller/subsystem/garbage/proc/HardDelete(datum/D, override = FALSE)
+	if(!D)
+		return
+#if !defined(UNIT_TESTS) && !defined(REFERENCE_TRACKING)
+	if(!enable_hard_deletes && !override)
+		failed_hard_deletes |= D
+		return
+#endif
 	++delslasttick
 	++totaldels
 	var/type = D.type

@@ -60,8 +60,8 @@ GLOBAL_DATUM_INIT(revdata,/datum/getrev, new)
 
 	var/list/msg = list()
 	// Round ID
-	if(GLOB.game_id)
-		msg += "<b>Round ID:</b> [GLOB.game_id]"
+	if(GLOB.round_id)
+		msg += "<b>Round ID:</b> [GLOB.round_id]"
 
 	msg += "<b>BYOND Version:</b> [world.byond_version].[world.byond_build]"
 	if(DM_VERSION != world.byond_version || DM_BUILD != world.byond_build)

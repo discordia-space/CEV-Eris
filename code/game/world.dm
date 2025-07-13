@@ -67,29 +67,6 @@ GLOBAL_VAR(restart_counter)
 // 	Pre-map initialization stuff should go here.
 // */
 
-// /datum/global_init/New()
-
-
-// /datum/global_init/Destroy()
-// 	return 1
-
-/proc/generate_gameid()
-	if(GLOB.game_id != null)
-		return
-	GLOB.game_id = ""
-
-	var/list/c = list("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
-	var/l = c.len
-
-	var/t = world.timeofday
-	for(var/_ = 1 to 4)
-		GLOB.game_id = "[c[(t % l) + 1]][GLOB.game_id]"
-		t = round(t / l)
-	GLOB.game_id = "-[GLOB.game_id]"
-	t = round(world.realtime / (10 * 60 * 60 * 24))
-	for(var/_ = 1 to 3)
-		GLOB.game_id = "[c[(t % l) + 1]][GLOB.game_id]"
-		t = round(t / l)
 
 
 // something something port genesis
@@ -125,7 +102,7 @@ GLOBAL_VAR(restart_counter)
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("[GLOB.log_directory]/hrefs.htm")
 	// diary = file("data/logs/[date_string].log")
-	// diary << "[log_end]\n[log_end]\nStarting up. (ID: [GLOB.game_id]) [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	// diary << "[log_end]\n[log_end]\nStarting up. (ID: [GLOB.round_id]) [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
 
 	InitTgs()
 
@@ -155,12 +132,18 @@ GLOBAL_VAR(restart_counter)
 	TgsInitializationComplete()
 
 /world/proc/ConfigLoaded()
+	// Everything in here is prioritized in a very specific way.
+	// If you need to add to it, ask yourself hard if what your adding is in the right spot
+	// (i.e. basically nothing should be added before load_admins() in here)
+
 	//apply a default value to CONFIG_GET(string/python_path), if needed
 	if (!CONFIG_GET(string/python_path))
 		if(world.system_type == UNIX)
 			CONFIG_SET(string/python_path, "/usr/bin/env python2")
 		else //probably windows, if not this should work anyway
 			CONFIG_SET(string/python_path, "python")
+
+	SSdbcore.InitializeRound()
 
 	SetupLogs()
 
@@ -170,10 +153,9 @@ GLOBAL_VAR(restart_counter)
 		// dumb and hardcoded but I don't care~
 		CONFIG_SET(string/servername, CONFIG_GET(string/servername) + " #[(world.port % 1000) / 100]")
 
+	load_admins()
+
 	callHook("startup")
-	//Emergency Fix
-	load_mods()
-	//end-emergency fix
 
 	generate_body_modification_lists()
 
@@ -217,10 +199,10 @@ GLOBAL_VAR(restart_counter)
 		GLOB.log_directory = "data/logs/[texttime]/round-"
 		// GLOB.picture_logging_prefix = "L_[time2text(realtime, "YYYYMMDD", TIMEZONE_UTC)]_"
 		// GLOB.picture_log_directory = "data/picture_logs/[texttime]/round-"
-		if(GLOB.game_id)
-			GLOB.log_directory += "[GLOB.game_id]"
-			// GLOB.picture_logging_prefix += "R_[GLOB.game_id]_"
-			// GLOB.picture_log_directory += "[GLOB.game_id]"
+		if(GLOB.round_id)
+			GLOB.log_directory += "[GLOB.round_id]"
+			// GLOB.picture_logging_prefix += "R_[GLOB.round_id]_"
+			// GLOB.picture_log_directory += "[GLOB.round_id]"
 		else
 			var/timestamp = replacetext(time_stamp(), ":", ".")
 			GLOB.log_directory += "[timestamp]"
@@ -239,8 +221,8 @@ GLOBAL_VAR(restart_counter)
 	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM", TIMEZONE_UTC) + ".yml")
 	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
 
-	if(GLOB.game_id)
-		log_game("Round ID: [GLOB.game_id]")
+	if(GLOB.round_id)
+		log_game("Round ID: [GLOB.round_id]")
 
 	// This was printed early in startup to the world log and config_error.log,
 	// but those are both private, so let's put the commit info in the runtime
@@ -387,35 +369,6 @@ var/world_topic_spam_protect_time = world.timeofday
 	fdel(F)
 	F << the_mode
 
-// /world/proc/load_motd()
-// 	join_motd = file2text("config/motd.txt")
-
-/hook/startup/proc/loadMods()
-	world.load_mods()
-	world.load_mentors() // no need to write another hook.
-	return 1
-
-/world/proc/load_mods()
-	if(CONFIG_GET(flag/admin_legacy_system))
-		var/text = file2text("config/moderators.txt")
-		if (!text)
-			error("Failed to load config/mods.txt")
-		else
-			var/list/lines = splittext(text, "\n")
-			for(var/line in lines)
-				if (!line)
-					continue
-
-				if (copytext(line, 1, 2) == ";")
-					continue
-
-				var/title = "Moderator"
-				var/rights = admin_ranks[title]
-
-				var/ckey = copytext(line, 1, length(line)+1)
-				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(GLOB.directory[ckey])
-
 /world/proc/load_mentors()
 	if(CONFIG_GET(flag/admin_legacy_system))
 		var/text = file2text("config/mentors.txt")
@@ -430,7 +383,7 @@ var/world_topic_spam_protect_time = world.timeofday
 					continue
 
 				var/title = "Mentor"
-				var/rights = admin_ranks[title]
+				var/rights = GLOB.admin_ranks[title]
 
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
@@ -489,51 +442,6 @@ var/world_topic_spam_protect_time = world.timeofday
 	/* does this help? I do not know */
 	if (src.status != s)
 		src.status = s
-
-#define FAILED_DB_CONNECTION_CUTOFF 5
-var/failed_db_connections = 0
-var/failed_old_db_connections = 0
-
-/hook/startup/proc/connectDB()
-	if(!setup_database_connection())
-		log_world("Your server failed to establish a connection with the feedback database.")
-	else
-		log_world("Feedback database connection established.")
-	return 1
-
-/proc/setup_database_connection()
-
-	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
-		return 0
-
-	if(!dbcon)
-		dbcon = new()
-
-	var/user = sqllogin
-	var/pass = sqlpass
-	var/db = sqldb
-	var/address = sqladdress
-	var/port = sqlport
-
-	dbcon.Connect("dbi:mysql:[db]:[address]:[port]", "[user]", "[pass]")
-	. = dbcon.IsConnected()
-	if ( . )
-		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
-	else
-		failed_db_connections++		//If it failed, increase the failed connections counter.
-		log_world(dbcon.ErrorMsg())
-
-	return .
-
-//This proc ensures that the connection to the feedback database (global variable dbcon) is established
-/proc/establish_db_connection()
-	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
-		return 0
-
-	if(!dbcon || !dbcon.IsConnected())
-		return setup_database_connection()
-	else
-		return 1
 
 /world/proc/incrementMaxZ()
 	SEND_SIGNAL(SSdcs, COMSIG_WORLD_MAXZ_INCREMENTING)

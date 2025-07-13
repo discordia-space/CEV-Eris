@@ -93,16 +93,31 @@
 		////////////////////////////////////
 		//things that require the database//
 		////////////////////////////////////
-	var/id = -1
-	var/registration_date = ""
-	var/first_seen = ""
+	///Used to determine how old the account is - in days.
+	var/player_age = -1
+	///Date that this account was first seen in the server
+	var/player_join_date = null
+	///So admins know why it isn't working - Used to determine what other accounts previously logged in from this ip
+	var/related_accounts_ip = "Requires database"
+	///So admins know why it isn't working - Used to determine what other accounts previously logged in from this computer id
+	var/related_accounts_cid = "Requires database"
+	///Date of byond account creation in ISO 8601 format
+	var/account_join_date = null
+	///Age of byond account in days
+	var/account_age = -1
+
 	var/country = ""
 	var/country_code = ""
-	var/first_seen_days_ago
+
 	/* security shit from asset cache (what the fuck) */
 	var/VPN_whitelist //avoid vpn cheking
 	var/list/related_ip = list()
 	var/list/related_cid = list()
+
+	///Used to cache this client's bans to save on DB queries
+	var/ban_cache = null
+	///If we are currently building this client's ban cache, this var stores the timeofday we started at
+	var/ban_cache_start = 0
 
 	preload_rsc = PRELOAD_RSC
 

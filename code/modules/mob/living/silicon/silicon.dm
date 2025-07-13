@@ -14,6 +14,7 @@
 	var/list/hud_list[10]
 	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
 
+	var/last_lawchange_announce = 0
 	//Used in say.dm.
 	var/speak_statement = "states"
 	var/speak_exclamation = "declares"

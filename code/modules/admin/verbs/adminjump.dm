@@ -13,7 +13,7 @@
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
 	set category = "Admin"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_DEBUG))
 		return
 
 	var/new_location = safepick(get_area_turfs(A))
@@ -29,7 +29,7 @@
 /client/proc/jumptoturf(var/turf/T in GLOB.turfs)
 	set name = "Jump to Turf"
 	set category = "Admin"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_DEBUG))
 		return
 
 	log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
@@ -44,7 +44,7 @@
 	set name = "Jump to Mob"
 
 
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_DEBUG))
 		return
 
 
@@ -63,7 +63,7 @@
 	set category = "Admin"
 	set name = "Jump to Coordinate"
 
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_DEBUG))
 		return
 
 	if(src.mob)
@@ -76,7 +76,7 @@
 	set category = "Admin"
 	set name = "Jump to Key"
 
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_DEBUG))
 		return
 
 	var/list/keys = list()
@@ -96,7 +96,7 @@
 	set category = "Admin"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_DEBUG))
 		return
 
 	log_admin("[key_name(usr)] teleported [key_name(M)]")
@@ -109,7 +109,7 @@
 	set name = "Get Key"
 	set desc = "Key to teleport"
 
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_DEBUG))
 		return
 
 	var/list/keys = list()

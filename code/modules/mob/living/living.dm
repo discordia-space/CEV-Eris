@@ -736,7 +736,7 @@ default behaviour is:
 	if(!possession_candidate)
 		to_chat(possessor, span_warning("That animal cannot be possessed."))
 		return FALSE
-	if(jobban_isbanned(possessor, "Animal") && animal_check)
+	if(jobban_isbanned(possessor.ckey, "Animal") && animal_check)
 		to_chat(possessor, span_warning("You are banned from animal roles."))
 		return FALSE
 	if(!possessor.MayRespawn(0 ,ANIMAL))

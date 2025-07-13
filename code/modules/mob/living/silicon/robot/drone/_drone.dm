@@ -74,7 +74,7 @@ var/list/mob_hat_cache = list()
 	if(too_many_active_drones())
 		to_chat(src, span_danger("The maximum number of active drones has been reached.."))
 		return 0
-	if(jobban_isbanned(possessor,"Robot"))
+	if(jobban_isbanned(possessor.ckey,"Robot"))
 		to_chat(usr, span_danger("You are banned from playing synthetics and cannot spawn as a drone."))
 		return 0
 	if(!possessor.MayRespawn(0,MINISYNTH))

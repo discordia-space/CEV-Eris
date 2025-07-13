@@ -199,6 +199,17 @@ var/list/_client_preferences_by_type
 	key = "CHAT_DEAD"
 	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
 
+/datum/client_preference/show_loginout
+	description ="Show login/logout messages"
+	key = "CHAT_LOGINOUT"
+	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
+
+
+/datum/client_preference/show_ghostlaws
+	description ="Show silicon law updates"
+	key = "CHAT_GHOSTLAWS"
+	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
+
 /datum/client_preference/show_progress_bar
 	description ="Progress Bar"
 	key = "SHOW_PROGRESS"

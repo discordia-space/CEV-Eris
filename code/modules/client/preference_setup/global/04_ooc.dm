@@ -32,7 +32,14 @@
 		return TOPIC_REFRESH
 
 	if(href_list["ignore_player"])
-		var/player_to_ignore = sanitize(ckey(input(user, "Who do you want to ignore?","Ignore") as null|text))
+		var/input_name = input(user, "Who do you want to ignore?","Ignore") as null|text
+		if (!input_name)
+			return TOPIC_REFRESH
+		input_name = ckey(trim(input_name))
+		if(input_name == "")
+			to_chat(user, span_danger("You must enter a valid player name to ignore."))
+			return TOPIC_REFRESH
+		var/player_to_ignore = ckey(input_name)
 		//input() sleeps while waiting for the user to respond, so we need to check CanUseTopic() again here
 		if(player_to_ignore && CanUseTopic(user))
 			pref.ignored_players |= player_to_ignore

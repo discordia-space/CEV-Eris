@@ -21,7 +21,13 @@
 /// used to locate stuff to unban.
 #define BANTYPE_ANY_FULLBAN 5
 
+#define STICKYBAN_DB_CACHE_TIME (10 SECONDS)
+#define STICKYBAN_ROGUE_CHECK_TIME 5
+
 #define ROUNDSTART_LOGOUT_REPORT_TIME 6000 // Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
+
+/// When passed in as the duration for ban_panel, will make the ban default to permanent
+#define BAN_PANEL_PERMANENT "permanent"
 
 // Admin permissions.
 #define R_FUN           (1<<0)
@@ -29,10 +35,11 @@
 #define R_DEBUG         (1<<2)
 #define R_PERMISSIONS   (1<<3)
 #define R_MENTOR        (1<<4)
-#define R_MOD           (1<<5)
-#define R_ADMIN         (1<<6)
+#define R_ADMIN         (1<<5)
+#define R_BAN           (1<<6)
 
-#define R_HOST 127 // All of the permissions above
+#define R_EVERYTHING (1<<7)-1 //the sum of all other rank permissions, used for +EVERYTHING
+
 
 #define ADMIN_QUE(user) "(<a href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];adminmoreinfo=[REF(user)]'>?</a>)"
 #define ADMIN_FLW(user) "(<a href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];adminplayerobservefollow=[REF(user)]'>FLW</a>)"

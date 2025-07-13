@@ -33,6 +33,7 @@
 /datum/job/cyborg
 	title = "Robot"
 	flag = CYBORG
+	department = DEPARTMENT_SILICON
 	department_flag = MISC
 	faction = "CEV Eris"
 	total_positions = 2

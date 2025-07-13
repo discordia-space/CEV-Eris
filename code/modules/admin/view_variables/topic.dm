@@ -482,7 +482,7 @@
 			callproc_targetpicked(1, D)
 
 	else if(href_list["teleport_here"])
-		if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+		if(!check_rights(R_ADMIN|R_DEBUG))
 			return
 
 		var/atom/movable/A = locate(href_list["teleport_here"])
@@ -494,7 +494,7 @@
 		A.forceMove(T)
 
 	else if(href_list["teleport_to"])
-		if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+		if(!check_rights(R_ADMIN|R_DEBUG))
 			return
 
 		var/atom/A = locate(href_list["teleport_to"])

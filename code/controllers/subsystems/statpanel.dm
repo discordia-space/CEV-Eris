@@ -21,6 +21,7 @@ SUBSYSTEM_DEF(statpanels)
 		var/list/global_ready_data = list()
 		var/list/global_data = list(
 			list("Storyteller: [master_storyteller ? master_storyteller : "Being democratically elected"]"),
+			list("Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]"),
 			list("Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]"),
 			list("Round Time: [gameTimestamp()]"),
 			list("Ship Time: [stationtime2text()]"),

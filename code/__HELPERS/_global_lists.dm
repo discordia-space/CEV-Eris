@@ -1,6 +1,7 @@
 GLOBAL_LIST_EMPTY(clients)	//list of all clients
 GLOBAL_LIST_EMPTY(admins)	//list of all clients whom are admins
 GLOBAL_LIST_EMPTY(directory)	//list of all ckeys with associated client
+GLOBAL_LIST_EMPTY(deadmins) //all ckeys who have used the de-admin verb.
 
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
@@ -27,6 +28,7 @@ GLOBAL_LIST_EMPTY(human_mob_list)				//List of all human mobs and sub-types, inc
 GLOBAL_LIST_EMPTY(silicon_mob_list)			//List of all silicon mobs, including clientless
 GLOBAL_LIST_EMPTY(living_mob_list)			//List of all alive mobs, including clientless. Excludes /mob/new_player
 GLOBAL_LIST_EMPTY(dead_mob_list)				//List of all dead mobs, including clientless. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(joined_player_list)		//all ckeys of client's that have joined the game at round-start or as a latejoin.
 GLOBAL_LIST_EMPTY(current_antags)
 GLOBAL_LIST_EMPTY(current_factions)
 GLOBAL_LIST_EMPTY(superior_animal_list)		//A list of all superior animals; for targeting each other
@@ -342,7 +344,7 @@ var/global/list/admin_permissions = list(
 	"debug" = 0x4,
 	"permissions" = 0x8,
 	"mentor" = 0x10,
-	"moderator" = 0x20,
+	"ban" = 0x20,
 	"admin" = 0x40,
 	"host" = 0x80
 	)

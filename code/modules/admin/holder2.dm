@@ -11,6 +11,8 @@ GLOBAL_PROTECT(href_token)
 	var/rights = 0
 	var/fakekey			= null
 
+	var/deadmined
+
 	var/datum/weakref/marked_datum_weak
 
 	var/admincaster_screen = 0	//See newscaster.dm under machinery for a full description
@@ -69,6 +71,7 @@ GLOBAL_PROTECT(href_token)
 	owner = client
 	owner.holder = src
 	owner.add_admin_verbs()	//TODO
+	GLOB.deadmins -= target
 	GLOB.admins |= client
 	try_give_devtools(client)
 	try_give_profiling(client)
@@ -81,6 +84,7 @@ GLOBAL_PROTECT(href_token)
 		return
 	if(owner)
 		GLOB.admins -= owner
+		GLOB.deadmins += target
 		owner.remove_admin_verbs()
 		owner.deadmin_holder = owner.holder
 		owner.holder = null
@@ -94,14 +98,15 @@ GLOBAL_PROTECT(href_token)
 
 	if(owner)
 		GLOB.admins += owner
+		GLOB.deadmins -= target
+
 		owner.holder = src
 		owner.deadmin_holder = null
 		owner.add_admin_verbs()
 
 /datum/admins/proc/try_give_devtools(client/client = usr)
-	if(!check_rights(R_DEBUG, C = client) || client.byond_version < 516)
+	if(!check_rights(R_DEBUG, C = client))
 		return
-	to_chat(client, span_warning("516 notice: Attempting to give you devtools, may or may not work."))
 	winset(client, null, "browser-options=byondstorage,find,refresh,devtools")
 
 /datum/admins/proc/try_give_profiling(client/client = usr)
@@ -118,6 +123,17 @@ GLOBAL_PROTECT(href_token)
 	world.SetConfig("APP/admin", owner?.ckey || target, "role=admin")
 
 
+/// Get the permissions this admin is allowed to edit on other ranks
+/datum/admins/proc/can_edit_rights_flags()
+	var/combined_flags = NONE
+
+	// for (var/datum/admin_rank/rank as anything in ranks)
+	// 	combined_flags |= rank.can_edit_rights
+	for (var/rankrights as anything in GLOB.admin_ranks)
+		combined_flags |= rankrights
+
+	return combined_flags
+
 /*
 checks if usr is an admin with at least ONE of the flags in rights_required. (Note, they don't need all the flags)
 if rights_required == 0, then it simply checks if they are an admin.
@@ -126,9 +142,9 @@ generally it would be used like so:
 
 /proc/admin_proc()
 	if(!check_rights(R_ADMIN)) return
-	to_chat(world, "you have enough rights!")
+	to_chat(world, "Hi, I’m Saul Goodman. Did you know that you have rights?")
 
-NOTE: It checks usr by default. Supply the "�" argument if you wish to check for a specific client/mob.
+NOTE: It checks usr by default. Supply the "C" argument if you wish to check for a specific client/mob.
 */
 /proc/check_rights(rights_required, show_msg=1, client/C = usr)
 	if(ismob(C))

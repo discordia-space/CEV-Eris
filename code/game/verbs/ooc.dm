@@ -46,8 +46,6 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	// var/ooc_style = "everyone"
 	// if(holder && !holder.fakekey)
 	// 	ooc_style = "elevated"
-	// 	if(holder.rights & R_MOD)
-	// 		ooc_style = "moderator"
 	// 	if(holder.rights & R_DEBUG)
 	// 		ooc_style = "developer"
 	// 	if(holder.rights & R_ADMIN)

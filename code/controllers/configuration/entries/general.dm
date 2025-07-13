@@ -14,8 +14,55 @@
 /*   Client Joining & IPs   */
 /****************************/
 
+// panic shit
 
 /datum/config_entry/flag/panic_bunker // prevents people the server hasn't seen before from connecting
+
+/datum/config_entry/number/panic_bunker_living // living time in minutes that a player needs to pass the panic bunker
+
+/datum/config_entry/string/panic_bunker_message
+	default = "Sorry but the server is currently not accepting connections from never before seen players."
+
+/datum/config_entry/number/notify_new_player_age // how long do we notify admins of a new player
+	min_val = -1
+
+/datum/config_entry/flag/irc_first_connection_alert // do we notify the irc channel when somebody is connecting for the first time?
+
+
+/datum/config_entry/string/panic_server_name
+
+/datum/config_entry/string/panic_server_name/ValidateAndSet(str_val)
+	return str_val != "\[Put the name here\]" && ..()
+
+/datum/config_entry/string/panic_server_address //Reconnect a player this linked server if this server isn't accepting new players
+
+/datum/config_entry/string/panic_server_address/ValidateAndSet(str_val)
+	return str_val != "byond://address:port" && ..()
+
+/datum/config_entry/number/client_warn_version
+	default = null
+	min_val = 500
+
+/datum/config_entry/number/client_warn_build
+	default = null
+	min_val = 0
+
+/datum/config_entry/string/client_warn_message
+	default = "Your version of byond may have issues or be blocked from accessing this server in the future."
+
+/datum/config_entry/flag/client_warn_popup
+
+/datum/config_entry/number/client_error_version
+	default = null
+	min_val = 500
+
+/datum/config_entry/string/client_error_message
+	default = "Your version of byond is too old, may have issues, and is blocked from accessing this server."
+
+/datum/config_entry/number/client_error_build
+	default = null
+	min_val = 0
+
 
 /datum/config_entry/flag/paranoia_logging //Log new byond accounts and first-time joins
 
@@ -34,10 +81,12 @@
 /datum/config_entry/flag/tor_ban
 
 /datum/config_entry/number/minimum_byond_version
+	deprecated_by = /datum/config_entry/number/client_error_version
 	min_val = 500
 	integer = TRUE
 
 /datum/config_entry/number/minimum_byond_build
+	deprecated_by = /datum/config_entry/number/client_error_build
 	integer = TRUE
 
 
@@ -62,6 +111,8 @@
 
 
 /datum/config_entry/flag/use_age_restriction_for_jobs
+
+/datum/config_entry/flag/use_account_age_for_jobs //Uses the time they made the account for the job restriction stuff. New player joining alerts should be unaffected.
 
 /datum/config_entry/flag/use_age_restriction_for_antags
 
@@ -273,9 +324,6 @@
 /datum/config_entry/flag/forbid_singulo_possession
 
 /datum/config_entry/flag/admin_legacy_system //Defines whether the server uses the legacy admin system with admins.txt or the SQL system
-	protection = CONFIG_ENTRY_LOCKED
-
-/datum/config_entry/flag/ban_legacy_system //Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/enable_localhost_rank //Gives the !localhost! rank to any client connecting from 127.0.0.1 or ::1

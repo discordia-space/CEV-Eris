@@ -1,4 +1,5 @@
 GLOBAL_REAL(GLOB, /datum/controller/global_vars)
+GLOBAL_VAR(world_)
 
 /datum/controller/global_vars
 	name = "Global Variables"
@@ -14,8 +15,6 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 
 	config.Load(world.params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
-	generate_gameid()
-
 	var/datum/controller/exclude_these = new
 	gvars_datum_in_built_vars = exclude_these.vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
 	QDEL_IN(exclude_these, 0) //signal logging isn't ready
@@ -25,6 +24,7 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	Initialize()
 
 	makeDatumRefLists()
+	GLOB.world_ = world
 
 /datum/controller/global_vars/Destroy(force)
 	// This is done to prevent an exploit where admins can get around protected vars

@@ -173,7 +173,6 @@
 	// 	LoadEntries("ezdb.txt")
 	load_important_notices()
 	LoadMOTD()
-	LoadSQL("dbconfig.txt")
 	LoadChatFilter()
 	// if(CONFIG_GET(flag/load_jobs_from_txt))
 	// 	validate_job_config()
@@ -367,44 +366,6 @@
 		log_admin("Config rewrite of [entry_type] to [new_val] attempted by [key_name(usr)]")
 		return
 	return E.ValidateAndSet("[new_val]")
-
-/datum/controller/configuration/proc/LoadSQL(filename)  // -- TLE
-	var/list/Lines = file2list("[directory]/[filename]")
-	for(var/t in Lines)
-		if(!t)	continue
-
-		t = trim(t)
-		if (length(t) == 0)
-			continue
-		else if (copytext(t, 1, 2) == "#")
-			continue
-
-		var/pos = findtext(t, " ")
-		var/name
-		var/value
-
-		if (pos)
-			name = lowertext(copytext(t, 1, pos))
-			value = copytext(t, pos + 1)
-		else
-			name = lowertext(t)
-
-		if (!name)
-			continue
-
-		switch (name)
-			if ("address")
-				sqladdress = value
-			if ("port")
-				sqlport = value
-			if ("database")
-				sqldb = value
-			if ("login")
-				sqllogin = value
-			if ("password")
-				sqlpass = value
-			else
-				log_runtime("Unknown setting in configuration: '[name]'")
 
 /datum/controller/configuration/proc/LoadMOTD()
 	var/list/motd_contents = list()

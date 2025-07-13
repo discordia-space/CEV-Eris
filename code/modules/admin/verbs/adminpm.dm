@@ -117,7 +117,7 @@
 		//check client/X is an admin and isn't the sender or recipient
 		if(X == C || X == src)
 			continue
-		if(X.key != key && X.key != C.key && (X.holder.rights & R_ADMIN|R_MOD|R_MENTOR))
+		if(X.key != key && X.key != C.key && (X.holder.rights & R_ADMIN|R_MENTOR))
 			to_chat(X, "[span_pm("<span class='other'>" + create_text_tag("pm_other", "PM:", X) + " <span class='name'>[key_name(src, X, 0)]")] to [span_name("[key_name(C, X, 0)]")]: <span class='message linkify'>[msg]</span></span></span>")
 
 	//Check if the mob being PM'd has any open admin tickets.
@@ -131,10 +131,10 @@
 			i.addResponse(src, msg) // Add this response to their open tickets.
 		return
 	if(type == "Mentorhelp")
-		if(check_rights(R_ADMIN|R_MOD|R_MENTOR, 0, C.mob)) //Is the person being pm'd an admin? If so we check if the pm'er has open tickets
+		if(check_rights(R_ADMIN|R_MENTOR, 0, C.mob)) //Is the person being pm'd an admin? If so we check if the pm'er has open tickets
 			tickets = SSmentor_tickets.checkForTicket(src)
 	else // Ahelp
-		if(check_rights(R_ADMIN|R_MOD, 0, C.mob)) //Is the person being pm'd an admin? If so we check if the pm'er has open tickets
+		if(check_rights(R_ADMIN, 0, C.mob)) //Is the person being pm'd an admin? If so we check if the pm'er has open tickets
 			tickets = SStickets.checkForTicket(src)
 
 	if(tickets)
@@ -169,5 +169,5 @@
 	for(var/client/X in GLOB.admins)
 		if(X == src)
 			continue
-		if(X.holder.rights & R_ADMIN|R_MOD)
+		if(X.holder.rights & R_ADMIN)
 			to_chat(X, "[span_pm("<span class='other'>" + create_text_tag("pm_other", "PM:", X) + " <span class='name'>[key_name(src, X, 0)]")] to [span_name("IRC-[sender]")]: [span_message("[msg]")]</span></span>")

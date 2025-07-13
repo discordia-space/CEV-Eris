@@ -54,10 +54,6 @@
 	return SUIT_SENSOR_OFF
 
 
-/proc/is_admin(var/mob/user)
-	return check_rights(R_ADMIN, 0, user) != 0
-
-
 /proc/hsl2rgb(h, s, l)
 	return //TODO: Implement
 
@@ -256,6 +252,12 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 
+/// Returns a mob's real name between brackets. Useful when you want to display a mob's name alongside their real name
+/mob/proc/get_realname_string()
+	if(real_name && real_name != name)
+		return " \[[real_name]\]"
+	return ""
+
 /proc/findname(msg)
 	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 		if (M.real_name == text("[msg]"))
@@ -288,7 +290,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			if(2)			return I_GRAB
 			else			return I_HURT
 
-//change a mob's act-intent. Input the intent as a string such as "help" or use "right"/"left
+/// change a mob's act-intent. Input the intent as a string such as "help" or use "right"/"left
 /mob/verb/a_intent_change(input as text)
 	set name = "a-intent"
 	set hidden = 1
@@ -341,66 +343,6 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			mobs += M
 	return mobs
 
-// Displays a message in deadchat, sent by source. source is not linkified, message is, to avoid stuff like character names to be linkified.
-// Automatically gives the class deadsay to the whole message (message + source)
-/proc/deadchat_broadcast(message, source=null, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR, admin_only=FALSE)
-	message = span_deadsay("[source][span_linkify(message)]")
-
-	for(var/mob/M in GLOB.player_list)
-		// var/chat_toggles = TOGGLES_DEFAULT_CHAT
-		// var/toggles = TOGGLES_DEFAULT
-		var/list/ignoring
-		// if(M.client?.prefs)
-		// 	var/datum/preferences/prefs = M.client?.prefs
-		// 	chat_toggles = prefs.chat_toggles
-		// 	toggles = prefs.toggles
-		// 	ignoring = prefs.ignored_players
-		if(admin_only)
-
-			if (check_rights(R_ADMIN, FALSE, M))
-				return
-			else
-				message += span_deadsay(" (This is viewable to admins only).")
-		var/override = FALSE
-		// if(M.client?.holder?.check_for_rights(R_ADMIN) && (chat_toggles & CHAT_DEAD))
-		// 	override = TRUE
-		// if(HAS_TRAIT(M, TRAIT_SIXTHSENSE) && message_type == DEADCHAT_REGULAR)
-		// 	override = TRUE
-		if(SSticker.current_state == GAME_STATE_FINISHED)
-			override = TRUE
-		if(isnewplayer(M) && !override)
-			continue
-		if(M.stat != DEAD && !override)
-			continue
-		if(speaker_key && (speaker_key in ignoring))
-			continue
-
-		// switch(message_type)
-		// 	if(DEADCHAT_LAWCHANGE)
-		// 		if(!(chat_toggles & CHAT_GHOSTLAWS))
-		// 			continue
-		// 	if(DEADCHAT_LOGIN_LOGOUT)
-		// 		if(!(chat_toggles & CHAT_LOGIN_LOGOUT))
-		// 			continue
-
-		if(isobserver(M))
-			var/rendered_message = message
-
-			if(follow_target)
-				var/F
-				if(turf_target)
-					F = FOLLOW_OR_TURF_LINK(M, follow_target, turf_target)
-				else
-					F = FOLLOW_LINK(M, follow_target)
-				rendered_message = "[F] [message]"
-			else if(turf_target)
-				var/turf_link = TURF_LINK(M, turf_target)
-				rendered_message = "[turf_link] [message]"
-
-			to_chat(M, rendered_message, avoid_highlighting = speaker_key == M.key)
-		else
-			to_chat(M, message, avoid_highlighting = speaker_key == M.key)
-
 //Announces that a ghost has joined/left, mainly for use with wizards
 /proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
 	var/client/C
@@ -435,12 +377,6 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			deadchat_broadcast("The ghost of [span_name("[name]")] now [pick("skulks","lurks","prowls","creeps","stalks")] among the dead. [message]")
 		else
 			deadchat_broadcast("[span_name("[name]")] no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
-
-///Returns a mob's real name between brackets. Useful when you want to display a mob's name alongside their real name
-/mob/proc/get_realname_string()
-	if(real_name && real_name != name)
-		return " \[[real_name]\]"
-	return ""
 
 /mob/proc/switch_to_camera(var/obj/machinery/camera/C)
 	if (!C.can_use() || stat || (get_dist(C, src) > 1 || machine != src || blinded || !canmove))

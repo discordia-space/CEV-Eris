@@ -5,7 +5,7 @@
 */
 
 /datum/department
-	var/name = "unspecified department"	//Name may be shown in UIs, proper capitalisation
+	var/name = "unspecifieddepartment"	//Name may be shown in UIs, proper capitalisation
 	var/id	= "department" //This should be one of the DEPARTMENT_XXX defines in __defines/jobs.dm
 	var/account_number = 0
 	var/account_pin
@@ -22,6 +22,8 @@
 
 	// How much account failed to pay to employees. Used for emails
 	var/total_debt = 0
+
+	var/list/jobs = list() //List of jobs in this department, used for job selection
 
 /datum/department/proc/get_total_budget()
 	if(funding_source)

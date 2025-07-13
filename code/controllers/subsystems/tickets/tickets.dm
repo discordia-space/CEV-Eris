@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(tickets)
 	var/ticket_system_name = "Admin Tickets"
 	var/ticket_name = "Admin Ticket"
 	var/close_rights = R_ADMIN
-	var/rights_needed = R_ADMIN | R_MOD
+	var/rights_needed = R_ADMIN
 
 	/// Text that will be added to the anchor link
 	var/anchor_link_extra = ""
@@ -269,17 +269,23 @@ SUBSYSTEM_DEF(tickets)
 		return TRUE
 
 //Check if the user already has a ticket open and within the cooldown period.
-/datum/controller/subsystem/tickets/proc/checkForOpenTicket(client/C)
+/datum/controller/subsystem/tickets/proc/checkForOpenTicket(ckey)
+	if (isclient(ckey))
+		ckey = astype(ckey, /client).ckey
+
 	for(var/datum/ticket/T in allTickets)
-		if(T.client_ckey == C.ckey && T.ticketState == TICKET_OPEN && (T.ticketCooldown > world.time))
+		if(T.client_ckey == ckey && T.ticketState == TICKET_OPEN && (T.ticketCooldown > world.time))
 			return T
 	return FALSE
 
 //Check if the user has ANY ticket not resolved or closed.
-/datum/controller/subsystem/tickets/proc/checkForTicket(client/C)
+/datum/controller/subsystem/tickets/proc/checkForTicket(ckey)
+	if (isclient(ckey))
+		ckey = astype(ckey, /client).ckey
+
 	var/list/tickets = list()
 	for(var/datum/ticket/T in allTickets)
-		if(T.client_ckey == C.ckey && (T.ticketState == TICKET_OPEN || T.ticketState == TICKET_STALE))
+		if(T.client_ckey == ckey && (T.ticketState == TICKET_OPEN || T.ticketState == TICKET_STALE))
 			tickets += T
 	if(tickets.len)
 		return tickets

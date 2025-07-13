@@ -70,8 +70,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			var/mob/M = C
 			C = M.client
 		// its a fucking ckey
-		if(istext(C))
-			C = GLOB.directory[C]
+		if(istext(C) || istext(href_list["priv_msg"]))
+			C = GLOB.directory[trim(href_list["priv_msg"])]
 
 		cmd_admin_pm(C,null)
 		return
@@ -186,6 +186,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	///////////
 
 /client/New(TopicData)
+	var/tdata = TopicData //save this for later use
 	TopicData = null //Prevent calls to client.Topic from connect
 
 	if(connection != "seeker" && connection != "web")//Invalid connection type.
@@ -197,9 +198,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
+	var/reconnecting = FALSE
+	// TODO: Persistent Clients
 
-	if(byond_version >= 516)
-		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
+	winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
 
 	// Instantiate tgui panel
 	tgui_panel = new(src, "browseroutput")
@@ -217,7 +219,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// if(CONFIG_GET(flag/autoadmin))
 	// 	if(!GLOB.admin_datums[ckey])
 	// 		var/datum/admin_rank/autorank
-	// 		for(var/datum/admin_rank/R in GLOB.admin_ranks)
+	// 		for(var/datum/admin_rank/R in GLOB.GLOB.admin_ranks)
 	// 			if(R.name == CONFIG_GET(string/autoadmin_rank))
 	// 				autorank = R
 	// 				break
@@ -228,7 +230,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(CONFIG_GET(flag/enable_localhost_rank) && !connecting_admin)
 		var/localhost_addresses = list("127.0.0.1", "::1")
 		if(isnull(address) || (address in localhost_addresses))
-			var/datum/admins/localhost_rank = new("!localhost!", R_HOST, ckey)
+			var/datum/admins/localhost_rank = new("!localhost!", R_EVERYTHING, ckey)
 			localhost_rank.associate(src)
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
@@ -243,9 +245,54 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
 	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[full_version]")
 
-	. = ..() //calls mob.Login()
 
-	to_chat_immediate(src, span_red("If the title screen is black, resources are still downloading. Please be patient until the title screen appears."))
+	var/alert_mob_dupe_login = FALSE
+	var/alert_admin_multikey = FALSE
+	if(CONFIG_GET(flag/log_access))
+		var/list/joined_players = list()
+		for(var/player_ckey in GLOB.joined_player_list)
+			joined_players[player_ckey] = 1
+
+		for(var/joined_player_ckey in (GLOB.directory | joined_players))
+			if (!joined_player_ckey || joined_player_ckey == ckey)
+				continue
+
+			var/datum/preferences/joined_player_preferences = SScharacter_setup.preferences_datums[joined_player_ckey]
+			if(!joined_player_preferences)
+				continue //this shouldn't happen.
+
+			var/client/C = GLOB.directory[joined_player_ckey]
+			var/in_round = ""
+			if (joined_players[joined_player_ckey])
+				in_round = " who has played in the current round"
+			var/message_type = "Notice"
+
+			var/matches
+			if(joined_player_preferences.last_ip == address)
+				matches += "IP ([address])"
+			if(joined_player_preferences.last_id == computer_id)
+				if(matches)
+					matches = "BOTH [matches] and "
+					alert_admin_multikey = TRUE
+					message_type = "MULTIKEY"
+				matches += "Computer ID ([computer_id])"
+				alert_mob_dupe_login = TRUE
+
+			if(matches)
+				if(C)
+					message_admins(span_danger("<B>[message_type]: </B></span><span class='notice'>Connecting player [key_name_admin(src)] has the same [matches] as [key_name_admin(C)]<b>[in_round]</b>."))
+					log_admin_private("[message_type]: Connecting player [key_name(src)] has the same [matches] as [key_name(C)][in_round].")
+				else
+					message_admins(span_danger("<B>[message_type]: </B></span><span class='notice'>Connecting player [key_name_admin(src)] has the same [matches] as [joined_player_ckey](no longer logged in)<b>[in_round]</b>. "))
+					log_admin_private("[message_type]: Connecting player [key_name(src)] has the same [matches] as [joined_player_ckey](no longer logged in)[in_round].")
+
+
+
+	. = ..() //calls mob.Login()
+	if (length(GLOB.stickybanadminexemptions))
+		GLOB.stickybanadminexemptions -= ckey
+		if (!length(GLOB.stickybanadminexemptions))
+			restore_stickybans()
 
 	if (byond_version >= 512)
 		if (!byond_build || byond_build < 1386)
@@ -255,7 +302,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			qdel(src)
 
 		if (num2text(byond_build) in GLOB.blacklisted_builds)
-			log_access("Failed login: [key] - blacklisted byond version - [byond_version].[byond_build]")
+			log_access("Failed login: [key] - blacklisted byond version")
 			to_chat_immediate(src, span_userdanger("Your version of byond is blacklisted."))
 			to_chat_immediate(src, span_danger("Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]]."))
 			to_chat_immediate(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
@@ -265,13 +312,51 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				qdel(src)
 				return
 
-		var/bad_version = CONFIG_GET(number/minimum_byond_version) && byond_version < CONFIG_GET(number/minimum_byond_version)
-		var/bad_build = CONFIG_GET(number/minimum_byond_build) && byond_build < CONFIG_GET(number/minimum_byond_build)
-		if (bad_build || bad_version)
-			to_chat_immediate(src, "You are attempting to connect with a out of date version of BYOND. Please update to the latest version at http://www.byond.com/ before trying again.")
-			log_access("Failed login: [key] - out of date version - [byond_version].[byond_build]")
+	to_chat_immediate(src, span_red("If the title screen is black, resources are still downloading. Please be patient until the title screen appears."))
+	if(alert_mob_dupe_login && !holder)
+		var/dupe_login_message = "Your ComputerID has already logged in with another key this round, please log out of this one NOW or risk being banned!"
+		if (alert_admin_multikey)
+			dupe_login_message += "\nAdmins have been informed."
+			message_admins(span_danger("<B>MULTIKEYING: </B></span><span class='notice'>[key_name_admin(src)] has a matching CID+IP with another player and is clearly multikeying. They have been warned to leave the server or risk getting banned."))
+			log_admin_private("MULTIKEYING: [key_name(src)] has a matching CID+IP with another player and is clearly multikeying. They have been warned to leave the server or risk getting banned.")
+		spawn(0.5 SECONDS) //needs to run during world init, do not convert to add timer
+			alert(mob, dupe_login_message) //players get banned if they don't see this message, do not convert to tgui_alert (or even tg_alert) please.
+			to_chat_immediate(mob, span_danger(dupe_login_message))
+
+
+	connection_time = world.time
+	connection_realtime = world.realtime
+	connection_timeofday = world.timeofday
+	var/breaking_version = CONFIG_GET(number/client_error_version)
+	var/breaking_build = CONFIG_GET(number/client_error_build)
+	var/warn_version = CONFIG_GET(number/client_warn_version)
+	var/warn_build = CONFIG_GET(number/client_warn_build)
+
+	if (byond_version < breaking_version || (byond_version == breaking_version && byond_build < breaking_build)) //Out of date client.
+		to_chat_immediate(src, span_danger("<b>Your version of BYOND is too old:</b>"))
+		to_chat_immediate(src, CONFIG_GET(string/client_error_message))
+		to_chat_immediate(src, "Your version: [byond_version].[byond_build]")
+		to_chat_immediate(src, "Required version: [breaking_version].[breaking_build] or later")
+		to_chat_immediate(src, "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.")
+		if (connecting_admin)
+			to_chat_immediate(src, "Because you are an admin, you are being allowed to walk past this limitation, But it is still STRONGLY suggested you upgrade")
+		else
 			qdel(src)
 			return
+	else if (byond_version < warn_version || (byond_version == warn_version && byond_build < warn_build)) //We have words for this client.
+		if(CONFIG_GET(flag/client_warn_popup))
+			var/msg = "<b>Your version of byond may be getting out of date:</b><br>"
+			msg += CONFIG_GET(string/client_warn_message) + "<br><br>"
+			msg += "Your version: [byond_version].[byond_build]<br>"
+			msg += "Required version to remove this message: [warn_version].[warn_build] or later<br>"
+			msg += "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.<br>"
+			src << browse(HTML_SKELETON(msg), "window=warning_popup")
+		else
+			to_chat(src, span_danger("<b>Your version of byond may be getting out of date:</b>"))
+			to_chat(src, CONFIG_GET(string/client_warn_message))
+			to_chat(src, "Your version: [byond_version].[byond_build]")
+			to_chat(src, "Required version to remove this message: [warn_version].[warn_build] or later")
+			to_chat(src, "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.")
 
 
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
@@ -320,12 +405,77 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		to_chat(src, span_alert("[custom_event_msg]"))
 		to_chat(src, "<br>")
 
-	log_client_to_db()
+	if (mob && reconnecting)
+		var/stealth_admin = mob.client?.holder?.fakekey
+		// var/announce_leave = mob.client?.prefs?.read_preference(/datum/preference/toggle/broadcast_login_logout)
+		var/announce_leave = FALSE
+		if (!stealth_admin)
+			deadchat_broadcast(" has reconnected.", "<b>[mob][mob.get_realname_string()]</b>", follow_target = mob, turf_target = get_turf(mob), message_type = DEADCHAT_LOGIN_LOGOUT, admin_only=!announce_leave)
+
+	// TODO: Port modern notes
+	// This needs to be before the client age from db is updated as it'll be updated by then.
+	// var/datum/db_query/query_last_connected = SSdbcore.NewQuery(
+	// 	"SELECT lastseen FROM [format_table_name("player")] WHERE ckey = :ckey",
+	// 	list("ckey" = ckey)
+	// )
+	// if(query_last_connected.warn_execute() && length(query_last_connected.rows))
+	// 	query_last_connected.NextRow()
+	// 	var/time_stamp = query_last_connected.item[1]
+	// 	var/unread_notes = get_message_output("note", ckey, FALSE, time_stamp)
+	// 	if(unread_notes)
+	// 		to_chat(src, unread_notes, type = MESSAGE_TYPE_ADMINPM, confidential = TRUE)
+	// qdel(query_last_connected)
+
+	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need it's current value now down below.
+	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
+		if(!SSdbcore.Connect())
+			player_age = -1
+		else
+			account_join_date = findJoinDate()
+			if(!account_join_date)
+				player_age = 0
+			else
+				var/datum/db_query/query_datediff = SSdbcore.NewQuery(
+					"SELECT DATEDIFF(Now(), :account_join_date)",
+					list("account_join_date" = account_join_date)
+				)
+				if(!query_datediff.Execute())
+					qdel(query_datediff)
+					return
+				if(query_datediff.NextRow())
+					account_age = text2num(query_datediff.item[1])
+				qdel(query_datediff)
+			player_age = account_age
+
+	var/nnpa = CONFIG_GET(number/notify_new_player_age)
+	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
+		if (nnpa >= 0)
+			message_admins("New user: [key_name_admin(src)] is connecting here for the first time.")
+			if (CONFIG_GET(flag/irc_first_connection_alert))
+				send2tgs_adminless_only("New-user", "[key_name(src)] is connecting for the first time!")
+	else if (isnum(cached_player_age) && cached_player_age < nnpa)
+		message_admins("New user: [key_name_admin(src)] just connected with an age of [cached_player_age] day[(player_age == 1?"":"s")]")
+	if(CONFIG_GET(flag/use_account_age_for_jobs) && account_age >= 0)
+		player_age = account_age
+	if(account_age >= 0 && account_age < nnpa)
+		message_admins("[key_name_admin(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age == 1?"":"s")] old, created on [account_join_date].")
+		if (CONFIG_GET(flag/irc_first_connection_alert))
+			send2tgs_adminless_only("new_byond_user", "[key_name(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age == 1?"":"s")] old, created on [account_join_date].")
+	// if(check_overwatch() && CONFIG_GET(flag/vpn_kick))
+	// 	return
+	validate_key_in_db()
+	// If we aren't already generating a ban cache, fire off a build request
+	// This way hopefully any users of request_ban_cache will never need to yield
+	if(!ban_cache_start && SSban_cache?.query_started)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(build_ban_cache), src)
 
 	send_resources()
 
 	initialize_menus()
 
+	// TODO: Uncomment when new notes system is ported
+	// if(CONFIG_GET(flag/autoconvert_notes))
+	// 	convert_notes_sql(ckey)
 	if(ckey in GLOB.clientmessages)
 		for(var/message in GLOB.clientmessages[ckey])
 			to_chat(src, message)
@@ -368,15 +518,16 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		GLOB.admins -= src
 		handle_admin_logout()
 	QDEL_NULL(tooltips)
-	if(dbcon.IsConnected())
-		var/DBQuery/query = dbcon.NewQuery("UPDATE players SET last_seen = Now() WHERE id = [src.id]")
+	if(SSdbcore.IsConnected())
+		var/datum/db_query/query = SSdbcore.NewQuery("UPDATE [format_table_name("player")] SET lastseen = Now() WHERE ckey = :ckey", list("ckey" = ckey))
 		if(!query.Execute())
-			log_world("Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()].")
+			log_world("Failed to update players table for ckey [ckey]. Error message: [query.ErrorMsg()].")
+		qdel(query)
 	Master.UpdateTickRate()
 	..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening
 	return QDEL_HINT_HARDDEL_NOW
 
-/client/proc/get_registration_date()
+/client/proc/findJoinDate()
 	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
 	if(!http)
 		log_world("Failed to connect to byond member page to age check [ckey]")
@@ -388,6 +539,37 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			. = R.group[1]
 		else
 			CRASH("Age check regex failed for [src.ckey]")
+
+/client/proc/validate_key_in_db()
+	var/sql_key
+	var/datum/db_query/query_check_byond_key = SSdbcore.NewQuery(
+		"SELECT byond_key FROM [format_table_name("player")] WHERE ckey = :ckey",
+		list("ckey" = ckey)
+	)
+	if(!query_check_byond_key.Execute())
+		qdel(query_check_byond_key)
+		return
+	if(query_check_byond_key.NextRow())
+		sql_key = query_check_byond_key.item[1]
+	qdel(query_check_byond_key)
+	if(key != sql_key)
+		var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
+		if(!http)
+			log_world("Failed to connect to byond member page to get changed key for [ckey]")
+			return
+		var/F = file2text(http["CONTENT"])
+		if(F)
+			var/regex/R = regex("\\tkey = \"(.+)\"")
+			if(R.Find(F))
+				var/web_key = R.group[1]
+				var/datum/db_query/query_update_byond_key = SSdbcore.NewQuery(
+					"UPDATE [format_table_name("player")] SET byond_key = :byond_key WHERE ckey = :ckey",
+					list("byond_key" = web_key, "ckey" = ckey)
+				)
+				query_update_byond_key.Execute()
+				qdel(query_update_byond_key)
+			else
+				CRASH("Key check regex failed for [ckey]")
 
 /client/proc/get_country()
 	// Return data:
@@ -430,117 +612,206 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	return null
 
 
-/client/proc/register_in_db()
-	// Prevents the crash if the DB isn't connected.
-	if(!dbcon.IsConnected())
-		return
+// /client/proc/register_in_db()
+// 	// Prevents the crash if the DB isn't connected.
+// 	if(!SSdbcore.IsConnected())
+// 		return
 
-	registration_date = src.get_registration_date()
-	src.get_country()
-	src.get_byond_age() // Get days since byond join
+// 	account_join_date = src.findJoinDate()
+// 	src.get_country()
+// 	src.get_byond_age() // Get days since byond join
+// 	var/admin_rank = holder?.rank || "player"
+// 	var/datum/db_query/query_insert = SSdbcore.NewQuery(
+// 		"INSERT INTO [format_table_name("player")] (ckey, byond_key, firstseen, firstseen_round_id, lastseen, lastseen_round_id, accountjoindate, ip, computerid, lastadminrank, country) VALUES (:ckey, :byond_key, Now(), :firstseen_round_id, Now(), :lastseen_round_id, :accountjoindate, INET_ATON(:ip), :computerid, :lastadminrank, :country)",
+// 		list(
+// 			"ckey" = src.ckey,
+// 			"byond_key" = src.key,
+// 			"firstseen_round_id" = GLOB.round_id,
+// 			"lastseen_round_id" = GLOB.round_id,
+// 			"accountjoindate" = account_join_date,
+// 			"ip" = src.address,
+// 			"computerid" = src.computer_id,
+// 			"lastadminrank" = admin_rank,
+// 			"country" = src.country_code
+// 		)
+// 	)
+// 	if(!query_insert.Execute())
+// 		log_world("##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()].")
+// 		return
 
-	var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version, country) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_sanitize_text(src.address)]', '[sql_sanitize_text(src.computer_id)]', 'player', [src.byond_version], '[src.country_code]')")
-	if(!query_insert.Execute())
-		log_world("##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()].")
-		return
-
-	else
-		var/DBQuery/get_player_id = dbcon.NewQuery("SELECT id, first_seen FROM players WHERE ckey = '[src.ckey]'")
-		get_player_id.Execute()
-		if(get_player_id.NextRow())
-			src.id = get_player_id.item[1]
-			src.first_seen = get_player_id.item[2]
+// 	else
+// 		var/datum/db_query/get_player_id = SSdbcore.NewQuery("SELECT firstseen FROM [format_table_name("player")] WHERE ckey = :ckey", list("ckey" = src.ckey))
+// 		get_player_id.Execute()
+// 		if(get_player_id.NextRow())
+// 			src.first_seen = get_player_id.item[1]
 
 //Not actually age, but rather time since first seen in days
-/client/proc/get_player_age()
-	if(first_seen && dbcon.IsConnected())
-		var/dateSQL = sanitizeSQL(first_seen)
-		var/DBQuery/query_datediff = dbcon.NewQuery("SELECT DATEDIFF(Now(),'[dateSQL]')")
-		if(query_datediff.Execute() && query_datediff.NextRow())
-			src.first_seen_days_ago = text2num(query_datediff.item[1])
+// /client/proc/get_player_age()
+// 	if(first_seen && SSdbcore.IsConnected())
+// 		var/datum/db_query/query_datediff = SSdbcore.NewQuery("SELECT DATEDIFF(Now(),:datesql)", list("datesql" = first_seen))
+// 		if(query_datediff.Execute() && query_datediff.NextRow())
+// 			src.player_age = text2num(query_datediff.item[1])
 
-	if(CONFIG_GET(flag/paranoia_logging) && isnum(src.first_seen_days_ago) && src.first_seen_days_ago == 0)
-		log_and_message_admins("PARANOIA: [key_name(src)] has connected here for the first time.")
-	return src.first_seen_days_ago
+// 	if(CONFIG_GET(flag/paranoia_logging) && isnum(src.player_age) && src.player_age == 0)
+// 		log_and_message_admins("PARANOIA: [key_name(src)] has connected here for the first time.")
+// 	return src.player_age
 
 //Days since they signed up for their byond account
 /client/proc/get_byond_age()
-	if(!registration_date)
-		get_registration_date()
-	if(registration_date && dbcon.IsConnected())
-		var/dateSQL = sanitizeSQL(registration_date)
-		var/DBQuery/query_datediff = dbcon.NewQuery("SELECT DATEDIFF(Now(),'[dateSQL]')")
+	if(!account_join_date)
+		findJoinDate()
+	if(account_join_date && SSdbcore.IsConnected())
+		var/datum/db_query/query_datediff = SSdbcore.NewQuery("SELECT DATEDIFF(Now(),:datesql)", list("datesql" = account_join_date))
 		if(query_datediff.Execute() && query_datediff.NextRow())
 			src.account_age_in_days = text2num(query_datediff.item[1])
 	if(CONFIG_GET(flag/paranoia_logging) && isnum(src.account_age_in_days) && src.account_age_in_days <= 2)
 		log_and_message_admins("PARANOIA: [key_name(src)] has a very new Byond account. ([src.account_age_in_days] days old)")
 	return src.account_age_in_days
 
-/client/proc/log_client_to_db()
-	if(IsGuestKey(src.key))
+/client/proc/log_client_to_db_connection_log()
+	if(!SSdbcore.shutting_down)
+		SSdbcore.FireAndForget({"
+			INSERT INTO `[format_table_name("connection_log")]` (`id`,`datetime`,`server_ip`,`server_port`,`round_id`,`ckey`,`ip`,`computerid`,`byond_version`,`byond_build`)
+			VALUES(null,Now(),INET_ATON(:internet_address),:port,:round_id,:ckey,INET_ATON(:ip),:computerid,:byond_version,:byond_build)
+		"}, list("internet_address" = world.internet_address || "0", "port" = world.port, "round_id" = GLOB.round_id, "ckey" = ckey, "ip" = address, "computerid" = computer_id, "byond_version" = byond_version, "byond_build" = byond_build))
+
+/client/proc/set_client_age_from_db(connectiontopic)
+	if (IsGuestKey(src.key))
+		return
+	if(!SSdbcore.Connect())
+		return
+	var/datum/db_query/query_get_related_ip = SSdbcore.NewQuery(
+		"SELECT ckey FROM [format_table_name("player")] WHERE ip = INET_ATON(:address) AND ckey != :ckey",
+		list("address" = address, "ckey" = ckey)
+	)
+	if(!query_get_related_ip.Execute())
+		qdel(query_get_related_ip)
+		return
+	related_accounts_ip = ""
+	while(query_get_related_ip.NextRow())
+		related_accounts_ip += "[query_get_related_ip.item[1]], "
+	qdel(query_get_related_ip)
+	var/datum/db_query/query_get_related_cid = SSdbcore.NewQuery(
+		"SELECT ckey FROM [format_table_name("player")] WHERE computerid = :computerid AND ckey != :ckey",
+		list("computerid" = computer_id, "ckey" = ckey)
+	)
+	if(!query_get_related_cid.Execute())
+		qdel(query_get_related_cid)
+		return
+	related_accounts_cid = ""
+	while (query_get_related_cid.NextRow())
+		related_accounts_cid += "[query_get_related_cid.item[1]], "
+	qdel(query_get_related_cid)
+
+	var/admin_rank = holder?.rank || "Player"
+	var/new_player
+	var/datum/db_query/query_client_in_db = SSdbcore.NewQuery(
+		"SELECT 1 FROM [format_table_name("player")] WHERE ckey = :ckey",
+		list("ckey" = ckey)
+	)
+	if(!query_client_in_db.Execute())
+		qdel(query_client_in_db)
 		return
 
-	establish_db_connection()
-	if(dbcon.IsConnected())
-		// Get existing player from DB
-		var/DBQuery/query = dbcon.NewQuery("SELECT id from players WHERE ckey = '[src.ckey]'")
-		if(!query.Execute())
-			log_world("Failed to get player record for user with ckey '[src.ckey]'. Error message: [query.ErrorMsg()].")
+	var/client_is_in_db = query_client_in_db.NextRow()
+	// If we aren't an admin, and the flag is set (the panic bunker is enabled).
+	if(CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey])
+		// The amount of hours needed to bypass the panic bunker.
+		var/living_recs = CONFIG_GET(number/panic_bunker_living)
+		// This relies on prefs existing, but this proc is only called after that occurs, so we're fine.
+		// var/minutes = get_exp_living(pure_numeric = TRUE)
+		var/minutes = SSjob.GetTotalPlaytimeMinutesCkey(ckey)
 
-		// Not their first time here
-		else if(query.NextRow())
-			// client already registered so we fetch all needed data
-			query = dbcon.NewQuery("SELECT id, registered, first_seen, VPN_check_white FROM players WHERE id = [query.item[1]]")
-			query.Execute()
-			if(query.NextRow())
-				src.id = query.item[1]
-				src.registration_date = query.item[2]
-				src.first_seen = query.item[3]
-				src.VPN_whitelist = query.item[4]
-				src.get_country()
+		// If we don't have panic_bunker_living set and the client is not in the DB, reject them.
+		// Otherwise, if we do have a panic_bunker_living set, check if they have enough minutes played.
+		if((living_recs == 0 && !client_is_in_db) || living_recs >= minutes)
+			var/reject_message = "Failed Login: [key] - [client_is_in_db ? "":"New "]Account attempting to connect during panic bunker, but\
+				[living_recs == 0 ? " was rejected due to no prior connections to game servers (no database entry)":" they do not have the required living time [minutes]/[living_recs]"]."
+			log_access(reject_message)
+			message_admins(span_adminnotice("[reject_message]"))
+			var/message = CONFIG_GET(string/panic_bunker_message)
+			message = replacetext(message, "%minutes%", living_recs)
+			to_chat_immediate(src, message)
+			var/list/connectiontopic_a = params2list(connectiontopic)
+			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
+			if(panic_addr && !connectiontopic_a["redirect"])
+				var/panic_name = CONFIG_GET(string/panic_server_name)
+				to_chat_immediate(src, span_notice("Sending you to [panic_name ? panic_name : panic_addr]."))
+				winset(src, null, "command=.options")
+				src << link("[panic_addr]?redirect=1")
+			qdel(query_client_in_db)
+			qdel(src)
+			return
 
-				//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
-				var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[src.address]', cid = '[src.computer_id]', byond_version = '[src.byond_version]', country = '[src.country_code]' WHERE id = [src.id]")
+	if(!client_is_in_db)
+		new_player = 1
+		account_join_date = findJoinDate()
+		var/datum/db_query/query_add_player = SSdbcore.NewQuery({"
+			INSERT INTO [format_table_name("player")] (`ckey`, `byond_key`, `firstseen`, `firstseen_round_id`, `lastseen`, `lastseen_round_id`, `ip`, `computerid`, `lastadminrank`, `accountjoindate`)
+			VALUES (:ckey, :key, Now(), :round_id, Now(), :round_id, INET_ATON(:ip), :computerid, :adminrank, :account_join_date)
+		"}, list("ckey" = ckey, "key" = key, "round_id" = GLOB.round_id, "ip" = address, "computerid" = computer_id, "adminrank" = admin_rank, "account_join_date" = account_join_date || null))
+		if(!query_add_player.Execute())
+			qdel(query_client_in_db)
+			qdel(query_add_player)
+			return
+		qdel(query_add_player)
+		if(!account_join_date)
+			account_join_date = "Error"
+			account_age = -1
+	qdel(query_client_in_db)
+	var/datum/db_query/query_get_client_age = SSdbcore.NewQuery(
+		"SELECT firstseen, DATEDIFF(Now(),firstseen), accountjoindate, DATEDIFF(Now(),accountjoindate) FROM [format_table_name("player")] WHERE ckey = :ckey",
+		list("ckey" = ckey)
+	)
+	if(!query_get_client_age.Execute())
+		qdel(query_get_client_age)
+		return
+	if(query_get_client_age.NextRow())
+		player_join_date = query_get_client_age.item[1]
+		player_age = text2num(query_get_client_age.item[2])
+		if(!account_join_date)
+			account_join_date = query_get_client_age.item[3]
+			account_age = text2num(query_get_client_age.item[4])
+			if(!account_age)
+				account_join_date = findJoinDate()
+				if(!account_join_date)
+					account_age = -1
+				else
+					var/datum/db_query/query_datediff = SSdbcore.NewQuery(
+						"SELECT DATEDIFF(Now(), :account_join_date)",
+						list("account_join_date" = account_join_date)
+					)
+					if(!query_datediff.Execute())
+						qdel(query_datediff)
+						qdel(query_get_client_age)
+						return
+					if(query_datediff.NextRow())
+						account_age = text2num(query_datediff.item[1])
+					qdel(query_datediff)
+	qdel(query_get_client_age)
+	if(!new_player)
+		SSdbcore.FireAndForget(
+			"UPDATE [format_table_name("player")] SET lastseen = Now(), lastseen_round_id = :round_id, ip = INET_ATON(:ip), computerid = :computerid, lastadminrank = :admin_rank, accountjoindate = :account_join_date WHERE ckey = :ckey",
+			list("round_id" = GLOB.round_id, "ip" = address, "computerid" = computer_id, "admin_rank" = admin_rank, "account_join_date" = account_join_date || null, "ckey" = ckey)
+		)
+	if(!account_join_date)
+		account_join_date = "Error"
+	log_client_to_db_connection_log()
 
-				if(!query_update.Execute())
-					log_world("Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()].")
+	// TODO: Port SSserver_maint
+	// SSserver_maint.UpdateHubStatus()
 
-		//Panic bunker - player not in DB, so they get kicked
-		else if(CONFIG_GET(flag/panic_bunker) && !holder && !deadmin_holder && !(ckey in GLOB.PB_bypass))
-			log_suspicious_login("Failed Login: [key] - New account attempting to connect during panic bunker")
-			message_admins(span_adminnotice("Failed Login: [key] - New account attempting to connect during panic bunker"))
-			to_chat(src, span_warning("Sorry but the server is currently not accepting connections from never before seen players."))
-			del(src) // Hard del the client. This terminates the connection.
-			return 0
-		query = dbcon.NewQuery("SELECT ip_related_ids, cid_related_ids FROM players WHERE id = '[src.id]'")
-		query.Execute()
-		if(query.NextRow())
-			related_ip = splittext(query.item[1], ",")
-			related_cid = splittext(query.item[2], ",")
-		query = dbcon.NewQuery("SELECT id, ip, cid FROM players WHERE (ip = '[address]' OR cid = '[computer_id]') AND id <> '[src.id]'")
-		query.Execute()
-		var/changed = 0
-		while(query.NextRow())
-			var/temp_id = query.item[1]
-			var/temp_ip = query.item[2]
-			var/temp_cid = query.item[3]
-			if(temp_ip == address)
-				changed = 1
-				related_ip |= temp_id
-			if(temp_cid == computer_id)
-				changed = 1
-				related_cid |= temp_id
-		if(changed)
-			query = dbcon.NewQuery("UPDATE players SET cid_related_ids = '[jointext(related_cid, ",")]', ip_related_ids = '[jointext(related_ip, ",")]' WHERE id = '[src.id]'")
-			query.Execute()
+	if(new_player)
+		player_age = -1
+	. = player_age
 
 
-	src.get_byond_age() // Get days since byond join
-	src.get_player_age() // Get days since first seen
+	// src.get_byond_age() // Get days since byond join
+	// src.get_player_age() // Get days since first seen
 
 	// IP Reputation Check
 	if(CONFIG_GET(flag/ip_reputation))
-		if(CONFIG_GET(flag/ipr_allow_existing) && first_seen_days_ago >= CONFIG_GET(number/ipr_minimum_age))
+		if(CONFIG_GET(flag/ipr_allow_existing) && player_age >= CONFIG_GET(number/ipr_minimum_age))
 			log_admin("Skipping IP reputation check on [key] with [address] because of player age")
 		else if(holder)
 			log_admin("Skipping IP reputation check on [key] with [address] because they have a staff rank")
@@ -567,12 +838,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
 
-	if(text2num(id) < 0)
-		src.register_in_db()
-
-
-
-#undef UPLOAD_LIMIT
 
 //checks if a client is afk
 //3000 frames = 5 minutes
@@ -873,3 +1138,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	message_to_send += "(No admins online)"
 
 	send2adminchat("Server", jointext(message_to_send, " "))
+
+#undef UPLOAD_LIMIT
+

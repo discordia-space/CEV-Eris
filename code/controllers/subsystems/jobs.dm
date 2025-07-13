@@ -12,6 +12,9 @@ SUBSYSTEM_DEF(job)
 
 	var/list/occupations = list()			//List of all jobs
 	var/list/occupations_by_name = list()	//Dict of all jobs, keys are titles
+	var/list/departments = list()			//List of all departments
+	var/list/departments_by_name = list()	//Dict of all departments, keys are names
+	// var/list/datum/department/joinable_departments = list()
 	var/list/unassigned = list()			//Players who need jobs
 	var/list/job_debug = list()				//Debug info
 	var/list/job_mannequins = list()				//Cache of icons for job info window
@@ -151,7 +154,20 @@ SUBSYSTEM_DEF(job)
 	else
 		return FALSE
 
+/datum/controller/subsystem/job/proc/GetTotalPlaytimeMinutesCkey(ckey)
+	if(!ckey)
+		return 0
+	if(!ckey_to_total_playtime[ckey])
+		LoadPlaytimes(ckey)
+	if(!ckey_to_total_playtime[ckey])
+		return 0
+	return round(ckey_to_total_playtime[ckey] / 600)
+
 /datum/controller/subsystem/job/proc/LoadPlaytimeRequirements(folderPath)
+	if (!rustg_file_exists(folderPath))
+		to_chat(world, span_warning("Job playtime requirements file not found at [folderPath]."))
+		log_world("Job playtime requirements file not found at [folderPath].")
+		return FALSE
 	var/list/le_playtimes = file2list(folderPath)
 	for(var/playtime in le_playtimes)
 		if(!playtime)
@@ -233,6 +249,15 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/SetupOccupations(faction = "CEV Eris")
 	occupations.Cut()
 	occupations_by_name.Cut()
+	departments.Cut()
+	departments_by_name.Cut()
+
+	for(var/D in subtypesof(/datum/department))
+		var/datum/department/department = new D()
+
+		departments += department
+		departments_by_name[department.id] = department
+
 	for(var/J in subtypesof(/datum/job))
 		var/datum/job/job = new J()
 		if(job.faction != faction)
@@ -240,10 +265,18 @@ SUBSYSTEM_DEF(job)
 		occupations += job
 		occupations_by_name[job.title] = job
 
+		var/datum/department/department = departments_by_name[job.department]
+		if(!department)
+			to_chat(world, span_warning("No department found for job [job.title]!!"))
+			continue
+
+		if(!department.jobs)
+			department.jobs = list()
+		department.jobs += job
+
 	if(!occupations.len)
 		to_chat(world, span_warning("Error setting up jobs, no job datums found!"))
 		return FALSE
-
 	return TRUE
 
 /datum/controller/subsystem/job/proc/Debug(text)
@@ -263,7 +296,7 @@ SUBSYSTEM_DEF(job)
 			return FALSE
 		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 			return FALSE
-		if(jobban_isbanned(player, rank))
+		if(jobban_isbanned(player.ckey, rank))
 			return FALSE
 
 		var/position_limit = job.total_positions
@@ -329,7 +362,7 @@ SUBSYSTEM_DEF(job)
 		if(job.is_restricted(player.client.prefs))
 			continue
 
-		if(jobban_isbanned(player, job.title))
+		if(jobban_isbanned(player.ckey, job.title))
 			Debug("GRJ isbanned failed, Player: [player], Job: [job.title]")
 			continue
 
@@ -473,7 +506,7 @@ SUBSYSTEM_DEF(job)
 				/*if(!job || SSticker.mode.disabled_jobs.Find(job.title) )
 					continue
 				*/
-				if(jobban_isbanned(player, job.title))
+				if(jobban_isbanned(player.ckey, job.title))
 					Debug("DO isbanned failed, Player: [player], Job:[job.title]")
 					continue
 
@@ -711,7 +744,7 @@ SUBSYSTEM_DEF(job)
 		for(var/mob/new_player/player in GLOB.player_list)
 			if(!(player.ready && player.mind && !player.mind.assigned_role))
 				continue //This player is not ready
-			if(jobban_isbanned(player, job.title))
+			if(jobban_isbanned(player.ckey, job.title))
 				level5++
 				continue
 			if(player.client.prefs.CorrectLevel(job,1))

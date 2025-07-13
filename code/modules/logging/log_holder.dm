@@ -52,7 +52,7 @@ GENERAL_PROTECT_DATUM(/datum/log_holder)
 
 /datum/log_holder/ui_static_data(mob/user)
 	var/list/data = list(
-		"game_id" = GLOB.game_id,
+		"round_id" = GLOB.round_id,
 		"logging_start_timestamp" = logging_start_timestamp,
 	)
 
@@ -120,7 +120,7 @@ GENERAL_PROTECT_DATUM(/datum/log_holder)
 	if(initialized)
 		CRASH("Attempted to call init_logging twice!")
 
-	round_id = GLOB.game_id
+	round_id = GLOB.round_id
 	logging_start_timestamp = unix_timestamp_string()
 	log_categories = list()
 	disabled_categories = list()
@@ -269,7 +269,7 @@ GENERAL_PROTECT_DATUM(/datum/log_holder)
 
 	var/list/category_header = list(
 		LOG_HEADER_INIT_TIMESTAMP = logging_start_timestamp,
-		LOG_HEADER_ROUND_ID = GLOB.game_id,
+		LOG_HEADER_ROUND_ID = GLOB.round_id,
 		LOG_HEADER_SECRET = category_instance.secret,
 		LOG_HEADER_CATEGORY_LIST = contained_categories,
 		LOG_HEADER_CATEGORY = category_instance.category,

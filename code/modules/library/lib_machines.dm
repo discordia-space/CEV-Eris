@@ -32,6 +32,14 @@
 	var/author
 	var/SQLquery
 
+// TODO: REFACTOR LIBRARY CODE!
+
+// This will exist here until the library code is refactored to:4
+// A: Load all books round start so we can reduce SQL queries
+// B: everything else like editing and submitting and deleting can still use SQL queries
+/obj/machinery/librarypubliccomp/Initialize(mapload, d)
+	return INITIALIZE_HINT_QDEL
+
 /obj/machinery/librarypubliccomp/attack_hand(var/mob/user as mob)
 	usr.set_machine(src)
 	var/dat = "" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
@@ -43,8 +51,7 @@
 			<A href='byond://?src=\ref[src];setauthor=1'>Filter by Author: [author]</A><BR>
 			<A href='byond://?src=\ref[src];search=1'>\[Start Search\]</A><BR>"}
 		if(1)
-			establish_db_connection()
-			if(!dbcon.IsConnected())
+			if(!SSdbcore.Connect())
 				dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font><BR>"
 			else if(!SQLquery)
 				dat += "<font color=red><b>ERROR</b>: Malformed search request. Please contact your system administrator for assistance.</font><BR>"
@@ -52,7 +59,7 @@
 				dat += {"<table>
 				<tr><td>AUTHOR</td><td>TITLE</td><td>CATEGORY</td><td>SS<sup>13</sup>BN</td></tr>"}
 
-				var/DBQuery/query = dbcon.NewQuery(SQLquery)
+				var/datum/db_query/query = SSdbcore.NewQuery(SQLquery)
 				query.Execute()
 
 				while(query.NextRow())
@@ -78,23 +85,23 @@
 			title = sanitize(newtitle)
 		else
 			title = null
-		title = sanitizeSQL(title)
+		// title = sanitizeSQL(title)
 	if(href_list["setcategory"])
 		var/newcategory = input("Choose a category to search for:") in list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion")
 		if(newcategory)
 			category = sanitize(newcategory)
 		else
 			category = "Any"
-		category = sanitizeSQL(category)
+		// category = sanitizeSQL(category)
 	if(href_list["setauthor"])
 		var/newauthor = input("Enter an author to search for:") as text|null
 		if(newauthor)
 			author = sanitize(newauthor)
 		else
 			author = null
-		author = sanitizeSQL(author)
+		// author = sanitizeSQL(author)
 	if(href_list["search"])
-		SQLquery = "SELECT author, title, category, id FROM library WHERE "
+		SQLquery = "SELECT author, title, category, id FROM [format_table_name("library")] WHERE "
 		if(category == "Any")
 			SQLquery += "author LIKE '%[author]%' AND title LIKE '%[title]%'"
 		else
@@ -183,14 +190,13 @@
 			<A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"}
 		if(4)
 			dat += "<h3>External Archive</h3>"
-			establish_db_connection()
-			if(!dbcon.IsConnected())
+			if(!SSdbcore.Connect())
 				dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
 			else
 				dat += {"<A href='byond://?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 				<table>
 				<tr><td><A href='byond://?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='byond://?src=\ref[src];sort=title>TITLE</A></td><td><A href='byond://?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
-				var/DBQuery/query = dbcon.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
+				var/datum/db_query/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM [format_table_name("library")] ORDER BY :sortby", list("sortby" = sortby))
 				query.Execute()
 
 				while(query.NextRow())
@@ -319,28 +325,30 @@
 					if(scanner.cache.unique)
 						alert("This book has been rejected from the database. Aborting!")
 					else
-						establish_db_connection()
-						if(!dbcon.IsConnected())
+						if(!SSdbcore.Connect())
 							alert("Connection to Archive has been severed. Aborting.")
 						else
 							/*
-							var/sqltitle = dbcon.Quote(scanner.cache.name)
-							var/sqlauthor = dbcon.Quote(scanner.cache.author)
-							var/sqlcontent = dbcon.Quote(scanner.cache.dat)
-							var/sqlcategory = dbcon.Quote(upload_category)
+							var/sqltitle = SSdbcore.Quote(scanner.cache.name)
+							var/sqlauthor = SSdbcore.Quote(scanner.cache.author)
+							var/sqlcontent = SSdbcore.Quote(scanner.cache.dat)
+							var/sqlcategory = SSdbcore.Quote(upload_category)
 							*/
-							var/sqltitle = sanitizeSQL(scanner.cache.name)
-							var/sqlauthor = sanitizeSQL(scanner.cache.author)
-							var/sqlcontent = sanitizeSQL(scanner.cache.dat)
-							var/sqlcategory = sanitizeSQL(upload_category)
+							var/sqltitle = scanner.cache.name
+							var/sqlauthor = scanner.cache.author
+							var/sqlcontent = scanner.cache.dat
+							var/sqlcategory = upload_category
 
 							var/author_id = null
-							var/DBQuery/get_author_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[usr.ckey]'")
+							var/datum/db_query/get_author_id = SSdbcore.NewQuery("SELECT id FROM [format_table_name("player")] WHERE ckey='[usr.ckey]'")
 							get_author_id.Execute()
 							if(get_author_id.NextRow())
 								author_id = get_author_id.item[1]
 
-							var/DBQuery/query = dbcon.NewQuery("INSERT INTO library (author, title, content, category, author_id) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]', [author_id])")
+							var/datum/db_query/query = SSdbcore.NewQuery(
+								"INSERT INTO [format_table_name("library")] (author, title, content, category, author_id) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]', [author_id])",
+								list("sqlauthor" = sqlauthor, "sqltitle" = sqltitle, "sqlcontent" = sqlcontent, "sqlcategory" = sqlcategory,"author_id" = author_id)
+							)
 							if(!query.Execute())
 								to_chat(usr, query.ErrorMsg())
 							else
@@ -349,9 +357,8 @@
 								alert("Upload Complete.")
 
 	if(href_list["targetid"])
-		var/sqlid = sanitizeSQL(href_list["targetid"])
-		establish_db_connection()
-		if(!dbcon.IsConnected())
+		var/sqlid = href_list["targetid"]
+		if(!SSdbcore.Connect())
 			alert("Connection to Archive has been severed. Aborting.")
 		if(bibledelay)
 			for (var/mob/V in hearers(get_turf(src)))
@@ -360,7 +367,7 @@
 			bibledelay = 1
 			spawn(60)
 				bibledelay = 0
-			var/DBQuery/query = dbcon.NewQuery("SELECT * FROM library WHERE id=[sqlid]")
+			var/datum/db_query/query = SSdbcore.NewQuery("SELECT * FROM [format_table_name("library")] WHERE id=:sqlid", list("sqlid" = sqlid))
 			query.Execute()
 
 			while(query.NextRow())

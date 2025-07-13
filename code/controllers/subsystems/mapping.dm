@@ -55,7 +55,6 @@ SUBSYSTEM_DEF(mapping)
 
 	// And the same for ghost teleport locs
 
-
 	for(var/area/AR in world)
 		if(ghostteleportlocs.Find(AR.name)) continue
 		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/derelict) || istype(AR, /area/shuttle/specops/centcom))

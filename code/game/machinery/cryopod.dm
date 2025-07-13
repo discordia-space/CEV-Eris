@@ -370,6 +370,8 @@
 				M.set_respawn_bonus("CRYOSLEEP", CRYOPOD_WOUNDED_RESPAWN_BONUS)
 			M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
+	GLOB.joined_player_list -= occupant.ckey
+
 	// This despawn is not a gib() in this sense, it is used to remove objectives tied on these despawned mobs in cryos
 	occupant.despawn()
 	set_occupant(null)

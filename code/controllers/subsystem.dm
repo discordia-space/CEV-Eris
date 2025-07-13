@@ -260,6 +260,7 @@
 //used to initialize the subsystem AFTER the map has loaded
 /datum/controller/subsystem/Initialize()
 	initialized = TRUE
+
 	// SEND_SIGNAL_OLD(src, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 
 	#ifndef OPENDREAM

@@ -43,18 +43,21 @@
 
 
 	if(!IsGuestKey(src.key))
-		establish_db_connection()
-		if(dbcon.IsConnected())
+		if(SSdbcore.Connect())
 			var/isadmin = FALSE
 			if(src.client && src.client.holder)
 				isadmin = TRUE
 			// TODO: reimplement database interaction
-			var/DBQuery/query = dbcon.NewQuery("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
-			query.Execute()
+			var/datum/db_query/poll_query = SSdbcore.NewQuery(
+				"SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT poll_id FROM [format_table_name("poll_votes")] WHERE ckey = :ckey) AND id NOT IN (SELECT poll_id FROM [format_table_name("poll_textreply")] WHERE ckey = :ckey)", list("ckey" = ckey))
+			poll_query.Execute()
+
 			var/newpoll = FALSE
-			while(query.NextRow())
+			while(poll_query.NextRow())
 				newpoll = TRUE
 				break
+
+			qdel(poll_query)
 
 			if(newpoll)
 				output += "<p><b>\[<a href='byond://?src=[REF(src)];showpoll=1'>Show Player Polls</A>\] (NEW!)</b></p>"
@@ -75,9 +78,9 @@
 	output += "</div>"
 
 	if (src.client.holder)
-		panel = new(src, "Welcome","Welcome", 230, 330, src)
+		panel = new(src, "Welcome","Welcome", 240, 340, src)
 	else
-		panel = new(src, "Welcome","Welcome", 210, 280, src)
+		panel = new(src, "Welcome","Welcome", 220, 280, src)
 
 	panel.set_window_options("can_close=0")
 	panel.set_content(output)
@@ -273,7 +276,7 @@
 		return FALSE
 	if(!SSjob.ckey_to_job_to_can_play[client.ckey][job.title])
 		return FALSE
-	if(jobban_isbanned(src,rank))
+	if(jobban_isbanned(src.ckey,rank))
 		return FALSE
 	return TRUE
 
@@ -297,6 +300,7 @@
 	var/datum/job/job = src.mind.assigned_job
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 
+	GLOB.joined_player_list += character.ckey
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(rank == "AI")

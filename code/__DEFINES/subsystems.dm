@@ -1,4 +1,24 @@
 
+//! ## DB defines
+/**
+ * DB major schema version
+ *
+ * Update this whenever the db schema changes
+ *
+ * make sure you add an update to the schema_version stable in the db changelog
+ */
+#define DB_MAJOR_VERSION 1
+
+/**
+ * DB minor schema version
+ *
+ * Update this whenever the db schema changes
+ *
+ * make sure you add an update to the schema_version stable in the db changelog
+ */
+#define DB_MINOR_VERSION 0
+
+
 //! ## Timing subsystem
 /**
  * Don't run if there is an identical unique timer active
@@ -88,13 +108,13 @@
 // The numbers just define the ordering, they are meaningless otherwise.
 
 #define INIT_ORDER_GARBAGE 99
-#define INIT_ORDER_CHUNKS 98
-#define INIT_ORDER_EXPLOSIONS 97
-#define INIT_ORDER_STATPANELS 96
+#define INIT_ORDER_CHUNKS 95
+#define INIT_ORDER_DBCORE 85
+#define INIT_ORDER_EXPLOSIONS 80
+#define INIT_ORDER_STATPANELS 70
 #define INIT_ORDER_REAGENTS 26
 #define INIT_ORDER_PLANTS 24
 #define INIT_ORDER_SKYBOX 20
-#define INIT_ORDER_DBCORE 19
 #define INIT_ORDER_BLACKBOX 18
 #define INIT_ORDER_SERVER_MAINT 17
 #define INIT_ORDER_JOBS 16
@@ -126,6 +146,7 @@
 #define INIT_ORDER_JAMMING -22
 #define INIT_OPEN_SPACE -150
 #define INIT_ORDER_LATELOAD -180
+#define INIT_ORDER_BAN_CACHE -181
 #define INIT_ORDER_CHAT	-185
 
 

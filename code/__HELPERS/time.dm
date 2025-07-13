@@ -136,7 +136,9 @@ var/last_roundduration2text = 0
 		hourT = " and [hour] hour[(hour != 1)? "s":""]"
 	return "[day] day[(day != 1)? "s":""][hourT][minuteT][secondT]"
 
-
+//returns timestamp in a sql and a not-quite-compliant ISO 8601 friendly format
+/proc/SQLtime(timevar)
+	return time2text(timevar || world.timeofday, "YYYY-MM-DD hh:mm:ss")
 
 var/global/midnight_rollovers = 0
 var/global/rollovercheck_last_timeofday = 0

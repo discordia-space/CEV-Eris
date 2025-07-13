@@ -16,7 +16,7 @@
 //
 //  object_selectors    :   select_item [('FROM' | 'IN') from_item] [modifier_list]
 //  modifier_list       :   ('WHERE' bool_expression | 'MAP' expression) [modifier_list]
-// 
+//
 //	from_item			:	'world' | expression
 //
 //	call_function		:	<function name> '(' [arguments] ')'
@@ -27,7 +27,7 @@
 //	assignments			:	assignment [',' assignments]
 //	assignment			:	<variable name> '=' expression
 //	variable			:	<variable name> | <variable name> '.' variable | '[' <hex number> ']' | '[' <hex number> ']' '.' variable
-//  
+//
 //	bool_expression		:	expression comparitor expression  [bool_operator bool_expression]
 //	expression			:	( unary_expression | '(' expression ')' | value ) [binary_operator expression]
 //	unary_expression	:	unary_operator ( unary_expression | value | '(' expression ')' )
@@ -201,7 +201,7 @@
 			var/list/expr = list()
 			i = expression(i, expr)
 			node[++node.len] = expr
-	
+
 		else
 			return i
 
@@ -353,7 +353,7 @@
 
 	if (copytext(token(i), 1, 2) != "/")
 		return parse_error("Expected type, but it didn't begin with /")
-	
+
 	var/path = text2path(token(i))
 	if (path == null)
 		return parse_error("Nonexistant type path: [token(i)]")

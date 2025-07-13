@@ -9,14 +9,13 @@
  */
 
 
+
 /*
  * SQL sanitization
  */
 
-// Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
-/proc/sanitizeSQL(var/t as text)
-	var/sqltext = dbcon.Quote(t);
-	return copytext(sqltext, 2, length(sqltext));//Quote() adds quotes around input, we already do that
+/proc/format_table_name(table as text)
+	return CONFIG_GET(string/feedback_tableprefix) + table
 
 /*
  * Text sanitization
@@ -649,3 +648,13 @@ var/icon/text_tag_icons = new('./icons/chattags.dmi')
 	var/lightness = 60
 
 	return "<span style='color: hsl([hue],[saturation]%,[lightness]%);'>[msg]</span>"
+
+/// Returns TRUE if the input_text ends with the ending
+/proc/endsWith(input_text, ending)
+	var/input_length = LAZYLEN(ending)
+	return !!findtext(input_text, ending, -input_length)
+
+/// Returns TRUE if the input_text starts with the beginning
+/proc/startsWith(input_text, beginning)
+	var/input_length = LAZYLEN(beginning)
+	return !!findtext(input_text, beginning, 1, input_length + 1)

@@ -109,7 +109,7 @@
 		to_chat(user, span_danger("That verb is not currently permitted."))
 		return
 
-	if(jobban_isbanned(user,"Robot"))
+	if(jobban_isbanned(user.ckey,"Robot"))
 		to_chat(user, span_danger("You are banned from playing synthetics and cannot spawn as a drone."))
 		return
 

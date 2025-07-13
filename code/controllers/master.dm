@@ -207,7 +207,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 	init_stage_completed = 0
 	var/mc_started = FALSE
 
-	var/msg = "Initializing subsystems..."
+	var/msg = "Sorting subsystems to init..."
 	to_chat(world, span_boldannounce(msg))
 	log_world(msg)
 
@@ -228,6 +228,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 	// Sort subsystems by display setting for easy access.
 	sortTim(subsystems, /proc/cmp_subsystem_display)
 	var/start_timeofday = REALTIMEOFDAY
+	log_world("Initializing subsystems...")
 	for (var/current_init_stage in 1 to INITSTAGE_MAX)
 
 		// Initialize subsystems.
@@ -237,6 +238,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 			current_initializing_subsystem = subsystem
 
 			rustg_time_reset(SS_INIT_TIMER_KEY)
+			log_game("Initializing [subsystem.name] subsystem...")
 			subsystem.Initialize()
 
 			CHECK_TICK

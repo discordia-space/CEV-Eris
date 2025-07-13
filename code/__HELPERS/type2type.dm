@@ -164,7 +164,7 @@ GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,
 	if (rights & R_SERVER)      . += "[seperator]+SERVER"
 	if (rights & R_DEBUG)       . += "[seperator]+DEBUG"
 	if (rights & R_PERMISSIONS) . += "[seperator]+PERMISSIONS"
-	if (rights & R_MOD)         . += "[seperator]+MODERATOR"
+	if (rights & R_BAN)         . += "[seperator]+BAN"
 	if (rights & R_MENTOR)      . += "[seperator]+MENTOR"
 	return .
 

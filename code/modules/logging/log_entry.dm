@@ -78,7 +78,7 @@ GENERAL_PROTECT_DATUM(/datum/log_entry)
 	// I do not trust byond's json encoder, and need to ensure the order doesn't change.
 	var/list/json_entries = list()
 	MANUAL_JSON_ENTRY(json_entries, LOG_ENTRY_KEY_TIMESTAMP, timestamp)
-	MANUAL_JSON_ENTRY(json_entries, LOG_ENTRY_KEY_ROUNDID, GLOB.game_id)
+	MANUAL_JSON_ENTRY(json_entries, LOG_ENTRY_KEY_ROUNDID, GLOB.round_id)
 	MANUAL_JSON_ENTRY(json_entries, LOG_ENTRY_KEY_CATEGORY, category)
 	MANUAL_JSON_ENTRY(json_entries, LOG_ENTRY_KEY_MESSAGE, message)
 	MANUAL_JSON_ENTRY(json_entries, LOG_ENTRY_KEY_DATA, data)
