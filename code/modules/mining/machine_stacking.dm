@@ -8,8 +8,8 @@
 	anchored = TRUE
 	var/obj/machinery/mineral/stacking_machine/machine = null
 
-/obj/machinery/mineral/stacking_unit_console/New()
-	..()
+/obj/machinery/mineral/stacking_unit_console/LateInitialize()
+	. = ..()
 
 	spawn()
 		src.machine = locate(/obj/machinery/mineral/stacking_machine) in range(3, src)

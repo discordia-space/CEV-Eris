@@ -16,8 +16,8 @@
 	var/obj/machinery/mineral/processing_unit/machine = null
 	var/show_all_ores = 0
 
-/obj/machinery/mineral/processing_unit_console/New()
-	..()
+/obj/machinery/mineral/processing_unit_console/LateInitialize()
+	. = ..()
 	spawn()
 		src.machine = locate(/obj/machinery/mineral/processing_unit) in range(3, src)
 		if (machine)

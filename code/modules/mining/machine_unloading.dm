@@ -12,7 +12,7 @@
 	var/output_dir = null
 
 
-/obj/machinery/mineral/unloading_machine/Initialize()
+/obj/machinery/mineral/unloading_machine/LateInitialize()
 	. = ..()
 	spawn()
 		//Locate our output and input machinery.
