@@ -564,7 +564,7 @@
 				to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
 				for(var/obj/item/W in H) //Check all items on the person
 					if(istype(W, /obj/item/organ/external/robotic) || istype(W, /obj/item/implant)) //drop prosthetic limbs and implants, you are a slime now.
-						W.dropped()
+						W.dropped(M)
 				H.set_species(SPECIES_SLIME)
 
 /datum/reagent/toxin/aslimetoxin
@@ -595,7 +595,7 @@
 			if(istype(W, /obj/item/implant) || istype(W, /obj/item/organ/external/robotic))  //Check if item is implant or prosthetic
 				if(istype(W, /obj/item/implant/core_implant/cruciform)) //If cruciform is present victim is gibbed instead of transformed
 					cruciformed = TRUE
-				W.dropped() //use the baseline dropped()
+				W.dropped(M) //use the baseline dropped()
 				continue
 			W.layer = initial(W.layer)
 			W.loc = M.loc

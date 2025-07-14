@@ -1,0 +1,4 @@
+author: Chickenish
+delete-after: true
+changes:
+  - refactor: stationary Tanks refactored to unique type
