@@ -75,21 +75,16 @@
 	stack_storage = new
 
 	//TODO: Make this dynamic based on detecting conveyor belts or something. Maybe an interface to manually configure it
-	//These markers delete themselves on initialize so the machine can never be properly rebuilt during a round. This is bad.
-	input_dir = NORTH //Sensible default so that the machine can at least be replaced in the same location
-	output_dir = SOUTH
+	//The markers delete themselves on initialize so the machine can never be properly rebuilt during a round. This is bad.
+	// UPDATE: dynamic based on dir and inverse of dir
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/mineral/stacking_machine/LateInitialize()
 	. = ..()
-	//Locate our output and input machinery.
-	var/obj/marker
-	marker = locate(/obj/landmark/machinery/input) in range(1, loc)
-	if(marker)
-		input_dir = get_dir(src, marker)
-	marker = locate(/obj/landmark/machinery/output) in range(1, loc)
-	if(marker)
-		output_dir = get_dir(src, marker)
+	if(!input_dir)
+		input_dir = INVERSE_FLAT_DIR(dir)
+	if(!output_dir)
+		output_dir = dir
 
 /obj/machinery/mineral/stacking_machine/proc/outputMaterial(var/material_name, var/amount)
 	var/stored_amount = stack_storage[material_name] || 0

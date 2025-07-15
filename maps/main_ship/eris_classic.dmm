@@ -24489,13 +24489,6 @@
 	},
 /turf/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
-"biq" = (
-/obj/landmark/machinery/output,
-/obj/machinery/conveyor/west{
-	id = "mining_internal"
-	},
-/turf/floor,
-/area/shuttle/mining/station)
 "bir" = (
 /obj/spawner/junk/low_chance,
 /turf/floor/tiled/techmaint,
@@ -25178,7 +25171,6 @@
 /area/eris/security/evidencestorage)
 "bjM" = (
 /obj/structure/ore_box,
-/obj/landmark/machinery/input,
 /turf/floor,
 /area/shuttle/mining/station)
 "bjN" = (
@@ -43731,7 +43723,6 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
 "ccM" = (
-/obj/landmark/machinery/output,
 /obj/machinery/conveyor/south{
 	id = "mining_internal"
 	},
@@ -57861,7 +57852,6 @@
 /turf/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "cMv" = (
-/obj/landmark/machinery/output,
 /obj/machinery/conveyor/southwest{
 	id = "mining_internal"
 	},
@@ -61829,14 +61819,15 @@
 	},
 /area/shuttle/mining/station)
 "cXH" = (
-/obj/landmark/machinery/input,
 /obj/structure/ore_box,
 /turf/shuttle/floor/mining{
 	icon_state = "10,9"
 	},
 /area/shuttle/mining/station)
 "cXI" = (
-/obj/machinery/mineral/unloading_machine,
+/obj/machinery/mineral/unloading_machine{
+	dir = 4
+	},
 /turf/floor,
 /area/shuttle/mining/station)
 "cXJ" = (
@@ -61878,10 +61869,10 @@
 /turf/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "cXL" = (
-/obj/landmark/machinery/input,
-/turf/shuttle/floor/mining{
-	icon_state = "10,9"
+/obj/machinery/mineral/unloading_machine{
+	dir = 8
 	},
+/turf/floor,
 /area/shuttle/mining/station)
 "cXM" = (
 /turf/shuttle/wall/mining{
@@ -92896,7 +92887,6 @@
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/miningdock)
 "exi" = (
-/obj/landmark/machinery/output,
 /obj/machinery/conveyor/southeast/ccw{
 	id = "mining_internal"
 	},
@@ -213336,7 +213326,7 @@ cTM
 cUr
 cUN
 cVt
-biq
+cIc
 cWW
 buf
 cYA
@@ -213538,12 +213528,12 @@ cTN
 cUs
 cUO
 cVu
-cXI
-cWX
 cXL
+cWX
+daq
 cYB
 ccM
-cXL
+daq
 das
 cMv
 dbh
