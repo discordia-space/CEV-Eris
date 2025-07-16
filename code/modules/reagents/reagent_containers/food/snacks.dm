@@ -3489,7 +3489,9 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/doughslice
 	slices_num = 3
 	center_of_mass = list("x"=16, "y"=16)
-	preloaded_reagents = list("protein" = 1, "nutriment" = 3)
+	nutriment_desc = list("dough" = 3)
+	nutriment_amt = 3
+	preloaded_reagents = list("protein" = 1)
 	taste_tag = list(BLAND_FOOD,FLOURY_FOOD)
 
 /obj/item/reagent_containers/food/snacks/doughslice
