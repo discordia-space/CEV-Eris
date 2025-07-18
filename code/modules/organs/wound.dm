@@ -130,6 +130,7 @@
 	var/healed_damage = min(src.damage, amount)
 	amount -= healed_damage
 	src.damage -= healed_damage
+	clamped = FALSE
 
 	while(src.wound_damage() < damage_list[current_stage] && current_stage < src.desc_list.len)
 		current_stage++
