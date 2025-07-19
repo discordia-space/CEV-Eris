@@ -797,3 +797,25 @@
 				user.visible_message(SPAN_WARNING("A collection of strange items appears out of nowhere!"), SPAN_DANGER("The card disintegrates, leaving behind several strange objects!"))
 				qdel(src)
 
+/obj/item/oddity/onestar
+	name = "One Star oddity"
+	desc = "You shouldn't be seeing this. Report to your nearest reeducation camp comrade (report it on discord)."
+	spawn_blacklisted = TRUE
+	bad_type = /obj/item/oddity/onestar
+
+
+/obj/item/oddity/onestar/mechcore
+	name = "Armored \"Distant Star\" Subpersona Core"
+	desc = "Remnants of circuitry salvaged from the terrifying robotic One Star beast. You hope it's disabled now and nothing more than a trophy..."
+	random_stats = FALSE
+	icon_state = "box" // I beg for a new sprite this sucks a bit but will do as a temporary thing
+	w_class = ITEM_SIZE_NORMAL
+	oddity_stats = list(
+		STAT_VIG = 10,
+		STAT_MEC = 10,
+		STAT_TGH = 10
+	)
+	perk = /datum/perk/oddity/balls_of_plasteel // (maybe we'll add another perk later (prolly additional dungeon access/navigation), I dont want to see a quiet-as-mouse on this one...)
+	origin_tech = list(
+        TECH_MATERIAL = 12, TECH_ENGINEERING = 5, TECH_POWER = 6, TECH_BLUESPACE = 1, TECH_COMBAT = 8, TECH_MAGNET = 5, TECH_DATA = 10 // 16200 total
+    )
