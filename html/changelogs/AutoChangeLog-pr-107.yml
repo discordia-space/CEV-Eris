@@ -1,0 +1,7 @@
+author: flleeppyy
+delete-after: true
+changes:
+  - rscadd: 'Port Modern View-Variables from Monkestation (Verbs: `Get Current Logs`
+      and `Get Server logs`)'
+  - rscadd: Port log viewing from Monkestation
+  - admin: Add admin notices
