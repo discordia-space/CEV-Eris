@@ -85,7 +85,7 @@
 
 			organ_data["damage"] = organ.damage
 			organ_data["max_damage"] = organ.max_damage
-			organ_data["wound_count"] = LAZYLEN(organ.GetComponents(/datum/component/internal_wound))
+			organ_data["wound_count"] = LAZYLEN(organ.wounddatums)
 			if(istype(organ, /obj/item/organ/internal/vital/brain))
 				var/obj/item/organ/internal/vital/brain/B = organ
 				organ_data["brain_health"] = B.health

@@ -199,7 +199,7 @@
 	M.add_chemical_effect(CE_TOXIN, dose / 4)
 	return
 
-/datum/reagent/proc/create_overdose_wound(obj/item/organ/internal/I, mob/user, datum/component/internal_wound/base_type, wound_descriptor = "poisoning", silent = FALSE)
+/datum/reagent/proc/create_overdose_wound(obj/item/organ/internal/I, mob/user, datum/internal_wound/base_type, wound_descriptor = "poisoning", silent = FALSE)
 	if(!istype(I))
 		return
 	if(I.nature != initial(base_type.wound_nature))
