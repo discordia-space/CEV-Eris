@@ -267,6 +267,18 @@ var/list/_client_preferences_by_type
 		// Force it to reload either way
 		tgui.update_static_data(preference_mob)
 
+/datum/client_preference/ui_scale
+	description ="If UIs should scale up to match your monitor scaling."
+	key = "ui_scale"
+
+/datum/client_preference/ui_scale/changed(mob/preference_mob, new_value)
+	var/client/client = preference_mob.client
+	if(!istype(client))
+		return
+
+	INVOKE_ASYNC(client, TYPE_VERB_REF(/client, refresh_tgui))
+	client.tgui_say?.load()
+
 /datum/client_preference/equip_open_inventory
 	description = "Quick-equip stores items into open inventories"
 	key = "EQUIP_OPEN_INVENTORY"

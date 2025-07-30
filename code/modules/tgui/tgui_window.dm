@@ -394,8 +394,8 @@
 			append_payload_chunk(payload_id, payload["chunk"])
 			send_message("acknowlegePayloadChunk", list("id" = payload_id))
 
-// /datum/tgui_window/vv_edit_var(var_name, var_value)
-// 	return var_name != NAMEOF(src, id) && ..()
+/datum/tgui_window/vv_edit_var(var_name, var_value)
+	return var_name != NAMEOF(src, id) && ..()
 
 /datum/tgui_window/proc/create_oversized_payload(payload_id, message_type, chunk_count)
 	if(oversized_payloads[payload_id])

@@ -6,6 +6,8 @@ GLOBAL_LIST_EMPTY(average_icon_color)
 //see getFlatTypeIcon()
 GLOBAL_LIST_EMPTY(initialTypeIcon)
 
+GLOBAL_LIST_INIT(color_vars, list("color"))
+
 GLOBAL_DATUM(lobbyScreen, /datum/lobbyscreen)
 
 // WORLD TOPIC CACHING //

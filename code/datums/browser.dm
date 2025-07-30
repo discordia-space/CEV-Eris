@@ -12,12 +12,10 @@
 	var/body_elements
 	var/head_content = ""
 	var/content = ""
-	var/static/datum/asset/simple/namespaced/common/common_asset = get_asset_datum(/datum/asset/simple/namespaced/common)
-
 
 /datum/browser/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null)
 	user = nuser
-	RegisterSignal(user, COMSIG_PARENT_QDELETING, PROC_REF(user_deleted))
+	RegisterSignal(user, COMSIG_QDELETING, PROC_REF(user_deleted))
 	window_id = nwindow_id
 	if (ntitle)
 		title = format_text(ntitle)
@@ -35,15 +33,8 @@
 /datum/browser/proc/add_head_content(nhead_content)
 	head_content = nhead_content
 
-/datum/browser/proc/set_title_buttons(ntitle_buttons)
-	// do nothing
-
 /datum/browser/proc/set_window_options(nwindow_options)
 	window_options = nwindow_options
-
-
-/datum/browser/proc/set_title_image(ntitle_image)
-	// do nothing
 
 /datum/browser/proc/add_stylesheet(name, file)
 	if (istype(name, /datum/asset/spritesheet))
@@ -68,16 +59,23 @@
 	content += ncontent
 
 /datum/browser/proc/get_header()
+	var/datum/asset/simple/namespaced/common/common_asset = get_asset_datum(/datum/asset/simple/namespaced/common)
 	var/file
 	head_content += "<link rel='stylesheet' type='text/css' href='[common_asset.get_url_mappings()["common.css"]]'>"
 	for (file in stylesheets)
 		head_content += "<link rel='stylesheet' type='text/css' href='[SSassets.transport.get_asset_url(file)]'>"
 
+	if(user.client?.window_scaling && user.client?.window_scaling != 1 && !user.get_preference_value(/datum/client_preference/ui_scale) && width && height)
+		head_content += {"
+			<style>
+				body {
+					zoom: [100 / user.client?.window_scaling]%;
+				}
+			</style>
+			"}
 
 	for (file in scripts)
 		head_content += "<script type='text/javascript' src='[SSassets.transport.get_asset_url(file)]'></script>"
-
-	head_content += "<script type='text/javascript'> function UpdateBrowserDataAlt(data){document.getElementById('theContent').innerHTML = data;}</script>"
 
 	return {"<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -88,8 +86,8 @@
 	</head>
 	<body scroll=auto>
 		<div class='uiWrapper'>
-			[title ? "<div class='uiTitleWrapper'><div class='uiTitle'><tt>[title]</tt></div></div>" : ""]
-			<div class='uiContent' id="theContent">
+			[title ? "<div class='uiTitleWrapper'><div class='uiTitle'><tt>[title]</tt></div>" : ""]
+			<div class='uiContent'>
 	"}
 //" This is here because else the rest of the file looks like a string in notepad++.
 /datum/browser/proc/get_footer()
@@ -106,24 +104,25 @@
 	[get_footer()]
 	"}
 
-/datum/browser/proc/update()
-	if(user)
-		user << output(content, "[window_id].browser:UpdateBrowserDataAlt")
-
 /datum/browser/proc/open(use_onclose = TRUE)
 	if(isnull(window_id)) //null check because this can potentially nuke goonchat
 		WARNING("Browser [title] tried to open with a null ID")
 		to_chat(user, span_userdanger("The [title] browser you tried to open failed a sanity check! Please report this on github!"))
 		return
 	var/window_size = ""
-	if (width && height)
-		window_size = "size=[width]x[height];"
+	if(width && height)
+		if(user?.get_preference_value(/datum/client_preference/ui_scale))
+			var/scaling = user.client.window_scaling
+			window_size = "size=[width * scaling]x[height * scaling];"
+		else
+			window_size = "size=[width]x[height];"
+	var/datum/asset/simple/namespaced/common/common_asset = get_asset_datum(/datum/asset/simple/namespaced/common)
 	common_asset.send(user)
 	if (stylesheets.len)
 		SSassets.transport.send_assets(user, stylesheets)
 	if (scripts.len)
 		SSassets.transport.send_assets(user, scripts)
-	user << browse(get_content(), "window=[window_id];[window_size][window_options]")
+	DIRECT_OUTPUT(user, browse(get_content(), "window=[window_id];[window_size][window_options]"))
 	if (use_onclose)
 		setup_onclose()
 
@@ -446,7 +445,6 @@
 // 	if (A.selectedbutton)
 // 		return list("button" = A.selectedbutton, "settings" = A.settings)
 
-
 // Registers the on-close verb for a browse window (client/verb/.windowclose)
 // this will be called when the close-button of a window is pressed.
 //
@@ -481,7 +479,7 @@
 	set hidden = TRUE // hide this verb from the user's panel
 	set name = ".windowclose" // no autocomplete on cmd line
 
-	if(atomref!="null") // if passed a real atomref
+	if(atomref != "null") // if passed a real atomref
 		var/hsrc = locate(atomref) // find the reffed atom
 		var/href = "close=1"
 		if(hsrc)

@@ -10,6 +10,13 @@
  */
 
 #define listequal(A, B) (A.len == B.len && !length(A^B))
+// Generic listoflist safe add and removal macros:
+///If value is a list, wrap it in a list so it can be used with list add/remove operations
+#define LIST_VALUE_WRAP_LISTS(value) (islist(value) ? list(value) : value)
+///Add an untyped item to a list, taking care to handle list items by wrapping them in a list to remove the footgun
+#define UNTYPED_LIST_ADD(list, item) (list += LIST_VALUE_WRAP_LISTS(item))
+///Remove an untyped item to a list, taking care to handle list items by wrapping them in a list to remove the footgun
+#define UNTYPED_LIST_REMOVE(list, item) (list -= LIST_VALUE_WRAP_LISTS(item))
 
 ///Initialize the lazylist
 #define LAZYINITLIST(L) if (!L) { L = list(); }
@@ -248,13 +255,12 @@
 	if(istype(list))
 		list.len = 0
 
-//Removes any null entries from the list
-//Returns TRUE if the list had nulls, FALSE otherwise
-/proc/listclearnulls(list/L)
-	var/start_len = L.len
-	var/list/N = new(start_len)
-	L -= N
-	return L.len < start_len
+/**
+ * Removes any null entries from the list
+ * Returns TRUE if the list had nulls, FALSE otherwise
+**/
+/proc/list_clear_nulls(list/list_to_clear)
+	return (list_to_clear.RemoveAll(null) > 0)
 
 /*
  * Returns list containing all the entries from first list that are not present in second.
@@ -456,21 +462,21 @@
 	for(var/i=1, i<L.len, ++i)
 		L.Swap(i,rand(i,L.len))
 
-//Return a list with no duplicate entries
-/proc/uniquelist(list/L)
+///Return a list with no duplicate entries
+/proc/unique_list(list/inserted_list)
 	. = list()
-	for(var/i in L)
-		. |= i
+	for(var/i in inserted_list)
+		. |= LIST_VALUE_WRAP_LISTS(i)
 
-//same, but returns nothing and acts on list in place (also handles associated values properly)
-/proc/uniquelist_inplace(list/L)
-	var/temp = L.Copy()
-	L.len = 0
+///same as unique_list, but returns nothing and acts on list in place (also handles associated values properly)
+/proc/unique_list_in_place(list/inserted_list)
+	var/temp = inserted_list.Copy()
+	inserted_list.len = 0
 	for(var/key in temp)
 		if (isnum(key))
-			L |= key
+			inserted_list |= key
 		else
-			L[key] = temp[key]
+			inserted_list[key] = temp[key]
 
 // Return a list of the values in an assoc list (including null)
 /proc/list_values(list/L)
@@ -869,7 +875,7 @@ Checks if a list has the same entries and values as an element of big.
 				types.Add(value)
 			else if(islist(value))
 				types.Add(parse_for_paths(value))
-	return uniquelist(types)
+	return unique_list(types)
 
 //return first thing in L which has var/varname == value
 //this is typecaste as list/L, but you could actually feed it an atom instead.
@@ -933,6 +939,13 @@ Checks if a list has the same entries and values as an element of big.
 		used_key_list[input_key] = 1
 	return input_key
 
+///Flattens a keyed list into a list of it's contents
+/proc/flatten_list(list/key_list)
+	if(!islist(key_list))
+		return null
+	. = list()
+	for(var/key in key_list)
+		. |= LIST_VALUE_WRAP_LISTS(key_list[key])
 
 /proc/make_associative(list/flat_list)
 	. = list()

@@ -96,7 +96,7 @@
 
 					C.auto_turn()
 
-					C.replace_networks(uniquelist(tempnetwork))
+					C.replace_networks(unique_list(tempnetwork))
 
 					C.c_tag = input
 

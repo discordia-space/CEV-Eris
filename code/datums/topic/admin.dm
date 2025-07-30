@@ -893,14 +893,14 @@
 				if ("relative")
 					target = locate(loc.x + X,loc.y + Y,loc.z + Z)
 		if("inmarked")
-			if(!source.marked_datum())
+			if(!source.marked_datum)
 				to_chat(usr, "You don't have any object marked. Abandoning spawn.")
 				return
-			else if(!istype(source.marked_datum(),  /atom))
+			else if(!istype(source.marked_datum,  /atom))
 				to_chat(usr, "The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn.")
 				return
 			else
-				target = source.marked_datum()
+				target = source.marked_datum
 
 	if(target)
 		for (var/path in paths)

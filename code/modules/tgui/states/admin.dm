@@ -25,7 +25,7 @@ GLOBAL_PROTECT(admin_states)
 		return UI_INTERACTIVE
 	return UI_CLOSE
 
-// /datum/ui_state/admin_state/vv_edit_var(var_name, var_value)
-// 	if(var_name == NAMEOF(src, required_perms))
-// 		return FALSE
-// 	return ..()
+/datum/ui_state/admin_state/vv_edit_var(var_name, var_value)
+	if(var_name == NAMEOF(src, required_perms))
+		return FALSE
+	return ..()

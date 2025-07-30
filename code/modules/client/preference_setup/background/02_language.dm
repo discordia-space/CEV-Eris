@@ -91,7 +91,7 @@
 			pref.alternate_languages -= lang
 			pref.alternate_languages.Insert(1, lang)
 
-	pref.alternate_languages = uniquelist(pref.alternate_languages)
+	pref.alternate_languages = unique_list(pref.alternate_languages)
 	if(pref.alternate_languages.len > MAX_LANGUAGES)
 		pref.alternate_languages.Cut(MAX_LANGUAGES + 1)
 

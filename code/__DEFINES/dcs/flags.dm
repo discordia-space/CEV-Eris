@@ -32,6 +32,13 @@
 #define COMPONENT_DUPE_ALLOWED 1
 /// new component is deleted
 #define COMPONENT_DUPE_UNIQUE 2
+/**
+ * Component uses source tracking to manage adding and removal logic.
+ * Add a source/spawn to/the component by using AddComponentFrom(source, component_type, args...)
+ * Removing the last source will automatically remove the component from the parent.
+ * Arguments will be passed to on_source_add(source, args...); ensure that Initialize and on_source_add have the same signature.
+ */
+#define COMPONENT_DUPE_SOURCES 3
 /// old component is given the initialization args of the new
 #define COMPONENT_DUPE_UNIQUE_PASSARGS 4
 /// each component of the same type is consulted as to whether the duplicate should be allowed

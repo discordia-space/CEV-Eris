@@ -203,3 +203,14 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	if(eyeobj)
 		return eyeobj
 	return src
+
+//Checks admin notice
+/client/verb/admin_notice()
+	set name = "Adminnotice"
+	set category = "Admin"
+	set desc ="Check the admin notice if it has been set"
+
+	if(GLOB.admin_notice)
+		to_chat(src, "[span_boldnotice("Admin Notice:")]\n \t [GLOB.admin_notice]")
+	else
+		to_chat(src, span_notice("There are no admin notices at the moment."))

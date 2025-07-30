@@ -47,8 +47,8 @@ GLOBAL_REAL(Debugger, /datum/debugger)
 	return FALSE
 #endif
 
-// /datum/debugger/vv_edit_var(var_name, var_value)
-// 	return FALSE // no.
+/datum/debugger/vv_edit_var(var_name, var_value)
+	return FALSE // no.
 
-// /datum/debugger/CanProcCall(procname)
-// 	return FALSE // double no.
+/datum/debugger/CanProcCall(procname)
+	return FALSE // double no.

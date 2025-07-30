@@ -3,18 +3,13 @@
 /proc/_abs(A)
 	return abs(A)
 
-/proc/_animate(atom/A, variables, time = 10, loop = 1, easing = LINEAR_EASING)
-	var/atom/movable/I = new
-	I.appearance = A.appearance
+/proc/_animate(atom/target, set_vars, time = 10, loop = 1, easing = LINEAR_EASING, flags = null)
+	if(target)
+		animate(target, appearance = set_vars, time, loop, easing, flags)
+	else
+		animate(appearance = set_vars, time, easing = easing, flags)
 
-	// The appearance churn is real.
-	// WILL perform like shit until we get 511 and we get mutable appearances.
-	for (var/variable in variables)
-		I.vars[variable] = variables[variable]
-
-	animate(A, appearance = I.appearance, time, loop, easing)
-
-/proc/_acrccos(A)
+/proc/_arccos(A)
 	return arccos(A)
 
 /proc/_arcsin(A)
@@ -38,6 +33,15 @@
 /proc/_cos(X)
 	return cos(X)
 
+/proc/_findtext(Haystack, Needle, Start = 1, End = 0)
+	return findtext(Haystack, Needle, Start, End)
+
+/proc/_findtextEx(Haystack, Needle, Start = 1, End = 0)
+	return findtextEx(Haystack, Needle, Start, End)
+
+/proc/_flick(Icon, Object)
+	flick(Icon, Object)
+
 /proc/_get_dir(Loc1, Loc2)
 	return get_dir(Loc1, Loc2)
 
@@ -46,6 +50,9 @@
 
 /proc/_get_step(Ref, Dir)
 	return get_step(Ref, Dir)
+
+/proc/_hascall(object, procname)
+	return hascall(object, procname)
 
 /proc/_hearers(Depth = world.view, Center = usr)
 	return hearers(Depth, Center)
@@ -57,6 +64,8 @@
 	return istype(object, type)
 
 /proc/_ispath(path, type)
+	if(isnull(type))
+		return ispath(path)
 	return ispath(path, type)
 
 /proc/_length(E)
@@ -67,12 +76,18 @@
 
 /proc/_locate(X, Y, Z)
 	if (isnull(Y)) // Assuming that it's only a single-argument call.
-		return locate(X)
+		// direct ref locate
+		var/datum/D = locate(X)
+		// &&'s to last value
+		return istype(D) && D.can_vv_mark() && D
 
 	return locate(X, Y, Z)
 
 /proc/_log(X, Y)
 	return log(X, Y)
+
+/proc/_uppertext(T)
+	return uppertext(T)
 
 /proc/_lowertext(T)
 	return lowertext(T)
@@ -90,10 +105,25 @@
 	return min(arglist(args))
 
 /proc/_new(type, arguments)
-	return new type (arglist(arguments))
+	var/datum/result
+
+	if(!length(arguments))
+		result = new type()
+	else
+		result = new type(arglist(arguments))
+
+	if(istype(result))
+		result.datum_flags |= DF_VAR_EDITED
+	return result
 
 /proc/_num2text(N, SigFig = 6)
 	return num2text(N, SigFig)
+
+/proc/_text2num(T)
+	return text2num(T)
+
+/proc/_trimtext(Text)
+	return trimtext(Text)
 
 /proc/_ohearers(Dist, Center = usr)
 	return ohearers(Dist, Center)
@@ -103,9 +133,6 @@
 
 /proc/_output(thing, msg, control)
 	thing << output(msg, control)
-
-/proc/_chat_output(thing, msg)
-    to_chat(thing, msg)
 
 /proc/_oview(Dist, Center = usr)
 	return oview(Dist, Center)
@@ -119,6 +146,16 @@
 /proc/_pick(...)
 	return pick(arglist(args))
 
+/// Allow me to explain
+/// for some reason, if pick() is passed arglist(args) directly and args contains only one list
+/// it considers it to be a list of lists
+/// this means something like _pick(list) would fail
+/// need to do this instead
+///
+/// I hate this timeline
+/proc/_pick_list(list/pick_from)
+	return pick(pick_from)
+
 /proc/_prob(P)
 	return prob(P)
 
@@ -127,6 +164,9 @@
 
 /proc/_range(Dist, Center = usr)
 	return range(Dist, Center)
+
+// /proc/_rect_turfs(H_Radius = 0, V_Radius = 0, atom/Center)
+// 	return RECT_TURFS(H_Radius, V_Radius, Center)
 
 /proc/_regex(pattern, flags)
 	return regex(pattern, flags)
@@ -158,14 +198,9 @@
 /proc/_sin(X)
 	return sin(X)
 
-/proc/_step(Ref, Dir, Speed = 0)
-	return step(Ref, Dir, Speed)
-
-
 /proc/_list_add(list/L, ...)
 	if (args.len < 2)
 		return
-
 	L += args.Copy(2)
 
 /proc/_list_copy(list/L, Start = 1, End = 0)
@@ -186,8 +221,107 @@
 /proc/_list_remove(list/L, ...)
 	if (args.len < 2)
 		return
-
 	L -= args.Copy(2)
+
+/proc/_list_set(list/L, key, value)
+	L[key] = value
+
+/proc/_list_get(list/L, key)
+	return L[key]
+
+/proc/_list_numerical_add(L, key, num)
+	L[key] += num
 
 /proc/_list_swap(list/L, Index1, Index2)
 	L.Swap(Index1, Index2)
+
+/proc/_walk(ref, dir, lag)
+	walk(ref, dir, lag)
+
+/proc/_walk_towards(ref, trg, lag)
+	walk_towards(ref, trg, lag)
+
+/proc/_walk_to(ref, trg, min, lag)
+	walk_to(ref, trg, min, lag)
+
+/proc/_walk_away(ref, trg, max, lag)
+	walk_away(ref, trg, max, lag)
+
+/proc/_walk_rand(ref, lag)
+	walk_rand(ref, lag)
+
+/proc/_step(ref, dir)
+	step(ref, dir)
+
+/proc/_step_rand(ref)
+	step_rand(ref)
+
+/proc/_step_to(ref, trg, min)
+	step_to(ref, trg, min)
+
+/proc/_step_towards(ref, trg)
+	step_towards(ref, trg)
+
+/proc/_step_away(ref, trg, max)
+	step_away(ref, trg, max)
+
+/proc/_winset(player, control_id, params)
+	winset(player, control_id, params)
+
+/proc/_winget(player, control_id, params)
+	return winget(player, control_id, params)
+
+/proc/_text2path(text)
+	return text2path(text)
+
+/proc/_turn(dir, angle)
+	return turn(dir, angle)
+
+/proc/_view(Dist, Center = usr)
+	return view(Dist, Center)
+
+/proc/_viewers(Dist, Center = usr)
+	return viewers(Dist, Center)
+
+/proc/_generator(type = "num", A = 0, B = 1, rand = UNIFORM_RAND)
+	return generator(type, A, B, rand)
+
+/// Auxtools REALLY doesn't know how to handle filters as values;
+/// when passed as arguments to auxtools-called procs, they aren't simply treated as nulls -
+/// they don't even count towards the length of args.
+/// For example, calling some_proc([a filter], foo, bar) from auxtools
+/// is equivalent to calling some_proc(foo, bar). Thus, we can't use _animate directly on filters.
+/// Use this to perform animation steps on a filter. Consecutive steps on the same filter can be
+/// achieved by calling _animate with no target.
+/proc/_animate_filter(atom/target, filter_index, set_vars, time = 10, loop = 1, easing = LINEAR_EASING, flags = null)
+	if(!istype(target))
+		return
+	if(!filter_index || filter_index < 1 || filter_index > length(target.filters))
+		return
+	animate(target.filters[filter_index], appearance = set_vars, time, loop, easing, flags)
+
+/proc/_is_type_in_typecache(thing_to_check, typecache)
+	return is_type_in_typecache(thing_to_check, typecache)
+
+/proc/_floor(a)
+	return floor(a)
+
+/proc/_ceil(a)
+	return ceil(a)
+
+/proc/_typesof(a, subtypes_only = FALSE)
+	. = typesof(a)
+	if(subtypes_only)
+		. -= a
+
+/proc/_html_encode(text)
+	return html_encode(text)
+
+/proc/_html_decode(text)
+	return html_decode(text)
+
+/proc/_url_encode(text)
+	return url_encode(text)
+
+/proc/_url_decode(text)
+	return url_decode(text)

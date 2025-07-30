@@ -215,7 +215,9 @@
 
 //Presets for item actions
 /datum/action/item_action
+	name = "Item Action"
 	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUNNED|AB_CHECK_LYING|AB_CHECK_ALIVE|AB_CHECK_INSIDE
+	button_icon_state = null
 
 /datum/action/item_action/CheckRemoval(mob/living/user)
 	return !(target in user)

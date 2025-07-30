@@ -209,6 +209,17 @@
 
 	return null
 
+// Similar to parse_language on mobs but globally, and only supports : or ,
+/proc/parse_language(message)
+	var/prefix = copytext(message, 1, 2)
+
+	if(length(message) >= 2 && (prefix == ":" || prefix == ","))
+		var/language_prefix = copytext(message, 2, 3)
+		var/datum/language/L = GLOB.language_keys[language_prefix]
+		return L
+
+	return null
+
 /proc/attach_spans(input, list/spans)
 	return "[message_spans_start(spans)][input]</span>"
 

@@ -93,4 +93,7 @@
 
 	update_client_colour(0)
 
+	if(GLOB.admin_notice)
+		to_chat(src, span_notice("<b>Admin Notice:</b>\n \t [GLOB.admin_notice]"))
+
 	return TRUE

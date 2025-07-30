@@ -28,8 +28,8 @@
 			M.modifications[ORGAN_SPECIFIC_SIZE_BASE] = M.modifications[ORGAN_SPECIFIC_SIZE_BASE] ? M.modifications[ORGAN_SPECIFIC_SIZE_BASE] : organ_size
 
 /obj/item/modification/organ/internal/Destroy()
-	if(LAZYLEN(datum_components))
-		for(var/datum/component/comp in datum_components)
+	if(LAZYLEN(_datum_components))
+		for(var/datum/component/comp in _datum_components)
 			comp.ClearFromParent()
 			qdel(comp)
 	return ..()

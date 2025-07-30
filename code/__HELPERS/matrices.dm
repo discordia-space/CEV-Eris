@@ -1,14 +1,63 @@
+#define VV_MAX_SPASM_LOOPS 100
 /matrix/proc/TurnTo(old_angle, new_angle)
 	. = new_angle - old_angle
 	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
 
 
+/atom/proc/SpinAnimation(speed = 10, loops = -1, clockwise = 1, segments = 3, parallel = TRUE)
+	if(!segments)
+		return
+	var/segment = 360/segments
+	if(!clockwise)
+		segment = -segment
+	var/list/matrices = list()
+	for(var/i in 1 to segments-1)
+		var/matrix/M = matrix(transform)
+		M.Turn(segment*i)
+		matrices += M
+	var/matrix/last = matrix(transform)
+	matrices += last
+
+	speed /= segments
+
+	if(parallel)
+		animate(src, transform = matrices[1], time = speed, loops , flags = ANIMATION_PARALLEL)
+	else
+		animate(src, transform = matrices[1], time = speed, loops)
+	for(var/i in 2 to segments) //2 because 1 is covered above
+		animate(transform = matrices[i], time = speed)
+		//doesn't have an object argument because this is "Stacking" with the animate call above
+		//3 billion% intentional
+
+/// Similar to shake but more spasm-y and jerk-y
+/atom/proc/spasm_animation(loops = -1)
+	var/list/transforms = list(
+		matrix(transform).Translate(-1, 0),
+		matrix(transform).Translate(0, 1),
+		matrix(transform).Translate(1, 0),
+		matrix(transform).Translate(0, -1),
+	)
+
+	animate(src, transform = transforms[1], time = 0.2, loop = loops)
+	animate(transform = transforms[2], time = 0.1)
+	animate(transform = transforms[3], time = 0.2)
+	animate(transform = transforms[4], time = 0.3)
 
 /atom/proc/shake_animation(intensity = 8)
 	var/init_px = pixel_x
 	var/shake_dir = pick(-1, 1)
 	animate(src, transform=turn(matrix(), intensity*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
 	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)
+
+/// Perform a shake on an atom, resets its position afterwards
+/atom/proc/Shake(pixelshiftx = 2, pixelshifty = 2, duration = 2.5 SECONDS, shake_interval = 0.02 SECONDS)
+	var/initialpixelx = pixel_x
+	var/initialpixely = pixel_y
+	animate(src, pixel_x = initialpixelx + rand(-pixelshiftx,pixelshiftx), pixel_y = initialpixelx + rand(-pixelshifty,pixelshifty), time = shake_interval, flags = ANIMATION_PARALLEL)
+	for (var/i in 3 to ((duration / shake_interval))) // Start at 3 because we already applied one, and need another to reset
+		animate(pixel_x = initialpixelx + rand(-pixelshiftx,pixelshiftx), pixel_y = initialpixely + rand(-pixelshifty,pixelshifty), time = shake_interval)
+	animate(pixel_x = initialpixelx, pixel_y = initialpixely, time = shake_interval)
+
 
 //The X pixel offset of this matrix
 /matrix/proc/get_x_shift()
@@ -17,6 +66,15 @@
 //The Y pixel offset of this matrix
 /matrix/proc/get_y_shift()
 	. = f
+
+/**
+ * Shear the transform on either or both axes.
+ * * x - X axis shearing
+ * * y - Y axis shearing
+ */
+/matrix/proc/Shear(x, y)
+	return Multiply(matrix(1, x, 0, y, 1, 0))
+
 // Color matrices:
 
 //Luma coefficients suggested for HDTVs. If you change these, make sure they add up to 1.
@@ -119,6 +177,11 @@ var/list/delta_index = list(
 		pixel_y -= offset
 	else if (target.y > y)
 		pixel_y += offset
+
+//Does nothing
+/proc/color_matrix_identity()
+	return list(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1, 0,0,0,0)
+
 
 #undef LUMR
 #undef LUMG

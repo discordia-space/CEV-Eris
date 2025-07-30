@@ -30,15 +30,19 @@ GLOBAL_REAL(logger, /datum/log_holder)
 	var/initialized = FALSE
 	var/shutdown = FALSE
 
+	/// Cached ui_data for debuggers
+	var/list/debug_data_cache = list()
+
 GENERAL_PROTECT_DATUM(/datum/log_holder)
 
 /client/proc/log_viewer_new()
 	set name = "View Round Logs"
-	set category = "Admin.Logging"
+	set category = "Admin"
 	logger.ui_interact(mob)
 
+
 /datum/log_holder/ui_interact(mob/user, datum/tgui/ui)
-	if(!check_rights_for(user.client, R_ADMIN))
+	if(!check_rights_for(user.client, R_ADMIN | R_DEBUG))
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -55,28 +59,33 @@ GENERAL_PROTECT_DATUM(/datum/log_holder)
 		"round_id" = GLOB.round_id,
 		"logging_start_timestamp" = logging_start_timestamp,
 	)
+	var/debug_user = is_user_debug_only(user)
 
 	var/list/tree = list()
 	data["tree"] = tree
 	var/list/enabled_categories = list()
 	for(var/enabled in log_categories)
+		if(debug_user && !is_category_debug_visible(log_categories[enabled]))
+			continue
 		enabled_categories += enabled
 	tree["enabled"] = enabled_categories
 
 	var/list/disabled_categories = list()
 	for(var/disabled in src.disabled_categories)
+		if(debug_user && !is_category_debug_visible(disabled))
+			continue
 		disabled_categories += disabled
 	tree["disabled"] = disabled_categories
 
 	return data
-
 /datum/log_holder/ui_data(mob/user)
 	if(!last_data_update || (world.time - last_data_update) > LOG_UPDATE_TIMEOUT)
 		cache_ui_data()
-	return data_cache
+	return is_user_debug_only(user) ? debug_data_cache : data_cache
 
 /datum/log_holder/proc/cache_ui_data()
 	var/list/category_map = list()
+	var/list/debug_category_map = list()
 	for(var/datum/log_category/category as anything in log_categories)
 		category = log_categories[category]
 		var/list/category_data = list()
@@ -94,12 +103,18 @@ GENERAL_PROTECT_DATUM(/datum/log_holder)
 		category_data["entry_count"] = category.entry_count
 
 		category_map[category.category] = category_data
+		if(is_category_debug_visible(category))
+			debug_category_map[category.category] = category_data
 
 	data_cache.Cut()
+	debug_data_cache.Cut()
 	last_data_update = world.time
 
 	data_cache["categories"] = category_map
 	data_cache["last_data_update"] = last_data_update
+
+	debug_data_cache["categories"] = debug_category_map
+	debug_data_cache["last_data_update"] = last_data_update
 
 /datum/log_holder/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -114,6 +129,9 @@ GENERAL_PROTECT_DATUM(/datum/log_holder)
 
 		else
 			stack_trace("unknown ui_act action [action] for [type]")
+
+/datum/log_holder/ui_status(mob/user, datum/ui_state/state)
+	return check_rights_for(user.client, R_ADMIN | R_DEBUG) ? UI_INTERACTIVE : UI_CLOSE
 
 /// Assembles basic information for logging, creating the log category datums and checking for config flags as required
 /datum/log_holder/proc/init_logging()
@@ -374,3 +392,10 @@ GENERAL_PROTECT_DATUM(/datum/log_holder)
 		jsonified_list[key] = data
 
 	return jsonified_list
+
+
+/// Checks to see if a user has +DEBUG without +ADMIN permissions.
+/// Used to give +DEBUG holders "limited" versions of some admin commands for debugging purposes.
+/proc/is_user_debug_only(mob/user)
+	var/client/client = user.client
+	return client.holder && check_rights_for(client, R_DEBUG) && !check_rights_for(client, R_ADMIN)

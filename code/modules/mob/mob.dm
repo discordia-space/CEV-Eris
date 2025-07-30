@@ -21,6 +21,17 @@
 /mob/proc/despawn()
 	return
 
+/// Assigns a (c)key to this mob.
+/mob/proc/PossessByPlayer(ckey)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(isnull(ckey))
+		return
+
+	if(!istext(ckey))
+		CRASH("Tried to assign a mob a non-text ckey, wtf?!")
+
+	src.ckey = ckey(ckey)
+
 /mob/get_fall_damage(turf/from, turf/dest)
 	return 0
 
@@ -1289,3 +1300,102 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 
 /mob/proc/ssd_check()
 	return !client && !teleop
+
+/**
+ * Get the mob VV dropdown extras
+ */
+/mob/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", VV_HK_SPACER)
+	VV_DROPDOWN_OPTION(VV_HK_GIB, "Gib")
+	VV_DROPDOWN_OPTION(VV_HK_GODMODE, "Toggle Godmode")
+	VV_DROPDOWN_OPTION(VV_HK_DROP_ALL, "Drop Everything")
+	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS, "Regenerate Icons")
+	VV_DROPDOWN_OPTION(VV_HK_PLAYER_PANEL, "Show player panel")
+	VV_DROPDOWN_OPTION(VV_HK_BUILDMODE, "Toggle Buildmode")
+	VV_DROPDOWN_OPTION(VV_HK_DIRECT_CONTROL, "Assume Direct Control")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_DIRECT_CONTROL, "Give Direct Control")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_LANGUAGES, "Modify Languages")
+	// VV_DROPDOWN_OPTION(VV_HK_OFFER_GHOSTS, "Offer Control to Ghosts")
+
+/mob/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_REGEN_ICONS])
+		if(!check_rights(NONE))
+			return
+		regenerate_icons()
+	if(href_list[VV_HK_PLAYER_PANEL])
+		if(!check_rights(NONE))
+			return
+		usr.client.holder.show_player_panel(src)
+
+	if(href_list[VV_HK_GODMODE])
+		if(!check_rights(R_ADMIN))
+			return
+		usr.client.cmd_admin_godmode(src)
+	// if(href_list[VV_HK_GIVE_SPELL])
+	// 	if(!check_rights(NONE))
+	// 		return
+	// 	usr.client.give_spell(src)
+	// if(href_list[VV_HK_REMOVE_SPELL])
+	// 	if(!check_rights(NONE))
+	// 		return
+	// 	usr.client.remove_spell(src)
+	// if(href_list[VV_HK_GIVE_DISEASE])
+	// 	if(!check_rights(NONE))
+	// 		return
+	// 	usr.client.give_disease(src)
+	if(href_list[VV_HK_GIB])
+		if(!check_rights(R_FUN))
+			return
+		usr.client.cmd_admin_gib(src)
+	if(href_list[VV_HK_BUILDMODE])
+		if(!check_rights(R_BUILD))
+			return
+		togglebuildmode(src)
+	if(href_list[VV_HK_DROP_ALL])
+		if(!check_rights(NONE))
+			return
+		usr.client.cmd_admin_drop_everything(src)
+	if(href_list[VV_HK_DIRECT_CONTROL])
+		if(!check_rights(NONE))
+			return
+		usr.client.cmd_assume_direct_control(src)
+	if(href_list[VV_HK_GIVE_DIRECT_CONTROL])
+		if(!check_rights(NONE))
+			return
+		usr.client.cmd_give_direct_control(src)
+	if(href_list[VV_HK_MODIFY_LANGUAGES] && check_rights(R_FUN))
+		var/langoption = input(usr, "What do you want to do?", "Modify Languages", null) as null|anything in list("Add Language", "Remove Language")
+		if(isnull(langoption))
+			return
+		if(langoption == "Add Language")
+			var/new_language = input("Please choose a language to add.","Language",null) as null|anything in GLOB.all_languages
+			if(!new_language)
+				return
+			if(!src)
+				to_chat(usr, "Mob doesn't exist anymore")
+				return
+			if(src.add_language(new_language))
+				to_chat(usr, "Added [new_language] to [src].")
+			else
+				to_chat(usr, "Mob already knows that language.")
+		if(langoption == "Remove Language")
+			if(!length(src.languages))
+				to_chat(usr, "This mob knows no languages.")
+				return
+			var/datum/language/rem_language = input("Please choose a language to remove.","Language",null) as null|anything in src.languages
+			if(!rem_language)
+				return
+			if(!src)
+				to_chat(usr, "Mob doesn't exist anymore")
+				return
+
+			if(src.remove_language(rem_language.name))
+				to_chat(usr, "Removed [rem_language] from [src].")
+			else
+				to_chat(usr, "Mob doesn't know that language.")
+
+/mob/vv_auto_rename(new_name)
+	//Do not do parent's actions, as we *usually* do this differently.
+	fully_replace_character_name(real_name, new_name)

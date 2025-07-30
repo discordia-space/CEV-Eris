@@ -26,6 +26,10 @@
 
 #define ROUNDSTART_LOGOUT_REPORT_TIME 6000 // Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
+// LOG BROWSE TYPES
+#define BROWSE_ROOT_ALL_LOGS 1
+#define BROWSE_ROOT_CURRENT_LOGS 2
+
 /// When passed in as the duration for ban_panel, will make the ban default to permanent
 #define BAN_PANEL_PERMANENT "permanent"
 
@@ -33,12 +37,15 @@
 #define R_FUN           (1<<0)
 #define R_SERVER        (1<<1)
 #define R_DEBUG         (1<<2)
-#define R_PERMISSIONS   (1<<3)
-#define R_MENTOR        (1<<4)
-#define R_ADMIN         (1<<5)
-#define R_BAN           (1<<6)
+#define R_BUILD         (1<<3)
+#define R_PERMISSIONS   (1<<4)
+#define R_MENTOR        (1<<5)
+#define R_ADMIN         (1<<6)
+#define R_BAN           (1<<7)
+#define R_SPAWN			(1<<8)
+#define R_VAREDIT		(1<<9)
 
-#define R_EVERYTHING (1<<7)-1 //the sum of all other rank permissions, used for +EVERYTHING
+#define R_EVERYTHING (1<<10)-1 //the sum of all other rank permissions, used for +EVERYTHING
 
 
 #define ADMIN_QUE(user) "(<a href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];adminmoreinfo=[REF(user)]'>?</a>)"
@@ -55,6 +62,7 @@
 #define AREACOORD(src) "[src ? src.Admin_Coordinates_Readable(TRUE) : "nonexistent location"]"
 #define ADMIN_COORDJMP(src) "[src ? src.Admin_Coordinates_Readable(FALSE, TRUE) : "nonexistent location"]"
 #define ADMIN_VERBOSEJMP(src) "[src ? src.Admin_Coordinates_Readable(TRUE, TRUE) : "nonexistent location"]"
+#define ADMIN_TAG(datum) "(<A href='byond://?src=[REF(src)];[HrefToken(forceGlobal = TRUE)];tag_datum=[REF(datum)]'>TAG</a>)"
 
 #define ADMIN_FULLMONTY_NONAME(user) "[ADMIN_QUE(user)] [ADMIN_PP(user)] [ADMIN_VV(user)] [ADMIN_SM(user)] [ADMIN_FLW(user)] [ADMIN_TP(user)] [ADMIN_SC(user)]"
 #define ADMIN_FULLMONTY(user) "[key_name_admin(user)] [ADMIN_FULLMONTY_NONAME(user)]"

@@ -845,46 +845,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	for(var/datum/zone/Z in zones_trg) // rebuilding zones
 		Z.rebuild()
 
-//Vars that will not be copied when using /DuplicateObject //from tg
-GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
-	"tag", "datum_components", "area", "type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key",
-	"contents", "reagents", "stat", "x", "y", "z", "comp_lookup", "bodyparts", "internal_organs", "hand_bodyparts",
-	"overlays_standing", "hud_list", "computer_id", "lastKnownIP", "WIRE_RECEIVE", "WIRE_PULSE", "WIRE_PULSE_SPECIAL",
-	"WIRE_RADIO_RECEIVE", "WIRE_RADIO_PULSE", "FREQ_LISTENING", "deffont", "signfont", "crayonfont", "hud_actions", "hidden_uplink",
-	"gc_destroyed", "is_processing", "signal_procs", "signal_enabled"))
-
-/proc/DuplicateObject(atom/original, perfectcopy = TRUE, sameloc, atom/newloc)
-	RETURN_TYPE(original.type)
-	if(!original)
-		return
-
-	var/atom/O
-
-	if(sameloc)
-		O = new original.type(original.loc)
-	else
-		O = new original.type(newloc)
-
-	if(perfectcopy && O && original)
-		var/list/all_vars = duplicate_vars(original)
-		for(var/V in all_vars)
-			O.vars[V] = all_vars[V]
-	return O
-
-
-/proc/duplicate_vars(atom/original)
-	RETURN_TYPE(/list)
-	var/list/all_vars = list()
-	for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
-		if(islist(original.vars[V]))
-			var/list/L = original.vars[V]
-			all_vars[V] = L.Copy()
-		else if(istype(original.vars[V], /datum) || ismob(original.vars[V]) || isHUDobj(original.vars[V]) || isobj(original.vars[V]))
-			continue	// this would reference the original's object, that will break when it is used or deleted.
-		else
-			all_vars[V] = original.vars[V]
-	return all_vars
-
 /area/proc/copy_contents_to(area/A , platingRequired = 0 )
 	//Takes: Area. Optional: If it should copy to areas that don't have plating
 	//Returns: Nothing.
@@ -966,7 +926,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 						objs += O
 
 					for(var/obj/O in objs)
-						newobjs += DuplicateObject(O , 1)
+						newobjs += DuplicateObject_old(O , 1)
 
 
 					for(var/obj/O in newobjs)
@@ -978,7 +938,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 						mobs += M
 
 					for(var/mob/M in mobs)
-						newmobs += DuplicateObject(M , 1)
+						newmobs += DuplicateObject_old(M , 1)
 
 					for(var/mob/M in newmobs)
 						M.loc = X
@@ -1255,31 +1215,6 @@ var/list/FLOORITEMS = list(
 			else
 				return "\[[url_encode(thing.tag)]\]"
 	return "\ref[input]"
-
-// Makes a call in the context of a different usr
-// Use sparingly
-/world/proc/PushUsr(mob/M, datum/callback/CB, ...)
-	var/temp = usr
-	usr = M
-	if (length(args) > 2)
-		. = CB.Invoke(arglist(args.Copy(3)))
-	else
-		. = CB.Invoke()
-	usr = temp
-
-#define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##target, ##var_name, ##var_value)
-//dupe code because dm can't handle 3 level deep macros
-#define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##datum, NAMEOF(##datum, ##var), ##var_value)
-
-/proc/___callbackvarset(list_or_datum, var_name, var_value)
-	if(length(list_or_datum))
-		list_or_datum[var_name] = var_value
-		return
-	var/datum/D = list_or_datum
-	// if(IsAdminAdvancedProcCall())
-	// 	D.vv_edit_var(var_name, var_value) //same result generally, unless badmemes
-	// else
-	D.vars[var_name] = var_value
 
 /proc/generate_single_gun_number()
 	return pick(1,2,3,4,5,6,7,8,9,0)

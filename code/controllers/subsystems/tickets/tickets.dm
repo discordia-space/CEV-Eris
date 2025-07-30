@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(tickets)
 	/// Which permission to look for when seeing if there is staff available for the other ticket type
 	var/other_ticket_permission = R_MENTOR
 	var/list/close_messages
-	var/list/allTickets = list()	//make it here because someone might ahelp before the system has initialized
+	var/list/datum/ticket/allTickets = list()	//make it here because someone might ahelp before the system has initialized
 
 	var/ticketCounter = 1
 
@@ -62,8 +62,7 @@ SUBSYSTEM_DEF(tickets)
 
 /datum/controller/subsystem/tickets/proc/checkStaleness()
 	var/stales = list()
-	for(var/T in allTickets)
-		var/datum/ticket/ticket = T
+	for(var/datum/ticket/ticket in allTickets)
 		if(!(ticket.ticketState == TICKET_OPEN))
 			continue
 		if(world.time > ticket.timeUntilStale && (!ticket.lastStaffResponse || !ticket.staffAssigned))
@@ -82,9 +81,8 @@ SUBSYSTEM_DEF(tickets)
 	return
 
 /datum/controller/subsystem/tickets/proc/resolveAllOpenTickets() // Resolve all open tickets
-	for(var/i in allTickets)
-		var/datum/ticket/T = i
-		resolveTicket(T.ticketNum)
+	for(var/datum/ticket/ticket in allTickets)
+		resolveTicket(ticket.ticketNum)
 
 /**
  * Will either make a new ticket using the given text or will add the text to an existing ticket.
@@ -95,12 +93,12 @@ SUBSYSTEM_DEF(tickets)
  */
 /datum/controller/subsystem/tickets/proc/newHelpRequest(client/C, text)
 	var/ticketNum // Holder for the ticket number
-	var/datum/ticket/T
+	var/datum/ticket/ticket = checkForOpenTicket(C)
 	// Get the open ticket assigned to the client and add a response. If no open tickets then make a new one
-	if((T = checkForOpenTicket(C)))
-		ticketNum = T.ticketNum
-		T.addResponse(C, text)
-		T.setCooldownPeriod()
+	if(ticket)
+		ticketNum = ticket.ticketNum
+		ticket.addResponse(C, text)
+		ticket.setCooldownPeriod()
 		to_chat(C.mob, "<span class='[span_class]'>Your [ticket_name] #[ticketNum] remains open! Visit \"My tickets\" under the Admin Tab to view it.</span>")
 		var/url_message = makeUrlMessage(C, text, ticketNum)
 		log_admin(url_message)
@@ -384,6 +382,7 @@ SUBSYSTEM_DEF(tickets)
 	msg = "[C]: [msg]"
 	content += msg
 
+/datum/ticket/proc/addInteraction(message, )
 /datum/ticket/proc/makeStale()
 	ticketState = TICKET_STALE
 	return ticketNum

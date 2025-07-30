@@ -57,11 +57,6 @@ var/global/floorIsLava = 0
 		if(check_rights(rights, 0, M))
 			to_chat(M, message)
 
-// Not happening.
-/datum/admins/SDQL_update(const/var_name, new_value)
-	return FALSE
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 /datum/admins/proc/view_log_panel(mob/M)

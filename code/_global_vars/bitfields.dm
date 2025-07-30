@@ -26,15 +26,15 @@ DEFINE_BITFIELD(admin_flags, list(
 	"ADMIN" = R_ADMIN,
 	// "AUTOLOGIN" = R_AUTOADMIN,
 	// "BAN" = R_BAN,
-	// "BUILDMODE" = R_BUILD,
+	"BUILDMODE" = R_BUILD,
 	// "DBRANKS" = R_DBRANKS,
 	// "POLL" = R_POLL,
 	// "POSSESS" = R_POSSESS,
-	// "SERVER" = R_SERVER,
 	// "SOUNDS" = R_SOUND,
-	// "SPAWN" = R_SPAWN,
+	"SPAWN" = R_SPAWN,
 	// "STEALTH" = R_STEALTH,
-	// "VAREDIT" = R_VAREDIT,
+	"VAREDIT" = R_VAREDIT,
+	"EVERYTHING" = R_EVERYTHING,
 
 ))
 
@@ -409,20 +409,9 @@ DEFINE_BITFIELD(sight, list(
 	"SEE_TURFS" = SEE_TURFS,
 ))
 
-DEFINE_BITFIELD(vis_flags, list(
-	"VIS_HIDE" = VIS_HIDE,
-	"VIS_INHERIT_DIR" = VIS_INHERIT_DIR,
-	"VIS_INHERIT_ICON" = VIS_INHERIT_ICON,
-	"VIS_INHERIT_ICON_STATE" = VIS_INHERIT_ICON_STATE,
-	"VIS_INHERIT_ID" = VIS_INHERIT_ID,
-	"VIS_INHERIT_LAYER" = VIS_INHERIT_LAYER,
-	"VIS_INHERIT_PLANE" = VIS_INHERIT_PLANE,
-	"VIS_UNDERLAY" = VIS_UNDERLAY,
-))
-
 // I am so sorry. Required because vis_flags is both undefinable and unreadable on mutable_appearance
 // But we need to display them anyway. See /mutable_appearance/appearance_mirror
-DEFINE_BITFIELD(_vis_flags, list(
+DEFINE_BITFIELD(vis_flags, list(
 	"VIS_HIDE" = VIS_HIDE,
 	"VIS_INHERIT_DIR" = VIS_INHERIT_DIR,
 	"VIS_INHERIT_ICON" = VIS_INHERIT_ICON,

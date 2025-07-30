@@ -68,8 +68,8 @@ GLOBAL_REAL(Tracy, /datum/tracy)
 		CRASH("Error flushing byond-tracy log: [flush_result]")
 	SEND_TEXT(world.log, "Flushed byond-tracy log")
 
-// /datum/tracy/vv_edit_var(var_name, var_value)
-// 	return FALSE // no.
+/datum/tracy/vv_edit_var(var_name, var_value)
+	return FALSE // no.
 
-// /datum/tracy/CanProcCall(procname)
-// 	return FALSE // double no.
+/datum/tracy/CanProcCall(procname)
+	return FALSE // double no.

@@ -50,7 +50,7 @@
 		if(istype(used_atom, L["key"]))
 			if(custom_action(i, used_atom, user))
 				steps[i]=null;//stupid byond list from list removal...
-				listclearnulls(steps);
+				list_clear_nulls(steps);
 				if(!steps.len)
 					spawn_result()
 				return 1

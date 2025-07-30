@@ -38,7 +38,7 @@
  */
 /datum/config_entry/proc/set_default()
 	if ((protection & CONFIG_ENTRY_LOCKED) && IsAdminAdvancedProcCall())
-		log_admin("[key_name(usr)] attempted to reset locked config entry [type] to its default")
+		log_admin_private("[key_name(usr)] attempted to reset locked config entry [type] to its default")
 		return
 	if (islist(default))
 		var/list/L = default
@@ -49,32 +49,31 @@
 	resident_file = null
 	modified = FALSE
 
-// TODO: REENABLE WHEN NEW VV IS IMPLEMENTED
-// /datum/config_entry/can_vv_get(var_name)
-// 	. = ..()
-// 	if(var_name == NAMEOF(src, config_entry_value) || var_name == NAMEOF(src, default))
-// 		. &= !(protection & CONFIG_ENTRY_HIDDEN)
+/datum/config_entry/can_vv_get(var_name)
+	. = ..()
+	if(var_name == NAMEOF(src, config_entry_value) || var_name == NAMEOF(src, default))
+		. &= !(protection & CONFIG_ENTRY_HIDDEN)
 
-// /datum/config_entry/vv_edit_var(var_name, var_value)
-// 	var/static/list/banned_edits = list(NAMEOF_STATIC(src, name), NAMEOF_STATIC(src, vv_VAS), NAMEOF_STATIC(src, default), NAMEOF_STATIC(src, resident_file), NAMEOF_STATIC(src, protection), NAMEOF_STATIC(src, abstract_type), NAMEOF_STATIC(src, modified), NAMEOF_STATIC(src, dupes_allowed))
-// 	if(var_name == NAMEOF(src, config_entry_value))
-// 		if(protection & CONFIG_ENTRY_LOCKED)
-// 			return FALSE
-// 		if(vv_VAS)
-// 			. = ValidateAndSet("[var_value]")
-// 			if(.)
-// 				datum_flags |= DF_VAR_EDITED
-// 			return
-// 		else
-// 			return ..()
-// 	if(var_name in banned_edits)
-// 		return FALSE
-// 	return ..()
+/datum/config_entry/vv_edit_var(var_name, var_value)
+	var/static/list/banned_edits = list(NAMEOF_STATIC(src, name), NAMEOF_STATIC(src, vv_VAS), NAMEOF_STATIC(src, default), NAMEOF_STATIC(src, resident_file), NAMEOF_STATIC(src, protection), NAMEOF_STATIC(src, abstract_type), NAMEOF_STATIC(src, modified), NAMEOF_STATIC(src, dupes_allowed))
+	if(var_name == NAMEOF(src, config_entry_value))
+		if(protection & CONFIG_ENTRY_LOCKED)
+			return FALSE
+		if(vv_VAS)
+			. = ValidateAndSet("[var_value]")
+			if(.)
+				datum_flags |= DF_VAR_EDITED
+			return
+		else
+			return ..()
+	if(var_name in banned_edits)
+		return FALSE
+	return ..()
 
 /datum/config_entry/proc/VASProcCallGuard(str_val)
 	. = !((protection & CONFIG_ENTRY_LOCKED) && IsAdminAdvancedProcCall())
 	if(!.)
-		log_admin("[key_name(usr)] attempted to set locked config entry [type] to '[str_val]'")
+		log_admin_private("[key_name(usr)] attempted to set locked config entry [type] to '[str_val]'")
 
 /datum/config_entry/proc/ValidateAndSet(str_val)
 	VASProcCallGuard(str_val)
@@ -93,10 +92,8 @@
 	/// whether the string will be lowercased on ValidateAndSet or not.
 	var/lowercase = FALSE
 
-// TODO: REENABLE WHEN NEW VV IS IMPLEMENTED
-
-// /datum/config_entry/string/vv_edit_var(var_name, var_value)
-// 	return var_name != NAMEOF(src, auto_trim) && ..()
+/datum/config_entry/string/vv_edit_var(var_name, var_value)
+	return var_name != NAMEOF(src, auto_trim) && ..()
 
 /datum/config_entry/string/ValidateAndSet(str_val)
 	if(!VASProcCallGuard(str_val))
@@ -124,10 +121,9 @@
 		return TRUE
 	return FALSE
 
-// TODO: REENABLE WHEN NEW VV IS IMPLEMENTED
-// /datum/config_entry/number/vv_edit_var(var_name, var_value)
-// 	var/static/list/banned_edits = list(NAMEOF_STATIC(src, max_val), NAMEOF_STATIC(src, min_val), NAMEOF_STATIC(src, integer))
-// 	return !(var_name in banned_edits) && ..()
+/datum/config_entry/number/vv_edit_var(var_name, var_value)
+	var/static/list/banned_edits = list(NAMEOF_STATIC(src, max_val), NAMEOF_STATIC(src, min_val), NAMEOF_STATIC(src, integer))
+	return !(var_name in banned_edits) && ..()
 
 /datum/config_entry/flag
 	default = FALSE
@@ -298,6 +294,5 @@
 		if(VALUE_MODE_TEXT)
 			return value
 
-// TODO: REENABLE WHEN NEW VV IS IMPLEMENTED
-// /datum/config_entry/keyed_list/vv_edit_var(var_name, var_value)
-// 	return var_name != NAMEOF(src, splitter) && ..()
+/datum/config_entry/keyed_list/vv_edit_var(var_name, var_value)
+	return var_name != NAMEOF(src, splitter) && ..()

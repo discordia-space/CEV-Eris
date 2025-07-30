@@ -74,6 +74,20 @@
 	else
 		alert("Invalid mob")
 
+/client/proc/cmd_admin_aiize(mob/living/M)
+	set category = "Fun"
+	set name = "Make AI"
+
+	if(ishuman(M))
+		log_admin("[key_name(src)] has AIized [M.key].")
+		spawn(10)
+			M.AIize()
+
+		log_admin("[key_name(usr)] made [key_name(M)] into an AI.")
+		message_admins(span_blue("[key_name_admin(usr)] made [key_name(M)] into an AI."), 1)
+	else
+		alert("Invalid mob")
+
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all()
 	set category = "Debug"
@@ -169,6 +183,36 @@
 	M.ckey = src.ckey
 	if(isghost(adminmob))
 		qdel(adminmob)
+
+/client/proc/cmd_give_direct_control(mob/M in GLOB.mob_list)
+	set category = "Admin"
+	set name = "Give direct control"
+
+	if(!M)
+		return
+	if(M.ckey)
+		if(tgui_alert(usr,"This mob is being controlled by [M.key]. Are you sure you wish to give someone else control of it? [M.key] will be made a ghost.",,list("Yes","No")) != "Yes")
+			return
+	var/client/newkey = input(src, "Pick the player to put in control.", "New player") as null|anything in sortList(GLOB.clients)
+	if(isnull(newkey))
+		return
+	var/mob/oldmob = newkey.mob
+	var/delmob = FALSE
+	if((isobserver(oldmob) || tgui_alert(usr,"Do you want to delete [newkey]'s old mob?","Delete?",list("Yes","No")) != "No"))
+		delmob = TRUE
+	if(!M || QDELETED(M))
+		to_chat(usr, span_warning("The target mob no longer exists, aborting."))
+		return
+	if(M.ckey)
+		M.ghostize(FALSE)
+	M.PossessByPlayer(newkey.key)
+	M.client?.init_verbs()
+	if(delmob)
+		qdel(oldmob)
+	message_admins(span_adminnotice("[key_name_admin(usr)] gave away direct control of [M] to [newkey]."))
+	log_admin("[key_name(usr)] gave away direct control of [M] to [newkey].")
+	// SSblackbox.record_feedback("tally", "admin_verb", 1, "Give Direct Control") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /client/proc/cmd_admin_areatest()
 	set category = "Mapping"

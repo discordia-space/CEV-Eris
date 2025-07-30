@@ -328,14 +328,12 @@
 
 	++.
 
-// TODO: REENABLE WHEN NEW VV IS IMPLEMENTED
+/datum/controller/configuration/can_vv_get(var_name)
+	return (var_name != NAMEOF(src, entries_by_type) || !hiding_entries_by_type) && ..()
 
-// /datum/controller/configuration/can_vv_get(var_name)
-// 	return (var_name != NAMEOF(src, entries_by_type) || !hiding_entries_by_type) && ..()
-
-// /datum/controller/configuration/vv_edit_var(var_name, var_value)
-// 	var/list/banned_edits = list(NAMEOF(src, entries_by_type), NAMEOF(src, entries), NAMEOF(src, directory))
-// 	return !(var_name in banned_edits) && ..()
+/datum/controller/configuration/vv_edit_var(var_name, var_value)
+	var/list/banned_edits = list(NAMEOF(src, entries_by_type), NAMEOF(src, entries), NAMEOF(src, directory))
+	return !(var_name in banned_edits) && ..()
 
 /datum/controller/configuration/stat_entry(msg)
 	msg = "Edit"

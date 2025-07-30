@@ -216,33 +216,32 @@ SUBSYSTEM_DEF(dbcore)
 		Disconnect()
 	stop_db_daemon()
 
-// TODO: REENABLE WHEN NEW VV IS IMPLEMENTED
-// /datum/controller/subsystem/dbcore/can_vv_get(var_name)
-// 	if(var_name == NAMEOF(src, connection))
-// 		return FALSE
-// 	if(var_name == NAMEOF(src, all_queries))
-// 		return FALSE
-// 	if(var_name == NAMEOF(src, queries_active))
-// 		return FALSE
-// 	if(var_name == NAMEOF(src, queries_standby))
-// 		return FALSE
-// 	if(var_name == NAMEOF(src, processing_queries))
-// 		return FALSE
+/datum/controller/subsystem/dbcore/can_vv_get(var_name)
+	if(var_name == NAMEOF(src, connection))
+		return FALSE
+	if(var_name == NAMEOF(src, all_queries))
+		return FALSE
+	if(var_name == NAMEOF(src, queries_active))
+		return FALSE
+	if(var_name == NAMEOF(src, queries_standby))
+		return FALSE
+	if(var_name == NAMEOF(src, processing_queries))
+		return FALSE
 
-// 	return ..()
+	return ..()
 
-// /datum/controller/subsystem/dbcore/vv_edit_var(var_name, var_value)
-// 	if(var_name == NAMEOF(src, connection))
-// 		return FALSE
-// 	if(var_name == NAMEOF(src, all_queries))
-// 		return FALSE
-// 	if(var_name == NAMEOF(src, queries_active))
-// 		return FALSE
-// 	if(var_name == NAMEOF(src, queries_standby))
-// 		return FALSE
-// 	if(var_name == NAMEOF(src, processing_queries))
-// 		return FALSE
-// 	return ..()
+/datum/controller/subsystem/dbcore/vv_edit_var(var_name, var_value)
+	if(var_name == NAMEOF(src, connection))
+		return FALSE
+	if(var_name == NAMEOF(src, all_queries))
+		return FALSE
+	if(var_name == NAMEOF(src, queries_active))
+		return FALSE
+	if(var_name == NAMEOF(src, queries_standby))
+		return FALSE
+	if(var_name == NAMEOF(src, processing_queries))
+		return FALSE
+	return ..()
 
 /datum/controller/subsystem/dbcore/proc/Connect()
 	if(IsConnected())

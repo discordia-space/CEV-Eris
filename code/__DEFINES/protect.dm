@@ -1,14 +1,12 @@
 ///Protects a datum from being VV'd or spawned through admin manipulation
-// TODO: REENABLE WHEN NEW VV IS IMPLEMENTED
-/*
+#ifndef TESTING
+#define GENERAL_PROTECT_DATUM(Path)\
 ##Path/can_vv_get(var_name){\
- 	return FALSE;\
+	return FALSE;\
 }\
 ##Path/vv_edit_var(var_name, var_value){\
 	return FALSE;\
-} */
-#ifndef TESTING
-#define GENERAL_PROTECT_DATUM(Path)\
+}\
 ##Path/CanProcCall(procname){\
 	return FALSE;\
 }\
@@ -21,3 +19,4 @@
 #else
 #define GENERAL_PROTECT_DATUM(Path)
 #endif
+// we del instead of qdel because for security reasons we must ensure the datum does not exist if Read is called. qdel will not enforce this.

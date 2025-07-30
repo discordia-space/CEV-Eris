@@ -411,7 +411,7 @@
 	<BR><A href='byond://?src=\ref[user];refresh=1'>Refresh</A>
 	<BR><A href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-
+// hi nerd
 	var/datum/browser/panel = new(user, "mob[name]", "Mob", 325, 400)
 	panel.set_content(dat)
 	panel.open()
@@ -424,3 +424,36 @@
 
 /mob/living/carbon/proc/need_breathe()
 	return TRUE
+
+/mob/living/carbon/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", VV_HK_SPACER)
+	VV_DROPDOWN_OPTION(VV_HK_MAKE_ROBOT, "Make Robot")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_ORGANS, "Modify Oranges")
+
+/mob/living/carbon/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_MODIFY_ORGANS] && check_rights(R_FUN))
+		var/organoption = input(usr, "What do you want to do?", "Modify Organs", null) as null|anything in list("Add Organ", "Remove Organ")
+
+		if(isnull(organoption))
+			return
+		if (organoption == "Add Organ")
+			var/new_organ = input("Please choose an organ to add.","Organ",null) as null|anything in typesof(/obj/item/organ)-/obj/item/organ
+			if(!new_organ) return
+
+			if(locate(new_organ) in src.internal_organs)
+				to_chat(usr, "Mob already has that organ.")
+				return
+
+			new new_organ(src)
+		if (organoption == "Remove Organ")
+			var/obj/item/organ/rem_organ = input("Please choose an organ to remove.","Organ",null) as null|anything in src.internal_organs
+
+			if(!(locate(rem_organ) in src.internal_organs))
+				to_chat(usr, "Mob does not have that organ.")
+				return
+
+			to_chat(usr, "Removed [rem_organ] from [src].")
+			rem_organ.removed()
+			qdel(rem_organ)

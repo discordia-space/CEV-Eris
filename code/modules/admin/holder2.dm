@@ -13,7 +13,10 @@ GLOBAL_PROTECT(href_token)
 
 	var/deadmined
 
-	var/datum/weakref/marked_datum_weak
+	var/datum/marked_datum
+
+	/// A lazylist of tagged datums, for quick reference with the View Tags verb
+	var/list/tagged_datums
 
 	var/admincaster_screen = 0	//See newscaster.dm under machinery for a full description
 	var/datum/feed_message/admincaster_feed_message = new /datum/feed_message   //These two will act as holders.
@@ -22,11 +25,8 @@ GLOBAL_PROTECT(href_token)
 
 	var/href_token
 
-	var/given_profiling = FALSE
 
-/datum/admins/proc/marked_datum()
-	if(marked_datum_weak)
-		return marked_datum_weak.resolve()
+	var/given_profiling = FALSE
 
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
 	if(IsAdminAdvancedProcCall())
@@ -133,6 +133,14 @@ GLOBAL_PROTECT(href_token)
 		combined_flags |= rankrights
 
 	return combined_flags
+
+/datum/admins/vv_edit_var(var_name, var_value)
+	return FALSE //nice try trialmin
+
+/datum/admins/can_vv_get(var_name)
+	if(var_name == NAMEOF(src, href_token))
+		return FALSE
+	return ..()
 
 /*
 checks if usr is an admin with at least ONE of the flags in rights_required. (Note, they don't need all the flags)

@@ -1,4 +1,6 @@
 GLOBAL_LIST_INIT(admin_verbs_default, list(
+	/client/proc/mark_datum_mapview,
+	/client/proc/tag_datum_mapview,
 	/datum/admins/proc/show_player_panel,
 	/client/proc/deadmin_self,
 	/client/proc/hide_verbs))
@@ -18,6 +20,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/play_local_sound,
 	/client/proc/play_server_sound,
 	/proc/possess,
+	/proc/release,
 	/client/proc/respawn_character,
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/everyone_random,
@@ -40,6 +43,7 @@ GLOBAL_LIST_INIT(admin_verbs_server, list(
 	/datum/admins/proc/check_tts_stat,
 	/datum/admins/proc/z_level_shooting,
 	/datum/admins/proc/capture_map,
+	/datum/admins/proc/set_admin_notice,
 	/client/proc/ToRban,
 	/client/proc/reload_admins,
 	/client/proc/reload_mentors,
@@ -59,9 +63,10 @@ GLOBAL_LIST_INIT(admin_verbs_debug, list(
 	/datum/admins/proc/spawn_fruit,
 	/datum/admins/proc/spawn_plant,
 	/datum/admins/proc/spawn_atom,
+	/datum/admins/proc/display_tags,
 	/client/proc/cmd_dev_bst,
 	/client/proc/callproc,
-	/client/proc/callproc_target,
+	/client/proc/callproc_datum,
 	/client/proc/Debug2,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_display_del_log,
@@ -70,7 +75,6 @@ GLOBAL_LIST_INIT(admin_verbs_debug, list(
 	/client/proc/view_runtimes,
 	/client/proc/spawn_disciple,
 	/client/proc/delete_npcs,
-	/client/proc/getruntimelog,
 	/client/proc/map_template_load,
 	/client/proc/map_template_load_on_new_z,
 	/client/proc/map_template_upload,
@@ -89,6 +93,8 @@ GLOBAL_LIST_INIT(admin_verbs_debug, list(
 	/client/proc/enable_debug_verbs,
 	/client/proc/tracy_next_round,
 	/client/proc/start_tracy,
+	/client/proc/getserverlogs_debug,
+	/client/proc/getcurrentlogs_debug,
 	/client/proc/server_memory_stats))
 
 GLOBAL_LIST_INIT(admin_verbs_debug_extra, list(
@@ -103,6 +109,7 @@ GLOBAL_LIST_INIT(admin_verbs_debug_extra, list(
 	/client/proc/count_objects_on_z_level,
 	/client/proc/count_objects_all,
 	/client/proc/cmd_assume_direct_control,
+	/client/proc/cmd_give_direct_control,
 	/client/proc/startSinglo,
 	/client/proc/set_server_fps,
 	/client/proc/cmd_admin_grantfullaccess,
@@ -212,10 +219,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	/client/proc/ip_reputation,
 	/client/proc/toggle_vpn_white,
 	/client/proc/cmd_admin_change_custom_event,
-	/client/proc/giveruntimelog,
-	/client/proc/getserverlog,
-	/datum/admins/proc/view_txt_log,
-	/datum/admins/proc/view_atk_log,
 	/client/proc/stop_sounds,
 	/client/proc/stop_sounds_admin,
 	/client/proc/cmd_admin_subtle_message,
@@ -232,6 +235,8 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	/client/proc/admin_cancel_shuttle,
 	/client/proc/debug_variables,
 	/client/proc/view_chemical_reaction_logs,
+	/client/proc/getserverlogs,
+	/client/proc/getcurrentlogs,
 	/client/proc/discord_msg))
 
 /datum/verbs/menu/Admin/Generate_list(client/C)

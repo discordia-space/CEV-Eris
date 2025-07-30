@@ -215,16 +215,10 @@ Temporary Items
 
 # Built auxtools libraries and intermediate files
 aux*.dll
-libaux*.so
-!librust_g.so
-!libprof.so
-!libmariadb.so
 aux*.pdb
 
-# byond-tracy, we intentionally do not ship this and do not want to maintain it
-# https://github.com/mafemergency/byond-tracy/
-prof.dll
-libprof.so
+# Ignore compiled linux libs in the root folder, e.g. librust_g.so
+/*.so
 
 # JavaScript tools
 **/node_modules
@@ -236,4 +230,3 @@ yarn.lock
 # byond-tracy, we intentionally do not ship this and do not want to maintain it
 # https://github.com/mafemergency/byond-tracy or https://github.com/ParadiseSS13/byond-tracy
 prof.*
-libprof.so

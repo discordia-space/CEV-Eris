@@ -75,3 +75,6 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 
 /proc/cmp_smeslist_rcon_tag(list/A, list/B)
 	return sorttext(A["RCON_tag"], B["RCON_tag"])
+
+/proc/cmp_typepaths_asc(A, B)
+	return sorttext("[B]","[A]")

@@ -241,7 +241,7 @@
 			"size" = window_size,
 			"fancy" = user.client.get_preference_value(/datum/client_preference/tgui_fancy),
 			"locked" = user.client.get_preference_value(/datum/client_preference/tgui_lock),
-			// "scale" = user.client.get_preference_value(/datum/client_preference/ui_scale),
+			"scale" = user.client.get_preference_value(/datum/client_preference/ui_scale),
 		),
 		"client" = list(
 			"ckey" = user.client.ckey,

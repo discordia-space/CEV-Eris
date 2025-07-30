@@ -1586,3 +1586,30 @@ var/list/rank_prefix = list(\
 		HUD.update_icon()
 	update_block_overlay()
 	return
+
+/mob/living/carbon/human/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", VV_HK_SPACER)
+	VV_DROPDOWN_OPTION(VV_HK_MAKE_ROBOT, "Make Robot")
+	VV_DROPDOWN_OPTION(VV_HK_MAKE_SLIME, "Make Slime")
+	VV_DROPDOWN_OPTION(VV_HK_MAKE_AI, "Make AI")
+	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
+
+/mob/living/carbon/human/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_MAKE_ROBOT] && check_rights(R_FUN))
+		if(alert("Confirm mob type change to robot?",,"Transform","Cancel") != "Transform") return
+		usr.client.cmd_admin_robotize(src)
+	if(href_list[VV_HK_MAKE_SLIME] && check_rights(R_FUN))
+		if(alert("Confirm mob type change to slime?",,"Transform","Cancel") != "Transform") return
+		usr.client.cmd_admin_slimeize(src)
+	if(href_list[VV_HK_MAKE_AI] && check_rights(R_FUN))
+		if(alert("Confirm mob type change to AI?",,"Transform","Cancel") != "Transform") return
+		usr.client.cmd_admin_aiize(src)
+	if(href_list[VV_HK_SET_SPECIES] && check_rights(R_SPAWN))
+		var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.all_species
+		if(result)
+			set_species(result)
+			log_game("[key_name(usr)] has modified the bodyparts of [src] to [src.species]")
+			message_admins("[key_name(usr)] has modified the bodyparts of [src] to [src.species]")
+

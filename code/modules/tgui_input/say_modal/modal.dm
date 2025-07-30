@@ -70,7 +70,7 @@
 		// "lightMode" = client.prefs?.read_preference(/datum/preference/toggle/tgui_say_light_mode),
 		// TODO: make it read theme from localstorage
 		"lightMode" = FALSE,
-		// "scale" = client.prefs?.read_preference(/datum/preference/toggle/ui_scale),
+		"scale" = client.get_preference_value(/datum/client_preference/ui_scale),
 		"scale" = TRUE,
 		"maxLength" = max_length,
 	))

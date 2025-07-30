@@ -55,7 +55,6 @@
 	var/list/content = history.Copy()
 	content += "<form action='byond://'><input type='hidden' name='src' value='\ref[src]'>> <input type='text' size='40' name='input'><input type='submit' value='Enter'></form>"
 	panel.set_content(jointext(content, "<br>"))
-	panel.update()
 
 /datum/terminal/Topic(href, href_list)
 	if(..())

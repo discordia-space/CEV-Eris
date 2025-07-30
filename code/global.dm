@@ -4,9 +4,6 @@ var/global/datum/DB_search/db_search = new()
 
 var/global/datum/universal_state/universe = new
 
-var/runtime_diary
-var/diary
-var/world_qdel_log
 var/href_logfile
 
 var/master_storyteller       = "shitgenerator"
