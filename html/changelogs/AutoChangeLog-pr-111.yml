@@ -1,0 +1,4 @@
+author: flleeppyy
+delete-after: true
+changes:
+  - code_imp: Fixed some compiler errors leftover from the VV PR
