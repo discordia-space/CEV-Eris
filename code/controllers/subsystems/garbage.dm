@@ -410,25 +410,3 @@ SUBSYSTEM_DEF(garbage)
 				SSgarbage.Queue(to_delete)
 	else if(to_delete.gc_destroyed == GC_CURRENTLY_BEING_QDELETED)
 		CRASH("[to_delete.type] destroy proc was called multiple times, likely due to a qdel loop in the Destroy logic")
-
-
-#ifdef REFERENCE_TRACKING
-
-	//Warning, attempting to search clients like this will cause crashes if done on live. Watch yourself
-#ifndef REFERENCE_DOING_IT_LIVE
-	for(var/client/thing) //clients
-		DoSearchVar(thing, "Clients -> [thing.type]", search_time = starting_time)
-	log_reftracker("Finished searching clients")
-#endif
-
-	log_reftracker("Completed search for references to a [type].")
-
-	if(usr?.client)
-		usr.client.running_find_references = null
-	running_find_references = null
-
-	//restart the garbage collector
-	SSgarbage.can_fire = TRUE
-	SSgarbage.update_nextfire(reset_time = TRUE)
-
-#endif

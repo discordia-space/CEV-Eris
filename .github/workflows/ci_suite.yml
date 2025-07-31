@@ -10,20 +10,21 @@ jobs:
   run_linters:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     name: Run Linters
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     concurrency:
       group: run_linters-${{ github.ref }}
       cancel-in-progress: true
     steps:
-      - name: Add Ubuntu security repository
-        run: |
-          sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu jammy-security main" -y
-
-      - name: Update apt and install libc6
+      - uses: actions/checkout@v3
+      - name: Update apt and install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libc6
-      - uses: actions/checkout@v3
+          sudo apt-get install -y libgit2-dev libjpeg62 libjpeg62-dev libpng-dev
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: 'tools/requirements.txt'
       - name: Restore SpacemanDMM cache
         uses: actions/cache@v3
         with:
@@ -40,20 +41,19 @@ jobs:
             ${{ runner.os }}-
       - name: Install Tools
         run: |
-          pip3 install setuptools
+          pip install -r tools/requirements.txt
           bash tools/ci/install_node.sh
           bash tools/ci/install_spaceman_dmm.sh dreamchecker
-          tools/bootstrap/python -c ''
       - name: Run Linters
         run: |
           bash tools/ci/check_filedirs.sh cev_eris.dme
           bash tools/ci/check_changelogs.sh
           bash tools/ci/check_grep.sh
           bash tools/ci/check_misc.sh
-          tools/bootstrap/python tools/validate_dme.py <cev_eris.dme
+          python tools/validate_dme.py <cev_eris.dme
           tools/build/build --ci lint tgui-test
-          tools/bootstrap/python -m dmi.test
-          tools/bootstrap/python -m mapmerge2.dmm_test
+          python -m dmi.test
+          python -m mapmerge2.dmm_test
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
       - name: Annotate Lints
         uses: yogstation13/DreamAnnotate@v2
@@ -64,19 +64,11 @@ jobs:
   compile_all_maps:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     name: Compile Maps
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     concurrency:
       group: compile_all_maps-${{ github.ref }}
       cancel-in-progress: true
     steps:
-      - name: Add Ubuntu security repository
-        run: |
-          sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu jammy-security main" -y
-
-      - name: Update apt and install libc6
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libc6
       - uses: actions/checkout@v3
       - name: Restore BYOND cache
         uses: actions/cache@v3
@@ -92,7 +84,7 @@ jobs:
   run_all_tests:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     name: Integration Tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
 
     services:
@@ -107,14 +99,6 @@ jobs:
       group: run_all_tests-${{ github.ref }}
       cancel-in-progress: true
     steps:
-      - name: Add Ubuntu security repository
-        run: |
-          sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu jammy-security main" -y
-
-      - name: Update apt and install libc6
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libc6
       - uses: actions/checkout@v3
       - name: Restore BYOND cache
         uses: actions/cache@v3
@@ -125,12 +109,9 @@ jobs:
         run: |
           sudo systemctl start mysql
           mysql -u root -proot -e 'CREATE DATABASE tg_ci;'
-          mysql -u root -proot tg_ci < schema.sql
+          mysql -u root -proot tg_ci < SQL/ceveris_schema.sql
       - name: Install rust-g
         run: |
-          sudo dpkg --add-architecture i386
-          sudo apt update || true
-          sudo apt install -o APT::Immediate-Configure=false libssl1.1:i386
           bash tools/ci/install_rust_g.sh
       - name: Compile Tests
         run: |
@@ -153,7 +134,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[ci skip]') && always()"
     needs: [run_all_tests]
     name: Compare Screenshot Tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
       # If we ever add more artifacts, this is going to break, but it'll be obvious.
