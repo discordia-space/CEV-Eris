@@ -4,3 +4,15 @@
 2025-07-14:
   flleeppyy:
   - rscadd: new banning panel!
+2025-07-31:
+  Mycah142:
+  - bugfix: Parenchyma no longer bugs out when multiple types are applied to the same
+      organ
+  - refactor: Internal Wounds no longer use Component code.
+  - bugfix: Reviving superior mobs should now function properly.
+  flleeppyy:
+  - code_imp: Fixed some compiler errors leftover from the VV PR
+  - rscadd: 'Port Modern View-Variables from Monkestation (Verbs: `Get Current Logs`
+      and `Get Server logs`)'
+  - rscadd: Port log viewing from Monkestation
+  - admin: Add admin notices
