@@ -1,4 +1,0 @@
-author: warriorstar-orion
-delete-after: true
-changes:
-  - refactor: CI tasks are now functional again.
