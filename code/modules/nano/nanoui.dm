@@ -210,6 +210,7 @@ nanoui is used to open and update nano browser uis
 			"showMap" = show_map,
 			"mapName" = GLOB.maps_data.path,
 			"mapZLevel" = map_z_level,
+			"stationMapURL" = SSassets.transport.get_asset_url(SANITIZE_FILENAME("[GLOB.maps_data.path]-[map_z_level].png")),
 			"mapZLevels" = GLOB.maps_data.station_levels,
 			"user" = list("name" = user.name)
 		)

@@ -12,7 +12,7 @@
 	name = "hardsuit upgrade"
 	desc = "It looks pretty sciency."
 	icon = 'icons/obj/rig_modules.dmi'
-	icon_state = "module"
+	icon_state = "default"
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 20, MATERIAL_GLASS = 5)
 	spawn_tags = SPAWN_TAG_RIG_MODULE
 	rarity_value = 5

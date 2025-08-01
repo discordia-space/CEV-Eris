@@ -244,7 +244,10 @@
 	if(item_upgrades.len)
 		data["attachments"] = list()
 		for(var/atom/A in item_upgrades)
-			data["attachments"] += list(list("name" = A.name, "icon" = SSassets.transport.get_asset_url(name)))
+			data["attachments"] += list(list(
+				"name" = A.name,
+				"icon" = SSassets.transport.get_asset_url(SANITIZE_FILENAME("tool_upgrade_[A.type].png"))
+			))
 
 	return data
 

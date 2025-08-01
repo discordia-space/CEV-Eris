@@ -1,3 +1,9 @@
+/datum/design/autolathe/prosthesis/ui_icon()
+	. = ..()
+	if(!.)
+		var/obj/item/organ/external/prothesis_type = build_path
+		return icon(prothesis_type::icon, "[prothesis_type::icon_state]_forced", SOUTH)
+
 /datum/design/autolathe/prosthesis/excelsior/l_arm
 	build_path = /obj/item/organ/external/robotic/excelsior/l_arm
 
@@ -18,4 +24,4 @@
 
 /datum/design/autolathe/prosthesis/excelsior/head
 	build_path = /obj/item/organ/external/robotic/excelsior/head
-	
+

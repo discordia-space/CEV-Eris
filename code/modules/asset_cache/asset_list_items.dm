@@ -363,29 +363,21 @@
 	for(var/D in SSresearch.all_designs)
 		var/datum/design/design = D
 
-		var/filename = SANITIZE_FILENAME("[design.build_path].png")
-
-		var/atom/item = design.build_path
-		var/icon_file = initial(item.icon)
-		var/icon_state = initial(item.icon_state)
-
-		// eugh
-		if (!icon_file)
-			icon_file = ""
+		var/filename = SANITIZE_FILENAME("design_[design.build_path].png")
+		var/ui_icon_data = design.ui_icon()
 
 		#ifdef UNIT_TESTS
-		if(!(icon_state in icon_states(icon_file)))
-			// stack_trace("design [D] with icon '[icon_file]' missing state '[icon_state]'")
+		if(isnull(ui_icon_data))
+			stack_trace("design [design.type] does not return a valid UI icon for itself")
 			continue
 		#endif
-		var/icon/I = icon(icon_file, icon_state, SOUTH)
 
-		assets[filename] = I
+		assets[filename] = ui_icon_data
 	..()
 
 	for(var/D in SSresearch.all_designs)
 		var/datum/design/design = D
-		design.nano_ui_data["icon"] = SSassets.transport.get_asset_url(SANITIZE_FILENAME("[design.build_path].png"))
+		design.nano_ui_data["icon"] = SSassets.transport.get_asset_url(SANITIZE_FILENAME("design_[design.build_path].png"))
 
 /datum/asset/simple/materials/register()
 	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
@@ -450,7 +442,7 @@
 
 /datum/asset/simple/tool_upgrades/register()
 	for(var/type in subtypesof(/obj/item/tool_upgrade))
-		var/filename = SANITIZE_FILENAME("[type].png")
+		var/filename = SANITIZE_FILENAME("tool_upgrade_[type].png")
 
 		var/obj/item/item = initial(type)
 		// no.
@@ -514,20 +506,4 @@
 				var/realpath = "[path][filename]"
 				if(fexists(realpath))
 					assets[filename] = file(realpath)
-	..()
-
-/datum/asset/simple/images_map
-	keep_local_name = TRUE
-
-/datum/asset/simple/images_map/register()
-	var/list/mapnames = list()
-	for(var/z in GLOB.maps_data.station_levels)
-		mapnames += map_image_file_name(z)
-
-	var/list/filenames = flist(MAP_IMAGE_PATH)
-	for(var/filename in filenames)
-		if(copytext(filename, length(filename)) != "/") // Ignore directories.
-			var/file_path = MAP_IMAGE_PATH + filename
-			if((filename in mapnames) && fexists(file_path))
-				assets[filename] = fcopy_rsc(file_path)
 	..()

@@ -312,6 +312,15 @@ Based on /datum/design of \code\datums\autolathe\autolathe_datums.dm
 	category = "shotgun shells"
 	build_path = /obj/item/ammo_magazine/m12/short/empty
 
+/datum/design/makeshift/mags_shot/ui_icon()
+	. = ..()
+	if(!.)
+		var/obj/item/ammo_magazine/ammo_type = build_path
+		var/icon_file = ammo_type::icon
+		var/icon_state = ammo_type::icon_state
+
+		return icon(icon_file, "[icon_state]-0")
+
 /datum/design/makeshift/mags_shot/drum
 	name = "empty drum magazine (.50)"
 	build_path = /obj/item/ammo_magazine/m12/empty

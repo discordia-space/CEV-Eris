@@ -157,6 +157,20 @@
 	RETURN_TYPE(/list)
 	return nano_ui_data
 
+/datum/design/proc/ui_icon()
+	var/atom/build_result = build_path
+	var/icon_file = build_result::icon
+	var/icon_state = build_result::icon_state
+
+	// eugh
+	if(!icon_file)
+		icon_file = ""
+
+	if(!(icon_state in icon_states(icon_file)))
+		return
+
+	return icon(icon_file, icon_state, SOUTH)
+
 //Returns a new instance of the item for this design
 //This is to allow additional initialization to be performed, including possibly additional contructor arguments.
 /datum/design/proc/Fabricate(newloc, mat_efficiency, obj/machinery/autolathe/fabricator, oldify_result, high_quality_print, machine_rating)

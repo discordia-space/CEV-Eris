@@ -4,6 +4,20 @@
 	build_path = /obj/item/organ/internal/scaffold
 	starts_unlocked = TRUE
 
+/datum/design/organ/scaffold/ui_icon()
+	. = ..()
+	if(!.)
+		var/obj/item/organ/internal/scaffold/result = build_path
+		var/icon_file = result::icon
+		var/icon_state = result::icon_state
+		if(result::use_generated_icon)
+			if(result::organ_type)
+				icon_state = "[icon_state]-[result::organ_type]"
+			else if(result::num_variants)
+				icon_state = "[icon_state]-1"
+
+		return icon(icon_file, icon_state, SOUTH)
+
 /datum/design/organ/scaffold/large
 	build_path = /obj/item/organ/internal/scaffold/large
 	starts_unlocked = FALSE
@@ -12,18 +26,32 @@
 	category = "Aberrant"
 	starts_unlocked = FALSE
 
+/datum/design/organ/aberrant_organ/ui_icon()
+	. = ..()
+	if(!.)
+		var/obj/item/organ/internal/scaffold/result = build_path
+		var/icon_file = result::icon
+		var/icon_state = result::icon_state
+		if(result::use_generated_icon)
+			if(result::organ_type)
+				icon_state = "[icon_state]-[result::organ_type]"
+			else if(result::num_variants)
+				icon_state = "[icon_state]-1"
+
+		return icon(icon_file, icon_state, SOUTH)
+
 /datum/design/organ/aberrant_organ/scrub_toxin_blood
 	build_path = /obj/item/organ/internal/scaffold/aberrant/scrub_toxin/blood
-	
+
 /datum/design/organ/aberrant_organ/scrub_toxin_ingest
 	build_path = /obj/item/organ/internal/scaffold/aberrant/scrub_toxin/ingest
-	
+
 /datum/design/organ/aberrant_organ/scrub_toxin_touch
 	build_path = /obj/item/organ/internal/scaffold/aberrant/scrub_toxin/touch
-	
+
 /datum/design/organ/aberrant_organ/gastric
 	build_path = /obj/item/organ/internal/scaffold/aberrant/gastric
-	
+
 /datum/design/organ/aberrant_organ/damage_response
 	build_path = /obj/item/organ/internal/scaffold/aberrant/damage_response
 
@@ -32,6 +60,12 @@
 /datum/design/organ/organ_mod
 	category = "Modifications"
 	starts_unlocked = TRUE
+
+/datum/design/organ/organ_mod/ui_icon()
+	. = ..()
+	if(!.)
+		var/obj/organ_type = build_path
+		return icon(organ_type::icon, "[organ_type::icon_state]-1")
 
 /datum/design/organ/organ_mod/capillaries
 	build_path = /obj/item/modification/organ/internal/stromal/requirements
@@ -67,6 +101,19 @@
 	category = "Teratoma"
 	starts_unlocked = FALSE
 
+/datum/design/organ/teratoma/ui_icon()
+	. = ..()
+	if(!.)
+		var/obj/item/organ/internal/scaffold/aberrant/teratoma/result = build_path
+		var/icon_file = result::icon
+		var/icon_state = result::icon_state
+		if(result::use_generated_icon)
+			if(result::organ_type)
+				icon_state = "[icon_state]-[result::organ_type]"
+			else if(result::num_variants)
+				icon_state = "[icon_state]-1"
+
+		return icon(icon_file, icon_state, SOUTH)
 
 /datum/design/organ/teratoma/input
 	category = "Inputs"

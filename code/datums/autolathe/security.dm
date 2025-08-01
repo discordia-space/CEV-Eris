@@ -26,6 +26,12 @@
 	name = "beartrap"
 	build_path = /obj/item/beartrap
 
+/datum/design/autolathe/sec/beartrap/ui_icon()
+	. = ..()
+	if(!.)
+		var/obj/item/item_type = build_path
+		return icon(item_type::icon, "[item_type::icon_state]0")
+
 /datum/design/autolathe/sec/silencer
 	name = "silencer"
 	build_path = /obj/item/gun_upgrade/muzzle/silencer
