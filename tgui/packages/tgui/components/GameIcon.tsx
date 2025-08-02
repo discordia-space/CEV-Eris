@@ -1,5 +1,3 @@
-import { Box } from 'tgui-core/components';
-
 type GameIconProps = {
   html: string;
   className?: string;
@@ -13,8 +11,7 @@ export const GameIcon = (props: GameIconProps) => {
   const iconSrc = html.match('src=["\'](.*)["\']')![1];
 
   return (
-    <Box
-      as="img"
+    <img
       key={key}
       {...props}
       className={`game-icon ${className || ''}`}

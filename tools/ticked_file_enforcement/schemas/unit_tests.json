@@ -1,0 +1,25 @@
+{
+	"file": "code/modules/unit_tests/_unit_tests.dm",
+	"scannable_directory": "code/modules/unit_tests/",
+	"subdirectories": false,
+	"excluded_files": [
+		"binary_insert.dm",
+		"component_tests.dm",
+		"find_reference_sanity.dm",
+		"glasses_vision.dm",
+		"loadout_tests.dm",
+		"map_tests.dm",
+		"mob_tests.dm",
+		"movement_tests.dm",
+		"observation_tests.dm",
+		"screenshot_basic.dm",
+		"step_override.dm",
+		"subsystem_init.dm",
+		"tgui_create_message.dm",
+		"timer_sanity.dm",
+		"uniqueness.dm",
+		"unit_test.dm",
+		"zas_tests.dm"
+	],
+	"forbidden_includes": []
+}

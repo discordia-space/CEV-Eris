@@ -8,7 +8,7 @@
 	if(..())
 		return TRUE
 	if(href_list["set_explane"])
-		var/new_explane = input(usr, "Set explanation text", "Custom objective", explanation_text, "message")
+		var/new_explane = input(usr, "Set explanation text", "Custom objective", explanation_text)
 		if(!new_explane)
 			return
 		explanation_text = new_explane

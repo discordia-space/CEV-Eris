@@ -1,5 +1,11 @@
 import { useBackend } from 'tgui/backend';
-import { Icon, LabeledList, NoticeBox, Section, Stack } from 'tgui-core/components';
+import {
+  Icon,
+  LabeledList,
+  NoticeBox,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 
 type UserDetailsData = {
   user: UserData;
@@ -12,8 +18,8 @@ type UserData = {
   department: string;
 };
 
-export const UserDetails = (props, context) => {
-  const { data } = useBackend<UserDetailsData>(context);
+export const UserDetails = () => {
+  const { data } = useBackend<UserDetailsData>();
   const { user } = data;
 
   if (!user) {

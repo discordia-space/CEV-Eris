@@ -35,7 +35,7 @@
 
 /obj/machinery/autolathe/rnd/protolathe
 	name = "protolathe"
-	desc = "A machine used for construction of advanced prototypes. Operated from an R\&D console."
+	desc = "A machine used for construction of advanced prototypes. Operated from an R&D console."
 	icon_state = "protolathe"
 	circuit = /obj/item/electronics/circuitboard/protolathe
 
@@ -45,7 +45,7 @@
 
 /obj/machinery/autolathe/rnd/imprinter
 	name = "circuit imprinter"
-	desc = "A machine used for printing advanced circuit boards. Operated from an R\&D console."
+	desc = "A machine used for printing advanced circuit boards. Operated from an R&D console."
 	icon_state = "imprinter"
 	circuit = /obj/item/electronics/circuitboard/circuit_imprinter
 

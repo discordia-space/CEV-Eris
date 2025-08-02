@@ -25,6 +25,17 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
           cache-dependency-path: 'tools/requirements.txt'
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4.2.0
+        with:
+          dotnet-version: 9.x
+      - name: Install OpenDream
+        uses: robinraju/release-downloader@v1.12
+        with:
+          repository: "OpenDreamProject/OpenDream"
+          tag: "latest"
+          fileName: "DMCompiler_linux-x64.tar.gz"
+          extract: true
       - name: Restore SpacemanDMM cache
         uses: actions/cache@v3
         with:
@@ -50,16 +61,12 @@ jobs:
           bash tools/ci/check_changelogs.sh
           bash tools/ci/check_grep.sh
           bash tools/ci/check_misc.sh
-          python tools/validate_dme.py <cev_eris.dme
           tools/build/build --ci lint tgui-test
-          python -m dmi.test
-          python -m mapmerge2.dmm_test
-          ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
-      - name: Annotate Lints
-        uses: yogstation13/DreamAnnotate@v2
-        if: always()
-        with:
-          outputFile: output-annotations.txt
+          python -m tools.ticked_file_enforcement.ticked_file_enforcement < tools/ticked_file_enforcement/schemas/cev_eris_dme.json
+          python -m tools.ticked_file_enforcement.ticked_file_enforcement < tools/ticked_file_enforcement/schemas/unit_tests.json
+          python -m tools.mapmerge2.dmm_test
+          ~/dreamchecker 2>&1 | bash tools/ci/annotate_dm.sh
+          ./DMCompiler_linux-x64/DMCompiler cev_eris.dme --suppress-unimplemented --define=CIBUILDING | bash tools/ci/annotate_od.sh
 
   compile_all_maps:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"

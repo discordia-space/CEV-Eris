@@ -90,16 +90,19 @@
 */
 /obj/procedural/jp_DungeonGenerator/proc/getAdjacent(turf/t)
 	//Doesn't just go list(get_step(blah blah), get_step(blah blah) etc. because that could return null if on the border of the map
-	.=list()
+	. = list()
 	var/k = get_step(t,NORTH)
-	if(k).+=k
+	if(k)
+		. += k
 	k = get_step(t,SOUTH)
-	if(k).+=k
+	if(k)
+		. += k
 	k = get_step(t,EAST)
-	if(k).+=k
+	if(k)
+		. += k
 	k = get_step(t,WEST)
-	if(k).+=k
-
+	if(k)
+		. += k
 
 /*
 

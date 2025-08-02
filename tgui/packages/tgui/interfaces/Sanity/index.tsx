@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import {
   BlockQuote,
-  Box,
   LabeledList,
   ProgressBar,
   Section,
@@ -94,8 +93,7 @@ export const Trait = (props: TraitProps) => {
     <Section title={title}>
       <Stack height="100px" fill>
         <Stack.Item shrink>
-          {/* TODO: Replace this wiht an actual image element */}
-          <Box as="img" width="100px" src={resolveAsset(img)} />
+          <img width="100px" src={resolveAsset(img)} />
         </Stack.Item>
         <Stack.Item grow basis={0}>
           {fluff}

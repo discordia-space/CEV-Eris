@@ -67,7 +67,7 @@
 /obj/structure/extinguisher_cabinet/AltClick(mob/living/user)
 	src.toggle_open(user)
 
-/obj/structure/extinguisher_cabinet/verb/toggle(mob/living/usr)
+/obj/structure/extinguisher_cabinet/verb/toggle()
 	set name = "Open/Close"
 	set category = "Object"
 	set src in oview(1)

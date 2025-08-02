@@ -626,7 +626,7 @@
 	update_icon()
 
 /obj/screen/nutrition/update_icon()
-	set src in usr.client.screen
+	// set src in usr.client.screen // whatever this is doing makes OD mad and there's almost certainly a better way
 	var/mob/living/carbon/human/H = parentmob
 	cut_overlays()
 	switch(H.nutrition)

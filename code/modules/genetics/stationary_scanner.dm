@@ -41,7 +41,7 @@
 /obj/machinery/cryo_slab/verb/move_inside()
 	set src in view(1)
 	set category = "Object"
-	set name = "Enter [src]"
+	set name = "Enter Pod"
 
 	if(usr.incapacitated() || !ishuman(usr))
 		return

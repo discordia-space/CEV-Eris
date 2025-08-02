@@ -2603,7 +2603,7 @@
 	icon_state = "[initial(icon_state)]_hot"
 
 /obj/item/reagent_containers/food/snacks/mre/proc/openmre(mob/user)
-	icon_state = initial(icon_state) += "_open"
+	icon_state = initial(icon_state) + "_open"
 	desc = "A plethora of steaming beans mixed with meat, ready for consumption."
 	open = TRUE
 	reagent_flags |= REFILLABLE
@@ -2659,7 +2659,7 @@
 
 /obj/item/reagent_containers/food/snacks/proc/open(mob/user)
 	open = TRUE
-	icon_state = initial(icon_state) += "_open"
+	icon_state = initial(icon_state) + "_open"
 	update_icon()
 
 /obj/item/reagent_containers/food/snacks/attack_self(mob/user)

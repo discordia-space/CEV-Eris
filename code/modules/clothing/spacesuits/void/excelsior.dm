@@ -58,7 +58,7 @@
 			to_chat(user, "You disable the hud.")
 		hud.forceMove(src)
 
-/obj/item/clothing/head/space/void/excelsior/dropped(usr)
+/obj/item/clothing/head/space/void/excelsior/dropped(mob/user)
 	..()
 	if(hud.loc != src)
 		if(ismob(hud.loc))

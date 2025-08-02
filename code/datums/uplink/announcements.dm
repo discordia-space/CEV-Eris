@@ -16,7 +16,7 @@
 	desc = "Broadcasts a message anonymously to the entire vessel. Triggers immediately after supplying additional data."
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
-/datum/uplink_item/abstract/announcements/announce/get_goods(obj/item/device/uplink/U, loc, mob/user, list/args)
+/datum/uplink_item/abstract/announcements/announce/get_goods(obj/item/device/uplink/U, loc, mob/user)
 	var/message = input(user, "What would you like the text of the announcement to be? Write as much as you like, The title will appear as Unknown Broadcast", "False Announcement") as text|null
 	if (!message)
 		return FALSE
@@ -33,7 +33,7 @@
 	..()
 	antag_roles = list(ROLE_MERCENARY)
 
-/datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(obj/item/device/uplink/U, loc, mob/user, list/args)
+/datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(obj/item/device/uplink/U, loc, mob/user)
 	if(!user)
 		return 0
 
