@@ -1,3 +1,6 @@
 2025-08-01:
   warriorstar-orion:
   - refactor: CI tasks are now functional again.
+2025-08-02:
+  warriorstar-orion:
+  - bugfix: The tool information window's upgrade icons should work properly.

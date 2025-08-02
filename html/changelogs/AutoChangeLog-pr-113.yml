@@ -1,4 +1,0 @@
-author: warriorstar-orion
-delete-after: true
-changes:
-  - bugfix: The tool information window's upgrade icons should work properly.
