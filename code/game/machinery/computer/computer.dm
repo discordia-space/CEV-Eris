@@ -22,7 +22,7 @@
 
 /obj/machinery/computer/Destroy()
 	GLOB.computer_list -= src
-	..()
+	. = ..()
 
 /obj/machinery/computer/Process()
 	if(stat & (NOPOWER|BROKEN))
