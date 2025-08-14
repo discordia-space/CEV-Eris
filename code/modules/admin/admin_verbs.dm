@@ -44,6 +44,7 @@ GLOBAL_LIST_INIT(admin_verbs_server, list(
 	/datum/admins/proc/z_level_shooting,
 	/datum/admins/proc/capture_map,
 	/datum/admins/proc/set_admin_notice,
+	/client/proc/toggle_hub,
 	/client/proc/ToRban,
 	/client/proc/reload_admins,
 	/client/proc/reload_mentors,

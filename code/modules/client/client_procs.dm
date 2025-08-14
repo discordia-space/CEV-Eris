@@ -526,6 +526,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			log_world("Failed to update players table for ckey [ckey]. Error message: [query.ErrorMsg()].")
 		qdel(query)
 	Master.UpdateTickRate()
+	SSserver_maint.UpdateHubStatus()
+
 	..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening
 	return QDEL_HINT_HARDDEL_NOW
 
@@ -800,8 +802,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		account_join_date = "Error"
 	log_client_to_db_connection_log()
 
-	// TODO: Port SSserver_maint
-	// SSserver_maint.UpdateHubStatus()
+	SSserver_maint.UpdateHubStatus()
 
 	if(new_player)
 		player_age = -1

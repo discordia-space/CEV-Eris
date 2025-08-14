@@ -1,6 +1,7 @@
 GLOBAL_REAL(config, /datum/controller/configuration)
 
 GLOBAL_VAR_INIT(changelog_hash, "")
+GLOBAL_VAR_INIT(hub_visibility, FALSE)
 
 GLOBAL_VAR_INIT(ooc_allowed, TRUE) // used with admin verbs to disable ooc - not a config option apparently
 GLOBAL_VAR_INIT(looc_allowed, TRUE)

@@ -25,6 +25,12 @@ SERVERNAME CEV Eris: Endless Horizon
 ## set a hosted by name for unix platforms
 HOSTEDBY yournamehere
 
+## If the game appears on the hub or not
+HUB
+
+## Pop requirement for the server to be removed from the hub.
+# MAX_HUB_POP 100
+
 ## Add a # infront of this if you want to use the SQL based admin system, the legacy system uses admins.txt. You need to set up your database to use the SQL based system.
 #ADMIN_LEGACY_SYSTEM
 
