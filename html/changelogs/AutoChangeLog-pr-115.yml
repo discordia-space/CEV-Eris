@@ -1,7 +1,0 @@
-author: flleeppyy
-delete-after: true
-changes:
-  - code_imp: Ported server_maint subsystem from Monkestation.
-  - rscadd: AFK players in the lobby will now be kicked before the server 
-      restarts.
-  - admin: You can now toggle hub visibility via Server > Toggle Hub
