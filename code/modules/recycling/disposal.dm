@@ -580,16 +580,13 @@
 /obj/structure/disposalholder/proc/findpipe(var/turf/T)
 
 	if(!T)
-		to_chat(world, "turfless")
 		return null
 
 	var/fdir = turn(dir, 180)	// flip the movement direction
 	for(var/obj/structure/disposalpipe/P in T)
 		if(fdir & P.pipe_dir)		// find pipe direction mask that matches flipped dir
 			return P
-		to_chat(world, "P[P] dir[P.pipe_dir] fdir[fdir]")
 	// if no matching pipe, return null
-	to_chat(world, "pipeless")
 	return null
 
 	// merge two holder objects
