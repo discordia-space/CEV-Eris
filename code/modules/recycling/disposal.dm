@@ -35,8 +35,8 @@
 
 // create a new disposal
 // find the attached trunk (if present) and init gas resvr.
-/obj/machinery/disposal/New()
-	..()
+/obj/machinery/disposal/Initialize(mapload, d)
+	. = ..()
 	spawn(5)
 		trunk = locate() in src.loc
 		if(!trunk)
@@ -580,13 +580,16 @@
 /obj/structure/disposalholder/proc/findpipe(var/turf/T)
 
 	if(!T)
+		to_chat(world, "turfless")
 		return null
 
 	var/fdir = turn(dir, 180)	// flip the movement direction
 	for(var/obj/structure/disposalpipe/P in T)
 		if(fdir & P.pipe_dir)		// find pipe direction mask that matches flipped dir
 			return P
+		to_chat(world, "P[P] dir[P.pipe_dir] fdir[fdir]")
 	// if no matching pipe, return null
+	to_chat(world, "pipeless")
 	return null
 
 	// merge two holder objects
@@ -666,8 +669,8 @@
 	var/sortType = list()
 	var/subtype = SORT_TYPE_NORMAL
 	// new pipe, set the icon_state as on map
-	New()
-		..()
+	Initialize(mapload, ...)
+		. = ..()
 		base_icon_state = icon_state
 		return
 
@@ -938,8 +941,8 @@
 /obj/structure/disposalpipe/segment
 	icon_state = "pipe-s"
 
-	New()
-		..()
+	Initialize(mapload, ...)
+		. = ..()
 		if(icon_state == "pipe-s")
 			pipe_dir = dir | turn(dir, 180)
 		else
@@ -952,8 +955,8 @@
 /obj/structure/disposalpipe/up
 	icon_state = "pipe-u"
 
-/obj/structure/disposalpipe/up/New()
-	..()
+/obj/structure/disposalpipe/up/Initialize(mapload, ...)
+	. = ..()
 	pipe_dir = dir
 	update()
 	return
@@ -1001,8 +1004,8 @@
 /obj/structure/disposalpipe/down
 	icon_state = "pipe-d"
 
-/obj/structure/disposalpipe/down/New()
-	..()
+/obj/structure/disposalpipe/down/Initialize(mapload, ...)
+	. = ..()
 	pipe_dir = dir
 	update()
 	return
@@ -1056,8 +1059,8 @@
 /obj/structure/disposalpipe/junction
 	icon_state = "pipe-j1"
 
-/obj/structure/disposalpipe/junction/New()
-	..()
+/obj/structure/disposalpipe/junction/Initialize(mapload, ...)
+	. = ..()
 	if(icon_state == "pipe-j1")
 		pipe_dir = dir | turn(dir, -90) | turn(dir,180)
 	else if(icon_state == "pipe-j2")
@@ -1114,7 +1117,7 @@
 	else
 		name = initial(name)
 
-/obj/structure/disposalpipe/tagger/New()
+/obj/structure/disposalpipe/tagger/Initialize(mapload, ...)
 	. = ..()
 	pipe_dir = dir | turn(dir, 180)
 	if(sort_tag)
@@ -1182,7 +1185,7 @@
 
 	pipe_dir = sortdir | posdir | negdir
 
-/obj/structure/disposalpipe/sortjunction/New()
+/obj/structure/disposalpipe/sortjunction/Initialize(mapload, ...)
 	. = ..()
 	if(sortType) tagger_locations |= sortType
 
@@ -1371,8 +1374,8 @@
 					// i.e. will be treated as an empty turf
 	desc = "A broken piece of disposal pipe."
 
-	New()
-		..()
+	Initialize(mapload, ...)
+		. = ..()
 		update()
 		return
 
@@ -1398,8 +1401,8 @@
 	var/turf/target	// this will be where the output objects are 'thrown' to.
 	var/mode = DISPOSALS_OFF
 
-	New()
-		..()
+	Initialize()
+		. = ..()
 
 		spawn(1)
 			target = get_ranged_target_turf(src, dir, 10)
