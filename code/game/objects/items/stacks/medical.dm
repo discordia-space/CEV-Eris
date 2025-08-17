@@ -216,6 +216,7 @@
 	desc = "Parts of clothes that can be wrapped around bloody stumps."
 	icon_state = "hm_brutepack"
 	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_JUNK_MEDICINE
 
 /obj/item/stack/medical/ointment
 	name = "ointment"
@@ -527,6 +528,12 @@
 			else
 				use(1)
 		return
+
+/obj/item/stack/medical/splint/makeshift
+	name = "makeshift splints"
+	singular_name = "makeshift splint"
+	amount = 1
+	spawn_tags = SPAWN_TAG_JUNK_MEDICINE
 
 /obj/item/stack/medical/advanced/bruise_pack/nt
 	name = "NeoTheology bruisepack"
