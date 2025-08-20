@@ -37,7 +37,7 @@ meteor_act
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
 			SP.loc = organ
 			if(length(P.matter))
-				SP.material = P.matter[1]
+				SP.material = get_material_by_name(P.matter[1])
 				SP.amount = P.matter[SP.material] // amount no longer randomized
 			organ.embed(SP)
 
