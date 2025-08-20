@@ -1,0 +1,9 @@
+author: Chickenish
+delete-after: true
+changes:
+  - rscadd: Added Plasteel Coin
+  - rscdel: Removed Iron Coin
+  - bugfix: Coins now moderately valuable for use and trade.
+  - spellcheck: Platinum coin no longer spelled as Platunum coin.
+  - code_imp: Moneybag no longer shoves coins in the person holding the 
+      moneybag.
