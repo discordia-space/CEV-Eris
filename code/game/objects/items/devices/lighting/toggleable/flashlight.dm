@@ -243,7 +243,7 @@
 			if(ismob(src.loc))
 				to_chat(src.loc, SPAN_WARNING("Your flashlight dies. You are alone now."))
 			turn_off()
-		else if(cell.percent() <= 25)
+		else if(cell?.percent() <= 25)
 			apply_power_deficiency()
 
 /obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M, mob/living/user)
