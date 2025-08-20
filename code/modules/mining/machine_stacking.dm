@@ -81,10 +81,11 @@
 
 /obj/machinery/mineral/stacking_machine/LateInitialize()
 	. = ..()
-	if(!input_dir)
-		input_dir = INVERSE_FLAT_DIR(dir)
-	if(!output_dir)
-		output_dir = dir
+	spawn()
+		if(!input_dir)
+			input_dir = turn(dir, 180)
+		if(!output_dir)
+			output_dir = dir
 
 /obj/machinery/mineral/stacking_machine/proc/outputMaterial(var/material_name, var/amount)
 	var/stored_amount = stack_storage[material_name] || 0

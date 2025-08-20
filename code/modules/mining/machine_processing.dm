@@ -155,7 +155,7 @@
 
 	spawn()
 		if(!input_dir)
-			input_dir = INVERSE_FLAT_DIR(dir)
+			input_dir = turn(dir, 180)
 		if(!output_dir)
 			output_dir = dir
 
