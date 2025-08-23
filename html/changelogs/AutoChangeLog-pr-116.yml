@@ -1,0 +1,5 @@
+author: flleeppyy
+delete-after: true
+changes:
+  - refactor: code thingys. made the linter happy and made syntax for for loops 
+      normal
