@@ -238,7 +238,7 @@ proc/leftmost_bit(num)
 	return pos
 
 // inverts a dir within a pair of opposites
-#define INVERSEONEDIR(startdir, axis) ((startdir & (axis)) ^ (((((startdir&(axis))<<1)&(axis))^(((startdir&(axis)))&(axis<<1))) * 1.5))
+#define INVERSEONEDIR(startdir, axis) ((((((startdir&(axis))<<1)&(axis))^(((startdir&(axis)))&(axis)<<1)) * 1.5) ^ (startdir & (axis)))
 // inverts a dir completely
 #define INVERSE_DIR(startdir) INVERSEONEDIR(startdir, SOUTH+NORTH) | INVERSEONEDIR(startdir, EAST+WEST) | INVERSEONEDIR(startdir, UP+DOWN)
 
