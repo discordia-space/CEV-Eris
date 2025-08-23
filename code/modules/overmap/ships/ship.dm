@@ -178,7 +178,7 @@
 /obj/effect/overmap/ship/Process()
 	if(!is_still())
 		var/list/deltas = list(0,0)
-		for(var/i=1, i<=2, i++)
+		for(var/i=1; i<=2; i++)
 			if(speed[i] && world.time > last_movement[i] + default_delay - speed_mod*abs(speed[i]))
 				deltas[i] = speed[i] > 0 ? 1 : -1
 				last_movement[i] = world.time
@@ -216,7 +216,7 @@
 //deciseconds to next step
 /obj/effect/overmap/ship/proc/ETA()
 	. = INFINITY
-	for(var/i=1, i<=2, i++)
+	for(var/i=1; i<=2; i++)
 		if(speed[i])
 			. = min(last_movement[i] + default_delay - speed_mod*abs(speed[i]) - world.time, .)
 	. = max(.,0)

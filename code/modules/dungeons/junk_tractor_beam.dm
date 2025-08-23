@@ -590,8 +590,8 @@
 /obj/jtb_generator/proc/generate_asteroid(core_min = 2, core_max = 5)
 	var/datum/rogue/asteroid/A = new(rand(core_min,core_max))
 
-	for(var/x = 1; x <= A.coresize, x++)
-		for(var/y = 1; y <= A.coresize, y++)
+	for(var/x = 1; x <= A.coresize; x++)
+		for(var/y = 1; y <= A.coresize; y++)
 			A.spot_add(A.coresize+x, A.coresize+y, A.type_wall)
 
 
@@ -599,28 +599,28 @@
 
 	//Add the arms to the asteroid's map
 	//Vertical arms
-	for(var/x = A.coresize+1, x <= A.coresize*2, x++) //Start at leftmost side of core, work towards higher X.
+	for(var/x = A.coresize+1; x <= A.coresize*2; x++) //Start at leftmost side of core, work towards higher X.
 		var/B_arm = rand(0,max_armlen)
 		var/T_arm = rand(0,max_armlen)
 
 		//Bottom arm
-		for(var/y = A.coresize, y > A.coresize-B_arm, y--) //Start at bottom edge of the core, work towards lower Y.
+		for(var/y = A.coresize; y > A.coresize-B_arm; y--) //Start at bottom edge of the core, work towards lower Y.
 			A.spot_add(x,y,A.type_wall)
 		//Top arm
-		for(var/y = (A.coresize*2)+1, y < ((A.coresize*2)+1)+T_arm, y++) //Start at top edge of the core, work towards higher Y.
+		for(var/y = (A.coresize*2)+1; y < ((A.coresize*2)+1)+T_arm; y++) //Start at top edge of the core, work towards higher Y.
 			A.spot_add(x,y,A.type_wall)
 
 
 	//Horizontal arms
-	for(var/y = A.coresize+1, y <= A.coresize*2, y++) //Start at lower side of core, work towards higher Y.
+	for(var/y = A.coresize+1; y <= A.coresize*2; y++) //Start at lower side of core, work towards higher Y.
 		var/R_arm = rand(0,max_armlen)
 		var/L_arm = rand(0,max_armlen)
 
 		//Right arm
-		for(var/x = (A.coresize*2)+1, x <= ((A.coresize*2)+1)+R_arm, x++) //Start at right edge of core, work towards higher X.
+		for(var/x = (A.coresize*2)+1; x <= ((A.coresize*2)+1)+R_arm; x++) //Start at right edge of core, work towards higher X.
 			A.spot_add(x,y,A.type_wall)
 		//Left arm
-		for(var/x = A.coresize, x > A.coresize-L_arm, x--) //Start at left edge of core, work towards lower X.
+		for(var/x = A.coresize; x > A.coresize-L_arm; x--) //Start at left edge of core, work towards lower X.
 			A.spot_add(x,y,A.type_wall)
 
 	return A
@@ -636,10 +636,10 @@
 	var/BLy = SP.y - (A.width/2)
 
 
-	for(var/Ix=1, Ix <= A.map.len, Ix++)
+	for(var/Ix=1; Ix <= A.map.len; Ix++)
 		var/list/curr_x = A.map[Ix]
 
-		for(var/Iy=1, Iy <= curr_x.len, Iy++)
+		for(var/Iy=1; Iy <= curr_x.len; Iy++)
 			var/list/curr_y = curr_x[Iy]
 
 			var/world_x = BLx+Ix

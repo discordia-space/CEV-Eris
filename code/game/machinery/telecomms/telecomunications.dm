@@ -610,7 +610,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 /obj/machinery/telecomms/server/proc/update_logs()
 	// start deleting the very first log entry
 	if(logs >= 400)
-		for(var/i = 1, i <= logs, i++) // locate the first garbage collectable log entry and remove it
+		for(var/i = 1; i <= logs; i++) // locate the first garbage collectable log entry and remove it
 			var/datum/comm_log_entry/L = log_entries[i]
 			if(L.garbage_collector)
 				log_entries.Remove(L)

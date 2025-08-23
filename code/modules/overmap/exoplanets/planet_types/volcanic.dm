@@ -50,8 +50,8 @@
 
 //Squashing most of 1 tile lava puddles
 /datum/random_map/noise/exoplanet/volcanic/cleanup()
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
+	for(var/x = 1; x <= limit_x; x++)
+		for(var/y = 1; y <= limit_y; y++)
 			var/current_cell = get_map_cell(x,y)
 			if(noise2value(map[current_cell]) < water_level)
 				continue

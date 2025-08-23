@@ -45,7 +45,7 @@
 	if(user.a_intent == I_HELP && user.Adjacent(src) && I.has_quality(QUALITY_EXCAVATION))
 		src.visible_message(span_notice("[user] starts excavating crystals from [src]."), span_notice("You start excavating crystal from [src]."))
 		if(do_after(user, WORKTIME_SLOW, src))
-			for(var/i = 0, i < crystal_amount, i++)
+			for(var/i = 0; i < crystal_amount; i++)
 				new /obj/item/bluespace_crystal(src.loc)
 			src.visible_message(span_notice("[user] excavates crystals from [src]."), span_notice("You excavate crystal from [src]."))
 			qdel(src)

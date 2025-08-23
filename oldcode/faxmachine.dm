@@ -237,7 +237,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	else if (istype(fax, /obj/item/paper_bundle))
 		var/obj/item/paper_bundle/B = fax
 		var/data = ""
-		for (var/page = 1, page <= B.pages.len, page++)
+		for(var/page = 1; page <= B.pages.len; page++)
 			var/obj/pageobj = B.pages[page]
 			var/page_faxid = export_fax(pageobj)
 			data += "<a href='fax_[page_faxid].html'>Page [page] - [pageobj.name]</a><br>"

@@ -242,7 +242,7 @@
 	set waitfor = FALSE
 	if (dist >= 1)
 		dist += rand(0,1)
-		for(var/i = 1, i <= dist, i++)
+		for(var/i = 1; i <= dist; i++)
 			if(src)
 				step(src, pick(NORTH,SOUTH,EAST,WEST))
 				sleep(rand(2,4))

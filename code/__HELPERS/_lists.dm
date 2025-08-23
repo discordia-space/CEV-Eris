@@ -459,7 +459,7 @@
 	if(!L)
 		return
 
-	for(var/i=1, i<L.len, ++i)
+	for(var/i=1; i<L.len; ++i)
 		L.Swap(i,rand(i,L.len))
 
 ///Return a list with no duplicate entries
@@ -559,7 +559,7 @@
 				r += wordlist[i]
 			bit = bit << 1
 	else
-		for(var/bit=1, bit<=65535, bit = bit << 1)
+		for(var/bit=1; bit<=65535; bit = bit << 1)
 			if(bitfield & bit)
 				r += bit
 
@@ -775,7 +775,7 @@
 		else
 			fromIndex += len
 
-		for(var/i=0, i<distance, ++i)
+		for(var/i=0; i<distance; ++i)
 			L.Insert(fromIndex, null)
 			L.Swap(fromIndex, toIndex)
 			L.Cut(toIndex, toIndex+1)
@@ -785,7 +785,7 @@
 			toIndex = fromIndex
 			fromIndex = a
 
-		for(var/i=0, i<len, ++i)
+		for(var/i=0; i<len; ++i)
 			L.Swap(fromIndex++, toIndex++)
 
 /*

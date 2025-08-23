@@ -338,7 +338,7 @@ world
 	if(text2ascii(rgb) == 35) ++start // skip opening #
 	var/ch, which=0, r=0, g=0, b=0, alpha=0, usealpha
 	var/digits=0
-	for(i=start, i<=length(rgb), ++i)
+	for(i=start; i<=length(rgb); ++i)
 		ch = text2ascii(rgb, i)
 		if(ch < 48 || (ch > 57 && ch < 65) || (ch > 70 && ch < 97) || ch > 102) break
 		++digits
@@ -347,7 +347,7 @@ world
 	var/single = digits < 6
 	if(digits != 3 && digits != 4 && digits != 6 && digits != 8) return
 	if(digits == 4 || digits == 8) usealpha = 1
-	for(i=start, digits>0, ++i)
+	for(i=start; digits>0; ++i)
 		ch = text2ascii(rgb, i)
 		if(ch >= 48 && ch <= 57) ch -= 48
 		else if(ch >= 65 && ch <= 70) ch -= 55
@@ -388,7 +388,7 @@ world
 	if(text2ascii(hsv) == 35) ++start // skip opening #
 	var/ch, which=0, hue=0, sat=0, val=0, alpha=0, usealpha
 	var/digits=0
-	for(i=start, i<=length(hsv), ++i)
+	for(i=start; i<=length(hsv); ++i)
 		ch = text2ascii(hsv, i)
 		if(ch < 48 || (ch > 57 && ch < 65) || (ch > 70 && ch < 97) || ch > 102) break
 		++digits
@@ -396,7 +396,7 @@ world
 	if(digits > 7) usealpha = 1
 	if(digits <= 4) ++which
 	if(digits <= 2) ++which
-	for(i=start, digits>0, ++i)
+	for(i=start; digits>0; ++i)
 		ch = text2ascii(hsv, i)
 		if(ch >= 48 && ch <= 57) ch -= 48
 		else if(ch >= 65 && ch <= 70) ch -= 55
@@ -856,7 +856,7 @@ The _flatIcons list is a cache for generated icon files.
 	var/icon/alpha_mask = getIconMask(src)//getFlatIcon(src) is accurate but SLOW. Not designed for running each tick. This is also a little slow since it's blending a bunch of icons together but good enough.
 	opacity_icon.AddAlphaMask(alpha_mask)//Likely the main source of lag for this proc. Probably not designed to run each tick.
 	opacity_icon.ChangeOpacity(0.4)//Front end for MapColors so it's fast. 0.5 means half opacity and looks the best in my opinion.
-	for(var/i=0,i<5,i++)//And now we add it as overlays. It's faster than creating an icon and then merging it.
+	for(var/i = 0; i < 5; i++)//And now we add it as overlays. It's faster than creating an icon and then merging it.
 		var/image/I = image("icon" = opacity_icon, "icon_state" = A.icon_state, "layer" = layer+0.8)//So it's above other stuff but below weapons and the like.
 		switch(i)//Now to determine offset so the result is somewhat blurred.
 			if(1)
@@ -1044,8 +1044,8 @@ non_blocking var, if true, will allow sleeping to prevent server freeze, at the 
 
 	var/list/average_rgb = list(0,0,0)
 	var/pixel_count = 0
-	for (var/x = 1, x <= I.Width(), x++)
-		for (var/y = 1, y <= I.Height(), y++)
+	for(var/x = 1; x <= I.Width(); x++)
+		for(var/y = 1; y <= I.Height(); y++)
 			if (!I.GetPixel(x, y, dir = image_dir))
 				continue
 			pixel_count++

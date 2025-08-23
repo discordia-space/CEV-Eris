@@ -232,7 +232,7 @@ var/global/const/base_law_type = /datum/ai_laws/eris
 	var/index = laws.Find(law)
 	if(index)
 		laws -= law
-		for(index, index < state.len, index++)
+		for(index; index < state.len; index++)
 			state[index] = state[index+1]
 	sorted_laws.Cut()
 

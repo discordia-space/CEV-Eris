@@ -43,7 +43,7 @@
 	//if(on_fire)
 		//Do bad things if it is on fire.
 
-	for(var/i=1, i<=2, i++)
+	for(var/i=1; i<=2; i++)
 		if(switches[i])
 			handle_cooking(null, i, FALSE)
 
@@ -355,13 +355,13 @@
 	icon_state="grill"
 
 	var/grill_on = FALSE
-	for(var/i=1, i<=2, i++)
+	for(var/i=1; i<=2; i++)
 		if(switches[i] == TRUE)
 			if(!grill_on)
 				grill_on = TRUE
 			add_overlay(image(src.icon, icon_state="fire_[i]"))
 
-	for(var/i=1, i<=2, i++)
+	for(var/i=1; i<=2; i++)
 		if(!(items[i]))
 			continue
 		var/obj/item/our_item = items[i]

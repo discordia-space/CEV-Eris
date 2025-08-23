@@ -196,7 +196,7 @@ Effects demand parent code, so ..()
 	if(istype(firer, /mob/living/simple_animal/hostile/megafauna/one_star/))
 		var/mob/living/simple_animal/hostile/megafauna/one_star/boss = firer
 		boss.doing_something = FALSE
-	
+
 
 /obj/effect/effect/mech_aiming/New()
 	..()
@@ -270,7 +270,7 @@ Effects demand parent code, so ..()
 	//	return
 	set_dir(get_dir(src, target))
 	var/pellets = 2
-	for(pellets, pellets > 0, pellets--)
+	for(pellets; pellets > 0; pellets--)
 		var/obj/item/projectile/P = new /obj/item/projectile/bullet/pellet/shotgun(loc)
 		P.launch(target, def_zone)
 	playsound(src, "sound/weapons/guns/fire/shotgunp_fire.ogg", 100, 1)
@@ -419,7 +419,7 @@ Effects demand parent code, so ..()
 		if(!first_activation)
 			first_activation++
 			playsound(src, 'sound/machines/onestar/boss/Activation.ogg', 100, 1)
-			
+
 	else
 		icon_state = initial(icon_state)
 
@@ -474,7 +474,7 @@ Effects demand parent code, so ..()
 					var/obj/effect/effect/crosshair/C = new /obj/effect/effect/crosshair(target_mob.loc)
 					C.StayOn(target_mob)
 					playsound(C.loc, 'sound/weapons/guns/interact/batrifle_cock.ogg', 100, 1)
-					spawn(2 SECONDS) 
+					spawn(2 SECONDS)
 						shoot_sniper(target_mob)
 						qdel(C)
 						doing_something = FALSE
@@ -490,7 +490,7 @@ Effects demand parent code, so ..()
 					playsound(target_mob.loc, 'sound/machines/onestar/boss/rocket_lock.ogg', 50, 1)
 					spawn(2 SECONDS)
 						shoot_rocket(get_turf(S), src)
-						spawn(10) 
+						spawn(10)
 							qdel(S)
 							doing_something = FALSE
 
@@ -602,4 +602,4 @@ Effects demand parent code, so ..()
 						mobs_to_spawn--
 			if(!move_lock && stat != DEAD) // I fucking hate what I am doing with this code
 				target_mob = FindTarget()
-						
+

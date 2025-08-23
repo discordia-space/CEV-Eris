@@ -392,7 +392,7 @@ var/list/comet_mini = list(\
 	..()
 
 /obj/effect/meteor/proc/make_debris()
-	for(var/throws = dropamt, throws > 0, throws--)
+	for(var/throws = dropamt; throws > 0; throws--)
 		var/obj/item/O = new meteordrop(get_turf(src))
 		O.throw_at(dest, 5, 10)
 

@@ -194,7 +194,7 @@
 
 	var/const/arcLength = 2.3559 //distance between each smoke cloud
 
-	for(var/i = 0, i < range, i++) //calculate positions for smoke coverage - then spawn smoke
+	for(var/i = 0; i < range; i++) //calculate positions for smoke coverage - then spawn smoke
 		var/radius = i * 1.5
 		if(!radius)
 			spawn(0)
@@ -208,7 +208,7 @@
 		if(!ISINTEGER(radius))
 			offset = 45		//degrees
 
-		for(var/j = 0, j < points, j++)
+		for(var/j = 0; j < points; j++)
 			var/a = (angle * j) + offset
 			var/x = round(radius * cos(a) + location.x, 1)
 			var/y = round(radius * sin(a) + location.y, 1)

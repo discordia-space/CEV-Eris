@@ -16,8 +16,8 @@
 
 /datum/random_map/automata/proc/iterate(iteration)
 	var/list/next_map[limit_x*limit_y]
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
+	for(var/x = 1; x <= limit_x; x++)
+		for(var/y = 1; y <= limit_y; y++)
 			var/current_cell = get_map_cell(x,y)
 			next_map[current_cell] = map[current_cell]
 			var/count = 0

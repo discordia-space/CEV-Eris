@@ -49,7 +49,7 @@
 
 	primary_beaker.reagents.remove_reagent(active_reagent, volumeToHandle)
 	primary_beaker.reagents.add_reagent(original_reaction.required_reagents[1], partVolume * original_reaction.required_reagents[original_reaction.required_reagents[1]])
-	for(var/i = 2 , i <= original_reaction.required_reagents.len, i++)
+	for(var/i = 2; i <= original_reaction.required_reagents.len; i++)
 		secondary_beaker.reagents.add_reagent(original_reaction.required_reagents[i], partVolume * original_reaction.required_reagents[original_reaction.required_reagents[i]])
 	return TRUE
 

@@ -50,8 +50,8 @@
 	var/y_midpoint = n_ceil(limit_y / 2)
 
 	// Draw walls/floors/doors.
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
+	for(var/x = 1; x <= limit_x; x++)
+		for(var/y = 1; y <= limit_y; y++)
 			var/current_cell = get_map_cell(x,y)
 			if(!current_cell)
 				continue

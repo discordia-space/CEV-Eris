@@ -117,7 +117,7 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 
 /datum/report_field/array/signed_people/get_value()
 	var/dat = ""
-	for(var/i = 2, i<=value_list.len, i++)
+	for(var/i = 2; i<=value_list.len; i++)
 		if(i > 2)
 			dat += "<br>"
 		dat += "[value_list[i]]"

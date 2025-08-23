@@ -394,8 +394,8 @@ GLOBAL_LIST_INIT(click_catchers, create_click_catcher())
 
 /proc/create_click_catcher()
 	. = list()
-	for(var/i = 0, i<15, i++)
-		for(var/j = 0, j<15, j++)
+	for(var/i = 0; i < 15; i++)
+		for(var/j = 0; j < 15; j++)
 			var/obj/screen/click_catcher/CC = new()
 			CC.screen_loc = "NORTH-[i],EAST-[j]"
 			. += CC

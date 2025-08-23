@@ -10,7 +10,7 @@
 	var/list/things = params2list(loot)
 
 	if(things && things.len)
-		for(var/i = lootcount, i > 0, i--)
+		for(var/i = lootcount; i > 0; i--)
 			if(!things.len)
 				return
 

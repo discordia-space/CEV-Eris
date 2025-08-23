@@ -239,7 +239,7 @@
 	for(var/obj/item/our_item in vis_contents)
 		src.remove_from_visible(our_item)
 
-	for(var/i=contents.len, i>=1, i--)
+	for(var/i=contents.len; i>=1; i--)
 		var/obj/item/our_item = contents[i]
 		src.add_to_visible(our_item)
 	if(lip)

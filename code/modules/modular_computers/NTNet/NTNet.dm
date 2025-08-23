@@ -206,9 +206,9 @@ var/global/datum/ntnet/ntnet_global = new()
 /datum/ntnet/proc/sort_email_list()
 	// improved bubble sort
 	if(ntnet_global.email_accounts.len > 1)
-		for(var/i = 1, i <= ntnet_global.email_accounts.len, i++)
+		for(var/i = 1; i <= ntnet_global.email_accounts.len; i++)
 			var/flag = FALSE
-			for(var/j = 1, j <= ntnet_global.email_accounts.len - 1, j++)
+			for(var/j = 1; j <= ntnet_global.email_accounts.len - 1; j++)
 				var/datum/computer_file/data/email_account/EA = ntnet_global.email_accounts[j]
 				var/datum/computer_file/data/email_account/EA_NEXT = ntnet_global.email_accounts[j+1]
 				if(sorttext(EA.ownerName, EA_NEXT.ownerName) == -1)

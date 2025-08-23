@@ -85,7 +85,7 @@ steam.start() -- spawns the effect
 
 /datum/effect/effect/system/steam_spread/start()
 	var/i = 0
-	for(i=0, i<src.number, i++)
+	for(i = 0; i < src.number; i++)
 		spawn(0)
 			if(holder)
 				src.location = get_turf(holder)
@@ -95,7 +95,7 @@ steam.start() -- spawns the effect
 				direction = pick(GLOB.cardinal)
 			else
 				direction = pick(GLOB.alldirs)
-			for(var/j=0, j<pick(1,2,3), j++)
+			for(var/j = 0; j < pick(1,2,3); j++)
 				sleep(5)
 				step(steam,direction)
 			QDEL_IN(steam, 20)
@@ -162,7 +162,7 @@ steam.start() -- spawns the effect
 
 /datum/effect/effect/system/spark_spread/start()
 	var/i = 0
-	for(i=0, i<src.number, i++)
+	for(i = 0; i<src.number; i++)
 		if(src.total_sparks > 20)
 			return
 		if(holder)
@@ -174,7 +174,7 @@ steam.start() -- spawns the effect
 			direction = pick(GLOB.cardinal)
 		else
 			direction = pick(GLOB.alldirs)
-		for(var/j=0, j<pick(1,2,3), j++)
+		for(var/j = 0; j < pick(1,2,3); j++)
 			addtimer(CALLBACK(src, PROC_REF(do_spark_movement), sparks, direction), rand(1,5) SECONDS)
 			//sleep(rand(1,5))
 			//step(sparks,direction)
@@ -407,7 +407,7 @@ steam.start() -- spawns the effect
 	var/i = 0
 	if(holder)
 		src.location = get_turf(holder)
-	for(i=0, i<src.number, i++)
+	for(i = 0; i<src.number; i++)
 		var/obj/effect/effect/smoke/smoke = new smoke_type(location)
 		var/direction
 		if(cardinals)
@@ -415,7 +415,7 @@ steam.start() -- spawns the effect
 		else
 			direction = pick(GLOB.alldirs)
 		var/added_time = 1 SECOND
-		for(var/j=0, j<pick(0,1,1,1,2,2,2,3), j++)
+		for(var/j = 0; j < pick(0,1,1,1,2,2,2,3); j++)
 			addtimer(CALLBACK(src, PROC_REF(move_smoke), smoke, direction), added_time)
 			added_time += 1 SECOND
 

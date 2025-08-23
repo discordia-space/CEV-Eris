@@ -143,7 +143,7 @@
 			var/list/babies = list()
 			var/new_nutrition = round(nutrition * 0.9)
 			var/new_powerlevel = round(powerlevel / 4)
-			for(var/i = 1, i <= 4, i++)
+			for(var/i = 1; i <= 4; i++)
 				var/t = colour
 				if(prob(mutation_chance))
 					t = slime_mutation[rand(1,4)]

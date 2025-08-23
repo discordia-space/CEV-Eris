@@ -778,7 +778,7 @@
 	//Automatically turns based on nearby walls, destroys if not found.
 	var/turf/wall/T = null
 	var/gotdir = 0
-	for(var/i = 1, i <= 8; i += i)
+	for(var/i = 1; i <= 8; i += i)
 		T = get_ranged_target_turf(src, i, 1)
 
 		if(istype(T))

@@ -742,7 +742,7 @@
 		crewmembers += crew_repository.health_data(z_level)
 
 	if(crewmembers.len)
-		for(var/i = 1, i <= crewmembers.len, i++)
+		for(var/i = 1; i <= crewmembers.len; i++)
 			var/list/entry = crewmembers[i]
 			if(entry["alert"] && !entry["muted"])
 				if(entry["name"] in crewmembers_recently_reported)

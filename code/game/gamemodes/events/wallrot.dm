@@ -32,7 +32,7 @@
 	var/turf/wall/center = null
 
 	// 100 attempts
-	for(var/i=0, i<100, i++)
+	for(var/i = 0; i < 100; i++)
 		var/turf/candidate = locate(rand(1, world.maxx), rand(1, world.maxy), pick(GLOB.maps_data.station_levels))
 		if(istype(candidate, /turf/wall))
 			center = candidate //If necessary we'll settle for any wall
@@ -70,7 +70,7 @@
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		return
 	var/number_rots = rand(2,3)
-	for(var/i=0, i<number_rots, i++)
+	for(var/i = 0; i < number_rots; i++)
 		new/obj/effect/overlay/wallrot(src)
 
 

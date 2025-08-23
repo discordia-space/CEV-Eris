@@ -80,7 +80,7 @@
 	"})
 	var i, stagger
 	stagger = 0 //so we can have the checkerboard effect
-	for(i=0, i<64, i++)
+	for(i=0; i<64; i++)
 		if(i%8 == 0)
 			dat += "<tr>"
 			stagger = !stagger

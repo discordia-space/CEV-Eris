@@ -44,7 +44,7 @@
 				if(!istype(A,/area/eris/maintenance) || prob(25))
 					apcs += apc
 
-		for(var/i=1, i <= lightsoutAmount, i++)
+		for(var/i = 1; i <= lightsoutAmount; i++)
 			if(apcs.len)
 				var/picked = pick(apcs)
 				epicentreList += picked

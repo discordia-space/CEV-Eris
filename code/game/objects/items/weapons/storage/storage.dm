@@ -188,7 +188,7 @@
 		var/currentSlot
 		var/currentItemNumber = 1
 		var/maxColumnCount = min(data.StorageData["ColCount"], slotsToDisplay)
-		for (currentSlot = 1, currentSlot <= slotsToDisplay, currentSlot++)
+		for(currentSlot = 1; currentSlot <= slotsToDisplay; currentSlot++)
 			var/HUD_element/slottedItemBackground/itemBackground = new()
 			main.add(itemBackground)
 			itemBackground.setPosition(totalWidth, totalHeight)

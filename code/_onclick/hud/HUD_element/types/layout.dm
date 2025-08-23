@@ -52,7 +52,7 @@
 		return
 
 	if (_alignment == HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT)
-		for(var/i = 1, i <= _paddingData.len, i++)
+		for(var/i = 1; i <= _paddingData.len; i++)
 			var/HUD_element/E = _paddingData[i]
 			var/list/data = _paddingData[E]
 			setWidth(getWidth() + data["left"])
@@ -61,7 +61,7 @@
 			setWidth(getWidth() + data["right"])
 
 	else if (_alignment == HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT)
-		for(var/i = _paddingData.len, i >= 1, i--)
+		for(var/i = _paddingData.len; i >= 1; i--)
 			var/HUD_element/E = _paddingData[i]
 			var/list/data = _paddingData[E]
 			setWidth(getWidth() + data["right"])
@@ -76,7 +76,7 @@
 		return
 
 	if (_alignment == HUD_VERTICAL_NORTH_INSIDE_ALIGNMENT)
-		for(var/i = 1, i <= _paddingData.len, i++)
+		for(var/i = 1; i <= _paddingData.len; i++)
 			var/HUD_element/E = _paddingData[i]
 			var/list/data = _paddingData[E]
 			setHeight(getHeight() + data["bottom"])
@@ -85,7 +85,7 @@
 			setHeight(getHeight() + data["top"])
 
 	else if (_alignment == HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
-		for(var/i = _paddingData.len, i >= 1, i--)
+		for(var/i = _paddingData.len; i >= 1; i--)
 			var/HUD_element/E = _paddingData[i]
 			var/list/data = _paddingData[E]
 			setHeight(getHeight() + data["top"])

@@ -148,7 +148,7 @@
 	var/field_found = 0
 	var/turf/T = src.loc
 	var/obj/machinery/shieldwallgen/G = null
-	for(var/dist = 1, dist <= max_field_dist, dist += 1) // checks out to [max_field_dist] tiles away for another generator
+	for(var/dist = 1; dist <= max_field_dist; dist += 1) // checks out to [max_field_dist] tiles away for another generator
 		T = get_step(T, f_dir)
 
 		var/obj/machinery/shieldwall/F = locate(/obj/machinery/shieldwall) in T
@@ -172,7 +172,7 @@
 			return
 
 	T = src.loc
-	for(var/dist = 1, dist <= get_dist(src, G)-1, dist += 1) // creates each field tile
+	for(var/dist = 1; dist <= get_dist(src, G)-1; dist += 1) // creates each field tile
 		T = get_step(T, f_dir)
 		var/obj/machinery/shieldwall/CF = new shield_type(src, G) //(ref to this gen, ref to connected gen)
 		CF.loc = T
@@ -183,7 +183,7 @@
 
 	var/turf/T = src.loc
 
-	for(var/dist = 1, dist <= max_field_dist, dist += 1) // checks out to 8 tiles away for fields
+	for(var/dist = 1; dist <= max_field_dist; dist += 1) // checks out to 8 tiles away for fields
 		T = get_step(T, c_dir)
 
 		var/obj/machinery/shieldwall/F = locate(/obj/machinery/shieldwall) in T

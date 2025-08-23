@@ -103,7 +103,7 @@
 	var/list/crewmembers_problematic = list()
 	var/list/crewmembers_goodbois = list()
 
-	for(var/i = 1, i <=crewmembers.len, i++)
+	for(var/i = 1; i <=crewmembers.len; i++)
 		var/list/entry = crewmembers[i]
 		if(!search || findtext(entry["name"],search))
 			if(entry["alert"] || entry["isCriminal"])

@@ -67,7 +67,7 @@ GLOBAL_PROTECT(admin_ranks)
 				continue
 
 		var/rights = 0
-		for(var/i = 2, i <= List.len, i++)
+		for(var/i = 2; i <= List.len; i++)
 			switch(ckey(List[i]))
 
 				if("@", "prev")

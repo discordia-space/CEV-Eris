@@ -216,7 +216,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 			aiEyeFlag = 1
 
 		var/x
-		for(x=0; x<duration, x++)
+		for(x=0; x<duration; x++)
 			if(aiEyeFlag)
 				M.client.eye = locate(dd_range(1,oldeye.loc.x+rand(-strength,strength),world.maxx),dd_range(1,oldeye.loc.y+rand(-strength,strength),world.maxy),oldeye.loc.z)
 			else

@@ -25,7 +25,7 @@
 		carrying.Remove(I)
 		if(isturf(I.loc))
 			spawn()
-				for(var/i = 1, i <= rand(1,2), i++)
+				for(var/i = 1; i <= rand(1,2); i++)
 					if(I)
 						step(I, pick(NORTH,SOUTH,EAST,WEST))
 						sleep(rand(2,4))
@@ -210,7 +210,7 @@
 			if(!foundtable && isturf(loc))
 			// if no table, presume that the person just shittily dropped the tray on the ground and made a mess everywhere!
 				spawn()
-					for(var/i = 1, i <= rand(1,2), i++)
+					for(var/i = 1; i <= rand(1,2); i++)
 						if(I)
 							step(I, pick(NORTH,SOUTH,EAST,WEST))
 							sleep(rand(2,4))

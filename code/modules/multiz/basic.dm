@@ -28,9 +28,9 @@ var/list/z_levels = list()	//Each item represents connection between index z-lay
 
 /proc/GetConnectedZlevels(z)
 	. = list(z)
-	for(var/level = z, HasBelow(level), level--)
+	for(var/level = z; HasBelow(level); level--)
 		. |= level-1
-	for(var/level = z, HasAbove(level), level++)
+	for(var/level = z; HasAbove(level); level++)
 		. |= level+1
 
 /proc/get_zstep(ref, dir)

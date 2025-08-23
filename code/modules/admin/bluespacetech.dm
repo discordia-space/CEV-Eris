@@ -54,7 +54,7 @@
 
 	var/obj/item/storage/box/pills = new /obj/item/storage/box(null, TRUE)
 	pills.name = "adminordrazine"
-	for(var/i = 1, i < 12, i++)
+	for(var/i = 1; i < 12; i++)
 		new /obj/item/reagent_containers/pill/adminordrazine(pills)
 	bst.equip_to_slot_or_del(pills, slot_in_backpack)
 

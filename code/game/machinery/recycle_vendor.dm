@@ -295,7 +295,7 @@
 			var/flat = maxamount*round(amount/maxamount) // some are full if this is positive
 			var/remainder = amount - flat // and one's not if this is positive
 			if(flat)
-				for(var/increment = 1, increment < round(amount/maxamount), increment++)
+				for(var/increment = 1; increment < round(amount/maxamount); increment++)
 					stackspawned = new materialfound.stack_type(get_turf(src))
 					stackspawned.amount = maxamount
 					stackspawned.update_strings()
@@ -520,7 +520,7 @@
 		var/hash = md5("AME"+hashfodder.time) // hash the account name and the creation time of the account
 		var/list/fullpin = list()
 		var/texttoadd
-		for(var/incrementor = 1, length(fullpin) < 6 && incrementor < 99, incrementor++)
+		for(var/incrementor = 1; length(fullpin) < 6 && incrementor < 99; incrementor++)
 			if(length(fullpin) > 3 && prob(10)) // pins can be up to six in length, but also down to four. due to rand(1111, 111111) generation, 4 is <1% and 6 is ~90%.
 				break
 			texttoadd = copytext("[text2ascii(hash,incrementor)]", 2, 3) // grabs the second digit of the byte of the hash corresponding to incrementor
@@ -720,7 +720,7 @@
 		var/flat = maxamount*round(amount/maxamount) // some are full if this is positive
 		var/remainder = amount - flat // and one's not if this is positive
 		if(flat)
-			for(var/increment = 0, increment < round(amount/maxamount), increment++)
+			for(var/increment = 0; increment < round(amount/maxamount); increment++)
 				stackspawned = new materialfound.stack_type(location)
 				. += stackspawned
 				stackspawned.amount = maxamount

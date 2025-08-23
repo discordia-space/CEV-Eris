@@ -20,7 +20,7 @@
 
 	item_cleanup()
 	var/list/slot = null
-	for(var/j = 1, j <= available_slots.len, j++)
+	for(var/j = 1; j <= available_slots.len; j++)
 		slot = available_slots[j]
 		if (slot["item"] == null)
 			break
@@ -38,7 +38,7 @@
 /obj/machinery/optable/altar/proc/item_cleanup()
 	var/turf/T = get_turf(src)
 
-	for(var/j = 1, j <= available_slots.len, j++)
+	for(var/j = 1; j <= available_slots.len; j++)
 		if(!(available_slots[j]["item"] in T.contents))
 			available_slots[j]["item"] = null
 

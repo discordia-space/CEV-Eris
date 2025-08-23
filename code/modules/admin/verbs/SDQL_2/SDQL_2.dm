@@ -814,7 +814,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 	var/result = 0
 	var/val
 
-	for(var/i = start, i <= expression.len, i++)
+	for(var/i = start; i <= expression.len; i++)
 		var/op = ""
 
 		if(i > start)
@@ -1114,7 +1114,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 	var/len = length(query_text)
 	var/char = ""
 
-	for(var/i = 1, i <= len, i += length(char))
+	for(var/i = 1; i <= len; i += length(char))
 		char = query_text[i]
 
 		if(char in whitespace)
@@ -1150,7 +1150,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 
 			word = "'"
 
-			for(i += length(char), i <= len, i += length(char))
+			for(i += length(char); i <= len; i += length(char))
 				char = query_text[i]
 
 				if(char == "'")
@@ -1178,7 +1178,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/sdql2_vv_all, new(null
 
 			word = "\""
 
-			for(i += length(char), i <= len, i += length(char))
+			for(i += length(char); i <= len; i += length(char))
 				char = query_text[i]
 
 				if(char == "\"")

@@ -467,7 +467,7 @@ UI STUFF
 	dat += "<tr><td>[T.title]</td></tr>"
 
 	if(T.content.len > 1)
-		for(var/i = 2, i <= T.content.len, i++)
+		for(var/i = 2; i <= T.content.len; i++)
 			dat += "<tr><td>[T.content[i]]</td></tr>"
 
 	dat += "</table><br /><br />"
@@ -500,7 +500,7 @@ UI STUFF
 	dat += "<table>"
 	for(var/datum/ticket/T in tickets)
 		dat += "<tr><td><h2>Ticket #[T.ticketNum]</h2></td></tr>"
-		for(var/i = 1, i <= T.content.len, i++)
+		for(var/i = 1; i <= T.content.len; i++)
 			dat += "<tr><td>[T.content[i]]</td></tr>"
 	dat += "</table>"
 

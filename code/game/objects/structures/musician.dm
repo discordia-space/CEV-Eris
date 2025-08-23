@@ -234,7 +234,7 @@
 						continue
 					var/notelen = length(note)
 					var/ni = ""
-					for(var/i = length(note[1]) + 1, i <= notelen, i += length(ni))
+					for(var/i = length(note[1]) + 1; i <= notelen; i += length(ni))
 						ni = note[i]
 						if(!text2num(ni))
 							if(ni == "#" || ni == "b" || ni == "n")

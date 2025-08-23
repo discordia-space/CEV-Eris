@@ -328,7 +328,7 @@
 	storage_slots = 5
 
 /obj/item/storage/box/syndie_kit/randomstim/populate_contents()
-	for(var/i, i < storage_slots , i++)
+	for(var/i; i < storage_slots ; i++)
 		var/stim = pick(subtypesof(/obj/item/reagent_containers/syringe/stim))
 		new stim(src)
 

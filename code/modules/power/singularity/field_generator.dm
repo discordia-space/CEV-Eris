@@ -254,7 +254,7 @@ field_generator power level display
 	var/steps = 0
 	if(!NSEW)//Make sure its ran right
 		return
-	for(var/dist = 0, dist <= 9, dist += 1) // checks out to 8 tiles away for another generator
+	for(var/dist = 0; dist <= 9; dist += 1) // checks out to 8 tiles away for another generator
 		T = get_step(T, NSEW)
 		if(T.density)//We cant shoot a field though this
 			return 0
@@ -274,7 +274,7 @@ field_generator power level display
 	if(isnull(G))
 		return
 	T = src.loc
-	for(var/dist = 0, dist < steps, dist += 1) // creates each field tile
+	for(var/dist = 0; dist < steps; dist += 1) // creates each field tile
 		var/field_dir = get_dir(T,get_step(G.loc, NSEW))
 		T = get_step(T, NSEW)
 		if(!locate(/obj/machinery/containment_field) in T)

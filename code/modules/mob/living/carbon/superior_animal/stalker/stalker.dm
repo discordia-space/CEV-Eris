@@ -96,7 +96,7 @@
 				new /obj/item/stack/material/steel/random(src.loc)
 				new /obj/item/stack/material/plasteel/random(src.loc)
 				new /obj/item/stack/cable_coil(src.loc)
-				for(var/i = 1, i <= 2 + rand(0,2), i++)
+				for(var/i = 1; i <= 2 + rand(0,2); i++)
 					var/os_components_reward = pick(list(
 						/obj/item/stock_parts/capacitor/one_star,
 						/obj/item/stock_parts/scanning_module/one_star,

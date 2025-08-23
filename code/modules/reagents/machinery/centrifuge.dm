@@ -143,7 +143,7 @@
 	if(mainBeaker)
 		data["mainBeaker"] = mainBeaker.reagents.nano_ui_data()
 	var/list/beakersData = list()
-	for(var/i = 1, i <= beakerSlots, i++)
+	for(var/i = 1; i <= beakerSlots; i++)
 		var/list/beakerInfo = list()
 		if(i <= separationBeakers.len)
 			var/obj/item/reagent_containers/B = separationBeakers[i]
@@ -281,7 +281,7 @@
 	if(mainBeaker)
 		data["mainBeaker"] = mainBeaker.reagents.nano_ui_data()
 	var/list/beakersData = list()
-	for(var/i = 1, i <= beakerSlots, i++)
+	for(var/i = 1; i <= beakerSlots; i++)
 		var/list/beakerInfo = list()
 		if(i <= separationBeakers.len)
 			var/obj/item/reagent_containers/B = separationBeakers[i]

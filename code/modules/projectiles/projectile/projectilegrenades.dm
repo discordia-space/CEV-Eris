@@ -21,8 +21,8 @@
 	grenade_effect(target)
 
 /obj/item/projectile/bullet/grenade/proc/grenade_effect(target)
-	qdel(src) // DO NOT ALLOW SRC TO SURVIVE THIS
 	SHOULD_CALL_PARENT(TRUE)
+	qdel(src) // DO NOT ALLOW SRC TO SURVIVE THIS
 
 /obj/item/projectile/bullet/grenade/blast
 	name = "blast shell"

@@ -202,7 +202,7 @@
 		if(!D)
 			return
 		var/list/permissionlist = list()
-		for(var/i = R_FUN, i <= R_ADMIN, i = (i<<1)) // Here 'i' matches one of admin permissions on each cycle, from R_FUN(1<<0) to R_ADMIN(1<<6)
+		for(var/i = R_FUN; i <= R_ADMIN; i = (i<<1)) // Here 'i' matches one of admin permissions on each cycle, from R_FUN(1<<0) to R_ADMIN(1<<6)
 			permissionlist[rights2text(i)] = i
 		var/new_permission = input("Select a permission to turn on/off", "Permission toggle", null, null) as null|anything in permissionlist
 		if(!new_permission)
@@ -691,7 +691,7 @@
 		var/data = ""
 		var/obj/item/paper_bundle/B = fax
 
-		for (var/page = 1, page <= B.pages.len, page++)
+		for(var/page = 1; page <= B.pages.len; page++)
 			var/obj/pageobj = B.pages[page]
 			data += "<A href='byond://?src=\ref[source];AdminFaxViewPage=[page];paper_bundle=\ref[B]'>Page [page] - [pageobj.name]</A><BR>"
 

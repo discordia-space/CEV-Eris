@@ -345,7 +345,7 @@
 	var/dat = "<tt><center><h1><b>TagMaster 2.3</b></h1></center>"
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
-	for(var/i = 1, i <= tagger_locations.len, i++)
+	for(var/i = 1; i <= tagger_locations.len; i++)
 		dat += "<td><a href='byond://?src=\ref[src];nextTag=[tagger_locations[i]]'>[tagger_locations[i]]</a></td>"
 
 		if (i%4==0)

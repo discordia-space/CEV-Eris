@@ -35,7 +35,7 @@
 /datum/preferences/proc/get_level_cost(datum/job/job, decl/hierarchy/skill/S, level)
 	var/min = get_min_skill(job, S)
 	. = 0
-	for(var/i=min+1, i <= level, i++)
+	for(var/i=min+1; i <= level; i++)
 		. += S.get_cost(i)
 
 /datum/preferences/proc/get_max_affordable(datum/job/job, decl/hierarchy/skill/S)
@@ -46,7 +46,7 @@
 	var/max = get_max_skill(job, S)
 	var/budget = points_by_job[job]
 	. = max
-	for(var/i=current_level+1, i <= max, i++)
+	for(var/i=current_level+1; i <= max; i++)
 		if(budget - S.get_cost(i) < 0)
 			return i-1
 		budget -= S.get_cost(i)
@@ -166,7 +166,7 @@
 			var/cap = pref.get_max_affordable(job, S) //if selecting the skill would make you overspend, it won't be shown
 			dat += "<tr style='text-align:left;'>"
 			dat += "<th><a href='byond://?src=\ref[src];skillinfo=\ref[S]'>[S.name] ([pref.get_spent_points(job, S)])</a></th>"
-			for(var/i = SKILL_MIN, i <= SKILL_MAX, i++)
+			for(var/i = SKILL_MIN; i <= SKILL_MAX; i++)
 				dat += skill_to_button(S, job, level, i, min, cap)
 			dat += "</tr>"
 	dat += "</table>"

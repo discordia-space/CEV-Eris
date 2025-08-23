@@ -76,11 +76,11 @@
 	create_chat_message(src, raw_message = message, runechat_flags = EMOTE_MESSAGE)
 
 	for (var/mob/N in messagemobs)
-		if(runechat_prefs_check(N, EMOTE_MESSAGE) && (N.ear_deaf || N.disabilities & DEAF) && get_turf(N) in messageturfs)
+		if(runechat_prefs_check(N, EMOTE_MESSAGE) && (N.ear_deaf || N.disabilities & DEAF) && (get_turf(N) in messageturfs))
 			N.create_chat_message(src, raw_message = message, runechat_flags = EMOTE_MESSAGE)
 		N.show_message(message, type)
 
 	for (var/mob/O in messagemobs_neardead)
-		if(runechat_prefs_check(O, EMOTE_MESSAGE) && get_turf(O) in messageturfs)
+		if(runechat_prefs_check(O, EMOTE_MESSAGE) && (get_turf(O) in messageturfs))
 			O.create_chat_message(src, raw_message = message, runechat_flags = EMOTE_MESSAGE)
 		O.show_message("<B>[message]</B>", type)

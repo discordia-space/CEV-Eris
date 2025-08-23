@@ -36,8 +36,8 @@
 
 /// Proc called when the perk is assigned to a human. Should be the first thing to be called.
 /datum/perk/proc/assign(mob/living/carbon/human/H)
+	SHOULD_CALL_PARENT(TRUE)
 	if(istype(H))
-		SHOULD_CALL_PARENT(TRUE)
 		holder = H
 		RegisterSignal(holder, COMSIG_MOB_LIFE, PROC_REF(on_process))
 		to_chat(holder, span_notice("[gain_text]"))
@@ -45,8 +45,8 @@
 
 /// Proc called when the perk is removed from a human. Obviously, in your perks, you should call parent as the last thing you do, since it deletes the perk itself.
 /datum/perk/proc/remove()
-	UnregisterSignal(holder, COMSIG_MOB_LIFE, PROC_REF(on_process))
 	SHOULD_CALL_PARENT(TRUE)
+	UnregisterSignal(holder, COMSIG_MOB_LIFE, PROC_REF(on_process))
 	qdel(src)
 
 /// Proc called , a bitflag is always expected.

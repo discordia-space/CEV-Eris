@@ -63,7 +63,7 @@
 			var/savefile/F = new(TORFILE)
 			var/dat
 			if( length(F.dir) )
-				for( var/i=1, i<=length(F.dir), i++ )
+				for(var/i = 1; i <= length(F.dir); i++)
 					dat += "<tr><td>#[i]</td><td> [F.dir[i]]</td></tr>"
 				dat = "<table width='100%'>[dat]</table>"
 			else

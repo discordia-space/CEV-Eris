@@ -99,7 +99,7 @@
 			for(var/obj/item/modular_computer/C in SSobj.processing) // Apparently the only place these are stored.
 				if(C.z in GetConnectedZlevels(computer.z))
 					candidates += C
-			for(var/i = 1, i <= extra_to_show, i++)
+			for(var/i = 1; i <= extra_to_show; i++)
 				var/obj/item/modular_computer/C = pick_n_take(candidates)
 				sources_to_show += C.network_card.get_network_tag()
 

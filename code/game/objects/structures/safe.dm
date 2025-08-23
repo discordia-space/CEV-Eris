@@ -79,7 +79,7 @@ FLOOR SAFES
 	dat += "<a href='byond://?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a> | <a href='byond://?src=\ref[src];decrement=1'>-</a> [dial * 5] <a href='byond://?src=\ref[src];increment=1'>+</a>"
 	if(open)
 		dat += "<table>"
-		for(var/i = contents.len, i>=1, i--)
+		for(var/i = contents.len; i>=1; i--)
 			var/obj/item/P = contents[i]
 			dat += "<tr><td><a href='byond://?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
 		dat += "</table></center>"

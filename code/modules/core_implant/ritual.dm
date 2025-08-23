@@ -121,7 +121,7 @@
 
 /proc/get_front_human_in_range(mob/living/carbon/human/user, nrange = 1)
 	var/turf/T = get_step(user,user.dir)
-	for(var/i=1, i<=nrange, i++)
+	for(var/i=1; i<=nrange; i++)
 		var/mob/living/carbon/human/H = locate(/mob/living) in T
 		if(H)
 			return H

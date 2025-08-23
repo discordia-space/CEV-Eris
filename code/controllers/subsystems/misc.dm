@@ -23,7 +23,7 @@ GLOBAL_LIST_INIT(cursor_icons, list()) //list of icon files, which point to list
 /datum/controller/subsystem/misc/proc/build_exoplanets()
 	if(!CONFIG_GET(flag/use_overmap))
 		return
-	for(var/i = 0, i < num_exoplanets, i++)
+	for(var/i = 0; i < num_exoplanets; i++)
 		var/exoplanet_type = pick(subtypesof(/obj/effect/overmap/sector/exoplanet))
 		var/obj/effect/overmap/sector/exoplanet/new_planet = new exoplanet_type(null, planet_size[1], planet_size[2])
 		new_planet.build_level()

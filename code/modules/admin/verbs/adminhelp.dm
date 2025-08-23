@@ -68,7 +68,7 @@
 			var/list/L = splittext(string, " ")
 			var/surname_found = 0
 			//surnames
-			for(var/i=L.len, i >= 1, i--)
+			for(var/i=L.len; i >= 1; i--)
 				var/word = ckey(L[i])
 				if(word)
 					surnames[word] = M

@@ -194,7 +194,7 @@ Basic field subtypes.
 
 /datum/report_field/array/get_value()
 	var/dat = ""
-	for(var/i = 1, i<=value_list.len, i++)
+	for(var/i = 1; i<=value_list.len; i++)
 		if(i > 1)
 			dat += "<br>"
 		dat += "[value_list[i]]"

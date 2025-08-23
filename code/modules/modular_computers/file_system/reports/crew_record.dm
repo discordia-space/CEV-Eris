@@ -97,9 +97,9 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 /proc/SortModularRecords()
 	// improved bubble sort
 	if(GLOB.all_crew_records.len > 1)
-		for(var/i = 1, i <= GLOB.all_crew_records.len, i++)
+		for(var/i = 1; i <= GLOB.all_crew_records.len; i++)
 			var/flag = FALSE
-			for(var/j = 1, j <= GLOB.all_crew_records.len - 1, j++)
+			for(var/j = 1; j <= GLOB.all_crew_records.len - 1; j++)
 				var/datum/computer_file/report/crew_record/CR = GLOB.all_crew_records[j]
 				var/datum/computer_file/report/crew_record/CR_NEXT = GLOB.all_crew_records[j+1]
 				if(sorttext(CR.get_name(), CR_NEXT.get_name()) == -1)

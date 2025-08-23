@@ -128,7 +128,7 @@ var/list/global/organ_rel_size = list(
 	var/intag = 0
 	var/block = list()
 	. = list()
-	for(var/i = 1, i <= length(n), i++)
+	for(var/i = 1; i <= length(n); i++)
 		var/char = copytext_char(n, i, i+1)
 		if(!intag && (char == "<"))
 			intag = 1
@@ -147,7 +147,7 @@ var/list/global/organ_rel_size = list(
 /proc/stars_no_html(text, pr, re_encode)
 	text = html_decode(text) //We don't want to screw up escaped characters
 	. = list()
-	for(var/i = 1, i <= length(text), i++)
+	for(var/i = 1; i <= length(text); i++)
 		var/char = copytext_char(text, i, i+1)
 		if(char == " " || prob(pr))
 			. += char
@@ -205,14 +205,14 @@ var/list/global/organ_rel_size = list(
 /proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
 	var/returntext = ""
-	for(var/i = 1, i <= length(t), i++)
+	for(var/i = 1; i <= length(t); i++)
 
 		var/letter = copytext_char(t, i, i+1)
 		if(prob(50))
 			if(p >= 70)
 				letter = ""
 
-			for(var/j = 1, j <= rand(0, 2), j++)
+			for(var/j = 1; j <= rand(0, 2); j++)
 				letter += pick("#","@","*","&","%","$","/", "<", ">", ";","*","*","*","*","*","*","*")
 
 		returntext += letter

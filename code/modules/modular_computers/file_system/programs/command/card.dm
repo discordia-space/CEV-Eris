@@ -282,7 +282,7 @@
 // Function that checks if the user's id is allowed to use the id computer. Can optionally check for a specific access lookup.
 /datum/computer_file/program/card_mod/proc/authorized(obj/item/card/id/id_card, area)
 	if (id_card && !area)
-		for(var/i = 1, i <= access_lookup.len, i ++)
+		for(var/i = 1; i <= access_lookup.len; i ++)
 			if(access_lookup[i] in id_card.access)
 				return TRUE
 	else if (id_card && area)

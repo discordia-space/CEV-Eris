@@ -102,7 +102,7 @@
 		if(istype(loc, /obj/item/organ/external))
 			O = loc
 
-		for(var/i=0, i<num, i++)
+		for(var/i=0; i<num; i++)
 			var/spiderling = new /obj/effect/spider/spiderling(loc, src)
 			if(O)
 				O.implants += spiderling

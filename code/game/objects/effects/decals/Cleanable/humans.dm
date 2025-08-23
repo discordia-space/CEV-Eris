@@ -214,7 +214,7 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions)
 	var/direction = pick(directions)
-	for (var/i = 0, i < pick(1,3), i++)
+	for(var/i = 0; i < pick(1,3); i++)
 		var/obj/effect/decal/cleanable/blood/splatter/b = new(loc)
 		b.basecolor = src.basecolor
 		b.update_icon()

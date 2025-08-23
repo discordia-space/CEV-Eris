@@ -102,7 +102,7 @@
 	var/found_spot
 	var/target_in_view = FALSE
 	search_loop:
-		for(var/i=0, i <= maximum_search_range, i++)
+		for(var/i=0; i <= maximum_search_range; i++)
 			for(var/obj/effect/decal/cleanable/D in view(i, src))
 				if(D in ignorelist)
 					continue

@@ -790,7 +790,7 @@
 	required = /obj/item/slime_extract/grey
 
 /datum/chemical_reaction/slime/monkey/on_reaction(datum/reagents/holder)
-	for(var/i = 1, i <= 3, i++)
+	for(var/i = 1; i <= 3; i++)
 		var /obj/item/reagent_containers/food/snacks/monkeycube/M = new /obj/item/reagent_containers/food/snacks/monkeycube
 		M.loc = get_turf(holder.my_atom)
 	..()
@@ -846,13 +846,13 @@
 		if(M.eyecheck() < FLASH_PROTECTION_MODERATE)
 			M.flash(0, FALSE , FALSE , FALSE, 0) // flashed by the gods or something idk
 
-	for(var/i = 1, i <= 4 + rand(1,2), i++)
+	for(var/i = 1; i <= 4 + rand(1,2); i++)
 		var/chosen = pick(borks)
 		var/obj/B = new chosen
 		if(B)
 			B.loc = get_turf(holder.my_atom)
 			if(prob(50))
-				for(var/j = 1, j <= rand(1, 3), j++)
+				for(var/j = 1; j <= rand(1, 3); j++)
 					step(B, pick(NORTH, SOUTH, EAST, WEST))
 	..()
 
@@ -1061,7 +1061,7 @@
 
 /datum/chemical_reaction/tofu/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
+	for(var/i = 1; i <= created_volume; i++)
 		new /obj/item/reagent_containers/food/snacks/tofu(location)
 
 /datum/chemical_reaction/chocolate_bar
@@ -1072,7 +1072,7 @@
 
 /datum/chemical_reaction/chocolate_bar/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
+	for(var/i = 1; i <= created_volume; i++)
 		new /obj/item/reagent_containers/food/snacks/chocolatebar(location)
 
 /datum/chemical_reaction/chocolate_bar2
@@ -1083,7 +1083,7 @@
 
 /datum/chemical_reaction/chocolate_bar2/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
+	for(var/i = 1; i <= created_volume; i++)
 		new /obj/item/reagent_containers/food/snacks/chocolatebar(location)
 
 /datum/chemical_reaction/hot_coco
@@ -1110,7 +1110,7 @@
 
 /datum/chemical_reaction/cheesewheel/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
+	for(var/i = 1; i <= created_volume; i++)
 		new /obj/item/reagent_containers/food/snacks/sliceable/cheesewheel(location)
 
 /datum/chemical_reaction/meatball
@@ -1121,7 +1121,7 @@
 
 /datum/chemical_reaction/meatball/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
+	for(var/i = 1; i <= created_volume; i++)
 		new /obj/item/reagent_containers/food/snacks/rawmeatball(location)
 
 /datum/chemical_reaction/dough
@@ -1132,7 +1132,7 @@
 
 /datum/chemical_reaction/dough/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
+	for(var/i = 1; i <= created_volume; i++)
 		new /obj/item/reagent_containers/food/snacks/dough(location)
 
 /datum/chemical_reaction/syntiflesh
@@ -1143,7 +1143,7 @@
 
 /datum/chemical_reaction/syntiflesh/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
+	for(var/i = 1; i <= created_volume; i++)
 		new /obj/item/reagent_containers/food/snacks/meat/syntiflesh(location)
 
 /datum/chemical_reaction/hot_ramen
@@ -1163,7 +1163,7 @@
 
 /datum/chemical_reaction/mint/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
+	for(var/i = 1; i <= created_volume; i++)
 		new /obj/item/reagent_containers/food/snacks/mint(location)
 
 /datum/chemical_reaction/candy_corn
@@ -1173,7 +1173,7 @@
 
 /datum/chemical_reaction/candy_corn/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
+	for(var/i = 1; i <= created_volume; i++)
 		new /obj/item/reagent_containers/food/snacks/candy_corn(location)
 
 /datum/chemical_reaction/amanitajelly
@@ -1183,7 +1183,7 @@
 
 /datum/chemical_reaction/amanitajelly/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
+	for(var/i = 1; i <= created_volume; i++)
 		new /obj/item/reagent_containers/food/snacks/jelly/amanita(location)
 
 /* Alcohol */

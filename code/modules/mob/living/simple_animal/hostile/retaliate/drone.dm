@@ -216,7 +216,7 @@
 		var/spawnees = 0
 		var/num_boards = rand(1,4)
 		var/list/options = list(1,2,4,8,16,32,64,128,256,512)
-		for(var/i=0, i<num_boards, i++)
+		for(var/i=0; i<num_boards; i++)
 			var/chosen = pick(options)
 			options.Remove(options.Find(chosen))
 			spawnees |= chosen

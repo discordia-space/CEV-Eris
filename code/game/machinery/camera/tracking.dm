@@ -198,7 +198,7 @@
 	var/obj/machinery/camera/a
 	var/obj/machinery/camera/b
 
-	for (var/i = L.len, i > 0, i--)
+	for(var/i = L.len; i > 0; i--)
 		for (var/j = 1 to i - 1)
 			a = L[j]
 			b = L[j + 1]

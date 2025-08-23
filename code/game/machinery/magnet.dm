@@ -388,7 +388,7 @@
 	rpath = list() //  clear rpath
 	var/maximum_character = min( 50, length(path) ) // chooses the maximum length of the iterator. 50 max length
 
-	for(var/i=1, i<=maximum_character, i++) // iterates through all characters in path
+	for(var/i=1; i<=maximum_character; i++) // iterates through all characters in path
 
 		var/nextchar = copytext(path, i, i+1) // find next character
 

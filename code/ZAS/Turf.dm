@@ -56,9 +56,9 @@
 		open_directions = 0
 		var/list/postponed = list()
 		#ifdef ZLEVELS
-		for(var/d = 1, d < 64, d *= 2)
+		for(var/d = 1; d < 64; d *= 2)
 		#else
-		for(var/d = 1, d < 16, d *= 2)
+		for(var/d = 1; d < 16; d *= 2)
 		#endif
 
 			var/turf/neighbour_turf = get_step(src, d)
@@ -131,9 +131,9 @@
 			return 1
 
 		#ifdef ZLEVELS
-		for(var/d = 1, d < 64, d *= 2)
+		for(var/d = 1; d < 64; d *= 2)
 		#else
-		for(var/d = 1, d < 16, d *= 2)
+		for(var/d = 1; d < 16; d *= 2)
 		#endif
 
 			var/turf/neighbour_turf = get_step(src, d)

@@ -90,7 +90,7 @@
 						var/obj/machinery/power/apc/theAPC = null
 
 						var/PRP
-						for (PRP=1, PRP<=4, PRP++)
+						for(PRP=1; PRP<=4; PRP++)
 							for (var/obj/machinery/power/apc/APC in current_area)
 								if (!(APC.stat & BROKEN))
 									theAPC = APC

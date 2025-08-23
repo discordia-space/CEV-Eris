@@ -264,7 +264,7 @@
 	if(S)
 		dat += "<b>Select a character slot to load</b><hr>"
 		var/name
-		for(var/i=1, i<= CONFIG_GET(number/character_slots), i++)
+		for(var/i=1; i<= CONFIG_GET(number/character_slots); i++)
 			S.cd = GLOB.maps_data.character_load_path(S, i)
 			S["real_name"] >> name
 			if(!name)	name = "Character[i]"

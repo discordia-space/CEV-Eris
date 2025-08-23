@@ -104,7 +104,7 @@
 		return //If it does not, do nothing, as the overlays have been cut before this already.
 	else
 		var/mutable_appearance/charge_overlay = mutable_appearance(icon, iconState)
-		for(var/i = ratio, i >= 1, i--)
+		for(var/i = ratio; i >= 1; i--)
 			charge_overlay.pixel_x = charge_x_offset * (i - 1)
 			add_overlay(charge_overlay)
 

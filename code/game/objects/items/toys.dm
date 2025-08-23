@@ -157,7 +157,7 @@
 		D.name = "foam dart"
 		playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
 
-		for(var/i=0, i<6, i++)
+		for(var/i=0; i<6; i++)
 			if (D)
 				if(D.loc == trg) break
 				step_towards(D,trg)
@@ -360,7 +360,7 @@
 		playsound(src.loc, 'sound/effects/spray3.ogg', 50, 1, -6)
 
 		spawn(0)
-			for(var/i=0, i<1, i++)
+			for(var/i=0; i<1; i++)
 				step_towards(D,A)
 				D.reagents.touch_turf(get_turf(D))
 				for(var/atom/T in get_turf(D))

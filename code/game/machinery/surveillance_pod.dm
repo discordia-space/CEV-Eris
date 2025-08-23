@@ -295,7 +295,7 @@
 			if(S.hideflag)
 				S.invisibility = 0
 
-		for(var/i=1, i<=occupant.HUDneed.len, i++)
+		for(var/i=1; i<=occupant.HUDneed.len; i++)
 			var/p = occupant.HUDneed[i]
 			if(!(p in HUDneed_element_to_keep))
 				occupant.client.screen += occupant.HUDneed[p]
