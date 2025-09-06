@@ -378,7 +378,7 @@
 /atom/proc/auto_turn()
 	//Automatically turns based on nearby walls.
 	var/turf/wall/T = null
-	for(var/i = 1, i <= 8; i += i)
+	for(var/i = 1, i <= 8, i += i)
 		T = get_ranged_target_turf(src, i, 1)
 		if(istype(T))
 			//If someone knows a better way to do this, let me know. -Giacom

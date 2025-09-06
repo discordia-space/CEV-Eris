@@ -217,6 +217,7 @@ SUBSYSTEM_DEF(chunks)
 	RegisterSignal(newContainer, COMSIG_MOVABLE_MOVED, PROC_REF(chunkHearerOnMove))
 
 /obj/proc/chunkHearerClearSelf(datum/source)
+	SIGNAL_HANDLER
 	var/atom/container = getContainingAtom()
 	UnregisterSignal(container, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(src, list(COMSIG_ATOM_CONTAINERED, COMSIG_PARENT_QDELETING))
@@ -224,7 +225,6 @@ SUBSYSTEM_DEF(chunks)
 	if(container.z != 0)
 		var/datum/chunk/chunk_reference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(container.x, container.y)]
 		chunk_reference.hearers -= src
-	SIGNAL_HANDLER
 
 
 // This is done by the mob itself because keeping track of them with reference solving is trash and unefficient

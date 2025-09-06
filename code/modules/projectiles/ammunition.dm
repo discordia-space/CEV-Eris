@@ -131,7 +131,7 @@
 		src.pixel_x = 0
 		src.pixel_y = 0
 
-	for(var/icon_amount = 1; icon_amount < src.amount, icon_amount++)
+	for(var/icon_amount = 1, icon_amount < src.amount, icon_amount++)
 		var/image/temp_image = image(src.icon, src.icon_state)
 		var/coef = round(14 * icon_amount/src.maxamount)
 
