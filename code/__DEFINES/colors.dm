@@ -50,6 +50,7 @@
 #define COLOR_PALE_RED_GRAY    "#cc9090"
 #define COLOR_PALE_YELLOW      "#c1bb7a"
 #define COLOR_PINK             "#ff00ff"
+#define COLOR_ADMIN_PINK       "#D100D1"
 #define COLOR_PURPLE           "#800080"
 #define COLOR_PURPLE_GRAY      "#a2819e"
 #define COLOR_RED              "#ff0000"

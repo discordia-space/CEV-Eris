@@ -101,6 +101,8 @@
 
 /datum/config_entry/flag/aggressive_changelog
 
+/datum/config_entry/flag/autoconvert_notes //if all connecting player's notes should attempt to be converted to the database
+	protection = CONFIG_ENTRY_LOCKED
 
 /******************/
 /* Job/Role Prefs */
@@ -367,6 +369,17 @@
 
 /datum/config_entry/flag/forbid_admin_profiling
 
+/datum/config_entry/flag/see_own_notes //Can players see their own admin notes
+
+/datum/config_entry/number/note_fresh_days
+	default = null
+	min_val = 0
+	integer = FALSE
+
+/datum/config_entry/number/note_stale_days
+	default = null
+	min_val = 0
+	integer = FALSE
 
 /*****************/
 /*     GAME      */

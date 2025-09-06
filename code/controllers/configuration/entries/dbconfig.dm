@@ -25,6 +25,9 @@
 /datum/config_entry/string/feedback_tableprefix
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 
+/// short form server name used for the DB
+/datum/config_entry/string/serversqlname
+
 /datum/config_entry/number/query_debug_log_timeout
 	default = 70
 	min_val = 1
@@ -73,3 +76,4 @@
 /// Shouldn't really be set on production servers, primarily for EZDB.
 /datum/config_entry/string/db_daemon
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+

@@ -84,7 +84,7 @@
 					body += "</td><td align='center'>";
 
 					body += "<a href='byond://?_src_=holder;[HrefToken()];adminplayeropts="+ref+"'>PP</a> - "
-					body += "<a href='byond://?_src_=holder;[HrefToken()];notes=show;mob="+ref+"'>N</a> - "
+					body += "<a href='byond://?_src_=holder;[HrefToken()];showmessageckey="+ckey+"'>N</a> - "
 					body += "<a href='byond://?_src_=vars;[HrefToken()];Vars="+ref+"'>VV</a> - "
 					body += "<a href='byond://?_src_=holder;[HrefToken()];contractor="+ref+"'>TP</a> - "
 					body += "<a href='byond://?priv_msg="+ckey+"'>PM</a> - "

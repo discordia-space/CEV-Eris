@@ -180,6 +180,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return FALSE
 	return TRUE
 
+#undef UPLOAD_LIMIT
 
 	///////////
 	//CONNECT//
@@ -297,7 +298,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if (byond_version >= 512)
 		if (!byond_build || byond_build < 1386)
 			message_admins(span_adminnotice("[key_name(src)] has been detected as spoofing their byond version. Connection rejected."))
-			// add_system_note("Spoofed-Byond-Version", "Detected as using a spoofed byond version.")
+			add_system_note("Spoofed-Byond-Version", "Detected as using a spoofed byond version.")
 			log_suspicious_login("Failed Login: [key] - Spoofed byond version")
 			qdel(src)
 
@@ -407,26 +408,31 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		to_chat(src, span_alert("[custom_event_msg]"))
 		to_chat(src, "<br>")
 
+	if(holder)
+		add_admin_verbs()
+		var/memo_message = get_message_output("memo")
+		if(memo_message)
+			to_chat(src, memo_message, type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE)
+		adminGreet()
 	if (mob && reconnecting)
 		var/stealth_admin = mob.client?.holder?.fakekey
 		// var/announce_leave = mob.client?.prefs?.read_preference(/datum/preference/toggle/broadcast_login_logout)
-		var/announce_leave = FALSE
 		if (!stealth_admin)
-			deadchat_broadcast(" has reconnected.", "<b>[mob][mob.get_realname_string()]</b>", follow_target = mob, turf_target = get_turf(mob), message_type = DEADCHAT_LOGIN_LOGOUT, admin_only=!announce_leave)
+			deadchat_broadcast(" has reconnected.", "<b>[mob][mob.get_realname_string()]</b>", follow_target = mob, turf_target = get_turf(mob), message_type = DEADCHAT_LOGIN_LOGOUT/*, admin_only=!announce_leave*/)
+	add_verbs_from_config()
 
-	// TODO: Port modern notes
 	// This needs to be before the client age from db is updated as it'll be updated by then.
-	// var/datum/db_query/query_last_connected = SSdbcore.NewQuery(
-	// 	"SELECT lastseen FROM [format_table_name("player")] WHERE ckey = :ckey",
-	// 	list("ckey" = ckey)
-	// )
-	// if(query_last_connected.warn_execute() && length(query_last_connected.rows))
-	// 	query_last_connected.NextRow()
-	// 	var/time_stamp = query_last_connected.item[1]
-	// 	var/unread_notes = get_message_output("note", ckey, FALSE, time_stamp)
-	// 	if(unread_notes)
-	// 		to_chat(src, unread_notes, type = MESSAGE_TYPE_ADMINPM, confidential = TRUE)
-	// qdel(query_last_connected)
+	var/datum/db_query/query_last_connected = SSdbcore.NewQuery(
+		"SELECT lastseen FROM [format_table_name("player")] WHERE ckey = :ckey",
+		list("ckey" = ckey)
+	)
+	if(query_last_connected.warn_execute() && length(query_last_connected.rows))
+		query_last_connected.NextRow()
+		var/time_stamp = query_last_connected.item[1]
+		var/unread_notes = get_message_output("note", ckey, FALSE, time_stamp)
+		if(unread_notes)
+			to_chat(src, unread_notes, type = MESSAGE_TYPE_ADMINPM, confidential = TRUE)
+	qdel(query_last_connected)
 
 	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need it's current value now down below.
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
@@ -487,6 +493,13 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		to_chat(src, span_info("You have unread updates in the changelog."))
 		if(CONFIG_GET(flag/aggressive_changelog))
 			changelog()
+
+	if(CONFIG_GET(flag/autoconvert_notes))
+		convert_notes_sql(ckey)
+
+	var/user_messages = get_message_output("message", ckey)
+	if(user_messages)
+		to_chat(src, user_messages, type = MESSAGE_TYPE_ADMINPM, confidential = TRUE)
 
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, span_warning("Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you."))
@@ -1148,5 +1161,38 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	debug_admins("scalies: [window_scaling]")
 
-#undef UPLOAD_LIMIT
+/client/proc/add_verbs_from_config()
+	if(CONFIG_GET(flag/see_own_notes))
+		add_verb(src, /client/proc/self_notes)
+	// if(CONFIG_GET(flag/use_exp_tracking))
+	// 	add_verb(src, /client/proc/self_playtime)
+	// if(!CONFIG_GET(flag/forbid_preferences_export))
+	// 	add_verb(src, /client/proc/export_preferences)
 
+/client/proc/add_system_note(system_ckey, message)
+	//check to see if we noted them in the last day.
+	var/datum/db_query/query_get_notes = SSdbcore.NewQuery(
+		"SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = :targetckey AND adminckey = :adminckey AND timestamp + INTERVAL 1 DAY < NOW() AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)",
+		list("targetckey" = ckey, "adminckey" = system_ckey)
+	)
+	if(!query_get_notes.Execute())
+		qdel(query_get_notes)
+		return
+	if(query_get_notes.NextRow())
+		qdel(query_get_notes)
+		return
+	qdel(query_get_notes)
+	//regardless of above, make sure their last note is not from us, as no point in repeating the same note over and over.
+	query_get_notes = SSdbcore.NewQuery(
+		"SELECT adminckey FROM [format_table_name("messages")] WHERE targetckey = :targetckey AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC LIMIT 1",
+		list("targetckey" = ckey)
+	)
+	if(!query_get_notes.Execute())
+		qdel(query_get_notes)
+		return
+	if(query_get_notes.NextRow())
+		if (query_get_notes.item[1] == system_ckey)
+			qdel(query_get_notes)
+			return
+	qdel(query_get_notes)
+	create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0, 0)

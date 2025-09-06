@@ -87,6 +87,174 @@
 		if(check_rights(R_ADMIN))
 			SStickets.autoRespond(indexNum)
 
+	if(href_list["addmessage"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/target_key = href_list["addmessage"]
+		create_message("message", target_key, secret = 0)
+
+	if(href_list["addnote"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/target_key = href_list["addnote"]
+		create_message("note", target_key)
+
+	if(href_list["addwatch"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/target_key = href_list["addwatch"]
+		create_message("watchlist entry", target_key, secret = 1)
+
+	if(href_list["addmemo"])
+		if(!check_rights(R_ADMIN))
+			return
+		create_message("memo", secret = 0, browse = 1)
+
+	if(href_list["addmessageempty"])
+		if(!check_rights(R_ADMIN))
+			return
+		create_message("message", secret = 0)
+
+	if(href_list["addnoteempty"])
+		if(!check_rights(R_ADMIN))
+			return
+		create_message("note")
+
+	if(href_list["addwatchempty"])
+		if(!check_rights(R_ADMIN))
+			return
+		create_message("watchlist entry", secret = 1)
+
+	if(href_list["deletemessage"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/safety = tgui_alert(usr,"Delete message/note?",,list("Yes","No"));
+		if (safety == "Yes")
+			var/message_id = href_list["deletemessage"]
+			delete_message(message_id)
+
+	if(href_list["deletemessageempty"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/safety = tgui_alert(usr,"Delete message/note?",,list("Yes","No"));
+		if (safety == "Yes")
+			var/message_id = href_list["deletemessageempty"]
+			delete_message(message_id, browse = TRUE)
+
+	if(href_list["editmessage"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/message_id = href_list["editmessage"]
+		edit_message(message_id)
+
+	if(href_list["editmessageempty"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/message_id = href_list["editmessageempty"]
+		edit_message(message_id, browse = 1)
+
+	if(href_list["editmessageexpiry"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/message_id = href_list["editmessageexpiry"]
+		edit_message_expiry(message_id)
+
+	if(href_list["editmessageexpiryempty"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/message_id = href_list["editmessageexpiryempty"]
+		edit_message_expiry(message_id, browse = 1)
+
+	if(href_list["editmessageseverity"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/message_id = href_list["editmessageseverity"]
+		edit_message_severity(message_id)
+
+	if(href_list["secretmessage"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/message_id = href_list["secretmessage"]
+		toggle_message_secrecy(message_id)
+
+	if(href_list["searchmessages"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/target = href_list["searchmessages"]
+		browse_messages(index = target)
+
+	if(href_list["nonalpha"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/target = href_list["nonalpha"]
+		target = text2num(target)
+		browse_messages(index = target)
+
+	if(href_list["showmessages"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/target = href_list["showmessages"]
+		browse_messages(index = target)
+
+	if(href_list["showmemo"])
+		if(!check_rights(R_ADMIN))
+			return
+		browse_messages("memo")
+
+	if(href_list["showwatch"])
+		if(!check_rights(R_ADMIN))
+			return
+		browse_messages("watchlist entry")
+
+	if(href_list["showwatchfilter"])
+		if(!check_rights(R_ADMIN))
+			return
+		browse_messages("watchlist entry", filter = 1)
+
+	if(href_list["showmessageckey"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/target = href_list["showmessageckey"]
+		var/agegate = TRUE
+		if (href_list["showall"])
+			agegate = FALSE
+		browse_messages(target_ckey = target, agegate = agegate)
+
+	if(href_list["showmessageckeylinkless"])
+		var/target = href_list["showmessageckeylinkless"]
+		browse_messages(target_ckey = target, linkless = 1)
+
+	if(href_list["messageread"])
+		if(!isnum(href_list["message_id"]))
+			return
+		var/rounded_message_id = round(href_list["message_id"], 1)
+		var/datum/db_query/query_message_read = SSdbcore.NewQuery(
+			"UPDATE [format_table_name("messages")] SET type = 'message sent' WHERE targetckey = :player_key AND id = :id",
+			list("id" = rounded_message_id, "player_key" = usr.ckey)
+		)
+		if(!query_message_read.warn_execute())
+			qdel(query_message_read)
+			return
+		qdel(query_message_read)
+
+	if(href_list["messageedits"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/datum/db_query/query_get_message_edits = SSdbcore.NewQuery(
+			"SELECT edits FROM [format_table_name("messages")] WHERE id = :message_id",
+			list("message_id" = href_list["messageedits"])
+		)
+		if(!query_get_message_edits.warn_execute())
+			qdel(query_get_message_edits)
+			return
+		if(query_get_message_edits.NextRow())
+			var/edit_log = query_get_message_edits.item[1]
+			if(!QDELETED(usr))
+				var/datum/browser/browser = new(usr, "Note edits", "Note edits")
+				browser.set_content(jointext(edit_log, ""))
+				browser.open()
+		qdel(query_get_message_edits)
+
 	var/static/list/topic_handlers = AdminTopicHandlers()
 	var/datum/admin_topic/handler
 

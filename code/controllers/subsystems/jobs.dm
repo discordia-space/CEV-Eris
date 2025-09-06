@@ -832,3 +832,11 @@ SUBSYSTEM_DEF(job)
 	if(!job || job == ASSISTANT_TITLE)
 		return FALSE
 	return job.create_record
+
+/proc/get_exp_format(expnum)
+	if(expnum > 60)
+		return num2text(round(expnum / 60)) + "h"
+	else if(expnum > 0)
+		return num2text(expnum) + "m"
+	else
+		return "0h"
