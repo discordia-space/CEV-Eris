@@ -128,7 +128,7 @@
 				if(is_damaged())
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 						to_chat(user, span_notice("You remove the broken [flooring.descriptor]."))
-						make_plating()
+						make_plating(TRUE, null, TRUE)
 					return
 				else if(flooring.flags & TURF_IS_FRAGILE)
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -138,7 +138,7 @@
 				else if(flooring.flags & TURF_REMOVE_CROWBAR)
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 						to_chat(user, span_notice("You lever off the [flooring.descriptor]."))
-						make_plating(1)
+						make_plating(TRUE)
 					return
 				return
 
@@ -146,21 +146,21 @@
 				if((!(is_damaged()) && !is_plating()) || flooring.flags & TURF_REMOVE_SCREWDRIVER)
 					if(I.use_tool(user, src, flooring.removal_time*1.5, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 						to_chat(user, span_notice("You unscrew and remove the [flooring.descriptor]."))
-						make_plating(1)
+						make_plating(TRUE)
 				return
 
 			if(QUALITY_BOLT_TURNING)
 				if(flooring.flags & TURF_REMOVE_WRENCH)
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						to_chat(user, span_notice("You unwrench and remove the [flooring.descriptor]."))
-						make_plating(1)
+						make_plating(TRUE)
 				return
 
 			if(QUALITY_SHOVELING)
 				if(flooring.flags & TURF_REMOVE_SHOVEL)
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 						to_chat(user, span_notice("You shovel off the [flooring.descriptor]."))
-						make_plating(1)
+						make_plating(TRUE)
 				return
 
 			if(QUALITY_WELDING)
@@ -179,7 +179,7 @@
 					to_chat(user, span_notice("You start cutting through the [flooring.descriptor]."))
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						to_chat(user, span_notice("You cut through and remove the [flooring.descriptor]."))
-						make_plating(1)
+						make_plating(TRUE)
 
 			if(ABORT_CHECK)
 				return
