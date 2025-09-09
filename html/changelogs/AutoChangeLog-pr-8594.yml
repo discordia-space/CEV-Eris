@@ -1,0 +1,9 @@
+author: Chickenish
+delete-after: true
+changes:
+  - rscadd: Character records are now automatically defined based on the 
+      character they are associated with.
+  - rscdel: Destroyed Data Core
+  - tweak: Sechud interface reworked
+  - bugfix: Security records now accessible via computer
+  - admin: fully_replace_character_name proc now fully functional
