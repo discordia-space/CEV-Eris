@@ -238,8 +238,7 @@ var/list/possible_cable_coil_colours = list(
 	else
 		new/obj/item/stack/cable_coil(T, 1, color)
 
-	for(var/mob/O in viewers(get_turf(src)))
-		O.show_message(span_warning("[user] cuts the cable."), 1)
+	visible_message(span_warning("[user] cuts the cable."), 1)
 
 	if(d1 == DOWN || d2 == DOWN)
 		var/turf/turf = GetBelow(src)

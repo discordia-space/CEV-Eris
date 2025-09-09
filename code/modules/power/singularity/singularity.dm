@@ -422,8 +422,7 @@
 					to_chat(H, "<span class='warning'>You look directly into The [src.name], but your eyewear does absolutely nothing to protect you from it!</span>")
 		to_chat(M, span_danger("You look directly into The [src.name] and feel [current_size == 11 ? "helpless" : "weak"]."))
 		M.apply_effect(3, STUN)
-		for(var/mob/O in viewers(M, null))
-			O.show_message(span_danger("[M] stares blankly at The [src]!"), 1)
+		M.visible_message(span_danger("[M] stares blankly at The [src]!"))
 
 /obj/singularity/proc/emp_area()
 	if(current_size != 11)

@@ -180,6 +180,5 @@
 				var/safety = M.eyecheck()
 				if(safety < FLASH_PROTECTION_MODERATE)
 					M.flash(10-(10*safety), FALSE, FALSE, TRUE)
-					for(var/mob/O in viewers(M, null))
-						O.show_message(span_disarm("[M] is blinded by the flash!"))
+					M.visible_message(span_disarm("[M] is blinded by the flash!"))
 	..()

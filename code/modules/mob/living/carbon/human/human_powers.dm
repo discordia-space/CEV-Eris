@@ -45,9 +45,7 @@
 	if(failed)
 		src.Weaken(rand(2,4))
 
-	for(var/mob/O in viewers(get_turf(src)))
-		if ((O.client && !( O.blinded )))
-			O.show_message(span_red(text("<B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T)), 1)
+	visible_message(span_danger("[src] [failed ? "tried to tackle" : "has tackled"] down [T]!"))
 
 /mob/living/carbon/human/proc/leap(mob/living/carbon/human/T)
 	if(last_special > world.time)

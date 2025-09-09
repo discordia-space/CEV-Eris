@@ -239,6 +239,10 @@
 #define JOINTEXT(X) jointext(X, null)
 
 //lazy text span classes defines.
+#define SPAN_NOTICE(text)  "<span class='notice'>[text]</span>"
+#define SPAN_WARNING(text) "<span class='warning'>[text]</span>"
+#define SPAN_DANGER(text)  "<span class='danger'>[text]</span>"
+#define SPAN_EXCEL_NOTIF(text) "<span class='revolution_alert'>[text]</span>"
 #define span(class, text) ("<span class='[class]'>[text]</span>")
 
 #define FONT_COLORED(color, text) "<font color='[color]'>[text]</font>"
