@@ -16,10 +16,6 @@ code/modules/mob/living/silicon/pai/software_modules.dm
 		<div class="itemContent">{{:data.general.name}}</div>
 	</div>
 	<div class="item">
-		<div class="itemLabel">Record ID</div>
-		<div class="itemContent">{{:data.general.id}}</div>
-	</div>
-	<div class="item">
 		<div class="itemLabel">Sex</div>
 		<div class="itemContent">{{:data.general.sex}}</div>
 	</div>
@@ -32,50 +28,52 @@ code/modules/mob/living/silicon/pai/software_modules.dm
 		<div class="itemContent">{{:data.general.age}}</div>
 	</div>
 	<div class="item">
-		<div class="itemLabel">Rank</div>
-		<div class="itemContent">{{:data.general.rank}}</div>
+		<div class="itemLabel">Job Title</div>
+		<div class="itemContent">{{:data.general.job}}</div>
 	</div>
 	<div class="item">
 		<div class="itemLabel">Fingerprint</div>
 		<div class="itemContent">{{:data.general.fingerprint}}</div>
 	</div>
 	<div class="item">
-		<div class="itemLabel">Physical Status</div>
-		<div class="itemContent">{{:data.general.p_stat}}</div>
+		<div class="itemLabel">=Status</div>
+		<div class="itemContent">{{:data.general.status}}</div>
 	</div>
 	<div class="item">
-		<div class="itemLabel">Mental Status</div>
-		<div class="itemContent">{{:data.general.m_stat}}</div>
+		<div class="itemLabel">Blood Type</div>
+		<div class="itemContent">{{:data.general.bloodtype}}</div>
 	</div>
 {{/if}}
 {{if data.medical}}
 	<div class="item">
-		<div class="itemLabel">Blood Type</div>
-		<div class="itemContent">{{:data.medical.b_type}}</div>
+		<div class="itemLabel">Prosthetics</div>
+		{{for data.medical.value.prosthetics}}
+			<div class="itemContent">{{:value}}</div>
+		{{/for}}
 	</div>
 	<div class="item">
-		<div class="itemLabel">Minor Disabilities</div>
-		<div class="itemContent">{{:data.medical.mi_dis}}</div>
-		<div class="itemContent">{{:data.medical.mi_dis_d}}</div>
+		<div class="itemLabel">Wounds</div>
+		{{for data.medical.value.wounds}}
+			<div class="itemContent">{{:value}}</div>
+		{{/for}}
 	</div>
 	<div class="item">
-		<div class="itemLabel">Major Disabilities</div>
-		<div class="itemContent">{{:data.medical.ma_dis}}</div>
-		<div class="itemContent">{{:data.medical.ma_dis_d}}</div>
+		<div class="itemLabel">Body State</div>
+		{{for data.medical.value.body state}}
+			<div class="itemContent">{{:value}}</div>
+		{{/for}}
 	</div>
 	<div class="item">
-		<div class="itemLabel">Allergies</div>
-		<div class="itemContent">{{:data.medical.alg}}</div>
-		<div class="itemContent">{{:data.medical.alg_d}}</div>
+		<div class="itemLabel">Chemical History</div>
+		{{for data.medical.value.chemhistory}}
+			<div class="itemContent">{{:value}}</div>
+		{{/for}}
 	</div>
 	<div class="item">
-		<div class="itemLabel">Current Diseases</div>
-		<div class="itemContent">{{:data.medical.cdi}}</div>
-		<div class="itemContent">{{:data.medical.cdi_d}}</div>
-	</div>
-	<div class="item">
-		<div class="itemLabel">Important Notes</div>
-		<div class="itemContent">{{:data.medical.notes}}</div>
+		<div class="itemLabel">Psychological Profile</div>
+		{{for data.medical.value.psychological}}
+			<div class="itemContent">{{:value}}</div>
+		{{/for}}
 	</div>
 {{/if}}
 

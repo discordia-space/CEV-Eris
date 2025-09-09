@@ -102856,6 +102856,14 @@
 	},
 /turf/floor/plating/under,
 /area/eris/maintenance/sorter)
+"qmi" = (
+/obj/item/cell/medium,
+/obj/item/cell/medium,
+/obj/item/computer_hardware/processor_unit,
+/obj/item/computer_hardware/tesla_link,
+/obj/item/computer_hardware/tesla_link,
+/turf/floor/hull,
+/area/space)
 "qmJ" = (
 /obj/machinery/door/blast/shutters{
 	dir = 4;
@@ -104952,6 +104960,13 @@
 	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"tZv" = (
+/obj/item/computer_hardware/network_card/wired,
+/obj/item/computer_hardware/network_card/wired,
+/obj/item/computer_hardware/scanner/paper,
+/obj/item/computer_hardware/scanner/paper,
+/turf/floor/hull,
+/area/space)
 "tZw" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -205242,7 +205257,7 @@ iEk
 cBO
 cwU
 abF
-abF
+qmi
 abF
 cwU
 cwU
@@ -205444,7 +205459,7 @@ cBO
 cos
 cwU
 abF
-abF
+tZv
 abF
 abF
 cwU
