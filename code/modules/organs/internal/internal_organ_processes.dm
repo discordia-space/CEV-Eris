@@ -93,6 +93,17 @@
 
 	if(toxin_damage > 0 && liver)
 		liver.take_damage(toxin_damage, TOX)
+	else if(liver)
+		for(var/tocheck in liver.wounddatums)
+			if(ispath(tocheck, /datum/internal_wound/organic/hepatitis)) // low level inflammation
+				var/datum/internal_wound/treathis = liver.wounddatums[tocheck]
+				treathis.treatment()
+			else if(ispath(tocheck, /datum/internal_wound/organic/fibrosis))
+				var/datum/internal_wound/treathis = liver.wounddatums[tocheck]
+				treathis.treatment_slow(max(1, round(liver_efficiency/32))) // fibrosis cures better the healthier the liver is, but isn't incurable before it reaches a worse state
+			else if (ispath(tocheck, /datum/internal_wound/organic/edge) || ispath(tocheck, /datum/internal_wound/organic/sharp) || ispath(tocheck, /datum/internal_wound/organic/blunt))
+				var/datum/internal_wound/treathis = liver.wounddatums[tocheck]
+				treathis.treatment_slow(max(1, round(liver_efficiency/16))) // liver regenerates good
 
 	// Blood loss or liver damage make you lose nutriments
 	var/blood_volume = get_blood_volume()
