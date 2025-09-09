@@ -201,7 +201,7 @@
 
 /datum/breakdown/negative/selfharm/occur()
 	spawn(delay)
-		++holder.owner.suppress_communication
+		++holder?.owner.suppress_communication
 	return ..()
 
 /datum/breakdown/negative/selfharm/conclude()
@@ -240,9 +240,9 @@
 
 /datum/breakdown/negative/hysteric/occur()
 	spawn(delay)
-		holder.owner.SetWeakened(4)
-		holder.owner.SetStunned(4)
-		++holder.owner.suppress_communication
+		holder?.owner.SetWeakened(4)
+		holder?.owner.SetStunned(4)
+		++holder?.owner.suppress_communication
 	return ..()
 
 /datum/breakdown/negative/hysteric/conclude()
