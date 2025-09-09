@@ -136,10 +136,8 @@ var/list/holder_mob_icon_cache = list()
 		//Repeat this check
 		//If we're still on the turf a few frames later, then we have actually been dropped or thrown
 		//Release the mob accordingly
-		//addtimer(CALLBACK(src, PROC_REF(post_drop)), 3)
+		addtimer(CALLBACK(src, PROC_REF(post_drop)), 3)
 		//TODO: Uncomment the above once addtimer is ported
-		spawn(3)
-			post_drop()
 		return
 
 	if (istype(loc, /obj/item/storage))	//The second drop reads the container its placed into as the location
@@ -580,6 +578,18 @@ var/list/holder_mob_icon_cache = list()
 		if(I)
 			return I
 	return null
+
+//Holders for mice
+/obj/item/holder/carrion
+	name = "spider core"
+	desc = "A horrifying face on spider-like legs."
+	desc_dead = "A dead bio-weapon, it probably tastes horrible."
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "spider_core"
+	slot_flags = SLOT_HEAD
+	origin_tech = list(TECH_BIO = 5)
+	w_class = ITEM_SIZE_NORMAL
+
 
 /*
 //Lizards

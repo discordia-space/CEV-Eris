@@ -259,6 +259,10 @@
 		if(carrion_hunger < max_hunger)
 			carrion_hunger = min(carrion_hunger + (round(1* (maw_efficiency / 100))), max_hunger)
 		else
+			if(ingested.has_reagent("nutriment", 1))
+				ingested.remove_reagent("nutriment", 1)
+			else
+				nutrition = max(0, nutrition - 20) // equivalent to a unit of nutriment
 			to_chat(src, span_warning("Your hunger is restless!"))
 		carrion_last_hunger = world.time
 

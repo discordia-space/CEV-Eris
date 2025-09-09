@@ -32,6 +32,7 @@
 /obj/item/organ/internal/carrion
 	max_damage = 15 //resilient
 	scanner_hidden = TRUE //sneaky
+	origin_tech = list(TECH_BIO = 5)
 
 /obj/item/organ/internal/carrion/chemvessel
 	name = "chemical vessel"
@@ -376,12 +377,17 @@
 		to_chat(owner, span_warning("You can't eat nothing."))
 		return
 
-	if(istype(food, /obj/item/grab))
+	var/obj/item/holder/overcomplicated = istype(food, /obj/item/holder) ? food : null
+	if(istype(food, /obj/item/grab) || overcomplicated && ishuman(overcomplicated.contained))
 		var/obj/item/grab/grab = food
-		var/mob/living/carbon/human/H = grab.affecting
-		if (grab.state < GRAB_AGGRESSIVE)
-			to_chat(owner, span_warning("Your grip upon [H.name] is too weak."))
-			return
+		var/mob/living/carbon/human/H
+		if(istype(grab))
+			H = grab.affecting
+			if (grab.state < GRAB_AGGRESSIVE)
+				to_chat(owner, span_warning("Your grip upon [H.name] is too weak."))
+				return
+		else if(overcomplicated)
+			H = overcomplicated.contained
 		if(istype(H))
 			var/obj/item/organ/external/E = H.get_organ(owner.targeted_organ)
 			if (tearing) // one at a time, thank you.
@@ -401,8 +407,7 @@
 				for (var/obj/item/organ/internal/to_blacklist in E.internal_organs)
 					if (istype(to_blacklist, /obj/item/organ/internal/bone/))
 						blacklist += to_blacklist
-						continue
-					if (istype(to_blacklist, /obj/item/organ/internal/vital/brain/))
+					else if (istype(to_blacklist, /obj/item/organ/internal/vital/brain/))
 						blacklist += to_blacklist// removing bones from a valid_organs list based on
 				var/list/valid_organs = E.internal_organs - blacklist// E.internal_organs gibs the victim.
 				if (!valid_organs.len)
@@ -419,7 +424,7 @@
 			to_chat(owner, span_warning("You can only tear flesh out of humanoids!"))
 			return
 
-	if(istype(food, /obj/item/organ) || istype(food, /obj/item/reagent_containers/food/snacks/meat))
+	if(istype(food, /obj/item/organ) || istype(food, /obj/item/reagent_containers/food/snacks/meat) || istype(food, /obj/item/holder))
 		var/geneticpointgain = 0
 		var/chemgain = 0
 		var/taste_description = ""
@@ -437,11 +442,15 @@
 				var/obj/item/organ/internal/carrion/core/G = owner.random_organ_by_process(BP_SPCORE)
 				if(O in G.associated_carrion_organs)
 					taste_description = "albeit delicious, your own organs carry no new genetic material"
+					chemgain = 50
 				else
 					owner.carrion_hunger += 3
 					geneticpointgain = 4
 					chemgain = 50
 					taste_description = "carrion organs taste heavenly, you need more!"
+					if(istype(O, /obj/item/organ/internal/carrion/core))
+						var/obj/item/organ/internal/carrion/core/devoured = O
+						G.absorbed_dna |= devoured.absorbed_dna
 			else if(istype(O, /obj/item/organ/internal))
 				var/organ_rotten = FALSE
 				if (O.status & ORGAN_DEAD)
@@ -464,9 +473,25 @@
 			taste_description = "human meat is satisfying."
 
 		else
-			chemgain = 5
-			owner.carrion_hunger -= 1 //Prevents meat eating spam for infinate chems
-			taste_description = "this meat is bland."
+			if(istype(food, /obj/item/holder/carrion))
+				owner.carrion_hunger += 9
+				geneticpointgain = 10
+				chemgain = 50
+				var/obj/item/holder/spiderholder = food
+				var/mob/living/simple_animal/spider_core/tastyspider = spiderholder.contained
+				var/obj/item/organ/internal/carrion/core/devoured = locate(/obj/item/organ/internal/carrion/core) in tastyspider.contents
+				var/obj/item/organ/internal/carrion/core/C = owner.random_organ_by_process(BP_SPCORE)
+				if(devoured && C)
+					C.absorbed_dna |= devoured.absorbed_dna
+				taste_description = "carrions taste heavenly, if only there was more!"
+				qdel(tastyspider)
+			else
+				if(istype(food, /obj/item/holder))
+					var/obj/item/holder/bland_animal = food
+					qdel(bland_animal.contained)
+				chemgain = 5
+				owner.carrion_hunger -= 1 //Prevents meat eating spam for infinate chems
+				taste_description = "this meat is bland."
 
 		var/obj/item/organ/internal/carrion/core/C = owner.random_organ_by_process(BP_SPCORE)
 		if(C)
@@ -477,7 +502,7 @@
 
 		var/chemvessel_efficiency = owner.get_organ_efficiency(OP_CHEMICALS)
 		if(chemvessel_efficiency > 1)
-			owner.carrion_stored_chemicals = min(owner.carrion_stored_chemicals + 0.01 * chemvessel_efficiency , 0.5 * chemvessel_efficiency)
+			owner.carrion_stored_chemicals = min(owner.carrion_stored_chemicals + 0.01 * chemvessel_efficiency * chemgain , 0.5 * chemvessel_efficiency)
 
 		to_chat(owner, span_notice("You consume \the [food], [taste_description]."))
 		visible_message(span_danger("[owner] devours \the [food]!"))
@@ -555,7 +580,7 @@
 			continue
 		toxin_attack(creature, rand(1, 3))
 
-/obj/effect/decal/cleanable/solid_biomass/attackby(obj/item/I, mob/user)
+/obj/effect/decal/cleanable/carrion_puddle/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap))
 		to_chat(user, span_notice("You started cleaning this [src]."))
 		if(do_after(user, 3 SECONDS, src))
