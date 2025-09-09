@@ -106,6 +106,25 @@ Has ability of every roach.
 	gas_sac.clear_reagents()
 	return TRUE
 
+/mob/living/carbon/superior_animal/roach/kaiser/leaveOvermind()
+	var/mob/living/carbon/superior_animal/roach/backup
+	overseer.removeHarrier(src)
+	for(var/mob/living/carbon/superior_animal/roach/tocheck in overseer.members)
+		if(istype(tocheck, /mob/living/carbon/superior_animal/roach/kaiser))
+			overseer.leader = tocheck
+			overseer?.casualties.Remove(src)
+			overseer = null
+			return
+		else if(istype(tocheck, /mob/living/carbon/superior_animal/roach/fuhrer))
+			backup = tocheck
+	for(var/datum/overmind/roachmind/subordinate in overseer.subordinates) //by this point if there even is a new leader, it is a "mere fuhrer".
+		subordinate.superior = null
+	overseer.subordinates.Cut()
+	overseer.leader = backup
+	if(!backup && !QDELETED(overseer)) // kaiser is always the leader
+		qdel(overseer) // disband
+	overseer = null
+
 /mob/living/carbon/superior_animal/roach/kaiser/findTarget()
 	. = ..()
 	if(. && gas_attack())
