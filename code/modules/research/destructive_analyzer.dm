@@ -30,7 +30,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	var/T = 0
 	for(var/obj/item/stock_parts/S in src)
 		T += S.rating
-	decon_mod = T * 0.1
+	decon_mod = T
 
 /obj/machinery/r_n_d/destructive_analyzer/update_icon()
 	if(panel_open)
@@ -115,7 +115,8 @@ Note: Must be placed within 3 tiles of the R&D Console
 
 	busy = TRUE
 	flick("d_analyzer_process", src)
-	addtimer(CALLBACK(src, PROC_REF(finish_deconstructing)), 2.4 SECONDS)
+	var/timespent = max((3 SECONDS) - (decon_mod*2), 1) // with three tier 1 parts, 2.4 seconds; with three tier 3 parts, 1.2 seconds.
+	addtimer(CALLBACK(src, PROC_REF(finish_deconstructing)), timespent)
 	return TRUE
 
 /obj/machinery/r_n_d/destructive_analyzer/proc/finish_deconstructing()
@@ -126,19 +127,26 @@ Note: Must be placed within 3 tiles of the R&D Console
 		linked_console.handle_item_analysis(loaded_item)
 	for(var/mob/living/carbon/human/H in viewers(src))
 		SEND_SIGNAL_OLD(H, COMSING_DESTRUCTIVE_ANALIZER, loaded_item)
+	var/list/deconstructive_matter
 	if(istype(loaded_item,/obj/item/stack))
 		var/obj/item/stack/S = loaded_item
+		deconstructive_matter = S.matter.Copy() // only deconstructing one, not the whole stack
 		if(S.amount <= 1)
 			qdel(S)
 			loaded_item = null
 		else
 			S.use(1)
 	else
+		deconstructive_matter = loaded_item.get_matter()
 		qdel(loaded_item)
 		loaded_item = null
 
 	use_power(active_power_usage)
 	update_icon()
+	for(var/materialtospawn in deconstructive_matter)
+		var/material/matfin = get_material_by_name(materialtospawn)
+		var/obj/item/stack/material/matstack = new matfin.stack_type(get_turf(src))
+		matstack.amount = deconstructive_matter[materialtospawn]
 	if(linked_console)
 		linked_console.reset_screen()
 

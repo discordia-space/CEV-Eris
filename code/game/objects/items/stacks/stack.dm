@@ -40,6 +40,7 @@
 	.=..()
 	if (amount)
 		src.amount = amount
+	update_icon()
 
 /obj/item/stack/Initialize()
 	. = ..()
@@ -49,15 +50,6 @@
 	if (rand_min || rand_max)
 		amount = rand(rand_min, rand_max)
 		amount = round(amount, 1) //Just in case
-	update_icon()
-	if(automerge)
-		return INITIALIZE_HINT_LATELOAD
-
-//do this a little later because trying to merge with uninitialized stacks is an easy way to cause runtimes
-/obj/item/stack/LateInitialize()
-	. = ..()
-	if(automerge)
-		merge_loc_stacks()
 
 /obj/item/stack/update_icon()
 	if(novariants)
@@ -278,8 +270,10 @@
 /obj/item/stack/proc/transfer_to(obj/item/stack/S, var/tamount=null, var/type_verified)
 	if (!get_amount())
 		return 0
+
 	if ((stacktype != S.stacktype) && !type_verified)
 		return 0
+
 	if (isnull(tamount))
 		tamount = src.get_amount()
 
@@ -308,16 +302,18 @@
 
 	var/transfer = max(min(tamount, src.amount, initial(max_amount)), 0)
 
-	var/orig_amount = src.amount
-	if (transfer && src.use(transfer))
+	var/orig_amount = amount
+	if(transfer && use(transfer))
 		var/obj/item/stack/S = new src.type(loc, transfer)
 		S.color = color
-		if (prob(transfer/orig_amount * 100))
+
+		if(prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(S)
 			if(blood_DNA)
 				if(!S.blood_DNA || !istype(S.blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
 					S.blood_DNA = list()
 				S.blood_DNA |= blood_DNA
+
 		return S
 	return null
 
@@ -364,26 +360,27 @@
 			user.put_in_hands(F)
 			src.add_fingerprint(user)
 			F.add_fingerprint(user)
+
 			spawn(0)
-				if (src && usr.machine==src)
-					src.interact(usr)
+			if (src && user.machine == src)
+				interact(user)
 	else
 		..()
-	return
 
 /obj/item/stack/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
+
 		if (user.get_inactive_hand()==src)
 			src.transfer_to(S, 1)
 		else
 			src.transfer_to(S)
 
 		spawn(0) //give the stacks a chance to delete themselves if necessary
-			if (S && usr.machine==S)
-				S.interact(usr)
-			if (src && usr.machine==src)
-				src.interact(usr)
+		if(S && user.machine == S)
+			S.interact(user)
+		if(src && user.machine == src)
+			interact(user)
 	else
 		return ..()
 
@@ -398,8 +395,6 @@
 
 	if (!usr.IsAdvancedToolUser())
 		return
-
-
 
 	var/quantity = input(usr,
 	"This stack contains [amount]/[max_amount]. How many would you like to split off into a new stack?\n\
@@ -469,6 +464,3 @@
 	New(title, recipes)
 		src.title = title
 		src.recipes = recipes
-
-
-

@@ -318,10 +318,9 @@ There are important things regarding this file:
 	armor_divisor = 1
 	pellets = 6
 	range_step = 1
-	spread_step = 10
+	entropy = 10
 	pellet_to_knockback_ratio = 2
 	recoil = 5
-	matter = list(MATERIAL_STEEL = 0.6)
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()
@@ -365,3 +364,19 @@ There are important things regarding this file:
 	name = "large bolt"
 	damage_types = list(BRUTE = 34)
 	matter = list(MATERIAL_STEEL = 5)
+
+/obj/item/projectile/foam_dart
+	name = "foam dart"
+	desc = ""
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "foamdart"
+	damage_types = list(HALLOSS = 0)
+	mob_hit_sound = list('sound/weapons/pinground.ogg')
+	hitsound_wall = "hitobject"
+	matter = list(MATERIAL_PLASTIC = 0.1)
+
+/obj/item/projectile/foam_dart/on_impact(atom/A)
+	. = ..()
+	new /obj/item/ammo_casing/crossbow/foam(get_turf(src))
+	
+	

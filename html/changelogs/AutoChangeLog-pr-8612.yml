@@ -1,0 +1,4 @@
+author: Chickenish
+delete-after: true
+changes:
+  - bugfix: Holding a candle as it runs out of wax now functions properly.

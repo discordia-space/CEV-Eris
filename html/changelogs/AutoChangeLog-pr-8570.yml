@@ -1,0 +1,7 @@
+author: chickenish, bobob
+delete-after: true
+changes:
+  - rscadd: Added modular bolt-gun config
+  - tweak: tweaked Riose cost
+  - bugfix: fixed clrifle bolt action ammo choice discrepancy
+  - imageadd: added modular boltgun parts

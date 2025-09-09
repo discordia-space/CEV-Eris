@@ -1,0 +1,4 @@
+author: Chickenish
+delete-after: true
+changes:
+  - bugfix: fixed specific airlocks

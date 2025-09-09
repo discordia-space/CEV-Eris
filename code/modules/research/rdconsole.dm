@@ -154,17 +154,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	files.check_item_for_tech(I)
 	files.adjust_research_points(files.experiments.get_object_research_value(I))
 	files.experiments.do_research_object(I)
-	var/list/matter = I.get_matter()
-	if(linked_lathe && matter)
-		for(var/t in matter)
-			if(t in linked_lathe.unsuitable_materials)
-				continue
-
-			if(!linked_lathe.stored_material[t])
-				linked_lathe.stored_material[t] = 0
-
-			linked_lathe.stored_material[t] += matter[t] * linked_destroy.decon_mod
-			linked_lathe.stored_material[t] = min(linked_lathe.stored_material[t], linked_lathe.storage_capacity)
 
 /obj/machinery/computer/rdconsole/Topic(href, href_list) // Oh boy here we go.
 	if(..())

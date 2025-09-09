@@ -86,9 +86,6 @@
 					squeals++
 					last_squealgain = world.time
 
-	else
-		if ((world.time - timeofdeath) > decompose_time)
-			dust()
 
 
 //Pixel offsetting as they scamper around

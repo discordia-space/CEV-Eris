@@ -34,7 +34,7 @@
 		total_dmg += dmg_types[dmg_type]
 
 	if(!total_dmg)
-		return FALSE
+		return PROJECTILE_STOP
 
 	// Determine DR and ADR, armour divisor reduces it
 	var/armor = getarmor(def_zone, attack_flag)*dir_mult / armor_divisor
