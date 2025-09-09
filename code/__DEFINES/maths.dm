@@ -237,6 +237,7 @@ proc/leftmost_bit(num)
 			pos++
 	return pos
 
+
 proc/get_vector(dir) // Accepts a directional string and returns a list containing an actual vector
     switch(dir)
         if(NORTH)
