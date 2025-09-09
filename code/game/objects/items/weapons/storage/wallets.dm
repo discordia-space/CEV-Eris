@@ -86,7 +86,7 @@
 	if(prob(50))
 		to_add = pick(/obj/item/spacecash/bundle/c10,/obj/item/spacecash/bundle/c100,/obj/item/spacecash/bundle/c1000,/obj/item/spacecash/bundle/c20,/obj/item/spacecash/bundle/c200,/obj/item/spacecash/bundle/c50,/obj/item/spacecash/bundle/c500)
 		new to_add(src)
-	to_add = pick(/obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/gold, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/iron)
+	to_add = pick(/obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/gold, /obj/item/coin/plasteel, /obj/item/coin/plasteel, /obj/item/coin/plasteel)
 	new to_add(src)
 	if(prob(20))
 		new /obj/item/card/id/randomassistant(src)

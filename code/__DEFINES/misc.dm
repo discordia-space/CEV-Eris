@@ -107,10 +107,10 @@
 #define COIN_GOLD "Gold coin"
 #define COIN_SILVER "Silver coin"
 #define COIN_DIAMOND "Diamond coin"
-#define COIN_IRON "Iron coin"
+#define COIN_PLASTEEL "Plasteel coin"
 #define COIN_PLASMA "Solid plasma coin"
 #define COIN_URANIUM "Uranium coin"
-#define COIN_PLATINUM "Platunum coin"
+#define COIN_PLATINUM "Platinum coin"
 
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"
