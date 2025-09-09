@@ -3,6 +3,17 @@
 	icon_state = "hostilemob-brown"
 	tags_to_spawn = list(SPAWN_ROACH)
 
+/obj/spawner/mob/roaches/post_spawn(list/spawns, list/extravars)
+	var/list/tocopy = list()
+	if(length(extravars))
+		tocopy = extravars["friends"]
+	for(var/mob/spawned in spawns)
+		if(spawned.type == /mob/living/carbon/superior_animal/roach) // kampfers are doubled
+			var/mob/living/carbon/superior_animal/roach/buddy = new(loc)
+			buddy.friends = tocopy.Copy()
+		else if(istype(spawned,/obj/item/reagent_containers/food/snacks/roachcube/kampfer))
+			new /obj/item/reagent_containers/food/snacks/roachcube/kampfer(loc)
+
 /obj/spawner/mob/roaches/low_chance
 	name = "low chance random roach"
 	icon_state = "hostilemob-brown-low"
