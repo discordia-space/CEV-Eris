@@ -1,0 +1,5 @@
+author: Chickenish
+delete-after: true
+changes:
+  - bugfix: nutriment made via roach chem decay is now fully drinkable.
+  - bugfix: Flat Dough and derivatives are now more edible.
