@@ -45,14 +45,14 @@
 	playsound(loc, 'sound/weapons/guns/interact/rev_cock.ogg', 75, 1)
 	bolt_open = !bolt_open
 	if(bolt_open)
-		if(loaded.len)
+		if(length(loaded))
 			if(chambered)
 				to_chat(user, span_notice("You snap the barrel open, ejecting [chambered]!"))
 				chambered.forceMove(get_turf(src))
 				loaded -= chambered
 				chambered = null
 			else
-				var/obj/item/ammo_casing/shell = loaded[loaded.len]
+				var/obj/item/ammo_casing/shell = loaded[1]
 				to_chat(user, span_notice("You snap the barrel open, ejecting [shell]!"))
 				shell.forceMove(get_turf(src))
 				loaded -= shell

@@ -64,7 +64,6 @@
 	else
 		playsound(src.loc, 'sound/weapons/guns/interact/shotgun_close.ogg', 75, 1)
 		to_chat(user, span_notice("You snap the barrel closed"))
-		bolt_open = 0
 	add_fingerprint(user)
 	update_icon()
 

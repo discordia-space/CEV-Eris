@@ -51,6 +51,9 @@
 
 	max_upgrades = 6
 
+	var/list/scope_damage_adds = list()
+	var/datum/gunoverrides/overridedatum
+
 /obj/item/gun/projectile/automatic/modular/Initialize()
 
 	gun_tags += GUN_MODULAR
@@ -59,6 +62,7 @@
 			var/obj/item/part/gun/modular/new_part = new partPath(quality = gun_parts[partPath])
 			if(!new_part.I.rapid_apply(src))
 				visible_message(span_warning("Something seems wrong... Maybe you should ask a professional for help?"))
+	overridedatum = new()
 	refresh_upgrades()
 	. = ..()
 	update_icon()
@@ -80,7 +84,12 @@
 	verbs -= MODULAR_VERBS // Removes all modularized verbs
 	grip_type = initial(grip_type)
 	good_calibers = list() // Won't ever be redefined, mechanism determines this, and when no mechanism is installed, we don't want anything here anyways
+	no_internal_mag = initial(no_internal_mag)
+	scope_damage_adds = list()
+	overridedatum?.reset() // clear first
 	..()
+	reset_action_buttons()
+	overridedatum?.cycle() // then use an assignment sort
 	name = get_initial_name()
 
 /obj/item/gun/projectile/automatic/modular/update_icon() // V2
@@ -157,6 +166,75 @@
 
 // Interactions
 
+/datum/gunoverrides
+	var/list/priorities = list()
+
+/datum/gunoverrides/proc/reset()
+	for(var/list/wiped in priorities)
+		wiped.Cut()
+	priorities.Cut()
+
+/datum/gunoverrides/proc/call_Flag(obj/item/load, user, flag)
+	for(var/key in priorities)
+		var/list/priority = priorities[key]
+		var/done = FALSE
+		for(var/datum/guninteraction/tocheck in priority) // highest numbers first.
+			if(tocheck.interactionflags & flag)
+				switch(flag)
+					if(GI_ATTACKSELF)
+						if(tocheck.attack_self(user))
+							done = TRUE
+					if(GI_LOAD)
+						if(tocheck.load_ammo(load, user))
+							done = TRUE
+					if(GI_UNLOAD)
+						if(tocheck.unload_ammo(user))
+							done = TRUE
+					if(GI_SPECIAL)
+						if(tocheck.special_check(user))
+							done = TRUE
+		if(done)
+			return TRUE
+
+/datum/gunoverrides/proc/cycle()
+	var/list/slate = list()
+	for(var/number = 4, number >= 0, number -= 1)
+		slate["[number]"] = priorities["[number]"] ? priorities["[number]"] : null
+	priorities = slate.Copy()
+
+/obj/item/gun/projectile/automatic/modular/attack_self(mob/user)
+	if(!overridedatum.call_Flag(user = user, flag = GI_ATTACKSELF))
+		. = ..()
+
+/obj/item/gun/projectile/automatic/modular/load_ammo(obj/item/A, mob/user)
+	if(!overridedatum.call_Flag(load = A, user = user, flag = GI_LOAD))
+		. = ..()
+
+
+/obj/item/gun/projectile/automatic/modular/unload_ammo(mob/user, allow_dump)
+	if(!overridedatum.call_Flag(user = user, flag = GI_UNLOAD))
+		. = ..()
+
+/obj/item/gun/projectile/automatic/modular/special_check(mob/user)
+	if(!overridedatum.call_Flag(user = user, flag = GI_SPECIAL))
+		. = ..()
+
+/obj/item/gun/projectile/automatic/modular/hand_spin(mob/living/carbon/caller)
+	overridedatum.call_Flag(user = caller, flag = GI_SPIN)
+
+/obj/item/gun/projectile/automatic/modular/proc/reset_action_buttons()
+	for(var/key in overridedatum.priorities)
+		var/list/priority = overridedatum.priorities[key]
+		for(var/datum/guninteraction/tocheck in priority) // highest numbers first.
+			if(tocheck.action_button_name && tocheck.action_button_proc)
+				action_button_name = tocheck.action_button_name
+				action_button_proc = tocheck.action_button_proc
+				return TRUE // can only have one button
+	// if we didn't override them
+	action_button_name = initial(action_button_name)
+	action_button_proc = initial(action_button_proc)
+	qdel(action)
+
 /obj/item/gun/projectile/automatic/modular/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
 		return 1
@@ -194,16 +272,19 @@
 /obj/item/gun/projectile/automatic/modular/proc/fold(user)
 
 	if(PARTMOD_FOLDING_STOCK & spriteTags)
-		if(PARTMOD_FOLDING_STOCK & statusTags)
-			to_chat(user, span_notice("You fold the stock on \the [src]."))
-			statusTags -= PARTMOD_FOLDING_STOCK
-			w_class = initial(w_class)
-		else
-			to_chat(user, span_notice("You unfold the stock on \the [src]."))
-			statusTags |= PARTMOD_FOLDING_STOCK
-			w_class = initial(w_class) + 1
+		for(var/obj/item/part/gun/modular/stock/toedit in gun_parts) // only gonna edit one, doing this to find it
+			if(PARTMOD_FOLDING_STOCK & statusTags)
+				to_chat(user, span_notice("You fold the stock on \the [src]."))
+				statusTags -= PARTMOD_FOLDING_STOCK
+				toedit.I.weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS] = 0
+			else
+				to_chat(user, span_notice("You unfold the stock on \the [src]."))
+				statusTags |= PARTMOD_FOLDING_STOCK
+				toedit.I.weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS] = toedit.wclassmod
+			break
 
 		refresh_upgrades()
+
 		playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 		update_icon()
 
@@ -218,3 +299,14 @@
 				return FALSE
 	load_ammo(I, user)
 	update_held_icon()
+
+/obj/item/gun/projectile/automatic/modular/zoom(tileoffset, viewsize, stayzoomed)
+	..()
+	refresh_upgrades()
+	if(zoom)
+		var/currentzoom = zoom_factors.Find(active_zoom_factor)
+		var/extra_damage
+		if(scope_damage_adds[currentzoom])
+			extra_damage = scope_damage_adds[currentzoom]
+		damage_multiplier += extra_damage
+
