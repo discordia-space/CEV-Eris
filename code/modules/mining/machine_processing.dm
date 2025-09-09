@@ -133,8 +133,8 @@
 	var/input_dir = 0
 	var/output_dir = 0
 
-/obj/machinery/mineral/processing_unit/New()
-	..()
+/obj/machinery/mineral/processing_unit/LateInitialize()
+	. = ..()
 
 	ores_processing = list()
 	ores_stored = list()
