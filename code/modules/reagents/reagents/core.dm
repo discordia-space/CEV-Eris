@@ -79,7 +79,7 @@
 		if (prob(5))
 			T.visible_message(span_warning("The water sizzles as it lands on \the [T]!"))
 
-	else if(volume >= 10)
+	else if(volume >= 10 && !QDELING(T))
 		T.wet_floor(1)
 	return TRUE
 
