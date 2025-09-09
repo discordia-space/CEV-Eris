@@ -45,6 +45,7 @@
 #define span_cultlarge(str) ("<span class='cultlarge'>" + str + "</span>")
 #define span_danger(str) ("<span class='danger'>" + str + "</span>")
 #define span_deadsay(str) ("<span class='deadsay'>" + str + "</span>")
+#define span_death_message(str) ("<span class='death_message'>" + str + "</span>")
 #define span_deconversion_message(str) ("<span class='deconversion_message'>" + str + "</span>")
 #define span_deptradio(str) ("<span class='deptradio'>" + str + "</span>")
 #define span_disarm(str) ("<span class='disarm'>" + str + "</span>")

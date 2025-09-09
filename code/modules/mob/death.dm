@@ -114,11 +114,14 @@
 		mind.store_memory("Time of death: [stationtime2text()]", 0)
 	switch_from_living_to_dead_mob_list()
 	updateicon()
-	to_chat(src,span_deadsay("[show_dead_message]"))
+	var/death_block = ""
+	death_block += span_danger("<center><span style='font-size: 32px'>You have died!</font></center>")
+	death_block += "<hr>"
+	death_block += span_danger("Barring complete bodyloss, you can (in some cases) be revived by other players. This may not be the end. The respawn timer is 30 minutes unless your body is cremated, \
+		placed in the morgue, given burial in space, or melted down to biomatter. These methods will shorten the respawn timer. If you have a cruciform, it can be used to clone you. If you were a Full Body Prosthetic, this is the end. \
+		If you're human with an organic heart and brain, you might be resuscitated if the body is recovered within 10 minutes.")
+	to_chat(src, span_death_message(death_block))
 	return 1
-
-
-
 
 //This proc retrieves the relevant time of death from
 /mob/proc/get_death_time(which)
