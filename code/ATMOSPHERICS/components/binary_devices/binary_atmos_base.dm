@@ -56,7 +56,7 @@
 		node2.disconnect(src)
 		QDEL_NULL(network2)
 		node2 = null
-	..()
+	. = ..()
 
 
 /obj/machinery/atmospherics/binary/atmos_init()
