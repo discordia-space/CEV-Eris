@@ -63,6 +63,9 @@
 #define GUN_UPGRADE_OVERCHARGE_MAX "overcharge_max_mult"
 #define GUN_UPGRADE_OVERCHARGE_RATE "overcharge_rate_mult"
 #define GUN_UPGRADE_ONEHANDPENALTY "onehandpenalty_mult"
+#define GUN_UPGRADE_MOVEPENALTY "movementpenalty_mult"
+#define GUN_UPGRADE_RECOILBUILDUP "recoilbuildup_mult"
+#define GUN_UPGRADE_BASESLOW "slowdown_base_add"
 
 //Int additive
 #define GUN_UPGRADE_DAMAGEMOD_PLUS "damage_plus"
@@ -81,14 +84,29 @@
 
 #define GUN_UPGRADE_OFFSET "offset" //Constant offset, in degrees
 #define GUN_UPGRADE_ZOOM "zoom"
+#define GUN_UPGRADE_SCOPEVISION "scopeseeinvis"
+#define GUN_UPGRADE_SCOPECORRECTION "scopeoffset"
+#define GUN_UPGRADE_DARKSCOPE "scopedarksight"
 
 //Type configuration
+#define GUN_UPGRADE_REPLACE_INTERACTIONS "interactions"
 #define GUN_UPGRADE_DEFINE_OK_CALIBERS "ok_calibers"
 #define GUN_UPGRADE_DEFINE_CALIBER "caliber"
 #define GUN_UPGRADE_DEFINE_MAG_WELL "mag_well"
 #define GUN_UPGRADE_DEFINE_STOCK "stock"
 #define GUN_UPGRADE_FIREMODES "firemodes"
 #define GUN_UPGRADE_DEFINE_GRIP "grip"
+#define GUN_UPGRADE_DEFINE_LOADER "loadtype"
+#define GUN_UPGRADE_DENY_MAG "no_mag"
+#define GUN_UPGRADE_DEFINE_WCLASS "add_wclass"
+#define GUN_UPGRADE_SCOPE_POWER "scope_power"
+
+//Gun Interaction flags
+#define GI_ATTACKSELF 1
+#define GI_LOAD 2
+#define GI_UNLOAD 4
+#define GI_SPIN 8
+#define GI_SPECIAL 16
 
 //boolean
 #define GUN_UPGRADE_SILENCER "silencable"

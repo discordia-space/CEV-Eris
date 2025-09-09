@@ -1017,6 +1017,7 @@
 	sharp = initial(sharp)
 	braceable = initial(braceable)
 	recoil = getRecoil(init_recoil[1], init_recoil[2], init_recoil[3])
+	w_class = initial(w_class)
 
 	attack_verb = list()
 	if(LAZYLEN(custom_default)) // this override is used by the artwork_revolver for RNG gun stats
