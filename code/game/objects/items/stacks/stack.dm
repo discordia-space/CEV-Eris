@@ -371,7 +371,7 @@
 	if (istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
 
-		if (user.get_inactive_hand()==src)
+		if (user.get_inactive_held_item()==src)
 			src.transfer_to(S, 1)
 		else
 			src.transfer_to(S)
