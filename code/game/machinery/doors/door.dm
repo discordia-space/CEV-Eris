@@ -51,7 +51,7 @@
 
 /obj/machinery/door/Destroy()
 	GLOB.all_doors -= src
-	..()
+	. = ..()
 
 /obj/machinery/door/can_prevent_fall(above)
 	return above ? density : null

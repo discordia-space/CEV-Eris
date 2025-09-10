@@ -54,8 +54,8 @@
 
 	node1 = null
 	node2 = null
-
 	. = ..()
+
 
 /obj/machinery/atmospherics/binary/atmos_init()
 	if(node1 && node2) return
