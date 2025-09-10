@@ -352,7 +352,7 @@ This function restores all organs.
 		organ = def_zone
 	else
 		if(!def_zone)
-			if(!damagetype == TOX) // global application
+			if(!(damagetype == TOX)) // global application
 				def_zone = ran_zone(def_zone)
 		organ = get_organ(check_zone(def_zone))
 
