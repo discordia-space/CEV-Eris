@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(jamming)
 
 /datum/controller/subsystem/jamming/Initialize(start_timeofday)
 	active_jammers = new /list(world.maxz)
-	for(var/i = 1, i < world.maxz; i++)
+	for(var/i = 1, i < world.maxz, i++)
 		active_jammers[i] = list()
 	. = ..()
 

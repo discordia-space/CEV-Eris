@@ -35,10 +35,10 @@
 	if(!active)
 		return
 	var/list/affectedLevels = getAffectedLevels(oldLevel)
-	for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
+	for(var/i = affectedLevels[1], i <= affectedLevels[2], i++)
 		SSjamming.active_jammers[i] -= src
 	affectedLevels = getAffectedLevels(newLevel)
-	for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
+	for(var/i = affectedLevels[1], i <= affectedLevels[2], i++)
 		SSjamming.active_jammers[i] += src
 
 
@@ -53,7 +53,7 @@
 	if(active)
 		var/turf/ownerTurf = get_turf(owner)
 		var/list/affectedLevels = getAffectedLevels(ownerTurf.z)
-		for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
+		for(var/i = affectedLevels[1], i <= affectedLevels[2], i++)
 			SSjamming.active_jammers[i] -= src
 	owner = null
 	..()
@@ -62,10 +62,10 @@
 	var/turf/ownerTurf = get_turf(owner)
 	var/list/affectedLevels = getAffectedLevels(ownerTurf.z)
 	if(active)
-		for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
+		for(var/i = affectedLevels[1], i <= affectedLevels[2], i++)
 			SSjamming.active_jammers[i] -= src
 	else
-		for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
+		for(var/i = affectedLevels[1], i <= affectedLevels[2], i++)
 			SSjamming.active_jammers[i] += src
 	active = !active
 
