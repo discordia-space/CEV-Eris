@@ -14,5 +14,5 @@
 		if(firearm.serial_type)
 			text += "[firearm.serial_type] - [firearm.name] \n"
 	new /obj/item/paper(get_turf(src), text, "IH Armoury log")
-	delete_me = TRUE
+	qdel(src)
 

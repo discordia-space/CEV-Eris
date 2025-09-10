@@ -133,6 +133,17 @@
 	var/input_dir = 0
 	var/output_dir = 0
 
+/obj/machinery/mineral/processing_unit/Initialize(mapload, d)
+	. = ..()
+	//Locate our output and input machinery.
+	var/obj/marker = null
+	marker = locate(/obj/landmark/machinery/input) in range(1, loc)
+	if(marker)
+		input_dir = get_dir(src, marker)
+	marker = locate(/obj/landmark/machinery/output) in range(1, loc)
+	if(marker)
+		output_dir = get_dir(src, marker)
+
 /obj/machinery/mineral/processing_unit/LateInitialize()
 	. = ..()
 
@@ -153,15 +164,6 @@
 		ores_processing[OD.name] = 0
 		ores_stored[OD.name] = 0
 
-	spawn()
-		//Locate our output and input machinery.
-		var/obj/marker = null
-		marker = locate(/obj/landmark/machinery/input) in range(1, loc)
-		if(marker)
-			input_dir = get_dir(src, marker)
-		marker = locate(/obj/landmark/machinery/output) in range(1, loc)
-		if(marker)
-			output_dir = get_dir(src, marker)
 
 /obj/machinery/mineral/processing_unit/update_icon()
 	icon_state = "furnace[active ? "_on" : ""]"

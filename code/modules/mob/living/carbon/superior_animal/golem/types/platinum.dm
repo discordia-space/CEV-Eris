@@ -75,10 +75,12 @@
 
 					for(var/mob/living/victim in targetturf.contents)
 						if(victim != src)
-							victim.adjustBruteLoss(PLATINUM_CHARGE_DAMAGE_OBSTACLES)
+							victim.attack_generic(src, PLATINUM_CHARGE_DAMAGE_OBSTACLES, pick(charge_hit_verbs), FALSE, FALSE, FALSE, 1)
 				else
 					for(var/atom/victim in targetturf.contents)
-						victim.explosion_act(PLATINUM_CHARGE_DAMAGE_OBSTACLES * 4) //TEAR THROUGH ALL THAT IMPEDES YOU
+						if(victim.density)
+							victim.attack_generic(src, PLATINUM_CHARGE_DAMAGE_OBSTACLES, pick(charge_hit_verbs), FALSE, FALSE, FALSE, 1)
+
 					break // if the turf is blocked (ie a wall/door/window), stop charging here
 
 			visible_message(span_danger("<b>[src]</b> [pick(charge_verbs)] at [target_mob]!"))

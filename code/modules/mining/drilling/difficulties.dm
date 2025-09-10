@@ -19,16 +19,16 @@
 /datum/cave_difficulty_level/proc/get_golem_spawns()
 	var/list/golems_to_spawn = list() //list of golem types to spawn
 	if(golem_count_melee)
-		for(var/c in 0 to golem_count_melee)
+		for(var/c = 1 to golem_count_melee)
 			golems_to_spawn += pickweight(golem_weights_melee)
 
 	if(golem_count_ranged)
-		for(var/c in 0 to golem_count_ranged)
+		for(var/c = 1 to golem_count_ranged)
 			golems_to_spawn += pickweight(golem_weights_ranged)
 
 	if(golem_count_mixed)
 		var/list/golem_weights_mixed = golem_weights_melee + golem_weights_ranged
-		for(var/c in 0 to golem_count_mixed)
+		for(var/c = 1 to golem_count_mixed)
 			golems_to_spawn += pickweight(golem_weights_mixed)
 
 	return golems_to_spawn
@@ -71,12 +71,12 @@
 
 	golem_count_melee = 1
 	golem_count_ranged = 1
-	golem_count_mixed = 3
+	golem_count_mixed = 2
 
 	golem_weights_melee = list(
-		/mob/living/carbon/superior_animal/golem/iron = 4,
+		/mob/living/carbon/superior_animal/golem/iron = 5,
 		/mob/living/carbon/superior_animal/golem/coal = 2,
-		/mob/living/carbon/superior_animal/golem/platinum = 3)
+		/mob/living/carbon/superior_animal/golem/platinum = 2)
 
 	golem_weights_ranged = list(
 		/mob/living/carbon/superior_animal/golem/silver = 3,
@@ -95,8 +95,8 @@
 	golem_count_mixed = 3
 
 	golem_weights_melee = list(
-		/mob/living/carbon/superior_animal/golem/iron = 4,
-		/mob/living/carbon/superior_animal/golem/coal/enhanced = 2,
+		/mob/living/carbon/superior_animal/golem/iron = 8,
+		/mob/living/carbon/superior_animal/golem/coal/enhanced = 4,
 		/mob/living/carbon/superior_animal/golem/platinum = 3,
 		/mob/living/carbon/superior_animal/golem/plasma = 2)
 
@@ -117,8 +117,8 @@
 	golem_count_mixed = 1
 
 	golem_weights_melee = list(
-		/mob/living/carbon/superior_animal/golem/iron = 3,
-		/mob/living/carbon/superior_animal/golem/coal/enhanced = 2,
+		/mob/living/carbon/superior_animal/golem/iron = 6,
+		/mob/living/carbon/superior_animal/golem/coal/enhanced = 4,
 		/mob/living/carbon/superior_animal/golem/platinum = 3,
 		/mob/living/carbon/superior_animal/golem/plasma = 2)
 	golem_weights_ranged = list(
@@ -139,8 +139,8 @@
 	golem_count_mixed = 1
 
 	golem_weights_melee = list(
-		/mob/living/carbon/superior_animal/golem/iron = 3,
-		/mob/living/carbon/superior_animal/golem/coal/enhanced = 2,
+		/mob/living/carbon/superior_animal/golem/iron = 8,
+		/mob/living/carbon/superior_animal/golem/coal/enhanced = 6,
 		/mob/living/carbon/superior_animal/golem/platinum = 3,
 		/mob/living/carbon/superior_animal/golem/plasma = 2,
 		/mob/living/carbon/superior_animal/golem/diamond = 2)
