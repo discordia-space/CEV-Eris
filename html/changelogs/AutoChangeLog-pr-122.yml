@@ -1,9 +1,0 @@
-author: VmpOS2NHSkhkejA9
-delete-after: true
-changes:
-  - bugfix: ore processors and unloaders not setting their input/output 
-      directions
-  - bugfix: deep drill caves spawning the wrong number of golems
-  - bugfix: platinum golems no longer delete ore boxes
-  - balance: silver, platinum and gold golems are weaker and less now
-  - balance: adjusted spawn weights for golems
