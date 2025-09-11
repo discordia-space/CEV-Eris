@@ -8,8 +8,8 @@
 
 	mob_size = MOB_MEDIUM
 
-	maxHealth = 100
-	health = 100
+	maxHealth = 200 
+	health = 200
 
 	//spawn_values
 	rarity_value = 37.5
@@ -61,12 +61,20 @@
 	fire_verb = "fires"
 	acceptableTargetDistance = 6
 	kept_distance = 3
+	
+	var/already_shooting = 0
+
+/mob/living/carbon/superior_animal/stalker/Move()
+	..()
+	if(!isinspace())
+		playsound(src, 'sound/mechs/Mech_Step.ogg', 50, 1)
 
 /mob/living/carbon/superior_animal/stalker/death()
 	. = ..()
 	visible_message("Critical components of \the [src] blow apart!")
 	new /obj/effect/decal/cleanable/blood/gibs/robot(loc)
 	do_sparks(3, TRUE, src)
+	playsound(src, 'sound/machines/triple_beep.ogg', 50, 1)
 
 /mob/living/carbon/superior_animal/stalker/dual
 	name = "OneStar Stalker Mk2"
@@ -74,8 +82,8 @@
 	icon_state = "stalker_mk2"
 	icon_living = "stalker_mk2"
 
-	maxHealth = 200
-	health = 200
+	maxHealth = 400 
+	health = 400
 	rapid = 1
 
 /mob/living/carbon/superior_animal/stalker/New()
@@ -108,3 +116,31 @@
 				qdel(src)
 	else
 		O.attack(src, user, user.targeted_organ)
+
+///////////////////Shooting Sequence/////////////////////
+/mob/living/carbon/superior_animal/stalker/OpenFire(target_mob)
+	if(already_shooting)
+		return
+	var/target = get_turf(target_mob)
+	visible_message(SPAN_DANGER("<b>[src]</b> [fire_verb] at [target_mob]!"), 1)
+	already_shooting++
+	walk(src, 0)
+	var/i = rapid ? 20 : 5
+	while(i > 0)
+		i--
+		Shoot(target, loc, src)
+		if(casingtype)
+			new casingtype(get_turf(src))
+		sleep(1)
+	already_shooting--
+	
+	stance = HOSTILE_STANCE_IDLE
+	target_mob = null
+	if(!rapid && src.stat != DEAD)
+		evasive_maneuvers()
+	return
+
+/mob/living/carbon/superior_animal/stalker/proc/evasive_maneuvers()
+	var/turf/destination = pick(RANGE_TURFS(6, src))
+	walk_to(src, destination, 1, move_to_delay)
+

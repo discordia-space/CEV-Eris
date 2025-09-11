@@ -22,7 +22,7 @@
 	light_range = 3
 	light_color = COLOR_LIGHTING_BLUE_BRIGHT
 	mob_classification = CLASSIFICATION_SYNTHETIC
-	move_to_delay = 9
+	move_to_delay = 3
 	spawn_tags = SPAWN_TAG_MOB_OS_CUSTODIAN
 	rarity_value = 23.8
 	var/shell_type = "os"
@@ -30,13 +30,14 @@
 	var/screen_type = "os" //if someone decides to make the drones for something aside from OS and have different desgins
 	var/tool = "laser"
 	var/tooltype = "os"
+	attack_sound = 'sound/weapons/Egloves.ogg'
 
 /mob/living/simple_animal/hostile/onestar_custodian/New()
 	. = ..()
 	marks_type = pick("green", "blue", "pink", "orange", "cyan", "red", "os")
 	screen_type = pick("green", "os_red", "yellow", "cyan", "red", "os")
 	update_icon()
-
+	set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 
 /mob/living/simple_animal/hostile/onestar_custodian/update_icon()
 	. = ..()
@@ -103,3 +104,32 @@
 	melee_damage_lower = 7
 	melee_damage_upper = 15
 	rarity_value = 39.66
+	move_to_delay = 5
+
+/mob/living/simple_animal/hostile/onestar_custodian/engineer/MoveToTarget()
+	if(!target_mob || SA_attackable(target_mob))
+		stance = HOSTILE_STANCE_IDLE
+	if(target_mob in ListTargets(10))
+		OpenFire(target_mob)
+
+/mob/living/simple_animal/hostile/onestar_custodian/engineer/OpenFire()
+	var/distance = get_dist(src, target_mob)
+	switch(distance)
+		if(0 to 2)
+			walk_away(src, target_mob, 6, move_to_delay)
+		if(7 to 10)
+			walk_to(src, target_mob, 6, move_to_delay)
+		else
+			walk(src, 0)
+			Shoot(target_mob, loc, src)
+			LoseTarget()
+			if(casingtype)
+				new casingtype(get_turf(src))
+
+
+
+/mob/living/simple_animal/hostile/onestar_custodian/AttackTarget()
+	. = ..()
+	if(.)
+		playsound(src, attack_sound, 50, 1)
+		target_mob.stun_effect_act(0, 50, get_exposed_defense_zone(target_mob), src) // shocking content
