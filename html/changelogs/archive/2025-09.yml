@@ -45,3 +45,6 @@
   - bugfix: platinum golems no longer delete ore boxes
   - balance: silver, platinum and gold golems are weaker and less now
   - balance: adjusted spawn weights for golems
+2025-09-12:
+  flleeppyy:
+  - rscdel: revert new announcer voices
