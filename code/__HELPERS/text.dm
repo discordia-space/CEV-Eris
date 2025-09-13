@@ -293,6 +293,10 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 
 	return input
 
+/// Runs STRIP_HTML_SIMPLE and byond's sanitization proc.
+/proc/adminscrub(text, limit = MAX_MESSAGE_LEN)
+	return html_encode(STRIP_HTML_SIMPLE(text, limit))
+
 /**
  * Used to get a properly sanitized input in a larger box. Works very similarly to stripped_input.
  *

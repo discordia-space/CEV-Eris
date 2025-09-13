@@ -20,10 +20,10 @@
 	SSevent.change_parallax("bluespace_storm")
 
 /datum/event/bluespace_storm/announce()
-	command_announcement.Announce("The scanners have detected a bluespace storm near the ship. Bluespace distortions are likely to happen while it lasts.", "Bluespace Storm")
+	priority_announce("The scanners have detected a bluespace storm near the ship. Bluespace distortions are likely to happen while it lasts.", "Bluespace Storm")
 
 /datum/event/bluespace_storm/end()
-	command_announcement.Announce("The bluespace storm has ended.", "Bluespace Storm")
+	priority_announce("The bluespace storm has ended.", "Bluespace Storm")
 	SSevent.change_parallax(GLOB.random_parallax)
 
 /datum/event/bluespace_storm/tick()
@@ -53,10 +53,10 @@
 	SSevent.change_parallax("ion_blizzard")
 
 /datum/event/ion_blizzard/announce()
-	command_announcement.Announce("A severe ion storm has been detected near the ship. Lighting subsystems are currently overloaded and may not work properly.", "Ion Blizzard")
+	priority_announce("A severe ion storm has been detected near the ship. Lighting subsystems are currently overloaded and may not work properly.", "Ion Blizzard")
 
 /datum/event/ion_blizzard/end()
-	command_announcement.Announce("The ion blizzard has ended.", "Ion Blizzard")
+	priority_announce("The ion blizzard has ended.", "Ion Blizzard")
 	SSevent.change_parallax(GLOB.random_parallax)
 
 /datum/event/ion_blizzard/tick() //get random ship area and do things to all light in there
@@ -102,10 +102,10 @@
 			l.update()
 
 /datum/event/photon_vortex/announce()
-	command_announcement.Announce("A photon vortex anomaly has been detected near the ship. All photon-emitting machinery gives much less light.", "Photon Vortex Anomaly")
+	priority_announce("A photon vortex anomaly has been detected near the ship. All photon-emitting machinery gives much less light.", "Photon Vortex Anomaly")
 
 /datum/event/photon_vortex/end()
-	command_announcement.Announce("The photon vortex anomaly has moved away from the ship.", "Photon Vortex Anomaly")
+	priority_announce("The photon vortex anomaly has moved away from the ship.", "Photon Vortex Anomaly")
 	SSevent.change_parallax(GLOB.random_parallax)
 	for(var/obj/item/device/lighting/L in world)
 		L.brightness_on = initial(L.brightness_on)
@@ -142,10 +142,10 @@
 	SSevent.change_parallax("photon_vortex")	// Vortex is unused at the moment
 
 /datum/event/harmonic_feedback/announce()
-	command_announcement.Announce("The ship is currently passing through intense gravitational wavefronts. They will heavily disrupt hull shields for a short duration.", "Harmonic Feedback Surge Anomaly")
+	priority_announce("The ship is currently passing through intense gravitational wavefronts. They will heavily disrupt hull shields for a short duration.", "Harmonic Feedback Surge Anomaly")
 
 /datum/event/harmonic_feedback/end()
-	command_announcement.Announce("The gravitational wavefronts have passed.", "Harmonic Feedback Surge Anomaly")
+	priority_announce("The gravitational wavefronts have passed.", "Harmonic Feedback Surge Anomaly")
 	SSevent.change_parallax(GLOB.random_parallax)
 
 /datum/event/harmonic_feedback/tick() //around two seconds
@@ -178,10 +178,10 @@
 	SSevent.change_parallax("micro_debris")
 
 /datum/event/micro_debris/announce()
-	command_announcement.Announce("The ship is now passing through a micro debris field.", "Micro Debris Field Alert")
+	priority_announce("The ship is now passing through a micro debris field.", "Micro Debris Field Alert")
 
 /datum/event/micro_debris/end()
-	command_announcement.Announce("The ship has now passed through the micro debris field.", "Micro Debris Field Notice")
+	priority_announce("The ship has now passed through the micro debris field.", "Micro Debris Field Notice")
 	SSevent.change_parallax(GLOB.random_parallax)
 
 /datum/event/micro_debris/tick()
@@ -220,7 +220,7 @@
 	SSevent.change_parallax("graveyard")
 
 /datum/event/graveyard/announce()
-	command_announcement.Announce("Drifting wrecks of a space station have been detected near the ship. Telecommunication systems are not responsible for any strain on the crew's psychological wellbeing.", "Space Graveyard")
+	priority_announce("Drifting wrecks of a space station have been detected near the ship. Telecommunication systems are not responsible for any strain on the crew's psychological wellbeing.", "Space Graveyard")
 
 /datum/event/graveyard/tick()
 	if(!(activeFor % 50))		// Every 50th tick
@@ -249,7 +249,7 @@
 					GLOB.announcer.autosay("Man, all those people really suck. Just don't get hit and beat everything until it dies.", "Emergency Broadcast")
 
 /datum/event/graveyard/end()
-	command_announcement.Announce("The station wrecks have moved away from the ship.", "Space Graveyard")
+	priority_announce("The station wrecks have moved away from the ship.", "Space Graveyard")
 	GLOB.GLOBAL_SANITY_MOD = 1
 	SSevent.change_parallax(GLOB.random_parallax)
 
@@ -276,10 +276,10 @@
 	SSevent.change_parallax("nebula")
 
 /datum/event/nebula/announce()
-	command_announcement.Announce("Uncharacteristically high concentrations of dark matter from a nearby nebula currently envelop the ship. Crew might experience certain issues with their mental wellbeing.", "Dark Matter Nebula")
+	priority_announce("Uncharacteristically high concentrations of dark matter from a nearby nebula currently envelop the ship. Crew might experience certain issues with their mental wellbeing.", "Dark Matter Nebula")
 
 /datum/event/nebula/end()
-	command_announcement.Announce("The dark matter nebula has moved away from the ship.", "Dark Matter Nebula")
+	priority_announce("The dark matter nebula has moved away from the ship.", "Dark Matter Nebula")
 	GLOB.GLOBAL_INSIGHT_MOD = 1
 	SSevent.change_parallax(GLOB.random_parallax)
 
@@ -305,7 +305,7 @@
 	SSevent.change_parallax("bluespace_interphase")
 
 /datum/event/interphase/announce()
-	command_announcement.Announce("The fabric of bluespace has begun to break up, allowing an overlap of parallel universes on different dimensional planes. There is no additional data.", "Bluespace Interphase")
+	priority_announce("The fabric of bluespace has begun to break up, allowing an overlap of parallel universes on different dimensional planes. There is no additional data.", "Bluespace Interphase")
 
 /datum/event/interphase/tick()
 	if(!(activeFor % 50))		// Every 50th tick
@@ -334,5 +334,5 @@
 		qdel(ghost)
 
 /datum/event/interphase/end()
-	command_announcement.Announce("The bluespace interphase stabilized itself.", "Bluespace Interphase")
+	priority_announce("The bluespace interphase stabilized itself.", "Bluespace Interphase")
 	SSevent.change_parallax(GLOB.random_parallax)

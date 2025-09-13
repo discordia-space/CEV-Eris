@@ -59,14 +59,14 @@
 	if(cloaked || isnull(departure_message))
 		return
 
-	command_announcement.Announce(departure_message,(announcer ? announcer : "[GLOB.boss_name]"))
+	priority_announce(departure_message,(announcer || "[GLOB.boss_name]"))
 
 /datum/shuttle/multi_shuttle/proc/announce_arrival()
 
 	if(cloaked || isnull(arrival_message))
 		return
 
-	command_announcement.Announce(arrival_message,(announcer ? announcer : "[GLOB.boss_name]"))
+	priority_announce(arrival_message,(announcer || "[GLOB.boss_name]"))
 
 
 /obj/machinery/computer/shuttle_control/multi

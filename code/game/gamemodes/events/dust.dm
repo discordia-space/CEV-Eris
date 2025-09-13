@@ -23,14 +23,14 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	endWhen		= 30
 
 /datum/event/dust/announce()
-	command_announcement.Announce("The ship is now passing through a belt of space dust.", "Dust Alert")
+	priority_announce("The ship is now passing through a belt of space dust.", "Dust Alert")
 
 /datum/event/dust/start()
 	log_and_message_admins("Space dust event triggered,")
 	dust_swarm(get_severity())
 
 /datum/event/dust/end()
-	command_announcement.Announce("The ship has now passed through the belt of space dust.", "Dust Notice")
+	priority_announce("The ship has now passed through the belt of space dust.", "Dust Notice")
 
 /datum/event/dust/proc/get_severity()
 	switch(severity)

@@ -680,7 +680,7 @@
 		prefix = "--CRITICAL WARNING!-- "
 		spanclass = "danger"
 
-	command_announcement.Announce(span(spanclass, "[prefix]Shield integrity at [round(field_integrity())]%"), "Shield Status Report", msg_sanitized = TRUE)
+	priority_announce(span(spanclass, "[prefix]Shield integrity at [round(field_integrity())]%"), "Shield Status Report")
 
 
 

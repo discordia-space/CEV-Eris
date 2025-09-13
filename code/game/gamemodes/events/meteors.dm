@@ -40,10 +40,10 @@
 /datum/event/meteor_wave/announce()
 	switch(severity)
 		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("Meteors have been detected on collision course with the ship. ETA 3 minutes until impact. Crew are advised to raise shields and stay away from the outer hull", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
+			priority_announce("Meteors have been detected on collision course with the ship. ETA 3 minutes until impact. Crew are advised to raise shields and stay away from the outer hull", "Meteor Alert", sound = 'sound/AI/meteors.ogg')
 
 		else
-			command_announcement.Announce("Meteors have been detected on collision course with the ship.ETA 3 minutes until impact.", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
+			priority_announce("Meteors have been detected on collision course with the ship.ETA 3 minutes until impact.", "Meteor Alert", sound = 'sound/AI/meteors.ogg')
 
 /datum/event/meteor_wave/tick()
 	if(activeFor >= next_meteor)
@@ -56,9 +56,9 @@
 /datum/event/meteor_wave/end()
 	switch(severity)
 		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("The ship has cleared the meteor storm.", "Meteor Alert")
+			priority_announce("The ship has cleared the meteor storm.", "Meteor Alert")
 		else
-			command_announcement.Announce("The ship has cleared the meteor shower", "Meteor Alert")
+			priority_announce("The ship has cleared the meteor shower", "Meteor Alert")
 
 /datum/event/meteor_wave/proc/get_meteors()
 	switch(severity)
@@ -83,7 +83,7 @@
 	. = ..()
 
 /datum/event/meteor_wave/overmap/announce()
-	command_announcement.Announce("Alert: The ship is now passing through an asteroid field. Brace for impact", "Asteroid Alert", new_sound = 'sound/AI/meteors.ogg')
+	priority_announce("Alert: The ship is now passing through an asteroid field. Brace for impact", "Asteroid Alert", sound = 'sound/AI/meteors.ogg')
 
 
 /*

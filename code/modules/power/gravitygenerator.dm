@@ -280,7 +280,6 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 	gravity_is_on = 1
 	update_gravity(gravity_is_on)
-	priority_announcement.Announce("The gravity generator was brought fully operational.")
 	investigate_log("was brought full online and is now producing gravity.", "gravity")
 	message_admins("The gravity generator was brought fully online. [ADMIN_JMP(src)]")
 
@@ -291,7 +290,6 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 	gravity_is_on = 0
 	update_gravity(gravity_is_on)
-	priority_announcement.Announce("The gravity generator was brought offline.")
 	investigate_log("was brought offline and there is now no gravity.", "gravity")
 	message_admins("The gravity generator was brought offline with no backup generator. [ADMIN_JMP(src)]")
 	shake_everyone()

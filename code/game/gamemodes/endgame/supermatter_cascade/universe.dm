@@ -46,7 +46,7 @@ var/global/universe_has_ended = 0
 		M.flash()
 
 	if(evacuation_controller.cancel_evacuation())
-		priority_announcement.Announce("The escape pod launch sequence has been aborted due to bluespace distortion.")
+		priority_announce("The escape pod launch sequence has been aborted due to bluespace distortion.", "Evacuation Procedures")
 
 	AreaSet()
 	MiscSet()
@@ -63,7 +63,7 @@ We highly suggest, that all corporate owned, and free ships within listening ran
 
 AUTOMATED ALERT: Link to [command_name()] lost.
 "}
-		priority_announcement.Announce(txt,"SUPERMATTER CASCADE DETECTED")
+		priority_announce(txt,"SUPERMATTER CASCADE DETECTED", color_override = "red")
 
 		for(var/obj/machinery/computer/shuttle_control/C in GLOB.computer_list)
 			if(istype(C, /obj/machinery/computer/shuttle_control/research) || istype(C, /obj/machinery/computer/shuttle_control/mining))

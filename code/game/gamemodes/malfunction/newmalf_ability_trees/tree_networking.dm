@@ -106,7 +106,7 @@
 			announce_hack_failure(user, "quantum message relay")
 		return
 
-	command_announcement.Announce(text, title, use_text_to_speech = TRUE)
+	priority_announce(text, title, use_text_to_speech = TRUE)
 
 /datum/game_mode/malfunction/verb/elite_encryption_hack()
 	set category = "Software"
@@ -158,13 +158,13 @@
 			sleep(duration/3)
 			if(!user || user.stat == DEAD)
 				return
-			command_announcement.Announce("Caution, [GLOB.station_short]. Abnormal behaviour detected in network, initiating troubleshoot for more information.", "Network Monitoring")
+			priority_announce("Caution, [GLOB.station_short]. Abnormal behaviour detected in network, initiating troubleshoot for more information.", "Network Monitoring")
 			sleep(duration/3)
 			if(!user || user.stat == DEAD)
 				return
-			command_announcement.Announce("Troubleshoot complet#, it seem& t( e yo3r AI s7stem, it &# *#ck@ng th$ sel$ destru$t mechani&m, unplug i# bef*@!)$#&&@@", "Network Monitoring")
+			priority_announce("Troubleshoot complet#, it seem& t( e yo3r AI s7stem, it &# *#ck@ng th$ sel$ destru$t mechani&m, unplug i# bef*@!)$#&&@@", "Network Monitoring")
 	else
-		command_announcement.Announce("Detected brute-force attack on network firewall originating from AI system. Control over majority of whole network compromised, firewall for Self-Destruct Control in threat. Success of hostile intrusion likely, eliminate origin immediately.", "Network Monitoring")
+		priority_announce("Detected brute-force attack on network firewall originating from AI system. Control over majority of whole network compromised, firewall for Self-Destruct Control in threat. Success of hostile intrusion likely, eliminate origin immediately.", "Network Monitoring")
 	to_chat(user, "## BEGINNING SYSTEM OVERRIDE.")
 	to_chat(user, "## ESTIMATED DURATION: [round((duration+300)/600)] MINUTES")
 	user.hacking = 1
@@ -189,7 +189,7 @@
 
 
 	to_chat(user, "## PRIMARY FIREWALL BYPASSED. YOU NOW HAVE FULL SYSTEM CONTROL.")
-	command_announcement.Announce("System administrator is no longer able to access control network, control of ship's systems has been unilaterally compromised. Unidentified user now expressing kernel access to the ship's systems.", "Network Monitoring")
+	priority_announce("System administrator is no longer able to access control network, control of ship's systems has been unilaterally compromised. Unidentified user now expressing kernel access to the ship's systems.", "Network Monitoring")
 	user.hack_can_fail = 0
 	user.hacking = 0
 	user.system_override = 2

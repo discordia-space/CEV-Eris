@@ -1,4 +1,7 @@
+
 // Sorted alphabetically
+// Sorted alphabetically
+// Spans that use embedded tgui components:
 #define span_abductor(str) ("<span class='abductor'>" + str + "</span>")
 #define span_admin(str) ("<span class='admin'>" + str + "</span>")
 #define span_adminhelp(str) ("<span class='adminhelp'>" + str + "</span>")
@@ -17,6 +20,7 @@
 #define span_alium(str) ("<span class='alium'>" + str + "</span>")
 #define span_angelsay(str) ("<span class='angelsay'>" + str + "</span>")
 #define span_announce(str) ("<span class='announce'>" + str + "</span>")
+#define span_announcement_header(str) ("<span class='announcement_header'>" + str + "</span>")
 #define span_average(str) ("<span class='average'>" + str + "</span>")
 #define span_bad(str) ("<span class='bad'>" + str + "</span>")
 #define span_big(str) ("<span class='big'>" + str + "</span>")
@@ -76,6 +80,7 @@
 #define span_linkOff(str) ("<span class='linkOff'>" + str + "</span>")
 #define span_linkOn(str) ("<span class='linkOn'>" + str + "</span>")
 #define span_looc(str) ("<span class='looc'>" + str + "</span>")
+#define span_major_announcement_text(str) ("<span class='major_announcement_text'>" + str + "</span>")
 #define span_medal(str) ("<span class='medal'>" + str + "</span>")
 #define span_medradio(str) ("<span class='medradio'>" + str + "</span>")
 #define span_memo(str) ("<span class='memo'>" + str + "</span>")
@@ -136,6 +141,7 @@
 #define span_tape_recorder(str) ("<span class='tape_recorder'>" + str + "</span>")
 #define span_tinynotice(str) ("<span class='tinynotice'>" + str + "</span>")
 #define span_tinynoticeital(str) ("<span class='tinynoticeital'>" + str + "</span>")
+#define span_tooltip(tip, main_text) ("<span data-component=\"Tooltip\" data-content=\"" + tip + "\" class=\"tooltip\">" + main_text + "</span>")
 #define span_unconscious(str) ("<span class='unconscious'>" + str + "</span>")
 #define span_userdanger(str) ("<span class='userdanger'>" + str + "</span>")
 #define span_warning(str) ("<span class='warning'>" + str + "</span>")
@@ -143,7 +149,3 @@
 #define span_yell(str) ("<span class='yell'>" + str + "</span>")
 #define span_yellow(str) ("<span class='yellow'>" + str + "</span>")
 #define span_yellowteamradio(str) ("<span class='yellowteamradio'>" + str + "</span>")
-
-// Spans that use embedded tgui components:
-// Sorted alphabetically
-#define span_tooltip(tip, main_text) ("<span data-component=\"Tooltip\" data-content=\"" + tip + "\" class=\"tooltip\">" + main_text + "</span>")

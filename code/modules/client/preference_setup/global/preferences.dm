@@ -140,6 +140,11 @@ var/list/_client_preferences_by_type
 	if(new_value == GLOB.PREF_NO)
 		sound_to(preference_mob, sound(null, repeat = 0, wait = 0, volume = 0, channel = GLOB.ambience_sound_channel))
 
+/datum/client_preference/play_sound_announcements
+	description ="Play sounds for announcements"
+	key = "SOUND_ANNOUNCEMENTS"
+	default_value = GLOB.PREF_YES
+
 /datum/client_preference/ghost_ears
 	description ="Ghost ears"
 	key = "CHAT_GHOSTEARS"

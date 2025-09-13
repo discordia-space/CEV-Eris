@@ -162,7 +162,7 @@
 		else
 			fulltext = "Another hack attempt has been detected, targeting [text]. The source still seems to be your AI system."
 
-	command_announcement.Announce(fulltext)
+	priority_announce(fulltext)
 
 // Proc: get_unhacked_apcs()
 // Parameters: None

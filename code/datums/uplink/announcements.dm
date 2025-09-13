@@ -20,7 +20,7 @@
 	var/message = input(user, "What would you like the text of the announcement to be? Write as much as you like, The title will appear as Unknown Broadcast", "False Announcement") as text|null
 	if (!message)
 		return FALSE
-	command_announcement.Announce(message, "Unknown Broadcast", use_text_to_speech = TRUE)
+	priority_announce(message, "Unknown Broadcast", color_override = "red")
 	return 1
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival
@@ -111,6 +111,6 @@
 
 /datum/uplink_item/abstract/announcements/fake_serb/get_goods(obj/item/device/uplink/U, loc)
 	var/datum/shuttle/autodock/multi/antag/mercenary/merc = /datum/shuttle/autodock/multi/antag/mercenary
-	command_announcement.Announce(initial(merc.arrival_message), initial(merc.announcer) || "[GLOB.boss_name]")
+	priority_announce(initial(merc.arrival_message), sender_override = initial(merc.announcer) || "[GLOB.boss_name]")
 	qdel(merc)
 	return 1

@@ -39,9 +39,9 @@
 				pod.move_time = (evac_transit_delay/10)
 				pod.launch(src)
 
-		priority_announcement.Announce(replacetext(replacetext(GLOB.maps_data.emergency_shuttle_leaving_dock, "%dock_name%", "[GLOB.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+		priority_announce(replacetext(replacetext(GLOB.maps_data.emergency_shuttle_leaving_dock, "%dock_name%", "[GLOB.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"), "Evacuation Procedures")
 	else
-		priority_announcement.Announce(replacetext(replacetext(GLOB.maps_data.shuttle_leaving_dock, "%dock_name%", "[GLOB.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+		priority_announce(replacetext(replacetext(GLOB.maps_data.shuttle_leaving_dock, "%dock_name%", "[GLOB.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
 
 /datum/evacuation_controller/starship/finish_evacuation()
 	..()

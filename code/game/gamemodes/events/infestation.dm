@@ -194,7 +194,7 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 	//Occasional chance to play the same generic announcement as spiders and carp
 	//Just to screw with the metagamers even more
 	if (prob(8))
-		command_announcement.Announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
+		priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", sound = 'sound/AI/aliens.ogg')
 	else
 		var/list/areanames = list()
 		for (var/b in chosen_burrows)
@@ -206,8 +206,8 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 		if (areanames.len)
 			switch(severity)
 				if (EVENT_LEVEL_MUNDANE)
-					command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [english_list(areanames)]. Clear them out before this starts to affect productivity.", event_name, new_sound = 'sound/AI/vermin.ogg')
+					priority_announce("Bioscans indicate that [chosen_mob] [chosen_verb] [english_list(areanames)]. Clear them out before this starts to affect productivity.", event_name, sound = 'sound/AI/vermin.ogg')
 				if (EVENT_LEVEL_MODERATE)
-					command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [english_list(areanames)]. Ironhammer are advised to approach with caution.", event_name, new_sound = 'sound/AI/vermin.ogg')
+					priority_announce("Bioscans indicate that [chosen_mob] [chosen_verb] [english_list(areanames)]. Ironhammer are advised to approach with caution.", event_name, sound = 'sound/AI/vermin.ogg')
 				if (EVENT_LEVEL_MAJOR)
-					command_announcement.Announce("Shipwide Alert: Bioscans indicate that [chosen_mob] [chosen_verb] [english_list(areanames)]. Crew are advised to evacuate those areas immediately.", event_name, new_sound = 'sound/AI/vermin.ogg')
+					priority_announce("Shipwide Alert: Bioscans indicate that [chosen_mob] [chosen_verb] [english_list(areanames)]. Crew are advised to evacuate those areas immediately.", event_name, sound = 'sound/AI/vermin.ogg')

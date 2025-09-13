@@ -31,10 +31,10 @@
 	var/timer = 0
 
 /datum/storyevent/meteors/announce()
-	command_announcement.Announce("Meteors have been detected on collision course with the ship.", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
+	priority_announce("Meteors have been detected on collision course with the ship.", "Meteor Alert", sound = 'sound/AI/meteors.ogg')
 
 /datum/storyevent/meteors/announce_end()
-	command_announcement.Announce("The ship has cleared the meteor storm.", "Meteor Alert")
+	priority_announce("The ship has cleared the meteor storm.", "Meteor Alert")
 
 /datum/storyevent/meteors/spawn_event()
 	if(prob(10))

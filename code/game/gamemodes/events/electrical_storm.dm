@@ -17,7 +17,7 @@
 
 
 /datum/event/electrical_storm/announce()
-	command_announcement.Announce("An electrical storm has been detected in your area, please repair potential electronic overloads.", "Electrical Storm Alert")
+	priority_announce("An electrical storm has been detected in your area, please repair potential electronic overloads.", "Electrical Storm Alert")
 
 
 /datum/event/electrical_storm/start()
@@ -31,7 +31,7 @@
 
 /proc/lightsout(isEvent = 0, lightsoutAmount = 1,lightsoutRange = 24) //leave lightsoutAmount as 0 to break ALL lights
 	if(!isEvent)
-		command_announcement.Announce("An Electrical storm has been detected in your area, please repair potential electronic overloads.","Electrical Storm Alert")
+		priority_announce("An Electrical storm has been detected in your area, please repair potential electronic overloads.","Electrical Storm Alert")
 
 	if(lightsoutAmount)
 		var/list/apcs = list()

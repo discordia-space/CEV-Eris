@@ -17,7 +17,6 @@
 		redalert = "red alert",
 		pods = "spacecraft abandonment"
 	)
-	var/static/datum/announcement/priority/kcad_announcement = new(do_log = 1, new_sound = sound('sound/misc/notice1.ogg'), do_newscast = 1)
 
 /obj/machinery/keycard_auth/attack_ai(mob/user as mob)
 	return
@@ -63,7 +62,7 @@
 		var/event = href_list["start"]
 		if(ongoing_countdowns[event])
 			return
-		kcad_announcement.Announce("[usr] has initiated [event_names[event]] countdown.")
+		minor_announce("[usr] has initiated [event_names[event]] countdown.", "KAD Notice:", 'sound/misc/notice1.ogg')
 		ongoing_countdowns[event] = addtimer(CALLBACK(src, PROC_REF(countdown_finished), event), countdown, TIMER_UNIQUE | TIMER_STOPPABLE)
 		next_countdown = world.time + cooldown
 		var/obj/item/card/id/id = usr.GetIdCard()
@@ -72,7 +71,7 @@
 		var/event = href_list["cancel"]
 		if(!ongoing_countdowns[event])
 			return
-		kcad_announcement.Announce("[usr] has cancelled [event_names[event]] countdown.")
+		minor_announce("[usr] has cancelled [event_names[event]] countdown.", "KAD Notice:", 'sound/misc/notice1.ogg')
 		deltimer(ongoing_countdowns[event])
 		ongoing_countdowns -= event
 		initiator_card -= event
@@ -83,7 +82,7 @@
 		var/obj/item/card/id/id = usr.GetIdCard()
 		if(initiator_card[event] == id)
 			return
-		kcad_announcement.Announce("[usr] has proceeded [event_names[event]] countdown.")
+		minor_announce("[usr] has proceeded [event_names[event]] countdown.", "KAD Notice:", 'sound/misc/notice1.ogg')
 		countdown_finished(event)
 	if(href_list["emergencymaint"])
 		var/event = href_list["emergencymaint"]
@@ -111,13 +110,11 @@ var/global/maint_all_access = 0
 
 /proc/make_maint_all_access()
 	maint_all_access = 1
-	to_chat(world, "<font size=4 color='red'>Attention!</font>")
-	to_chat(world, "<font color='red'>The maintenance access requirement has been revoked on all airlocks.</font>")
+	minor_announce("Access restrictions on maintenance and external airlocks have been lifted.", "Attention! Station-wide emergency declared!",1)
 
 /proc/revoke_maint_all_access()
 	maint_all_access = 0
-	to_chat(world, "<font size=4 color='red'>Attention!</font>")
-	to_chat(world, "<font color='red'>The maintenance access requirement has been readded on all maintenance airlocks.</font>")
+	minor_announce("Access restrictions in maintenance areas have been restored.", "Attention! Station-wide emergency rescinded:")
 
 /obj/machinery/door/airlock/allowed(mob/M)
 	if(maint_all_access && src.check_access_list(list(access_maint_tunnels)))

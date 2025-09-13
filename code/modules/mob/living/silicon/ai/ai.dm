@@ -82,7 +82,6 @@ var/list/ai_verbs_default = list(
 	var/datum/trackable/track = null
 	var/last_announcement = ""
 	var/control_disabled = 0
-	var/datum/announcement/priority/announcement
 	var/obj/machinery/ai_powersupply/psupply = null // Backwards reference to AI's powersupply object.
 	var/hologram_follow = 1 //This is used for the AI eye, to determine if a holopad's hologram should follow it or not
 
@@ -134,11 +133,6 @@ var/list/ai_verbs_default = list(
 	. = ..()
 
 /mob/living/silicon/ai/New(loc, datum/ai_laws/L, obj/item/device/mmi/B, safety = 0)
-	announcement = new()
-	announcement.title = "A.I. Announcement"
-	announcement.announcement_type = "A.I. Announcement"
-	announcement.newscast = 1
-
 	var/list/possibleNames = GLOB.ai_names
 
 	var/pickedName = null
@@ -285,7 +279,6 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/SetName(pickedName as text)
 	..()
-	announcement.announcer = pickedName
 	if(eyeobj)
 		eyeobj.name = "[pickedName] (AI Eye)"
 /*
@@ -375,7 +368,7 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS | AI_CHECK_RADIO))
 		return
 
-	announcement.Announce(input, use_text_to_speech = TRUE)
+	minor_announce(input, "[name] announces:", use_text_to_speech = TRUE)
 	message_cooldown = 1
 	spawn(600)//One minute cooldown
 		message_cooldown = 0

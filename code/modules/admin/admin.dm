@@ -593,11 +593,9 @@ var/global/floorIsLava = 0
 	var/message = input("Global message to send:", "Admin Announce", null, null)  as message
 	if(message)
 		if(!check_rights(R_SERVER,0))
-			message = sanitize(message, 500, extra = 0)
-		message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
-		to_chat(world, span_notice("<b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b><p style='text-indent: 50px'>[message]</p>"))
+			message = adminscrub(message,500)
+		send_formatted_announcement(message, "From [usr.client.holder.fakekey ? "Administrator" : usr.key]")
 		log_admin("Announce: [key_name(usr)] : [message]")
-		SEND_SOUND(world, sound('sound/misc/notice2.ogg'))
 
 /datum/admins/proc/set_respawn_timer()
 	set name = "Set Respawn Timer"

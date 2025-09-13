@@ -53,12 +53,12 @@
 /datum/shuttle/autodock/multi/antag/proc/announce_departure()
 	if(cloaked || isnull(departure_message))
 		return
-	command_announcement.Announce(departure_message, announcer || "[GLOB.boss_name]")
+	priority_announce(departure_message, announcer || "[GLOB.boss_name]")
 
 /datum/shuttle/autodock/multi/antag/proc/announce_arrival()
 	if(cloaked || isnull(arrival_message))
 		return
-	command_announcement.Announce(arrival_message, announcer || "[GLOB.boss_name]")
+	priority_announce(arrival_message, announcer || "[GLOB.boss_name]")
 
 /datum/shuttle/autodock/multi/antag/set_destination(destination_key, mob/user)
 	if(!return_warning && destination_key == home_waypoint.name && current_location != home_waypoint)

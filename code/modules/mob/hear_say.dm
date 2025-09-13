@@ -56,7 +56,7 @@
 	else
 		on_hear_say("<span class='game say'>[span_name("[speaker_name]")][alt_name] [track][verb], [span_message("<span class='body'>\"[message]\"")]</span></span>")
 	// Create map text prior to modifying message for goonchat
-	if (client?.prefs.RC_enabled && !(stat == UNCONSCIOUS || stat == HARDCRIT) && (ismob(speaker) || client.prefs.RC_see_chat_non_mob) && !(disabilities & DEAF || ear_deaf))
+	if (client?.prefs.RC_enabled && !(stat == UNCONSCIOUS || stat == HARDCRIT) && (ismob(speaker) || client.prefs.RC_see_chat_non_mob) && !isdeaf(src))
 		if (italics)
 			create_chat_message(speaker, language, original_message, list(SPAN_ITALICS))
 		else

@@ -14,7 +14,7 @@
 	)
 
 /datum/evacuation_controller/lifepods/launch_evacuation()
-	priority_announcement.Announce(replacetext(replacetext(GLOB.maps_data.emergency_shuttle_leaving_dock, "%dock_name%", "[GLOB.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+	priority_announce(replacetext(replacetext(GLOB.maps_data.emergency_shuttle_leaving_dock, "%dock_name%", "[GLOB.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"), "Evacuation Procedures")
 
 /datum/evacuation_controller/lifepods/available_evac_options()
 	if (is_on_cooldown())

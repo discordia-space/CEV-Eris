@@ -19,11 +19,6 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	var/pods_armed = FALSE			//if the evacuation sequence is initiated
 	var/pods_arrived = FALSE			//if the pods arrived to cencomm
 
-	var/datum/announcement/priority/emergency_pods_launched = new(0, new_sound = sound('sound/misc/notice2.ogg'))
-	var/datum/announcement/priority/emergency_pods_armed = new(0, new_sound = sound('sound/AI/shuttlecalled.ogg'))
-	var/datum/announcement/priority/emergency_pods_unarmed = new(0, new_sound = sound('sound/AI/shuttlerecalled.ogg'))
-	var/datum/announcement/priority/emergency_pods_unarmed_radio = new(0)
-
 /datum/emergency_shuttle_controller/proc/process()
 	if(pods_armed)
 		if(auto_recall && world.time >= auto_recall_time)
@@ -34,14 +29,14 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 			stop_launch_countdown()
 			//launch the pods!
-			emergency_pods_launched.Announce("The escape pods have just departed the ship.")
+			priority_announce("The escape pods have just departed the ship.", "Evacuation Procedures", 'sound/misc/notice2.ogg')
 
 			for (var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
 				if (!pod.arming_controller || pod.arming_controller.armed)
 					pod.launch(src)
 		else
 			if(round(estimate_prepare_time()) % 60 == 0 && round(estimate_prepare_time()) > 0)
-				emergency_pods_unarmed_radio.Announce("An emergency evacuation sequence in progress. You have approximately [round(estimate_prepare_time()/60)] minutes to prepare for departure.")
+				priority_announce("An emergency evacuation sequence in progress. You have approximately [round(estimate_prepare_time()/60)] minutes to prepare for departure.", "Evacuation Procedures")
 	else
 		if(world.time >= lockdown_time)
 			for(var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
@@ -76,7 +71,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 	pods_armed = TRUE
 
-	emergency_pods_armed.Announce("An emergency evacuation sequence has been started. You have approximately [round(estimate_prepare_time()/60)] minutes to prepare for departure.")
+	priority_announce("An emergency evacuation sequence has been started. You have approximately [round(estimate_prepare_time()/60)] minutes to prepare for departure.", "Evacuation Procedures", 'sound/AI/shuttlecalled.ogg')
 	for(var/area/A in world)
 		if(istype(A, /area/hallway) || istype(A, /area/eris/hallway))
 			A.readyalert()
@@ -104,7 +99,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	//close pod doors
 	set_lockdown_countdown(PODS_LOCKDOWN)
 
-	emergency_pods_unarmed.Announce("An emergency evacuation sequence has been canceled. You have approximately [round(lockdown_time - world.time) / 600] minutes to leave escape pods before they will be locked down.")
+	priority_announce("An emergency evacuation sequence has been canceled. You have approximately [round(lockdown_time - world.time) / 600] minutes to leave escape pods before they will be locked down.", "Evacuation Procedures", 'sound/AI/shuttlerecalled.ogg')
 
 /datum/emergency_shuttle_controller/proc/can_call()
 	if (!universe.OnShuttleCall(null))

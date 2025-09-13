@@ -21,7 +21,7 @@
 		to_chat(A, "<br>")
 
 	if(prob(30))	//most of the time, we don't want an announcement, so as to allow AIs to fake blackouts.
-		command_announcement.Announce(alert, new_sound = sound('sound/misc/interference.ogg', volume=25))
+		priority_announce(alert, sound = sound('sound/misc/interference.ogg'))
 
 
 /datum/event/communications_blackout/start()
@@ -33,7 +33,7 @@
 /proc/communications_blackout(silent = 1)
 
 	if(!silent)
-		command_announcement.Announce("Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you-BZZT", new_sound = 'sound/misc/interference.ogg')
+		priority_announce("Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you-BZZT", sound = 'sound/misc/interference.ogg')
 	else // AIs will always know if there's a comm blackout, rogue AIs could then lie about comm blackouts in the future while they shutdown comms
 		for(var/mob/living/silicon/ai/A in GLOB.player_list)
 			to_chat(A, "<br>")

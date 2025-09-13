@@ -32,13 +32,8 @@
 	var/msg_line2 = ""
 	var/centcom_message_cooldown = 0
 	var/announcment_cooldown = 0
-	var/datum/announcement/priority/crew_announcement = new
 	var/current_viewing_message_id = 0
 	var/current_viewing_message = null
-
-/datum/nano_module/program/comm/New()
-	..()
-	crew_announcement.newscast = 1
 
 /datum/nano_module/program/comm/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 
@@ -115,8 +110,9 @@
 	return global_message_listener
 
 /datum/nano_module/program/comm/Topic(href, href_list)
-	if(..())
-		return 1
+	. = ..()
+	if (.)
+		return .
 	var/mob/user = usr
 	var/ntn_comm = program ? !!program.get_signal(NTNET_COMMUNICATION) : 1
 	var/ntn_cont = program ? !!program.get_signal(NTNET_SYSTEMCONTROL) : 1
@@ -128,11 +124,6 @@
 		if("announce")
 			. = 1
 			if(is_autenthicated(user) && !issilicon(usr) && ntn_comm)
-				if(user)
-					var/obj/item/card/id/id_card = user.GetIdCard()
-					crew_announcement.announcer = GetNameAndAssignmentFromId(id_card)
-				else
-					crew_announcement.announcer = "Unknown"
 				if(announcment_cooldown)
 					to_chat(usr, "Please allow at least one minute to pass between announcements")
 					return TRUE
@@ -143,12 +134,7 @@
 					if(findtext(input, config.ic_filter_regex))
 						to_chat(usr, span_warning("You think better of announcing something so foolish."))
 						return 1
-
-				var/affected_zlevels = GLOB.maps_data.contact_levels
-				var/atom/A = host
-				if(istype(A))
-					affected_zlevels = GetConnectedZlevels(A.z)
-				crew_announcement.Announce(input, zlevels = affected_zlevels, use_text_to_speech = TRUE)
+				priority_announce(input, "Priority Communication from [(user && GetNameAndAssignmentFromId(user.GetIdCard())) || "Unknown" ]", use_text_to_speech = TRUE)
 				announcment_cooldown = 1
 				spawn(600)//One minute cooldown
 					announcment_cooldown = 0

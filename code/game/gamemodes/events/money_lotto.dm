@@ -40,6 +40,6 @@
 
 	var/body = "Nyx Daily wishes to congratulate [winner_name] for winning the Nyx Stellar Slam Lottery, and receiving the out of this world sum of [winner_sum] credits!"
 
-	command_announcement.Announce(body, "Lottery")
+	priority_announce(body, "Lottery")
 
 	news_network.SubmitArticle(body, author, channel, null, 1)

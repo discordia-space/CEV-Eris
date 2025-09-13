@@ -28,7 +28,7 @@
 	//ic_name = "radiation"
 
 /datum/event/radiation_storm/announce()
-	command_announcement.Announce("High levels of radiation detected near the ship. Please evacuate into one of the shielded maintenance tunnels.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
+	priority_announce("High levels of radiation detected near the ship. Please evacuate into one of the shielded maintenance tunnels.", "Anomaly Alert", sound = 'sound/AI/radiation.ogg')
 
 /datum/event/radiation_storm/start()
 	make_maint_all_access()
@@ -36,7 +36,7 @@
 
 /datum/event/radiation_storm/tick()
 	if(activeFor == enterBelt)
-		command_announcement.Announce("The ship has entered the radiation belt. Please remain in a sheltered area until we have passed the radiation belt.", "Anomaly Alert")
+		priority_announce("The ship has entered the radiation belt. Please remain in a sheltered area until we have passed the radiation belt.", "Anomaly Alert")
 		radiate()
 		for(var/datum/weather/rad_storm/R in SSweather.processing)
 			R.start()
@@ -51,7 +51,7 @@
 	else if(activeFor == leaveBelt)
 		for(var/datum/weather/rad_storm/R in SSweather.processing)
 			R.wind_down()
-		command_announcement.Announce("The ship has passed the radiation belt. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
+		priority_announce("The ship has passed the radiation belt. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 
 /datum/event/radiation_storm/proc/radiate()
 	for(var/mob/living/carbon/C in GLOB.living_mob_list)

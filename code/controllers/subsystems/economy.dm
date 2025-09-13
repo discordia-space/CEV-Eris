@@ -94,7 +94,7 @@ SUBSYSTEM_DEF(economy)
 					payroll_failure_mail(R, A, D.total_debt)
 
 	total_paid = paid_internal + paid_external
-	command_announcement.Announce("Half hourly crew wages have been paid, please check your email for details. In total the crew of CEV Eris have earned [total_paid] credits, including [paid_external] credits from external sources.\n Please contact your Department Heads in case of errors or missing payments.", "Dispensation")
+	priority_announce("Half hourly crew wages have been paid, please check your email for details. In total the crew of [station_name()] have earned [total_paid] credits, including [paid_external] credits from external sources.\nPlease contact your Department Heads in case of errors or missing payments.", "Dispensation")
 
 
 //Sent to a head of staff when their department account fails to pay out wages
