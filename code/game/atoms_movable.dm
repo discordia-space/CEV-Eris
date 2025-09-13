@@ -16,7 +16,8 @@
 	var/throw_range = 7
 	var/moved_recently = 0
 	var/mob/pulledby
-	var/item_state // Used to specify the item state for the on-mob overlays.
+	/// Used to specify the item state for the on-mob overlays.
+	var/item_state
 	var/inertia_dir = 0
 	var/can_anchor = TRUE
 
@@ -30,16 +31,23 @@
 	var/speech_span
 
 	//spawn_values
-	var/price_tag = 0 // The item price in credits. atom/movable so we can also assign a price to animals and other things.
-	var/surplus_tag = FALSE //If true, attempting to export this will net you a greatly reduced amount of credits, but we don't want to affect the actual price tag for selling to others.
+	/// The item price in credits. atom/movable so we can also assign a price to animals and other things.
+	var/price_tag = 0
+	/// If true, attempting to export this will net you a greatly reduced amount of credits, but we don't want to affect the actual price tag for selling to others.
+	var/surplus_tag = FALSE
 	var/spawn_tags
-	var/rarity_value = 1 //min:1
-	var/spawn_frequency = 0 //min:0
-	var/accompanying_object	// path or text "obj/item,/obj/item/device". This object will spawn alongside (in turf of) the spawned atom.
-	var/prob_aditional_object = 100 // Probability for the accompanying_object to spawn.
-	var/spawn_blacklisted = FALSE // Generally for niche objects, atoms blacklisted can spawn if enabled by spawner. Examples include exoplanet loot tables you don't want spawning within the player starting area.
-	var/bad_type // Use path Ex:(bad_type = obj/item). Generally for abstract code objects, atoms with a set bad_type can never be selected by spawner. Examples include parent objects which should only exist within the code, or deployable embedded items.
-
+	/// Min:1
+	var/rarity_value = 1
+	/// Min:0
+	var/spawn_frequency = 0
+	/// Path or text "obj/item,/obj/item/device". This object will spawn alongside (in turf of) the spawned atom.
+	var/accompanying_object
+	/// Probability for the accompanying_object to spawn.
+	var/prob_aditional_object = 100
+	/// Generally for niche objects, atoms blacklisted can spawn if enabled by spawner. Examples include exoplanet loot tables you don't want spawning within the player starting area.
+	var/spawn_blacklisted = FALSE
+	/// Use path Ex:(bad_type = obj/item). Generally for abstract code objects, atoms with a set bad_type can never be selected by spawner. Examples include parent objects which should only exist within the code, or deployable embedded items.
+	var/bad_type
 /atom/movable/Del()
 	if(isnull(gc_destroyed) && loc)
 		testing("GC: -- [type] was deleted via del() rather than qdel() --")
@@ -150,7 +158,7 @@
 	return TRUE
 
 
-//called when src is thrown into hit_atom
+/// called when src is thrown into hit_atom
 /atom/movable/proc/throw_impact(atom/hit_atom, speed)
 	if(isliving(hit_atom))
 		var/mob/living/M = hit_atom
@@ -171,7 +179,7 @@
 				var/mob/living/M = src
 				M.turf_collision(T, speed)
 
-//decided whether a movable atom being thrown can pass through the turf it is in.
+/// decided whether a movable atom being thrown can pass through the turf it is in.
 /atom/movable/proc/hit_check(speed)
 	if(src.throwing)
 		for(var/atom/A in get_turf(src))
@@ -282,7 +290,7 @@
 
 		forceMove(locate(move_to_x, move_to_y, move_to_z))
 
-//by default, transition randomly to another zlevel
+/// by default, transition randomly to another zlevel
 /atom/movable/proc/get_transit_zlevel()
 	var/list/candidates = GLOB.maps_data.accessable_levels.Copy()
 	candidates.Remove("[src.z]")
@@ -305,10 +313,12 @@
 
 /*	for (atom/movable/AM in contents)
 		AM.set_glide_size(glide_size, min, max)
-
 */
-//This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
-// Spoiler alert: it is, in moved.dm
+
+/**
+ * This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
+ * Spoiler alert: it is, in moved.dm
+ */
 /atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	if (glide_size_override > 0)
 		set_glide_size(glide_size_override)
@@ -384,12 +394,12 @@
 			SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingAtom())
 		*/
 
-// Wrapper of step() that also sets glide size to a specific value.
+/// Wrapper of step() that also sets glide size to a specific value.
 /proc/step_glide(atom/movable/AM, newdir, glide_size_override)
 	AM.set_glide_size(glide_size_override)
 	return step(AM, newdir)
 
-//We're changing zlevel
+/// We're changing zlevel
 /*
 /atom/movable/proc/onTransitZ(old_z, new_z)//uncomment when something is receiving this signal
 	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
@@ -407,11 +417,11 @@
 			SSmobs.mob_living_by_zlevel[new_z] += src
 		registered_z = new_z
 
-// if this returns true, interaction to turf will be redirected to src instead
+/// if this returns true, interaction to turf will be redirected to src instead
 /atom/movable/proc/preventsTurfInteractions()
 	return FALSE
 
-///Sets the anchored var and returns if it was sucessfully changed or not.
+/// Sets the anchored var and returns if it was sucessfully changed or not.
 /atom/movable/proc/set_anchored(anchorvalue)
 	SHOULD_CALL_PARENT(TRUE)
 	if(anchored == anchorvalue || !can_anchor)

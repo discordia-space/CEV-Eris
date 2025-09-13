@@ -1,37 +1,42 @@
 /mob/living/carbon/human
-	//first and last name
 	var/first_name
 	var/last_name
 
-	//Hair colour and style
+	/// Hair colour and style
 	var/hair_color = "#000000"
 	var/h_style = "Bald"
 
-	//Facial hair colour and style
+	/// Facial hair colour and style
 	var/facial_color = "#000000"
 	var/f_style = "Shaved"
 
-	//Eye colour
+	/// Eye colour
 	var/eyes_color = "#000000"
 
-	var/s_tone = 0	//Skin tone
+	/// Skin tone
+	var/s_tone = 0
 
-	//Skin colour
+	/// Skin colour
 	var/skin_color = "#000000"
 
-	var/size_multiplier = 1 //multiplier for the mob's icon size
-	var/damage_multiplier = 1 //multiplies melee combat damage
-	var/icon_update = 1 //whether icon updating shall take place
+	/// multiplier for the mob's icon size
+	var/size_multiplier = 1
+	/// multiplies melee combat damage
+	var/damage_multiplier = 1
+	/// whether icon updating shall take place
+	var/icon_update = 1
 
-	var/lip_style	//no lipstick by default- arguably misleading, as it could be used for general makeup
+	/// no lipstick by default- arguably misleading, as it could be used for general makeup
+	var/lip_style
 
-	var/age = 30		//Player's age (pure fluff)
+	/// Player's age (pure fluff)
+	var/age = 30
 
 	var/list/worn_underwear = list()
 
 	var/datum/backpack_setup/backpack_setup
 
-	//Equipment slots
+	// Equipment slots
 	var/obj/item/wear_suit
 	var/obj/item/w_uniform
 	var/obj/item/shoes
@@ -49,46 +54,66 @@
 	var/icon/stand_icon
 	var/icon/lying_icon
 
-	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
+	/// Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
+	var/voice = ""
 
-	var/miming //Toggle for the mime's abilities.
-	var/special_voice = "" // For changing our voice. Used by a symptom.
+	/// Toggle for the mime's abilities.
+	var/miming
+	/// For changing our voice. Used by a symptom.
+	var/special_voice = ""
 
-	var/ability_last = 0 // world.time when last proc from "Ability" tab have been used
-	var/last_dam = -1	//Used for determining if we need to process all organs or just some or even none.
-	var/list/bad_external_organs = list()// organs we check until they are good.
+	/// world.time when last proc from "Ability" tab have been used
+	var/ability_last = 0
+	/// Used for determining if we need to process all organs or just some or even none.
+	var/last_dam = -1
+	/// organs we check until they are good.
+	var/list/bad_external_organs = list()
 
-	var/punch_damage_increase = 0 // increases... punch damage... can be affected by clothing or implants.
+	/// increases... punch damage... can be affected by clothing or implants.
+	var/punch_damage_increase = 0
 
-	var/xylophone = 0 //For the spoooooooky xylophone cooldown
+	/// For the spoooooooky xylophone cooldown
+	var/xylophone = 0
 
 	var/mob/remoteview_target
-	var/remoteviewer = FALSE //Acts as an override for remoteview_target viewing, see human/life.dm: handle_vision()
+	///A cts as an override for remoteview_target viewing, see human/life.dm: handle_vision()
+	var/remoteviewer = FALSE
 	var/hand_blood_color
 
 	var/gunshot_residue
-	var/holding_back // Are you trying not to hurt your opponent?
-	var/blocking = FALSE //ready to block melee attacks?
+	/// Are you trying not to hurt your opponent?
+	var/holding_back
+	/// ready to block melee attacks?
+	var/blocking = FALSE
 
 	mob_bump_flag = HUMAN
 	mob_push_flags = ~HEAVY
 	mob_swap_flags = ~HEAVY
 
-	var/flash_protection = 0				// Total level of flash protection
-	var/equipment_tint_total = 0			// Total level of visualy impairing items
-	var/equipment_darkness_modifier			// Darkvision modifier from equipped items
-	var/equipment_vision_flags				// Extra vision flags from equipped items
-	var/equipment_see_invis					// Max see invibility level granted by equipped items
-	var/equipment_prescription				// Eye prescription granted by equipped items
-	var/list/equipment_overlays = list()	// Extra overlays from equipped items
+	/// Total level of flash protection
+	var/flash_protection = 0
+	/// Total level of visualy impairing items
+	var/equipment_tint_total = 0
+	/// Darkvision modifier from equipped items
+	var/equipment_darkness_modifier
+	/// Extra vision flags from equipped items
+	var/equipment_vision_flags
+	/// Max see invibility level granted by equipped items
+	var/equipment_see_invis
+	/// Eye prescription granted by equipped items
+	var/equipment_prescription
+	/// Extra overlays from equipped items
+	var/list/equipment_overlays = list()
 
 	var/med_record = ""
 	var/sec_record = ""
 	var/gen_record = ""
 	var/exploit_record = ""
 
-	var/stance_damage = 0 //Whether this mob's ability to stand has been affected
-	var/identifying_gender // In case the human identifies as another gender than it's biological
+	/// Whether this mob's ability to stand has been affected
+	var/stance_damage = 0
+	/// In case the human identifies as another gender than it's biological
+	var/identifying_gender
 	mob_classification = CLASSIFICATION_ORGANIC | CLASSIFICATION_HUMANOID
 
 	var/datum/sanity/sanity
@@ -98,11 +123,14 @@
 	var/style = 0
 	var/max_style = MAX_HUMAN_STYLE
 
-	var/shock_resist = 0 // Resistance to paincrit
+	/// Resistance to paincrit
+	var/shock_resist = 0
 
 	var/language_blackout = 0
 	var/suppress_communication = 0
 
-	var/momentum_speed = 0 // The amount of run-up
-	var/momentum_dir = 0 // Direction of run-up
+	/// The amount of run-up
+	var/momentum_speed = 0
+	/// Direction of run-up
+	var/momentum_dir = 0
 	var/momentum_reduction_timer

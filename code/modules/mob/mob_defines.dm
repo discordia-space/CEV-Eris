@@ -25,7 +25,8 @@
 	var/lastKnownIP
 	var/computer_id
 
-	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
+	/// Whether a mob is alive or dead.
+	var/stat = 0 // TODO: Move this to living - Nodrak
 
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
 	A variable should only be globally attached to turfs/objects/whatever, when it is in fact needed as such.
@@ -35,15 +36,18 @@
 	*/
 
 
-	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
+	/// Allows all mobs to use the me verb by default, will have to manually specify they cannot
+	var/use_me = 1
 	var/damageoverlaytemp = 0
 	var/obj/machinery/machine
 	var/poll_answer = 0
 	var/sdisabilities = 0	//Carbon
 	var/disabilities = 0	//Carbon
 
-	var/current_vertical_travel_method // Link currently used VTM if we moving between Z-levels
-	var/last_move_attempt = 0 //Last time the mob attempted to move, successful or not
+	/// Link currently used VTM if we moving between Z-levels
+	var/current_vertical_travel_method
+	/// Last time the mob attempted to move, successful or not
+	var/last_move_attempt = 0
 	var/atom/movable/pulling
 	var/other_mobs
 	var/next_move
@@ -64,23 +68,31 @@
 	var/canmove = 1
 
 
-	/*
-Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
-This var is no longer actually used for incorporeal moving, this is handled by /datum/movement_handler/mob/incorporeal
-However this var is still kept as a quick way to check if the mob is incorporeal. This is used in several performance intensive applications
-While it would be entirely possible to check the mob's move handlers list for the existence of the incorp handler, that is less optimal for intensive use
-*/
-	var/incorporeal_move = 0 //0 is off, 1 is normal, 2 is for ninjas.
+	/**
+	 * Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
+	 * This var is no longer actually used for incorporeal moving, this is handled by /datum/movement_handler/mob/incorporeal
+	 * However this var is still kept as a quick way to check if the mob is incorporeal. This is used in several performance intensive applications
+	 * While it would be entirely possible to check the mob's move handlers list for the existence of the incorp handler, that is less optimal for intensive use
+	 *
+	 * 0 is off, 1 is normal, 2 is for ninjas.
+	 */
+	var/incorporeal_move = 0
 
 
 	var/unacidable = 0
-	var/list/pinned = list()            // List of things pinning this creature to walls (see living_defense.dm)
-	var/list/embedded = list()          // Embedded items, since simple mobs don't have organs.
-	var/list/speak_emote = list("says") // Verbs used when speaking. Defaults to 'say' if speak_emote is null.
-	var/emote_type = 1		// Define emote default type, 1 for seen emotes, 2 for heard emotes
-	var/facing_dir   // Used for the ancient art of moonwalking.
+	/// List of things pinning this creature to walls (see living_defense.dm)
+	var/list/pinned = list()
+	/// Embedded items, since simple mobs don't have organs.
+	var/list/embedded = list()
+	/// Verbs used when speaking. Defaults to 'say' if speak_emote is null.
+	var/list/speak_emote = list("says")
+	/// Define emote default type, 1 for seen emotes, 2 for heard emotes
+	var/emote_type = 1
+	/// Used for the ancient art of moonwalking.
+	var/facing_dir
 
-	var/name_archive //For admin things like possession
+	/// For admin things like possession
+	var/name_archive
 
 	var/timeofdeath = 0
 
@@ -95,7 +107,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/list/eat_sounds = list('sound/items/eatfood.ogg')
 
 	var/shakecamera = 0
-	var/a_intent = I_HELP//Living
+	var/a_intent = I_HELP //Living
 
 	var/decl/move_intent/move_intent = /decl/move_intent/run
 	var/move_intents = list(/decl/move_intent/run, /decl/move_intent/walk)
@@ -121,14 +133,17 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 //	var/job = null//Living
 
-	var/can_pull_size = ITEM_SIZE_TITANIC // Maximum w_class the mob can pull.
-	var/can_pull_mobs = MOB_PULL_LARGER       // Whether or not the mob can pull other mobs.
+	/// Maximum w_class the mob can pull.
+	var/can_pull_size = ITEM_SIZE_TITANIC
+	/// Whether or not the mob can pull other mobs.
+	var/can_pull_mobs = MOB_PULL_LARGER
 
 	var/b_type // GLOB.blood_types // list("A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+")
 	var/dna_trace // sha1(real_name)
 	var/fingers_trace // md5(real_name)
 
-	var/mutation_index = 0 // Sum of active mutation tiers, approximation of how much of a mutant this mob are
+	/// Sum of active mutation tiers, approximation of how much of a mutant this mob are
+	var/mutation_index = 0
 	var/list/dormant_mutations = list()
 	var/list/active_mutations = list()
 	var/list/mutation_count_by_tier = list(
@@ -136,43 +151,64 @@ While it would be entirely possible to check the mob's move handlers list for th
 		"1" = 0, // Vespasian
 		"2" = 0, // Tacitus
 		"3" = 0, // Hadrian
-		"4" = 0) // Aurelien
+		"4" = 0, // Aurelien
+	)
 
 	var/radiation = 0//Carbon
 
 	var/voice_name = "unidentifiable voice"
 
-	var/faction = "neutral" //Used for checking whether hostile simple animals will attack you, possibly more stuff later
-	var/captured = 0 //Functionally, should give the same effect as being buckled into a chair when true.
+	/// Used for checking whether hostile simple animals will attack you, possibly more stuff later
+	var/faction = "neutral"
+	/// Functionally, should give the same effect as being buckled into a chair when true.
+	var/captured = 0
 
 	var/blinded
 	var/ear_deaf		//Carbon
 
-//The last mob/living/carbon to push/drag/grab this mob (mostly used by slimes friend recognition)
+	/// The last mob/living/carbon to push/drag/grab this mob (mostly used by slimes friend recognition)
 	var/mob/living/carbon/LAssailant
 
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
-	var/update_icon = 1 //Set to 1 to trigger update_icons() at the next life() call
+	/// Set to 1 to trigger update_icons() at the next life() call
+	var/update_icon = 1
 
-	var/status_flags = CANSTUN|CANWEAKEN|CANPARALYSE|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
+	/// bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
+	var/status_flags = CANSTUN|CANWEAKEN|CANPARALYSE|CANPUSH
 
 	var/area/lastarea
 
 	var/digitalcamo = 0 // Can they be tracked by the AI?
 
-	var/obj/control_object //Used by admins to possess objects. All mobs should have this var
+	/// Used by admins to possess objects. All mobs should have this var
+	var/obj/control_object
 
-	//Whether or not mobs can understand other mobtypes. These stay in /mob so that ghosts can hear everything.
-	var/universal_speak = 0 // Set to 1 to enable the mob to speak to everyone -- TLE
-	var/universal_understand = 0 // Set to 1 to enable the mob to understand everyone, not necessarily speak
+	/**
+	 * Whether or not mobs can understand other mobtypes. These stay in /mob so that ghosts can hear everything.
+	 *
+	 * Set to 1 to enable the mob to speak to everyone -- TLE
+	 */
+	var/universal_speak = 0
 
-	//If set, indicates that the client "belonging" to this (clientless) mob is currently controlling some other mob
-	//so don't treat them as being SSD even though their client var is null.
+	/**
+	 * Whether or not mobs can understand other mobtypes. These stay in /mob so that ghosts can hear everything.
+	 *
+	 * // Set to 1 to enable the mob to understand everyone, not necessarily speak
+	 */
+	var/universal_understand = 0
+
+	/**
+	 * If set, indicates that the client "belonging" to this (clientless) mob is currently controlling some other mob
+	 * so don't treat them as being SSD even though their client var is null.
+	 */
 	var/mob/teleop
 
-	var/turf/listed_turf  	//the current turf being examined in the stat panel
-	var/list/shouldnt_see = list()	//list of objects that this mob shouldn't see in the stat panel. this silliness is needed because of AI alt+click and cult blood runes
+	/// The current turf being examined in the stat panel
+	var/turf/listed_turf
+
+	/// list of objects that this mob shouldn't see in the stat panel. this silliness is needed because of AI alt+click and cult blood runes
+	var/list/shouldnt_see = list()
 
 	var/mob_size = MOB_MEDIUM
 
@@ -185,7 +221,8 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/flavor_text = ""
 
 
-	var/list/HUDneed = list() // What HUD object need see
+	/// What HUD object need see
+	var/list/HUDneed = list()
 	var/list/HUDinventory = list()
 	var/list/HUDfrippery = list()//flavor
 	var/list/HUDprocess = list() //What HUD object need process
@@ -204,7 +241,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	var/can_be_fed = 1 //Can be feeded by reagent_container or other things
 
-	///The z level this mob is currently registered in
+	/// The z level this mob is currently registered in
 	var/registered_z
 
 	bad_type = /mob

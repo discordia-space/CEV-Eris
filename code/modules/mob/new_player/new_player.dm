@@ -1,9 +1,12 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
 /mob/new_player
+	/// Whether the player is readied up for the round.
 	var/ready = 0
-	var/spawning = 0//Referenced when you want to delete the new_player later on in the code.
-	var/totalPlayers = 0		 //Player counts for the Lobby tab
+	/// Referenced when you want to delete the new_player later on in the code.
+	var/spawning = 0
+	/// Player counts for the Lobby tab
+	var/totalPlayers = 0
 	var/totalPlayersReady = 0
 	var/datum/browser/panel
 	universal_speak = 1

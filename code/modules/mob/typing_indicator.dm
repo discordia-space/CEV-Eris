@@ -1,4 +1,5 @@
-#define TYPING_INDICATOR_LIFETIME 30 * 10	//grace period after which typing indicator disappears regardless of text in chatbar
+/// Grace period after which typing indicator disappears regardless of text in chatbar
+#define TYPING_INDICATOR_LIFETIME 30 * 10
 
 /mob
 	var/hud_typing = FALSE //set when typing in an input window instead of chatline

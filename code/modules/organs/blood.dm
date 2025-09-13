@@ -3,7 +3,8 @@
 ****************************************************/
 
 /mob/living/carbon
-	var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
+	/// Container for blood and BLOOD ONLY. Do not transfer other chems here.
+	var/datum/reagents/vessel
 
 /mob/living/carbon/human
 	var/var/pale = 0          // Should affect how mob sprite is drawn, but currently doesn't.

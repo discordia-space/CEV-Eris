@@ -1,8 +1,9 @@
-// EYE
-//
-// A mob that another mob controls to look around the station with.
-// It streams chunks as it moves around, which will show it what the controller can and cannot see.
-
+/**
+ * EYE
+ *
+ * A mob that another mob controls to look around the station with.
+ * It streams chunks as it moves around, which will show it what the controller can and cannot see.
+ */
 /mob/observer/eye
 	name = "Eye"
 	icon = 'icons/mob/eye.dmi'
@@ -40,8 +41,10 @@
 
 /mob/observer/eye/examine(mob/user, extra_description = "")
 
-// Use this when setting the eye's location.
-// It will also stream the chunk that the new loc is in.
+/**
+ * Use this when setting the eye's location.
+ * It will also stream the chunk that the new loc is in.
+ */
 /mob/observer/eye/proc/setLoc(T)
 	if(owner)
 		T = get_turf(T)

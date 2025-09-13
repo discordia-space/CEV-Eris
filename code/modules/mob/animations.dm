@@ -7,7 +7,6 @@ currently only humans get dizzy
 value of dizziness ranges from 0 to 1000
 below 100 is not dizzy
 */
-
 /mob/proc/make_dizzy(amount)
 	return
 
@@ -79,8 +78,10 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/var/is_floating = 0
 /mob/var/floatiness = 0
 
-//You can pass in true or false in a case where you've already done the calculations and can skip some checking here
-//Its perfectly fine to call this proc with no input, it will figure out what it needs to do
+/**
+ * You can pass in true or false in a case where you've already done the calculations and can skip some checking here
+ * Its perfectly fine to call this proc with no input, it will figure out what it needs to do
+ */
 /mob/proc/update_floating(setstate = null)
 	if (!isnull(setstate))
 		make_floating(setstate)
@@ -109,8 +110,10 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	is_floating = 1
 
-	var/amplitude = 2 //maximum displacement from original position
-	var/period = 36 //time taken for the mob to go up >> down >> original position, in deciseconds. Should be multiple of 4
+	/// maximum displacement from original position
+	var/amplitude = 2
+	/// time taken for the mob to go up >> down >> original position, in deciseconds. Should be multiple of 4
+	var/period = 36
 
 	var/top = default_pixel_y + amplitude
 	var/bottom = default_pixel_y - amplitude

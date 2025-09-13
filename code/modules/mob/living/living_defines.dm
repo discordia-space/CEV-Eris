@@ -16,19 +16,28 @@
 
 	var/inventory_shown = 1
 
-	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS
-	var/bruteloss = 0	//Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
-	var/oxyloss = 0	//Oxygen depravation damage (no air in lungs)
-	var/toxloss = 0	//Toxic damage caused by being poisoned or radiated
-	var/fireloss = 0	//Burn damage caused by being way too hot, too cold or burnt.
-	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early. slimes also deal cloneloss damage to victims
-	var/brainloss = 0	// Brain damage caused by someone hitting you in the head with a bible or being infected with brainrot.
-	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
+	// Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS
+
+	/// Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
+	var/bruteloss = 0
+	/// Oxygen depravation damage (no air in lungs)
+	var/oxyloss = 0
+	/// Toxic damage caused by being poisoned or radiated
+	var/toxloss = 0
+	/// Burn damage caused by being way too hot, too cold or burnt.
+	var/fireloss = 0
+	/// Damage caused by being cloned or ejected from the cloner early. slimes also deal cloneloss damage to victims
+	var/cloneloss = 0
+	/// Brain damage caused by someone hitting you in the head with a bible or being infected with brainrot.
+	var/brainloss = 0
+	//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
+	var/halloss = 0
 
 	var/injury_type = INJURY_TYPE_LIVING //Humanmob uses species instead
 	var/armor_divisor = 1 //Used for generic attacks
 
-	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
+	/// Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
+	var/last_special = 0
 
 	var/t_plasma
 	var/t_oxygen
@@ -40,28 +49,38 @@
 	var/mob_swap_flags = 0
 	var/mob_push_flags = 0
 	var/mob_always_swap = 0
-	var/livmomentum = 0 //Used for advanced movement options.
-	var/move_to_delay = 4 //Delay for the automated movement.
-	var/can_burrow = FALSE //If true, this mob can travel around using the burrow network.
-	//When this mob spawns at roundstart, a burrow will be created near it if it can't find one
+	/// Used for advanced movement options.
+	var/livmomentum = 0
+	/// Delay for the automated movement.
+	var/move_to_delay = 4
+	/**
+	 * If true, this mob can travel around using the burrow network.
+	 * When this mob spawns at roundstart, a burrow will be created near it if it can't find one
+	 */
+	var/can_burrow = FALSE
 
 	var/mob/living/cameraFollow
 	var/list/datum/action/actions = list()
 	var/step_count = 0
 
 	var/update_slimes = 1
-	var/is_busy = FALSE // Prevents stacking of certain actions, like resting and diving
-	var/silent 		// Can't talk. Value goes down every life proc.
-	var/on_fire = 0 //The "Are we on fire?" var
+	/// Prevents stacking of certain actions, like resting and diving
+	var/is_busy = FALSE
+	/// Can't talk. Value goes down every life proc.
+	var/silent
+	/// The "Are we on fire?" var
+	var/on_fire = 0
 	var/fire_stacks
 
-	///The talk chime set to use when speaking.
+	/// The talk chime set to use when speaking.
 	var/voice_type
 
 	var/speech_problem_flag = 0
 
-	var/failed_last_breath = 0 //This is used to determine if the mob failed a breath. If they did fail a brath, they will attempt to breathe each tick, otherwise just once per 4 ticks.
-	var/possession_candidate // Can be possessed by ghosts if unplayed.
+	/// This is used to determine if the mob failed a breath. If they did fail a brath, they will attempt to breathe each tick, otherwise just once per 4 ticks.
+	var/failed_last_breath = 0
+	/// Can be possessed by ghosts if unplayed.
+	var/possession_candidate
 
 	var/eye_blind	//Carbon
 	var/eye_blurry	//Carbon
@@ -72,17 +91,21 @@
 
 	var/job //Living
 
-	var/image/static_overlay // For static overlays on living mobs
+	/// For static overlays on living mobs
+	var/image/static_overlay
 	mob_classification = CLASSIFICATION_ORGANIC
 
 	var/list/chem_effects = list()
 
-	//Used in living/recoil.dm
-	var/recoil = 0 //What our current recoil level is
+	// Used in living/recoil.dm
+	/// What our current recoil level is
+	var/recoil = 0
 	var/recoil_reduction_timer
 	var/falls_mod = 1
-	var/mob_bomb_defense = 0	// protection from explosives
-	var/noise_coeff = 1 //noise coefficient
+	/// protection from explosives
+	var/mob_bomb_defense = 0
+	/// noise coefficient
+	var/noise_coeff = 1
 
 	var/can_multiz_pb = FALSE
 	var/is_watching = FALSE

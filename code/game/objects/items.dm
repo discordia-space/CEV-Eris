@@ -11,7 +11,8 @@
 	bad_type = /obj/item
 
 	pass_flags = PASSTABLE
-	var/image/blood_overlay //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
+	/// this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
+	var/image/blood_overlay
 	var/randpixel = 6
 	var/abstract = 0
 	var/r_speed = 1
@@ -21,78 +22,117 @@
 	var/burning
 	var/hitsound = 'sound/weapons/genhit1.ogg'
 	var/worksound
-	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
+	/// If it's an item we don't want to log attack_logs with, set this to 1
+	var/no_attack_log = 0
 
 	//The cool stuff for melee
-	var/screen_shake = FALSE 		//If a weapon can shake the victim's camera on hit.
-	var/forced_broad_strike = FALSE //If a weapon is forced to always perform broad strikes.
-	var/extended_reach = FALSE		//Wielded spears can hit alive things one tile further.
-	var/ready = FALSE				//All weapons that are ITEM_SIZE_BULKY or bigger have double tact, meaning you have to click twice.
-	var/no_double_tact = FALSE		//for when you,  for some inconceivable reason, want a bulky item to not have double tact
-	var/no_swing = FALSE            //for when you do not want an item to swing-attack
-	var/push_attack = FALSE			//Hammers and spears can push the victim away on hit when you aim groin.
+	/// If a weapon can shake the victim's camera on hit.
+	var/screen_shake = FALSE
+	/// If a weapon is forced to always perform broad strikes.
+	var/forced_broad_strike = FALSE
+	/// Wielded spears can hit alive things one tile further.
+	var/extended_reach = FALSE
+	/// All weapons that are ITEM_SIZE_BULKY or bigger have double tact, meaning you have to click twice.
+	var/ready = FALSE
+	/// For when you,  for some inconceivable reason, want a bulky item to not have double tact
+	var/no_double_tact = FALSE
+	/// For when you do not want an item to swing-attack
+	var/no_swing = FALSE
+	/// Hammers and spears can push the victim away on hit when you aim groin.
+	var/push_attack = FALSE
 	//Why are we using vars instead of defines or anything else?
 	//Because we need them to be shown in the tool info UI.
 
 	var/obj/item/master
-	var/list/origin_tech = list()	//Used by R&D to determine what research bonuses it grants.
-	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	/// Used by R&D to determine what research bonuses it grants.
+	var/list/origin_tech = list()
+	/// Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	var/list/attack_verb = list()
 
 
-	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
-	var/cold_protection = 0 //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
-	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection flags
-	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection flags
+	/// flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
+	var/heat_protection = 0
+	/// flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
+	var/cold_protection = 0
+	/// Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection flags
+	var/max_heat_protection_temperature
+	/// Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection flags
+	var/min_cold_protection_temperature
 
 	var/datum/action/item_action/action
-	var/action_button_name //It is also the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. If it's not set, there'll be no button.
-	var/action_button_is_hands_free = 0 //If 1, bypass the restrained, lying, and stunned checks action buttons normally test for
-	var/action_button_proc //If set, when the button is used it calls the proc of that name
-	var/action_button_arguments //If set, hands these arguments to the proc.
 
-	//This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
-	//It should be used purely for appearance. For gameplay effects caused by items covering body parts, use body_parts_covered.
+	/// It is also the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. If it's not set, there'll be no button.
+	var/action_button_name
+	/// If 1, bypass the restrained, lying, and stunned checks action buttons normally test for
+	var/action_button_is_hands_free = 0
+	/// If set, when the button is used it calls the proc of that name
+	var/action_button_proc
+	/// If set, hands these arguments to the proc.
+	var/action_button_arguments
+
+	/**
+	 * This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	 * It should be used purely for appearance. For gameplay effects caused by items covering body parts, use body_parts_covered.
+	 */
 	var/flags_inv = 0
-	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
+	/// see setup.dm for appropriate bit flags
+	var/body_parts_covered = 0
 
-	var/list/tool_qualities// List of item qualities for tools system. See qualities.dm.
+	/// List of item qualities for tools system. See qualities.dm.
+	var/list/tool_qualities
 	var/list/aspects = list()
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
-	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
-	var/permeability_coefficient = 1 // for chemicals/diseases
-	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
-	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
-	var/slowdown_hold // How much holding an item slows you down.
+	/// For leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
+	var/gas_transfer_coefficient = 1
+	/// For chemicals/diseases
+	var/permeability_coefficient = 1
+	/// For electrical admittance/conductance (electrocution checks and shit)
+	var/siemens_coefficient = 1
+	/// How much clothing is slowing you down. Negative values speeds you up
+	var/slowdown = 0
+	/// How much holding an item slows you down.
+	var/slowdown_hold
 
-	var/datum/armor/armor // Ref to the armor datum
-	var/list/allowed = list() //suit storage stuff.
-	var/obj/item/device/uplink/hidden/hidden_uplink // All items can have an uplink hidden inside, just remember to add the triggers.
-	var/zoomdevicename //name used for message when binoculars/scope is used
-	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
+	/// Ref to the armor datum
+	var/datum/armor/armor
+	/// suit storage stuff.
+	var/list/allowed = list()
+	/// All items can have an uplink hidden inside, just remember to add the triggers.
+	var/obj/item/device/uplink/hidden/hidden_uplink
+	/// name used for message when binoculars/scope is used
+	var/zoomdevicename
+	/// 1 if item is actively being used to zoom. For scoped guns and binoculars.
+	var/zoom = 0
 
-	var/contained_sprite = FALSE //TRUE if object icon and related mob overlays are all in one dmi
+	/// TRUE if object icon and related mob overlays are all in one DMI
+	var/contained_sprite = FALSE
 
-	var/icon_override  //Used to override hardcoded clothing dmis in human clothing proc.
+	/// Used to override hardcoded clothing dmis in human clothing proc.
+	var/icon_override
 
-	//** These specify item/icon overrides for _slots_
+	/// These specify item/icon overrides for particular _slots_
+	var/list/item_state_slots = list()
 
-	var/list/item_state_slots = list() //overrides the default item_state for particular slots.
-
-	// Used to specify the icon file to be used when the item is worn. If not set the default icon for that slot will be used.
-	// If icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
-	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
+	/**
+	 * Used to specify the icon file to be used when the item is worn. If not set the default icon for that slot will be used.
+	 * If icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
+	 * Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
+	 */
 	var/list/item_icons = list()
 
-	// HUD action buttons. Only used by guns atm.
+	/// HUD action buttons. Only used by guns atm.
 	var/list/hud_actions
 
 	//Damage vars
-	var/force = 0	//How much damage the weapon deals
-	var/embed_mult = 1 //Multiplier for the chance of embedding in mobs. Set to zero to completely disable embedding
-	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
-	//Does not affect damage dealt to mobs
-	var/style = STYLE_NONE // how much using this item increases your style
+	/// How much damage the weapon deals
+	var/force = 0
+	/// Multiplier for the chance of embedding in mobs. Set to zero to completely disable embedding
+	var/embed_mult = 1
+	/// Multiplier applied to the damage when attacking structures and machinery
+	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
+	/// How much using this item increases your style - Does not affect damage dealt to mobs
+	var/style = STYLE_NONE //
 
 	var/list/item_upgrades = list()
 	var/max_upgrades = 3
@@ -228,9 +268,11 @@
 		return TRUE
 	return FALSE
 
-//	Places item in active hand and invokes pickup animation
-//	NOTE: This proc was created and replaced previous pickup() proc which is now called pre_pickup() as it makes more sense
-//	keep that in mind when porting items form other builds
+/**
+ * Places item in active hand and invokes pickup animation
+ * NOTE: This proc was created and replaced previous pickup() proc which is now called pre_pickup() as it makes more sense
+ * keep that in mind when porting items form other builds
+ */
 /obj/item/proc/pickup(mob/target)
 	throwing = 0
 	var/atom/old_loc = loc
@@ -255,9 +297,11 @@
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
 	return
 
-// Called whenever an object is moved out of a mob's equip slot. Possibly into another slot, possibly to elsewhere
-// Linker proc: mob/proc/prepare_for_slotmove, which is referenced in proc/handle_item_insertion and obj/item/attack_hand.
-// This exists so that dropped() could exclusively be called when an item is dropped.
+/**
+ * Called whenever an object is moved out of a mob's equip slot. Possibly into another slot, possibly to elsewhere
+ * Linker proc: mob/proc/prepare_for_slotmove, which is referenced in proc/handle_item_insertion and obj/item/attack_hand.
+ * This exists so that dropped() could exclusively be called when an item is dropped.
+ */
 /obj/item/proc/on_slotmove(mob/user)
 	if(wielded)
 		unwield(user)
@@ -269,25 +313,27 @@
 			SEND_SIGNAL_OLD(user, COMSIG_CLOTH_DROPPED, src)
 
 
-//	Called before an item is picked up (loc is not yet changed)
-//	NOTE: This proc name was changed form pickup() as it makes more sense
-//	keep that in mind when porting items form other builds
+/**
+ * Called before an item is picked up (loc is not yet changed)
+ * NOTE: This proc name was changed form pickup() as it makes more sense
+ * keep that in mind when porting items form other builds
+ */
 /obj/item/proc/pre_pickup(mob/user)
 	update_light()
 	return TRUE
 
-// called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
+/// Called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/the_storage)
 	SEND_SIGNAL(the_storage, COMSIG_STORAGE_TAKEN, src)
 	return
 
-// called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
+/// Called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/the_storage)
 	SEND_SIGNAL(the_storage, COMSIG_STORAGE_INSERTED, src, the_storage)
 	//SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, the_storage.getContainingMovable())
 	return
 
-// called when "found" in pockets and storage items. Returns 1 if the search should end.
+/// Called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder as mob)
 	return
 /obj/item/verb/verb_pickup()
@@ -321,17 +367,21 @@
 	usr.UnarmedAttack(src)
 
 
-//This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in screen1_action.dmi
-//The default action is attack_self().
-//Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
+/**
+ * This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in screen1_action.dmi
+ * The default action is attack_self().
+ * Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
+ */
 /obj/item/proc/ui_action_click(mob/living/user, action_name)
 	attack_self(usr)
 
-//RETURN VALUES
-//handle_shield should return a positive value to indicate that the attack is blocked and should be prevented.
-//If a negative value is returned, it should be treated as a special return value for bullet_act() and handled appropriately.
-//For non-projectile attacks this usually means the attack is blocked.
-//Otherwise should return 0 to indicate that the attack is not affected in any way.
+/**
+ * RETURN VALUES
+ * handle_shield should return a positive value to indicate that the attack is blocked and should be prevented.
+ * If a negative value is returned, it should be treated as a special return value for bullet_act() and handled appropriately.
+ * For non-projectile attacks this usually means the attack is blocked.
+ * Otherwise should return 0 to indicate that the attack is not affected in any way.
+ */
 /obj/item/proc/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	return 0
 
@@ -554,13 +604,13 @@ var/global/list/items_blood_overlay_by_type = list()
 /obj/item/proc/hand_spin(mob/living/carbon/requester) // used for custom behaviour on the above proc
 	return
 
-/*
-For zooming with scope or binoculars. This is called from
-modules/mob/mob_movement.dm if you move you will be zoomed out
-modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
-mech zooming.
-*/
-//Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
+/**
+ * For zooming wth scope or binoculars. This is called from
+ * modules/mob/mob_movement.dm if you move you will be zoomed out
+ * modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
+ * mech zooming.
+ * Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
+ */
 /obj/item/proc/zoom(mob/living/carbon/targetMob,tileoffset = 14,viewsize = 9, stayzoomed = FALSE) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	if(!targetMob.client)
 		return
@@ -631,11 +681,11 @@ mech zooming.
 	return 0 // Process Kill
 
 
-//Called when a human swaps hands to a hand which is holding this item
+/// Called when a human swaps hands to a hand which is holding this item
 /obj/item/proc/swapped_to(mob/user)
 	add_hud_actions(user)
 
-//Called when a human swaps hands away from a hand which is holding this item
+/// Called when a human swaps hands away from a hand which is holding this item
 /obj/item/proc/swapped_from(mob/user)
 	remove_hud_actions(user)
 

@@ -1,14 +1,19 @@
 /obj
-	//Used to store information about the contents of the object.
+	/// Used to store information about the contents of the object.
 	var/list/matter
 	var/list/matter_reagents
-	var/w_class // Size of the object.
-	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
+	/// Size of the object.
+	var/w_class
+	/// universal "unacidabliness" var, here so you can use it in any obj.
+	var/unacidable = 0
 	animate_movement = 2
 	var/throwforce = 1
-	var/sharp = FALSE		// whether this object cuts
-	var/edge = FALSE		// whether this object is more likely to dismember
-	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
+	/// whether this object cuts
+	var/sharp = FALSE
+	/// whether this object is more likely to dismember
+	var/edge = FALSE
+	/// If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
+	var/in_use = 0
 	var/damtype = "brute"
 	var/armor_divisor = 1
 	var/corporation
@@ -172,7 +177,8 @@
 /obj/proc/see_emote(mob/M, text, emote_type)
 	return
 
-/obj/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/// Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/obj/proc/show_message(msg, type, alt, alt_type)
 	return
 
 /obj/proc/add_hearing()
@@ -215,17 +221,21 @@
 		span_notice("You replace [I_old] with [I_new] in [src]."))
 	return TRUE
 
-//Returns the list of matter in this object
-//You can override it to customise exactly what is returned.
+/**
+ * Returns the list of matter in this object
+ * You can override it to customise exactly what is returned.
+ */
 /atom/proc/get_matter()
 	return list()
 
 /obj/get_matter()
 	return matter ? matter.Copy() : list()
 
-//Drops the materials in matter list on into target location
-//Use for deconstrction
-// Dropper is whoever is handling these materials if any , causes them to leave fingerprints on the sheets.
+/**
+ * Drops the materials in matter list on into target location
+ * Use for deconstrction
+ * Dropper is whoever is handling these materials if any , causes them to leave fingerprints on the sheets.
+ */
 /atom/proc/drop_materials(target_loc, mob/living/dropper)
 	var/list/materials = get_matter()
 
@@ -236,8 +246,11 @@
 
 		material.place_material(target_loc, materials[mat_name], dropper)
 
-//To be called from things that spill objects on the floor.
-//Makes an object move around randomly for a couple of tiles
+/**
+ * To be called from things that spill objects on the floor.
+ * Makes an object move around randomly for a couple of tiles
+ */
+
 /obj/proc/tumble(dist = 2)
 	set waitfor = FALSE
 	if (dist >= 1)
@@ -248,7 +261,7 @@
 				sleep(rand(2,4))
 
 
-//Intended for gun projectiles, but defined at this level for various things that aren't of projectile type
+/// Intended for gun projectiles, but defined at this level for various things that aren't of projectile type
 /obj/proc/multiply_projectile_damage(newmult)
 	throwforce = initial(throwforce) * newmult
 

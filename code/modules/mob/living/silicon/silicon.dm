@@ -5,14 +5,17 @@
 	tts_seed = "Robot_1"
 	var/syndicate = 0
 	var/const/MAIN_CHANNEL = "Main Frequency"
-	var/lawchannel = MAIN_CHANNEL // Default channel on which to state laws
-	var/list/stating_laws = list()// Channels laws are currently being stated on
+	/// Default channel on which to state laws
+	var/lawchannel = MAIN_CHANNEL
+	/// Channels laws are currently being stated on
+	var/list/stating_laws = list()
 	var/obj/item/device/radio/common_radio
 	//plug before baymed arrives
 	var/obj/item/device/radio/silicon_radio
 
 	var/list/hud_list[10]
-	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
+	/// which languages can be vocalized by the speech synthesizer
+	var/list/speech_synthesizer_langs = list()
 
 	var/last_lawchange_announce = 0
 	//Used in say.dm.
@@ -21,7 +24,8 @@
 	var/speak_query = "queries"
 	var/pose //Yes, now AIs can pose too.
 	var/obj/item/device/camera/siliconcam/aiCamera //photography
-	var/local_transmit //If set, can only speak to others of the same type within a short range.
+	/// If set, can only speak to others of the same type within a short range.
+	var/local_transmit
 
 	var/sensor_mode = 0 //Determines the current HUD.
 

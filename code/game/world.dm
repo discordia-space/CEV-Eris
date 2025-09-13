@@ -128,10 +128,12 @@ GLOBAL_VAR(restart_counter)
 	call_restart_webhook()
 	TgsInitializationComplete()
 
+/**
+ * Everything in here is prioritized in a very specific way.
+ * If you need to add to it, ask yourself hard if what your adding is in the right spot
+ * (i.e. basically nothing should be added before load_admins() in here)
+ */
 /world/proc/ConfigLoaded()
-	// Everything in here is prioritized in a very specific way.
-	// If you need to add to it, ask yourself hard if what your adding is in the right spot
-	// (i.e. basically nothing should be added before load_admins() in here)
 
 	//apply a default value to CONFIG_GET(string/python_path), if needed
 	if (!CONFIG_GET(string/python_path))

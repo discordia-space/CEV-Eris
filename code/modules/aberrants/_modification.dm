@@ -40,7 +40,8 @@ COMSIG_ABERRANT_SECONDARY
 	var/mod_stat = STAT_COG
 	var/mod_sound = WORKSOUND_HONK
 
-	var/examine_msg = null	// Examine message for the mod, not the item it is attached to
+	/// Examine message for the mod, not the item it is attached to
+	var/examine_msg = null
 	var/examine_stat = STAT_COG
 	var/examine_difficulty = STAT_LEVEL_BASIC
 	var/examine_stat_secondary = null

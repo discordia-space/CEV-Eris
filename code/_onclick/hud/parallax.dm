@@ -23,7 +23,11 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	SSevent.all_parallaxes -= src
 	return ..()
 
-/obj/parallax/proc/update() //This proc updates your parallax (duh). If your view has been altered by binoculars, admin fuckery, and so on. We need to make the space bigger by applying a matrix transform to it. This is hardcoded for now.
+/**
+ * This proc updates your parallax (duh). If your view has been altered by binoculars, admin fuckery, and so on.
+ * We need to make the space bigger by applying a matrix transform to it. This is hardcoded for now.
+ */
+/obj/parallax/proc/update()
 	if(!owner || !owner.client)
 		return
 	var/turf/T = get_turf(owner.client.eye)

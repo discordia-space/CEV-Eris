@@ -82,7 +82,7 @@ var/global/floorIsLava = 0
 	usr << browse(HTML_SKELETON_TITLE("Log Panel of [M.real_name]", body), "window=\ref[M]logs;size=500x500")
 
 
-//shows an interface for individual players, with various links (links require additional flags
+/// shows an interface for individual players, with various links (links require additional flags
 /datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Show Player Panel"
@@ -232,12 +232,16 @@ var/global/floorIsLava = 0
 
 	usr << browse(HTML_SKELETON_TITLE("Options for [M.key]", body), "window=adminplayeropts;size=550x515")
 
-/datum/player_info/var/author // admin who authored the information
-/datum/player_info/var/rank //rank of admin who made the notes
-/datum/player_info/var/content // text content of the information
-/datum/player_info/var/timestamp // Because this is bloody annoying
+/// Admin who authored the information
+/datum/player_info/var/author
+/// Rank of admin who made the notes
+/datum/player_info/var/rank
+/// Text content of the information
+/datum/player_info/var/content
+/// Because this is bloody annoying
+/datum/player_info/var/timestamp
 
-//allows access of newscasters
+/// allows access of newscasters
 /datum/admins/proc/access_news_network() //MARKER
 	set category = "Fun"
 	set name = "Access Newscaster Network"
@@ -582,7 +586,7 @@ var/global/floorIsLava = 0
 				to_chat(world, "Server restart - [init_by]")
 				world.TgsEndProcess()
 
-//priority announce something to all clients.
+/// priority announce something to all clients.
 /datum/admins/proc/announce()
 	set category = "Special Verbs"
 	set name = "Announce"
@@ -628,7 +632,7 @@ var/global/floorIsLava = 0
 	if(confirm == "Yes")
 		SSticker.force_ending = ADMIN_FORCE_END_ROUND
 
-//toggles ooc on/off for everyone
+/// toggles ooc on/off for everyone
 /datum/admins/proc/toggleooc()
 	set category = "Server"
 	set desc="Globally Toggles OOC"
@@ -644,7 +648,7 @@ var/global/floorIsLava = 0
 		to_chat(world, "<B>The OOC channel has been globally disabled!</B>")
 	log_and_message_admins("toggled OOC.")
 
-//toggles looc on/off for everyone
+/// toggles looc on/off for everyone
 /datum/admins/proc/togglelooc()
 	set category = "Server"
 	set desc="Globally Toggles LOOC"
@@ -660,7 +664,7 @@ var/global/floorIsLava = 0
 		to_chat(world, "<B>The LOOC channel has been globally disabled!</B>")
 	log_and_message_admins("toggled LOOC.")
 
-//toggles dsay on/off for everyone
+/// toggles dsay on/off for everyone
 /datum/admins/proc/toggledsay()
 	set category = "Server"
 	set desc="Globally Toggles DSAY"
@@ -677,7 +681,7 @@ var/global/floorIsLava = 0
 	log_admin("[key_name(usr)] toggled deadchat.")
 	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
 
-//toggles ooc on/off for everyone who is dead
+/// toggles ooc on/off for everyone who is dead
 /datum/admins/proc/toggleoocdead()
 	set category = "Server"
 	set desc="Toggle Dead OOC."
@@ -715,7 +719,7 @@ var/global/floorIsLava = 0
 		to_chat(usr, span_warning(span_red("Error: Start Now: Game has already started.")))
 	return FALSE
 
-//toggles whether people can join the current game
+/// toggles whether people can join the current game
 /datum/admins/proc/toggleenter()
 	set category = "Server"
 	set desc="People can't enter"
@@ -864,7 +868,7 @@ var/global/floorIsLava = 0
 	new /obj/effect/plant(get_turf(usr), SSplants.seeds[seedtype])
 	log_admin("[key_name(usr)] spawned [seedtype] vines at ([usr.x],[usr.y],[usr.z])")
 
-// allows us to spawn instances
+/// allows us to spawn instances
 /datum/admins/proc/spawn_atom(object as text)
 	set category = "Debug"
 	set desc = "(atom path) Spawn an atom"
@@ -899,7 +903,7 @@ var/global/floorIsLava = 0
 
 	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
 
-//interface which shows a mob's mind
+/// interface which shows a mob's mind
 /datum/admins/proc/show_contractor_panel(mob/M in SSmobs.mob_list | SShumans.mob_list)
 	set category = "Admin"
 	set desc = "Edit mobs's memory and role"
@@ -926,7 +930,7 @@ var/global/floorIsLava = 0
 	log_admin("[key_name(usr)] toggled welder vision.")
 	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
 
-//toggles whether guests can join the current game
+/// toggles whether guests can join the current game
 /datum/admins/proc/toggleguests()
 	set category = "Server"
 	set desc="Guests can't enter"

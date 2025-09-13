@@ -19,7 +19,7 @@
 	else
 		return 1/maxHealth
 
-// Should  always return the amount of damage done
+/// Should always return the amount of damage done
 /obj/structure/proc/take_damage(damage)
 	// Blocked amount
 	. = health - damage < 0 ? damage - (damage - health) : damage

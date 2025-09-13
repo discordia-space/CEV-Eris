@@ -9,10 +9,14 @@
 	var/last_bumped = 0
 	var/pass_flags = 0
 	var/throwpass = 0
-	var/simulated = TRUE //filter for actions - used by lighting overlays
-	var/fluorescent // Shows up under a UV light.
-	var/allow_spin = TRUE // prevents thrown atoms from spinning when disabled on thrown or target
-	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
+	/// Filter for actions - used by lighting overlays
+	var/simulated = TRUE
+	/// Shows up under a UV light.
+	var/fluorescent
+	/// Prevents thrown atoms from spinning when disabled on thrown or target
+	var/allow_spin = TRUE
+	/// For tools system, check for it should forbid to work on atom for more than one user at time
+	var/used_now = FALSE
 	var/auto_init = TRUE
 	var/initialized = FALSE
 	var/sanity_damage = 0
@@ -24,16 +28,22 @@
 	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
 	var/chat_color_darkened
 
-	var/light_power = 1 // Intensity of the light.
-	var/light_range = 0 // Range in tiles of the light.
-	var/light_color     // Hexadecimal RGB string representing the colour of the light.
+	/// Intensity of the light.
+	var/light_power = 1
+	/// Range in tiles of the light.
+	var/light_range = 0
+	/// Hexadecimal RGB string representing the colour of the light.
+	var/light_color
 
 	var/can_buckle = FALSE
 	var/buckle_movable = 0
 	var/buckle_dir = 0
-	var/buckle_lying = -1 //bed-like behavior, forces mob.lying = buckle_lying if != -1
-	var/buckle_pixel_shift = "x=0;y=0" //where the buckled mob should be pixel shifted to, or null for no pixel shift control
-	var/buckle_require_restraints = 0 //require people to be handcuffed before being able to buckle. eg: pipes
+	/// Bed-like behavior, forces mob.lying = buckle_lying if != -1
+	var/buckle_lying = -1
+	/// Where the buckled mob should be pixel shifted to, or null for no pixel shift control
+	var/buckle_pixel_shift = "x=0;y=0"
+	/// Require people to be handcuffed before being able to buckle. eg: pipes
+	var/buckle_require_restraints = 0
 	var/mob/living/buckled_mob = null
 
 	var/was_bloodied
@@ -42,14 +52,17 @@
 	var/list/fingerprints
 	var/list/fingerprintshidden
 	var/list/blood_DNA
-	var/list/original_atom // Detective Work, used for the duplicate data points kept in the scanners
+	/// Detective Work, used for the duplicate data points kept in the scanners
+	var/list/original_atom
 	var/list/statverbs
-	var/list/atom_colours // Inherent color, the colored paint applied on it, special color effect etc...
+	/// Inherent color, the colored paint applied on it, special color effect etc...
+	var/list/atom_colours
 	var/list/preloaded_reagents
 	var/datum/reagents/reagents
-	var/tmp/list/light_sources       // Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
-	var/tmp/datum/light_source/light // Our light source. Don't fuck with this directly unless you have a good reason!
-
+	/// Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
+	var/tmp/list/light_sources
+	/// Our light source. Don't fuck with this directly unless you have a good reason!
+	var/tmp/datum/light_source/light
 
 /atom/proc/update_icon()
 	return
@@ -176,7 +189,7 @@
 	update_openspace()
 	return ..()
 
-///Generate a tag for this atom
+/// Generate a tag for this atom
 /atom/proc/GenerateTag()
 	return
 
@@ -195,8 +208,10 @@
 	else
 		return null
 
-//return flags that should be added to the viewer's sight var.
-//Otherwise return a negative number to indicate that the view should be cancelled.
+/**
+ * return flags that should be added to the viewer's sight var.
+ * Otherwise return a negative number to indicate that the view should be cancelled.
+ */
 /atom/proc/check_eye(user as mob)
 	if (isAI(user)) // WHYYYY
 		return 0
@@ -208,7 +223,7 @@
 /atom/proc/Bumped(AM as mob|obj)
 	return
 
-// Convenience procs to see if a container is open for chemistry handling
+/// Convenience procs to see if a container is open for chemistry handling
 /atom/proc/is_open_container()
 	return is_refillable() && is_drainable()
 
@@ -228,8 +243,10 @@
 /atom/proc/CheckExit()
 	return TRUE
 
-// If you want to use this, the atom must have the PROXMOVE flag, and the moving
-// atom must also have the PROXMOVE flag currently to help with lag. ~ ComicIronic
+/**
+ * If you want to use this, the atom must have the PROXMOVE flag, and the moving
+ * atom must also have the PROXMOVE flag currently to help with lag. ~ ComicIronic
+ */
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
 	return
 
@@ -252,12 +269,13 @@
 		return TRUE
 	return
 
-/*
- *	atom/proc/search_contents_for(path, list/filter_path=null)
+/**
+ * atom/proc/search_contents_for(path, list/filter_path=null)
+ *
  * Recursevly searches all atom contens (including contents contents and so on).
  *
  * ARGS: path - search atom contents for atoms of this type
- *	   list/filter_path - if set, contents of atoms not of types in this list are excluded from search.
+ * list/filter_path - if set, contents of atoms not of types in this list are excluded from search.
  *
  * RETURNS: list of found atoms
  */
@@ -283,15 +301,15 @@
 
 
 
-/*
-Beam code by Gunbuddy
-
-Beam() proc will only allow one beam to come from a source at a time.  Attempting to call it more than
-once at a time per source will cause graphical errors.
-Also, the icon used for the beam will have to be vertical and 32x32.
-The math involved assumes that the icon is vertical to begin with so unless you want to adjust the math,
-its easier to just keep the beam vertical.
-*/
+/**
+ * Beam code by Gunbuddy
+ *
+ * Beam() proc will only allow one beam to come from a source at a time.  Attempting to call it more than
+ * once at a time per source will cause graphical errors.
+ * Also, the icon used for the beam will have to be vertical and 32x32.
+ * The math involved assumes that the icon is vertical to begin with so unless you want to adjust the math,
+ * its easier to just keep the beam vertical.
+ */
 /atom/proc/Beam(atom/BeamTarget, icon_state="b_beam", icon='icons/effects/beam.dmi',time=50, maxdistance=10)
 	//BeamTarget represents the target for the beam, basically just means the other end.
 	//Time is the duration to draw the beam
@@ -358,7 +376,7 @@ its easier to just keep the beam vertical.
 /atom/proc/GetVoice()
 	return "[src]" //Returns the atom's name, prepended with 'The' if it's not a proper noun
 
-//All atoms
+/// All atoms
 /atom/proc/examine(mob/user, extra_description = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/full_name = "\a [src]."
@@ -424,12 +442,14 @@ its easier to just keep the beam vertical.
 
 	return (get_dist(src, user) <= world.view) || isobserver(user)
 
-// called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
-// see code/modules/mob/mob_movement.dm for more.
+/**
+ * called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
+ * see code/modules/mob/mob_movement.dm for more.
+ */
 /atom/proc/relaymove()
 	return
 
-//called to set the atom's dir and used to add behaviour to dir-changes
+/// called to set the atom's dir and used to add behaviour to dir-changes
 /atom/proc/set_dir(new_dir)
 	var/old_dir = dir
 	if(new_dir == old_dir)
@@ -444,8 +464,11 @@ its easier to just keep the beam vertical.
 /atom/proc/container_dir_changed(new_dir)
 	return
 
-// Explosion action proc , should never SLEEP, and should avoid icon updates , overlays and other visual stuff as much as possible , since they cause massive time delays
-// in explosion processing.
+/**
+ * Explosion action proc , should never SLEEP, and should avoid icon updates,
+ * overlays and other visual stuff as much as possible , since they cause massive time delays
+ * in explosion processing.
+ */
 /atom/proc/explosion_act(target_power, explosion_handler/handler)
 	return 0
 
@@ -609,7 +632,7 @@ its easier to just keep the beam vertical.
 		A.fingerprintshidden |= fingerprintshidden.Copy()    //admin	A.fingerprintslast = fingerprintslast
 
 
-//returns 1 if made bloody, returns 0 otherwise
+/// returns 1 if made bloody, returns 0 otherwise
 /atom/proc/add_blood(mob/living/carbon/human/M)
 	if(flags & NOBLOODY)
 		return FALSE
@@ -810,21 +833,23 @@ its easier to just keep the beam vertical.
 	if(density != new_density)
 		density = !!new_density
 
-//This proc is called when objects are created during the round by players.
-//This allows them to behave differently from objects that are mapped in, adminspawned, or purchased
+
+/**
+ * This proc is called when objects are created during the round by players.
+ * This allows them to behave differently from objects that are mapped in, adminspawned, or purchased
+ * Should be called when:
+ * 		An item is printed at an autolathe or protolathe **COMPLETE**
+ * 		Item is created at mech fab, organ printer, prosthetics builder, or any other machine which creates things
+ * 		An item is constructed from sheets or any similar crafting system
+ * Should NOT be called when:
+ * 		An item is mapped in
+ * 		An item is adminspawned
+ * 		An item is spawned by events
+ * 		An item is delivered on the cargo shuttle
+ * 		An item is purchased or dispensed from a vendor (Those things contain premade items and just release them)
+ */
 /atom/proc/Created(mob/user)
 	return
-	//Should be called when:
-		//An item is printed at an autolathe or protolathe **COMPLETE**
-		//Item is created at mech fab, organ printer, prosthetics builder, or any other machine which creates things
-		//An item is constructed from sheets or any similar crafting system
-
-	//Should NOT be called when:
-		//An item is mapped in
-		//An item is adminspawned
-		//An item is spawned by events
-		//An item is delivered on the cargo shuttle
-		//An item is purchased or dispensed from a vendor (Those things contain premade items and just release them)
 
 /atom/proc/get_cell()
 	return
@@ -837,7 +862,7 @@ its easier to just keep the beam vertical.
 /atom/proc/change_area(area/old_area, area/new_area)
 	return
 
-//Bullethole shit.
+/// Bullethole shit.
 /atom/proc/create_bullethole(obj/item/projectile/Proj)
 	var/p_x = Proj.p_x + rand(-8,8) // really ugly way of coding "sometimes offset Proj.p_x!"
 	var/p_y = Proj.p_y + rand(-8,8) // Used for bulletholes
@@ -860,7 +885,7 @@ its easier to just keep the beam vertical.
 		qdel(BM)
 
 
-//Returns a list of things in this atom, can be overridden for more nuanced behaviour
+/// Returns a list of things in this atom, can be overridden for more nuanced behaviour
 /atom/proc/get_contents()
 	return contents
 
@@ -881,7 +906,7 @@ its easier to just keep the beam vertical.
 		return null
 	return L.AllowDrop() ? L : L.drop_location()
 
-//Return flags that may be added as part of a mobs sight
+/// Return flags that may be added as part of a mobs sight
 /atom/proc/additional_sight_flags()
 	return 0
 
@@ -896,7 +921,7 @@ its easier to just keep the beam vertical.
 	qdel(src)
 	. = TRUE
 
-// Passes Stat Panel clicks to the game and calls client click on an atom
+/// Passes Stat Panel clicks to the game and calls client click on an atom
 /atom/Topic(href, list/href_list)
 	. = ..()
 	if(!usr?.client)
@@ -913,6 +938,6 @@ its easier to just keep the beam vertical.
 		var/mouseparams = list2params(paramslist)
 		usr_client.Click(src, loc, null, mouseparams)
 
-// Called after we wrench/unwrench this object
+/// Called after we wrench/unwrench this object
 /obj/proc/wrenched_change()
 	return
