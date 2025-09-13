@@ -1,0 +1,22 @@
+author: Chickenish
+delete-after: true
+changes:
+  - bugfix: dismantling walls no longer results in GC errors.
+  - code_imp: Qdel hints are now better
+  - bugfix: fixed a mistake with vague attack logic
+  - bugfix: Rigged flashlights no longer runtime during Process()
+  - rscadd: Eating another carrion's core with your maw gives you the other 
+      carrion's disguises
+  - balance: carrion over-hunger is now punished by making your human form 
+      hungry
+  - tweak: carrion maw now works with holders.
+  - tweak: carrions now drop as an inert item if the core is killed.
+  - bugfix: eating with carrion maw provides proper chem value
+  - bugfix: nutriment made via roach chem decay is now fully drinkable.
+  - bugfix: Flat Dough and derivatives are now more edible.
+  - tweak: 'balance: Prying damaged flooring now produces scrap metal instead of deleting
+      the floor with no returns.'
+  - rscadd: Added modular bolt-gun config
+  - tweak: tweaked Riose cost
+  - bugfix: fixed clrifle bolt action ammo choice discrepancy
+  - imageadd: added modular boltgun parts
