@@ -107,6 +107,7 @@
 				if (A in accesses)
 					area = "<b>[area]</b>"
 				dat += "<a href='?src=\ref[src];choice=access;access=[A]'>[area]</a><br>"
+		dat += "<br><a href='?src=\ref[src];choice=toggle_all'>Remove/add all</a><br>"
 		dat += "<br><a href='?src=\ref[src];action=issue'>Issue pass</a><br>"
 
 	user << browse(dat, "window=guestpass;size=400x520")
@@ -143,6 +144,11 @@
 					accesses.Remove(A)
 				else
 					accesses.Add(A)
+			if ("toggle_all")
+				if (isemptylist(accesses))
+					accesses.Add(giver.access)
+				else
+					clearlist(accesses)
 	if (href_list["action"])
 		switch(href_list["action"])
 			if ("id")
