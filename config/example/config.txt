@@ -207,13 +207,7 @@ GHOST_INTERACTION
 
 #FORBID_ADMIN_PROFILING
 
-## Path to the python2 executable on the system.  Leave blank for default.
-## Default is "python" on Windows, "/usr/bin/env python2" on UNIX.
-#PYTHON_PATH
-
-## Uncomment to use the C library nudge instead of the python script.
-## This helps security and stability on Linux, but you need to compile the library first.
-#USE_LIB_NUDGE
+#ANNOUNCE_SHUTTLE_DOCK_TO_IRC
 
 ## Uncomment to set the number of /world/Reboot()s before the DreamDaemon restarts itself. 0 means restart every round. Requires tgstation server tools.
 #ROUNDS_UNTIL_HARD_RESTART 10

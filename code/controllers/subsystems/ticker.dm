@@ -303,7 +303,7 @@ SUBSYSTEM_DEF(ticker)
 		if(C.holder)
 			admins_number++
 	if(admins_number == 0)
-		send2adminirc("Round has started with no admins online.")
+		send2adminchat("Round has started with no admins online.")
 
 	round_start_time = world.time //otherwise round_start_time would be 0 for the signals
 

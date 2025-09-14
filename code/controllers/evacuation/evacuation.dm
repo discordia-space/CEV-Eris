@@ -125,7 +125,7 @@ var/datum/evacuation_controller/evacuation_controller
 	else
 		priority_announce(replacetext(replacetext(GLOB.maps_data.shuttle_docked_message, "%dock_name%", "[GLOB.dock_name]"),  "%ETD%", "[estimated_time] minute\s"))
 	if(CONFIG_GET(flag/announce_shuttle_dock_to_irc))
-		send2mainirc("The shuttle has docked with the station. It will depart in approximately [estimated_time] minute\s.")
+		send2adminchat("The shuttle has docked with the station. It will depart in approximately [estimated_time] minute\s.")
 
 /datum/evacuation_controller/proc/launch_evacuation()
 

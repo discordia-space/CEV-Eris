@@ -15,15 +15,3 @@
 ## Leaving this commented will allow all messages through, regardless of network.
 #CROSS_COMMS_NETWORK default_network
 
-
-## Uncomment to enable sending data to the IRC bot.
-#USE_IRC_BOT
-
-## Host where the IRC bot is hosted.  Port 45678 needs to be open.
-#IRC_BOT_HOST localhost
-
-## IRC channel to send information to.  Leave blank to disable.
-#MAIN_IRC #main
-
-## IRC channel to send adminhelps to.  Leave blank to disable adminhelps-to-irc.
-#ADMIN_IRC #admin

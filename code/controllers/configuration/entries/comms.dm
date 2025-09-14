@@ -26,23 +26,6 @@
 /datum/config_entry/string/cross_comms_network
 	protection = CONFIG_ENTRY_LOCKED
 
-
-/******************/
-/* Deprecated IRC */
-/******************/
-
-/datum/config_entry/flag/use_irc_bot
-
-/datum/config_entry/flag/irc_bot_export
-
-/datum/config_entry/flag/use_lib_nudge
-
-/datum/config_entry/string/irc_bot_host
-
-/datum/config_entry/string/main_irc
-
-/datum/config_entry/string/admin_irc
-
 /datum/config_entry/flag/announce_shuttle_dock_to_irc
 
 
