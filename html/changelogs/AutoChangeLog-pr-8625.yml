@@ -1,0 +1,5 @@
+author: Chickenish
+delete-after: true
+changes:
+  - bugfix: dismantling walls no longer results in GC errors.
+  - code_imp: Qdel hints are now better

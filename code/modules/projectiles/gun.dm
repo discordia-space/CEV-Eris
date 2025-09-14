@@ -230,7 +230,7 @@
 	if(flashlight_attachment)
 		flashlight_attachment.forceMove(get_turf(src))
 		flashlight_attachment = null
-	..()
+	. = ..()
 
 /obj/item/gun/proc/set_item_state(state, hands = TRUE, back = FALSE, onsuit = FALSE)
 	var/wield_state
@@ -1017,6 +1017,7 @@
 	sharp = initial(sharp)
 	braceable = initial(braceable)
 	recoil = getRecoil(init_recoil[1], init_recoil[2], init_recoil[3])
+	w_class = initial(w_class)
 
 	attack_verb = list()
 	if(LAZYLEN(custom_default)) // this override is used by the artwork_revolver for RNG gun stats

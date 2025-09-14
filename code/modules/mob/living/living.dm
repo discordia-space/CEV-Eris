@@ -500,17 +500,8 @@ default behaviour is:
 
 	// Delete them from datacore.
 
-	if(PDA_Manifest.len)
-		PDA_Manifest.Cut()
-	for(var/datum/data/record/R in data_core.medical)
-		if ((R.fields["name"] == src.real_name))
-			qdel(R)
-	for(var/datum/data/record/T in data_core.security)
-		if ((T.fields["name"] == src.real_name))
-			qdel(T)
-	for(var/datum/data/record/G in data_core.general)
-		if ((G.fields["name"] == src.real_name))
-			qdel(G)
+	var/datum/todelete = get_crewmember_record(name)
+	qdel(todelete)
 
 	//This should guarantee that ghosts don't spawn.
 	src.ckey = null

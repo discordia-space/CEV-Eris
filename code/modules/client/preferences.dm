@@ -239,10 +239,7 @@
 
 	for(var/lang in alternate_languages)
 		character.add_language(lang)
-
-	character.med_record = med_record
-	character.sec_record = sec_record
-	character.gen_record = gen_record
+	
 	character.exploit_record = exploit_record
 	if(!character.isSynthetic())
 		character.nutrition = rand(250, 450)

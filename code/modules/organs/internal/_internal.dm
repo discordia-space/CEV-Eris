@@ -56,7 +56,7 @@
 	UnregisterSignal(src, COMSIG_IORGAN_ADD_WOUND)
 	UnregisterSignal(src, COMSIG_IORGAN_REMOVE_WOUND)
 	UnregisterSignal(src, COMSIG_IORGAN_REFRESH_SELF)
-	..()
+	. = ..()
 
 /obj/item/organ/internal/removed()
 	UnregisterSignal(parent, COMSIG_IORGAN_WOUND_COUNT)
@@ -405,6 +405,7 @@
 
 /obj/item/organ/internal/rejuvenate()
 	status = null
+	current_blood = initial(current_blood)
 	for(var/woundtype in wounddatums)
 		remove_wound(wounddatums[woundtype])
 

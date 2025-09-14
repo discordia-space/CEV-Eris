@@ -1,0 +1,5 @@
+author: Chickenish
+delete-after: true
+changes:
+  - tweak: 'balance: Prying damaged flooring now produces scrap metal instead of deleting
+      the floor with no returns.'

@@ -43,7 +43,7 @@
 		MATERIAL_PLASTIC = /obj/item/ore/coal
 		)
 
-/obj/machinery/mining/deep_drill/Initialize()
+/obj/machinery/mining/deep_drill/LateInitialize()
 	. = ..()
 	cave_gen = locate(/obj/cave_generator)
 	update_icon()

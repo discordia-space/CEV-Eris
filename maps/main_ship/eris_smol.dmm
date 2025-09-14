@@ -1035,7 +1035,7 @@
 /turf/floor/tiled/dark/panels,
 /area/eris/crew_quarters/firing_range)
 "acF" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/tank/air{
 	dir = 4
 	},
 /turf/floor/plating/under,
@@ -1170,7 +1170,7 @@
 /turf/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "acV" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/tank/air{
 	dir = 8
 	},
 /turf/floor/plating/under,
@@ -13403,7 +13403,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "aGf" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/tank/air{
 	dir = 8
 	},
 /turf/floor/plating/under,
@@ -20903,7 +20903,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "aYq" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/tank/air{
 	dir = 8
 	},
 /obj/structure/railing{
@@ -39583,7 +39583,7 @@
 /turf/floor/tiled/steel/bar_dance,
 /area/eris/command/tcommsat/chamber)
 "bQs" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/tank/air{
 	dir = 1;
 	initialize_directions = 0
 	},
@@ -42835,7 +42835,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck1central)
 "bYe" = (
-/obj/machinery/atmospherics/pipe/tank/plasma{
+/obj/machinery/atmospherics/tank/plasma{
 	dir = 8
 	},
 /turf/floor/tiled/techmaint_cargo,
@@ -44844,7 +44844,7 @@
 /turf/floor/tiled/steel,
 /area/eris/crew_quarters/fitness)
 "cdj" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/tank/air{
 	dir = 1;
 	initialize_directions = 0
 	},
@@ -50458,7 +50458,7 @@
 /turf/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/hydroponics)
 "crf" = (
-/obj/machinery/atmospherics/pipe/tank/air,
+/obj/machinery/atmospherics/tank/air,
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4port)
 "crg" = (
@@ -51700,7 +51700,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/disposal)
 "cum" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/tank/air{
 	dir = 4;
 	start_pressure = 740.5
 	},
@@ -55477,7 +55477,7 @@
 /turf/floor/grass,
 /area/eris/crew_quarters/hydroponics/garden)
 "cDv" = (
-/obj/machinery/atmospherics/pipe/tank/oxygen,
+/obj/machinery/atmospherics/tank/oxygen,
 /turf/floor/plating/under,
 /area/eris/crew_quarters/sleep/cryo)
 "cDw" = (
@@ -58144,13 +58144,13 @@
 	},
 /area/shuttle/mining/station)
 "cJE" = (
-/obj/machinery/atmospherics/pipe/tank/air,
+/obj/machinery/atmospherics/tank/air,
 /turf/shuttle/floor/mining{
 	icon_state = "12,21"
 	},
 /area/shuttle/mining/station)
 "cJF" = (
-/obj/machinery/atmospherics/pipe/tank/air,
+/obj/machinery/atmospherics/tank/air,
 /turf/shuttle/floor/mining{
 	icon_state = "13,21"
 	},
@@ -58184,7 +58184,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck1starboard)
 "cJL" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/tank/air{
 	dir = 1;
 	initialize_directions = 0
 	},
@@ -60188,7 +60188,7 @@
 	},
 /area/shuttle/research/station)
 "cPi" = (
-/obj/machinery/atmospherics/pipe/tank/air,
+/obj/machinery/atmospherics/tank/air,
 /turf/shuttle/floor/science{
 	icon_state = "5,5"
 	},
@@ -60767,7 +60767,7 @@
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/crew_quarters/pubeva)
 "cQM" = (
-/obj/machinery/atmospherics/pipe/tank/oxygen{
+/obj/machinery/atmospherics/tank/oxygen{
 	dir = 4
 	},
 /turf/floor/tiled/steel/brown_perforated,
@@ -61041,7 +61041,7 @@
 /turf/floor/plating/under,
 /area/eris/storage/tech)
 "cRy" = (
-/obj/machinery/atmospherics/pipe/tank/plasma{
+/obj/machinery/atmospherics/tank/plasma{
 	dir = 4
 	},
 /turf/floor/tiled/steel/brown_perforated,
@@ -63034,7 +63034,7 @@
 /turf/floor/tiled/steel/monofloor,
 /area/eris/hallway/side/docks)
 "cXh" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/tank/air{
 	dir = 4
 	},
 /obj/structure/railing{
@@ -63082,7 +63082,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
 "cXl" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/tank/air{
 	dir = 4
 	},
 /obj/structure/railing,
@@ -63820,7 +63820,7 @@
 /turf/floor/tiled/white/brown_perforated,
 /area/eris/medical/medbreak)
 "cYR" = (
-/obj/machinery/atmospherics/pipe/tank/oxygen{
+/obj/machinery/atmospherics/tank/oxygen{
 	dir = 8
 	},
 /obj/structure/railing,
@@ -68339,7 +68339,7 @@
 /turf/floor/tiled/steel/brown_perforated,
 /area/eris/quartermaster/miningdock)
 "djx" = (
-/obj/machinery/atmospherics/pipe/tank/air,
+/obj/machinery/atmospherics/tank/air,
 /obj/structure/railing,
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck1starboard)
@@ -73992,7 +73992,7 @@
 /turf/floor/tiled/steel/cargo,
 /area/eris/engineering/foyer)
 "dwN" = (
-/obj/machinery/atmospherics/pipe/tank/air,
+/obj/machinery/atmospherics/tank/air,
 /obj/machinery/alarm{
 	pixel_y = 26
 	},

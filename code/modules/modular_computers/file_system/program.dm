@@ -195,7 +195,10 @@
 		if(ui)
 			ui.close()
 		return computer.nano_ui_interact(user)
-	if(istype(NM))
+	if(istype(NM, /datum/nano_module/tgui))
+		NM.ui_interact(user)
+		return FALSE
+	else if(istype(NM))
 		NM.nano_ui_interact(user, ui_key, null, force_open)
 		return 0
 	return 1
