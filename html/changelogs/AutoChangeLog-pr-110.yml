@@ -1,5 +1,0 @@
-author: flleeppyy
-delete-after: true
-changes:
-  - tweak: Ship announcements and alerts have been converted to fancier boxes!
-  - admin: New "Create Command Report" UI, ported from Monke
