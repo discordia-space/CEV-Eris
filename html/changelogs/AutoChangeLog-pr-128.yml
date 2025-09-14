@@ -1,0 +1,4 @@
+author: flleeppyy
+delete-after: true
+changes:
+  - rscdel: Removed IRC functionality, it was barely used.
