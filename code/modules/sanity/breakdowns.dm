@@ -201,7 +201,9 @@
 
 /datum/breakdown/negative/selfharm/occur()
 	spawn(delay)
-		++holder?.owner.suppress_communication
+		if(ishuman(holder?.owner))
+			var/mob/living/carbon/human/tobreakdown = holder.owner
+			++tobreakdown.suppress_communication
 	return ..()
 
 /datum/breakdown/negative/selfharm/conclude()
@@ -240,9 +242,11 @@
 
 /datum/breakdown/negative/hysteric/occur()
 	spawn(delay)
-		holder?.owner.SetWeakened(4)
-		holder?.owner.SetStunned(4)
-		++holder?.owner.suppress_communication
+		if(ishuman(holder?.owner))
+			var/mob/living/carbon/human/tobreakdown = holder.owner
+			tobreakdown.SetWeakened(4)
+			tobreakdown.SetStunned(4)
+			++tobreakdown.suppress_communication
 	return ..()
 
 /datum/breakdown/negative/hysteric/conclude()
