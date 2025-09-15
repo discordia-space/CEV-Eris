@@ -71,3 +71,6 @@
   flleeppyy:
   - tweak: Ship announcements and alerts have been converted to fancier boxes!
   - admin: New "Create Command Report" UI, ported from Monke
+2025-09-15:
+  flleeppyy:
+  - rscdel: Removed IRC functionality, it was barely used.
