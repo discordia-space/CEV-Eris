@@ -393,7 +393,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 					send2coders(message = "CHRONOFAILURE: Timeless reboot failed beyond repair.", color = "#ff0000", admiralty = 1)
 				if(1)
 					log_game("CHRONOFAILURE: MC reboot successful.")
-					send2coders(message = "CHRONOFAILURE: Timeless reboot successful.", color = "#ff0000", admiralty = 1)
+					send2coders(message = "CHRONOFAILURE: Timeless reboot successful.", color = "#00ff00", admiralty = 1)
 
 		if (init_stage != init_stage_completed)
 			return MC_LOOP_RTN_NEWSTAGES
