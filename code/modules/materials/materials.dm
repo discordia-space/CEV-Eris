@@ -143,12 +143,12 @@ var/list/name_to_material
 	var/stack_type
 
 // Placeholders for light tiles and rglass.
-/material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
+/material/proc/build_rod_product(mob/user, obj/item/stack/used_stack, obj/item/stack/target_stack)
 	if(!rod_product)
-		to_chat(user, SPAN_WARNING("You cannot make anything out of \the [target_stack]"))
+		to_chat(user, span_warning("You cannot make anything out of \the [target_stack]"))
 		return
 	if(used_stack.get_amount() < 1 || target_stack.get_amount() < 1)
-		to_chat(user, SPAN_WARNING("You need one rod and one sheet of [display_name] to make anything useful."))
+		to_chat(user, span_warning("You need one rod and one sheet of [display_name] to make anything useful."))
 		return
 	used_stack.use(1)
 	target_stack.use(1)
@@ -156,17 +156,17 @@ var/list/name_to_material
 	S.add_fingerprint(user)
 	S.add_to_stacks(user)
 
-/material/proc/build_wired_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
+/material/proc/build_wired_product(mob/user, obj/item/stack/used_stack, obj/item/stack/target_stack)
 	if(!wire_product)
-		to_chat(user, SPAN_WARNING("You cannot make anything out of \the [target_stack]"))
+		to_chat(user, span_warning("You cannot make anything out of \the [target_stack]"))
 		return
 	if(used_stack.get_amount() < 5 || target_stack.get_amount() < 1)
-		to_chat(user, SPAN_WARNING("You need five wires and one sheet of [display_name] to make anything useful."))
+		to_chat(user, span_warning("You need five wires and one sheet of [display_name] to make anything useful."))
 		return
 
 	used_stack.use(5)
 	target_stack.use(1)
-	to_chat(user, SPAN_NOTICE("You attach wire to the [name]."))
+	to_chat(user, span_notice("You attach wire to the [name]."))
 	var/obj/item/product = new wire_product(get_turf(user))
 	if(!(user.l_hand && user.r_hand))
 		user.put_in_hands(product)
@@ -182,7 +182,7 @@ var/list/name_to_material
 		shard_icon = shard_type
 
 // This is a placeholder for proper integration of windows/windoors into the system.
-/material/proc/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
+/material/proc/build_windows(mob/living/user, obj/item/stack/used_stack)
 	return 0
 
 // Weapons handle applying a divisor for this value locally.
@@ -231,7 +231,7 @@ var/list/name_to_material
 /material/proc/is_brittle()
 	return !!(flags & MATERIAL_BRITTLE)
 
-/material/proc/combustion_effect(var/turf/T, var/temperature)
+/material/proc/combustion_effect(turf/T, temperature)
 	return
 
 // Datum definitions follow.
@@ -354,7 +354,7 @@ var/list/name_to_material
 
 /*
 // Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
-/material/plasma/combustion_effect(var/turf/T, var/temperature, var/effect_multiplier)
+/material/plasma/combustion_effect(turf/T, temperature, effect_multiplier)
 	if(isnull(ignition_point))
 		return 0
 	if(temperature < ignition_point)
@@ -510,12 +510,12 @@ var/list/name_to_material
 		return 0
 
 	if(!user.IsAdvancedToolUser())
-		to_chat(user, SPAN_WARNING("This task is too complex for your clumsy hands."))
+		to_chat(user, span_warning("This task is too complex for your clumsy hands."))
 		return 1
 
 	var/turf/T = user.loc
 	if(!istype(T))
-		to_chat(user, SPAN_WARNING("You must be standing on open flooring to build a window."))
+		to_chat(user, span_warning("You must be standing on open flooring to build a window."))
 		return 1
 
 	var/title = "Sheet-[used_stack.name] ([used_stack.get_amount()] sheet\s left)"
@@ -527,7 +527,7 @@ var/list/name_to_material
 	// Get the closest available dir to the user's current facing.
 	var/build_dir = SOUTHWEST //Default to southwest for fulltile windows.
 	// Get data for building windows here.
-	var/list/possible_directions = cardinal.Copy()
+	var/list/possible_directions = GLOB.cardinal.Copy()
 	var/window_count = 0
 	for(var/obj/structure/window/check_window in user.loc)
 		window_count++
@@ -546,13 +546,13 @@ var/list/name_to_material
 			failed_to_build = 1
 		if(!failed_to_build && choice == "Windoor")
 			if(!is_reinforced())
-				to_chat(user, SPAN_WARNING("This material is not reinforced enough to use for a door."))
+				to_chat(user, span_warning("This material is not reinforced enough to use for a door."))
 				return
 			if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
 				failed_to_build = 1
 
 	if(failed_to_build)
-		to_chat(user, SPAN_WARNING("There is no room in this location."))
+		to_chat(user, span_warning("There is no room in this location."))
 		return 1
 
 	var/build_path = /obj/structure/windoor_assembly
@@ -563,7 +563,7 @@ var/list/name_to_material
 		build_path = created_window
 
 	if(used_stack.get_amount() < sheets_needed)
-		to_chat(user, SPAN_WARNING("You need at least [sheets_needed] sheets to build this."))
+		to_chat(user, span_warning("You need at least [sheets_needed] sheets to build this."))
 		return 1
 
 	// Build the structure and update sheet count etc.

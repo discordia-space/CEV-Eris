@@ -34,7 +34,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	return "off"
 
 // You aren't allowed to move.
-/obj/machinery/gravity_generator/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/gravity_generator/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	qdel(src)
 
@@ -151,7 +151,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		if(QUALITY_BOLT_TURNING)
 			if(GRAV_NEEDS_WRENCH)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You secure the plating to the framework."))
+					to_chat(user, span_notice("You secure the plating to the framework."))
 					set_fix()
 					return
 			return
@@ -159,7 +159,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		if(QUALITY_WELDING)
 			if(GRAV_NEEDS_WELDING)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You mend the damaged framework."))
+					to_chat(user, span_notice("You mend the damaged framework."))
 					broken_state++
 					return
 			return
@@ -167,7 +167,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		if(QUALITY_SCREW_DRIVING)
 			if(GRAV_NEEDS_SCREWDRIVER)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You secure the screws of the framework."))
+					to_chat(user, span_notice("You secure the screws of the framework."))
 					broken_state++
 					return
 			return
@@ -180,11 +180,11 @@ var/const/GRAV_NEEDS_WRENCH = 3
 			var/obj/item/stack/material/plasteel/PS = I
 			if(PS.amount >= 10)
 				PS.use(10)
-				to_chat(user, SPAN_NOTICE("You add the plating to the framework."))
+				to_chat(user, span_notice("You add the plating to the framework."))
 				playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
 				broken_state++
 			else
-				to_chat(user, SPAN_WARNING("You need 10 sheets of plasteel!"))
+				to_chat(user, span_warning("You need 10 sheets of plasteel!"))
 	if(old_broken_state != broken_state)
 		update_icon()
 	else
@@ -199,9 +199,9 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		return
 	var/dat = "Gravity Generator Breaker: "
 	if(breaker)
-		dat += "<span class='linkOn'>ON</span> <A href='?src=\ref[src];gentoggle=1'>OFF</A>"
+		dat += "[span_linkOn("ON")] <A href='byond://?src=\ref[src];gentoggle=1'>OFF</A>"
 	else
-		dat += "<A href='?src=\ref[src];gentoggle=1'>ON</A> <span class='linkOn'>OFF</span> "
+		dat += "<A href='byond://?src=\ref[src];gentoggle=1'>ON</A> [span_linkOn("OFF")] "
 
 	dat += "<br>Generator Status:<br><div class='statusDisplay'>"
 	if(charging_state != POWER_IDLE)
@@ -258,7 +258,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	update_icon()
 
 // Set the state of the gravity.
-/obj/machinery/gravity_generator/main/proc/set_state(var/new_state)
+/obj/machinery/gravity_generator/main/proc/set_state(new_state)
 	charging_state = POWER_IDLE
 	on = new_state
 	if(new_state) // If we turned on
@@ -280,10 +280,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 	gravity_is_on = 1
 	update_gravity(gravity_is_on)
-	priority_announcement.Announce("The gravity generator was brought fully operational.")
 	investigate_log("was brought full online and is now producing gravity.", "gravity")
-	var/area/area = get_area(src)
-	message_admins("The gravity generator was brought fully online. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>[area.name]</a>)")
+	message_admins("The gravity generator was brought fully online. [ADMIN_JMP(src)]")
 
 /obj/machinery/gravity_generator/main/proc/grav_off()
 	if(!GLOB.maps_data.station_levels.len)
@@ -292,13 +290,11 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 	gravity_is_on = 0
 	update_gravity(gravity_is_on)
-	priority_announcement.Announce("The gravity generator was brought offline.")
 	investigate_log("was brought offline and there is now no gravity.", "gravity")
-	var/area/area = get_area(src)
-	message_admins("The gravity generator was brought offline with no backup generator. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>[area.name]</a>)")
+	message_admins("The gravity generator was brought offline with no backup generator. [ADMIN_JMP(src)]")
 	shake_everyone()
 
-/obj/machinery/gravity_generator/main/proc/update_gravity(var/is_on)
+/obj/machinery/gravity_generator/main/proc/update_gravity(is_on)
 	for(var/area/A in world)
 		if(isStationLevel(A.z))
 			A.update_gravity()
@@ -340,7 +336,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 /obj/machinery/gravity_generator/main/proc/shake_everyone()
 	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 		var/turf/our_turf = get_turf(src.loc)
-		if(M.client)
+		if(M.client && !isnewplayer(M))
 			shake_camera(M, 15, 1)
 			M.playsound_local(our_turf, 'sound/effects/alert.ogg', 100, 1, 0.5)
 

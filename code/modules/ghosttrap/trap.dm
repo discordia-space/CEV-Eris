@@ -45,16 +45,16 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 			return 0
 	if(islist(ban_checks))
 		for(var/bantype in ban_checks)
-			if(jobban_isbanned(candidate, "[bantype]"))
-				to_chat(candidate, SPAN_DANGER("You are banned from one or more required roles and hence cannot enter play as \a [object]."))
+			if(jobban_isbanned(candidate.ckey, "[bantype]"))
+				to_chat(candidate, span_danger("You are banned from one or more required roles and hence cannot enter play as \a [object]."))
 				return 0
 	if(can_only_use_once && GLOB.ghost_trap_users[candidate.ckey] && (object in GLOB.ghost_trap_users[candidate.ckey]))
-		to_chat(candidate, SPAN_DANGER("You have already entered play as \a [object] during this round."))
+		to_chat(candidate, span_danger("You have already entered play as \a [object] during this round."))
 		return 0
 	return 1
 
 // Print a message to all ghosts with the right prefs/lack of bans.
-/datum/ghosttrap/proc/request_player(var/mob/target, var/request_string, var/respawn_type, var/request_timeout)
+/datum/ghosttrap/proc/request_player(mob/target, request_string, respawn_type, request_timeout)
 	if(request_timeout)
 		request_timeouts[target] = world.time + request_timeout
 		GLOB.destroyed_event.register(target, src, /datum/ghosttrap/proc/target_destroyed)
@@ -68,7 +68,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 			continue
 		if(islist(ban_checks))
 			for(var/bantype in ban_checks)
-				if(jobban_isbanned(O, "[bantype]"))
+				if(jobban_isbanned(O.ckey, "[bantype]"))
 					to_chat(O, "[request_string] However, you are banned from playing it.")
 					continue
 		if(pref_check && !(pref_check in O.client.prefs.be_special_role))
@@ -78,9 +78,9 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 			continue
 
 		if(O.client)
-			to_chat(O, "[request_string] <a href='?src=\ref[src];candidate=\ref[O];target=\ref[target]'>(Occupy)</a> ([ghost_follow_link(target, O)])")
+			to_chat(O, "[request_string] <a href='byond://?src=\ref[src];candidate=\ref[O];target=\ref[target]'>(Occupy)</a> [ghost_follow_link(target, O)]")
 
-/datum/ghosttrap/proc/target_destroyed(var/destroyed_target)
+/datum/ghosttrap/proc/target_destroyed(destroyed_target)
 	request_timeouts -= destroyed_target
 
 // Handles a response to request_player().
@@ -125,14 +125,14 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	return 1
 
 // Fluff!
-/datum/ghosttrap/proc/welcome_candidate(var/mob/target)
-	to_chat(target, "<b>You are a positronic brain, brought into existence on [station_name].</b>")
+/datum/ghosttrap/proc/welcome_candidate(mob/target)
+	to_chat(target, "<b>You are a positronic brain, brought into existence on [station_name()].</b>")
 	to_chat(target, "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>")
 	to_chat(target, "<b>Remember, the purpose of your existence is to serve the crew and the ship. Above all else, do no harm.</b>")
 	to_chat(target, "<b>Use say [target.get_language_prefix()]b to speak to other artificial intelligences.</b>")
 	var/turf/T = get_turf(target)
 	var/obj/item/device/mmi/digital/posibrain/P = target.loc
-	T.visible_message(SPAN_NOTICE("\The [P] chimes quietly."))
+	T.visible_message(span_notice("\The [P] chimes quietly."))
 	if(!istype(P)) //wat
 		return
 	P.searching = 0
@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	P.icon_state = "posibrain-occupied"
 
 // Allows people to set their own name. May or may not need to be removed for posibrains if people are dumbasses.
-/datum/ghosttrap/proc/set_new_name(var/mob/target)
+/datum/ghosttrap/proc/set_new_name(mob/target)
 	if(!can_set_own_name)
 		return
 
@@ -162,8 +162,8 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	list_as_special_role = FALSE
 	can_only_use_once = TRUE // No endless free respawns
 
-/datum/ghosttrap/borer/welcome_candidate(var/mob/target)
-	to_chat(target, "<span class='notice'>You are a cortical borer!</span> You are a brain slug that worms its way \
+/datum/ghosttrap/borer/welcome_candidate(mob/target)
+	to_chat(target, "[span_notice("You are a cortical borer!")] You are a brain slug that worms its way \
 	into the head of its victim. Use stealth, persuasion and your powers of mind control to keep you, \
 	your host and your eventual spawn safe and warm.")
 	to_chat(target, "You can speak to your victim with <b>say</b>, to other borers with <b>say [target.get_language_prefix()]x</b>, and use your Abilities tab to access powers.")
@@ -183,12 +183,12 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	minutes_since_death = DRONE_SPAWN_DELAY
 	..()
 
-datum/ghosttrap/drone/assess_candidate(var/mob/observer/ghost/candidate, var/mob/target, check_respawn_timer)
+/datum/ghosttrap/drone/assess_candidate(mob/observer/ghost/candidate, mob/target, check_respawn_timer)
 	. = ..()
 	if(. && !target.can_be_possessed_by(candidate))
 		return 0
 
-datum/ghosttrap/drone/transfer_personality(var/mob/candidate, var/mob/living/silicon/robot/drone/drone, check_respawn_timer)
+/datum/ghosttrap/drone/transfer_personality(mob/candidate, mob/living/silicon/robot/drone/drone, check_respawn_timer)
 	if(!assess_candidate(candidate))
 		return 0
 	drone.transfer_personality(candidate.client)
@@ -202,10 +202,10 @@ datum/ghosttrap/drone/transfer_personality(var/mob/candidate, var/mob/living/sil
 	ghost_trap_message = "They are occupying a pAI now."
 	ghost_trap_role = "pAI"
 
-datum/ghosttrap/pai/assess_candidate(var/mob/observer/ghost/candidate, var/mob/target, check_respawn_timer)
+/datum/ghosttrap/pai/assess_candidate(mob/observer/ghost/candidate, mob/target, check_respawn_timer)
 	return 0
 
-datum/ghosttrap/pai/transfer_personality(var/mob/candidate, var/mob/living/silicon/robot/drone/drone, check_respawn_timer)
+/datum/ghosttrap/pai/transfer_personality(mob/candidate, mob/living/silicon/robot/drone/drone, check_respawn_timer)
 	return 0
 
 /**************

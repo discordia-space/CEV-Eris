@@ -51,21 +51,21 @@
 /obj/item/device/examine(mob/user, extra_description = "")
 	if(suitable_cell)
 		if(cell)
-			extra_description += SPAN_NOTICE("\The [src]'s cell reads \"[round(cell.percent(),0.1)]%\"")
+			extra_description += span_notice("\The [src]'s cell reads \"[round(cell.percent(),0.1)]%\"")
 		else
-			extra_description += SPAN_WARNING("\The [src] has no cell installed.")
+			extra_description += span_warning("\The [src] has no cell installed.")
 	..(user, extra_description)
 
 /obj/item/device/proc/cell_use_check(charge, mob/user)
 	. = TRUE
 	if(!cell || !cell.checked_use(charge))
 		if(user)
-			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+			to_chat(user, span_warning("[src] battery is dead or missing."))
 		. = FALSE
 
 /obj/item/device/proc/cell_check(charge, mob/user)
 	. = TRUE
 	if(!cell || !cell.check_charge(charge))
 		if(user)
-			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+			to_chat(user, span_warning("[src] battery is dead or missing."))
 		. = FALSE

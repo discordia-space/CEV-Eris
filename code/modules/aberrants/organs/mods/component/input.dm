@@ -129,7 +129,7 @@
 				inputs += "brain ([threshold]), "
 			if(PSY)
 				inputs += "sanity ([threshold]), "
-		
+
 	inputs = copytext(inputs, 1, length(inputs) - 1)
 
 	var/description = "\n<span style='color:green'>Functional information (input):</span> injury response"
@@ -183,7 +183,7 @@
 				current_damage = owner.getBrainLoss()
 			if(PSY)
 				current_damage = H.sanity.max_level - H.sanity.level
-					
+
 		if(current_damage > threshold)
 			threshold_met = TRUE
 
@@ -215,7 +215,7 @@
 
 	for(var/input in accepted_inputs)
 		var/list/possibilities = input_qualities.Copy()
-		
+
 		if(LAZYLEN(accepted_inputs) > 1)
 			for(var/source in possibilities)
 				var/source_type = possibilities[source]
@@ -242,8 +242,8 @@
 	var/organ_multiplier = ((S.max_damage - S.damage) / S.max_damage)
 
 	var/list/input = list()
-	var/active_hand_held = owner.get_active_hand()
-	var/inactive_hand_held = owner.get_inactive_hand()
+	var/active_hand_held = owner.get_active_held_item()
+	var/inactive_hand_held = owner.get_inactive_held_item()
 
 	for(var/digestable in accepted_inputs)
 		var/obj/O
@@ -253,7 +253,7 @@
 			O = active_hand_held
 
 		if(!O)
-			to_chat(owner, SPAN_WARNING("You attempt to consume something, but you have nothing edible in your hand."))
+			to_chat(owner, span_warning("You attempt to consume something, but you have nothing edible in your hand."))
 			return
 
 		var/nutrition_supplied = 0
@@ -269,9 +269,9 @@
 
 			// Same message as carrion sans taste description
 			playsound(owner.loc, 'sound/items/eatfood.ogg', 70, TRUE, 0)
-			owner.visible_message(SPAN_DANGER("[owner] devours \the [O]!"), SPAN_NOTICE("You consume \the [O]."))
+			owner.visible_message(span_danger("[owner] devours \the [O]!"), span_notice("You consume \the [O]."))
 			qdel(O)
-		
+
 		if(nutrition_supplied > threshold)
 			var/magnitude = 0
 
@@ -281,10 +281,10 @@
 				magnitude = 6 * organ_multiplier
 			else if(nutrition_supplied > 10)
 				magnitude = 4 * organ_multiplier
-				
+
 			if(magnitude)
 				if(prob(2))
-					to_chat(owner, SPAN_NOTICE("A warm sensation fills your belly. You feel satiated."))
+					to_chat(owner, span_notice("A warm sensation fills your belly. You feel satiated."))
 				owner.stats.addTempStat(STAT_VIG, magnitude, S.aberrant_cooldown_time + 2 SECONDS, "[parent]")
 				owner.sanity.changeLevel(magnitude)
 
@@ -328,7 +328,7 @@
 
 	for(var/input in accepted_inputs)
 		var/list/possibilities = input_qualities.Copy()
-		
+
 		if(LAZYLEN(accepted_inputs) > 1)
 			for(var/source in possibilities)
 				var/source_type = possibilities[source]
@@ -355,8 +355,8 @@
 		return
 
 	var/list/input = list()
-	var/active_hand_held = owner.get_active_hand()
-	var/inactive_hand_held = owner.get_inactive_hand()
+	var/active_hand_held = owner.get_active_held_item()
+	var/inactive_hand_held = owner.get_inactive_held_item()
 
 	for(var/power_source in accepted_inputs)
 		var/atom/movable/AM
@@ -390,7 +390,7 @@
 			if(!M.amount)
 				owner.remove_from_mob(M)
 				qdel(M)
-		
+
 		if(energy_supplied > threshold)
 			var/magnitude = 0
 
@@ -400,10 +400,10 @@
 				magnitude = 3 * organ_multiplier
 			else if(energy_supplied > 99999)
 				magnitude = 2 * organ_multiplier
-				
+
 			if(magnitude)
 				if(prob(2))
-					to_chat(owner, SPAN_NOTICE("A pleasant chill runs down your spine. You feel more focused."))
+					to_chat(owner, span_notice("A pleasant chill runs down your spine. You feel more focused."))
 				owner.stats.addTempStat(STAT_COG, magnitude * 2, S.aberrant_cooldown_time + 2 SECONDS, "[parent]")
 				owner.sanity.changeLevel(magnitude - 2)
 

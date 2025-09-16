@@ -21,7 +21,6 @@
 # +EVERYTHING (or +HOST or +ALL) = Simply gives you everything without having to type every flag
 
 Admin Observer
-Moderator		+MOD
 Mentor          +MENTOR
 
 Admin Candidate	+ADMIN
@@ -35,4 +34,4 @@ Retired Admin	+ADMIN
 Host			+EVERYTHING
 
 Developer		+DEBUG +SERVER
-Dev Mod			+@ +MOD
+Dev Mod			+@

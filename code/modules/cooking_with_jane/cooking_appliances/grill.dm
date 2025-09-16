@@ -43,7 +43,7 @@
 	//if(on_fire)
 		//Do bad things if it is on fire.
 
-	for(var/i=1, i<=2, i++)
+	for(var/i=1; i<=2; i++)
 		if(switches[i])
 			handle_cooking(null, i, FALSE)
 
@@ -79,14 +79,14 @@
 		bin_rating += M.rating
 	wood_maximum = 15 * bin_rating
 
-/obj/machinery/cooking_with_jane/grill/examine(var/mob/user, extra_description = "")
-	if(!..(user, 1))
+/obj/machinery/cooking_with_jane/grill/examine(mob/user, extra_description = "")
+	if(!..(user, extra_description))
 		return FALSE
 	if(contents)
-		extra_description += SPAN_NOTICE("\nCharcoal: [stored_wood]/[wood_maximum]")
+		extra_description += span_notice("\nCharcoal: [stored_wood]/[wood_maximum]")
 
 //Process how a specific grill is interacting with material
-/obj/machinery/cooking_with_jane/grill/proc/cook_checkin(var/input)
+/obj/machinery/cooking_with_jane/grill/proc/cook_checkin(input)
 
 	if(items[input])
 		#ifdef CWJ_DEBUG
@@ -147,7 +147,7 @@
 	#endif
 	return input
 
-/obj/machinery/cooking_with_jane/grill/attackby(var/obj/item/used_item, var/mob/user, params)
+/obj/machinery/cooking_with_jane/grill/attackby(obj/item/used_item, mob/user, params)
 	if(default_deconstruction(used_item, user))
 		return
 
@@ -156,14 +156,14 @@
 		var/obj/item/stack/material/wood/stack = used_item
 		var/used_sheets = min(stack.get_amount(), (wood_maximum - stored_wood))
 		if(!used_sheets)
-			to_chat(user, SPAN_NOTICE("The grill's hopper is full."))
+			to_chat(user, span_notice("The grill's hopper is full."))
 			return
-		to_chat(user, SPAN_NOTICE("You add [used_sheets] wood plank[used_sheets>1?"s":""] into the grill's hopper."))
+		to_chat(user, span_notice("You add [used_sheets] wood plank[used_sheets>1?"s":""] into the grill's hopper."))
 		if(!stack.use(used_sheets))
 			qdel(stack)	// Protects against weirdness
 		stored_wood += used_sheets
 		if(prob(5))
-			src.visible_message(SPAN_DANGER("The Grill exclaims: \"OM NOM NOM~! YUMMIE~~!\""))
+			src.visible_message(span_danger("The Grill exclaims: \"OM NOM NOM~! YUMMIE~~!\""))
 
 		flick("wood_load", hopper_insert)
 
@@ -177,7 +177,7 @@
 		container.process_item(used_item, params)
 
 	else if(istype(used_item, /obj/item/reagent_containers/cooking_with_jane/cooking_container/grill_grate))
-		to_chat(usr, SPAN_NOTICE("You put a [used_item] on the grill."))
+		to_chat(usr, span_notice("You put a [used_item] on the grill."))
 		if(usr.canUnEquip(used_item))
 			usr.unEquip(used_item, src)
 		else
@@ -202,12 +202,12 @@
 							burn_victim.adjustFireLoss(5)
 						if("Medium")
 							burn_victim.adjustFireLoss(2)
-					to_chat(burn_victim, SPAN_DANGER("You burn your hand a little taking the [items[input]] off of the grill."))
+					to_chat(burn_victim, span_danger("You burn your hand a little taking the [items[input]] off of the grill."))
 		user.put_in_hands(items[input])
 		items[input] = null
 		update_icon()
 
-/obj/machinery/cooking_with_jane/grill/CtrlClick(var/mob/user, params)
+/obj/machinery/cooking_with_jane/grill/CtrlClick(mob/user, params)
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
 
@@ -223,7 +223,7 @@
 			handle_timer(user, input)
 
 //Switch the cooking device on or off
-/obj/machinery/cooking_with_jane/grill/CtrlShiftClick(var/mob/user, params)
+/obj/machinery/cooking_with_jane/grill/CtrlShiftClick(mob/user, params)
 
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
@@ -235,7 +235,7 @@
 	handle_switch(user, input)
 
 //Empty a container without a tool
-/obj/machinery/cooking_with_jane/grill/AltClick(var/mob/user, params)
+/obj/machinery/cooking_with_jane/grill/AltClick(mob/user, params)
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
 
@@ -271,7 +271,7 @@
 	update_icon()
 
 //input: 1 thru 4, depends on which burner was selected
-/obj/machinery/cooking_with_jane/grill/proc/timer_act(var/mob/user, var/input)
+/obj/machinery/cooking_with_jane/grill/proc/timer_act(mob/user, input)
 
 	timerstamp[input]=round(world.time)
 	#ifdef CWJ_DEBUG
@@ -312,7 +312,7 @@
 
 
 
-/obj/machinery/cooking_with_jane/grill/proc/handle_cooking(var/mob/user, var/input, set_timer=FALSE)
+/obj/machinery/cooking_with_jane/grill/proc/handle_cooking(mob/user, input, set_timer=FALSE)
 
 	if(!(items[input] && istype(items[input], /obj/item/reagent_containers/cooking_with_jane/cooking_container)))
 		return
@@ -355,13 +355,13 @@
 	icon_state="grill"
 
 	var/grill_on = FALSE
-	for(var/i=1, i<=2, i++)
+	for(var/i=1; i<=2; i++)
 		if(switches[i] == TRUE)
 			if(!grill_on)
 				grill_on = TRUE
 			add_overlay(image(src.icon, icon_state="fire_[i]"))
 
-	for(var/i=1, i<=2, i++)
+	for(var/i=1; i<=2; i++)
 		if(!(items[i]))
 			continue
 		var/obj/item/our_item = items[i]
@@ -374,7 +374,7 @@
 				our_item.pixel_y = 0
 		src.add_to_visible(our_item, i)
 
-/obj/machinery/cooking_with_jane/grill/proc/add_to_visible(var/obj/item/our_item, input)
+/obj/machinery/cooking_with_jane/grill/proc/add_to_visible(obj/item/our_item, input)
 	our_item.vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
 	src.vis_contents += our_item
 	if(input == 2 || input == 4)
@@ -383,7 +383,7 @@
 		our_item.transform = M
 	our_item.transform *= 0.8
 
-/obj/machinery/cooking_with_jane/grill/proc/remove_from_visible(var/obj/item/our_item, input)
+/obj/machinery/cooking_with_jane/grill/proc/remove_from_visible(obj/item/our_item, input)
 	our_item.vis_flags = 0
 	our_item.blend_mode = 0
 	our_item.transform =  null

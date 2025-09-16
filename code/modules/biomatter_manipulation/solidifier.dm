@@ -88,7 +88,7 @@
 
 /obj/machinery/biomatter_solidifier/MouseDrop_T(obj/structure/reagent_dispensers/biomatter/tank, mob/user)
 	if(get_dir(loc, tank.loc) != port_dir)
-		to_chat(user, SPAN_WARNING("Doesn't connect. Port direction located at [dir2text(port_dir)] side of [src]"))
+		to_chat(user, span_warning("Doesn't connect. Port direction located at [dir2text(port_dir)] side of [src]"))
 		return
 	if(!container)
 		if(tank.set_anchored(TRUE))
@@ -104,9 +104,9 @@
 				if(EAST)
 					container.pixel_x -= CONTAINER_PIXEL_OFFSET
 			playsound(src, 'sound/machines/airlock_ext_close.ogg', 60, 1)
-			to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))
+			to_chat(user, span_notice("You attached [tank] to [src]."))
 		else
-			to_chat(user, SPAN_WARNING("Ugh. You done something wrong!"))
+			to_chat(user, span_warning("Ugh. You done something wrong!"))
 		toxin_attack(user)
 	else if(container == tank)
 		container.can_anchor = TRUE
@@ -114,11 +114,11 @@
 		container.pixel_y = initial(container.pixel_y)
 		container.pixel_x = initial(container.pixel_x)
 		playsound(src, 'sound/machines/airlock_ext_open.ogg', 60, 1)
-		to_chat(user, SPAN_NOTICE("You dettached [tank] from [src]."))
+		to_chat(user, span_notice("You dettached [tank] from [src]."))
 		container = null
 		toxin_attack(user)
 	else
-		to_chat(user, SPAN_WARNING("There are already connected container."))
+		to_chat(user, span_warning("There are already connected container."))
 
 	update_icon()
 
@@ -126,7 +126,7 @@
 	if(world.time >= last_time_used + 2 SECONDS)
 		last_time_used = world.time
 		active = !active
-		to_chat(user, SPAN_NOTICE("You [active ? "turn [src] on" : "turn [src] off"]."))
+		to_chat(user, span_notice("You [active ? "turn [src] on" : "turn [src] off"]."))
 		playsound(src, 'sound/machines/click.ogg', 80, 1)
 		update_icon()
 

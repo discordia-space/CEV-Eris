@@ -52,7 +52,7 @@
 	endWhen = INFINITY // YEA
 
 /datum/event/pulsar_rad_storm/announce()
-	command_announcement.Announce("High levels of radiation detected near the ship. Please evacuate into one of the shielded maintenance tunnels.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
+	priority_announce("High levels of radiation detected near the ship. Please evacuate into one of the shielded maintenance tunnels.", "Anomaly Alert", sound = 'sound/AI/radiation.ogg')
 
 /datum/event/pulsar_rad_storm/start()
 	make_maint_all_access()
@@ -85,7 +85,7 @@
 	. = ..()
 	for(var/datum/weather/rad_storm/R in SSweather.processing)
 		R.wind_down()
-	command_announcement.Announce("The pulsar satellite has passed the radiation beams. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
+	priority_announce("The pulsar satellite has passed the radiation beams. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 	revoke_maint_all_access()
 
 
@@ -97,18 +97,18 @@
 	var/list/pulsar_rifts = list()
 
 /datum/event/pulsar_overcharge/announce()
-	command_announcement.Announce("The pulsar satellite has been overloaded with power, expect excess energy to be dumped onto your vessel.", "Technomancer Pulsar Monitor")
+	priority_announce("The pulsar satellite has been overloaded with power, expect excess energy to be dumped onto your vessel.", "Technomancer Pulsar Monitor")
 
 /datum/event/pulsar_overcharge/tick()
 	. = ..()
 	if(world.time > last_rift_spawn + PULAR_RIFT_COOLDOWN)
 		spwawn_new_rift_wave(rand(4,6))
 		last_rift_spawn = world.time
-		command_announcement.Announce("Another wave of energy has been dumped on your vessel.", "Technomancer Pulsar Monitor")
+		priority_announce("Another wave of energy has been dumped on your vessel.", "Technomancer Pulsar Monitor")
 
 	for(var/obj/effect/rift as anything in pulsar_rifts)
 		projectile_explosion(get_turf(rift), 10, /obj/item/projectile/beam/emitter, rand(5, 10), list(BURN = 50))
-	
+
 
 /datum/event/pulsar_overcharge/proc/spwawn_new_rift_wave(amount)
 	for(var/i in 1 to amount)
@@ -120,13 +120,13 @@
 			continue
 		var/obj/effect/pulsar_rift/p = new(T)
 		pulsar_rifts |= p
-	
+
 
 /datum/event/pulsar_overcharge/end()
 	for(var/obj/effect/pulsar_rift/p as anything in pulsar_rifts)
 		pulsar_rifts -= p
 		qdel(p)
-	command_announcement.Announce("Pulsar satellite energy levels stabilized.", "Technomancer Pulsar Monitor")
+	priority_announce("Pulsar satellite energy levels stabilized.", "Technomancer Pulsar Monitor")
 	. = ..()
 
 /obj/effect/pulsar_rift

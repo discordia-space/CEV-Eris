@@ -84,7 +84,7 @@
 
 		add_underlay(T, node3, dir)
 
-/obj/machinery/atmospherics/trinary/filter/hide(var/i)
+/obj/machinery/atmospherics/trinary/filter/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/trinary/filter/power_change()
@@ -128,20 +128,20 @@
 	set_frequency(frequency)
 	..()
 
-/obj/machinery/atmospherics/trinary/filter/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/trinary/filter/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it too exerted due to internal pressure."))
+		to_chat(user, span_warning("You cannot unwrench \the [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
-	to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
+	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 		user.visible_message( \
-			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
-			SPAN_NOTICE("You have unfastened \the [src]."), \
+			span_notice("\The [user] unfastens \the [src]."), \
+			span_notice("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
 		new /obj/item/pipe(loc, make_from=src)
 		qdel(src)
@@ -152,7 +152,7 @@
 		return
 
 	if(!src.allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, span_warning("Access denied."))
 		return
 
 	var/dat
@@ -174,22 +174,22 @@
 			current_filter_type = "ERROR - Report this bug to the admin, please!"
 
 	dat += {"
-			<b>Power: </b><a href='?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
+			<b>Power: </b><a href='byond://?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
 			<b>Filtering: </b>[current_filter_type]<br><HR>
 			<h4>Set Filter Type:</h4>
-			<A href='?src=\ref[src];filterset=0'>Plasma</A><BR>
-			<A href='?src=\ref[src];filterset=1'>Oxygen</A><BR>
-			<A href='?src=\ref[src];filterset=2'>Nitrogen</A><BR>
-			<A href='?src=\ref[src];filterset=3'>Carbon Dioxide</A><BR>
-			<A href='?src=\ref[src];filterset=4'>Nitrous Oxide</A><BR>
-			<A href='?src=\ref[src];filterset=-1'>Nothing</A><BR>
+			<A href='byond://?src=\ref[src];filterset=0'>Plasma</A><BR>
+			<A href='byond://?src=\ref[src];filterset=1'>Oxygen</A><BR>
+			<A href='byond://?src=\ref[src];filterset=2'>Nitrogen</A><BR>
+			<A href='byond://?src=\ref[src];filterset=3'>Carbon Dioxide</A><BR>
+			<A href='byond://?src=\ref[src];filterset=4'>Nitrous Oxide</A><BR>
+			<A href='byond://?src=\ref[src];filterset=-1'>Nothing</A><BR>
 			<HR>
 			<B>Set Flow Rate Limit:</B>
-			[src.set_flow_rate]L/s | <a href='?src=\ref[src];set_flow_rate=1'>Change</a><BR>
+			[src.set_flow_rate]L/s | <a href='byond://?src=\ref[src];set_flow_rate=1'>Change</a><BR>
 			<B>Flow rate: </B>[round(last_flow_rate, 0.1)]L/s
 			"}
 
-	user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_filter")
+	user << browse(HTML_SKELETON_TITLE(src.name, "<TT>[dat]</TT>"), "window=atmo_filter")
 	onclose(user, "atmo_filter")
 	return
 
@@ -236,7 +236,7 @@
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|EAST
 
-obj/machinery/atmospherics/trinary/filter/m_filter/New()
+/obj/machinery/atmospherics/trinary/filter/m_filter/New()
 	..()
 	switch(dir)
 		if(NORTH)

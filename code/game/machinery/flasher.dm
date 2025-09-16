@@ -54,9 +54,9 @@
 		add_fingerprint(user)
 		src.disable = !src.disable
 		if (src.disable)
-			user.visible_message(SPAN_WARNING("[user] has disconnected the [src]'s flashbulb!"), SPAN_WARNING("You disconnect the [src]'s flashbulb!"))
+			user.visible_message(span_warning("[user] has disconnected the [src]'s flashbulb!"), span_warning("You disconnect the [src]'s flashbulb!"))
 		if (!src.disable)
-			user.visible_message(SPAN_WARNING("[user] has connected the [src]'s flashbulb!"), SPAN_WARNING("You connect the [src]'s flashbulb!"))
+			user.visible_message(span_warning("[user] has connected the [src]'s flashbulb!"), span_warning("You connect the [src]'s flashbulb!"))
 
 //Let the AI trigger them directly.
 /obj/machinery/flasher/attack_ai()
@@ -77,7 +77,7 @@
 	src.last_flash = world.time
 	use_power(1500)
 
-	for (var/mob/living/O in viewers(src, null))
+	for (var/mob/living/O in viewers(get_turf(src)))
 		if (get_dist(src, O) > src.range)
 			continue
 
@@ -124,11 +124,11 @@
 		src.anchored = !src.anchored
 
 		if (!src.anchored)
-			user.show_message(text(SPAN_WARNING("[src] can now be moved.")))
+			user.show_message(span_warning(text("[src] can now be moved.")))
 			src.overlays.Cut()
 
 		else if (src.anchored)
-			user.show_message(text(SPAN_WARNING("[src] is now secured.")))
+			user.show_message(span_warning(text("[src] is now secured.")))
 			src.overlays += "[base_state]-s"
 
 /obj/machinery/button/flasher

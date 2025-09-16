@@ -12,7 +12,7 @@
 	extra_description += "It has [uses] use\s left."
 	..(user, extra_description)
 
-/obj/item/device/kit/proc/use(var/amt, var/mob/user)
+/obj/item/device/kit/proc/use(amt, mob/user)
 	uses -= amt
 	playsound(get_turf(user), 'sound/items/Screwdriver.ogg', 50, 1)
 	if(uses<1)
@@ -32,7 +32,7 @@
 	bad_type = /obj/item/clothing/head/space/void
 	spawn_tags = null
 
-/obj/item/clothing/head/space/void/attackby(var/obj/item/O, var/mob/user)
+/obj/item/clothing/head/space/void/attackby(obj/item/O, mob/user)
 	if(istype(O,/obj/item/device/kit/suit))
 		var/obj/item/device/kit/suit/kit = O
 		SetName("[kit.new_name] suit helmet")
@@ -49,7 +49,7 @@
 		return 1
 	return ..()
 
-/obj/item/clothing/suit/space/void/attackby(var/obj/item/O, var/mob/user)
+/obj/item/clothing/suit/space/void/attackby(obj/item/O, mob/user)
 	if(istype(O,/obj/item/device/kit/suit))
 		var/obj/item/device/kit/suit/kit = O
 		SetName("[kit.new_name] voidsuit")

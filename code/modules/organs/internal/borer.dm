@@ -38,5 +38,4 @@
 
 	..()
 
-	spawn(0)
-		qdel(src)
+	QDEL_IN(src, 0)

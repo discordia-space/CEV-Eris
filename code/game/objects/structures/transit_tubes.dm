@@ -13,9 +13,9 @@
 	var/exit_delay = 2
 	var/enter_delay = 1
 
-	// alldirs in global.dm is the same list of directions, but since
+	// GLOB.alldirs in global.dm is the same list of directions, but since
 	//  the specific order matters to get a usable icon_state, it is
-	//  copied here so that, in the unlikely case that alldirs is changed,
+	//  copied here so that, in the unlikely case that GLOB.alldirs is changed,
 	//  this continues to work.
 	var/global/list/tube_dir_list = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 
@@ -77,11 +77,11 @@
 /obj/structure/transit_tube/Bumped(mob/AM as mob|obj)
 	var/obj/structure/transit_tube/T = locate() in AM.loc
 	if(T)
-		to_chat(AM, SPAN_WARNING("The tube's support pylons block your way."))
+		to_chat(AM, span_warning("The tube's support pylons block your way."))
 		return ..()
 	else
 		AM.loc = src.loc
-		to_chat(AM, "<span class='info'>You slip under the tube.</span>")
+		to_chat(AM, span_info("You slip under the tube."))
 
 
 /obj/structure/transit_tube/station/New(loc)
@@ -93,7 +93,7 @@
 	if(!pod_moving && icon_state == "open" && ismob(AM))
 		for(var/obj/structure/transit_tube_pod/pod in loc)
 			if(pod.contents.len)
-				to_chat(AM, SPAN_NOTICE("The pod is already occupied."))
+				to_chat(AM, span_notice("The pod is already occupied."))
 				return
 			else if(!pod.moving && (pod.dir in directions()))
 				AM.loc = pod
@@ -452,8 +452,8 @@
 	if(length(connected) < 1)
 		return list()
 
-	for(var/i = 1, i <= length(connected), i++)
-		for(var/j = i + 1, j <= length(connected), j++)
+	for(var/i = 1; i <= length(connected); i++)
+		for(var/j = i + 1; j <= length(connected); j++)
 			var/d1 = connected[i]
 			var/d2 = connected[j]
 

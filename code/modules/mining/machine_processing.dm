@@ -108,7 +108,7 @@
 	if(..())
 		return
 	if(!allowed(user))
-		to_chat(user, "\red Access denied.")
+		to_chat(user, span_red("Access denied."))
 		return
 	ui_interact(user)
 
@@ -133,8 +133,19 @@
 	var/input_dir = 0
 	var/output_dir = 0
 
-/obj/machinery/mineral/processing_unit/New()
-	..()
+/obj/machinery/mineral/processing_unit/Initialize(mapload, d)
+	. = ..()
+	//Locate our output and input machinery.
+	var/obj/marker = null
+	marker = locate(/obj/landmark/machinery/input) in range(1, loc)
+	if(marker)
+		input_dir = get_dir(src, marker)
+	marker = locate(/obj/landmark/machinery/output) in range(1, loc)
+	if(marker)
+		output_dir = get_dir(src, marker)
+
+/obj/machinery/mineral/processing_unit/LateInitialize()
+	. = ..()
 
 	ores_processing = list()
 	ores_stored = list()
@@ -149,18 +160,10 @@
 		for(var/oretype in typesof(/ore)-/ore)
 			var/ore/OD = new oretype()
 			ore_data[OD.name] = OD
-			ores_processing[OD.name] = 0
-			ores_stored[OD.name] = 0
+	for(var/ore/OD in ore_data)
+		ores_processing[OD.name] = 0
+		ores_stored[OD.name] = 0
 
-	spawn()
-		//Locate our output and input machinery.
-		var/obj/marker = null
-		marker = locate(/obj/landmark/machinery/input) in range(1, loc)
-		if(marker)
-			input_dir = get_dir(src, marker)
-		marker = locate(/obj/landmark/machinery/output) in range(1, loc)
-		if(marker)
-			output_dir = get_dir(src, marker)
 
 /obj/machinery/mineral/processing_unit/update_icon()
 	icon_state = "furnace[active ? "_on" : ""]"

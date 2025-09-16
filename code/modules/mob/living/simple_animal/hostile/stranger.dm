@@ -164,14 +164,14 @@
 	var/area/my_area = get_area(src)
 
 	if(my_area.bluespace_entropy < (my_area.bluespace_hazard_threshold * 0.3))
-		extra_description += SPAN_NOTICE("\nIt's fading out.")
+		extra_description += span_notice("\nIt's fading out.")
 	else
-		extra_description += SPAN_NOTICE("\nIt's occasionally pulsing with energy.")
+		extra_description += span_notice("\nIt's occasionally pulsing with energy.")
 
 	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
-		extra_description += SPAN_NOTICE("\nIt glows with an inner radiance.")
+		extra_description += span_notice("\nIt glows with an inner radiance.")
 	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)
-		extra_description += SPAN_NOTICE("\nThe energy surrounding it is overwhelming to the point of feeling warm in your hands.")
+		extra_description += span_notice("\nThe energy surrounding it is overwhelming to the point of feeling warm in your hands.")
 	..(user, extra_description)
 
 

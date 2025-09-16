@@ -77,27 +77,27 @@
     playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
     bolt_open = !bolt_open
     if(bolt_open)
-        if(contents.len)
+        if(length(loaded))
             if(chambered)
-                to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [chambered]!"))
+                to_chat(user, span_notice("You work the [message] open, ejecting [chambered]!"))
                 chambered.forceMove(get_turf(src))
                 loaded -= chambered
                 chambered = null
             else
-                var/obj/item/ammo_casing/B = loaded[loaded.len]
+                var/obj/item/ammo_casing/B = loaded[1]
                 if(!B.is_caseless)
-                    to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [B]!"))
+                    to_chat(user, span_notice("You work the [message] open, ejecting [B]!"))
                     B.forceMove(get_turf(src))
                     loaded -= B
                 else
-                    to_chat(user, SPAN_NOTICE("You work the [message] open."))
+                    to_chat(user, span_notice("You work the [message] open."))
                     B = loaded[1]
                     loaded -= B
                     qdel(B)
         else
-            to_chat(user, SPAN_NOTICE("You work the [message] open."))
+            to_chat(user, span_notice("You work the [message] open."))
     else
-        to_chat(user, SPAN_NOTICE("You work the [message] closed."))
+        to_chat(user, span_notice("You work the [message] closed."))
         playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, 1)
         bolt_open = 0
     add_fingerprint(user)
@@ -105,16 +105,16 @@
 
 /obj/item/gun/projectile/boltgun/special_check(mob/user)
 	if(bolt_open)
-		to_chat(user, SPAN_WARNING("You can't fire [src] while the [message] is open!"))
+		to_chat(user, span_warning("You can't fire [src] while the [message] is open!"))
 		return 0
 	return ..()
 
-/obj/item/gun/projectile/boltgun/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/boltgun/load_ammo(obj/item/A, mob/user)
 	if(!bolt_open)
 		return
 	..()
 
-/obj/item/gun/projectile/boltgun/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/boltgun/unload_ammo(mob/user, allow_dump=1)
 	if(!bolt_open)
 		return
 	..()
@@ -196,7 +196,7 @@
 	icon = 'icons/obj/guns/projectile/riose.dmi'
 	icon_state = "boltgun_hand"
 	item_suffix = "_hand"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
+	matter = list(MATERIAL_STEEL = 13, MATERIAL_WOOD = 5)
 	wielded_item_state = "_doble_hand"
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
@@ -221,7 +221,7 @@
 	matter = list(MATERIAL_STEEL = 5)
 	resultvars = list(/obj/item/gun/projectile/boltgun/handmade)
 	gripvars = list(/obj/item/part/gun/modular/grip/wood)
-	mechanismvar = /obj/item/part/gun/modular/mechanism/boltgun
+	mechanismvar = /obj/item/part/gun/modular/mechanism/boltgun/junk
 	barrelvars = list(/obj/item/part/gun/modular/barrel/lrifle/steel, /obj/item/part/gun/modular/barrel/srifle/steel, /obj/item/part/gun/modular/barrel/clrifle/steel)
 
 //// OBREZ ////

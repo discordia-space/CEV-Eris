@@ -85,7 +85,7 @@ var/global/ManifestJSON
 			misc[name] = rank
 
 	// Synthetics don't have actual records, so we will pull them from here.
-/*	for(var/mob/living/silicon/ai/ai in SSmobs.mob_list)
+/*	for(mob/living/silicon/ai/ai in SSmobs.mob_list)
 		bot[ai.name] = "Artificial Intelligence"
 
 	for(var/mob/living/silicon/robot/robot in SSmobs.mob_list)
@@ -158,7 +158,7 @@ var/global/ManifestJSON
 			manifest_inject(H)
 		return
 
-/datum/datacore/proc/manifest_modify(var/name, var/assignment)
+/datum/datacore/proc/manifest_modify(name, assignment)
 	ResetPDAManifest()
 	var/datum/data/record/foundrecord
 	var/real_title = assignment
@@ -173,7 +173,7 @@ var/global/ManifestJSON
 		foundrecord.fields["rank"] = assignment
 		foundrecord.fields["real_rank"] = real_title
 
-/datum/datacore/proc/manifest_inject(var/mob/living/carbon/human/H)
+/datum/datacore/proc/manifest_inject(mob/living/carbon/human/H)
 	if(H.mind && !player_is_antag(H.mind, only_offstation_roles = 1) && H.job != ASSISTANT_TITLE)
 		var/assignment = GetAssignment(H)
 
@@ -226,9 +226,9 @@ var/global/ManifestJSON
 	return
 
 /proc/generate_record_id()
-	return add_zero(num2hex(rand(1, 65535)), 4)	//no point generating higher numbers because of the limitations of num2hex
+	return add_zero(num2hex(rand(1, 65535), 5), 4)	//no point generating higher numbers because of the limitations of num2hex
 
-/proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
+/proc/get_id_photo(mob/living/carbon/human/H, assigned_role)
 
 	var/icon/preview_icon = new(H.stand_icon)
 	var/icon/temp
@@ -263,7 +263,7 @@ var/global/ManifestJSON
 
 	return preview_icon
 
-/datum/datacore/proc/CreateGeneralRecord(var/mob/living/carbon/human/H, var/id)
+/datum/datacore/proc/CreateGeneralRecord(mob/living/carbon/human/H, id)
 	ResetPDAManifest()
 	var/icon/front
 	var/icon/side
@@ -276,7 +276,7 @@ var/global/ManifestJSON
 		side = new(get_id_photo(dummy), dir = WEST)
 		qdel(dummy)
 
-	if(!id) id = text("[]", add_zero(num2hex(rand(1, 1.6777215E7)), 6))
+	if(!id) id = text("[]", add_zero(num2hex(rand(1, 1.6777215E7), 8), 6))
 	var/datum/data/record/G = new /datum/data/record()
 	G.name = "Employee Record #[id]"
 	G.fields["name"] = "New Record"
@@ -296,7 +296,7 @@ var/global/ManifestJSON
 
 	return G
 
-/datum/datacore/proc/CreateSecurityRecord(var/name, var/id)
+/datum/datacore/proc/CreateSecurityRecord(name, id)
 	ResetPDAManifest()
 	var/datum/data/record/R = new /datum/data/record()
 	R.name = "Security Record #[id]"
@@ -313,7 +313,7 @@ var/global/ManifestJSON
 
 	return R
 
-/datum/datacore/proc/CreateMedicalRecord(var/name, var/id)
+/datum/datacore/proc/CreateMedicalRecord(name, id)
 	ResetPDAManifest()
 	var/datum/data/record/M = new()
 	M.name = "Medical Record #[id]"
@@ -352,7 +352,7 @@ var/global/ManifestJSON
 		if(R.fields[field] == value)
 			return R
 
-/*/proc/GetAssignment(var/mob/living/carbon/human/H)
+/*/proc/GetAssignment(mob/living/carbon/human/H)
 	if(H.mind.assigned_role)
 		return H.mind.assigned_role
 	else if(H.job)
@@ -360,7 +360,7 @@ var/global/ManifestJSON
 	else
 		return "Unassigned"
 */
-/var/list/acting_rank_prefixes = list("acting", "temporary", "interim", "provisional")
+var/list/acting_rank_prefixes = list("acting", "temporary", "interim", "provisional")
 
 /proc/make_list_rank(rank)
 	for(var/prefix in acting_rank_prefixes)

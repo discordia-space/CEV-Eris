@@ -68,10 +68,10 @@
 	target_mob = null
 	stance = HOSTILE_STANCE_IDLE
 
-/mob/living/carbon/superior_animal/proc/isValidAttackTarget(var/atom/O)
+/mob/living/carbon/superior_animal/proc/isValidAttackTarget(atom/O)
 	if (isliving(O))
 		var/mob/living/L = O
-		if((L.stat != CONSCIOUS) || (L.health <= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0)) || (!attack_same && (L.faction == src.faction)) || (L in friends))
+		if((L.stat != CONSCIOUS) || (L.health <= (ishuman(L) ? CONFIG_GET(number/health_threshold_crit) : 0)) || (!attack_same && (L.faction == src.faction)) || (L in friends))
 			return
 		return 1
 
@@ -90,14 +90,14 @@
 			obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),pick(attacktext))
 			return
 
-		for (var/dir in cardinal) // North, South, East, West
+		for (var/dir in GLOB.cardinal) // North, South, East, West
 			for (var/obj/structure/window/obstacle in get_step(src, dir))
-				if ((obstacle.is_full_window()) || (obstacle.dir == reverse_dir[dir])) // So that directional windows get smashed in the right order
+				if ((obstacle.is_full_window()) || (obstacle.dir == GLOB.reverse_dir[dir])) // So that directional windows get smashed in the right order
 					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),pick(attacktext))
 					return
 
 			for (var/obj/machinery/door/window/obstacle in get_step(src, dir))
-				if (obstacle.dir == reverse_dir[dir]) // So that windoors get smashed in the right order
+				if (obstacle.dir == GLOB.reverse_dir[dir]) // So that windoors get smashed in the right order
 					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),pick(attacktext))
 					return
 

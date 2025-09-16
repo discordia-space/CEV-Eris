@@ -3,12 +3,12 @@ var/command_name
 	if (command_name)
 		return command_name
 
-	var/name = "[boss_name]"
+	var/name = "[GLOB.boss_name]"
 
 	command_name = name
 	return name
 
-/proc/change_command_name(var/name)
+/proc/change_command_name(name)
 
 	command_name = name
 
@@ -18,12 +18,28 @@ var/command_name
 	return "Nyx"
 
 
-/proc/world_name(var/name)
+/proc/station_name()
+	if(!GLOB.station_name)
+		var/newname
+		newname = DEFAULT_STATION_NAME
 
-	station_name = name
+		set_station_name(newname)
+	return GLOB.station_name
 
-	if (config && config.server_name)
-		world.name = "[config.server_name]: [name]"
+/proc/set_station_name(new_name)
+	GLOB.station_name = new_name
+
+	var/config_server_name = CONFIG_GET(string/servername)
+	if(config_server_name)
+		world.name = "[config_server_name][config_server_name == GLOB.station_name ? "" : ": [html_decode(GLOB.station_name)]"]"
+	else
+		world.name = html_decode(GLOB.station_name)
+
+/proc/world_name(name)
+	GLOB.station_name = name
+
+	if (config && CONFIG_GET(string/servername))
+		world.name = "[CONFIG_GET(string/servername)]: [name]"
 	else
 		world.name = name
 
@@ -99,7 +115,7 @@ var/syndicate_code_response//Code response for contractors.
 
 	var/maxwords = words//Extra var to check for duplicates.
 
-	for(words, words>0, words--)//Randomly picks from one of the choices below.
+	for(words; words>0; words--)//Randomly picks from one of the choices below.
 
 		if(words==1&&(1 in safety)&&(2 in safety))//If there is only one word remaining and choice 1 or 2 have not been selected.
 			safety = list(pick(1, 2))//Select choice 1 or 2.

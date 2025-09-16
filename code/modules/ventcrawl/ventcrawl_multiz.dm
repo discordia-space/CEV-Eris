@@ -15,7 +15,7 @@
 /obj/machinery/atmospherics/pipe/zpipe/Entered(atom/movable/Obj)
 	if(istype(Obj, /mob/living))
 		var/mob/living/L = Obj
-		to_chat(L, span("notice", "You are in a vertical pipe section. Use <a href='?src=\ref[src];crawl_user=\ref[L];crawl_dir=[travel_direction]'>[travel_verbname]</a> from the IC menu to [travel_direction_verb] a level."))
+		to_chat(L, span("notice", "You are in a vertical pipe section. Use <a href='byond://?src=\ref[src];crawl_user=\ref[L];crawl_dir=[travel_direction]'>[travel_verbname]</a> from the IC menu to [travel_direction_verb] a level."))
 	. = ..()
 
 /obj/machinery/atmospherics/pipe/zpipe/Topic(href, href_list)
@@ -26,7 +26,7 @@
 		if (istype(L))
 			return handle_z_crawl(L, direction)
 
-/obj/machinery/atmospherics/pipe/zpipe/proc/check_ventcrawl(var/turf/target)
+/obj/machinery/atmospherics/pipe/zpipe/proc/check_ventcrawl(turf/target)
 	if(!istype(target))
 		return
 	if(node1 in target)
@@ -35,20 +35,20 @@
 		return node2
 	return
 
-/obj/machinery/atmospherics/proc/can_z_crawl(var/mob/living/L, var/direction)
+/obj/machinery/atmospherics/proc/can_z_crawl(mob/living/L, direction)
 	return FALSE
 
-/obj/machinery/atmospherics/pipe/zpipe/can_z_crawl(var/mob/living/L, var/direction)
+/obj/machinery/atmospherics/pipe/zpipe/can_z_crawl(mob/living/L, direction)
 	if(L.is_ventcrawling && L.loc == src)
 		if(node2 && check_connect_types(node2,src))
 			if(direction == travel_direction)
 				return TRUE
 
 
-/obj/machinery/atmospherics/proc/handle_z_crawl(var/mob/living/L, var/direction)
+/obj/machinery/atmospherics/proc/handle_z_crawl(mob/living/L, direction)
 	return
 
-/obj/machinery/atmospherics/pipe/zpipe/handle_z_crawl(var/mob/living/L, var/direction)
+/obj/machinery/atmospherics/pipe/zpipe/handle_z_crawl(mob/living/L, direction)
 	if (!can_z_crawl(L, direction))
 		to_chat(L, span("notice", "You can't climb that way!"))
 		return

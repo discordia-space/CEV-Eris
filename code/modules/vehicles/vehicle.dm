@@ -48,7 +48,7 @@
 	..()
 	//spawn the cell you want in each vehicle
 
-/obj/vehicle/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/vehicle/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	if(world.time > l_move_time + move_delay)
 		var/old_loc = get_turf(src)
 		if(on && powered && cell.charge < charge_use)
@@ -99,9 +99,9 @@
 				if(!locked)
 					open = !open
 					update_icon()
-					to_chat(user, SPAN_NOTICE("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
+					to_chat(user, span_notice("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				else
-					to_chat(user, SPAN_NOTICE("You fail to unsrew the cover, looks like its locked from the inside."))
+					to_chat(user, span_notice("You fail to unsrew the cover, looks like its locked from the inside."))
 				return
 
 		if(QUALITY_WIRE_CUTTING)
@@ -109,8 +109,8 @@
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 					passenger_allowed = !passenger_allowed
 					user.visible_message(
-						SPAN_NOTICE("[user] [passenger_allowed ? "cuts" : "mends"] a cable in [src]."),
-						SPAN_NOTICE("You [passenger_allowed ? "cut" : "mend"] the load limiter cable.")
+						span_notice("[user] [passenger_allowed ? "cuts" : "mends"] a cable in [src]."),
+						span_notice("You [passenger_allowed ? "cut" : "mend"] the load limiter cable.")
 					)
 			return
 
@@ -118,7 +118,7 @@
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 				health = min(maxhealth, health+10)
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-				user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")
+				user.visible_message(span_red("[user] repairs [src]!"), span_blue("You repair [src]!"))
 			return
 
 		if(ABORT_CHECK)
@@ -140,7 +140,7 @@
 	else
 		..()
 
-/obj/vehicle/bullet_act(var/obj/item/projectile/Proj)
+/obj/vehicle/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	..()
 	healthcheck()
@@ -189,16 +189,16 @@
 	set_light(0)
 	update_icon()
 
-/obj/vehicle/emag_act(var/remaining_charges, mob/user as mob)
+/obj/vehicle/emag_act(remaining_charges, mob/user as mob)
 	if(!emagged)
 		emagged = 1
 		if(locked)
 			locked = 0
-			to_chat(user, SPAN_WARNING("You bypass [src]'s controls."))
+			to_chat(user, span_warning("You bypass [src]'s controls."))
 		return 1
 
 /obj/vehicle/proc/explode()
-	src.visible_message(SPAN_DANGER("\The [src] blows apart!"))
+	src.visible_message(span_danger("\The [src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
 	for (var/i in 1 to 2)
@@ -243,7 +243,7 @@
 		turn_on()
 		return
 
-/obj/vehicle/proc/insert_cell(var/obj/item/cell/large/C, var/mob/living/carbon/human/H)
+/obj/vehicle/proc/insert_cell(obj/item/cell/large/C, mob/living/carbon/human/H)
 	if(cell)
 		return
 	if(!istype(C))
@@ -253,19 +253,19 @@
 	C.forceMove(src)
 	src.cell = C
 	powercheck()
-	to_chat(usr, SPAN_NOTICE("You install [C] in [src]."))
+	to_chat(usr, span_notice("You install [C] in [src]."))
 
-/obj/vehicle/proc/remove_cell(var/mob/living/carbon/human/H)
+/obj/vehicle/proc/remove_cell(mob/living/carbon/human/H)
 	if(!cell)
 		return
 
-	to_chat(usr, SPAN_NOTICE("You remove [cell] from [src]."))
+	to_chat(usr, span_notice("You remove [cell] from [src]."))
 	cell.forceMove(get_turf(H))
 	H.put_in_hands(cell)
 	cell = null
 	powercheck()
 
-/obj/vehicle/proc/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/proc/RunOver(mob/living/carbon/human/H)
 	return		//write specifics for different vehicles
 
 //-------------------------------------------
@@ -275,7 +275,7 @@
 // the vehicle load() definition before
 // calling this parent proc.
 //-------------------------------------------
-/obj/vehicle/proc/load(var/atom/movable/C)
+/obj/vehicle/proc/load(atom/movable/C)
 	//This loads objects onto the vehicle so they can still be interacted with.
 	//Define allowed items for loading in specific vehicle definitions.
 	if(!isturf(C.loc)) //To prevent loading things from someone's inventory, which wouldn't get handled properly.
@@ -308,7 +308,7 @@
 	return 1
 
 
-/obj/vehicle/proc/unload(var/mob/user, var/direction)
+/obj/vehicle/proc/unload(mob/user, direction)
 	if(!load)
 		return
 
@@ -326,7 +326,7 @@
 	//if these all result in the same turf as the vehicle or nullspace, pick a new turf with open space
 	if(!dest || dest == get_turf(src))
 		var/list/options = new()
-		for(var/test_dir in alldirs)
+		for(var/test_dir in GLOB.alldirs)
 			var/new_dir = get_step_to(src, get_step(src, test_dir))
 			if(new_dir && load.Adjacent(new_dir))
 				options += new_dir
@@ -359,10 +359,10 @@
 /obj/vehicle/proc/update_stats()
 	return
 
-/obj/vehicle/attack_generic(var/mob/user, var/damage, var/attack_message)
+/obj/vehicle/attack_generic(mob/user, damage, attack_message)
 	if(!damage)
 		return
-	visible_message(SPAN_DANGER("\The [user] [attack_message] the \the [src]!"))
+	visible_message(span_danger("\The [user] [attack_message] the \the [src]!"))
 	if(istype(user))
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked \the [src.name]</font>")
 		user.do_attack_animation(src)

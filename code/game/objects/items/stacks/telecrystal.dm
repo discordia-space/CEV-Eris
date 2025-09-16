@@ -15,7 +15,7 @@
 	rand_min = 3
 	rand_max = 15
 
-/obj/item/stack/telecrystal/afterattack(var/obj/item/I, mob/user as mob, proximity)
+/obj/item/stack/telecrystal/afterattack(obj/item/I, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if(istype(I, /obj/item))
@@ -24,4 +24,4 @@
 			I.hidden_uplink.update_nano_data()
 			SSnano.update_uis(I.hidden_uplink)
 			use(amount)
-			to_chat(user, SPAN_NOTICE("You slot \the [src] into \the [I] and charge its internal uplink."))
+			to_chat(user, span_notice("You slot \the [src] into \the [I] and charge its internal uplink."))

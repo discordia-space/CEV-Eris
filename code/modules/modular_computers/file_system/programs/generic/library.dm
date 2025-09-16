@@ -26,7 +26,7 @@ The answer was five and a half years -ZeroBits
 	var/obj/machinery/libraryscanner/scanner
 	var/sort_by = "id"
 
-/datum/nano_module/library/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.default_state)
+/datum/nano_module/library/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 	var/list/data = host.initial_data()
 
 	if(error_message)
@@ -35,11 +35,10 @@ The answer was five and a half years -ZeroBits
 		data["current_book"] = current_book
 	else
 		var/list/all_entries[0]
-		establish_db_connection()
-		if(!dbcon.IsConnected())
+		if(!SSdbcore.Connect())
 			error_message = "Unable to contact External Archive. Please contact your system administrator for assistance."
 		else
-			var/DBQuery/query = dbcon.NewQuery("SELECT id, author, title, category FROM library ORDER BY "+sanitizeSQL(sort_by))
+			var/datum/db_query/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM library ORDER BY :sort_by", list("sort_by" = sort_by))
 			query.Execute()
 
 			while(query.NextRow())
@@ -66,7 +65,7 @@ The answer was five and a half years -ZeroBits
 		view_book(href_list["viewbook"])
 		return 1
 	if(href_list["viewid"])
-		view_book(sanitizeSQL(input("Enter USBN:") as num|null))
+		view_book(input("Enter USBN:") as num|null)
 		return 1
 	if(href_list["closebook"])
 		current_book = null
@@ -108,18 +107,20 @@ The answer was five and a half years -ZeroBits
 
 		var/choice = input(usr, "Upload [B.name] by [B.author] to the External Archive?") in list("Yes", "No")
 		if(choice == "Yes")
-			establish_db_connection()
-			if(!dbcon.IsConnected())
+			if(!SSdbcore.Connect())
 				error_message = "Network Error: Connection to the Archive has been severed."
 				return 1
 
 			var/upload_category = input(usr, "Upload to which category?") in list("Fiction", "Non-Fiction", "Reference", "Religion")
 
-			var/sqltitle = sanitizeSQL(B.name)
-			var/sqlauthor = sanitizeSQL(B.author)
-			var/sqlcontent = sanitizeSQL(B.dat)
-			var/sqlcategory = sanitizeSQL(upload_category)
-			var/DBQuery/query = dbcon.NewQuery("INSERT INTO library (author, title, content, category) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]')")
+			var/sqltitle = B.name
+			var/sqlauthor = B.author
+			var/sqlcontent = B.dat
+			var/sqlcategory = upload_category
+			var/datum/db_query/query = SSdbcore.NewQuery(
+				"INSERT INTO [format_table_name("library")] (author, title, content, category) VALUES  (:sqlauthor, :sqltitle, :sqlcontent, :sqlcategory)",
+				list("sqlauthor" = sqlauthor, "sqltitle" = sqltitle, "sqlcontent" = sqlcontent, "sqlcategory" = sqlcategory)
+			)
 			if(!query.Execute())
 				to_chat(usr, query.ErrorMsg())
 				error_message = "Network Error: Unable to upload to the Archive. Contact your system Administrator for assistance."
@@ -167,17 +168,15 @@ The answer was five and a half years -ZeroBits
 			error_message = ""
 		return 1
 
-/datum/nano_module/library/proc/view_book(var/id)
+/datum/nano_module/library/proc/view_book(id)
 	if(current_book || !id)
 		return 0
 
-	var/sqlid = sanitizeSQL(id)
-	establish_db_connection()
-	if(!dbcon.IsConnected())
+	if(!SSdbcore.Connect())
 		error_message = "Network Error: Connection to the Archive has been severed."
 		return 1
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT * FROM library WHERE id=[sqlid]")
+	var/datum/db_query/query = SSdbcore.NewQuery("SELECT * FROM [format_table_name("library")] WHERE id = :sqlid", list("sqlid" = id))
 	query.Execute()
 
 	while(query.NextRow())

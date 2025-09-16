@@ -38,11 +38,11 @@ var/global/list/crafting_designs
 /obj/machinery/autolathe/crafting_station/design_list()
 	return designs
 
-/obj/machinery/autolathe/crafting_station/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/autolathe/crafting_station/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	..()
 	Crafter = user
 
-/obj/machinery/autolathe/crafting_station/can_print(var/datum/computer_file/binary/design/design_file)
+/obj/machinery/autolathe/crafting_station/can_print(datum/computer_file/binary/design/design_file)
 	if(!Crafter.Adjacent(src))
 		return ERR_DISTANT
 	if(Crafter.incapacitated(INCAPACITATION_DEFAULT) || !(Crafter.machine == src))

@@ -3,12 +3,12 @@ NanoBaseCallbacks = function ()
 {
 	// _canClick is used to disable clicks for a short period after each click (to avoid mis-clicks)
 	var _canClick = true;
-	
+
 	var _baseBeforeUpdateCallbacks = {}
-	
+
 	var _baseAfterUpdateCallbacks = {
 		// this callback is triggered after new data is processed
-		// it updates the status/visibility icon and adds click event handling to buttons/links		
+		// it updates the status/visibility icon and adds click event handling to buttons/links
 		status: function (updateData) {
 			var uiStatusClass;
 			if (updateData['config']['status'] == 2)
@@ -88,7 +88,7 @@ NanoBaseCallbacks = function ()
                     });
                 });
 
-            $('#uiMapImage').attr('src', updateData['config']['mapName'] + '-' + updateData['config']['mapZLevel'] + '.png');
+            $('#uiMapImage').attr('src', updateData['config']['stationMapURL']);
 
             return updateData;
         }
@@ -117,7 +117,7 @@ NanoBaseCallbacks = function ()
         }
 	};
 } ();
- 
+
 
 
 

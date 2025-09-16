@@ -17,10 +17,10 @@
 
 /obj/structure/kitchenspike/affect_grab(mob/user, mob/living/target, state)
 	if(occupied)
-		to_chat(user, SPAN_DANGER("\The [src] already has something on it, finish collecting its meat first!"))
+		to_chat(user, span_danger("\The [src] already has something on it, finish collecting its meat first!"))
 		return FALSE
 	if(state != GRAB_KILL)
-		to_chat(user, SPAN_NOTICE("You need to grab \the [target] by the neck!"))
+		to_chat(user, span_notice("You need to grab \the [target] by the neck!"))
 		return FALSE
 	var/mob/living/carbon/human/H = target
 	var/list/damaged = H.get_damaged_organs(TRUE, FALSE)
@@ -28,10 +28,10 @@
 		if(G.brute_dam > 200)
 			to_chat(user, "[H] is too badly damaged to hold onto the meat spike.")
 			return
-	visible_message(SPAN_DANGER("[user] is trying to force \the [target] onto \the [src]!"))
+	visible_message(span_danger("[user] is trying to force \the [target] onto \the [src]!"))
 	if(do_after(user, 80))
 		if(spike(target))
-			visible_message(SPAN_DANGER("[user] has forced [target] onto \the [src], killing them instantly!"))
+			visible_message(span_danger("[user] has forced [target] onto \the [src], killing them instantly!"))
 			target.damage_through_armor(201, BRUTE, BP_CHEST)
 			for(var/obj/item/thing in target)
 				if(thing.is_equipped())
@@ -101,19 +101,19 @@
 			meat--
 			if(meat_type == user.species.meat_type)
 				user.sanity.changeLevel(-(15*((user.nutrition ? user.nutrition : 1)/user.max_nutrition))) // The more hungry the less sanity damage.
-				to_chat(user, SPAN_NOTICE("You feel your [user.species.name]ity shrivel as you cut a slab off \the [src]")) // Human-ity , Monkey-ity , Slime-Ity
+				to_chat(user, span_notice("You feel your [user.species.name]ity shrivel as you cut a slab off \the [src]")) // Human-ity , Monkey-ity , Slime-Ity
 		else
 			tearing = FALSE
 
 	else if (tool_type == QUALITY_BOLT_TURNING)
 		if (!occupied)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."),SPAN_NOTICE("You dismantle \the [src]."))
+				user.visible_message(span_notice("\The [user] dismantles \the [src]."),span_notice("You dismantle \the [src]."))
 				new /obj/item/stack/rods(loc, 3)
 				qdel(src)
 			return
 		else
-			to_chat(user, SPAN_DANGER(" \The [src] has something on it, remove it first!"))
+			to_chat(user, span_danger(" \The [src] has something on it, remove it first!"))
 			return
 
 	else
@@ -121,5 +121,5 @@
 
 /obj/structure/kitchenspike/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 4)
-		extra_description += SPAN_NOTICE("\a [victim_name] is hooked onto \the [src]")
+		extra_description += span_notice("\a [victim_name] is hooked onto \the [src]")
 	..(user, extra_description)

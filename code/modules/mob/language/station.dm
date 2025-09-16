@@ -2,8 +2,9 @@
 	name = LANGUAGE_COMMON
 	desc = "Most popular language in Canis Majoris constellation, thanks to many USA colonial ships arrived there in distant past."
 	key = "0"
-	flags = RESTRICTED
+	flags = RESTRICTED | LANGUAGE_HIDE_ICON_IF_UNDERSTOOD
 	shorthand = "CO"
+	icon_state = "common"
 
 
 	//syllables are at the bottom of the file
@@ -83,6 +84,7 @@
 	name = LANGUAGE_CYRILLIC
 	desc = "Ancient language of Russian colonists, rusted with time and bastardized with technical terms in everyday use."
 	colour = "russian"
+	icon_state = "cyrillic"
 	key = "r"
 	space_chance = 80
 	syllables = list("zhena", "reb", "kot", "tvoy", "vodka", "blyad", "verbovka", "ponimat", "zhit", "kley", "sto", "yat", "si", "det", \

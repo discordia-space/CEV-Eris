@@ -34,7 +34,7 @@
 	. = ..()
 	var/mob/living/carbon/human/owner = loc
 	if(istype(owner))
-		to_chat(owner, SPAN_NOTICE("You have valuable scientific data on your person. Do not let it fall into the wrong hands."))
+		to_chat(owner, span_notice("You have valuable scientific data on your person. Do not let it fall into the wrong hands."))
 
 /hook/roundstart/proc/place_docs()
 	var/list/obj/landmark/storyevent/midgame_stash_spawn/L = list()

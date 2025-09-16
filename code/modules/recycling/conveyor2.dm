@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 
 
 // create a conveyor
-/obj/machinery/conveyor/New(loc, new_dir, new_id)
+/obj/machinery/conveyor/Initialize(loc, new_dir, new_id)
 	..(loc)
 	GLOB.conveyor_belts += src
 	if(new_id)
@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 					C.id = id
 					C.matter = matter
 					transfer_fingerprints_to(C)
-				to_chat(user, SPAN_NOTICE("You remove the conveyor belt."))
+				to_chat(user, span_notice("You remove the conveyor belt."))
 				qdel(src)
 			return
 
@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 			if(CS.id == id)
 				CS.conveyors -= src
 		id = S.id
-		to_chat(user, SPAN_NOTICE("You link [I] with [src]."))
+		to_chat(user, span_notice("You link [I] with [src]."))
 	else if(user.a_intent != I_HURT)
 		user.unEquip(I, loc)
 	else
@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	var/turf/left = get_step(src, turn(dir, 90))	//We need to get conveyors to the right, left, and behind this one to be able to determine if we need to make a corner piece
 	var/turf/right = get_step(src, turn(dir, -90))
 	var/turf/back = get_step(src, turn(dir, 180))
-	to_chat(user, SPAN_NOTICE("You rotate [src]."))
+	to_chat(user, span_notice("You rotate [src]."))
 	var/obj/machinery/conveyor/CL = locate() in left
 	var/obj/machinery/conveyor/CR = locate() in right
 	var/obj/machinery/conveyor/CB = locate() in back
@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	// DEPRECATED: remove once map is updated
 	var/convdir
 
-/obj/machinery/conveyor_switch/New(newloc, new_id)
+/obj/machinery/conveyor_switch/Initialize(newloc, new_id)
 	..(newloc)
 	GLOB.conveyor_switches += src
 	if(!id)
@@ -291,7 +291,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 /obj/machinery/conveyor_switch/proc/toggle(mob/user)
 	add_fingerprint(user)
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, span_warning("Access denied."))
 		return
 	if(position)
 		position = DIRECTION_OFF
@@ -327,14 +327,14 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 				var/obj/item/construct/conveyor_switch/C = new(loc, id)
 				C.matter = matter
 				transfer_fingerprints_to(C)
-				to_chat(user, SPAN_NOTICE("You detach the conveyor switch."))
+				to_chat(user, span_notice("You detach the conveyor switch."))
 				qdel(src)
 			return
 
 		if(QUALITY_PULSING)
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				one_way = !one_way
-				to_chat(user, SPAN_NOTICE("[src] will now go [one_way ? "forwards only" : "both forwards and backwards"]."))
+				to_chat(user, span_notice("[src] will now go [one_way ? "forwards only" : "both forwards and backwards"]."))
 			return
 
 		if(ABORT_CHECK)
@@ -366,7 +366,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 /obj/item/construct/conveyor/attackby(obj/item/I, mob/user, params)
 	..()
 	if(istype(I, /obj/item/construct/conveyor_switch))
-		to_chat(user, SPAN_NOTICE("You link the switch to the conveyor belt assembly."))
+		to_chat(user, span_notice("You link the switch to the conveyor belt assembly."))
 		var/obj/item/construct/conveyor_switch/C = I
 		id = C.id
 
@@ -374,7 +374,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	if(!proximity || !istype(A, /turf/floor) || istype(A, /area/shuttle) || user.incapacitated())
 		return
 	var/cdir = get_dir(A, user)
-	if(!(cdir in cardinal) || A == user.loc)
+	if(!(cdir in GLOB.cardinal) || A == user.loc)
 		return
 	for(var/obj/machinery/conveyor/CB in A)
 		if(CB.dir == cdir || CB.dir == turn(cdir,180))
@@ -412,7 +412,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 			found = TRUE
 			break
 	if(!found)
-		to_chat(user, SPAN_NOTICE("The conveyor switch did not detect any linked conveyor belts in range."))
+		to_chat(user, span_notice("The conveyor switch did not detect any linked conveyor belts in range."))
 		return
 	var/obj/machinery/conveyor_switch/NC = new/obj/machinery/conveyor_switch(A, id)
 	NC.matter = matter

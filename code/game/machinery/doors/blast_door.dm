@@ -88,7 +88,7 @@
 	if(stat & NOPOWER)
 		return
 	/// prevent command spam
-	if(last_message > world.timeofday)
+	if(last_message > world.time)
 		return
 	switch(signal.data["message"])
 		if("DATA_DOOR_OPENED")
@@ -109,7 +109,7 @@
 			broadcast_status()
 		if("CMD_DOOR_STATE")
 			broadcast_status()
-	last_message = world.timeofday + 1 SECONDS
+	last_message = world.time + 1 SECONDS
 
 // Proc: Bumped()
 // Parameters: 1 (AM - Atom that tried to walk through this object)
@@ -196,29 +196,29 @@
 	update_icon()
 
 /obj/machinery/door/blast/examine(mob/user, extra_description = "")
-	extra_description += SPAN_NOTICE("You can try to open this by using a crowbar on disarm intent.")
+	extra_description += span_notice("You can try to open this by using a crowbar on disarm intent.")
 	if(screws_welded)
-		extra_description += SPAN_NOTICE("\nThe screws on \the [src] can be welded off.")
+		extra_description += span_notice("\nThe screws on \the [src] can be welded off.")
 	else if(!screws_welded && !panel_open)
-		extra_description += SPAN_NOTICE("\nThe panel on \the [src] can be opened by screwing, or sealed by welding.")
+		extra_description += span_notice("\nThe panel on \the [src] can be opened by screwing, or sealed by welding.")
 	else if(panel_open)
-		extra_description += SPAN_NOTICE("\nThe panel on \the [src] can be closed by screwing.")
+		extra_description += span_notice("\nThe panel on \the [src] can be closed by screwing.")
 
 		switch(assembly_step)
 			if(0)
-				extra_description += SPAN_NOTICE("\nYou can weaken the hydraulic connections on \the [src] by wrenching.")
+				extra_description += span_notice("\nYou can weaken the hydraulic connections on \the [src] by wrenching.")
 			if(-1)
-				extra_description += SPAN_NOTICE("\nYou can cut off the hydraulics of \the [src], or tighten them again by wrenching.")
+				extra_description += span_notice("\nYou can cut off the hydraulics of \the [src], or tighten them again by wrenching.")
 			if(-2)
-				extra_description += SPAN_NOTICE("\nYou can pry off the metal coverings of \the [src], or reconnect the hydraulics by using a wirecutter.")
+				extra_description += span_notice("\nYou can pry off the metal coverings of \the [src], or reconnect the hydraulics by using a wirecutter.")
 			if(-3)
-				extra_description += SPAN_NOTICE("\nYou can remove securing bolts of \the [src] by wrenching, or pry back in the metal coverings.")
+				extra_description += span_notice("\nYou can remove securing bolts of \the [src] by wrenching, or pry back in the metal coverings.")
 			if(-4)
-				extra_description += SPAN_NOTICE("\nYou can cut the wirings of \the [src], or secure its bolts back in by wrenching.")
+				extra_description += span_notice("\nYou can cut the wirings of \the [src], or secure its bolts back in by wrenching.")
 			if(-5)
-				extra_description += SPAN_NOTICE("\nYou can now unscrew the door circuit of \the [src], or wire it back.")
+				extra_description += span_notice("\nYou can now unscrew the door circuit of \the [src], or wire it back.")
 			if(-6)
-				extra_description += SPAN_NOTICE("\nYou can now fully dismantle \the [src], or insert in a new door circuit.")
+				extra_description += span_notice("\nYou can now fully dismantle \the [src], or insert in a new door circuit.")
 
 	..(user, extra_description)
 
@@ -246,22 +246,22 @@
 					if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
 						force_toggle()
 					else
-						to_chat(user, SPAN_NOTICE("The motors of \the [src] resist your effort."))
+						to_chat(user, span_notice("The motors of \the [src] resist your effort."))
 				return
 			if(assembly_step == -2)
 				if(!density)
-					to_chat(user,SPAN_NOTICE("The [src] must be closed for the metal coverings to be pried off."))
+					to_chat(user,span_notice("The [src] must be closed for the metal coverings to be pried off."))
 					return
-				to_chat(user,  SPAN_NOTICE("You start prying off the metal coverings of \the [src]."))
+				to_chat(user,  span_notice("You start prying off the metal coverings of \the [src]."))
 				if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
-					to_chat(user,  SPAN_NOTICE("You pry off the metal coverings of \the [src]."))
+					to_chat(user,  span_notice("You pry off the metal coverings of \the [src]."))
 					assembly_step = -3
 					update_icon()
 				return
 			if(assembly_step == -3)
-				to_chat(user,  SPAN_NOTICE("You start prying back in the metal coverings of \the [src]."))
+				to_chat(user,  span_notice("You start prying back in the metal coverings of \the [src]."))
 				if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
-					to_chat(user,  SPAN_NOTICE("You pry the metal coverings of \the [src] back in."))
+					to_chat(user,  span_notice("You pry the metal coverings of \the [src] back in."))
 					assembly_step = -2
 					update_icon()
 				return
@@ -269,7 +269,7 @@
 			// detach ourselves from this proc.
 			spawn(0)
 				if(!electronics)
-					to_chat(user, SPAN_NOTICE("There are no electronics inside of \the [src]."))
+					to_chat(user, span_notice("There are no electronics inside of \the [src]."))
 					return
 				var/input = input(user, "Insert a code for this blastdoor between 1 and 1000", "Blastdoor configuration", 1) as num
 				if(!Adjacent(user) || !panel_open || !electronics)
@@ -279,32 +279,32 @@
 				return
 		if(QUALITY_WELDING)
 			if(screws_welded)
-				to_chat(user,  SPAN_NOTICE("You start welding off the metal seals around the screws of \the [src]."))
-				user.show_message(SPAN_NOTICE("[user] starts welding off at \the [src]."))
+				to_chat(user,  span_notice("You start welding off the metal seals around the screws of \the [src]."))
+				user.show_message(span_notice("[user] starts welding off at \the [src]."))
 				if(I.use_tool(user, src , WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
-					to_chat(user,  SPAN_NOTICE("You manage to weld off the metal seals, giving way to remove the screws."))
-					user.show_message(SPAN_NOTICE("[user] stops welding off at \the [src]."))
+					to_chat(user,  span_notice("You manage to weld off the metal seals, giving way to remove the screws."))
+					user.show_message(span_notice("[user] stops welding off at \the [src]."))
 					screws_welded = FALSE
 					update_icon()
 				return
 			if(assembly_step == -6)
-				to_chat(user,  SPAN_NOTICE("You start welding off the framework of \the [src]."))
-				user.show_message(SPAN_NOTICE("[user] starts welding off at \the [src]."))
+				to_chat(user,  span_notice("You start welding off the framework of \the [src]."))
+				user.show_message(span_notice("[user] starts welding off at \the [src]."))
 				if(I.use_tool(user, src , WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
-					to_chat(user,  SPAN_NOTICE("You manage to completly dismantle \the [src]."))
-					user.show_message(SPAN_NOTICE("[user] dismantles \the [src]."))
+					to_chat(user,  span_notice("You manage to completly dismantle \the [src]."))
+					user.show_message(span_notice("[user] dismantles \the [src]."))
 					drop_materials(get_turf(user), user)
 					qdel(src)
 				return
 			else
 				if(panel_open)
-					to_chat(user, SPAN_NOTICE("You have to close the panel first to weld the screws shut."))
+					to_chat(user, span_notice("You have to close the panel first to weld the screws shut."))
 					return
-				to_chat(user, SPAN_NOTICE("You start sealing the screws to the circuit panel of \the [src]."))
-				user.show_message(SPAN_NOTICE("[user] starts sealing the screws of \the [src]."))
+				to_chat(user, span_notice("You start sealing the screws to the circuit panel of \the [src]."))
+				user.show_message(span_notice("[user] starts sealing the screws of \the [src]."))
 				if(I.use_tool(user, src , WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
-					to_chat(user,  SPAN_NOTICE("You manage to seal the screws of \the [src]."))
-					user.show_message(SPAN_NOTICE("[user] finishes sealing the screws of \the [src]."))
+					to_chat(user,  span_notice("You manage to seal the screws of \the [src]."))
+					user.show_message(span_notice("[user] finishes sealing the screws of \the [src]."))
 					screws_welded = TRUE
 					update_icon()
 				return
@@ -314,9 +314,9 @@
 					var/result = show_radial_menu(user, src, list("dc" = image(icon = electronics.icon, icon_state = electronics.icon_state), "sp" = image(icon = 'icons/mob/radial/tools.dmi', icon_state = "screw driving")), tooltips = TRUE, require_near = TRUE)
 					switch(result)
 						if("dc")
-							to_chat(user, SPAN_NOTICE("You start removing the door control circuit of \the [src]."))
+							to_chat(user, span_notice("You start removing the door control circuit of \the [src]."))
 							if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-								to_chat(user, SPAN_NOTICE("You remove the door control circuit of \the [src]."))
+								to_chat(user, span_notice("You remove the door control circuit of \the [src]."))
 								electronics.forceMove(get_turf(user))
 								electronics = null
 								assembly_step = -6
@@ -324,30 +324,30 @@
 						if("sp")
 							if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 								panel_open = !panel_open
-								to_chat(user, SPAN_NOTICE("You screw [panel_open ? "open" : "shut"] the circuit panel of \the [src]."))
+								to_chat(user, span_notice("You screw [panel_open ? "open" : "shut"] the circuit panel of \the [src]."))
 								update_icon()
 			else
 				if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					panel_open = !panel_open
-					to_chat(user, SPAN_NOTICE("You screw [panel_open ? "open" : "shut"] the circuit panel of \the [src]."))
+					to_chat(user, span_notice("You screw [panel_open ? "open" : "shut"] the circuit panel of \the [src]."))
 					update_icon()
 				return
 		if(QUALITY_BOLT_TURNING)
 			switch(assembly_step)
 				if(0)
 					if(!(stat & NOPOWER) && user.a_intent != I_DISARM)
-						to_chat(user , SPAN_DANGER("The [src] must be powered off before the hydraulics can be weakened safely. Switch to disarm intent to do it anyway."))
+						to_chat(user , span_danger("The [src] must be powered off before the hydraulics can be weakened safely. Switch to disarm intent to do it anyway."))
 						return
-					to_chat(user, SPAN_NOTICE("You start weakening the hydraulic sockets of \the [src]."))
+					to_chat(user, span_notice("You start weakening the hydraulic sockets of \the [src]."))
 					var/turning_time
 					if(!(stat & NOPOWER))
 						turning_time = WORKTIME_LONG
-						to_chat(user, SPAN_NOTICE("The pressure inside the hydraulics of \the [src] makes the turning harder, this might be dangerous."))
+						to_chat(user, span_notice("The pressure inside the hydraulics of \the [src] makes the turning harder, this might be dangerous."))
 					else
 						turning_time = WORKTIME_NORMAL
 					if(I.use_tool(user, src, turning_time, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = -1
-						to_chat(user,  SPAN_NOTICE("You weaken the hydraulic sockets of \the [src]."))
+						to_chat(user,  span_notice("You weaken the hydraulic sockets of \the [src]."))
 						// Uh Oh
 						if(!(stat & NOPOWER) && (hydraulics_blown < world.time))
 							explosion(get_turf(user), 150, 150, 0, TRUE)
@@ -357,23 +357,23 @@
 							log_game("[user] triggered a explosion by unsafely weakening blast door hydraulics, door id = [electronics.wifi_id]")
 					return
 				if(-1)
-					to_chat(user,  SPAN_NOTICE("You start tightening the hydraulic sockets of \the [src]."))
+					to_chat(user,  span_notice("You start tightening the hydraulic sockets of \the [src]."))
 					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = 0
-						to_chat(user,  SPAN_NOTICE("You tighten the hydraulic sockets of \the [src]."))
+						to_chat(user,  span_notice("You tighten the hydraulic sockets of \the [src]."))
 					return
 				if(-3)
-					to_chat(user, SPAN_NOTICE("You start weakening the locking bolts of \the [src]."))
+					to_chat(user, span_notice("You start weakening the locking bolts of \the [src]."))
 					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = -4
-						to_chat(user,  SPAN_NOTICE("You weaken the locking bolts of \the [src]."))
+						to_chat(user,  span_notice("You weaken the locking bolts of \the [src]."))
 						anchored = FALSE
 					return
 				if(-4)
-					to_chat(user, SPAN_NOTICE("You start tightening the locking bolts of \the [src]."))
+					to_chat(user, span_notice("You start tightening the locking bolts of \the [src]."))
 					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = -3
-						to_chat(user,  SPAN_NOTICE("You tighten the locking bolts of \the [src]."))
+						to_chat(user,  span_notice("You tighten the locking bolts of \the [src]."))
 						anchored = TRUE
 						// so it updates.
 						power_change()
@@ -381,25 +381,25 @@
 		if(QUALITY_WIRE_CUTTING)
 			switch(assembly_step)
 				if(-1)
-					to_chat(user, SPAN_NOTICE("You start cutting off the hydraulic sockets of \the [src]."))
+					to_chat(user, span_notice("You start cutting off the hydraulic sockets of \the [src]."))
 					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = -2
-						to_chat(user,  SPAN_NOTICE("You cut off the hydraulic sockets of \the [src], rendering it unfunctional."))
+						to_chat(user,  span_notice("You cut off the hydraulic sockets of \the [src], rendering it unfunctional."))
 						stat |= BROKEN
 					return
 				if(-2)
-					to_chat(user,  SPAN_NOTICE("You start reconnecting the hydraulic sockets of \the [src]."))
+					to_chat(user,  span_notice("You start reconnecting the hydraulic sockets of \the [src]."))
 					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = -1
-						to_chat(user,  SPAN_NOTICE("You reconnect the hydraulic sockets, making the door work again."))
+						to_chat(user,  span_notice("You reconnect the hydraulic sockets, making the door work again."))
 						if(stat & BROKEN)
 							stat &= ~BROKEN
 					return
 				if(-4)
-					to_chat(user,  SPAN_NOTICE("You start removing the wirings of \the [src]."))
+					to_chat(user,  span_notice("You start removing the wirings of \the [src]."))
 					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = -5
-						to_chat(user,  SPAN_NOTICE("You remove the wirings of \the [src]."))
+						to_chat(user,  span_notice("You remove the wirings of \the [src]."))
 						var/obj/item/stack/cable_coil/coil = new(null)
 						coil.amount = 3
 						coil.forceMove(get_turf(user))
@@ -408,16 +408,16 @@
 	if(istype(I,/obj/item/stack/cable_coil) && assembly_step == -5)
 		var/obj/item/stack/cable_coil/cable = I
 		if(cable.can_use(3))
-			to_chat(user, SPAN_NOTICE("You start wiring \the [src]."))
+			to_chat(user, span_notice("You start wiring \the [src]."))
 			if(do_after(user, 3 SECONDS, src, TRUE, TRUE))
-				to_chat(user,  SPAN_NOTICE("You wire \the [src]."))
+				to_chat(user,  span_notice("You wire \the [src]."))
 				if(cable.use(3))
 					assembly_step = -4
 				else
-					to_chat(user, SPAN_NOTICE("You fail to wire \the [src]."))
+					to_chat(user, span_notice("You fail to wire \the [src]."))
 
 	if(istype(I, /obj/item/electronics/airlock) && assembly_step == -6)
-		to_chat(user, SPAN_NOTICE("You insert the electronics into \the [src]."))
+		to_chat(user, span_notice("You insert the electronics into \the [src]."))
 		user.drop_from_inventory(I, src)
 		electronics = I
 		assembly_step = -5
@@ -425,22 +425,22 @@
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == "plasteel")
 		var/amt = CEILING((maxHealth - health)/150, 1)
 		if(!amt)
-			to_chat(usr, SPAN_NOTICE("\The [src] is already fully repaired."))
+			to_chat(usr, span_notice("\The [src] is already fully repaired."))
 			return
 		var/obj/item/stack/P = I
 		if(P.amount < amt)
-			to_chat(usr, SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets."))
+			to_chat(usr, span_warning("You don't have enough sheets to repair this! You need at least [amt] sheets."))
 			return
-		to_chat(usr, SPAN_NOTICE("You begin repairing [src]..."))
+		to_chat(usr, span_notice("You begin repairing [src]..."))
 		if(do_after(usr, 30, src))
 			if(P.use(amt))
-				to_chat(usr, SPAN_NOTICE("You have repaired \the [src]"))
+				to_chat(usr, span_notice("You have repaired \the [src]"))
 				src.repair()
 			else
-				to_chat(usr, SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets."))
+				to_chat(usr, span_warning("You don't have enough sheets to repair this! You need at least [amt] sheets."))
 
 /obj/machinery/door/blast/attack_hand(mob/user as mob)
-	to_chat(usr, SPAN_WARNING("You can't [density ? "open" : "close"] [src] by your own hands only."))
+	to_chat(usr, span_warning("You can't [density ? "open" : "close"] [src] by your own hands only."))
 	return
 
 // Proc: open()

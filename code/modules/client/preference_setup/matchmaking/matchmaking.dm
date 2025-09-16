@@ -22,7 +22,7 @@ var/global/datum/matchmaker/matchmaker = new()
 		if(R.other && !R.finalized)
 			to_warn |= R.holder.current
 	for(var/mob/M in to_warn)
-		to_chat(M,"<span class='warning'>You have new connections. Use \"<a href='byond://?src=\ref[M];show_relations=1'>See Relationship Info</a>\" to view and finalize them.</span>")
+		to_chat(M,span_warning("You have new connections. Use \"<a href='byond://?src=\ref[M];show_relations=1'>See Relationship Info</a>\" to view and finalize them."))
 
 /datum/matchmaker/proc/get_relationships(datum/mind/M, finalized_only)
 	. = list()
@@ -75,7 +75,7 @@ var/global/datum/matchmaker/matchmaker = new()
 
 	return TRUE
 
-/datum/relation/proc/can_connect(var/datum/relation/R)
+/datum/relation/proc/can_connect(datum/relation/R)
 	for(var/datum/relation/D in matchmaker.relations) //have to check all connections between us and them
 		if(D.holder == R.holder && D.other && D.other.holder == holder)
 			if(D.type in incompatible)
@@ -102,8 +102,8 @@ var/global/datum/matchmaker/matchmaker = new()
 	return 1
 
 /datum/relation/proc/sever()
-	to_chat(holder.current,"<span class='warning'>Your connection with [other.holder] is no more.</span>")
-	to_chat(other.holder.current,"<span class='warning'>Your connection with [holder] is no more.</span>")
+	to_chat(holder.current,span_warning("Your connection with [other.holder] is no more."))
+	to_chat(other.holder.current,span_warning("Your connection with [holder] is no more."))
 	other.other = null
 	matchmaker.relations -= other
 	matchmaker.relations -= src
@@ -114,11 +114,11 @@ var/global/datum/matchmaker/matchmaker = new()
 //Finalizes and propagates info if both sides are done.
 /datum/relation/proc/finalize()
 	finalized = 1
-	to_chat(holder.current,"<span class='warning'>You have finalized a connection with [other.holder].</span>")
-	to_chat(other.holder.current,"<span class='warning'>[holder] has finalized a connection with you.</span>")
+	to_chat(holder.current,span_warning("You have finalized a connection with [other.holder]."))
+	to_chat(other.holder.current,span_warning("[holder] has finalized a connection with you."))
 	if(other && other.finalized)
-		to_chat(holder.current,"<span class='warning'>Your connection with [other.holder] is now confirmed!</span>")
-		to_chat(other.holder.current,"<span class='warning'>Your connection with [holder] is now confirmed!</span>")
+		to_chat(holder.current,span_warning("Your connection with [other.holder] is now confirmed!"))
+		to_chat(other.holder.current,span_warning("Your connection with [holder] is now confirmed!"))
 		var/list/candidates = filter_list(GLOB.player_list, /mob/living/carbon/human)
 		candidates -= holder.current
 		candidates -= other.holder.current
@@ -161,11 +161,11 @@ var/global/datum/matchmaker/matchmaker = new()
 	for(var/datum/relation/R in relations)
 		dat += "<b>[R.other.finalized ? "\[F\] " : ""][R.other.holder]</b>, [R.other.holder.role_alt_title ? R.other.holder.role_alt_title : R.other.holder.assigned_role]."
 		if (!R.finalized)
-			dat += " <a href='?src=\ref[src];del_relation=\ref[R]'>Remove</a>"
+			dat += " <a href='byond://?src=\ref[src];del_relation=\ref[R]'>Remove</a>"
 			editable = 1
 		dat += "<br>[R.desc]"
 		dat += "<br>"
-		dat += "<b>Things they know about you:</b>[!R.finalized ?"<a href='?src=\ref[src];info_relation=\ref[R]'>Edit</a>" : ""]<br>[R.info ? "[R.info]" : " Nothing specific."]"
+		dat += "<b>Things they know about you:</b>[!R.finalized ?"<a href='byond://?src=\ref[src];info_relation=\ref[R]'>Edit</a>" : ""]<br>[R.info ? "[R.info]" : " Nothing specific."]"
 		if(R.other.info)
 			dat += "<br><b>Things you know about them:</b><br>[R.other.info]<br>[R.other.holder.gen_relations_info]"
 		dat += "<hr>"
@@ -177,12 +177,12 @@ var/global/datum/matchmaker/matchmaker = new()
 
 	var/datum/browser/popup = new(usr, "relations", "Relationship Info")
 	if(editable)
-		dat.Insert(1,"<a href='?src=\ref[src];relations_close=1;'>Finalize edits and close</a><br>")
+		dat.Insert(1,"<a href='byond://?src=\ref[src];relations_close=1;'>Finalize edits and close</a><br>")
 		popup.set_window_options("focus=0;can_close=0;can_minimize=1;can_maximize=0;can_resize=1;titlebar=1;")
 	popup.set_content(jointext(dat,null))
 	popup.open()
 
-/mob/living/proc/see_relationship_info_with(var/mob/living/other)
+/mob/living/proc/see_relationship_info_with(mob/living/other)
 	if(!other.mind)
 		return
 	var/list/relations = matchmaker.get_relationships(mind,other.mind,TRUE)

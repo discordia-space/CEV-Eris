@@ -1,5 +1,3 @@
-var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
-
 /datum/job/captain
 	title = "Captain"
 	flag = CAPTAIN
@@ -52,15 +50,15 @@ Your second loyalty is to your command officers. The heads of each faction. List
 							 /datum/computer_file/program/reports)
 
 
-	equip(var/mob/living/carbon/human/H)
-		if(!..())	return 0
-		if(H.age>49)
-			var/obj/item/clothing/under/U = H.w_uniform
-			if(istype(U)) U.accessories += new /obj/item/clothing/accessory/medal/gold/captain(U)
-		return 1
+/datum/job/captain/equip(mob/living/carbon/human/H)
+	if(!..())	return 0
+	if(H.age>49)
+		var/obj/item/clothing/under/U = H.w_uniform
+		if(istype(U)) U.accessories += new /obj/item/clothing/accessory/medal/gold/captain(U)
+	return 1
 
-	get_access()
-		return get_all_station_access()
+/datum/job/captain/get_access()
+	return get_all_station_access()
 
 /obj/landmark/join/start/captain
 	name = "Captain"
@@ -118,9 +116,6 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 							 /datum/computer_file/program/reports)
 
 
-	get_access()
-		return get_all_station_access()
-
 	stat_modifiers = list(
 		STAT_ROB = 15,
 		STAT_TGH = 15,
@@ -129,6 +124,9 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 		STAT_VIG = 20,
 		STAT_COG = 10
 	)
+
+/datum/job/hop/get_access()
+	return get_all_station_access()
 
 /obj/landmark/join/start/hop
 	name = "First Officer"

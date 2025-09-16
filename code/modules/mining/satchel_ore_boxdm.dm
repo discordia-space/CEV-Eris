@@ -9,6 +9,7 @@
 	density = TRUE
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_STRUCTURE_COMMON
+	climbable = TRUE
 	var/last_update = 0
 	var/list/stored_ore = list()
 
@@ -23,9 +24,9 @@
 			for(var/obj/item/ore/O in S.contents)
 				S.remove_from_storage(O, src) //This will move the item to this item's contents
 			playsound(loc, S.use_sound, 50, 1, -5)
-			user.visible_message(SPAN_NOTICE("[user.name] empties the [S] into the box"), SPAN_NOTICE("You empty the [S] into the box."), SPAN_NOTICE("You hear a rustling sound"))
+			user.visible_message(span_notice("[user.name] empties the [S] into the box"), span_notice("You empty the [S] into the box."), span_notice("You hear a rustling sound"))
 		else
-			to_chat(user, SPAN_WARNING("There's no ore inside the [S] to empty into here"))
+			to_chat(user, span_warning("There's no ore inside the [S] to empty into here"))
 	update_ore_count()
 
 	return
@@ -62,7 +63,7 @@
 	set src in view(1)
 
 	if(!ishuman(usr)) //Only living, intelligent creatures with hands can empty ore boxes.
-		to_chat(usr, "\red You are physically incapable of emptying the ore box.")
+		to_chat(usr, span_red("You are physically incapable of emptying the ore box."))
 		return
 
 	if( usr.stat || usr.restrained() )
@@ -75,7 +76,7 @@
 	add_fingerprint(usr)
 
 	if(contents.len < 1)
-		to_chat(usr, "\red The ore box is empty")
+		to_chat(usr, span_red("The ore box is empty"))
 		return
 
 	for (var/obj/item/ore/O in contents)
@@ -84,7 +85,7 @@
 		O.layer = initial(O.layer)
 		O.set_plane(initial(O.plane))
 
-	to_chat(usr, "\blue You empty the ore box")
+	to_chat(usr, span_blue("You empty the ore box"))
 
 	return
 

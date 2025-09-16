@@ -64,17 +64,17 @@
 
 /obj/item/reagent_containers/glass/is_closed_message(mob/user)
 	if(has_lid())
-		to_chat(user, SPAN_NOTICE("You need to take the lid off [src] first!"))
+		to_chat(user, span_notice("You need to take the lid off [src] first!"))
 
-/obj/item/reagent_containers/glass/self_feed_message(var/mob/user)
-	to_chat(user, SPAN_NOTICE("You swallow a gulp from \the [src]."))
+/obj/item/reagent_containers/glass/self_feed_message(mob/user)
+	to_chat(user, span_notice("You swallow a gulp from \the [src]."))
 
-/obj/item/reagent_containers/glass/feed_sound(var/mob/user)
+/obj/item/reagent_containers/glass/feed_sound(mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
 /obj/item/reagent_containers/glass/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2 && has_lid())
-		extra_description += SPAN_NOTICE("\nAirtight lid seals it completely.")
+		extra_description += span_notice("\nAirtight lid seals it completely.")
 	..(user, extra_description)
 
 /obj/item/reagent_containers/glass/attack_self(mob/user)
@@ -82,9 +82,9 @@
 	if(toggle_lid())
 		playsound(src,'sound/effects/Lid_Removal_Bottle_mono.ogg',50,1)
 		if(has_lid())
-			to_chat(user, SPAN_NOTICE("You put the lid on \the [src]."))
+			to_chat(user, span_notice("You put the lid on \the [src]."))
 		else
-			to_chat(user, SPAN_NOTICE("You take the lid off \the [src]."))
+			to_chat(user, span_notice("You take the lid off \the [src]."))
 
 /obj/item/reagent_containers/glass/pre_attack(atom/A, mob/user, params)
 	if(user.a_intent == I_HURT)
@@ -93,11 +93,11 @@
 			return TRUE
 		if(is_drainable() && reagents.total_volume)
 			if(istype(A, /obj/structure/sink))
-				to_chat(user, SPAN_NOTICE("You pour the solution into [A]."))
+				to_chat(user, span_notice("You pour the solution into [A]."))
 				reagents.remove_any(reagents.total_volume)
 			else
 				playsound(src,'sound/effects/Splash_Small_01_mono.ogg',50,1)
-				to_chat(user, SPAN_NOTICE("You splash the solution onto [A]."))
+				to_chat(user, span_notice("You splash the solution onto [A]."))
 				reagents.splash(A, reagents.total_volume)
 			return TRUE
 	return ..()
@@ -111,7 +111,7 @@
 
 	return 0
 
-/obj/item/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/flag)
+/obj/item/reagent_containers/glass/afterattack(obj/target, mob/user, flag)
 	if(!flag)
 		return
 	for(var/type in can_be_placed_into)
@@ -126,9 +126,9 @@
 	if(istype(I, /obj/item/pen) || istype(I, /obj/item/device/lighting/toggleable/flashlight/pen))
 		var/tmp_label = sanitizeSafe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
 		if(length(tmp_label) > 10)
-			to_chat(user, SPAN_NOTICE("The label can be at most 10 characters long."))
+			to_chat(user, span_notice("The label can be at most 10 characters long."))
 		else
-			to_chat(user, SPAN_NOTICE("You set the label to \"[tmp_label]\"."))
+			to_chat(user, span_notice("You set the label to \"[tmp_label]\"."))
 			label_text = tmp_label
 			update_name_label()
 			update_icon()
@@ -136,7 +136,7 @@
 	var/hotness = I.is_hot()
 	if(hotness && reagents)
 		reagents.expose_temperature(hotness)
-		to_chat(user, SPAN_NOTICE("You heat [name] with [I]!"))
+		to_chat(user, span_notice("You heat [name] with [I]!"))
 
 	..()
 

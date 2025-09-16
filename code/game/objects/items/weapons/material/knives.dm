@@ -41,9 +41,9 @@
 /obj/item/material/butterfly/attack_self(mob/user)
 	active = !active
 	if(active)
-		to_chat(user, SPAN_NOTICE("You flip out \the [src]."))
+		to_chat(user, span_notice("You flip out \the [src]."))
 		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	else
-		to_chat(user, SPAN_NOTICE("\The [src] can now be concealed."))
+		to_chat(user, span_notice("\The [src] can now be concealed."))
 	update_force()
 	add_fingerprint(user)

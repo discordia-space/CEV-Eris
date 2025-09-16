@@ -61,21 +61,21 @@
 				return
 			else
 				// insert cell
-				var/obj/item/cell/large/C = usr.get_active_hand()
+				var/obj/item/cell/large/C = usr.get_active_held_item()
 				if(istype(C))
 					user.drop_item()
 					src.cell = C
 					C.loc = src
 					C.add_fingerprint(usr)
 
-					user.visible_message(SPAN_NOTICE("[user] inserts a power cell into [src]."), SPAN_NOTICE("You insert the power cell into [src]."))
+					user.visible_message(span_notice("[user] inserts a power cell into [src]."), span_notice("You insert the power cell into [src]."))
 					power_change()
 		else
 			to_chat(user, "The hatch must be open to insert a power cell.")
 			return
 	else if(istype(I, /obj/item/tool/screwdriver))
 		panel_open = !panel_open
-		user.visible_message("<span class='notice'>[user] [panel_open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'>You [panel_open ? "open" : "close"] the hatch on the [src].</span>")
+		user.visible_message(span_notice("[user] [panel_open ? "opens" : "closes"] the hatch on the [src]."), span_notice("You [panel_open ? "open" : "close"] the hatch on the [src]."))
 		update_icon()
 		if(!panel_open && user.machine == src)
 			user << browse(null, "window=spaceheater")
@@ -103,17 +103,17 @@
 
 		dat += "Set Temperature: "
 
-		dat += "<A href='?src=\ref[src];op=temp;val=-5'>-</A>"
+		dat += "<A href='byond://?src=\ref[src];op=temp;val=-5'>-</A>"
 
 		dat += " [set_temperature]K ([set_temperature-T0C]&deg;C)"
-		dat += "<A href='?src=\ref[src];op=temp;val=5'>+</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];op=temp;val=5'>+</A><BR>"
 
 		user.set_machine(src)
-		user << browse("<HEAD><TITLE>Space Heater Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=spaceheater")
+		user << browse(HTML_SKELETON_TITLE("Space Heater Control Panel", "<TT>[dat]</TT>"), "window=spaceheater")
 		onclose(user, "spaceheater")
 	else
 		on = !on
-		user.visible_message("<span class='notice'>[user] switches [on ? "on" : "off"] the [src].</span>","<span class='notice'>You switch [on ? "on" : "off"] the [src].</span>")
+		user.visible_message(span_notice("[user] switches [on ? "on" : "off"] the [src]."),span_notice("You switch [on ? "on" : "off"] the [src]."))
 		update_icon()
 	return
 
@@ -133,8 +133,8 @@
 				set_temperature = dd_range(T0C, T0C + 90, set_temperature + value)
 
 			if("cellremove")
-				if(panel_open && cell && !usr.get_active_hand())
-					usr.visible_message(SPAN_NOTICE("\The [usr] removes \the [cell] from \the [src]."), SPAN_NOTICE("You remove \the [cell] from \the [src]."))
+				if(panel_open && cell && !usr.get_active_held_item())
+					usr.visible_message(span_notice("\The [usr] removes \the [cell] from \the [src]."), span_notice("You remove \the [cell] from \the [src]."))
 					cell.update_icon()
 					usr.put_in_hands(cell)
 					cell.add_fingerprint(usr)
@@ -144,14 +144,14 @@
 
 			if("cellinstall")
 				if(panel_open && !cell)
-					var/obj/item/cell/large/C = usr.get_active_hand()
+					var/obj/item/cell/large/C = usr.get_active_held_item()
 					if(istype(C))
 						usr.drop_item()
 						src.cell = C
 						C.forceMove(src)
 						C.add_fingerprint(usr)
 						power_change()
-						usr.visible_message(SPAN_NOTICE("[usr] inserts \the [C] into \the [src]."), SPAN_NOTICE("You insert \the [C] into \the [src]."))
+						usr.visible_message(span_notice("[usr] inserts \the [C] into \the [src]."), span_notice("You insert \the [C] into \the [src]."))
 
 		updateDialog()
 	else

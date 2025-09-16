@@ -146,7 +146,7 @@
 		extra_description += "\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it."
 		extra_description += "\nThe charge meter reads [round(percent() )]%."
 		if(rigged && user.stats?.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT)
-			extra_description += SPAN_WARNING("\nThis cell is ready to short circuit!")
+			extra_description += span_warning("\nThis cell is ready to short circuit!")
 	..(user, extra_description)
 
 

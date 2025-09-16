@@ -143,7 +143,7 @@
 
 
 //Combines testing and starting. Autostarts if possible
-/datum/vertical_travel_method/proc/attempt(var/dir)
+/datum/vertical_travel_method/proc/attempt(dir)
 	.=can_perform(dir)
 	if (.)
 		spawn()
@@ -158,16 +158,16 @@
 	Like if they're wearing a jetpack but it's empty or not turned on.
 	Generally, use a message in a case where a user would expect it to work, to explain why it doesn't.
 */
-/datum/vertical_travel_method/proc/can_perform(var/dir)
+/datum/vertical_travel_method/proc/can_perform(dir)
 	if(M.used_now)
-		to_chat(M, SPAN_NOTICE("You are busy at the moment."))
+		to_chat(M, span_notice("You are busy at the moment."))
 		return FALSE
 
 	if (dir != direction)
 		direction = dir
 
 	if (!get_destination())
-		to_chat(M, SPAN_NOTICE("There is nothing in that direction."))
+		to_chat(M, span_notice("There is nothing in that direction."))
 		return FALSE
 
 	if(ismob(M))
@@ -178,7 +178,7 @@
 	return TRUE
 
 
-/datum/vertical_travel_method/proc/start(var/dir)
+/datum/vertical_travel_method/proc/start(dir)
 	direction = dir
 	calculate_time()
 	announce_start()
@@ -237,16 +237,16 @@
 
 	var/personal = format_message(start_verb_personal)
 
-	mob.visible_message(SPAN_NOTICE(visible), SPAN_NOTICE(personal))
+	mob.visible_message(span_notice(visible), span_notice(personal))
 
 /datum/vertical_travel_method/proc/announce_end()
 	var/visible = format_message(end_verb_visible)
 
 	var/personal = format_message(end_verb_personal)
 
-	mob.visible_message(SPAN_NOTICE(visible), SPAN_NOTICE(personal))
+	mob.visible_message(span_notice(visible), span_notice(personal))
 
-/datum/vertical_travel_method/proc/format_message(var/string)
+/datum/vertical_travel_method/proc/format_message(string)
 	string = replacetext(string, "%m", M.name)
 	string = replacetext(string, "%d3", direction == UP ? "ascen" : "descen")
 	string = replacetext(string, "%d2", direction == UP ? "above" : "below")
@@ -308,4 +308,4 @@
 	M.Move(target)
 	if (ismob(M))
 		mob.Weaken(2)
-	to_chat(mob, SPAN_DANGER("You lose control and slip into freefall"))
+	to_chat(mob, span_danger("You lose control and slip into freefall"))

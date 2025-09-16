@@ -20,7 +20,7 @@ var/next_station_date_change = 1 DAYS
 
 #define station_adjusted_time(time) time2text(time + station_time_in_ticks, "hh:mm")
 #define worldtime2stationtime(time) time2text(roundstart_hour HOURS + time, "hh:mm")
-#define roundduration2text_in_ticks (round_start_time ? world.time - round_start_time : 0)
+#define roundduration2text_in_ticks (SSticker?.round_start_time ? world.time - SSticker.round_start_time : 0)
 #define station_time_in_ticks (roundstart_hour HOURS + roundduration2text_in_ticks)
 
 /proc/stationtime2text()
@@ -53,11 +53,11 @@ var/next_station_date_change = 1 DAYS
 	. = text2num(time2text(world.time + (roundstart_hour HOURS), "hh"))
 
 /proc/worlddate2text()
-	return num2text(game_year) + "-" + time2text(world.timeofday, "MM-DD")
+	return num2text(CURRENT_SHIP_YEAR) + "-" + time2text(world.timeofday, "MM-DD", NO_TIMEZONE)
 
 
 /* Returns 1 if it is the selected month and day */
-proc/isDay(var/month, var/day)
+/proc/isDay(month, day)
 	if(isnum(month) && isnum(day))
 		var/MM = text2num(time2text(world.timeofday, "MM")) // get the current month
 		var/DD = text2num(time2text(world.timeofday, "DD")) // get the current day
@@ -70,14 +70,9 @@ proc/isDay(var/month, var/day)
 
 var/next_duration_update = 0
 var/last_roundduration2text = 0
-var/round_start_time = 0
-
-/hook/roundstart/proc/start_timer()
-	round_start_time = world.time
-	return 1
 
 /proc/roundduration2text()
-	if(!round_start_time)
+	if(!SSticker?.round_start_time)
 		return "00:00"
 	if(last_roundduration2text && world.time < next_duration_update)
 		return last_roundduration2text
@@ -94,6 +89,56 @@ var/round_start_time = 0
 	next_duration_update = world.time + 1 MINUTES
 	return last_roundduration2text
 
+/proc/gameTimestamp(format = "hh:mm:ss", wtime=null)
+	if(!wtime)
+		wtime = world.time - (SSticker?.round_start_time || 0)
+	var/hour = round(wtime / 36000)
+	var/minute = round(((wtime) - (hour * 36000)) / 600)
+	var/second = round(((wtime) - (hour * 36000) - (minute * 600)) / 10)
+
+
+	if(hour < 10)
+		hour = "0[hour]"
+	if(minute < 10)
+		minute = "0[minute]"
+	if(second < 10)
+		second = "0[second]"
+
+	return "[hour]:[minute]:[second]"
+
+
+//Takes a value of time in deciseconds.
+//Returns a text value of that number in hours, minutes, or seconds.
+/proc/DisplayTimeText(time_value, round_seconds_to = 0.1)
+	var/second = FLOOR(time_value * 0.1, round_seconds_to)
+	if(!second)
+		return "right now"
+	if(second < 60)
+		return "[second] second[(second != 1)? "s":""]"
+	var/minute = FLOOR(second / 60, 1)
+	second = FLOOR(MODULUS(second, 60), round_seconds_to)
+	var/secondT
+	if(second)
+		secondT = " and [second] second[(second != 1)? "s":""]"
+	if(minute < 60)
+		return "[minute] minute[(minute != 1)? "s":""][secondT]"
+	var/hour = FLOOR(minute / 60, 1)
+	minute = MODULUS(minute, 60)
+	var/minuteT
+	if(minute)
+		minuteT = " and [minute] minute[(minute != 1)? "s":""]"
+	if(hour < 24)
+		return "[hour] hour[(hour != 1)? "s":""][minuteT][secondT]"
+	var/day = FLOOR(hour / 24, 1)
+	hour = MODULUS(hour, 24)
+	var/hourT
+	if(hour)
+		hourT = " and [hour] hour[(hour != 1)? "s":""]"
+	return "[day] day[(day != 1)? "s":""][hourT][minuteT][secondT]"
+
+//returns timestamp in a sql and a not-quite-compliant ISO 8601 friendly format
+/proc/SQLtime(timevar)
+	return time2text(timevar || world.timeofday, "YYYY-MM-DD hh:mm:ss")
 
 var/global/midnight_rollovers = 0
 var/global/rollovercheck_last_timeofday = 0
@@ -103,7 +148,7 @@ var/global/rollovercheck_last_timeofday = 0
 		return midnight_rollovers++
 	return midnight_rollovers
 
-/proc/ticks_to_text(var/ticks)
+/proc/ticks_to_text(ticks)
 	if(ticks%1 != 0)
 		return "ERROR"
 	var/response = ""
@@ -136,7 +181,6 @@ var/global/rollovercheck_last_timeofday = 0
 //Increases delay as the server gets more overloaded,
 //as sleeps aren't cheap and sleeping only to wake up and sleep again is wasteful
 #define DELTA_CALC max(((max(world.tick_usage, world.cpu) / 100) * max(Master.sleep_delta,1)), 1)
-#define UNTIL(X) while(!X) stoplag()
 
 /proc/stoplag()
 	if (!Master || !(Master.current_runlevel & RUNLEVELS_DEFAULT))

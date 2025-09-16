@@ -61,7 +61,7 @@
 		part_list += "\a [I]"
 	extra_description += "\The [src] has [english_list(part_list)] installed."
 	if(tank && (get_dist(user, src) < 2))
-		extra_description += SPAN_NOTICE("\nThe wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].")
+		extra_description += span_notice("\nThe wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].")
 	..(user, extra_description)
 
 /obj/item/clothing/suit/space/void/ui_action_click(mob/living/user, action_name)
@@ -162,18 +162,18 @@
 	if(H.wear_suit != src) return
 
 	if(H.head == helmet)
-		to_chat(H, SPAN_NOTICE("You retract your suit helmet."))
+		to_chat(H, span_notice("You retract your suit helmet."))
 		helmet.canremove = 1
 		H.drop_from_inventory(helmet)
 		helmet.forceMove(src)
 		playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	else
 		if(H.head)
-			to_chat(H, SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head]."))
+			to_chat(H, span_danger("You cannot deploy your helmet while wearing \the [H.head]."))
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
 			helmet.canremove = 0
-			to_chat(H, "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>")
+			to_chat(H, span_info("You deploy your suit helmet, sealing you off from the world."))
 			playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	helmet.update_light(H)
 
@@ -187,11 +187,11 @@
 		return
 
 	if(!Adjacent(usr, get_turf(src)))
-		to_chat(usr, SPAN_WARNING("You're too far away to eject the tank."))
+		to_chat(usr, span_warning("You're too far away to eject the tank."))
 		return
 
 	if(!tank)
-		to_chat(usr, "<span class='warning'>There is no tank inserted.</span>")
+		to_chat(usr, span_warning("There is no tank inserted."))
 		return
 
 
@@ -204,9 +204,9 @@
 		return
 
 	H.visible_message(
-	"<span class='info'>[H] presses the emergency release, ejecting \the [tank] from the suit.</span>",
-	"<span class='info'>You press the emergency release, ejecting \the [tank] from the suit.</span>",
-	"<span class='info'>You hear a click and a hiss</span>"
+	span_info("[H] presses the emergency release, ejecting \the [tank] from the suit."),
+	span_info("You press the emergency release, ejecting \the [tank] from the suit."),
+	span_info("You hear a click and a hiss")
 	)
 	tank.canremove = 1
 	H.drop_from_inventory(tank)
@@ -221,7 +221,7 @@
 		return ..()
 
 	if(is_worn())
-		to_chat(user, SPAN_WARNING("You cannot modify \the [src] while it is being worn."))
+		to_chat(user, span_warning("You cannot modify \the [src] while it is being worn."))
 		return
 
 	if(istype(W,/obj/item/tool/screwdriver))

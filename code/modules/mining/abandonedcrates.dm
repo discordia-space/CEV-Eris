@@ -10,7 +10,7 @@
 
 /obj/structure/closet/crate/secure/loot/New()
 	..()
-	var/list/digits = list("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
+	var/list/digits = GLOB.numerals.Copy()
 
 	for(var/i in 1 to codelen)
 		code += pick(digits)
@@ -34,13 +34,13 @@
 		if(11 to 15)
 			new/obj/item/reagent_containers/glass/beaker/bluespace(src)
 		if(16 to 20)
-			for(var/i = 0, i < 10, i++)
+			for(var/i = 0; i < 10; i++)
 				new/obj/item/ore/diamond(src)
 		if(21 to 25)
-			for(var/i = 0, i < 3, i++)
+			for(var/i = 0; i < 3; i++)
 				new/obj/machinery/portable_atmospherics/hydroponics(src)
 		if(26 to 30)
-			for(var/i = 0, i < 3, i++)
+			for(var/i = 0; i < 3; i++)
 				new/obj/item/reagent_containers/glass/beaker/noreact(src)
 		if(31 to 35)
 			spawn_money(rand(300,800), src)
@@ -51,7 +51,7 @@
 			new/obj/item/clothing/under/shorts/blue(src)
 		if(46 to 50)
 			new/obj/item/clothing/under/chameleon(src)
-			for(var/i = 0, i < 7, i++)
+			for(var/i = 0; i < 7; i++)
 				new/obj/item/clothing/accessory/horrible(src)
 		if(51 to 52) // Uncommon, 2% each
 			new/obj/item/melee/classic_baton(src)
@@ -63,16 +63,16 @@
 		if(57 to 60)
 			new/obj/item/rig(src)
 		if(61 to 62)
-			for(var/i = 0, i < 12, ++i)
+			for(var/i = 0; i < 12; ++i)
 				new/obj/item/reagent_containers/food/snacks/pie(src)
 		if(63 to 64)
 			var/t = rand(4,7)
 			for(var/i = 0, i < t, ++i)
-				var/newcoin = pick(/obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/gold, /obj/item/coin/diamond, /obj/item/coin/plasma, /obj/item/coin/uranium, /obj/item/coin/platinum)
+				var/newcoin = pick(/obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/plasteel, /obj/item/coin/plasteel, /obj/item/coin/plasteel, /obj/item/coin/gold, /obj/item/coin/diamond, /obj/item/coin/plasma, /obj/item/coin/uranium, /obj/item/coin/platinum)
 				new newcoin(src)
 		if(65 to 68)
 			var/t = rand(4,7)
-			for(var/i = 0, i < t, ++i)
+			for(var/i = 0; i < t; ++i)
 				var/newitem = pick(typesof(/obj/item/stock_parts) - /obj/item/stock_parts - /obj/item/stock_parts/subspace)
 				new newitem(src)
 		if(69 to 72)
@@ -124,31 +124,31 @@
 	if(!locked)
 		return
 
-	to_chat(user, SPAN_NOTICE("The crate is locked with a Deca-code lock."))
+	to_chat(user, span_notice("The crate is locked with a Deca-code lock."))
 	var/input = input(user, "Enter [codelen] digits.", "Deca-Code Lock", "") as text
 	if(!Adjacent(user))
 		return
 
 	if(input == null || length(input) != codelen)
-		to_chat(user, SPAN_NOTICE("You leave the crate alone."))
+		to_chat(user, span_notice("You leave the crate alone."))
 	else if(check_input(input))
-		to_chat(user, SPAN_NOTICE("The crate unlocks!"))
+		to_chat(user, span_notice("The crate unlocks!"))
 		playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
 		set_locked(0)
 	else
-		visible_message(SPAN_WARNING("A red light on \the [src]'s control panel flashes briefly."))
+		visible_message(span_warning("A red light on \the [src]'s control panel flashes briefly."))
 		attempts--
 		if (attempts == 0)
-			to_chat(user, SPAN_DANGER("The crate's anti-tamper system activates!"))
+			to_chat(user, span_danger("The crate's anti-tamper system activates!"))
 			explosion(get_turf(src), 300, 50)
 			qdel(src)
 
-/obj/structure/closet/crate/secure/loot/emag_act(var/remaining_charges, var/mob/user)
+/obj/structure/closet/crate/secure/loot/emag_act(remaining_charges, mob/user)
 	if (locked)
-		to_chat(user, SPAN_NOTICE("The crate unlocks!"))
+		to_chat(user, span_notice("The crate unlocks!"))
 		locked = 0
 
-/obj/structure/closet/crate/secure/loot/proc/check_input(var/input)
+/obj/structure/closet/crate/secure/loot/proc/check_input(input)
 	if(length(input) != codelen)
 		return 0
 
@@ -163,11 +163,11 @@
 /obj/structure/closet/crate/secure/loot/attackby(obj/item/W as obj, mob/user as mob)
 	if(locked)
 		if (istype(W, /obj/item/tool/multitool)) // Greetings Urist McProfessor, how about a nice game of cows and bulls?
-			to_chat(user, SPAN_NOTICE("DECA-CODE LOCK ANALYSIS:"))
+			to_chat(user, span_notice("DECA-CODE LOCK ANALYSIS:"))
 			if (attempts == 1)
-				to_chat(user, SPAN_WARNING("* Anti-Tamper system will activate on the next failed access attempt."))
+				to_chat(user, span_warning("* Anti-Tamper system will activate on the next failed access attempt."))
 			else
-				to_chat(user, SPAN_NOTICE("* Anti-Tamper system will activate after [src.attempts] failed access attempts."))
+				to_chat(user, span_notice("* Anti-Tamper system will activate after [src.attempts] failed access attempts."))
 			if(lastattempt.len)
 				var/bulls = 0
 				var/cows = 0
@@ -179,6 +179,6 @@
 					else if(lastattempt[i] in code_contents)
 						++cows
 					code_contents -= lastattempt[i]
-				to_chat(user, SPAN_NOTICE("Last code attempt had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions."))
+				to_chat(user, span_notice("Last code attempt had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions."))
 			return
 	..()

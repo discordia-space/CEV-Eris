@@ -1,4 +1,4 @@
-/mob/living/carbon/slime/emote(var/act, var/m_type=1, var/message = null)
+/mob/living/carbon/slime/emote(act, m_type=1, message = null)
 
 	if (findtext(act, "-", 1, null))
 		var/t1 = findtext(act, "-", 1, null)
@@ -16,7 +16,7 @@
 				return
 			if (src.client)
 				if (client.prefs.muted & MUTE_IC)
-					to_chat(src, "\red You cannot send IC messages (muted).")
+					to_chat(src, span_red("You cannot send IC messages (muted)."))
 					return
 				if (src.client.handle_spam_prevention(message,MUTE_IC))
 					return
@@ -88,7 +88,7 @@
 			to_chat(src, "Help for slime emotes. You can use these emotes with say \"*emote\":\n\nbounce, custom, jiggle, light, moan, shiver, sway, twitch, vibrate. You can also set your face with: \n\nnomood, pout, sad, angry, frown, smile")
 
 		else
-			to_chat(src, "\blue Unusable emote '[act]'. Say *help for a list.")
+			to_chat(src, span_blue("Unusable emote '[act]'. Say *help for a list."))
 	if ((message && src.stat == 0))
 		send_emote(message, m_type)
 	if(updateicon)

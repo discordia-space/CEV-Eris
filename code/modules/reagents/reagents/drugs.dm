@@ -45,7 +45,7 @@
 /datum/reagent/drug/space_drugs/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.druggy = max(M.druggy, 15 * effect_multiplier)
 	if(prob(10 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
-		step(M, pick(cardinal))
+		step(M, pick(GLOB.cardinal))
 	if(prob(7 * effect_multiplier))
 		M.emote(pick("twitch", "drool", "moan", "giggle"))
 	M.add_chemical_effect(CE_PULSE, -1)
@@ -144,12 +144,12 @@
 	M.make_dizzy(10 * effect_multiplier)
 	M.confused = max(M.confused, 20 * effect_multiplier)
 	if(prob(5 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
-		step(M, pick(cardinal))
+		step(M, pick(GLOB.cardinal))
 	if(ishuman(M) && (prob(5 * effect_multiplier)))
 		var/mob/living/carbon/human/affected = M
 		for(var/datum/breakdown/B in affected.sanity.breakdowns)
 			B.finished = TRUE
-			to_chat(M, SPAN_NOTICE("You feel that something eases the strain on your sanity. But at which price?"))
+			to_chat(M, span_notice("You feel that something eases the strain on your sanity. But at which price?"))
 
 /datum/reagent/drug/psilocybin
 	name = "Psilocybin"

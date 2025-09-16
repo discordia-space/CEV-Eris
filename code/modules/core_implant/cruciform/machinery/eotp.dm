@@ -65,10 +65,10 @@ var/global/obj/machinery/power/eotp/eotp
 		var/mob/living/carbon/human/H = user
 		var/obj/item/implant/core_implant/I = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(I && I.active && I.wearer)
-			extra_description += SPAN_NOTICE("\nPower level: [power]/[max_power].")
-			extra_description += SPAN_NOTICE("\nObservation level: [observation]/[max_observation].")
-			extra_description += SPAN_NOTICE("\nArmement level: [armaments_points]/[max_armaments_points]")
-			extra_description += SPAN_NOTICE("\nMiracles: [GLOB.miracle_points]")
+			extra_description += span_notice("\nPower level: [power]/[max_power].")
+			extra_description += span_notice("\nObservation level: [observation]/[max_observation].")
+			extra_description += span_notice("\nArmement level: [armaments_points]/[max_armaments_points]")
+			extra_description += span_notice("\nMiracles: [GLOB.miracle_points]")
 	..(user, extra_description)
 
 /obj/machinery/power/eotp/Process()
@@ -97,11 +97,11 @@ var/global/obj/machinery/power/eotp/eotp
 
 	updatePower()
 
-/obj/machinery/power/eotp/proc/addObservation(var/number)
+/obj/machinery/power/eotp/proc/addObservation(number)
 	observation += number
 	return observation
 
-/obj/machinery/power/eotp/proc/removeObservation(var/number)
+/obj/machinery/power/eotp/proc/removeObservation(number)
 	observation -= number
 	return observation
 
@@ -145,7 +145,7 @@ var/global/obj/machinery/power/eotp/eotp
 
 		if(!antagonist_area)
 			for(var/mob/living/carbon/human/H in disciples)
-				to_chat(H, SPAN_NOTICE("You feel a wave of calm pass over you. The Angels are watching with their benevolent Eye."))
+				to_chat(H, span_notice("You feel a wave of calm pass over you. The Angels are watching with their benevolent Eye."))
 				if(H.sanity && prob(50))
 					H.sanity.changeLevel(20)
 
@@ -158,7 +158,7 @@ var/global/obj/machinery/power/eotp/eotp
 				preacher = pick(disciples)
 
 			if(preacher)
-				to_chat(preacher, SPAN_DANGER("You feel an evil presence lurking in [antagonist_area].")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
+				to_chat(preacher, span_danger("You feel an evil presence lurking in [antagonist_area].")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
 
 	else if(type_release == INSPIRATION)
 		for(var/mob/living/carbon/human/H in disciples)
@@ -168,14 +168,14 @@ var/global/obj/machinery/power/eotp/eotp
 	else if(type_release == ODDITY)
 		var/oddity_reward = pick(subtypesof(/obj/item/oddity/nt))
 		var/obj/item/_item = new oddity_reward(get_turf(src))
-		visible_message(SPAN_NOTICE("The [_item.name] appears out of bluespace near the [src]!"))
+		visible_message(span_notice("The [_item.name] appears out of bluespace near the [src]!"))
 		rewards -= ODDITY
 
 	else if(type_release == STAT_BUFF)
 		var/random_stat = pick(ALL_STATS)
 		for(var/mob/living/carbon/human/H in disciples)
 			if(H.stats)
-				to_chat(H, SPAN_NOTICE("You feel the gaze of [src] pierce your mind, body, and soul. You are enlightened, and gain deeper knowledge in [random_stat]; however, you can already feel this newfound knowledge beginning to slip away..."))
+				to_chat(H, span_notice("You feel the gaze of [src] pierce your mind, body, and soul. You are enlightened, and gain deeper knowledge in [random_stat]; however, you can already feel this newfound knowledge beginning to slip away..."))
 				H.stats.addTempStat(random_stat, stat_buff_power, 20 MINUTES, "Eye_of_the_Protector")
 
 	else if(type_release == MATERIAL_REWARD)
@@ -183,15 +183,15 @@ var/global/obj/machinery/power/eotp/eotp
 		var/reward_min_amount = materials[materials_reward]
 		var/obj/item/stack/material/_item = new materials_reward(get_turf(src))
 		_item.amount = rand(reward_min_amount, _item.max_amount)
-		visible_message(SPAN_NOTICE("The [_item.name] appears out of bluespace near the [src]!"))
+		visible_message(span_notice("The [_item.name] appears out of bluespace near the [src]!"))
 
 	else if(type_release == ENERGY_REWARD)
 		for(var/mob/living/carbon/human/H in disciples)
 			var/obj/item/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
 			C.power_regen += initial(C.power_regen)
-			to_chat(H, SPAN_NOTICE("Your cruciform vibrates."))
+			to_chat(H, span_notice("Your cruciform vibrates."))
 
 	for(var/disciple in disciples)
-		to_chat(disciple, SPAN_NOTICE("A miracle has occured at the [src]! May the Angels live forever!"))
+		to_chat(disciple, span_notice("A miracle has occured at the [src]! May the Angels live forever!"))
 
 	GLOB.miracle_points++

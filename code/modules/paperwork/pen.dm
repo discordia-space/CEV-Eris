@@ -52,7 +52,7 @@
 	else
 		icon_state = "pen_[colour]"
 
-	to_chat(user, SPAN_NOTICE("Changed color to '[colour].'"))
+	to_chat(user, span_notice("Changed color to '[colour].'"))
 
 /obj/item/pen/invisible
 	desc = "An invisble pen marker."
@@ -63,11 +63,11 @@
 /obj/item/pen/attack(mob/M, mob/user)
 	if(!ismob(M))
 		return
-	to_chat(user, SPAN_WARNING("You stab [M] with the pen."))
-//	M << "\red You feel a tiny prick!" //That's a whole lot of meta!
+	to_chat(user, span_warning("You stab [M] with the pen."))
+//	M << span_red("You feel a tiny prick!") //That's a whole lot of meta!
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been stabbed with [name]  by [user.name] ([user.ckey])</font>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to stab [M.name] ([M.ckey])</font>")
-	msg_admin_attack("[user.name] ([user.ckey]) Used the [name] to stab [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+	msg_admin_attack("[user.name] ([user.ckey]) Used the [name] to stab [M.name] ([M.ckey]) [ADMIN_JMP(user)]")
 	return
 
 /*
@@ -142,10 +142,10 @@
 	*/
 	signature = sanitize(input("Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature))
 
-/obj/item/pen/proc/get_signature(var/mob/user)
+/obj/item/pen/proc/get_signature(mob/user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
 
-/obj/item/pen/chameleon/get_signature(var/mob/user)
+/obj/item/pen/chameleon/get_signature(mob/user)
 	return signature ? signature : "Anonymous"
 
 /obj/item/pen/chameleon/verb/set_colour()
@@ -175,7 +175,7 @@
 				colour = COLOR_WHITE
 			else
 				colour = COLOR_BLACK
-		to_chat(usr, "<span class='info'>You select the [lowertext(selected_type)] ink container.</span>")
+		to_chat(usr, span_info("You select the [lowertext(selected_type)] ink container."))
 
 
 /*
@@ -196,9 +196,9 @@
 	var/colourName = "red" //for updateIcon purposes
 	var/grindable = TRUE //normal crayons are grindable, rainbow and mime aren't
 
-	New()
-		name = "[colourName] crayon"
-		if(grindable)
-			create_reagents(20)
-			reagents.add_reagent("crayon_dust_[colourName]", 20)
-		..()
+/obj/item/pen/crayon/New()
+	name = "[colourName] crayon"
+	if(grindable)
+		create_reagents(20)
+		reagents.add_reagent("crayon_dust_[colourName]", 20)
+	..()

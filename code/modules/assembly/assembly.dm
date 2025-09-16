@@ -70,7 +70,7 @@
 /obj/item/device/assembly/proc/attach_assembly(obj/item/device/assembly/A, mob/user)
 	holder = new/obj/item/device/assembly_holder(get_turf(src))
 	if(holder.attach(A, src, user))
-		to_chat(user, SPAN_NOTICE("You attach \the [A] to \the [src]!"))
+		to_chat(user, span_notice("You attach \the [A] to \the [src]!"))
 
 
 /obj/item/device/assembly/attackby(obj/item/I, mob/user)
@@ -82,9 +82,9 @@
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
 			if(toggle_secure())
-				to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+				to_chat(user, span_notice("\The [src] is ready!"))
 			else
-				to_chat(user, SPAN_NOTICE("\The [src] can now be attached!"))
+				to_chat(user, span_notice("\The [src] can now be attached!"))
 			return
 	..()
 
@@ -96,9 +96,9 @@
 /obj/item/device/assembly/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
 		if(secured)
-			extra_description += SPAN_NOTICE("\The [src] is ready!")
+			extra_description += span_notice("\The [src] is ready!")
 		else
-			extra_description += SPAN_NOTICE("\The [src] can be attached!")
+			extra_description += span_notice("\The [src] can be attached!")
 	..(user, extra_description)
 
 /obj/item/device/assembly/attack_self(mob/user)
@@ -121,7 +121,7 @@
 
 /obj/item/device/assembly/proc/is_secured(mob/user)
 	if(!secured)
-		to_chat(user, SPAN_WARNING("The [name] is unsecured!"))
+		to_chat(user, span_warning("The [name] is unsecured!"))
 		return FALSE
 
 	return TRUE

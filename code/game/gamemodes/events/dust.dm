@@ -23,14 +23,14 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	endWhen		= 30
 
 /datum/event/dust/announce()
-	command_announcement.Announce("The ship is now passing through a belt of space dust.", "Dust Alert")
+	priority_announce("The ship is now passing through a belt of space dust.", "Dust Alert")
 
 /datum/event/dust/start()
 	log_and_message_admins("Space dust event triggered,")
 	dust_swarm(get_severity())
 
 /datum/event/dust/end()
-	command_announcement.Announce("The ship has now passed through the belt of space dust.", "Dust Notice")
+	priority_announce("The ship has now passed through the belt of space dust.", "Dust Notice")
 
 /datum/event/dust/proc/get_severity()
 	switch(severity)
@@ -43,7 +43,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	return "weak"
 
 
-/proc/dust_swarm(var/strength = "weak")
+/proc/dust_swarm(strength = "weak")
 	var/numbers = 1
 	switch(strength)
 		if("weak")
@@ -75,92 +75,93 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	var/explosion_power = 100 //ex_act severity number
 	var/life = 2 //how many things we hit before qdel(src)
 
-	weak
-		life = 1
+/obj/effect/space_dust/New()
+	..()
+	var/startx = 0
+	var/starty = 0
+	var/endy = 0
+	var/endx = 0
+	var/startside = pick(GLOB.cardinal)
 
-	strong
-		explosion_power = 200
-		life = 6
+	switch(startside)
+		if(NORTH)
+			starty = world.maxy-(TRANSITIONEDGE+1)
+			startx = rand((TRANSITIONEDGE+1), world.maxx-(TRANSITIONEDGE+1))
+			endy = TRANSITIONEDGE
+			endx = rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE)
+		if(EAST)
+			starty = rand((TRANSITIONEDGE+1),world.maxy-(TRANSITIONEDGE+1))
+			startx = world.maxx-(TRANSITIONEDGE+1)
+			endy = rand(TRANSITIONEDGE, world.maxy-TRANSITIONEDGE)
+			endx = TRANSITIONEDGE
+		if(SOUTH)
+			starty = (TRANSITIONEDGE+1)
+			startx = rand((TRANSITIONEDGE+1), world.maxx-(TRANSITIONEDGE+1))
+			endy = world.maxy-TRANSITIONEDGE
+			endx = rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE)
+		if(WEST)
+			starty = rand((TRANSITIONEDGE+1), world.maxy-(TRANSITIONEDGE+1))
+			startx = (TRANSITIONEDGE+1)
+			endy = rand(TRANSITIONEDGE,world.maxy-TRANSITIONEDGE)
+			endx = world.maxx-TRANSITIONEDGE
+	var/z_level = pick(GLOB.maps_data.station_levels)
+	var/goal = locate(endx, endy, z_level)
+	src.x = startx
+	src.y = starty
+	src.z = z_level
+	spawn(0)
+		walk_towards(src, goal, 1)
+	return
 
-	super
-		explosion_power = 300
-		life = 40
+/obj/effect/space_dust/touch_map_edge()
+	qdel(src)
 
+/obj/effect/space_dust/Bump(atom/A)
+	spawn(0)
+		if(prob(50))
+			for(var/mob/M in range(10, src))
+				if(!M.stat && !isAI(M))
+					shake_camera(M, 3, 1)
+		if(A)
+			playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, 1)
 
-	New()
-		..()
-		var/startx = 0
-		var/starty = 0
-		var/endy = 0
-		var/endx = 0
-		var/startside = pick(cardinal)
+			if(ismob(A))
+				A.explosion_act(explosion_power, null)//This should work for now I guess
 
-		switch(startside)
-			if(NORTH)
-				starty = world.maxy-(TRANSITIONEDGE+1)
-				startx = rand((TRANSITIONEDGE+1), world.maxx-(TRANSITIONEDGE+1))
-				endy = TRANSITIONEDGE
-				endx = rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE)
-			if(EAST)
-				starty = rand((TRANSITIONEDGE+1),world.maxy-(TRANSITIONEDGE+1))
-				startx = world.maxx-(TRANSITIONEDGE+1)
-				endy = rand(TRANSITIONEDGE, world.maxy-TRANSITIONEDGE)
-				endx = TRANSITIONEDGE
-			if(SOUTH)
-				starty = (TRANSITIONEDGE+1)
-				startx = rand((TRANSITIONEDGE+1), world.maxx-(TRANSITIONEDGE+1))
-				endy = world.maxy-TRANSITIONEDGE
-				endx = rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE)
-			if(WEST)
-				starty = rand((TRANSITIONEDGE+1), world.maxy-(TRANSITIONEDGE+1))
-				startx = (TRANSITIONEDGE+1)
-				endy = rand(TRANSITIONEDGE,world.maxy-TRANSITIONEDGE)
-				endx = world.maxx-TRANSITIONEDGE
-		var/z_level = pick(GLOB.maps_data.station_levels)
-		var/goal = locate(endx, endy, z_level)
-		src.x = startx
-		src.y = starty
-		src.z = z_level
-		spawn(0)
-			walk_towards(src, goal, 1)
-		return
+			//Protect the singularity from getting released every round!
+			else if(!istype(A,/obj/machinery/power/emitter) && !istype(A,/obj/machinery/field_generator))
+				//Changing emitter/field gen ex_act would make it immune to bombs and C4
+				A.explosion_act(explosion_power, null)
 
-	touch_map_edge()
-		qdel(src)
-
-	Bump(atom/A)
-		spawn(0)
-			if(prob(50))
-				for(var/mob/M in range(10, src))
-					if(!M.stat && !isAI(M))
-						shake_camera(M, 3, 1)
-			if(A)
-				playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, 1)
-
-				if(ismob(A))
-					A.explosion_act(explosion_power, null)//This should work for now I guess
-
-				//Protect the singularity from getting released every round!
-				else if(!istype(A,/obj/machinery/power/emitter) && !istype(A,/obj/machinery/field_generator))
-					//Changing emitter/field gen ex_act would make it immune to bombs and C4
-					A.explosion_act(explosion_power, null)
-
-				life--
-				if(life <= 0)
-					walk(src,0)
-					qdel(src)
-					return
-		return
+			life--
+			if(life <= 0)
+				walk(src,0)
+				qdel(src)
+				return
+	return
 
 
-	Bumped(atom/A)
-		Bump(A)
-		return
+/obj/effect/space_dust/Bumped(atom/A)
+	Bump(A)
+	return
 
 
-	explosion_act(target_power,  explosion_handler/handle)
-		qdel(src)
-		return 0
+/obj/effect/space_dust/explosion_act(target_power,  explosion_handler/handle)
+	qdel(src)
+	return 0
+
+/obj/effect/space_dust/weak
+	life = 1
+
+/obj/effect/space_dust/strong
+	explosion_power = 200
+	life = 6
+
+/obj/effect/space_dust/super
+	explosion_power = 300
+	life = 40
+
+
 
 
 

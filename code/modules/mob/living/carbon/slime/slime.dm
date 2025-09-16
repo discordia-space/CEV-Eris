@@ -67,7 +67,7 @@
 
 	injury_type = INJURY_TYPE_HOMOGENOUS
 
-/mob/living/carbon/slime/New(var/location, var/colour="grey")
+/mob/living/carbon/slime/New(location, colour="grey")
 
 	add_verb(src, /mob/living/proc/ventcrawl)
 
@@ -82,7 +82,7 @@
 	regenerate_icons()
 	..(location)
 
-/mob/living/carbon/slime/proc/set_mutation(var/colour="grey")
+/mob/living/carbon/slime/proc/set_mutation(colour="grey")
 	src.colour = colour
 	name = "[colour] [is_adult ? "adult" : "baby"] slime ([number])"
 	slime_mutation = mutation_table(colour)
@@ -171,7 +171,7 @@
 	..(-abs(amount)) // Heals them
 	return
 
-/mob/living/carbon/slime/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/carbon/slime/bullet_act(obj/item/projectile/Proj)
 	attacked += 10
 	..(Proj)
 	return 0
@@ -199,11 +199,11 @@
 	if(Victim)
 		if(Victim == M)
 			if(prob(60))
-				visible_message(SPAN_WARNING("[M] attempts to wrestle \the [name] off!"))
+				visible_message(span_warning("[M] attempts to wrestle \the [name] off!"))
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 			else
-				visible_message(SPAN_WARNING(" [M] manages to wrestle \the [name] off!"))
+				visible_message(span_warning(" [M] manages to wrestle \the [name] off!"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 				if(prob(90) && !client)
@@ -221,11 +221,11 @@
 
 		else
 			if(prob(30))
-				visible_message(SPAN_WARNING("[M] attempts to wrestle \the [name] off of [Victim]!"))
+				visible_message(span_warning("[M] attempts to wrestle \the [name] off of [Victim]!"))
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 			else
-				visible_message(SPAN_WARNING(" [M] manages to wrestle \the [name] off of [Victim]!"))
+				visible_message(span_warning(" [M] manages to wrestle \the [name] off of [Victim]!"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 				if(prob(80) && !client)
@@ -262,7 +262,7 @@
 			LAssailant = M
 
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
+			visible_message(span_warning("[M] has grabbed [src] passively!"))
 
 		else
 
@@ -284,21 +284,21 @@
 						step_away(src,M,15)
 */
 				playsound(loc, "punch", 25, 1, -1)
-				visible_message(SPAN_DANGER("[M] has punched [src]!"), \
-						SPAN_DANGER("[M] has punched [src]!"))
+				visible_message(span_danger("[M] has punched [src]!"), \
+						span_danger("[M] has punched [src]!"))
 
 				adjustBruteLoss(damage)
 				updatehealth()
 			else
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				visible_message(SPAN_DANGER("[M] has attempted to punch [src]!"))
+				visible_message(span_danger("[M] has attempted to punch [src]!"))
 	return
 
 /mob/living/carbon/slime/attackby(obj/item/W, mob/user)
 	if(W.force > 0)
 		attacked += 10
 		if(prob(25))
-			to_chat(user, SPAN_DANGER("[W] passes right through [src]!"))
+			to_chat(user, span_danger("[W] passes right through [src]!"))
 			return
 		if(Discipline && prob(50)) // wow, buddy, why am I getting attacked??
 			Discipline = 0
@@ -359,7 +359,7 @@
 /mob/living/carbon/slime/var/co2overloadtime
 /mob/living/carbon/slime/var/temperature_resistance = T0C+75
 
-mob/living/carbon/slime/toggle_throw_mode()
+/mob/living/carbon/slime/toggle_throw_mode()
 	return
 
 /mob/living/carbon/slime/proc/gain_nutrition(amount)

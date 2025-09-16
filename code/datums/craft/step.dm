@@ -88,7 +88,7 @@
 			start_msg = "%USER% starts attaching %ITEM% to %TARGET%"
 			end_msg = "%USER% attached %ITEM% to %TARGET%"
 
-/datum/craft_step/proc/announce_action(var/msg, mob/living/user, obj/item/tool, atom/target)
+/datum/craft_step/proc/announce_action(msg, mob/living/user, obj/item/tool, atom/target)
 	msg = replacetext(msg,"%USER%","[user]")
 	msg = replacetext(msg,"%ITEM%","\improper [tool]")
 	msg = replacetext(msg,"%TARGET%","\improper [target]")
@@ -105,18 +105,18 @@
 		if(istype(I, /obj/item/stack/material))
 			var/obj/item/stack/material/M = I
 			if(M.get_default_type() != reqed_material)
-				to_chat(user, SPAN_WARNING("Wrong material!"))
+				to_chat(user, span_warning("Wrong material!"))
 				building = FALSE
 				return
 		else
-			to_chat(user, SPAN_WARNING("This isn't a material stack!"))
+			to_chat(user, span_warning("This isn't a material stack!"))
 			building = FALSE
 			return
 
 	if(req_amount && istype(I, /obj/item/stack))
 		var/obj/item/stack/S = I
 		if(!S.can_use(req_amount))
-			to_chat(user, SPAN_WARNING("Not enough items in [I]"))
+			to_chat(user, span_warning("Not enough items in [I]"))
 			building = FALSE
 			return
 
@@ -130,18 +130,18 @@
 
 	if(reqed_type)
 		if(!istype(I, reqed_type))
-			to_chat(user, SPAN_WARNING("Wrong item!"))
+			to_chat(user, span_warning("Wrong item!"))
 			building = FALSE
 			return
 		if(!is_valid_to_consume(I, user))
-			to_chat(user, SPAN_WARNING("That item can't be used for crafting!"))
+			to_chat(user, span_warning("That item can't be used for crafting!"))
 			building = FALSE
 			return
 
 		if(req_amount && istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			if(S.get_amount() < req_amount)
-				to_chat(user, SPAN_WARNING("Not enough items in [I]"))
+				to_chat(user, span_warning("Not enough items in [I]"))
 				building = FALSE
 				return
 
@@ -155,18 +155,18 @@
 	else if(reqed_quality)
 		var/q = I.get_tool_quality(reqed_quality)
 		if(!q)
-			to_chat(user, SPAN_WARNING("Wrong type of tool. You need a tool with [reqed_quality] quality"))
+			to_chat(user, span_warning("Wrong type of tool. You need a tool with [reqed_quality] quality"))
 			building = FALSE
 			return
 		if(target)
 			announce_action(start_msg, user, I, target)
 		if(!I.use_tool(user, target || user, time, reqed_quality, FAILCHANCE_NORMAL, list(STAT_MEC, STAT_COG)))
-			to_chat(user, SPAN_WARNING("Work aborted"))
+			to_chat(user, span_warning("Work aborted"))
 			building = FALSE
 			return
 
 		if(q < reqed_quality_level)
-			to_chat(user, SPAN_WARNING("That tool is too crude for the task. You need a tool with [reqed_quality_level] [reqed_quality] quality. This tool only has [q] [reqed_quality]"))
+			to_chat(user, span_warning("That tool is too crude for the task. You need a tool with [reqed_quality_level] [reqed_quality] quality. This tool only has [q] [reqed_quality]"))
 			building = FALSE
 			return
 	else
@@ -187,7 +187,7 @@
 		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			if(!S.use(req_amount))
-				to_chat(user, SPAN_WARNING("Not enough items in [S]. It has [S.get_amount()] units and we need [req_amount]"))
+				to_chat(user, span_warning("Not enough items in [S]. It has [S.get_amount()] units and we need [req_amount]"))
 				building = FALSE
 				return FALSE
 		else if(reqed_type) //No deleting tools

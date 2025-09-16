@@ -47,7 +47,7 @@
 	L.remove_language(LANGUAGE_COMMON)
 
 	//And we'll give them a random serbian name to start off with
-	var/datum/language/lang = all_languages[LANGUAGE_SERBIAN]
+	var/datum/language/lang = GLOB.all_languages[LANGUAGE_SERBIAN]
 	lang.set_random_name(L)
 
 	//the missingg parrt was antag's stats!

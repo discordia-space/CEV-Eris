@@ -4,12 +4,12 @@
 	universal_understand = 1
 	stat = 0
 
-/mob/living/captive_brain/say(var/message)
+/mob/living/captive_brain/say(message)
 	message = sanitize(message)
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, "\red You cannot speak in IC (muted).")
+			to_chat(src, span_red("You cannot speak in IC (muted)."))
 			return
 		if (src.client.handle_spam_prevention(message,MUTE_IC))
 			return
@@ -50,7 +50,7 @@
 				to_chat(M, "The captive mind of [src] whispers, \"[message]\"")
 
 
-/mob/living/captive_brain/emote(var/message)
+/mob/living/captive_brain/emote(message)
 	return
 
 /mob/living/captive_brain/process_resist()
@@ -59,15 +59,15 @@
 		var/mob/living/simple_animal/borer/B = src.loc
 		var/mob/living/captive_brain/H = src
 
-		to_chat(H, SPAN_DANGER("You begin doggedly resisting the parasite's control (this will take approximately thirty seconds)."))
-		to_chat(B.host, SPAN_DANGER("You feel the captive mind of [src] begin to resist your control."))
+		to_chat(H, span_danger("You begin doggedly resisting the parasite's control (this will take approximately thirty seconds)."))
+		to_chat(B.host, span_danger("You feel the captive mind of [src] begin to resist your control."))
 
 		spawn(rand(25 SECONDS, 30 SECONDS)+B.host.brainloss)
 			if(!B || !B.controlling) return
 
 			B.host.adjustBrainLoss(rand(0.1,0.5))
-			to_chat(H, SPAN_DANGER("With an immense exertion of will, you regain control of your body!"))
-			to_chat(B.host, SPAN_DANGER("You feel control of the host brain ripped from your grasp, and retract your probosci before the wild neural impulses can damage you."))
+			to_chat(H, span_danger("With an immense exertion of will, you regain control of your body!"))
+			to_chat(B.host, span_danger("You feel control of the host brain ripped from your grasp, and retract your probosci before the wild neural impulses can damage you."))
 			B.detach()
 			add_verb(src, list(
 				/mob/living/carbon/human/proc/commune,
@@ -77,6 +77,6 @@
 		return
 
 	else
-		to_chat(src, SPAN_DANGER("You cannot escape."))
+		to_chat(src, span_danger("You cannot escape."))
 
 	..()

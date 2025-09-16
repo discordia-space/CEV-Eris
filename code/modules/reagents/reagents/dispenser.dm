@@ -22,7 +22,7 @@
 			return
 		var/obj/item/book/affectedbook = O
 		affectedbook.dat = null
-		to_chat(usr, "<span class='notice'>The solution dissolves the ink on the book.</span>")
+		to_chat(usr, span_notice("The solution dissolves the ink on the book."))
 	return
 
 /datum/reagent/metal
@@ -149,7 +149,7 @@
 	if(drunkenness >= 3) // Confusion - walking in random directions
 		if(prob(drunkenness*5))
 			if(M.confused < 2)
-				to_chat(M, SPAN_WARNING("Everything is spinning around you!"))
+				to_chat(M, span_warning("Everything is spinning around you!"))
 			M.confused = max(M.confused, 10)
 
 	// if(volume * strength_mod >= tolerance * 4) // Blurry vision // Not fun
@@ -200,7 +200,7 @@
 			return
 		var/obj/item/book/affectedbook = O
 		affectedbook.dat = null
-		to_chat(usr, "<span class='notice'>The solution dissolves the ink on the book.</span>")
+		to_chat(usr, span_notice("The solution dissolves the ink on the book."))
 	return
 
 /datum/reagent/toxin/hydrazine
@@ -247,7 +247,7 @@
 
 /datum/reagent/metal/lithium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
-		step(M, pick(cardinal))
+		step(M, pick(GLOB.cardinal))
 	if(prob(5))
 		M.emote(pick("twitch", "drool", "moan"))
 
@@ -261,7 +261,7 @@
 
 /datum/reagent/metal/mercury/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
-		step(M, pick(cardinal))
+		step(M, pick(GLOB.cardinal))
 	if(prob(5))
 		M.emote(pick("twitch", "drool", "moan"))
 	M.adjustBrainLoss(0.1)
@@ -363,7 +363,7 @@
 				C.health -= (C.maxHealth / meltdose) * (1 - C.armor.bio / 100) * units_per_bodypart
 				stop_loop = TRUE
 			else
-				to_chat(our_man, SPAN_DANGER("The [C.name] melts under the action of acid."))
+				to_chat(our_man, span_danger("The [C.name] melts under the action of acid."))
 				units_for_this_part -= melting_requirement
 				our_man.remove_from_mob(C)
 				C.forceMove(NULLSPACE)
@@ -383,7 +383,7 @@
 				C.health -= (C.maxHealth / meltdose) * (1 - C.armor.bio / 100) * units_per_bodypart
 				stop_loop = TRUE
 			else
-				to_chat(our_man, SPAN_DANGER("The [C.name] melts under the action of acid."))
+				to_chat(our_man, span_danger("The [C.name] melts under the action of acid."))
 				units_for_this_part -= melting_requirement
 				our_man.remove_from_mob(C)
 				C.forceMove(NULLSPACE)
@@ -402,7 +402,7 @@
 		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 		I.desc = "Looks like this was \an [O] some time ago."
 		for(var/mob/M in viewers(5, O))
-			to_chat(M, "<span class='warning'>\The [O] melts.</span>")
+			to_chat(M, span_warning("\The [O] melts."))
 		qdel(O)
 		remove_self(meltdose) // 10 units of acid will not melt EVERYTHING on the tile
 

@@ -24,7 +24,7 @@
 /obj/machinery/power/solar/drain_power()
 	return -1
 
-/obj/machinery/power/solar/New(var/turf/loc, var/obj/item/solar_assembly/S)
+/obj/machinery/power/solar/New(turf/loc, obj/item/solar_assembly/S)
 	..(loc)
 	Make(S)
 	connect_to_network()
@@ -34,7 +34,7 @@
 	. = ..()
 
 //set the control of the panel to a given computer if closer than SOLAR_MAX_DIST
-/obj/machinery/power/solar/proc/set_control(var/obj/machinery/power/solar_control/SC)
+/obj/machinery/power/solar/proc/set_control(obj/machinery/power/solar_control/SC)
 	if(SC && (get_dist(src, SC) > SOLAR_MAX_DIST))
 		return 0
 	control = SC
@@ -46,7 +46,7 @@
 		control.connected_panels.Remove(src)
 	control = null
 
-/obj/machinery/power/solar/proc/Make(var/obj/item/solar_assembly/S)
+/obj/machinery/power/solar/proc/Make(obj/item/solar_assembly/S)
 	if(!S)
 		S = new /obj/item/solar_assembly(src)
 		S.glass_type = /obj/item/stack/material/glass
@@ -66,7 +66,7 @@
 				S.loc = src.loc
 				S.give_glass()
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 50, TRUE)
-			user.visible_message(SPAN_NOTICE("[user] takes the glass off the solar panel."))
+			user.visible_message(span_notice("[user] takes the glass off the solar panel."))
 			qdel(src)
 		return
 	else if (I)
@@ -145,7 +145,7 @@
 	broken()
 	return 0
 
-/obj/machinery/power/solar/fake/New(var/turf/loc, var/obj/item/solar_assembly/S)
+/obj/machinery/power/solar/fake/New(turf/loc, obj/item/solar_assembly/S)
 	..(loc, S, 0)
 
 /obj/machinery/power/solar/fake/Process()
@@ -193,7 +193,7 @@
 	var/tracker = 0
 	var/glass_type = null
 
-/obj/item/solar_assembly/attack_hand(var/mob/user)
+/obj/item/solar_assembly/attack_hand(mob/user)
 	if(!anchored && isturf(loc)) // You can't pick it up
 		..()
 
@@ -205,7 +205,7 @@
 		glass_type = null
 
 
-/obj/item/solar_assembly/attackby(var/obj/item/I, var/mob/user)
+/obj/item/solar_assembly/attackby(obj/item/I, mob/user)
 
 	var/list/usable_qualities = list(QUALITY_BOLT_TURNING)
 	if(tracker)
@@ -218,14 +218,14 @@
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					new /obj/item/electronics/tracker(src.loc)
 					tracker = 0
-					user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
+					user.visible_message(span_notice("[user] takes out the electronics from the solar assembly."))
 					return
 			return
 
 		if(QUALITY_BOLT_TURNING)
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 				anchored = !anchored
-				user.visible_message(SPAN_NOTICE("[user] [anchored ? "un" : ""]wrenches the solar assembly into place."))
+				user.visible_message(span_notice("[user] [anchored ? "un" : ""]wrenches the solar assembly into place."))
 				return
 			return
 
@@ -234,22 +234,22 @@
 
 	if(istype(I, /obj/item/stack/material/glass))
 		if(!anchored)
-			to_chat(user, SPAN_WARNING("You need to secure the assembly before you can add glass."))
+			to_chat(user, span_warning("You need to secure the assembly before you can add glass."))
 			return
 		if(locate(/obj/machinery/power/solar) in get_turf(src))
-			to_chat(user, SPAN_WARNING("A solar panel is already assembled here."))
+			to_chat(user, span_warning("A solar panel is already assembled here."))
 			return
 		var/obj/item/stack/material/S = I
 		if(S.use(2))
 			glass_type = S.type
 			playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
-			user.visible_message(SPAN_NOTICE("[user] places the glass on the solar assembly."), SPAN_NOTICE("You place the glass on the solar assembly."))
+			user.visible_message(span_notice("[user] places the glass on the solar assembly."), span_notice("You place the glass on the solar assembly."))
 			if(tracker)
 				new /obj/machinery/power/tracker(get_turf(src), src)
 			else
 				new /obj/machinery/power/solar(get_turf(src), src)
 		else
-			to_chat(user, SPAN_WARNING("You need two sheets of glass to put them into a solar panel!"))
+			to_chat(user, span_warning("You need two sheets of glass to put them into a solar panel!"))
 			return
 		return TRUE
 
@@ -259,7 +259,7 @@
 			user.drop_item()
 			qdel(I)
 			playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
-			user.visible_message(SPAN_NOTICE("[user] inserts the electronics into the solar assembly."))
+			user.visible_message(span_notice("[user] inserts the electronics into the solar assembly."))
 			return
 	..()
 
@@ -375,27 +375,27 @@
 
 /obj/machinery/power/solar_control/interact(mob/user)
 
-	var/t = "<B><span class='highlight'>Generated power</span></B> : [round(lastgen)] W<BR>"
-	t += "<B><span class='highlight'>Star Orientation</span></B>: [SSsun.angle]&deg ([angle2text(SSsun.angle)])<BR>"
-	t += "<B><span class='highlight'>Array Orientation</span></B>: [rate_control(src,"cdir","[cdir]&deg",1,15)] ([angle2text(cdir)])<BR>"
-	t += "<B><span class='highlight'>Tracking:</span></B><div class='statusDisplay'>"
+	var/t = "<B>[span_highlight("Generated power")]</B> : [round(lastgen)] W<BR>"
+	t += "<B>[span_highlight("Star Orientation")]</B>: [SSsun.angle]&deg ([angle2text(SSsun.angle)])<BR>"
+	t += "<B>[span_highlight("Array Orientation")]</B>: [rate_control(src,"cdir","[cdir]&deg",1,15)] ([angle2text(cdir)])<BR>"
+	t += "<B>[span_highlight("Tracking:")]</B><div class='statusDisplay'>"
 	switch(track)
 		if(0)
-			t += "<span class='linkOn'>Off</span> <A href='?src=\ref[src];track=1'>Timed</A> <A href='?src=\ref[src];track=2'>Auto</A><BR>"
+			t += "[span_linkOn("Off")] <A href='byond://?src=\ref[src];track=1'>Timed</A> <A href='byond://?src=\ref[src];track=2'>Auto</A><BR>"
 		if(1)
-			t += "<A href='?src=\ref[src];track=0'>Off</A> <span class='linkOn'>Timed</span> <A href='?src=\ref[src];track=2'>Auto</A><BR>"
+			t += "<A href='byond://?src=\ref[src];track=0'>Off</A> [span_linkOn("Timed")] <A href='byond://?src=\ref[src];track=2'>Auto</A><BR>"
 		if(2)
-			t += "<A href='?src=\ref[src];track=0'>Off</A> <A href='?src=\ref[src];track=1'>Timed</A> <span class='linkOn'>Auto</span><BR>"
+			t += "<A href='byond://?src=\ref[src];track=0'>Off</A> <A href='byond://?src=\ref[src];track=1'>Timed</A> [span_linkOn("Auto")]<BR>"
 
 	t += "Tracking Rate: [rate_control(src,"tdir","[trackrate] deg/h ([trackrate<0 ? "CCW" : "CW"])",1,30,180)]</div><BR>"
 
-	t += "<B><span class='highlight'>Connected devices:</span></B><div class='statusDisplay'>"
+	t += "<B>[span_highlight("Connected devices:")]</B><div class='statusDisplay'>"
 
-	t += "<A href='?src=\ref[src];search_connected=1'>Search for devices</A><BR>"
+	t += "<A href='byond://?src=\ref[src];search_connected=1'>Search for devices</A><BR>"
 	t += "Solar panels : [connected_panels.len] connected<BR>"
-	t += "Solar tracker : [connected_tracker ? "<span class='good'>Found</span>" : "<span class='bad'>Not found</span>"]</div><BR>"
+	t += "Solar tracker : [connected_tracker ? span_good("Found") : span_bad("Not found")]</div><BR>"
 
-	t += "<A href='?src=\ref[src];close=1'>Close</A>"
+	t += "<A href='byond://?src=\ref[src];close=1'>Close</A>"
 
 	var/datum/browser/popup = new(user, "solar", name)
 	popup.set_content(t)
@@ -407,7 +407,7 @@
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING), src))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			if (src.stat & BROKEN)
-				to_chat(user, SPAN_NOTICE("The broken glass falls out."))
+				to_chat(user, span_notice("The broken glass falls out."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				new /obj/item/material/shard( src.loc )
 				var/obj/item/electronics/circuitboard/solar_control/M = new /obj/item/electronics/circuitboard/solar_control( A )
@@ -419,7 +419,7 @@
 				A.anchored = TRUE
 				qdel(src)
 			else
-				to_chat(user, SPAN_NOTICE("You disconnect the monitor."))
+				to_chat(user, span_notice("You disconnect the monitor."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				var/obj/item/electronics/circuitboard/solar_control/M = new /obj/item/electronics/circuitboard/solar_control( A )
 				for (var/obj/C in src)
@@ -494,7 +494,7 @@
 	return 1
 
 //rotates the panel to the passed angle
-/obj/machinery/power/solar_control/proc/set_panels(var/cdir)
+/obj/machinery/power/solar_control/proc/set_panels(cdir)
 
 	for(var/obj/machinery/power/solar/S in connected_panels)
 		S.adir = cdir //instantly rotates the panel
@@ -539,8 +539,8 @@
 	name = "paper- 'Going green! Setup your own solar array instructions.'"
 	info = "<h1>Welcome</h1><p>At greencorps we love the environment, and space. With this package you are able to help mother nature and produce energy without any usage of fossil fuel or plasma! Singularity energy is dangerous while solar energy is safe, which is why it's better. Now here is how you setup your own solar array.</p><p>You can make a solar panel by wrenching the solar assembly onto a cable node. Adding a glass panel, reinforced or regular glass will do, will finish the construction of your solar panel. It is that easy!</p><p>Now after setting up 19 more of these solar panels you will want to create a solar tracker to keep track of our mother nature's gift, the sun. These are the same steps as before except you insert the tracker equipment circuit into the assembly before performing the final step of adding the glass. You now have a tracker! Now the last step is to add a computer to calculate the sun's movements and to send commands to the solar panels to change direction with the sun. Setting up the solar computer is the same as setting up any computer, so you should have no trouble in doing that. You do need to put a wire node under the computer, and the wire needs to be connected to the tracker.</p><p>Congratulations, you should have a working solar array. If you are having trouble, here are some tips. Make sure all solar equipment are on a cable node, even the computer. You can always deconstruct your creations if you make a mistake.</p><p>That's all to it, be safe, be green!</p>"
 
-/proc/rate_control(var/S, var/V, var/C, var/Min=1, var/Max=5, var/Limit=null) //How not to name vars
-	var/href = "<A href='?src=\ref[S];rate control=1;[V]"
+/proc/rate_control(S, V, C, Min=1, Max=5, Limit=null) //How not to name vars
+	var/href = "<A href='byond://?src=\ref[S];rate control=1;[V]"
 	var/rate = "[href]=-[Max]'>-</A>[href]=-[Min]'>-</A> [(C?C : 0)] [href]=[Min]'>+</A>[href]=[Max]'>+</A>"
 	if(Limit) return "[href]=-[Limit]'>-</A>"+rate+"[href]=[Limit]'>+</A>"
 	return rate

@@ -45,14 +45,12 @@
 	if(failed)
 		src.Weaken(rand(2,4))
 
-	for(var/mob/O in viewers(src, null))
-		if ((O.client && !( O.blinded )))
-			O.show_message(text("\red <B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T), 1)
+	visible_message(span_danger("[src] [failed ? "tried to tackle" : "has tackled"] down [T]!"))
 
 /mob/living/carbon/human/proc/leap(mob/living/carbon/human/T)
 	if(last_special > world.time)
 		return
-	if(!T || !src || src.stat) 
+	if(!T || !src || src.stat)
 		return
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
 		to_chat(src, "You cannot lunge in your current state.")
@@ -67,10 +65,10 @@
 	if(status_flags & LEAPING) status_flags &= ~LEAPING
 
 	if(!src.Adjacent(T))
-		to_chat(src, SPAN_WARNING("You miss!"))
+		to_chat(src, span_warning("You miss!"))
 		return
 
-	src.visible_message(SPAN_WARNING("<b>\The [src]</b> lunges at [T]!"))
+	src.visible_message(span_warning("<b>\The [src]</b> lunges at [T]!"))
 
 	var/obj/item/grab/G = new(src,T)
 	src.put_in_hands(G)
@@ -87,21 +85,21 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying)
-		to_chat(src, "\red You cannot do that in your current state.")
+		to_chat(src, span_red("You cannot do that in your current state."))
 		return
 
 	var/obj/item/grab/G = locate() in src
 	if(!G || !istype(G))
-		to_chat(src, "\red You are not grabbing anyone.")
+		to_chat(src, span_red("You are not grabbing anyone."))
 		return
 
 	if(G.state < GRAB_AGGRESSIVE)
-		to_chat(src, "\red You must have an aggressive grab to gut your prey!")
+		to_chat(src, span_red("You must have an aggressive grab to gut your prey!"))
 		return
 
 	last_special = world.time + 50
 
-	visible_message(SPAN_WARNING("<b>\The [src]</b> rips viciously at \the [G.affecting]'s body with its claws!"))
+	visible_message(span_warning("<b>\The [src]</b> rips viciously at \the [G.affecting]'s body with its claws!"))
 
 	if(ishuman(G.affecting))
 		var/mob/living/carbon/human/H = G.affecting
@@ -143,13 +141,13 @@
 
 	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
 
-	to_chat(M, "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]")
+	to_chat(M, span_blue("Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"))
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == src.species.name)
 			return
 
-		to_chat(H, SPAN_WARNING("Your nose begins to bleed..."))
+		to_chat(H, span_warning("Your nose begins to bleed..."))
 		H.drip_blood(1)
 
 
@@ -163,7 +161,7 @@
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
 				M.loc = loc
-		src.visible_message("\red <B>[src] hurls out the contents of their stomach!</B>")
+		src.visible_message(span_red("<B>[src] hurls out the contents of their stomach!</B>"))
 	return
 
 /mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
@@ -174,8 +172,8 @@
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
 		log_say("PsychicWhisper: [key_name(src)]->[M.key] : [msg]")
-		to_chat(M, "\green You hear a strange, alien voice in your head... \italic [msg]")
-		to_chat(src, "\green You said: \"[msg]\" to [M]")
+		to_chat(M, span_green("You hear a strange, alien voice in your head... \italic [msg]"))
+		to_chat(src, span_green("You said: \"[msg]\" to [M]"))
 	return
 
 
@@ -249,14 +247,18 @@
 			gender = FEMALE
 	regenerate_icons()
 
-	visible_message("\blue \The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!", "\blue You change your appearance!", "\red Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")
+	visible_message(
+		span_blue("\The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!"),
+		span_blue("You change your appearance!"),
+		span_red("Oh, god! What the hell was that? It sounded like flesh getting squished and bone ground into a different shape!")
+		)
 
 /mob/living/carbon/human/proc/phaze_trough()
 	set name = "Phaze"
 	set category = "Abilities"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		to_chat(src, span_warning("You can't do that right now!"))
 		return
 
 	// TODO: Here and in other psionic abilities - add checks for NT obelisks,
@@ -276,7 +278,7 @@
 				break
 
 	if(bingo)
-		to_chat(src, SPAN_NOTICE("You begin to phaze trough \the [bingo]"))
+		to_chat(src, span_notice("You begin to phaze trough \the [bingo]"))
 		var/target_y = 0
 		var/target_x = 0
 		switch(dir)
@@ -302,7 +304,7 @@
 	set category = "Abilities"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		to_chat(src, span_warning("You can't do that right now!"))
 		return
 
 	var/list/mobs_in_view = list()
@@ -312,7 +314,7 @@
 			mobs_in_view += H
 
 	if(!mobs_in_view.len)
-		to_chat(src, SPAN_NOTICE("There is no valid targets around."))
+		to_chat(src, span_notice("There is no valid targets around."))
 		return
 
 	var/mob/living/carbon/human/H = input("", "Who do you want to speak as?") as null|mob in mobs_in_view
@@ -322,7 +324,7 @@
 			log_admin("[key_name(usr)] forced [key_name(H)] to say: [message]")
 			H.say(message)
 			if(prob(70))
-				to_chat(H, SPAN_WARNING("You see [src]\'s image in your head, commanding you to speak."))
+				to_chat(H, span_warning("You see [src]\'s image in your head, commanding you to speak."))
 
 
 /mob/living/carbon/human/proc/remotesay()
@@ -344,10 +346,10 @@
 
 	var/say = sanitize(input("What do you wish to say"))
 	if(get_active_mutation(target, MUTATION_REMOTESAY))
-		target.show_message("\blue You hear [real_name]'s voice: [say]")
+		target.show_message(span_blue("You hear [real_name]'s voice: [say]"))
 	else
-		target.show_message("\blue You hear a voice that seems to echo around the room: [say]")
-	show_message("\blue You project your mind into [target.real_name]: [say]")
+		target.show_message(span_blue("You hear a voice that seems to echo around the room: [say]"))
+	show_message(span_blue("You project your mind into [target.real_name]: [say]"))
 	log_say("[key_name(usr)] sent a telepathic message to [key_name(target)]: [say]")
 	for(var/mob/observer/ghost/G in world)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
@@ -381,7 +383,7 @@
 	if(target)
 		remoteview_target = target
 		reset_view(target)
-		to_chat(target, SPAN_NOTICE("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you..."))
+		to_chat(target, span_notice("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you..."))
 	else
 		remoteview_target = null
 		reset_view(0)
@@ -392,7 +394,7 @@
 	set category = "Abilities"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		to_chat(src, span_warning("You can't do that right now!"))
 		return
 
 	if(check_ability_cooldown(2 MINUTES))
@@ -415,7 +417,7 @@
 	set category = "Abilities"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		to_chat(src, span_warning("You can't do that right now!"))
 		return
 
 	if(check_ability_cooldown(2 MINUTES))
@@ -438,14 +440,14 @@
 	set category = "Abilities"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		to_chat(src, span_warning("You can't do that right now!"))
 		return
 
 	if(check_ability_cooldown(2 MINUTES))
 		playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 		spawn(2)
 			playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
-		visible_message(SPAN_DANGER("[src] emits a frightening screech as you feel the ground tramble!"))
+		visible_message(span_danger("[src] emits a frightening screech as you feel the ground tramble!"))
 		for(var/obj/structure/burrow/B in find_nearby_burrows(src))
-			B.distress(TRUE)
+			B.distress(TRUE, src)
 

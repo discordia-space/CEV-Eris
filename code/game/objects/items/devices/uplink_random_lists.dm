@@ -6,7 +6,7 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 	var/reselect_probability	// Probability that we'll decide to keep this item if previously selected.
 								// Is done together with the keep_probability check. Being selected more than once does not affect this probability.
 
-/datum/uplink_random_item/New(var/uplink_item, var/keep_probability = 100, var/reselect_propbability = 33)
+/datum/uplink_random_item/New(uplink_item, keep_probability = 100, reselect_propbability = 33)
 	..()
 	src.uplink_item = uplink_item
 	src.keep_probability = keep_probability
@@ -19,7 +19,7 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 	..()
 	items = list()
 
-/datum/uplink_random_selection/proc/get_random_item(var/telecrystals, obj/item/device/uplink/U, var/list/bought_items)
+/datum/uplink_random_selection/proc/get_random_item(telecrystals, obj/item/device/uplink/U, list/bought_items)
 	var/const/attempts = 50
 
 	for(var/i = 0; i < attempts; i++)

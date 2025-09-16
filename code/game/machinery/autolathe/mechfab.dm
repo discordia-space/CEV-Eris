@@ -56,11 +56,11 @@
 		if(!RDC.sync)
 			continue
 		files.download_from(RDC.files)
-		to_chat(user, SPAN_NOTICE("Sync with [RDC] complete."))
+		to_chat(user, span_notice("Sync with [RDC] complete."))
 		sync = TRUE
 
 	if(!sync)
-		to_chat(user, SPAN_WARNING("Error: no research console with enabled sync was found."))
+		to_chat(user, span_warning("Error: no research console with enabled sync was found."))
 
 	update_categories()
 

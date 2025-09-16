@@ -10,12 +10,12 @@
 
 	var/safety = 1
 
-/obj/machinery/computer/robotics/attack_hand(var/mob/user)
+/obj/machinery/computer/robotics/attack_hand(mob/user)
 	if(..())
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/computer/robotics/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/robotics/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 	data["robots"] = get_cyborgs(user)
 	data["safety"] = safety
@@ -61,9 +61,9 @@
 			to_chat(target, "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered.")
 			target.ResetSecurityCodes()
 		else
-			message_admins(SPAN_NOTICE("[key_name_admin(usr)] detonated [target.name]!"))
+			message_admins(span_notice("[key_name_admin(usr)] detonated [target.name]!"))
 			log_game("[key_name(usr)] detonated [target.name]!")
-			to_chat(target, SPAN_DANGER("Self-destruct command received."))
+			to_chat(target, span_danger("Self-destruct command received."))
 			spawn(10)
 				target.self_destruct()
 
@@ -90,7 +90,7 @@
 		if(!target || !istype(target))
 			return
 
-		message_admins("<span class='notice'>[key_name_admin(usr)] [target.canmove ? "locked down" : "released"] [target.name]!</span>")
+		message_admins(span_notice("[key_name_admin(usr)] [target.canmove ? "locked down" : "released"] [target.name]!"))
 		log_game("[key_name(usr)] [target.canmove ? "locked down" : "released"] [target.name]!")
 		target.canmove = !target.canmove
 		if (target.lockcharge)
@@ -122,10 +122,10 @@
 		if(!target || !istype(target))
 			return
 
-		message_admins(SPAN_NOTICE("[key_name_admin(usr)] emagged [target.name] using robotic console!"))
+		message_admins(span_notice("[key_name_admin(usr)] emagged [target.name] using robotic console!"))
 		log_game("[key_name(usr)] emagged [target.name] using robotic console!")
 		target.AddTrait(CYBORG_TRAIT_EMAGGED)
-		to_chat(target, SPAN_NOTICE("Failsafe protocols overriden. New tools available."))
+		to_chat(target, span_notice("Failsafe protocols overriden. New tools available."))
 
 	// Arms the emergency self-destruct system
 	else if(href_list["arm"])
@@ -145,7 +145,7 @@
 			to_chat(user, "Self-destruct aborted - safety active")
 			return
 
-		message_admins(SPAN_NOTICE("[key_name_admin(usr)] detonated all cyborgs!"))
+		message_admins(span_notice("[key_name_admin(usr)] detonated all cyborgs!"))
 		log_game("[key_name(usr)] detonated all cyborgs!")
 
 		for(var/mob/living/silicon/robot/R in SSmobs.mob_list)
@@ -154,7 +154,7 @@
 			// Ignore antagonistic cyborgs
 			if(R.scrambledcodes)
 				continue
-			to_chat(R, SPAN_DANGER("Self-destruct command received."))
+			to_chat(R, span_danger("Self-destruct command received."))
 			spawn(10)
 				R.self_destruct()
 
@@ -162,7 +162,7 @@
 // Proc: get_cyborgs()
 // Parameters: 1 (operator - mob which is operating the console.)
 // Description: Returns NanoUI-friendly list of accessible cyborgs.
-/obj/machinery/computer/robotics/proc/get_cyborgs(var/mob/operator)
+/obj/machinery/computer/robotics/proc/get_cyborgs(mob/operator)
 	var/list/robots = list()
 
 	for(var/mob/living/silicon/robot/R in SSmobs.mob_list)
@@ -203,7 +203,7 @@
 // Proc: get_cyborg_by_name()
 // Parameters: 1 (name - Cyborg we are trying to find)
 // Description: Helper proc for finding cyborg by name
-/obj/machinery/computer/robotics/proc/get_cyborg_by_name(var/name)
+/obj/machinery/computer/robotics/proc/get_cyborg_by_name(name)
 	if (!name)
 		return
 	for(var/mob/living/silicon/robot/R in SSmobs.mob_list)

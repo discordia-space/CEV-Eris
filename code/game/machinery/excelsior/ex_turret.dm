@@ -49,7 +49,7 @@
 		return 0
 	return 1
 
-/obj/machinery/porta_turret/excelsior/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/porta_turret/excelsior/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 	data["access"] = !isLocked(user)
 	data["locked"] = locked
@@ -68,7 +68,7 @@
 /obj/machinery/porta_turret/excelsior/attackby(obj/item/ammo_magazine/I, mob/user)
 	if(istype(I, ammo_box) && I.stored_ammo.len)
 		if(ammo >= ammo_max)
-			to_chat(user, SPAN_NOTICE("You cannot load more than [ammo_max] ammo."))
+			to_chat(user, span_notice("You cannot load more than [ammo_max] ammo."))
 			return
 
 		var/transfered_ammo = 0
@@ -79,7 +79,7 @@
 			transfered_ammo++
 			if(ammo == ammo_max)
 				break
-		to_chat(user, SPAN_NOTICE("You loaded [transfered_ammo] bullets into [src]. It now contains [ammo] ammo."))
+		to_chat(user, span_notice("You loaded [transfered_ammo] bullets into [src]. It now contains [ammo] ammo."))
 	else
 		..()
 

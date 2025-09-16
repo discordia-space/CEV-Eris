@@ -14,7 +14,7 @@ var/global/datum/repository/cameras/camera_repository = new()
 	networks = list()
 	..()
 
-/datum/repository/cameras/proc/cameras_in_network(var/network)
+/datum/repository/cameras/proc/cameras_in_network(network)
 	setup_cache()
 	var/list/network_list = networks[network]
 	return network_list
@@ -24,8 +24,8 @@ var/global/datum/repository/cameras/camera_repository = new()
 		return
 	invalidated = 0
 
-	cameranet.process_sort()
-	for(var/obj/machinery/camera/C in cameranet.cameras)
+	GLOB.cameranet.process_sort()
+	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		var/cam = C.nano_structure()
 		for(var/network in C.network)
 			if(!networks[network])

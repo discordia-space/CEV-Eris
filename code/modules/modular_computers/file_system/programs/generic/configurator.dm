@@ -21,7 +21,7 @@
 	name = "NTOS Computer Configuration Tool"
 	var/obj/item/modular_computer/movable = null
 
-/datum/nano_module/program/computer_configurator/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.default_state)
+/datum/nano_module/program/computer_configurator/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 	if(program)
 		movable = program.computer
 	if(!istype(movable))

@@ -10,7 +10,7 @@
 	if(!path)				return 0
 	if(!check_cooldown())
 		if(istype(client))
-			to_chat(client, SPAN_WARNING("You're attempting to load your preferences a little too fast. Wait half a second, then try again."))
+			to_chat(client, span_warning("You're attempting to load your preferences a little too fast. Wait half a second, then try again."))
 		return 0
 	if(!fexists(path))		return 0
 	var/savefile/S = new /savefile(path)
@@ -26,7 +26,7 @@
 	if(!path)				return 0
 	if(!check_cooldown())
 		if(istype(client))
-			to_chat(client, SPAN_WARNING("You're attempting to save your preferences a little too fast. Wait half a second, then try again."))
+			to_chat(client, span_warning("You're attempting to save your preferences a little too fast. Wait half a second, then try again."))
 		return 0
 	var/savefile/S = new /savefile(path)
 	if(!S)					return 0
@@ -41,7 +41,7 @@
 	if(!path)				return 0
 	if(!check_cooldown())
 		if(istype(client))
-			to_chat(client, SPAN_WARNING("You're attempting to load your character a little too fast. Wait half a second, then try again."))
+			to_chat(client, span_warning("You're attempting to load your character a little too fast. Wait half a second, then try again."))
 		return 0
 
 	if(!fexists(path))		return 0
@@ -52,7 +52,7 @@
 	if(!slot)	slot = default_slot
 
 	if(slot != SAVE_RESET) // SAVE_RESET will reset the slot as though it does not exist, but keep the current slot for saving purposes.
-		slot = sanitize_integer(slot, 1, config.character_slots, initial(default_slot))
+		slot = sanitize_integer(slot, 1, CONFIG_GET(number/character_slots), initial(default_slot))
 		if(slot != default_slot)
 			default_slot = slot
 			S["default_slot"] << slot
@@ -74,7 +74,7 @@
 	if(!path)				return 0
 	if(!check_cooldown())
 		if(istype(client))
-			to_chat(client, SPAN_WARNING("You're attempting to save your character a little too fast. Wait half a second, then try again."))
+			to_chat(client, span_warning("You're attempting to save your character a little too fast. Wait half a second, then try again."))
 		return 0
 	var/savefile/S = new /savefile(path)
 	if(!S)					return 0
@@ -89,7 +89,7 @@
 	player_setup.sanitize_setup()
 	return 1
 
-/datum/preferences/proc/update_setup(var/savefile/preferences, var/savefile/character)
+/datum/preferences/proc/update_setup(savefile/preferences, savefile/character)
 	if(!preferences || !character)
 		return 0
 	return player_setup.update_setup(preferences, character)

@@ -41,8 +41,8 @@
 	to_chat(wearer, "You hear a faint *beep*.")
 	if(!src.reagents.total_volume)
 		to_chat(wearer, "You hear a faint click from your [part].")
-		spawn(0)
-			qdel(src)
+		QDEL_IN(src, 0)
+
 
 /obj/item/implant/chem/emp_act(severity)
 	if (malfunction)

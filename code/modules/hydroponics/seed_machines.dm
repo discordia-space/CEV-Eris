@@ -42,29 +42,29 @@
 
 	if(istype(I, /obj/item/seeds))
 		if(seed)
-			to_chat(user, SPAN_WARNING("There is already a seed loaded."))
+			to_chat(user, span_warning("There is already a seed loaded."))
 			return
 		var/obj/item/seeds/S = I
 		if(S.seed && S.seed.get_trait(TRAIT_IMMUTABLE) > 0)
-			to_chat(user, SPAN_WARNING("That seed is not compatible with our genetics technology."))
+			to_chat(user, span_warning("That seed is not compatible with our genetics technology."))
 			return
 
 		user.drop_from_inventory(I)
 		I.forceMove(src)
 		seed = I
 		SSnano.update_uis(src)
-		to_chat(user, SPAN_NOTICE("You load [I] into [src]."))
+		to_chat(user, span_notice("You load [I] into [src]."))
 		return
 
 	if(istype(I, /obj/item/computer_hardware/hard_drive/portable))
 		if(disk)
-			to_chat(user, SPAN_WARNING("There is already a data disk loaded."))
+			to_chat(user, span_warning("There is already a data disk loaded."))
 		else
 			user.drop_from_inventory(I)
 			I.forceMove(src)
 			disk = I
 			SSnano.update_uis(src)
-			to_chat(user, SPAN_NOTICE("You load [I] into [src]."))
+			to_chat(user, span_notice("You load [I] into [src]."))
 		return
 	..()
 
@@ -102,14 +102,14 @@
 		if(!seed)
 			return 1
 
-		if(seed.seed.name == "new line" || isnull(plant_controller.seeds[seed.seed.name]))
-			seed.seed.uid = plant_controller.seeds.len + 1
+		if(seed.seed.name == "new line" || isnull(SSplants.seeds[seed.seed.name]))
+			seed.seed.uid = SSplants.seeds.len + 1
 			seed.seed.name = "[seed.seed.uid]"
-			plant_controller.seeds[seed.seed.name] = seed.seed
+			SSplants.seeds[seed.seed.name] = seed.seed
 
 		seed.update_seed()
 
-		to_chat(usr, SPAN_NOTICE("You remove \the [seed] from \the [src]."))
+		to_chat(usr, span_notice("You remove \the [seed] from \the [src]."))
 
 		seed.forceMove(drop_location())
 		if(Adjacent(usr))
@@ -122,7 +122,7 @@
 		if(!disk)
 			return 1
 
-		to_chat(usr, SPAN_NOTICE("You remove \the [disk] from \the [src]."))
+		to_chat(usr, span_notice("You remove \the [disk] from \the [src]."))
 
 		disk.forceMove(drop_location())
 		if(Adjacent(usr))
@@ -170,8 +170,8 @@
 	var/list/data = ..()
 
 	var/list/geneMasks = list()
-	for(var/gene_tag in plant_controller.gene_tag_masks)
-		geneMasks.Add(list(list("tag" = gene_tag, "mask" = plant_controller.gene_tag_masks[gene_tag])))
+	for(var/gene_tag in SSplants.gene_tag_masks)
+		geneMasks.Add(list(list("tag" = gene_tag, "mask" = SSplants.gene_tag_masks[gene_tag])))
 	data["geneMasks"] = geneMasks
 
 	if(seed && genes_processed)
@@ -266,7 +266,7 @@
 			stat_multiplier = min(usr.stats.getMult(STAT_BIO, STAT_LEVEL_GODLIKE), usr.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE))
 
 		seed.modified += round(rand(30, 50) * stat_multiplier)
-		if(!isnull(plant_controller.seeds[seed.seed.name]))
+		if(!isnull(SSplants.seeds[seed.seed.name]))
 			seed.seed = seed.seed.diverge(1)
 			seed.seed_type = seed.seed.name
 			seed.update_seed()

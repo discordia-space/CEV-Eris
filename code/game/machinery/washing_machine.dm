@@ -73,7 +73,7 @@
 
 /obj/machinery/washing_machine/examine(mob/user, extra_description = "")
 	if(tick > 0 && (state == WASHSTATE_RUNNING))
-		extra_description += SPAN_NOTICE("It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle.")
+		extra_description += span_notice("It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle.")
 	..(user, extra_description)
 
 /obj/machinery/washing_machine/verb/start()
@@ -127,9 +127,9 @@
 				user.unEquip(W, src)
 				state = WASHSTATE_FULLOPENDOOR
 			else
-				to_chat(user, SPAN_NOTICE("You can't put the item in right now."))
+				to_chat(user, span_notice("You can't put the item in right now."))
 		else
-			to_chat(user, SPAN_NOTICE("The washing machine is full."))
+			to_chat(user, span_notice("The washing machine is full."))
 		update_icon()
 		return
 	update_icon()
@@ -152,7 +152,7 @@
 			crayon = null
 			state = WASHSTATE_EMPTYOPENDOOR
 		if(WASHSTATE_RUNNING)
-			to_chat(user, SPAN_WARNING("The [src] is busy."))
+			to_chat(user, span_warning("The [src] is busy."))
 
 	update_icon()
 

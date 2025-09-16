@@ -7,7 +7,7 @@
 		memory,
 		body changes,
 		etc.
-	and now... 
+	and now...
 
 	TODO: move /datum/body_modification here
 
@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(customMobModifications)
 /datum/mobModification
 	// set to TRUE if you want to replace values on give ones, useful only for applying modifications mid game
 	// also you should handle replacement in apply() yourself
-	var/replace = FALSE 
+	var/replace = FALSE
 
 // adds stat to recipe of applying recipes
 /datum/mobModification/proc/addData()
@@ -34,15 +34,14 @@ GLOBAL_LIST_EMPTY(customMobModifications)
 
 // sets data by calling addData() multiple times where data is list of arguments
 // see Byond documentation for call() proc or look for examples
-/datum/mobModification/proc/setData(var/data)
+/datum/mobModification/proc/setData(data)
 	if(islist(data))
 		for(var/entry in data)
 			if(call(src, "addData")(entry) == -1)
 				return
 
-/datum/mobModification/proc/apply(var/mob/M)
+/datum/mobModification/proc/apply(mob/M)
 	if(!istype(M))
 		return FALSE
 	return TRUE
-	
-	
+

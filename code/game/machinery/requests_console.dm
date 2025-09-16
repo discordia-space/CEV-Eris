@@ -45,13 +45,13 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		// 1 = This console can send department announcementsf
 	var/open = 0 // 1 if open
 	var/announceAuth = 0 //Will be set to 1 when you authenticate yourself for announcements
+	var/announcer = ""
 	var/msgVerified = "" //Will contain the name of the person who varified it
 	var/msgStamped = "" //If a message is stamped, this will contain the stamp name
 	var/message = "";
 	var/recipient = ""; //the department which will be receiving the message
 	var/priority = -1 ; //Priority of the message being sent
 	light_range = 0
-	var/datum/announcement/announcement = new
 
 /obj/machinery/requests_console/power_change()
 	..()
@@ -67,9 +67,6 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 
 /obj/machinery/requests_console/New()
 	..()
-
-	announcement.title = "[department] announcement"
-	announcement.newscast = 1
 
 	name = "[department] Requests Console"
 	allConsoles += src
@@ -103,7 +100,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/requests_console/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/requests_console/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["department"] = department
@@ -158,7 +155,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 
 	if(href_list["sendAnnouncement"])
 		if(!announcementConsole)	return
-		announcement.Announce(message, msg_sanitized = 1)
+		priority_announce(message, "Signed by [announcer]", 'sound/misc/announce_dig.ogg', sender_override = "[department] Announcement")
 		reset_message(1)
 
 	if( href_list["department"] && message )
@@ -173,7 +170,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			screen = RCS_SENTPASS
 			message_log += "<B>Message sent to [recipient]</B><BR>[message]"
 		else
-			audible_message(text("\icon[src] *The Requests Console beeps: 'NOTICE: No server detected!'"),,4)
+			audible_message("[icon2html(src, hearers(get_turf(src)))] *The Requests Console beeps: 'NOTICE: No server detected!'")
 
 	//Handle screen switching
 	if(href_list["setScreen"])
@@ -199,7 +196,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	return
 
 					//err... hacking code, which has no reason for existing... but anyway... it was once supposed to unlock priority 3 messanging on that console (EXTREME priority...), but the code for that was removed.
-/obj/machinery/requests_console/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/requests_console/attackby(obj/item/O as obj, mob/user as mob)
 
 	if (istype(O, /obj/item/card/id))
 		if(inoperable(MAINT)) return
@@ -211,10 +208,10 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			var/obj/item/card/id/ID = O
 			if (access_RC_announce in ID.GetAccess())
 				announceAuth = 1
-				announcement.announcer = ID.assignment ? "[ID.assignment] [ID.registered_name]" : ID.registered_name
+				announcer = ID.assignment ? "[ID.assignment] [ID.registered_name]" : ID.registered_name
 			else
 				reset_message()
-				to_chat(user, SPAN_WARNING("You are not authorized to send announcements."))
+				to_chat(user, span_warning("You are not authorized to send announcements."))
 			updateUsrDialog()
 	if (istype(O, /obj/item/stamp))
 		if(inoperable(MAINT)) return
@@ -224,13 +221,12 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			updateUsrDialog()
 	return
 
-/obj/machinery/requests_console/proc/reset_message(var/mainmenu = 0)
+/obj/machinery/requests_console/proc/reset_message(mainmenu = 0)
 	message = ""
 	recipient = ""
 	priority = 0
 	msgVerified = ""
 	msgStamped = ""
 	announceAuth = 0
-	announcement.announcer = ""
 	if(mainmenu)
 		screen = RCS_MAINMENU

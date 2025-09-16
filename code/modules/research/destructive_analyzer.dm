@@ -42,10 +42,10 @@ Note: Must be placed within 3 tiles of the R&D Console
 
 /obj/machinery/r_n_d/destructive_analyzer/attackby(obj/item/I, mob/user)
 	if(busy)
-		to_chat(user, SPAN_NOTICE("\The [src] is busy right now."))
+		to_chat(user, span_notice("\The [src] is busy right now."))
 		return
 	if(loaded_item)
-		to_chat(user, SPAN_NOTICE("There is something already loaded into \the [src]."))
+		to_chat(user, span_notice("There is something already loaded into \the [src]."))
 		return
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
@@ -53,10 +53,10 @@ Note: Must be placed within 3 tiles of the R&D Console
 
 		if(QUALITY_PRYING)
 			if(!panel_open)
-				to_chat(user, SPAN_NOTICE("You cant get to the components of \the [src], remove the cover."))
+				to_chat(user, span_notice("You cant get to the components of \the [src], remove the cover."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
+				to_chat(user, span_notice("You remove the components of \the [src] with [I]."))
 				dismantle()
 				return
 
@@ -67,7 +67,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 					linked_console.linked_destroy = null
 					linked_console = null
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
+				to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				update_icon()
 				return
 
@@ -77,23 +77,23 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(default_part_replacement(I, user))
 		return
 	if(panel_open)
-		to_chat(user, SPAN_NOTICE("You can't load \the [src] while it's opened."))
+		to_chat(user, span_notice("You can't load \the [src] while it's opened."))
 		return
 	if(!linked_console)
-		to_chat(user, SPAN_NOTICE("\The [src] must be linked to an R&D console first."))
+		to_chat(user, span_notice("\The [src] must be linked to an R&D console first."))
 		return
 	if(!loaded_item && istype(I))
 		if(!I.origin_tech)
-			to_chat(user, SPAN_NOTICE("This doesn't seem to have a tech origin."))
+			to_chat(user, span_notice("This doesn't seem to have a tech origin."))
 			return
 		if(I.origin_tech.len == 0)
-			to_chat(user, SPAN_NOTICE("You cannot deconstruct this item."))
+			to_chat(user, span_notice("You cannot deconstruct this item."))
 			return
 
 		if(user.unEquip(I, src))
 			busy = TRUE
 			loaded_item = I
-			to_chat(user, SPAN_NOTICE("You add \the [I] to \the [src]."))
+			to_chat(user, span_notice("You add \the [I] to \the [src]."))
 			flick("d_analyzer_la", src)
 			addtimer(CALLBACK(src, PROC_REF(reset_busy)), 1 SECONDS)
 			return TRUE
@@ -105,10 +105,10 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(linked_console)
 		SSnano.update_uis(linked_console)
 
-// If this returns true, the rdconsole caller will set its screen to SCREEN_WORKING
+// If this returns true, the rdconsole requester will set its screen to SCREEN_WORKING
 /obj/machinery/r_n_d/destructive_analyzer/proc/deconstruct_item()
 	if(busy)
-		to_chat(usr, SPAN_WARNING("The destructive analyzer is busy at the moment."))
+		to_chat(usr, span_warning("The destructive analyzer is busy at the moment."))
 		return
 	if(!loaded_item)
 		return
@@ -124,7 +124,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		return
 	if(linked_console)
 		linked_console.handle_item_analysis(loaded_item)
-	for(var/mob/living/carbon/human/H in viewers(src))
+	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
 		SEND_SIGNAL_OLD(H, COMSING_DESTRUCTIVE_ANALIZER, loaded_item)
 	if(istype(loaded_item,/obj/item/stack))
 		var/obj/item/stack/S = loaded_item
@@ -144,7 +144,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 
 /obj/machinery/r_n_d/destructive_analyzer/eject_item()
 	if(busy)
-		to_chat(usr, SPAN_WARNING("The destructive analyzer is busy at the moment."))
+		to_chat(usr, span_warning("The destructive analyzer is busy at the moment."))
 		return
 
 	if(loaded_item)

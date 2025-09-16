@@ -1,4 +1,4 @@
-/datum/antagonist/proc/update_antag_mob(var/transfer_mind = TRUE)
+/datum/antagonist/proc/update_antag_mob(transfer_mind = TRUE)
 	// Get the mob.
 	if(owner.current && ispath(mob_path))
 		var/mob/holder = owner.current

@@ -52,6 +52,7 @@ var/global/list/default_medbay_channels = list(
 	var/syndie = FALSE//Holder to see if it's a syndicate encrypted radio
 	var/merc = FALSE  //Holder to see if it's a mercenary encrypted radio
 	var/pirate = FALSE  //Holder to see if it's a pirate encrypted radio
+	var/anonymize = FALSE
 	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 
@@ -93,6 +94,8 @@ var/global/list/default_medbay_channels = list(
 	for (var/ch_name in channels)
 		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
+	return INITIALIZE_HINT_LATELOAD
+
 /obj/item/device/radio/attack_self(mob/user as mob)
 	user.set_machine(src)
 	add_fingerprint(user)
@@ -107,7 +110,7 @@ var/global/list/default_medbay_channels = list(
 
 	return nano_ui_interact(user)
 
-/obj/item/device/radio/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/radio/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["mic_status"] = broadcasting
@@ -132,10 +135,10 @@ var/global/list/default_medbay_channels = list(
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/item/device/radio/proc/list_channels(var/mob/user)
+/obj/item/device/radio/proc/list_channels(mob/user)
 	return list_internal_channels(user)
 
-/obj/item/device/radio/proc/list_secure_channels(var/mob/user)
+/obj/item/device/radio/proc/list_secure_channels(mob/user)
 	var/dat[0]
 
 	for(var/ch_name in channels)
@@ -146,7 +149,7 @@ var/global/list/default_medbay_channels = list(
 
 	return dat
 
-/obj/item/device/radio/proc/list_internal_channels(var/mob/user)
+/obj/item/device/radio/proc/list_internal_channels(mob/user)
 	var/dat[0]
 	for(var/internal_chan in internal_channels)
 		if(has_channel_access(user, internal_chan))
@@ -154,7 +157,7 @@ var/global/list/default_medbay_channels = list(
 
 	return dat
 
-/obj/item/device/radio/proc/has_channel_access(var/mob/user, var/freq)
+/obj/item/device/radio/proc/has_channel_access(mob/user, freq)
 	if(!user)
 		return 0
 
@@ -163,11 +166,11 @@ var/global/list/default_medbay_channels = list(
 
 	return user.has_internal_radio_channel_access(internal_channels[freq])
 
-/mob/proc/has_internal_radio_channel_access(var/list/req_one_accesses)
+/mob/proc/has_internal_radio_channel_access(list/req_one_accesses)
 	var/obj/item/card/id/I = GetIdCard()
 	return has_access(list(), req_one_accesses, I ? I.GetAccess() : list())
 
-/mob/observer/ghost/has_internal_radio_channel_access(var/list/req_one_accesses)
+/mob/observer/ghost/has_internal_radio_channel_access(list/req_one_accesses)
 	return can_admin_interact()
 
 /obj/item/device/radio/proc/text_wires()
@@ -176,7 +179,7 @@ var/global/list/default_medbay_channels = list(
 	return
 
 
-/obj/item/device/radio/proc/text_sec_channel(var/chan_name, var/chan_stat)
+/obj/item/device/radio/proc/text_sec_channel(chan_name, chan_stat)
 	var/list = !!(chan_stat&FREQ_LISTENING)!=0
 	return {"
 			<B>[chan_name]</B><br>
@@ -278,7 +281,7 @@ var/global/list/default_medbay_channels = list(
 	// If we were to send to a channel we don't have, drop it.
 	return null
 
-/obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, var/verb = "says", var/datum/language/speaking = null, var/speech_volume)
+/obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, verb = src.verb_say, datum/language/speaking = null, speech_volume)
 	if(!on) return 0 // the device has to be on
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
 	if(!M || !message) return 0
@@ -482,8 +485,7 @@ var/global/list/default_medbay_channels = list(
 					  filter_type, signal.data["compression"], list(position.z), connection.frequency,verb,speaking, speech_volume)
 
 
-/obj/item/device/radio/hear_talk(mob/M as mob, msg, var/verb = "says", var/datum/language/speaking = null, speech_volume)
-
+/obj/item/device/radio/hear_talk(mob/M as mob, msg, verb = src.verb_say, datum/language/speaking = null, speech_volume)
 	if (broadcasting)
 		if(get_dist(src, M) <= canhear_range)
 			talk_into(M, msg,null,verb,speaking, speech_volume)
@@ -541,7 +543,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/examine(mob/user, extra_description = "")
 	if((in_range(src, user) || loc == user))
-		extra_description += SPAN_NOTICE("\The [src] can [b_stat ? "" : "not "]be attached and modified!")
+		extra_description += span_notice("\The [src] can [b_stat ? "" : "not "]be attached and modified!")
 	..(user, extra_description)
 
 /obj/item/device/radio/attackby(obj/item/W as obj, mob/user as mob)
@@ -552,9 +554,9 @@ var/global/list/default_medbay_channels = list(
 	b_stat = !( b_stat )
 	if(!istype(src, /obj/item/device/radio/beacon))
 		if (b_stat)
-			user.show_message(SPAN_NOTICE("\The [src] can now be attached and modified!"))
+			user.show_message(span_notice("\The [src] can now be attached and modified!"))
 		else
-			user.show_message(SPAN_NOTICE("\The [src] can no longer be modified or attached!"))
+			user.show_message(span_notice("\The [src] can no longer be modified or attached!"))
 		updateDialog()
 			//Foreach goto(83)
 		add_fingerprint(user)
@@ -590,7 +592,7 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/borg/list_channels(mob/user)
 	return list_secure_channels(user)
 
-/obj/item/device/radio/borg/talk_into(mob/living/M, message, channel, var/verb = "says", var/datum/language/speaking = null, var/speech_volume)
+/obj/item/device/radio/borg/talk_into(mob/living/M, message, channel, verb = src.verb_say, datum/language/speaking = null, speech_volume)
 	. = ..()
 	if (isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
@@ -672,9 +674,9 @@ var/global/list/default_medbay_channels = list(
 		if(enable_subspace_transmission != subspace_transmission)
 			subspace_transmission = !subspace_transmission
 			if(subspace_transmission)
-				to_chat(usr, SPAN_NOTICE("Subspace Transmission is enabled"))
+				to_chat(usr, span_notice("Subspace Transmission is enabled"))
 			else
-				to_chat(usr, SPAN_NOTICE("Subspace Transmission is disabled"))
+				to_chat(usr, span_notice("Subspace Transmission is disabled"))
 
 			if(subspace_transmission == 0)//Simple as fuck, clears the channel list to prevent talking/listening over them if subspace transmission is disabled
 				channels = list()
@@ -687,10 +689,10 @@ var/global/list/default_medbay_channels = list(
 			shut_up = !shut_up
 			if(shut_up)
 				canhear_range = 0
-				to_chat(usr, SPAN_NOTICE("Loadspeaker disabled."))
+				to_chat(usr, span_notice("Loadspeaker disabled."))
 			else
 				canhear_range = 3
-				to_chat(usr, SPAN_NOTICE("Loadspeaker enabled."))
+				to_chat(usr, span_notice("Loadspeaker enabled."))
 		. = 1
 
 	if(.)
@@ -702,7 +704,7 @@ var/global/list/default_medbay_channels = list(
 
 	. = ..()
 
-/obj/item/device/radio/borg/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/radio/borg/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["mic_status"] = broadcasting
@@ -809,7 +811,7 @@ var/global/list/default_medbay_channels = list(
 		stash.select_location()
 		stash.spawn_stash()
 		var/obj/item/paper/stash_note = stash.spawn_note(get_turf(src))
-		visible_message(SPAN_NOTICE("[src] spits out a [stash_note]."))
+		visible_message(span_notice("[src] spits out a [stash_note]."))
 		last_produce = world.time
 	if(world.time > last_bluespace && bluespace_generating)
 		var/pathed = pickweight(bluespace_items, pick(5,10,25))
@@ -843,9 +845,9 @@ var/global/list/default_medbay_channels = list(
 		syndie = TRUE
 		channels |= list("Mercenary" = 1)
 		playsound(loc, "sparks", 75, 1, -1)
-		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
+		to_chat(user, span_notice("You use the cryptographic sequencer on the [name]."))
 	else
-		to_chat(user, SPAN_NOTICE("The [name] has already been emagged."))
+		to_chat(user, span_notice("The [name] has already been emagged."))
 		return NO_EMAG_ACT
 
 /obj/item/device/radio/random_radio/attackby(obj/item/W, mob/user, params)
@@ -858,7 +860,7 @@ var/global/list/default_medbay_channels = list(
 		qdel(W)
 		name = "Bluespace random wave radio"
 		bluespace_generating = TRUE
-		to_chat(user, SPAN_NOTICE("You upgrade the [src] with bluespace technology, now it can siphon items lost in bluespace!"))
+		to_chat(user, span_notice("You upgrade the [src] with bluespace technology, now it can siphon items lost in bluespace!"))
 
 	if(istype(W, /obj/item/oddity))
 		var/obj/item/oddity/D = W
@@ -866,17 +868,17 @@ var/global/list/default_medbay_channels = list(
 			var/usefull = FALSE
 
 			if(random_hear >= 100)
-				to_chat(user, SPAN_WARNING("The [src] is in perfect condition."))
+				to_chat(user, span_warning("The [src] is in perfect condition."))
 				return
 
-			to_chat(user, SPAN_NOTICE("You begin repairing [src] using [D]."))
+			to_chat(user, span_notice("You begin repairing [src] using [D]."))
 
 			if(!do_after(user, 20 SECONDS, src))
-				to_chat(user, SPAN_WARNING("You've stopped repairing [src]."))
+				to_chat(user, span_warning("You've stopped repairing [src]."))
 				return
 
 			if(D in used_oddity)
-				to_chat(user, SPAN_WARNING("You've already used [D] to repair [src]!"))
+				to_chat(user, span_warning("You've already used [D] to repair [src]!"))
 				return
 
 			for(var/stat in D.oddity_stats)
@@ -888,13 +890,13 @@ var/global/list/default_medbay_channels = list(
 					cooldown -= (D.oddity_stats[stat]) MINUTES
 					if(cooldown < min_cooldown)
 						cooldown = min_cooldown
-					to_chat(user, SPAN_NOTICE("You make use of [D], and repaired [src] by [increase]%."))
+					to_chat(user, span_notice("You make use of [D], and repaired [src] by [increase]%."))
 					usefull = TRUE
 					used_oddity += D
 					return
 
 
 			if(!usefull)
-				to_chat(user, SPAN_WARNING("You cannot find any use of [D], maybe you need something related to mechanic to repair this?"))
+				to_chat(user, span_warning("You cannot find any use of [D], maybe you need something related to mechanic to repair this?"))
 		else
-			to_chat(user, SPAN_WARNING("The [D] is useless here. Try to find another one."))
+			to_chat(user, span_warning("The [D] is useless here. Try to find another one."))

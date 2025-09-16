@@ -40,6 +40,11 @@
 			Your COG stat is reduced for some time."
 	icon_state = "reason" //https://game-icons.net/1x1/lorc/brainstorm.html
 
+/datum/perk/cooldown/reason/on_process()
+	if(holder.reagents.has_reagent("energy"))
+		perk_lifetime -= 3 SECONDS
+	..()
+
 /datum/perk/cooldown/reason/assign(mob/living/carbon/human/H)
 	if(..())
 		holder.stats.addTempStat(STAT_COG, -15, INFINITY, "Dimmed reason")

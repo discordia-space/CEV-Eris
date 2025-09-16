@@ -19,7 +19,7 @@
 	damage_multiplier = 0.35 //makeshift laser
 	penetration_multiplier = 1
 	projectile_type = /obj/item/projectile/beam
-	init_offset = 0 
+	init_offset = 0
 	suitable_cell = /obj/item/cell/medium
 	charge_cost = 25 // 4 bursts with a 800m cell
 
@@ -33,7 +33,7 @@
 	init_recoil = SMG_RECOIL(1)
 
 
-/obj/item/gun/energy/lasersmg/process_projectile(var/obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params)
+/obj/item/gun/energy/lasersmg/process_projectile(obj/item/projectile/P, mob/living/user, atom/target, target_zone, params)
 	projectile_color = pick(list("#FF0000", "#0000FF", "#00FF00", "#FFFF00", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000"))
 	..()
 	return ..()

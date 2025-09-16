@@ -8,7 +8,7 @@
 /obj/item/punk_lootbox/attack_self(mob/user)
 	. = ..()
 	if(icon_state == "jacket_box_open")
-		to_chat(user, SPAN_NOTICE("You fold \the [name] flat."))
+		to_chat(user, span_notice("You fold \the [name] flat."))
 		new /obj/item/stack/material/cardboard(get_turf(src))
 		qdel(src)
 		return
@@ -20,7 +20,7 @@
 
 	var/jacket_type = input(user, "Choose jacket type", "What kind of punk are you?") as null|anything in jacket_list
 	if(!jacket_type)
-		to_chat(user, SPAN_NOTICE("You're an indecisive punk today."))
+		to_chat(user, span_notice("You're an indecisive punk today."))
 		return
 
 	var/logo_list = list(
@@ -33,6 +33,6 @@
 	var/logo_type = input(user, "Choose logo type", "Gang affiliation much?") as null|anything in logo_list
 
 	new /obj/item/clothing/suit/storage/leather_jacket/punk(loc = get_turf(loc), jacket_type = jacket_list[jacket_type], logo_type = logo_list[logo_type], is_natural_spawn = FALSE)
-	to_chat(user, SPAN_NOTICE("You take out the jacket."))
+	to_chat(user, span_notice("You take out the jacket."))
 	icon_state = "jacket_box_open"
 	update_icon()

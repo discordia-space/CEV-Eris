@@ -32,7 +32,7 @@
 	dat += "Current toner level: [toner]"
 	if(!toner)
 		dat +="<BR>Please insert a new toner cartridge!"
-	user << browse(dat, "window=copier")
+	user << browse(HTML_SKELETON_TITLE("Photocopier", dat), "window=copier")
 	onclose(user, "copier")
 	return
 
@@ -41,7 +41,7 @@
 		if(stat & (BROKEN|NOPOWER))
 			return
 
-		for(var/i = 0, i < copies, i++)
+		for(var/i = 0; i < copies; i++)
 			if(toner <= 0)
 				break
 
@@ -55,7 +55,7 @@
 				var/obj/item/paper_bundle/B = bundlecopy(copyitem)
 				sleep(15*B.pages.len)
 			else
-				to_chat(usr, SPAN_WARNING("\The [copyitem] can't be copied by \the [src]."))
+				to_chat(usr, span_warning("\The [copyitem] can't be copied by \the [src]."))
 				break
 
 			use_power(active_power_usage)
@@ -64,7 +64,7 @@
 		if(copyitem)
 			copyitem.loc = usr.loc
 			usr.put_in_hands(copyitem)
-			to_chat(usr, SPAN_NOTICE("You take \the [copyitem] out of \the [src]."))
+			to_chat(usr, span_notice("You take \the [copyitem] out of \the [src]."))
 			copyitem = null
 			updateUsrDialog()
 	else if(href_list["min"])
@@ -106,25 +106,25 @@
 			user.drop_item()
 			copyitem = I
 			I.loc = src
-			to_chat(user, SPAN_NOTICE("You insert \the [I] into \the [src]."))
+			to_chat(user, span_notice("You insert \the [I] into \the [src]."))
 			flick(insert_anim, src)
 			updateUsrDialog()
 		else
-			to_chat(user, SPAN_NOTICE("There is already something in \the [src]."))
+			to_chat(user, span_notice("There is already something in \the [src]."))
 	else if(istype(I, /obj/item/device/toner))
 		if(toner <= 10) //allow replacing when low toner is affecting the print darkness
 			user.drop_item()
-			to_chat(user, SPAN_NOTICE("You insert the toner cartridge into \the [src]."))
+			to_chat(user, span_notice("You insert the toner cartridge into \the [src]."))
 			var/obj/item/device/toner/T = I
 			toner += T.toner_amount
 			qdel(I)
 			updateUsrDialog()
 		else
-			to_chat(user, SPAN_NOTICE("This cartridge is not yet ready for replacement! Use up the rest of the toner."))
+			to_chat(user, span_notice("This cartridge is not yet ready for replacement! Use up the rest of the toner."))
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			anchored = !anchored
-			to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+			to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 	return
 
 /obj/machinery/photocopier/take_damage(amount)
@@ -135,7 +135,7 @@
 		new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
 		toner = 0
 
-/obj/machinery/photocopier/proc/copy(var/obj/item/paper/copy)
+/obj/machinery/photocopier/proc/copy(obj/item/paper/copy)
 	var/obj/item/paper/c = new /obj/item/paper (loc)
 	if(toner > 10)	//lots of toner, make it dark
 		c.info = "<font color = #101010>"
@@ -155,7 +155,7 @@
 	c.offset_y = copy.offset_y
 	var/list/temp_overlays = copy.overlays       //Iterates through stamps
 	var/image/img                                //and puts a matching
-	for (var/j = 1, j <= min(temp_overlays.len, copy.ico.len), j++) //gray overlay onto the copy
+	for(var/j = 1; j <= min(temp_overlays.len, copy.ico.len); j++) //gray overlay onto the copy
 		if (findtext(copy.ico[j], "cap") || findtext(copy.ico[j], "cent"))
 			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-circle")
 		else if (findtext(copy.ico[j], "deny"))
@@ -168,11 +168,11 @@
 	c.updateinfolinks()
 	toner--
 	if(toner == 0)
-		visible_message(SPAN_NOTICE("A red light on \the [src] flashes, indicating that it is out of toner."))
+		visible_message(span_notice("A red light on \the [src] flashes, indicating that it is out of toner."))
 	return c
 
 
-/obj/machinery/photocopier/proc/photocopy(var/obj/item/photo/photocopy)
+/obj/machinery/photocopier/proc/photocopy(obj/item/photo/photocopy)
 	var/obj/item/photo/p = photocopy.copy()
 	p.loc = src.loc
 
@@ -189,17 +189,17 @@
 	toner -= 5	//photos use a lot of ink!
 	if(toner < 0)
 		toner = 0
-		visible_message(SPAN_NOTICE("A red light on \the [src] flashes, indicating that it is out of toner."))
+		visible_message(span_notice("A red light on \the [src] flashes, indicating that it is out of toner."))
 
 	return p
 
 //If need_toner is 0, the copies will still be lightened when low on toner, however it will not be prevented from printing. TODO: Implement print queues for fax machines and get rid of need_toner
-/obj/machinery/photocopier/proc/bundlecopy(var/obj/item/paper_bundle/bundle, var/need_toner=1)
+/obj/machinery/photocopier/proc/bundlecopy(obj/item/paper_bundle/bundle, need_toner=1)
 	var/obj/item/paper_bundle/p = new /obj/item/paper_bundle (src)
 	for(var/obj/item/W in bundle.pages)
 		if(toner <= 0 && need_toner)
 			toner = 0
-			visible_message(SPAN_NOTICE("A red light on \the [src] flashes, indicating that it is out of toner."))
+			visible_message(span_notice("A red light on \the [src] flashes, indicating that it is out of toner."))
 			break
 
 		if(istype(W, /obj/item/paper))

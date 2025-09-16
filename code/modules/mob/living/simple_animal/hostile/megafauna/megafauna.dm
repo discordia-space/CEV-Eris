@@ -34,7 +34,7 @@
 /mob/living/simple_animal/hostile/megafauna/proc/prevent_content_explosion()
 	return TRUE
 
-/mob/living/simple_animal/hostile/megafauna/death(gibbed, var/list/force_grant)
+/mob/living/simple_animal/hostile/megafauna/death(gibbed, list/force_grant)
 	..()
 
 /mob/living/simple_animal/hostile/megafauna/gib()
@@ -60,8 +60,8 @@
 	if(!L)
 		return FALSE
 	visible_message(
-		SPAN_DANGER("[src] devours [L]!</span>"),
-		SPAN_DANGER("You feast on [L], restoring your health!"))
+		span_danger("[src] devours [L]!</span>"),
+		span_danger("You feast on [L], restoring your health!"))
 	if(client)
 		adjustBruteLoss(-L.maxHealth/2)
 	L.gib()
@@ -106,7 +106,7 @@
 	for(var/mob/M in range(10,src))
 		if(M.client)
 			shake_camera(M, 4, 3)
-	visible_message(SPAN_DANGER(pick("Prepare to die!", "JUSTICE", "Run!")))
+	visible_message(span_danger(pick("Prepare to die!", "JUSTICE", "Run!")))
 
 /mob/living/simple_animal/hostile/megafauna/proc/spiral_shoot(negative = pick(TRUE, FALSE), rounds = 20)
 	set waitfor = 0
@@ -125,7 +125,7 @@
 		firedir = alldirs[dirpoint]
 		sleep(rand(1,3))
 
-/mob/living/simple_animal/hostile/megafauna/proc/shoot_projectile(turf/marker, var/dir)
+/mob/living/simple_animal/hostile/megafauna/proc/shoot_projectile(turf/marker, dir)
 	if(!marker || marker == loc)
 		return
 	var/turf/startloc = get_turf(src)

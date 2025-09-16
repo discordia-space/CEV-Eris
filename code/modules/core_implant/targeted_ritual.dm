@@ -44,7 +44,7 @@
 /datum/ritual/targeted/get_display_phrase()
 	return phrase
 
-/datum/ritual/targeted/compare(var/text)
+/datum/ritual/targeted/compare(text)
 	if(!phrase || phrase == "")
 		return
 
@@ -58,7 +58,7 @@
 
 	return R.index != null && R.index > 0
 
-/datum/ritual/targeted/get_targets(var/text)
+/datum/ritual/targeted/get_targets(text)
 	var/regex/R = regex("[TARGET_PATTERN]","g")
 
 	var/T = replacetext(R.Replace(REGEX_QUOTE(phrase),"(.*)"),"\\(.*)","(.*)")
@@ -83,6 +83,6 @@
 	return targets
 
 //returns object that will be placed in targets list, of null
-/datum/ritual/targeted/proc/process_target(var/index, var/obj/item/implant/core_implant/target, var/text)
+/datum/ritual/targeted/proc/process_target(index, obj/item/implant/core_implant/target, text)
 	return TRUE
 

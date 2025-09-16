@@ -64,7 +64,7 @@
 
 /obj/item/ecletters/Initialize()
 	. = ..()
-	desc = "A bunch of letters from crewmembers to their family and loved ones, dated [game_year - 142]. They're not hopeful."
+	desc = "A bunch of letters from crewmembers to their family and loved ones, dated [CURRENT_SHIP_YEAR - 142]. They're not hopeful."
 
 /obj/item/paper/ecrashlog
 	name = "handwritten note"
@@ -73,7 +73,7 @@
 /obj/item/paper/ecrashlog/Initialize()
 	. = ..()
 	var/shipname = "CEV [pick("Magellan", "Gagarin", "Drake", "Horizon", "Aurora")]"
-	var/datum/species/S = all_species[SPECIES_HUMAN]
+	var/datum/species/S = GLOB.all_species[SPECIES_HUMAN]
 	var/new_info = {"
 	I am Lieutenant Hao Ru, captain of [shipname], of the Hansa Trade Union.<br>
 	We are dying. The Ran Mission has failed.<br>
@@ -90,7 +90,7 @@
 	Senior Explorer [S.get_random_name(pick(MALE,FEMALE))]<br>
 	Explorer [S.get_random_name(pick(MALE,FEMALE))]<br>
 	I am Lieutenant Hao Ru, captain of [shipname] of the Hansa Trade Union. I will be joining my crew in cryo now.<br>
-	<i>3rd December [game_year - 142]</i></tt>
+	<i>3rd December [CURRENT_SHIP_YEAR - 142]</i></tt>
 	"}
 	set_content(new_info)
 

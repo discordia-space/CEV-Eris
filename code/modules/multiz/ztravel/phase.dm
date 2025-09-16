@@ -16,7 +16,7 @@
 		return FALSE
 
 
-/datum/vertical_travel_method/phase/start(var/dir)
+/datum/vertical_travel_method/phase/start(dir)
 	//There is no middle, jump straight to the end
 	finish()
 	delete_self()

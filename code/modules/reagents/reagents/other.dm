@@ -194,7 +194,7 @@
 			remove_self(5)
 	return TRUE
 
-/datum/reagent/other/thermite/touch_mob(mob/living/L, var/amount)
+/datum/reagent/other/thermite/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
@@ -344,7 +344,7 @@
 
 /*		Proc was removed because of griefing
 #define COOLANT_LATENT_HEAT 19000
-/datum/reagent/other/coolant/touch_turf(var/turf/T)
+/datum/reagent/other/coolant/touch_turf(turf/T)
 	if(!istype(T))
 		return
 
@@ -363,7 +363,7 @@
 		var/removed_heat = between(0, volume * COOLANT_LATENT_HEAT, -environment.get_thermal_energy_change(min_temperature))
 		environment.add_thermal_energy(-removed_heat)
 		if (prob(5) && environment && environment.temperature > T100C)
-			T.visible_message("<span class='warning'>\The [src] sizzles as it lands on \the [T]!</span>")
+			T.visible_message(span_warning("\The [src] sizzles as it lands on \the [T]!"))
 */
 
 /datum/reagent/other/coolant/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
@@ -481,10 +481,10 @@
 	affects_dead = TRUE
 	reagent_type = "Medicine"
 
-/datum/reagent/resuscitator/affect_ingest(mob/living/carbon/M, var/alien, effect_multiplier)
+/datum/reagent/resuscitator/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	return // since it's a "cardiac stimulant" it shouldn't really work unless injected
 
-/datum/reagent/resuscitator/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/resuscitator/affect_blood(mob/living/carbon/M, alien, removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/vital/heart = H.random_organ_by_process(OP_HEART)
@@ -493,7 +493,7 @@
 				return
 			heart.take_damage(64, TOX)
 			if(prob(30))
-				to_chat(H, SPAN_DANGER("Your heart feels like it's going to tear itself out of you!"))
+				to_chat(H, span_danger("Your heart feels like it's going to tear itself out of you!"))
 			if(H.stat == DEAD)
 				H.resuscitate()
 				remove_self(60)

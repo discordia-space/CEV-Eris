@@ -4,7 +4,7 @@
 	req_access = list(access_cent_specops)
 
 /obj/machinery/computer/shuttle_control/specops/attack_ai(user as mob)
-	to_chat(user, "<span class='warning'>Access Denied.</span>")
+	to_chat(user, span_warning("Access Denied."))
 	return 1
 
 /datum/shuttle/autodock/ferry/specops
@@ -22,12 +22,12 @@
 	announcer = new /obj/item/device/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
 	announcer.config(list("Response Team" = 0))
 
-/datum/shuttle/autodock/ferry/specops/proc/radio_announce(var/message)
+/datum/shuttle/autodock/ferry/specops/proc/radio_announce(message)
 	if(announcer)
 		announcer.autosay(message, "A.L.I.C.E.", "Response Team")
 
 
-/datum/shuttle/autodock/ferry/specops/launch(var/user)
+/datum/shuttle/autodock/ferry/specops/launch(user)
 	if (!can_launch())
 		return
 
@@ -35,14 +35,14 @@
 		var/obj/machinery/computer/C = user
 
 		if(world.time <= reset_time)
-			C.visible_message("<span class='notice'>[boss_name] will not allow the Special Operations shuttle to launch yet.</span>")
+			C.visible_message(span_notice("[GLOB.boss_name] will not allow the Special Operations shuttle to launch yet."))
 			if (((world.time - reset_time)/10) > 60)
-				C.visible_message("<span class='notice'>[-((world.time - reset_time)/10)/60] minutes remain!</span>")
+				C.visible_message(span_notice("[-((world.time - reset_time)/10)/60] minutes remain!"))
 			else
-				C.visible_message("<span class='notice'>[-(world.time - reset_time)/10] seconds remain!</span>")
+				C.visible_message(span_notice("[-(world.time - reset_time)/10] seconds remain!"))
 			return
 
-		C.visible_message("<span class='notice'>The Special Operations shuttle will depart in [(specops_countdown_time/10)] seconds.</span>")
+		C.visible_message(span_notice("The Special Operations shuttle will depart in [(specops_countdown_time/10)] seconds."))
 
 	if (location)	//returning
 		radio_announce("THE SPECIAL OPERATIONS SHUTTLE IS PREPARING TO RETURN")
@@ -66,12 +66,12 @@
 		if (!location)	//just arrived home
 			for(var/turf/T in get_area_turfs(shuttle_area))
 				var/mob/M = locate(/mob) in T
-				to_chat(M, "<span class='danger'>You have arrived at [boss_name]. Operation has ended!</span>")
+				to_chat(M, span_danger("You have arrived at [GLOB.boss_name]. Operation has ended!"))
 		else	//just left for the station
 			launch_mauraders()
 			for(var/turf/T in get_area_turfs(shuttle_area))
 				var/mob/M = locate(/mob) in T
-				to_chat(M, "<span class='danger'>You have arrived at [station_name]. Commence operation!</span>")
+				to_chat(M, span_danger("You have arrived at [station_name()]. Commence operation!"))
 
 //				var/obj/machinery/light/small/readylight/light = locate() in T
 //				if(light) light.set_state(1)
@@ -84,7 +84,7 @@
 	radio_announce("ALERT: LAUNCH SEQUENCE ABORTED")
 	if (istype(in_use, /obj/machinery/computer))
 		var/obj/machinery/computer/C = in_use
-		C.visible_message("<span class='warning'>Launch sequence aborted.</span>")
+		C.visible_message(span_warning("Launch sequence aborted."))
 	..()
 
 

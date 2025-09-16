@@ -57,7 +57,7 @@
 		user.put_in_hands(magazine)
 		magazine.update_icon()
 		magazine = null
-		to_chat(user, SPAN_NOTICE("You pull the magazine out of \the [src]!"))
+		to_chat(user, span_notice("You pull the magazine out of \the [src]!"))
 	update_icon()
 	return
 
@@ -72,9 +72,9 @@
 
 /obj/item/hatton/proc/click_empty(mob/user = null)
 	if (user)
-		user.visible_message(SPAN_DANGER("*click*"), SPAN_DANGER("*click*"))
+		user.visible_message(span_danger("*click*"), span_danger("*click*"))
 	else
-		src.visible_message(SPAN_DANGER("*click*"))
+		src.visible_message(span_danger("*click*"))
 	playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
 
 
@@ -86,21 +86,21 @@
 
 /obj/item/hatton/proc/Fire(atom/target as mob|obj|turf, mob/living/user as mob|obj, params)
 	if (world.time < last_fired + fire_cooldown)
-		to_chat(user, SPAN_WARNING("[src] is still cooling down, wait for [((last_fired + fire_cooldown) - world.time)*0.1] seconds"))
+		to_chat(user, span_warning("[src] is still cooling down, wait for [((last_fired + fire_cooldown) - world.time)*0.1] seconds"))
 		click_empty()
 		return
 
 //	if(isliving(user))
 //		var/mob/living/M = user
 //		if (HULK in M.mutations)
-//			to_chat(M, SPAN_WARNING("Your meaty finger is much too large for the trigger guard!"))
+//			to_chat(M, span_warning("Your meaty finger is much too large for the trigger guard!"))
 //			return
 	if (!Adjacent(loc, target))
-		to_chat(user, SPAN_WARNING("You're too far away to breach that!"))
+		to_chat(user, span_warning("You're too far away to breach that!"))
 		return
 	/*if(ishuman(user))
 		if(user.dna && user.dna.mutantrace == "adamantine")
-			to_chat(user, "\red Your metal fingers don't fit in the trigger guard!")
+			to_chat(user, span_red("Your metal fingers don't fit in the trigger guard!"))
 			return*/
 
 	add_fingerprint(user)
@@ -110,7 +110,7 @@
 /*	if(isliving(user))
 		var/mob/living/M = user
 		if ((CLUMSY in M.mutations) && prob(50))
-			to_chat(user, SPAN_DANGER("[src] blows up in your face."))
+			to_chat(user, span_danger("[src] blows up in your face."))
 			M.drop_item()
 			Fire(get_turf(M))
 			del(src)
@@ -265,7 +265,7 @@
 	explosion_act(1000, null)
 
 /obj/machinery/deployable/barrier/hatton_act()
-	visible_message(SPAN_DANGER("The [src] is blown apart!"))
+	visible_message(span_danger("The [src] is blown apart!"))
 	qdel(src)
 
 

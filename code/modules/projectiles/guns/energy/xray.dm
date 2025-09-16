@@ -17,7 +17,7 @@
 	item_charge_meter = TRUE
 	charge_meter = TRUE
 
-/obj/item/gun/energy/xray/update_icon(var/ignore_inhands)
+/obj/item/gun/energy/xray/update_icon(ignore_inhands)
 	if(charge_meter)
 		var/ratio = 0
 

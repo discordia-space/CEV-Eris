@@ -7,7 +7,7 @@
 //item_type: The type path of the object we are looking for.
 //base_quality_award: The quality awarded by following this step.
 //our_recipe: The parent recipe object
-/datum/cooking_with_jane/recipe_step/use_item/New(var/item_type, var/datum/cooking_with_jane/recipe/our_recipe)
+/datum/cooking_with_jane/recipe_step/use_item/New(item_type, datum/cooking_with_jane/recipe/our_recipe)
 	#ifdef CWJ_DEBUG
 	if(!ispath(item_type))
 		log_debug("/datum/cooking_with_jane/recipe_step/add_item/New(): item [item_type] is not a valid path")
@@ -28,7 +28,7 @@
 	..(our_recipe)
 
 
-/datum/cooking_with_jane/recipe_step/use_item/check_conditions_met(var/obj/added_item, var/datum/cooking_with_jane/recipe_tracker/tracker)
+/datum/cooking_with_jane/recipe_step/use_item/check_conditions_met(obj/added_item, datum/cooking_with_jane/recipe_tracker/tracker)
 	if(src.exact_path)
 		if(added_item.type == required_item_type)
 			return CWJ_CHECK_VALID
@@ -38,5 +38,5 @@
 	return CWJ_CHECK_INVALID
 
 //Think about a way to make this more intuitive?
-/datum/cooking_with_jane/recipe_step/use_item/calculate_quality(var/obj/added_item)
+/datum/cooking_with_jane/recipe_step/use_item/calculate_quality(obj/added_item)
 	return clamp_quality(0)

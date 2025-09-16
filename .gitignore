@@ -25,6 +25,7 @@
 # Ignore compiled linux libs in the root folder, e.g. librust_g.so
 /*.so
 
+
 #Ignore compiled files and other files generated during compilation.
 *.mdme
 *.mdme.*
@@ -214,8 +215,10 @@ Temporary Items
 
 # Built auxtools libraries and intermediate files
 aux*.dll
-libaux*.so
 aux*.pdb
+
+# Ignore compiled linux libs in the root folder, e.g. librust_g.so
+/*.so
 
 # JavaScript tools
 **/node_modules
@@ -223,3 +226,7 @@ aux*.pdb
 # Screenshot tests
 /artifacts
 yarn.lock
+
+# byond-tracy, we intentionally do not ship this and do not want to maintain it
+# https://github.com/mafemergency/byond-tracy or https://github.com/ParadiseSS13/byond-tracy
+prof.*

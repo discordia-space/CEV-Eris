@@ -86,13 +86,10 @@
 					squeals++
 					last_squealgain = world.time
 
-	else
-		if ((world.time - timeofdeath) > decompose_time)
-			dust()
 
 
 //Pixel offsetting as they scamper around
-/mob/living/simple_animal/mouse/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/simple_animal/mouse/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	if((. = ..()))
 		if (prob(50))
 			var/new_pixelx = pixel_x
@@ -136,7 +133,7 @@
 /mob/living/simple_animal/mouse/speak_audio()
 	squeak_soft(0)
 
-/mob/living/simple_animal/mouse/beg(var/atom/thing, var/atom/holder)
+/mob/living/simple_animal/mouse/beg(atom/thing, atom/holder)
 	squeak_soft(0)
 	visible_emote("squeaks timidly, sniffs the air and gazes longingly up at \the [thing.name].",0)
 
@@ -155,7 +152,7 @@
 
 //Plays a sound.
 //This is triggered when a mob steps on an NPC mouse, or manually by a playermouse
-/mob/living/simple_animal/mouse/proc/squeak(var/manual = 1)
+/mob/living/simple_animal/mouse/proc/squeak(manual = 1)
 	if (stat == CONSCIOUS)
 		playsound(src, 'sound/effects/mousesqueek.ogg', 70, 1)
 		if (manual)
@@ -164,7 +161,7 @@
 
 //Plays a random selection of four sounds, at a low volume
 //This is triggered randomly periodically by any mouse, or manually
-/mob/living/simple_animal/mouse/proc/squeak_soft(var/manual = 1)
+/mob/living/simple_animal/mouse/proc/squeak_soft(manual = 1)
 	if (stat != DEAD) //Soft squeaks are allowed while sleeping
 		var/list/new_squeaks = last_softsqueak ? soft_squeaks - last_softsqueak : soft_squeaks
 		var/sound = pick(new_squeaks)
@@ -178,7 +175,7 @@
 
 //Plays a loud sound
 //Triggered manually, when a mouse dies, or rarely when its stepped on
-/mob/living/simple_animal/mouse/proc/squeak_loud(var/manual = 0)
+/mob/living/simple_animal/mouse/proc/squeak_loud(manual = 0)
 	if (stat == CONSCIOUS)
 
 		if (squeals > 0 || !manual)
@@ -186,7 +183,7 @@
 			squeals --
 			log_say("[key_name(src)] squeals! ")
 		else
-			to_chat(src, "<span class='warning'>Your hoarse mousey throat can't squeal just now, stop and take a breath!</span>")
+			to_chat(src, span_warning("Your hoarse mousey throat can't squeal just now, stop and take a breath!"))
 
 
 //Wrapper verbs for the squeak functions
@@ -195,7 +192,7 @@
 	set category = "Abilities"
 
 	if (usr.client.prefs.muted & MUTE_IC)
-		to_chat(usr, "<span class='danger'>You are muted from IC emotes.</span>")
+		to_chat(usr, span_danger("You are muted from IC emotes."))
 		return
 
 	squeak_loud(1)
@@ -205,7 +202,7 @@
 	set category = "Abilities"
 
 	if (usr.client.prefs.muted & MUTE_IC)
-		to_chat(usr, "<span class='danger'>You are muted from IC emotes.</span>")
+		to_chat(usr, span_danger("You are muted from IC emotes."))
 		return
 
 	squeak_soft(1)
@@ -215,7 +212,7 @@
 	set category = "Abilities"
 
 	if (usr.client.prefs.muted & MUTE_IC)
-		to_chat(usr, "<span class='danger'>You are muted from IC emotes.</span>")
+		to_chat(usr, span_danger("You are muted from IC emotes."))
 		return
 
 	squeak(1)
@@ -225,7 +222,7 @@
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
-			to_chat(M, "<span class='notice'>\icon[src] Squeek!</span>")
+			to_chat(M, span_notice("[icon2html(src, M)] Squeek!"))
 			poke(1) //Wake up if stepped on
 			if (prob(95))
 				squeak(0)

@@ -129,7 +129,7 @@
 			return 1
 		throw_mode_off()
 
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 
 	if(W == A) // Handle attack_self
 		W.attack_self(src)
@@ -154,7 +154,7 @@
 		return
 
 	if(W && !W.can_use_lying && src.lying)
-		to_chat(src, SPAN_WARNING("You cannot use \the [W] while lying down!"))
+		to_chat(src, span_warning("You cannot use \the [W] while lying down!"))
 		return 1
 
 	//Atoms on turfs (not on your person)
@@ -295,6 +295,7 @@
 /atom/movable/CtrlClick(mob/user, params)
 	if(Adjacent(user))
 		user.start_pulling(src)
+		user.animate_interact(src, INTERACT_GRAB)
 
 /*
 	Alt click
@@ -350,7 +351,7 @@
 		nutrition = max(nutrition - rand(1, 5), 0)
 		handle_regular_hud_updates()
 	else
-		to_chat(src, SPAN_WARNING("You're out of energy!  You need food!"))
+		to_chat(src, span_warning("You're out of energy!  You need food!"))
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /atom/movable/proc/face_atom(atom/A)
@@ -393,8 +394,8 @@ GLOBAL_LIST_INIT(click_catchers, create_click_catcher())
 
 /proc/create_click_catcher()
 	. = list()
-	for(var/i = 0, i<15, i++)
-		for(var/j = 0, j<15, j++)
+	for(var/i = 0; i < 15; i++)
+		for(var/j = 0; j < 15; j++)
 			var/obj/screen/click_catcher/CC = new()
 			CC.screen_loc = "NORTH-[i],EAST-[j]"
 			. += CC

@@ -181,6 +181,8 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		. *= owner.stats.getStat(STAT_VIG) / STAT_LEVEL_MAX
 
 /datum/sanity/proc/handle_breakdowns()
+	if(owner.stat == DEAD)
+		return
 	for(var/datum/breakdown/B in breakdowns)
 		if(!B.update())
 			breakdowns -= B
@@ -197,9 +199,9 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		if(!rest_timer_active)//Prevent any exploits(timer is only active for one minute tops)
 			give_resting(1)
 			if(owner.stats.getPerk(PERK_ARTIST))
-				to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? " Now you need to make art. You cannot gain more insight before you do." : null]"))
+				to_chat(owner, span_notice("You have gained insight.[resting ? " Now you need to make art. You cannot gain more insight before you do." : null]"))
 			else
-				to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? " Now you need to rest and rethink your life choices." : " Your previous insight has been discarded, shifting your desires for new ones."]"))
+				to_chat(owner, span_notice("You have gained insight.[resting ? " Now you need to rest and rethink your life choices." : " Your previous insight has been discarded, shifting your desires for new ones."]"))
 				pick_desires()
 			owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
 
@@ -261,7 +263,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 /datum/sanity/proc/print_desires()
 	if(!resting)
 		return
-	to_chat(owner, SPAN_NOTICE("You desire [english_list(desires)]."))
+	to_chat(owner, span_notice("You desire [english_list(desires)]."))
 
 /datum/sanity/proc/add_rest(type, amount)
 	if(!(type in desires))
@@ -275,7 +277,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 	desires.Cut()
 	if(!rest_timer_active)
 		to_chat(owner, "<font color='purple'>[owner.stats.getPerk(PERK_ARTIST) ? "You have created art." : "You have rested well."]\
-					<br>Select what you wish to do with your fulfilled insight <a HREF=?src=\ref[src];here_and_now=TRUE>here and now</a> or get to safety first if you are in danger.\
+					<br>Select what you wish to do with your fulfilled insight <a HREF='byond://?src=\ref[src];here_and_now=TRUE'>here and now</a> or get to safety first if you are in danger.\
 					<br>The prompt will appear in one minute.</font>")
 		rest_timer_active = TRUE
 		rest_timer_time = 60 SECONDS
@@ -291,7 +293,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 
 	if(rest == "Focus on an oddity")
 		if(owner.stats.getPerk(PERK_ARTIST))
-			to_chat(owner, SPAN_NOTICE("Your artistic mind prevents you from using an oddity."))
+			to_chat(owner, span_notice("Your artistic mind prevents you from using an oddity."))
 			rest = "Internalize your recent experiences"
 		else
 			var/oddity_in_posession = FALSE
@@ -302,7 +304,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 					break
 
 			if(!oddity_in_posession)
-				to_chat(owner, SPAN_NOTICE("You do not have any oddities to use."))
+				to_chat(owner, span_notice("You do not have any oddities to use."))
 				rest = "Internalize your recent experiences"
 
 	switch(rest)
@@ -323,7 +325,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 				var/list/L = I.calculate_statistics()
 				for(var/stat in L)
 					var/stat_up = L[stat] * 2
-					to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
+					to_chat(owner, span_notice("Your [stat] stat goes up by [stat_up]"))
 					owner.stats.changeStat(stat, stat_up)
 
 				if(I.perk)
@@ -334,7 +336,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 				for(var/mob/living/carbon/human/H in viewers(owner))
 					SEND_SIGNAL_OLD(H, COMSIG_HUMAN_ODDITY_LEVEL_UP, owner, O)
 
-			else to_chat(owner, SPAN_NOTICE("Something really buggy just happened with your brain."))
+			else to_chat(owner, span_notice("Something really buggy just happened with your brain."))
 
 		if("Convert your fulfilled insight for later use")
 			owner.rest_points += 1 //yeah... that's it
@@ -451,7 +453,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
 	hud?.update_icon()
 
-/datum/sanity/proc/breakdown(var/positive_breakdown = FALSE)
+/datum/sanity/proc/breakdown(positive_breakdown = FALSE)
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
 
 	if(owner.stats.getPerk(PERK_NJOY))

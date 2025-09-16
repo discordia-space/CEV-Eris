@@ -46,7 +46,7 @@
 		BP_R_LEG =  new /datum/organ_description/leg/right/slime
 	)
 
-/datum/species/slime/handle_death(var/mob/living/carbon/human/H)
+/datum/species/slime/handle_death(mob/living/carbon/human/H)
 	spawn(1)
 		if(H)
 			H.gib()

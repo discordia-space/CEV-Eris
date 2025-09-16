@@ -4,17 +4,17 @@
 	anchored = TRUE
 	density = TRUE
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		return attack_hand(user)
+/obj/structure/signpost/attackby(obj/item/W as obj, mob/user as mob)
+	return attack_hand(user)
 
-	attack_hand(mob/user as mob)
-		switch(alert("Travel back to ss13?", , "Yes", "No"))
-			if("Yes")
-				if(!Adjacent(user))
-					return
-				user.forceMove(pick_spawn_location())
-			if("No")
+/obj/structure/signpost/attack_hand(mob/user as mob)
+	switch(alert("Travel back to ss13?", , "Yes", "No"))
+		if("Yes")
+			if(!Adjacent(user))
 				return
+			user.forceMove(pick_spawn_location())
+		if("No")
+			return
 /* LETHALGHOSDT: WTF is this? Layer was set to 99
 /obj/effect/mark
 	var/mark = ""
@@ -93,9 +93,9 @@
 	throw_range = 20
 	flags = CONDUCT
 
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
-		user.drop_item()
-		src.throw_at(target, throw_range, throw_speed, user)
+/obj/item/beach_ball/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+	user.drop_item()
+	src.throw_at(target, throw_range, throw_speed, user)
 
 /obj/effect/stop
 	var/victim

@@ -53,7 +53,7 @@
 	if(!disk)
 		return
 	if(!istype(disk, /obj/item/computer_hardware/hard_drive/portable/design/omg))
-		audible_message(SPAN_WARNING("Invalid disk."))
+		audible_message(span_warning("Invalid disk."))
 		return
 
 	for(var/design_file in disk.find_files_by_type(/datum/computer_file/binary/design))
@@ -63,7 +63,7 @@
 			files.AddDesign2Known(D)
 			ripped_categories |= D.category
 
-	audible_message(SPAN_NOTICE("The contents of \the [disk] have been saved to \the [src]'s drive."))
+	audible_message(span_notice("The contents of \the [disk] have been saved to \the [src]'s drive."))
 
 /obj/machinery/autolathe/organ_fabricator/insert_disk(mob/living/user, obj/item/computer_hardware/hard_drive/portable/inserted_disk)
 	. = ..()
@@ -127,7 +127,7 @@
 
 	// Reject biomatter
 	if(istype(I, /obj/item/stack/material/biomatter))
-		to_chat(user, SPAN_NOTICE("You don't see a way to insert \the [I] into \the [src]."))
+		to_chat(user, span_notice("You don't see a way to insert \the [I] into \the [src]."))
 		return
 
 	..()
@@ -140,7 +140,7 @@
 /obj/machinery/autolathe/organ_fabricator/eject(material, amount)
 	var/material/M = get_material_by_name(material)
 	if(M.stack_type == /obj/item/stack/material/biomatter)
-		visible_message(SPAN_WARNING("Biotic substrate cannot be removed from this machine."))
+		visible_message(span_warning("Biotic substrate cannot be removed from this machine."))
 		return
 	..()
 

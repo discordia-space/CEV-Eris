@@ -28,7 +28,7 @@
 	shock_stage = 0
 	..()
 
-/mob/living/carbon/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/carbon/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	if(.)
 		if (src.nutrition && src.stat != 2)
@@ -40,12 +40,12 @@
 			reset_view(null)
 			is_watching = FALSE
 
-/mob/living/carbon/relaymove(var/mob/living/user, direction)
+/mob/living/carbon/relaymove(mob/living/user, direction)
 	if((user in src.stomach_contents) && istype(user))
 		if(user.last_special <= world.time)
 			user.last_special = world.time + 50
-			src.visible_message(SPAN_DANGER("You hear something rumbling inside [src]'s stomach..."))
-			var/obj/item/I = user.get_active_hand()
+			src.visible_message(span_danger("You hear something rumbling inside [src]'s stomach..."))
+			var/obj/item/I = user.get_active_held_item()
 			if(I && I.force)
 				var/d = rand(round(I.force / 4), I.force)
 				if(ishuman(src))
@@ -57,7 +57,7 @@
 					H.updatehealth()
 				else
 					src.take_organ_damage(d)
-				user.visible_message(SPAN_DANGER("[user] attacks [src]'s stomach wall with the [I.name]!"))
+				user.visible_message(span_danger("[user] attacks [src]'s stomach wall with the [I.name]!"))
 				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, 1)
 
 				if(prob(src.getBruteLoss() - 50))
@@ -71,9 +71,9 @@
 		if(M in src.stomach_contents)
 			src.stomach_contents.Remove(M)
 		M.loc = src.loc
-		for(var/mob/N in viewers(src, null))
+		for(var/mob/N in viewers(get_turf(src)))
 			if(N.client)
-				N.show_message(text("\red <B>[M] bursts out of [src]!</B>"), 2)
+				N.show_message(span_red("<B>[M] bursts out of [src]!</B>"), 2)
 	..()
 
 /mob/living/carbon/attack_hand(mob/M as mob)
@@ -83,11 +83,11 @@
 		if (H.hand)
 			temp = H.organs_by_name[BP_L_ARM]
 		if(temp && !temp.is_usable())
-			to_chat(H, "\red You can't use your [temp.name]")
+			to_chat(H, span_red("You can't use your [temp.name]"))
 			return
 
 
-/mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1, var/def_zone = null)
+/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, def_zone = null)
 	if(status_flags & GODMODE)	return 0	//godmode
 	shock_damage *= siemens_coeff
 	if (shock_damage<1)
@@ -97,17 +97,17 @@
 	playsound(loc, "sparks", 50, 1, -1)
 	if (shock_damage > 15)
 		src.visible_message(
-			"\red [src] was shocked by the [source]!", \
-			"\red <B>You feel a powerful shock course through your body!</B>", \
-			"\red You hear a heavy electrical crack." \
+			span_red("[src] was shocked by the [source]!"), \
+			span_red("<B>You feel a powerful shock course through your body!</B>"), \
+			span_red("You hear a heavy electrical crack.") \
 		)
 		SEND_SIGNAL_OLD(src, COMSIG_CARBON_ELECTROCTE)
 		Weaken(max(min(10,round(shock_damage / 10 )), 2) SECONDS)
 	else
 		src.visible_message(
-			"\red [src] was mildly shocked by the [source].", \
-			"\red You feel a mild shock course through your body.", \
-			"\red You hear a light zapping." \
+			span_red("[src] was mildly shocked by the [source]."), \
+			span_red("You feel a mild shock course through your body."), \
+			span_red("You hear a light zapping.") \
 		)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -120,7 +120,7 @@
 
 	//We cache the held items before and after swapping using get active hand.
 	//This approach is future proof and will support people who possibly have >2 hands
-	var/obj/item/prev_held = get_active_hand()
+	var/obj/item/prev_held = get_active_held_item()
 
 	if(prev_held)
 		if(prev_held.wielded)
@@ -131,7 +131,7 @@
 	for (var/obj/screen/inventory/hand/H in src.HUDinventory)
 		H.update_icon()
 
-	var/obj/item/new_held = get_active_hand()
+	var/obj/item/new_held = get_active_held_item()
 
 	//Tell the old and new held items that they've been swapped
 
@@ -143,7 +143,7 @@
 
 	return TRUE
 
-/mob/living/carbon/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
+/mob/living/carbon/proc/activate_hand(selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
 
 	if(istext(selhand))
 		selhand = lowertext(selhand)
@@ -157,31 +157,31 @@
 		swap_hand()
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if (src.health >= HEALTH_THRESHOLD_CRIT)
+	if (src.health >= CONFIG_GET(number/health_threshold_crit))
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.check_self_for_injuries()
 		else if (on_fire)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			if (M.on_fire)
-				M.visible_message(SPAN_WARNING("[M] tries to pat out [src]'s flames, but to no avail!"),
-				SPAN_WARNING("You try to pat out [src]'s flames, but to no avail! Put yourself out first!"))
+				M.visible_message(span_warning("[M] tries to pat out [src]'s flames, but to no avail!"),
+				span_warning("You try to pat out [src]'s flames, but to no avail! Put yourself out first!"))
 			else
-				M.visible_message(SPAN_WARNING("[M] tries to pat out [src]'s flames!"),
-				SPAN_WARNING("You try to pat out [src]'s flames! Hot!"))
+				M.visible_message(span_warning("[M] tries to pat out [src]'s flames!"),
+				span_warning("You try to pat out [src]'s flames! Hot!"))
 				if(do_mob(M, src, 15))
 					src.fire_stacks -= 0.5
 					if (prob(10) && (M.fire_stacks <= 0))
 						M.fire_stacks += 1
 					M.IgniteMob()
 					if (M.on_fire)
-						M.visible_message(SPAN_DANGER("The fire spreads from [src] to [M]!"),
-						SPAN_DANGER("The fire spreads to you as well!"))
+						M.visible_message(span_danger("The fire spreads from [src] to [M]!"),
+						span_danger("The fire spreads to you as well!"))
 					else
 						src.fire_stacks -= 0.5 //Less effective than stop, drop, and roll - also accounting for the fact that it takes half as long.
 						if (src.fire_stacks <= 0)
-							M.visible_message(SPAN_WARNING("[M] successfully pats out [src]'s flames."),
-							SPAN_WARNING("You successfully pat out [src]'s flames."))
+							M.visible_message(span_warning("[M] successfully pats out [src]'s flames."),
+							span_warning("You successfully pat out [src]'s flames."))
 							src.ExtinguishMob()
 							src.fire_stacks = 0
 		else
@@ -202,31 +202,35 @@
 				var/obj/item/organ/external/O = H.get_organ(M.targeted_organ)
 				target_organ_exists = (O && O.is_usable())
 			if(show_ssd && !client && !teleop)
-				M.visible_message(SPAN_NOTICE("[M] shakes [src] trying to wake [t_him] up!"), \
-				SPAN_NOTICE("You shake [src], but they do not respond... Maybe they have S.S.D?"))
+				M.visible_message(span_notice("[M] shakes [src] trying to wake [t_him] up!"), \
+				span_notice("You shake [src], but they do not respond... Maybe they have S.S.D?"))
+				jiggle()
 			else if(lying || src.sleeping)
 				src.sleeping = max(0,src.sleeping-5)
 				if(src.sleeping == 0)
 					src.resting = 0
-				M.visible_message(SPAN_NOTICE("[M] shakes [src] trying to wake [t_him] up!"), \
-									SPAN_NOTICE("You shake [src] trying to wake [t_him] up!"))
+				M.visible_message(span_notice("[M] shakes [src] trying to wake [t_him] up!"), \
+									span_notice("You shake [src] trying to wake [t_him] up!"))
+				jiggle()
 			else if((M.targeted_organ == BP_HEAD) && target_organ_exists)
-				M.visible_message(SPAN_NOTICE("[M] pats [src]'s head."), \
-									SPAN_NOTICE("You pat [src]'s head."))
+				M.visible_message(span_notice("[M] pats [src]'s head."), \
+									span_notice("You pat [src]'s head."))
 			else if(M.targeted_organ == BP_R_ARM || M.targeted_organ == BP_L_ARM)
 				if(target_organ_exists)
-					M.visible_message(SPAN_NOTICE("[M] shakes hands with [src]."), \
-										SPAN_NOTICE("You shake hands with [src]."))
+					M.visible_message(span_notice("[M] shakes hands with [src]."), \
+										span_notice("You shake hands with [src]."))
+					animate_interact(src, INTERACT_GENERIC)
 				else
-					M.visible_message(SPAN_NOTICE("[M] holds out \his hand to [src]."), \
-										SPAN_NOTICE("You hold out your hand to [src]."))
+					M.visible_message(span_notice("[M] holds out \his hand to [src]."), \
+										span_notice("You hold out your hand to [src]."))
 			else
 				var/mob/living/carbon/human/hugger = M
 				if(istype(hugger))
 					hugger.species.hug(hugger,src)
 				else
-					M.visible_message(SPAN_NOTICE("[M] hugs [src] to make [t_him] feel better!"), \
-								SPAN_NOTICE("You hug [src] to make [t_him] feel better!"))
+					M.visible_message(span_notice("[M] hugs [src] to make [t_him] feel better!"), \
+								span_notice("You hug [src] to make [t_him] feel better!"))
+					animate_interact(src, INTERACT_HELP)
 				if(M.fire_stacks >= (src.fire_stacks + 3))
 					src.fire_stacks += 1
 					M.fire_stacks -= 1
@@ -261,7 +265,7 @@
 		return
 	if(target.type == /obj/screen) return
 
-	var/atom/movable/item = src.get_active_hand()
+	var/atom/movable/item = src.get_active_held_item()
 
 	if(!item) return
 
@@ -285,7 +289,7 @@
 
 				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been thrown by [usr.name] ([usr.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
 				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
-				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
+				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] [ADMIN_JMP(usr)]")
 				item.throw_at(target, item.throw_range, item.throw_speed, src)
 				return
 
@@ -295,15 +299,15 @@
 			var/obj/item/I = item
 			var/robust = stats.getStat(STAT_ROB)
 			var/timer = ((5 * I.w_class) - (robust * 0.1)) //(W_CLASS * 5) - (STR * 0.1)
-			visible_message(SPAN_DANGER("[src] is trying to toss \the [item] into the air!"))
+			visible_message(span_danger("[src] is trying to toss \the [item] into the air!"))
 			if((I.w_class < ITEM_SIZE_GARGANTUAN) && do_after(src, timer))
 				item.throwing = TRUE
 				unEquip(item, loc)
 				item.forceMove(get_turf(GetAbove(src)))
 			else
-				to_chat(src, SPAN_WARNING("You were interrupted!"))
+				to_chat(src, span_warning("You were interrupted!"))
 				return
-		visible_message(SPAN_DANGER("[src] has thrown [item]."))
+		visible_message(span_danger("[src] has thrown [item]."))
 		if(incorporeal_move)
 			inertia_dir = 0
 		else if(!check_gravity() && !src.allow_spacemove()) // spacemove would return one with magboots, -1 with adjacent tiles
@@ -350,12 +354,12 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		to_chat(usr, "\red You are already sleeping")
+		to_chat(usr, span_red("You are already sleeping"))
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap
 
-/mob/living/carbon/Bump(var/atom/movable/AM, yes)
+/mob/living/carbon/Bump(atom/movable/AM, yes)
 	if(now_pushing || !yes)
 		return
 	..()
@@ -363,18 +367,18 @@
 /mob/living/carbon/cannot_use_vents()
 	return
 
-/mob/living/carbon/slip(var/slipped_on,stun_duration=8)
+/mob/living/carbon/slip(slipped_on,stun_duration=8)
 	if(buckled)
 		return FALSE
 	stop_pulling()
 	if (slipped_on)
-		to_chat(src, SPAN_WARNING("You slipped on [slipped_on]!"))
+		to_chat(src, span_warning("You slipped on [slipped_on]!"))
 		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 	Weaken(stun_duration)
 
 	return TRUE
 
-/mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
+/mob/living/carbon/proc/add_chemical_effect(effect, magnitude = 1)
 	if(effect == CE_ALCOHOL)
 		if(stats.getPerk(/datum/perk/inspiration))
 			stats.addPerk(/datum/perk/active_inspiration)
@@ -391,32 +395,65 @@
 
 	if(!species)
 		return null
-	return species.default_language ? all_languages[species.default_language] : null
+	return species.default_language ? GLOB.all_languages[species.default_language] : null
 
 /mob/living/carbon/show_inv(mob/user as mob)
 	user.set_machine(src)
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR>
-	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
-	<BR>[(internal ? text("<A href='?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
-	<BR><A href='?src=\ref[src];item=pockets'>Empty Pockets</A>
-	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
-	<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>
+	<BR><B>Head(Mask):</B> <A href='byond://?src=\ref[src];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
+	<BR><B>Left Hand:</B> <A href='byond://?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
+	<BR><B>Right Hand:</B> <A href='byond://?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
+	<BR><B>Back:</B> <A href='byond://?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='byond://?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
+	<BR>[(internal ? text("<A href='byond://?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
+	<BR><A href='byond://?src=\ref[src];item=pockets'>Empty Pockets</A>
+	<BR><A href='byond://?src=\ref[user];refresh=1'>Refresh</A>
+	<BR><A href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-
+// hi nerd
 	var/datum/browser/panel = new(user, "mob[name]", "Mob", 325, 400)
 	panel.set_content(dat)
 	panel.open()
 
-/mob/living/carbon/proc/should_have_process(var/organ_check)
+/mob/living/carbon/proc/should_have_process(organ_check)
 	return 0
 
-/mob/living/carbon/proc/has_appendage(var/limb_check)
+/mob/living/carbon/proc/has_appendage(limb_check)
 	return 0
 
 /mob/living/carbon/proc/need_breathe()
 	return TRUE
+
+/mob/living/carbon/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", VV_HK_SPACER)
+	VV_DROPDOWN_OPTION(VV_HK_MAKE_ROBOT, "Make Robot")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_ORGANS, "Modify Oranges")
+
+/mob/living/carbon/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_MODIFY_ORGANS] && check_rights(R_FUN))
+		var/organoption = input(usr, "What do you want to do?", "Modify Organs", null) as null|anything in list("Add Organ", "Remove Organ")
+
+		if(isnull(organoption))
+			return
+		if (organoption == "Add Organ")
+			var/new_organ = input("Please choose an organ to add.","Organ",null) as null|anything in typesof(/obj/item/organ)-/obj/item/organ
+			if(!new_organ) return
+
+			if(locate(new_organ) in src.internal_organs)
+				to_chat(usr, "Mob already has that organ.")
+				return
+
+			new new_organ(src)
+		if (organoption == "Remove Organ")
+			var/obj/item/organ/rem_organ = input("Please choose an organ to remove.","Organ",null) as null|anything in src.internal_organs
+
+			if(!(locate(rem_organ) in src.internal_organs))
+				to_chat(usr, "Mob does not have that organ.")
+				return
+
+			to_chat(usr, "Removed [rem_organ] from [src].")
+			rem_organ.removed()
+			qdel(rem_organ)

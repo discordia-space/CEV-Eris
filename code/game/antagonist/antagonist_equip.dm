@@ -36,7 +36,7 @@
 	for (var/obj/item/card/id/W in things)
 		W.access |= default_access
 
-/datum/antagonist/proc/create_id(var/assignment, var/equip = 1)
+/datum/antagonist/proc/create_id(assignment, equip = 1)
 	if(!owner || !owner.current || !ishuman(owner.current))
 		return
 
@@ -55,7 +55,7 @@
 	if(equip) player.equip_to_slot_or_del(W, slot_wear_id)
 	return W
 
-/datum/antagonist/proc/create_radio(var/freq)
+/datum/antagonist/proc/create_radio(freq)
 	if(!owner || !owner.current || !ishuman(owner.current))
 		return
 

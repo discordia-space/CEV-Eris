@@ -51,10 +51,10 @@
 	var/near_external = FALSE
 
 /obj/effect/plant/Destroy()
-	if(plant_controller)
-		plant_controller.remove_plant(src)
+	if(SSplants)
+		SSplants.remove_plant(src)
 	for(var/obj/effect/plant/neighbor in range(1,src))
-		plant_controller.add_plant(neighbor)
+		SSplants.add_plant(neighbor)
 	if(seed.type == /datum/seed/mushroom/maintshroom)
 		GLOB.all_maintshrooms -= src
 	. = ..()
@@ -63,7 +63,7 @@
 /obj/effect/plant/single
 	spread_chance = 0
 
-/obj/effect/plant/New(var/newloc, var/datum/seed/newseed, var/obj/effect/plant/newparent)
+/obj/effect/plant/New(newloc, datum/seed/newseed, obj/effect/plant/newparent)
 	..()
 
 	if(!newparent)
@@ -71,15 +71,15 @@
 	else
 		parent = newparent
 
-	if(!plant_controller)
+	if(!SSplants)
 		sleep(250) // ugly hack, should mean roundstart plants are fine.
-	if(!plant_controller)
-		to_chat(world, SPAN_DANGER("Plant controller does not exist and [src] requires it. Aborting."))
+	if(!SSplants)
+		to_chat(world, span_danger("Plant controller does not exist and [src] requires it. Aborting."))
 		qdel(src)
 		return
 
 	if(!istype(newseed))
-		newseed = plant_controller.seeds[DEFAULT_SEED]
+		newseed = SSplants.seeds[DEFAULT_SEED]
 	seed = newseed
 	if(!seed)
 		qdel(src)
@@ -134,7 +134,7 @@
 		if(seed.get_trait(TRAIT_WALL_HUGGER))
 			set_dir(calc_dir())
 		update_icon()
-		plant_controller.add_plant(src)
+		SSplants.add_plant(src)
 
 		// Some plants eat through plating.
 		if(islist(seed.chems) && !isnull(seed.chems["pacid"]))
@@ -209,7 +209,7 @@ var/list/global/cutoff_plant_icons = list()
 //Used for wall hugger plants. Retrieves or creates an icon used for plants growing on the north side of a wall
 //This allows them to be cutoff and appear to draw under the wall
 
-/obj/effect/plant/proc/get_cutoff_plant_icon(var/icon_base)
+/obj/effect/plant/proc/get_cutoff_plant_icon(icon_base)
 	if (!icon_base)
 		return icon //This is not unlikely
 
@@ -250,7 +250,7 @@ var/list/global/cutoff_plant_icons = list()
 
 	var/direction = UP
 
-	for(var/wallDir in cardinal)
+	for(var/wallDir in GLOB.cardinal)
 		var/turf/newTurf = get_step(T,wallDir)
 		if(newTurf.is_wall)
 			direction |= wallDir
@@ -305,7 +305,7 @@ var/list/global/cutoff_plant_icons = list()
 
 
 
-/obj/effect/plant/proc/check_health(var/iconupdate = TRUE)
+/obj/effect/plant/proc/check_health(iconupdate = TRUE)
 	if(health <= 0)
 		die_off()
 	else
@@ -318,9 +318,9 @@ var/list/global/cutoff_plant_icons = list()
 /obj/effect/plant/examine(mob/user, extra_description = "")
 	if(seed.get_trait(TRAIT_CHEMS))
 		if(!reagents.total_volume)
-			extra_description += SPAN_NOTICE("It looks totally dried.")
+			extra_description += span_notice("It looks totally dried.")
 		else if(!reagents.get_free_space())
-			extra_description += SPAN_NOTICE("It looks juicy.")
+			extra_description += span_notice("It looks juicy.")
 		else
-			extra_description += SPAN_NOTICE("It looks a bit dry.")
+			extra_description += span_notice("It looks a bit dry.")
 	..(user, extra_description)

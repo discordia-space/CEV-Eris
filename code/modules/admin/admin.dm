@@ -8,16 +8,16 @@ var/global/floorIsLava = 0
 
 ////////////////////////////////
 /proc/message_admins(msg)
-	msg = "<span class=\"log_message\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
-	log_adminwarn(msg)
-	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights)
-			to_chat(C, msg)
+	msg = "<span class='admin'><span class='prefix'>ADMIN LOG:</span> <span class='message'>[msg]</span></span>"
+	to_chat(GLOB.admins,
+		type = MESSAGE_TYPE_ADMINLOG,
+		html = msg,
+		confidential = TRUE)
 
 /proc/msg_admin_attack(text) //Toggleable Attack Messages
 	log_attack(text)
-	var/rendered = "<span class=\"log_message\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
-	for(var/client/C in admins)
+	var/rendered = "<span class='log_message'><span class='prefix'>ATTACK:</span> <span class='message'>[text]</span></span>"
+	for(var/client/C in GLOB.admins)
 		if(R_ADMIN & C.holder.rights)
 			if(C.get_preference_value(/datum/client_preference/staff/show_attack_logs) == GLOB.PREF_SHOW)
 				var/msg = rendered
@@ -31,7 +31,7 @@ var/global/floorIsLava = 0
                send a sound and flash the window. Defaults to FALSE
  */
 /proc/message_adminTicket(msg, important = FALSE)
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(R_ADMIN & C.holder.rights)
 			to_chat(C, msg)
 			if(important || (C.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR))
@@ -45,22 +45,17 @@ var/global/floorIsLava = 0
                send a sound and flash the window. Defaults to FALSE
  */
 /proc/message_mentorTicket(msg, important = FALSE)
-	for(var/client/C in admins)
-		if(check_rights(R_ADMIN | R_MENTOR | R_MOD, 0, C.mob))
+	for(var/client/C in GLOB.admins)
+		if(check_rights(R_ADMIN | R_MENTOR, 0, C.mob))
 			to_chat(C, msg)
 			if(important || (C.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR))
 				sound_to(C, 'sound/effects/adminhelp.ogg')
 
-proc/admin_notice(message, rights)
+/proc/admin_notice(message, rights)
 	var/list/mob_list = SSmobs.mob_list | SShumans.mob_list
 	for(var/mob/M in mob_list)
 		if(check_rights(rights, 0, M))
 			to_chat(M, message)
-
-// Not happening.
-/datum/admins/SDQL_update(const/var_name, new_value)
-	return FALSE
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
@@ -75,9 +70,8 @@ proc/admin_notice(message, rights)
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	var/body = "<html><head><title>Log Panel of [M.real_name]</title></head>"
-	body += "<body><center>Logs of <b>[M]</b><br>"
-	body += "<a href='?src=\ref[src];viewlogs=\ref[M]'>REFRESH</a></center><br>"
+	var/body = "<center>Logs of <b>[M]</b><br>"
+	body += "<a href='byond://?src=\ref[src];[HrefToken()]viewlogs=\ref[M]'>REFRESH</a></center><br>"
 
 
 	var/i = length(M.attack_log)
@@ -85,11 +79,11 @@ proc/admin_notice(message, rights)
 		body += M.attack_log[i] + "<br>"
 		i--
 
-	usr << browse(body, "window=\ref[M]logs;size=500x500")
+	usr << browse(HTML_SKELETON_TITLE("Log Panel of [M.real_name]", body), "window=\ref[M]logs;size=500x500")
 
 
-//shows an interface for individual players, with various links (links require additional flags
-/datum/admins/proc/show_player_panel(mob/M in SSmobs.mob_list | SShumans.mob_list)
+/// shows an interface for individual players, with various links (links require additional flags
+/datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Show Player Panel"
 	set desc = "Edit player (respawn, ban, heal, etc)"
@@ -103,13 +97,13 @@ proc/admin_notice(message, rights)
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	var/body = "<html><head><title>Options for [M.key]</title></head>"
-	body += "<body>Options panel for <b>[M]</b>"
+	var/body = ""
+	body += "Options panel for <b>[M]</b>"
 
 	if(M.client)
 		body += " played by <b><a href='http://byond.com/members/[M.client.ckey]'>[M.client]</b></a> "
-		body += "\[<A href='?src=\ref[src];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]<br>"
-		body += "<b>Registration date:</b> [M.client.registration_date ? M.client.registration_date : "Unknown"]<br>"
+		body += "\[<A href='byond://?src=\ref[src];[HrefToken()];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]<br>"
+		body += "<b>Registration date:</b> [M.client.account_join_date ? M.client.account_join_date : "Unknown"]<br>"
 		body += "<b>IP:</b> [M.client.address ? M.client.address : "Unknown"]<br>"
 
 		var/country = M.client.country
@@ -124,47 +118,53 @@ proc/admin_notice(message, rights)
 	if(isnewplayer(M))
 		body += " <B>Hasn't Entered Game</B> "
 	else
-		body += " \[<A href='?src=\ref[src];revive=\ref[M]'>Heal</A>\] "
+		body += " \[<A href='byond://?src=\ref[src];[HrefToken()];revive=\ref[M]'>Heal</A>\] "
+
+	if(M.ckey)
+		body += "<br>\[<A href='byond://?_src_=holder;[HrefToken()];ppbyckey=[M.ckey];ppbyckeyorigmob=\ref[M]'>Find Updated Panel</A>\]"
 
 	body += {"
 		<br><br>\[
-		<a href='?_src_=vars;Vars=\ref[M]'>VV</a> -
-		<a href='?src=\ref[src];contractor=\ref[M]'>TP</a> -
-		<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a> -
-		<a href='?src=\ref[src];subtlemessage=\ref[M]'>SM</a> -
-		<a href='?src=\ref[src];manup=\ref[M]'>MAN_UP</a> -
-		<a href='?src=\ref[src];paralyze=\ref[M]'>PARA</a> -
+		<a href='byond://?_src_=vars;[HrefToken()];Vars=\ref[M]'>VV</a> -
+		<a href='byond://?src=\ref[src];[HrefToken()];contractor=\ref[M]'>TP</a> -
+		<a href='byond://?src=\ref[usr];[HrefToken()];priv_msg=\ref[M]'>PM</a> -
+		<a href='byond://?src=\ref[src];[HrefToken()];subtlemessage=\ref[M]'>SM</a> -
+		<a href='byond://?src=\ref[src];[HrefToken()];manup=\ref[M]'>MAN_UP</a> -
+		<a href='byond://?src=\ref[src];[HrefToken()];paralyze=\ref[M]'>PARA</a> -
 		[admin_jump_link(M, src)] -
-		<a href='?src=\ref[src];viewlogs=\ref[M]'>LOGS</a>\] <br>
+		<a href='byond://?src=\ref[src];[HrefToken()];viewlogs=\ref[M]'>LOGS</a>\] <br>
 		<b>Mob type</b> = [M.type]<br><br>
-		<A href='?src=\ref[src];boot2=\ref[M]'>Kick</A> |
-		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |
-		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
-		<A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
-		<A href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</A> |
-
+		<A href='byond://?src=\ref[src];[HrefToken()];boot2=\ref[M]'>Kick</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];warn=[M.ckey]'>Warn</A> |
+		<A href='byond://?src=\ref[src];[HrefToken()];notes=show;mob=\ref[M]'>Notes</A> |
 	"}
 
 	if(M.client)
-		body += "\ <A href='?_src_=holder;sendbacktolobby=\ref[M]'>Send back to Lobby</A> | "
+		body += "<A href='byond://?_src_=holder;[HrefToken()];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</A> | "
+	else
+		body += "<A href='byond://?_src_=holder;[HrefToken()];newbankey=[M.key]'>Ban</A> | "
+
+	body += "<A href='byond://?_src_=holder;[HrefToken()];showmessageckey=[M.ckey]'>Notes | Messages | Watchlist</A> | "
+	if(M.client)
+		body += "\ <A href='byond://?_src_=holder;[HrefToken()];sendbacktolobby=\ref[M]'>Send back to Lobby</A> | "
 		var/muted = M.client.prefs.muted
 		body += {"<br><b>Mute: </b>
-			\[<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
-			<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC)?"red":"blue"]'>OOC</font></a> |
-			<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> |
-			<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> |
-			<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]
-			<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_TTS]'><font color='[(muted & MUTE_TTS)?"red":"blue"]'>TTS</font></a>\]
-			(<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)
+			\[<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC)?"red":"blue"]'>OOC</font></a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_TTS]'><font color='[(muted & MUTE_TTS)?"red":"blue"]'>TTS</font></a>\]
+			(<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)
 		"}
 
 	body += {"<br><br>
-		<A href='?src=\ref[src];jumpto=\ref[M]'><b>Jump to</b></A> |
-		<A href='?src=\ref[src];getmob=\ref[M]'>Get</A>
+		<A href='byond://?src=\ref[src];[HrefToken()];jumpto=\ref[M]'><b>Jump to</b></A> |
+		<A href='byond://?src=\ref[src];[HrefToken()];getmob=\ref[M]'>Get</A>
 		<br><br>
-		[check_rights(R_ADMIN|R_MOD,0) ? "<A href='?src=\ref[src];contractor=\ref[M]'>Contractor panel</A> | " : "" ]
-		<A href='?src=\ref[src];narrateto=\ref[M]'>Narrate to</A> |
-		<A href='?src=\ref[src];subtlemessage=\ref[M]'>Subtle message</A>
+		[check_rights(R_ADMIN,0) ? "<A href='byond://?src=\ref[src];[HrefToken()];contractor=\ref[M]'>Contractor panel</A> | " : "" ]
+		<A href='byond://?src=\ref[src];[HrefToken()];narrateto=\ref[M]'>Narrate to</A> |
+		<A href='byond://?src=\ref[src];[HrefToken()];subtlemessage=\ref[M]'>Subtle message</A>
 	"}
 
 	if (M.client)
@@ -177,69 +177,71 @@ proc/admin_notice(message, rights)
 			if(isAI(M))
 				body += "<B>Is an AI</B> "
 			else if(ishuman(M))
-				body += {"<A href='?src=\ref[src];makeai=\ref[M]'>Make AI</A> |
-					<A href='?src=\ref[src];makerobot=\ref[M]'>Make Robot</A> |
-					<A href='?src=\ref[src];makeslime=\ref[M]'>Make slime</A>
+				body += {"<A href='byond://?src=\ref[src];[HrefToken()];makeai=\ref[M]'>Make AI</A> |
+					<A href='byond://?src=\ref[src];[HrefToken()];makerobot=\ref[M]'>Make Robot</A> |
+					<A href='byond://?src=\ref[src];[HrefToken()];makeslime=\ref[M]'>Make slime</A>
 				"}
 
 			//Simple Animals
 			if(isanimal(M))
-				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A> | "
+				body += "<A href='byond://?src=\ref[src];[HrefToken()];makeanimal=\ref[M]'>Re-Animalize</A> | "
 			else
-				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
+				body += "<A href='byond://?src=\ref[src];[HrefToken()];makeanimal=\ref[M]'>Animalize</A> | "
 
 			body += {"<br><br>
 				<b>Rudimentary transformation:</b><font size=2><br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.</font><br>
-				<A href='?src=\ref[src];simplemake=observer;mob=\ref[M]'>Observer</A> |
-				<A href='?src=\ref[src];simplemake=angel;mob=\ref[M]'>ANGEL</A> |
-				\[ Crew: <A href='?src=\ref[src];simplemake=human;mob=\ref[M]'>Human</A>
-				<A href='?src=\ref[src];simplemake=nymph;mob=\ref[M]'>Nymph</A>
-				\[ slime: <A href='?src=\ref[src];simplemake=slime;mob=\ref[M]'>Baby</A>,
-				<A href='?src=\ref[src];simplemake=adultslime;mob=\ref[M]'>Adult</A> \]
-				<A href='?src=\ref[src];simplemake=monkey;mob=\ref[M]'>Monkey</A> |
-				<A href='?src=\ref[src];simplemake=robot;mob=\ref[M]'>Cyborg</A> |
-				<A href='?src=\ref[src];simplemake=cat;mob=\ref[M]'>Cat</A> |
-				<A href='?src=\ref[src];simplemake=runtime;mob=\ref[M]'>Runtime</A> |
-				<A href='?src=\ref[src];simplemake=corgi;mob=\ref[M]'>Corgi</A> |
-				<A href='?src=\ref[src];simplemake=ian;mob=\ref[M]'>Ian</A> |
-				<A href='?src=\ref[src];simplemake=crab;mob=\ref[M]'>Crab</A> |
-				<A href='?src=\ref[src];simplemake=coffee;mob=\ref[M]'>Coffee</A> |
-				\[ Construct: <A href='?src=\ref[src];simplemake=constructarmoured;mob=\ref[M]'>Armoured</A> ,
-				<A href='?src=\ref[src];simplemake=constructbuilder;mob=\ref[M]'>Builder</A> ,
-				<A href='?src=\ref[src];simplemake=constructwraith;mob=\ref[M]'>Wraith</A> \]
-				<A href='?src=\ref[src];simplemake=shade;mob=\ref[M]'>Shade</A>
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=observer;mob=\ref[M]'>Observer</A> |
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=angel;mob=\ref[M]'>ANGEL</A> |
+				\[ Crew: <A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;mob=\ref[M]'>Human</A>
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=nymph;mob=\ref[M]'>Nymph</A>
+				\[ slime: <A href='byond://?src=\ref[src];[HrefToken()];simplemake=slime;mob=\ref[M]'>Baby</A>,
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=adultslime;mob=\ref[M]'>Adult</A> \]
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=monkey;mob=\ref[M]'>Monkey</A> |
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=robot;mob=\ref[M]'>Cyborg</A> |
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=cat;mob=\ref[M]'>Cat</A> |
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=runtime;mob=\ref[M]'>Runtime</A> |
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=corgi;mob=\ref[M]'>Corgi</A> |
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=ian;mob=\ref[M]'>Ian</A> |
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=crab;mob=\ref[M]'>Crab</A> |
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=coffee;mob=\ref[M]'>Coffee</A> |
+				\[ Construct: <A href='byond://?src=\ref[src];[HrefToken()];simplemake=constructarmoured;mob=\ref[M]'>Armoured</A> ,
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=constructbuilder;mob=\ref[M]'>Builder</A> ,
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=constructwraith;mob=\ref[M]'>Wraith</A> \]
+				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=shade;mob=\ref[M]'>Shade</A>
 				<br>
 			"}
 	body += {"<br><br>
 			<b>Other actions:</b>
 			<br>
-			<A href='?src=\ref[src];forcespeech=\ref[M]'>Forcesay</A> |
-			<A href='?src=\ref[src];forcesanity=\ref[M]'>Sanity Break</A>
+			<A href='byond://?src=\ref[src];[HrefToken()];forcespeech=\ref[M]'>Forcesay</A> |
+			<A href='byond://?src=\ref[src];[HrefToken()];forcesanity=\ref[M]'>Sanity Break</A>
 			"}
 	body += "<br><br><b>Languages:</b><br>"
 	var/f = 1
-	for(var/k in all_languages)
-		var/datum/language/L = all_languages[k]
+	for(var/k in GLOB.all_languages)
+		var/datum/language/L = GLOB.all_languages[k]
 		if(!(L.flags & INNATE))
 			if(!f) body += " | "
 			else f = 0
 			if(L in M.languages)
-				body += "<a href='?src=\ref[src];toglang=\ref[M];lang=[html_encode(k)]' style='color:#006600'>[k]</a>"
+				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]' style='color:#006600'>[k]</a>"
 			else
-				body += "<a href='?src=\ref[src];toglang=\ref[M];lang=[html_encode(k)]' style='color:#ff0000'>[k]</a>"
+				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]' style='color:#ff0000'>[k]</a>"
 
-	body += {"<br>
-		</body></html>
-	"}
+	body += "<br>"
 
-	usr << browse(body, "window=adminplayeropts;size=550x515")
+	usr << browse(HTML_SKELETON_TITLE("Options for [M.key]", body), "window=adminplayeropts;size=550x515")
 
-/datum/player_info/var/author // admin who authored the information
-/datum/player_info/var/rank //rank of admin who made the notes
-/datum/player_info/var/content // text content of the information
-/datum/player_info/var/timestamp // Because this is bloody annoying
+/// Admin who authored the information
+/datum/player_info/var/author
+/// Rank of admin who made the notes
+/datum/player_info/var/rank
+/// Text content of the information
+/datum/player_info/var/content
+/// Because this is bloody annoying
+/datum/player_info/var/timestamp
 
-//allows access of newscasters
+/// allows access of newscasters
 /datum/admins/proc/access_news_network() //MARKER
 	set category = "Fun"
 	set name = "Access Newscaster Network"
@@ -260,12 +262,12 @@ proc/admin_notice(message, rights)
 				<BR>Note that this panel allows full freedom over the news network, there are no constrictions except the few basic ones. Don't break things!
 			"}
 			if(news_network.wanted_issue)
-				dat+= "<HR><A href='?src=\ref[src];admincaster=view_wanted'>Read Wanted Issue</A>"
+				dat+= "<HR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=view_wanted'>Read Wanted Issue</A>"
 
-			dat+= {"<HR><BR><A href='?src=\ref[src];admincaster=create_channel'>Create Feed Channel</A>
-				<BR><A href='?src=\ref[src];admincaster=view'>View Feed Channels</A>
-				<BR><A href='?src=\ref[src];admincaster=create_feed_story'>Submit new Feed story</A>
-				<BR><BR><A href='?src=\ref[usr];mach_close=newscaster_main'>Exit</A>
+			dat+= {"<HR><BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=create_channel'>Create Feed Channel</A>
+				<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=view'>View Feed Channels</A>
+				<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=create_feed_story'>Submit new Feed story</A>
+				<BR><BR><A href='byond://?src=\ref[usr];mach_close=newscaster_main'>Exit</A>
 			"}
 
 			var/wanted_already = 0
@@ -273,10 +275,10 @@ proc/admin_notice(message, rights)
 				wanted_already = 1
 
 			dat+={"<HR><B>Feed Security functions:</B><BR>
-				<BR><A href='?src=\ref[src];admincaster=menu_wanted'>[(wanted_already) ? ("Manage") : ("Publish")] \"Wanted\" Issue</A>
-				<BR><A href='?src=\ref[src];admincaster=menu_censor_story'>Censor Feed Stories</A>
-				<BR><A href='?src=\ref[src];admincaster=menu_censor_channel'>Mark Feed Channel with [company_name] D-Notice (disables and locks the channel.</A>
-				<BR><HR><A href='?src=\ref[src];admincaster=set_signature'>The newscaster recognises you as:<BR> <FONT COLOR='green'>[src.admincaster_signature]</FONT></A>
+				<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=menu_wanted'>[(wanted_already) ? ("Manage") : ("Publish")] \"Wanted\" Issue</A>
+				<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=menu_censor_story'>Censor Feed Stories</A>
+				<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=menu_censor_channel'>Mark Feed Channel with [GLOB.company_name] D-Notice (disables and locks the channel.</A>
+				<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=set_signature'>The newscaster recognises you as:<BR> <FONT COLOR='green'>[src.admincaster_signature]</FONT></A>
 			"}
 		if(1)
 			dat+= "Station Feed Channels<HR>"
@@ -285,38 +287,38 @@ proc/admin_notice(message, rights)
 			else
 				for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
 					if(CHANNEL.is_admin_channel)
-						dat+="<B><FONT style='BACKGROUND-COLOR: LightGreen'><A href='?src=\ref[src];admincaster=show_channel;show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT></B><BR>"
+						dat+="<B><FONT style='BACKGROUND-COLOR: LightGreen'><A href='byond://?src=\ref[src];[HrefToken()];admincaster=show_channel;show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT></B><BR>"
 					else
-						dat+="<B><A href='?src=\ref[src];admincaster=show_channel;show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR></B>"
-			dat+={"<BR><HR><A href='?src=\ref[src];admincaster=refresh'>Refresh</A>
-				<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[0]'>Back</A>
+						dat+="<B><A href='byond://?src=\ref[src];[HrefToken()];admincaster=show_channel;show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR></B>"
+			dat+={"<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=refresh'>Refresh</A>
+				<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[0]'>Back</A>
 			"}
 
 		if(2)
 			dat+={"
 				Creating new Feed Channel...
-				<HR><B><A href='?src=\ref[src];admincaster=set_channel_name'>Channel Name</A>:</B> [src.admincaster_feed_channel.channel_name]<BR>
-				<B><A href='?src=\ref[src];admincaster=set_signature'>Channel Author</A>:</B> <FONT COLOR='green'>[src.admincaster_signature]</FONT><BR>
-				<B><A href='?src=\ref[src];admincaster=set_channel_lock'>Will Accept Public Feeds</A>:</B> [(src.admincaster_feed_channel.locked) ? ("NO") : ("YES")]<BR><BR>
-				<BR><A href='?src=\ref[src];admincaster=submit_new_channel'>Submit</A><BR><BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[0]'>Cancel</A><BR>
+				<HR><B><A href='byond://?src=\ref[src];[HrefToken()];admincaster=set_channel_name'>Channel Name</A>:</B> [src.admincaster_feed_channel.channel_name]<BR>
+				<B><A href='byond://?src=\ref[src];[HrefToken()];admincaster=set_signature'>Channel Author</A>:</B> <FONT COLOR='green'>[src.admincaster_signature]</FONT><BR>
+				<B><A href='byond://?src=\ref[src];[HrefToken()];admincaster=set_channel_lock'>Will Accept Public Feeds</A>:</B> [(src.admincaster_feed_channel.locked) ? ("NO") : ("YES")]<BR><BR>
+				<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=submit_new_channel'>Submit</A><BR><BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[0]'>Cancel</A><BR>
 			"}
 		if(3)
 			dat+={"
 				Creating new Feed Message...
-				<HR><B><A href='?src=\ref[src];admincaster=set_channel_receiving'>Receiving Channel</A>:</B> [src.admincaster_feed_channel.channel_name]<BR>" //MARK
+				<HR><B><A href='byond://?src=\ref[src];[HrefToken()];admincaster=set_channel_receiving'>Receiving Channel</A>:</B> [src.admincaster_feed_channel.channel_name]<BR>" //MARK
 				<B>Message Author:</B> <FONT COLOR='green'>[src.admincaster_signature]</FONT><BR>
-				<B><A href='?src=\ref[src];admincaster=set_new_message'>Message Body</A>:</B> [src.admincaster_feed_message.body] <BR>
-				<BR><A href='?src=\ref[src];admincaster=submit_new_message'>Submit</A><BR><BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[0]'>Cancel</A><BR>
+				<B><A href='byond://?src=\ref[src];[HrefToken()];admincaster=set_new_message'>Message Body</A>:</B> [src.admincaster_feed_message.body] <BR>
+				<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=submit_new_message'>Submit</A><BR><BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[0]'>Cancel</A><BR>
 			"}
 		if(4)
 			dat+={"
 					Feed story successfully submitted to [src.admincaster_feed_channel.channel_name].<BR><BR>
-					<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[0]'>Return</A><BR>
+					<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[0]'>Return</A><BR>
 				"}
 		if(5)
 			dat+={"
 				Feed Channel [src.admincaster_feed_channel.channel_name] created successfully.<BR><BR>
-				<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[0]'>Return</A><BR>
+				<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[0]'>Return</A><BR>
 			"}
 		if(6)
 			dat+="<B><FONT COLOR='maroon'>ERROR: Could not submit Feed story to Network.</B></FONT><HR><BR>"
@@ -324,7 +326,7 @@ proc/admin_notice(message, rights)
 				dat+="<FONT COLOR='maroon'>Invalid receiving channel name.</FONT><BR>"
 			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]")
 				dat+="<FONT COLOR='maroon'>Invalid message body.</FONT><BR>"
-			dat+="<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[3]'>Return</A><BR>"
+			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[3]'>Return</A><BR>"
 		if(7)
 			dat+="<B><FONT COLOR='maroon'>ERROR: Could not submit Feed Channel to Network.</B></FONT><HR><BR>"
 			if(src.admincaster_feed_channel.channel_name =="" || src.admincaster_feed_channel.channel_name == "\[REDACTED\]")
@@ -336,12 +338,12 @@ proc/admin_notice(message, rights)
 					break
 			if(check)
 				dat+="<FONT COLOR='maroon'>Channel name already in use.</FONT><BR>"
-			dat+="<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[2]'>Return</A><BR>"
+			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[2]'>Return</A><BR>"
 		if(9)
 			dat+="<B>[src.admincaster_feed_channel.channel_name]: </B><FONT SIZE=1>\[created by: <FONT COLOR='maroon'>[src.admincaster_feed_channel.author]</FONT>\]</FONT><HR>"
 			if(src.admincaster_feed_channel.censored)
 				dat+={"
-					<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a [company_name] D-Notice.<BR>
+					<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a [GLOB.company_name] D-Notice.<BR>
 					No further feed story additions are allowed while the D-Notice is in effect.<BR><BR>
 				"}
 			else
@@ -357,12 +359,12 @@ proc/admin_notice(message, rights)
 							dat+="<img src='tmp_photo[i].png' width = '180'><BR><BR>"
 						dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>"
 			dat+={"
-				<BR><HR><A href='?src=\ref[src];admincaster=refresh'>Refresh</A>
-				<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[1]'>Back</A>
+				<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=refresh'>Refresh</A>
+				<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[1]'>Back</A>
 			"}
 		if(10)
 			dat+={"
-				<B>[company_name] Feed Censorship Tool</B><BR>
+				<B>[GLOB.company_name] Feed Censorship Tool</B><BR>
 				<FONT SIZE=1>NOTE: Due to the nature of news Feeds, total deletion of a Feed Story is not possible.<BR>
 				Keep in mind that users attempting to view a censored feed will instead see the \[REDACTED\] tag above it.</FONT>
 				<HR>Select Feed channel to get Stories from:<BR>
@@ -371,11 +373,11 @@ proc/admin_notice(message, rights)
 				dat+="<I>No feed channels found active...</I><BR>"
 			else
 				for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
-					dat+="<A href='?src=\ref[src];admincaster=pick_censor_channel;pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>"
-			dat+="<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[0]'>Cancel</A>"
+					dat+="<A href='byond://?src=\ref[src];[HrefToken()];admincaster=pick_censor_channel;pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>"
+			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[0]'>Cancel</A>"
 		if(11)
 			dat+={"
-				<B>[company_name] D-Notice Handler</B><HR>
+				<B>[GLOB.company_name] D-Notice Handler</B><HR>
 				<FONT SIZE=1>A D-Notice is to be bestowed upon the channel if the handling Authority deems it as harmful for the station's
 				morale, integrity or disciplinary behaviour. A D-Notice will render a channel unable to be updated by anyone, without deleting any feed
 				stories it might contain at the time. You can lift a D-Notice if you have the required access at any time.</FONT><HR>
@@ -384,13 +386,13 @@ proc/admin_notice(message, rights)
 				dat+="<I>No feed channels found active...</I><BR>"
 			else
 				for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
-					dat+="<A href='?src=\ref[src];admincaster=pick_d_notice;pick_d_notice=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>"
+					dat+="<A href='byond://?src=\ref[src];[HrefToken()];admincaster=pick_d_notice;pick_d_notice=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>"
 
-			dat+="<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[0]'>Back</A>"
+			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[0]'>Back</A>"
 		if(12)
 			dat+={"
 				<B>[src.admincaster_feed_channel.channel_name]: </B><FONT SIZE=1>\[ created by: <FONT COLOR='maroon'>[src.admincaster_feed_channel.author]</FONT> \]</FONT><BR>
-				<FONT SIZE=2><A href='?src=\ref[src];admincaster=censor_channel_author;censor_channel_author=\ref[src.admincaster_feed_channel]'>[(src.admincaster_feed_channel.author=="\[REDACTED\]") ? ("Undo Author censorship") : ("Censor channel Author")]</A></FONT><HR>
+				<FONT SIZE=2><A href='byond://?src=\ref[src];[HrefToken()];admincaster=censor_channel_author;censor_channel_author=\ref[src.admincaster_feed_channel]'>[(src.admincaster_feed_channel.author=="\[REDACTED\]") ? ("Undo Author censorship") : ("Censor channel Author")]</A></FONT><HR>
 			"}
 			if( isemptylist(src.admincaster_feed_channel.messages) )
 				dat+="<I>No feed messages found in channel...</I><BR>"
@@ -398,17 +400,17 @@ proc/admin_notice(message, rights)
 				for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
 					dat+={"
 						-[MESSAGE.body] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>
-						<FONT SIZE=2><A href='?src=\ref[src];admincaster=censor_channel_story_body;censor_channel_story_body=\ref[MESSAGE]'>[(MESSAGE.body == "\[REDACTED\]") ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='?src=\ref[src];admincaster=censor_channel_story_author;censor_channel_story_author=\ref[MESSAGE]'>[(MESSAGE.author == "\[REDACTED\]") ? ("Undo Author Censorship") : ("Censor message Author")]</A></FONT><BR>
+						<FONT SIZE=2><A href='byond://?src=\ref[src];[HrefToken()];admincaster=censor_channel_story_body;censor_channel_story_body=\ref[MESSAGE]'>[(MESSAGE.body == "\[REDACTED\]") ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='byond://?src=\ref[src];[HrefToken()];admincaster=censor_channel_story_author;censor_channel_story_author=\ref[MESSAGE]'>[(MESSAGE.author == "\[REDACTED\]") ? ("Undo Author Censorship") : ("Censor message Author")]</A></FONT><BR>
 					"}
-			dat+="<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[10]'>Back</A>"
+			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[10]'>Back</A>"
 		if(13)
 			dat+={"
 				<B>[src.admincaster_feed_channel.channel_name]: </B><FONT SIZE=1>\[ created by: <FONT COLOR='maroon'>[src.admincaster_feed_channel.author]</FONT> \]</FONT><BR>
-				Channel messages listed below. If you deem them dangerous to the station, you can <A href='?src=\ref[src];admincaster=toggle_d_notice;toggle_d_notice=\ref[src.admincaster_feed_channel]'>Bestow a D-Notice upon the channel</A>.<HR>
+				Channel messages listed below. If you deem them dangerous to the station, you can <A href='byond://?src=\ref[src];[HrefToken()];admincaster=toggle_d_notice;toggle_d_notice=\ref[src.admincaster_feed_channel]'>Bestow a D-Notice upon the channel</A>.<HR>
 			"}
 			if(src.admincaster_feed_channel.censored)
 				dat+={"
-					<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a [company_name] D-Notice.<BR>
+					<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a [GLOB.company_name] D-Notice.<BR>
 					No further feed story additions are allowed while the D-Notice is in effect.<BR><BR>
 				"}
 			else
@@ -418,7 +420,7 @@ proc/admin_notice(message, rights)
 					for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
 						dat+="-[MESSAGE.body] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>"
 
-			dat+="<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[11]'>Back</A>"
+			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[11]'>Back</A>"
 		if(14)
 			dat+="<B>Wanted Issue Handler:</B>"
 			var/wanted_already = 0
@@ -430,21 +432,21 @@ proc/admin_notice(message, rights)
 				dat+="<FONT SIZE=2><BR><I>A wanted issue is already in Feed Circulation. You can edit or cancel it below.</FONT></I>"
 			dat+={"
 				<HR>
-				<A href='?src=\ref[src];admincaster=set_wanted_name'>Criminal Name</A>: [src.admincaster_feed_message.author] <BR>
-				<A href='?src=\ref[src];admincaster=set_wanted_desc'>Description</A>: [src.admincaster_feed_message.body] <BR>
+				<A href='byond://?src=\ref[src];[HrefToken()];admincaster=set_wanted_name'>Criminal Name</A>: [src.admincaster_feed_message.author] <BR>
+				<A href='byond://?src=\ref[src];[HrefToken()];admincaster=set_wanted_desc'>Description</A>: [src.admincaster_feed_message.body] <BR>
 			"}
 			if(wanted_already)
 				dat+="<B>Wanted Issue created by:</B><FONT COLOR='green'> [news_network.wanted_issue.backup_author]</FONT><BR>"
 			else
 				dat+="<B>Wanted Issue will be created under prosecutor:</B><FONT COLOR='green'> [src.admincaster_signature]</FONT><BR>"
-			dat+="<BR><A href='?src=\ref[src];admincaster=submit_wanted;submit_wanted=[end_param]'>[(wanted_already) ? ("Edit Issue") : ("Submit")]</A>"
+			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=submit_wanted;submit_wanted=[end_param]'>[(wanted_already) ? ("Edit Issue") : ("Submit")]</A>"
 			if(wanted_already)
-				dat+="<BR><A href='?src=\ref[src];admincaster=cancel_wanted'>Take down Issue</A>"
-			dat+="<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[0]'>Cancel</A>"
+				dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=cancel_wanted'>Take down Issue</A>"
+			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[0]'>Cancel</A>"
 		if(15)
 			dat+={"
 				<FONT COLOR='green'>Wanted issue for [src.admincaster_feed_message.author] is now in Network Circulation.</FONT><BR><BR>
-				<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[0]'>Return</A><BR>
+				<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[0]'>Return</A><BR>
 			"}
 		if(16)
 			dat+="<B><FONT COLOR='maroon'>ERROR: Wanted Issue rejected by Network.</B></FONT><HR><BR>"
@@ -452,11 +454,11 @@ proc/admin_notice(message, rights)
 				dat+="<FONT COLOR='maroon'>Invalid name for person wanted.</FONT><BR>"
 			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]")
 				dat+="<FONT COLOR='maroon'>Invalid description.</FONT><BR>"
-			dat+="<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[0]'>Return</A><BR>"
+			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[0]'>Return</A><BR>"
 		if(17)
 			dat+={"
 				<B>Wanted Issue successfully deleted from Circulation</B><BR>
-				<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[0]'>Return</A><BR>
+				<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[0]'>Return</A><BR>
 			"}
 		if(18)
 			dat+={"
@@ -470,34 +472,19 @@ proc/admin_notice(message, rights)
 				dat+="<BR><img src='tmp_photow.png' width = '180'>"
 			else
 				dat+="None"
-			dat+="<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[0]'>Back</A><BR>"
+			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[0]'>Back</A><BR>"
 		if(19)
 			dat+={"
 				<FONT COLOR='green'>Wanted issue for [src.admincaster_feed_message.author] successfully edited.</FONT><BR><BR>
-				<BR><A href='?src=\ref[src];admincaster=setScreen;setScreen=[0]'>Return</A><BR>
+				<BR><A href='byond://?src=\ref[src];[HrefToken()];admincaster=setScreen;setScreen=[0]'>Return</A><BR>
 			"}
 		else
 			dat+="I'm sorry to break your immersion. This shit's bugged. Report this bug to Agouri, polyxenitopalidou@gmail.com"
 
 	//world << "Channelname: [src.admincaster_feed_channel.channel_name] [src.admincaster_feed_channel.author]"
 	//world << "Msg: [src.admincaster_feed_message.author] [src.admincaster_feed_message.body]"
-	usr << browse(dat, "window=admincaster_main;size=400x600")
+	usr << browse(HTML_SKELETON_TITLE("Admincaster", dat), "window=admincaster_main;size=400x600")
 	onclose(usr, "admincaster_main")
-
-
-
-/datum/admins/proc/Jobbans()
-	if(!check_rights(R_MOD) && !check_rights(R_ADMIN))
-		return
-
-	var/dat = "<B>Job Bans!</B><HR><table>"
-	for(var/t in jobban_keylist)
-		var/r = t
-		if( findtext(r,"##") )
-			r = copytext( r, 1, findtext(r,"##") )//removes the description
-		dat += text("<tr><td>[t] (<A href='?src=\ref[src];removejobban=[r]'>unban</A>)</td></tr>")
-	dat += "</table>"
-	usr << browse(dat, "window=ban;size=400x400")
 
 /datum/admins/proc/Game()
 	if(!check_rights(0))
@@ -505,22 +492,22 @@ proc/admin_notice(message, rights)
 
 	var/dat = "<center><B>Game Panel</B></center><hr>"
 	if(get_storyteller() && (SSticker.current_state != GAME_STATE_PREGAME))
-		dat += "<A href='?src=\ref[get_storyteller()]'>Storyteller Panel</A><br>"
+		dat += "<A href='byond://?src=\ref[get_storyteller()]'>Storyteller Panel</A><br>"
 	else
-		dat += "<A href='?src=\ref[src];c_mode=1'>Change Storyteller</A><br>"
+		dat += "<A href='byond://?src=\ref[src];[HrefToken()];c_mode=1'>Change Storyteller</A><br>"
 
 	dat += {"
 		<BR>
-		<A href='?src=\ref[src];create_object=1'>Create Object</A><br>
-		<A href='?src=\ref[src];quick_create_object=1'>Quick Create Object</A><br>
-		<A href='?src=\ref[src];create_turf=1'>Create Turf</A><br>
-		<A href='?src=\ref[src];create_mob=1'>Create Mob</A><br>
-		<br><A href='?src=\ref[src];vsc=airflow'>Edit Airflow Settings</A><br>
-		<A href='?src=\ref[src];vsc=plasma'>Edit Plasma Settings</A><br>
-		<A href='?src=\ref[src];vsc=default'>Choose a default ZAS setting</A><br>
+		<A href='byond://?src=\ref[src];[HrefToken()];create_object=1'>Create Object</A><br>
+		<A href='byond://?src=\ref[src];[HrefToken()];quick_create_object=1'>Quick Create Object</A><br>
+		<A href='byond://?src=\ref[src];[HrefToken()];create_turf=1'>Create Turf</A><br>
+		<A href='byond://?src=\ref[src];[HrefToken()];create_mob=1'>Create Mob</A><br>
+		<br><A href='byond://?src=\ref[src];[HrefToken()];vsc=airflow'>Edit Airflow Settings</A><br>
+		<A href='byond://?src=\ref[src];[HrefToken()];vsc=plasma'>Edit Plasma Settings</A><br>
+		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br>
 		"}
 
-	usr << browse(dat, "window=admin2;size=210x280")
+	usr << browse(HTML_SKELETON_TITLE("Game Panel", dat), "window=admin2;size=210x280")
 	return
 
 /datum/admins/proc/Secrets()
@@ -537,9 +524,9 @@ proc/admin_notice(message, rights)
 		for(var/datum/admin_secret_item/item in category.items)
 			if(!item.can_view(usr))
 				continue
-			dat += "<A href='?src=\ref[src];admin_secrets=\ref[item]'>[item.name()]</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];[HrefToken()];admin_secrets=\ref[item]'>[item.name()]</A><BR>"
 		dat += "<BR>"
-	usr << browse(dat, "window=secrets")
+	usr << browse(HTML_SKELETON_TITLE("Secrets", dat), "window=secrets")
 	return
 
 /////////////////////////////////////////////////////////////////////////////////////////////////admins2.dm merge
@@ -547,22 +534,59 @@ proc/admin_notice(message, rights)
 
 /datum/admins/proc/restart()
 	set category = "Server"
-	set name = "Restart"
-	set desc="Restarts the world"
+	set name = "Reboot World"
+	set desc = "Restarts the world immediately"
 	if (!usr.client.holder)
 		return
-	var/confirm = alert("Restart the game world?", "Restart", "Yes", "Cancel")
-	if(confirm == "Cancel")
-		return
-	if(confirm == "Yes")
-		to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span>")
-		log_admin("[key_name(usr)] initiated a reboot.")
 
+	var/localhost_addresses = list("127.0.0.1", "::1")
+	var/list/options = list("Regular Restart", "Regular Restart (with delay)", "Hard Restart (No Delay/Feedback Reason)", "Hardest Restart (No actions, just reboot)")
+	if(world.TgsAvailable())
+		options += "Server Restart (Kill and restart DD)";
 
-		sleep(50)
-		world.Reboot()
+	if(SSticker.admin_delay_notice)
+		if(alert(usr, "Are you sure? An admin has already delayed the round end for the following reason: [SSticker.admin_delay_notice]", "Confirmation", "Yes", "No") != "Yes")
+			return FALSE
 
-//priority announce something to all clients.
+	var/result = input(usr, "Select reboot method", "World Reboot", options[1]) as null|anything in options
+	if(result)
+		// SSblackbox.record_feedback("tally", "admin_verb", 1, "Reboot World") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		var/init_by = "Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]."
+		switch(result)
+			if("Regular Restart")
+				if(!(isnull(usr.client.address) || (usr.client.address in localhost_addresses)))
+					if(alert(usr, "Are you sure you want to restart the server?","This server is live", "Restart", "Cancel") != "Restart")
+						return FALSE
+				// SSplexora.restart_requester = usr
+				// SSplexora.restart_type = PLEXORA_SHUTDOWN_NORMAL
+				SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", 10)
+			if("Regular Restart (with delay)")
+				var/delay = input("What delay should the restart have (in seconds)?", "Restart Delay", 5) as num|null
+				if(!delay)
+					return FALSE
+				if(!(isnull(usr.client.address) || (usr.client.address in localhost_addresses)))
+					if(alert(usr,"Are you sure you want to restart the server?","This server is live", "Restart", "Cancel") != "Restart")
+						return FALSE
+				// SSplexora.restart_requester = usr
+				// SSplexora.restart_type = PLEXORA_SHUTDOWN_NORMAL
+				SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", delay * 10)
+			if("Hard Restart (No Delay, No Feedback Reason)")
+				// SSplexora.restart_type = PLEXORA_SHUTDOWN_HARD
+				// SSplexora.restart_requester = usr
+				to_chat(world, "World reboot - [init_by]")
+				world.Reboot()
+			if("Hardest Restart (No actions, just reboot)")
+				// SSplexora.restart_type = PLEXORA_SHUTDOWN_HARDEST
+				// SSplexora.restart_requester = usr
+				to_chat(world, "Hard world reboot - [init_by]")
+				world.Reboot(fast_track = TRUE)
+			if("Server Restart (Kill and restart DD)")
+				// SSplexora.restart_type = PLEXORA_SHUTDOWN_KILLDD
+				// SSplexora.restart_requester = usr
+				to_chat(world, "Server restart - [init_by]")
+				world.TgsEndProcess()
+
+/// priority announce something to all clients.
 /datum/admins/proc/announce()
 	set category = "Special Verbs"
 	set name = "Announce"
@@ -573,9 +597,8 @@ proc/admin_notice(message, rights)
 	var/message = input("Global message to send:", "Admin Announce", null, null)  as message
 	if(message)
 		if(!check_rights(R_SERVER,0))
-			message = sanitize(message, 500, extra = 0)
-		message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
-		to_chat(world, "<span class=notice><b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b><p style='text-indent: 50px'>[message]</p></span>")
+			message = adminscrub(message,500)
+		send_formatted_announcement(message, "From [usr.client.holder.fakekey ? "Administrator" : usr.key]")
 		log_admin("Announce: [key_name(usr)] : [message]")
 
 /datum/admins/proc/set_respawn_timer()
@@ -588,10 +611,28 @@ proc/admin_notice(message, rights)
 	var/delay = input(usr, "Enter new respawn delays in minutes", "Respawn timer configuration") as null|num
 	if(!isnull(delay))
 		delay = CLAMP(delay, 0, INFINITY)
-		config.respawn_delay = delay
+		CONFIG_SET(number/respawn_delay, delay)
 		log_and_message_admins("changed respawn delay to [delay] minutes.")
 
-//toggles ooc on/off for everyone
+/datum/admins/proc/end_round()
+	set category = "Server"
+	set name = "End Round"
+	set desc = "Attempts to produce a round end report and then restart the server organically."
+
+	if (!check_rights(R_ADMIN))
+		return
+	if(SSticker.current_state == GAME_STATE_FINISHED)
+		return to_chat(usr, span_adminnotice("The round has already ended!"))
+	if(SSticker.current_state <= GAME_STATE_SETTING_UP)
+		return to_chat(usr, span_adminnotice("The game hasnt started yet!"))
+
+	var/confirm = tgui_alert(usr, "End the round forcibly?", "End Round", list("Yes", "Cancel"))
+	if(confirm == "Cancel")
+		return
+	if(confirm == "Yes")
+		SSticker.force_ending = ADMIN_FORCE_END_ROUND
+
+/// toggles ooc on/off for everyone
 /datum/admins/proc/toggleooc()
 	set category = "Server"
 	set desc="Globally Toggles OOC"
@@ -600,14 +641,14 @@ proc/admin_notice(message, rights)
 	if(!check_rights(R_ADMIN))
 		return
 
-	config.ooc_allowed = !(config.ooc_allowed)
-	if (config.ooc_allowed)
+	GLOB.ooc_allowed = !(GLOB.ooc_allowed)
+	if (GLOB.ooc_allowed)
 		to_chat(world, "<B>The OOC channel has been globally enabled!</B>")
 	else
 		to_chat(world, "<B>The OOC channel has been globally disabled!</B>")
 	log_and_message_admins("toggled OOC.")
 
-//toggles looc on/off for everyone
+/// toggles looc on/off for everyone
 /datum/admins/proc/togglelooc()
 	set category = "Server"
 	set desc="Globally Toggles LOOC"
@@ -616,14 +657,14 @@ proc/admin_notice(message, rights)
 	if(!check_rights(R_ADMIN))
 		return
 
-	config.looc_allowed = !(config.looc_allowed)
-	if (config.looc_allowed)
+	GLOB.looc_allowed = !(GLOB.looc_allowed)
+	if (GLOB.looc_allowed)
 		to_chat(world, "<B>The LOOC channel has been globally enabled!</B>")
 	else
 		to_chat(world, "<B>The LOOC channel has been globally disabled!</B>")
 	log_and_message_admins("toggled LOOC.")
 
-//toggles dsay on/off for everyone
+/// toggles dsay on/off for everyone
 /datum/admins/proc/toggledsay()
 	set category = "Server"
 	set desc="Globally Toggles DSAY"
@@ -632,15 +673,15 @@ proc/admin_notice(message, rights)
 	if(!check_rights(R_ADMIN))
 		return
 
-	config.dsay_allowed = !(config.dsay_allowed)
-	if (config.dsay_allowed)
+	GLOB.dsay_allowed = !(GLOB.dsay_allowed)
+	if (GLOB.dsay_allowed)
 		to_chat(world, "<B>Deadchat has been globally enabled!</B>")
 	else
 		to_chat(world, "<B>Deadchat has been globally disabled!</B>")
 	log_admin("[key_name(usr)] toggled deadchat.")
 	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
 
-//toggles ooc on/off for everyone who is dead
+/// toggles ooc on/off for everyone who is dead
 /datum/admins/proc/toggleoocdead()
 	set category = "Server"
 	set desc="Toggle Dead OOC."
@@ -649,7 +690,7 @@ proc/admin_notice(message, rights)
 	if(!check_rights(R_ADMIN))
 		return
 
-	config.dooc_allowed = !( config.dooc_allowed )
+	GLOB.dooc_allowed = !( GLOB.dooc_allowed )
 	log_admin("[key_name(usr)] toggled Dead OOC.")
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
 
@@ -658,29 +699,39 @@ proc/admin_notice(message, rights)
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
-		SSticker.start_immediately = TRUE
-		log_admin("[usr.key] has started the game.")
-		var/msg = ""
-		if(SSticker.current_state == GAME_STATE_STARTUP)
-			msg = " (The server is still setting up, but the round will be \
-				started as soon as possible.)"
-		message_admins("<font color='blue'>\
-			[usr.key] has started the game.[msg]</font>")
+		if(!SSticker.start_immediately)
+			if(tgui_alert(usr, "Are you sure you want to start the round?","Start Now",list("Start Now","Cancel")) != "Start Now")
+				return FALSE
+			SSticker.start_immediately = TRUE
+			log_admin("[usr.key] has started the game.")
+			var/msg = ""
+			if(SSticker.current_state == GAME_STATE_STARTUP)
+				msg = " (The server is still setting up, but the round will be started as soon as possible.)"
+			message_admins(span_blue("[usr.key] has started the game.[msg]"))
+			return TRUE
+		SSticker.start_immediately = FALSE
+		SSticker.SetTimeLeft(1800)
+		to_chat(world, span_infoplain("<b>The game will start in [DisplayTimeText(SSticker.GetTimeLeft())].</b>"))
+		SEND_SOUND(world, sound('sound/misc/notice2.ogg'))
+		message_admins(span_blue("[usr.key] has cancelled immediate game start. Game will start in [DisplayTimeText(SSticker.GetTimeLeft())]."))
+		log_admin("[usr.key] has cancelled immediate game start.")
 	else
-		to_chat(usr, "<font color='red'>Error: Start Now: Game has already started.</font>")
+		to_chat(usr, span_warning(span_red("Error: Start Now: Game has already started.")))
+	return FALSE
 
-//toggles whether people can join the current game
+/// toggles whether people can join the current game
 /datum/admins/proc/toggleenter()
 	set category = "Server"
 	set desc="People can't enter"
 	set name="Toggle Entering"
-	config.enter_allowed = !(config.enter_allowed)
-	if (!(config.enter_allowed))
+
+	GLOB.enter_allowed = !GLOB.enter_allowed
+	if (!GLOB.enter_allowed)
 		to_chat(world, "<B>New players may no longer enter the game.</B>")
 	else
 		to_chat(world, "<B>New players may now enter the game.</B>")
-	log_admin("[key_name(usr)] toggled new player game entering.")
-	message_admins("\blue [key_name_admin(usr)] toggled new player game entering.", 1)
+	log_admin("[key_name(usr)] toggled new player game entering. ([GLOB.enter_allowed ? "Allowed" : "Disabled"])")
+	message_admins(span_blue("[key_name_admin(usr)] toggled new player game entering.  ([GLOB.enter_allowed ? "Allowed" : "Disabled"])"), 1)
 	world.update_status()
 
 /datum/admins/proc/toggleAI()
@@ -688,14 +739,14 @@ proc/admin_notice(message, rights)
 	set desc="People can't be AI"
 	set name="Toggle AI"
 
-	config.allow_ai = !( config.allow_ai )
+	CONFIG_SET(flag/allow_ai, !CONFIG_GET(flag/allow_ai))
 
-	if (!( config.allow_ai ))
+	if (!CONFIG_GET(flag/allow_ai))
 		to_chat(world, "<B>The AI job is no longer chooseable.</B>")
 	else
 		to_chat(world, "<B>The AI job is chooseable now.</B>")
 
-	message_admins("[key_name(usr)] has toggled [config.allow_ai ? "On" : "Off"] AI allowed.")
+	message_admins("[key_name(usr)] has toggled [CONFIG_GET(flag/allow_ai) ? "On" : "Off"] AI allowed.")
 	log_admin("[key_name(usr)] toggled AI allowed.")
 
 	world.update_status()
@@ -704,46 +755,67 @@ proc/admin_notice(message, rights)
 	set category = "Server"
 	set desc="Respawn basically"
 	set name="Toggle Respawn"
-	config.abandon_allowed = !(config.abandon_allowed)
-	if(config.abandon_allowed)
+	CONFIG_SET(flag/abandon_allowed, !CONFIG_GET(flag/abandon_allowed))
+
+	if(CONFIG_GET(flag/abandon_allowed))
 		to_chat(world, "<B>You may now respawn.</B>")
 	else
 		to_chat(world, "<B>You may no longer respawn :(</B>")
-	message_admins("\blue [key_name_admin(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].", 1)
-	log_admin("[key_name(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].")
+	message_admins(span_blue("[key_name_admin(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"]."), 1)
+	log_admin("[key_name(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"].")
 	world.update_status()
 
 /datum/admins/proc/delay()
 	set category = "Server"
-	set desc="Delay the game start/end"
-	set name="Delay"
+	set desc="Delay the game start"
+	set name="Delay Pre-game"
 
 	if(!check_rights(R_SERVER))
 		return
-	if (SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_STARTUP)
-		SSticker.delay_end = !SSticker.delay_end
-		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins("\blue [key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
-		return
-	round_progressing = !round_progressing
-	if (!round_progressing)
-		to_chat(world, "<b>The game start has been delayed.</b>")
-		log_admin("[key_name(usr)] delayed the game.")
-	else
-		to_chat(world, "<b>The game will start soon.</b>")
-		log_admin("[key_name(usr)] removed the delay.")
 
-/datum/admins/proc/immreboot()
+	var/newtime = input("Set a new time in seconds. Set -1 for indefinite delay.","Set Delay",round(SSticker.GetTimeLeft()/10)) as num|null
+	if(SSticker.current_state > GAME_STATE_PREGAME)
+		return to_chat(usr, span_adminnotice("Too late... The game has already started!"))
+	if(newtime)
+		newtime = newtime*10
+		SSticker.SetTimeLeft(newtime)
+		SSticker.start_immediately = FALSE
+		if(newtime < 0)
+			to_chat(world, span_infoplain("<b>The game start has been delayed.</b>"))
+			log_admin("[key_name(usr)] delayed the round start.")
+		else
+			to_chat(world, span_infoplain("<b>The game will start in [DisplayTimeText(newtime)].</b>"))
+			SEND_SOUND(world, sound('sound/effects/compbeep2.ogg'))
+			log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
+
+/datum/admins/proc/delay_round_end()
 	set category = "Server"
-	set desc="Reboots the server post haste"
-	set name="Immediate Reboot"
-	if(!usr.client.holder)
+	set desc = "Prevent the server from restarting"
+	set name = "Delay Round End"
+
+	if(!check_rights(R_SERVER))
 		return
-	if( alert("Reboot server?",,"Yes","No") == "No")
+
+	if(SSticker.delay_end)
+		to_chat(usr, "The round end is already delayed. The reason for the current delay is: \"[SSticker.admin_delay_notice]\"")
 		return
-	to_chat(world, "\red <b>Rebooting world!</b> \blue Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")
-	log_admin("[key_name(usr)] initiated an immediate reboot.")
-	world.Reboot()
+
+	var/delay_reason = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+
+	if(isnull(delay_reason))
+		return
+
+	if(SSticker.delay_end)
+		to_chat(usr, "The round end is already delayed. The reason for the current delay is: \"[SSticker.admin_delay_notice]\"")
+		return
+
+	SSticker.delay_end = TRUE
+	SSticker.admin_delay_notice = delay_reason
+	SSticker.cancel_reboot(usr)
+
+	log_admin("[key_name(usr)] delayed the round end for reason: [SSticker.admin_delay_notice]")
+	message_admins("[key_name_admin(usr)] delayed the round end for reason: [SSticker.admin_delay_notice]")
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
@@ -769,7 +841,7 @@ proc/admin_notice(message, rights)
 		return TRUE
 	return FALSE
 
-/datum/admins/proc/spawn_fruit(seedtype in plant_controller.seeds)
+/datum/admins/proc/spawn_fruit(seedtype in SSplants.seeds)
 	set category = "Debug"
 	set desc = "Spawn the product of a seed."
 	set name = "Spawn Fruit"
@@ -777,13 +849,13 @@ proc/admin_notice(message, rights)
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(!seedtype || !plant_controller.seeds[seedtype])
+	if(!seedtype || !SSplants.seeds[seedtype])
 		return
-	var/datum/seed/S = plant_controller.seeds[seedtype]
+	var/datum/seed/S = SSplants.seeds[seedtype]
 	S.harvest(usr,0,0,1)
 	log_admin("[key_name(usr)] spawned [seedtype] fruit at ([usr.x],[usr.y],[usr.z])")
 
-/datum/admins/proc/spawn_plant(seedtype in plant_controller.seeds)
+/datum/admins/proc/spawn_plant(seedtype in SSplants.seeds)
 	set category = "Debug"
 	set desc = "Spawn a spreading plant effect."
 	set name = "Spawn Plant"
@@ -791,12 +863,12 @@ proc/admin_notice(message, rights)
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(!seedtype || !plant_controller.seeds[seedtype])
+	if(!seedtype || !SSplants.seeds[seedtype])
 		return
-	new /obj/effect/plant(get_turf(usr), plant_controller.seeds[seedtype])
+	new /obj/effect/plant(get_turf(usr), SSplants.seeds[seedtype])
 	log_admin("[key_name(usr)] spawned [seedtype] vines at ([usr.x],[usr.y],[usr.z])")
 
-// allows us to spawn instances
+/// allows us to spawn instances
 /datum/admins/proc/spawn_atom(object as text)
 	set category = "Debug"
 	set desc = "(atom path) Spawn an atom"
@@ -831,7 +903,7 @@ proc/admin_notice(message, rights)
 
 	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
 
-//interface which shows a mob's mind
+/// interface which shows a mob's mind
 /datum/admins/proc/show_contractor_panel(mob/M in SSmobs.mob_list | SShumans.mob_list)
 	set category = "Admin"
 	set desc = "Edit mobs's memory and role"
@@ -850,56 +922,56 @@ proc/admin_notice(message, rights)
 	set category = "Debug"
 	set desc="Reduces view range when wearing welding helmets"
 	set name="Toggle tinted welding helmets."
-	config.welder_vision = !( config.welder_vision )
-	if (config.welder_vision)
+	CONFIG_SET(flag/welder_vision, !CONFIG_GET(flag/welder_vision))
+	if (CONFIG_GET(flag/welder_vision))
 		to_chat(world, "<B>Reduced welder vision has been enabled!</B>")
 	else
 		to_chat(world, "<B>Reduced welder vision has been disabled!</B>")
 	log_admin("[key_name(usr)] toggled welder vision.")
 	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
 
-//toggles whether guests can join the current game
+/// toggles whether guests can join the current game
 /datum/admins/proc/toggleguests()
 	set category = "Server"
 	set desc="Guests can't enter"
 	set name="Toggle guests"
-	config.guests_allowed = !(config.guests_allowed)
-	if (!(config.guests_allowed))
+	CONFIG_SET(flag/guests_allowed, !(CONFIG_GET(flag/guests_allowed)))
+	if (!CONFIG_GET(flag/guests_allowed))
 		to_chat(world, "<B>Guests may no longer enter the game.</B>")
 	else
 		to_chat(world, "<B>Guests may now enter the game.</B>")
-	log_admin("[key_name(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.")
-	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.", 1)
+	log_admin("[key_name(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed.")
+	message_admins(span_blue("[key_name_admin(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed."), 1)
 
 /datum/admins/proc/toggle_tts()
 	set category = "Server"
 	set name = "Toggle text-to-speech"
 
 	if(GLOB.tts_bearer)
-		config.tts_enabled = !config.tts_enabled
+		CONFIG_SET(flag/tts_enabled, !CONFIG_GET(flag/tts_enabled))
 	else
-		to_chat(usr, "Configuration file [config.tts_key ? "contains invalid" : "is missing"] authentication key.")
+		to_chat(usr, "Configuration file [CONFIG_GET(string/tts_key) ? "contains invalid" : "is missing"] authentication key.")
 		return
 
-	to_chat(world, "<B>The text-to-speech has been globally [config.tts_enabled ? "enabled" : "disabled"]!</B>")
+	to_chat(world, "<B>The text-to-speech has been globally [CONFIG_GET(flag/tts_enabled) ? "enabled" : "disabled"]!</B>")
 
-	message_admins("\blue [key_name_admin(usr)] set text-to-speech to [config.tts_enabled ? "On" : "Off"].", 1)
-	log_admin("[key_name(usr)] set text-to-speech to [config.tts_enabled ? "On" : "Off"].")
+	message_admins(span_blue("[key_name_admin(usr)] set text-to-speech to [CONFIG_GET(flag/tts_enabled) ? "On" : "Off"]."), 1)
+	log_admin("[key_name(usr)] set text-to-speech to [CONFIG_GET(flag/tts_enabled) ? "On" : "Off"].")
 
 /datum/admins/proc/toggle_tts_cache()
 	set category = "Server"
 	set name = "Toggle text-to-speech caching"
 
-	config.tts_cache = !config.tts_cache
+	CONFIG_SET(flag/tts_cache, !CONFIG_GET(flag/tts_cache))
 
-	message_admins("\blue [key_name_admin(usr)] set text-to-speech caching to [config.tts_cache ? "On" : "Off"].", 1)
-	log_admin("[key_name(usr)] set text-to-speech caching to [config.tts_cache ? "On" : "Off"].")
+	message_admins(span_blue("[key_name_admin(usr)] set text-to-speech caching to [CONFIG_GET(flag/tts_cache) ? "On" : "Off"]."), 1)
+	log_admin("[key_name(usr)] set text-to-speech caching to [CONFIG_GET(flag/tts_cache) ? "On" : "Off"].")
 
 /datum/admins/proc/check_tts_stat()
 	set category = "Server"
 	set name = "Print text-to-speech stats"
 
-	to_chat(usr, "Text-to-speech is globally [config.tts_enabled ? "enabled" : (GLOB.tts_bearer ? "disabled" : "disabled and authentication data is missing")]")
+	to_chat(usr, "Text-to-speech is globally [CONFIG_GET(flag/tts_enabled) ? "enabled" : (GLOB.tts_bearer ? "disabled" : "disabled and authentication data is missing")]")
 	to_chat(usr, "Total tts files wanted this round: [GLOB.tts_wanted]")
 	to_chat(usr, "Successfully generated tts files: [GLOB.tts_request_succeeded]")
 	to_chat(usr, "Failed to generate tts files: [GLOB.tts_request_failed]")
@@ -938,7 +1010,7 @@ proc/admin_notice(message, rights)
 	LIBCALL(RUST_G, "file_write")("[seed_value]", "sound/tts_cache/[seed_name]/seed.txt")
 	LIBCALL(RUST_G, "file_write")("[seed_value]", "sound/tts_scrambled/[seed_name]/seed.txt")
 
-	message_admins("\blue [key_name_admin(usr)] added text-to-speech seed \"[seed_value]\", named \"[seed_name]\".", 1)
+	message_admins(span_blue("[key_name_admin(usr)] added text-to-speech seed \"[seed_value]\", named \"[seed_name]\"."), 1)
 	log_admin("[key_name(usr)] added text-to-speech seed \"[seed_value]\", named \"[seed_name]\".")
 
 /datum/admins/proc/select_tts_seed()
@@ -1008,7 +1080,7 @@ proc/admin_notice(message, rights)
 		return "<b>(*null*)</b>"
 	var/mob/M
 	var/client/C
-	if(istype(whom, /client))
+	if(isclient(whom))
 		C = whom
 		M = C.mob
 	else if(ismob(whom))
@@ -1021,19 +1093,19 @@ proc/admin_notice(message, rights)
 			return "<b>[key_name(C, link, name, highlight_special)]</b>"
 
 		if(1)	//Private Messages
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>)</b>"
+			return "<b>[key_name(C, link, name, highlight_special)][ADMIN_QUE(M)]</b>"
 
 		if(2)	//Admins
 			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M, UNLINT(src))]) (<A HREF='?_src_=holder;check_antagonist=1'>CA</A>)</b>"
+			return "<b>[key_name(C, link, name, highlight_special)] [ADMIN_QUE(ref_mob)] [ADMIN_PP(ref_mob)] [ADMIN_VV(ref_mob)] [ADMIN_SM(ref_mob)] ([admin_jump_link(M, UNLINT(src))]) (<A href='byond://?_src_=holder;[HrefToken()];check_antagonist=1'>CA</A>)</b>"
 
 		if(3)	//Devs
 			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>)([admin_jump_link(M, UNLINT(src))])</b>"
+			return "<b>[key_name(C, link, name, highlight_special)] [ADMIN_VV(ref_mob)] ([admin_jump_link(M, UNLINT(src))])</b>"
 
 		if(4)	//Mentors
 			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M, UNLINT(src))])</b>"
+			return "<b>[key_name(C, link, name, highlight_special)] [ADMIN_QUE(M)] [ADMIN_PP(ref_mob)] [ADMIN_VV(ref_mob)] [ADMIN_SM(ref_mob)] ([admin_jump_link(M, UNLINT(src))])</b>"
 
 
 //
@@ -1064,7 +1136,7 @@ proc/admin_notice(message, rights)
 		return TRUE
 	if(tomob.client) //No need to ghostize if there is no client
 		tomob.ghostize(0)
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.ckey] in control of [tomob.name].</span>")
+	message_admins(span_adminnotice("[key_name_admin(usr)] has put [frommob.ckey] in control of [tomob.name]."))
 	log_admin("[key_name(usr)] stuffed [frommob.ckey] into [tomob.name].")
 
 	tomob.ckey = frommob.ckey
@@ -1099,7 +1171,7 @@ proc/admin_notice(message, rights)
 // result[3] is the number of staff that match the rank mask and are inactive
 /proc/staff_countup(rank_mask = R_ADMIN)
 	var/list/result = list(0, 0, 0)
-	for(var/client/X in admins)
+	for(var/client/X in GLOB.admins)
 		if(rank_mask && !check_rights_for(X, rank_mask))
 			result[2]++
 			continue
@@ -1113,7 +1185,12 @@ proc/admin_notice(message, rights)
 	return result
 
 //This proc checks whether subject has at least ONE of the rights specified in rights_required.
-/proc/check_rights_for(client/subject, rights_required)
+/proc/check_rights_for(_subject, rights_required)
+	var/client/subject
+	if (ismob(_subject))
+		var/mob/M = _subject
+		subject = M?.client
+
 	if(subject && subject.holder)
 		if(rights_required && !(rights_required & subject.holder.rights))
 			return FALSE
@@ -1126,10 +1203,40 @@ proc/admin_notice(message, rights)
 
 	if(!check_rights(R_ADMIN))
 		return
+	CONFIG_SET(flag/z_level_shooting, !(CONFIG_GET(flag/z_level_shooting)))
 
-	config.z_level_shooting = !(config.z_level_shooting)
-	if (config.z_level_shooting)
+	if (CONFIG_GET(flag/z_level_shooting))
 		to_chat(world, "<B>Shooting between z-levels has been globally enabled! Use the lookup verb to shoot up, click on empty spaces to shoot down!</B>")
 	else
 		to_chat(world, "<B>Shooting between z-levels has been globally disabled!</B>")
 	log_and_message_admins("toggled z_level_shooting.")
+
+/// Sends a message to adminchat when anyone with a holder logs in or logs out.
+/// TODO: Add player/admin prefs for this.
+/client/proc/adminGreet(logout = FALSE)
+	if(!SSticker.HasRoundStarted())
+		return
+
+	if(logout)
+		message_admins("Admin logout: [key_name(src)]")
+		return
+
+	if(!logout)
+		message_admins("Admin login: [key_name(src)]")
+		return
+
+//Kicks all the clients currently in the lobby. The second parameter (kick_only_afk) determins if an is_afk() check is ran, or if all clients are kicked
+//defaults to kicking everyone (afk + non afk clients in the lobby)
+//returns a list of ckeys of the kicked clients
+/proc/kick_clients_in_lobby(message, kick_only_afk = 0)
+	var/list/kicked_client_names = list()
+	for(var/client/C in GLOB.clients)
+		if(isnewplayer(C.mob))
+			if(kick_only_afk && !C.is_afk()) //Ignore clients who are not afk
+				continue
+			if(message)
+				to_chat(C, message, confidential = TRUE)
+			kicked_client_names.Add("[C.key]")
+			qdel(C)
+	return kicked_client_names
+

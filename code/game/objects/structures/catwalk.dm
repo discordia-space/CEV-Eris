@@ -38,7 +38,7 @@
 	. = ..()
 
 /obj/structure/catwalk/proc/redraw_nearby_catwalks()
-	for(var/direction in alldirs)
+	for(var/direction in GLOB.alldirs)
 		if(locate(/obj/structure/catwalk, get_step(src, direction)))
 			var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, direction))
 			L.update_icon() //so siding get updated properly
@@ -55,7 +55,7 @@
 
 /obj/structure/catwalk/update_icon()
 	var/connectdir = 0
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		if(test_connect(get_step(src, direction)))
 			connectdir |= direction
 
@@ -83,7 +83,7 @@
 /obj/structure/catwalk/attackby(obj/item/I, mob/user)
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			to_chat(user, "\blue Slicing lattice joints ...")
+			to_chat(user, span_blue("Slicing lattice joints ..."))
 			new /obj/item/stack/rods(get_turf(user))
 			new /obj/item/stack/rods(get_turf(user))
 			new /obj/structure/lattice/(src.loc)

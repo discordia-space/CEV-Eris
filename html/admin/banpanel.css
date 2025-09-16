@@ -1,0 +1,86 @@
+.middle {
+    width: 80px;
+}
+
+.right {
+    width: 150px;
+}
+
+.reason {
+    resize: none;
+    min-height: 40px;
+    width: 340px;
+}
+
+.rolegroup {
+    padding: 3px;
+    width: 430px;
+    border: none;
+    text-align: center;
+    outline: none;
+    display: inline-block;
+}
+
+.row > :not(:has(> label.long)) {
+	max-width: 430px;
+}
+
+.long {
+    width: 860px;
+}
+
+.content {
+    text-align: center;
+}
+
+.command {
+    background-color: #948f02;
+}
+
+.security {
+    background-color: #a30000;
+}
+
+.engineering {
+    background-color: #fb5613;
+}
+
+.medical {
+    background-color: #337296;
+}
+
+.science {
+    background-color: #993399;
+}
+
+.church {
+	background-color: #fcc44a;
+}
+
+.supply, .guild {
+    background-color: #b17a2e;
+}
+
+.silicon {
+    background-color: #ff00ff;
+}
+
+.abstract {
+    background-color: #708090;
+}
+
+.service, .civilian {
+    background-color: #6eaa2c;
+}
+
+.ghostandotherroles {
+    background-color: #5c00e6;
+}
+
+.antagonistpositions {
+    background-color: #6d3f40;
+}
+
+.undefineddepartment, .unspecifieddepartment {
+    background-color: #111cf7;
+}

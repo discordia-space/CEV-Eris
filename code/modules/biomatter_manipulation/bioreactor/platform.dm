@@ -82,16 +82,16 @@
 			MS_bioreactor.pump_solution(forced = 1)
 
 
-/obj/machinery/multistructure/bioreactor_part/platform/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/multistructure/bioreactor_part/platform/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/material/glass/reinforced))
 		var/obj/item/stack/material/glass = I
 		var/list/glassless_dirs = get_opened_dirs()
 		if(glass.use(glassless_dirs.len))
-			to_chat(user, SPAN_NOTICE("[user] you careful placing [I] into [src]'s holders, making glass wall."))
+			to_chat(user, span_notice("[user] you careful placing [I] into [src]'s holders, making glass wall."))
 			if(do_after(user, 3*glassless_dirs.len SECONDS, src))
 				make_windows()
 		else
-			to_chat(user, SPAN_WARNING("Not enough amount of [I]."))
+			to_chat(user, span_warning("Not enough amount of [I]."))
 	..()
 
 
@@ -113,7 +113,7 @@
 		var/obj/item/organ/internal/vital/brain/B = object
 		if(B.brainmob && B.brainmob.mind && B.brainmob.mind.key)
 			var/mob/M = key2mob(B.brainmob.mind.key)
-			to_chat(M, SPAN_NOTICE("Your remains have been dissolved and reused. Your crew respawn time is reduced by [(BIOREACTOR_RESPAWN_BONUS)/600] minutes."))
+			to_chat(M, span_notice("Your remains have been dissolved and reused. Your crew respawn time is reduced by [(BIOREACTOR_RESPAWN_BONUS)/600] minutes."))
 			M << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
 			M.set_respawn_bonus("CORPSE_DISSOLVING", BIOREACTOR_RESPAWN_BONUS)
 
@@ -128,7 +128,7 @@
 
 /obj/machinery/multistructure/bioreactor_part/platform/update_icon()
 	var/corner_dir = 0		//used at sprite determination, direction point to center of whole bioreactor chamber
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		if(locate(type) in get_step(src, direction))
 			corner_dir += direction
 	if(corner_dir in list(9, 6, 5, 10))
@@ -138,7 +138,7 @@
 //There we going for open directions (dirs without neighbor platform and glass) and return list with them. It can be empty if everything okay
 /obj/machinery/multistructure/bioreactor_part/platform/proc/get_opened_dirs()
 	var/list/open_dirs = list()
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		if(!locate(type) in get_step(src, direction))
 			open_dirs += direction
 		for(var/obj/structure/window/reinforced/bioreactor/exist_glass in loc)
@@ -157,7 +157,7 @@
 
 
 //There we apply sprites and directions to created glass
-/obj/machinery/multistructure/bioreactor_part/platform/proc/apply_window(obj/structure/window/reinforced/glass, var/direction)
+/obj/machinery/multistructure/bioreactor_part/platform/proc/apply_window(obj/structure/window/reinforced/glass, direction)
 	if(MS_bioreactor.platform_enter_side == direction)
 		glass.icon_state = "platform_door"
 	else
@@ -192,17 +192,17 @@
 /obj/structure/window/reinforced/bioreactor/examine(mob/user, extra_description = "")
 	switch(contamination_level)
 		if(1)
-			extra_description += SPAN_NOTICE("There are a few stains on it. Except this, [src] looks pretty clean.")
+			extra_description += span_notice("There are a few stains on it. Except this, [src] looks pretty clean.")
 		if(2)
-			extra_description += SPAN_NOTICE("You see a sign of biomatter on this [src]. Better to clean it up.")
+			extra_description += span_notice("You see a sign of biomatter on this [src]. Better to clean it up.")
 		if(3)
-			extra_description += SPAN_WARNING("This [src] has clear signs and stains of biomatter.")
+			extra_description += span_warning("This [src] has clear signs and stains of biomatter.")
 		if(4)
-			extra_description += SPAN_WARNING("You see a high amount of biomatter on \the [src]. It's dirty as hell.")
+			extra_description += span_warning("You see a high amount of biomatter on \the [src]. It's dirty as hell.")
 		if(5)
-			extra_description += SPAN_WARNING("Now it's hard to see what's inside. Better to clean this [src].")
+			extra_description += span_warning("Now it's hard to see what's inside. Better to clean this [src].")
 		else
-			extra_description += SPAN_NOTICE("This [src] is so clean, that you can see your reflection. Is that something green at your teeth?")
+			extra_description += span_notice("This [src] is so clean, that you can see your reflection. Is that something green at your teeth?")
 	..(user, extra_description)
 
 /obj/structure/window/reinforced/bioreactor/update_icon()
@@ -218,7 +218,7 @@
 		overlays += default
 
 
-/obj/structure/window/reinforced/bioreactor/proc/apply_dirt(var/amount)
+/obj/structure/window/reinforced/bioreactor/proc/apply_dirt(amount)
 	contamination_level += amount
 	if(contamination_level >= max_contamination_lvl)
 		contamination_level = max_contamination_lvl
@@ -229,24 +229,24 @@
 	update_icon()
 
 
-/obj/structure/window/reinforced/bioreactor/attackby(var/obj/item/I, var/mob/user)
+/obj/structure/window/reinforced/bioreactor/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap))
 		if(istype(I, /obj/item/mop))
 			if(I.reagents && !I.reagents.total_volume)
-				to_chat(user, SPAN_WARNING("Your [I] is dry!"))
+				to_chat(user, span_warning("Your [I] is dry!"))
 				return
 		if(user.loc != loc)
-			to_chat(user, SPAN_WARNING("You need to be inside to clean it up."))
+			to_chat(user, span_warning("You need to be inside to clean it up."))
 			return
-		to_chat(user, SPAN_NOTICE("You begin cleaning [src] with [I]..."))
+		to_chat(user, span_notice("You begin cleaning [src] with [I]..."))
 		if(do_after(user, CLEANING_TIME * contamination_level, src))
-			to_chat(user, SPAN_NOTICE("You clean \the [src]."))
+			to_chat(user, span_notice("You clean \the [src]."))
 			toxin_attack(user, 5*contamination_level)
 			apply_dirt(-contamination_level)
 			if(contamination_level >= 4)
-				spill_biomass(user.loc, cardinal)
+				spill_biomass(user.loc, GLOB.cardinal)
 		else
-			to_chat(user, SPAN_WARNING("You need to stand still to clean it properly."))
+			to_chat(user, span_warning("You need to stand still to clean it properly."))
 	else
 		..()
 
@@ -256,20 +256,20 @@
 		return
 	var/base_chance = 70
 	if(victim == user)
-		to_chat(user, SPAN_NOTICE("You try to climb over \the [src]..."))
+		to_chat(user, span_notice("You try to climb over \the [src]..."))
 		if(do_after(user, 3 SECONDS, src))
 			if(prob(base_chance - 10*contamination_level))
-				to_chat(user, SPAN_NOTICE("You successfully climbed \the [src]!"))
+				to_chat(user, span_notice("You successfully climbed \the [src]!"))
 				if(user.loc != loc)
 					user.forceMove(get_step(src, loc))
 				else
 					user.forceMove(get_step(src, user.dir))
 			else
-				to_chat(user, SPAN_WARNING("You slipped!"))
+				to_chat(user, span_warning("You slipped!"))
 				user.Weaken(1)
 	else
-		to_chat(user, SPAN_NOTICE("You try to push \the [victim] over \the [src]"))
-		to_chat(victim, SPAN_WARNING("\The [user] is trying to push you over \the [src]!"))
+		to_chat(user, span_notice("You try to push \the [victim] over \the [src]"))
+		to_chat(victim, span_warning("\The [user] is trying to push you over \the [src]!"))
 		if(do_after(user, 3 SECONDS, src))
-			victim.visible_message(SPAN_WARNING("\The [user] pushes \the [victim] over \the [src]!"))
+			victim.visible_message(span_warning("\The [user] pushes \the [victim] over \the [src]!"))
 			victim.forceMove(get_step(src, user.dir))

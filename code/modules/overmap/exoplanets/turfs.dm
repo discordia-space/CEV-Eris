@@ -3,7 +3,6 @@
 	name = "space land"
 	icon = 'icons/turf/desert.dmi'
 	icon_state = "desert"
-	has_resources = 1
 	var/diggable = 1
 	var/dirt_color = "#7c5e42"
 	initial_flooring = null
@@ -12,7 +11,7 @@
 	return FALSE
 */
 /turf/floor/exoplanet/New()
-	if(config.use_overmap)
+	if(CONFIG_GET(flag/use_overmap))
 		var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
 		if(istype(E))
 			if(E.atmosphere)
@@ -24,17 +23,19 @@
 			//Must be done here, as light data is not fully carried over by ChangeTurf (but overlays are).
 			if(E.planetary_area && istype(loc, world.area))
 				ChangeArea(src, E.planetary_area)
+
+	seismic_activity = rand(1,6)
 	..()
 
 /turf/floor/exoplanet/attackby(obj/item/C, mob/user)
 	/*if(diggable && istype(C,/obj/item/shovel))
-		visible_message("<span class='notice'>\The [user] starts digging \the [src]</span>")
+		visible_message(span_notice("\The [user] starts digging \the [src]"))
 		if(do_after(user, 50))
-			to_chat(user,"<span class='notice'>You dig a deep pit.</span>")
+			to_chat(user,span_notice("You dig a deep pit."))
 			new /obj/structure/pit(src)
 			diggable = 0
 		else
-			to_chat(user,"<span class='notice'>You stop shoveling.</span>")
+			to_chat(user,span_notice("You stop shoveling."))
 	else if(istype(C, /obj/item/stack/tile))
 		var/obj/item/stack/tile/T = C
 		if(T.use(1))
@@ -58,11 +59,11 @@
 	icon_state = "seashallow"
 	var/reagent_type = /datum/reagent/water
 
-/turf/floor/exoplanet/water/shallow/attackby(obj/item/O, var/mob/living/user)
+/turf/floor/exoplanet/water/shallow/attackby(obj/item/O, mob/living/user)
 	var/obj/item/reagent_containers/RG = O
 	if (reagent_type && istype(RG) && RG.is_open_container() && RG.reagents)
 		RG.reagents.add_reagent(reagent_type, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-		user.visible_message("<span class='notice'>[user] fills \the [RG] from \the [src].</span>","<span class='notice'>You fill \the [RG] from \the [src].</span>")
+		user.visible_message(span_notice("[user] fills \the [RG] from \the [src]."),span_notice("You fill \the [RG] from \the [src]."))
 	else
 		return ..()
 /*
@@ -73,7 +74,7 @@
 	. = ..()
 	update_icon(1)
 
-/turf/floor/exoplanet/update_icon(var/update_neighbors)
+/turf/floor/exoplanet/update_icon(update_neighbors)
 	cut_overlays()
 	if(LAZYLEN(decals))
 		overlays += decals
@@ -173,7 +174,7 @@
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
-			to_chat(user, SPAN_NOTICE("Constructing support lattice ..."))
+			to_chat(user, span_notice("Constructing support lattice ..."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			ReplaceWithLattice()
 		return
@@ -186,7 +187,7 @@
 
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
-			to_chat(user, SPAN_NOTICE("You start constructing underplating on the lattice."))
+			to_chat(user, span_notice("You start constructing underplating on the lattice."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			if(do_after(user, (40 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT, src))))
 				qdel(L)
@@ -194,7 +195,7 @@
 				ChangeTurf(/turf/floor/plating/under)
 			return
 		else
-			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
+			to_chat(user, span_warning("The plating is going to need some support."))
 
 	if(istype(C, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = C
@@ -204,6 +205,6 @@
 	else
 		..(C,user)
 
-/turf/floor/exoplanet/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
+/turf/floor/exoplanet/take_damage(damage, damage_type = BRUTE, ignore_resistance = FALSE)
 	// Exoplanet turfs are indestructible, otherwise they can be destroyed at some point and expose metal plating
 	return

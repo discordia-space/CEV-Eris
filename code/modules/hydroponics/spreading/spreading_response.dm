@@ -1,5 +1,5 @@
 
-/obj/effect/plant/HasProximity(var/atom/movable/AM)
+/obj/effect/plant/HasProximity(atom/movable/AM)
 
 	if(seed.get_trait(TRAIT_CHEM_SPRAYER))
 		spawn(0)
@@ -30,22 +30,22 @@
 /*************************
 	Attack procs
 **************************/
-/obj/effect/plant/attack_hand(var/mob/user)
+/obj/effect/plant/attack_hand(mob/user)
 	manual_unbuckle(user)
 
 /obj/effect/plant/attack_generic(mob/M, damage, attack_message)
 	if(damage)
 		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		M.visible_message(span_danger("\The [M] [attack_message] \the [src]!"))
 		health -= damage
 		check_health()
 	else
 		manual_unbuckle(M)
 
-/obj/effect/plant/attackby(var/obj/item/W, var/mob/user)
+/obj/effect/plant/attackby(obj/item/W, mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
-	plant_controller.add_plant(src)
+	SSplants.add_plant(src)
 	if(istype(W, /obj/item/reagent_containers/syringe))
 		return
 
@@ -77,18 +77,18 @@
 
 			if(tool_type)
 				if(W.use_tool(user, src, WORKTIME_FAST*0.65, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
-					user.visible_message(SPAN_DANGER("[user] cuts down the [src]."), SPAN_DANGER("You cut down the [src]."))
+					user.visible_message(span_danger("[user] cuts down the [src]."), span_danger("You cut down the [src]."))
 					die_off()
 					return
 				return
 		else if(sampled)
-			to_chat(user, SPAN_WARNING("\The [src] has already been sampled recently."))
+			to_chat(user, span_warning("\The [src] has already been sampled recently."))
 			return
 		else if(!is_mature())
-			to_chat(user, SPAN_WARNING("\The [src] is not mature enough to yield a sample yet."))
+			to_chat(user, span_warning("\The [src] is not mature enough to yield a sample yet."))
 			return
 		else if(!seed)
-			to_chat(user, SPAN_WARNING("There is nothing to take a sample from."))
+			to_chat(user, span_warning("There is nothing to take a sample from."))
 			return
 		else if(prob(70))
 			sampled = 1
@@ -120,7 +120,7 @@
 
 		if(tool_type)
 			if(W.use_tool(user, src, WORKTIME_FAST*0.65, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
-				user.visible_message(SPAN_DANGER("[user] cuts down the [src]."), SPAN_DANGER("You cut down the [src]."))
+				user.visible_message(span_danger("[user] cuts down the [src]."), span_danger("You cut down the [src]."))
 				die_off()
 				return
 			return
@@ -154,7 +154,7 @@
 	check_health()
 
 
-/obj/effect/plant/proc/trodden_on(var/mob/living/victim)
+/obj/effect/plant/proc/trodden_on(mob/living/victim)
 	if(!is_mature())
 		return
 	var/mob/living/carbon/human/H = victim
@@ -178,24 +178,24 @@
 			if(buckled_mob.buckled == src)
 				if(buckled_mob != user)
 					buckled_mob.visible_message(\
-						SPAN_NOTICE("[user.name] frees [buckled_mob.name] from \the [src]."),\
-						SPAN_NOTICE("[user.name] frees you from \the [src]."),\
-						SPAN_WARNING("You hear shredding and ripping."))
+						span_notice("[user.name] frees [buckled_mob.name] from \the [src]."),\
+						span_notice("[user.name] frees you from \the [src]."),\
+						span_warning("You hear shredding and ripping."))
 				else
 					buckled_mob.visible_message(\
-						SPAN_NOTICE("[buckled_mob.name] struggles free of \the [src]."),\
-						SPAN_NOTICE("You untangle \the [src] from around yourself."),\
-						SPAN_WARNING("You hear shredding and ripping."))
+						span_notice("[buckled_mob.name] struggles free of \the [src]."),\
+						span_notice("You untangle \the [src] from around yourself."),\
+						span_warning("You hear shredding and ripping."))
 			unbuckle()
 		else
 			var/text = pick("rip","tear","pull")
 			user.visible_message(\
-				SPAN_NOTICE("[user.name] [text]s at \the [src]."),\
-				SPAN_NOTICE("You [text] at \the [src]."),\
-				SPAN_WARNING("You hear shredding and ripping."))
+				span_notice("[user.name] [text]s at \the [src]."),\
+				span_notice("You [text] at \the [src]."),\
+				span_warning("You hear shredding and ripping."))
 	return
 
-/obj/effect/plant/proc/entangle(var/mob/living/victim)
+/obj/effect/plant/proc/entangle(mob/living/victim)
 
 	if(buckled_mob)
 		return
@@ -211,11 +211,11 @@
 			if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 				can_grab = 0
 		if(can_grab)
-			src.visible_message(SPAN_DANGER("Tendrils lash out from \the [src] and drag \the [victim] in!"))
+			src.visible_message(span_danger("Tendrils lash out from \the [src] and drag \the [victim] in!"))
 			victim.loc = src.loc
 
 	//entangling people
 	if(victim.loc == src.loc)
 		buckle_mob(victim)
-		victim.set_dir(pick(cardinal))
-		to_chat(victim, "<span class='danger'>Tendrils [pick("wind", "tangle", "tighten")] around you!</span>")
+		victim.set_dir(pick(GLOB.cardinal))
+		to_chat(victim, span_danger("Tendrils [pick("wind", "tangle", "tighten")] around you!"))

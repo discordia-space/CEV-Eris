@@ -1,6 +1,7 @@
 /obj/item/tool/karl
 	name = "K.A.R.L"
 	desc = "Kinetic Acceleration Reconfigurable Lodebreaker. Rock and stone to the bone, miner!"
+	description_info = "It can be recharged by applying a golem core to it, mining with the energy blade powered off, or by using it in-hand in gun mode."
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	icon = 'icons/obj/karl_mining.dmi'
@@ -27,9 +28,9 @@
 
 	// Turn on-off related
 	toggleable = TRUE
-	tool_qualities = list(QUALITY_DIGGING = 10, QUALITY_PRYING = 10, QUALITY_CUTTING = 5) // So it still shares its switch off quality despite not yet being used.
-	switched_off_qualities = list(QUALITY_DIGGING = 10, QUALITY_PRYING = 10, QUALITY_CUTTING = 5)
-	switched_on_qualities = list(QUALITY_DIGGING = 30, QUALITY_WELDING = 10)
+	tool_qualities = list(QUALITY_DIGGING = 30, QUALITY_PRYING = 10, QUALITY_CUTTING = 5) // So it still shares its switch off quality despite not yet being used.
+	switched_off_qualities = list(QUALITY_DIGGING = 30, QUALITY_PRYING = 10, QUALITY_CUTTING = 5)
+	switched_on_qualities = list(QUALITY_DIGGING = 45, QUALITY_WELDING = 10)
 	suitable_cell = /obj/item/cell/medium/high
 	use_power_cost = 1.5
 	passive_power_cost = 0.01
@@ -43,6 +44,7 @@
 	var/shot_sound 			// What sound should play when the gun fires
 	var/reqpower = 10		// Power needed to shoot
 	var/isPumping = FALSE   // Whether someone is currently pumping the KARL to recharge it
+	var/pumping_time = 5 SECONDS
 
 /obj/item/tool/karl/New()
 	. = ..()
@@ -89,28 +91,27 @@
 
 /obj/item/tool/karl/attack_self(mob/user)
 	if(isBroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		to_chat(user, span_warning("\The [src] is broken."))
 		return
 	if(gunmode)
 		if(cell)
 			if(!cell.fully_charged())
 				if(isPumping)
-					to_chat(user, SPAN_NOTICE("You are already pumping \the [src] to recharge it."))
+					to_chat(user, span_notice("You are already pumping \the [src] to recharge it."))
 					return
-				var/pumping_time = wielded ? 1 SECOND : 2 SECONDS
 				isPumping = TRUE
 				if(do_after(user, pumping_time))
 					if(cell)  // Check the cell is still there in case big brain player chose to remove it during pumping
-						cell.give(use_power_cost * 1 SECOND) // Enough to use the tool during 1 second
-						to_chat(user, SPAN_NOTICE("You recharge \the [src] by pumping it, cell charge at [round(cell.percent())]%."))
+						cell.give(initial(use_power_cost) * pumping_time)
+						to_chat(user, span_notice("You recharge \the [src] by pumping it, cell charge at [round(cell.percent())]%."))
 						// Continue pumping till user cancels the pumping
 						isPumping = FALSE
 						attack_self(user)
 				isPumping = FALSE
 			else
-				to_chat(user, SPAN_NOTICE("\The [src]\'cell is fully charged'."))
+				to_chat(user, span_notice("\The [src]'s cell is fully charged."))
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] is missing a cell to recharge."))
+			to_chat(user, span_notice("\The [src] is missing a cell to recharge."))
 		return
 	..()
 	return
@@ -118,13 +119,15 @@
 /obj/item/tool/karl/turn_on(mob/user)
 	. = ..()
 	if(.)
-		to_chat(user, SPAN_NOTICE("A dangerous energy blade now covers the edges of the tool."))
+		to_chat(user, span_notice("A dangerous energy blade now covers the edges of the tool."))
 		update_force()
+		update_use_cost()
 
 /obj/item/tool/karl/turn_off(mob/user)
 	..()
-	to_chat(user, SPAN_NOTICE("The energy blade swiftly retracts."))
+	to_chat(user, span_notice("The energy blade swiftly retracts."))
 	update_force()
+	update_use_cost()
 
 /obj/item/tool/karl/proc/update_force()
 	if(gunmode)
@@ -134,42 +137,55 @@
 	else
 		force = initial(force)  // Back to standard damage when KARL is turned off
 
+/obj/item/tool/karl/proc/update_use_cost()
+	if(gunmode || !switched_on)
+		use_power_cost = 0
+	else
+		use_power_cost = initial(use_power_cost)
+
+
 // Same values than /obj/item/proc/use_tool
 /obj/item/tool/karl/use_tool(mob/living/user, atom/target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier = 110, forced_sound = null, sound_repeat = 2.5 SECONDS)
 	. = ..()  // That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
 
 	// Recharge upon successfull use when switched off
-	if(. && !switched_on && cell)
-		cell.give(use_power_cost * 1 SECOND) // Enough to use the tool during 1 second
+	if(. && !switched_on && cell && (istype(target, /turf/cave_mineral) || istype(target, /turf/mineral)))
+		cell.give(initial(use_power_cost) * 25)
 
 /obj/item/tool/karl/proc/toggle_mode_verb()
 	set name = "Unique Action"
 	set category = "Object"
 	set src in view(1)
 
+	if(usr.incapacitated() || !Adjacent(usr))
+		to_chat(usr, span_warning("You can't do that."))
+		return FALSE
+
 	toggle_karl_mode(usr)
 
 /obj/item/tool/karl/proc/toggle_karl_mode(mob/user)
+
 	gunmode = !gunmode
-	to_chat(user, SPAN_NOTICE("\The [src] switches to [gunmode ? "gun" : "tool"] mode."))
+	to_chat(user, span_notice("\The [src] switches to [gunmode ? "gun" : "tool"] mode."))
 	no_double_tact = gunmode ? TRUE : FALSE  // No double tact in gunmode
 	no_swing = gunmode ? TRUE : FALSE  // No swinging in gunmode
 	update_force()
+	update_use_cost()
 	update_icon()
 	update_wear_icon()
 
 /obj/item/tool/karl/afterattack(atom/target, mob/user, proximity, params)
 
 	if(isBroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		to_chat(user, span_warning("\The [src] is broken."))
 		return
 
 	if(gunmode)
 		if(!wielded)
-			to_chat(user, SPAN_WARNING("\The [src] must be wielded to shoot."))
+			to_chat(user, span_warning("\The [src] must be wielded to shoot."))
 			return
 		if(!cell?.checked_use(reqpower))
-			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+			to_chat(user, span_warning("[src] battery is dead or missing."))
 			return
 		shootAt(target, user.targeted_organ)
 		user.setClickCooldown(1 SECOND)
@@ -177,7 +193,7 @@
 
 	return ..()
 
-/obj/item/tool/karl/proc/shootAt(var/mob/living/target, def_zone)
+/obj/item/tool/karl/proc/shootAt(mob/living/target, def_zone)
 
 	// Check source and destination
 	var/turf/T = get_turf(src)
@@ -206,3 +222,17 @@
 			nano_ui_interact(user)
 		else
 			toggle_karl_mode(user)
+
+/obj/item/tool/karl/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/golem_core))
+		if(cell)
+			if(!cell.fully_charged())
+				cell.give(200)
+				to_chat(user, span_notice("You use the [I] to charge the [src] to [round(cell.percent())]%, destroying it in the process.")) //this makes no sense realistically, but ye olde gameplay over realism
+				qdel(I)
+			else
+				to_chat(user, span_notice("The [src] is already fully charged."))
+		else
+			to_chat(user, span_notice("Trying to recharge the [src] without a cell installed would be pointless."))
+	else
+		. = ..()

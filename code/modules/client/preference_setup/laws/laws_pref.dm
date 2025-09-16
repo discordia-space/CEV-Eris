@@ -14,11 +14,11 @@
 	name = "Laws"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/law_pref/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/law_pref/load_character(savefile/S)
 	from_file(S["laws"], pref.laws)
 	from_file(S["is_shackled"], pref.is_shackled)
 
-/datum/category_item/player_setup_item/law_pref/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/law_pref/save_character(savefile/S)
 	to_file(S["laws"], pref.laws)
 	to_file(S["is_shackled"], pref.is_shackled)
 

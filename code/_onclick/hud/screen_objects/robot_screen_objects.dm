@@ -131,6 +131,7 @@
 				else
 					icon_state = "health6"
 		else
+			var/dead_threshold = CONFIG_GET(number/health_threshold_dead)
 			switch(parentmob.health)
 				if(200 to INFINITY)
 					icon_state = "health0"
@@ -142,10 +143,10 @@
 					icon_state = "health3"
 				if(0 to 50)
 					icon_state = "health4"
-				if(HEALTH_THRESHOLD_DEAD to 0)
-					icon_state = "health5"
 				else
 					icon_state = "health6"
+			if (parentmob.health > 0 && parentmob.health <= dead_threshold )
+				icon_state = "health5"
 	else
 		icon_state = "health7"
 

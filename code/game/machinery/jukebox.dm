@@ -100,13 +100,13 @@
 	if(current_track && playing)
 		media_url = current_track.url
 		media_start_time = world.time
-		visible_message("<span class='notice'>\The [src] begins to play [current_track.display()].</span>")
+		visible_message(span_notice("\The [src] begins to play [current_track.display()]."))
 	else
 		media_url = ""
 		media_start_time = 0
 	update_music()
 
-/obj/machinery/media/jukebox/proc/set_hacked(var/newhacked)
+/obj/machinery/media/jukebox/proc/set_hacked(newhacked)
 	if (hacked == newhacked) return
 	hacked = newhacked
 	if (hacked)
@@ -122,7 +122,7 @@
 
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
-			user.visible_message("<span class='warning'>[user] has [panel_open ? "" : "un"]screwed [src]'s maintenance pannel[panel_open ? " back" : ""].</span>", "<span class='notice'>You [panel_open ? "" : "un"]screw [src]'s maintenance panel[panel_open ? " back" : ""].</span>")
+			user.visible_message(span_warning("[user] has [panel_open ? "" : "un"]screwed [src]'s maintenance pannel[panel_open ? " back" : ""]."), span_notice("You [panel_open ? "" : "un"]screw [src]'s maintenance panel[panel_open ? " back" : ""]."))
 			panel_open = !panel_open
 			update_icon()
 		if(QUALITY_WIRE_CUTTING)
@@ -130,7 +130,7 @@
 		if(QUALITY_PULSING)
 			return wires.Interact(user)
 		if(QUALITY_BOLT_TURNING)
-			user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
+			user.visible_message(span_warning("[user] has [anchored ? "un" : ""]secured \the [src]."), span_notice("You [anchored ? "un" : ""]secure \the [src]."))
 			anchored = !anchored
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 			power_change()
@@ -144,17 +144,17 @@
 
 	if(istype(W, /obj/item/music_tape))
 		if(my_tape)
-			to_chat(user, SPAN_NOTICE("There's already a tape inside [src]."))
+			to_chat(user, span_notice("There's already a tape inside [src]."))
 		else
 			my_tape = W
 			user.unEquip(my_tape, src)
 			my_tape.forceMove(src)
-			to_chat(user, SPAN_NOTICE("You insert the tape inside [src]."))
+			to_chat(user, span_notice("You insert the tape inside [src]."))
 			update_tape()
 	return ..()
 
 
-/obj/machinery/media/jukebox/proc/update_tape(var/removed)
+/obj/machinery/media/jukebox/proc/update_tape(removed)
 	if (!removed)
 		tracks.Add(get_tape_playlist())
 	else
@@ -199,7 +199,7 @@
 		return
 
 	if(!anchored)
-		to_chat(usr, SPAN_WARNING("You must secure \the [src] first."))
+		to_chat(usr, span_warning("You must secure \the [src] first."))
 		return
 
 	if(inoperable())
@@ -261,7 +261,7 @@
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/media/jukebox/nano_ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/media/jukebox/nano_ui_interact(mob/user, ui_key = "jukebox", datum/nanoui/ui = null, force_open = 1)
 	var/title = "RetroBox - Space Style"
 	var/data[0]
 
@@ -293,12 +293,12 @@
 /obj/machinery/media/jukebox/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/media/jukebox/attack_hand(var/mob/user as mob)
+/obj/machinery/media/jukebox/attack_hand(mob/user as mob)
 	interact(user)
 
 /obj/machinery/media/jukebox/proc/explode()
 	walk_to(src,0)
-	src.visible_message(SPAN_DANGER("\the [src] blows apart!"), 1)
+	src.visible_message(span_danger("\the [src] blows apart!"), 1)
 	explosion(get_turf(src), 200, 50)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -308,11 +308,11 @@
 	new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	qdel(src)
 
-/obj/machinery/media/jukebox/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/media/jukebox/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		emagged = 1
 		StopPlaying()
-		visible_message(SPAN_DANGER("\The [src] makes a fizzling sound."))
+		visible_message(span_danger("\The [src] makes a fizzling sound."))
 		update_icon()
 		return 1
 
@@ -369,5 +369,5 @@
 		my_tape.forceMove(get_turf(src))
 		my_tape = null
 	else
-		to_chat(usr, SPAN_NOTICE("There is no tape inside [src]."))
+		to_chat(usr, span_notice("There is no tape inside [src]."))
 

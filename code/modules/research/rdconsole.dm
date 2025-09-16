@@ -114,24 +114,24 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		linked_destroy = null
 	return ..()
 
-/obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj, var/mob/user as mob)
+/obj/machinery/computer/rdconsole/attackby(obj/item/D as obj, mob/user as mob)
 	//Loading a disk into it.
 	if(istype(D, /obj/item/computer_hardware/hard_drive/portable))
 		if(disk)
-			to_chat(user, SPAN_NOTICE("A disk is already loaded into the machine."))
+			to_chat(user, span_notice("A disk is already loaded into the machine."))
 			return
 
 		user.drop_item()
 		D.forceMove(src)
 		disk = D
-		to_chat(user, SPAN_NOTICE("You add \the [D] to the machine."))
+		to_chat(user, span_notice("You add \the [D] to the machine."))
 	else if(istype(D, /obj/item/device/science_tool)) // Used when you want to upload autopsy/other scanned data to the console
 		var/research_points = files.experiments.read_science_tool(D)
 		if(research_points > 0)
-			to_chat(user, SPAN_NOTICE("[name] received [research_points] research points from uploaded data."))
+			to_chat(user, span_notice("[name] received [research_points] research points from uploaded data."))
 			files.adjust_research_points(research_points)
 		else
-			to_chat(user, SPAN_NOTICE("There was no useful data inside [D.name]'s buffer."))
+			to_chat(user, span_notice("There was no useful data inside [D.name]'s buffer."))
 	else
 		//The construction/deconstruction of the console code.
 		..()
@@ -139,11 +139,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	SSnano.update_uis(src)
 	return
 
-/obj/machinery/computer/rdconsole/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/rdconsole/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		playsound(loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = TRUE
-		to_chat(user, SPAN_NOTICE("You disable the security protocols."))
+		to_chat(user, span_notice("You disable the security protocols."))
 		return TRUE
 
 /obj/machinery/computer/rdconsole/proc/reset_screen() // simply resets the screen to the main screen and updates the UIs
@@ -193,7 +193,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		var/where = href_list["go_screen"]
 		if(href_list["need_access"])
 			if(!allowed(usr) && !emagged)
-				to_chat(usr, SPAN_WARNING("Unauthorized access."))
+				to_chat(usr, span_warning("Unauthorized access."))
 				return
 		screen = where
 		if(screen == SCREEN_PROTO || screen == SCREEN_IMPRINTER)
@@ -240,15 +240,15 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(allowed(usr) || emagged)
 			show_settings = !show_settings
 		else
-			to_chat(usr, SPAN_WARNING("Unauthorized access.</span>"))
+			to_chat(usr, span_warning("Unauthorized access.</span>"))
 	if(href_list["toggle_link_menu"]) // User wants to see the device linkage menu.
 		if(allowed(usr) || emagged)
 			show_link_menu = !show_link_menu
 		else
-			to_chat(usr, SPAN_WARNING("Unauthorized access."))
+			to_chat(usr, span_warning("Unauthorized access."))
 	if(href_list["sync"]) //Sync the research holder with all the R&D consoles in the game that aren't sync protected (after a 3 seconds delay).
 		if(!sync)
-			to_chat(usr, SPAN_WARNING("You must connect to the network first!"))
+			to_chat(usr, span_warning("You must connect to the network first!"))
 		else
 			screen = SCREEN_WORKING
 			griefProtection() //Putting this here because I dont trust the sync process
@@ -321,12 +321,12 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(allowed(usr) || emagged)
 			screen = SCREEN_LOCKED
 		else
-			to_chat(usr, SPAN_WARNING("Unauthorized access."))
+			to_chat(usr, span_warning("Unauthorized access."))
 	if(href_list["unlock"]) // Unlock
 		if(allowed(usr) || emagged)
 			screen = SCREEN_MAIN
 		else
-			to_chat(usr, SPAN_WARNING("Unauthorized access."))
+			to_chat(usr, span_warning("Unauthorized access."))
 
 	return TRUE
 

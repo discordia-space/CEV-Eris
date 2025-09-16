@@ -23,14 +23,14 @@
 	var/repair_complexity = REPAIR_HULL //How complex we get regarding repairing things
 
 /obj/machinery/repair_station/examine(mob/user, extra_description = "")
-	..(user, "It has [SPAN_NOTICE("[repair_amount]")] repair points remaining.")
+	..(user, "It has [span_notice("[repair_amount]")] repair points remaining.")
 
-/obj/machinery/repair_station/Crossed(var/mob/living/silicon/robot/R)
+/obj/machinery/repair_station/Crossed(mob/living/silicon/robot/R)
 	. = ..()
 	if(istype(R) && repairing != R)
 		start_repairing(R)
 
-/obj/machinery/repair_station/Uncrossed(var/mob/living/silicon/R)
+/obj/machinery/repair_station/Uncrossed(mob/living/silicon/R)
 	. = ..()
 	if(R == repairing)
 		stop_repairing()
@@ -87,15 +87,15 @@
 				break
 
 	if(!repair_count)
-		to_chat(repairing, SPAN_NOTICE("Repairs complete. Shutting down."))
+		to_chat(repairing, span_notice("Repairs complete. Shutting down."))
 		stop_repairing()
 
-/obj/machinery/repair_station/proc/start_repairing(var/mob/living/silicon/robot/R)
+/obj/machinery/repair_station/proc/start_repairing(mob/living/silicon/robot/R)
 	if(stat & (NOPOWER | BROKEN))
-		to_chat(R, SPAN_WARNING("Repair system not responding. Terminating."))
+		to_chat(R, span_warning("Repair system not responding. Terminating."))
 		return
 
-	to_chat(R, SPAN_NOTICE("Commencing repairs. Please stand by."))
+	to_chat(R, span_notice("Commencing repairs. Please stand by."))
 	repairing = R
 	set_power_use(ACTIVE_POWER_USE)
 
@@ -106,12 +106,12 @@
 	repairing = null
 	set_power_use(IDLE_POWER_USE)
 
-/obj/machinery/repair_station/attackby(var/obj/item/O, var/mob/user)
+/obj/machinery/repair_station/attackby(obj/item/O, mob/user)
 	.=..()
 	if(istype(O,/obj/item/stack/material) && O.get_material_name() == MATERIAL_STEEL)
 		var/obj/item/stack/material/S = O
 		if(S.use(1))
-			to_chat(user, SPAN_NOTICE("You insert a sheet of \the [S]. \The [src] now has [repair_amount] repair points remaining."))
+			to_chat(user, span_notice("You insert a sheet of \the [S]. \The [src] now has [repair_amount] repair points remaining."))
 			repair_amount += 25
 
 #undef REPAIR_HULL

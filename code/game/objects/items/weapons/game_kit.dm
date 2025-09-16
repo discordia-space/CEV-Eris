@@ -22,7 +22,7 @@ THAT STUPID GAME KIT
 					src.attack_hand(usr, 0, 1)
 
 /obj/item/game_kit/proc/update()
-	var/dat = text("<CENTER><B>Game Board</B></CENTER><BR><a href='?src=\ref[];mode=hia'>[]</a> <a href='?src=\ref[];mode=remove'>remove</a><HR><table width= 256  border= 0  height= 256  cellspacing= 0  cellpadding= 0 >", src, (src.selected ? text("Selected: []", src.selected) : "Nothing Selected"), src)
+	var/dat = text("<CENTER><B>Game Board</B></CENTER><BR><a href='byond://?src=\ref[];mode=hia'>[]</a> <a href='byond://?src=\ref[];mode=remove'>remove</a><HR><table width= 256  border= 0  height= 256  cellspacing= 0  cellpadding= 0 >", src, (src.selected ? text("Selected: []", src.selected) : "Nothing Selected"), src)
 	for (var/y = 1 to 8)
 		dat += "<tr>"
 
@@ -33,23 +33,23 @@ THAT STUPID GAME KIT
 			dat += "<td>"
 			dat += "<td style='background-color:[color]' width=32 height=32>"
 			if (piece != "BB")
-				dat += "<a href='?src=\ref[src];s_board=[x] [y]'><img src='[src.base_url]/board_[piece].png' width=32 height=32 border=0>"
+				dat += "<a href='byond://?src=\ref[src];s_board=[x] [y]'><img src='[src.base_url]/board_[piece].png' width=32 height=32 border=0>"
 			else
-				dat += "<a href='?src=\ref[src];s_board=[x] [y]'><img src='[src.base_url]/board_none.png' width=32 height=32 border=0>"
+				dat += "<a href='byond://?src=\ref[src];s_board=[x] [y]'><img src='[src.base_url]/board_none.png' width=32 height=32 border=0>"
 			dat += "</td>"
 
 		dat += "</tr>"
 
 	dat += "</table><HR><B>Chips:</B><BR>"
 	for (var/piece in list("CB", "CR"))
-		dat += "<a href='?src=\ref[src];s_piece=[piece]'><img src='[src.base_url]/board_[piece].png' width=32 height=32 border=0></a>"
+		dat += "<a href='byond://?src=\ref[src];s_piece=[piece]'><img src='[src.base_url]/board_[piece].png' width=32 height=32 border=0></a>"
 
 	dat += "<HR><B>Chess pieces:</B><BR>"
 	for (var/piece in list("WP", "WK", "WQ", "WI", "WN", "WR"))
-		dat += "<a href='?src=\ref[src];s_piece=[piece]'><img src='[src.base_url]/board_[piece].png' width=32 height=32 border=0></a>"
+		dat += "<a href='byond://?src=\ref[src];s_piece=[piece]'><img src='[src.base_url]/board_[piece].png' width=32 height=32 border=0></a>"
 	dat += "<br>"
 	for (var/piece in list("BP", "BK", "BQ", "BI", "BN", "BR"))
-		dat += "<a href='?src=\ref[src];s_piece=[piece]'><img src='[src.base_url]/board_[piece].png' width=32 height=32 border=0></a>"
+		dat += "<a href='byond://?src=\ref[src];s_piece=[piece]'><img src='[src.base_url]/board_[piece].png' width=32 height=32 border=0></a>"
 	src.data = dat
 
 /obj/item/game_kit/attack_ai(mob/user as mob, unused, flag)
@@ -63,7 +63,7 @@ THAT STUPID GAME KIT
 		user.machine = src
 		if (!( src.data ))
 			update()
-		user << browse(src.data, "window=game_kit")
+		user << browse(HTML_SKELETON_TITLE("Game Board", src.data), "window=game_kit")
 		onclose(user, "game_kit")
 		return
 	return

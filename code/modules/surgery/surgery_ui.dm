@@ -85,7 +85,7 @@
 
 			organ_data["damage"] = organ.damage
 			organ_data["max_damage"] = organ.max_damage
-			organ_data["wound_count"] = LAZYLEN(organ.GetComponents(/datum/component/internal_wound))
+			organ_data["wound_count"] = LAZYLEN(organ.wounddatums)
 			if(istype(organ, /obj/item/organ/internal/vital/brain))
 				var/obj/item/organ/internal/vital/brain/B = organ
 				organ_data["brain_health"] = B.health
@@ -161,7 +161,7 @@
 				var/diag_time = 70 * usr.stats.getMult(target_stat, STAT_LEVEL_EXPERT)
 				var/target = get_surgery_target()
 
-				to_chat(user, SPAN_NOTICE("You start examining [get_surgery_name()] for issues."))
+				to_chat(user, span_notice("You start examining [get_surgery_name()] for issues."))
 
 				var/wait
 				if(ismob(target))
@@ -173,7 +173,7 @@
 					if(prob(100 - FAILCHANCE_VERY_EASY + usr.stats.getStat(target_stat)))
 						diagnosed = TRUE
 					else
-						to_chat(user, SPAN_WARNING("You failed to diagnose [get_surgery_name()]!"))
+						to_chat(user, span_warning("You failed to diagnose [get_surgery_name()]!"))
 
 			return TRUE
 
@@ -195,13 +195,13 @@
 				var/target_stat = BP_IS_ROBOTIC(src) ? STAT_MEC : STAT_BIO
 				var/removal_time = 70 * usr.stats.getMult(target_stat, STAT_LEVEL_PROF)
 				var/target = get_surgery_target()
-				var/obj/item/I = user.get_active_hand()
+				var/obj/item/I = user.get_active_held_item()
 
 				if(!I || !(QUALITY_CLAMPING in I.tool_qualities))
-					to_chat(user, SPAN_WARNING("You need a tool with [QUALITY_CLAMPING] quality"))
+					to_chat(user, span_warning("You need a tool with [QUALITY_CLAMPING] quality"))
 					return FALSE
 
-				to_chat(user, SPAN_NOTICE("You start removing shrapnel from [get_surgery_name()]."))
+				to_chat(user, span_notice("You start removing shrapnel from [get_surgery_name()]."))
 
 				var/wait
 				if(ismob(target))
@@ -214,15 +214,15 @@
 						for(var/obj/item/material/shard/shrapnel/shrapnel in src.implants)
 							implants -= shrapnel
 							shrapnel.loc = get_turf(src)
-						to_chat(user, SPAN_WARNING("You have removed shrapnel from [get_surgery_name()]."))
+						to_chat(user, span_warning("You have removed shrapnel from [get_surgery_name()]."))
 					else
-						to_chat(user, SPAN_WARNING("You failed to remove any shrapnel from [get_surgery_name()]!"))
+						to_chat(user, span_warning("You failed to remove any shrapnel from [get_surgery_name()]!"))
 
 			return TRUE
 
 		if("treat_wound")
 			var/mob/living/user = usr
-			var/obj/item/I = user.get_active_hand()
+			var/obj/item/I = user.get_active_held_item()
 
 			if(!user || !I)
 				return

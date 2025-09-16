@@ -28,12 +28,12 @@
 		if(istype(I, /obj/item/tool/multitool))
 			var/obj/item/tool/multitool/M = I
 			M.buffer_object = src
-			to_chat(user, SPAN_WARNING("You save the data in the [I.name]'s buffer."))
+			to_chat(user, span_warning("You save the data in the [I.name]'s buffer."))
 			return
 
 	else
 		if(istype(I, /obj/item/tool/multitool))
-			to_chat(user, SPAN_WARNING("You should open [src]'s maintenance panel first."))
+			to_chat(user, span_warning("You should open [src]'s maintenance panel first."))
 			return
 
 /obj/machinery/telepad/update_icon()

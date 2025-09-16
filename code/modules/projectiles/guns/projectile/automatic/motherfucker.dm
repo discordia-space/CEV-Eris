@@ -47,7 +47,7 @@
 
 /obj/item/gun/projectile/automatic/motherfucker/special_check(mob/user)
 	if(!pumped)
-		to_chat(user, SPAN_WARNING("You can't fire [src] without pumping it "))
+		to_chat(user, span_warning("You can't fire [src] without pumping it "))
 		return FALSE
 	return ..()
 

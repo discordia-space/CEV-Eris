@@ -40,7 +40,7 @@ GLOBAL_VAR_INIT(hivemind_panel, new /datum/hivemind_panel)
 	for(var/i in GLOB.hivemind_mobs)
 		data += "<br>[i] - [GLOB.hivemind_mobs[i]]."
 	data += "</td></tr></table>"
-	usr << browse(data, "window=hive_mob;size=600x600")
+	usr << browse(HTML_SKELETON(data), "window=hive_mob;size=600x600")
 
 
 /datum/hivemind_panel/proc/area_list_interact()
@@ -48,12 +48,12 @@ GLOBAL_VAR_INIT(hivemind_panel, new /datum/hivemind_panel)
 	for(var/i in GLOB.hivemind_areas)
 		data += "<br>[i] - [GLOB.hivemind_areas[i]] wireweed."
 	data += "</td></tr></table>"
-	usr << browse(data, "window=hive_area;size=600x600")
+	usr << browse(HTML_SKELETON(data), "window=hive_area;size=600x600")
 
 
 /datum/hivemind_panel/proc/main_interact()
 	var/data = "<center><font size='3'><b>HIVEMIND PANEL v0.2</b></font></center>"
-	data += "<table><tr><td><a href='?src=\ref[src];refresh=1'>\[REFRESH\]</a>"
+	data += "<table><tr><td><a href='byond://?src=\ref[src];refresh=1'>\[REFRESH\]</a>"
 
 	if(hive_mind_ai)
 		data += "<br>Hivemind [hive_mind_ai.name] [hive_mind_ai.surname] is active."
@@ -61,50 +61,50 @@ GLOBAL_VAR_INIT(hivemind_panel, new /datum/hivemind_panel)
 		data += "<br>Evolution level: [hive_mind_ai.evo_level]"
 		data += "<br>Nodes count: [hive_mind_ai.hives.len]"
 		data += "<br>Areas count: [GLOB.hivemind_areas.len] \
-		<a href='?src=\ref[src];area_list_interact=1'>\[DETAILS\]</a>"
+		<a href='byond://?src=\ref[src];area_list_interact=1'>\[DETAILS\]</a>"
 		data += "<br>Mobs count: [GLOB.hivemind_mobs.len] \
-		<a href='?src=\ref[src];mob_list_interact=1'>\[DETAILS\]</a>"
+		<a href='byond://?src=\ref[src];mob_list_interact=1'>\[DETAILS\]</a>"
 	else
 		data += "<br>Hivemind is not active. Yet."
-		data += "<br>Name: [_name] <a href='?src=\ref[src];set_name=1'>\[SET\]</a>"
-		data += "<br>Surname: [_surname] <a href='?src=\ref[src];set_surname=1'>\[SET\]</a>"
-	data += "<br><a href='?src=\ref[src];spawn_hive=1'>\[SPAWN\]</a>"
-	data += "<br><a href='?src=\ref[src];kill_hive=1'>\[PURGE\]</a>"
-	data += "<br><a href='?src=\ref[src];really_kill_hive=1'>\[HARDCORE PURGE\]</a>"
+		data += "<br>Name: [_name] <a href='byond://?src=\ref[src];set_name=1'>\[SET\]</a>"
+		data += "<br>Surname: [_surname] <a href='byond://?src=\ref[src];set_surname=1'>\[SET\]</a>"
+	data += "<br><a href='byond://?src=\ref[src];spawn_hive=1'>\[SPAWN\]</a>"
+	data += "<br><a href='byond://?src=\ref[src];kill_hive=1'>\[PURGE\]</a>"
+	data += "<br><a href='byond://?src=\ref[src];really_kill_hive=1'>\[HARDCORE PURGE\]</a>"
 
 	if(GLOB.hive_data_bool["maximum_existing_mobs"])
 		data += "<br>Controlled mob limit: [GLOB.hive_data_float["maximum_existing_mobs"]] \
-		<a href='?src=\ref[src];toggle_mob_limit=1'>\[DISABLE\]</a>	\
-		<a href='?src=\ref[src];set_mob_limit=1'>\[SET\]</a>"
+		<a href='byond://?src=\ref[src];toggle_mob_limit=1'>\[DISABLE\]</a>	\
+		<a href='byond://?src=\ref[src];set_mob_limit=1'>\[SET\]</a>"
 	else
-		data += "<br>Mob limit disabled.<a href='?src=\ref[src];toggle_mob_limit=1'>\[ENABLE\]</a>"
+		data += "<br>Mob limit disabled.<a href='byond://?src=\ref[src];toggle_mob_limit=1'>\[ENABLE\]</a>"
 
 	if(GLOB.hive_data_float["maximum_controlled_areas"])
 		data += "<br>Controlled area limit: [GLOB.hive_data_float["maximum_controlled_areas"]]"
 	else
 		data += "<br>Area limit disabled."
-	data += "<a href='?src=\ref[src];set_area_limit=1'>\[SET\]</a>"
+	data += "<a href='byond://?src=\ref[src];set_area_limit=1'>\[SET\]</a>"
 
 	data += "<br>Core oddity drop chance: [GLOB.hive_data_float["core_oddity_drop_chance"]] \
-	<a href='?src=\ref[src];rig_gacha=1'>\[SET\]</a>"
+	<a href='byond://?src=\ref[src];rig_gacha=1'>\[SET\]</a>"
 
 	data += "<br>Spread trough burrows: [GLOB.hive_data_bool["spread_trough_burrows"] ? "Enabled" : "Disabled"] \
-	<a href='?src=\ref[src];toggle_burrow=1'>\[TOGGLE\]</a>"
+	<a href='byond://?src=\ref[src];toggle_burrow=1'>\[TOGGLE\]</a>"
 
 	data += "<br>Spread on z level below: [GLOB.hive_data_bool["spread_on_lower_z_level"] ? "Enabled" : "Disabled"] \
-	<a href='?src=\ref[src];toggle_gravity_spread=1'>\[TOGGLE\]</a>"
+	<a href='byond://?src=\ref[src];toggle_gravity_spread=1'>\[TOGGLE\]</a>"
 
 	data += "<br>Teleport core when damaged: [GLOB.hive_data_bool["teleport_core_when_damaged"] ? "Enabled" : "Disabled"] \
-	<a href='?src=\ref[src];toggle_core_teleportation=1'>\[TOGGLE\]</a>"
+	<a href='byond://?src=\ref[src];toggle_core_teleportation=1'>\[TOGGLE\]</a>"
 
 	data += "<br>Allow tyrant spawn: [GLOB.hive_data_bool["allow_tyrant_spawn"] ? "Enabled" : "Disabled"] \
-	<a href='?src=\ref[src];toggle_tyrant_spawn=1'>\[TOGGLE\]</a>"
+	<a href='byond://?src=\ref[src];toggle_tyrant_spawn=1'>\[TOGGLE\]</a>"
 
 	data += "<br>Tyrant death kills hive: [GLOB.hive_data_bool["tyrant_death_kills_hive"] ? "Enabled" : "Disabled"] \
-	<a href='?src=\ref[src];toggle_tyrant_gameover=1'>\[TOGGLE\]</a>"
+	<a href='byond://?src=\ref[src];toggle_tyrant_gameover=1'>\[TOGGLE\]</a>"
 
 	data += "</td></tr></table>"
-	usr << browse(data, "window=hive_main;size=600x600")
+	usr << browse(HTML_SKELETON(data), "window=hive_main;size=600x600")
 
 
 /datum/hivemind_panel/Topic(href,href_list)
@@ -186,6 +186,6 @@ GLOBAL_VAR_INIT(hivemind_panel, new /datum/hivemind_panel)
 		GLOB.hive_data_bool["allow_tyrant_spawn"] = !GLOB.hive_data_bool["allow_tyrant_spawn"]
 
 	if(href_list["toggle_tyrant_gameover"])
-		GLOB.hive_data_bool["tyrant_death_kills_hive"] = !GLOB.hive_data_bool["tyrant_death_kills_hive"] 
+		GLOB.hive_data_bool["tyrant_death_kills_hive"] = !GLOB.hive_data_bool["tyrant_death_kills_hive"]
 
 	main_interact()

@@ -1,4 +1,4 @@
-/area/proc/set_dynamic_lighting(var/new_dynamic_lighting = TRUE)
+/area/proc/set_dynamic_lighting(new_dynamic_lighting = TRUE)
 	if (new_dynamic_lighting == dynamic_lighting)
 		return FALSE
 

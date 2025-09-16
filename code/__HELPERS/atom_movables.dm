@@ -27,7 +27,7 @@
 	if(final_x || final_y)
 		return locate(final_x, final_y, T.z)
 
-/atom/movable/proc/throw_at_random(var/include_own_turf, var/maxrange, var/speed)
+/atom/movable/proc/throw_at_random(include_own_turf, maxrange, speed)
 	var/list/turfs = RANGE_TURFS(maxrange, src)
 	if(!maxrange)
 		maxrange = 1

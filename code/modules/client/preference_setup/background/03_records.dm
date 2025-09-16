@@ -8,35 +8,35 @@
 	name = "Records"
 	sort_order = 5
 
-/datum/category_item/player_setup_item/background/records/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/background/records/load_character(savefile/S)
 	from_file(S["med_record"],pref.med_record)
 	from_file(S["sec_record"],pref.sec_record)
 	from_file(S["gen_record"],pref.gen_record)
 	from_file(S["memory"],pref.memory)
 
-/datum/category_item/player_setup_item/background/records/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/background/records/save_character(savefile/S)
 	to_file(S["med_record"],pref.med_record)
 	to_file(S["sec_record"],pref.sec_record)
 	to_file(S["gen_record"],pref.gen_record)
 	to_file(S["memory"],pref.memory)
 
-/datum/category_item/player_setup_item/background/records/content(var/mob/user)
+/datum/category_item/player_setup_item/background/records/content(mob/user)
 	. = list()
 	. += "<br/><b>Records</b>:<br/>"
 	if(jobban_isbanned(user, "Records"))
-		. += "<span class='danger'>You are banned from using character records.</span><br>"
+		. += "[span_danger("You are banned from using character records.")]<br>"
 	else
 		. += "Medical Records: "
-		. += "<a href='?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br>"
+		. += "<a href='byond://?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br>"
 		. += "Employment Records: "
-		. += "<a href='?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record,40)]</a><br>"
+		. += "<a href='byond://?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record,40)]</a><br>"
 		. += "Security Records: "
-		. += "<a href='?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br>"
+		. += "<a href='byond://?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br>"
 		. += "Memory: "
-		. += "<a href='?src=\ref[src];set_memory=1'>[TextPreview(pref.memory,40)]</a><br>"
+		. += "<a href='byond://?src=\ref[src];set_memory=1'>[TextPreview(pref.memory,40)]</a><br>"
 	. = jointext(.,null)
 
-/datum/category_item/player_setup_item/background/records/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/background/records/OnTopic(href,list/href_list, mob/user)
 	if(href_list["set_medical_records"])
 		var/new_medical = sanitize(input(user,"Enter medical information here.",CHARACTER_PREFERENCE_INPUT_TITLE, html_decode(pref.med_record)) as message|null, MAX_PAPER_MESSAGE_LEN, extra = 0)
 		if(!isnull(new_medical) && !jobban_isbanned(user, "Records") && CanUseTopic(user))

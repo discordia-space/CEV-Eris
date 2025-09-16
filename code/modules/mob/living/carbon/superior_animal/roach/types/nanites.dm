@@ -38,7 +38,7 @@
 		rad = 100
 	)
 
-/mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(atom/A, var/proximity)
+/mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(atom/A, proximity)
 	. = ..()
 
 	if(isliving(A))
@@ -63,6 +63,14 @@
 		NS.death()
 	.=..()
 
+/mob/living/carbon/superior_animal/roach/nanite/joinOvermind(datum/overmind/roachmind/jointhis)
+	jointhis.addRanged(src) // Kraftwerk is Ranged
+	overseer = jointhis
+
+/mob/living/carbon/superior_animal/roach/nanite/leaveOvermind()
+	overseer?.removeRanged(src) // Ranged Kraftwerk
+	overseer?.casualties.Remove(src)
+	overseer = null
 
 /mob/living/simple_animal/hostile/naniteswarm
 	name = "nanite infested miniroach cluster"
@@ -93,7 +101,7 @@
 
 	var/mob/living/carbon/superior_animal/roach/nanite/parent
 
-/mob/living/simple_animal/hostile/naniteswarm/New(loc, var/nuparent)
+/mob/living/simple_animal/hostile/naniteswarm/New(loc, nuparent)
 	..()
 	parent = nuparent
 

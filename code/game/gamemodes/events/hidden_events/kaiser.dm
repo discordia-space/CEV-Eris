@@ -62,7 +62,7 @@ It will also bring a hoard of roaches with it.
 			floors.Add(F)
 
 	var/i = floors.len
-	for(i, i>0, i--)
+	for(i; i > 0; i--)
 		var/obj/structure/scrap_spawner/scrap = pick(reward)
 		var/turf/floor/floor = pick(floors)
 		new scrap(floor)

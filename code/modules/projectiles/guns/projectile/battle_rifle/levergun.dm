@@ -33,8 +33,8 @@
 	mechanismvar = /obj/item/part/gun/modular/mechanism/boltgun
 	barrelvars = list(/obj/item/part/gun/modular/barrel/magnum)
 
-/obj/item/gun/projectile/boltgun/levergun/hand_spin(mob/living/carbon/caller)
-	bolt_act(caller)
+/obj/item/gun/projectile/boltgun/levergun/hand_spin(mob/living/carbon/requester)
+	bolt_act(requester)
 
 /obj/item/gun/projectile/boltgun/levergun/sawn
 	name = "sawn-off FS BR .40 \"Svengali\""

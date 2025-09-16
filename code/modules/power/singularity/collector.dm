@@ -45,12 +45,12 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 		if(!locked)
 			toggle_power()
 			user.visible_message(
-				SPAN_NOTICE("[user] turns [src] [active? "on" : "off"]."),
-				SPAN_NOTICE("You turn [src] [active ? "on" : "off"].")
+				span_notice("[user] turns [src] [active? "on" : "off"]."),
+				span_notice("You turn [src] [active ? "on" : "off"].")
 				)
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas["plasma"]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
 		else
-			to_chat(user, SPAN_WARNING("The controls are locked!"))
+			to_chat(user, span_warning("The controls are locked!"))
 		return
 	..()
 
@@ -76,8 +76,8 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					anchored = !anchored
 					user.visible_message(
-						SPAN_NOTICE("[user] [anchored ? "secures" : "unsecures"] [src]."),
-						SPAN_NOTICE("You [anchored ? "secure" : "undo"] the external bolts."),
+						span_notice("[user] [anchored ? "secures" : "unsecures"] [src]."),
+						span_notice("You [anchored ? "secure" : "undo"] the external bolts."),
 						"You hear a ratchet")
 					if(anchored)
 						connect_to_network()
@@ -90,10 +90,10 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 
 	if(istype(I, /obj/item/tank/plasma))
 		if(!anchored)
-			to_chat(user, SPAN_WARNING("[src] needs to be secured to the floor first."))
+			to_chat(user, span_warning("[src] needs to be secured to the floor first."))
 			return
 		if(P)
-			to_chat(user, SPAN_WARNING("[src] already has a plasma tank loaded."))
+			to_chat(user, span_warning("[src] already has a plasma tank loaded."))
 			return
 		user.drop_item()
 		P = I
@@ -105,12 +105,12 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 		if(allowed(user))
 			if(active)
 				locked = !locked
-				to_chat(user, SPAN_NOTICE("The controls are now [locked ? "locked" : "unlocked"]."))
+				to_chat(user, span_notice("The controls are now [locked ? "locked" : "unlocked"]."))
 			else
 				locked = FALSE //just in case it somehow gets locked
-				to_chat(user, SPAN_WARNING("The controls can only be locked when [src] is active."))
+				to_chat(user, span_warning("The controls can only be locked when [src] is active."))
 		else
-			to_chat(user, SPAN_WARNING("Access denied!"))
+			to_chat(user, span_warning("Access denied!"))
 		return
 	return ..()
 

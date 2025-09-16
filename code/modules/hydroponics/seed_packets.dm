@@ -17,8 +17,8 @@ var/global/list/plant_seed_sprites = list()
 
 //Grabs the appropriate seed datum from the global list.
 /obj/item/seeds/proc/update_seed()
-	if(!seed && seed_type && !isnull(plant_controller.seeds) && plant_controller.seeds[seed_type])
-		seed = plant_controller.seeds[seed_type]
+	if(!seed && seed_type && !isnull(SSplants.seeds) && SSplants.seeds[seed_type])
+		seed = SSplants.seeds[seed_type]
 	update_appearance()
 
 //Updates strings and icon appropriately based on seed datum.
@@ -75,7 +75,7 @@ var/global/list/plant_seed_sprites = list()
 
 /obj/item/seeds/random/New()
 	..()
-	seed = plant_controller.create_random_seed()
+	seed = SSplants.create_random_seed()
 	seed_type = seed.name
 	update_seed()
 
@@ -290,10 +290,10 @@ var/global/list/plant_seed_sprites = list()
 		new_name = sanitizeSafe(new_name)
 		if(new_name)
 			SetName("[initial(name)] - '[new_name]'")
-			to_chat(user, SPAN_NOTICE("You label the seed packet '[new_name]'."))
+			to_chat(user, span_notice("You label the seed packet '[new_name]'."))
 		else
 			SetName("[initial(name)]")
-			to_chat(user, SPAN_NOTICE("You wipe off the label."))
+			to_chat(user, span_notice("You wipe off the label."))
 		return
 
 	..()

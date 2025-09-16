@@ -139,7 +139,7 @@
 	projectile_accuracy = initial(projectile_accuracy) * newmult
 
 // bullet/pellets redefines this
-/obj/item/projectile/proc/adjust_damages(var/list/newdamages)
+/obj/item/projectile/proc/adjust_damages(list/newdamages)
 	if(!newdamages.len)
 		return
 	for(var/damage_type in newdamages)
@@ -178,7 +178,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/projectile/proc/get_structure_damage(var/injury_type)
+/obj/item/projectile/proc/get_structure_damage(injury_type)
 	if(!injury_type) // Assume homogenous
 		return (damage_types[BRUTE] + damage_types[BURN]) * wound_check(INJURY_TYPE_HOMOGENOUS, wounding_mult, edge, sharp) * 2
 	else
@@ -230,6 +230,7 @@
 /obj/item/projectile/proc/launch_from_gun(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
 	if(user == target) //Shooting yourself
 		user.bullet_act(src, target_zone)
+		on_impact(user)
 		qdel(src)
 		return FALSE
 
@@ -247,7 +248,7 @@
 				loc = get_turf(H.client.eye)
 				if(!(loc.Adjacent(target)))
 					loc = get_turf(H)
-			if(config.z_level_shooting && H.client.eye == H.shadow && !height) // Player is watching a higher zlevel
+			if(CONFIG_GET(flag/z_level_shooting) && H.client.eye == H.shadow && !height) // Player is watching a higher zlevel
 				var/newTurf = get_turf(H.shadow)
 				if(!(locate(/obj/structure/catwalk) in newTurf)) // Can't shoot through catwalks
 					loc = newTurf
@@ -309,7 +310,7 @@
 
 	var/result = PROJECTILE_CONTINUE
 
-	if(config.z_level_shooting && height == HEIGHT_HIGH)
+	if(CONFIG_GET(flag/z_level_shooting) && height == HEIGHT_HIGH)
 		if(target_mob.resting == TRUE || target_mob.stat == TRUE)
 			return FALSE // Bullet flies overhead
 
@@ -318,12 +319,12 @@
 		for(var/obj/O in cover_loc)
 			if(istype(O,/turf/wall/low) || istype(O,/obj/machinery/deployable/barrier) || istype(O,/obj/structure/barricade) || istype(O,/obj/structure/table))
 				if(!silenced)
-					visible_message(SPAN_NOTICE("\The [target_mob] ducks behind \the [O], narrowly avoiding \the [src]!"))
+					visible_message(span_notice("\The [target_mob] ducks behind \the [O], narrowly avoiding \the [src]!"))
 				return FALSE
 		for(var/obj/structure/table/O in get_turf(target_mob))
 			if(istype(O) && O.flipped && (get_dir(get_turf(target_mob), starting) == O.dir))
 				if(!silenced)
-					visible_message(SPAN_NOTICE("\The [target_mob] ducks behind \the [O], narrowly avoiding \the [src]!"))
+					visible_message(span_notice("\The [target_mob] ducks behind \the [O], narrowly avoiding \the [src]!"))
 				return FALSE
 
 
@@ -348,16 +349,16 @@
 
 	if(result == PROJECTILE_FORCE_MISS || result == PROJECTILE_FORCE_MISS_SILENCED)
 		if(!silenced && result == PROJECTILE_FORCE_MISS)
-			visible_message(SPAN_NOTICE("\The [src] misses [target_mob] narrowly!"))
+			visible_message(span_notice("\The [src] misses [target_mob] narrowly!"))
 			if(isroach(target_mob))
 				bumped = FALSE // Roaches do not bump when missed, allowing the bullet to attempt to hit the rest of the roaches in a single cluster
 		return FALSE
 	/*
 	//hit messages
 	if(silenced)
-		to_chat(target_mob, SPAN_DANGER("You've been hit in the [parse_zone(def_zone)] by \the [src]!"))
+		to_chat(target_mob, span_danger("You've been hit in the [parse_zone(def_zone)] by \the [src]!"))
 	else
-		visible_message(SPAN_DANGER("\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!"))//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
+		visible_message(span_danger("\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!"))//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
 	*/
 	playsound(target_mob, pick(mob_hit_sound), 40, 1)
 
@@ -372,7 +373,7 @@
 			admin_attack_log(firer, target_mob, attacker_message, victim_message, admin_message)
 		else
 			target_mob.attack_log += "\[[time_stamp()]\] <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[target_mob]/[target_mob.ckey]</b> with <b>\a [src]</b>"
-			msg_admin_attack("UNKNOWN shot [target_mob] ([target_mob.ckey]) with \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target_mob.x];Y=[target_mob.y];Z=[target_mob.z]'>JMP</a>)")
+			msg_admin_attack("UNKNOWN shot [target_mob] ([target_mob.ckey]) with \a [src] [ADMIN_JMP(target_mob)]")
 
 	if(target_mob.mob_classification & CLASSIFICATION_ORGANIC)
 		var/turf/target_loca = get_turf(target_mob)
@@ -435,7 +436,7 @@
 			//if they have a neck grab on someone, that person gets hit instead
 			var/obj/item/grab/G = locate() in M
 			if(G && G.state >= GRAB_NECK)
-				visible_message(SPAN_DANGER("\The [M] uses [G.affecting] as a shield!"))
+				visible_message(span_danger("\The [M] uses [G.affecting] as a shield!"))
 				if(Bump(G.affecting, TRUE))
 					return //If Bump() returns 0 (keep going) then we continue on to attack M.
 			passthrough = !attack_mob(M)
@@ -553,7 +554,7 @@
 
 	transform = turn(transform, -(trajectory.return_angle() + 90)) //no idea why 90 needs to be added, but it works
 
-/obj/item/projectile/proc/muzzle_effect(var/matrix/T)
+/obj/item/projectile/proc/muzzle_effect(matrix/T)
 	//This can happen when firing inside a wall, safety check
 	if (!location)
 		return
@@ -574,7 +575,7 @@
 			M.pixel_y = location.pixel_y
 			M.activate()
 
-/obj/item/projectile/proc/tracer_effect(var/matrix/M)
+/obj/item/projectile/proc/tracer_effect(matrix/M)
 
 	//This can happen when firing inside a wall, safety check
 	if (!location)
@@ -606,7 +607,7 @@
     else if(luminosity_range && luminosity_power && luminosity_color)
         attached_effect = new /obj/effect/effect/light(src.loc, luminosity_range, luminosity_power, luminosity_color)
 
-/obj/item/projectile/proc/impact_effect(var/matrix/M)
+/obj/item/projectile/proc/impact_effect(matrix/M)
 	//This can happen when firing inside a wall, safety check
 	if (!location)
 		return
@@ -624,7 +625,7 @@
 			P.pixel_y = location.pixel_y
 			P.activate(P.lifetime)
 
-/obj/item/projectile/proc/block_damage(var/amount, atom/A)
+/obj/item/projectile/proc/block_damage(amount, atom/A)
 	amount /= armor_divisor
 	var/dmg_total = 0
 	var/dmg_remaining = 0
@@ -712,7 +713,7 @@
 				return 1
 
 //Helper proc to check if you can hit them or not.
-/proc/check_trajectory(atom/target as mob|obj, atom/firer as mob|obj, var/pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)
+/proc/check_trajectory(atom/target as mob|obj, atom/firer as mob|obj, pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)
 	if(!istype(target) || !istype(firer))
 		return 0
 
@@ -727,7 +728,7 @@
 	qdel(trace) //No need for it anymore
 	return output //Send it back to the gun!
 
-/proc/get_proj_icon_by_color(var/obj/item/projectile/P, var/color)
+/proc/get_proj_icon_by_color(obj/item/projectile/P, color)
 	var/icon/I = new(P.icon, P.icon_state)
 	I.Blend(color)
 	return I

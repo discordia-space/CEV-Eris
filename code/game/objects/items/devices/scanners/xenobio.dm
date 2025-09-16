@@ -19,7 +19,7 @@
 /obj/item/device/scanner/xenobio/scan(mob/O, mob/user)
 	scan_title = O.name
 	scan_data = xenobio_scan_results(O)
-	user.show_message(SPAN_NOTICE(scan_data))
+	user.show_message(span_notice(scan_data))
 
 /proc/xenobio_scan_results(mob/target)
 	. = list()
@@ -29,9 +29,9 @@
 		. += text("[T.colour] [] slime", T.is_adult ? "adult" : "baby")
 		. += text("Nutrition: [T.nutrition]/[]", T.get_max_nutrition())
 		if (T.nutrition < T.get_starve_nutrition())
-			. += "<span class='alert'>Warning: slime is starving!</span>"
+			. += span_alert("Warning: slime is starving!")
 		else if (T.nutrition < T.get_hunger_nutrition())
-			. += SPAN_WARNING("Warning: slime is hungry")
+			. += span_warning("Warning: slime is hungry")
 		. += "Electric change strength: [T.powerlevel]"
 		. += "Health: [T.health]"
 		if (T.slime_mutation[4] == T.colour)

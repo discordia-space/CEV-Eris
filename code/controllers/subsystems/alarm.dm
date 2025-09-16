@@ -1,17 +1,18 @@
 // We manually initialize the alarm handlers instead of looping over all existing types
 // to make it possible to write: camera.triggerAlarm() rather than alarm_manager.managers[datum/alarm_handler/camera].triggerAlarm() or a variant thereof.
-/var/global/datum/alarm_handler/atmosphere/atmosphere_alarm
-/var/global/datum/alarm_handler/camera/camera_alarm
-/var/global/datum/alarm_handler/fire/fire_alarm
-/var/global/datum/alarm_handler/motion/motion_alarm
-/var/global/datum/alarm_handler/power/power_alarm
+var/global/datum/alarm_handler/atmosphere/atmosphere_alarm
+var/global/datum/alarm_handler/camera/camera_alarm
+var/global/datum/alarm_handler/fire/fire_alarm
+var/global/datum/alarm_handler/motion/motion_alarm
+var/global/datum/alarm_handler/power/power_alarm
 
 SUBSYSTEM_DEF(alarm)
 	name = "Alarm"
 	wait = 2 SECONDS
-	priority = SS_PRIORITY_ALARM
+	priority = FIRE_PRIORITY_ALARM
 	init_order = INIT_ORDER_ALARM
 
+	init_time_threshold = 1 SECONDS
 	var/list/datum/alarm/all_handlers
 	var/tmp/list/current = list()
 	var/tmp/list/active_alarm_cache = list()

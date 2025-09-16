@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(machines)
 	name = "Machines"
 	init_order = INIT_ORDER_MACHINES
-	priority = SS_PRIORITY_MACHINERY
+	priority = FIRE_PRIORITY_MACHINERY
 	flags = SS_KEEP_TIMING
 	wait = 2 SECONDS
 	var/list/processing = list()

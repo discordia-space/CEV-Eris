@@ -20,11 +20,11 @@
 /obj/item/stack/medical/attack(mob/living/M, mob/living/user)
 	var/types = M.get_classification()
 	if (!(types & CLASSIFICATION_ORGANIC))
-		to_chat(user, SPAN_WARNING("\The [src] cannot be applied to [M]!"))
+		to_chat(user, span_warning("\The [src] cannot be applied to [M]!"))
 		return 1
 
 	if ( ! (ishuman(user) || issilicon(user)) )
-		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return 1
 
 	if (ishuman(M))
@@ -32,61 +32,61 @@
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
 		if(!affecting)
-			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+			to_chat(user, span_warning("What [user.targeted_organ]?"))
 			return TRUE
 
 		if(affecting.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/space))
-				to_chat(user, SPAN_WARNING("You can't apply [src] through [H.head]!"))
+				to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
 				return 1
 		else
 			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-				to_chat(user, SPAN_WARNING("You can't apply [src] through [H.wear_suit]!"))
+				to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
 				return 1
 
 		if(BP_IS_ROBOTIC(affecting))
 			// user is clueless
 			if(BP_IS_LIFELIKE(affecting) && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
 				user.visible_message( \
-				SPAN_NOTICE("[user] starts applying [src] to [M]."), \
-				SPAN_NOTICE("You start applying [src] to [M].") \
+				span_notice("[user] starts applying [src] to [M]."), \
+				span_notice("You start applying [src] to [M].") \
 				)
 				if (do_after(user, 30, M))
 					if(prob(10 + user.stats.getStat(STAT_BIO)))
-						to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+						to_chat(user, span_notice("You have managed to waste less [src]."))
 					else
 						use(1)
 					user.visible_message( \
-						SPAN_NOTICE("[M] starts has been applied with [src] by [user]."), \
-						SPAN_NOTICE("You apply [src] to [M].") \
+						span_notice("[M] starts has been applied with [src] by [user]."), \
+						span_notice("You apply [src] to [M].") \
 					)
 				M.updatehealth()
 				return 1
 
-			to_chat(user, SPAN_WARNING("This isn't useful at all on a robotic limb."))
+			to_chat(user, span_warning("This isn't useful at all on a robotic limb."))
 			return 1
 
 		H.UpdateDamageIcon()
 
 	else
 		if (!M.bruteloss && !M.fireloss)
-			to_chat(user, "<span class='notice'> [M] seems healthy, there are no wounds to treat! </span>")
+			to_chat(user, span_notice(" [M] seems healthy, there are no wounds to treat! "))
 			return 1
 
 		user.visible_message( \
-				SPAN_NOTICE("[user] starts applying [src] to [M]."), \
-				SPAN_NOTICE("You start applying [src] to [M].") \
+				span_notice("[user] starts applying [src] to [M]."), \
+				span_notice("You start applying [src] to [M].") \
 			)
 		var/med_skill = user.stats.getStat(STAT_BIO)
 		if (do_after(user, 30, M))
 			M.heal_organ_damage((src.heal_brute * (1+med_skill/50)/2), (src.heal_burn * (1+med_skill/50)/2))
 			if(prob(10 + med_skill))
-				to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+				to_chat(user, span_notice("You have managed to waste less [src]."))
 			else
 				use(1)
 			user.visible_message( \
-				SPAN_NOTICE("[M] starts has been applied with [src] by [user]."), \
-				SPAN_NOTICE("You apply [src] to [M].") \
+				span_notice("[M] starts has been applied with [src] by [user]."), \
+				span_notice("You apply [src] to [M].") \
 			)
 
 	M.updatehealth()
@@ -104,7 +104,7 @@
 		return //If it does not, do nothing, as the overlays have been cut before this already.
 	else
 		var/mutable_appearance/charge_overlay = mutable_appearance(icon, iconState)
-		for(var/i = ratio, i >= 1, i--)
+		for(var/i = ratio; i >= 1; i--)
 			charge_overlay.pixel_x = charge_x_offset * (i - 1)
 			add_overlay(charge_overlay)
 
@@ -136,17 +136,17 @@
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
 		if(!affecting)
-			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+			to_chat(user, span_warning("What [user.targeted_organ]?"))
 			return TRUE
 
 		if(affecting.open == 0)
 			if(affecting.is_bandaged())
-				to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been bandaged."))
+				to_chat(user, span_warning("The wounds on [M]'s [affecting.name] have already been bandaged."))
 				return 1
 			else
 				user.visible_message(
-					SPAN_NOTICE("\The [user] starts treating [M]'s [affecting.name]."),
-					SPAN_NOTICE("You start treating [M]'s [affecting.name].")
+					span_notice("\The [user] starts treating [M]'s [affecting.name]."),
+					span_notice("You start treating [M]'s [affecting.name].")
 				)
 				var/used = 0
 				for (var/datum/wound/W in affecting.wounds)
@@ -157,7 +157,7 @@
 					if(used == amount)
 						break
 					if(!do_mob(user, M, W.damage/5))
-						to_chat(user, SPAN_NOTICE("You must stand still to bandage wounds."))
+						to_chat(user, span_notice("You must stand still to bandage wounds."))
 						break
 					if(W.internal)
 						continue
@@ -167,19 +167,19 @@
 						break
 					if (W.current_stage <= W.max_bleeding_stage)
 						user.visible_message(
-							SPAN_NOTICE("\The [user] bandages \a [W.desc] on [M]'s [affecting.name]."),
-							SPAN_NOTICE("You bandage \a [W.desc] on [M]'s [affecting.name].")
+							span_notice("\The [user] bandages \a [W.desc] on [M]'s [affecting.name]."),
+							span_notice("You bandage \a [W.desc] on [M]'s [affecting.name].")
 						)
 						//H.add_side_effect("Itch")
 					else if (W.damage_type == BRUISE)
 						user.visible_message(
-							SPAN_NOTICE("\The [user] places a bruise patch over \a [W.desc] on [M]'s [affecting.name]."),
-							SPAN_NOTICE("You place a bruise patch over \a [W.desc] on [M]'s [affecting.name].")
+							span_notice("\The [user] places a bruise patch over \a [W.desc] on [M]'s [affecting.name]."),
+							span_notice("You place a bruise patch over \a [W.desc] on [M]'s [affecting.name].")
 						)
 					else
 						user.visible_message(
-							SPAN_NOTICE("\The [user] places a bandaid over \a [W.desc] on [M]'s [affecting.name]."),
-							SPAN_NOTICE("You place a bandaid over \a [W.desc] on [M]'s [affecting.name].")
+							span_notice("\The [user] places a bandaid over \a [W.desc] on [M]'s [affecting.name]."),
+							span_notice("You place a bandaid over \a [W.desc] on [M]'s [affecting.name].")
 						)
 					W.bandage()
 					// user's stat check that causing pain if they are amateurs
@@ -189,26 +189,26 @@
 							H.pain(affecting, pain)
 							if(user != H)
 								to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
-								to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
+								to_chat(user, span_warning("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
 							else
 								to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
 					if(prob(10 + user.stats.getStat(STAT_BIO)))
-						to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+						to_chat(user, span_notice("You have managed to waste less [src]."))
 					else
 						used++
 				affecting.update_damages()
 				if(used == amount)
 					if(affecting.is_bandaged())
-						to_chat(user, SPAN_WARNING("\The [src] is used up."))
+						to_chat(user, span_warning("\The [src] is used up."))
 					else
-						to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
+						to_chat(user, span_warning("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
 				use(used)
 		else
 			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src, TRUE))
 					return
 			else
-				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
+				to_chat(user, span_notice("The [affecting.name] is cut open, you'll need more than a bandage!"))
 
 /obj/item/stack/medical/bruise_pack/handmade
 	name = "non sterile bandage"
@@ -242,27 +242,27 @@
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
 		if(!affecting)
-			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+			to_chat(user, span_warning("What [user.targeted_organ]?"))
 			return TRUE
 
 		if(affecting.open == 0)
 			if(affecting.is_salved())
-				to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been salved."))
+				to_chat(user, span_warning("The wounds on [M]'s [affecting.name] have already been salved."))
 				return 1
 			else
 				user.visible_message(
-					SPAN_NOTICE("\The [user] starts salving wounds on [M]'s [affecting.name]."),
-					SPAN_NOTICE("You start salving the wounds on [M]'s [affecting.name].")
+					span_notice("\The [user] starts salving wounds on [M]'s [affecting.name]."),
+					span_notice("You start salving the wounds on [M]'s [affecting.name].")
 				)
 				if(!do_mob(user, M, 10))
-					to_chat(user, SPAN_NOTICE("You must stand still to salve wounds."))
+					to_chat(user, span_notice("You must stand still to salve wounds."))
 					return 1
 				user.visible_message(
-					SPAN_NOTICE("[user] salved wounds on [M]'s [affecting.name]."),
-					SPAN_NOTICE("You salved wounds on [M]'s [affecting.name].")
+					span_notice("[user] salved wounds on [M]'s [affecting.name]."),
+					span_notice("You salved wounds on [M]'s [affecting.name].")
 				)
 				if(prob(10 + user.stats.getStat(STAT_BIO)))
-					to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+					to_chat(user, span_notice("You have managed to waste less [src]."))
 				else
 					use(1)
 				affecting.salve()
@@ -273,7 +273,7 @@
 						H.pain(affecting, pain)
 						if(user != H)
 							to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
-							to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
+							to_chat(user, span_warning("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
 						else
 							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
 		else
@@ -281,7 +281,7 @@
 				if (do_surgery(H,user,src, TRUE))
 					return
 			else
-				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a [src]!"))
+				to_chat(user, span_notice("The [affecting.name] is cut open, you'll need more than a [src]!"))
 
 /obj/item/stack/medical/advanced
 	bad_type = /obj/item/stack/medical/advanced
@@ -314,17 +314,17 @@
 	var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
 	if(!affecting)
-		to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+		to_chat(user, span_warning("What [user.targeted_organ]?"))
 		return TRUE
 
 	if(affecting.open == 0)
 		if(affecting.is_bandaged())
-			to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been treated."))
+			to_chat(user, span_warning("The wounds on [M]'s [affecting.name] have already been treated."))
 			return 1
 		else
 			user.visible_message(
-				SPAN_NOTICE("\The [user] starts treating [M]'s [affecting.name]."),
-				SPAN_NOTICE("You start treating [M]'s [affecting.name].")
+				span_notice("\The [user] starts treating [M]'s [affecting.name]."),
+				span_notice("You start treating [M]'s [affecting.name].")
 			)
 			var/used = 0
 			for (var/datum/wound/W in affecting.wounds)
@@ -335,7 +335,7 @@
 				if(used == amount)
 					break
 				if(!do_mob(user, M, W.damage/5))
-					to_chat(user, SPAN_NOTICE("You must stand still to bandage wounds."))
+					to_chat(user, span_notice("You must stand still to bandage wounds."))
 					break
 				if(W.internal)
 					continue
@@ -345,23 +345,23 @@
 					break
 				if (W.current_stage <= W.max_bleeding_stage)
 					user.visible_message(
-						SPAN_NOTICE("\The [user] cleans \a [W.desc] on [M]'s [affecting.name] and seals the edges with bioglue."),
-						SPAN_NOTICE("You clean and seal \a [W.desc] on [M]'s [affecting.name].")
+						span_notice("\The [user] cleans \a [W.desc] on [M]'s [affecting.name] and seals the edges with bioglue."),
+						span_notice("You clean and seal \a [W.desc] on [M]'s [affecting.name].")
 					)
 				else if (W.damage_type == BRUISE)
 					user.visible_message(
-						SPAN_NOTICE("\The [user] places a medical patch over \a [W.desc] on [M]'s [affecting.name]."),
-						SPAN_NOTICE("You place a medical patch over \a [W.desc] on [M]'s [affecting.name].")
+						span_notice("\The [user] places a medical patch over \a [W.desc] on [M]'s [affecting.name]."),
+						span_notice("You place a medical patch over \a [W.desc] on [M]'s [affecting.name].")
 					)
 				else
 					user.visible_message(
-						SPAN_NOTICE("\The [user] smears some bioglue over \a [W.desc] on [M]'s [affecting.name]."),
-						SPAN_NOTICE("You smear some bioglue over \a [W.desc] on [M]'s [affecting.name].")
+						span_notice("\The [user] smears some bioglue over \a [W.desc] on [M]'s [affecting.name]."),
+						span_notice("You smear some bioglue over \a [W.desc] on [M]'s [affecting.name].")
 					)
 				W.bandage()
 				W.heal_damage(heal_brute)
 				if(prob(10 + user.stats.getStat(STAT_BIO)))
-					to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+					to_chat(user, span_notice("You have managed to waste less [src]."))
 				else
 					used++
 			affecting.update_damages()
@@ -372,14 +372,14 @@
 					H.pain(affecting, pain)
 					if(user != H)
 						to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
-						to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
+						to_chat(user, span_warning("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
 					else
 						to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
 			if(used == amount)
 				if(affecting.is_bandaged())
-					to_chat(user, SPAN_WARNING("\The [src] is used up."))
+					to_chat(user, span_warning("\The [src] is used up."))
 				else
-					to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
+					to_chat(user, span_warning("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
 			use(used)
 			update_icon()
 	else
@@ -387,7 +387,7 @@
 			if (do_surgery(H,user,src, TRUE))
 				return
 		else
-			to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
+			to_chat(user, span_notice("The [affecting.name] is cut open, you'll need more than a bandage!"))
 
 /obj/item/stack/medical/advanced/ointment
 	name = "advanced burn kit"
@@ -414,28 +414,28 @@
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
 		if(!affecting)
-			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+			to_chat(user, span_warning("What [user.targeted_organ]?"))
 			return TRUE
 
 		if(affecting.open == 0)
 			if(affecting.is_salved())
-				to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been salved."))
+				to_chat(user, span_warning("The wounds on [M]'s [affecting.name] have already been salved."))
 				return 1
 			else
 				user.visible_message(
-					SPAN_NOTICE("\The [user] starts salving wounds on [M]'s [affecting.name]."),
-					SPAN_NOTICE("You start salving the wounds on [M]'s [affecting.name].")
+					span_notice("\The [user] starts salving wounds on [M]'s [affecting.name]."),
+					span_notice("You start salving the wounds on [M]'s [affecting.name].")
 				)
 				if(!do_mob(user, M, 10))
-					to_chat(user, SPAN_NOTICE("You must stand still to salve wounds."))
+					to_chat(user, span_notice("You must stand still to salve wounds."))
 					return 1
 				user.visible_message(
-					SPAN_NOTICE("[user] covers wounds on [M]'s [affecting.name] with regenerative membrane."),
-					SPAN_NOTICE("You cover wounds on [M]'s [affecting.name] with regenerative membrane.")
+					span_notice("[user] covers wounds on [M]'s [affecting.name] with regenerative membrane."),
+					span_notice("You cover wounds on [M]'s [affecting.name] with regenerative membrane.")
 				)
 				affecting.heal_damage(0,heal_burn)
 				if(prob(10 + user.stats.getStat(STAT_BIO)))
-					to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+					to_chat(user, span_notice("You have managed to waste less [src]."))
 				else
 					use(1)
 					update_icon()
@@ -447,7 +447,7 @@
 						H.pain(affecting, pain)
 						if(user != H)
 							to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
-							to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
+							to_chat(user, span_warning("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
 						else
 							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
 		else
@@ -455,7 +455,7 @@
 				if (do_surgery(H,user,src, TRUE))
 					return
 			else
-				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
+				to_chat(user, span_notice("The [affecting.name] is cut open, you'll need more than a bandage!"))
 
 /obj/item/stack/medical/splint
 	name = "medical splints"
@@ -475,55 +475,55 @@
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
 		if(!affecting)
-			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+			to_chat(user, span_warning("What [user.targeted_organ]?"))
 			return TRUE
 
 		var/limb = affecting.name
 		if(!(affecting.organ_tag in list(BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG, BP_GROIN, BP_HEAD, BP_CHEST)))
-			to_chat(user, SPAN_DANGER("You can't apply a splint there!"))
+			to_chat(user, span_danger("You can't apply a splint there!"))
 			return
 		if(affecting.status & ORGAN_SPLINTED)
-			to_chat(user, SPAN_DANGER("[M]'s [limb] is already splinted!"))
+			to_chat(user, span_danger("[M]'s [limb] is already splinted!"))
 			return
 		if (M != user)
 			user.visible_message(
-				SPAN_DANGER("[user] starts to apply \the [src] to [M]'s [limb]."),
-				SPAN_DANGER("You start to apply \the [src] to [M]'s [limb]."),
-				SPAN_DANGER("You hear something being wrapped.")
+				span_danger("[user] starts to apply \the [src] to [M]'s [limb]."),
+				span_danger("You start to apply \the [src] to [M]'s [limb]."),
+				span_danger("You hear something being wrapped.")
 			)
 		else
 			if((!user.hand && affecting.organ_tag == BP_R_ARM) || (user.hand && affecting.organ_tag == BP_L_ARM))
-				to_chat(user, SPAN_DANGER("You can't apply a splint to the arm you're using!"))
+				to_chat(user, span_danger("You can't apply a splint to the arm you're using!"))
 				return
 			user.visible_message(
-				SPAN_DANGER("[user] starts to apply \the [src] to their [limb]."),
-				SPAN_DANGER("You start to apply \the [src] to your [limb]."),
-				SPAN_DANGER("You hear something being wrapped.")
+				span_danger("[user] starts to apply \the [src] to their [limb]."),
+				span_danger("You start to apply \the [src] to your [limb]."),
+				span_danger("You hear something being wrapped.")
 			)
 		if(do_after(user, max(0, 60 - user.stats.getStat(STAT_BIO)), M))
 			if (M != user)
 				user.visible_message(
-					SPAN_DANGER("[user] finishes applying \the [src] to [M]'s [limb]."),
-					SPAN_DANGER("You finish applying \the [src] to [M]'s [limb]."),
-					SPAN_DANGER("You hear something being wrapped.")
+					span_danger("[user] finishes applying \the [src] to [M]'s [limb]."),
+					span_danger("You finish applying \the [src] to [M]'s [limb]."),
+					span_danger("You hear something being wrapped.")
 				)
 			else
 				if(prob(25 + user.stats.getStat(STAT_BIO)))
 					user.visible_message(
-						SPAN_DANGER("[user] successfully applies \the [src] to their [limb]."),
-						SPAN_DANGER("You successfully apply \the [src] to your [limb]."),
-						SPAN_DANGER("You hear something being wrapped.")
+						span_danger("[user] successfully applies \the [src] to their [limb]."),
+						span_danger("You successfully apply \the [src] to your [limb]."),
+						span_danger("You hear something being wrapped.")
 					)
 				else
 					user.visible_message(
-						SPAN_DANGER("[user] fumbles \the [src]."),
-						SPAN_DANGER("You fumble \the [src]."),
-						SPAN_DANGER("You hear something being wrapped.")
+						span_danger("[user] fumbles \the [src]."),
+						span_danger("You fumble \the [src]."),
+						span_danger("You hear something being wrapped.")
 					)
 					return
 			affecting.status |= ORGAN_SPLINTED
 			if(prob(10 + user.stats.getStat(STAT_BIO)))
-				to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+				to_chat(user, span_notice("You have managed to waste less [src]."))
 			else
 				use(1)
 		return

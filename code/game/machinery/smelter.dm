@@ -242,7 +242,7 @@
 	storage_capacity = round(initial(storage_capacity)*(mb_rating/mb_count))
 
 
-/obj/machinery/smelter/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/smelter/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
 		return
 

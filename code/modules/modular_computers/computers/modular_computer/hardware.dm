@@ -5,85 +5,85 @@
 	if(istype(H, /obj/item/computer_hardware))
 		CH = H
 		if(!(CH.usage_flags & hardware_flag))
-			to_chat(user, SPAN_WARNING("This computer isn't compatible with [CH]."))
+			to_chat(user, span_warning("This computer isn't compatible with [CH]."))
 			return
 
 	if(CH && CH.hardware_size > max_hardware_size)
-		to_chat(user, SPAN_WARNING("This component is too large for \the [src]."))
+		to_chat(user, span_warning("This component is too large for \the [src]."))
 		return
 
 	// Data disk.
 	if(istype(H, /obj/item/computer_hardware/hard_drive/portable))
 		if(portable_drive)
-			to_chat(user, SPAN_WARNING("This computer's portable drive slot is already occupied by \the [portable_drive]."))
+			to_chat(user, span_warning("This computer's portable drive slot is already occupied by \the [portable_drive]."))
 			return
 		found = TRUE
 		portable_drive = H
 
 	else if(istype(H, /obj/item/computer_hardware/led))
 		if(led)
-			to_chat(user, SPAN_WARNING("This computer's LED slot is already occupied by \the [led]."))
+			to_chat(user, span_warning("This computer's LED slot is already occupied by \the [led]."))
 			return
 		found = TRUE
 		led = H
 	else if(istype(H, /obj/item/computer_hardware/hard_drive))
 		if(hard_drive)
-			to_chat(user, SPAN_WARNING("This computer's hard drive slot is already occupied by \the [hard_drive]."))
+			to_chat(user, span_warning("This computer's hard drive slot is already occupied by \the [hard_drive]."))
 			return
 		found = TRUE
 		hard_drive = H
 	else if(istype(H, /obj/item/computer_hardware/network_card))
 		if(network_card)
-			to_chat(user, SPAN_WARNING("This computer's network card slot is already occupied by \the [network_card]."))
+			to_chat(user, span_warning("This computer's network card slot is already occupied by \the [network_card]."))
 			return
 		found = TRUE
 		network_card = H
 	else if(istype(H, /obj/item/computer_hardware/printer))
 		if(printer)
-			to_chat(user, SPAN_WARNING("This computer's printer slot is already occupied by \the [printer]."))
+			to_chat(user, span_warning("This computer's printer slot is already occupied by \the [printer]."))
 			return
 		found = TRUE
 		printer = H
 	else if(istype(H, /obj/item/computer_hardware/card_slot))
 		if(card_slot)
-			to_chat(user, SPAN_WARNING("This computer's card slot is already occupied by \the [card_slot]."))
+			to_chat(user, span_warning("This computer's card slot is already occupied by \the [card_slot]."))
 			return
 		found = TRUE
 		card_slot = H
 	else if(istype(H, /obj/item/cell))
 		if(cell)
-			to_chat(user, SPAN_WARNING("This computer's battery slot is already occupied by \the [cell]."))
+			to_chat(user, span_warning("This computer's battery slot is already occupied by \the [cell]."))
 			return
 		found = TRUE
 		cell = H
 	else if(istype(H, /obj/item/computer_hardware/processor_unit))
 		if(processor_unit)
-			to_chat(user, SPAN_WARNING("This computer's processor slot is already occupied by \the [processor_unit]."))
+			to_chat(user, span_warning("This computer's processor slot is already occupied by \the [processor_unit]."))
 			return
 		found = TRUE
 		processor_unit = H
 	else if(istype(H, /obj/item/computer_hardware/ai_slot))
 		if(ai_slot)
-			to_chat(user, SPAN_WARNING("This computer's intellicard slot is already occupied by \the [ai_slot]."))
+			to_chat(user, span_warning("This computer's intellicard slot is already occupied by \the [ai_slot]."))
 			return
 		found = TRUE
 		ai_slot = H
 	else if(istype(H, /obj/item/computer_hardware/tesla_link))
 		if(tesla_link)
-			to_chat(user, SPAN_WARNING("This computer's tesla link slot is already occupied by \the [tesla_link]."))
+			to_chat(user, span_warning("This computer's tesla link slot is already occupied by \the [tesla_link]."))
 			return
 		found = TRUE
 		tesla_link = H
 	else if(istype(H, /obj/item/computer_hardware/scanner))
 		if(scanner)
-			to_chat(user, SPAN_WARNING("This computer's scanner slot is already occupied by \the [scanner]."))
+			to_chat(user, span_warning("This computer's scanner slot is already occupied by \the [scanner]."))
 			return
 		found = TRUE
 		scanner = H
 		scanner.do_after_install(user, src)
 	else if(istype(H, /obj/item/computer_hardware/gps_sensor))
 		if(gps_sensor)
-			to_chat(user, SPAN_WARNING("This computer's gps slot is already occupied by \the [gps_sensor]."))
+			to_chat(user, span_warning("This computer's gps slot is already occupied by \the [gps_sensor]."))
 			return
 		found = TRUE
 		gps_sensor = H
@@ -143,11 +143,11 @@
 		scanner.do_before_uninstall()
 		scanner = null
 
-	to_chat(user, SPAN_NOTICE("You remove \the [H] from \the [src]."))
+	to_chat(user, span_notice("You remove \the [H] from \the [src]."))
 	H.forceMove(drop_location())
 
 	if(critical)
-		to_chat(user, SPAN_DANGER("\The [src]'s screen freezes for a split second and flickers to black."))
+		to_chat(user, span_danger("\The [src]'s screen freezes for a split second and flickers to black."))
 		shutdown_computer()
 	update_verbs()
 	update_icon()

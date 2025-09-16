@@ -4,10 +4,12 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_NORMAL
 	icon = 'icons/obj/stack/material.dmi'
+	icon_state = "unknown"
 	throw_speed = 3
 	throw_range = 3
 	max_amount = 120
 	bad_type = /obj/item/stack/material
+	automerge = TRUE
 
 	var/default_type = MATERIAL_STEEL
 	var/material/material
@@ -89,7 +91,6 @@
 /obj/item/stack/material/add(extra)
 	..()
 	update_strings()
-
 
 /obj/item/stack/material/iron
 	name = "iron"
@@ -271,6 +272,7 @@
 	apply_colour = 1
 	price_tag = 50
 	novariants = FALSE
+	fall_damage_per_amount = 0.5
 
 /obj/item/stack/material/osmium/full
 	amount = 120

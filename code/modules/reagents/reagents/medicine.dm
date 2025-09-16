@@ -123,7 +123,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/blood_vessel/user_vessel = H.random_organ_by_process(OP_BLOOD_VESSEL)
-		create_overdose_wound(user_vessel, H, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+		create_overdose_wound(user_vessel, H, /datum/internal_wound/organic/heavy_poisoning, "accumulation")
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
@@ -207,6 +207,7 @@
 /datum/reagent/medicine/cryoxadone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.bodytemperature < 170)
 		M.add_chemical_effect(CE_ONCOCIDAL, 1)
+		M.add_chemical_effect(CE_GENEHEAL, 1)
 		M.add_chemical_effect(CE_OXYGENATED, 1)
 		M.add_chemical_effect(CE_BLOODCLOT, 0.50)
 		M.add_chemical_effect(CE_ANTITOX, 2)
@@ -228,6 +229,7 @@
 /datum/reagent/medicine/clonexadone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.bodytemperature < 170)
 		M.add_chemical_effect(CE_ONCOCIDAL, 1)
+		M.add_chemical_effect(CE_GENEHEAL, 2)
 		M.add_chemical_effect(CE_OXYGENATED, 1)
 		M.add_chemical_effect(CE_BLOODCLOT, 0.50)
 		M.add_chemical_effect(CE_ANTITOX, 2)
@@ -376,7 +378,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/E = H.random_organ_by_process(OP_EYES)
 		if(E && istype(E))
-			var/list/current_wounds = E.GetComponents(/datum/component/internal_wound)
+			var/list/current_wounds = E.wounddatums
 			if(LAZYLEN(current_wounds) && prob(75))
 				M.add_chemical_effect(CE_EYEHEAL, 1)
 
@@ -386,7 +388,7 @@
 		var/mob/living/carbon/human/H = M
 		var/list/eye_organs = H.internal_organs_by_efficiency[OP_EYES]
 		if(LAZYLEN(eye_organs))
-			create_overdose_wound(pick(eye_organs), H, /datum/component/internal_wound/organic/heavy_poisoning)
+			create_overdose_wound(pick(eye_organs), H, /datum/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/medicine/peridaxon
 	name = "Peridaxon"
@@ -402,9 +404,8 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/list/organs_sans_brain_and_bones = H.internal_organs - H.internal_organs_by_efficiency[BP_BRAIN] - H.internal_organs_by_efficiency[OP_BONE] // Peridaxon shouldn't heal brain or bones
-		for(var/obj/item/organ/I in organs_sans_brain_and_bones)
-			var/list/current_wounds = I.GetComponents(/datum/component/internal_wound)
-			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I) && prob(75)) //Peridaxon heals only non-robotic organs
+		for(var/obj/item/organ/internal/I in organs_sans_brain_and_bones)
+			if(LAZYLEN(I.wounddatums) && !BP_IS_ROBOTIC(I) && prob(75)) //Peridaxon heals only non-robotic organs
 				M.add_chemical_effect(CE_ONCOCIDAL, 1)
 				M.add_chemical_effect(CE_BLOODCLOT, 1)
 				M.add_chemical_effect(CE_ANTITOX, 2)
@@ -415,7 +416,7 @@
 		var/mob/living/carbon/human/H = M
 		var/list/organs_sans_brain_and_bones = H.internal_organs - H.internal_organs_by_efficiency[BP_BRAIN] - H.internal_organs_by_efficiency[OP_BONE] // Since it doesn't heal brain/bones it shouldn't damage them too
 		if(LAZYLEN(organs_sans_brain_and_bones))
-			create_overdose_wound(pick(organs_sans_brain_and_bones), H, /datum/component/internal_wound/organic/heavy_poisoning)
+			create_overdose_wound(pick(organs_sans_brain_and_bones), H, /datum/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/medicine/ryetalyn
 	name = "Ryetalyn"
@@ -428,6 +429,7 @@
 
 /datum/reagent/medicine/ryetalyn/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_ONCOCIDAL, 2)
+	M.add_chemical_effect(CE_GENEHEAL, 1)
 /*
 	var/needs_update = M.mutations.len > 0
 
@@ -551,10 +553,10 @@
 		I.was_bloodied = null
 	M.was_bloodied = null
 
-/datum/reagent/medicine/sterilizine/touch_obj(var/obj/O)
+/datum/reagent/medicine/sterilizine/touch_obj(obj/O)
 	O.was_bloodied = null
 
-/datum/reagent/medicine/sterilizine/touch_turf(var/turf/T)
+/datum/reagent/medicine/sterilizine/touch_turf(turf/T)
 	for(var/obj/item/I in T.contents)
 		I.was_bloodied = null
 	for(var/obj/effect/decal/cleanable/blood/B in T)
@@ -594,11 +596,11 @@
 /datum/reagent/medicine/methylphenidate/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		to_chat(M, SPAN_WARNING("You lose focus..."))
+		to_chat(M, span_warning("You lose focus..."))
 	else
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
-			to_chat(M, SPAN_NOTICE("Your mind feels focused and undivided."))
+			to_chat(M, span_notice("Your mind feels focused and undivided."))
 
 /datum/reagent/medicine/citalopram
 	name = "Citalopram"
@@ -613,12 +615,12 @@
 /datum/reagent/medicine/citalopram/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		to_chat(M, SPAN_WARNING("Your mind feels a little less stable..."))
+		to_chat(M, span_warning("Your mind feels a little less stable..."))
 	else
 		M.add_chemical_effect(CE_MIND, 1)
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
-			to_chat(M, SPAN_NOTICE("Your mind feels stable... a little stable."))
+			to_chat(M, span_notice("Your mind feels stable... a little stable."))
 
 /datum/reagent/medicine/paroxetine
 	name = "Paroxetine"
@@ -632,15 +634,15 @@
 /datum/reagent/medicine/paroxetine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		to_chat(M, SPAN_WARNING("Your mind feels much less stable..."))
+		to_chat(M, span_warning("Your mind feels much less stable..."))
 	else
 		M.add_chemical_effect(CE_MIND, 2)
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
 			if(prob(90))
-				to_chat(M, SPAN_NOTICE("Your mind feels much more stable."))
+				to_chat(M, span_notice("Your mind feels much more stable."))
 			else
-				to_chat(M, SPAN_WARNING("Your mind breaks apart..."))
+				to_chat(M, span_warning("Your mind breaks apart..."))
 				M.hallucination(200, 100)
 
 /datum/reagent/medicine/rezadone
@@ -658,6 +660,7 @@
 	M.heal_organ_damage(2 * effect_multiplier, 2 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
 	M.add_chemical_effect(CE_TOXIN, -(2 + (M.chem_effects[CE_TOXIN] * 0.05)) * effect_multiplier)
 	M.add_chemical_effect(CE_ONCOCIDAL, 2)
+	M.add_chemical_effect(CE_GENEHEAL, 2)
 	if(dose > 3)
 		M.status_flags &= ~DISFIGURED
 	if(dose > 10)
@@ -819,7 +822,7 @@
 	if(istype(C) && C.metabolism_effects.addiction_list.len)
 		if(prob(5 * effect_multiplier + dose))
 			var/datum/reagent/R = pick(C.metabolism_effects.addiction_list)
-			to_chat(C, SPAN_NOTICE("You dont crave [R.name] anymore."))
+			to_chat(C, span_notice("You dont crave [R.name] anymore."))
 			C.metabolism_effects.addiction_list.Remove(R)
 			qdel(R)
 	M.add_chemical_effect(CE_PURGER, 2)

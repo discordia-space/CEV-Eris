@@ -6,7 +6,7 @@
 	do_tick = FALSE //Jumping doesn't need to tick, it can't be interrupted.
 	//Once you start you will finish, even if you die in mid air
 
-/datum/vertical_travel_method/jump/can_perform(var/dir)
+/datum/vertical_travel_method/jump/can_perform(dir)
 	.=..()
 	if (.)
 		if (isrobot(M))

@@ -20,10 +20,10 @@
 
 /HUD_element/layout/proc/_spreadElements()
 
-/HUD_element/layout/proc/alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets, var/padding = 0)
+/HUD_element/layout/proc/alignElements(horizontal, vertical, list/HUD_element/targets, padding = 0)
 	return src
 
-/HUD_element/layout/horizontal/alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets, var/padding = 0)
+/HUD_element/layout/horizontal/alignElements(horizontal, vertical, list/HUD_element/targets, padding = 0)
 	_alignment = horizontal
 	if(targets && targets.len)
 		for (var/HUD_element/T in targets)
@@ -34,7 +34,7 @@
 		return
 	. = ..()
 
-/HUD_element/layout/vertical/alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets, var/padding = 0)
+/HUD_element/layout/vertical/alignElements(horizontal, vertical, list/HUD_element/targets, padding = 0)
 	_alignment = vertical
 	if(targets && targets.len)
 		for (var/HUD_element/T in targets)
@@ -52,7 +52,7 @@
 		return
 
 	if (_alignment == HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT)
-		for(var/i = 1, i <= _paddingData.len, i++)
+		for(var/i = 1; i <= _paddingData.len; i++)
 			var/HUD_element/E = _paddingData[i]
 			var/list/data = _paddingData[E]
 			setWidth(getWidth() + data["left"])
@@ -61,7 +61,7 @@
 			setWidth(getWidth() + data["right"])
 
 	else if (_alignment == HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT)
-		for(var/i = _paddingData.len, i >= 1, i--)
+		for(var/i = _paddingData.len; i >= 1; i--)
 			var/HUD_element/E = _paddingData[i]
 			var/list/data = _paddingData[E]
 			setWidth(getWidth() + data["right"])
@@ -76,7 +76,7 @@
 		return
 
 	if (_alignment == HUD_VERTICAL_NORTH_INSIDE_ALIGNMENT)
-		for(var/i = 1, i <= _paddingData.len, i++)
+		for(var/i = 1; i <= _paddingData.len; i++)
 			var/HUD_element/E = _paddingData[i]
 			var/list/data = _paddingData[E]
 			setHeight(getHeight() + data["bottom"])
@@ -85,7 +85,7 @@
 			setHeight(getHeight() + data["top"])
 
 	else if (_alignment == HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
-		for(var/i = _paddingData.len, i >= 1, i--)
+		for(var/i = _paddingData.len; i >= 1; i--)
 			var/HUD_element/E = _paddingData[i]
 			var/list/data = _paddingData[E]
 			setHeight(getHeight() + data["top"])
@@ -96,7 +96,7 @@
 /HUD_element/layout/proc/setPadding()
 	return FALSE
 
-/HUD_element/layout/horizontal/setPadding(var/HUD_element/element, var/paddingLeft, var/paddingRight)
+/HUD_element/layout/horizontal/setPadding(HUD_element/element, paddingLeft, paddingRight)
 	if(!element)
 		error("No element was passed to padding setting.")
 		return FALSE
@@ -114,11 +114,11 @@
 		data["left"] = paddingLeft
 	if(paddingRight)
 		data["right"] = paddingRight
-	
+
 	_spreadElements()
 	return TRUE
 
-/HUD_element/layout/vertical/setPadding(var/HUD_element/element, var/paddingBottom, var/paddingTop)
+/HUD_element/layout/vertical/setPadding(HUD_element/element, paddingBottom, paddingTop)
 	if(!element)
 		error("No element was passed to padding setting.")
 		return FALSE
@@ -136,41 +136,41 @@
 		data["bottom"] = paddingBottom
 	if(paddingTop)
 		data["top"] = paddingTop
-	
+
 	_spreadElements()
 	return TRUE
 
-/HUD_element/layout/horizontal/add(var/HUD_element/newElement, var/paddingLeft = 0, var/paddingRight = 0)
+/HUD_element/layout/horizontal/add(HUD_element/newElement, paddingLeft = 0, paddingRight = 0)
 	. = ..()
 	setPadding(newElement, paddingLeft, paddingRight)
 	setHeight(max(getHeight(), newElement.getHeight()))
 
 	_spreadElements()
 
-/HUD_element/layout/vertical/add(var/HUD_element/newElement, var/paddingBottom = 0, var/paddingTop = 0)
+/HUD_element/layout/vertical/add(HUD_element/newElement, paddingBottom = 0, paddingTop = 0)
 	. = ..()
 	setPadding(newElement, paddingBottom, paddingTop)
 	setWidth(max(getWidth(), newElement.getWidth()))
 
 	_spreadElements()
 
-/HUD_element/layout/remove(var/HUD_element/element)
+/HUD_element/layout/remove(HUD_element/element)
 	. = ..()
 	if(!getElements())
 		setHeight(0)
 		setWidth(0)
-	
+
 	if(_paddingData[element])
 		_paddingData[element] = null
 
 	_spreadElements()
 
-/HUD_element/layout/setDimensions(var/width, var/height)
+/HUD_element/layout/setDimensions(width, height)
 	return
 /*
-/HUD_element/layout/setWidth(var/width)
+/HUD_element/layout/setWidth(width)
 	return
 
-/HUD_element/layout/setHeight(var/height)
+/HUD_element/layout/setHeight(height)
 	return
 */

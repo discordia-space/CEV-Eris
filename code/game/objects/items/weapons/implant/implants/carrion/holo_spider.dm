@@ -31,11 +31,11 @@
 /obj/item/implant/carrion_spider/holographic/toggle_attack(mob/user)
 	if(ready_to_attack)
 		ready_to_attack = FALSE
-		to_chat(user, SPAN_NOTICE("\The [src] wont attack nearby creatures anymore and can be used to scan creatures without attaching itself to them."))
+		to_chat(user, span_notice("\The [src] wont attack nearby creatures anymore and can be used to scan creatures without attaching itself to them."))
 		scan_mobs = TRUE
 	else
 		ready_to_attack = TRUE
-		to_chat(user, SPAN_NOTICE("\The [src] is ready to attack nearby creatures or to be attached manually."))
+		to_chat(user, span_notice("\The [src] is ready to attack nearby creatures or to be attached manually."))
 		scan_mobs = FALSE
 
 /obj/item/implant/carrion_spider/holographic/attack(mob/living/M, mob/living/user)
@@ -49,7 +49,7 @@
 		return
 	reset_data()
 	playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
-	to_chat(user, SPAN_NOTICE("Scanned [target]."))
+	to_chat(user, span_notice("Scanned [target]."))
 	saved_name = target.name
 	saved_item = target
 	saved_type = target.type
@@ -86,14 +86,14 @@
 		item_state = initial(item_state)
 		set_dir(initial(dir))
 		update_icon()
-		to_chat(owner_mob, SPAN_NOTICE("You deactivate the [src]."))
+		to_chat(owner_mob, span_notice("You deactivate the [src]."))
 	else
 		if(!saved_item)
-			to_chat(owner_mob, SPAN_NOTICE("The [src] does not have anything scanned."))
+			to_chat(owner_mob, span_notice("The [src] does not have anything scanned."))
 			return
 		else
 			activate_holo(saved_name, saved_icon, saved_icon_state, saved_description, saved_dir, saved_appearance, saved_item_state)
-			to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
+			to_chat(owner_mob, span_notice("You activate the [src]."))
 
 /obj/item/implant/carrion_spider/holographic/proc/activate_holo(new_name, new_icon, new_iconstate, new_description, new_dir, new_appearance, new_item_state)
 	name = new_name

@@ -146,6 +146,13 @@ img, a img {
 	border-style: none;
 }
 
+img .renderpixel {
+	-webkit-image-rendering: pixelated;
+	-moz-image-rendering: -moz-crisp-edges;
+	-ms-interpolation-mode: nearest-neighbor;
+	image-rendering: pixelated;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	padding: 12px 0 6px 0;
@@ -245,12 +252,12 @@ abbr {
 
 .danger
 {
-	color: #ff0000;	
+	color: #ff0000;
 	font-weight: bold;
 }
 .warning
 {
-	color: #ff0000;	
+	color: #ff0000;
 	font-style: italic;
 }
 
@@ -474,10 +481,10 @@ div.notice {
 }
 
 .colorBox {
-	display: inline-block; 
-	width: 20px; 
-	height: 8px; 
-	border:1px solid #000; 
+	display: inline-block;
+	width: 20px;
+	height: 8px;
+	border:1px solid #000;
 	padding: 0px;
 }
 
@@ -648,7 +655,7 @@ div.notice {
 	text-align: center;
 }
 
-table.fixed { 
+table.fixed {
 	table-layout:fixed;
 }
 
@@ -854,7 +861,7 @@ th.bot {
 
 .sciTechResearched:hover {
 	background: #3fB44c;
-}	
+}
 
 .sciTechCantResearch {
 	background: #942f3c;
@@ -1007,7 +1014,7 @@ th.bot {
 
 .tradeDiscovered:hover {
 	background: #3fB44c;
-}	
+}
 
 .tradeNotDiscovered {
 	background: #942f3c;

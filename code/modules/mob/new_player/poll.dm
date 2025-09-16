@@ -3,9 +3,10 @@
 	var/text
 
 /mob/new_player/proc/handle_player_polling()
-	establish_db_connection()
-	if(dbcon.IsConnected())
-		var/DBQuery/select_query = dbcon.NewQuery("SELECT id, question FROM polls WHERE Now() BETWEEN start AND end")
+	if(SSdbcore.Connect())
+		var/datum/db_query/select_query = SSdbcore.NewQuery(
+			"SELECT id, question FROM [format_table_name("polls")] WHERE Now() BETWEEN start AND end"
+		)
 		if(!select_query.Execute())
 			log_world("Failed to retrieve active player polls. Error message: [select_query.ErrorMsg()].")
 			return
@@ -29,17 +30,18 @@
 
 		output += "</table>"
 
-		src << browse(output,"window=playerpolllist;size=500x300")
+		src << browse(HTML_SKELETON(output),"window=playerpolllist;size=500x300")
 
 
-/mob/new_player/proc/poll_player(var/poll_id = -1)
+/mob/new_player/proc/poll_player(poll_id = -1)
 	if(poll_id == -1)
 		return
 
-	establish_db_connection()
-	if(dbcon.IsConnected())
-
-		var/DBQuery/select_query = dbcon.NewQuery("SELECT start, end, question, type, FROM polls WHERE id = [poll_id]")
+	if(SSdbcore.Connect())
+		var/datum/db_query/select_query = SSdbcore.NewQuery(
+			"SELECT start, end, question, type, FROM [format_table_name("polls")] WHERE id = :poll_id",
+			list("poll_id" = poll_id)
+		)
 		if(!select_query.Execute())
 			log_world("Failed to get poll with id [poll_id]. Error message: [select_query.ErrorMsg()].")
 			return
@@ -55,15 +57,18 @@
 			question = select_query.item[3]
 			type = select_query.item[4]
 		else
-			to_chat(usr, SPAN_DANGER("Poll question details not found."))
+			to_chat(usr, span_danger("Poll question details not found."))
 			return
 
 		switch(type)
 			//Polls that have enumerated options
 			if("OPTION")
-				var/DBQuery/voted_query = dbcon.NewQuery("SELECT option_id FROM poll_votes WHERE poll_id = [poll_id] AND player_id = [client.id]")
+				var/datum/db_query/voted_query = SSdbcore.NewQuery(
+					"SELECT option_id FROM [format_table_name("poll_votes")] WHERE poll_id = :poll_id AND ckey = :ckey",
+					list("ckey" = client.ckey, "poll_id" = poll_id)
+				)
 				if(!voted_query.Execute())
-					log_world("Failed to retrieve votes from poll [poll_id] for player [client.id]. Error message: [voted_query.ErrorMsg()].")
+					log_world("Failed to retrieve votes from poll [poll_id] for player [client.ckey]. Error message: [voted_query.ErrorMsg()].")
 					return
 
 				var/voted = FALSE
@@ -75,7 +80,9 @@
 
 				var/list/datum/poll_option/options = list()
 
-				var/DBQuery/options_query = dbcon.NewQuery("SELECT id, text FROM poll_options WHERE poll_id = [poll_id]")
+				var/datum/db_query/options_query = SSdbcore.NewQuery(
+					"SELECT id, text FROM [format_table_name("poll_options")] WHERE poll_id = :poll_id",
+					list("poll_id" = poll_id))
 				if(!options_query.Execute())
 					log_world("Failed to get poll options for poll with id [poll_id]. Error message: [options_query.ErrorMsg()].")
 					return
@@ -114,13 +121,16 @@
 
 				output += "</div>"
 
-				src << browse(output,"window=playerpoll;size=500x250")
+				src << browse(HTML_SKELETON(output),"window=playerpoll;size=500x250")
 
 			//Polls with a text input
 			if("TEXT")
-				var/DBQuery/voted_query = dbcon.NewQuery("SELECT text FROM poll_text_replies WHERE poll_id = [poll_id] AND player_id = [client.id]")
+				var/datum/db_query/voted_query = SSdbcore.NewQuery(
+					"SELECT text FROM [format_table_name("poll_text_replies")] WHERE poll_id = :poll_id AND ckey = :ckey",
+					list("poll_id" = poll_id, "ckey" = client.ckey)
+				)
 				if(!voted_query.Execute())
-					log_world("Failed to get votes from text poll [poll_id] for user [client.id]. Error message: [voted_query.ErrorMsg()].")
+					log_world("Failed to get votes from text poll [poll_id] for user [client.ckey]. Error message: [voted_query.ErrorMsg()].")
 					return
 
 				var/voted = FALSE
@@ -157,84 +167,92 @@
 				else
 					output += "[vote_text]"
 
-				src << browse(output,"window=playerpoll;size=500x500")
+				src << browse(HTML_SKELETON(output),"window=playerpoll;size=500x500")
 
 
-/mob/new_player/proc/vote_on_poll(var/poll_id = -1, var/option_id = -1)
+/mob/new_player/proc/vote_on_poll(poll_id = -1, option_id = -1)
 	if(poll_id == -1 || option_id == -1)
 		return
 
 	if(!isnum(poll_id) || !isnum(option_id))
 		return
 
-	establish_db_connection()
-	if(dbcon.IsConnected())
-
-		var/DBQuery/select_query = dbcon.NewQuery("SELECT start, end, question, type, FROM polls WHERE id = [poll_id] AND Now() BETWEEN start AND end")
+	if(SSdbcore.Connect())
+		var/datum/db_query/select_query = SSdbcore.NewQuery(
+			"SELECT start, end, question, type, FROM [format_table_name("polls")] WHERE id = :poll_id AND Now() BETWEEN start AND end",
+			list("poll_id" = poll_id)
+		)
 		if(!select_query.Execute())
 			log_world("Failed to get poll [poll_id]. Error message: [select_query.ErrorMsg()].")
 			return
 
 		if(select_query.NextRow())
 			if(select_query.item[4] != "OPTION")
-				to_chat(usr, SPAN_DANGER("Invalid poll type."))
+				to_chat(usr, span_danger("Invalid poll type."))
 				return
 		else
-			to_chat(usr, SPAN_DANGER("Poll not found."))
+			to_chat(usr, span_danger("Poll not found."))
 			return
 
-		var/DBQuery/select_query2 = dbcon.NewQuery("SELECT id FROM poll_options WHERE id = [option_id] AND poll_id = [poll_id]")
+		var/datum/db_query/select_query2 = SSdbcore.NewQuery(
+			"SELECT id FROM [format_table_name("poll_options")] WHERE id = :option_id AND poll_id = :poll_id",
+			list("option_id" = option_id, "poll_id" = poll_id)
+		)
 		if(!select_query2.Execute())
 			log_world("Failed to get poll options for poll [poll_id]. Error message: [select_query2.ErrorMsg()].")
 			return
 
 		if(!select_query2.NextRow())
-			to_chat(usr, SPAN_WARNING("Invalid poll options."))
+			to_chat(usr, span_warning("Invalid poll options."))
 			return
 
-		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM poll_votes WHERE poll_id = [poll_id] AND player_id = [client.id]")
+		var/datum/db_query/voted_query = SSdbcore.NewQuery(
+			"SELECT id FROM [format_table_name("poll_votes")] WHERE poll_id = :poll_id AND ckey = :ckey",
+			list("poll_id" = poll_id, "ckey" = client.ckey)
+		)
 		if(!voted_query.Execute())
 			log_world("Failed to get votes for poll [poll_id]. Error message: [voted_query.ErrorMsg()].")
 			return
 
 		if(voted_query.NextRow())
-			to_chat(usr, SPAN_WARNING("You already voted in this poll."))
+			to_chat(usr, span_warning("You already voted in this poll."))
 			return
 
-		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO poll_votes (time, option_id, poll_id, player_id) VALUES (Now(), [option_id], [poll_id], [client.id])")
+		var/datum/db_query/insert_query = SSdbcore.NewQuery(
+			"INSERT INTO [format_table_name("poll_votes")] (time, option_id, poll_id, ckey) VALUES (Now(), :option_id, :poll_id, :ckey)",
+			list("option_id" = option_id, "poll_id" = poll_id, "ckey" = client.ckey)
+		)
 		if(!insert_query.Execute())
-			log_world("Failed to insert vote from [client.id] for poll [poll_id]. Error message: [insert_query.ErrorMsg()].")
+			log_world("Failed to insert vote from [client.ckey] for poll [poll_id]. Error message: [insert_query.ErrorMsg()].")
 			return
 
-		to_chat(usr, SPAN_NOTICE("Vote successful."))
+		to_chat(usr, span_notice("Vote successful."))
 		usr << browse(null,"window=playerpoll")
 
 
-/mob/new_player/proc/log_text_poll_reply(var/poll_id = -1, var/reply_text = "")
+/mob/new_player/proc/log_text_poll_reply(poll_id = -1, reply_text = "")
 	if(poll_id == -1 || reply_text == "")
 		return
 
 	if(!isnum(poll_id) || !istext(reply_text))
 		return
-	establish_db_connection()
-	if(dbcon.IsConnected())
-
-		var/DBQuery/select_query = dbcon.NewQuery("SELECT start, end, question, type FROM polls WHERE id = [poll_id] AND Now() BETWEEN start AND end")
+	if(SSdbcore.Connect())
+		var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT start, end, question, type FROM [format_table_name("polls")] WHERE id = [poll_id] AND Now() BETWEEN start AND end")
 		if(!select_query.Execute())
 			log_world("Failed to get poll  [poll_id]. Error message: [select_query.ErrorMsg()].")
 			return
 
 		if(select_query.NextRow() && select_query.item[4] != "TEXT")
-			to_chat(usr, SPAN_WARNING("Invalid poll type."))
+			to_chat(usr, span_warning("Invalid poll type."))
 			return
 
-		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM poll_text_replies WHERE poll_id = [poll_id] AND player_id = [client.id]")
+		var/datum/db_query/voted_query = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_text_replies")] WHERE poll_id = [poll_id] AND ckey = [client.ckey]")
 		if(!voted_query.Execute())
-			log_world("Failed to get text replies for poll [poll_id] from user [client.id]. Error message: [voted_query.ErrorMsg()].")
+			log_world("Failed to get text replies for poll [poll_id] from user [client.ckey]. Error message: [voted_query.ErrorMsg()].")
 			return
 
 		if(voted_query.NextRow())
-			to_chat(usr, SPAN_WARNING("You already sent your feedback for this poll."))
+			to_chat(usr, span_warning("You already sent your feedback for this poll."))
 			return
 
 		reply_text = replacetext(reply_text, "%BR%", "")
@@ -243,13 +261,13 @@
 		reply_text = replacetext(reply_text, "%BR%", "<BR>")
 
 		if(!text_pass)
-			to_chat(usr, SPAN_WARNING("The text you entered was blank, contained illegal characters or was too long. Please correct the text and submit again."))
+			to_chat(usr, span_warning("The text you entered was blank, contained illegal characters or was too long. Please correct the text and submit again."))
 			return
 
-		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO poll_text_replies (time, poll_id, player_id, text) VALUES (Now(), [poll_id], [client.id], '[reply_text]')")
+		var/datum/db_query/insert_query = SSdbcore.NewQuery("INSERT INTO [format_table_name("poll_text_replies")] (time, poll_id, ckey, text) VALUES (Now(), [poll_id], [client.ckey], '[reply_text]')")
 		if(!insert_query.Execute())
-			log_world("Failed to insert text vote reply for [poll_id] from user [client.id]. Error message: [insert_query.ErrorMsg()].")
+			log_world("Failed to insert text vote reply for [poll_id] from user [client.ckey]. Error message: [insert_query.ErrorMsg()].")
 			return
 
-		to_chat(usr, SPAN_NOTICE("Vote successful."))
+		to_chat(usr, span_notice("Vote successful."))
 		usr << browse(null,"window=playerpoll")

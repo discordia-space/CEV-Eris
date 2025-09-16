@@ -27,11 +27,11 @@
 			var/mob/user = loc
 			extract_memory(user)
 		else
-			visible_message("\icon The [src] beeps, \"The [src] is not ready for manual use.\".")
+			visible_message("[icon2html(src, hearers(get_turf(src)))] The [src] beeps, \"The [src] is not ready for manual use.\".")
 	else
 		return
 
-/obj/item/clothing/head/mindreader/proc/extract_memory(var/user)
+/obj/item/clothing/head/mindreader/proc/extract_memory(user)
 	if (!user) return
 
 	if (src.loc != user || !ishuman(user))
@@ -51,4 +51,4 @@
 		output += "[A.print_objectives(FALSE)]"
 
 	new /obj/item/paper(drop_location(), output, "[H.real_name]'s Memory")
-	H.visible_message(SPAN_NOTICE("[src] printed a paper with writed [H] memory."))
+	H.visible_message(span_notice("[src] printed a paper with writed [H] memory."))

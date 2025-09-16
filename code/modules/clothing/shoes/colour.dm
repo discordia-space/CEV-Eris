@@ -65,7 +65,7 @@
 	icon_state = "orange"
 	var/obj/item/handcuffs/chained = null
 
-/obj/item/clothing/shoes/color/orange/proc/attach_cuffs(var/obj/item/handcuffs/cuffs, mob/user as mob)
+/obj/item/clothing/shoes/color/orange/proc/attach_cuffs(obj/item/handcuffs/cuffs, mob/user as mob)
 	if (src.chained) return
 
 	user.drop_item()

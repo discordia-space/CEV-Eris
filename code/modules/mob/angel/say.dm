@@ -1,4 +1,4 @@
-/mob/observer/eye/angel/say(var/message)
+/mob/observer/eye/angel/say(message)
 	message = sanitize(message)
 
 	if (!message)
@@ -8,29 +8,29 @@
 
 	if (src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			to_chat(src, "\red You cannot talk in deadchat and ANGEL chat (muted).")
+			to_chat(src, span_red("You cannot talk in deadchat and ANGEL chat (muted)."))
 			return
 
 		if (src.client.handle_spam_prevention(message,MUTE_DEADCHAT))
 			return
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_DANGER("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
 
 	if(!src.client.holder)
-		if(!config.dsay_allowed)
-			to_chat(src, SPAN_DANGER("Deadchat and ANGEL chat are globally muted."))
+		if(!GLOB.dsay_allowed)
+			to_chat(src, span_danger("Deadchat and ANGEL chat are globally muted."))
 			return
 
 	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
-		to_chat(usr, SPAN_DANGER("You have deadchat and ANGEL chat muted."))
+		to_chat(usr, span_danger("You have deadchat and ANGEL chat muted."))
 		return
 
-	say_angel_direct("[pick("beeps","buzzes","echoes","fizzes")], <span class='message'>\"[message]\"</span>", src)
+	say_angel_direct("[pick("beeps","buzzes","echoes","fizzes")], [span_message("\"[message]\"")]", src)
 
 
-/mob/observer/eye/angel/emote(var/act, var/type, var/message)
+/mob/observer/eye/angel/emote(act, type, message)
 	//message = sanitize(message) - already sanitized in verb/me_verb()
 
 	if(!message)
@@ -43,23 +43,23 @@
 
 	if(src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			to_chat(src, "\red You cannot emote in deadchat and ANGEL chat (muted).")
+			to_chat(src, span_red("You cannot emote in deadchat and ANGEL chat (muted)."))
 			return
 
 		if(src.client.handle_spam_prevention(message, MUTE_DEADCHAT))
 			return
 
 	if(client.prefs.muted & MUTE_DEADCHAT)
-		to_chat(src, SPAN_DANGER("You cannot send deadchat and ANGEL emotes (muted)."))
+		to_chat(src, span_danger("You cannot send deadchat and ANGEL emotes (muted)."))
 		return
 
 	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
-		to_chat(src, SPAN_DANGER("You have deadchat and ANGEL chat muted."))
+		to_chat(src, span_danger("You have deadchat and ANGEL chat muted."))
 		return
 
 	if(!src.client.holder)
-		if(!config.dsay_allowed)
-			to_chat(src, SPAN_DANGER("Deadchat and ANGEL chat are globally muted."))
+		if(!GLOB.dsay_allowed)
+			to_chat(src, span_danger("Deadchat and ANGEL chat are globally muted."))
 			return
 
 
@@ -75,7 +75,7 @@
 
 
 
-/proc/say_angel_direct(var/message, var/mob/subject = null)
+/proc/say_angel_direct(message, mob/subject = null)
 	var/name
 	var/keyname
 	if(subject && subject.client)
@@ -97,5 +97,5 @@
 					lname = "[keyname] ([name])"
 				else
 					lname = name
-				lname = "<span class='name'>[lname]</span> "
-			to_chat(M, "<span class='angelsay'>" + create_text_tag("angel", "ANGEL:", M.client) + " [lname][message]</span>")
+				lname = "[span_name("[lname]")] "
+			to_chat(M, span_angelsay("" + create_text_tag("angel", "ANGEL:", M.client) + " [lname][message]"))

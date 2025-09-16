@@ -55,7 +55,7 @@
 	A.all_doors.Add(src)
 	areas_added = list(A)
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		A = get_area(get_step(src,direction))
 		if(istype(A) && !(A in areas_added))
 			A.all_doors.Add(src)
@@ -70,28 +70,28 @@
 	return get_material_by_name(MATERIAL_STEEL)
 
 /obj/machinery/door/firedoor/examine(mob/user, extra_description = "")
-	if(!density || !..(user, 1))
+	if(!density || !..(user, extra_description))
 		return FALSE
 
 	extra_description += "<b> EMERGENCY SENSOR READINGS </b>"
-	for(var/possible_cardinal in cardinal)
+	for(var/possible_cardinal in GLOB.cardinal)
 		var/turf/turf_sim = get_step(src, possible_cardinal)
 		var/text_to_say = "&nbsp;&nbsp" // Magic bullshit im not even gonna question from the old proc
 		text_to_say += "[uppertext(dir2text(possible_cardinal))] : "
 		if(!istype(turf_sim) || turf_sim.is_wall || !turf_sim.zone)
-			text_to_say += SPAN_NOTICE("NO DATA")
+			text_to_say += span_notice("NO DATA")
 			extra_description += text_to_say
 			continue
 		var/dangerous = FALSE
 		var/datum/gas_mixture/air_data = turf_sim.zone.air
 		if(air_data.return_pressure() < FIREDOOR_MIN_PRESSURE)
-			text_to_say += SPAN_DANGER("LOW PRESSURE ")
+			text_to_say += span_danger("LOW PRESSURE ")
 			dangerous = TRUE
 		if(air_data.temperature > FIREDOOR_MAX_TEMP)
-			text_to_say += SPAN_DANGER("HIGH TEMPERATURE ")
+			text_to_say += span_danger("HIGH TEMPERATURE ")
 			dangerous = TRUE
 		else if(air_data.temperature < FIREDOOR_MIN_TEMP)
-			text_to_say += SPAN_DANGER("LOW TEMPERATURE ")
+			text_to_say += span_danger("LOW TEMPERATURE ")
 			dangerous = TRUE
 		if(dangerous)
 			extra_description += text_to_say
@@ -126,7 +126,7 @@
 		return//Already doing something.
 
 	if(blocked)
-		to_chat(user, SPAN_WARNING("\The [src] is welded solid!"))
+		to_chat(user, span_warning("\The [src] is welded solid!"))
 		return
 
 	var/alarmed = lockdown || checkAlarmed()
@@ -139,10 +139,10 @@
 		return
 
 	if(density && alarmed && !allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied.  Please wait for authorities to arrive, or for the alert to clear."))
+		to_chat(user, span_warning("Access denied.  Please wait for authorities to arrive, or for the alert to clear."))
 		return
 	else
-		user.visible_message("<span class='notice'>\The [src] [density ? "open" : "close"]s for \the [user].</span>",\
+		user.visible_message(span_notice("\The [src] [density ? "open" : "close"]s for \the [user]."),\
 		"\The [src] [density ? "open" : "close"]s.",\
 		"You hear a beep, and a door opening.")
 
@@ -168,7 +168,7 @@
 		if(QUALITY_WELDING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				blocked = !blocked
-				user.visible_message("<span class='danger'>\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [I].</span>",\
+				user.visible_message(span_danger("\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [I]."),\
 				"You [blocked ? "weld" : "unweld"] \the [src] with \the [I].",\
 				"You hear something being welded.")
 				update_icon()
@@ -180,18 +180,18 @@
 				var/used_sound = hatch_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 					hatch_open = !hatch_open
-					user.visible_message("<span class='danger'>[user] has [hatch_open ? "opened" : "closed"] \the [src] maintenance hatch.</span>",
+					user.visible_message(span_danger("[user] has [hatch_open ? "opened" : "closed"] \the [src] maintenance hatch."),
 												"You have [hatch_open ? "opened" : "closed"] the [src] maintenance hatch.")
 					update_icon()
 					return
 			else
-				to_chat(user, SPAN_NOTICE("You must close \the [src] first."))
+				to_chat(user, span_notice("You must close \the [src] first."))
 			return
 
 		if(QUALITY_PRYING)
 			if(blocked && hatch_open)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user.visible_message(SPAN_DANGER("[user] has removed the electronics from \the [src]."),
+					user.visible_message(span_danger("[user] has removed the electronics from \the [src]."),
 										"You have removed the electronics from [src].")
 					if (stat & BROKEN)
 						new /obj/item/electronics/circuitboard/broken(src.loc)
@@ -206,11 +206,11 @@
 					return
 				return
 			if(blocked)
-				to_chat(user, SPAN_DANGER("\The [src] is welded shut!"))
+				to_chat(user, span_danger("\The [src] is welded shut!"))
 				return
 			if(!operating)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user.visible_message("<span class='danger'>\The [user] forces \the [src] [density ? "open" : "closed"] with \a [I]!</span>",\
+					user.visible_message(span_danger("\The [user] forces \the [src] [density ? "open" : "closed"] with \a [I]!"),\
 					"You force \the [src] [density ? "open" : "closed"] with \the [I]!",\
 					"You hear metal strain, and a door [density ? "open" : "close"].")
 					if(density)
@@ -227,7 +227,7 @@
 	return ..()
 
 
-/obj/machinery/door/firedoor/close(var/forced = 0)
+/obj/machinery/door/firedoor/close(forced = 0)
 	if (blocked) //welded
 		return
 
@@ -239,7 +239,7 @@
 
 	return ..()
 
-/obj/machinery/door/firedoor/open(var/forced = 0)
+/obj/machinery/door/firedoor/open(forced = 0)
 	if (blocked) //welded
 		return
 

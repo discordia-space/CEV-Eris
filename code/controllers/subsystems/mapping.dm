@@ -2,29 +2,29 @@ SUBSYSTEM_DEF(mapping)
 	name = "Mapping"
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
+	init_time_threshold = 1 MINUTE
 
 	var/list/map_templates = list()
 	var/dmm_suite/maploader = null
 	var/list/teleportlocs = list()
 	var/list/ghostteleportlocs = list()
+	var/cave_ore_count = 0
 
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
-	if(config.generate_asteroid)
+	if(CONFIG_GET(flag/generate_asteroid))
 		// These values determine the specific area that the map is applied to.
 		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
 		if(GLOB.maps_data.asteroid_levels)
 			for(var/z_level in GLOB.maps_data.asteroid_levels)
 				if(!isnum(z_level))
 					// If it's still not a number, we probably got fed some nonsense string.
-					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
+					admin_notice(span_danger("Error: ASTEROID_Z_LEVELS config wasn't given a number."))
 				// Now for the actual map generating.  This occurs for every z-level defined in the config.
 				new /datum/random_map/automata/cave_system(null, 1, 1, z_level, 300, 300)
-				// Let's add ore too.
-				new /datum/random_map/noise/ore(null, 1, 1, z_level, 64, 64)
 		else
-			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
+			admin_notice(span_danger("Error: No asteroid z-levels defined in config!"))
 
-	if(config.use_overmap)
+	if(CONFIG_GET(flag/use_overmap))
 		if(!GLOB.maps_data.overmap_z)
 			build_overmap()
 		else
@@ -41,6 +41,7 @@ SUBSYSTEM_DEF(mapping)
 	for(var/area/A in world)
 		GLOB.map_areas += A
 
+	sortList(GLOB.map_areas)
 	// Do the same for teleport locs
 	for(var/area/AR in world)
 		if(istype(AR, /area/shuttle) ||  istype(AR, /area/wizard_station)) continue
@@ -50,10 +51,9 @@ SUBSYSTEM_DEF(mapping)
 			teleportlocs += AR.name
 			teleportlocs[AR.name] = AR
 
-	teleportlocs = sortAssoc(teleportlocs)
+	sortAssoc(teleportlocs)
 
 	// And the same for ghost teleport locs
-
 
 	for(var/area/AR in world)
 		if(ghostteleportlocs.Find(AR.name)) continue
@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(mapping)
 			ghostteleportlocs += AR.name
 			ghostteleportlocs[AR.name] = AR
 
-	ghostteleportlocs = sortAssoc(ghostteleportlocs)
+	sortAssoc(ghostteleportlocs)
 
 	return ..()
 
@@ -143,7 +143,7 @@ SUBSYSTEM_DEF(mapping)
 	flags |= SS_NO_INIT
 
 /hook/roundstart/proc/init_overmap_events()
-	if(config.use_overmap)
+	if(CONFIG_GET(flag/use_overmap))
 		if(GLOB.maps_data.overmap_z)
 			testing("Creating overmap events...")
 			testing_variable(t1, world.tick_usage)

@@ -39,9 +39,9 @@
 			if(!sign_type)
 				return
 			icon_state = sign_type
-			to_chat(user, SPAN_NOTICE("You change the barsign."))
+			to_chat(user, span_notice("You change the barsign."))
 		else
-			to_chat(user, SPAN_WARNING("Access denied."))
+			to_chat(user, span_warning("Access denied."))
 		return
 
 	return ..()

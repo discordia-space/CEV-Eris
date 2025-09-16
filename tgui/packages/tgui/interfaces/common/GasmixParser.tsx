@@ -1,4 +1,4 @@
-import { LabeledList, Box, Button } from '../../components';
+import { Box, Button, LabeledList } from 'tgui-core/components';
 
 export type Gasmix = {
   name?: string;
@@ -22,7 +22,7 @@ type GasmixParserProps = {
   detailedReactions?: boolean;
 };
 
-export const GasmixParser = (props: GasmixParserProps, context) => {
+export const GasmixParser = (props: GasmixParserProps) => {
   const {
     gasmix,
     gasesOnClick,
@@ -104,7 +104,7 @@ export const GasmixParser = (props: GasmixParserProps, context) => {
               reactionOnClick ? (
                 <Button
                   content={reaction[1]}
-                  onClick={reactionOnClick(reaction[0])}
+                  onClick={() => reactionOnClick(reaction[0])}
                 />
               ) : (
                 reaction[1]
@@ -117,16 +117,16 @@ export const GasmixParser = (props: GasmixParserProps, context) => {
       ) : (
         <LabeledList.Item label="Gas Reactions">
           {reactions.length
-            ? reactions.map((reaction) =>
+            ? reactions.map((reaction, index) =>
                 reactionOnClick ? (
-                  <Box mb="0.5em">
+                  <Box key={reaction[1]} mb="0.5em">
                     <Button
                       content={reaction[1]}
                       onClick={() => reactionOnClick(reaction[0])}
                     />
                   </Box>
                 ) : (
-                  <div>{reaction[1]}</div>
+                  <div key={reaction[1]}>{reaction[1]}</div>
                 ),
               )
             : 'No reactions detected'}

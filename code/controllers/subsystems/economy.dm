@@ -94,11 +94,11 @@ SUBSYSTEM_DEF(economy)
 					payroll_failure_mail(R, A, D.total_debt)
 
 	total_paid = paid_internal + paid_external
-	command_announcement.Announce("Half hourly crew wages have been paid, please check your email for details. In total the crew of CEV Eris have earned [total_paid] credits, including [paid_external] credits from external sources.\n Please contact your Department Heads in case of errors or missing payments.", "Dispensation")
+	priority_announce("Half hourly crew wages have been paid, please check your email for details. In total the crew of [station_name()] have earned [total_paid] credits, including [paid_external] credits from external sources.\nPlease contact your Department Heads in case of errors or missing payments.", "Dispensation")
 
 
 //Sent to a head of staff when their department account fails to pay out wages
-/proc/payroll_failure_mail(var/datum/computer_file/report/crew_record/R, var/datum/money_account/fail_account, var/amount)
+/proc/payroll_failure_mail(datum/computer_file/report/crew_record/R, datum/money_account/fail_account, amount)
 	var/address = R.get_email()
 
 	var/datum/computer_file/data/email_message/message = new()
@@ -115,7 +115,7 @@ SUBSYSTEM_DEF(economy)
 	return TRUE
 
 
-/proc/payroll_mail_account_holder(var/datum/computer_file/report/crew_record/R, var/sender, var/amount)
+/proc/payroll_mail_account_holder(datum/computer_file/report/crew_record/R, sender, amount)
 	//In future, this will be expanded to include a report on penalties, bonuses and taxes that affected your wages
 
 	var/address = R.get_email()

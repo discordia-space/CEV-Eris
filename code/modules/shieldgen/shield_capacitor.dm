@@ -27,7 +27,7 @@
 				break
 	..()
 
-/obj/machinery/shield_capacitor/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/shield_capacitor/emag_act(remaining_charges, mob/user)
 	if(prob(75))
 		src.locked = !src.locked
 		user << "Controls are now [src.locked ? "locked." : "unlocked."]"
@@ -46,11 +46,11 @@
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 			updateDialog()
 		else
-			user << "\red Access denied."
+			user << span_red("Access denied.")
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			src.anchored = !src.anchored
-			src.visible_message("\blue \icon[src] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].")
+			src.visible_message(span_blue("[icon2html(src, viewers(get_turf(src)))] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user]."))
 
 			if(anchored)
 				spawn(0)
@@ -83,23 +83,23 @@
 	if(locked)
 		t += "<i>Swipe your ID card to begin.</i>"
 	else
-		t += "This capacitor is: [active ? "<font color=green>Online</font>" : "<font color=red>Offline</font>" ] <a href='?src=\ref[src];toggle=1'>[active ? "\[Deactivate\]" : "\[Activate\]"]</a><br>"
+		t += "This capacitor is: [active ? "<font color=green>Online</font>" : "<font color=red>Offline</font>" ] <a href='byond://?src=\ref[src];toggle=1'>[active ? "\[Deactivate\]" : "\[Activate\]"]</a><br>"
 		t += "Capacitor Status: [time_since_fail > 2 ? "<font color=green>OK.</font>" : "<font color=red>Discharging!</font>"]<br>"
 		t += "Stored Energy: [round(stored_charge/1000, 0.1)] kJ ([100 * round(stored_charge/max_charge, 0.1)]%)<br>"
 		t += "Charge Rate: \
-		<a href='?src=\ref[src];charge_rate=-100000'>\[----\]</a> \
-		<a href='?src=\ref[src];charge_rate=-10000'>\[---\]</a> \
-		<a href='?src=\ref[src];charge_rate=-1000'>\[--\]</a> \
-		<a href='?src=\ref[src];charge_rate=-100'>\[-\]</a>[charge_rate] W \
-		<a href='?src=\ref[src];charge_rate=100'>\[+\]</a> \
-		<a href='?src=\ref[src];charge_rate=1000'>\[++\]</a> \
-		<a href='?src=\ref[src];charge_rate=10000'>\[+++\]</a> \
-		<a href='?src=\ref[src];charge_rate=100000'>\[+++\]</a><br>"
+		<a href='byond://?src=\ref[src];charge_rate=-100000'>\[----\]</a> \
+		<a href='byond://?src=\ref[src];charge_rate=-10000'>\[---\]</a> \
+		<a href='byond://?src=\ref[src];charge_rate=-1000'>\[--\]</a> \
+		<a href='byond://?src=\ref[src];charge_rate=-100'>\[-\]</a>[charge_rate] W \
+		<a href='byond://?src=\ref[src];charge_rate=100'>\[+\]</a> \
+		<a href='byond://?src=\ref[src];charge_rate=1000'>\[++\]</a> \
+		<a href='byond://?src=\ref[src];charge_rate=10000'>\[+++\]</a> \
+		<a href='byond://?src=\ref[src];charge_rate=100000'>\[+++\]</a><br>"
 	t += "<hr>"
-	t += "<A href='?src=\ref[src]'>Refresh</A> "
-	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
+	t += "<A href='byond://?src=\ref[src]'>Refresh</A> "
+	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 
-	user << browse(t, "window=shield_capacitor;size=500x400")
+	user << browse(HTML_SKELETON_TITLE("Shield Capacitor Control Console", t), "window=shield_capacitor;size=500x400")
 	user.set_machine(src)
 
 /obj/machinery/shield_capacitor/Process()
@@ -131,7 +131,7 @@
 		return
 	if( href_list["toggle"] )
 		if(!active && !anchored)
-			usr << "\red The [src] needs to be firmly secured to the floor first."
+			usr << span_red("The [src] needs to be firmly secured to the floor first.")
 			return
 		active = !active
 	if( href_list["charge_rate"] )

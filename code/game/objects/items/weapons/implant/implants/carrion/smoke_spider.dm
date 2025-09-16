@@ -9,7 +9,7 @@
 
 /obj/item/implant/carrion_spider/smokebomb/activate()
 	..()
-	visible_message(SPAN_DANGER("[src] emits clouds of smoke!!"))
+	visible_message(span_danger("[src] emits clouds of smoke!!"))
 	playsound(src, 'sound/voice/insect_battle_screeching.ogg', 80, 1, 5)
 	playsound(src, 'sound/effects/smoke.ogg', 50, 1, -3)
 	if(charges)

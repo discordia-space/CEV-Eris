@@ -275,7 +275,7 @@
 /obj/item/clothing/accessory/holster/proc/handle_attack_hand(mob/user as mob)
 	return holster.handle_attack_hand(user)
 
-/obj/item/clothing/accessory/holster/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+/obj/item/clothing/accessory/holster/proc/handle_mousedrop(mob/user, atom/over_object)
 	return holster.handle_mousedrop(user, over_object)
 
 /obj/item/clothing/accessory/holster/MouseDrop(obj/over_object)
@@ -316,7 +316,7 @@
 	holster.attackby(I, user)
 
 //For the holster hotkey in human.dm
-/obj/item/storage/pouch/holster/proc/holster_verb(var/mob/living/carbon/human/H)
+/obj/item/storage/pouch/holster/proc/holster_verb(mob/living/carbon/human/H)
 	if(!istype(H))
 		return
 
@@ -332,9 +332,9 @@
 
 	var/holster_handled = FALSE
 	for(var/obj/item/storage/pouch/holster/holster in holster_priority)
-		if(H.get_active_hand())
+		if(H.get_active_held_item())
 			if(holster.contents.len < holster.storage_slots)//putting items in holsters
-				holster.attackby(H.get_active_hand(), H)
+				holster.attackby(H.get_active_held_item(), H)
 				holster_handled = TRUE
 				break
 		else
@@ -344,7 +344,7 @@
 				break
 
 	if(!holster_handled)
-		to_chat(H, SPAN_NOTICE(!H.get_active_hand() ? "You don't have any occupied pouch holsters." : "All your pouch holsters are occupied."))
+		to_chat(H, span_notice(!H.get_active_held_item() ? "You don't have any occupied pouch holsters." : "All your pouch holsters are occupied."))
 		return FALSE
 	else
 		return TRUE
@@ -355,13 +355,13 @@
 		if(istype(I))
 			if(H.a_intent == I_HURT)
 				H.visible_message(
-					SPAN_DANGER("[H] draws \the [I], ready to fight!"),
-						SPAN_WARNING("You draw \the [I], ready to fight!")
+					span_danger("[H] draws \the [I], ready to fight!"),
+						span_warning("You draw \the [I], ready to fight!")
 					)
 			else
 				H.visible_message(
-					SPAN_NOTICE("[H] draws \the [I], pointing it at the ground."),
-					SPAN_NOTICE("You draw \the [I], pointing it at the ground.")
+					span_notice("[H] draws \the [I], pointing it at the ground."),
+					span_notice("You draw \the [I], pointing it at the ground.")
 					)
 			add_fingerprint(H)
 			playsound(H, "[src.sound_out]", 75, 0)

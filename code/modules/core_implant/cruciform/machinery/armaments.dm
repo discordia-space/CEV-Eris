@@ -16,7 +16,7 @@
 /datum/armament/proc/get_cost()
 	return max(min_cost, cost - discount)
 
-/datum/armament/proc/purchase(var/mob/living/carbon/H)
+/datum/armament/proc/purchase(mob/living/carbon/H)
 	if (!eotp)
 		error("No EOTP found to purchase from.")
 		return FALSE
@@ -25,11 +25,11 @@
 		return FALSE
 
 	if (!is_neotheology_disciple(H))
-		to_chat(H, SPAN_DANGER("You do not understand how to use this."))
+		to_chat(H, span_danger("You do not understand how to use this."))
 		return FALSE
 
 	if (eotp.armaments_points < get_cost())
-		to_chat(H, SPAN_DANGER("You lack the required amount of armament points."))
+		to_chat(H, span_danger("You lack the required amount of armament points."))
 		return FALSE
 
 	eotp.armaments_points -= get_cost()
@@ -52,7 +52,7 @@
 
 
 //maybe buying buffs, blessings, miracles, etc instead of just items
-/datum/armament/proc/on_purchase(var/mob/living/carbon/H)
+/datum/armament/proc/on_purchase(mob/living/carbon/H)
 	return
 
 
@@ -107,7 +107,7 @@
 /datum/armament/item/on_purchase(mob/living/carbon/H)
 	if (path)
 		var/obj/_item = new path(get_turf(eotp))
-		eotp.visible_message(SPAN_NOTICE("The [_item.name] appears out of bluespace near the [eotp]!"))
+		eotp.visible_message(span_notice("The [_item.name] appears out of bluespace near the [eotp]!"))
 
 /datum/armament/item/disk
 	name = "disk"

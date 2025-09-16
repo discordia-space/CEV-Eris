@@ -1,7 +1,7 @@
 /datum/admin_secret_item/admin_secret/list_dna
 	name = "List DNA (Blood)"
 
-/datum/admin_secret_item/admin_secret/list_dna/execute(var/mob/user)
+/datum/admin_secret_item/admin_secret/list_dna/execute(mob/user)
 	. = ..()
 	if(!.)
 		return
@@ -11,4 +11,4 @@
 		if(H.ckey)
 			dat += "<tr><td>[H]</td><td>[H.dna_trace]</td><td>[H.b_type]</td></tr>"
 	dat += "</table>"
-	user << browse(dat, "window=DNA;size=440x410")
+	user << browse(HTML_SKELETON_TITLE("List DNA (Blood)", dat), "window=DNA;size=440x410")

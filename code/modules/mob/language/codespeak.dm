@@ -16,7 +16,7 @@
 // Add new ones here
 var/global/datum/codespeak_list/cop_codes
 var/global/datum/codespeak_list/serb_codes
-proc/setup_codespeak()
+/proc/setup_codespeak()
 	cop_codes = new()
 	cop_codes.codetype = "IH"
 	serb_codes = new()

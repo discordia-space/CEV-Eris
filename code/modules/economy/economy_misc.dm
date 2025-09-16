@@ -46,7 +46,7 @@
 #define GEAR_EVA 15
 
 
-/var/list/economic_species_modifier = list(/datum/species/human	= 10)
+var/list/economic_species_modifier = list(/datum/species/human	= 10)
 
 //---- Descriptions of destination types
 //Space stations can be purpose built for a number of different things, but generally require regular shipments of essential supplies.
@@ -98,13 +98,13 @@ var/global/datum/computer_file/data/email_account/service/payroll/payroll_mailer
 		if(V.vendor_department)
 			V.earnings_account = department_accounts[V.vendor_department]
 
-	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [game_year]"
+	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [CURRENT_SHIP_YEAR]"
 
 	economy_init = 1
 	return 1
 
 
-/proc/create_department_account(var/datum/department/department)
+/proc/create_department_account(datum/department/department)
 	next_account_number = rand(111111, 999999)
 
 	var/datum/money_account/department_account = new()

@@ -38,7 +38,7 @@
 	if(on_fire)
 		on_fire = FALSE
 		deltimer(burning)
-		visible_message(SPAN_NOTICE("Opening the coffin has disrupted the fire!"))
+		visible_message(span_notice("Opening the coffin has disrupted the fire!"))
 
 //The coffin processes when there's a mob inside
 /obj/structure/closet/coffin/lost_in_space()
@@ -46,7 +46,7 @@
 	if (occupant && occupant.is_dead())
 		var/mob/M = key2mob(occupant.mind.key)
 		//We send a message to the occupant's current mob - probably a ghost, but who knows.
-		to_chat(M, SPAN_NOTICE("Your remains have been committed to the void. Your crew respawn time has been reduced by [(COFFIN_RESPAWN_BONUS)/600] minutes."))
+		to_chat(M, span_notice("Your remains have been committed to the void. Your crew respawn time has been reduced by [(COFFIN_RESPAWN_BONUS)/600] minutes."))
 		M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
 		//A proper funeral for the corpse allows a faster respawn
@@ -62,7 +62,7 @@
 		close() //If someone wanted an open casket funeral, we still need the casket to close to determine occupant
 	if(occupant && occupant.is_dead())
 		var/mob/N = key2mob(occupant.mind.key)
-		to_chat(N, SPAN_NOTICE("Your remains have been reduced to ash. Your crew respawn time has been reduced by [round(COFFIN_RESPAWN_BONUS/(1 MINUTE))] minutes."))
+		to_chat(N, span_notice("Your remains have been reduced to ash. Your crew respawn time has been reduced by [round(COFFIN_RESPAWN_BONUS/(1 MINUTE))] minutes."))
 		N << 'sound/effects/magic/blind.ogg'
 		N.set_respawn_bonus("CORPSE_HANDLING", COFFIN_RESPAWN_BONUS)
 	new /obj/effect/decal/cleanable/ash(loc)
@@ -91,9 +91,9 @@
 /obj/structure/closet/coffin/attack_hand(mob/user)
 	add_fingerprint(user)
 	if(opened)
-		to_chat(user, SPAN_NOTICE("You can't fit the cover back on without hammering it into place!"))
+		to_chat(user, span_notice("You can't fit the cover back on without hammering it into place!"))
 	else
-		to_chat(user, SPAN_NOTICE("The cover is too heavy to lift without a prying tool!"))
+		to_chat(user, span_notice("The cover is too heavy to lift without a prying tool!"))
 
 /obj/structure/closet/coffin/proc/burn()
 	add_overlay("coffin_pyre")
@@ -103,9 +103,9 @@
 /obj/structure/closet/coffin/attackby(obj/item/I, mob/user)
 	if(!on_fire && isflamesource(I))
 		user.visible_message(
-				SPAN_WARNING("[user] has lit the [src] on fire! In a couple minutes, it and its occupant will be ash!"), \
-				SPAN_WARNING("You've started the pyre, committing a poor soul unto the afterlife."), \
-				SPAN_WARNING("You smell wood burning.")
+				span_warning("[user] has lit the [src] on fire! In a couple minutes, it and its occupant will be ash!"), \
+				span_warning("You've started the pyre, committing a poor soul unto the afterlife."), \
+				span_warning("You smell wood burning.")
 			)
 		burn()
 
@@ -123,17 +123,17 @@
 			if(!opened)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					user.visible_message(
-							SPAN_NOTICE("[user] pried open the [src] with \the [I]."), \
-							SPAN_NOTICE("You pried open the [src]."), \
-							SPAN_NOTICE("You hear nails being pried from wood.")
+							span_notice("[user] pried open the [src] with \the [I]."), \
+							span_notice("You pried open the [src]."), \
+							span_notice("You hear nails being pried from wood.")
 					)
 					open()
 			else
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					user.visible_message(
-							SPAN_NOTICE("[user] tore apart the [src] with \the [I]."), \
-							SPAN_NOTICE("You pried apart the planks of the [src]."), \
-							SPAN_NOTICE("You hear a something wooden being torn apart.")
+							span_notice("[user] tore apart the [src] with \the [I]."), \
+							span_notice("You pried apart the planks of the [src]."), \
+							span_notice("You hear a something wooden being torn apart.")
 					)
 					drop_materials(drop_location())
 					qdel(src)
@@ -143,9 +143,9 @@
 			if(opened)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					user.visible_message(
-							SPAN_NOTICE("[user] carved the [src] apart with \the [I]."), \
-							SPAN_NOTICE("You carved off the planks of the [src]."), \
-							SPAN_NOTICE("You hear wood being sawn.")
+							span_notice("[user] carved the [src] apart with \the [I]."), \
+							span_notice("You carved off the planks of the [src]."), \
+							span_notice("You hear wood being sawn.")
 					)
 					drop_materials(drop_location())
 					qdel(src)
@@ -154,9 +154,9 @@
 			if(opened)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					user.visible_message(
-							SPAN_NOTICE("[user] diligently hammered the [src] cover in place with \the [I]."), \
-							SPAN_NOTICE("You hammered the [src] cover on."), \
-							SPAN_NOTICE("You hear nails being driven into wood.")
+							span_notice("[user] diligently hammered the [src] cover in place with \the [I]."), \
+							span_notice("You hammered the [src] cover on."), \
+							span_notice("You hear nails being driven into wood.")
 					)
 					close()
 				return

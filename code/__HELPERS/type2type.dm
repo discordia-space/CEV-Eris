@@ -10,45 +10,45 @@
  *			key2mob
  */
 
-// Returns an integer given a hexadecimal number string as input.
-/proc/hex2num(hex)
-	if (!istext(hex))
-		return
+// // Returns an integer given a hexadecimal number string as input.
+// /proc/hex2num(hex)
+// 	if (!istext(hex))
+// 		return
 
-	var/num   = 0
-	var/power = 1
-	var/i     = length(hex)
+// 	var/num   = 0
+// 	var/power = 1
+// 	var/i     = length(hex)
 
-	while (i)
-		var/char = text2ascii(hex, i)
-		switch(char)
-			if(48)                                  // 0 -- do nothing
-			if(49 to 57) num += (char - 48) * power // 1-9
-			if(97,  65)  num += power * 10          // A
-			if(98,  66)  num += power * 11          // B
-			if(99,  67)  num += power * 12          // C
-			if(100, 68)  num += power * 13          // D
-			if(101, 69)  num += power * 14          // E
-			if(102, 70)  num += power * 15          // F
-			else
-				return
-		power *= 16
-		i--
-	return num
+// 	while (i)
+// 		var/char = text2ascii(hex, i)
+// 		switch(char)
+// 			if(48)                                  // 0 -- do nothing
+// 			if(49 to 57) num += (char - 48) * power // 1-9
+// 			if(97,  65)  num += power * 10          // A
+// 			if(98,  66)  num += power * 11          // B
+// 			if(99,  67)  num += power * 12          // C
+// 			if(100, 68)  num += power * 13          // D
+// 			if(101, 69)  num += power * 14          // E
+// 			if(102, 70)  num += power * 15          // F
+// 			else
+// 				return
+// 		power *= 16
+// 		i--
+// 	return num
 
 // Returns the hex value of a number given a value assumed to be a base-ten value
-var/global/list/hexdigits = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
-/proc/num2hex(num, padlength)
-	. = ""
-	while(num > 0)
-		var/hexdigit = hexdigits[(num & 0xF) + 1]
-		. = "[hexdigit][.]"
-		num >>= 4 //go to the next half-byte
+// var/global/list/hexdigits = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
+// /proc/num2hex(num, padlength)
+// 	. = ""
+// 	while(num > 0)
+// 		var/hexdigit = hexdigits[(num & 0xF) + 1]
+// 		. = "[hexdigit][.]"
+// 		num >>= 4 //go to the next half-byte
 
-	//pad with zeroes
-	var/left = padlength - length(.)
-	while (left-- > 0)
-		. = "0[.]"
+// 	//pad with zeroes
+// 	var/left = padlength - length(.)
+// 	while (left-- > 0)
+// 		. = "0[.]"
 
 
 /proc/text2numlist(text, delimiter="\n")
@@ -124,8 +124,30 @@ GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,
 			return null
 
 // Returns the angle in english
-/proc/angle2text(var/degree)
+/proc/angle2text(degree)
 	return dir2text(angle2dir(degree))
+
+/// Returns a list(x, y), being the change in position required to step in the passed in direction
+/proc/dir2offset(dir)
+	switch(dir)
+		if(NORTH)
+			return list(0, 1)
+		if(SOUTH)
+			return list(0, -1)
+		if(EAST)
+			return list(1, 0)
+		if(WEST)
+			return list(-1, 0)
+		if(NORTHEAST)
+			return list(1, 1)
+		if(SOUTHEAST)
+			return list(1, -1)
+		if(NORTHWEST)
+			return list(-1, 1)
+		if(SOUTHWEST)
+			return list(-1, -1)
+		else
+			return list(0, 0)
 
 // Converts a blend_mode constant to one acceptable to icon.Blend()
 /proc/blendMode2iconMode(blend_mode)
@@ -142,8 +164,9 @@ GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,
 	if (rights & R_SERVER)      . += "[seperator]+SERVER"
 	if (rights & R_DEBUG)       . += "[seperator]+DEBUG"
 	if (rights & R_PERMISSIONS) . += "[seperator]+PERMISSIONS"
-	if (rights & R_MOD)         . += "[seperator]+MODERATOR"
+	if (rights & R_BAN)         . += "[seperator]+BAN"
 	if (rights & R_MENTOR)      . += "[seperator]+MENTOR"
+	if (rights & R_VAREDIT)		. += "[seperator]+VAREDIT"
 	return .
 
 // heat2color functions. Adapted from: http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/
@@ -222,8 +245,8 @@ GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,
 
 
 //Takes a key and attempts to find the mob it currently belongs to
-/proc/key2mob(var/key)
-	var/client/C = directory[key]
+/proc/key2mob(key)
+	var/client/C = GLOB.directory[key]
 	if (C)
 		//This should work if the mob is currently logged in
 		return C.mob
@@ -234,13 +257,13 @@ GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,
 				return M
 		return null
 
-/proc/atomtypes2nameassoclist(var/list/atom_types)
+/proc/atomtypes2nameassoclist(list/atom_types)
 	. = list()
 	for(var/atom_type in atom_types)
 		var/atom/A = atom_type
 		.[initial(A.name)] = atom_type
-	. = sortAssoc(.)
-/proc/atomtype2nameassoclist(var/atom_type)
+	sortAssoc(.)
+/proc/atomtype2nameassoclist(atom_type)
 	return atomtypes2nameassoclist(typesof(atom_type))
 
 //Splits the text of a file at seperator and returns them in a list.
@@ -287,3 +310,60 @@ GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,
 /// for use inside of browse() calls to html assets that might be loaded on a cdn.
 /proc/url2htmlloader(url)
 	return {"<html><head><meta http-equiv="refresh" content="0;URL='[url]'"/></head><body onLoad="parent.location='[url]'"></body></html>"}
+
+//This is a weird one:
+//It returns a list of all var names found in the string
+//These vars must be in the [var_name] format
+//It's only a proc because it's used in more than one place
+
+//Takes a string and a datum
+//The string is well, obviously the string being checked
+//The datum is used as a source for var names, to check validity
+//Otherwise every single word could technically be a variable!
+/proc/string2listofvars(t_string, datum/var_source)
+	if(!t_string || !var_source)
+		return list()
+
+	. = list()
+
+	var/var_found = findtext(t_string,"\[") //Not the actual variables, just a generic "should we even bother" check
+	if(var_found)
+		//Find var names
+
+		// "A dog said hi [name]!"
+		// splittext() --> list("A dog said hi ","name]!"
+		// jointext() --> "A dog said hi name]!"
+		// splittext() --> list("A","dog","said","hi","name]!")
+
+		t_string = replacetext(t_string,"\[","\[ ")//Necessary to resolve "word[var_name]" scenarios
+		var/list/list_value = splittext(t_string,"\[")
+		var/intermediate_stage = jointext(list_value, null)
+
+		list_value = splittext(intermediate_stage," ")
+		for(var/value in list_value)
+			if(findtext(value,"]"))
+				value = splittext(value,"]") //"name]!" --> list("name","!")
+				for(var/A in value)
+					if(var_source.vars.Find(A))
+						. += A
+
+//word of warning: using a matrix like this as a color value will simplify it back to a string after being set
+/proc/color_hex2color_matrix(string)
+	var/length = length(string)
+	if((length != 7 && length != 9) || length != length_char(string))
+		return color_matrix_identity()
+	var/r = hex2num(copytext(string, 2, 4))/255
+	var/g = hex2num(copytext(string, 4, 6))/255
+	var/b = hex2num(copytext(string, 6, 8))/255
+	var/a = 1
+	if(length == 9)
+		a = hex2num(copytext(string, 8, 10))/255
+	if(!isnum(r) || !isnum(g) || !isnum(b) || !isnum(a))
+		return color_matrix_identity()
+	return list(r,0,0,0, 0,g,0,0, 0,0,b,0, 0,0,0,a, 0,0,0,0)
+
+//will drop all values not on the diagonal
+/proc/color_matrix2color_hex(list/the_matrix)
+	if(!istype(the_matrix) || the_matrix.len != 20)
+		return "#ffffffff"
+	return rgb(the_matrix[1]*255, the_matrix[6]*255, the_matrix[11]*255, the_matrix[16]*255)

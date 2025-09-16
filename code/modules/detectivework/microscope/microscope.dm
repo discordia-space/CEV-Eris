@@ -13,11 +13,11 @@
 /obj/machinery/microscope/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(sample)
-		to_chat(user, SPAN_WARNING("There is already a slide in the microscope."))
+		to_chat(user, span_warning("There is already a slide in the microscope."))
 		return
 
 	if(istype(W, /obj/item/forensics/swab)|| istype(W, /obj/item/sample/fibers) || istype(W, /obj/item/sample/print))
-		to_chat(user, SPAN_NOTICE("You insert \the [W] into the microscope."))
+		to_chat(user, span_notice("You insert \the [W] into the microscope."))
 		user.unEquip(W)
 		W.forceMove(src)
 		sample = W
@@ -27,16 +27,16 @@
 /obj/machinery/microscope/attack_hand(mob/user)
 
 	if(!sample)
-		to_chat(user, SPAN_WARNING("The microscope has no sample to examine."))
+		to_chat(user, span_warning("The microscope has no sample to examine."))
 		return
 
-	to_chat(user, SPAN_NOTICE("The microscope whirrs as you examine \the [sample]."))
+	to_chat(user, span_notice("The microscope whirrs as you examine \the [sample]."))
 
 	if(!do_after(user, 25, src) || !sample)
-		to_chat(user, SPAN_NOTICE("You stop examining \the [sample]."))
+		to_chat(user, span_notice("You stop examining \the [sample]."))
 		return
 
-	to_chat(user, SPAN_NOTICE("Printing findings now..."))
+	to_chat(user, span_notice("Printing findings now..."))
 	var/obj/item/paper/report = new(get_turf(src))
 	report.stamped = list(/obj/item/stamp)
 	report.overlays = list("paper_stamped")
@@ -60,7 +60,7 @@
 		if(fibers.evidence)
 			report.info = "Molecular analysis on provided sample has determined the presence of unique fiber strings.<br><br>"
 			for(var/fiber in fibers.evidence)
-				report.info += "<span class='notice'>Most likely match for fibers: [fiber]</span><br><br>"
+				report.info += "[span_notice("Most likely match for fibers: [fiber]")]<br><br>"
 		else
 			report.info += "No fibers found."
 	else if(istype(sample, /obj/item/sample/print))
@@ -70,7 +70,7 @@
 		if(card.evidence && card.evidence.len)
 			report.info += "Surface analysis has determined unique fingerprint strings:<br><br>"
 			for(var/prints in card.evidence)
-				report.info += SPAN_NOTICE("Fingerprint string: ")
+				report.info += span_notice("Fingerprint string: ")
 				if(!is_complete_print(prints))
 					report.info += "INCOMPLETE PRINT"
 				else
@@ -85,13 +85,13 @@
 			to_chat(user, report.info)
 	return
 
-/obj/machinery/microscope/proc/remove_sample(var/mob/living/remover)
+/obj/machinery/microscope/proc/remove_sample(mob/living/remover)
 	if(!istype(remover) || remover.incapacitated() || !Adjacent(remover))
 		return
 	if(!sample)
-		to_chat(remover, SPAN_WARNING("\The [src] does not have a sample in it."))
+		to_chat(remover, span_warning("\The [src] does not have a sample in it."))
 		return
-	to_chat(remover, SPAN_NOTICE("You remove \the [sample] from \the [src]."))
+	to_chat(remover, span_notice("You remove \the [sample] from \the [src]."))
 	sample.forceMove(get_turf(src))
 	remover.put_in_hands(sample)
 	sample = null
@@ -100,7 +100,7 @@
 /obj/machinery/microscope/AltClick()
 	remove_sample(usr)
 
-/obj/machinery/microscope/MouseDrop(var/atom/other)
+/obj/machinery/microscope/MouseDrop(atom/other)
 	if(usr == other)
 		remove_sample(usr)
 	else

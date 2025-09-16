@@ -47,22 +47,22 @@
 
 	icon_state = "drone_fab_active"
 	var/elapsed = world.time - time_last_drone
-	drone_progress = round((elapsed/config.drone_build_time)*100)
+	drone_progress = round((elapsed/CONFIG_GET(number/drone_build_time))*100)
 
 	if(drone_progress >= 100)
 		visible_message("\The [src] voices a strident beep, indicating a drone chassis is prepared.")
 
 /obj/machinery/drone_fabricator/examine(mob/user, extra_description = "")
-	if(produce_drones && drone_progress >= 100 && isghost(user) && config.allow_drone_spawn && count_drones() < config.max_maint_drones)
+	if(produce_drones && drone_progress >= 100 && isghost(user) && CONFIG_GET(flag/allow_drone_spawn) && count_drones() < CONFIG_GET(number/max_maint_drones))
 		extra_description += "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
 	..(user, extra_description)
 
-/obj/machinery/drone_fabricator/proc/create_drone(var/client/player, var/aibound = FALSE)
+/obj/machinery/drone_fabricator/proc/create_drone(client/player, aibound = FALSE)
 
 	if(stat & NOPOWER)
 		return
 
-	if(!produce_drones || !config.allow_drone_spawn || count_drones() >= config.max_maint_drones)
+	if(!produce_drones || !CONFIG_GET(flag/allow_drone_spawn) || count_drones() >= CONFIG_GET(number/max_maint_drones))
 		return
 
 	if(!player || (!isghost(player.mob) && !aibound))
@@ -99,18 +99,18 @@
 	set desc = "If there is a powered, enabled fabricator in the game world with a prepared chassis, join as a maintenance drone."
 	try_drone_spawn(src)
 
-/proc/try_drone_spawn(var/mob/user, var/obj/machinery/drone_fabricator/fabricator, var/aibound = FALSE)
+/proc/try_drone_spawn(mob/user, obj/machinery/drone_fabricator/fabricator, aibound = FALSE)
 
 	if(SSticker.current_state < GAME_STATE_PLAYING)
-		to_chat(user, SPAN_DANGER("The game hasn't started yet!"))
+		to_chat(user, span_danger("The game hasn't started yet!"))
 		return
 
-	if(!(config.allow_drone_spawn))
-		to_chat(user, SPAN_DANGER("That verb is not currently permitted."))
+	if(!CONFIG_GET(flag/allow_drone_spawn))
+		to_chat(user, span_danger("That verb is not currently permitted."))
 		return
 
-	if(jobban_isbanned(user,"Robot"))
-		to_chat(user, SPAN_DANGER("You are banned from playing synthetics and cannot spawn as a drone."))
+	if(jobban_isbanned(user.ckey,"Robot"))
+		to_chat(user, span_danger("You are banned from playing synthetics and cannot spawn as a drone."))
 		return
 
 	if(!user.MayRespawn(1, MINISYNTH) && !aibound)
@@ -125,7 +125,7 @@
 			all_fabricators[DF.fabricator_tag] = DF
 
 		if(!all_fabricators.len)
-			to_chat(user, SPAN_DANGER("There are no available drone spawn points, sorry."))
+			to_chat(user, span_danger("There are no available drone spawn points, sorry."))
 			return
 
 		var/choice = input(user,"Spawning as a drone will not affect your crew or mouse respawn timers. Which fabricator do you wish to use?") as null|anything in all_fabricators

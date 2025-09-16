@@ -6,7 +6,7 @@
 			if(user.mob_size >= body.min_pilot_size && user.mob_size <= body.max_pilot_size)
 				if(enter(user)) return 0
 			else
-				to_chat(user, SPAN_WARNING("You cannot pilot a exosuit of this size."))
+				to_chat(user, span_warning("You cannot pilot a exosuit of this size."))
 				return 0
 	else . = ..()
 
@@ -23,7 +23,7 @@
 	for(var/mob/p in pilots)
 		p.setClickCooldown(timeout)
 
-/mob/living/exosuit/ClickOn(var/atom/A, var/params, var/mob/user = usr)
+/mob/living/exosuit/ClickOn(atom/A, params, mob/user = usr)
 	if(!user || incapacitated() || user.incapacitated())
 		return
 
@@ -52,25 +52,25 @@
 	if(!selected_system)
 		if(arms)
 			if(!get_cell()?.checked_use(arms.power_use * CELLRATE))
-				to_chat(user, power == MECH_POWER_ON ? SPAN_WARNING("Error: Power levels insufficient.") :  SPAN_WARNING("\The [src] is powered off."))
+				to_chat(user, power == MECH_POWER_ON ? span_warning("Error: Power levels insufficient.") :  span_warning("\The [src] is powered off."))
 				return
 			if(!arms.motivator || !arms.motivator.is_functional())
-				to_chat(user, SPAN_WARNING("Your motivators are damaged! You can't use your manipulators!"))
+				to_chat(user, span_warning("Your motivators are damaged! You can't use your manipulators!"))
 				setClickCooldown(15)
 				return
 		else
-			to_chat(user, SPAN_WARNING("\The [src] has no manipulators!"))
+			to_chat(user, span_warning("\The [src] has no manipulators!"))
 			setClickCooldown(3)
 			return
 
 	var/obj/item/cell/cell = get_cell()
 	if(!cell)
-		to_chat(user, SPAN_WARNING("Error: Power cell missing."))
+		to_chat(user, span_warning("Error: Power cell missing."))
 		setClickCooldown(3)
 		return
 
 	if(istype(selected_system, /obj/item/mech_equipment) && !check_equipment_software(selected_system))
-		to_chat(user, SPAN_WARNING("Error: No control software was found for [selected_system]."))
+		to_chat(user, span_warning("Error: No control software was found for [selected_system]."))
 		setClickCooldown(3)
 		return
 
@@ -82,7 +82,7 @@
 	// You may attack the target with your exosuit FIST if you're malfunctioning.
 	var/failed = FALSE
 	if(emp_damage > EMP_ATTACK_DISRUPT && prob(emp_damage*2))
-		to_chat(user, SPAN_DANGER("The wiring sparks as you attempt to control the exosuit!"))
+		to_chat(user, span_danger("The wiring sparks as you attempt to control the exosuit!"))
 		failed = TRUE
 
 	if(!failed && selected_system)
@@ -135,8 +135,8 @@
 			if(istype(A, /obj/machinery/door/airlock))
 				var/obj/machinery/door/airlock/door = A
 				if(!door.locked)
-					to_chat(user, SPAN_NOTICE("You start forcing \the [door] open!"))
-					visible_message(SPAN_WARNING("\The [src] starts forcing \the [door] open!"))
+					to_chat(user, span_notice("You start forcing \the [door] open!"))
+					visible_message(span_warning("\The [src] starts forcing \the [door] open!"))
 					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1, 5,5)
 					if(do_after(user, 3 SECONDS, A, FALSE))
 						door.open(TRUE)
@@ -156,7 +156,7 @@
 
 
 
-/mob/living/exosuit/proc/set_hardpoint(var/hardpoint_tag)
+/mob/living/exosuit/proc/set_hardpoint(hardpoint_tag)
 	clear_selected_hardpoint()
 	if(hardpoints[hardpoint_tag])
 		// Set the new system.
@@ -181,43 +181,43 @@
 		systm.on_unselect()
 		selected_hardpoint = null
 
-/mob/living/exosuit/get_active_hand()
+/mob/living/exosuit/get_active_held_item()
 	var/obj/item/mech_equipment/ME = selected_system
 	if(istype(ME))
 		return ME.get_effective_obj()
 	return ..()
 
-/mob/living/exosuit/proc/check_enter(var/mob/user)
+/mob/living/exosuit/proc/check_enter(mob/user)
 	if(!user || user.incapacitated())	return FALSE
 	if(!user.Adjacent(src)) 			return FALSE
 	if(issilicon(user))					return FALSE
 	if (user.buckled)
-		to_chat(user, SPAN_WARNING("You cannot enter a mech while buckled, unbuckle first."))
+		to_chat(user, span_warning("You cannot enter a mech while buckled, unbuckle first."))
 		return FALSE
 	if(body && body.has_hatch)
 		if(hatch_locked)
-			to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+			to_chat(user, span_warning("The [body.hatch_descriptor] is locked."))
 			return FALSE
 		if(hatch_closed)
-			to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is closed."))
+			to_chat(user, span_warning("The [body.hatch_descriptor] is closed."))
 			return FALSE
 		if(LAZYLEN(pilots) >= LAZYLEN(body.pilot_positions))
-			to_chat(user, SPAN_WARNING("\The [src] is occupied to capacity."))
+			to_chat(user, span_warning("\The [src] is occupied to capacity."))
 			return FALSE
 	if(ishuman(user) && body?.armor_restrictions)	//wear_suit only exists on humans; only bother with checking if the chassis forbids it
 		var/mob/living/carbon/human/enterer = user
 		if(enterer.wear_suit && enterer.wear_suit)	//If the user is wearing anything in their suit slot
-			to_chat(user, SPAN_WARNING("You must remove your [enterer.wear_suit] to fit inside."))
+			to_chat(user, span_warning("You must remove your [enterer.wear_suit] to fit inside."))
 			return FALSE
 	return TRUE
 
-/mob/living/exosuit/proc/enter(var/mob/user)
+/mob/living/exosuit/proc/enter(mob/user)
 	if(!check_enter(user))
 		return
-	to_chat(user, SPAN_NOTICE("You start climbing into \the [src]..."))
+	to_chat(user, span_notice("You start climbing into \the [src]..."))
 	if(!do_after(user, body.climb_time) || !check_enter(user)) //allows for specialized cockpits for rapid entry/exit, or slower for more armored ones
 		return
-	to_chat(user, SPAN_NOTICE("You climb into \the [src]."))
+	to_chat(user, span_notice("You climb into \the [src]."))
 
 	user.drop_r_hand()
 	user.drop_l_hand()
@@ -235,7 +235,7 @@
 	if(sync_access)
 		for(var/mob/pilot in pilots)
 			access_card.access |= pilot.GetAccess()
-			to_chat(pilot, SPAN_NOTICE("Security access permissions synchronized."))
+			to_chat(pilot, span_notice("Security access permissions synchronized."))
 
 /mob/living/exosuit/proc/eject(mob/living/user, silent, mech_death)
 	if(!user || !(user in src.contents))
@@ -244,17 +244,17 @@
 	if(body && body.has_hatch)
 		if(hatch_closed)
 			if(hatch_locked)
-				if(!silent) to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+				if(!silent) to_chat(user, span_warning("The [body.hatch_descriptor] is locked."))
 				return
 			var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
 			if(H && istype(H))
 				H.toggled()
 			if(!silent)
-				to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the [src]."))
+				to_chat(user, span_notice("You open the hatch and climb out of \the [src]."))
 		else if(!silent)
-			to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
+			to_chat(user, span_notice("You climb out of \the [src]."))
 	else if(!silent)
-		to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
+		to_chat(user, span_notice("You climb out of \the [src]."))
 
 	user.forceMove(get_turf(src))
 
@@ -279,7 +279,7 @@
 
 	if(user.a_intent != I_HURT && istype(I, /obj/item/mech_equipment))
 		if(hardpoints_locked)
-			to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
+			to_chat(user, span_warning("Hardpoint system access is disabled."))
 			return
 
 		var/obj/item/mech_equipment/realThing = I
@@ -294,13 +294,13 @@
 		var/to_place = input("Where would you like to install it?") as null|anything in (realThing.restricted_hardpoints & free_hardpoints)
 		if(install_system(I, to_place, user))
 			return
-		to_chat(user, SPAN_WARNING("\The [I] could not be installed in that hardpoint."))
+		to_chat(user, span_warning("\The [I] could not be installed in that hardpoint."))
 		return
 
 	/// Gun reloading handling
 	if(istype(I, /obj/item/ammo_magazine)||  istype(I, /obj/item/ammo_casing))
 		if(!maintenance_protocols)
-			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode to reload its guns!"))
+			to_chat(user, span_notice("\The [src] needs to be in maintenance mode to reload its guns!"))
 			return
 		var/list/obj/item/mech_equipment/mounted_system/ballistic/loadable_guns = list()
 		for(var/hardpoint in hardpoints)
@@ -316,13 +316,13 @@
 		if(chosen)
 			switch(chosen.loadMagazine(I,user))
 				if(-1)
-					to_chat(user, SPAN_NOTICE("\The [chosen] does not accept this type of magazine."))
+					to_chat(user, span_notice("\The [chosen] does not accept this type of magazine."))
 				if(0)
-					to_chat(user, SPAN_NOTICE("\The [chosen] has no slots left in its ammunition storage."))
+					to_chat(user, span_notice("\The [chosen] has no slots left in its ammunition storage."))
 				if(1)
-					to_chat(user, SPAN_NOTICE("You load \the [I] into \the [chosen]."))
+					to_chat(user, span_notice("You load \the [I] into \the [chosen]."))
 				if(2)
-					to_chat(user, SPAN_NOTICE("You partially reload one of the existing ammo magazines inside of \the [chosen]."))
+					to_chat(user, span_notice("You partially reload one of the existing ammo magazines inside of \the [chosen]."))
 
 	/// Medical mender handling
 	if(istype(I, /obj/item/stack/medical/advanced/bruise_pack))
@@ -368,7 +368,7 @@
 	/// Double negation to turn into 0/1 format since if its more than 1 it doesn't count as true.
 	if(I.is_drainable())
 		if(!maintenance_protocols)
-			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode for you to refill its equipment!"))
+			to_chat(user, span_notice("\The [src] needs to be in maintenance mode for you to refill its equipment!"))
 			return
 		var/list/choices = list()
 		for(var/hardpoint in hardpoints)
@@ -398,7 +398,7 @@
 	else if(attack_tool(I, user))
 		return
 	// we use BP_CHEST cause we dont need to convert targeted organ to mech format def zoning
-	else if(user.a_intent != I_HELP && (!hatch_closed || (body && !body.has_hatch) )&& get_dir(user, src) == reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
+	else if(user.a_intent != I_HELP && (!hatch_closed || (body && !body.has_hatch) )&& get_dir(user, src) == GLOB.reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
 		var/mob/living/target = get_mob()
 		target.attackby(I, user)
 		return
@@ -407,17 +407,17 @@
 /mob/living/exosuit/proc/attack_tool(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/cell))
 		if(!maintenance_protocols)
-			to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
+			to_chat(user, span_warning("The power cell bay is locked while maintenance protocols are disabled."))
 			return TRUE
 		if(!body)
-			to_chat(user, SPAN_NOTICE("\The [src] has no slot for a battery to be installed unto!"))
+			to_chat(user, span_notice("\The [src] has no slot for a battery to be installed unto!"))
 			return
 		var/obj/item/cell/cell = body.cell
 		if(cell)
-			to_chat(user, SPAN_WARNING("\The [src] already has [cell] installed!"))
+			to_chat(user, span_warning("\The [src] already has [cell] installed!"))
 			return TRUE
 
-		to_chat(user, SPAN_NOTICE("You start inserting [I] into \the [src]."))
+		to_chat(user, span_notice("You start inserting [I] into \the [src]."))
 		if(do_mob(user, src, 30) && body.insert_item(I, user))
 			body.cell = I
 
@@ -425,11 +425,11 @@
 
 	else if(istype(I, /obj/item/electronics/circuitboard/exosystem))
 		if(!maintenance_protocols)
-			to_chat(user, SPAN_WARNING("The software upload bay is locked while maintenance protocols are disabled."))
+			to_chat(user, span_warning("The software upload bay is locked while maintenance protocols are disabled."))
 			return TRUE
 
 		if(!body.computer)
-			to_chat(user, SPAN_WARNING("The control computer is missing!"))
+			to_chat(user, span_warning("The control computer is missing!"))
 			return TRUE
 
 		body.computer.install_software(I, user)
@@ -437,8 +437,8 @@
 
 	else if(istype(I, /obj/item/device/kit/paint))
 		user.visible_message(
-			SPAN_NOTICE("\The [user] opens \the [I] and spends some quality time customising \the [src]."),
-			SPAN_NOTICE("You open \the [I] and spends some quality time customising \the [src].")
+			span_notice("\The [user] opens \the [I] and spends some quality time customising \the [src]."),
+			span_notice("You open \the [I] and spends some quality time customising \the [src].")
 			)
 		var/obj/item/device/kit/paint/P = I
 		SetName(P.new_name)
@@ -452,7 +452,7 @@
 		return TRUE
 
 	else if(istype(I, /obj/item/device/robotanalyzer))
-		to_chat(user, SPAN_NOTICE("Diagnostic Report for \the [src]:"))
+		to_chat(user, span_notice("Diagnostic Report for \the [src]:"))
 		for(var/obj/item/mech_component/MC in list(arms, legs, body, head))
 			if(MC)
 				MC.return_diagnostics(user)
@@ -461,15 +461,15 @@
 	else if(istype(I, /obj/item/stack/nanopaste))
 		var/obj/item/stack/nanopaste/paste = I
 		if(paste.amount < 2)
-			to_chat(user, SPAN_WARNING("You need at least 2 nanite segments in order to repair damage."))
+			to_chat(user, span_warning("You need at least 2 nanite segments in order to repair damage."))
 			return TRUE
 		var/obj/item/mech_component/mc = get_targeted_part(user)
 		if(!repairing_check(mc, user))
 			return TRUE
 		if(mc.total_damage <= 0)
-			to_chat(user, SPAN_WARNING("Damage on this part is already repaired."))
+			to_chat(user, span_warning("Damage on this part is already repaired."))
 			return TRUE
-		to_chat(user, SPAN_NOTICE("You start feeding nanite segments into \the [src]'s nanite port."))
+		to_chat(user, span_notice("You start feeding nanite segments into \the [src]'s nanite port."))
 		if(do_mob(user, src, 30) && paste.use(2))
 			mc.repair_burn_damage(15)
 			mc.repair_brute_damage(15)
@@ -481,33 +481,33 @@ Use this if you turn on armor ablation for mechs:
 		var/obj/item/stack/material/fix_mat = I
 		if(mc.cur_armor < mc.max_armor)
 			if(mc.new_armor >= mc.max_armor)
-				to_chat(user, SPAN_WARNING("The armor plating has already been replaced, you need to weld it to the frame."))
+				to_chat(user, span_warning("The armor plating has already been replaced, you need to weld it to the frame."))
 				return TRUE
 			var/mats_required = mc.max_armor - mc.cur_armor
 			if(mats_required > fix_mat.amount)
 				mc.new_armor += fix_mat.amount
 				fix_mat.use(fix_mat.amount)
-				to_chat(user, SPAN_WARNING("You replace some of the damaged armor plating, but not all. You need [mats_required-fix_mat.amount] more sheets of [fix_mat]."))
+				to_chat(user, span_warning("You replace some of the damaged armor plating, but not all. You need [mats_required-fix_mat.amount] more sheets of [fix_mat]."))
 				return TRUE
-			to_chat(user, SPAN_NOTICE("You replace the damaged armor plating. Now you need to weld it to the frame."))
+			to_chat(user, span_notice("You replace the damaged armor plating. Now you need to weld it to the frame."))
 			mc.new_armor = mc.max_armor
 			fix_mat.use(mats_required)
 */
 	else if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = I
 		if(coil.amount < 5)
-			to_chat(user, SPAN_WARNING("You need at least 5 pieces of cable in order to replace wiring."))
+			to_chat(user, span_warning("You need at least 5 pieces of cable in order to replace wiring."))
 			return TRUE
 		var/obj/item/mech_component/mc = get_targeted_part(user)
 		if(!repairing_check(mc, user))
 			return TRUE
 		if(mc.total_damage > mc.max_damage/2)
-			to_chat(user, SPAN_WARNING("The damage is too severe to repair when the exosuit is active."))
+			to_chat(user, span_warning("The damage is too severe to repair when the exosuit is active."))
 			return
 		if(mc.total_damage <= 0)
-			to_chat(user, SPAN_WARNING("Damage on this part is already repaired."))
+			to_chat(user, span_warning("Damage on this part is already repaired."))
 			return TRUE
-		to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
+		to_chat(user, span_notice("You start replacing wiring in \the [src]."))
 		if(do_mob(user, src, 30) && coil.use(5))
 			mc.repair_burn_damage(15)
 
@@ -539,7 +539,7 @@ Use this if you turn on armor ablation for mechs:
 		if(QUALITY_PULSING)
 			if(user.a_intent == I_HELP)
 				if(hardpoints_locked)
-					to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
+					to_chat(user, span_warning("Hardpoint system access is disabled."))
 					return TRUE
 
 				var/list/parts = list()
@@ -548,7 +548,7 @@ Use this if you turn on armor ablation for mechs:
 						parts += hardpoint
 
 				if(!length(parts))
-					to_chat(user, SPAN_WARNING("\The [src] has no hardpoint systems to remove."))
+					to_chat(user, span_warning("\The [src] has no hardpoint systems to remove."))
 					return TRUE
 
 				var/to_remove = input("Which component would you like to remove") as null|anything in parts
@@ -556,44 +556,44 @@ Use this if you turn on armor ablation for mechs:
 				return TRUE
 			else
 				if(hatch_locked)
-					to_chat(user, SPAN_WARNING("You start hacking \the [src]'s hatch locking mechanisms."))
+					to_chat(user, span_warning("You start hacking \the [src]'s hatch locking mechanisms."))
 					if(do_after(user, 20 SECONDS, src, TRUE))
-						to_chat(user, SPAN_NOTICE("You hack [src]'s hatch locking. It is now unlocked."))
+						to_chat(user, span_notice("You hack [src]'s hatch locking. It is now unlocked."))
 						toggle_hatch_lock()
 						return TRUE
 
 
 		if(QUALITY_BOLT_TURNING)
 			if(!maintenance_protocols)
-				to_chat(user, SPAN_WARNING("The securing bolts are not visible while maintenance protocols are disabled."))
+				to_chat(user, span_warning("The securing bolts are not visible while maintenance protocols are disabled."))
 				return TRUE
 
 			if(length(pilots))
-				to_chat(user, SPAN_WARNING("You cannot dismantle \the [src] with a pilot still inside!"))
+				to_chat(user, span_warning("You cannot dismantle \the [src] with a pilot still inside!"))
 				return TRUE
 
-			visible_message(SPAN_WARNING("\The [user] begins unwrenching the securing bolts holding \the [src] together."))
+			visible_message(span_warning("\The [user] begins unwrenching the securing bolts holding \the [src] together."))
 			if(!do_mob(user, src, 60) || !maintenance_protocols || length(pilots))
 				return TRUE
-			visible_message(SPAN_NOTICE("\The [user] loosens and removes the securing bolts, dismantling \the [src]."))
+			visible_message(span_notice("\The [user] loosens and removes the securing bolts, dismantling \the [src]."))
 			dismantle()
 			return TRUE
 
 		if(QUALITY_WELDING)
 			if(!maintenance_protocols)
-				to_chat(user, SPAN_WARNING("The securing bolts are not visible while maintenance protocols are disabled."))
+				to_chat(user, span_warning("The securing bolts are not visible while maintenance protocols are disabled."))
 				return TRUE
 			var/obj/item/mech_component/mc = get_targeted_part(user)
 			if(!repairing_check(mc, user))
 				return TRUE
 			if(mc.total_damage > mc.max_damage/2)
-				to_chat(user, SPAN_WARNING("The damage is too severe to repair when the exosuit is active."))
+				to_chat(user, span_warning("The damage is too severe to repair when the exosuit is active."))
 				return
 			if(mc.brute_damage <= 0)
-				to_chat(user, SPAN_WARNING("Brute damage on this part is already repaired."))
+				to_chat(user, span_warning("Brute damage on this part is already repaired."))
 				return TRUE
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-				visible_message(SPAN_WARNING("\The [mc] has been repaired by [user]!"),"You hear welding.")
+				visible_message(span_warning("\The [mc] has been repaired by [user]!"),"You hear welding.")
 				mc.repair_brute_damage(15)
 				return TRUE
 				/*
@@ -601,7 +601,7 @@ Use this if you turn on armor ablation for mechs:
 
 				if(mc.cur_armor >= mc.max_armor)
 				else
-					visible_message(SPAN_WARNING("Fresh armor has been welded\the [mc]'s frame by [user]!"),"You hear welding.")
+					visible_message(span_warning("Fresh armor has been welded\the [mc]'s frame by [user]!"),"You hear welding.")
 					mc.cur_armor = min(mc.max_armor, mc.cur_armor + mc.new_armor)
 					mc.new_armor = 0
 					return TRUE
@@ -609,14 +609,14 @@ Use this if you turn on armor ablation for mechs:
 
 		if(QUALITY_PRYING)
 			if(!body)
-				to_chat(user,  SPAN_NOTICE("\The [src] has no body to pry out a cell from!"))
+				to_chat(user,  span_notice("\The [src] has no body to pry out a cell from!"))
 				return
 			var/obj/item/cell/cell = body.cell
 			if(cell)
 				if(!maintenance_protocols)
-					to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
+					to_chat(user, span_warning("The power cell bay is locked while maintenance protocols are disabled."))
 					return TRUE
-			to_chat(user, SPAN_NOTICE("You start removing [cell] from \the [src]."))
+			to_chat(user, span_notice("You start removing [cell] from \the [src]."))
 			if(do_mob(user, src, 30) && cell == body.cell && body.eject_item(cell, user))
 				power = MECH_POWER_OFF
 				body.cell = null
@@ -625,10 +625,10 @@ Use this if you turn on armor ablation for mechs:
 		if(QUALITY_SCREW_DRIVING)
 			if(length(body.computer?.contents))
 				if(!maintenance_protocols)
-					to_chat(user, SPAN_WARNING("The software upload bay is locked while maintenance protocols are disabled."))
+					to_chat(user, span_warning("The software upload bay is locked while maintenance protocols are disabled."))
 					return
 				var/obj/item/board = body.computer.contents[length(body.computer.contents)]
-				to_chat(user, SPAN_NOTICE("You start removing [board] from \the [src]."))
+				to_chat(user, span_notice("You start removing [board] from \the [src]."))
 				if(do_mob(user, src, 30) && (board in body.computer) && body.computer?.eject_item(board, user))
 					body.computer.update_software()
 					return
@@ -672,44 +672,44 @@ Use this if you turn on armor ablation for mechs:
 	if(user.a_intent == I_GRAB)
 		for(var/obj/item/mech_equipment/towing_hook/towing in contents)
 			if(towing.currentlyTowing)
-				to_chat(user, SPAN_NOTICE("You start removing \the [towing.currentlyTowing] from \the [src]'s towing hook."))
+				to_chat(user, span_notice("You start removing \the [towing.currentlyTowing] from \the [src]'s towing hook."))
 				if(do_after(user, 3 SECONDS, src, TRUE))
-					to_chat(user, SPAN_NOTICE("You remove \the [towing.currentlyTowing] from \the [src]'s towing hook."))
+					to_chat(user, span_notice("You remove \the [towing.currentlyTowing] from \the [src]'s towing hook."))
 					towing.UnregisterSignal(towing.currentlyTowing,list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
 					towing.currentlyTowing = null
 					return
 		for(var/obj/item/mech_equipment/forklifting_system/fork in contents)
 			if(fork.currentlyLifting)
-				to_chat(user, SPAN_NOTICE("You start removing \the [fork.currentlyLifting] from \the [src]'s forklift."))
+				to_chat(user, span_notice("You start removing \the [fork.currentlyLifting] from \the [src]'s forklift."))
 				if(do_after(user, 3 SECONDS ,src , TRUE))
-					to_chat(user, SPAN_NOTICE("You remove \the [fork.currentlyLifting] from \the [src]'s forklift!"))
+					to_chat(user, span_notice("You remove \the [fork.currentlyLifting] from \the [src]'s forklift!"))
 					fork.ejectLifting(get_turf(user))
 					return
 
 	if(user.a_intent == I_HURT)
 		if(!LAZYLEN(pilots))
-			to_chat(user, SPAN_WARNING("There is nobody inside \the [src]."))
+			to_chat(user, span_warning("There is nobody inside \the [src]."))
 		else if(!hatch_closed || (body && !body.has_hatch))
 			var/mob/pilot = pick(pilots)
-			user.visible_message(SPAN_DANGER("\The [user] is trying to pull \the [pilot] out of \the [src]!"))
+			user.visible_message(span_danger("\The [user] is trying to pull \the [pilot] out of \the [src]!"))
 			if(do_after(user, 30) && user.Adjacent(src) && (pilot in pilots) && !hatch_closed)
-				user.visible_message(SPAN_DANGER("\The [user] drags \the [pilot] out of \the [src]!"))
+				user.visible_message(span_danger("\The [user] drags \the [pilot] out of \the [src]!"))
 				eject(pilot, silent=1)
 		return
 
 	if(body && body.has_hatch)
 		// Otherwise toggle the hatch.
 		if(hatch_locked)
-			to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+			to_chat(user, span_warning("The [body.hatch_descriptor] is locked."))
 			playsound(src,'sound/mechs/doorlocked.ogg', 50, 1)
 			return
 		if(body && body.total_damage >= body.max_damage)
-			to_chat(user, SPAN_NOTICE("The chest of \the [src] is far too damaged. The hatch hinges are stuck!"))
+			to_chat(user, span_notice("The chest of \the [src] is far too damaged. The hatch hinges are stuck!"))
 			return
 
 		hatch_closed = !hatch_closed
 		playsound(src, 'sound/machines/Custom_closetopen.ogg', 50, 1)
-		to_chat(user, SPAN_NOTICE("You [hatch_closed ? "close" : "open"] the [body.hatch_descriptor]."))
+		to_chat(user, span_notice("You [hatch_closed ? "close" : "open"] the [body.hatch_descriptor]."))
 		var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
 		if(H && istype(H)) H.update_icon()
 		update_icon()
@@ -725,7 +725,7 @@ Use this if you turn on armor ablation for mechs:
 	if(!new_name || new_name == name || (user != src && !(user in pilots)))
 		return
 	SetName(new_name)
-	to_chat(user, SPAN_NOTICE("You have redesignated this exosuit as \the [name]."))
+	to_chat(user, span_notice("You have redesignated this exosuit as \the [name]."))
 
 /mob/living/exosuit/proc/get_targeted_part(mob/user)
 	var/obj/item/mech_component/mc = null
@@ -742,12 +742,12 @@ Use this if you turn on armor ablation for mechs:
 
 /mob/living/exosuit/proc/repairing_check(obj/item/mech_component/mc, mob/user)
 	if(!mc || !mc.can_be_repaired())
-		to_chat(user, SPAN_WARNING("This part is completely destroyed, you cannot repair it."))
+		to_chat(user, span_warning("This part is completely destroyed, you cannot repair it."))
 		return FALSE
 	if(mc.total_damage == 0)
-		to_chat(user, SPAN_WARNING("This part is already fully repaired."))
+		to_chat(user, span_warning("This part is already fully repaired."))
 		return FALSE
 	if(!maintenance_protocols)
-		to_chat(user, SPAN_WARNING("You cannot repair \the [src] while maintenance protocols are disabled."))
+		to_chat(user, span_warning("You cannot repair \the [src] while maintenance protocols are disabled."))
 		return FALSE
 	return TRUE

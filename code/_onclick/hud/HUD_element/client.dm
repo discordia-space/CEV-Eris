@@ -1,7 +1,7 @@
 /client
 	var/list/HUD_elements //stores all elements shown to client, association list with index being element identifier
 
-/client/proc/hide_HUD_element(var/identifier)
+/client/proc/hide_HUD_element(identifier)
 	if (!HUD_elements)
 		return
 
@@ -9,7 +9,7 @@
 	if (E)
 		E.hide()
 
-/client/proc/show_HUD_element(var/identifier)
+/client/proc/show_HUD_element(identifier)
 	if (!HUD_elements)
 		return
 

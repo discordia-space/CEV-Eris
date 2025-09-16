@@ -3,7 +3,7 @@
 	var/desc
 
 /datum/component/atom_sanity/Initialize(value, new_desc)
-	if(!istype(parent, /atom))
+	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	var/atom/A = parent
 	affect = value

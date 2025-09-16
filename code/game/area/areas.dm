@@ -77,9 +77,9 @@
  */
 /area/New()
 	uid = ++global_uid
-	all_areas += src
+	GLOB.all_areas += src
 	if(ship_area)
-		ship_areas[src] = TRUE //Adds ourselves to the list of all ship areas
+		GLOB.ship_areas[src] = TRUE //Adds ourselves to the list of all ship areas
 
 	// Some atoms would like to use power in Initialize()
 	if(!requires_power)
@@ -126,10 +126,10 @@
 		cameras += C
 	return cameras
 
-/area/proc/get_camera_tag(var/obj/machinery/camera/C)
+/area/proc/get_camera_tag(obj/machinery/camera/C)
 	return "[name] #[camera_id++]"
 
-/area/proc/atmosalert(danger_level, var/alarm_source)
+/area/proc/atmosalert(danger_level, alarm_source)
 	if (danger_level == 0)
 		atmosphere_alarm.clearAlarm(src, alarm_source)
 	else
@@ -259,7 +259,7 @@
 #define ENVIRON 3
 */
 
-/area/proc/powered(var/chan)		// return true if the area has power to given channel
+/area/proc/powered(chan)		// return true if the area has power to given channel
 
 	if(!requires_power)
 		return 1
@@ -283,7 +283,7 @@
 	if (fire || eject || party)
 		updateicon()
 
-/area/proc/usage(var/chan)
+/area/proc/usage(chan)
 	var/used = 0
 	switch(chan)
 		if(TOTAL)
@@ -313,7 +313,7 @@
 	used_light = 0
 	used_environ = 0
 
-/area/proc/use_power(var/amount, var/chan)
+/area/proc/use_power(amount, chan)
 	switch(chan)
 		if(STATIC_EQUIP)
 			used_equip += amount
@@ -344,7 +344,7 @@ var/list/mob/living/forced_ambiance_list = new
 	L.lastarea = newarea
 	play_ambience(L)
 
-/area/proc/play_ambience(var/mob/living/L)
+/area/proc/play_ambience(mob/living/L)
     // Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
 	if(!(L && L.client && L.get_preference_value(/datum/client_preference/play_ambiance) == GLOB.PREF_YES))    return
 
@@ -425,7 +425,7 @@ var/list/mob/living/forced_ambiance_list = new
 		else
 			H.AdjustStunned(1)
 			H.AdjustWeakened(1)
-		to_chat(mob, SPAN_NOTICE("The sudden appearance of gravity makes you fall to the floor!"))
+		to_chat(mob, span_notice("The sudden appearance of gravity makes you fall to the floor!"))
 
 /area/proc/prison_break()
 	var/obj/machinery/power/apc/theAPC = get_apc()
@@ -461,7 +461,7 @@ var/list/mob/living/forced_ambiance_list = new
 /area/proc/set_ship_area()
 	if (!ship_area)
 		ship_area = TRUE
-		ship_areas[src] = TRUE
+		GLOB.ship_areas[src] = TRUE
 
 /area/AllowDrop()
 	CRASH("Bad op: area/AllowDrop() called")
@@ -472,7 +472,7 @@ var/list/mob/living/forced_ambiance_list = new
 
 // Changes the area of T to A. Do not do this manually.
 // Area is expected to be a non-null instance.
-/proc/ChangeArea(var/turf/T, var/area/A)
+/proc/ChangeArea(turf/T, area/A)
 	if(!istype(A))
 		CRASH("Area change attempt failed: invalid area supplied.")
 	var/area/old_area = get_area(T)

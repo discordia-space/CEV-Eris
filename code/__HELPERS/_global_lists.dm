@@ -1,0 +1,390 @@
+GLOBAL_LIST_EMPTY(clients)	//list of all clients
+GLOBAL_LIST_EMPTY(admins)	//list of all clients whom are admins
+GLOBAL_LIST_EMPTY(directory)	//list of all ckeys with associated client
+GLOBAL_LIST_EMPTY(deadmins) //all ckeys who have used the de-admin verb.
+
+//Since it didn't really belong in any other category, I'm putting this here
+//This is for procs to replace all the goddamn 'in world's that are chilling around the code
+
+GLOBAL_LIST_EMPTY(ships) // List of ships in the game.
+GLOBAL_LIST_EMPTY(all_areas)
+GLOBAL_LIST_EMPTY(ship_areas)
+
+GLOBAL_LIST_EMPTY(global_map)
+
+//GLOBAL_LIST_EMPTY(machines)			//Removed
+//GLOBAL_LIST_EMPTY(processing_objects)			//Removed
+//GLOBAL_LIST_EMPTY(processing_power_items)			//Removed
+GLOBAL_LIST_EMPTY(active_diseases)
+GLOBAL_LIST_EMPTY(med_hud_users)	 // List of all entities using a medical HUD.
+GLOBAL_LIST_EMPTY(sec_hud_users)	 // List of all entities using a security HUD.
+GLOBAL_LIST_EMPTY(excel_hud_users)	 // List of all entities using an excelsior HUD.
+GLOBAL_LIST_EMPTY(hud_icon_reference)
+
+GLOBAL_LIST_EMPTY(mob_list)					//EVERY single mob, dead or alive
+GLOBAL_LIST_EMPTY(player_list)				//List of all mobs **with clients attached**. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(player_ghost_list)		// List of all ghosts with an connected client.
+GLOBAL_LIST_EMPTY(human_mob_list)				//List of all human mobs and sub-types, including clientless
+GLOBAL_LIST_EMPTY(silicon_mob_list)			//List of all silicon mobs, including clientless
+GLOBAL_LIST_EMPTY(living_mob_list)			//List of all alive mobs, including clientless. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(dead_mob_list)				//List of all dead mobs, including clientless. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(joined_player_list)		//all ckeys of client's that have joined the game at round-start or as a latejoin.
+GLOBAL_LIST_EMPTY(current_antags)
+GLOBAL_LIST_EMPTY(current_factions)
+GLOBAL_LIST_EMPTY(superior_animal_list)		//A list of all superior animals; for targeting each other
+
+GLOBAL_LIST_EMPTY(cable_list)					//Index for all cables, so that powernets don't have to look through the entire world all the time
+GLOBAL_LIST_EMPTY(chemical_reactions_list)				//list of all /datum/chemical_reaction datums. Used during chemical reactions
+GLOBAL_LIST_EMPTY(chemical_reactions_list_by_result)					//list of all /datum/chemical_reaction datums. But this one indexed by chemical result instead of reagents
+GLOBAL_LIST_INIT(chemical_reagents_list, initialize_chemical_reagents())				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
+GLOBAL_LIST_EMPTY(landmarks_list)				//list of all landmarks created
+GLOBAL_LIST_EMPTY(shuttle_landmarks_list)		//list of all /obj/effect/shuttle_landmark.
+GLOBAL_LIST_EMPTY(old_surgery_steps)			//list of all old-style (not bound to organs) surgery steps
+GLOBAL_LIST_EMPTY(surgery_steps)					//list of all new organ-based surgery steps
+GLOBAL_LIST_EMPTY(mechas_list)				//list of all mechs. Used by hostile mobs target tracking. Not sure this is used anymore
+GLOBAL_LIST_EMPTY(all_burrows)				//list of all burrows
+GLOBAL_LIST_EMPTY(all_maintshrooms)			//list of all maintshrooms
+
+// Associated list where key is shared between /obj/structure/barrier/four_way and /obj/item/device/assembly/signaler, linking them together
+// Value is a list of 'code' and 'frequency' variables which are assigned to both linked objects on Initialize()
+GLOBAL_LIST_EMPTY(roundstart_barrier_groups)
+
+//Machinery lists
+GLOBAL_LIST_EMPTY(alarm_list) //List of fire alarms
+GLOBAL_LIST_EMPTY(ai_status_display_list) //List of AI status displays
+GLOBAL_LIST_EMPTY(apc_list) //List of Area Power Controllers
+GLOBAL_LIST_EMPTY(smes_list) //List of SMES
+GLOBAL_LIST_EMPTY(machines) //List of classless machinery. Removed from SSmachinery because that subsystem is half-dead by just existing
+GLOBAL_LIST_EMPTY(firealarm_list) //List of fire alarms
+GLOBAL_LIST_EMPTY(computer_list) //List of all computers
+GLOBAL_LIST_EMPTY(all_doors) //List of all airlocks
+GLOBAL_LIST_EMPTY(nt_doors) //List of all NeoTheology doors
+GLOBAL_LIST_EMPTY(atmos_machinery) //All things atmos
+
+GLOBAL_LIST_EMPTY(hearing_objects)			//list of all objects, that can hear mob say
+
+//Jobs and economy
+GLOBAL_LIST_EMPTY(joblist)					//list of all jobstypes, minus borg and AI
+GLOBAL_LIST_EMPTY(all_departments)			//List of all department datums
+GLOBAL_LIST_INIT(department_IDs, list(
+	DEPARTMENT_COMMAND,		DEPARTMENT_MEDICAL,
+	DEPARTMENT_ENGINEERING,	DEPARTMENT_SCIENCE,
+	DEPARTMENT_SECURITY,	DEPARTMENT_GUILD,
+	DEPARTMENT_CHURCH,		DEPARTMENT_CIVILIAN,
+	DEPARTMENT_OFFSHIP
+	))
+
+
+GLOBAL_LIST_EMPTY(HUDdatums)
+
+// #define all_genders_define_list list(MALE, FEMALE, PLURAL, NEUTER)
+
+GLOBAL_LIST_EMPTY(turfs)			//list of all turfs
+
+GLOBAL_LIST_EMPTY(mannequins_)
+
+//Languages/species/whitelist.
+GLOBAL_LIST_EMPTY(all_species)
+GLOBAL_LIST_EMPTY(all_languages)
+GLOBAL_LIST_EMPTY(language_types_by_name)
+GLOBAL_LIST_EMPTY(language_keys)					// Table of say codes for all languages
+var/global/list/storyteller_cache = list()
+
+GLOBAL_LIST_INIT(whitelisted_species, list(SPECIES_HUMAN)) // Species that require a whitelist check.
+GLOBAL_LIST_INIT(playable_species, list(SPECIES_HUMAN))    // A list of ALL playable species, whitelisted, latejoin or otherwise.
+
+// Noises made when hit while typing.
+GLOBAL_LIST_INIT(hit_appends, list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF"))
+
+// Posters
+GLOBAL_LIST_EMPTY(poster_designs)
+GLOBAL_LIST_EMPTY(poster_designs_asters)
+
+// Uplinks
+GLOBAL_LIST_EMPTY_TYPED(world_uplinks, /obj/item/device/uplink)
+
+GLOBAL_LIST_EMPTY_TYPED(krabin_linked, /mob/living/carbon/human)
+
+// Announcer intercom, because too much stuff creates an intercom for one message then hard del()s it.
+GLOBAL_DATUM(announcer, /obj/item/device/radio/intercom)
+
+GLOBAL_LIST_EMPTY(lastsignalers) // Keeps last 100 signals here in format: "[src] used \ref[src] @ location [src.loc]: [freq]/[code]"
+
+// Loot stash datums
+GLOBAL_LIST_EMPTY(stash_categories) //An associative list in the format category_type = weight
+
+GLOBAL_LIST_EMPTY(all_stash_datums)
+//An associative list of lists in the format:
+/*
+	category_type = list(
+	datum = weight)
+*/
+
+//PERKS
+GLOBAL_LIST_EMPTY(all_perks)
+
+//individual_objectives
+GLOBAL_LIST_EMPTY(all_faction_items)
+
+//faction_items
+GLOBAL_LIST_EMPTY(individual_objectives)
+
+//NeoTheology
+GLOBAL_LIST_EMPTY(all_rituals)//List of all rituals
+GLOBAL_LIST_EMPTY(global_ritual_cooldowns) // internal lists. Use ritual's cooldown_category
+
+//Preferences stuff
+	//Hairstyles
+GLOBAL_LIST_EMPTY(hair_styles_list)        //stores /datum/sprite_accessory/hair indexed by name
+GLOBAL_LIST_EMPTY(facial_hair_styles_list) //stores /datum/sprite_accessory/facial_hair indexed by name
+
+//Cooking
+//A dictionary of unique step ids that point to other step IDs that should be EXCLUDED if it is present in a recipe_pointer's list of possible steps.
+GLOBAL_LIST_EMPTY(cwj_optional_step_exclusion_dictionary)
+
+//A dictionary of all recipes by the basic ingredient
+//Format: {base_ingedient_type:{unique_id:recipe}}
+GLOBAL_LIST_EMPTY(cwj_recipe_dictionary)
+
+//A dictionary of all recipes full_stop. Used later for assembling the HTML list.
+//Format: {recipe_type:{unique_id:recipe}}
+GLOBAL_LIST_EMPTY(cwj_recipe_list)
+
+//A dictionary of all steps held within all recipes
+//Format: {unique_id:step}
+GLOBAL_LIST_EMPTY(cwj_step_dictionary)
+
+//An organized heap of recipes by class and grouping.
+//Format: {class_of_step:{step_group_identifier:{unique_id:step}}}
+GLOBAL_LIST_EMPTY(cwj_step_dictionary_ordered)
+
+GLOBAL_DATUM_INIT(underwear, /datum/category_collection/underwear, new())
+
+GLOBAL_LIST_INIT(exclude_jobs, list(/datum/job/ai,/datum/job/cyborg))
+
+GLOBAL_LIST_INIT(organ_structure, list(
+	BP_CHEST = list(name= "Chest", children=list(BP_GROIN, BP_HEAD, BP_L_ARM, BP_R_ARM, OP_HEART, OP_LUNGS, OP_STOMACH)),
+	BP_GROIN = list(name= "Groin",     parent=BP_CHEST, children=list(BP_R_LEG, BP_L_LEG, OP_KIDNEY_LEFT, OP_KIDNEY_RIGHT, OP_LIVER)),
+	BP_HEAD  = list(name= "Head",      parent=BP_CHEST, children=list(BP_BRAIN, BP_EYES)),
+	BP_R_ARM = list(name= "Right arm", parent=BP_CHEST, children=list()),
+	BP_L_ARM = list(name= "Left arm",  parent=BP_CHEST, children=list()),
+	BP_R_LEG = list(name= "Right leg", parent=BP_GROIN, children=list()),
+	BP_L_LEG = list(name= "Left leg",  parent=BP_GROIN, children=list()),
+	))
+
+GLOBAL_LIST_INIT(organ_tag_to_name, list(
+	head  = "head", r_arm = "right arm",
+	chest = "body", r_leg = "right leg",
+	eyes  = "eyes", l_arm = "left arm",
+	groin = "groin",l_leg = "left leg",
+	chest2= "back", heart = "heart",
+	lungs  = "lungs", liver = "liver",
+	"left kidney" = "left kidney",
+	"right kidney" = "right kidney",
+	stomach = "stomach", brain = "brain"
+	))
+
+// Visual nets
+GLOBAL_LIST_EMPTY_TYPED(visual_nets, /datum/visualnet)
+
+GLOBAL_DATUM_INIT(cameranet, /datum/visualnet/camera, new)
+
+GLOBAL_LIST_INIT(syndicate_access, list(access_maint_tunnels, access_syndicate, access_external_airlocks))
+
+//A list of slots where an item doesn't count as "worn" if it's in one of them
+GLOBAL_LIST_INIT(unworn_slots, list(slot_l_hand,slot_r_hand, slot_l_store, slot_r_store,slot_robot_equip_1,slot_robot_equip_2,slot_robot_equip_3))
+
+// Added for Xenoarchaeology, might be useful for other stuff.
+GLOBAL_LIST_INIT(alphabet_uppercase, list("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"))
+
+//Names that shouldn't trigger notifications about low health
+GLOBAL_LIST_EMPTY(ignore_health_alerts_from)
+
+// Some scary sounds.
+GLOBAL_LIST_INIT(scary_sounds, list(
+	'sound/weapons/thudswoosh.ogg',
+	'sound/weapons/Taser.ogg',
+	'sound/weapons/armbomb.ogg',
+	'sound/voice/hiss1.ogg',
+	'sound/voice/hiss2.ogg',
+	'sound/voice/hiss3.ogg',
+	'sound/voice/hiss4.ogg',
+	'sound/voice/hiss5.ogg',
+	'sound/voice/hiss6.ogg',
+	'sound/effects/Glassbr1.ogg',
+	'sound/effects/Glassbr2.ogg',
+	'sound/effects/Glassbr3.ogg',
+	'sound/items/Welder.ogg',
+	'sound/items/Welder2.ogg',
+	'sound/machines/airlock.ogg',
+	'sound/effects/clownstep1.ogg',
+	'sound/effects/clownstep2.ogg'
+))
+
+//////////////////////////
+/////Initial Building/////
+//////////////////////////
+#define INIT_EMPTY_GLOBLIST(var_name) if (isnull(GLOB.var_name)) GLOB.var_name = list();
+
+/proc/makeDatumRefLists()
+
+	var/list/paths
+
+	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
+	paths = subtypesof(/datum/sprite_accessory/hair)
+	for(var/path in paths)
+		var/datum/sprite_accessory/hair/H = new path()
+		GLOB.hair_styles_list[H.name] = H
+
+	//Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
+	paths = subtypesof(/datum/sprite_accessory/facial_hair)
+	for(var/path in paths)
+		var/datum/sprite_accessory/facial_hair/H = new path()
+		GLOB.facial_hair_styles_list[H.name] = H
+
+
+	//Surgery Steps - Initialize all /datum/surgery_step into a list
+	paths = subtypesof(/datum/surgery_step)
+	for(var/path in paths)
+		var/datum/surgery_step/S = new path
+		GLOB.surgery_steps[path] = S
+
+	//perks - Initialise all /datum/perks into a list
+	paths = subtypesof(/datum/perk)
+	for(var/path in paths)
+		var/datum/perk/P = new path
+		GLOB.all_perks[path] = P
+
+	paths = subtypesof(/datum/old_surgery_step)
+	for(var/T in paths)
+		var/datum/old_surgery_step/S = new T
+		GLOB.old_surgery_steps += S
+	sort_surgeries()
+
+	//List of job department datums
+	paths = subtypesof(/datum/department)
+	for(var/T in paths)
+		var/datum/department/D = new T
+		GLOB.all_departments[D.id] = D
+
+	//List of job datums
+	paths = subtypesof(/datum/job)
+	paths -= GLOB.exclude_jobs
+	for(var/T in paths)
+		var/datum/job/J = new T
+		GLOB.joblist[J.title] = J
+
+	paths = subtypesof(/datum/individual_objective)
+	for(var/T in paths)
+		var/datum/individual_objective/IO = new T
+		GLOB.individual_objectives[T] = IO
+
+	//Stashes
+	paths = subtypesof(/datum/stash)
+	for(var/T in paths)
+		var/datum/stash/L = new T
+		//First, make a sublist in the main list if we haven't already
+		//And make a sublist in the main list if we haven't already
+		if (!GLOB.all_stash_datums[L.base_type])
+			GLOB.all_stash_datums[L.base_type] = list()
+
+		if (L.type == L.base_type)
+			//This is a base category. Add it to the categories list with a weighting
+			GLOB.stash_categories[L.base_type] = L.weight
+
+		else
+			//This is a specific stash datum, add it to the appropriate sublist
+			GLOB.all_stash_datums[L.base_type][L] = L.weight
+
+
+	var/rkey = 0
+	paths = subtypesof(/datum/species)
+	for(var/T in paths)
+		rkey++
+		var/datum/species/S = new T
+		S.race_key = rkey //Used in mob icon caching.
+		GLOB.all_species[S.name] = S
+
+		if(!(S.spawn_flags & IS_RESTRICTED))
+			GLOB.playable_species += S.name
+		if(S.spawn_flags & IS_WHITELISTED)
+			GLOB.whitelisted_species += S.name
+
+	//Posters
+	paths = subtypesof(/datum/poster) - /datum/poster/wanted - /datum/poster/asters
+	for(var/T in paths)
+		var/datum/poster/poster = new T
+		GLOB.poster_designs += poster
+
+	// Aster posters
+	paths = subtypesof(/datum/poster/asters) - /datum/poster/wanted
+	for(var/T in paths)
+		var/datum/poster/asters/poster = new T
+		GLOB.poster_designs_asters += poster
+
+	paths = subtypesof(/datum/hud)
+	for(var/T in paths)
+		var/datum/hud/C = new T
+		GLOB.HUDdatums[C.name] = C
+
+	//Rituals
+	paths = typesof(/datum/ritual)
+	for(var/T in paths)
+		var/datum/ritual/R = new T
+
+		//Rituals which are just categories for subclasses will have a null phrase
+		if (R.phrase)
+			GLOB.all_rituals[R.name] = R
+
+	return 1
+
+var/global/list/admin_permissions = list(
+	"fun" = 0x1,
+	"server" = 0x2,
+	"debug" = 0x4,
+	"permissions" = 0x8,
+	"mentor" = 0x10,
+	"ban" = 0x20,
+	"admin" = 0x40,
+	"host" = 0x80
+	)
+
+/proc/get_mannequin(ckey)
+	if(!GLOB.mannequins_)
+		GLOB.mannequins_ = new()
+	. = GLOB.mannequins_[ckey]
+	if(!.)
+		. = new/mob/living/carbon/human/dummy/mannequin()
+		GLOB.mannequins_[ckey] = .
+
+var/global/list/severity_to_string = list("[EVENT_LEVEL_MUNDANE]" = "Mundane", "[EVENT_LEVEL_MODERATE]" = "Moderate", "[EVENT_LEVEL_MAJOR]" = "Major", "[EVENT_LEVEL_ROLESET]" = "Roleset","[EVENT_LEVEL_ECONOMY]" = "Economy")
+
+
+
+//*** params cache
+/*
+	Ported from bay12, this seems to be used to store and retrieve 2D vectors as strings, as well as
+	decoding them into a number
+*/
+var/global/list/paramslist_cache = list()
+
+#define cached_key_number_decode(key_number_data) cached_params_decode(key_number_data, /proc/key_number_decode)
+#define cached_number_list_decode(number_list_data) cached_params_decode(number_list_data, /proc/number_list_decode)
+
+/proc/cached_params_decode(params_data, decode_proc)
+	. = paramslist_cache[params_data]
+	if(!.)
+		. = call(decode_proc)(params_data)
+		paramslist_cache[params_data] = .
+
+/proc/key_number_decode(key_number_data)
+	var/list/L = params2list(key_number_data)
+	for(var/key in L)
+		L[key] = text2num(L[key])
+	return L
+
+/proc/number_list_decode(number_list_data)
+	var/list/L = params2list(number_list_data)
+	for(var/i in 1 to L.len)
+		L[i] = text2num(L[i])
+	return L

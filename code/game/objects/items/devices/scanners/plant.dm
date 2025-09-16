@@ -35,7 +35,7 @@
 	var/dat = list()
 	if(istype(target, /obj/machinery/beehive))
 		var/obj/machinery/beehive/BH = target
-		dat += SPAN_NOTICE("Scan result of \the [BH]...")
+		dat += span_notice("Scan result of \the [BH]...")
 		dat += "Beehive is [BH.bee_count ? "[round(BH.bee_count)]% full" : "empty"].[BH.bee_count > 90 ? " Colony is ready to split." : ""]"
 		if(BH.frames)
 			dat += "[BH.frames] frames installed, [round(BH.honeycombs / 100)] filled."
@@ -50,13 +50,13 @@
 	else if(istype(target,/obj/item/reagent_containers/food/snacks/grown))
 
 		var/obj/item/reagent_containers/food/snacks/grown/G = target
-		grown_seed = plant_controller.seeds[G.plantname]
+		grown_seed = SSplants.seeds[G.plantname]
 		grown_reagents = G.reagents
 
 	else if(istype(target,/obj/item/grown))
 
 		var/obj/item/grown/G = target
-		grown_seed = plant_controller.seeds[G.plantname]
+		grown_seed = SSplants.seeds[G.plantname]
 		grown_reagents = G.reagents
 
 	else if(istype(target,/obj/item/seeds))

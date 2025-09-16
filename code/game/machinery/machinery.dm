@@ -91,6 +91,9 @@
 
 	price_tag = 100
 
+	verb_say = "beeps"
+	verb_yell = "blares"
+
 	var/stat = 0
 	var/emagged = 0
 	var/use_power = IDLE_POWER_USE
@@ -112,6 +115,7 @@
 	var/frame_type = FRAME_DEFAULT
 	var/health = 100
 	var/maxHealth = 100
+
 
 	var/current_power_usage = 0 // How much power are we currently using, dont change by hand, change power_usage vars and then use set_power_use
 	var/area/current_power_area // What area are we powering currently
@@ -170,10 +174,10 @@
 /proc/is_operable(obj/machinery/M, mob/user)
 	return istype(M) && M.operable()
 
-/obj/machinery/proc/operable(var/additional_flags = 0)
+/obj/machinery/proc/operable(additional_flags = 0)
 	return !inoperable(additional_flags)
 
-/obj/machinery/proc/inoperable(var/additional_flags = 0)
+/obj/machinery/proc/inoperable(additional_flags = 0)
 	return (stat & (NOPOWER|BROKEN|additional_flags))
 
 /obj/machinery/ui_state(mob/user)
@@ -208,21 +212,21 @@
 
 /obj/machinery/attack_hand(mob/user as mob)
 	if(inoperable(MAINT))
-		return 1
+		return
 	if(user.lying || user.stat)
-		return 1
+		return
 	if(!user.IsAdvancedToolUser())
-		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
-		return 1
+		to_chat(usr, span_warning("You don't have the dexterity to do this!"))
+		return FALSE
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 55)
-			visible_message(SPAN_WARNING("[H] stares cluelessly at [src]."))
-			return 1
+			visible_message(span_warning("[H] stares cluelessly at [src]."))
+			return FALSE
 		else if(prob(H.getBrainLoss()))
-			to_chat(user, SPAN_WARNING("You momentarily forget how to use \the [src]."))
-			return 1
+			to_chat(user, span_warning("You momentarily forget how to use \the [src]."))
+			return FALSE
 
 	src.add_fingerprint(user)
 
@@ -252,7 +256,7 @@
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
 	return
 
-/obj/machinery/proc/max_part_rating(var/type) //returns max rating of installed part type or null on error(keep in mind that all parts have to match that raiting).
+/obj/machinery/proc/max_part_rating(type) //returns max rating of installed part type or null on error(keep in mind that all parts have to match that raiting).
 	if(!type)
 		error("max_part_rating() wrong usage")
 		return
@@ -276,9 +280,10 @@
 	uid = gl_uid
 	gl_uid++
 
-/obj/machinery/proc/state(var/msg)
-	for(var/mob/O in hearers(src, null))
-		O.show_message("\icon[src] <span class = 'notice'>[msg]</span>", 2)
+/obj/machinery/proc/state(msg)
+	var/listeners = hearers(get_turf(src))
+	for(var/mob/O in listeners)
+		O.show_message("[icon2html(src, listeners)] <span class = 'notice'>[msg]</span>", 2)
 
 /obj/machinery/proc/ping(text="\The [src] pings.")
 	state(text, "blue")
@@ -308,7 +313,7 @@
 /obj/machinery/proc/default_deconstruction(obj/item/I, mob/user)
 
 	if(panel_open == -1)
-		to_chat(user, SPAN_NOTICE("There are no panels to open on \the [src]."))
+		to_chat(user, span_notice("There are no panels to open on \the [src]."))
 		return FALSE
 
 	var/qualities = list(QUALITY_SCREW_DRIVING)
@@ -320,7 +325,7 @@
 	switch(tool_type)
 		if(QUALITY_PRYING)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
+				to_chat(user, span_notice("You remove the components of \the [src] with [I]."))
 				dismantle()
 			return TRUE
 
@@ -329,7 +334,7 @@
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				updateUsrDialog()
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
+				to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				update_icon()
 			return TRUE
 
@@ -358,14 +363,14 @@
 						component_parts -= A
 						component_parts += B
 						B.loc = null
-						to_chat(user, SPAN_NOTICE("[A.name] replaced with [B.name]."))
+						to_chat(user, span_notice("[A.name] replaced with [B.name]."))
 						break
 			update_icon()
 			RefreshParts()
 	else
-		to_chat(user, SPAN_NOTICE("Following parts detected in the machine:"))
+		to_chat(user, span_notice("Following parts detected in the machine:"))
 		for(var/obj/item/C in component_parts)
-			to_chat(user, SPAN_NOTICE("    [C.name]"))
+			to_chat(user, span_notice("    [C.name]"))
 	return 1
 
 /obj/machinery/proc/create_frame(type)

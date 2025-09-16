@@ -9,8 +9,8 @@
 
 
 /mob/living/proc/do_wield()//The proc we actually care about.
-	var/obj/item/I = get_active_hand()
-	var/obj/item/O = get_inactive_hand()
+	var/obj/item/I = get_active_held_item()
+	var/obj/item/O = get_inactive_held_item()
 	if(!I)
 		if(!O)
 			return
@@ -39,10 +39,10 @@
 		user.update_inv_r_hand()
 		user.update_inv_l_hand()
 
-	user.visible_message(SPAN_WARNING("[user] lets go of their other hand."))
+	user.visible_message(span_warning("[user] lets go of their other hand."))
 	if(unwieldsound)
 		playsound(loc, unwieldsound, 50, 1)
-	var/obj/item/twohanded/offhand/O = user.get_inactive_hand()
+	var/obj/item/twohanded/offhand/O = user.get_inactive_held_item()
 	if(O && istype(O))
 		user.drop_from_inventory(O)
 	return
@@ -52,12 +52,12 @@
 		return
 	if(!is_held_twohanded(user))
 		return
-	var/obj/item/X = user.get_inactive_hand()
+	var/obj/item/X = user.get_inactive_held_item()
 	if(X)
 		if(!X.canremove)
 			return
 		user.drop_offhand()
-		to_chat(user, SPAN_WARNING("You dropped \the [X]."))
+		to_chat(user, span_warning("You dropped \the [X]."))
 	wielded = TRUE
 	if(force_wielded_multiplier)
 		force = force * force_wielded_multiplier
@@ -70,7 +70,7 @@
 	if(user)
 		user.update_inv_r_hand()
 		user.update_inv_l_hand()
-	user.visible_message(SPAN_WARNING("[user] grabs \the [original_name] with both hands."))
+	user.visible_message(span_warning("[user] grabs \the [original_name] with both hands."))
 	if(wieldsound)
 		playsound(loc, wieldsound, 50, 1)
 	var/obj/item/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
@@ -149,8 +149,8 @@
 
 /obj/item/twohanded/offhand/dropped(mob/living/user)
 	..()
-	var/obj/item/I = user.get_active_hand()
-	var/obj/item/II = user.get_inactive_hand()
+	var/obj/item/I = user.get_active_held_item()
+	var/obj/item/II = user.get_inactive_held_item()
 	if(I)
 		I.unwield(user)
 	if(II)

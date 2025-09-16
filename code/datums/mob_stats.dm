@@ -68,7 +68,7 @@
 //	Those are accept list of stats
 //	Compound stat checks.
 //	Lowest value among the stats passed in
-/datum/stat_holder/proc/getMinStat(var/list/namesList, pure = FALSE)
+/datum/stat_holder/proc/getMinStat(list/namesList, pure = FALSE)
 	if(!islist(namesList))
 		log_debug("passed non-list to getMinStat()")
 		return 0
@@ -79,7 +79,7 @@
 	return lowest
 
 //	Get the highest value among the stats passed in
-/datum/stat_holder/proc/getMaxStat(var/list/namesList, pure = FALSE)
+/datum/stat_holder/proc/getMaxStat(list/namesList, pure = FALSE)
 	if(!islist(namesList))
 		log_debug("passed non-list to getMaxStat()")
 		return 0
@@ -90,7 +90,7 @@
 	return highest
 
 //	Sum total of the stats
-/datum/stat_holder/proc/getSumOfStat(var/list/namesList, pure = FALSE)
+/datum/stat_holder/proc/getSumOfStat(list/namesList, pure = FALSE)
 	if(!islist(namesList))
 		log_debug("passed non-list to getSumStat()")
 		return 0
@@ -100,14 +100,14 @@
 	return sum
 
 //	Get the average (mean) value of the stats
-/datum/stat_holder/proc/getAvgStat(var/list/namesList, pure = FALSE)
+/datum/stat_holder/proc/getAvgStat(list/namesList, pure = FALSE)
 	if(!islist(namesList))
 		log_debug("passed non-list to getAvgStat()")
 		return 0
 	var/avg = getSumOfStat(namesList, pure)
 	return avg / namesList.len
 
-/datum/stat_holder/proc/copyTo(var/datum/stat_holder/recipient)
+/datum/stat_holder/proc/copyTo(datum/stat_holder/recipient)
 	for(var/i in stat_list)
 		var/datum/stat/S = stat_list[i]
 		var/datum/stat/RS = recipient.stat_list[i]
@@ -218,7 +218,7 @@
 	else
 		src.value = value
 
-/datum/stat/proc/copyTo(var/datum/stat/recipient)
+/datum/stat/proc/copyTo(datum/stat/recipient)
 	recipient.value = getValue(TRUE)
 
 /datum/stat/productivity
@@ -250,7 +250,7 @@
 	var/points = src.stats.getStat(stat_path)
 	return points >= needed
 
-/proc/statPointsToLevel(var/points)
+/proc/statPointsToLevel(points)
 	switch(points)
 		if (STAT_LEVEL_NONE to STAT_LEVEL_BASIC)
 			return "Untrained"

@@ -32,7 +32,7 @@
 			H.drop_from_inventory(src)
 			H.drop_from_inventory(bundle)
 			H.put_in_hands(bundle)
-		to_chat(user, SPAN_NOTICE("You add [worth] credits worth of money to the bundles.<br>It holds [bundle.worth] credits now."))
+		to_chat(user, span_notice("You add [worth] credits worth of money to the bundles.<br>It holds [bundle.worth] credits now."))
 		qdel(src)
 
 
@@ -97,7 +97,7 @@
 		return
 
 	else if(!Adjacent(usr))
-		to_chat(usr, SPAN_WARNING("You need to be in arm's reach for that!"))
+		to_chat(usr, span_warning("You need to be in arm's reach for that!"))
 		return
 
 	worth -= amount
@@ -170,7 +170,7 @@
 	var/obj/item/spacecash/bundle/bundle = new(spawnloc)
 	bundle.worth = sum
 	bundle.update_icon()
-	if(istype(H) && !H.get_active_hand())
+	if(istype(H) && !H.get_active_held_item())
 		H.put_in_hands(bundle)
 
 
@@ -182,7 +182,7 @@
 
 /obj/item/spacecash/ewallet/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
-		extra_description += SPAN_NOTICE("Charge card's owner: [owner_name]. Credits remaining: [worth].")
+		extra_description += span_notice("Charge card's owner: [owner_name]. Credits remaining: [worth].")
 	..(user, extra_description)
 
 #undef CASH_PER_STAT

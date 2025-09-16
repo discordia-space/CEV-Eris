@@ -9,7 +9,7 @@
 		wearer.reagents.add_reagent("bicaridine", 10)
 		wearer.reagents.add_reagent("dermaline", 10)
 		wearer.reagents.add_reagent("anti_toxin", 10)
-		to_chat(wearer, SPAN_NOTICE("You feel a flood of chemicals surge through your veins"))
+		to_chat(wearer, span_notice("You feel a flood of chemicals surge through your veins"))
 		die()
 	else
-		to_chat(owner_mob, SPAN_WARNING("[src] doesn't have a host"))
+		to_chat(owner_mob, span_warning("[src] doesn't have a host"))

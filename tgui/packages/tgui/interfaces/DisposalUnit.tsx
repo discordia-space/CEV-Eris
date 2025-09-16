@@ -1,11 +1,12 @@
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Button,
   LabeledList,
   ProgressBar,
   Section,
   Stack,
-} from '../components';
+} from 'tgui-core/components';
+
 import { Window } from '../layouts';
 
 const MODE2COLOR = {
@@ -24,8 +25,8 @@ type DisposalUnitData = {
   pressure: number;
 };
 
-export const DisposalUnit = (props: any, context: any) => {
-  const { act, data } = useBackend<DisposalUnitData>(context);
+export const DisposalUnit = (props: any) => {
+  const { act, data } = useBackend<DisposalUnitData>();
   const { isai, mode, handle, panel, eject, pressure } = data;
   let modeColor = MODE2COLOR[panel ? 'Panel' : mode];
   let modeText = panel ? 'Power Disabled' : mode;
@@ -82,7 +83,7 @@ export const DisposalUnit = (props: any, context: any) => {
                 icon="eject"
                 content="Eject"
                 disabled={!eject}
-                style={{ 'font-size': '15px' }}
+                style={{ fontSize: '15px' }}
                 onClick={() => {
                   act('eject');
                 }}

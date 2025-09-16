@@ -63,7 +63,7 @@
 		icon_state = "biogen-work"
 	return
 
-/obj/machinery/biogenerator/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/biogenerator/attackby(obj/item/I, mob/user)
 
 	if(default_deconstruction(I, user))
 		return
@@ -72,47 +72,47 @@
 		return
 	if(istype(I, /obj/item/reagent_containers/glass))
 		if(beaker)
-			to_chat(user, SPAN_NOTICE("The [src] is already loaded."))
+			to_chat(user, span_notice("The [src] is already loaded."))
 		else
 			user.remove_from_mob(I)
 			I.loc = src
 			beaker = I
 			updateUsrDialog()
 	else if(processing)
-		to_chat(user, SPAN_NOTICE("\The [src] is currently processing."))
+		to_chat(user, span_notice("\The [src] is currently processing."))
 	else if(istype(I, /obj/item/storage/bag/produce))
 		var/i = 0
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
-			to_chat(user, SPAN_NOTICE("\The [src] is already full! Activate it."))
+			to_chat(user, span_notice("\The [src] is already full! Activate it."))
 		else
 			for(var/obj/item/reagent_containers/food/snacks/grown/G in I.contents)
 				G.loc = src
 				i++
 				if(i >= 10)
-					to_chat(user, SPAN_NOTICE("You fill \the [src] to its capacity."))
+					to_chat(user, span_notice("You fill \the [src] to its capacity."))
 					break
 			if(i < 10)
-				to_chat(user, SPAN_NOTICE("You empty \the [I] into \the [src]."))
+				to_chat(user, span_notice("You empty \the [I] into \the [src]."))
 
 
 	else if(!istype(I, /obj/item/reagent_containers/food/snacks/grown))
-		to_chat(user, SPAN_NOTICE("You cannot put this in \the [src]."))
+		to_chat(user, span_notice("You cannot put this in \the [src]."))
 	else
 		var/i = 0
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
-			to_chat(user, SPAN_NOTICE("\The [src] is full! Activate it."))
+			to_chat(user, span_notice("\The [src] is full! Activate it."))
 		else
 			user.remove_from_mob(I)
 			I.loc = src
-			to_chat(user, SPAN_NOTICE("You put \the [I] in \the [src]"))
+			to_chat(user, span_notice("You put \the [I] in \the [src]"))
 	update_icon()
 	return
 
-/obj/machinery/biogenerator/nano_ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state =GLOB.outside_state)
+/obj/machinery/biogenerator/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state =GLOB.outside_state)
 	user.set_machine(src)
 	var/list/data = list()
 	data["points"] = points
@@ -166,7 +166,7 @@
 	if (stat) //NOPOWER etc
 		return
 	if(processing)
-		to_chat(usr, SPAN_NOTICE("The biogenerator is in the process of working."))
+		to_chat(usr, span_notice("The biogenerator is in the process of working."))
 		return
 	var/S = 0
 	for(var/obj/item/reagent_containers/food/snacks/grown/I in contents)
@@ -188,7 +188,7 @@
 		menustat = "void"
 	return
 
-/obj/machinery/biogenerator/proc/create_product(var/item, var/amount)
+/obj/machinery/biogenerator/proc/create_product(item, amount)
 	var/list/recipe = null
 	if(processing)
 		return

@@ -57,7 +57,7 @@
 		if(CI && CI.security_clearance >= minimal_holiness)
 			return TRUE
 
-		if(istype(H.get_active_hand(), /obj/item/clothing/accessory/cross))
+		if(istype(H.get_active_held_item(), /obj/item/clothing/accessory/cross))
 			return TRUE
 
 		if(istype(H.wear_mask, /obj/item/clothing/accessory/cross))
@@ -128,11 +128,11 @@
 
 /obj/machinery/door/holy/set_broken()
 	if (!locked && !welded)
-		visible_message(SPAN_WARNING("\The [src] breaks open!"))
+		visible_message(span_warning("\The [src] breaks open!"))
 		open()
 		lock()
 	else
-		visible_message(SPAN_WARNING("\The [src] breaks!"))
+		visible_message(span_warning("\The [src] breaks!"))
 
 	stat |= BROKEN
 	update_icon()
@@ -201,14 +201,14 @@
 		if(QUALITY_PRYING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = list(STAT_MEC, STAT_ROB)))
 				if(locked)
-					to_chat(user, SPAN_NOTICE("The door's bolts prevent it from being forced."))
+					to_chat(user, span_notice("The door's bolts prevent it from being forced."))
 				else if(stat & BROKEN)
 					if(density)
 						open(TRUE)
 					else
 						close(TRUE)
 				else
-					to_chat(user, SPAN_NOTICE("The door's motors resist your efforts to force it."))
+					to_chat(user, span_notice("The door's motors resist your efforts to force it."))
 			else
 				..()
 			return
@@ -232,7 +232,7 @@
 		return attack_hand(user)
 
 	else if(istype(I, /obj/item/pai_cable))
-		to_chat(user, SPAN_NOTICE("There is no port for the cable."))
+		to_chat(user, span_notice("There is no port for the cable."))
 		return
 
 	else
@@ -345,7 +345,7 @@
 
 // Wedge_item copypaste from airlock.dm
 /obj/machinery/door/holy/attack_hand(mob/user as mob)
-	if(user.a_intent == I_GRAB && wedged_item && !user.get_active_hand())
+	if(user.a_intent == I_GRAB && wedged_item && !user.get_active_held_item())
 		take_out_wedged_item(user)
 		return
 
@@ -365,16 +365,16 @@
 	set src in view(1)
 
 	if(!isliving(usr))
-		to_chat(usr, SPAN_WARNING("You can't do this."))
+		to_chat(usr, span_warning("You can't do this."))
 		return
-	var/obj/item/tool/T = usr.get_active_hand()
+	var/obj/item/tool/T = usr.get_active_held_item()
 	if(istype(T) && T.w_class >= ITEM_SIZE_NORMAL)
 		if(!density)
 			usr.drop_item()
 			force_wedge_item(T)
-			to_chat(usr, SPAN_NOTICE("You wedge [T] into [src]."))
+			to_chat(usr, span_notice("You wedge [T] into [src]."))
 		else
-			to_chat(usr, SPAN_NOTICE("[T] can't be wedged into [src], while [src] is closed."))
+			to_chat(usr, span_notice("[T] can't be wedged into [src], while [src] is closed."))
 
 /obj/machinery/door/holy/proc/take_out_wedged_item()
 	set name = "Remove Blockage"
@@ -388,7 +388,7 @@
 		wedged_item.forceMove(drop_location())
 		if(usr)
 			usr.put_in_hands(wedged_item)
-			to_chat(usr, SPAN_NOTICE("You took [wedged_item] out of [src]."))
+			to_chat(usr, span_notice("You took [wedged_item] out of [src]."))
 		wedged_item = null
 		verbs -= /obj/machinery/door/holy/proc/take_out_wedged_item
 		verbs += /obj/machinery/door/holy/proc/try_wedge_item
@@ -421,5 +421,5 @@
 
 /obj/machinery/door/holy/examine(mob/user, extra_description = "")
 	if(wedged_item)
-		extra_description += "You can see \icon[wedged_item] [wedged_item] wedged into it."
+		extra_description += "You can see [icon2html(wedged_item, user)] [wedged_item] wedged into it."
 	..(user, extra_description)

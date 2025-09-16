@@ -19,95 +19,101 @@
 /datum/admin_topic/proc/Run(list/input) //use the source arg to access the admin datum.
 	CRASH("Run() not implemented for [type]!")
 
+/datum/admin_topic/newbankey
+	keyword = "newbankey"
+	require_perms = list(R_BAN)
 
-/datum/admin_topic/dbsearchckey
-	keyword = "dbsearchckey"
+/datum/admin_topic/newbankey/Run(list/input)
+	var/player_key = input["newbankey"]
+	var/player_ip = input["newbanip"]
+	var/player_cid = input["newbancid"]
+	usr.client.holder.ban_panel(player_key, player_ip, player_cid)
 
-/datum/admin_topic/dbsearchckey/dbsearchadmin //inherits the behaviour of dbsearchckey, but with a different keyword.
-	keyword = "dbsearchadmin"
+/datum/admin_topic/banparsehref
+	keyword = "intervaltype"
 
-/datum/admin_topic/dbsearchckey/Run(list/input)
-	var/adminckey = input["dbsearchadmin"]
-	var/playerckey = input["dbsearchckey"]
-	var/playerip = input["dbsearchip"]
-	var/playercid = input["dbsearchcid"]
-	var/dbbantype = text2num(input["dbsearchbantype"])
-	var/match = FALSE
-
-	if("dbmatch" in input)
-		match = TRUE
-
-	source.DB_ban_panel(playerckey, adminckey, playerip, playercid, dbbantype, match)
-
-
-/datum/admin_topic/dbbanedit
-	keyword = "dbbanedit"
-
-/datum/admin_topic/dbbanedit/Run(list/input)
-	var/banedit = input["dbbanedit"]
-	var/banid = text2num(input["dbbanid"])
-	if(!banedit || !banid)
-		return
-
-	source.DB_ban_edit(banid, banedit)
-
-
-/datum/admin_topic/dbbanaddtype
-	keyword = "dbbanaddtype"
-
-/datum/admin_topic/dbbanaddtype/Run(list/input)
-	var/bantype = text2num(input["dbbanaddtype"])
-	var/banckey = input["dbbanaddckey"]
-	var/banip = input["dbbanaddip"]
-	var/bancid = input["dbbanaddcid"]
-	var/banduration = text2num(input["dbbaddduration"])
-	var/banjob = input["dbbanaddjob"]
-	var/banreason = input["dbbanreason"]
-
-	banckey = ckey(banckey)
-
-	switch(bantype)
-		if(BANTYPE_PERMA)
-			if(!banckey || !banreason)
-				to_chat(usr, "Not enough parameters (Requires ckey and reason)")
-				return
-			banduration = null
-			banjob = null
-		if(BANTYPE_TEMP)
-			if(!banckey || !banreason || !banduration)
-				to_chat(usr, "Not enough parameters (Requires ckey, reason and duration)")
-				return
-			banjob = null
-		if(BANTYPE_JOB_PERMA)
-			if(!banckey || !banreason || !banjob)
-				to_chat(usr, "Not enough parameters (Requires ckey, reason and job)")
-				return
-			banduration = null
-		if(BANTYPE_JOB_TEMP)
-			if(!banckey || !banreason || !banjob || !banduration)
-				to_chat(usr, "Not enough parameters (Requires ckey, reason and job)")
-				return
-
-	var/mob/playermob
-
-	for(var/mob/M in GLOB.player_list)
-		if(M.ckey == banckey)
-			playermob = M
-			break
-
-
-	banreason = "(MANUAL BAN) "+banreason
-
-	if(!playermob)
-		if(banip)
-			banreason = "[banreason] (CUSTOM IP)"
-		if(bancid)
-			banreason = "[banreason] (CUSTOM CID)"
+/datum/admin_topic/banparsehref/Run(list/input)
+	if(input["roleban_delimiter"])
+		usr.client.holder.ban_parse_href(input)
 	else
-		message_admins("Ban process: A mob matching [playermob.ckey] was found at location [playermob.x], [playermob.y], [playermob.z]. Custom ip and computer id fields replaced with the ip and computer id from the located mob")
+		usr.client.holder.ban_parse_href(input, TRUE)
 
-	source.DB_ban_record(bantype, playermob, banduration, banreason, banjob, banckey, banip, bancid )
+/datum/admin_topic/banpanel/searchunbankey
+	keyword = "searchunbankey"
 
+/datum/admin_topic/banpanel/searchunbanadminkey
+	keyword = "searchunbanadminkey"
+
+/datum/admin_topic/banpanel/searchunbanip
+	keyword = "searchunbanip"
+
+/datum/admin_topic/banpanel/searchunbancid
+	keyword = "searchunbancid"
+
+/datum/admin_topic/banpanel
+	keyword = "banpanel"
+	require_perms = list(R_BAN)
+
+/datum/admin_topic/banpanel/Run(list/input)
+	var/player_key = input["searchunbankey"]
+	var/admin_key = input["searchunbanadminkey"]
+	var/player_ip = input["searchunbanip"]
+	var/player_cid = input["searchunbancid"]
+	usr.client.holder.unban_panel(player_key, admin_key, player_ip, player_cid)
+
+/datum/admin_topic/editban
+	keyword = "editbanid"
+	require_perms = list(R_BAN)
+
+/datum/admin_topic/editban/Run(list/input)
+	var/edit_id = input["editbanid"]
+	var/player_key = input["editbankey"]
+	var/player_ip = input["editbanip"]
+	var/player_cid = input["editbancid"]
+	var/role = input["editbanrole"]
+	var/duration = input["editbanduration"]
+	var/applies_to_admins = text2num(input["editbanadmins"])
+	var/reason = url_decode(input["editbanreason"])
+	var/page = input["editbanpage"]
+	var/admin_key = input["editbanadminkey"]
+	usr.client.holder.ban_panel(player_key, player_ip, player_cid, role, duration, applies_to_admins, reason, edit_id, page, admin_key)
+
+/datum/admin_topic/unbanid
+	keyword = "unbanid"
+	require_perms = list(R_BAN)
+
+/datum/admin_topic/unbanid/Run(list/input)
+	var/ban_id = input["unbanid"]
+	var/player_key = input["unbankey"]
+	var/player_ip = input["unbanip"]
+	var/player_cid = input["unbancid"]
+	var/role = input["unbanrole"]
+	var/page = input["unbanpage"]
+	var/admin_key = input["unbanadminkey"]
+	usr.client.holder.unban(ban_id, player_key, player_ip, player_cid, role, page, admin_key)
+
+/datum/admin_topic/rebanid
+	keyword = "rebanid"
+	require_perms = list(R_BAN)
+
+/datum/admin_topic/rebanid/Run(list/input)
+	var/ban_id = input["rebanid"]
+	var/player_key = input["rebankey"]
+	var/player_ip = input["rebanip"]
+	var/player_cid = input["rebancid"]
+	var/role = input["rebanrole"]
+	var/page = input["rebanpage"]
+	var/admin_key = input["rebanadminkey"]
+	var/applies_to_admins = input["applies_to_admins"]
+	usr.client.holder.reban(ban_id, applies_to_admins, player_key, player_ip, player_cid, role, page, admin_key)
+
+/datum/admin_topic/unbanlog
+	keyword = "unbanlog"
+	require_perms = list(R_BAN)
+
+/datum/admin_topic/unbanlog/Run(list/input)
+	var/ban_id = input["unbanlog"]
+	usr.client.holder.ban_log(ban_id)
 
 /datum/admin_topic/editrights
 	keyword = "editrights"
@@ -122,7 +128,7 @@
 		var/new_ckey = ckey(input(usr,"New admin's ckey","Admin ckey", null) as text|null)
 		if(!new_ckey)
 			return
-		if(new_ckey in admin_datums)
+		if(new_ckey in GLOB.admin_datums)
 			to_chat(usr, "<font color='red'>Error: Topic 'editrights': [new_ckey] is already an admin</font>")
 			return
 		adm_ckey = new_ckey
@@ -133,13 +139,13 @@
 			to_chat(usr, "<font color='red'>Error: Topic 'editrights': No valid ckey</font>")
 			return
 
-	var/datum/admins/D = admin_datums[adm_ckey]
+	var/datum/admins/D = GLOB.admin_datums[adm_ckey]
 
 	if(task == "remove")
 		if(alert("Are you sure you want to remove [adm_ckey]?","Message","Yes","Cancel") == "Yes")
 			if(!D)
 				return
-			admin_datums -= adm_ckey
+			GLOB.admin_datums -= adm_ckey
 			D.disassociate()
 
 			message_admins("[key_name_admin(usr)] removed [adm_ckey] from the admins list")
@@ -148,8 +154,8 @@
 
 	else if(task == "rank")
 		var/new_rank
-		if(admin_ranks.len)
-			new_rank = input("Please select a rank", "New rank", null, null) as null|anything in (admin_ranks|"*New Rank*")
+		if(GLOB.admin_ranks.len)
+			new_rank = input("Please select a rank", "New rank", null, null) as null|anything in (GLOB.admin_ranks|"*New Rank*")
 		else
 			new_rank = input("Please select a rank", "New rank", null, null) as null|anything in list("Game Master","Game Admin", "Trial Admin", "Admin Observer","*New Rank*")
 
@@ -161,30 +167,30 @@
 				return
 			if("*New Rank*")
 				new_rank = input("Please input a new rank", "New custom rank", null, null) as null|text
-				if(config.admin_legacy_system)
+				if(CONFIG_GET(flag/admin_legacy_system))
 					new_rank = ckeyEx(new_rank)
 				if(!new_rank)
 					to_chat(usr, "<font color='red'>Error: Topic 'editrights': Invalid rank</font>")
 					return
-				if(config.admin_legacy_system)
-					if(admin_ranks.len)
-						if(new_rank in admin_ranks)
-							rights = admin_ranks[new_rank]		//we typed a rank which already exists, use its rights
+				if(CONFIG_GET(flag/admin_legacy_system))
+					if(GLOB.admin_ranks.len)
+						if(new_rank in GLOB.admin_ranks)
+							rights = GLOB.admin_ranks[new_rank]		//we typed a rank which already exists, use its rights
 						else
-							admin_ranks[new_rank] = 0			//add the new rank to admin_ranks
+							GLOB.admin_ranks[new_rank] = 0			//add the new rank to GLOB.admin_ranks
 			else
-				if(config.admin_legacy_system)
+				if(CONFIG_GET(flag/admin_legacy_system))
 					new_rank = ckeyEx(new_rank)
-					rights = admin_ranks[new_rank]				//we input an existing rank, use its rights
+					rights = GLOB.admin_ranks[new_rank]				//we input an existing rank, use its rights
 
 		if(D)
 			D.disassociate()								//remove adminverbs and unlink from client
 			D.rank = new_rank								//update the rank
-			D.rights = rights								//update the rights based on admin_ranks (default: 0)
+			D.rights = rights								//update the rights based on GLOB.admin_ranks (default: 0)
 		else
 			D = new /datum/admins(new_rank, rights, adm_ckey)
 
-		var/client/C = directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
+		var/client/C = GLOB.directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
 		D.associate(C)											//link up with the client and add verbs
 
 		to_chat(C, "[key_name_admin(usr)] has set your admin rank to: [new_rank].")
@@ -196,14 +202,14 @@
 		if(!D)
 			return
 		var/list/permissionlist = list()
-		for(var/i = R_FUN, i <= R_ADMIN, i = (i<<1)) // Here 'i' matches one of admin permissions on each cycle, from R_FUN(1<<0) to R_ADMIN(1<<6)
+		for(var/i = R_FUN; i <= R_ADMIN; i = (i<<1)) // Here 'i' matches one of admin permissions on each cycle, from R_FUN(1<<0) to R_ADMIN(1<<6)
 			permissionlist[rights2text(i)] = i
 		var/new_permission = input("Select a permission to turn on/off", "Permission toggle", null, null) as null|anything in permissionlist
 		if(!new_permission)
 			return
 		D.rights ^= permissionlist[new_permission]
 
-		var/client/C = directory[adm_ckey]
+		var/client/C = GLOB.directory[adm_ckey]
 		to_chat(C, "[key_name_admin(usr)] has toggled your permission: [new_permission].")
 		message_admins("[key_name_admin(usr)] toggled the [new_permission] permission of [adm_ckey]")
 		log_admin("[key_name(usr)] toggled the [new_permission] permission of [adm_ckey]")
@@ -230,7 +236,7 @@
 			delmob = TRUE
 
 	log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [input["simplemake"]]; deletemob=[delmob]")
-	message_admins("\blue [key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [input["simplemake"]]; deletemob=[delmob]", 1)
+	message_admins(span_blue("[key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [input["simplemake"]]; deletemob=[delmob]"), 1)
 
 	switch(input["simplemake"])
 		if("observer")
@@ -262,311 +268,9 @@
 		if("polyparrot")
 			M.change_mob_type( /mob/living/simple_animal/parrot/Poly , null, null, delmob )
 
-
-/datum/admin_topic/unbanf
-	keyword = "unbanf"
-	require_perms = list(R_MOD|R_ADMIN)
-
-/datum/admin_topic/unbanf/Run(list/input)
-	var/banfolder = input["unbanf"]
-	Banlist.cd = "/base/[banfolder]"
-	var/key = Banlist["key"]
-	if(alert(usr, "Are you sure you want to unban [key]?", "Confirmation", "Yes", "No") == "Yes")
-		if(RemoveBan(banfolder))
-			source.unbanpanel()
-		else
-			alert(usr, "This ban has already been lifted / does not exist.", "Error", "Ok")
-			source.unbanpanel()
-
-
-/datum/admin_topic/warn
-	keyword = "warn"
-
-/datum/admin_topic/warn/Run(list/input)
-	usr.client.warn(input["warn"])
-
-
-/datum/admin_topic/unbane
-	keyword = "unbane"
-	require_perms = list(R_MOD|R_ADMIN)
-
-/datum/admin_topic/unbane/Run(list/input)
-
-	UpdateTime()
-	var/reason
-
-	var/banfolder = input["unbane"]
-	Banlist.cd = "/base/[banfolder]"
-	var/reason2 = Banlist["reason"]
-	var/temp = Banlist["temp"]
-
-	var/minutes = Banlist["minutes"]
-
-	var/banned_key = Banlist["key"]
-	Banlist.cd = "/base"
-
-	var/duration
-
-	switch(alert("Temporary Ban?",,"Yes","No"))
-		if("Yes")
-			temp = TRUE
-			var/mins = 0
-			if(minutes > CMinutes)
-				mins = minutes - CMinutes
-			mins = input(usr,"How long (in minutes)? (Default: 1440)","Ban time",mins ? mins : 1440) as num|null
-			if(!mins)
-				return
-			mins = min(525599,mins)
-			minutes = CMinutes + mins
-			duration = GetExp(minutes)
-			reason = sanitize(input(usr,"Reason?","reason",reason2) as text|null)
-			if(!reason)
-				return
-		if("No")
-			temp = FALSE
-			duration = "Perma"
-			reason = sanitize(input(usr,"Reason?","reason",reason2) as text|null)
-			if(!reason)
-				return
-
-	log_admin("[key_name(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]")
-	ban_unban_log_save("[key_name(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]")
-	message_admins("\blue [key_name_admin(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]", 1)
-	Banlist.cd = "/base/[banfolder]"
-	Banlist["reason"] << reason
-	Banlist["temp"] << temp
-	Banlist["minutes"] << minutes
-	Banlist["bannedby"] << usr.ckey
-	Banlist.cd = "/base"
-
-	source.unbanpanel()
-
-
-/datum/admin_topic/jobban2
-	keyword = "jobban2"
-	require_perms = list(R_MOD|R_ADMIN)
-
-/datum/admin_topic/jobban2/Run(list/input)
-
-	var/mob/M = locate(input["jobban2"])
-	if(!ismob(M))
-		to_chat(usr, "This can only be used on instances of type /mob")
-		return
-
-	if(!M.ckey)	//sanity
-		to_chat(usr, "This mob has no ckey")
-		return
-
-	var/dat = ""
-	var/header = {"
-		<title>Job-Ban Panel: [M.name]</title>
-		<style>
-			a{
-				word-spacing: normal;
-			}
-			.jobs{
-				text-align:center;
-				word-spacing: 30px;
-			}
-		</style>
-	"}
-	var/list/body = list()
-
-	//Regular jobs
-	//Command (Blue)
-	body += source.formatJobGroup(M, "Command Positions", "ccccff", "commanddept", command_positions)
-	//Security (Red)
-	body += source.formatJobGroup(M, "Security Positions", "ffddf0", "securitydept", security_positions)
-	//Engineering (Yellow)
-	body += source.formatJobGroup(M, "Engineering Positions", "d5c88f", "engineeringdept", engineering_positions)
-	//Medical (White)
-	body += source.formatJobGroup(M, "Medical Positions", "ffeef0", "medicaldept", medical_positions)
-	//Science (Purple)
-	body += source.formatJobGroup(M, "Science Positions", "e79fff", "sciencedept", science_positions)
-	//Church (Gold)
-	body += source.formatJobGroup(M, "Church Positions", "ecd37d", "churchdept", church_positions)
-	//Civilian (Grey)
-	body += source.formatJobGroup(M, "Civilian Positions", "dddddd", "civiliandept", civilian_positions)
-	//Non-Human (Green)
-	body += source.formatJobGroup(M, "Non-human Positions", "ccffcc", "nonhumandept", nonhuman_positions + "Antag HUD")
-	//Antagonist (Orange)
-
-	var/jobban_list = list()
-	for(var/a_id in GLOB.antag_bantypes)
-		var/a_ban = GLOB.antag_bantypes[a_id]
-		var/datum/antagonist/antag = get_antag_data(a_id)
-		jobban_list[antag.role_text] = a_ban
-	body += source.formatJobGroup(M, "Antagonist Positions", "ffeeaa", "Syndicate", jobban_list)
-
-	dat = "<head>[header]</head><body><tt><table width='100%'>[body.Join(null)]</table></tt></body>"
-	usr << browse(dat, "window=jobban2;size=800x490")
-
-
-/datum/admin_topic/jobban3
-	keyword = "jobban3"
-	require_perms = list(R_MOD|R_ADMIN)
-
-/datum/admin_topic/jobban3/Run(list/input)
-	if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && !config.mods_can_job_tempban) // If mod and tempban disabled
-		to_chat(usr, SPAN_WARNING("Mod jobbanning is disabled!"))
-		return
-
-	var/mob/M = locate(input["jobban4"])
-	if(!ismob(M))
-		to_chat(usr, "This can only be used on instances of type /mob")
-		return
-
-	if(M != usr)																//we can jobban ourselves
-		if(M.client && M.client.holder && (M.client.holder.rights & R_ADMIN || M.client.holder.rights & R_MOD))		//they can ban too. So we can't ban them
-			alert("You cannot perform this action. You must be of a higher administrative rank!")
-			return
-
-	//get jobs for department if specified, otherwise just returnt he one job in a list.
-	var/list/joblist = list()
-	switch(input["jobban3"])
-		if("commanddept")
-			for(var/jobPos in command_positions)
-				var/datum/job/temp = SSjob.GetJob(jobPos)
-				if(!temp) continue
-				joblist += temp.title
-		if("securitydept")
-			for(var/jobPos in security_positions)
-				var/datum/job/temp = SSjob.GetJob(jobPos)
-				if(!temp) continue
-				joblist += temp.title
-		if("engineeringdept")
-			for(var/jobPos in engineering_positions)
-				var/datum/job/temp = SSjob.GetJob(jobPos)
-				if(!temp) continue
-				joblist += temp.title
-		if("medicaldept")
-			for(var/jobPos in medical_positions)
-				var/datum/job/temp = SSjob.GetJob(jobPos)
-				if(!temp) continue
-				joblist += temp.title
-		if("sciencedept")
-			for(var/jobPos in science_positions)
-				var/datum/job/temp = SSjob.GetJob(jobPos)
-				if(!temp) continue
-				joblist += temp.title
-		if("churchdept")
-			for(var/jobPos in church_positions)
-				var/datum/job/temp = SSjob.GetJob(jobPos)
-				if(!temp) continue
-				joblist += temp.title
-		if("civiliandept")
-			for(var/jobPos in civilian_positions)
-				var/datum/job/temp = SSjob.GetJob(jobPos)
-				if(!temp) continue
-				joblist += temp.title
-		if("nonhumandept")
-			joblist += "pAI"
-			for(var/jobPos in nonhuman_positions)
-				if(!jobPos)	continue
-				var/datum/job/temp = SSjob.GetJob(jobPos)
-				if(!temp) continue
-				joblist += temp.title
-		else
-			joblist += input["jobban3"]
-
-	//Create a list of unbanned jobs within joblist
-	var/list/notbannedlist = list()
-	for(var/job in joblist)
-		if(!jobban_isbanned(M, job))
-			notbannedlist += job
-
-	//Banning comes first
-	if(notbannedlist.len) //at least 1 unbanned job exists in joblist so we have stuff to ban.
-		switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
-			if("Yes")
-
-				if(config.ban_legacy_system)
-					to_chat(usr, "\red Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban.")
-					return
-				var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
-				if(!mins)
-					return
-				if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && mins > config.mod_job_tempban_max)
-					to_chat(usr, SPAN_WARNING("Moderators can only job tempban up to [config.mod_job_tempban_max] minutes!"))
-					return
-				var/reason = sanitize(input(usr,"Reason?","Please State Reason","") as text|null)
-				if(!reason)
-					return
-
-				var/msg
-				for(var/job in notbannedlist)
-					ban_unban_log_save("[key_name(usr)] temp-jobbanned [key_name(M)] from [job] for [mins] minutes. reason: [reason]")
-					log_admin("[key_name(usr)] temp-jobbanned [key_name(M)] from [job] for [mins] minutes")
-
-					source.DB_ban_record(BANTYPE_JOB_TEMP, M, mins, reason, job)
-
-					jobban_fullban(M, job, "[reason]; By [usr.ckey] on [time2text(world.realtime)]") //Legacy banning does not support temporary jobbans.
-					if(!msg)
-						msg = job
-					else
-						msg += ", [job]"
-				message_admins("\blue [key_name_admin(usr)] banned [key_name_admin(M)] from [msg] for [mins] minutes", 1)
-				to_chat(M, "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>")
-				to_chat(M, "\red <B>The reason is: [reason]</B>")
-				to_chat(M, "\red This jobban will be lifted in [mins] minutes.")
-				input["jobban2"] = TRUE // lets it fall through and refresh
-				return TRUE
-			if("No")
-				var/reason = sanitize(input(usr,"Reason?","Please State Reason","") as text|null)
-				if(reason)
-					var/msg
-					for(var/job in notbannedlist)
-						ban_unban_log_save("[key_name(usr)] perma-jobbanned [key_name(M)] from [job]. reason: [reason]")
-						log_admin("[key_name(usr)] perma-banned [key_name(M)] from [job]")
-
-						source.DB_ban_record(BANTYPE_JOB_PERMA, M, -1, reason, job)
-
-						jobban_fullban(M, job, "[reason]; By [usr.ckey] on [time2text(world.realtime)]")
-						if(!msg)	msg = job
-						else		msg += ", [job]"
-					message_admins("\blue [key_name_admin(usr)] banned [key_name_admin(M)] from [msg]", 1)
-					to_chat(M, "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>")
-					to_chat(M, "\red <B>The reason is: [reason]</B>")
-					to_chat(M, "\red Jobban can be lifted only upon request.")
-					input["jobban2"] = TRUE // lets it fall through and refresh
-					return TRUE
-			if("Cancel")
-				return
-
-	//Unbanning joblist
-	//all jobs in joblist are banned already OR we didn't give a reason (implying they shouldn't be banned)
-	if(joblist.len) //at least 1 banned job exists in joblist so we have stuff to unban.
-		if(!config.ban_legacy_system)
-			to_chat(usr, "Unfortunately, database based unbanning cannot be done through this panel")
-			source.DB_ban_panel(M.ckey)
-			return
-		var/msg
-		for(var/job in joblist)
-			var/reason = jobban_isbanned(M, job)
-			if(!reason) continue //skip if it isn't jobbanned anyway
-			switch(alert("Job: '[job]' Reason: '[reason]' Un-jobban?","Please Confirm","Yes","No"))
-				if("Yes")
-					ban_unban_log_save("[key_name(usr)] unjobbanned [key_name(M)] from [job]")
-					log_admin("[key_name(usr)] unbanned [key_name(M)] from [job]")
-					source.DB_ban_unban(M.ckey, BANTYPE_JOB_PERMA, job)
-
-
-					jobban_unban(M, job)
-					if(!msg)	msg = job
-					else		msg += ", [job]"
-				else
-					continue
-		if(msg)
-			message_admins("\blue [key_name_admin(usr)] unbanned [key_name_admin(M)] from [msg]", 1)
-			to_chat(M, "\red<BIG><B>You have been un-jobbanned by [usr.client.ckey] from [msg].</B></BIG>")
-			input["jobban2"] = TRUE // lets it fall through and refresh
-		return TRUE
-	return FALSE //we didn't do anything!
-
-
 /datum/admin_topic/boot2
 	keyword = "boot2"
-	require_perms = list(R_MOD|R_ADMIN)
+	require_perms = list(R_ADMIN)
 
 /datum/admin_topic/boot2/Run(list/input)
 	var/mob/M = locate(input["boot2"])
@@ -575,108 +279,12 @@
 			return
 		var/reason = sanitize(input("Please enter reason"))
 		if(!reason)
-			to_chat(M, "\red You have been kicked from the server")
+			to_chat(M, span_red("You have been kicked from the server"))
 		else
-			to_chat(M, "\red You have been kicked from the server: [reason]")
+			to_chat(M, span_red("You have been kicked from the server: [reason]"))
 		log_admin("[key_name(usr)] booted [key_name(M)].")
-		message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", 1)
+		message_admins(span_blue("[key_name_admin(usr)] booted [key_name_admin(M)]."), 1)
 		del(M.client)
-
-
-/datum/admin_topic/removejobban
-	keyword = "removejobban"
-	require_perms = list(R_MOD|R_ADMIN)
-
-/datum/admin_topic/removejobban/Run(list/input)
-	var/t = input["removejobban"]
-	if(t)
-		if((alert("Do you want to unjobban [t]?","Unjobban confirmation", "Yes", "No") == "Yes") && t) //No more misclicks! Unless you do it twice.
-			log_admin("[key_name(usr)] removed [t]")
-			message_admins("\blue [key_name_admin(usr)] removed [t]", 1)
-			jobban_remove(t)
-			input["ban"] = TRUE // lets it fall through and refresh
-			var/t_split = splittext(t, " - ")
-			var/key = t_split[1]
-			var/job = t_split[2]
-			source.DB_ban_unban(ckey(key), BANTYPE_JOB_PERMA, job)
-
-
-/datum/admin_topic/newban
-	keyword = "newban"
-	require_perms = list(R_MOD|R_ADMIN)
-
-/datum/admin_topic/newban/Run(list/input)
-	if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && !config.mods_can_job_tempban) // If mod and tempban disabled
-		to_chat(usr, SPAN_WARNING("Mod jobbanning is disabled!"))
-		return
-
-	var/mob/M = locate(input["newban"])
-	if(!ismob(M)) return
-
-	if(M.client && M.client.holder)
-		return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
-	var/delayed = 0
-	if(alert("Delayed Ban?", "Ban after roundend. Work with DB only.", "Yes", "No") == "Yes")
-		delayed = 1
-
-	switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
-		if("Yes")
-			var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
-			if(!mins)
-				return
-
-			if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && mins > config.mod_tempban_max)
-				to_chat(usr, SPAN_WARNING("Moderators can only job tempban up to [config.mod_tempban_max] minutes!"))
-				return
-			if(mins >= 525600) mins = 525599
-			var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
-			if(!reason)
-				return
-			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins, delayed_ban = delayed)
-			ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]. - Reason: [reason] - This will be removed in [mins] minutes.")
-			to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
-			to_chat(M, "\red This is a temporary ban, it will be removed in [mins] minutes.")
-
-			source.DB_ban_record(BANTYPE_TEMP, M, mins, reason, delayed_ban = delayed)
-
-			if(config.banappeals)
-				to_chat(M, "\red To try to resolve this matter head to [config.banappeals]")
-			else
-				to_chat(M, "\red No ban appeals URL has been set.")
-			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-
-			if(!delayed)
-				del(M.client)
-			//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
-		if("No")
-			var/no_ip = 0
-			var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
-			if(!reason)
-				return
-			switch(alert(usr,"IP ban?",,"Yes","No","Cancel"))
-				if("Cancel")	return
-				if("Yes")
-					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP, delayed_ban = delayed)
-				if("No")
-					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, delayed_ban = delayed)
-					no_ip = 1
-			to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
-			to_chat(M, "\red This is a permanent ban.")
-			if(config.banappeals)
-				to_chat(M, "\red To try to resolve this matter head to [config.banappeals]")
-			else
-				to_chat(M, "\red No ban appeals URL has been set.")
-			ban_unban_log_save("[usr.client.ckey] has permabanned [M.ckey]. - Reason: [reason] - This is a permanent ban.")
-			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
-			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
-			var/banip = no_ip ? null : -1
-			source.DB_ban_record(BANTYPE_PERMA, M, -1, reason, banip, delayed_ban = delayed)
-
-			if(!delayed)
-				del(M.client)
-		if("Cancel")
-			return
 
 /datum/admin_topic/sendbacktolobby
 	keyword = "sendbacktolobby"
@@ -686,11 +294,11 @@
 	var/mob/M = locate(input["sendbacktolobby"])
 
 	if(!isobserver(M))
-		to_chat(usr, "<span class='notice'>You can only send ghost players back to the Lobby.</span>")
+		to_chat(usr, span_notice("You can only send ghost players back to the Lobby."))
 		return
 
 	if(!M.client)
-		to_chat(usr, "<span class='warning'>[M] doesn't seem to have an active client.</span>")
+		to_chat(usr, span_warning("[M] doesn't seem to have an active client."))
 		return
 
 	if(alert(usr, "Send [key_name(M)] back to Lobby?", "Message", "Yes", "No") != "Yes")
@@ -706,7 +314,7 @@
 
 /datum/admin_topic/mute
 	keyword = "mute"
-	require_perms = list(R_MOD|R_ADMIN)
+	require_perms = list(R_ADMIN)
 
 /datum/admin_topic/mute/Run(list/input)
 	var/mob/M = locate(input["mute"])
@@ -739,9 +347,9 @@
 /datum/admin_topic/c_mode/Run(list/input)
 	var/dat = {"<B>What storyteller do you wish to install?</B><HR>"}
 	for(var/mode in config.storytellers)
-		dat += {"<A href='?src=\ref[source];c_mode2=[mode]'>[config.storyteller_names[mode]]</A><br>"}
+		dat += {"<A href='byond://?src=\ref[source];c_mode2=[mode]'>[config.storyteller_names[mode]]</A><br>"}
 	dat += {"Now: [master_storyteller]"}
-	usr << browse(dat, "window=c_mode")
+	usr << browse(HTML_SKELETON(dat), "window=c_mode")
 
 
 /datum/admin_topic/c_mode2
@@ -752,7 +360,7 @@
 	master_storyteller = input["c_mode2"]
 	set_storyteller(master_storyteller) //This does the actual work
 	log_admin("[key_name(usr)] set the storyteller to [master_storyteller].")
-	message_admins("\blue [key_name_admin(usr)] set the storyteller to [master_storyteller].", 1)
+	message_admins(span_blue("[key_name_admin(usr)] set the storyteller to [master_storyteller]."), 1)
 	source.Game() // updates the main game menu
 	world.save_storyteller(master_storyteller)
 	source.Topic(source, list("c_mode"=1))
@@ -772,7 +380,7 @@
 	M.say(speech)
 	speech = sanitize(speech) // Nah, we don't trust them
 	log_admin("[key_name(usr)] forced [key_name(M)] to say: [speech]")
-	message_admins("\blue [key_name_admin(usr)] forced [key_name_admin(M)] to say: [speech]")
+	message_admins(span_blue("[key_name_admin(usr)] forced [key_name_admin(M)] to say: [speech]"))
 
 /datum/admin_topic/forcesanity
 	keyword = "forcesanity"
@@ -794,9 +402,27 @@
 		return
 	if(B.occur())
 		H.sanity.breakdowns += B
-		to_chat(usr, SPAN_NOTICE("[B] has occurred for [key_name(H)]."))
+		to_chat(usr, span_notice("[B] has occurred for [key_name(H)]."))
 		return
 
+/datum/admin_topic/ppbyckey
+	keyword = "ppbyckey"
+	require_perms = list(R_ADMIN)
+
+/datum/admin_topic/ppbyckey/Run(list/input)
+	var/target_ckey = input["ppbyckey"]
+	var/mob/original_mob = locate(input["ppbyckeyorigmob"]) in GLOB.mob_list
+	var/mob/target_mob = get_mob_by_ckey(target_ckey)
+	if(!target_mob)
+		to_chat(usr, span_warning("No mob found with that ckey."))
+		return
+
+	if(original_mob == target_mob)
+		to_chat(usr, span_warning("[target_ckey] is still in their original mob: [original_mob]."))
+		return
+
+	to_chat(usr, span_notice("Jumping to [target_ckey]'s new mob: [target_mob]!"))
+	usr.client.holder.show_player_panel(target_mob)
 
 /datum/admin_topic/revive
 	keyword = "revive"
@@ -809,7 +435,7 @@
 		return
 
 	L.revive()
-	message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", 1)
+	message_admins(span_red("Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!"), 1)
 	log_admin("[key_name(usr)] healed / Revived [key_name(L)]")
 
 
@@ -873,7 +499,7 @@
 
 /datum/admin_topic/adminobservejump
 	keyword = "adminobservejump"
-	require_perms = list(R_MENTOR|R_MOD|R_ADMIN)
+	require_perms = list(R_MENTOR|R_ADMIN)
 
 /datum/admin_topic/adminobservejump/Run(list/input)
 	var/mob/M = locate(input["adminobservejump"])
@@ -884,6 +510,16 @@
 		sleep(2)
 	C.jumptomob(M)
 
+/datum/admin_topic/adminplayerobservefollow
+	keyword = "adminplayerobservefollow"
+
+/datum/admin_topic/adminplayerobservefollow/Run(list/input)
+	if(!isghost(usr))
+		return
+	var/mob/target = locate(input["adminplayerobservefollow"])
+
+	var/mob/observer/ghost/ghost = usr
+	ghost.ManualFollow(target)
 
 /datum/admin_topic/adminplayerobservecoodjump
 	keyword = "adminplayerobservecoodjump"
@@ -966,7 +602,7 @@
 	to_chat(source.owner, "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;")
 	to_chat(source.owner, "Location = [location_description];")
 	to_chat(source.owner, "[special_role_description]")
-	to_chat(source.owner, "(<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a>) (<A HREF='?src=\ref[source];adminplayeropts=\ref[M]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[M]'>VV</A>) (<A HREF='?src=\ref[source];subtlemessage=\ref[M]'>SM</A>) ([admin_jump_link(M, source)]) (<A HREF='?src=\ref[source];secretsadmin=check_antagonist'>CA</A>)")
+	to_chat(source.owner, "(<a href='byond://?src=\ref[usr];[HrefToken()];priv_msg=\ref[M]'>PM</a>) [ADMIN_PP(M)] [ADMIN_VV(M)] [ADMIN_SM(M)] ([ADMIN_JMP(M)]) (<A href='byond://?src=\ref[source];secretsadmin=check_antagonist'>CA</A>)")
 
 
 /datum/admin_topic/adminspawncookie
@@ -987,7 +623,7 @@
 	log_admin("[key_name(H)] got their cookie, spawned by [key_name(source.owner)]")
 	message_admins("[key_name(H)] got their cookie, spawned by [key_name(source.owner)]")
 
-	to_chat(H, "\blue Your prayers have been answered!! You received the <b>best cookie</b>!")
+	to_chat(H, span_blue("Your prayers have been answered!! You received the <b>best cookie</b>!"))
 
 
 /datum/admin_topic/bluespaceartillery
@@ -1055,13 +691,13 @@
 		var/data = ""
 		var/obj/item/paper_bundle/B = fax
 
-		for (var/page = 1, page <= B.pages.len, page++)
+		for(var/page = 1; page <= B.pages.len; page++)
 			var/obj/pageobj = B.pages[page]
-			data += "<A href='?src=\ref[source];AdminFaxViewPage=[page];paper_bundle=\ref[B]'>Page [page] - [pageobj.name]</A><BR>"
+			data += "<A href='byond://?src=\ref[source];AdminFaxViewPage=[page];paper_bundle=\ref[B]'>Page [page] - [pageobj.name]</A><BR>"
 
-		usr << browse(data, "window=[B.name]")
+		usr << browse(HTML_SKELETON_TITLE("Admin fax view", data), "window=[B.name]")
 	else
-		to_chat(usr, "\red The faxed item is not viewable. This is probably a bug, and should be reported on the tracker: [fax.type]")
+		to_chat(usr, span_red("The faxed item is not viewable. This is probably a bug, and should be reported on the tracker: [fax.type]"))
 
 /datum/admin_topic/adminfaxviewpage
 	keyword = "AdminFaxViewPage"
@@ -1111,7 +747,7 @@
 
 /datum/admin_topic/subtlemessage
 	keyword = "subtlemessage"
-	require_perms = list(R_MOD|R_ADMIN)
+	require_perms = list(R_ADMIN)
 
 /datum/admin_topic/subtlemessage/Run(list/input)
 	var/mob/M = locate(input["subtlemessage"])
@@ -1119,7 +755,7 @@
 
 /datum/admin_topic/manup
 	keyword = "manup"
-	require_perms = list(R_MOD|R_ADMIN)
+	require_perms = list(R_ADMIN)
 
 /datum/admin_topic/manup/Run(list/input)
 	var/mob/M = locate(input["manup"])
@@ -1127,7 +763,7 @@
 
 /datum/admin_topic/paralyze
 	keyword = "paralyze"
-	require_perms = list(R_MOD|R_ADMIN)
+	require_perms = list(R_ADMIN)
 
 /datum/admin_topic/paralyze/Run(list/input)
 	var/mob/M = locate(input["paralyze"])
@@ -1143,7 +779,7 @@
 
 /datum/admin_topic/viewlogs
 	keyword = "viewlogs"
-	require_perms = list(R_MOD|R_ADMIN)
+	require_perms = list(R_ADMIN)
 
 /datum/admin_topic/viewlogs/Run(list/input)
 	var/mob/M = locate(input["viewlogs"])
@@ -1152,7 +788,7 @@
 
 /datum/admin_topic/contractor
 	keyword = "contractor"
-	require_perms = list(R_MOD|R_ADMIN)
+	require_perms = list(R_ADMIN)
 
 /datum/admin_topic/contractor/Run(list/input)
 	if(!GLOB.storyteller)
@@ -1257,14 +893,14 @@
 				if ("relative")
 					target = locate(loc.x + X,loc.y + Y,loc.z + Z)
 		if("inmarked")
-			if(!source.marked_datum())
+			if(!source.marked_datum)
 				to_chat(usr, "You don't have any object marked. Abandoning spawn.")
 				return
-			else if(!istype(source.marked_datum(),  /atom))
+			else if(!istype(source.marked_datum,  /atom))
 				to_chat(usr, "The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn.")
 				return
 			else
-				target = source.marked_datum()
+				target = source.marked_datum
 
 	if(target)
 		for (var/path in paths)
@@ -1329,7 +965,7 @@
 		to_chat(usr, "[M] is illegal type, must be /mob!")
 		return
 	var/lang2toggle = input["lang"]
-	var/datum/language/L = all_languages[lang2toggle]
+	var/datum/language/L = GLOB.all_languages[lang2toggle]
 
 	if(L in M.languages)
 		if(!M.remove_language(lang2toggle))
@@ -1346,7 +982,7 @@
 /datum/admin_topic/viewruntime/Run(list/input)
 	var/datum/ErrorViewer/error_viewer = locate(input["viewruntime"])
 	if(!istype(error_viewer))
-		to_chat(usr, "<span class='warning'>That runtime viewer no longer exists.</span>")
+		to_chat(usr, span_warning("That runtime viewer no longer exists."))
 		return
 	if(input["viewruntime_backto"])
 		error_viewer.showTo(usr, locate(input["viewruntime_backto"]), input["viewruntime_linear"])
@@ -1542,22 +1178,3 @@
 			source.admincaster_screen = 1
 			source.access_news_network()
 
-
-//Player Notes
-/datum/admin_topic/notes
-	keyword = "notes"
-
-/datum/admin_topic/notes/Run(list/input)
-	var/ckey = input["ckey"]
-	if(!ckey)
-		var/mob/M = locate(input["mob"])
-		if(ismob(M))
-			ckey = M.ckey
-
-	switch(input[keyword])
-		if("add")
-			notes_add(ckey, input["text"])
-		if("remove")
-			notes_remove(ckey, text2num(input["from"]), text2num(input["to"]))
-
-	source.notes_show(ckey)

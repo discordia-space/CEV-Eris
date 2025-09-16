@@ -34,9 +34,9 @@
 				honorific = "Ms."
 			dat += "<font color=red><i>Identity not found in operative database. What can the Syndicate do for you today, [honorific] [user.name]?</i></font><br>"
 			if(!selfdestructing)
-				dat += "<br><br><A href='?src=\ref[src];becontractor=1;contractormob=\ref[user]'>\"[pick("I want to switch teams.", "I want to work for you.", "Let me join you.", "I can be of use to you.", "You want me working for you, and here's why...", "Give me an objective.", "How's the 401k over at the Syndicate?")]\"</A><BR>"
+				dat += "<br><br><A href='byond://?src=\ref[src];becontractor=1;contractormob=\ref[user]'>\"[pick("I want to switch teams.", "I want to work for you.", "Let me join you.", "I can be of use to you.", "You want me working for you, and here's why...", "Give me an objective.", "How's the 401k over at the Syndicate?")]\"</A><BR>"
 	dat += temptext
-	user << browse(dat, "window=syndbeacon")
+	user << browse(HTML_SKELETON_TITLE("Syndicate Beacon", dat), "window=syndbeacon")
 	onclose(user, "syndbeacon")
 
 /obj/machinery/syndicate_beacon/Topic(href, href_list)
@@ -94,7 +94,7 @@
 
 /obj/machinery/power/singularity_beacon/proc/Activate(mob/user = null)
 	if(surplus() < 1500)
-		if(user) user << SPAN_NOTICE("The connected wire doesn't have enough current.")
+		if(user) user << span_notice("The connected wire doesn't have enough current.")
 		return
 	for(var/obj/singularity/singulo in world)
 		if(singulo.z == z)
@@ -103,7 +103,7 @@
 	active = 1
 	machines |= src
 	if(user)
-		user << SPAN_NOTICE("You activate the beacon.")
+		user << span_notice("You activate the beacon.")
 
 
 /obj/machinery/power/singularity_beacon/proc/Deactivate(mob/user = null)
@@ -113,30 +113,30 @@
 	icon_state = "[icontype]0"
 	active = 0
 	if(user)
-		user << SPAN_NOTICE("You deactivate the beacon.")
+		user << span_notice("You deactivate the beacon.")
 
 
 /obj/machinery/power/singularity_beacon/attack_ai(mob/user as mob)
 	return
 
 
-/obj/machinery/power/singularity_beacon/attack_hand(var/mob/user as mob)
+/obj/machinery/power/singularity_beacon/attack_hand(mob/user as mob)
 	if(anchored)
 		return active ? Deactivate(user) : Activate(user)
 	else
-		user << SPAN_DANGER("You need to screw the beacon to the floor first!")
+		user << span_danger("You need to screw the beacon to the floor first!")
 		return
 
 
 /obj/machinery/power/singularity_beacon/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/tool/screwdriver))
 		if(active)
-			user << SPAN_DANGER("You need to deactivate the beacon first!")
+			user << span_danger("You need to deactivate the beacon first!")
 			return
 
 		if(anchored)
 			anchored = FALSE
-			user << SPAN_NOTICE("You unscrew the beacon from the floor.")
+			user << span_notice("You unscrew the beacon from the floor.")
 			disconnect_from_network()
 			return
 		else
@@ -144,7 +144,7 @@
 				user << "This device must be placed over an exposed cable."
 				return
 			anchored = TRUE
-			user << SPAN_NOTICE("You screw the beacon to the floor and attach the cable.")
+			user << span_notice("You screw the beacon to the floor and attach the cable.")
 			return
 	..()
 	return

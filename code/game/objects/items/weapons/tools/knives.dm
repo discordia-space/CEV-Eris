@@ -32,7 +32,7 @@
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_BAYONET = TRUE,
 		GUN_UPGRADE_MELEEDAMAGE = 5,
-		GUN_UPGRADE_MELEEPENETRATION = ARMOR_PEN_MODERATE,
+		GUN_UPGRADE_MELEEPENETRATION = (ARMOR_PEN_MODERATE-1),
 		GUN_UPGRADE_OFFSET = 4
 		)
 	I.gun_loc_tag = GUN_UNDERBARREL
@@ -204,7 +204,7 @@
 	if(prob(min(100,(100-L.getarmor(user.targeted_organ, ARMOR_MELEE))+modifier)))
 		var/trans = reagents.trans_to_mob(target, rand(1,3)*reagent_modifier, CHEM_BLOOD)
 		admin_inject_log(user, target, src, reagents.log_list(), trans)
-		to_chat(user, SPAN_NOTICE("You inject [trans] units of the solution. [src] now contains [src.reagents.total_volume] units."))
+		to_chat(user, span_notice("You inject [trans] units of the solution. [src] now contains [src.reagents.total_volume] units."))
 
 /obj/item/tool/knife/butterfly
 	name = "butterfly knife"
@@ -228,7 +228,7 @@
 
 /obj/item/tool/knife/butterfly/turn_on(mob/user)
 	item_state = "[initial(item_state)]_on"
-	to_chat(user, SPAN_NOTICE("You flip out [src]."))
+	to_chat(user, span_notice("You flip out [src]."))
 	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	edge = TRUE
 	sharp = TRUE
@@ -248,7 +248,7 @@
 	item_state = initial(item_state)
 	attack_verb = list("punched","cracked")
 	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
-	to_chat(user, SPAN_NOTICE("You flip [src] back into the handle gracefully."))
+	to_chat(user, span_notice("You flip [src] back into the handle gracefully."))
 	switched_on = FALSE
 	tool_qualities = switched_off_qualities
 	force = initial(force)
@@ -278,7 +278,7 @@
 
 /obj/item/tool/knife/switchblade/turn_on(mob/user)
 	item_state = "[initial(item_state)]_on"
-	to_chat(user, SPAN_NOTICE("You press a button on the handle and [src] slides out."))
+	to_chat(user, span_notice("You press a button on the handle and [src] slides out."))
 	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	edge = TRUE
 	sharp = TRUE
@@ -298,7 +298,7 @@
 	item_state = initial(item_state)
 	attack_verb = list("punched","cracked")
 	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
-	to_chat(user, SPAN_NOTICE("You press the button and [src] swiftly retracts."))
+	to_chat(user, span_notice("You press the button and [src] swiftly retracts."))
 	switched_on = FALSE
 	tool_qualities = switched_off_qualities
 	force = initial(force)

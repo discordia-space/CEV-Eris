@@ -51,24 +51,24 @@
 					reagent_volumes[T] = min(reagent_volumes[T] + 5, volume)
 	return TRUE
 
-/obj/item/reagent_containers/borghypo/attack(var/mob/living/M, var/mob/user)
+/obj/item/reagent_containers/borghypo/attack(mob/living/M, mob/user)
 	if(!istype(M))
 		return
 
 	if(!reagent_volumes[reagent_ids[mode]])
-		to_chat(user, SPAN_WARNING("The injector is empty."))
+		to_chat(user, span_warning("The injector is empty."))
 		return
 
 	if (M.can_inject(user, 1))
-		to_chat(user, SPAN_NOTICE("You inject [M] with the injector."))
-		to_chat(M, SPAN_NOTICE("You feel a tiny prick!"))
+		to_chat(user, span_notice("You inject [M] with the injector."))
+		to_chat(M, span_notice("You feel a tiny prick!"))
 
 		if(M.reagents)
 			var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
 			M.reagents.add_reagent(reagent_ids[mode], t)
 			reagent_volumes[reagent_ids[mode]] -= t
 			admin_inject_log(user, M, src, reagent_ids[mode], t)
-			to_chat(user, SPAN_NOTICE("[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining."))
+			to_chat(user, span_notice("[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining."))
 	return
 
 /obj/item/reagent_containers/borghypo/attack_self(mob/user as mob) //Change the mode
@@ -79,25 +79,25 @@
 		if(mode == i)
 			t += "<b>[reagent_names[i]]</b>"
 		else
-			t += "<a href='?src=\ref[src];reagent=[reagent_ids[i]]'>[reagent_names[i]]</a>"
+			t += "<a href='byond://?src=\ref[src];reagent=[reagent_ids[i]]'>[reagent_names[i]]</a>"
 	t = "Available reagents: [t]."
 	to_chat(user, t)
 
 	return
 
-/obj/item/reagent_containers/borghypo/Topic(var/href, var/list/href_list)
+/obj/item/reagent_containers/borghypo/Topic(href, list/href_list)
 	if(href_list["reagent"])
 		var/t = reagent_ids.Find(href_list["reagent"])
 		if(t)
 			playsound(loc, 'sound/effects/pop.ogg', 50, 0)
 			mode = t
 			var/datum/reagent/R = GLOB.chemical_reagents_list[reagent_ids[mode]]
-			to_chat(usr, SPAN_NOTICE("Synthesizer is now producing '[R.name]'."))
+			to_chat(usr, span_notice("Synthesizer is now producing '[R.name]'."))
 
 /obj/item/reagent_containers/borghypo/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[reagent_ids[mode]]
-		extra_description += SPAN_NOTICE("Hypospray is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.")
+		extra_description += span_notice("Hypospray is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.")
 	// Intentionally not calling parent proc
 
 /obj/item/reagent_containers/borghypo/service
@@ -111,10 +111,10 @@
 	possible_transfer_amounts = list(5, 10, 20, 30)
 	reagent_ids = list("beer", "kahlua", "whiskey", "wine", "vodka", "gin", "rum", "tequilla", "vermouth", "cognac", "ale", "mead", "water", "sugar", "ice", "tea", "greentea", "icetea", "icegreentea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic", "sodawater", "lemon_lime", "orangejuice", "limejuice", "watermelonjuice")
 
-/obj/item/reagent_containers/borghypo/service/attack(var/mob/M, var/mob/user)
+/obj/item/reagent_containers/borghypo/service/attack(mob/M, mob/user)
 	return
 
-/obj/item/reagent_containers/borghypo/service/afterattack(var/obj/target, var/mob/user, var/proximity)
+/obj/item/reagent_containers/borghypo/service/afterattack(obj/target, mob/user, proximity)
 	if(!proximity)
 		return
 
@@ -122,15 +122,15 @@
 		return
 
 	if(!reagent_volumes[reagent_ids[mode]])
-		to_chat(user, SPAN_NOTICE("[src] is out of this reagent, give it some time to refill."))
+		to_chat(user, span_notice("[src] is out of this reagent, give it some time to refill."))
 		return
 
 	if(!target.reagents.get_free_space())
-		to_chat(user, SPAN_NOTICE("[target] is full."))
+		to_chat(user, span_notice("[target] is full."))
 		return
 
 	var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
 	target.reagents.add_reagent(reagent_ids[mode], t)
 	reagent_volumes[reagent_ids[mode]] -= t
-	to_chat(user, SPAN_NOTICE("You transfer [t] units of the solution to [target]."))
+	to_chat(user, span_notice("You transfer [t] units of the solution to [target]."))
 	return

@@ -28,19 +28,19 @@
 	else
 		src.examine(M)
 
-obj/item/board/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/board/attackby(obj/item/I as obj, mob/user as mob)
 	if(!addPiece(I,user))
 		..()
 
-/obj/item/board/proc/addPiece(obj/item/I as obj, mob/user as mob, var/tile = 0)
+/obj/item/board/proc/addPiece(obj/item/I as obj, mob/user as mob, tile = 0)
 	if(I.w_class != ITEM_SIZE_TINY) //only small stuff
-		user.show_message(SPAN_WARNING("\The [I] is too big to be used as a board piece."))
+		user.show_message(span_warning("\The [I] is too big to be used as a board piece."))
 		return 0
 	if(num == 64)
-		user.show_message(SPAN_WARNING("\The [src] is already full!"))
+		user.show_message(span_warning("\The [src] is already full!"))
 		return 0
 	if(tile > 0 && board["[tile]"])
-		user.show_message(SPAN_WARNING("That space is already filled!"))
+		user.show_message(span_warning("That space is already filled!"))
 		return 0
 	if(!user.Adjacent(src))
 		return 0
@@ -80,7 +80,7 @@ obj/item/board/attackby(obj/item/I as obj, mob/user as mob)
 	"})
 	var i, stagger
 	stagger = 0 //so we can have the checkerboard effect
-	for(i=0, i<64, i++)
+	for(i=0; i<64; i++)
 		if(i%8 == 0)
 			dat += "<tr>"
 			stagger = !stagger
@@ -98,13 +98,13 @@ obj/item/board/attackby(obj/item/I as obj, mob/user as mob)
 			dat+= ">"
 
 		if(!isobserver(user))
-			dat += "<a href='?src=\ref[src];select=[i];person=\ref[user]'></a>"
+			dat += "<a href='byond://?src=\ref[src];select=[i];person=\ref[user]'></a>"
 		dat += "</td>"
 
 	dat += "</table>"
 
 	if(selected >= 0 && !isobserver(user))
-		dat += "<br><A href='?src=\ref[src];remove=0'>Remove Selected Piece</A>"
+		dat += "<br><A href='byond://?src=\ref[src];remove=0'>Remove Selected Piece</A>"
 	user << browse(jointext(dat, null),"window=boardgame;size=250x250")
 	onclose(usr, "boardgame")
 
@@ -141,7 +141,7 @@ obj/item/board/attackby(obj/item/I as obj, mob/user as mob)
 					var/mob/living/carbon/human/H = locate(href_list["person"])
 					if(!istype(H))
 						return
-					var/obj/item/O = H.get_active_hand()
+					var/obj/item/O = H.get_active_held_item()
 					if(!O)
 						return
 					addPiece(O,H,text2num(s))

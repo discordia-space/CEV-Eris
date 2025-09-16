@@ -3,7 +3,7 @@
 	name = "gas thruster"
 	var/obj/machinery/atmospherics/unary/engine/nozzle
 
-/datum/ship_engine/gas_thruster/New(var/obj/machinery/_holder)
+/datum/ship_engine/gas_thruster/New(obj/machinery/_holder)
 	..()
 	nozzle = _holder
 
@@ -20,7 +20,7 @@
 /datum/ship_engine/gas_thruster/burn()
 	return nozzle.burn()
 
-/datum/ship_engine/gas_thruster/set_thrust_limit(var/new_limit)
+/datum/ship_engine/gas_thruster/set_thrust_limit(new_limit)
 	nozzle.thrust_limit = new_limit
 
 /datum/ship_engine/gas_thruster/get_thrust_limit()
@@ -92,7 +92,7 @@
 	if (!is_on())
 		return 0
 	if(!check_fuel())
-		audible_message(src,"<span class='warning'>[src] coughs once and goes silent!</span>")
+		audible_message(src,span_warning("[src] coughs once and goes silent!"))
 		on = !on
 		return 0
 	var/datum/gas_mixture/removed = air_contents.remove(moles_per_burn * thrust_limit)
@@ -127,7 +127,7 @@
 	light_color = COLOR_LIGHTING_ORANGE_BRIGHT
 	anchored = TRUE
 
-/obj/effect/engine_exhaust/New(var/turf/nloc, var/ndir, var/flame, var/midsect)
+/obj/effect/engine_exhaust/New(turf/nloc, ndir, flame, midsect)
 	..(nloc)
 	if(flame)
 		if(midsect)
@@ -137,8 +137,7 @@
 		nloc.hotspot_expose(1000,125)
 		set_light(5, 2)
 	set_dir(ndir)
-	spawn(20)
-		qdel(src)
+	QDEL_IN(src, 20)
 
 /obj/item/electronics/circuitboard/unary_atmos/engine
 	name = T_BOARD("gas thruster")

@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(character_setup)
 			prefs.setup()
 
 	// Start playing music for clients
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		GLOB.lobbyScreen.play_music(C)
 
 	. = ..()

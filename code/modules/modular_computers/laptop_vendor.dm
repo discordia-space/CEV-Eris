@@ -52,7 +52,7 @@
 	dev_aislot = 0
 
 // Recalculates the price and optionally even fabricates the device.
-/obj/machinery/lapvend/proc/fabricate_and_recalc_price(var/fabricate = 0)
+/obj/machinery/lapvend/proc/fabricate_and_recalc_price(fabricate = 0)
 	total_price = 0
 	if(devtype == 1) 		// Laptop, generally cheaper to make it accessible for most station roles
 		if(fabricate)
@@ -232,10 +232,10 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/lapvend/attack_hand(var/mob/user)
+/obj/machinery/lapvend/attack_hand(mob/user)
 	nano_ui_interact(user)
 
-/obj/machinery/lapvend/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/lapvend/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(stat & (BROKEN | NOPOWER | MAINT))
 		if(ui)
 			ui.close()
@@ -264,9 +264,9 @@
 		ui.set_auto_update(1)
 
 
-obj/machinery/lapvend/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/lapvend/attackby(obj/item/W as obj, mob/user as mob)
 	if(inoperable())
-		to_chat(user, SPAN_WARNING("[src] is not responding."))
+		to_chat(user, span_warning("[src] is not responding."))
 		return
 	var/obj/item/card/id/I = W.GetIdCard()
 	// Awaiting payment state
@@ -291,11 +291,11 @@ obj/machinery/lapvend/attackby(obj/item/W as obj, mob/user as mob)
 
 
 // Simplified payment processing, returns 1 on success.
-/obj/machinery/lapvend/proc/process_payment(var/obj/item/card/id/I, var/obj/item/ID_container)
+/obj/machinery/lapvend/proc/process_payment(obj/item/card/id/I, obj/item/ID_container)
 	if(I==ID_container || ID_container == null)
-		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
+		visible_message(span_info("\The [usr] swipes \the [I] through \the [src]."))
 	else
-		visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
+		visible_message(span_info("\The [usr] swipes \the [ID_container] through \the [src]."))
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if (!customer_account || customer_account.suspended)
 		ping("Connection error. Unable to connect to account.")

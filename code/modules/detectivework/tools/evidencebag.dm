@@ -10,7 +10,7 @@
 	var/obj/item/stored_item = null
 	price_tag = 5
 
-/obj/item/evidencebag/MouseDrop(var/obj/item/I as obj)
+/obj/item/evidencebag/MouseDrop(obj/item/I as obj)
 	if (!ishuman(usr))
 		return
 
@@ -43,15 +43,15 @@
 		return
 
 	if(istype(I, /obj/item/evidencebag))
-		to_chat(user, SPAN_NOTICE("You find putting an evidence bag in another evidence bag to be slightly absurd."))
+		to_chat(user, span_notice("You find putting an evidence bag in another evidence bag to be slightly absurd."))
 		return
 
 	if(I.w_class >= ITEM_SIZE_BULKY)
-		to_chat(user, SPAN_NOTICE("[I] won't fit in [src]."))
+		to_chat(user, span_notice("[I] won't fit in [src]."))
 		return
 
 	if(contents.len)
-		to_chat(user, SPAN_NOTICE("[src] already has something inside it."))
+		to_chat(user, span_notice("[src] already has something inside it."))
 		return
 
 	user.visible_message("[user] puts [I] into [src]", "You put [I] inside [src].",\

@@ -49,17 +49,17 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	damage_smoke = TRUE
 
 
-/obj/machinery/door/airlock/attack_generic(var/mob/user, var/damage)
+/obj/machinery/door/airlock/attack_generic(mob/user, damage)
 	if(stat & (BROKEN|NOPOWER))
 		if(damage >= 10)
 			if(src.density)
-				visible_message(SPAN_DANGER("\The [user] forces \the [src] open!"))
+				visible_message(span_danger("\The [user] forces \the [src] open!"))
 				open(1)
 			else
-				visible_message(SPAN_DANGER("\The [user] forces \the [src] closed!"))
+				visible_message(span_danger("\The [user] forces \the [src] closed!"))
 				close(1)
 		else
-			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
+			visible_message(span_notice("\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"]."))
 		return
 	..()
 
@@ -425,7 +425,7 @@ There are 9 wires.
 		return 1
 	return 0
 
-/obj/machinery/door/airlock/proc/isWireCut(var/wireIndex)
+/obj/machinery/door/airlock/proc/isWireCut(wireIndex)
 	// You can find the wires in the datum folder.
 	return wires.IsIndexCut(wireIndex)
 
@@ -491,7 +491,7 @@ There are 9 wires.
 		// Restore backup power only if main power is offline, otherwise permanently disable
 		backup_power_lost_until = main_power_lost_until == 0 ? -1 : 0
 
-/obj/machinery/door/airlock/proc/electrify(var/duration, var/feedback = 0)
+/obj/machinery/door/airlock/proc/electrify(duration, feedback = 0)
 	var/message = ""
 	if(isWireCut(AIRLOCK_WIRE_ELECTRIFY) && arePowerSystemsOn())
 		message = text("The electrification wire is cut - Door permanently electrified.")
@@ -516,7 +516,7 @@ There are 9 wires.
 	if(feedback && message)
 		to_chat(usr, message)
 
-/obj/machinery/door/airlock/proc/set_idscan(var/activate, var/feedback = 0)
+/obj/machinery/door/airlock/proc/set_idscan(activate, feedback = 0)
 	var/message = ""
 	if(isWireCut(AIRLOCK_WIRE_IDSCAN))
 		message = "The IdScan wire is cut - IdScan feature permanently disabled."
@@ -530,7 +530,7 @@ There are 9 wires.
 	if(feedback && message)
 		to_chat(usr, message)
 
-/obj/machinery/door/airlock/proc/set_safeties(var/activate, var/feedback = 0)
+/obj/machinery/door/airlock/proc/set_safeties(activate, feedback = 0)
 	var/message = ""
 	// Safeties!  We don't need no stinking safeties!
 	if (isWireCut(AIRLOCK_WIRE_SAFETY))
@@ -572,16 +572,16 @@ There are 9 wires.
 	set src in view(1)
 
 	if(!isliving(usr))
-		to_chat(usr, SPAN_WARNING("You can't do this."))
+		to_chat(usr, span_warning("You can't do this."))
 		return
-	var/obj/item/tool/T = usr.get_active_hand()
+	var/obj/item/tool/T = usr.get_active_held_item()
 	if(istype(T) && T.w_class >= ITEM_SIZE_NORMAL) // We do the checks before proc call, because see "proc overhead".
 		if(!density)
 			usr.drop_item()
 			force_wedge_item(T)
-			to_chat(usr, SPAN_NOTICE("You wedge [T] into [src]."))
+			to_chat(usr, span_notice("You wedge [T] into [src]."))
 		else
-			to_chat(usr, SPAN_NOTICE("[T] can't be wedged into [src], while [src] is closed."))
+			to_chat(usr, span_notice("[T] can't be wedged into [src], while [src] is closed."))
 
 /obj/machinery/door/airlock/proc/take_out_wedged_item()
 	set name = "Remove Blockage"
@@ -595,7 +595,7 @@ There are 9 wires.
 		wedged_item.forceMove(drop_location())
 		if(usr)
 			usr.put_in_hands(wedged_item)
-			to_chat(usr, SPAN_NOTICE("You took [wedged_item] out of [src]."))
+			to_chat(usr, span_notice("You took [wedged_item] out of [src]."))
 		wedged_item = null
 		verbs -= /obj/machinery/door/airlock/proc/take_out_wedged_item
 		verbs += /obj/machinery/door/airlock/proc/try_wedge_item
@@ -613,7 +613,7 @@ There are 9 wires.
 
 /obj/machinery/door/airlock/examine(mob/user, extra_description = "")
 	if(wedged_item)
-		extra_description += "You can see \icon[wedged_item] [wedged_item] wedged into it."
+		extra_description += "You can see [icon2html(wedged_item, user)] [wedged_item] wedged into it."
 	..(user, extra_description)
 
 /obj/machinery/door/airlock/proc/generate_wedge_overlay()
@@ -697,7 +697,7 @@ There are 9 wires.
 	if(!isblitzshell(user))
 		nano_ui_interact(user)
 
-/obj/machinery/door/airlock/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.default_state)
+/obj/machinery/door/airlock/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 	var/data[0]
 
 	data["main_power_loss"]		= round(main_power_lost_until 	> 0 ? max(main_power_lost_until - world.time,	0) / 10 : main_power_lost_until,	1)
@@ -838,17 +838,17 @@ There are 9 wires.
 		if(H.getBrainLoss() >= 60)
 			playsound(loc, 'sound/effects/bang.ogg', 25, 1)
 			if(!istype(H.head, /obj/item/clothing/head/armor/helmet))
-				visible_message(SPAN_WARNING("[user] headbutts the airlock."))
+				visible_message(span_warning("[user] headbutts the airlock."))
 				var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
 				H.Weaken(5)
 				if(affecting.take_damage(10, 0))
 					H.UpdateDamageIcon()
 			else
-				visible_message(SPAN_WARNING("[user] headbutts the airlock. Good thing they're wearing a helmet."))
+				visible_message(span_warning("[user] headbutts the airlock. Good thing they're wearing a helmet."))
 			return
 
 
-	if(user.a_intent == I_GRAB && wedged_item && !user.get_active_hand())
+	if(user.a_intent == I_GRAB && wedged_item && !user.get_active_held_item())
 		take_out_wedged_item(user)
 		return
 
@@ -859,18 +859,18 @@ There are 9 wires.
 		..(user)
 	return
 
-/obj/machinery/door/airlock/CanUseTopic(var/mob/user)
+/obj/machinery/door/airlock/CanUseTopic(mob/user)
 	if(operating < 0) //emagged
-		to_chat(user, SPAN_WARNING("Unable to interface: Internal error."))
+		to_chat(user, span_warning("Unable to interface: Internal error."))
 		return STATUS_CLOSE
 	if(issilicon(user) && !canAIControl())
 		if(canAIHack(user))
 			hack(user)
 		else
 			if (isAllPowerLoss()) //don't really like how this gets checked a second time, but not sure how else to do it.
-				to_chat(user, SPAN_WARNING("Unable to interface: Connection timed out."))
+				to_chat(user, span_warning("Unable to interface: Connection timed out."))
 			else
-				to_chat(user, SPAN_WARNING("Unable to interface: Connection refused."))
+				to_chat(user, span_warning("Unable to interface: Connection refused."))
 		return STATUS_CLOSE
 
 	return ..()
@@ -953,7 +953,7 @@ There are 9 wires.
 			if(!repairing)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = list(STAT_MEC, STAT_ROB)))
 					if(p_open && (operating < 0 || (!operating && welded && !arePowerSystemsOn() && density && (!locked || (stat & BROKEN)))) )
-						to_chat(user, SPAN_NOTICE("You removed the airlock electronics!"))
+						to_chat(user, span_notice("You removed the airlock electronics!"))
 
 						var/obj/structure/door_assembly/da = new assembly_type(loc)
 						if (istype(da, /obj/structure/door_assembly/multi_tile))
@@ -980,9 +980,9 @@ There are 9 wires.
 						qdel(src)
 						return
 					else if(arePowerSystemsOn())
-						to_chat(user, SPAN_NOTICE("The airlock's motors resist your efforts to force it."))
+						to_chat(user, span_notice("The airlock's motors resist your efforts to force it."))
 					else if(locked)
-						to_chat(user, SPAN_NOTICE("The airlock's bolts prevent it from being forced."))
+						to_chat(user, span_notice("The airlock's bolts prevent it from being forced."))
 					else
 						if(density)
 							spawn(0)	open(I)
@@ -997,7 +997,7 @@ There are 9 wires.
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				if (p_open)
 					if (stat & BROKEN)
-						to_chat(usr, SPAN_WARNING("The panel is broken and cannot be closed."))
+						to_chat(usr, span_warning("The panel is broken and cannot be closed."))
 					else
 						p_open = 0
 				else
@@ -1019,13 +1019,13 @@ There are 9 wires.
 
 		if(QUALITY_HAMMERING)
 			if(stat & NOPOWER && locked)
-				to_chat(user, SPAN_NOTICE("You start hammering the bolts into the unlocked position"))
+				to_chat(user, span_notice("You start hammering the bolts into the unlocked position"))
 				// long time and high chance to fail.
 				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_VERY_HARD, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You unbolt the door."))
+					to_chat(user, span_notice("You unbolt the door."))
 					locked = FALSE
 			else
-				to_chat(user, SPAN_NOTICE("You can\'t hammer away the bolts if the door is powered or not bolted."))
+				to_chat(user, span_notice("You can\'t hammer away the bolts if the door is powered or not bolted."))
 				return
 
 
@@ -1061,7 +1061,7 @@ There are 9 wires.
 	else if (secured_wires)
 		lock()
 
-	for (var/mob/O in viewers(src, null))
+	for (var/mob/O in viewers(get_turf(src)))
 		if ((O.client && !( O.blinded )))
 			O.show_message("[name]'s control panel bursts open, sparks spewing out!")
 
@@ -1146,7 +1146,7 @@ There are 9 wires.
 	health -= crush_damage
 	healthcheck()
 
-/obj/structure/closet/airlock_crush(var/crush_damage)
+/obj/structure/closet/airlock_crush(crush_damage)
 	..()
 	damage(crush_damage)
 	for(var/atom/movable/AM in src)
@@ -1157,7 +1157,7 @@ There are 9 wires.
 	. = ..()
 	health += crush_damage * degradation * (1 - get_tool_quality(QUALITY_PRYING) * 0.01) * 0.4
 
-/mob/living/airlock_crush(var/crush_damage)
+/mob/living/airlock_crush(crush_damage)
 	. = ..()
 
 	damage_through_armor(0.7 * crush_damage, BRUTE, BP_HEAD, ARMOR_MELEE)
@@ -1171,16 +1171,16 @@ There are 9 wires.
 	var/turf/T = get_turf(src)
 	T.add_blood(src)
 
-/mob/living/carbon/airlock_crush(var/crush_damage)
+/mob/living/carbon/airlock_crush(crush_damage)
 	. = ..()
 	if (!(species && (species.flags & NO_PAIN)))
 		emote("scream")
 
-/mob/living/silicon/robot/airlock_crush(var/crush_damage)
+/mob/living/silicon/robot/airlock_crush(crush_damage)
 	adjustBruteLoss(crush_damage)
 	return 0
 
-/obj/machinery/door/airlock/close(var/forced=0)
+/obj/machinery/door/airlock/close(forced=0)
 	if(!can_close(forced))
 		return 0
 
@@ -1235,7 +1235,7 @@ There are 9 wires.
 
 	..()
 
-/obj/machinery/door/airlock/proc/lock(var/forced=0)
+/obj/machinery/door/airlock/proc/lock(forced=0)
 	if(locked)
 		return 0
 
@@ -1248,7 +1248,7 @@ There are 9 wires.
 	update_icon()
 	return 1
 
-/obj/machinery/door/airlock/proc/unlock(var/forced=0)
+/obj/machinery/door/airlock/proc/unlock(forced=0)
 	if(!src.locked)
 		return
 
@@ -1267,7 +1267,7 @@ There are 9 wires.
 		return 0
 	return ..(M)
 
-/obj/machinery/door/airlock/New(var/newloc, var/obj/structure/door_assembly/assembly=null)
+/obj/machinery/door/airlock/New(newloc, obj/structure/door_assembly/assembly=null)
 	..()
 
 	//if assembly is given, create the new door from the assembly
@@ -1338,7 +1338,7 @@ There are 9 wires.
 		electronics.conf_access = src.req_one_access
 		electronics.one_access = 1
 
-/obj/machinery/door/airlock/emp_act(var/severity)
+/obj/machinery/door/airlock/emp_act(severity)
 	if(prob(20/severity))
 		spawn(0)
 			open()
@@ -1365,7 +1365,7 @@ There are 9 wires.
 
 
 //Override to check locked var
-/obj/machinery/door/airlock/hit(var/mob/user, var/obj/item/I)
+/obj/machinery/door/airlock/hit(mob/user, obj/item/I)
 	var/obj/item/W = I
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	var/calc_damage = W.force*W.structure_damage_factor
@@ -1379,15 +1379,15 @@ There are 9 wires.
 	calc_damage -= resistance
 	user.do_attack_animation(src)
 	if(calc_damage <= 0)
-		user.visible_message(SPAN_DANGER("\The [user] hits \the [src] with \the [W] with no visible effect."))
+		user.visible_message(span_danger("\The [user] hits \the [src] with \the [W] with no visible effect."))
 		quiet ? null : playsound(src.loc, hitsound, 20, 1)
 	else
-		user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
+		user.visible_message(span_danger("\The [user] forcefully strikes \the [src] with \the [W]!"))
 		playsound(src.loc, hitsound, quiet? 3: calc_damage*2, 1, 3,quiet?-5 :2)
 		take_damage(W.force)
 
 
-/obj/machinery/door/airlock/take_damage(var/damage)
+/obj/machinery/door/airlock/take_damage(damage)
 	if (isnum(damage) && locked)
 		damage *= 0.66 //The bolts reinforce the door, reducing damage taken
 

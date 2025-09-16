@@ -30,7 +30,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/pre_attack(atom/a, mob/user, var/params)
+/obj/item/pre_attack(atom/a, mob/user, params)
 	if(overslot)
 		var/obj/item/clothing/i = a
 		if (istype(i))
@@ -124,7 +124,7 @@
 		return FALSE
 
 	if (ismob(loc))
-		return !(equip_slot in unworn_slots)
+		return !(equip_slot in GLOB.unworn_slots)
 
 
 /obj/item/proc/is_held()

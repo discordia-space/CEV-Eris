@@ -44,11 +44,13 @@
 	start_icon = icon("icons/HUD/storage_start.png")
 	middle_icon = icon("icons/HUD/storage_middle.png")
 	end_icon = icon("icons/HUD/storage_end.png")
+	appearance_flags = NO_CLIENT_COLOR
 
 /HUD_element/threePartBox/storedItemBackground
 	start_icon = icon("icons/HUD/stored_start.png")
 	middle_icon = icon("icons/HUD/stored_middle.png")
 	end_icon = icon("icons/HUD/stored_end.png")
+	appearance_flags = NO_CLIENT_COLOR
 
 /HUD_element/slottedItemBackground
 	icon = 'icons/HUD/block.png'
@@ -56,7 +58,7 @@
 /obj/item/storage/proc/storageBackgroundClick(HUD_element/sourceElement, mob/clientMob, location, control, params)
 	var/atom/A = sourceElement.getData("item")
 	if(A)
-		var/obj/item/I = clientMob.get_active_hand()
+		var/obj/item/I = clientMob.get_active_held_item()
 		if(I)
 			clientMob.ClickOn(A)
 
@@ -70,7 +72,7 @@
 	if(S)
 		S.close(clientMob)
 
-/obj/item/storage/proc/setupItemBackground(var/HUD_element/itemBackground, atom/item, itemCount)
+/obj/item/storage/proc/setupItemBackground(HUD_element/itemBackground, atom/item, itemCount)
 	itemBackground.setClickProc(TYPE_PROC_REF(/obj/item/storage, itemBackgroundClick), src)
 	itemBackground.setData("item", item)
 
@@ -103,6 +105,7 @@
 	closeButton.setHideParentOnClick(TRUE)
 	closeButton.setClickProc(TYPE_PROC_REF(/obj/item/storage, closeButtonClick), src)
 	closeButton.setData("item", src)
+	closeButton.appearance_flags = NO_CLIENT_COLOR
 
 	//storage space based items
 	if((storage_slots == null) && !display_contents_with_number)
@@ -185,7 +188,7 @@
 		var/currentSlot
 		var/currentItemNumber = 1
 		var/maxColumnCount = min(data.StorageData["ColCount"], slotsToDisplay)
-		for (currentSlot = 1, currentSlot <= slotsToDisplay, currentSlot++)
+		for(currentSlot = 1; currentSlot <= slotsToDisplay; currentSlot++)
 			var/HUD_element/slottedItemBackground/itemBackground = new()
 			main.add(itemBackground)
 			itemBackground.setPosition(totalWidth, totalHeight)
@@ -278,7 +281,7 @@
 
 /obj/item/storage/AltClick(mob/user)
 	if(user.incapacitated())
-		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		to_chat(user, span_warning("You can't do that right now!"))
 		return
 	if(!in_range(src, user))
 		return
@@ -308,7 +311,7 @@
 		return FALSE //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[src] is full, make some space."))
+			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE //Storage item is full
 
 	if(W.anchored)
@@ -317,22 +320,22 @@
 	if(can_hold.len)
 		if(!is_type_in_list(W, can_hold))
 			if(!stop_messages && ! istype(W, /obj/item/hand_labeler))
-				to_chat(usr, SPAN_NOTICE("[src] cannot hold \the [W]."))
+				to_chat(usr, span_notice("[src] cannot hold \the [W]."))
 			return FALSE
 		var/max_instances = can_hold[W.type]
 		if(max_instances && instances_of_type_in_list(W, contents) >= max_instances)
 			if(!stop_messages && !istype(W, /obj/item/hand_labeler))
-				to_chat(usr, SPAN_NOTICE("[src] has no more space specifically for \the [W]."))
+				to_chat(usr, span_notice("[src] has no more space specifically for \the [W]."))
 			return FALSE
 
 	if(cant_hold.len && is_type_in_list(W, cant_hold))
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W]."))
+			to_chat(usr, span_notice("[src] cannot hold [W]."))
 		return FALSE
 
 	if (max_w_class != null && W.w_class > max_w_class)
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[W] is too long for this [src]."))
+			to_chat(usr, span_notice("[W] is too long for this [src]."))
 		return FALSE
 
 	//Slot based storage overrides space-based storage
@@ -343,12 +346,12 @@
 
 		if(total_storage_space > max_storage_space)
 			if(!stop_messages)
-				to_chat(usr, SPAN_NOTICE("[src] is too full, make some space."))
+				to_chat(usr, span_notice("[src] is too full, make some space."))
 			return FALSE
 
 	if(W.w_class >= src.w_class && (istype(W, /obj/item/storage)))
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W] as it's a storage item of the same size."))
+			to_chat(usr, span_notice("[src] cannot hold [W] as it's a storage item of the same size."))
 		return FALSE //To prevent the stacking of same sized storage items.
 
 	. = TRUE
@@ -375,11 +378,11 @@
 		if (!prevent_warning)
 			for (var/mob/M in viewers(usr, null))
 				if (M == usr)
-					to_chat(usr, SPAN_NOTICE("You put \the [W] into [src]."))
+					to_chat(usr, span_notice("You put \the [W] into [src]."))
 				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
-					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
+					M.show_message(span_notice("\The [usr] puts [W] into [src]."))
 				else if (W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
-					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
+					M.show_message(span_notice("\The [usr] puts [W] into [src]."))
 
 	refresh_all()
 
@@ -435,14 +438,14 @@
 		var/obj/item/tray/T = W
 		if(T.calc_carry() > 0)
 			if(prob(85))
-				to_chat(user, SPAN_WARNING("The tray won't fit in [src]."))
+				to_chat(user, span_warning("The tray won't fit in [src]."))
 				return
 			else //todo: proper drop handling
 				W.loc = user.loc
 				if (user.client)
 					user.client.screen -= W
 				W.dropped(user)
-				to_chat(user, SPAN_WARNING("God damnit!"))
+				to_chat(user, span_warning("God damnit!"))
 
 	W.add_fingerprint(user)
 	. = handle_item_insertion(W)
@@ -481,11 +484,11 @@
 
 	if(user)
 		if(.)
-			user.visible_message(SPAN_NOTICE("[user] puts some things in [src]."),SPAN_NOTICE("You put some things in [src]."),SPAN_NOTICE("You hear rustling."))
+			user.visible_message(span_notice("[user] puts some things in [src]."),span_notice("You put some things in [src]."),span_notice("You hear rustling."))
 			if (src.use_sound)
 				playsound(src.loc, src.use_sound, 50, 1, -5)
 		else
-			to_chat(user, SPAN_NOTICE("You fail to pick anything up with \the [src]."))
+			to_chat(user, span_notice("You fail to pick anything up with \the [src]."))
 
 
 /obj/item/storage/resolve_attackby(atom/A, mob/user)
@@ -559,7 +562,7 @@
 	..()
 
 /obj/item/storage/attack_self(mob/user)
-	if(user.get_active_hand() == src && user.get_inactive_hand() == null)
+	if(user.get_active_held_item() == src && user.get_inactive_held_item() == null)
 		if(user.swap_hand())
 			open(user)
 			. = TRUE

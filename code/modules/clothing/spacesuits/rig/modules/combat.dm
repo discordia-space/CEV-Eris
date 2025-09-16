@@ -37,7 +37,7 @@
 		list("EMP grenade", "EMP grenade", /obj/item/grenade/empgrenade, 3),
 		)
 
-/obj/item/rig_module/grenade_launcher/accepts_item(var/obj/item/input_device, var/mob/living/user)
+/obj/item/rig_module/grenade_launcher/accepts_item(obj/item/input_device, mob/living/user)
 
 	if(!istype(input_device) || !istype(user))
 		return 0
@@ -53,7 +53,7 @@
 		return 0
 
 	if(accepted_item.charges >= 5)
-		to_chat(user, SPAN_DANGER("Another grenade of that type will not fit into the module."))
+		to_chat(user, span_danger("Another grenade of that type will not fit into the module."))
 		return 0
 
 	to_chat(user, "<font color='blue'><b>You slot \the [input_device] into the suit module.</b></font>")
@@ -73,7 +73,7 @@
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!charge_selected)
-		to_chat(H, SPAN_DANGER("You have not selected a grenade type."))
+		to_chat(H, span_danger("You have not selected a grenade type."))
 		return 0
 
 	var/datum/rig_charge/charge = charges[charge_selected]
@@ -82,12 +82,12 @@
 		return 0
 
 	if(charge.charges <= 0)
-		to_chat(H, SPAN_DANGER("Insufficient grenades!"))
+		to_chat(H, span_danger("Insufficient grenades!"))
 		return 0
 
 	charge.charges--
 	var/obj/item/grenade/new_grenade = new charge.product_type(get_turf(H))
-	H.visible_message(SPAN_DANGER("[H] launches \a [new_grenade]!"))
+	H.visible_message(span_danger("[H] launches \a [new_grenade]!"))
 	new_grenade.activate(H)
 	new_grenade.throw_at(target,fire_force,fire_distance)
 
@@ -97,7 +97,7 @@
 	selectable = 1
 	usable = 1
 	module_cooldown = 1
-	
+
 	icon_state = "lcannon"
 
 	engage_string = "Configure"
@@ -194,7 +194,7 @@
 	var/mob/living/M = holder.wearer
 
 	if(M.l_hand && M.r_hand)
-		to_chat(M, SPAN_DANGER("Your hands are full."))
+		to_chat(M, span_danger("Your hands are full."))
 		deactivate()
 		return
 
@@ -251,11 +251,11 @@
 		return FALSE
 
 	if(M.l_hand && M.r_hand)
-		to_chat(M, SPAN_DANGER("Your hands are full."))
+		to_chat(M, span_danger("Your hands are full."))
 		return FALSE
 
 	if(!do_after(M, 1.5 SECONDS, src))
-		to_chat(M, SPAN_DANGER("You have to stand still to deploy the shield!"))
+		to_chat(M, span_danger("You have to stand still to deploy the shield!"))
 		return FALSE
 
 	..()
@@ -263,7 +263,7 @@
 	var/obj/item/shield/hardsuit/shield = new(M)
 	shield.creator = M
 	M.put_in_hands(shield)
-	M.visible_message(SPAN_WARNING("\The [M] deploys \his [shield]!"))
+	M.visible_message(span_warning("\The [M] deploys \his [shield]!"))
 
 /obj/item/rig_module/held/shield/deactivate()
 
@@ -277,7 +277,7 @@
 	for(var/obj/item/shield/hardsuit/shield in M.contents)
 		M.drop_from_inventory(shield)
 		qdel(shield)
-	
+
 	to_chat(M, "The shield retracts into the hardsuit.")
 
 /obj/item/rig_module/fabricator
@@ -307,11 +307,11 @@
 	if(target)
 		var/obj/item/firing = new fabrication_type()
 		firing.forceMove(get_turf(src))
-		H.visible_message(SPAN_DANGER("[H] launches \a [firing]!"))
+		H.visible_message(span_danger("[H] launches \a [firing]!"))
 		firing.throw_at(target,fire_force,fire_distance)
 	else
 		if(H.l_hand && H.r_hand)
-			to_chat(H, SPAN_DANGER("Your hands are full."))
+			to_chat(H, span_danger("Your hands are full."))
 		else
 			var/obj/item/new_weapon = new fabrication_type()
 			new_weapon.forceMove(H)

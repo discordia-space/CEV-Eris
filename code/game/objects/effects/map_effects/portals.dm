@@ -243,7 +243,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 
 	for(var/thing in mobs_to_relay)
 		var/mob/mob = thing
-		var/rendered = "<span class='message'>[text]</span>"
+		var/rendered = span_message("[text]")
 		mob.show_message(rendered)
 
 	..()
@@ -252,7 +252,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 /obj/effect/map_effect/portal/master/show_message(msg, type, alt, alt_type)
 	if(!counterpart)
 		return
-	var/rendered = "<span class='message'>[msg]</span>"
+	var/rendered = span_message("[msg]")
 	var/turf/T = counterpart.get_focused_turf()
 	var/list/in_range = get_mobs_and_objs_in_view_fast(T, world.view, 0)
 	var/list/mobs_to_relay = in_range["mobs"]
@@ -264,7 +264,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	..()
 
 // Allows portals to transfer speech.
-/obj/effect/map_effect/portal/master/hear_talk(mob/M, var/msg, verb)
+/obj/effect/map_effect/portal/master/hear_talk(mob/M, msg, verb)
 	if(!counterpart)
 		return
 	var/turf/T = counterpart.get_focused_turf()
@@ -280,7 +280,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 		else
 			name_used = M.name
 		var/rendered = null
-		rendered = "<span class='game say'><span class='name'>[name_used]</span> [msg]</span>"
+		rendered = "<span class='game say'>[span_name("[name_used]")] [msg]</span>"
 		mob.show_message(rendered, 2)
 
 	..()

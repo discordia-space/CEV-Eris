@@ -3,7 +3,7 @@
 
 /obj/effect/plant/proc/get_cardinal_neighbors()
 	var/list/cardinal_neighbors = list()
-	for(var/check_dir in cardinal)
+	for(var/check_dir in GLOB.cardinal)
 		var/turf/T = get_step(get_turf(src), check_dir)
 		if(istype(T))
 			cardinal_neighbors |= T
@@ -84,7 +84,7 @@
 
 //This silly special case override is needed to make vines work with portals.
 //Code is copied from /atoms_movable.dm, but a spawn call is removed, making it completely synchronous
-/obj/effect/plant/Bump(var/atom/A, yes)
+/obj/effect/plant/Bump(atom/A, yes)
 	if (A && yes)
 		A.last_bumped = world.time
 		A.Bumped(src)
@@ -125,14 +125,14 @@
 	// We shouldn't have spawned if the controller doesn't exist.
 	check_health(FALSE)//Dont want to update the icon every process
 	if(neighbors.len || health != max_health)
-		plant_controller.add_plant(src)
+		SSplants.add_plant(src)
 
 	if (seed.get_trait(TRAIT_CHEM_SPRAYER) && !spray_cooldown)
 		var/turf/mainloc = get_turf(src)
 		for(var/mob/living/A in range(1,mainloc))
 			if(A.move_speed < 12)
 				HasProximity(A)
-				A.visible_message(SPAN_WARNING("[src] sprays something on [A.name]!"), SPAN_WARNING("[src] sprays something on you!"))
+				A.visible_message(span_warning("[src] sprays something on [A.name]!"), span_warning("[src] sprays something on you!"))
 				spray_cooldown = TRUE
 				spawn(10)
 					spray_cooldown = FALSE
@@ -208,7 +208,7 @@
 
 
 //Once created, the new vine moves to destination turf
-/obj/effect/plant/proc/handle_move(var/turf/origin, var/turf/destination)
+/obj/effect/plant/proc/handle_move(turf/origin, turf/destination)
 	//First of all lets ensure we still exist.
 	//We may have been deleted by another vine doing postmove cleanup
 	if (QDELETED(src))
@@ -274,10 +274,9 @@
 			continue
 		for(var/obj/effect/plant/neighbor in check_turf.contents)
 			neighbor.neighbors |= check_turf
-			plant_controller.add_plant(neighbor)
+			SSplants.add_plant(neighbor)
 
-	spawn(1)
-		qdel(src)
+	QDEL_IN(src, 1)
 
 #undef MIN_LIGHT_LIMIT
 #undef NEIGHBOR_REFRESH_TIME

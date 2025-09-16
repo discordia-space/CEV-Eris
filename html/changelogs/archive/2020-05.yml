@@ -22,7 +22,7 @@
   - bugfix: Mechs won't despawn with a occupant while going out of current map.
   - bugfix: Cleaned up the weird coffin code.
 2020-05-11:
-  Autisem:
+  REDACTED:
   - rscadd: A sink for NeoTheologists hydroponics
   - rscadd: Both gene machines are added to NoeTheologists hydroponics
   - rscadd: Atropa belladonna, a new berry which contains atropine
@@ -44,7 +44,7 @@
   Smokingsquirrel:
   - rscadd: new prefix "d" for german language
 2020-05-14:
-  Autisem:
+  REDACTED:
   - rscadd: A exmaple stash sack that hides from t-ray scanners
   - bugfix: storage items can now hide from t-ray scanners
   - code_imp: storage now has a is_tray_hidden, if set to true it wont be found my

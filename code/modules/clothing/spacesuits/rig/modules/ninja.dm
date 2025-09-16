@@ -37,7 +37,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	H.visible_message(SPAN_WARNING("\The [H] seems to disappear before your eyes!"), SPAN_NOTICE("You feel completely invisible."))
+	H.visible_message(span_warning("\The [H] seems to disappear before your eyes!"), span_notice("You feel completely invisible."))
 
 	H.invisibility = INVISIBILITY_LEVEL_TWO
 	H.alpha = 0
@@ -52,7 +52,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	H.visible_message(SPAN_WARNING("\The [src] appears from thin air!"), SPAN_NOTICE("You have re-appeared."))
+	H.visible_message(span_warning("\The [src] appears from thin air!"), span_notice("You have re-appeared."))
 
 	H.invisibility = initial(H.invisibility)
 	H.alpha = initial(H.alpha)
@@ -80,7 +80,7 @@
 	interface_desc = "An advanced teleportation system. It is capable of pinpoint precision or random leaps forward."
 	spawn_blacklisted = TRUE
 
-/obj/item/rig_module/teleporter/proc/phase_in(var/mob/M,var/turf/T)
+/obj/item/rig_module/teleporter/proc/phase_in(mob/M,turf/T)
 
 	if(!M || !T)
 		return
@@ -90,7 +90,7 @@
 	playsound(T, 'sound/effects/sparks2.ogg', 50, 1)
 	anim(T,M,'icons/mob/mob.dmi',,"phasein",,M.dir)
 
-/obj/item/rig_module/teleporter/proc/phase_out(var/mob/M,var/turf/T)
+/obj/item/rig_module/teleporter/proc/phase_out(mob/M,turf/T)
 
 	if(!M || !T)
 		return
@@ -105,7 +105,7 @@
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!istype(H.loc, /turf))
-		to_chat(H, SPAN_WARNING("You cannot teleport out of your current location."))
+		to_chat(H, span_warning("You cannot teleport out of your current location."))
 		return 0
 
 	var/turf/T
@@ -115,19 +115,19 @@
 		T = get_teleport_loc(get_turf(H), H, rand(5, 9))
 
 	if(!T || T.density)
-		to_chat(H, SPAN_WARNING("You cannot teleport into solid walls."))
+		to_chat(H, span_warning("You cannot teleport into solid walls."))
 		return 0
 
 	if(isAdminLevel(T.z))
-		to_chat(H, SPAN_WARNING("You cannot use your teleporter on this Z-level."))
+		to_chat(H, span_warning("You cannot use your teleporter on this Z-level."))
 		return 0
 
 	if(T.contains_dense_objects())
-		to_chat(H, SPAN_WARNING("You cannot teleport to a location with solid objects."))
+		to_chat(H, span_warning("You cannot teleport to a location with solid objects."))
 		return 0
 
 	if(T.z != H.z || get_dist(T, get_turf(H)) > world.view)
-		to_chat(H, SPAN_WARNING("You cannot teleport to such a distant object."))
+		to_chat(H, span_warning("You cannot teleport to such a distant object."))
 		return 0
 
 	phase_out(H,get_turf(H))
@@ -200,7 +200,7 @@
 	if(holder.wearer.stat == 2)
 		engage(1)
 
-/obj/item/rig_module/self_destruct/engage(var/skip_check)
+/obj/item/rig_module/self_destruct/engage(skip_check)
 	if(!skip_check && usr && alert(usr, "Are you sure you want to push that button?", "Self-destruct", "No", "Yes") == "No")
 		return
 	explosion(get_turf(src), explosion_power, explosion_falloff, explosion_flags)

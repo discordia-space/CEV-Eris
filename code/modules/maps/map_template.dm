@@ -35,7 +35,7 @@
 			height = bounds[MAP_MAXY]
 	return bounds
 
-/datum/map_template/proc/initTemplateBounds(var/list/bounds)
+/datum/map_template/proc/initTemplateBounds(list/bounds)
 	if (SSatoms.initialized == INITIALIZATION_INSSATOMS)
 		return // let proper initialisation handle it later
 
@@ -57,13 +57,13 @@
 				atmos_machines += A
 	atoms |= areas
 
-	admin_notice("<span class='danger'>Initializing newly created atom(s) in submap.</span>", R_DEBUG)
+	admin_notice(span_danger("Initializing newly created atom(s) in submap."), R_DEBUG)
 	SSatoms.InitializeAtoms(atoms)
 
-	admin_notice("<span class='danger'>Initializing atmos pipenets and machinery in submap.</span>", R_DEBUG)
+	admin_notice(span_danger("Initializing atmos pipenets and machinery in submap."), R_DEBUG)
 	SSmachines.setup_atmos_machinery(atmos_machines)
 
-	admin_notice("<span class='danger'>Rebuilding powernets due to submap creation.</span>", R_DEBUG)
+	admin_notice(span_danger("Rebuilding powernets due to submap creation."), R_DEBUG)
 	SSmachines.setup_powernets_for_cables(cables)
 
 	// Ensure all machines in loaded areas get notified of power status
@@ -71,9 +71,9 @@
 		var/area/A = I
 		A.power_change()
 
-	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
+	admin_notice(span_danger("Submap initializations finished."), R_DEBUG)
 
-/datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = 0)
+/datum/map_template/proc/load_new_z(centered = FALSE, orientation = 0)
 	var/x = 1
 	var/y = 1
 
@@ -130,24 +130,24 @@
 
 /datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE, orientation = 0)
 	var/deleted_atoms = 0
-	admin_notice("<span class='danger'>Annihilating objects in submap loading locatation.</span>", R_DEBUG)
+	admin_notice(span_danger("Annihilating objects in submap loading locatation."), R_DEBUG)
 	var/list/turfs_to_clean = get_affected_turfs(origin, centered, orientation)
 	if(turfs_to_clean.len)
 		for(var/turf/T in turfs_to_clean)
 			for(var/atom/movable/AM in T)
 				++deleted_atoms
 				qdel(AM)
-	admin_notice("<span class='danger'>Annihilated [deleted_atoms] objects.</span>", R_DEBUG)
+	admin_notice(span_danger("Annihilated [deleted_atoms] objects."), R_DEBUG)
 
 
 //for your ever biggening badminnery kevinz000
 //? - Cyberboss
-/proc/load_new_z_level(var/file, var/name, var/orientation = 0)
+/proc/load_new_z_level(file, name, orientation = 0)
 	var/datum/map_template/template = new(file, name)
 	template.load_new_z(orientation)
 
 // Very similar to the /tg/ version.
-/proc/seed_submaps(var/list/z_levels, var/budget = 0, var/whitelist = /area/space, var/desired_map_template_type = null)
+/proc/seed_submaps(list/z_levels, budget = 0, whitelist = /area/space, desired_map_template_type = null)
 	set background = TRUE
 
 	if(!z_levels || !z_levels.len)
@@ -218,7 +218,7 @@
 			specific_sanity--
 
 			var/orientation
-			if(chosen_template.fixed_orientation || !config.random_submap_orientation)
+			if(chosen_template.fixed_orientation || !CONFIG_GET(flag/random_submap_orientation))
 				orientation = 0
 			else
 				orientation = pick(list(0, 90, 180, 270))

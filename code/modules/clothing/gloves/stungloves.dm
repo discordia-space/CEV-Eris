@@ -27,7 +27,7 @@
 		cell = null
 		update_icon()
 
-/obj/item/clothing/gloves/stungloves/proc/deductcharge(var/power_drain)
+/obj/item/clothing/gloves/stungloves/proc/deductcharge(power_drain)
 	if(cell)
 		if(cell.checked_use(power_drain))
 			//do we have enough power for another hit?
@@ -53,26 +53,26 @@
 /obj/item/clothing/gloves/stungloves/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
 		if(cell)
-			extra_description += SPAN_NOTICE("Power Glove is [round(cell.percent())]% charged.")
+			extra_description += span_notice("Power Glove is [round(cell.percent())]% charged.")
 		else
-			extra_description += SPAN_WARNING("Power Glove does not have a power source installed.")
+			extra_description += span_warning("Power Glove does not have a power source installed.")
 	..(user, extra_description)
 
 /obj/item/clothing/gloves/stungloves/attack_self(mob/user)
 	if(cell && cell.check_charge(hitcost))
 		status = !status
-		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
+		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
 		playsound(loc, "sparks", 75, 1, -1)
 		update_icon()
 	else
 		status = FALSE
 		if(!cell)
-			to_chat(user, SPAN_WARNING("[src] does not have a power source!"))
+			to_chat(user, span_warning("[src] does not have a power source!"))
 		else
-			to_chat(user, SPAN_WARNING("[src] is out of charge."))
+			to_chat(user, span_warning("[src] is out of charge."))
 	add_fingerprint(user)
 
-/obj/item/clothing/gloves/stungloves/Touch(mob/living/L, var/proximity)
+/obj/item/clothing/gloves/stungloves/Touch(mob/living/L, proximity)
 	if(!status)
 		return FALSE
 	if(!istype(L) || !proximity)
@@ -90,9 +90,9 @@
 
 	//stun effects
 	if(affecting)
-		L.visible_message(SPAN_DANGER("[L] has been punched in the [affecting.name] with [src] by [user]!"))
+		L.visible_message(span_danger("[L] has been punched in the [affecting.name] with [src] by [user]!"))
 	else
-		L.visible_message(SPAN_DANGER("[L] has been punched with [src] by [user]!"))
+		L.visible_message(span_danger("[L] has been punched with [src] by [user]!"))
 	playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 
 	if(deductcharge(hitcost))
@@ -103,7 +103,7 @@
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		H.forcesay(hit_appends)
+		H.forcesay(GLOB.hit_appends)
 
 
 /obj/item/clothing/gloves/stungloves/emp_act(severity)

@@ -51,7 +51,7 @@
 		ui.open()
 
 
-/obj/machinery/autolathe/artist_bench/Topic(href, href_list)//var/mob/living/carbon/human/H, var/mob/living/user
+/obj/machinery/autolathe/artist_bench/Topic(href, href_list)//mob/living/carbon/human/H, mob/living/user
 	if(..())
 		return
 
@@ -251,7 +251,7 @@
 	ins_used = CLAMP(ins_used, 0, user.sanity.insight)
 	//ins_used = max(ins_used, min_insight)//debug
 	if(ins_used < min_insight)
-		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench."))
+		to_chat(user, span_warning("At least 40 insight is needed to use this bench."))
 		return
 	flick("[initial(icon_state)]_work", src)
 	working = TRUE
@@ -269,7 +269,7 @@
 		art.build_path = artwork.type
 		art.AssembleDesignInfo(artwork)
 	else
-		visible_message(SPAN_WARNING("Unknown error."))
+		visible_message(span_warning("Unknown error."))
 		return
 	var/err = can_print(art, ins_used)
 	//err = ERR_OK //for debug
@@ -278,7 +278,7 @@
 			error = error_messages[err]
 		else
 			error = "Unknown error."
-		visible_message(SPAN_WARNING("[error]"))
+		visible_message(span_warning("[error]"))
 		qdel(artwork)
 		QDEL_NULL(art)
 		return
@@ -299,7 +299,7 @@
 
 		for(var/stat in stat_change)
 			user.stats.changeStat(stat, stat_change[stat])
-		to_chat(user, SPAN_WARNING("To create this work of art you have sacrificed a part of yourself."))
+		to_chat(user, span_warning("To create this work of art you have sacrificed a part of yourself."))
 	else if(user.sanity.resting)
 		user.sanity.finish_rest()
 

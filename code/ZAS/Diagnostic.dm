@@ -1,4 +1,4 @@
-client/proc/Zone_Info(turf/T as null|turf)
+/client/proc/Zone_Info(turf/T as null|turf)
 	set category = "Debug"
 	if(T)
 		if(istype(T,/turf) && T:zone)
@@ -11,13 +11,13 @@ client/proc/Zone_Info(turf/T as null|turf)
 				to_chat(mob, "[g]: [mix.gas[g]]\n")
 	else
 		if(zone_debug_images)
-			for(var/zone in  zone_debug_images)
+			for(var/datum/zone in  zone_debug_images)
 				images -= zone_debug_images[zone]
 			zone_debug_images = null
 
-client/var/list/zone_debug_images
+/client/var/list/zone_debug_images
 
-client/proc/Test_ZAS_Connection(var/turf/T as turf)
+/client/proc/Test_ZAS_Connection(turf/T as turf)
 	set category = "Debug"
 	if(!istype(T))
 		return

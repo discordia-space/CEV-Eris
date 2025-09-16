@@ -62,7 +62,7 @@
 		src.has_power = 1
 	else
 		if (src.has_power)
-			to_chat(src, "\red You are now running on emergency backup power.")
+			to_chat(src, span_red("You are now running on emergency backup power."))
 		src.has_power = 0
 		if(lights_on) // Light is on but there is no power!
 			lights_on = 0
@@ -87,7 +87,7 @@
 	if(src.resting)
 		Weaken(5)
 
-	if(health < HEALTH_THRESHOLD_DEAD && src.stat != 2) //die only once
+	if(health < CONFIG_GET(number/health_threshold_dead) && src.stat != 2) //die only once
 		death()
 
 
@@ -252,7 +252,7 @@
 		killswitch_time --
 		if(killswitch_time <= 0)
 			if(src.client)
-				to_chat(src, SPAN_DANGER("Killswitch Activated"))
+				to_chat(src, span_danger("Killswitch Activated"))
 			killswitch = 0
 			spawn(5)
 				gib()
@@ -263,7 +263,7 @@
 		weaponlock_time --
 		if(weaponlock_time <= 0)
 			if(src.client)
-				to_chat(src, SPAN_DANGER("Weapon Lock Timed Out!"))
+				to_chat(src, span_danger("Weapon Lock Timed Out!"))
 			weapon_lock = 0
 			weaponlock_time = 120
 

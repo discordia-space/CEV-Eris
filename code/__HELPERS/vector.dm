@@ -23,13 +23,13 @@ return_angle()
 	Returns the direction (angle in degrees) the object is travelling in.
 
              (N)
-             90°
+             90Â°
               ^
               |
-  (W) 180° <--+--> 0° (E)
+  (W) 180Â° <--+--> 0Â° (E)
               |
               v
-             -90°
+             -90Â°
              (S)
 
 return_hypotenuse()
@@ -52,7 +52,7 @@ return_location()
 	var/offset_x = 0	// distance to increment each step
 	var/offset_y = 0
 
-/datum/plot_vector/proc/setup(var/turf/S, var/turf/T, var/xo = 0, var/yo = 0, var/angle_offset=0)
+/datum/plot_vector/proc/setup(turf/S, turf/T, xo = 0, yo = 0, angle_offset=0)
 	source = S
 	target = T
 
@@ -89,14 +89,14 @@ return_location()
 	// calculate the offset per increment step
 	if(abs(angle) in list(0, 45, 90, 135, 180))		// check if the angle is a cardinal
 		if(abs(angle) in list(0, 45, 135, 180))		// if so we can skip the trigonometry and set these to absolutes as
-			offset_x = sign(dx)						// they will always be a full step in one or more directions
+			offset_x = _sign(dx)						// they will always be a full step in one or more directions
 		if(abs(angle) in list(45, 90, 135))
-			offset_y = sign(dy)
+			offset_y = _sign(dy)
 	else if(abs(dy) > abs(dx))
 		offset_x = COT(abs(angle))					// otherwise set the offsets
-		offset_y = sign(dy)
+		offset_y = _sign(dy)
 	else
-		offset_x = sign(dx)
+		offset_x = _sign(dx)
 		offset_y = TAN(angle)
 		if(dx < 0)
 			offset_y = -offset_y
@@ -115,7 +115,7 @@ return_location()
 /datum/plot_vector/proc/return_hypotenuse()
 	return sqrt(((offset_x / 32) ** 2) + ((offset_y / 32) ** 2))
 
-/datum/plot_vector/proc/return_location(var/datum/vector_loc/data)
+/datum/plot_vector/proc/return_location(datum/vector_loc/data)
 	if(!data)
 		data = new()
 	data.loc = locate(round(loc_x / world.icon_size, 1), round(loc_y / world.icon_size, 1), loc_z)

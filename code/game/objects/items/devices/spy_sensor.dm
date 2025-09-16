@@ -36,21 +36,21 @@
 	if(usr.incapacitated() || !Adjacent(usr) || !isturf(loc))
 		return
 	if(locate(/obj/item/device/spy_sensor) in orange(src,1))
-		to_chat(usr, SPAN_WARNING("Another sensor in proximity prevents activation."))
+		to_chat(usr, span_warning("Another sensor in proximity prevents activation."))
 		return
 	active = TRUE
 	start()
 
 	var/sensor_amount = length(get_local_sensors())
-	to_chat(usr, SPAN_NOTICE("Sensor activated. [sensor_amount] sensor\s active in the area."))
+	to_chat(usr, span_notice("Sensor activated. [sensor_amount] sensor\s active in the area."))
 	if(sensor_amount >= 3 && timer)
-		to_chat(usr, SPAN_NOTICE("Data collection initiated."))
+		to_chat(usr, span_notice("Data collection initiated."))
 		if(owner)
 			for(var/datum/antag_contract/recon/C in GLOB.various_antag_contracts)
 				if(C.completed)
 					continue
 				if(get_area(src) in C.targets)
-					to_chat(usr, SPAN_NOTICE("Recon contract locked in."))
+					to_chat(usr, span_notice("Recon contract locked in."))
 					return
 
 /obj/item/device/spy_sensor/proc/get_local_sensors()

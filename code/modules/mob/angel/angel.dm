@@ -38,7 +38,7 @@
 	real_name = name
 
 	owner = src
-	visualnet = cameranet
+	visualnet = GLOB.cameranet
 
 
 /mob/observer/eye/angel/EyeMove(n, direct)

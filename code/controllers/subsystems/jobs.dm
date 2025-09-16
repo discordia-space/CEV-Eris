@@ -12,6 +12,9 @@ SUBSYSTEM_DEF(job)
 
 	var/list/occupations = list()			//List of all jobs
 	var/list/occupations_by_name = list()	//Dict of all jobs, keys are titles
+	var/list/departments = list()			//List of all departments
+	var/list/departments_by_name = list()	//Dict of all departments, keys are names
+	// var/list/datum/department/joinable_departments = list()
 	var/list/unassigned = list()			//Players who need jobs
 	var/list/job_debug = list()				//Debug info
 	var/list/job_mannequins = list()				//Cache of icons for job info window
@@ -55,9 +58,9 @@ SUBSYSTEM_DEF(job)
 
 	if(!holder)	return
 
-	var/client/the_chosen_one = input(usr, "Select player to whitelist for jobs", "THE CHOSEN ONE!", null) in clients
+	var/client/the_chosen_one = input(usr, "Select player to whitelist for jobs", "THE CHOSEN ONE!", null) in GLOB.clients
 	if(!the_chosen_one)
-		to_chat(usr, SPAN_DANGER("No client selected to whitelist"))
+		to_chat(usr, span_danger("No client selected to whitelist"))
 		return
 	SSjob.WhitelistPlayer(the_chosen_one.ckey)
 
@@ -67,9 +70,9 @@ SUBSYSTEM_DEF(job)
 
 	if(!holder)	return
 
-	var/client/the_disavowed_one = input(usr, "Select player to unwhitelist from jobs", "THE DISAVOWED ONE!", null) in clients
+	var/client/the_disavowed_one = input(usr, "Select player to unwhitelist from jobs", "THE DISAVOWED ONE!", null) in GLOB.clients
 	if(!the_disavowed_one)
-		to_chat(usr, SPAN_DANGER("No client selected to unwhitelist"))
+		to_chat(usr, span_danger("No client selected to unwhitelist"))
 		return
 	SSjob.UnwhitelistPlayer(the_disavowed_one.ckey)
 
@@ -78,25 +81,19 @@ SUBSYSTEM_DEF(job)
 	set name = "Show playtimes"
 
 	if(!SSjob.initialized)
-		to_chat(mob, SPAN_NOTICE("The Jobs subsystem is not initialized yet, please wait."))
+		to_chat(mob, span_notice("The Jobs subsystem is not initialized yet, please wait."))
 		return
 
 	var/client_key = ckey
 
 	if(!client_key) return
 
-	var/htmlContent = {"<html>
-	<head>
-		<title>Registered playtimes onboard CEV ERIS</title>
-	</head>
-	<body>
-		<ul>
-	"}
+	var/htmlContent = {"<ul>"}
 
 	if(!length(SSjob.ckey_to_job_to_playtime[ckey]))
 		SSjob.LoadPlaytimes(ckey)
 	if(!length(SSjob.ckey_to_job_to_playtime[ckey]))
-		to_chat(mob, SPAN_NOTICE("SSjobs was unable to load your playtimes."))
+		to_chat(mob, span_notice("SSjobs was unable to load your playtimes."))
 	for(var/occupation in SSjob.occupations_by_name)
 		var/value = round(SSjob.ckey_to_job_to_playtime[client_key][occupation]/600)
 		if(length(SSinactivity_and_job_tracking.current_playtimes))
@@ -108,11 +105,9 @@ SUBSYSTEM_DEF(job)
 			value = 0
 		htmlContent += "<li> [occupation] : [value] Minutes</li>"
 	htmlContent += {"
-		</ul>
-	</body>
-	</html>"}
+		</ul>"}
 
-	usr << browse(htmlContent, "window=playtimes;file=playtimes;display=1; size=300x300;border=0;can_close=1; can_resize=1;can_minimize=1;titlebar=1" )
+	usr << browse(HTML_SKELETON_TITLE("Registered playtimes onboard CEV ERIS", htmlContent), "window=playtimes;file=playtimes;display=1; size=300x300;border=0;can_close=1; can_resize=1;can_minimize=1;titlebar=1" )
 
 /datum/controller/subsystem/job/proc/WhitelistPlayer(ckey)
 	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
@@ -159,7 +154,20 @@ SUBSYSTEM_DEF(job)
 	else
 		return FALSE
 
+/datum/controller/subsystem/job/proc/GetTotalPlaytimeMinutesCkey(ckey)
+	if(!ckey)
+		return 0
+	if(!ckey_to_total_playtime[ckey])
+		LoadPlaytimes(ckey)
+	if(!ckey_to_total_playtime[ckey])
+		return 0
+	return round(ckey_to_total_playtime[ckey] / 600)
+
 /datum/controller/subsystem/job/proc/LoadPlaytimeRequirements(folderPath)
+	if (!rustg_file_exists(folderPath))
+		to_chat(world, span_warning("Job playtime requirements file not found at [folderPath]."))
+		log_world("Job playtime requirements file not found at [folderPath].")
+		return FALSE
 	var/list/le_playtimes = file2list(folderPath)
 	for(var/playtime in le_playtimes)
 		if(!playtime)
@@ -241,6 +249,15 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/SetupOccupations(faction = "CEV Eris")
 	occupations.Cut()
 	occupations_by_name.Cut()
+	departments.Cut()
+	departments_by_name.Cut()
+
+	for(var/D in subtypesof(/datum/department))
+		var/datum/department/department = new D()
+
+		departments += department
+		departments_by_name[department.id] = department
+
 	for(var/J in subtypesof(/datum/job))
 		var/datum/job/job = new J()
 		if(job.faction != faction)
@@ -248,14 +265,22 @@ SUBSYSTEM_DEF(job)
 		occupations += job
 		occupations_by_name[job.title] = job
 
-	if(!occupations.len)
-		to_chat(world, SPAN_WARNING("Error setting up jobs, no job datums found!"))
-		return FALSE
+		var/datum/department/department = departments_by_name[job.department]
+		if(!department)
+			to_chat(world, span_warning("No department found for job [job.title]!!"))
+			continue
 
+		if(!department.jobs)
+			department.jobs = list()
+		department.jobs += job
+
+	if(!occupations.len)
+		to_chat(world, span_warning("Error setting up jobs, no job datums found!"))
+		return FALSE
 	return TRUE
 
 /datum/controller/subsystem/job/proc/Debug(text)
-	if(!Debug2)
+	if(!GLOB.Debug2)
 		return FALSE
 	job_debug.Add(text)
 	return TRUE
@@ -271,7 +296,7 @@ SUBSYSTEM_DEF(job)
 			return FALSE
 		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 			return FALSE
-		if(jobban_isbanned(player, rank))
+		if(jobban_isbanned(player.ckey, rank))
 			return FALSE
 
 		var/position_limit = job.total_positions
@@ -337,7 +362,7 @@ SUBSYSTEM_DEF(job)
 		if(job.is_restricted(player.client.prefs))
 			continue
 
-		if(jobban_isbanned(player, job.title))
+		if(jobban_isbanned(player.ckey, job.title))
 			Debug("GRJ isbanned failed, Player: [player], Job: [job.title]")
 			continue
 
@@ -481,7 +506,7 @@ SUBSYSTEM_DEF(job)
 				/*if(!job || SSticker.mode.disabled_jobs.Find(job.title) )
 					continue
 				*/
-				if(jobban_isbanned(player, job.title))
+				if(jobban_isbanned(player.ckey, job.title))
 					Debug("DO isbanned failed, Player: [player], Job:[job.title]")
 					continue
 
@@ -592,7 +617,7 @@ SUBSYSTEM_DEF(job)
 				return H
 			if("Captain")
 				var/sound/announce_sound = (SSticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
-				captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
+				minor_announce("All hands, Captain [H.real_name] on deck!", sound_override = announce_sound)
 
 	if(istype(H)) //give humans wheelchairs, if they need them.
 		var/obj/item/organ/external/l_leg = H.get_organ(BP_L_LEG)
@@ -637,7 +662,7 @@ SUBSYSTEM_DEF(job)
 
 	return H
 
-/proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
+/proc/EquipCustomLoadout(mob/living/carbon/human/H, datum/job/job)
 	if(!H || !H.client)
 		return
 
@@ -662,7 +687,7 @@ SUBSYSTEM_DEF(job)
 					permitted = 0
 
 				if(!permitted)
-					to_chat(H, "<span class='warning'>Your current job or whitelist status does not permit you to spawn with [thing]!</span>")
+					to_chat(H, span_warning("Your current job or whitelist status does not permit you to spawn with [thing]!"))
 					continue
 
 				if(!G.slot || G.slot == slot_accessory_buffer || (G.slot in loadout_taken_slots) || !G.spawn_on_mob(H, H.client.prefs.Gear()[G.display_name]))
@@ -673,7 +698,7 @@ SUBSYSTEM_DEF(job)
 	return spawn_in_storage
 
 /datum/controller/subsystem/job/proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
-	if(!config.load_jobs_from_txt)
+	if(!CONFIG_GET(flag/load_jobs_from_txt))
 		return FALSE
 
 	var/list/jobEntries = file2list(jobsfile)
@@ -719,7 +744,7 @@ SUBSYSTEM_DEF(job)
 		for(var/mob/new_player/player in GLOB.player_list)
 			if(!(player.ready && player.mind && !player.mind.assigned_role))
 				continue //This player is not ready
-			if(jobban_isbanned(player, job.title))
+			if(jobban_isbanned(player.ckey, job.title))
 				level5++
 				continue
 			if(player.client.prefs.CorrectLevel(job,1))
@@ -740,7 +765,7 @@ SUBSYSTEM_DEF(job)
  *  preference is not set, or the preference is not appropriate for the rank, in
  *  which case a fallback will be selected.
  */
-/datum/controller/subsystem/job/proc/get_spawnpoint_for(var/client/C, var/rank, late = FALSE)
+/datum/controller/subsystem/job/proc/get_spawnpoint_for(client/C, rank, late = FALSE)
 
 	if(!C)
 		CRASH("Null client passed to get_spawnpoint_for() proc!")
@@ -758,7 +783,7 @@ SUBSYSTEM_DEF(job)
 			SP = get_spawn_point(pref_spawn, late = TRUE)
 		else
 			SP = get_spawn_point(GLOB.maps_data.default_spawn, late = TRUE)
-			to_chat(H, SPAN_WARNING("You have not selected spawnpoint in preference menu."))
+			to_chat(H, span_warning("You have not selected spawnpoint in preference menu."))
 	else
 		SP = get_spawn_point(rank)
 
@@ -785,11 +810,11 @@ SUBSYSTEM_DEF(job)
 			if(SP.can_spawn(H, rank))
 				return SP
 			else
-				to_chat(H, SPAN_WARNING("Unable to spawn you at [SP.name].")) // you will be assigned default one which is \"[SP.display_name]\"."
+				to_chat(H, span_warning("Unable to spawn you at [SP.name].")) // you will be assigned default one which is \"[SP.display_name]\"."
 
 	// No spawn point? Something is fucked.
 	// Pick the default one.
-	to_chat(H, SPAN_WARNING("Unable to locate any safe spawn point. Have fun!"))
+	to_chat(H, span_warning("Unable to locate any safe spawn point. Have fun!"))
 	SP = get_spawn_point("Aft Cryogenic Storage")
 
 	// Still no spawn point? Return the first spawn point on the list.
@@ -801,9 +826,17 @@ SUBSYSTEM_DEF(job)
 
 
 
-/datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)
+/datum/controller/subsystem/job/proc/ShouldCreateRecords(title)
 	if(!title) return 0
 	var/datum/job/job = GetJob(title)
 	if(!job || job == ASSISTANT_TITLE)
 		return FALSE
 	return job.create_record
+
+/proc/get_exp_format(expnum)
+	if(expnum > 60)
+		return num2text(round(expnum / 60)) + "h"
+	else if(expnum > 0)
+		return num2text(expnum) + "m"
+	else
+		return "0h"

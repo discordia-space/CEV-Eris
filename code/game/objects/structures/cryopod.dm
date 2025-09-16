@@ -20,7 +20,7 @@
 	spawn_tags = SPAWN_TAG_ENCOUNTER_CRYOPOD
 	bad_type = /obj/structure/cryopod_spawner
 
-/obj/structure/cryopod_spawner/proc/add_stats(var/mob/living/carbon/human/target)
+/obj/structure/cryopod_spawner/proc/add_stats(mob/living/carbon/human/target)
 	if(!ishuman(target))
 		return FALSE
 	for(var/name in src.stat_modifiers)

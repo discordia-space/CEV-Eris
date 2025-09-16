@@ -12,7 +12,7 @@
 	..()
 	SETUP_SUBTYPE_DECLS_BY_NAME(/decl/uplink_source, uplink_sources_by_name)
 
-/datum/category_item/player_setup_item/antagonism/basic/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/antagonism/basic/load_character(savefile/S)
 	var/list/uplink_order
 	from_file(S["uplink_sources"], uplink_order)
 	from_file(S["exploit_record"], pref.exploit_record)
@@ -24,7 +24,7 @@
 			if(uplink_source)
 				pref.uplink_sources += uplink_source
 
-/datum/category_item/player_setup_item/antagonism/basic/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/antagonism/basic/save_character(savefile/S)
 	var/uplink_order = list()
 	for(var/entry in pref.uplink_sources)
 		var/decl/uplink_source/UL = entry
@@ -39,24 +39,24 @@
 		for(var/entry in GLOB.default_uplink_source_priority)
 			pref.uplink_sources += decls_repository.get_decl(entry)
 
-/datum/category_item/player_setup_item/antagonism/basic/content(var/mob/user)
+/datum/category_item/player_setup_item/antagonism/basic/content(mob/user)
 	. +="<b>Antag Setup:</b><br>"
-	. +="Uplink Source Priority: <a href='?src=\ref[src];add_source=1'>Add</a><br>"
+	. +="Uplink Source Priority: <a href='byond://?src=\ref[src];add_source=1'>Add</a><br>"
 	for(var/entry in pref.uplink_sources)
 		var/decl/uplink_source/US = entry
-		. +="[US.name] <a href='?src=\ref[src];move_source_up=\ref[US]'>Move Up</a> <a href='?src=\ref[src];move_source_down=\ref[US]'>Move Down</a> <a href='?src=\ref[src];remove_source=\ref[US]'>Remove</a><br>"
+		. +="[US.name] <a href='byond://?src=\ref[src];move_source_up=\ref[US]'>Move Up</a> <a href='byond://?src=\ref[src];move_source_down=\ref[US]'>Move Down</a> <a href='byond://?src=\ref[src];remove_source=\ref[US]'>Remove</a><br>"
 		if(US.desc)
 			. += "<font size=1>[US.desc]</font><br>"
 	if(!pref.uplink_sources.len)
-		. += "<span class='warning'>You will not receive an uplink unless you add an uplink source!</span>"
+		. += span_warning("You will not receive an uplink unless you add an uplink source!")
 	. +="<br>"
 	. +="Exploitable information:<br>"
 	if(jobban_isbanned(user, "Records"))
 		. += "<b>You are banned from using character records.</b><br>"
 	else
-		. +="<a href='?src=\ref[src];exploitable_record=1'>[TextPreview(pref.exploit_record,40)]</a><br>"
+		. +="<a href='byond://?src=\ref[src];exploitable_record=1'>[TextPreview(pref.exploit_record,40)]</a><br>"
 
-/datum/category_item/player_setup_item/antagonism/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/antagonism/basic/OnTopic(href,list/href_list, mob/user)
 	if(href_list["add_source"])
 		var/source_selection = input(user, "Select Uplink Source to Add", CHARACTER_PREFERENCE_INPUT_TITLE) as null|anything in (list_values(uplink_sources_by_name) - pref.uplink_sources)
 		if(source_selection && CanUseTopic(user))

@@ -58,7 +58,7 @@
 
 /obj/item/storage/hcases/open(mob/user)
 	if(closed)
-		to_chat(user, SPAN_NOTICE("The lid is closed."))
+		to_chat(user, span_notice("The lid is closed."))
 		return
 
 	. = ..()
@@ -75,7 +75,7 @@
 
 /obj/item/storage/hcases/AltClick(mob/user)
 	if(user.incapacitated())
-		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		to_chat(user, span_warning("You can't do that right now!"))
 		return
 	if(!in_range(src, user))
 		return
@@ -86,7 +86,7 @@
 		return
 
 	if(able == 2)
-		to_chat(user, SPAN_NOTICE("You cannot open the lid of \the [src] while it\'s in a container."))
+		to_chat(user, span_notice("You cannot open the lid of \the [src] while it\'s in a container."))
 		return
 
 	open_close(user)
@@ -94,21 +94,21 @@
 /obj/item/storage/hcases/proc/open_close(user)
 	close_all()
 	if(closed)
-		to_chat(user, SPAN_NOTICE("You open the lid of the [src]."))
+		to_chat(user, span_notice("You open the lid of the [src]."))
 		w_class = ITEM_SIZE_BULKY
 		closed = FALSE
 		open(user)
 	else
-		to_chat(user, SPAN_NOTICE("You close the lid of the [src]."))
+		to_chat(user, span_notice("You close the lid of the [src]."))
 		w_class = ITEM_SIZE_NORMAL
 		closed = TRUE
 
 	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
 
-obj/item/storage/hcases/attackby(obj/item/W, mob/user)
+/obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 	if(closed)
-		to_chat(user, SPAN_NOTICE("You try to access \the [src] but its lid is closed!"))
+		to_chat(user, span_notice("You try to access \the [src] but its lid is closed!"))
 		return
 	. = ..()
 

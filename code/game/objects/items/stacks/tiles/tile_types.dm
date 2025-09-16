@@ -175,17 +175,17 @@
 		"orange carpet" = /obj/item/stack/tile/carpet/oracarpet
 	)
 
-/obj/item/stack/tile/floor/cyborg/afterattack(var/atom/A, var/mob/user, proximity, params)
+/obj/item/stack/tile/floor/cyborg/afterattack(atom/A, mob/user, proximity, params)
 	if(!proximity)
 		return
 
-/obj/item/stack/tile/floor/cyborg/attack_self(var/mob/user)
+/obj/item/stack/tile/floor/cyborg/attack_self(mob/user)
 
 	var/new_cyborg_floor = input("Choose type of floor", "Tile synthesizer")as null|anything in cyborg_floor
 	if(new_cyborg_floor && !isnull(cyborg_floor[new_cyborg_floor]))
 		stacktype = cyborg_floor[new_cyborg_floor]
 		build_type = cyborg_floor[new_cyborg_floor]
-		to_chat(usr, SPAN_NOTICE("You set \the [src] floor" /*to '[decal]'.*/))
+		to_chat(usr, span_notice("You set \the [src] floor" /*to '[decal]'.*/))
 
 // Cafe
 /obj/item/stack/tile/floor/cafe
@@ -223,13 +223,13 @@
  */
 
  // Cyborg tile stack can copy steel tiles by clicking on them (for easy reconstruction)
-/obj/item/stack/tile/floor/steel/AltClick(var/mob/living/user)
-	var/obj/item/I = user.get_active_hand()
+/obj/item/stack/tile/floor/steel/AltClick(mob/living/user)
+	var/obj/item/I = user.get_active_held_item()
 	if(istype(I, /obj/item/stack/tile/floor/cyborg))
 		var/obj/item/stack/tile/floor/cyborg/C = I
 		C.stacktype = src.type
 		C.build_type = src.type
-		to_chat(usr, SPAN_NOTICE("You will now build [C.name]"))
+		to_chat(usr, span_notice("You will now build [C.name]"))
 	else
 		..()
 

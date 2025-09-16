@@ -66,13 +66,16 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 	//Time is random between 1 decisecond to this
 
 	var/votable = TRUE
+
+	/// Is storyteller secret or not
+	var/secret_storyteller = FALSE
 	//whether or not the players can vote for it. If this is set to false, it can only be activated by being forced by admins.
 
 
 /********************************
 	ROUNDSTART AND SETUP
 *********************************/
-/datum/storyteller/proc/can_start(var/announce = FALSE)	//when TRUE, proc should output reason, by which it can't start, to world
+/datum/storyteller/proc/can_start(announce = FALSE)	//when TRUE, proc should output reason, by which it can't start, to world
 	if(debug_mode || SSticker.start_immediately)
 		return TRUE
 
@@ -87,17 +90,17 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 			if(command && engineer)
 				return TRUE
 
-	var/tcol = "red"
+	var/tcol = COLOR_RED
 	if(GLOB.player_list.len <= 10)
-		tcol = "black"
+		tcol = COLOR_RED_GRAY
 
 	if(announce)
 		if(!engineer && !command)
-			to_chat(world, "<b><font color='[tcol]'>A command officer and technomancer are required to start round.</font></b>")
+			to_chat(world, span_bold("<font color='[tcol]'>A command officer and technomancer are required to start round.</font>"))
 		else if(!engineer)
-			to_chat(world, "<b><font color='[tcol]'>Technomancer is required to start round.</font></b>")
+			to_chat(world, span_bold("<font color='[tcol]'>Technomancer is required to start round.</font>"))
 		else if(!command)
-			to_chat(world, "<b><font color='[tcol]'>A command officer is required to start round.</font></b>")
+			to_chat(world, span_bold("<font color='[tcol]'>A command officer is required to start round.</font>"))
 
 	if(GLOB.player_list.len <= 10)
 		to_chat(world, "<i>But there's less than 10 players, so this requirement will be ignored.</i>")
@@ -106,7 +109,11 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 	return FALSE
 
 /datum/storyteller/proc/announce()
-	to_chat(world, "<b><font size=3>Storyteller is [name].</font> <br>[welcome]</b>")
+	if(!secret_storyteller)
+		send_to_playing_players(span_notice("<b>Storyteller is [name]!</b>"))
+		send_to_playing_players(span_notice("[welcome]"))
+	else
+		send_to_observers(span_boldbig("<b>Storyteller is [name]!</b>")) //observers still get to know
 
 /datum/storyteller/proc/set_up()
 	build_event_pools()
@@ -158,11 +165,11 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 /****************************
 	SUB PROCESSING: For individual storyevents
 *****************************/
-/datum/storyteller/proc/add_processing(var/datum/storyevent/S)
+/datum/storyteller/proc/add_processing(datum/storyevent/S)
 	ASSERT(istype(S))
 	processing_events.Add(S)
 
-/datum/storyteller/proc/remove_processing(var/datum/storyevent/S)
+/datum/storyteller/proc/remove_processing(datum/storyevent/S)
 	processing_events.Remove(S)
 
 /datum/storyteller/proc/process_events()	//Called in ticker
@@ -187,7 +194,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 		for(var/datum/objective/O in F.objectives)
 			O.update_completion()
 
-/datum/storyteller/proc/update_event_weight(var/datum/storyevent/R)
+/datum/storyteller/proc/update_event_weight(datum/storyevent/R)
 	ASSERT(istype(R))
 
 	R.weight_cache = calculate_event_weight(R)
@@ -200,7 +207,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 
 /proc/storyteller_button()
 	if(GLOB.storyteller)
-		return "<a href='?src=\ref[GLOB.storyteller];panel=1'>\[STORY\]</a>"
+		return "<a href='byond://?src=\ref[GLOB.storyteller];panel=1'>\[STORY\]</a>"
 	else
 		return "<s>\[STORY\]</s>"
 
@@ -209,7 +216,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 *  Points Handling
 ********************/
 
-/datum/storyteller/proc/modify_points(var/delta, var/type = EVENT_LEVEL_ROLESET)
+/datum/storyteller/proc/modify_points(delta, type = EVENT_LEVEL_ROLESET)
 	if (!delta || !isnum(delta))
 		return
 	//Adds delta points to the specified pool.
@@ -255,7 +262,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 ********************/
 
 //First we figure out which pool we're going to take an event from
-/datum/storyteller/proc/handle_event(var/event_type)
+/datum/storyteller/proc/handle_event(event_type)
 	//This is a buffer which will hold a copy of the list we choose.
 	//We will be modifying it and don't want those modifications to go back to the source
 	var/list/temp_pool
@@ -304,7 +311,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 
 /*Sets up an event to be fired in the near future. This keeps things unpredictable
 The actual fire event proc is located in storyteller_meta*/
-/datum/storyteller/proc/schedule_event(var/datum/storyevent/C, var/event_type)
+/datum/storyteller/proc/schedule_event(datum/storyevent/C, event_type)
 	var/delay
 	if (event_type == EVENT_LEVEL_ROLESET)
 		delay = 1 //Basically no delay on these to reduce bugginess
@@ -351,7 +358,7 @@ The actual fire event proc is located in storyteller_meta*/
 	event_pool_major = update_pool_weights(event_pool_major)
 	event_pool_roleset = update_pool_weights(event_pool_roleset)
 
-/datum/storyteller/proc/update_pool_weights(var/list/pool)
+/datum/storyteller/proc/update_pool_weights(list/pool)
 	for(var/datum/storyevent/a in pool)
 		pool[a] = calculate_event_weight(a)
 	return pool

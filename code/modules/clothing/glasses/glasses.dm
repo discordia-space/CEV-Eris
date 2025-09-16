@@ -31,14 +31,14 @@
 		if(user)
 			if(activation_sound)
 				user << activation_sound
-			to_chat(user, SPAN_NOTICE("[src] optical matrix activated."))
+			to_chat(user, span_notice("[src] optical matrix activated."))
 	else
 		active = FALSE
 		icon_state = off_state
 		flash_protection = FLASH_PROTECTION_NONE
 		tint = TINT_NONE
 		if(user)
-			to_chat(user, SPAN_NOTICE("[src] optical matrix shuts down."))
+			to_chat(user, span_notice("[src] optical matrix shuts down."))
 	if(user)
 		user.update_inv_glasses()
 		user.update_action_buttons()
@@ -53,7 +53,7 @@
 /obj/item/clothing/glasses/equipped(mob/user, slot)
 	..()
 	if(((toggleable || hud) && prescription) && (get_active_mutation(user, MUTATION_NEARSIGHTED)) && (slot == slot_glasses))
-		to_chat(user, SPAN_NOTICE("[src] optical matrix automatically adjust to your poor prescription."))
+		to_chat(user, span_notice("[src] optical matrix automatically adjust to your poor prescription."))
 
 /obj/item/clothing/glasses/attackby(obj/item/Z, mob/user)
 	if(istype(Z,/obj/item/clothing/glasses/attachable_lenses))

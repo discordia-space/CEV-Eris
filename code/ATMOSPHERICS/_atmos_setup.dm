@@ -7,12 +7,12 @@
 
 var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_RED, "blue" = PIPE_COLOR_BLUE, "cyan" = PIPE_COLOR_CYAN, "green" = PIPE_COLOR_GREEN, "yellow" = PIPE_COLOR_YELLOW, "black" = PIPE_COLOR_BLACK)
 
-/proc/pipe_color_lookup(var/color)
+/proc/pipe_color_lookup(color)
 	for(var/C in pipe_colors)
 		if(color == pipe_colors[C])
 			return "[C]"
 
-/proc/pipe_color_check(var/color)
+/proc/pipe_color_check(color)
 	if(!color)
 		return 1
 	for(var/C in pipe_colors)
@@ -39,7 +39,7 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 /datum/pipe_icon_manager/New()
 	check_icons()
 
-/datum/pipe_icon_manager/proc/get_atmos_icon(var/device, var/dir, var/color, var/state)
+/datum/pipe_icon_manager/proc/get_atmos_icon(device, dir, color, state)
 	check_icons()
 
 	device = "[device]"
@@ -177,7 +177,7 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 
 		var/cache_name = state
 
-		for(var/D in cardinal)
+		for(var/D in GLOB.cardinal)
 			var/image/I = image('icons/atmos/pipe_underlays.dmi', icon_state = state, dir = D)
 			underlays[cache_name + "[D]"] = I
 			for(var/pipe_color in pipe_colors)
@@ -209,7 +209,7 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 		if(state == "")
 			continue
 
-		for(var/D in cardinal)
+		for(var/D in GLOB.cardinal)
 			var/image/I = image('icons/atmos/pipe_underlays.dmi', icon_state = state, dir = D)
 			switch(state)
 				if("intact")

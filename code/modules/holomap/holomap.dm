@@ -76,17 +76,17 @@
 	spawn(1) //When built from frames, need to allow time for it to set pixel_x and pixel_y
 		update_icon()
 
-/obj/machinery/holomap/attack_hand(var/mob/user)
+/obj/machinery/holomap/attack_hand(mob/user)
 	if(watching_mob && (watching_mob != user))
-		to_chat(user, SPAN_WARNING("Someone else is currently watching the holomap."))
+		to_chat(user, span_warning("Someone else is currently watching the holomap."))
 		return
 	if(user.loc != loc)
-		to_chat(user, SPAN_WARNING("You need to stand in front of \the [src]."))
+		to_chat(user, span_warning("You need to stand in front of \the [src]."))
 		return
 	startWatching(user)
 
 // Let people bump up against it to watch
-/obj/machinery/holomap/Bumped(var/atom/movable/AM)
+/obj/machinery/holomap/Bumped(atom/movable/AM)
 	if(!watching_mob && isliving(AM) && AM.loc == loc)
 		startWatching(AM)
 
@@ -130,9 +130,11 @@
 			GLOB.destroyed_event.register(watching_mob, src, /obj/machinery/holomap/proc/stopWatching)
 			set_power_use(ACTIVE_POWER_USE)
 			if(bogus)
-				to_chat(user, SPAN_WARNING("The holomap has failed to initialize. This area of space cannot be mapped."))
+				to_chat(user, span_warning("The holomap has failed to initialize. This area of space cannot be mapped."))
 			else
-				to_chat(user, SPAN_NOTICE("A hologram of CEV \"Eris\" appears before your eyes."))
+				to_chat(user, span_notice("A hologram of CEV \"Eris\" appears before your eyes."))
+				playsound(src, 'code/modules/holomap/sounds/holomap_open.ogg', 125)
+
 
 /obj/machinery/holomap/attack_ai(mob/living/silicon/robot/user)
 	return // TODO
@@ -148,6 +150,7 @@
 
 /obj/machinery/holomap/proc/stopWatching()
 	if(watching_mob)
+		playsound(src, 'code/modules/holomap/sounds/holomap_close.ogg', 125)
 		if(watching_mob.client)
 			animate(holomap_datum.station_map, alpha = 0, time = 5, easing = LINEAR_EASING)
 			var/mob/M = watching_mob
@@ -238,7 +241,7 @@
 		if(QUALITY_WIRE_CUTTING)
 			if(wiresexposed && buildstage == 2)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user.visible_message(SPAN_WARNING("[user] removed the wires from \the [src]!"), "You have removed the wires from \the [src].")
+					user.visible_message(span_warning("[user] removed the wires from \the [src]!"), "You have removed the wires from \the [src].")
 					new/obj/item/stack/cable_coil(get_turf(user), 5)
 					buildstage = 1
 					stopWatching()
@@ -272,13 +275,13 @@
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
 				if(C.use(5))
-					to_chat(user, SPAN_NOTICE("You wire \the [src]."))
+					to_chat(user, span_notice("You wire \the [src]."))
 					buildstage = 2
 					update_icon()
 					setup_holomap()
 					return
 				else
-					to_chat(user, SPAN_WARNING("You need 5 pieces of cable to do wire \the [src]."))
+					to_chat(user, span_warning("You need 5 pieces of cable to do wire \the [src]."))
 					return
 
 		if(0)

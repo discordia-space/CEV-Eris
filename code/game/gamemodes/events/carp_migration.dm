@@ -46,10 +46,10 @@
 /datum/event/carp_migration/announce()
 	var/announcement = ""
 	if(severity == EVENT_LEVEL_MAJOR)
-		announcement = "Massive migration of unknown biological entities has been detected near [station_name], please stand-by."
+		announcement = "Massive migration of unknown biological entities has been detected near [station_name()], please stand-by."
 	else
-		announcement = "Unknown biological [spawned_carp.len == 1 ? "entity has" : "entities have"] been detected near [station_name], please stand-by."
-	command_announcement.Announce(announcement, "Lifesign Alert")
+		announcement = "Unknown biological [spawned_carp.len == 1 ? "entity has" : "entities have"] been detected near [station_name()], please stand-by."
+	priority_announce(announcement, "Lifesign Alert")
 
 /datum/event/carp_migration/start()
 	if(severity == EVENT_LEVEL_MAJOR)
@@ -57,7 +57,7 @@
 	else if(severity == EVENT_LEVEL_MODERATE)
 		spawn_fish(50)
 
-/datum/event/carp_migration/proc/spawn_fish(var/number)
+/datum/event/carp_migration/proc/spawn_fish(number)
 	var/list/spawn_locations = pickweight_mult(viable_turfs, number)
 
 	for(var/turf/T in spawn_locations)

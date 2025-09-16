@@ -1,10 +1,13 @@
 
+GLOBAL_VAR_INIT(OOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwise, use a custom colour.
+GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
+
 /client/verb/ooc(msg as text)
 	set name = "OOC"
 	set category = "OOC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
+		to_chat(usr, span_warning("Speech is currently admin-disabled."))
 		return
 
 	if(!mob)	return
@@ -16,18 +19,18 @@
 	if(!msg)	return
 
 	if(src.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_HIDE)
-		to_chat(src, SPAN_WARNING("You have OOC muted."))
+		to_chat(src, span_warning("You have OOC muted."))
 		return
 
 	if(!holder)
-		if(!config.ooc_allowed)
-			to_chat(src, SPAN_DANGER("OOC is globally muted."))
+		if(!GLOB.ooc_allowed)
+			to_chat(src, span_danger("OOC is globally muted."))
 			return
-		if(!config.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, SPAN_DANGER("OOC for dead mobs has been turned off."))
+		if(!GLOB.dooc_allowed && (mob.stat == DEAD))
+			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, SPAN_DANGER("You cannot use OOC (muted)."))
+			to_chat(src, span_danger("You cannot use OOC (muted)."))
 			return
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
@@ -36,29 +39,59 @@
 
 	msg = emoji_parse(msg)
 
-	var/ooc_style = "everyone"
-	if(holder && !holder.fakekey)
-		ooc_style = "elevated"
-		if(holder.rights & R_MOD)
-			ooc_style = "moderator"
-		if(holder.rights & R_DEBUG)
-			ooc_style = "developer"
-		if(holder.rights & R_ADMIN)
-			ooc_style = "admin"
+	var/keyname = key
+	if(!!IsByondMember())
+		// if(prefs.toggles & MEMBER_PUBLIC)
+		keyname = "<font color='[src.prefs.ooccolor || GLOB.normal_ooc_colour]'>[icon2html('icons/ui_icons/chat/member_content.dmi', world, "blag")][keyname]</font>"
+	// var/ooc_style = "everyone"
+	// if(holder && !holder.fakekey)
+	// 	ooc_style = "elevated"
+	// 	if(holder.rights & R_DEBUG)
+	// 		ooc_style = "developer"
+	// 	if(holder.rights & R_ADMIN)
+	// 		ooc_style = "admin"
 
-	for(var/client/target in clients)
-		if(target.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_SHOW)
-			var/display_name = src.key
-			if(holder)
-				if(holder.fakekey)
-					if(target.holder)
-						display_name = "[holder.fakekey]/([src.key])"
-					else
-						display_name = holder.fakekey
-			if(holder && !holder.fakekey && (holder.rights & R_ADMIN) && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
-				to_chat(target, "<span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <font color='[src.prefs.ooccolor]'><EM>[display_name]:</EM></font> <span class='[ooc_style]'><span class='message linkify'>[msg]</span></span></span>")
+
+	// for(var/client/target in GLOB.clients)
+	// 	if(target.get_preference_value(/datum/client_preference/show_ooc) != GLOB.PREF_SHOW)
+	// 		continue
+	// 	var/display_name = src.key
+	// 	if(holder)
+	// 		if(holder.fakekey)
+	// 			if(target.holder)
+	// 				display_name = "[holder.fakekey]/([src.key])"
+	// 			else
+	// 				display_name = holder.fakekey
+	// 	if(holder && !holder.fakekey && (holder.rights & R_ADMIN) && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
+	// 		to_chat(target, span_ooc("" + create_text_tag("ooc", "OOC:", target) + " <font color='[src.prefs.ooccolor]'><EM>[display_name]:</EM></font> <span class='[ooc_style]'><span class='message linkify'>[msg]</span></span>"))
+	// 	else
+	// 		to_chat(target, span_ooc("<span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message linkify'>[msg]</span></span>"))
+	for(var/client/receiver as anything in GLOB.clients)
+		if(!receiver.prefs) // Client being created or deleted. Despite all, this can be null.
+			continue
+		if(receiver.get_preference_value(/datum/client_preference/show_ooc) != GLOB.PREF_SHOW)
+			continue
+		if(holder?.fakekey in receiver.prefs.ignored_players)
+			continue
+		var/avoid_highlight = receiver == src
+		if(holder)
+			if(!holder.fakekey || receiver.holder)
+				if(check_rights_for(src, R_ADMIN))
+					var/ooc_color = src.prefs.ooccolor
+					to_chat(receiver, span_adminooc("[CONFIG_GET(flag/allow_admin_ooccolor) && ooc_color ? "<font color=[ooc_color]>" :"" ][span_prefix("OOC:")] <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span>"), avoid_highlighting = avoid_highlight)
+				else
+					to_chat(receiver, span_adminobserverooc(span_prefix("OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]")), avoid_highlighting = avoid_highlight)
 			else
-				to_chat(target, "<span class='ooc'><span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message linkify'>[msg]</span></span></span>")
+				if(GLOB.OOC_COLOR)
+					to_chat(receiver, span_oocplain("<font color='[GLOB.OOC_COLOR]'><b>[span_prefix("OOC:")] <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font>"), avoid_highlighting = avoid_highlight)
+				else
+					to_chat(receiver, span_ooc(span_prefix("OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]")), avoid_highlighting = avoid_highlight)
+
+		else if(!(key in receiver.prefs.ignored_players))
+			if(GLOB.OOC_COLOR)
+				to_chat(receiver, span_oocplain("<font color='[GLOB.OOC_COLOR]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>"), avoid_highlighting = avoid_highlight)
+			else
+				to_chat(receiver, span_ooc(span_prefix("OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]")), avoid_highlighting = avoid_highlight)
 
 /client/verb/looc(msg as text)
 	set name = "LOOC"
@@ -66,7 +99,7 @@
 	set category = "OOC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_DANGER("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
 
 	if(!mob)
@@ -81,18 +114,18 @@
 		return
 
 	if(src.get_preference_value(/datum/client_preference/show_looc) == GLOB.PREF_HIDE)
-		to_chat(src, SPAN_DANGER("You have LOOC muted."))
+		to_chat(src, span_danger("You have LOOC muted."))
 		return
 
 	if(!holder)
-		if(!config.looc_allowed)
-			to_chat(src, SPAN_DANGER("LOOC is globally muted."))
+		if(!GLOB.looc_allowed)
+			to_chat(src, span_danger("LOOC is globally muted."))
 			return
-		if(!config.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, SPAN_DANGER("OOC for dead mobs has been turned off."))
+		if(!GLOB.dooc_allowed && (mob.stat == DEAD))
+			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, SPAN_DANGER("You cannot use OOC (muted)."))
+			to_chat(src, span_danger("You cannot use OOC (muted)."))
 			return
 		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
@@ -100,12 +133,6 @@
 	log_ooc("(LOCAL) [mob.name]/[key] : [msg]")
 
 	var/mob/source = mob.get_looc_source()
-
-	var/display_name = key
-	if(holder && holder.fakekey)
-		display_name = holder.fakekey
-	if(mob.stat != DEAD)
-		display_name = mob.name
 
 	var/turf/T = get_turf(source)
 	var/list/listening = list()
@@ -145,27 +172,29 @@
 				listening |= M.client
 
 
-	for(var/client/t in listening)
+	for(var/client/hearer in listening)
 		var/admin_stuff = ""
 		var/prefix = ""
-		if(t in admins)
+		if(hearer in GLOB.admins)
 			admin_stuff += "/([key])"
-			if(t != src)
-				admin_stuff += "([admin_jump_link(mob, t.holder)])"
-		if(isAI(t.mob))
-			if(t in eye_heard)
+			if(hearer != src)
+				admin_stuff += "([admin_jump_link(mob, hearer.holder)])"
+		if(isAI(hearer.mob))
+			if(hearer in eye_heard)
 				prefix = "(Eye) "
 			else
 				prefix = "(Core) "
-		to_chat(t, "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", t) + " <span class='prefix'>[prefix]</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>")
+		if(hearer.prefs.RC_see_looc_on_map)
+			hearer.mob?.create_chat_message(mob, /datum/language/common, "\[LOOC: [msg]\]", runechat_flags = LOOC_MESSAGE)
+		to_chat(hearer, span_looc("[span_prefix("LOOC:")] [span_prefix(prefix)]<EM>[span_name("[mob.name]")][admin_stuff]:</EM> <span class='message linkify'>[msg]</span>"), type = MESSAGE_TYPE_LOOC, avoid_highlighting = (hearer == mob))
 
-
-	for(var/client/adm in admins)	//Now send to all admins that weren't in range.
-		if(!(adm in listening) && adm.get_preference_value(/datum/client_preference/staff/show_rlooc) == GLOB.PREF_SHOW)
-			var/admin_stuff = "/([key])([admin_jump_link(mob, adm.holder)])"
-			var/prefix = "(R)"
-
-			to_chat(adm, "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", adm) + " <span class='prefix'>[prefix]</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>")
+	for(var/client/client in GLOB.admins)	//Now send to all admins that weren't in range.
+		if(!(client in listening) && client.get_preference_value(/datum/client_preference/staff/show_rlooc) == GLOB.PREF_SHOW)
+			var/admin_stuff = "/([key])([admin_jump_link(client, client.holder)])"
+			var/prefix = "[listening[client] ? "" : "(R)"]LOOC"
+			if(client.prefs.RC_see_looc_on_map)
+				client.mob?.create_chat_message(mob, /datum/language/common, "\[LOOC: [msg]\]", runechat_flags = LOOC_MESSAGE)
+			to_chat(client, span_looc("[span_prefix("[prefix]:")] <EM>[admin_stuff]:</EM> <span class='message linkify'>[msg]</span>"), type = MESSAGE_TYPE_LOOC, avoid_highlighting = (client == src))
 
 /mob/proc/get_looc_source()
 	return src
@@ -175,82 +204,24 @@
 		return eyeobj
 	return src
 
-/client/verb/fix_chat()
-	set name = "Fix Chat"
-	set category = "OOC"
+//Checks admin notice
+/client/verb/admin_notice()
+	set name = "Adminnotice"
+	set category = "Admin"
+	set desc ="Check the admin notice if it has been set"
 
-	if(!chatOutput || !istype(chatOutput))
-		var/action = alert(src, "Invalid Chat Output data found!\nRecreate data?", "", "Yes", "Cancel")
-		if(action != "Recreate Chat Output data")
-			return
-		chatOutput = new /datum/chatOutput(src)
-		chatOutput.start()
-		action = alert(src, "Goon chat is reloading.\nWait a bit and see if it\'s fixed.", "", "Fixed", "Nope")
-		if(action == "Fixed")
-			log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by re-creating the chatOutput datum.")
-		else
-			chatOutput.load()
-			action = alert(src, "Give it a moment.\nIt may also try to load twice.", "", "Fixed", "Nope")
-			if(action == "Fixed")
-				log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by re-creating the chatOutput datum and forcing a load()")
-			else
-				action = alert(src, "Try closing byond and reconnecting.\nCould also disable fancy chat and re-enable oldchat.", "", "Thanks anyways", "Switch to old chat")
-				if(action == "Switch to old chat")
-					winset(src, "output", "is-visible=true;is-disabled=false")
-					winset(src, "browseroutput", "is-visible=false")
-				log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window after recreating the chatOutput and forcing a load()")
-	else if(chatOutput.loaded)
-		var/action = alert(src, "Do you want to force a reload, wiping the chat log or just refresh the chat window?", "", "Force Reload", "Refresh", "Cancel")
-		switch (action)
-			if("Force Reload")
-				chatOutput.loaded = FALSE
-				chatOutput.start() //this is likely to fail since it asks , but we should try it anyways so we know.
-				action = alert(src, "Goon chat is reloading.\nWait a bit and see if it\'s fixed.", "", "Fixed", "Nope")
-				if(action == "Fixed")
-					log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a start()")
-				else
-					chatOutput.load()
-					action = alert(src, "Give it a moment.\nIt may also try to load twice.", "", "Fixed", "Nope")
-					if(action == "Fixed")
-						log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a load()")
-					else
-						action = alert(src, "Try closing byond and reconnecting.\nCould also disable fancy chat and re-enable oldchat.", "", "Thanks anyways", "Switch to old chat")
-						if(action == "Switch to old chat")
-							winset(src, "output", "is-visible=true;is-disabled=false")
-							winset(src, "browseroutput", "is-visible=false")
-						log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window forcing a start() and forcing a load()")
-
-			if("Refresh")
-				chatOutput.showChat()
-				action = alert(src, "Goon chat is refreshing.\nWait a bit and see if it\'s fixed.", "", "Fixed", "Nope")
-				if(action == "Fixed")
-					log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a show()")
-				else
-					chatOutput.loaded = FALSE
-					chatOutput.load()
-					action = alert(src, "Give it a moment.", "", "Fixed", "Nope")
-					if(action == "Fixed")
-						log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a load()")
-					else
-						action = alert(src, "Try closing byond and reconnecting.\nCould also disable fancy chat and re-enable oldchat.", "", "Thanks anyways", "Switch to old chat")
-						if(action == "Switch to old chat")
-							winset(src, "output", "is-visible=true;is-disabled=false")
-							winset(src, "browseroutput", "is-visible=false")
-						log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window forcing a show() and forcing a load()")
-		return
+	if(GLOB.admin_notice)
+		to_chat(src, "[span_boldnotice("Admin Notice:")]\n \t [GLOB.admin_notice]")
 	else
-		chatOutput.start()
-		var/action = alert(src, "Manually loading Chat.\nWait a bit and see if it\'s fixed.", "", "Fixed", "Nope")
-		if(action == "Fixed")
-			log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by manually calling start()")
-		else
-			chatOutput.load()
-			alert(src, "Give it a moment.\nIt may also try to load twice.", "", "Fixed", "Nope")
-			if(action == "Fixed")
-				log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by manually calling start() and forcing a load()")
-			else
-				action = alert(src, "Try closing byond and reconnecting.\nCould also disable fancy chat and re-enable oldchat.", "", "Thanks anyways", "Switch to old chat")
-				if(action == "Switch to old chat")
-					winset(src, "output", list2params(list("on-show" = "", "is-disabled" = "false", "is-visible" = "true")))
-					winset(src, "browseroutput", "is-disabled=true;is-visible=false")
-				log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window after manually calling start() and forcing a load()")
+		to_chat(src, span_notice("There are no admin notices at the moment."))
+
+/client/proc/self_notes()
+	set name = "View Admin Remarks"
+	set category = "OOC"
+	set desc = "View the notes that admins have written about you"
+
+	if(!CONFIG_GET(flag/see_own_notes))
+		to_chat(usr, span_notice("Sorry, that function is not enabled on this server."))
+		return
+
+	browse_messages(null, usr.ckey, null, TRUE)

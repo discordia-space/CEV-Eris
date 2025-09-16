@@ -99,9 +99,9 @@
 		var/area/A = I
 		A.power_change()
 
-	//admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
+	//admin_notice(span_danger("Submap initializations finished."), R_DEBUG)
 
-/datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = SOUTH)
+/datum/map_template/proc/load_new_z(centered = FALSE, orientation = SOUTH)
 	var/x = 1
 	var/y = 1
 
@@ -120,7 +120,7 @@
 	log_game("Z-level [name] loaded at at [x],[y],[world.maxz]")
 	return TRUE
 
-/datum/map_template/proc/load(turf/T, centered = FALSE, orientation = SOUTH, var/post_init = 0)
+/datum/map_template/proc/load(turf/T, centered = FALSE, orientation = SOUTH, post_init = 0)
 	var/old_T = T
 	if(centered)
 		T = locate(T.x - round(((orientation & NORTH|SOUTH) ? width : height)/2) , T.y - round(((orientation & NORTH|SOUTH) ? height : width)/2) , T.z)
@@ -159,24 +159,24 @@
 
 /datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE, orientation = SOUTH)
 	//var/deleted_atoms = 0
-	//admin_notice("<span class='danger'>Annihilating objects in submap loading locatation.</span>", R_DEBUG)
+	//admin_notice(span_danger("Annihilating objects in submap loading locatation."), R_DEBUG)
 	var/list/turfs_to_clean = get_affected_turfs(origin, centered, orientation)
 	if(turfs_to_clean.len)
 		for(var/turf/T in turfs_to_clean)
 			for(var/atom/movable/AM in T)
 			//	++deleted_atoms
 				qdel(AM)
-	//admin_notice("<span class='danger'>Annihilated [deleted_atoms] objects.</span>", R_DEBUG)
+	//admin_notice(span_danger("Annihilated [deleted_atoms] objects."), R_DEBUG)
 
 
 //for your ever biggening badminnery kevinz000
 //❤ - Cyberboss
-/proc/load_new_z_level(var/file, var/name, var/orientation = SOUTH)
+/proc/load_new_z_level(file, name, orientation = SOUTH)
 	var/datum/map_template/template = new(file, name)
 	template.load_new_z(orientation)
 
 // Very similar to the /tg/ version.
-/proc/seed_submaps(var/list/z_levels, var/budget = 0, var/whitelist = /area/space, var/desired_map_template_type = null)
+/proc/seed_submaps(list/z_levels, budget = 0, whitelist = /area/space, desired_map_template_type = null)
 	set background = TRUE
 
 	if(!z_levels || !z_levels.len)
@@ -245,7 +245,7 @@
 		var/specific_sanity = 100 // A hundred chances to place the chosen submap.
 		while(specific_sanity > 0)
 			specific_sanity--
-			var/orientation = pick(cardinal)
+			var/orientation = pick(GLOB.cardinal)
 			chosen_template.preload_size(chosen_template.mappath, orientation)
 			var/width_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.width : chosen_template.height) / 2)
 			var/height_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.height : chosen_template.width) / 2)

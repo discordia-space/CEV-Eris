@@ -1,7 +1,7 @@
 /**
  * Creates a TGUI input list window and returns the user's response.
  *
- * This proc should be used to create alerts that the caller will wait for a response from.
+ * This proc should be used to create alerts that the requester will wait for a response from.
  * Arguments:
  * * user - The user to show the input box to.
  * * message - The content of the input box, shown in the body of the TGUI window.
@@ -16,13 +16,12 @@
 	if(!length(items))
 		return
 	if (!istype(user))
-		if (istype(user, /client))
+		if (isclient(user))
 			var/client/client = user
 			user = client.mob
 		else
 			return
-	/// Client does NOT have tgui_input on: Returns regular input
-	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
+	if(!user.client.get_preference_value(/datum/client_preference/tgui_fancy) == GLOB.PREF_YES)
 		return input(user, message, title, default) as null|anything in items
 	var/datum/tgui_list_input/input = new(user, message, title, items, default, timeout)
 	input.ui_interact(user)
@@ -79,9 +78,11 @@
 		start_time = world.time
 		QDEL_IN(src, timeout)
 
-/datum/tgui_list_input/Destroy(force, ...)
+
+/datum/tgui_list_input/Destroy(force)
 	SStgui.close_uis(src)
-	QDEL_NULL(items)
+	items?.Cut()
+	items_map?.Cut()
 	return ..()
 
 /**
@@ -95,7 +96,7 @@
 /datum/tgui_list_input/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "ListInputModal")
+		ui = new(user, src, "ListInputWindow")
 		ui.open()
 
 /datum/tgui_list_input/ui_close(mob/user)
@@ -109,9 +110,11 @@
 	var/list/data = list()
 	data["init_value"] = default || items[1]
 	data["items"] = items
-	data["large_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
+	/* data["large_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
+	data["swapped_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped) */
+	data["large_buttons"] = FALSE
+	data["swapped_buttons"] = FALSE
 	data["message"] = message
-	data["swapped_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
 	data["title"] = title
 	return data
 

@@ -61,7 +61,7 @@
 		to_chat(user, "There is nothing to remove in \the [src].")
 
 /obj/item/gun/launcher/pneumatic/attack_hand(mob/user as mob)
-	if(user.get_inactive_hand() == src)
+	if(user.get_inactive_held_item() == src)
 		unload_hopper(user)
 	else
 		return ..()
@@ -82,7 +82,7 @@
 	if(!item_storage.contents.len)
 		return null
 	if (!tank)
-		to_chat(user, SPAN_WARNING("There is no gas tank in [src]!"))
+		to_chat(user, span_warning("There is no gas tank in [src]!"))
 		return null
 
 	var/environment_pressure = 10
@@ -94,7 +94,7 @@
 
 	fire_pressure = (tank.air_contents.return_pressure() - environment_pressure)*pressure_setting/100
 	if(fire_pressure < 10)
-		to_chat(user, SPAN_WARNING("There isn't enough gas in the tank to fire [src]."))
+		to_chat(user, span_warning("There isn't enough gas in the tank to fire [src]."))
 		return null
 
 	var/obj/item/launched = item_storage.contents[1]
@@ -107,7 +107,7 @@
 	if(tank)
 		extra_description += "\nThe tank dial reads [tank.air_contents.return_pressure()] kPa."
 	else
-		extra_description += SPAN_WARNING("\nNothing is attached to the tank valve!")
+		extra_description += span_warning("\nNothing is attached to the tank valve!")
 	..(user, extra_description)
 
 /obj/item/gun/launcher/pneumatic/update_release_force(obj/item/projectile)
@@ -168,7 +168,7 @@
 		if(buildstate == 0)
 			user.drop_from_inventory(I)
 			qdel(I)
-			to_chat(user, SPAN_NOTICE("You secure the piping inside the frame."))
+			to_chat(user, span_notice("You secure the piping inside the frame."))
 			buildstate++
 			update_icon()
 			return
@@ -176,34 +176,34 @@
 		if(buildstate == 2)
 			var/obj/item/stack/material/M = I
 			if(M.use(5))
-				to_chat(user, SPAN_NOTICE("You assemble a chassis around the cannon frame."))
+				to_chat(user, span_notice("You assemble a chassis around the cannon frame."))
 				buildstate++
 				update_icon()
 			else
-				to_chat(user, SPAN_NOTICE("You need at least five metal sheets to complete this task."))
+				to_chat(user, span_notice("You need at least five metal sheets to complete this task."))
 			return
 	else if(istype(I,/obj/item/device/transfer_valve))
 		if(buildstate == 4)
 			user.drop_from_inventory(I)
 			qdel(I)
-			to_chat(user, SPAN_NOTICE("You install the transfer valve and connect it to the piping."))
+			to_chat(user, span_notice("You install the transfer valve and connect it to the piping."))
 			buildstate++
 			update_icon()
 			return
 	else if(QUALITY_WELDING in I.tool_qualities)
 		if(buildstate == 1)
 			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You weld the pipe into place."))
+				to_chat(user, span_notice("You weld the pipe into place."))
 				buildstate++
 				update_icon()
 		if(buildstate == 3)
 			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You weld the metal chassis together."))
+				to_chat(user, span_notice("You weld the metal chassis together."))
 				buildstate++
 				update_icon()
 		if(buildstate == 5)
 			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You weld the valve into place."))
+				to_chat(user, span_notice("You weld the valve into place."))
 				new /obj/item/gun/launcher/pneumatic(get_turf(src))
 				qdel(src)
 		return

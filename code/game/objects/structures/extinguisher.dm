@@ -21,7 +21,7 @@
 			user.remove_from_mob(O)
 			contents += O
 			has_extinguisher = O
-			to_chat(user, SPAN_NOTICE("You place [O] in [src]."))
+			to_chat(user, span_notice("You place [O] in [src]."))
 			playsound(src.loc, 'sound/machines/Custom_extin.ogg', 50, 0)
 		else
 			opened = !opened
@@ -39,11 +39,11 @@
 		if (user.hand)
 			temp = H.organs_by_name[BP_L_ARM]
 		if(temp && !temp.is_usable())
-			to_chat(user, SPAN_NOTICE("You try to move your [temp.name], but cannot!"))
+			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 			return
 	if(has_extinguisher)
 		user.put_in_hands(has_extinguisher)
-		to_chat(user, SPAN_NOTICE("You take [has_extinguisher] from [src]."))
+		to_chat(user, span_notice("You take [has_extinguisher] from [src]."))
 		playsound(src.loc, 'sound/machines/Custom_extout.ogg', 50, 0)
 		has_extinguisher = null
 		opened = 1
@@ -55,7 +55,7 @@
 	if(isrobot(user))
 		return
 	if(user.incapacitated())
-		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		to_chat(user, span_warning("You can't do that right now!"))
 		return
 	if(!in_range(src, user))
 		return
@@ -67,7 +67,7 @@
 /obj/structure/extinguisher_cabinet/AltClick(mob/living/user)
 	src.toggle_open(user)
 
-/obj/structure/extinguisher_cabinet/verb/toggle(mob/living/usr)
+/obj/structure/extinguisher_cabinet/verb/toggle()
 	set name = "Open/Close"
 	set category = "Object"
 	set src in oview(1)
@@ -76,7 +76,7 @@
 /obj/structure/extinguisher_cabinet/attack_tk(mob/user)
 	if(has_extinguisher)
 		has_extinguisher.loc = loc
-		to_chat(user, SPAN_NOTICE("You telekinetically remove [has_extinguisher] from [src]."))
+		to_chat(user, span_notice("You telekinetically remove [has_extinguisher] from [src]."))
 		has_extinguisher = null
 		opened = 1
 	else

@@ -8,7 +8,7 @@
 //set_heat: The temperature the oven must bake at.
 //set_time: How long something must be baked in the overn
 //our_recipe: The parent recipe object
-/datum/cooking_with_jane/recipe_step/use_oven/New(var/set_heat, var/set_time, var/datum/cooking_with_jane/recipe/our_recipe)
+/datum/cooking_with_jane/recipe_step/use_oven/New(set_heat, set_time, datum/cooking_with_jane/recipe/our_recipe)
 
 
 
@@ -20,7 +20,7 @@
 	..(our_recipe)
 
 
-/datum/cooking_with_jane/recipe_step/use_oven/check_conditions_met(var/obj/used_item, var/datum/cooking_with_jane/recipe_tracker/tracker)
+/datum/cooking_with_jane/recipe_step/use_oven/check_conditions_met(obj/used_item, datum/cooking_with_jane/recipe_tracker/tracker)
 
 	if(!istype(used_item, /obj/machinery/cooking_with_jane/oven))
 		return CWJ_CHECK_INVALID
@@ -28,7 +28,7 @@
 	return CWJ_CHECK_VALID
 
 //Reagents are calculated prior to object creation
-/datum/cooking_with_jane/recipe_step/use_oven/calculate_quality(var/obj/used_item, var/datum/cooking_with_jane/recipe_tracker/tracker)
+/datum/cooking_with_jane/recipe_step/use_oven/calculate_quality(obj/used_item, datum/cooking_with_jane/recipe_tracker/tracker)
 	var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = tracker.holder_ref.resolve()
 
 	var/obj/machinery/cooking_with_jane/oven/our_oven = used_item
@@ -46,10 +46,10 @@
 	return clamp_quality(good_cooking)
 
 
-/datum/cooking_with_jane/recipe_step/use_oven/follow_step(var/obj/used_item, var/datum/cooking_with_jane/recipe_tracker/tracker)
+/datum/cooking_with_jane/recipe_step/use_oven/follow_step(obj/used_item, datum/cooking_with_jane/recipe_tracker/tracker)
 	return CWJ_SUCCESS
 
-/datum/cooking_with_jane/recipe_step/use_oven/is_complete(var/obj/used_item, var/datum/cooking_with_jane/recipe_tracker/tracker)
+/datum/cooking_with_jane/recipe_step/use_oven/is_complete(obj/used_item, datum/cooking_with_jane/recipe_tracker/tracker)
 
 	var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = tracker.holder_ref.resolve()
 

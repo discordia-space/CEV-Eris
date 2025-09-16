@@ -9,11 +9,11 @@
 
 /obj/item/camera_bug/attack_self(mob/user)
 	var/list/cameras = new/list()
-	for (var/obj/machinery/camera/C in cameranet.cameras)
+	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		if (C.bugged && C.status)
 			cameras.Add(C)
 	if (length(cameras) == 0)
-		to_chat(user, SPAN_WARNING("No bugged functioning cameras found."))
+		to_chat(user, span_warning("No bugged functioning cameras found."))
 		return
 
 	var/list/friendly_cameras = new/list()

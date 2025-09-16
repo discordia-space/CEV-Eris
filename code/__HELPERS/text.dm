@@ -8,22 +8,27 @@
  *			Misc
  */
 
+GLOBAL_LIST_INIT(hex_characters, list("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"))
+GLOBAL_LIST_INIT(alphabet, list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"))
+GLOBAL_LIST_INIT(alphabet_upper, list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"))
+GLOBAL_LIST_INIT(numerals, list("1","2","3","4","5","6","7","8","9","0"))
+GLOBAL_LIST_INIT(space, list(" "))
+GLOBAL_LIST_INIT(binary, list("0","1"))
+
 
 /*
  * SQL sanitization
  */
 
-// Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
-/proc/sanitizeSQL(var/t as text)
-	var/sqltext = dbcon.Quote(t);
-	return copytext(sqltext, 2, length(sqltext));//Quote() adds quotes around input, we already do that
+/proc/format_table_name(table as text)
+	return CONFIG_GET(string/feedback_tableprefix) + table
 
 /*
  * Text sanitization
  */
 
 //Used for preprocessing entered text
-/proc/sanitize(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)
+/proc/sanitize(input, max_length = MAX_MESSAGE_LEN, encode = 1, trim = 1, extra = 1)
 	if(!input)
 		return
 
@@ -50,16 +55,11 @@
 
 	return input
 
-/proc/sanitizeFileName(var/input)
-	input = replace_characters(input, list(" "="_", "\\" = "_", "\""="'", "/" = "_", ":" = "_", "*" = "_", "?" = "_", "|" = "_", "<" = "_", ">" = "_", "#" = "_"))
-	if(findtext(input,"_") == 1)
-		input = copytext(input, 2)
-	return input
 //Run sanitize(), but remove <, >, " first to prevent displaying them as &gt; &lt; &34; in some places, after html_encode().
 //Best used for sanitize object names, window titles.
 //If you have a problem with sanitize() in chat, when quotes and >, < are displayed as html entites -
 //this is a problem of double-encode(when & becomes &amp;), use sanitize() with encode=0, but not the sanitizeSafe()!
-/proc/sanitizeSafe(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)
+/proc/sanitizeSafe(input, max_length = MAX_MESSAGE_LEN, encode = 1, trim = 1, extra = 1)
 	return sanitize(replace_characters(input, list(">"=" ", "<"=" ", "\""="'","&lt;" = " ","&gt;" = " ")), max_length, encode, trim, extra)
 
 //Filters out undesirable characters from names
@@ -71,7 +71,7 @@
 	var/last_char_group			= 0
 	var/output = ""
 
-	for(var/i=1, i<=length(input), i++)
+	for(var/i=1; i<=length(input); i++)
 		var/ascii_char = text2ascii(input, i)
 		switch(ascii_char)
 			// A  .. Z
@@ -132,7 +132,7 @@
 	var/non_whitespace = FALSE
 	var/lenbytes = length(text)
 	var/char = ""
-	for(var/i = 1, i <= lenbytes, i += length(char))
+	for(var/i = 1; i <= lenbytes; i += length(char))
 		char = text[i]
 		char_count++
 		if(char_count > max_length)
@@ -154,21 +154,19 @@
 
 
 //Old variant. Haven't dared to replace in some places.
-/proc/sanitize_old(var/t, var/list/repl_chars = list("\n"="#", "\t"="#"))
+/proc/sanitize_old(t, list/repl_chars = list("\n"="#", "\t"="#"))
 	return html_encode(replace_characters(t, repl_chars))
 
-//Removes a few problematic characters
-/proc/sanitize_simple(t,list/repl_chars = list("\n"="#","\t"="#"))
+/proc/sanitize_filename(text)
+	return hashtag_newlines_and_tabs(text, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
+
+/proc/hashtag_newlines_and_tabs(text, list/repl_chars = list("\n"="#","\t"="#"))
 	for(var/char in repl_chars)
-		var/index = findtext(t, char)
+		var/index = findtext(text, char)
 		while(index)
-			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index + length(char))
-			index = findtext(t, char, index + length(char))
-	return t
-
-/proc/sanitize_filename(t)
-	return sanitize_simple(t, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
-
+			text = copytext(text, 1, index) + repl_chars[char] + copytext(text, index + length(char))
+			index = findtext(text, char, index + length(char))
+	return text
 
 /*
  * Text searches
@@ -207,7 +205,7 @@
  * Text modification
  */
 
-/proc/replace_characters(var/t, var/list/repl_chars)
+/proc/replace_characters(t, list/repl_chars)
 	for(var/char in repl_chars)
 		t = replacetext(t, char, repl_chars[char])
 	return t
@@ -248,7 +246,7 @@
 
 //Returns a string with reserved characters and spaces after the last letter removed
 /proc/trim_right(text)
-	for (var/i = length(text), i > 0, i--)
+	for(var/i = length(text); i > 0; i--)
 		if (text2ascii(text, i) > 32)
 			return copytext(text, 1, i + 1)
 	return ""
@@ -258,7 +256,7 @@
 	return trim_left(trim_right(text))
 
 //Returns a string with the first element of the string capitalized.
-/proc/capitalize(var/t as text)
+/proc/capitalize(t as text)
 	return uppertext(copytext_char(t, 1, 2)) + copytext_char(t, 2)
 
 // Used to get a properly sanitized input, of max_length
@@ -272,7 +270,7 @@
 
 //This proc strips html properly, remove < > and all text between
 //for complete text sanitizing should be used sanitize()
-/proc/strip_html_properly(var/input)
+/proc/strip_html_properly(input)
 	if(!input)
 		return
 	var/opentag = 1 //These store the position of < and > respectively.
@@ -294,6 +292,29 @@
 			break
 
 	return input
+
+/// Runs STRIP_HTML_SIMPLE and byond's sanitization proc.
+/proc/adminscrub(text, limit = MAX_MESSAGE_LEN)
+	return html_encode(STRIP_HTML_SIMPLE(text, limit))
+
+/**
+ * Used to get a properly sanitized input in a larger box. Works very similarly to stripped_input.
+ *
+ * Arguments
+ ** user - Target of the input prompt.
+ ** message - The text inside of the prompt.
+ ** title - The window title of the prompt.
+ ** max_length - If you intend to impose a length limit - default is 1024.
+ ** no_trim - Prevents the input from being trimmed if you intend to parse newlines or whitespace.
+*/
+/proc/stripped_multiline_input(mob/user, message = "", title = "", default = "", max_length=MAX_MESSAGE_LEN, no_trim=FALSE)
+	var/user_input = input(user, message, title, default) as message|null
+	if(isnull(user_input)) // User pressed cancel
+		return
+	if(no_trim)
+		return copytext_char(html_encode(user_input), 1, max_length)
+	else
+		return trim(html_encode(user_input), max_length)
 
 //This proc fills in all spaces with the "replace" var (* by default) with whatever
 //is in the other string at the same spot (assuming it is not a replace char).
@@ -334,7 +355,7 @@
 	var/count = 0
 	var/lentext = length(text)
 	var/a = ""
-	for(var/i = 1, i <= lentext, i += length(a))
+	for(var/i = 1; i <= lentext; i += length(a))
 		a = text[i]
 		if(a == character)
 			count++
@@ -344,14 +365,14 @@
 	var/new_text = ""
 	var/lentext = length(text)
 	var/letter = ""
-	for(var/i = 1, i <= lentext, i += length(letter))
+	for(var/i = 1; i <= lentext; i += length(letter))
 		letter = text[i]
 		new_text = letter + new_text
 	return new_text
 
 //Used in preferences' SetFlavorText and human's set_flavor verb
 //Previews a string of len or less length
-proc/TextPreview(var/string, var/len=40)
+/proc/TextPreview(string, len=40)
 	if(length(string) <= len)
 		if(!length(string))
 			return "\[...\]"
@@ -361,20 +382,20 @@ proc/TextPreview(var/string, var/len=40)
 		return "[copytext_preserve_html(string, 1, 37)]..."
 
 //alternative copytext() for encoded text, doesn't break html entities (&#34; and other)
-/proc/copytext_preserve_html(var/text, var/first, var/last)
+/proc/copytext_preserve_html(text, first, last)
 	return html_encode(copytext(html_decode(text), first, last))
 
 //For generating neat chat tag-images
 //The icon var could be local in the proc, but it's a waste of resources
 //	to always create it and then throw it out.
-/var/icon/text_tag_icons = new('./icons/chattags.dmi')
-/proc/create_text_tag(var/tagname, var/tagdesc = tagname, var/client/C = null)
+var/icon/text_tag_icons = new('./icons/chattags.dmi')
+/proc/create_text_tag(tagname, tagdesc = tagname, client/C = null)
 	if(!(C && C.get_preference_value(/datum/client_preference/chat_tags) == GLOB.PREF_SHOW))
 		return tagdesc
 	return icon2html(icon(text_tag_icons, tagname), world)
 
-/proc/contains_az09(var/input)
-	for(var/i=1, i<=length(input), i++)
+/proc/contains_az09(input)
+	for(var/i=1; i<=length(input); i++)
 		var/ascii_char = text2ascii(input, i)
 		switch(ascii_char)
 			// A  .. Z
@@ -391,7 +412,7 @@ proc/TextPreview(var/string, var/len=40)
 
 
 //Takes a direction define and returns the name of it
-/proc/direction_to_text(var/D)
+/proc/direction_to_text(D)
 	switch (D)
 		if (NORTH)
 			return "North"
@@ -416,7 +437,7 @@ proc/TextPreview(var/string, var/len=40)
  * Strip out the special beyond characters for \proper and \improper
  * from text that will be sent to the browser.
  */
-/proc/strip_improper(var/text)
+/proc/strip_improper(text)
 	return replacetext(replacetext(text, "\proper", ""), "\improper", "")
 
 #define gender2text(gender) capitalize(gender)
@@ -437,7 +458,7 @@ proc/TextPreview(var/string, var/len=40)
 	t = replacetext(t, "\[date\]", "[stationdate2text()]")
 	t = replacetext(t, "\[large\]", "<font size=\"4\">")
 	t = replacetext(t, "\[/large\]", "</font>")
-	t = replacetext(t, "\[field\]", "<span class=\"paper_field\"></span>")
+	t = replacetext(t, "\[field\]", "<span class='paper_field'></span>")
 	t = replacetext(t, "\[h1\]", "<H1>")
 	t = replacetext(t, "\[/h1\]", "</H1>")
 	t = replacetext(t, "\[h2\]", "<H2>")
@@ -490,7 +511,7 @@ proc/TextPreview(var/string, var/len=40)
 	t = replacetext(t, "<tr>", "\[row\]")
 	t = replacetext(t, "<td>", "\[cell\]")
 	t = replacetext(t, "<img src = ntlogo.png>", "\[logo\]")
-	t = replacetext(t, "<span class=\"paper_field\"></span>", "\[field\]")
+	t = replacetext(t, "<span class='paper_field'></span>", "\[field\]")
 	t = strip_html_properly(t)
 	return t
 
@@ -500,7 +521,7 @@ proc/TextPreview(var/string, var/len=40)
 	var/newKey
 	newKey += pick("the", "if", "of", "as", "in", "a", "you", "from", "to", "an", "too", "little", "snow", "dead", "drunk", "rosebud", "duck", "al", "le")
 	newKey += pick("diamond", "beer", "mushroom", "assistant", "clown", "captain", "twinkie", "security", "nuke", "small", "big", "escape", "yellow", "gloves", "monkey", "engine", "nuclear", "ai")
-	newKey += pick("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
+	newKey += pick(GLOB.numerals)
 	return newKey
 
 //Used to strip text of everything but letters and numbers, make letters lowercase, and turn spaces into .'s.
@@ -509,7 +530,7 @@ proc/TextPreview(var/string, var/len=40)
 	if(!text) return ""
 	var/list/dat = list()
 	var/last_was_space = 1
-	for(var/i=1, i<=length(text), i++)
+	for(var/i = 1; i <= length(text); i++)
 		var/ascii_char = text2ascii(text,i)
 		switch(ascii_char)
 			if(65 to 90)	//A-Z, make them lowercase
@@ -532,13 +553,13 @@ proc/TextPreview(var/string, var/len=40)
 
 //Generates a clickable link which will jump the camera/ghost to the target atom
 //Useful for admin procs
-/proc/jumplink(var/atom/target)
+/proc/jumplink(atom/target)
 	if (QDELETED(target))
 		return ""
 	var/turf/T = get_turf(target)
 	var/area/A = get_area(target)
 	var/where = "[A? A.name : "Unknown Location"] | [T.x], [T.y], [T.z]"
-	var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>[where]</a>"
+	var/whereLink = "[where] [ADMIN_JMP(T)]"
 	return whereLink
 
 //Used for applying byonds text macros to strings that are loaded at runtime
@@ -600,5 +621,50 @@ proc/TextPreview(var/string, var/len=40)
 
 /proc/repeat_string(times, string="")
 	. = ""
-	for(var/i=1, i<=times, i++)
+	for(var/i = 1; i <= times; i++)
 		. += string
+
+//json decode that will return null on parse error instead of runtiming.
+/proc/safe_json_decode(data)
+	try
+		return json_decode(data)
+	catch
+		return null
+
+/// Converts a semver string into a list of numbers
+/proc/semver_to_list(semver_string)
+	var/static/regex/semver_regex = regex(@"(\d+)\.(\d+)\.(\d+)", "")
+	if(!semver_regex.Find(semver_string))
+		return null
+
+	return list(
+		text2num(semver_regex.group[1]),
+		text2num(semver_regex.group[2]),
+		text2num(semver_regex.group[3]),
+	)
+
+
+/// Returns a message wrapped in a <font> tag, colored based on how close `number` is to `threshold`.
+/// Lower number = green. Approaching threshold = yellow/orange. Exceeding = red.
+/proc/get_colored_thresh_text(msg, number, threshold = 10)
+	if (threshold <= 0)
+		return "<font color='#ffffff'>[msg]</font>" // fallback
+
+	var/ratio = number / threshold
+	if (ratio > 1) ratio = 1
+
+	var/hue = round(120 * (1 - ratio))
+	var/saturation = 90
+	var/lightness = 60
+
+	return "<span style='color: hsl([hue],[saturation]%,[lightness]%);'>[msg]</span>"
+
+/// Returns TRUE if the input_text ends with the ending
+/proc/endsWith(input_text, ending)
+	var/input_length = LAZYLEN(ending)
+	return !!findtext(input_text, ending, -input_length)
+
+/// Returns TRUE if the input_text starts with the beginning
+/proc/startsWith(input_text, beginning)
+	var/input_length = LAZYLEN(beginning)
+	return !!findtext(input_text, beginning, 1, input_length + 1)

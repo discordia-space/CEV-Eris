@@ -7,9 +7,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 	set name = "quick-equip"
 	set hidden = 1
 
-	var/obj/item/I = get_active_hand()
+	var/obj/item/I = get_active_held_item()
 	if(!I)
-		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
+		to_chat(src, span_notice("You are not holding anything to equip."))
 		return
 
 
@@ -24,7 +24,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		quick_equip_storage(I)
 	/*
 	if(!equip_to_appropriate_slot(I))
-		to_chat(src, SPAN_WARNING("You are unable to equip that to your person."))
+		to_chat(src, span_warning("You are unable to equip that to your person."))
 		if(quick_equip_storage(I))
 			return
 	*/
@@ -33,9 +33,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 	set name = "belt-equip"
 	set hidden = 1
 
-	var/obj/item/I = get_active_hand()
+	var/obj/item/I = get_active_held_item()
 	if(!I)
-		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
+		to_chat(src, span_notice("You are not holding anything to equip."))
 		return
 	if(quick_equip_belt(I))
 		return
@@ -43,17 +43,17 @@ This saves us from having to call add_fingerprint() any time something is put in
 	set name = "suit-storage-equip"
 	set hidden = 1
 
-	var/obj/item/I = get_active_hand()
+	var/obj/item/I = get_active_held_item()
 	if(I)
 		if(src.s_store)
-			to_chat(src, SPAN_NOTICE("You have no room to equip or draw."))
+			to_chat(src, span_notice("You have no room to equip or draw."))
 			return
 		else
 			equip_to_from_suit_storage(I)
 	else if ( src.s_store )
 		equip_to_from_suit_storage(src.s_store)
 	else
-		to_chat(src, SPAN_NOTICE("You are not holding anything to equip or draw."))
+		to_chat(src, span_notice("You are not holding anything to equip or draw."))
 	return
 
 /mob/living/carbon/human/proc/get_quick_slot(obj/item/I)
@@ -68,7 +68,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	var/obj/item/storage/S
 
-	for(var/i in list(get_inactive_hand(), back, get_active_hand()))
+	for(var/i in list(get_inactive_held_item(), back, get_active_held_item()))
 		if(istype(i, /obj/item/storage))
 			S = i
 			break
@@ -80,21 +80,21 @@ This saves us from having to call add_fingerprint() any time something is put in
 				break
 
 	if(S && (!istype(S, /obj/item/storage/backpack) || S:worn_check()))
-		equip_to_from_bag(get_active_hand(), S)
+		equip_to_from_bag(get_active_held_item(), S)
 
 
 //Puts the item into our active hand if possible. returns 1 on success.
-/mob/living/carbon/human/put_in_active_hand(var/obj/item/W)
+/mob/living/carbon/human/put_in_active_hand(obj/item/W)
 	var/value = hand ? put_in_l_hand(W) : put_in_r_hand(W)
 	if(value)
 		W.swapped_to(src)
 	return value
 
 //Puts the item into our inactive hand if possible. returns 1 on success.
-/mob/living/carbon/human/put_in_inactive_hand(var/obj/item/W)
+/mob/living/carbon/human/put_in_inactive_hand(obj/item/W)
 	return (hand ? put_in_r_hand(W) : put_in_l_hand(W))
 
-/mob/living/carbon/human/put_in_hands(var/obj/item/W)
+/mob/living/carbon/human/put_in_hands(obj/item/W)
 	if(!W)
 		return FALSE
 	if(put_in_active_hand(W) || put_in_inactive_hand(W))
@@ -102,18 +102,18 @@ This saves us from having to call add_fingerprint() any time something is put in
 	else
 		return ..()
 
-/mob/living/carbon/human/put_in_l_hand(var/obj/item/W)
+/mob/living/carbon/human/put_in_l_hand(obj/item/W)
 	W.add_fingerprint(src)
 	return equip_to_slot_if_possible(W, slot_l_hand)
 
-/mob/living/carbon/human/put_in_r_hand(var/obj/item/W)
+/mob/living/carbon/human/put_in_r_hand(obj/item/W)
 	W.add_fingerprint(src)
 	return equip_to_slot_if_possible(W, slot_r_hand)
 
 
 
 //Find HUD position on screen
-/mob/living/carbon/human/proc/find_inv_position(var/slot_id)
+/mob/living/carbon/human/proc/find_inv_position(slot_id)
 	for(var/obj/screen/inventory/HUDinv in HUDinventory)
 		if (HUDinv.slot_id == slot_id)
 			return (HUDinv.invisibility == 101) ? null : HUDinv.screen_loc
@@ -122,7 +122,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	return "7,7"
 
 //Mannequins have no hud, this was causing a lot of spam in the logs
-/mob/living/carbon/human/dummy/mannequin/find_inv_position(var/slot_id)
+/mob/living/carbon/human/dummy/mannequin/find_inv_position(slot_id)
 	return "7,7"
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
@@ -240,13 +240,13 @@ This saves us from having to call add_fingerprint() any time something is put in
 		update_action_buttons()
 	return 1
 
-/mob/living/carbon/human/proc/get_active_hand_organ()
+/mob/living/carbon/human/proc/get_active_held_item_organ()
 	if(hand)
 		return get_organ(BP_L_ARM)
 	else
 		return get_organ(BP_R_ARM)
 
-/mob/living/carbon/human/proc/get_holding_hand(var/obj/item/W)
+/mob/living/carbon/human/proc/get_holding_hand(obj/item/W)
 	switch(get_inventory_slot(W))
 		if(slot_l_hand)
 			return BP_L_ARM
@@ -257,7 +257,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	SEND_SIGNAL_OLD(src, COMSING_HUMAN_EQUITP, W)
 	switch(slot)
 		if(slot_in_backpack)
-			if(src.get_active_hand() == W)
+			if(src.get_active_held_item() == W)
 				src.remove_from_mob(W)
 			W.forceMove(src.back)
 
@@ -361,13 +361,13 @@ This saves us from having to call add_fingerprint() any time something is put in
 				src.wear_suit.attackby(W, src)
 			return FALSE
 		else
-			to_chat(src, SPAN_DANGER("You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]"))
+			to_chat(src, span_danger("You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]"))
 			return
 
 	return TRUE
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
-/mob/living/carbon/human/slot_is_accessible(var/slot, var/obj/item/I, mob/user)
+/mob/living/carbon/human/slot_is_accessible(slot, obj/item/I, mob/user)
 	var/obj/item/covering = null
 	var/check_flags = 0
 
@@ -384,7 +384,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			covering = src.wear_suit
 
 	if(covering && (covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
-		to_chat(user, SPAN_WARNING("\The [covering] is in the way."))
+		to_chat(user, span_warning("\The [covering] is in the way."))
 		return FALSE
 
 	return 1

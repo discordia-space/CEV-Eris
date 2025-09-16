@@ -33,13 +33,13 @@
 
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
-		to_chat(user, "\red \The [src] needs to be firmly secured to the floor first.")
+		to_chat(user, span_red("\The [src] needs to be firmly secured to the floor first."))
 		return 1
 	if(src.locked && !issilicon(user))
-		to_chat(user, "\red The controls are locked!")
+		to_chat(user, span_red("The controls are locked!"))
 		return 1
 	if(power != 1)
-		to_chat(user, "\red \The [src] needs to be powered by wire underneath.")
+		to_chat(user, span_red("\The [src] needs to be powered by wire underneath."))
 		return 1
 
 	if(src.active >= 1)
@@ -110,22 +110,22 @@
 	if(active)
 		if(!state)
 			active = FALSE
-			for(var/fdir in cardinal)
+			for(var/fdir in GLOB.cardinal)
 				cleanup(fdir)
 			return
 
 		if(!stunmode)
-			for(var/fdir in cardinal)
+			for(var/fdir in GLOB.cardinal)
 				setup_field(fdir)
 		else
 			stun()
 
 
 		if(!power)
-			visible_message("\red The [src.name] shuts down due to lack of power!", \
+			visible_message(span_red("The [src.name] shuts down due to lack of power!"), \
 				"You hear heavy droning fade out")
 			active = FALSE
-			for(var/fdir in cardinal)
+			for(var/fdir in GLOB.cardinal)
 				cleanup(fdir)
 
 			update_icon()
@@ -137,22 +137,22 @@
 			P.shot_from = src
 			P.launch(M)
 
-/obj/machinery/shieldwallgen/proc/can_stun(var/mob/M)
+/obj/machinery/shieldwallgen/proc/can_stun(mob/M)
 	return TRUE
 
 
-/obj/machinery/shieldwallgen/proc/setup_field(var/f_dir = 0)
+/obj/machinery/shieldwallgen/proc/setup_field(f_dir = 0)
 	if(!f_dir)//Make sure its ran right
 		return
 
 	var/field_found = 0
 	var/turf/T = src.loc
 	var/obj/machinery/shieldwallgen/G = null
-	for(var/dist = 1, dist <= max_field_dist, dist += 1) // checks out to [max_field_dist] tiles away for another generator
+	for(var/dist = 1; dist <= max_field_dist; dist += 1) // checks out to [max_field_dist] tiles away for another generator
 		T = get_step(T, f_dir)
 
 		var/obj/machinery/shieldwall/F = locate(/obj/machinery/shieldwall) in T
-		if(F && (F.dir == f_dir || F.dir == reverse_dir[f_dir]))
+		if(F && (F.dir == f_dir || F.dir == GLOB.reverse_dir[f_dir]))
 			field_found++
 
 		G = (locate(/obj/machinery/shieldwallgen) in T)
@@ -172,22 +172,22 @@
 			return
 
 	T = src.loc
-	for(var/dist = 1, dist <= get_dist(src, G)-1, dist += 1) // creates each field tile
+	for(var/dist = 1; dist <= get_dist(src, G)-1; dist += 1) // creates each field tile
 		T = get_step(T, f_dir)
 		var/obj/machinery/shieldwall/CF = new shield_type(src, G) //(ref to this gen, ref to connected gen)
 		CF.loc = T
 		CF.set_dir(f_dir)
 
 
-/obj/machinery/shieldwallgen/proc/cleanup(var/c_dir)
+/obj/machinery/shieldwallgen/proc/cleanup(c_dir)
 
 	var/turf/T = src.loc
 
-	for(var/dist = 1, dist <= max_field_dist, dist += 1) // checks out to 8 tiles away for fields
+	for(var/dist = 1; dist <= max_field_dist; dist += 1) // checks out to 8 tiles away for fields
 		T = get_step(T, c_dir)
 
 		var/obj/machinery/shieldwall/F = locate(/obj/machinery/shieldwall) in T
-		if(F && (F.dir == c_dir || F.dir == reverse_dir[c_dir]))
+		if(F && (F.dir == c_dir || F.dir == GLOB.reverse_dir[c_dir]))
 			qdel(F)
 
 		var/obj/machinery/shieldwallgen/G = (locate(/obj/machinery/shieldwallgen) in T)
@@ -229,11 +229,11 @@
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, span_red("Access denied."))
 
 	else
 		src.add_fingerprint(user)
-		visible_message("\red The [src.name] has been hit with \the [I.name] by [user.name]!")
+		visible_message(span_red("The [src.name] has been hit with \the [I.name] by [user.name]!"))
 
 
 /obj/machinery/shieldwallgen/emag_act()
@@ -246,7 +246,7 @@
 	src.cleanup(EAST)
 	. = ..()
 
-/obj/machinery/shieldwallgen/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/shieldwallgen/bullet_act(obj/item/projectile/Proj)
 	storedpower -= 400 * Proj.get_structure_damage()
 	..()
 	return
@@ -276,7 +276,7 @@
 		var/power_usage = 2500	//how much power it takes to sustain the shield
 		var/generate_power_usage = 7500	//how much power it takes to start up the shield
 
-/obj/machinery/shieldwall/New(var/obj/machinery/shieldwallgen/A, var/obj/machinery/shieldwallgen/B)
+/obj/machinery/shieldwall/New(obj/machinery/shieldwallgen/A, obj/machinery/shieldwallgen/B)
 	..()
 	update_nearby_tiles()
 	src.gen_primary = A
@@ -314,7 +314,7 @@
 			gen_secondary.storedpower -= power_usage
 
 
-/obj/machinery/shieldwall/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/shieldwall/bullet_act(obj/item/projectile/Proj)
 	if(needs_power)
 		var/obj/machinery/shieldwallgen/G
 		if(prob(50))

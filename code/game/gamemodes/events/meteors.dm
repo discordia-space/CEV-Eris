@@ -34,16 +34,16 @@
 		if (EVENT_LEVEL_MAJOR)
 			strength = 3
 			duration = 130
-	start_side = pick(cardinal)
+	start_side = pick(GLOB.cardinal)
 	endWhen = startWhen + duration
 
 /datum/event/meteor_wave/announce()
 	switch(severity)
 		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("Meteors have been detected on collision course with the ship. ETA 3 minutes until impact. Crew are advised to raise shields and stay away from the outer hull", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
+			priority_announce("Meteors have been detected on collision course with the ship. ETA 3 minutes until impact. Crew are advised to raise shields and stay away from the outer hull", "Meteor Alert", sound = 'sound/AI/meteors.ogg')
 
 		else
-			command_announcement.Announce("Meteors have been detected on collision course with the ship.ETA 3 minutes until impact.", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
+			priority_announce("Meteors have been detected on collision course with the ship.ETA 3 minutes until impact.", "Meteor Alert", sound = 'sound/AI/meteors.ogg')
 
 /datum/event/meteor_wave/tick()
 	if(activeFor >= next_meteor)
@@ -56,9 +56,9 @@
 /datum/event/meteor_wave/end()
 	switch(severity)
 		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("The ship has cleared the meteor storm.", "Meteor Alert")
+			priority_announce("The ship has cleared the meteor storm.", "Meteor Alert")
 		else
-			command_announcement.Announce("The ship has cleared the meteor shower", "Meteor Alert")
+			priority_announce("The ship has cleared the meteor shower", "Meteor Alert")
 
 /datum/event/meteor_wave/proc/get_meteors()
 	switch(severity)
@@ -83,7 +83,7 @@
 	. = ..()
 
 /datum/event/meteor_wave/overmap/announce()
-	command_announcement.Announce("Alert: The ship is now passing through an asteroid field. Brace for impact", "Asteroid Alert", new_sound = 'sound/AI/meteors.ogg')
+	priority_announce("Alert: The ship is now passing through an asteroid field. Brace for impact", "Asteroid Alert", sound = 'sound/AI/meteors.ogg')
 
 
 /*
@@ -96,23 +96,23 @@
 
 /datum/event/meteor_wave/overmap/tick()
 	if(victim && !victim.is_still()) //Meteors mostly fly in your face
-		start_side = prob(90) ? victim.fore_dir : pick(cardinal)
+		start_side = prob(90) ? victim.fore_dir : pick(GLOB.cardinal)
 	else if (prob(90))
 		return //If you're not moving you wont get hit muc
 	..()
 
 
 
-/var/const/meteor_wave_delay = 1 MINUTES //minimum wait between waves in tenths of seconds
+var/const/meteor_wave_delay = 1 MINUTES //minimum wait between waves in tenths of seconds
 //set to at least 100 unless you want evarr ruining every round
 
 //Meteor groups, used for various random events and the Meteor gamemode.
 
 // Dust, used by space dust event and during earliest stages of meteor mode.
-/var/list/meteors_dust = list(/obj/effect/meteor/dust)
+var/list/meteors_dust = list(/obj/effect/meteor/dust)
 
 // Standard meteors, used during early stages of the meteor gamemode.
-/var/list/meteors_normal = list(\
+var/list/meteors_normal = list(\
 		/obj/effect/meteor/medium=8,\
 		/obj/effect/meteor/dust=3,\
 		/obj/effect/meteor/irradiated=3,\
@@ -123,7 +123,7 @@
 		)
 
 // Threatening meteors, used during the meteor gamemode.
-/var/list/meteors_threatening = list(\
+var/list/meteors_threatening = list(\
 		/obj/effect/meteor/big=10,\
 		/obj/effect/meteor/medium=5,\
 		/obj/effect/meteor/golden=3,\
@@ -134,7 +134,7 @@
 		)
 
 // Catastrophic meteors, pretty dangerous without shields and used during the meteor gamemode.
-/var/list/meteors_catastrophic = list(\
+var/list/meteors_catastrophic = list(\
 		/obj/effect/meteor/big=75,\
 		/obj/effect/meteor/flaming=10,\
 		/obj/effect/meteor/irradiated=10,\
@@ -146,7 +146,7 @@
 		)
 
 // Armageddon meteors, very dangerous, and currently used only during the meteor gamemode.
-/var/list/meteors_armageddon = list(\
+var/list/meteors_armageddon = list(\
 		/obj/effect/meteor/big=25,\
 		/obj/effect/meteor/flaming=10,\
 		/obj/effect/meteor/irradiated=10,\
@@ -158,7 +158,7 @@
 		)
 
 // Cataclysm meteor selection. Very very dangerous and effective even against shields. Used in late game meteor gamemode only.
-/var/list/meteors_cataclysm = list(\
+var/list/meteors_cataclysm = list(\
 		/obj/effect/meteor/big=40,\
 		/obj/effect/meteor/emp=20,\
 		/obj/effect/meteor/tunguska=20,\
@@ -174,7 +174,7 @@
 //Meteor spawning global procs
 ///////////////////////////////
 
-/proc/spawn_meteors(var/number = 1, var/list/meteortypes, var/startSide, var/zlevel)
+/proc/spawn_meteors(number = 1, list/meteortypes, startSide, zlevel)
 	for(var/i = 0; i < number; i++)
 		//If no target zlevel is specified, then we'll throw each meteor at an individually randomly selected ship zlevel
 		var/target_level
@@ -184,7 +184,7 @@
 			target_level = pick(GLOB.maps_data.station_levels)
 		spawn_meteor(meteortypes, startSide, target_level)
 
-/proc/spawn_meteor(var/list/meteortypes, var/startSide, var/zlevel)
+/proc/spawn_meteor(list/meteortypes, startSide, zlevel)
 	var/turf/pickedstart = spaceDebrisStartLoc(startSide, zlevel)
 	var/turf/pickedgoal = spaceDebrisFinishLoc(startSide, zlevel)
 	var/Me = pickweight(meteortypes)
@@ -234,19 +234,19 @@
 
 /////////                      ........::::::%%%SPACE_COMET
 
-/var/list/comet_hardcore = list(\
+var/list/comet_hardcore = list(\
 		/obj/effect/meteor/large/ice=40,\
 		/obj/effect/meteor/medium/ice=20,\
 		/obj/effect/meteor/dust/ice=10
 		)
 
-/var/list/comet_mediumrare = list(\
+var/list/comet_mediumrare = list(\
 		/obj/effect/meteor/medium/ice=40,\
 		/obj/effect/meteor/large/ice=10,\
 		/obj/effect/meteor/dust/ice=20
 		)
 
-/var/list/comet_mini = list(\
+var/list/comet_mini = list(\
 		/obj/effect/meteor/medium/ice=10,\
 		/obj/effect/meteor/large/ice=5,\
 		/obj/effect/meteor/dust/ice=40
@@ -333,7 +333,7 @@
 	z_original = z
 
 
-/obj/effect/meteor/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/effect/meteor/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..() //process movement...
 	move_count++
 	if(loc == dest)
@@ -361,7 +361,7 @@
 /obj/effect/meteor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return istype(mover, /obj/effect/meteor) ? 1 : ..()
 
-/obj/effect/meteor/proc/ram_turf(var/turf/T)
+/obj/effect/meteor/proc/ram_turf(turf/T)
 	//first bust whatever is in the turf
 	for(var/atom/A in T)
 		if(A != src && !A.CanPass(src, src.loc, 0.5, 0)) //only ram stuff that would actually block us
@@ -392,7 +392,7 @@
 	..()
 
 /obj/effect/meteor/proc/make_debris()
-	for(var/throws = dropamt, throws > 0, throws--)
+	for(var/throws = dropamt; throws > 0; throws--)
 		var/obj/item/O = new meteordrop(get_turf(src))
 		O.throw_at(dest, 5, 10)
 
@@ -402,7 +402,7 @@
 	if (istype(hit_location))
 		var/area/A = get_area(hit_location)
 		var/where = "[A? A.name : "Unknown Location"] | [hit_location.x], [hit_location.y]"
-		var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[hit_location.x];Y=[hit_location.y];Z=[hit_location.z]'>[where]</a>"
+		var/whereLink = "[where] [ADMIN_JMP(hit_location)]"
 		message_admins("A meteor has impacted at ([whereLink])", 0, 1)
 		log_game("A meteor has impacted at ([where]).")
 

@@ -77,30 +77,30 @@
 /decl/security_state/proc/can_change_security_level()
 	return current_security_level in standard_security_levels
 
-/decl/security_state/proc/can_switch_to(var/given_security_level)
+/decl/security_state/proc/can_switch_to(given_security_level)
 	if(!can_change_security_level())
 		return FALSE
 	return given_security_level in standard_security_levels
 
-/decl/security_state/proc/current_security_level_is_lower_than(var/given_security_level)
+/decl/security_state/proc/current_security_level_is_lower_than(given_security_level)
 	var/current_index = all_security_levels.Find(current_security_level)
 	var/given_index   = all_security_levels.Find(given_security_level)
 
 	return given_index && current_index < given_index
 
-/decl/security_state/proc/current_security_level_is_same_or_higher_than(var/given_security_level)
+/decl/security_state/proc/current_security_level_is_same_or_higher_than(given_security_level)
 	var/current_index = all_security_levels.Find(current_security_level)
 	var/given_index   = all_security_levels.Find(given_security_level)
 
 	return given_index && current_index >= given_index
 
-/decl/security_state/proc/current_security_level_is_higher_than(var/given_security_level)
+/decl/security_state/proc/current_security_level_is_higher_than(given_security_level)
 	var/current_index = all_security_levels.Find(current_security_level)
 	var/given_index   = all_security_levels.Find(given_security_level)
 
 	return given_index && current_index > given_index
 
-/decl/security_state/proc/set_security_level(var/decl/security_level/new_security_level, var/force_change = FALSE)
+/decl/security_state/proc/set_security_level(decl/security_level/new_security_level, force_change = FALSE)
 	if(new_security_level == current_security_level)
 		return FALSE
 	if(!(new_security_level in all_security_levels))
@@ -125,7 +125,7 @@
 	return TRUE
 
 // This proc decreases the current security level, if possible
-/decl/security_state/proc/decrease_security_level(var/force_change = FALSE)
+/decl/security_state/proc/decrease_security_level(force_change = FALSE)
 	var/current_index = all_security_levels.Find(current_security_level)
 	if(current_index == 1)
 		return FALSE
@@ -148,6 +148,8 @@
 
 	var/up_description
 	var/down_description
+	var/up_color
+	var/down_color
 
 // Called when we're switching from a lower security level to this one.
 /decl/security_level/proc/switching_up_to()
@@ -174,17 +176,14 @@
 /decl/security_level/default
 	icon = 'icons/misc/security_state.dmi'
 
-	var/static/datum/announcement/priority/security/security_announcement_up = new(do_log = 0, do_newscast = 1, new_sound = sound('sound/misc/notice1.ogg'))
-	var/static/datum/announcement/priority/security/security_announcement_down = new(do_log = 0, do_newscast = 1, new_sound = sound('sound/misc/notice1.ogg'))
-
 /decl/security_level/default/switching_up_to()
 	if(up_description)
-		security_announcement_up.Announce(up_description, "Attention! Alert level elevated to [name]!")
+		priority_announce(up_description, "Attention! Alert level elevated to [name]!", 'sound/misc/notice1.ogg', color_override = up_color, )
 	notify_station()
 
 /decl/security_level/default/switching_down_to()
 	if(down_description)
-		security_announcement_down.Announce(down_description, "Attention! Alert level changed to [name]!")
+		priority_announce(down_description, "Attention! Alert level changed to [name]!", 'sound/misc/notice1.ogg', color_override = down_color,)
 	notify_station()
 
 /decl/security_level/default/proc/notify_station()
@@ -209,6 +208,7 @@
 	overlay_status_display = "status_display_green"
 
 	down_description = "All threats to the ship have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	down_color = "green"
 
 /decl/security_level/default/code_blue
 	name = "code blue"
@@ -226,6 +226,8 @@
 
 	up_description = "The ship has received reliable information about possible hostile activity on the ship. Security staff may have weapons visible, random searches are permitted."
 	down_description = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
+	up_color = "blue"
+	down_color = "blue"
 
 /decl/security_level/default/code_red
 	name = "code red"
@@ -243,6 +245,8 @@
 
 	up_description = "There is an immediate serious threat to the ship. Security may have weapons unholstered at all times. Random searches are allowed and advised."
 	down_description = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the ship. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	up_color = "red"
+	down_color = "red"
 
 /decl/security_level/default/code_delta
 	name = "code delta"
@@ -257,11 +261,15 @@
 	overlay_firealarm = "overlay_delta"
 
 	overlay_status_display = "status_display_delta"
-
-	var/static/datum/announcement/priority/security/security_announcement_delta = new(do_log = 0, do_newscast = 1, new_sound = sound('sound/effects/siren.ogg'))
+	up_color = "purple"
 
 /decl/security_level/default/code_delta/switching_up_to()
-	security_announcement_delta.Announce("The self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.", "Attention! Delta security level reached!")
+	priority_announce(
+		"The self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.",
+		"Attention! Delta security level reached!",
+		'sound/effects/siren.ogg',
+		color_override = up_color
+	)
 	notify_station()
 
 /decl/security_level/default/code_jumping
@@ -277,12 +285,15 @@
 
 	overlay_status_display = "status_display_delta"
 
-	var/static/datum/announcement/priority/security/security_announcement_jumping = new(do_log = FALSE, do_newscast = TRUE, new_sound = sound('sound/effects/siren.ogg'))
-
 /decl/security_level/default/code_jumping/switching_up_to()
-	security_announcement_jumping.Announce("Bluespace jump initiation detected from the Bridge, authorized by /%#~1@^&*~!#$%&!!@@NULL/. Adjusting ship bluespace-core heading for jump towards EXCELSIOR-CONTROLLED space. All crew are advised to buckle down and secure any mobile parts.", "Attention! Bluespace jump in 15 minutes!", use_text_to_speech = TRUE)
+	priority_announce(
+		"Bluespace jump initiation detected from the Bridge, authorized by /%#~1@^&*~!#$%&!!@@NULL/. Adjusting ship bluespace-core heading for jump towards EXCELSIOR-CONTROLLED space. All crew are advised to buckle down and secure any mobile parts.",
+		"Attention! Bluespace jump in 15 minutes!",
+		color_override = "amber",
+		use_text_to_speech = TRUE
+	)
 	notify_station()
 
 /decl/security_level/default/code_jumping/switching_down_to()
 	. = ..()
-	security_announcement_jumping.Announce("Bluespace jump towards EXCELSIOR-CONTROLLED space has been cancelled. All crew may resume their work activities.", "Attention! Bluespace jump cancelled.", use_text_to_speech = TRUE)
+	priority_announce("Bluespace jump towards EXCELSIOR-CONTROLLED space has been cancelled. All crew may resume their work activities.", "Attention! Bluespace jump cancelled.", use_text_to_speech = TRUE)

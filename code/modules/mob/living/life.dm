@@ -4,7 +4,7 @@
 
 	. = FALSE
 	..()
-	if(config.enable_mob_sleep)
+	if(CONFIG_GET(flag/enable_mob_sleep))
 		if(stat != DEAD && !mind)	// Check for mind so player-driven, nonhuman mobs don't sleep
 			if(life_cycles_before_scan > 0)
 				life_cycles_before_scan--
@@ -113,7 +113,7 @@
 /mob/living/proc/handle_random_events()
 	return
 
-/mob/living/proc/handle_environment(var/datum/gas_mixture/environment)
+/mob/living/proc/handle_environment(datum/gas_mixture/environment)
 	return
 
 /mob/living/proc/update_pulling()

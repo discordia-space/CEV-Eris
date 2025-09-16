@@ -55,7 +55,7 @@
 		if(!C && active_power_use == 0)
 			return TRUE
 		if(!(C && C.check_charge(active_power_use * CELLRATE)))
-			to_chat(user, SPAN_WARNING("The power indicator flashes briefly as you attempt to use \the [src]"))
+			to_chat(user, span_warning("The power indicator flashes briefly as you attempt to use \the [src]"))
 			return FALSE
 		return TRUE
 	else
@@ -68,19 +68,19 @@
 		if((usr == owner || usr.loc == owner) && !usr.incapacitated() )
 			return attack_self(usr)
 
-/obj/item/mech_equipment/attack_self(var/mob/user)
+/obj/item/mech_equipment/attack_self(mob/user)
 	if (owner && loc == owner && ((user in owner.pilots) || user == owner))
 		var/obj/item/cell/C = owner.get_cell()
 		if(C && active_power_use == 0)
 			return TRUE
 		if(!(C && C.check_charge(active_power_use * CELLRATE)))
-			to_chat(user, SPAN_WARNING("The power indicator flashes briefly as you attempt to use \the [src]"))
+			to_chat(user, span_warning("The power indicator flashes briefly as you attempt to use \the [src]"))
 			return FALSE
 		return TRUE
 	else
 		return FALSE
 
-/obj/item/mech_equipment/proc/installed(var/mob/living/exosuit/_owner, hardpoint)
+/obj/item/mech_equipment/proc/installed(mob/living/exosuit/_owner, hardpoint)
 	owner = _owner
 	//generally attached. Nothing should be able to grab it
 	canremove = FALSE
@@ -107,7 +107,7 @@
 	var/obj/item/holding
 	bad_type = /obj/item/mech_equipment/mounted_system
 
-/obj/item/mech_equipment/mounted_system/attack_self(var/mob/user)
+/obj/item/mech_equipment/mounted_system/attack_self(mob/user)
 	. = ..()
 	if(. && holding)
 		return holding.attack_self(user)

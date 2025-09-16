@@ -45,13 +45,13 @@
 	if(pipes_opened)
 		switch(get_dirtiness_level())
 			if(DIRT_LVL_LOW)
-				extra_description += SPAN_NOTICE("Pipes are weared a bit, it's slightly dirty. You see a signs of biomass inside these pipes.")
+				extra_description += span_notice("Pipes are weared a bit, it's slightly dirty. You see a signs of biomass inside these pipes.")
 			if(DIRT_LVL_MEDIUM)
-				extra_description += SPAN_WARNING("It's very dirty. Solid biomass block atleast half of space inside the pipes. Better to clean it up.")
+				extra_description += span_warning("It's very dirty. Solid biomass block atleast half of space inside the pipes. Better to clean it up.")
 			if(DIRT_LVL_HIGH)
-				extra_description += SPAN_WARNING("You see a high amount of biomass. Pipes are fully blocked. You need to clean this first if you want bioreactor to work.")
+				extra_description += span_warning("You see a high amount of biomass. Pipes are fully blocked. You need to clean this first if you want bioreactor to work.")
 			else
-				extra_description += SPAN_NOTICE("Pipes looks clean.")
+				extra_description += span_notice("Pipes looks clean.")
 	..(user, extra_description)
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/update_icon()
@@ -67,21 +67,21 @@
 		biotank.reagents.trans_to_holder(biotank.canister.reagents, 100)
 
 
-/obj/machinery/multistructure/bioreactor_part/biotank_platform/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/multistructure/bioreactor_part/biotank_platform/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop))
 		var/dirtiness_lvl = get_dirtiness_level()
-		to_chat(user, SPAN_NOTICE("You begin cleaning pipes with [I]... O-of, what a smell!"))
+		to_chat(user, span_notice("You begin cleaning pipes with [I]... O-of, what a smell!"))
 		if(do_after(user, CLEANING_TIME * dirtiness_lvl, src))
-			to_chat(user, SPAN_NOTICE("You cleaned up the pipes."))
+			to_chat(user, span_notice("You cleaned up the pipes."))
 			pipes_cleanness = initial(pipes_cleanness)
 
 			if(dirtiness_lvl == DIRT_LVL_MEDIUM)
-				spill_biomass(get_turf(user), cardinal)
+				spill_biomass(get_turf(user), GLOB.cardinal)
 			else if(dirtiness_lvl >= DIRT_LVL_HIGH)
-				spill_biomass(get_turf(user), alldirs)
+				spill_biomass(get_turf(user), GLOB.alldirs)
 			toxin_attack(user, rand(5, 5*dirtiness_lvl))
 		else
-			to_chat(user, SPAN_WARNING("You need to stand still to clean it properly."))
+			to_chat(user, span_warning("You need to stand still to clean it properly."))
 		update_icon()
 	..()
 
@@ -93,7 +93,7 @@
 
 //Pipe wearout. Wearout var - is amount of 'dirt' that will be applied to our pipes
 //Warning, when you apply wearout, there is only a chance that it will be applied. Use forced to avoid this check
-/obj/machinery/multistructure/bioreactor_part/biotank_platform/proc/pipes_wearout(var/wearout, var/forced = FALSE)
+/obj/machinery/multistructure/bioreactor_part/biotank_platform/proc/pipes_wearout(wearout, forced = FALSE)
 	if(forced || prob(WEAROUT_CHANCE))
 		pipes_cleanness -= wearout
 	if(pipes_cleanness <= 0)
@@ -153,20 +153,20 @@
 	if(!platform.MS)
 		return
 	if(canister)
-		to_chat(user, SPAN_WARNING("You should disconnect it from the canister first!"))
+		to_chat(user, span_warning("You should disconnect it from the canister first!"))
 		return
 	if(platform.MS_bioreactor.chamber_solution)
-		to_chat(user, SPAN_WARNING("You need to pump out solution first."))
+		to_chat(user, span_warning("You need to pump out solution first."))
 		return
 	if(!platform.pipes_opened)
 		animate(src, pixel_y = to_port_position, 12, easing = CUBIC_EASING)
 		platform.pipes_opened = TRUE
-		to_chat(user, SPAN_NOTICE("You move [src] directly to the port. Platform pipes now opened."))
+		to_chat(user, span_notice("You move [src] directly to the port. Platform pipes now opened."))
 		playsound(loc, 'sound/machines/Custom_blastdooropen.ogg', 100, 1)
 	else
 		animate(src, pixel_y = default_position, 12, easing = CUBIC_EASING)
 		platform.pipes_opened = FALSE
-		to_chat(user, SPAN_NOTICE("You move [src] back to it's default location. Platform pipes are closed."))
+		to_chat(user, span_notice("You move [src] back to it's default location. Platform pipes are closed."))
 		playsound(loc, 'sound/machines/Custom_blastdoorclose.ogg', 100, 1)
 
 
@@ -178,7 +178,7 @@
 				return
 			var/obj/structure/reagent_dispensers/biomatter/possible_canister = locate() in platform.MS_bioreactor.output_port.loc
 			if(!possible_canister)
-				to_chat(user, SPAN_WARNING("Nothing to connect to!"))
+				to_chat(user, span_warning("Nothing to connect to!"))
 				return
 			var/turf/user_interaction_loc = user.loc
 			var/set_canister = FALSE
@@ -188,10 +188,10 @@
 				else
 					set_canister = set_canister(possible_canister)
 				if(set_canister)
-					to_chat(user, SPAN_NOTICE("You [canister ? "connect [canister] to" : "disconnect [canister] from"] [src]."))
+					to_chat(user, span_notice("You [canister ? "connect [canister] to" : "disconnect [canister] from"] [src]."))
 					toxin_attack(user, rand(5, 15))
 			if(!set_canister)
-				to_chat(user, SPAN_WARNING("Ugh. You done something wrong!"))
+				to_chat(user, span_warning("Ugh. You done something wrong!"))
 				shake_animation()
 				if(reagents.total_volume)
 					toxin_attack(user, rand(15, 25))

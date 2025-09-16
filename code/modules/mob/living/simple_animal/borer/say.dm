@@ -1,4 +1,4 @@
-/mob/living/simple_animal/borer/say(var/message)
+/mob/living/simple_animal/borer/say(message)
 
 	message = sanitize(message)
 	message = capitalize(message)
@@ -14,7 +14,7 @@
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, "\red You cannot speak in IC (muted).")
+			to_chat(src, span_red("You cannot speak in IC (muted)."))
 			return
 		if (src.client.handle_spam_prevention(message,MUTE_IC))
 			return

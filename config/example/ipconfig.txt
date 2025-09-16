@@ -1,0 +1,21 @@
+# Should we query IPs to get scores? Generates HTTP traffic to an API service.
+#IP_REPUTATION
+
+# Left null because you MUST specify one otherwise you're making the internet worse.
+#IPR_EMAIL example@example.com
+
+# Should we block anyone who meets the minimum score below? Otherwise we just log it (If paranoia logging is on, visibly in chat).
+#IPR_BLOCK_BAD_IPS
+
+# The API returns a value between 0 and 1 (inclusive), with 1 being 'definitely VPN/Tor/Proxy'. Values equal/above this var are considered bad.
+IPR_BAD_SCORE 1
+
+# Should we allow known players to use VPNs/Proxies? If the player is already banned then obviously they still can't connect.
+#IPR_ALLOW_EXISTING
+
+# How many days before a player is considered 'fine' for the purposes of allowing them to use VPNs.
+#IPR_MINIMUM_AGE = 5
+
+# API key for ipqualityscore.com. Optional additional service that can be used if an API key is provided.
+#IPQUALITYSCORE_APIKEY ABCDEFGHIJKLMAOPQRSTUVQWXYZ
+

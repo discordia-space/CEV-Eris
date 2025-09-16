@@ -6,7 +6,7 @@
 	rock_colors = list(COLOR_DARK_GRAY)
 	plant_colors = list("#a23c05","#3f1f0d","#662929","#ba6222","#7a5b3a","#120309")
 	possible_themes = list()
-	map_generators = list(/datum/random_map/automata/cave_system/mountains/volcanic, /datum/random_map/noise/exoplanet/volcanic, /datum/random_map/noise/ore/filthy_rich)
+	map_generators = list(/datum/random_map/automata/cave_system/mountains/volcanic, /datum/random_map/noise/exoplanet/volcanic)
 	ruin_tags_blacklist = RUIN_HABITAT|RUIN_WATER
 	planet_colors = list("#8e3900", COLOR_RED)
 	surface_color = "#261e19"
@@ -24,12 +24,12 @@
 		atmosphere.temperature = T20C + rand(220, 800)
 		atmosphere.update_values()
 
-/obj/effect/overmap/sector/exoplanet/volcanic/adapt_seed(var/datum/seed/S)
+/obj/effect/overmap/sector/exoplanet/volcanic/adapt_seed(datum/seed/S)
 	..()
 	S.set_trait(TRAIT_REQUIRES_WATER,0)
 	S.set_trait(TRAIT_HEAT_TOLERANCE, 1000 + S.get_trait(TRAIT_HEAT_TOLERANCE))
 
-/obj/effect/overmap/sector/exoplanet/volcanic/adapt_animal(var/mob/living/simple_animal/A)
+/obj/effect/overmap/sector/exoplanet/volcanic/adapt_animal(mob/living/simple_animal/A)
 	..()
 	A.heat_damage_per_tick = 0 //animals not hot, no burning in lava
 
@@ -50,8 +50,8 @@
 
 //Squashing most of 1 tile lava puddles
 /datum/random_map/noise/exoplanet/volcanic/cleanup()
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
+	for(var/x = 1; x <= limit_x; x++)
+		for(var/y = 1; y <= limit_y; y++)
 			var/current_cell = get_map_cell(x,y)
 			if(noise2value(map[current_cell]) < water_level)
 				continue
@@ -86,7 +86,7 @@
 	mineral_sparse =  /turf/mineral/random/volcanic
 	rock_color = COLOR_DARK_GRAY
 
-/datum/random_map/automata/cave_system/mountains/volcanic/get_additional_spawns(value, var/turf/mineral/T)
+/datum/random_map/automata/cave_system/mountains/volcanic/get_additional_spawns(value, turf/mineral/T)
 	..()
 	if(planetary_area)
 		T.mined_turf = prob(90) ? planetary_area.base_turf : /turf/floor/exoplanet/lava

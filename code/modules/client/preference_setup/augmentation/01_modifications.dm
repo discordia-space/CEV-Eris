@@ -10,11 +10,11 @@
 	name = "Augmentation"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/augmentation/modifications/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/augmentation/modifications/load_character(savefile/S)
 	from_file(S["modifications_data"], pref.modifications_data)
 	from_file(S["modifications_colors"], pref.modifications_colors)
 
-/datum/category_item/player_setup_item/augmentation/modifications/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/augmentation/modifications/save_character(savefile/S)
 	to_file(S["modifications_data"], pref.modifications_data)
 	to_file(S["modifications_colors"], pref.modifications_colors)
 
@@ -30,7 +30,7 @@
 			pref.modifications_colors[tag] = "#000000"
 
 
-/datum/category_item/player_setup_item/augmentation/modifications/content(var/mob/user)
+/datum/category_item/player_setup_item/augmentation/modifications/content(mob/user)
 	if(!pref.preview_icon)
 		pref.update_preview_icon(naked = TRUE)
 	if(pref.preview_north && pref.preview_south && pref.preview_east && pref.preview_west)
@@ -57,34 +57,34 @@
 
 	for(var/organ in pref.r_organs)
 		var/datum/body_modification/mod = pref.get_modification(organ)
-		var/organ_name = capitalize(organ_tag_to_name[organ])
+		var/organ_name = capitalize(GLOB.organ_tag_to_name[organ])
 		var/disp_name = mod ? mod.short_name : "Nothing"
 		if(!pref.modifications_allowed())
 			dat += "<a class='linkOff'><b>[organ_name]</b></a>"
 		else if(organ == pref.current_organ)
-			dat += "<div><a class='Organs_active' href='?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
+			dat += "<div><a class='Organs_active' href='byond://?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
 		else
-			dat += "<a href='?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
+			dat += "<a href='byond://?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
 		if(mod.hascolor)
-			dat += "<a href='?src=\ref[src];color=[organ]'><span class='color_holder_box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
+			dat += "<a href='byond://?src=\ref[src];color=[organ]'><span class='color_holder_box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
 		dat += "<br>[disp_name]<br>"
 
 	dat += "</td><td style='width:80px;'><center><img src=new_previewicon[pref.preview_dir].png height=64 width=64>"
-	dat += "<br><center><a href='?src=\ref[src];rotate=right'>&lt;&lt;</a> <a href='?src=\ref[src];rotate=left'>&gt;&gt;</a></center></td>"
+	dat += "<br><center><a href='byond://?src=\ref[src];rotate=right'>&lt;&lt;</a> <a href='byond://?src=\ref[src];rotate=left'>&gt;&gt;</a></center></td>"
 	dat += "<td style='width:115px; text-align:left'>"
 
 	for(var/organ in pref.l_organs)
 		var/datum/body_modification/mod = pref.get_modification(organ)
-		var/organ_name = capitalize(organ_tag_to_name[organ])
+		var/organ_name = capitalize(GLOB.organ_tag_to_name[organ])
 		var/disp_name = mod ? mod.short_name : "Nothing"
 		if(mod.hascolor)
-			dat += "<a href='?src=\ref[src];color=[organ]'><span class='color_holder_box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
+			dat += "<a href='byond://?src=\ref[src];color=[organ]'><span class='color_holder_box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
 		if(!pref.modifications_allowed())
 			dat += "<a class='linkOff'><b>[organ_name]</b></a>"
 		else if(organ == pref.current_organ)
-			dat += "<div><a class='Organs_active' href='?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
+			dat += "<div><a class='Organs_active' href='byond://?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
 		else
-			dat += "<a href='?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
+			dat += "<a href='byond://?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
 		dat += "<br><div>[disp_name]</div></div>"
 
 	dat += "</td></tr></table><hr>"
@@ -96,7 +96,7 @@
 		if(!(organ in body_modifications)) continue
 
 		var/datum/body_modification/mod = pref.get_modification(organ)
-		var/organ_name = capitalize(organ_tag_to_name[organ])
+		var/organ_name = capitalize(GLOB.organ_tag_to_name[organ])
 		var/disp_name = mod.short_name
 		if(organ == pref.current_organ)
 			dat += "<td width='33%'><b><span style='background-color:pink'>[organ_name]</span></b>"
@@ -105,7 +105,7 @@
 		if(!pref.modifications_allowed())
 			dat += "<br><a class='linkOff'>[disp_name]</a></td>"
 		else
-			dat += "<br><a href='?src=\ref[src];organ=[organ]'>[disp_name]</a></td>"
+			dat += "<br><a href='byond://?src=\ref[src];organ=[organ]'>[disp_name]</a></td>"
 
 		if(++counter >= 3)
 			dat += "</tr><tr align='center'>"
@@ -123,13 +123,13 @@
 			return FALSE
 	return TRUE
 
-/datum/preferences/proc/get_modification(var/organ)
+/datum/preferences/proc/get_modification(organ)
 	if(!modifications_allowed() || !organ || !modifications_data[organ])
 		return new/datum/body_modification/none
 	return modifications_data[organ]
 
-/datum/preferences/proc/check_child_modifications(var/organ = BP_CHEST)
-	var/list/organ_data = organ_structure[organ]
+/datum/preferences/proc/check_child_modifications(organ = BP_CHEST)
+	var/list/organ_data = GLOB.organ_structure[organ]
 	if(!organ_data)
 		return
 	var/datum/body_modification/mod = get_modification(organ)
@@ -143,7 +143,7 @@
 			check_child_modifications(child_organ)
 	return
 
-/datum/category_item/player_setup_item/augmentation/modifications/OnTopic(var/href, list/href_list, mob/user)
+/datum/category_item/player_setup_item/augmentation/modifications/OnTopic(href, list/href_list, mob/user)
 	if(href_list["organ"])
 		pref.current_organ = href_list["organ"]
 		return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -152,7 +152,7 @@
 		var/organ = href_list["color"]
 		if(!pref.modifications_colors[organ])
 			pref.modifications_colors[organ] = "#FFFFFF"
-		var/new_color = input(user, "Choose color for [organ_tag_to_name[organ]]: ", "Character Preference", pref.modifications_colors[organ]) as color|null
+		var/new_color = input(user, "Choose color for [GLOB.organ_tag_to_name[organ]]: ", "Character Preference", pref.modifications_colors[organ]) as color|null
 		if(new_color && pref.modifications_colors[organ]!=new_color)
 			pref.modifications_colors[organ] = new_color
 		return TOPIC_REFRESH_UPDATE_PREVIEW

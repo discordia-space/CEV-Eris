@@ -19,7 +19,7 @@
 	hardness -= material.combustion_effect(get_turf(src),temperature, 0.3)
 	CheckHardness()
 
-/obj/structure/simple_door/New(var/newloc, var/material_name)
+/obj/structure/simple_door/New(newloc, material_name)
 	..()
 	if(!material_name)
 		material_name = MATERIAL_STEEL
@@ -161,27 +161,27 @@
 	for(var/mob/living/L in range(1,src))
 		L.apply_effect(round(material.radioactivity/3),IRRADIATE,0)
 
-/obj/structure/simple_door/iron/New(var/newloc,var/material_name)
+/obj/structure/simple_door/iron/New(newloc,material_name)
 	..(newloc, MATERIAL_IRON)
 
-/obj/structure/simple_door/silver/New(var/newloc,var/material_name)
+/obj/structure/simple_door/silver/New(newloc,material_name)
 	..(newloc, MATERIAL_SILVER)
 
-/obj/structure/simple_door/gold/New(var/newloc,var/material_name)
+/obj/structure/simple_door/gold/New(newloc,material_name)
 	..(newloc, MATERIAL_GOLD)
 
-/obj/structure/simple_door/uranium/New(var/newloc,var/material_name)
+/obj/structure/simple_door/uranium/New(newloc,material_name)
 	..(newloc, MATERIAL_URANIUM)
 
-/obj/structure/simple_door/sandstone/New(var/newloc,var/material_name)
+/obj/structure/simple_door/sandstone/New(newloc,material_name)
 	..(newloc, MATERIAL_SANDSTONE)
 
-/obj/structure/simple_door/plasma/New(var/newloc,var/material_name)
+/obj/structure/simple_door/plasma/New(newloc,material_name)
 	..(newloc, MATERIAL_PLASMA)
 
-/obj/structure/simple_door/diamond/New(var/newloc,var/material_name)
+/obj/structure/simple_door/diamond/New(newloc,material_name)
 	..(newloc, MATERIAL_DIAMOND)
 
-/obj/structure/simple_door/wood/New(var/newloc,var/material_name)
+/obj/structure/simple_door/wood/New(newloc,material_name)
 	..(newloc, MATERIAL_WOOD)
 

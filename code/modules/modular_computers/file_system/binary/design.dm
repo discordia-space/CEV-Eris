@@ -14,7 +14,7 @@
 	return F
 
 /datum/computer_file/binary/design/proc/set_filename(new_name)
-	filename = sanitizeFileName("[new_name]")
+	filename = SANITIZE_FILENAME("[new_name]")
 	if(findtext(filename, "datum_design_") == 1)
 		filename = copytext(filename, 14)
 

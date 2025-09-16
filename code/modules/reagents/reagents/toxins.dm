@@ -54,8 +54,20 @@
 	strength = 1
 	nerve_system_accumulations = 60
 	addiction_chance = 20
-	heating_point = 523
+	heating_point = 723 // supposedly amatoxin is heat resistant so I raised its heat temp by 200 - vode-code
 	heating_products = list("toxin")
+
+/datum/reagent/toxin/amatoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/poorsap = M
+		for(var/obj/item/organ/internal/tokill in poorsap.organ_list_by_process(OP_LIVER) | poorsap.organ_list_by_process(OP_KIDNEYS)) // amanitin is slow but it kills HARD.
+			tokill.add_wound(/datum/internal_wound/organic/genedamage)
+
+/datum/reagent/toxin/amatoxin/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	affect_blood(M, alien, effect_multiplier)	// amanitin doesn't metabolize in the digestive tract, instead absorbing nearly perfectly.
+
+	apply_sanity_effect(M, effect_multiplier)
 
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
@@ -104,7 +116,7 @@
 	strength = 3
 	touch_met = 5
 
-/datum/reagent/toxin/plasma/touch_mob(mob/living/L, var/amount)
+/datum/reagent/toxin/plasma/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
@@ -141,10 +153,10 @@
 		M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
 		M.AdjustSleeping(20)
 	if(istype(O)) //STAGE 1: CRUSH LUNGS
-		create_overdose_wound(O, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+		create_overdose_wound(O, M, /datum/internal_wound/organic/heavy_poisoning, "accumulation")
 		M.adjustOxyLoss(5)
 	if(istype(S) && (!istype(O) || (O.status & ORGAN_DEAD))) //STAGE 2: NO LUNGS? FUCK YOUR HEART
-		create_overdose_wound(S, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+		create_overdose_wound(S, M, /datum/internal_wound/organic/heavy_poisoning, "accumulation")
 		M.adjustHalLoss(20)
 		M.vomit()
 
@@ -254,10 +266,10 @@
 		if(locate(/obj/effect/overlay/wallrot) in W)
 			for(var/obj/effect/overlay/wallrot/E in W)
 				qdel(E)
-			W.visible_message(SPAN_NOTICE("The fungi are completely dissolved by the solution!"))
+			W.visible_message(span_notice("The fungi are completely dissolved by the solution!"))
 	return TRUE
 
-/datum/reagent/toxin/plantbgone/touch_obj(obj/O, var/volume)
+/datum/reagent/toxin/plantbgone/touch_obj(obj/O, volume)
 	if(istype(O, /obj/effect/plant) && !istype(O, /obj/effect/plant/hivemind))
 		qdel(O)
 	if(istype(O, /obj/machinery/portable_atmospherics/hydroponics))
@@ -347,7 +359,7 @@
 /datum/reagent/toxin/mutagen/moeball/get_data()
 	return list("gene_type" = gene_type, "gene_value" = gene_value)
 
-/datum/reagent/toxin/mutagen/moeball/mix_data(var/newdata, var/newamount)
+/datum/reagent/toxin/mutagen/moeball/mix_data(newdata, newamount)
 	if(!(newdata["gene_value"] == data["gene_value"]))
 		gene_value = pick(subtypesof(/datum/mutation/t0))
 		gene_type = "mutation"
@@ -379,7 +391,7 @@
 			if("species")
 				var/datum/species/S = gene_value
 				H.set_species(S.name)
-		to_chat(H, SPAN_DANGER("Some part of you feels wrong, like it's not you anymore."))
+		to_chat(H, span_danger("Some part of you feels wrong, like it's not you anymore."))
 	else
 		var/datum/mutation/U = gene_value ? gene_value : (H.active_mutations.len ? pick(H.active_mutations) : null)
 		U?.cleanse(H)
@@ -390,7 +402,7 @@
 
 /datum/reagent/toxin/mutagen/moeball/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(15))
-		to_chat(M, SPAN_DANGER("You feel your veins crackling and sending chills all over your skin!"))
+		to_chat(M, span_danger("You feel your veins crackling and sending chills all over your skin!"))
 		M.add_chemical_effect(CE_TOXIN, rand(4, 8) * effect_multiplier)
 		M.adjustOxyLoss(rand(5, 20))
 	if(dose > 3 && ishuman(M))
@@ -401,7 +413,7 @@
 
 /datum/reagent/toxin/mutagen/moeball/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(10))
-		to_chat(M, SPAN_DANGER("Your insides are burning!"))
+		to_chat(M, span_danger("Your insides are burning!"))
 		M.add_chemical_effect(CE_TOXIN, rand(2, 6) * effect_multiplier)
 	if(dose > 4 && ishuman(M))
 		mutate(M, alien, effect_multiplier)
@@ -423,7 +435,7 @@
 		M.heal_organ_damage(1 * effect_multiplier, 1 * effect_multiplier)
 		return
 	if(prob(10))
-		to_chat(M, SPAN_DANGER("Your insides are burning!"))
+		to_chat(M, span_danger("Your insides are burning!"))
 		M.add_chemical_effect(CE_TOXIN, rand(10, 30) * effect_multiplier)
 	else if(prob(40))
 		M.heal_organ_damage(2.5 * effect_multiplier, 0)
@@ -549,10 +561,10 @@
 			if(istype(H.get_core_implant(), /obj/item/implant/core_implant/cruciform))
 				H.gib() //Deus saves
 			else
-				to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
+				to_chat(M, span_danger("Your flesh rapidly mutates!"))
 				for(var/obj/item/W in H) //Check all items on the person
 					if(istype(W, /obj/item/organ/external/robotic) || istype(W, /obj/item/implant)) //drop prosthetic limbs and implants, you are a slime now.
-						W.dropped()
+						W.dropped(M)
 				H.set_species(SPECIES_SLIME)
 
 /datum/reagent/toxin/aslimetoxin
@@ -573,7 +585,7 @@
 	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(M))
 		return
 	if(!prosthetic) //Check if is not FBP
-		to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
+		to_chat(M, span_danger("Your flesh rapidly mutates!"))
 		ADD_TRANSFORMATION_MOVEMENT_HANDLER(M)
 		M.canmove = 0
 		M.icon = null
@@ -583,7 +595,7 @@
 			if(istype(W, /obj/item/implant) || istype(W, /obj/item/organ/external/robotic))  //Check if item is implant or prosthetic
 				if(istype(W, /obj/item/implant/core_implant/cruciform)) //If cruciform is present victim is gibbed instead of transformed
 					cruciformed = TRUE
-				W.dropped() //use the baseline dropped()
+				W.dropped(M) //use the baseline dropped()
 				continue
 			W.layer = initial(W.layer)
 			W.loc = M.loc
@@ -633,7 +645,7 @@
 	M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pararein")
 	sanity_gain = 1.2
 	if(prob(10))
-		to_chat(M, SPAN_WARNING ("You feel like your mind is boiling and the blood in your veins is coming alive!"))
+		to_chat(M, span_warning ("You feel like your mind is boiling and the blood in your veins is coming alive!"))
 
 /datum/reagent/toxin/aranecolmin
 	name = "Aranecolmin"
@@ -655,7 +667,7 @@
 		if(LAZYLEN(C.internal_organs) && C.bloodstr && C.bloodstr.has_reagent("pararein"))
 			var/obj/item/organ/internal/I = pick(C.internal_organs)
 			to_chat(C, "Something burns inside your [I.parent.name]...")
-			create_overdose_wound(I, C, /datum/component/internal_wound/organic/heavy_poisoning, "rot", TRUE)
+			create_overdose_wound(I, C, /datum/internal_wound/organic/heavy_poisoning, "rot", TRUE)
 
 /datum/reagent/toxin/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
@@ -866,9 +878,9 @@
 /datum/reagent/toxin/biomatter/touch_turf(turf/T)
 	if(volume >= 5)
 		if(volume >= 45)
-			spill_biomass(T, alldirs)
+			spill_biomass(T, GLOB.alldirs)
 		else if(volume >= 25)
-			spill_biomass(T, cardinal)
+			spill_biomass(T, GLOB.cardinal)
 		else
 			spill_biomass(T)
 		remove_self(volume)

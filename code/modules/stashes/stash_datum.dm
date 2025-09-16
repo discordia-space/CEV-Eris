@@ -185,7 +185,7 @@ This file contains the underlying code for stash datums
 //Called after selected_direction is set,  from one of several places.
 //This creates the direction string which will be inserted into the note,
 //It does this by combining a base string with supplied data
-/datum/stash/proc/create_direction_string(var/data)
+/datum/stash/proc/create_direction_string(data)
 	if (direction_string != "")
 		//Don't create it twice
 		return
@@ -306,7 +306,7 @@ This file contains the underlying code for stash datums
 	Note Creation
 **************************/
 //Creates the note that tells the player how to reach the goodies
-/datum/stash/proc/spawn_note(var/atom/spawner)
+/datum/stash/proc/spawn_note(atom/spawner)
 	//The passed spawner is where we will create the note
 	var/obj/item/paper/note = new note_paper_type(spawner)
 	create_note_content()

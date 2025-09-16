@@ -34,7 +34,7 @@
 	members.Add(member)
 	member.faction = src
 	if(announce)
-		to_chat(member.owner.current, SPAN_NOTICE("You became a member of the [name]."))
+		to_chat(member.owner.current, span_notice("You became a member of the [name]."))
 
 	if(objectives.len)
 		member.set_objectives(objectives)
@@ -54,7 +54,7 @@
 	leaders.Add(member)
 	add_verb(member.owner.current, leader_verbs)
 	if(announce)
-		to_chat(member.owner.current, SPAN_NOTICE("You became a <b>leader</b> of the [name]."))
+		to_chat(member.owner.current, span_notice("You became a <b>leader</b> of the [name]."))
 	update_members()
 	update_icons(member)
 	return TRUE
@@ -81,7 +81,7 @@
 
 	leaders.Remove(member)
 	if(announce)
-		to_chat(member.owner.current, SPAN_WARNING("You are no longer the <b>leader</b> of the [name]."))
+		to_chat(member.owner.current, span_warning("You are no longer the <b>leader</b> of the [name]."))
 	member.owner.current.verbs.Remove(leader_verbs)
 
 	update_members()
@@ -99,7 +99,7 @@
 		remove_leader(member, FALSE)
 
 	if(announce)
-		to_chat(member.owner.current, SPAN_WARNING("You are no longer a member of the [name]."))
+		to_chat(member.owner.current, span_warning("You are no longer a member of the [name]."))
 
 	if(member.owner && member.owner.current)
 		member.owner.current.verbs.Remove(faction_datum_verbs)
@@ -143,7 +143,7 @@
 		return
 
 	message = capitalize(sanitize(message))
-	var/text = "<span class='revolution'>[name] member, [user.real_name]: \"[message]\"</span>"
+	var/text = span_revolution("[name] member, [user.real_name]: \"[message]\"")
 	for(var/i in SShumans.mob_list)
 		if(is_excelsior(i))
 			to_chat(i, text)
@@ -153,7 +153,7 @@
 		if(!M.client)
 			continue
 		if((M.antagHUD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH) || is_admin(M))
-			to_chat(M, "[text] ([ghost_follow_link(user, M)])")
+			to_chat(M, "[text] [ghost_follow_link(user, M)]")
 
 	log_say("[user.name]/[user.key] (REV [name]) : [message]")
 
@@ -282,10 +282,10 @@
 	var/data = "<center><font size='3'><b>FACTION PANEL</b></font></center>"
 	data += "<br>[name] - faction of [antag] ([id])"
 	data += "<br>Welcome: [welcome_text]"
-	data += {"<br><a href='?src=\ref[src];rename=1'>\[NAME\]</a>
-	<a href='?src=\ref[src];rewelcome=1'>\[WLCM\]</a><a href='?src=\ref[src];remove=1'>\[REMOVE\]</a>"}
-	data += "<br>Hud: \"<a href='?src=\ref[src];seticon=1'>[hud_indicator ? hud_indicator : "null"]</a>\""
-	data += "<br><a href='?src=\ref[src];toggleinv=1'>\[MAKE [faction_invisible ? "VISIBLE" : "INVISIBLE"]\]</a>"
+	data += {"<br><a href='byond://?src=\ref[src];rename=1'>\[NAME\]</a>
+	<a href='byond://?src=\ref[src];rewelcome=1'>\[WLCM\]</a><a href='byond://?src=\ref[src];remove=1'>\[REMOVE\]</a>"}
+	data += "<br>Hud: \"<a href='byond://?src=\ref[src];seticon=1'>[hud_indicator ? hud_indicator : "null"]</a>\""
+	data += "<br><a href='byond://?src=\ref[src];toggleinv=1'>\[MAKE [faction_invisible ? "VISIBLE" : "INVISIBLE"]\]</a>"
 
 
 	data += "<br><br><b>Members:</b>"
@@ -295,10 +295,10 @@
 			data += "<br>Invalid element on index [i]: [member ? member : "NULL"]"
 		else
 			if(member in leaders)
-				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='?src=\ref[src];remleader=\ref[member]'>\[REMV LEADER\]</a> \[REMOVE\]"
+				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='byond://?src=\ref[src];remleader=\ref[member]'>\[REMV LEADER\]</a> \[REMOVE\]"
 			else
-				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='?src=\ref[src];makeleader=\ref[member]'>\[MAKE LEADER\]</a> <a href='?src=\ref[src];remmember=[i]'>\[REMOVE\]</a>"
-			data += "<a href='?src=[member]'>\[EDIT\]</a>"
+				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='byond://?src=\ref[src];makeleader=\ref[member]'>\[MAKE LEADER\]</a> <a href='byond://?src=\ref[src];remmember=[i]'>\[REMOVE\]</a>"
+			data += "<a href='byond://?src=[member]'>\[EDIT\]</a>"
 
 	data += "<br><br><b>Objectives:</b><br>"
 	for(var/i=1;i<=objectives.len; i++)
@@ -308,7 +308,7 @@
 		O.update_explanation()
 		data += "[i]. [O.get_panel_entry()]<br>"
 
-	usr << browse(data,"window=[id]faction")
+	usr << browse(HTML_SKELETON_TITLE("Faction Panel", data),"window=[id]faction")
 
 /datum/faction/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))

@@ -1,0 +1,14 @@
+2025-08-01:
+  warriorstar-orion:
+  - refactor: CI tasks are now functional again.
+2025-08-02:
+  warriorstar-orion:
+  - bugfix: The tool information window's upgrade icons should work properly.
+2025-08-15:
+  flleeppyy:
+  - code_imp: Ported server_maint subsystem from Monkestation.
+  - rscadd: AFK players in the lobby will now be kicked before the server restarts.
+  - admin: You can now toggle hub visibility via Server > Toggle Hub
+2025-08-23:
+  flleeppyy:
+  - refactor: code thingys. made the linter happy and made syntax for for loops normal

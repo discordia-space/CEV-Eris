@@ -22,7 +22,7 @@
 /obj/item/syringe_cartridge/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		syringe = I
-		to_chat(user, SPAN_NOTICE("You carefully insert [syringe] into [src]."))
+		to_chat(user, span_notice("You carefully insert [syringe] into [src]."))
 		user.remove_from_mob(syringe)
 		syringe.loc = src
 		sharp = TRUE
@@ -31,7 +31,7 @@
 
 /obj/item/syringe_cartridge/attack_self(mob/user)
 	if(syringe)
-		to_chat(user, SPAN_NOTICE("You remove [syringe] from [src]."))
+		to_chat(user, span_notice("You remove [syringe] from [src]."))
 		user.put_in_hands(syringe)
 		syringe = null
 		sharp = initial(sharp)
@@ -43,7 +43,7 @@
 	icon_state = icon_flight
 	underlays.Cut()
 
-/obj/item/syringe_cartridge/throw_impact(atom/hit_atom, var/speed)
+/obj/item/syringe_cartridge/throw_impact(atom/hit_atom, speed)
 	..() //handles embedding for us. Should have a decent chance if thrown fast enough
 	if(syringe)
 		//check speed to see if we hit hard enough to trigger the rapid injection
@@ -102,39 +102,39 @@
 
 /obj/item/gun/launcher/syringe/attack_self(mob/living/user as mob)
 	if(next)
-		user.visible_message("[user] unlatches and carefully relaxes the bolt on [src].", SPAN_WARNING("You unlatch and carefully relax the bolt on [src], unloading the spring."))
+		user.visible_message("[user] unlatches and carefully relaxes the bolt on [src].", span_warning("You unlatch and carefully relax the bolt on [src], unloading the spring."))
 		next = null
 	else if(darts.len)
 		playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
-		user.visible_message("[user] draws back the bolt on [src], clicking it into place.", SPAN_WARNING("You draw back the bolt on the [src], loading the spring!"))
+		user.visible_message("[user] draws back the bolt on [src], clicking it into place.", span_warning("You draw back the bolt on the [src], loading the spring!"))
 		next = darts[1]
 	add_fingerprint(user)
 
 /obj/item/gun/launcher/syringe/attack_hand(mob/living/user as mob)
-	if(user.get_inactive_hand() == src)
+	if(user.get_inactive_held_item() == src)
 		if(!darts.len)
-			to_chat(user, SPAN_WARNING("[src] is empty."))
+			to_chat(user, span_warning("[src] is empty."))
 			return
 		if(next)
-			to_chat(user, SPAN_WARNING("[src]'s cover is locked shut."))
+			to_chat(user, span_warning("[src]'s cover is locked shut."))
 			return
 		var/obj/item/syringe_cartridge/C = darts[1]
 		darts -= C
 		user.put_in_hands(C)
-		user.visible_message("[user] removes \a [C] from [src].", SPAN_NOTICE("You remove \a [C] from [src]."))
+		user.visible_message("[user] removes \a [C] from [src].", span_notice("You remove \a [C] from [src]."))
 	else
 		..()
 
-/obj/item/gun/launcher/syringe/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/launcher/syringe/attackby(obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/syringe_cartridge))
 		var/obj/item/syringe_cartridge/C = A
 		if(darts.len >= max_darts)
-			to_chat(user, SPAN_WARNING("[src] is full!"))
+			to_chat(user, span_warning("[src] is full!"))
 			return
 		user.remove_from_mob(C)
 		C.loc = src
 		darts += C //add to the end
-		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
+		user.visible_message("[user] inserts \a [C] into [src].", span_notice("You insert \a [C] into [src]."))
 	else
 		..()
 

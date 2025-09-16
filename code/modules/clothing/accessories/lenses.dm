@@ -90,8 +90,8 @@
 	var/obj/item/clothing/glasses/our_glasses = loc
 	if(!our_glasses.is_worn()) // We aren't worn
 		return FALSE
-	visible_message(SPAN_DANGER("[unfortunate_man]'s skull gets pierced by a jet of molten slag as he puts \the [loc] on his eyes"),
-					SPAN_DANGER("You hear the sound of a skull cracking and meat sizzling"), 6)
+	visible_message(span_danger("[unfortunate_man]'s skull gets pierced by a jet of molten slag as he puts \the [loc] on his eyes"),
+					span_danger("You hear the sound of a skull cracking and meat sizzling"), 6)
 	playsound(get_turf(loc), 'sound/effects/bangtaper.ogg' ,50, 1)
 	spawn(1 SECONDS)
 		playsound(get_turf(loc), 'sound/effects/flare.ogg', 100, 1)

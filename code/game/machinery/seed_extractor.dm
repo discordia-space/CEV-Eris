@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 
-obj/machinery/seed_extractor/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/seed_extractor/attackby(obj/item/O as obj, mob/user as mob)
 
 	// Fruits and vegetables.
 	if(istype(O, /obj/item/reagent_containers/food/snacks/grown) || istype(O, /obj/item/grown))
@@ -16,13 +16,13 @@ obj/machinery/seed_extractor/attackby(var/obj/item/O as obj, var/mob/user as mob
 		var/datum/seed/new_seed_type
 		if(istype(O, /obj/item/grown))
 			var/obj/item/grown/F = O
-			new_seed_type = plant_controller.seeds[F.plantname]
+			new_seed_type = SSplants.seeds[F.plantname]
 		else
 			var/obj/item/reagent_containers/food/snacks/grown/F = O
-			new_seed_type = plant_controller.seeds[F.plantname]
+			new_seed_type = SSplants.seeds[F.plantname]
 
 		if(new_seed_type)
-			to_chat(user, SPAN_NOTICE("You extract some seeds from [O]."))
+			to_chat(user, span_notice("You extract some seeds from [O]."))
 			var/produce = rand(1,4)
 			for(var/i = 0;i<=produce;i++)
 				var/obj/item/seeds/seeds = new(get_turf(src))
@@ -37,7 +37,7 @@ obj/machinery/seed_extractor/attackby(var/obj/item/O as obj, var/mob/user as mob
 	else if(istype(O, /obj/item/stack/tile/grass))
 		var/obj/item/stack/tile/grass/S = O
 		if (S.use(1))
-			to_chat(user, SPAN_NOTICE("You extract some seeds from the grass tile."))
+			to_chat(user, span_notice("You extract some seeds from the grass tile."))
 			new /obj/item/seeds/grassseed(loc)
 
 	return

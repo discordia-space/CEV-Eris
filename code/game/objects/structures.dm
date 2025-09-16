@@ -19,7 +19,7 @@
 	else
 		return 1/maxHealth
 
-// Should  always return the amount of damage done
+/// Should always return the amount of damage done
 /obj/structure/proc/take_damage(damage)
 	// Blocked amount
 	. = health - damage < 0 ? damage - (damage - health) : damage
@@ -40,7 +40,7 @@
  *
  * Values are found in code/__defines/inventory_sizes.dm
  */
-/obj/structure/get_fall_damage(var/turf/from, var/turf/dest)
+/obj/structure/get_fall_damage(turf/from, turf/dest)
 	var/damage = w_class * 10 * get_health_ratio()
 
 	if (from && dest)
@@ -64,8 +64,8 @@
 				attack_generic(user,1,"slices")
 
 	if(climbers.len && !(user in climbers))
-		user.visible_message(SPAN_WARNING("[user.name] shakes \the [src]."), \
-					SPAN_NOTICE("You shake \the [src]."))
+		user.visible_message(span_warning("[user.name] shakes \the [src]."), \
+					span_notice("You shake \the [src]."))
 		structure_shaken()
 
 	return ..()
@@ -106,15 +106,15 @@
 	if(ismech(user.loc))
 		var/mob/living/mech = user.loc
 		if(!mech.Adjacent(src))
-			to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
+			to_chat(user, span_danger("You can't climb there, the way is blocked."))
 			return FALSE
 	else if (!user.Adjacent(src))
-		to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
+		to_chat(user, span_danger("You can't climb there, the way is blocked."))
 		return FALSE
 
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
+		to_chat(user, span_danger("There's \a [occupied] in the way."))
 		return FALSE
 	return TRUE
 
@@ -149,7 +149,7 @@
 	if (!can_climb(user))
 		return
 
-	user.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
+	user.visible_message(span_warning("[user] starts climbing onto \the [src]!"))
 	climbers |= user
 
 	var/delay = (issmall(user) ? 20 : 34) * (user.stats.getPerk(PERK_PARKOUR) ? 0.5 : 1)
@@ -165,28 +165,28 @@
 	user.forceMove(get_turf(src))
 
 	if (get_turf(user) == get_turf(src))
-		user.visible_message(SPAN_WARNING("[user] climbs onto \the [src]!"))
+		user.visible_message(span_warning("[user] climbs onto \the [src]!"))
 	climbers -= user
 	add_fingerprint(user)
 
 /obj/structure/proc/structure_shaken()
 	for(var/mob/living/M in climbers)
 		M.Weaken(1)
-		to_chat(M, SPAN_DANGER("You topple as you are shaken off \the [src]!"))
+		to_chat(M, span_danger("You topple as you are shaken off \the [src]!"))
 		climbers.Cut(1,2)
 
 	for(var/mob/living/M in get_turf(src))
 		if(M.lying) return //No spamming this on people.
 
 		M.Weaken(3)
-		to_chat(M, SPAN_DANGER("You topple as \the [src] moves under you!"))
+		to_chat(M, span_danger("You topple as \the [src] moves under you!"))
 
 		if(prob(25))
 
 			var/damage = rand(15,30)
 			var/mob/living/carbon/human/H = M
 			if(!istype(H))
-				to_chat(H, SPAN_DANGER("You land heavily!"))
+				to_chat(H, span_danger("You land heavily!"))
 				M.adjustBruteLoss(damage)
 				return
 
@@ -201,38 +201,38 @@
 					affecting = H.get_organ(BP_HEAD)
 
 			if(affecting)
-				to_chat(M, SPAN_DANGER("You land heavily on your [affecting.name]!"))
+				to_chat(M, span_danger("You land heavily on your [affecting.name]!"))
 				affecting.take_damage(damage, 0)
 				if(affecting.parent)
 					affecting.parent.add_autopsy_data("Misadventure", damage)
 			else
-				to_chat(H, SPAN_DANGER("You land heavily!"))
+				to_chat(H, span_danger("You land heavily!"))
 				H.adjustBruteLoss(damage)
 
 			H.UpdateDamageIcon()
 			H.updatehealth()
 	return
 
-/obj/structure/proc/can_touch(var/mob/user)
+/obj/structure/proc/can_touch(mob/user)
 	if (!user)
 		return 0
 	if(!Adjacent(user))
 		return 0
 
 	if (!ismech(user) && (user.restrained() || user.buckled))
-		to_chat(user, SPAN_NOTICE("You need your hands and legs free for this."))
+		to_chat(user, span_notice("You need your hands and legs free for this."))
 		return 0
 	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)
 		return 0
 	if (issilicon(user))
-		to_chat(user, SPAN_NOTICE("You need hands for this."))
+		to_chat(user, span_notice("You need hands for this."))
 		return 0
 	return 1
 
-/obj/structure/attack_generic(var/mob/user, var/damage, var/attack_verb, var/wallbreaker)
+/obj/structure/attack_generic(mob/user, damage, attack_verb, wallbreaker)
 	if(!breakable || !damage || !wallbreaker)
 		return 0
-	visible_message(SPAN_DANGER("[user] [attack_verb] the [src] apart!"))
+	visible_message(span_danger("[user] [attack_verb] the [src] apart!"))
 	attack_animation(user)
 	spawn(1) qdel(src)
 	return 1

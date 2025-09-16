@@ -16,8 +16,8 @@
 
 /datum/old_surgery_step/hardsuit/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts drilling through the support systems of [target]'s [target.back] with \the [tool]."),
-		SPAN_NOTICE("You start drilling through the support systems of [target]'s [target.back] with \the [tool].")
+		span_notice("[user] starts drilling through the support systems of [target]'s [target.back] with \the [tool]."),
+		span_notice("You start drilling through the support systems of [target]'s [target.back] with \the [tool].")
 	)
 	..()
 
@@ -27,12 +27,12 @@
 		return
 	rig.reset()
 	user.visible_message(
-		SPAN_NOTICE("[user] has drilled through the support systems of [target]'s [rig] with \the [tool]."),
-		SPAN_NOTICE("You have drilled through the support systems of [target]'s [rig] with \the [tool].")
+		span_notice("[user] has drilled through the support systems of [target]'s [rig] with \the [tool]."),
+		span_notice("You have drilled through the support systems of [target]'s [rig] with \the [tool].")
 	)
 
 /datum/old_surgery_step/hardsuit/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s [tool] can't quite seem to get through the metal..."),
-		SPAN_WARNING("Your [tool] can't quite seem to get through the metal. It's weakening, though - try again.")
+		span_warning("[user]'s [tool] can't quite seem to get through the metal..."),
+		span_warning("Your [tool] can't quite seem to get through the metal. It's weakening, though - try again.")
 	)

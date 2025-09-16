@@ -7,11 +7,11 @@
 /datum/language
 	var/name = "an unknown language"  			// Fluff name of language if any.
 	var/desc = "A language."          			// Short description for 'Check Languages'.
-	var/list/speech_verb = list("says")	   		// 'says', 'hisses', 'farts'.
-	var/list/ask_verb = list("asks")       		// Used when sentence ends in a ?
-	var/list/exclaim_verb = list("exclaims")	// Used when sentence ends in a !
-	var/list/whisper_verb = list("whispers")	// Optional. When not specified speech_verb + quietly/softly is used instead.
-	var/list/signlang_verb = list("signs") 		// list of emotes that might be displayed if this language has NONVERBAL or SIGNLANG flags
+	// var/list/speech_verb = list("says")	   		// 'says', 'hisses', 'farts'.
+	// var/list/ask_verb = list("asks")       		// Used when sentence ends in a ?
+	// var/list/exclaim_verb = list("exclaims")	// Used when sentence ends in a !
+	// var/list/whisper_verb = list("whispers")	// Optional. When not specified speech_verb + quietly/softly is used instead.
+	// var/list/signlang_verb = list("signs") 		// list of emotes that might be displayed if this language has NONVERBAL or SIGNLANG flags
 	var/colour = "body"               			// CSS style to use for strings in this language.
 	var/key = "x"                     			// Character used to speak in language eg. :o for Unathi.
 	var/flags = 0                     			// Various language flags.
@@ -21,13 +21,28 @@
 	var/machine_understands = 1 		  		// Whether machines can parse and understand this language
 	var/shorthand = "CO"						// Shorthand that shows up in chat for this language.
 
+	var/icon = 'icons/misc/language.dmi'
+	var/icon_state = "popcorn"
+
 	//Random name lists
 	var/name_lists = FALSE
 	var/first_names_male = list()
 	var/first_names_female = list()
 	var/last_names = list()
 
-/datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
+/datum/language/proc/display_icon(atom/movable/hearer)
+	var/understands = (src in hearer.languages)
+	if(flags & LANGUAGE_HIDE_ICON_IF_UNDERSTOOD && understands)
+		return FALSE
+	if(flags & LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD && !understands)
+		return FALSE
+	return TRUE
+
+/datum/language/proc/get_icon()
+	var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet_batched/chat)
+	return sheet.icon_tag("language-[icon_state]")
+
+/datum/language/proc/get_random_name(gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	//This language has its own name lists
 	if (name_lists)
 		if(gender==FEMALE)
@@ -97,7 +112,7 @@
 	return "[trim(full_name)]"
 
 //A wrapper for the above that gets a random name and sets it onto the mob
-/datum/language/proc/set_random_name(var/mob/M, name_count=2, syllable_count=4, syllable_divisor=2)
+/datum/language/proc/set_random_name(mob/M, name_count=2, syllable_count=4, syllable_divisor=2)
 	var/mob/living/carbon/human/H = null
 	if (ishuman(M))
 		H = M
@@ -111,7 +126,7 @@
 /datum/language
 	var/list/scramble_cache = list()
 
-/datum/language/proc/scramble(var/input)
+/datum/language/proc/scramble(input)
 
 	if(!syllables || !syllables.len)
 		return stars(input)
@@ -156,7 +171,7 @@
 	return scrambled_text
 
 /datum/language/proc/format_message(message, verb)
-	return "[verb], <span class='message'><span class='[colour]'>\"[capitalize(message)]\"</span></span>"
+	return "[verb], [span_message("<span class='[colour]'>\"[capitalize(message)]\"")]</span>"
 
 /datum/language/proc/format_message_plain(message, verb)
 	return "[verb], \"[capitalize(message)]\""
@@ -168,45 +183,45 @@
 	// if you yell, you'll be heard from two tiles over instead of one
 	return (copytext(message, length(message)) == "!") ? 2 : 1
 
-/datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
+/datum/language/proc/broadcast(mob/living/speaker,message,speaker_mask)
 	log_say("[key_name(speaker)] : ([name]) [message]")
 
 	if(!speaker_mask) speaker_mask = speaker.name
-	message = format_message(message, get_spoken_verb(message))
+	message = format_message(message, speaker.get_spoken_verb(message))
 
 	for(var/mob/player in GLOB.player_list)
 		player.hear_broadcast(src, speaker, speaker_mask, message)
 
-/mob/proc/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
+/mob/proc/hear_broadcast(datum/language/language, mob/speaker, speaker_name, message)
 	if((language in languages) && language.check_special_condition(src))
-		var/msg = "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>"
+		var/msg = "<i><span class='game say'>[language.name], [span_name("[speaker_name]")] [message]</span></i>"
 		to_chat(src, msg)
 
-/mob/new_player/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
+/mob/new_player/hear_broadcast(datum/language/language, mob/speaker, speaker_name, message)
 	return
 
-/mob/observer/ghost/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
+/mob/observer/ghost/hear_broadcast(datum/language/language, mob/speaker, speaker_name, message)
 	if(speaker.name == speaker_name || antagHUD)
-		to_chat(src, "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> ([ghost_follow_link(speaker, src)]) [message]</span></i>")
+		to_chat(src, "<i><span class='game say'>[language.name], [span_name("[speaker_name]")] [ghost_follow_link(speaker, src)] [message]</span></i>")
 	else
-		to_chat(src, "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>")
+		to_chat(src, "<i><span class='game say'>[language.name], [span_name("[speaker_name]")] [message]</span></i>")
 
-/datum/language/proc/check_special_condition(var/mob/other)
+/datum/language/proc/check_special_condition(mob/other)
 	return 1
 
-/datum/language/proc/get_spoken_verb(var/msg_end)
+/atom/movable/proc/get_spoken_verb(msg_end)
 	switch(msg_end)
 		if("!")
-			return pick(exclaim_verb)
+			return pick(verb_exclaim, verb_yell)
 		if("?")
-			return pick(ask_verb)
+			return pick(verb_ask)
 
-	return pick(speech_verb)
+	return verb_say
 
 // Language handling.
-/mob/proc/add_language(var/language)
+/atom/movable/proc/add_language(language)
 
-	var/datum/language/new_language = all_languages[language]
+	var/datum/language/new_language = GLOB.all_languages[language]
 
 	if(!istype(new_language) || (new_language in languages))
 		return 0
@@ -214,19 +229,12 @@
 	languages.Add(new_language)
 	return 1
 
-/mob/proc/remove_language(var/rem_language)
-	var/datum/language/L = all_languages[rem_language]
+/atom/movable/proc/remove_language(rem_language)
+	var/datum/language/L = GLOB.all_languages[rem_language]
 	. = (L in languages)
-	languages.Remove(L)
-
-/mob/living/remove_language(rem_language)
-	var/datum/language/L = all_languages[rem_language]
 	if(default_language == L)
 		default_language = null
-	return ..()
-
-
-
+	languages.Remove(L)
 
 // Can we speak this language, as opposed to just understanding it?
 /mob/proc/can_speak(datum/language/speaking)
@@ -235,7 +243,7 @@
 /mob/proc/get_language_prefix()
 	return get_prefix_key(/decl/prefix/language)
 
-/mob/proc/is_language_prefix(var/prefix)
+/mob/proc/is_language_prefix(prefix)
 	return prefix == get_prefix_key(/decl/prefix/language)
 
 //TBD
@@ -268,19 +276,7 @@
 			if(!(L.flags & NONGLOBAL))
 				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b><br/>[L.desc]<br/><br/>"
 
-	src << browse(dat, "window=checklanguage")
-
-
-
-
-
-
-
-
-
-
-
-
+	src << browse(HTML_SKELETON_TITLE("Known Languages", dat), "window=checklanguage")
 
 
 /mob/living/check_languages()
@@ -296,7 +292,7 @@
 			else
 				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b> - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a><br/>[L.desc]<br/><br/>"
 
-	src << browse(dat, "window=checklanguage")
+	src << browse(HTML_SKELETON_TITLE("Known Languages", dat), "window=checklanguage")
 
 /mob/living/Topic(href, href_list)
 	if(href_list["default_lang"])
@@ -311,7 +307,7 @@
 	else
 		return ..()
 
-/proc/transfer_languages(var/mob/source, var/mob/target, var/except_flags)
+/proc/transfer_languages(mob/source, mob/target, except_flags)
 	for(var/datum/language/L in source.languages)
 		if(L.flags & except_flags)
 			continue

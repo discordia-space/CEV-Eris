@@ -21,7 +21,7 @@
 	if(controlled_mech)
 		controlled_mech.AIeject()
 
-/mob/living/silicon/ai/proc/set_mech(var/mob/living/exosuit/M)
+/mob/living/silicon/ai/proc/set_mech(mob/living/exosuit/M)
 	if(M)
 		if(controlled_mech == M)
 			return
@@ -45,7 +45,7 @@
 	var/mob/living/prev_occupant = null
 
 
-/obj/item/mech_equipment/ai_holder/proc/occupied(var/mob/living/silicon/ai/AI)
+/obj/item/mech_equipment/ai_holder/proc/occupied(mob/living/silicon/ai/AI)
 	if(chassis.occupant && !isAI(chassis.occupant))
 		prev_occupant = chassis.occupant
 		prev_occupant.forceMove(src)
@@ -55,7 +55,7 @@
 	chassis.update_icon()
 	AI.add_mech_verbs()
 
-/obj/item/mech_equipment/ai_holder/interact(var/mob/living/silicon/ai/user)
+/obj/item/mech_equipment/ai_holder/interact(mob/living/silicon/ai/user)
 	if(!chassis) return
 	if(occupant)
 		if(occupant == user) go_out()

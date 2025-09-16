@@ -10,12 +10,12 @@
 
 	var/static/list/amount_of_underwear_by_id_card
 
-/obj/structure/undies_wardrobe/attackby(var/obj/item/underwear/underwear, var/mob/user)
+/obj/structure/undies_wardrobe/attackby(obj/item/underwear/underwear, mob/user)
 	if(istype(underwear))
 		if(!user.unEquip(underwear))
 			return
 		qdel(underwear)
-		user.visible_message("<span class='notice'>\The [user] inserts \their [underwear.name] into \the [src].</span>", "<span class='notice'>You insert your [underwear.name] into \the [src].</span>")
+		user.visible_message(span_notice("\The [user] inserts \their [underwear.name] into \the [src]."), span_notice("You insert your [underwear.name] into \the [src]."))
 
 		var/id = user.GetIdCard()
 		var/message
@@ -36,17 +36,17 @@
 	else
 		..()
 
-/obj/structure/undies_wardrobe/proc/remove_id_card(var/id_card)
+/obj/structure/undies_wardrobe/proc/remove_id_card(id_card)
 	LAZYREMOVE(amount_of_underwear_by_id_card, id_card)
 	GLOB.destroyed_event.unregister(id_card, src, /obj/structure/undies_wardrobe/proc/remove_id_card)
 
-/obj/structure/undies_wardrobe/attack_hand(var/mob/user)
+/obj/structure/undies_wardrobe/attack_hand(mob/user)
 	if(!human_who_can_use_underwear(user))
-		to_chat(user, "<span class='warning'>Sadly there's nothing in here for you to wear.</span>")
+		to_chat(user, span_warning("Sadly there's nothing in here for you to wear."))
 		return
 	interact(user)
 
-/obj/structure/undies_wardrobe/interact(var/mob/living/carbon/human/H)
+/obj/structure/undies_wardrobe/interact(mob/living/carbon/human/H)
 	var/id = H.GetIdCard()
 
 	var/dat = list()
@@ -54,16 +54,16 @@
 	dat += "You may claim [id ? length(GLOB.underwear.categories) - LAZYACCESS(amount_of_underwear_by_id_card, id) : 0] more article\s this shift.<br><br>"
 	dat += "<b>Available Categories</b><br><hr>"
 	for(var/datum/category_group/underwear/UWC in GLOB.underwear.categories)
-		dat += "[UWC.name] <a href='?src=\ref[src];select_underwear=[UWC.name]'>(Select)</a><br>"
+		dat += "[UWC.name] <a href='byond://?src=\ref[src];select_underwear=[UWC.name]'>(Select)</a><br>"
 	dat = jointext(dat,null)
 	show_browser(H, dat, "window=wardrobe;size=400x250")
 
-/obj/structure/undies_wardrobe/proc/human_who_can_use_underwear(var/mob/living/carbon/human/H)
+/obj/structure/undies_wardrobe/proc/human_who_can_use_underwear(mob/living/carbon/human/H)
 	if(!istype(H) || !H.species || !(H.species.appearance_flags & HAS_UNDERWEAR))
 		return FALSE
 	return TRUE
 
-/obj/structure/undies_wardrobe/CanUseTopic(var/user)
+/obj/structure/undies_wardrobe/CanUseTopic(user)
 	if(!human_who_can_use_underwear(user))
 		return STATUS_CLOSE
 
@@ -113,7 +113,7 @@
 	if(.)
 		interact(H)
 
-/obj/structure/undies_wardrobe/proc/exclude_none(var/list/L)
+/obj/structure/undies_wardrobe/proc/exclude_none(list/L)
 	. = L.Copy()
 	for(var/e in .)
 		var/datum/category_item/underwear/UWI = e

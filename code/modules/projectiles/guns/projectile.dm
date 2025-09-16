@@ -134,7 +134,7 @@
 		var/obj/item/ammo_magazine/AM = A
 		update_wear_icon()
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber)
-			to_chat(user, SPAN_WARNING("[AM] won't fit into the magwell. This mag and ammunition inside it is incompatible with [src]."))
+			to_chat(user, span_warning("[AM] won't fit into the magwell. This mag and ammunition inside it is incompatible with [src]."))
 			return //incompatible
 
 		//How are we trying to apply this magazine to this gun?
@@ -157,16 +157,16 @@
 		switch(method_for_this_load)
 			if(MAGAZINE)
 				//if(AM.ammo_mag != ammo_mag && ammo_mag != "default")	Not needed with mag_wells
-				//	to_chat(user, SPAN_WARNING("[src] requires another magazine.")) //wrong magazine
+				//	to_chat(user, span_warning("[src] requires another magazine.")) //wrong magazine
 				//	return
 				if(tac_reloads && ammo_magazine)
 					unload_ammo(user)	// ejects the magazine before inserting the new one.
-					to_chat(user, SPAN_NOTICE("You tactically reload your [src] with [AM]!"))
+					to_chat(user, span_notice("You tactically reload your [src] with [AM]!"))
 				else if(ammo_magazine)
-					to_chat(user, SPAN_WARNING("[src] already has a magazine loaded.")) //already a magazine here
+					to_chat(user, span_warning("[src] already has a magazine loaded.")) //already a magazine here
 					return
 				if(!(AM.mag_well & mag_well))
-					to_chat(user, SPAN_WARNING("[AM] won't fit into the magwell.")) //wrong magazine
+					to_chat(user, span_warning("[AM] won't fit into the magwell.")) //wrong magazine
 					return
 				user.remove_from_mob(AM)
 				. = 1
@@ -178,11 +178,11 @@
 				update_firemode()
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
-					to_chat(user, SPAN_WARNING("[src] is full!"))
+					to_chat(user, span_warning("[src] is full!"))
 					return
 				var/count = 0
 				if(AM.reload_delay)
-					to_chat(user, SPAN_NOTICE("It takes some time to reload [src] with [AM]..."))
+					to_chat(user, span_notice("It takes some time to reload [src] with [AM]..."))
 				if (do_after(user, AM.reload_delay, user))
 					for(var/obj/item/ammo_casing/C in AM.stored_ammo)
 						if(loaded.len >= max_shells)
@@ -193,7 +193,7 @@
 							AM.stored_ammo -= C //should probably go inside an ammo_magazine proc, but I guess less proc calls this way...
 							count++
 				if(count)
-					user.visible_message("[user] reloads [src].", SPAN_NOTICE("You load [count] round\s into [src]."))
+					user.visible_message("[user] reloads [src].", span_notice("You load [count] round\s into [src]."))
 					if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
 					cock_gun(user)
 					. = 1
@@ -204,14 +204,14 @@
 	else if(istype(A, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = A
 		if(!(load_method & SINGLE_CASING) || caliber != C.caliber)
-			to_chat(user, SPAN_WARNING("[src] is incompatible with [C]."))
+			to_chat(user, span_warning("[src] is incompatible with [C]."))
 			return //incompatible
 		if(loaded.len >= max_shells)
-			to_chat(user, SPAN_WARNING("[src] is full."))
+			to_chat(user, span_warning("[src] is full."))
 			return
 
 		if(C.reload_delay)
-			to_chat(user, SPAN_NOTICE("It takes some time to reload [src] with [C]..."))
+			to_chat(user, span_notice("It takes some time to reload [src] with [C]..."))
 		if (!do_after(user, C.reload_delay, user))
 			return
 
@@ -219,20 +219,21 @@
 			C.amount -= 1
 			var/obj/item/ammo_casing/inserted_casing = new C.type(C)	//Couldn't make it seperate, so it must be cloned
 			loaded.Insert(1, inserted_casing)
+			inserted_casing.forceMove(src)
 		else
 			user.remove_from_mob(C)
 			C.forceMove(src)
 			loaded.Insert(1, C) //add to the head of the list
 		update_firemode()
 		. = 1
-		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
+		user.visible_message("[user] inserts \a [C] into [src].", span_notice("You insert \a [C] into [src]."))
 		if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 
 	update_icon()
 	update_held_icon()
 
 //attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
-/obj/item/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/proc/unload_ammo(mob/user, allow_dump=1)
 	if(ammo_magazine)
 		user.put_in_hands(ammo_magazine)
 
@@ -251,30 +252,30 @@
 					count++
 				loaded.Cut()
 			if(count)
-				user.visible_message("[user] unloads [src].", SPAN_NOTICE("You unload [count] round\s from [src]."))
+				user.visible_message("[user] unloads [src].", span_notice("You unload [count] round\s from [src]."))
 				if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 		else if(load_method & SINGLE_CASING)
 			var/obj/item/ammo_casing/C = loaded[loaded.len]
 			loaded.len--
 			user.put_in_hands(C)
-			user.visible_message("[user] removes \a [C] from [src].", SPAN_NOTICE("You remove \a [C] from [src]."))
+			user.visible_message("[user] removes \a [C] from [src].", span_notice("You remove \a [C] from [src]."))
 			if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 	else
-		to_chat(user, SPAN_WARNING("[src] is empty."))
+		to_chat(user, span_warning("[src] is empty."))
 	update_icon()
 	update_held_icon()
 
 // Modular guns overwrite this
-/obj/item/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/attackby(obj/item/A as obj, mob/user as mob)
 	.=..()
 	if(QUALITY_SAWING in A.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You begin to saw down \the [src]."))
+		to_chat(user, span_notice("You begin to saw down \the [src]."))
 		if(saw_off == FALSE)
-			to_chat(user, SPAN_NOTICE("Sawing down \the [src] will achieve nothing or may impede operation."))
+			to_chat(user, span_notice("Sawing down \the [src] will achieve nothing or may impede operation."))
 			return
 		if (src.item_upgrades.len)
 			if(src.dna_compare_samples) //or else you can override dna lock
-				to_chat(user, SPAN_NOTICE("Sawing down \the [src] will not allow use of the firearm."))
+				to_chat(user, span_notice("Sawing down \the [src] will not allow use of the firearm."))
 				return
 			if("No" == input(user, "There are attachments present. Would you like to destroy them?") in list("Yes", "No"))
 				return
@@ -282,12 +283,12 @@
 			for(var/i in 1 to max_shells)
 				afterattack(user, user)	//will this work? //it will. we call it twice, for twice the FUN
 				playsound(user, fire_sound, 50, 1)
-			user.visible_message(SPAN_DANGER("The [src] goes off!"), SPAN_DANGER("The [src] goes off in your face!"))
+			user.visible_message(span_danger("The [src] goes off!"), span_danger("The [src] goes off in your face!"))
 			return
 		if(saw_off && A.use_tool(user, src, WORKTIME_LONG, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			var/obj/item/gun/projectile/sawnoff = new sawn(usr.loc)
 			sawnoff.caliber = caliber
-			to_chat(user, SPAN_WARNING("You cut down the stock, barrel, and anything else nice from \the [src], ruining a perfectly good weapon."))
+			to_chat(user, span_warning("You cut down the stock, barrel, and anything else nice from \the [src], ruining a perfectly good weapon."))
 			qdel(src)
 	if (!.) //Parent returns true if attackby is handled
 		load_ammo(A, user)
@@ -300,7 +301,7 @@
 		unload_ammo(user)
 
 /obj/item/gun/projectile/attack_hand(mob/user as mob)
-	if(user.get_inactive_hand() == src)
+	if(user.get_inactive_held_item() == src)
 		unload_ammo(user, allow_dump=0)
 	else
 		return ..()
@@ -316,7 +317,7 @@
 		ammo_magazine.forceMove(get_turf(src.loc))
 		user.visible_message(
 			"[ammo_magazine] falls out and clatters on the floor!",
-			SPAN_NOTICE("[ammo_magazine] falls out and clatters on the floor!")
+			span_notice("[ammo_magazine] falls out and clatters on the floor!")
 			)
 		if(auto_eject_sound)
 			playsound(user, auto_eject_sound, 40, 1)

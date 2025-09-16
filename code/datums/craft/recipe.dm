@@ -30,7 +30,7 @@
 		if(CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
 			M.dir = user.dir
 		if(CRAFT_TOWARD_USER)  // spawn the result towards the user
-			M.dir = reverse_dir[user.dir]
+			M.dir = GLOB.reverse_dir[user.dir]
 		else  // spawn the result in its default direction
 			M.dir = C.recipe.dir_default
 	var/slot = user.get_inventory_slot(C)
@@ -57,7 +57,7 @@
 
 	if(flags & (CRAFT_ONE_PER_TURF|CRAFT_ON_FLOOR))
 		if((locate(result) in T))
-			to_chat(user, SPAN_WARNING("You can't create more [name] here!"))
+			to_chat(user, span_warning("You can't create more [name] here!"))
 			return FALSE
 		else
 			//Prevent building dense things in turfs that already contain dense objects
@@ -65,7 +65,7 @@
 			if(initial(A.density))
 				for (var/atom/movable/AM in T)
 					if(AM != user && AM.density)
-						to_chat(user, SPAN_WARNING("You can't build here, it's blocked by [AM]!"))
+						to_chat(user, span_warning("You can't build here, it's blocked by [AM]!"))
 						return FALSE
 	return TRUE
 
@@ -104,12 +104,12 @@
 	var/obj/item/I = CS.find_item(user)
 
 	if(!I)
-		to_chat(user, SPAN_WARNING("You can't find required item!"))
+		to_chat(user, span_warning("You can't find required item!"))
 		return
 
 	//Robots can craft things on the floor
 	if(ishuman(user) && !I.is_held())
-		to_chat(user, SPAN_WARNING("You should hold [I] in hands for doing that!"))
+		to_chat(user, span_warning("You should hold [I] in hands for doing that!"))
 		return
 	var/apply_type = CS.apply(I, user, null, src)
 	if(!apply_type)
@@ -122,7 +122,7 @@
 			if(CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
 				CR.dir = user.dir
 			if(CRAFT_TOWARD_USER)  // spawn the result towards the user
-				CR.dir = reverse_dir[user.dir]
+				CR.dir = GLOB.reverse_dir[user.dir]
 			else  // spawn the result in its default direction
 				CR.dir = dir_default
 		CR.Created(user)

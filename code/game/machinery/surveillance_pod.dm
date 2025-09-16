@@ -43,7 +43,7 @@
 /obj/machinery/surveillance_pod/Initialize(mapload)
 	..()
 	big_brother = new(src)
-	big_brother.visualnet = cameranet
+	big_brother.visualnet = GLOB.cameranet
 	fake_liquid = new/datum/gas_mixture // Pod filled with liqid
 	fake_liquid.adjust_gas_temp("carbon_dioxide", 100, 300, 1) // But alas, there is no liquids in the code!
 	update_icon()
@@ -59,25 +59,25 @@
 
 /obj/machinery/surveillance_pod/proc/can_activate()
 	if(!occupant)
-		audible_message(SPAN_WARNING("[src] beeps: 'ERROR: Operator not found.'"))
+		audible_message(span_warning("[src] beeps: 'ERROR: Operator not found.'"))
 		return FALSE
 
 	if(occupant.stat == DEAD)
-		audible_message(SPAN_WARNING("[src] beeps: 'ERROR: Operator's brain activity below required threshold.'"))
+		audible_message(span_warning("[src] beeps: 'ERROR: Operator's brain activity below required threshold.'"))
 		return FALSE
 
 	if(!occupant.client)
-		audible_message(SPAN_WARNING("[src] beeps: 'ERROR: Operator's brain activity below required threshold.'"))
+		audible_message(span_warning("[src] beeps: 'ERROR: Operator's brain activity below required threshold.'"))
 		return FALSE
 
 	if(!(occupant.w_uniform && (occupant.w_uniform.type in compatible_jumpsuits)))
-		audible_message(SPAN_WARNING("[src] beeps: 'ERROR: Failed to establish connection with a cybersuit.'"))
-		to_chat(occupant, SPAN_WARNING("[src] beeps: 'ERROR: Failed to establish connection with a cybersuit.'"))
+		audible_message(span_warning("[src] beeps: 'ERROR: Failed to establish connection with a cybersuit.'"))
+		to_chat(occupant, span_warning("[src] beeps: 'ERROR: Failed to establish connection with a cybersuit.'"))
 		return FALSE
 
 	if(!(occupant.head && (occupant.head.type in compatible_helmets)))
-		audible_message(SPAN_WARNING("[src] beeps: 'ERROR: Failed to locate compatible visor.'"))
-		to_chat(occupant, SPAN_WARNING("[src] beeps: 'ERROR: Failed to locate compatible visor.'"))
+		audible_message(span_warning("[src] beeps: 'ERROR: Failed to locate compatible visor.'"))
+		to_chat(occupant, span_warning("[src] beeps: 'ERROR: Failed to locate compatible visor.'"))
 		return FALSE
 
 	if(stat & NOPOWER)
@@ -185,7 +185,7 @@
 		return
 
 	if(occupant)
-		to_chat(user, SPAN_WARNING("\The [src] is already occupied."))
+		to_chat(user, span_warning("\The [src] is already occupied."))
 		return
 
 	if(!ishuman(target))
@@ -195,16 +195,16 @@
 
 	if(T.abiotic(FALSE))
 		if(target == user)
-			to_chat(user, SPAN_WARNING("You can't fit in while holding [T.l_hand ? T.l_hand : T.r_hand]."))
+			to_chat(user, span_warning("You can't fit in while holding [T.l_hand ? T.l_hand : T.r_hand]."))
 		else
-			to_chat(user, SPAN_WARNING("[target] can't fit in while holding [T.l_hand ? T.l_hand : T.r_hand]."))
+			to_chat(user, span_warning("[target] can't fit in while holding [T.l_hand ? T.l_hand : T.r_hand]."))
 		return
 
 	if(T.wear_suit)
 		if(target == user)
-			to_chat(user, SPAN_WARNING("You can't fit in while wearing [T.wear_suit]."))
+			to_chat(user, span_warning("You can't fit in while wearing [T.wear_suit]."))
 		else
-			to_chat(user, SPAN_WARNING("[target] can't fit in while wearing [T.wear_suit]."))
+			to_chat(user, span_warning("[target] can't fit in while wearing [T.wear_suit]."))
 		return
 
 	if(target == user)
@@ -216,7 +216,7 @@
 		return
 
 	if(occupant)
-		to_chat(user, SPAN_WARNING("\The [src] is already occupied."))
+		to_chat(user, span_warning("\The [src] is already occupied."))
 		return
 
 	target.forceMove(src)
@@ -295,7 +295,7 @@
 			if(S.hideflag)
 				S.invisibility = 0
 
-		for(var/i=1, i<=occupant.HUDneed.len, i++)
+		for(var/i=1; i<=occupant.HUDneed.len; i++)
 			var/p = occupant.HUDneed[i]
 			if(!(p in HUDneed_element_to_keep))
 				occupant.client.screen += occupant.HUDneed[p]

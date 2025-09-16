@@ -52,7 +52,7 @@
 			wifi_receiver = new(_wifi_id, src)
 
 /obj/machinery/power/emitter/Destroy()
-	message_admins("Emitter deleted at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+	message_admins("Emitter deleted at ([x],[y],[z] - [ADMIN_JMP(src)])",0,1)
 	log_game("Emitter deleted at ([x],[y],[z])")
 	investigate_log("<font color='red'>deleted</font> at ([x],[y],[z])","singulo")
 	qdel(wifi_receiver)
@@ -78,7 +78,7 @@
 			if(src.active==1)
 				src.active = 0
 				to_chat(user, "You turn off [src].")
-				message_admins("Emitter turned off by [key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+				message_admins("Emitter turned off by [key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - [ADMIN_JMP(src)])",0,1)
 				log_game("Emitter turned off by [user.ckey]([user]) in ([x],[y],[z])")
 				investigate_log("turned <font color='red'>off</font> by [user.key]","singulo")
 			else
@@ -86,19 +86,19 @@
 				to_chat(user, "You turn on [src].")
 				src.shot_number = 0
 				src.fire_delay = 100
-				message_admins("Emitter turned on by [key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+				message_admins("Emitter turned on by [key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - [ADMIN_JMP(src)])",0,1)
 				log_game("Emitter turned on by [user.ckey]([user]) in ([x],[y],[z])")
 				investigate_log("turned <font color='green'>on</font> by [user.key]","singulo")
 			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 			update_icon()
 		else
-			to_chat(user, SPAN_WARNING("The controls are locked!"))
+			to_chat(user, span_warning("The controls are locked!"))
 	else
-		to_chat(user, SPAN_WARNING("\The [src] needs to be firmly secured to the floor first."))
+		to_chat(user, span_warning("\The [src] needs to be firmly secured to the floor first."))
 		return 1
 
 
-/obj/machinery/power/emitter/emp_act(var/severity)//Emitters are hardened but still might have issues
+/obj/machinery/power/emitter/emp_act(severity)//Emitters are hardened but still might have issues
 //	add_load(1000)
 /*	if((severity == 1)&&prob(1)&&prob(1))
 		if(src.active)
@@ -162,7 +162,7 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(active)
-				to_chat(user, SPAN_WARNING("Turn off [src] first."))
+				to_chat(user, span_warning("Turn off [src] first."))
 				return
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				state = !state
@@ -178,18 +178,18 @@
 				return
 			switch(state)
 				if(0)
-					to_chat(user, SPAN_WARNING("\The [src] needs to be wrenched to the floor."))
+					to_chat(user, span_warning("\The [src] needs to be wrenched to the floor."))
 					return
 				if(1)
 					if (I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						state = 2
-						to_chat(user, SPAN_NOTICE("You weld [src] to the floor."))
+						to_chat(user, span_notice("You weld [src] to the floor."))
 						connect_to_network()
 						return
 				if(2)
 					if (I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						state = 1
-						to_chat(user, SPAN_NOTICE("You cut [src] free from the floor."))
+						to_chat(user, span_notice("You cut [src] free from the floor."))
 						disconnect_from_network()
 						return
 			return
@@ -199,7 +199,7 @@
 
 	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/modular_computer))
 		if(emagged)
-			to_chat(user, SPAN_WARNING("The lock seems to be broken!"))
+			to_chat(user, span_warning("The lock seems to be broken!"))
 			return
 		if(src.allowed(user))
 			if(active)
@@ -207,16 +207,16 @@
 				to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 			else
 				src.locked = 0 //just in case it somehow gets locked
-				to_chat(user, SPAN_WARNING("The controls can only be locked when [src] is online."))
+				to_chat(user, span_warning("The controls can only be locked when [src] is online."))
 		else
-			to_chat(user, SPAN_WARNING("Access denied."))
+			to_chat(user, span_warning("Access denied."))
 		return
 	..()
 	return
 
-/obj/machinery/power/emitter/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/power/emitter/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		locked = 0
 		emagged = 1
-		user.visible_message("[user.name] swipes an emag on [src]. It crackles and sparks violently.",SPAN_WARNING("You short out the lock. It crackles and sparks violently."))
+		user.visible_message("[user.name] swipes an emag on [src]. It crackles and sparks violently.",span_warning("You short out the lock. It crackles and sparks violently."))
 		return 1

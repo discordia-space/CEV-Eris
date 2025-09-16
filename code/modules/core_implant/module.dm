@@ -8,7 +8,7 @@
 
 	var/unique = TRUE
 
-/datum/core_module/proc/can_install(var/obj/item/implant/core_implant/I)
+/datum/core_module/proc/can_install(obj/item/implant/core_implant/I)
 	return TRUE
 
 /datum/core_module/proc/install()
@@ -31,7 +31,7 @@
 	var/active = FALSE
 	var/datum/core_module/module
 
-/datum/core_module/activatable/New(var/datum/core_module/M)
+/datum/core_module/activatable/New(datum/core_module/M)
 	if(istype(M))
 		module = M
 

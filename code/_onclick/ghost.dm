@@ -6,11 +6,11 @@
 	if(!client) return
 	client.inquisitive_ghost = !client.inquisitive_ghost
 	if(client.inquisitive_ghost)
-		to_chat(src, SPAN_NOTICE("You will now examine everything you click on."))
+		to_chat(src, span_notice("You will now examine everything you click on."))
 	else
-		to_chat(src, SPAN_NOTICE("You will no longer examine things you click on."))
+		to_chat(src, span_notice("You will no longer examine things you click on."))
 
-/mob/observer/ghost/DblClickOn(var/atom/A, var/params)
+/mob/observer/ghost/DblClickOn(atom/A, params)
 	if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
 		return
@@ -27,7 +27,7 @@
 		stop_following()
 		forceMove(get_turf(A))
 
-/mob/observer/ghost/ClickOn(var/atom/A, var/params)
+/mob/observer/ghost/ClickOn(atom/A, params)
 	var/list/pa = params2list(params)
 	if(check_rights(R_ADMIN)) // Admin click shortcuts
 		if(pa.Find("shift") && pa.Find("ctrl"))

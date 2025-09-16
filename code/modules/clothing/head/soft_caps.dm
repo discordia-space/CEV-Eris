@@ -94,7 +94,7 @@
 
 /obj/item/clothing/head/soft/synd
 	name = "ancient syndicate cap"
-	initial name = "ancient syndicate cap"
+	initial_name = "ancient syndicate cap"
 	desc = "A corporate war style field cap. Popular among patriots and veterans nowadays."
 	icon_state = "syndsoft"
 

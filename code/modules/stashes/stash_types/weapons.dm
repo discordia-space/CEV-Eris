@@ -28,7 +28,7 @@
 	lore = "MUTINY TOMORROW 0300 MEET AT %D <br><br>BRING YOUR OWN BOOMSTICK ONLY A FEW SPARES"
 
 //because this one is styled like a telegram, lets capitalise the directions
-/datum/stash/weapon/mutiny_boomstick/create_direction_string(var/data)
+/datum/stash/weapon/mutiny_boomstick/create_direction_string(data)
 	. = ..()
 	direction_string = capitalize(direction_string)
 

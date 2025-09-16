@@ -7,7 +7,7 @@ on:
 jobs:
   MakeCL:
     runs-on: ubuntu-latest
-    if: github.repository == 'discordia-space/CEV-Eris'
+    if: github.repository == 'Monkestation/monkeris'
     steps:
       - name: Checkout
         uses: actions/checkout@v1

@@ -1,3 +1,14 @@
+/datum/design/autolathe/ammo
+
+/datum/design/autolathe/ammo/ui_icon()
+	. = ..()
+	if(!.)
+		var/obj/item/ammo_magazine/ammo_type = build_path
+		var/icon_file = ammo_type::icon
+		var/icon_state = ammo_type::icon_state
+
+		return icon(icon_file, "[icon_state]-0")
+
 // Shotguns
 
 /datum/design/autolathe/ammo/shotgun

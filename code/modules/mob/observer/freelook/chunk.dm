@@ -59,7 +59,7 @@
 // Updates the chunk, makes sure that it doesn't update too much. If the chunk isn't being watched it will
 // instead be flagged to update the next time an AI Eye moves near it.
 
-/datum/chunk/proc/hasChanged(var/update_now = 0)
+/datum/chunk/proc/hasChanged(update_now = 0)
 	if(visible || update_now)
 		if(!updating)
 			updating = 1
@@ -115,7 +115,7 @@
 				if(m.owner.client)
 					m.owner.client.images += t.obfuscations[obfuscation.type]
 
-/datum/chunk/proc/acquireVisibleTurfs(var/list/visible)
+/datum/chunk/proc/acquireVisibleTurfs(list/visible)
 
 // Create a new camera chunk, since the chunks are made as they are needed.
 
@@ -148,7 +148,7 @@
 			t.obfuscations[obfuscation.type] = I
 		obscured += t.obfuscations[obfuscation.type]
 
-/proc/seen_turfs_in_range(var/source, var/range)
+/proc/seen_turfs_in_range(source, range)
 	var/turf/pos = get_turf(source)
 	return hear(range, pos)
 

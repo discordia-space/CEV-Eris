@@ -95,7 +95,7 @@
 // screwdriver: open/close hatch
 // cell: insert it
 // other: chance to knock rider off bot
-/obj/machinery/bot/mulebot/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/bot/mulebot/attackby(obj/item/I, mob/user)
 	if(istype(I,/obj/item/cell/large) && open && !cell)
 		var/obj/item/cell/large/C = I
 		user.drop_item()
@@ -104,16 +104,16 @@
 		updateDialog()
 	else if(istype(I,/obj/item/tool/screwdriver))
 		if(locked)
-			to_chat(user, SPAN_NOTICE("The maintenance hatch cannot be opened or closed while the controls are locked."))
+			to_chat(user, span_notice("The maintenance hatch cannot be opened or closed while the controls are locked."))
 			return
 
 		open = !open
 		if(open)
-			src.visible_message("[user] opens the maintenance hatch of [src]", SPAN_NOTICE("You open [src]'s maintenance hatch."))
+			src.visible_message("[user] opens the maintenance hatch of [src]", span_notice("You open [src]'s maintenance hatch."))
 			on = FALSE
 			icon_state="mulebot-hatch"
 		else
-			src.visible_message("[user] closes the maintenance hatch of [src]", SPAN_NOTICE("You close [src]'s maintenance hatch."))
+			src.visible_message("[user] closes the maintenance hatch of [src]", span_notice("You close [src]'s maintenance hatch."))
 			icon_state = "mulebot0"
 
 		updateDialog()
@@ -122,15 +122,15 @@
 			src.health = min(maxHealth, src.health+25)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			user.visible_message(
-				SPAN_NOTICE("\The [user] repairs \the [src]!"),
-				SPAN_NOTICE("You repair \the [src]!")
+				span_notice("\The [user] repairs \the [src]!"),
+				span_notice("You repair \the [src]!")
 			)
 		else
-			to_chat(user, SPAN_NOTICE("[src] does not need a repair!"))
+			to_chat(user, span_notice("[src] does not need a repair!"))
 	else if(load && ismob(load))  // chance to knock off rider
 		if(prob(1+I.force * 2))
 			unload(0)
-			user.visible_message(SPAN_WARNING("[user] knocks [load] off [src] with \the [I]!"), SPAN_WARNING("You knock [load] off [src] with \the [I]!"))
+			user.visible_message(span_warning("[user] knocks [load] off [src] with \the [I]!"), span_warning("You knock [load] off [src] with \the [I]!"))
 		else
 			to_chat(user, "You hit [src] with \the [I] but to no effect.")
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -138,9 +138,9 @@
 		..()
 	return
 
-/obj/machinery/bot/mulebot/emag_act(var/remaining_charges, var/user)
+/obj/machinery/bot/mulebot/emag_act(remaining_charges, user)
 	locked = !locked
-	to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>")
+	to_chat(user, span_notice("You [locked ? "lock" : "unlock"] the mulebot's controls!"))
 	flick("mulebot-emagged", src)
 	playsound(src.loc, 'sound/effects/sparks1.ogg', 100, 0)
 	return 1
@@ -161,7 +161,7 @@
 	if(prob(50) && !isnull(load))
 		unload(0)
 	if(prob(25))
-		src.visible_message(SPAN_WARNING("Something shorts out inside [src]!"))
+		src.visible_message(span_warning("Something shorts out inside [src]!"))
 		var/index = 1<< (rand(0,9))
 		if(wires & index)
 			wires &= ~index
@@ -170,18 +170,18 @@
 	..()
 
 
-/obj/machinery/bot/mulebot/attack_ai(var/mob/user)
+/obj/machinery/bot/mulebot/attack_ai(mob/user)
 	user.set_machine(src)
 	interact(user, 1)
 
-/obj/machinery/bot/mulebot/attack_hand(var/mob/user)
+/obj/machinery/bot/mulebot/attack_hand(mob/user)
 	. = ..()
 	if (.)
 		return
 	user.set_machine(src)
 	interact(user, 0)
 
-/obj/machinery/bot/mulebot/interact(var/mob/user, var/ai=0)
+/obj/machinery/bot/mulebot/interact(mob/user, ai=0)
 	var/dat
 	dat += "<TT><B>Multiple Utility Load Effector Mk. III</B></TT><BR><BR>"
 	dat += "ID: [suffix]<BR>"
@@ -243,7 +243,7 @@
 		else
 			dat += "The bot is in maintenance mode and cannot be controlled.<BR>"
 
-	user << browse("<HEAD><TITLE>Mulebot [suffix ? "([suffix])" : ""]</TITLE></HEAD>[dat]", "window=mulebot;size=350x500")
+	user << browse(HTML_SKELETON_TITLE("Mulebot [suffix ? "([suffix])" : ""]", dat), "window=mulebot;size=350x500")
 	onclose(user, "mulebot")
 	return
 
@@ -261,14 +261,14 @@
 					locked = !locked
 					updateDialog()
 				else
-					to_chat(usr, SPAN_WARNING("Access denied."))
+					to_chat(usr, span_warning("Access denied."))
 					return
 			if("power")
 				if (src.on)
 					turn_off()
 				else if (cell && !open)
 					if (!turn_on())
-						to_chat(usr, SPAN_WARNING("You can't switch on [src]."))
+						to_chat(usr, span_warning("You can't switch on [src]."))
 						return
 				else
 					return
@@ -277,25 +277,25 @@
 
 
 			if("cellremove")
-				if(open && cell && !usr.get_active_hand())
+				if(open && cell && !usr.get_active_held_item())
 					cell.update_icon()
 					usr.put_in_active_hand(cell)
 					cell.add_fingerprint(usr)
 					cell = null
 
-					usr.visible_message(SPAN_NOTICE("[usr] removes the power cell from [src]."), SPAN_NOTICE("You remove the power cell from [src]."))
+					usr.visible_message(span_notice("[usr] removes the power cell from [src]."), span_notice("You remove the power cell from [src]."))
 					updateDialog()
 
 			if("cellinsert")
 				if(open && !cell)
-					var/obj/item/cell/large/C = usr.get_active_hand()
+					var/obj/item/cell/large/C = usr.get_active_held_item()
 					if(istype(C))
 						usr.drop_item()
 						src.cell = C
 						C.loc = src
 						C.add_fingerprint(usr)
 
-						usr.visible_message(SPAN_NOTICE("[usr] inserts a power cell into [src]."), SPAN_NOTICE("You insert the power cell into [src]."))
+						usr.visible_message(span_notice("[usr] inserts a power cell into [src]."), span_notice("You insert the power cell into [src]."))
 						updateDialog()
 
 
@@ -379,7 +379,7 @@
 // mousedrop a crate to load the bot
 // can load anything if emagged
 
-/obj/machinery/bot/mulebot/MouseDrop_T(var/atom/movable/C, mob/user)
+/obj/machinery/bot/mulebot/MouseDrop_T(atom/movable/C, mob/user)
 
 	if(user.stat)
 		return
@@ -394,7 +394,7 @@
 
 
 // called to load a crate
-/obj/machinery/bot/mulebot/proc/load(var/atom/movable/C)
+/obj/machinery/bot/mulebot/proc/load(atom/movable/C)
 	if(wires.LoadCheck() && !istype(C,/obj/structure/closet/crate))
 		src.visible_message("[src] makes a sighing buzz.", "You hear an electronic buzzing sound.")
 		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
@@ -443,7 +443,7 @@
 // called to unload the bot
 // argument is optional direction to unload
 // if zero, unload at bot's location
-/obj/machinery/bot/mulebot/proc/unload(var/dirn = 0)
+/obj/machinery/bot/mulebot/proc/unload(dirn = 0)
 	if(!load)
 		return
 
@@ -641,7 +641,7 @@
 
 // calculates a path to the current destination
 // given an optional turf to avoid
-/obj/machinery/bot/mulebot/proc/calc_path(var/turf/avoid = null)
+/obj/machinery/bot/mulebot/proc/calc_path(turf/avoid = null)
 	src.path = AStar(src.loc, src.target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 250, id=botcard, exclude=avoid)
 	if(!src.path)
 		src.path = list()
@@ -650,7 +650,7 @@
 // sets the current destination
 // signals all beacons matching the delivery code
 // beacons will return a signal giving their locations
-/obj/machinery/bot/mulebot/proc/set_destination(var/new_dest)
+/obj/machinery/bot/mulebot/proc/set_destination(new_dest)
 	spawn(0)
 		new_destination = new_dest
 		post_signal(beacon_freq, "findbeacon", "delivery")
@@ -708,14 +708,14 @@
 	return
 
 // called when bot bumps into anything
-/obj/machinery/bot/mulebot/Bump(var/atom/obs)
+/obj/machinery/bot/mulebot/Bump(atom/obs)
 	if(!wires.MobAvoid())		//usually just bumps, but if avoidance disabled knock over mobs
 		var/mob/M = obs
 		if(ismob(M))
 			if(isrobot(M))
-				src.visible_message(SPAN_WARNING("[src] bumps into [M]!"))
+				src.visible_message(span_warning("[src] bumps into [M]!"))
 			else
-				src.visible_message(SPAN_WARNING("[src] knocks over [M]!"))
+				src.visible_message(span_warning("[src] knocks over [M]!"))
 				M.stop_pulling()
 				M.Stun(8)
 				M.Weaken(5)
@@ -724,8 +724,8 @@
 
 // called from mob/living/carbon/human/Crossed()
 // when mulebot is in the same loc
-/obj/machinery/bot/mulebot/proc/RunOver(var/mob/living/carbon/human/H)
-	src.visible_message(SPAN_WARNING("[src] drives over [H]!"))
+/obj/machinery/bot/mulebot/proc/RunOver(mob/living/carbon/human/H)
+	src.visible_message(span_warning("[src] drives over [H]!"))
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 
 	var/damage = rand(5,15)
@@ -740,7 +740,7 @@
 	bloodiness += 4
 
 // player on mulebot attempted to move
-/obj/machinery/bot/mulebot/relaymove(var/mob/user)
+/obj/machinery/bot/mulebot/relaymove(mob/user)
 	if(user.stat)
 		return
 	if(load == user)
@@ -817,11 +817,11 @@
 			updateDialog()
 
 // send a radio signal with a single data key/value pair
-/obj/machinery/bot/mulebot/proc/post_signal(var/freq, var/key, var/value)
+/obj/machinery/bot/mulebot/proc/post_signal(freq, key, value)
 	post_signal_multiple(freq, list("[key]" = value) )
 
 // send a radio signal with multiple data key/values
-/obj/machinery/bot/mulebot/proc/post_signal_multiple(var/freq, var/list/keyval)
+/obj/machinery/bot/mulebot/proc/post_signal_multiple(freq, list/keyval)
 
 	if(freq == beacon_freq && !wires.BeaconRX())
 		return
@@ -873,7 +873,7 @@
 
 
 /obj/machinery/bot/mulebot/explode()
-	src.visible_message(SPAN_DANGER("[src] blows apart!"), 1)
+	src.visible_message(span_danger("[src] blows apart!"), 1)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/device/assembly/prox_sensor(Tsec)

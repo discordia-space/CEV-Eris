@@ -103,7 +103,7 @@
 			safety_mode = FALSE
 			update_icon()
 		playsound(loc, "sparks", 75, 1, -1)
-		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
+		to_chat(user, span_notice("You use the cryptographic sequencer on the [name]."))
 
 /obj/machinery/pile_ripper/update_icon()
 	..()

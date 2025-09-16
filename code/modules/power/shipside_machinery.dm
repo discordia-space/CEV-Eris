@@ -73,7 +73,7 @@
 	set src in view(1)
 
 	if(running != 0)
-		to_chat(usr, SPAN_NOTICE("[src] has to be toggled off first!"))
+		to_chat(usr, span_notice("[src] has to be toggled off first!"))
 		return
 	toggle_tendrils()
 
@@ -89,19 +89,19 @@
 	//If we're extending them
 	if (target_state == TRUE)
 		if(!anchored)
-			visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it needs to be properly anchored to deploy"))
+			visible_message(span_danger("The [src] buzzes an insistent warning as it needs to be properly anchored to deploy"))
 			playsound(src.loc, 'sound/machines/buzz-two.ogg', 100, 1, 5)
 			tendrils_deployed = FALSE
 			update_icon()
 			return FALSE
 		if(!build_tendril_dirs())
-			visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it has no conduits to deploy"))
+			visible_message(span_danger("The [src] buzzes an insistent warning as it has no conduits to deploy"))
 			playsound(src.loc, 'sound/machines/buzz-two.ogg', 100, 1, 5)
 			return FALSE
 		for (var/D in tendril_dirs)
 			var/turf/T = get_step(src, D)
 			if (!turf_clear_ignore_cables(T))
-				visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it lacks the space to deploy"))
+				visible_message(span_danger("The [src] buzzes an insistent warning as it lacks the space to deploy"))
 				playsound(src.loc, 'sound/machines/buzz-two.ogg', 100, 1, 5)
 				tendrils_deployed = FALSE
 				update_icon()
@@ -117,7 +117,7 @@
 		tendrils_deployed = TRUE
 		update_icon()
 
-		to_chat(usr, SPAN_NOTICE("You deployed [src] conduits."))
+		to_chat(usr, span_notice("You deployed [src] conduits."))
 		return TRUE
 
 	else if (target_state == FALSE)
@@ -127,7 +127,7 @@
 		tendrils_deployed = FALSE
 		update_icon()
 
-		to_chat(usr, SPAN_NOTICE("You retracted [src] conduits."))
+		to_chat(usr, span_notice("You retracted [src] conduits."))
 		return FALSE
 
 /obj/machinery/power/shipside/attackby(obj/item/O, mob/user)
@@ -154,20 +154,20 @@
 
 /obj/machinery/power/shipside/proc/wrench(user, obj/item/I)
 	if(running != 0)
-		to_chat(usr, SPAN_NOTICE("[src] has to be toggled off first!"))
+		to_chat(usr, span_notice("[src] has to be toggled off first!"))
 		return
 	if(tendrils_deployed)
-		to_chat(usr, SPAN_NOTICE("Retract conduits first!"))
+		to_chat(usr, span_notice("Retract conduits first!"))
 		return
 	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 		if(anchored)
-			to_chat(user, SPAN_NOTICE("You unsecure the [src] from the floor!"))
+			to_chat(user, span_notice("You unsecure the [src] from the floor!"))
 			toggle_tendrils(FALSE)
 			anchored = FALSE
 		else
 			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
-			to_chat(user, SPAN_NOTICE("You secure the [src] to the floor!"))
+			to_chat(user, span_notice("You secure the [src] to the floor!"))
 			anchored = TRUE
 		return
 
@@ -227,7 +227,7 @@
 /obj/machinery/power/conduit/on_deconstruction()
 	disconnect()
 	. = ..()
-	
+
 /obj/machinery/power/conduit/RefreshParts()
 	. = ..()
 	if(base)
@@ -260,16 +260,16 @@
 
 /obj/machinery/power/conduit/proc/wrench(user, obj/item/I)
 	if(base)
-		to_chat(usr, SPAN_NOTICE("Disconnect [src] from the [base] first!"))
+		to_chat(usr, span_notice("Disconnect [src] from the [base] first!"))
 		return
 	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 		if(anchored)
-			to_chat(user, SPAN_NOTICE("You unsecure the [src] from the floor!"))
+			to_chat(user, span_notice("You unsecure the [src] from the floor!"))
 			anchored = FALSE
 		else
 			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
-			to_chat(user, SPAN_NOTICE("You secure the [src] to the floor!"))
+			to_chat(user, span_notice("You secure the [src] to the floor!"))
 			anchored = TRUE
 		return
 

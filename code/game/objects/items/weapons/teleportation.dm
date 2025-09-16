@@ -45,11 +45,11 @@
 
 /obj/item/hand_tele/attack_self(mob/user)
 	if(!cell || !cell.checked_use( cell_charge_per_attempt ))
-		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+		to_chat(user, span_warning("[src] battery is dead or missing."))
 		return
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	if(!current_location||current_location.z>=7)//If turf was not found or they're on z >7 which does not currently exist.
-		to_chat(user, SPAN_NOTICE("\The [src] is malfunctioning!"))
+		to_chat(user, span_notice("\The [src] is malfunctioning!"))
 		return
 	var/list/L = list()
 	for(var/obj/machinery/teleport/hub/R in world)
@@ -70,10 +70,10 @@
 	if(turfs.len)
 		L["None (Dangerous)"] = pick(turfs)
 	var/t1 = input(user, "Please select a teleporter to lock in on.", "Hand Teleporter") in L
-	if ((user.get_active_hand() != src || user.stat || user.restrained()))
+	if ((user.get_active_held_item() != src || user.stat || user.restrained()))
 		return
 	var/T = L[t1]
-	to_chat(user, SPAN_NOTICE("Portal locked in."))
+	to_chat(user, span_notice("Portal locked in."))
 	var/obj/effect/portal/P = new portal_type(get_turf(src))
 	P.set_target(T)
 	P.entropy_value += entropy_value
@@ -113,19 +113,19 @@
 		if(user.a_intent == I_HURT)
 			if(prob(5))
 				var/turf/teleport_location = pick( getcircle(user.loc, 3) )
-				user.drop_from_inventory(user.get_active_hand())
-				user.drop_from_inventory(user.get_inactive_hand())
+				user.drop_from_inventory(user.get_active_held_item())
+				user.drop_from_inventory(user.get_inactive_held_item())
 				if(teleport_location)
 					go_to_bluespace(get_turf(src), entropy_value, TRUE, user, teleport_location, 1)
 					return
 			if(do_after(user, 30))
 				if(calibration_required)
-					to_chat(user, SPAN_WARNING("You loosen [src]'s calibration, it'll probably fail when used now."))
+					to_chat(user, span_warning("You loosen [src]'s calibration, it'll probably fail when used now."))
 					portal_fail_chance = 90
 					calibration_required = FALSE
 				else
 					calibration_required = TRUE
-					to_chat(user, SPAN_NOTICE("You recalibrate [src]. It'll probably function now."))
+					to_chat(user, span_notice("You recalibrate [src]. It'll probably function now."))
 					portal_fail_chance = 50
 		else
 			if(do_after(user, 30))
@@ -135,9 +135,9 @@
 					if(portal_fail_chance < 0)
 						portal_fail_chance = 0
 					calibration_required = FALSE
-					to_chat(user, SPAN_NOTICE("You carefully place the bluespace crystal into slot to the end, and tweak the circuit with your [C]. [src] now looks more reliable."))
+					to_chat(user, span_notice("You carefully place the bluespace crystal into slot to the end, and tweak the circuit with your [C]. [src] now looks more reliable."))
 				else
-					to_chat(user, SPAN_WARNING("[src] is calibrated already. You can decalibrate it to sabotage the device."))
+					to_chat(user, span_warning("[src] is calibrated already. You can decalibrate it to sabotage the device."))
 
 /obj/item/tele_spear
 	name = "Telespear"

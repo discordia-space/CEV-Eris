@@ -60,11 +60,11 @@
 		return TRUE
 
 	if(!target.reagents.total_volume)
-		to_chat(user, SPAN_NOTICE("[target] is empty."))
+		to_chat(user, span_notice("[target] is empty."))
 		return TRUE
 
 	if(reagents && !reagents.get_free_space())
-		to_chat(user, SPAN_NOTICE("[src] is full."))
+		to_chat(user, span_notice("[src] is full."))
 		return TRUE
 
 	var/transfer_amount = amount_per_transfer_from_this
@@ -73,7 +73,7 @@
 		transfer_amount = C.amount_per_transfer_from_this
 
 	var/trans = target.reagents.trans_to_obj(src, transfer_amount)
-	to_chat(user, SPAN_NOTICE("You fill [src] with [trans] units of the contents of [target]."))
+	to_chat(user, span_notice("You fill [src] with [trans] units of the contents of [target]."))
 	playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)
 	return TRUE
 
@@ -86,36 +86,36 @@
 		return TRUE
 
 	if(!reagents.total_volume)
-		to_chat(user, SPAN_NOTICE("[src] is empty."))
+		to_chat(user, span_notice("[src] is empty."))
 		return TRUE
 
 	if(target.reagents && !target.reagents.get_free_space())
-		to_chat(user, SPAN_NOTICE("[target] is full."))
+		to_chat(user, span_notice("[target] is full."))
 		return TRUE
 
 	var/contained = reagents.log_list()
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been splashed with [name] by [user.name] ([user.ckey]). Reagents: [contained]</font>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to splash [target.name] ([target.key]). Reagents: [contained]</font>")
-	msg_admin_attack("[user.name] ([user.ckey]) splashed [target.name] ([target.key]) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+	msg_admin_attack("[user.name] ([user.ckey]) splashed [target.name] ([target.key]) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) [ADMIN_JMP(user)]")
 
 	user.visible_message(
-		SPAN_DANGER("[target] has been splashed with something by [user]!"),
-		SPAN_NOTICE("You splash the solution onto [target].")
+		span_danger("[target] has been splashed with something by [user]!"),
+		span_notice("You splash the solution onto [target].")
 	)
 	reagents.splash(target, reagents.total_volume)
 	return TRUE
 
 /obj/item/reagent_containers/proc/self_feed_message(mob/user)
-	to_chat(user, SPAN_NOTICE("You eat \the [src]"))
+	to_chat(user, span_notice("You eat \the [src]"))
 
 /obj/item/reagent_containers/proc/is_closed_message(mob/user)
 	return
 
 /obj/item/reagent_containers/proc/other_feed_message_start(mob/user, mob/target)
-	user.visible_message(SPAN_WARNING("[user] is trying to feed [target] \the [src]!"))
+	user.visible_message(span_warning("[user] is trying to feed [target] \the [src]!"))
 
 /obj/item/reagent_containers/proc/other_feed_message_finish(mob/user, mob/target)
-	user.visible_message(SPAN_WARNING("[user] has fed [target] \the [src]!"))
+	user.visible_message(span_warning("[user] has fed [target] \the [src]!"))
 
 /obj/item/reagent_containers/proc/feed_sound(mob/user)
 	return
@@ -129,7 +129,7 @@
 		return TRUE
 
 	if(!reagents.total_volume)
-		to_chat(user, SPAN_NOTICE("\The [src] is empty."))
+		to_chat(user, span_notice("\The [src] is empty."))
 		return TRUE
 
 	if(ishuman(target))
@@ -143,7 +143,7 @@
 
 		var/obj/item/blocked = H.check_mouth_coverage()
 		if(blocked)
-			to_chat(user, SPAN_WARNING("\The [blocked] is in the way!"))
+			to_chat(user, span_warning("\The [blocked] is in the way!"))
 			return TRUE
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
@@ -162,7 +162,7 @@
 		var/contained = reagents.log_list()
 		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [name] by [user.name] ([user.ckey]). Reagents: [contained]</font>")
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [name] by [target.name] ([target.ckey]). Reagents: [contained]</font>")
-		msg_admin_attack("[key_name(user)] fed [key_name(target)] with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		msg_admin_attack("[key_name(user)] fed [key_name(target)] with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) [ADMIN_JMP(user)]")
 
 	reagents.trans_to_mob(target, issmall(user) ? CEILING(amount_per_transfer_from_this * 0.5, 1) : amount_per_transfer_from_this, CHEM_INGEST)
 
@@ -187,21 +187,21 @@
 		return FALSE
 
 	if(!reagents.total_volume)
-		to_chat(user, SPAN_NOTICE("[src] is empty."))
+		to_chat(user, span_notice("[src] is empty."))
 		return TRUE // if it returns false, it drains from its target when empty
 
 	if(!target.reagents.get_free_space())
-		to_chat(user, SPAN_NOTICE("[target] is full."))
+		to_chat(user, span_notice("[target] is full."))
 		return TRUE // if it returns false, it drains from a full target
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)
-	to_chat(user, SPAN_NOTICE("You transfer [trans] units of the solution to [target]."))
+	to_chat(user, span_notice("You transfer [trans] units of the solution to [target]."))
 	user.investigate_log("transfered [trans] units from [src]([reagents.log_list()]) to [target]([target.reagents.log_list()])", "chemistry")
 	return TRUE
 
 // if amount_per_reagent is null or zero it will transfer all
-/obj/item/reagent_containers/proc/separate_solution(var/list/obj/item/reagent_containers/accepting_containers, var/amount_per_reagent, var/list/ignore_reagents_ids)
+/obj/item/reagent_containers/proc/separate_solution(list/obj/item/reagent_containers/accepting_containers, amount_per_reagent, list/ignore_reagents_ids)
 	if(!is_drainable())
 		return FALSE
 	if(!reagents.total_volume)

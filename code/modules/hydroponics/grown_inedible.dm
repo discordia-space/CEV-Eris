@@ -16,7 +16,7 @@
 	//Handle some post-spawn var stuff.
 	if(planttype)
 		plantname = planttype
-		var/datum/seed/S = plant_controller.seeds[plantname]
+		var/datum/seed/S = SSplants.seeds[plantname]
 		if(!S || !S.chems)
 			return
 
@@ -45,7 +45,7 @@
 /obj/item/corncob/attackby(obj/item/I, mob/user)
 	..()
 	if(QUALITY_CUTTING in I.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You use [I] to fashion a pipe out of the corn cob!"))
+		to_chat(user, span_notice("You use [I] to fashion a pipe out of the corn cob!"))
 		new /obj/item/clothing/mask/smokable/pipe/cobpipe (user.loc)
 		qdel(src)
 		return

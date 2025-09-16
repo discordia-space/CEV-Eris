@@ -204,10 +204,10 @@
 	switch(msg_type)
 		if("cold")
 			if(!covered)
-				to_chat(H, SPAN_DANGER("[pick(cold_discomfort_strings)]"))
+				to_chat(H, span_danger("[pick(cold_discomfort_strings)]"))
 		if("heat")
 			if(covered)
-				to_chat(H, SPAN_DANGER("[pick(heat_discomfort_strings)]"))
+				to_chat(H, span_danger("[pick(heat_discomfort_strings)]"))
 
 /datum/species/proc/sanitize_name(name)
 	return sanitizeName(name)
@@ -219,9 +219,9 @@
 		else
 			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 
-	var/datum/language/species_language = all_languages[name_language]
+	var/datum/language/species_language = GLOB.all_languages[name_language]
 	if(!species_language)
-		species_language = all_languages[default_language]
+		species_language = GLOB.all_languages[default_language]
 	if(!species_language)
 		return "unknown"
 	return species_language.get_random_name(gender)
@@ -233,9 +233,9 @@
 		else
 			return capitalize(pick(GLOB.first_names_male))
 
-	var/datum/language/species_language = all_languages[name_language]
+	var/datum/language/species_language = GLOB.all_languages[name_language]
 	if(!species_language)
-		species_language = all_languages[default_language]
+		species_language = GLOB.all_languages[default_language]
 	if(!species_language)
 		return "unknown"
 	return species_language.get_random_name(gender)
@@ -244,9 +244,9 @@
 	if(!name_language)
 		return capitalize(pick(GLOB.last_names))
 
-	var/datum/language/species_language = all_languages[name_language]
+	var/datum/language/species_language = GLOB.all_languages[name_language]
 	if(!species_language)
-		species_language = all_languages[default_language]
+		species_language = GLOB.all_languages[default_language]
 	if(!species_language)
 		return "unknown"
 	return species_language.get_random_name()
@@ -264,8 +264,8 @@
 		if(FEMALE)
 			t_him = "her"
 
-	H.visible_message(SPAN_NOTICE("[H] hugs [target] to make [t_him] feel better!"), \
-					SPAN_NOTICE("You hug [target] to make [t_him] feel better!"))
+	H.visible_message(span_notice("[H] hugs [target] to make [t_him] feel better!"), \
+					span_notice("You hug [target] to make [t_him] feel better!"))
 
 /datum/species/proc/remove_inherent_verbs(mob/living/carbon/human/H)
 	if(inherent_verbs)
@@ -346,7 +346,7 @@
 	if(H.equipment_tint_total >= TINT_BLIND)
 		H.eye_blind = max(H.eye_blind, 1)
 
-	if(config.welder_vision)
+	if(CONFIG_GET(flag/welder_vision))
 		if(H.equipment_tint_total == TINT_HEAVY)
 			H.client.screen |= global_hud.darkMask
 		else if((!H.equipment_prescription && (H.sdisabilities & NEARSIGHTED)) || H.equipment_tint_total == TINT_MODERATE)

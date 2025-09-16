@@ -33,6 +33,9 @@
 // Real modulus that handles decimals
 #define MODULUS(x, y) ( (x) - (y) * round((x) / (y)) )
 
+
+#define ROUND_UP(x) ( -round(-(x)))
+
 // Tangent
 #define TAN(x) (sin(x) / cos(x))
 
@@ -74,11 +77,13 @@
 
 #define ISODD(x) (x % 2 != 0)
 
+#define NFRACT(tofract) (tofract - round(tofract)) // I live in agony
+
 //Probability based rounding that makes whole numbers out of decimals based on luck.
 //The decimal value is the probability to be rounded up.
 //Eg a value of 1.37 has a 37% chance to become 2, otherwise it is 1
 //Useful for game balance matters where the gulf caused by consistent rounding is too much
-#define ROUND_PROB(val) (val - (val % 1) + prob((val % 1) * 100))
+#define ROUND_PROB(val) (val - (NFRACT(val)) + prob(NFRACT(val) * 100))
 
 #define RAND_DECIMAL(lower, upper) (rand(0, upper - lower) + lower)
 
@@ -222,12 +227,12 @@
 // )
 
 // Round up
-proc/n_ceil(var/num)
+/proc/n_ceil(num)
 	if(isnum(num))
 		return round(num)+1
 
 // Find leftmost bit using bitshifting
-proc/leftmost_bit(num)
+/proc/leftmost_bit(num)
 	var/pos = 0
 	if(num)
 		while(num > 0)
@@ -235,7 +240,7 @@ proc/leftmost_bit(num)
 			pos++
 	return pos
 
-proc/get_vector(dir) // Accepts a directional string and returns a list containing an actual vector
+/proc/get_vector(dir) // Accepts a directional string and returns a list containing an actual vector
     switch(dir)
         if(NORTH)
             return list(0, 1)
@@ -256,7 +261,7 @@ proc/get_vector(dir) // Accepts a directional string and returns a list containi
         else if(!dir)
             return list(1, 0)
 
-proc/get_vector_angle(vec1, vec2) // Calculates the angle between two vectors, then returns the angle. Uses degrees instead of radians because BYOND expects trig functions to be called with degrees.
+/proc/get_vector_angle(vec1, vec2) // Calculates the angle between two vectors, then returns the angle. Uses degrees instead of radians because BYOND expects trig functions to be called with degrees.
     var/dot = vec1[1] * vec2[1] + vec1[2] * vec2[2] // Calculate the dot product
     var/mag1 = sqrt((vec1[1] ** 2) + (vec1[2] ** 2)) // Calculate the magnitudes of the vectors
     var/mag2 = sqrt((vec2[1] ** 2) + (vec2[2] ** 2))

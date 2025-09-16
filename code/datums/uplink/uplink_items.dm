@@ -90,7 +90,7 @@ var/datum/uplink/uplink = new()
 
 	U.purchase_log[src] = U.purchase_log[src] + 1
 
-datum/uplink_item/dd_SortValue()
+/datum/uplink_item/dd_SortValue()
 	return cost(INFINITY)
 
 /********************************
@@ -128,7 +128,7 @@ datum/uplink_item/dd_SortValue()
 
 /datum/uplink_item/item/log_icon()
 	var/obj/I = path
-	return "\icon[I]"
+	return icon2html(I, world)
 
 /********************************
 *                           	*
@@ -140,7 +140,7 @@ var/image/default_abstract_uplink_icon
 	if(!default_abstract_uplink_icon)
 		default_abstract_uplink_icon = image('icons/obj/pda.dmi', "pda-syn")
 
-	return "\icon[default_abstract_uplink_icon]"
+	return "[icon2html(default_abstract_uplink_icon, world)]"
 
 /****************
 * Support procs *

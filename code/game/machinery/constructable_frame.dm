@@ -93,7 +93,7 @@
 		if(QUALITY_WIRE_CUTTING)
 			if(state == STATE_WIRES)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You remove the cables."))
+					to_chat(user, span_notice("You remove the cables."))
 					state = STATE_NONE
 					icon_state = "[base_state]_0"
 					new /obj/item/stack/cable_coil(drop_location(), 5)
@@ -107,9 +107,9 @@
 					circuit.forceMove(drop_location())
 					circuit = null
 					if(components.len == 0)
-						to_chat(user, SPAN_NOTICE("You remove the circuit board."))
+						to_chat(user, span_notice("You remove the circuit board."))
 					else
-						to_chat(user, SPAN_NOTICE("You remove the circuit board and other components."))
+						to_chat(user, span_notice("You remove the circuit board and other components."))
 						for(var/obj/component in components)
 							component.forceMove(drop_location())
 					desc = initial(desc)
@@ -122,7 +122,7 @@
 		if(QUALITY_BOLT_TURNING)
 			if(state == STATE_NONE)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You dismantle the frame"))
+					to_chat(user, span_notice("You dismantle the frame"))
 					drop_materials(drop_location())
 					qdel(src)
 					return
@@ -136,13 +136,13 @@
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
 				if (C.get_amount() < 5)
-					to_chat(user, SPAN_WARNING("You need five lengths of cable to add them to the frame."))
+					to_chat(user, span_warning("You need five lengths of cable to add them to the frame."))
 					return
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-				to_chat(user, SPAN_NOTICE("You start to add cables to the frame."))
+				to_chat(user, span_notice("You start to add cables to the frame."))
 				if(do_after(user, 20, src) && state == STATE_NONE)
 					if(C.use(5))
-						to_chat(user, SPAN_NOTICE("You add cables to the frame."))
+						to_chat(user, span_notice("You add cables to the frame."))
 						state = STATE_WIRES
 						icon_state = "[base_state]_1"
 
@@ -151,7 +151,7 @@
 				var/obj/item/electronics/circuitboard/B = I
 				if(B.board_type == "machine" && frame_type == B.frame_type)
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-					to_chat(user, SPAN_NOTICE("You add the circuit board to the frame."))
+					to_chat(user, span_notice("You add the circuit board to the frame."))
 					circuit = I
 					user.drop_from_inventory(I)
 					I.forceMove(src)
@@ -180,7 +180,7 @@
 							req_component_names[A] = initial(ct.name)
 					examine(user)
 				else
-					to_chat(user, SPAN_WARNING("This frame does not accept circuit boards of this type!"))
+					to_chat(user, span_warning("This frame does not accept circuit boards of this type!"))
 
 		if(STATE_CIRCUIT)
 
@@ -208,7 +208,7 @@
 							req_components[CM]--
 							break
 				if(I && I.loc != src && !istype(I, /obj/item/stack))
-					to_chat(user, SPAN_WARNING("You cannot add that component to the machine!"))
+					to_chat(user, span_warning("You cannot add that component to the machine!"))
 				else
 					examine(user)
 	update_icon()

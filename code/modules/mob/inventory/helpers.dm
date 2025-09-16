@@ -2,7 +2,7 @@
 	var/overslot = 0
 	var/obj/item/overslot_contents
 
-/mob/proc/slot_is_accessible(var/slot, var/obj/item/Item, mob/user)
+/mob/proc/slot_is_accessible(slot, obj/item/Item, mob/user)
 	return TRUE
 
 /proc/mob_can_equip(mob/living/Mob, obj/item/Item, slot, disable_warning)
@@ -18,7 +18,7 @@
 		if(Item.overslot && !equipped.overslot)
 			return TRUE
 		if(!disable_warning)
-			to_chat(src, SPAN_WARNING("You already has something equipped here!"))
+			to_chat(src, span_warning("You already has something equipped here!"))
 		return FALSE //Note, this one goes from if(equipped), not overslot check
 	return TRUE
 
@@ -27,7 +27,7 @@
 		return FALSE
 
 	if(!species.has_equip_slot(slot))
-		to_chat(src, SPAN_WARNING("Your species can't wear that!"))
+		to_chat(src, span_warning("Your species can't wear that!"))
 		return FALSE
 
 	var/datum/inventory_slot/S = SSinventory.get_slot_datum(slot)

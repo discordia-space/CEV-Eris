@@ -29,35 +29,35 @@
 		icon_state = "floorbot[on]e"
 	..()
 
-/mob/living/bot/floorbot/attack_hand(var/mob/user)
+/mob/living/bot/floorbot/attack_hand(mob/user)
 	user.set_machine(src)
 	var/dat
 	dat += "<TT><B>Automatic Station Floor Repairer v1.0</B></TT><BR><BR>"
-	dat += "Status: <A href='?src=\ref[src];operation=start'>[src.on ? "On" : "Off"]</A><BR>"
+	dat += "Status: <A href='byond://?src=\ref[src];operation=start'>[src.on ? "On" : "Off"]</A><BR>"
 	dat += "Maintenance panel is [open ? "opened" : "closed"]<BR>"
 	//dat += "Tiles left: [amount]<BR>"
 	dat += "Behvaiour controls are [locked ? "locked" : "unlocked"]<BR>"
 	if(!locked || issilicon(user))
-		dat += "Improves floors: <A href='?src=\ref[src];operation=improve'>[improvefloors ? "Yes" : "No"]</A><BR>"
-		dat += "Finds tiles: <A href='?src=\ref[src];operation=tiles'>[eattiles ? "Yes" : "No"]</A><BR>"
-		dat += "Make singles pieces of metal into tiles when empty: <A href='?src=\ref[src];operation=make'>[maketiles ? "Yes" : "No"]</A><BR>"
+		dat += "Improves floors: <A href='byond://?src=\ref[src];operation=improve'>[improvefloors ? "Yes" : "No"]</A><BR>"
+		dat += "Finds tiles: <A href='byond://?src=\ref[src];operation=tiles'>[eattiles ? "Yes" : "No"]</A><BR>"
+		dat += "Make singles pieces of metal into tiles when empty: <A href='byond://?src=\ref[src];operation=make'>[maketiles ? "Yes" : "No"]</A><BR>"
 		var/bmode
 		if(targetdirection)
 			bmode = dir2text(targetdirection)
 		else
 			bmode = "Disabled"
-		dat += "<BR><BR>Bridge Mode : <A href='?src=\ref[src];operation=bridgemode'>[bmode]</A><BR>"
+		dat += "<BR><BR>Bridge Mode : <A href='byond://?src=\ref[src];operation=bridgemode'>[bmode]</A><BR>"
 
-	user << browse("<HEAD><TITLE>Repairbot v1.0 controls</TITLE></HEAD>[dat]", "window=autorepair")
+	user << browse(HTML_SKELETON_TITLE("Repairbot v1.0 controls", dat), "window=autorepair")
 	onclose(user, "autorepair")
 	return
 
-/mob/living/bot/floorbot/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/bot/floorbot/emag_act(remaining_charges, mob/user)
 	. = ..()
 	if(!emagged)
 		emagged = 1
 		if(user)
-			to_chat(user, SPAN_NOTICE("The [src] buzzes and beeps."))
+			to_chat(user, span_notice("The [src] buzzes and beeps."))
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 		return 1
 
@@ -184,7 +184,7 @@
 		path -= path[1]
 
 
-/mob/living/bot/floorbot/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/bot/floorbot/UnarmedAttack(atom/A, proximity)
 	if(!..())
 		return
 
@@ -200,7 +200,7 @@
 		var/turf/floor/F = A
 		var/obj/structure/catwalk/C = A
 		if(F.flooring)
-			visible_message(SPAN_WARNING("[src] begins to tear the floor tile from the floor!"))
+			visible_message(span_warning("[src] begins to tear the floor tile from the floor!"))
 			var/message = pick("Here we go!", "Let's do this!", "See, how is easy to anger an engineer with one simple trick!")
 			say(message)
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -208,7 +208,7 @@
 				F.break_tile_to_plating()
 				addTiles(1)
 		else if(locate(/obj/structure/catwalk, A))  // Emaged nekowalk destroy
-			visible_message(SPAN_WARNING("[src] begins to dismatle \the [C.name]!"))
+			visible_message(span_warning("[src] begins to dismatle \the [C.name]!"))
 			var/message = pick("Cats dont like it, so i do a favor for them!", "No animals were harmed in the process!", "Nya~!", "M.E.O.W!")
 			say(message)
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -219,7 +219,7 @@
 					addTiles(1)
 				qdel(C)
 		else
-			visible_message(SPAN_DANGER("[src] begins to tear through the floor!"))
+			visible_message(span_danger("[src] begins to tear through the floor!"))
 			var/message = pick("DOWN WE GO, MY FRIEND!", "REACH FOR THE SKY!", "ABBYS AWAITS!", "I WAS BORN TO BE A MINER!")
 			say(message)
 			playsound(loc, "robot_talk_heavy", 200, 0, 0)
@@ -233,7 +233,7 @@
 	else if(emagged && (istype(A, /turf/space) || istype(A, /turf/open)))  // Emaged nekowalk destroy
 		if(locate(/obj/structure/catwalk, A))
 			var/obj/structure/catwalk/C = A
-			visible_message(SPAN_WARNING("[src] begins to dismatle \the [C.name]!"))
+			visible_message(span_warning("[src] begins to dismatle \the [C.name]!"))
 			var/message = pick("Cats dont like it, so i do a favor for them!", "No animals were harmed in the process!", "Nya~!", "M.E.O.W!")
 			say(message)
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -255,7 +255,7 @@
 			return
 		repairing = 1
 		update_icons()
-		visible_message(SPAN_NOTICE("[src] begins to repair the hole."))
+		visible_message(span_notice("[src] begins to repair the hole."))
 		var/message = pick("Hard work pays off.", "I don't like all this standing around.", "My masterpiece!")
 		say(message)
 		playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -276,7 +276,7 @@
 		if(!F.flooring && amount)
 			repairing = 1
 			update_icons()
-			visible_message(SPAN_NOTICE("[src] begins to improve the floor."))
+			visible_message(span_notice("[src] begins to improve the floor."))
 			var/message = pick("Hard work pays off.", "I don't like all this standing around.", "My masterpiece!")
 			say(message)
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -293,7 +293,7 @@
 			update_icons()
 	else if(istype(A, /obj/item/stack/tile/floor) && amount < maxAmount)
 		var/obj/item/stack/tile/floor/T = A
-		visible_message(SPAN_NOTICE("\The [src] begins to collect tiles."))
+		visible_message(span_notice("\The [src] begins to collect tiles."))
 		var/message = pick("I can use this.")
 		say(message)
 		playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -310,7 +310,7 @@
 	else if(istype(A, /obj/item/stack/material) && amount + 4 <= maxAmount)
 		var/obj/item/stack/material/M = A
 		if(M.get_material_name() == MATERIAL_STEEL)
-			visible_message(SPAN_NOTICE("\The [src] begins to make tiles."))
+			visible_message(span_notice("\The [src] begins to make tiles."))
 			var/message = pick("Hard work pays off.", "I don't like all this standing around.", "My masterpiece!")
 			say(message)
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -323,7 +323,7 @@
 
 /mob/living/bot/floorbot/explode()
 	turn_off()
-	visible_message(SPAN_DANGER("[src] blows apart!"))
+	visible_message(span_danger("[src] blows apart!"))
 	playsound(loc, "robot_talk_heavy", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)
 
@@ -339,7 +339,7 @@
 	s.start()
 	qdel(src)
 
-/mob/living/bot/floorbot/proc/addTiles(var/am)
+/mob/living/bot/floorbot/proc/addTiles(am)
 	amount += am
 	if(amount < 0)
 		amount = 0
@@ -348,23 +348,23 @@
 
 /* Assembly */
 
-/obj/item/storage/toolbox/mechanical/attackby(var/obj/item/stack/tile/floor/T, mob/user as mob)
+/obj/item/storage/toolbox/mechanical/attackby(obj/item/stack/tile/floor/T, mob/user as mob)
 	if(!istype(T, /obj/item/stack/tile/floor))
 		..()
 		return
 	if(contents.len >= 1)
-		to_chat(user, SPAN_NOTICE("They wont fit in as there is already stuff inside."))
+		to_chat(user, span_notice("They wont fit in as there is already stuff inside."))
 		return
 	close_all()
 	if(T.use(10))
 		var/obj/item/toolbox_tiles/B = new /obj/item/toolbox_tiles
 		user.put_in_hands(B)
-		to_chat(user, SPAN_NOTICE("You add the tiles into the empty toolbox. They protrude from the top."))
+		to_chat(user, span_notice("You add the tiles into the empty toolbox. They protrude from the top."))
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
 	else
-		to_chat(user, SPAN_WARNING("You need 10 floor tiles for a floorbot."))
+		to_chat(user, span_warning("You need 10 floor tiles for a floorbot."))
 	return
 
 /obj/item/toolbox_tiles
@@ -379,14 +379,14 @@
 	w_class = ITEM_SIZE_NORMAL
 	var/created_name = "Floorbot"
 
-/obj/item/toolbox_tiles/attackby(var/obj/item/W, mob/user as mob)
+/obj/item/toolbox_tiles/attackby(obj/item/W, mob/user as mob)
 	..()
 	if(isproxsensor(W))
 		qdel(W)
 		var/obj/item/toolbox_tiles_sensor/B = new /obj/item/toolbox_tiles_sensor()
 		B.created_name = created_name
 		user.put_in_hands(B)
-		to_chat(user, SPAN_NOTICE("You add the sensor to the toolbox and tiles!"))
+		to_chat(user, span_notice("You add the sensor to the toolbox and tiles!"))
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
@@ -410,14 +410,14 @@
 	w_class = ITEM_SIZE_NORMAL
 	var/created_name = "Floorbot"
 
-/obj/item/toolbox_tiles_sensor/attackby(var/obj/item/W, mob/user as mob)
+/obj/item/toolbox_tiles_sensor/attackby(obj/item/W, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm))
 		qdel(W)
 		var/turf/T = get_turf(user.loc)
 		var/mob/living/bot/floorbot/A = new /mob/living/bot/floorbot(T)
 		A.name = created_name
-		to_chat(user, SPAN_NOTICE("You add the robot arm to the odd looking toolbox assembly! Boop beep!"))
+		to_chat(user, span_notice("You add the robot arm to the odd looking toolbox assembly! Boop beep!"))
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)

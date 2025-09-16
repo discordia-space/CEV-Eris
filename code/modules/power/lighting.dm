@@ -230,7 +230,7 @@
 	. = ..()
 	if(autoattach)
 		auto_turn_destructive()
-		dir = reverse_dir[dir]
+		dir = GLOB.reverse_dir[dir]
 
 	if(!src)
 		return 0
@@ -307,7 +307,7 @@
 
 
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update(var/trigger = 1)
+/obj/machinery/light/proc/update(trigger = 1)
 
 	update_icon()
 	if(on == TRUE)
@@ -346,7 +346,7 @@
 	if(on != on_gs)
 		on_gs = on
 
-/obj/machinery/light/attack_generic(var/mob/user, var/damage)
+/obj/machinery/light/attack_generic(mob/user, damage)
 	if(!damage)
 		return
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
@@ -354,7 +354,7 @@
 		return
 	if(!(status == LIGHT_OK||status == LIGHT_BURNED))
 		return
-	visible_message(SPAN_DANGER("[user] smashes the light!"))
+	visible_message(span_danger("[user] smashes the light!"))
 	attack_animation(user)
 	broken()
 	return 1
@@ -392,7 +392,7 @@
 	// attempt to insert light
 	if(istype(I, /obj/item/light))
 		if(status == LIGHT_OK)
-			to_chat(user, SPAN_WARNING("There is a [fitting] already inserted."))
+			to_chat(user, span_warning("There is a [fitting] already inserted."))
 			return
 		else
 			src.add_fingerprint(user)
@@ -402,9 +402,9 @@
 
 				if(status != LIGHT_EMPTY)
 					drop_light_tube(user)
-					to_chat(user, SPAN_NOTICE("You replace [L]."))
+					to_chat(user, span_notice("You replace [L]."))
 				else
-					to_chat(user, SPAN_NOTICE("You insert [L]."))
+					to_chat(user, span_notice("You insert [L]."))
 
 				status = L.status
 				switchcount = L.switchcount
@@ -423,7 +423,7 @@
 
 					explode()
 			else
-				to_chat(user, SPAN_WARNING("This type of light requires a [fitting]."))
+				to_chat(user, span_warning("This type of light requires a [fitting]."))
 				return
 
 		// attempt to break the light
@@ -435,7 +435,7 @@
 		if(prob(1+I.force * 5))
 
 			to_chat(user, "You hit the light, and it smashes!")
-			for(var/mob/M in viewers(src))
+			for(var/mob/M in viewers(get_turf(src)))
 				if(M == user)
 					continue
 				M.show_message("[user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
@@ -526,8 +526,8 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
-			for(var/mob/M in viewers(src))
-				M.show_message("\red [user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
+			for(var/mob/M in viewers(get_turf(src)))
+				M.show_message(span_danger("[user.name] smashed the light!"), 3, span_warning("You hear a tinkle of breaking glass"), 2)
 			broken()
 			return
 
@@ -548,14 +548,14 @@
 			prot = TRUE
 
 		if(prot) // || (COLD_RESISTANCE in user.mutations)
-			to_chat(user, SPAN_NOTICE("You remove the light [fitting]"))
+			to_chat(user, span_notice("You remove the light [fitting]"))
 		else if(get_active_mutation(user, MUTATION_TELEKINESIS))
-			to_chat(user, SPAN_NOTICE("You telekinetically remove the light [fitting]."))
+			to_chat(user, span_notice("You telekinetically remove the light [fitting]."))
 		else
 			to_chat(user, "You try to remove the light [fitting], but it's too hot and you don't want to burn your hand.")
 			return				// if burned, don't remove the light
 	else
-		to_chat(user, SPAN_NOTICE("You remove the light [fitting]."))
+		to_chat(user, span_notice("You remove the light [fitting]."))
 
 	drop_light_tube(user)
 
@@ -565,7 +565,7 @@
 		to_chat(user, "There is no [fitting] in this light.")
 		return
 
-	to_chat(user, SPAN_NOTICE("You telekinetically remove the light [fitting]."))
+	to_chat(user, span_notice("You telekinetically remove the light [fitting]."))
 	drop_light_tube()
 
 
@@ -596,7 +596,7 @@
 
 // break the light and make sparks if was on
 
-/obj/machinery/light/proc/broken(var/skip_sound_and_sparks = 0)
+/obj/machinery/light/proc/broken(skip_sound_and_sparks = 0)
 	if(status == LIGHT_EMPTY)
 		return
 
@@ -732,7 +732,7 @@
 
 // attack bulb/tube with object
 // if a syringe, can inject plasma to make it explode
-/obj/item/light/attackby(var/obj/item/I, var/mob/user)
+/obj/item/light/attackby(obj/item/I, mob/user)
 	..()
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I
@@ -766,7 +766,7 @@
 
 /obj/item/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		src.visible_message("\red [name] shatters.","\red You hear a small glass object shatter.")
+		src.visible_message(span_red("[name] shatters."), span_red("You hear a small glass object shatter."))
 		status = LIGHT_BROKEN
 		force = WEAPON_FORCE_WEAK
 		sharp = TRUE
@@ -778,7 +778,7 @@
 	//Automatically turns based on nearby walls, destroys if not found.
 	var/turf/wall/T = null
 	var/gotdir = 0
-	for(var/i = 1, i <= 8; i += i)
+	for(var/i = 1; i <= 8; i += i)
 		T = get_ranged_target_turf(src, i, 1)
 
 		if(istype(T))

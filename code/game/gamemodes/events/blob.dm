@@ -37,7 +37,7 @@
 
 	log_and_message_admins("Blob spawned at \the [get_area(T)]", location = T)
 	Blob = new /obj/effect/blob/core(T)
-	for(var/i = 1; i < rand(3, 4), i++)
+	for(var/i = 1; i < rand(3, 4); i++)
 		Blob.Process()
 
 /datum/event/blob/tick()
@@ -76,7 +76,7 @@
 	var/expandType = /obj/effect/blob
 
 	//We will periodically update and track neighbors in two lists:
-	//One which contains all blobs in cardinal directions, and one which contains all cardinal turfs that dont have blobs
+	//One which contains all blobs in GLOB.cardinal directions, and one which contains all cardinal turfs that dont have blobs
 	var/list/blob_neighbors = list()
 	var/list/non_blob_neighbors = list()
 	var/obj/effect/blob/core/core
@@ -90,7 +90,7 @@
 	var/coredist = 1
 	var/dist_time_scaling = 1.5
 
-/obj/effect/blob/New(loc, var/obj/effect/blob/_parent)
+/obj/effect/blob/New(loc, obj/effect/blob/_parent)
 	if (_parent)
 		parent = _parent
 		core = parent.core
@@ -119,7 +119,7 @@
 	wake_neighbors()
 	return ..()
 
-/obj/effect/blob/CanPass(var/atom/mover)
+/obj/effect/blob/CanPass(atom/mover)
 	//No letting projectiles through
 	if (istype(mover, /obj/item/projectile))
 		return FALSE
@@ -272,7 +272,7 @@
 	//Blob gradually fades out as it's damaged.
 	alpha = 255 * healthpercent
 
-/obj/effect/blob/proc/take_damage(var/damage)
+/obj/effect/blob/proc/take_damage(damage)
 	if (damage > 0)
 		health -= damage
 
@@ -297,7 +297,7 @@
 **********************************/
 //Changes by Nanako, 14th october 2018
 //Blob now deals vastly reduced damage to walls and windows, but vastly increased damage to doors
-/obj/effect/blob/proc/expand(var/turf/T)
+/obj/effect/blob/proc/expand(turf/T)
 	if(!T.is_simulated)
 		return
 	if(istype(T, /turf/space) || (istype(T, /turf/mineral) && T.density))
@@ -363,14 +363,14 @@
 
 //This silly special case override is needed to make blobs work with portals.
 //Code is copied from /atoms_movable.dm, but a spawn call is removed, making it completely synchronous
-/obj/effect/blob/Bump(var/atom/A, yes)
+/obj/effect/blob/Bump(atom/A, yes)
 	if (A && yes)
 		A.last_bumped = world.time
 		A.Bumped(src)
 
 
 //Once created, the new blob moves to its destination turf
-/obj/effect/blob/proc/handle_move(var/turf/origin, var/turf/destination)
+/obj/effect/blob/proc/handle_move(turf/origin, turf/destination)
 	//First of all lets ensure we still exist.
 	//We may have been deleted by another blob doing postmove cleanup
 	if (QDELETED(src))
@@ -422,13 +422,13 @@
 ********************/
 //Blobs will do horrible things to any mobs they share a tile with
 //Returns true if any mob was damaged, false if not
-/obj/effect/blob/proc/attack_mobs(var/turf/T)
+/obj/effect/blob/proc/attack_mobs(turf/T)
 	if (!T)
 		T = loc
 	for (var/mob/living/L in T)
 		if(L.stat == DEAD)
 			continue
-		L.visible_message(SPAN_DANGER("The blob attacks \the [L]!"), SPAN_DANGER("The blob attacks you!"))
+		L.visible_message(span_danger("The blob attacks \the [L]!"), span_danger("The blob attacks you!"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
 		L.take_organ_damage(burn = RAND_DECIMAL(0.4, 2.3))
 
@@ -458,7 +458,7 @@
 ********************/
 
 //Bullets which hit a blob will keep going on through if they kill it
-/obj/effect/blob/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/blob/bullet_act(obj/item/projectile/Proj)
 	if(!Proj)
 		return
 
@@ -479,7 +479,7 @@
 	else
 		return PROJECTILE_CONTINUE
 
-/obj/effect/blob/attackby(var/obj/item/W, var/mob/user)
+/obj/effect/blob/attackby(obj/item/W, mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(W.force && !(W.flags & NOBLUDGEON))
 		user.do_attack_animation(src, TRUE)
@@ -499,7 +499,7 @@
 /obj/effect/blob/attack_generic(mob/M, damage, attack_message)
 	if(damage)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		M.visible_message(span_danger("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
 		take_damage(damage/brute_resist)
 	else

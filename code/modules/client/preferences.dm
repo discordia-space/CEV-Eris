@@ -64,7 +64,7 @@
 		var/mob/new_player/np = client.mob
 		np.new_player_panel(TRUE)
 
-/datum/preferences/proc/load_and_update_character(var/slot)
+/datum/preferences/proc/load_and_update_character(slot)
 	load_character(slot)
 	if(update_setup(loaded_preferences, loaded_character))
 		save_preferences()
@@ -77,7 +77,7 @@
 		return
 
 	if(!get_mob_by_key(client_ckey))
-		to_chat(user, SPAN_DANGER("No mob exists for the given client!"))
+		to_chat(user, span_danger("No mob exists for the given client!"))
 		close_load_dialog(user)
 		return
 
@@ -91,10 +91,10 @@
 	if(path)
 		SSjob.UpdatePlayableJobs(user.client.ckey)
 		dat += "Slot - "
-		dat += "<a href='?src=\ref[src];load=1'>Load slot</a> - "
-		dat += "<a href='?src=\ref[src];save=1'>Save slot</a> - "
-		dat += "<a href='?src=\ref[src];resetslot=1'>Reset slot</a> - "
-		dat += "<a href='?src=\ref[src];reload=1'>Reload slot</a>"
+		dat += "<a href='byond://?src=\ref[src];load=1'>Load slot</a> - "
+		dat += "<a href='byond://?src=\ref[src];save=1'>Save slot</a> - "
+		dat += "<a href='byond://?src=\ref[src];resetslot=1'>Reset slot</a> - "
+		dat += "<a href='byond://?src=\ref[src];reload=1'>Reload slot</a>"
 
 
 	else
@@ -106,7 +106,7 @@
 	dat += player_setup.content(user)
 
 	dat += "</html></body>"
-	var/datum/browser/popup = new(user, "Character Setup","Character Setup", 1200, 800, src)
+	var/datum/browser/popup = new(user, "Character Setup","Character Setup", 1545, 800, src)
 	popup.set_content(dat)
 	popup.open()
 
@@ -116,10 +116,10 @@
 	if(isliving(user)) return
 
 	if(href_list["preference"] == "open_whitelist_forum")
-		if(config.forumurl)
-			user << link(config.forumurl)
+		if(CONFIG_GET(string/forumurl))
+			user << link(CONFIG_GET(string/forumurl))
 		else
-			to_chat(user, SPAN_DANGER("The forum URL is not set in the server configuration."))
+			to_chat(user, span_danger("The forum URL is not set in the server configuration."))
 			return
 	ShowChoices(usr)
 	return 1
@@ -264,13 +264,13 @@
 	if(S)
 		dat += "<b>Select a character slot to load</b><hr>"
 		var/name
-		for(var/i=1, i<= config.character_slots, i++)
+		for(var/i=1; i<= CONFIG_GET(number/character_slots); i++)
 			S.cd = GLOB.maps_data.character_load_path(S, i)
 			S["real_name"] >> name
 			if(!name)	name = "Character[i]"
 			if(i==default_slot)
 				name = "<b>[name]</b>"
-			dat += "<a href='?src=\ref[src];changeslot=[i]'>[name]</a><br>"
+			dat += "<a href='byond://?src=\ref[src];changeslot=[i]'>[name]</a><br>"
 
 	dat += "<hr>"
 	dat += "</center></tt>"

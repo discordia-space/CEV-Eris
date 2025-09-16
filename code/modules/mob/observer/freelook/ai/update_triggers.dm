@@ -6,7 +6,7 @@
 // This might be laggy, comment it out if there are problems.
 /mob/living/silicon/var/updating = 0
 
-/mob/living/silicon/robot/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/silicon/robot/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	var/oldLoc = src.loc
 	. = ..()
 	if(.)
@@ -15,10 +15,10 @@
 				updating = 1
 				spawn(BORG_CAMERA_BUFFER)
 					if(oldLoc != src.loc)
-						cameranet.updatePortableCamera(src.camera)
+						GLOB.cameranet.updatePortableCamera(src.camera)
 					updating = 0
 
-/mob/living/silicon/AI/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/silicon/AI/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	var/oldLoc = src.loc
 	. = ..()
 	if(.)
@@ -27,8 +27,8 @@
 				updating = 1
 				spawn(BORG_CAMERA_BUFFER)
 					if(oldLoc != src.loc)
-						cameranet.updateVisibility(oldLoc, 0)
-						cameranet.updateVisibility(loc, 0)
+						GLOB.cameranet.updateVisibility(oldLoc, 0)
+						GLOB.cameranet.updateVisibility(loc, 0)
 					updating = 0
 
 #undef BORG_CAMERA_BUFFER
@@ -37,28 +37,28 @@
 
 // An addition to deactivate which removes/adds the camera from the chunk list based on if it works or not.
 
-/obj/machinery/camera/deactivate(user as mob, var/choice = 1)
+/obj/machinery/camera/deactivate(user as mob, choice = 1)
 	..(user, choice)
 	invalidateCameraCache()
 	if(src.can_use())
-		cameranet.addCamera(src)
+		GLOB.cameranet.addCamera(src)
 	else
 		src.set_light(0)
-		cameranet.removeCamera(src)
+		GLOB.cameranet.removeCamera(src)
 
 /obj/machinery/camera/New()
 	..()
 	//Camera must be added to global list of all cameras no matter what...
-	if(cameranet.cameras_unsorted)
-		cameranet.cameras += src
-		cameranet.cameras_unsorted = 1
+	if(GLOB.cameranet.cameras_unsorted)
+		GLOB.cameranet.cameras += src
+		GLOB.cameranet.cameras_unsorted = 1
 	else
-		dd_insertObjectList(cameranet.cameras, src)
+		dd_insertObjectList(GLOB.cameranet.cameras, src)
 	update_coverage(1)
 
 /obj/machinery/camera/Destroy()
 	clear_all_networks()
-	cameranet.cameras -= src
+	GLOB.cameranet.cameras -= src
 	. = ..()
 
 // Mobs
@@ -67,9 +67,9 @@
 	..()
 	if(was_dead && stat != DEAD)
 		// Arise!
-		cameranet.updateVisibility(src, 0)
+		GLOB.cameranet.updateVisibility(src, 0)
 
 /mob/living/silicon/ai/death(gibbed)
 	if(..())
 		// If true, the mob went from living to dead (assuming everyone has been overriding as they should...)
-		cameranet.updateVisibility(src, 0)
+		GLOB.cameranet.updateVisibility(src, 0)

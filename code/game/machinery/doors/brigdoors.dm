@@ -149,7 +149,7 @@
 		. = 0
 
 // Set timetoset
-/obj/machinery/door_timer/proc/timeset(var/seconds)
+/obj/machinery/door_timer/proc/timeset(seconds)
 	timetoset = seconds * 10
 
 	if(timetoset <= 0)
@@ -158,7 +158,7 @@
 	return
 
 //Check access for shower temp change of for other dangerous functions
-/obj/machinery/door_timer/proc/allowed_advanced(var/mob/user as mob)
+/obj/machinery/door_timer/proc/allowed_advanced(mob/user as mob)
 	var/obj/item/id = user.GetIdCard()
 	if(id)
 		var/list/access = id.GetAccess()
@@ -170,7 +170,7 @@
 //Opens dialog window when someone clicks on door timer
 // Allows altering timer and the timing boolean.
 // Flasher activation limited to 150 seconds
-/obj/machinery/door_timer/attack_hand(var/mob/user as mob)
+/obj/machinery/door_timer/attack_hand(mob/user as mob)
 	if(..())
 		return
 
@@ -185,16 +185,16 @@
 	user.set_machine(src)
 
 	// dat
-	var/dat = "<HTML><BODY><TT>"
+	var/dat = "<TT>"
 
 	dat += "<HR>Timer System:</hr>"
 	dat += " <b>Door [src.id] controls</b><br/>"
 
 	// Start/Stop timer
 	if (src.timing)
-		dat += "<a href='?src=\ref[src];timing=0'>Stop Timer and open door</a><br/>"
+		dat += "<a href='byond://?src=\ref[src];timing=0'>Stop Timer and open door</a><br/>"
 	else
-		dat += "<a href='?src=\ref[src];timing=1'>Activate Timer and close door</a><br/>"
+		dat += "<a href='byond://?src=\ref[src];timing=1'>Activate Timer and close door</a><br/>"
 
 	// Time Left display (uses releasetime)
 	dat += "Time Left: [(minute ? text("[minute]:") : null)][second] <br/>"
@@ -202,33 +202,33 @@
 
 	// Set Timer display (uses timetoset)
 	if(src.timing)
-		dat += "Set Timer: [(setminute ? text("[setminute]:") : null)][setsecond]  <a href='?src=\ref[src];change=1'>Set</a><br/>"
+		dat += "Set Timer: [(setminute ? text("[setminute]:") : null)][setsecond]  <a href='byond://?src=\ref[src];change=1'>Set</a><br/>"
 	else
 		dat += "Set Timer: [(setminute ? text("[setminute]:") : null)][setsecond]<br/>"
 
 	// Controls
-	dat += "<a href='?src=\ref[src];tp=-60'>-</a> <a href='?src=\ref[src];tp=-1'>-</a> <a href='?src=\ref[src];tp=1'>+</a> <A href='?src=\ref[src];tp=60'>+</a><br/>"
+	dat += "<a href='byond://?src=\ref[src];tp=-60'>-</a> <a href='byond://?src=\ref[src];tp=-1'>-</a> <a href='byond://?src=\ref[src];tp=1'>+</a> <A href='byond://?src=\ref[src];tp=60'>+</a><br/>"
 
 	// Mounted flash controls
 	for(var/obj/machinery/flasher/F in targets)
 		if(F.last_flash && (F.last_flash + 150) > world.time)
-			dat += "<br/><A href='?src=\ref[src];fc=1'>Flash Charging</A>"
+			dat += "<br/><A href='byond://?src=\ref[src];fc=1'>Flash Charging</A>"
 		else
-			dat += "<br/><A href='?src=\ref[src];fc=1'>Activate Flash</A>"
+			dat += "<br/><A href='byond://?src=\ref[src];fc=1'>Activate Flash</A>"
 
 	for(var/obj/machinery/cellshower/S in targets)
-		dat += "<br/>Shower: <A href='?src=\ref[src];se=1'>[S.on ? "On" : "Off"]</A>"
+		dat += "<br/>Shower: <A href='byond://?src=\ref[src];se=1'>[S.on ? "On" : "Off"]</A>"
 		dat += "<br/><b>WARNING: Changing shower temperature is EXTREMELY dangerous!</b>"
-		dat += "<br/>Temperature: <A href='?src=\ref[src];st=1'>[S.watertemp]</A>"
+		dat += "<br/>Temperature: <A href='byond://?src=\ref[src];st=1'>[S.watertemp]</A>"
 		if(S.last_spray && (S.last_spray + 3000) > world.time)
-			dat += "<br/><A href='?src=\ref[src];sp=1'>Spray Charging</A><br/>"
+			dat += "<br/><A href='byond://?src=\ref[src];sp=1'>Spray Charging</A><br/>"
 		else
-			dat += "<br/><A href='?src=\ref[src];sp=1'>Activate Spray</A><br/>"
+			dat += "<br/><A href='byond://?src=\ref[src];sp=1'>Activate Spray</A><br/>"
 
-	dat += "<br/><br/><a href='?src=\ref[user];mach_close=computer'>Close</a>"
-	dat += "</TT></BODY></HTML>"
+	dat += "<br/><br/><a href='byond://?src=\ref[user];mach_close=computer'>Close</a>"
+	dat += "</TT>"
 
-	user << browse(dat, "window=computer;size=400x500")
+	user << browse(HTML_SKELETON_TITLE("Door timer", dat), "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
 
@@ -324,7 +324,7 @@
 
 
 // Adds an icon in case the screen is broken/off, stolen from status_display.dm
-/obj/machinery/door_timer/proc/set_picture(var/state)
+/obj/machinery/door_timer/proc/set_picture(state)
 	picture_state = state
 	overlays.Cut()
 	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
@@ -332,7 +332,7 @@
 
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
 // Stolen from status_display
-/obj/machinery/door_timer/proc/update_display(var/line1, var/line2)
+/obj/machinery/door_timer/proc/update_display(line1, line2)
 	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
 	if(maptext != new_text)
 		maptext = new_text
@@ -340,7 +340,7 @@
 
 //Actual string input to icon display for loop, with 5 pixel x offsets for each letter.
 //Stolen from status_display
-/obj/machinery/door_timer/proc/texticon(var/tn, var/px = 0, var/py = 0)
+/obj/machinery/door_timer/proc/texticon(tn, px = 0, py = 0)
 	var/image/I = image('icons/obj/status_display.dmi', "blank")
 	var/len = length(tn)
 

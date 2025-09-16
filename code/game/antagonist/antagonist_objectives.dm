@@ -15,7 +15,7 @@
 		return
 
 	if(objectives.len)
-		to_chat(owner.current, "<span class='danger'><font size=3>Your objectives were updated.</font></span>")
+		to_chat(owner.current, span_danger("<font size=3>Your objectives were updated.</font>"))
 
 	objectives.Cut()
 	objectives.Add(new_objectives)

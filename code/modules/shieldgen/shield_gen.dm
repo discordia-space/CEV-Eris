@@ -45,7 +45,7 @@
 		D.loc = null
 	. = ..()
 
-/obj/machinery/shield_gen/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/shield_gen/emag_act(remaining_charges, mob/user)
 	if(prob(75))
 		src.locked = !src.locked
 		user << "Controls are now [src.locked ? "locked." : "unlocked."]"
@@ -63,12 +63,12 @@
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 			updateDialog()
 		else
-			user << "\red Access denied."
+			user << span_red("Access denied.")
 
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			src.anchored = !src.anchored
-			src.visible_message("\blue \icon[src] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user].")
+			src.visible_message(span_blue("[icon2html(src, viewers(get_turf(src)))] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user]."))
 
 			if(active)
 				toggle()
@@ -110,34 +110,34 @@
 		t += "<i>Swipe your ID card to begin.</i>"
 	else
 		t += "[owned_capacitor ? "<font color=green>Charge capacitor connected.</font>" : "<font color=red>Unable to locate charge capacitor!</font>"]<br>"
-		t += "This generator is: [active ? "<font color=green>Online</font>" : "<font color=red>Offline</font>" ] <a href='?src=\ref[src];toggle=1'>[active ? "\[Deactivate\]" : "\[Activate\]"]</a><br>"
+		t += "This generator is: [active ? "<font color=green>Online</font>" : "<font color=red>Offline</font>" ] <a href='byond://?src=\ref[src];toggle=1'>[active ? "\[Deactivate\]" : "\[Activate\]"]</a><br>"
 		t += "Field Status: [time_since_fail > 2 ? "<font color=green>Stable</font>" : "<font color=red>Unstable</font>"]<br>"
 		t += "Coverage Radius (restart required): \
-		<a href='?src=\ref[src];change_radius=-50'>---</a> \
-		<a href='?src=\ref[src];change_radius=-5'>--</a> \
-		<a href='?src=\ref[src];change_radius=-1'>-</a> \
+		<a href='byond://?src=\ref[src];change_radius=-50'>---</a> \
+		<a href='byond://?src=\ref[src];change_radius=-5'>--</a> \
+		<a href='byond://?src=\ref[src];change_radius=-1'>-</a> \
 		[field_radius] m \
-		<a href='?src=\ref[src];change_radius=1'>+</a> \
-		<a href='?src=\ref[src];change_radius=5'>++</a> \
-		<a href='?src=\ref[src];change_radius=50'>+++</a><br>"
+		<a href='byond://?src=\ref[src];change_radius=1'>+</a> \
+		<a href='byond://?src=\ref[src];change_radius=5'>++</a> \
+		<a href='byond://?src=\ref[src];change_radius=50'>+++</a><br>"
 		t += "Overall Field Strength: [round(average_field_strength, 0.01)] Renwick ([target_field_strength ? round(100 * average_field_strength / target_field_strength, 0.1) : "NA"]%)<br>"
 		t += "Upkeep Power: [round(field.len * max(average_field_strength * dissipation_rate, min_dissipation) / energy_conversion_rate)] W<br>"
-		t += "Charge Rate: <a href='?src=\ref[src];strengthen_rate=-0.1'>--</a> \
+		t += "Charge Rate: <a href='byond://?src=\ref[src];strengthen_rate=-0.1'>--</a> \
 		[strengthen_rate] Renwick/s \
-		<a href='?src=\ref[src];strengthen_rate=0.1'>++</a><br>"
+		<a href='byond://?src=\ref[src];strengthen_rate=0.1'>++</a><br>"
 		t += "Shield Generation Power: [round(field.len * min(strengthen_rate, target_field_strength - average_field_strength) / energy_conversion_rate)] W<br>"
 		t += "Maximum Field Strength: \
-		<a href='?src=\ref[src];target_field_strength=-10'>\[min\]</a> \
-		<a href='?src=\ref[src];target_field_strength=-5'>--</a> \
-		<a href='?src=\ref[src];target_field_strength=-1'>-</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=-10'>\[min\]</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=-5'>--</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=-1'>-</a> \
 		[target_field_strength] Renwick \
-		<a href='?src=\ref[src];target_field_strength=1'>+</a> \
-		<a href='?src=\ref[src];target_field_strength=5'>++</a> \
-		<a href='?src=\ref[src];target_field_strength=10'>\[max\]</a><br>"
+		<a href='byond://?src=\ref[src];target_field_strength=1'>+</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=5'>++</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=10'>\[max\]</a><br>"
 	t += "<hr>"
-	t += "<A href='?src=\ref[src]'>Refresh</A> "
-	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
-	user << browse(t, "window=shield_generator;size=500x400")
+	t += "<A href='byond://?src=\ref[src]'>Refresh</A> "
+	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
+	user << browse(HTML_SKELETON_TITLE("Shield Generator", t), "window=shield_generator;size=500x400")
 	user.set_machine(src)
 
 /obj/machinery/shield_gen/Process()
@@ -189,7 +189,7 @@
 		return
 	else if( href_list["toggle"] )
 		if (!active && !anchored)
-			usr << "\red The [src] needs to be firmly secured to the floor first."
+			usr << span_red("The [src] needs to be firmly secured to the floor first.")
 			return
 		toggle()
 	else if( href_list["change_radius"] )
@@ -210,6 +210,8 @@
 	set background = 1
 	active = !active
 	update_icon()
+	var/our_viewers = viewers(5,src)
+	var/htmlicon = icon2html(src, our_viewers)
 	if(active)
 		var/list/covered_turfs = get_shielded_turfs()
 		var/turf/T = get_turf(src)
@@ -220,15 +222,15 @@
 			field.Add(E)
 		covered_turfs = null
 
-		for(var/mob/M in view(5,src))
-			M << "\icon[src] You hear heavy droning start up."
+		for(var/mob/M in our_viewers)
+			to_chat(M, "[htmlicon] You hear heavy droning start up.")
 	else
 		for(var/obj/effect/energy_field/D in field)
 			field.Remove(D)
 			D.loc = null
 
-		for(var/mob/M in view(5,src))
-			M << "\icon[src] You hear heavy droning fade out."
+		for(var/mob/M in our_viewers)
+			to_chat(M, "[htmlicon] You hear heavy droning fade out.")
 
 /obj/machinery/shield_gen/update_icon()
 	if(stat & BROKEN)

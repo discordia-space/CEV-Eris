@@ -4,12 +4,12 @@
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(Debug2)
-		Debug2 = 0
+	if(GLOB.Debug2)
+		GLOB.Debug2 = 0
 		message_admins("[key_name(src)] toggled debugging off.")
 		log_admin("[key_name(src)] toggled debugging off.")
 	else
-		Debug2 = 1
+		GLOB.Debug2 = 1
 		message_admins("[key_name(src)] toggled debugging on.")
 		log_admin("[key_name(src)] toggled debugging on.")
 
@@ -25,15 +25,15 @@
 
 	var/datum/gas_mixture/env = T.return_air()
 
-	var/t = "\blue Coordinates: [T.x],[T.y],[T.z]\n"
-	t += "\red Temperature: [env.temperature]\n"
-	t += "\red Pressure: [env.return_pressure()]kPa\n"
+	var/t = span_blue("Coordinates: [T.x],[T.y],[T.z]\n")
+	t += span_red("Temperature: [env.temperature]\n")
+	t += span_red("Pressure: [env.return_pressure()]kPa\n")
 	for(var/g in env.gas)
-		t += "\blue [g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa\n"
+		t += span_blue("[g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa\n")
 
 	usr.show_message(t, 1)
 
-/client/proc/cmd_admin_robotize(var/mob/living/M)
+/client/proc/cmd_admin_robotize(mob/living/M)
 	set category = "Fun"
 	set name = "Make Robot"
 
@@ -44,7 +44,7 @@
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_animalize(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
+/client/proc/cmd_admin_animalize(mob/M in SSmobs.mob_list | SShumans.mob_list)
 	set category = "Fun"
 	set name = "Make Simple Animal"
 
@@ -70,7 +70,21 @@
 			M.slimeize()
 
 		log_admin("[key_name(usr)] made [key_name(M)] into a slime.")
-		message_admins("\blue [key_name_admin(usr)] made [key_name(M)] into a slime.", 1)
+		message_admins(span_blue("[key_name_admin(usr)] made [key_name(M)] into a slime."), 1)
+	else
+		alert("Invalid mob")
+
+/client/proc/cmd_admin_aiize(mob/living/M)
+	set category = "Fun"
+	set name = "Make AI"
+
+	if(ishuman(M))
+		log_admin("[key_name(src)] has AIized [M.key].")
+		spawn(10)
+			M.AIize()
+
+		log_admin("[key_name(usr)] made [key_name(M)] into an AI.")
+		message_admins(span_blue("[key_name_admin(usr)] made [key_name(M)] into an AI."), 1)
 	else
 		alert("Invalid mob")
 
@@ -116,7 +130,7 @@
 
 	dellog += "</ol>"
 
-	usr << browse(dellog.Join(), "window=dellog")
+	usr << browse(HTML_SKELETON(dellog.Join()), "window=dellog")
 
 /client/proc/cmd_debug_make_powernets()
 	set category = "Debug"
@@ -148,7 +162,7 @@
 		alert("Invalid mob")
 
 	log_admin("[key_name(src)] has granted [M.key] full access.")
-	message_admins("\blue [key_name_admin(usr)] has granted [M.key] full access.", 1)
+	message_admins(span_blue("[key_name_admin(usr)] has granted [M.key] full access."), 1)
 
 /client/proc/cmd_assume_direct_control(mob/M in SSmobs.mob_list | SShumans.mob_list)
 	set category = "Admin"
@@ -163,12 +177,42 @@
 		else
 			var/mob/observer/ghost/ghost = new/mob/observer/ghost(M,1)
 			ghost.ckey = M.ckey
-	message_admins("\blue [key_name_admin(usr)] assumed direct control of [M].", 1)
+	message_admins(span_blue("[key_name_admin(usr)] assumed direct control of [M]."), 1)
 	log_admin("[key_name(usr)] assumed direct control of [M].")
 	var/mob/adminmob = src.mob
 	M.ckey = src.ckey
 	if(isghost(adminmob))
 		qdel(adminmob)
+
+/client/proc/cmd_give_direct_control(mob/M in GLOB.mob_list)
+	set category = "Admin"
+	set name = "Give direct control"
+
+	if(!M)
+		return
+	if(M.ckey)
+		if(tgui_alert(usr,"This mob is being controlled by [M.key]. Are you sure you wish to give someone else control of it? [M.key] will be made a ghost.",,list("Yes","No")) != "Yes")
+			return
+	var/client/newkey = input(src, "Pick the player to put in control.", "New player") as null|anything in sortList(GLOB.clients)
+	if(isnull(newkey))
+		return
+	var/mob/oldmob = newkey.mob
+	var/delmob = FALSE
+	if((isobserver(oldmob) || tgui_alert(usr,"Do you want to delete [newkey]'s old mob?","Delete?",list("Yes","No")) != "No"))
+		delmob = TRUE
+	if(!M || QDELETED(M))
+		to_chat(usr, span_warning("The target mob no longer exists, aborting."))
+		return
+	if(M.ckey)
+		M.ghostize(FALSE)
+	M.PossessByPlayer(newkey.key)
+	M.client?.init_verbs()
+	if(delmob)
+		qdel(oldmob)
+	message_admins(span_adminnotice("[key_name_admin(usr)] gave away direct control of [M] to [newkey]."))
+	log_admin("[key_name(usr)] gave away direct control of [M] to [newkey].")
+	// SSblackbox.record_feedback("tally", "admin_verb", 1, "Give Direct Control") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /client/proc/cmd_admin_areatest()
 	set category = "Mapping"
@@ -292,8 +336,8 @@
 		for(var/obj/machinery/the_singularitygen/G in world)
 			if(G.anchored)
 				var/obj/singularity/S = new /obj/singularity(get_turf(G), 50)
-				spawn(0)
-					qdel(G)
+				QDEL_IN(G, 0)
+
 				S.energy = 1750
 				S.current_size = 7
 				S.icon = 'icons/effects/224x224.dmi'
@@ -332,7 +376,7 @@
 		if("Players")
 			to_chat(usr, jointext(GLOB.player_list,","))
 		if("Admins")
-			to_chat(usr, jointext(admins,","))
+			to_chat(usr, jointext(GLOB.admins,","))
 		if("Mobs")
 			to_chat(usr, jointext(SSmobs.mob_list | SShumans.mob_list,","))
 		if("Living Mobs")
@@ -340,13 +384,13 @@
 		if("Dead Mobs")
 			to_chat(usr, jointext(GLOB.dead_mob_list,","))
 		if("Clients")
-			to_chat(usr, jointext(clients,","))
+			to_chat(usr, jointext(GLOB.clients,","))
 
 /client/proc/view_runtimes()
 	set category = "Debug"
 	set name = "View Runtimes"
 	set desc = "Open the Runtime Viewer"
-	error_cache.showTo(usr)
+	GLOB.error_cache.showTo(usr)
 
 /client/proc/spawn_disciple()
 	set category = "Debug"
@@ -376,3 +420,12 @@
 		qdel(L)
 		total++
 	to_chat(world, "Deleted [total] mobs")
+
+/client/proc/reload_configuration()
+	set category = "Debug"
+	set name = "Reload Configuration"
+	set desc = "Force config reload to world default"
+	if(!check_rights(R_DEBUG))
+		return
+	if(tgui_alert(usr, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modifications?", "Really reset?", list("No", "Yes")) == "Yes")
+		config.admin_reload()

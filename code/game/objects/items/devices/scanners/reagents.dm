@@ -19,7 +19,7 @@
 /obj/item/device/scanner/reagent/scan(obj/O, mob/user)
 	scan_data = reagent_scan_results(O, details)
 	scan_title = "Reagents scan - [O]"
-	user.show_message(SPAN_NOTICE(scan_data))
+	user.show_message(span_notice(scan_data))
 
 /proc/reagent_scan_results(obj/O, details = 0)
 	if(isnull(O.reagents))

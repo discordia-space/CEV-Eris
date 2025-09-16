@@ -21,14 +21,14 @@
 			if(M.eyecheck() < FLASH_PROTECTION_MODERATE)
 				M.flash(0, FALSE , FALSE , FALSE , 0)
 
-		for(var/i=1, i<=deliveryamt, i++)
+		for(var/i=1; i<=deliveryamt; i++)
 			var/atom/movable/x = new spawner_type
 			x.loc = T
 			if(thrower_is_friend && istype(x, /mob/living/simple_animal/hostile))
 				var/mob/living/simple_animal/hostile/L = x
 				L.friends += user
 			if(prob(50))
-				for(var/j = 1, j <= rand(1, 3), j++)
+				for(var/j = 1; j <= rand(1, 3); j++)
 					step(x, pick(NORTH,SOUTH,EAST,WEST))
 
 			// Spawn some hostile syndicate critters

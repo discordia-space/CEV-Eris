@@ -32,22 +32,22 @@
 	var/aditional_value = 2
 	var/stat_message = "You feel like you're getting better."
 
-/datum/group_ritual_effect/cruciform/stat/trigger_success(var/mob/starter, var/list/participants)
+/datum/group_ritual_effect/cruciform/stat/trigger_success(mob/starter, list/participants)
 	. = ..()
 	GLOB.miracle_points--
 	if(eotp)
 		eotp.addObservation(25)
 
-/datum/group_ritual_effect/cruciform/stat/success(var/mob/living/M, var/cnt)
+/datum/group_ritual_effect/cruciform/stat/success(mob/living/M, cnt)
 	if(cnt < 3 || !stat_buff)
-		to_chat(M, SPAN_NOTICE("Insufficient participants."))
+		to_chat(M, span_notice("Insufficient participants."))
 		return FALSE
 	if(!get_active_mutation(M, MUTATION_ATHEIST))
 		if(M.stats.getPerk(PERK_CHANNELING))
 			M.stats.changeStat(stat_buff, buff_value + cnt + (cnt * aditional_value))
 		else
 			M.stats.changeStat(stat_buff, buff_value + (cnt * aditional_value))
-		to_chat(M, SPAN_NOTICE(stat_message))
+		to_chat(M, span_notice(stat_message))
 
 /datum/ritual/group/cruciform/stat/mechanical
 	name = "Pounding Whisper"
@@ -172,10 +172,39 @@
 	stat_buff = STAT_TGH
 	stat_message = "You feel like you're getting sturdier."
 
+/datum/ritual/group/cruciform/sanctify
+	name = "Sanctify"
+	desc = "Sanctify the land you tread. Available to anyone who knows the words."
+	phrase = "Benedicite loco isto."
+	phrases = list(
+		"Benedicite loco isto.",
+		"Benedic hoc petimus Patris.",
+		"Nos obsecro te removere percula huius loci.",
+		"Ne malorum tangere terram",
+		"Frase quinta",
+		"Frase sexta",
+		"Frase septima"
+	)
+	effect_type = /datum/group_ritual_effect/cruciform/sanctify
+	high_ritual = FALSE
+
+/datum/ritual/group/cruciform/sanctify/step_check(mob/living/carbon/human/H)
+	return TRUE
+
+/datum/group_ritual_effect/cruciform/sanctify/trigger_success(mob/starter, list/participants)
+	..()
+	var/area/A = get_area(starter)
+	A?.sanctify()
+	for(var/obj/machinery/power/nt_obelisk/O in GLOB.all_obelisk)
+		O.force_active = max(60, O.force_active)
+
+/area/proc/sanctify()
+	SEND_SIGNAL_OLD(src, COMSIG_AREA_SANCTIFY)
+	return
 
 /datum/ritual/group/cruciform/crusade
 	name = "Crusade"
-	desc = "Reveal crusade litanies to disciples. Depends on participants amount."
+	desc = "Reveal crusade litanies to disciples. Requires at least six participants."
 	phrase = "Locutus est Dominus ad Mosen dicens."
 	phrases = list(
 		"Locutus est Dominus ad Mosen dicens.",
@@ -203,7 +232,7 @@
 	for(var/atom/movable/A in GLOB.all_faction_items)
 		A.crusade_activated()
 
-/datum/group_ritual_effect/cruciform/crusade/success(var/mob/living/M, var/cnt)
+/datum/group_ritual_effect/cruciform/crusade/success(mob/living/M, cnt)
 	if(cnt < 6)
 		return
 	var/obj/item/implant/core_implant/CI = M.get_core_implant(/obj/item/implant/core_implant/cruciform)
@@ -214,33 +243,3 @@
 		CI.known_rituals |= initial(C.name)
 		C = /datum/ritual/cruciform/crusader/flash
 		CI.known_rituals |= initial(C.name)
-
-/datum/ritual/group/cruciform/sanctify
-	name = "Sanctify"
-	desc = "Sanctify the land you tread."
-	phrase = "Benedicite loco isto."
-	phrases = list(
-		"Benedicite loco isto.",
-		"Benedic hoc petimus Patris.",
-		"Nos obsecro te removere percula huius loci.",
-		"Ne malorum tangere terram",
-		"Frase quinta",
-		"Frase sexta",
-		"Frase septima"
-	)
-	effect_type = /datum/group_ritual_effect/cruciform/sanctify
-	high_ritual = FALSE
-
-/datum/ritual/group/cruciform/sanctify/step_check(mob/living/carbon/human/H)
-	return TRUE
-
-/datum/group_ritual_effect/cruciform/sanctify/trigger_success(mob/starter, list/participants)
-	..()
-	var/area/A = get_area(starter)
-	A?.sanctify()
-	for(var/obj/machinery/power/nt_obelisk/O in GLOB.all_obelisk)
-		O.force_active = max(60, O.force_active)
-
-/area/proc/sanctify()
-	SEND_SIGNAL_OLD(src, COMSIG_AREA_SANCTIFY)
-	return

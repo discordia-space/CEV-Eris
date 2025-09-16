@@ -100,7 +100,7 @@
 
 	return total_draw
 
-/mob/living/exosuit/handle_environment(var/datum/gas_mixture/environment)
+/mob/living/exosuit/handle_environment(datum/gas_mixture/environment)
 	if(!environment) return
 	//Mechs and vehicles in general can be assumed to just tend to whatever ambient temperature
 	if(abs(environment.temperature - bodytemperature) > 0 )
@@ -115,7 +115,7 @@
 		apply_damage(damage, BURN)
 
 		if(prob(damage))
-			visible_message(SPAN_DANGER("\The [src]'s hull bends and buckles under the intense heat!"))
+			visible_message(span_danger("\The [src]'s hull bends and buckles under the intense heat!"))
 
 //	hud_heat.Update() // Don't animate for now 'til HUDs are properly converted
 

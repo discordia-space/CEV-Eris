@@ -44,7 +44,7 @@
 	if(laser_rating >= 4 && scanner_rating >= 2)
 		hacked = TRUE
 
-/obj/machinery/autolathe_disk_cloner/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/autolathe_disk_cloner/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
 		return
 
@@ -57,12 +57,12 @@
 	if(istype(I, /obj/item/computer_hardware/hard_drive/portable))
 		if(!original)
 			original = put_disk(I, user)
-			to_chat(user, SPAN_NOTICE("You put \the [I] into the first slot of [src]."))
+			to_chat(user, span_notice("You put \the [I] into the first slot of [src]."))
 		else if(!copy)
 			copy = put_disk(I, user)
-			to_chat(user, SPAN_NOTICE("You put \the [I] into the second slot of [src]."))
+			to_chat(user, span_notice("You put \the [I] into the second slot of [src]."))
 		else
-			to_chat(user, SPAN_NOTICE("[src]'s slots is full."))
+			to_chat(user, span_notice("[src]'s slots is full."))
 
 	user.set_machine(src)
 	nano_ui_interact(user)
@@ -81,7 +81,7 @@
 /obj/machinery/autolathe_disk_cloner/Process()
 	update_icon()
 
-/obj/machinery/autolathe_disk_cloner/proc/put_disk(obj/item/computer_hardware/hard_drive/portable/AD, var/mob/user)
+/obj/machinery/autolathe_disk_cloner/proc/put_disk(obj/item/computer_hardware/hard_drive/portable/AD, mob/user)
 	ASSERT(istype(AD))
 
 	user.unEquip(AD,src)
@@ -145,7 +145,7 @@
 		var/obj/item/computer_hardware/hard_drive/portable/D = null
 		if(ishuman(usr))
 			H = usr
-			D = H.get_active_hand()
+			D = H.get_active_held_item()
 
 		if(href_list["eject"] == "f")
 			if(original)

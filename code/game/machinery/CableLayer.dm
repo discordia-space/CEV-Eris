@@ -14,24 +14,24 @@
 	cable.amount = 100
 	..()
 
-/obj/machinery/cablelayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/cablelayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	layCable(NewLoc, Dir)
 
 /obj/machinery/cablelayer/attack_hand(mob/user as mob)
 	if(!cable&&!on)
-		to_chat(user, SPAN_WARNING("\The [src] doesn't have any cable loaded."))
+		to_chat(user, span_warning("\The [src] doesn't have any cable loaded."))
 		return
 	on=!on
 	user.visible_message("\The [user] [!on?"dea":"a"]ctivates \the [src].", "You switch [src] [on? "on" : "off"]")
 	return
 
-/obj/machinery/cablelayer/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/cablelayer/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/stack/cable_coil))
 
 		var/result = load_cable(O)
 		if(!result)
-			to_chat(user, SPAN_WARNING("\The [src]'s cable reel is full."))
+			to_chat(user, span_warning("\The [src]'s cable reel is full."))
 		else
 			to_chat(user, "You load [result] lengths of cable into [src].")
 		return
@@ -47,13 +47,13 @@
 				var/obj/item/stack/cable_coil/CC = new (get_turf(src))
 				CC.amount = m
 		else
-			to_chat(usr, SPAN_WARNING("There's no more cable on the reel."))
+			to_chat(usr, span_warning("There's no more cable on the reel."))
 
 /obj/machinery/cablelayer/examine(mob/user, extra_description = "")
 	extra_description += "\The [src]'s cable reel has [cable.amount] length\s left."
 	..(user, extra_description)
 
-/obj/machinery/cablelayer/proc/load_cable(var/obj/item/stack/cable_coil/CC)
+/obj/machinery/cablelayer/proc/load_cable(obj/item/stack/cable_coil/CC)
 	if(istype(CC) && CC.amount)
 		var/cur_amount = cable? cable.amount : 0
 		var/to_load = max(max_cable - cur_amount,0)
@@ -81,14 +81,14 @@
 /obj/machinery/cablelayer/proc/reset()
 	last_piece = null
 
-/obj/machinery/cablelayer/proc/dismantleFloor(var/turf/new_turf)
+/obj/machinery/cablelayer/proc/dismantleFloor(turf/new_turf)
 	if(istype(new_turf, /turf/floor))
 		var/turf/floor/T = new_turf
 		if(!T.is_plating())
 			T.make_plating(!(T.broken || T.burnt))
 	return new_turf.is_plating()
 
-/obj/machinery/cablelayer/proc/layCable(var/turf/new_turf,var/M_Dir)
+/obj/machinery/cablelayer/proc/layCable(turf/new_turf,M_Dir)
 	if(!on)
 		return reset()
 	else

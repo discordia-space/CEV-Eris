@@ -18,7 +18,7 @@
 	if(!padding_material && istype(W, /obj/item/assembly/shock_kit))
 		var/obj/item/assembly/shock_kit/SK = W
 		if(!SK.status)
-			to_chat(user, SPAN_NOTICE("\The [SK] is not ready to be attached!"))
+			to_chat(user, span_notice("\The [SK] is not ready to be attached!"))
 			return
 		user.drop_item()
 		var/obj/structure/bed/chair/e_chair/E = new (src.loc, material.name)
@@ -91,17 +91,21 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(config.ghost_interaction)
+	doRotate(usr)
+
+/obj/structure/bed/chair/AltClick(mob/user, params)
+	doRotate(user)
+
+/obj/structure/bed/chair/proc/doRotate(mob/user)
+	if(CONFIG_GET(flag/ghost_interaction))
 		src.set_dir(turn(src.dir, 90))
-
 		return
-
 	else
-		if(ismouse(usr))
+		if(ismouse(user))
 			return
-		if(!usr || !isturf(usr.loc))
+		if(!user || !isturf(user.loc))
 			return
-		if(usr.stat || usr.restrained())
+		if(user.stat || user.restrained())
 			return
 
 		src.set_dir(turn(src.dir, 90))
@@ -121,31 +125,31 @@
 	desc = "A chair. It looks comfy."
 	icon_state = "comfychair_preview"
 
-/obj/structure/bed/chair/comfy/brown/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/brown/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL, MATERIAL_LEATHER)
 
-/obj/structure/bed/chair/comfy/red/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/red/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL, MATERIAL_CARPET)
 
-/obj/structure/bed/chair/comfy/teal/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/teal/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"teal")
 
-/obj/structure/bed/chair/comfy/black/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/black/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"black")
 
-/obj/structure/bed/chair/comfy/green/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/green/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"green")
 
-/obj/structure/bed/chair/comfy/purp/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/purp/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"purple")
 
-/obj/structure/bed/chair/comfy/blue/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/blue/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"blue")
 
-/obj/structure/bed/chair/comfy/beige/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/beige/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"beige")
 
-/obj/structure/bed/chair/comfy/lime/New(var/newloc,var/newmaterial)
+/obj/structure/bed/chair/comfy/lime/New(newloc,newmaterial)
 	..(newloc,MATERIAL_STEEL,"lime")
 
 /obj/structure/bed/chair/office
@@ -160,7 +164,7 @@
 		return
 	..()
 
-/obj/structure/bed/chair/office/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/bed/chair/office/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	if(buckled_mob)
 		var/mob/living/occupant = buckled_mob
@@ -202,7 +206,7 @@
 			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_MELEE))
 			victim.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
 
-		occupant.visible_message(SPAN_DANGER("[occupant] crashed into \the [A]!"))
+		occupant.visible_message(span_danger("[occupant] crashed into \the [A]!"))
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
@@ -235,7 +239,7 @@
 		return
 	..()
 
-/obj/structure/bed/chair/wood/New(var/newloc)
+/obj/structure/bed/chair/wood/New(newloc)
 	..(newloc, MATERIAL_WOOD)
 	var/image/I = image(icon, "[icon_state]_over")
 	I.layer = FLY_LAYER
@@ -258,7 +262,7 @@
 		return
 	..()
 
-/obj/structure/bed/chair/custom/New(var/newloc)
+/obj/structure/bed/chair/custom/New(newloc)
 	. = ..()
 	var/image/I = image(icon, "[icon_state]_over")
 	I.layer = FLY_LAYER
@@ -271,7 +275,7 @@
 	desc = "Old is never too old to not be in fashion."
 	icon_state = "wooden_chair"
 
-/obj/structure/bed/chair/custom/wood/New(var/newloc)
+/obj/structure/bed/chair/custom/wood/New(newloc)
 	..(newloc, MATERIAL_WOOD)
 
 

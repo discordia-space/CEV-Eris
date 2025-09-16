@@ -36,7 +36,7 @@
 				var/obj/item/stack/material/glass/reinforced/G = I
 				if(G.get_amount() >= 2)
 					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
-					to_chat(user, SPAN_NOTICE("You start to put the glass into [src]..."))
+					to_chat(user, span_notice("You start to put the glass into [src]..."))
 					if(do_after(user, 10, src))
 						if (density && G.use(2))
 							health = maxHealth
@@ -50,14 +50,14 @@
 			return
 
 	else
-		to_chat(user, SPAN_WARNING("It must be closed!"))
+		to_chat(user, span_warning("It must be closed!"))
 
 /obj/machinery/door/blast/shutters/glass/attack_hand(mob/user)
 	return
 
 
 
-/obj/machinery/door/blast/shutters/glass/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/door/blast/shutters/glass/bullet_act(obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
 		take_damage(Proj.get_structure_damage())
 	..()

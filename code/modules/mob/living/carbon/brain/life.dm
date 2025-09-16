@@ -6,9 +6,9 @@
 		if(radiation > 100)
 			radiation = 100
 			if(!container)//If it's not in an MMI
-				to_chat(src, "\red You feel weak.")
+				to_chat(src, span_red("You feel weak."))
 			else//Fluff-wise, since the brain can't detect anything itself, the MMI handles thing like that
-				to_chat(src, "\red STATUS: CRITICAL AMOUNTS OF RADIATION DETECTED.")
+				to_chat(src, span_red("STATUS: CRITICAL AMOUNTS OF RADIATION DETECTED."))
 
 		switch(radiation)
 			if(1 to 49)
@@ -23,9 +23,9 @@
 				if(prob(5))
 					radiation -= 5
 					if(!container)
-						to_chat(src, "\red You feel weak.")
+						to_chat(src, span_red("You feel weak."))
 					else
-						to_chat(src, "\red STATUS: DANGEROUS LEVELS OF RADIATION DETECTED.")
+						to_chat(src, span_red("STATUS: DANGEROUS LEVELS OF RADIATION DETECTED."))
 				updatehealth()
 
 			if(75 to 100)
@@ -99,7 +99,7 @@
 		blinded = TRUE
 		silent = 0
 	else				//ALIVE. LIGHTS ARE ON
-		if( !container && (health < HEALTH_THRESHOLD_DEAD || ((world.time - timeofhostdeath) > config.revival_brain_life)) )
+		if( !container && (health < CONFIG_GET(number/health_threshold_dead) || ((world.time - timeofhostdeath) > CONFIG_GET(number/revival_brain_life))) )
 			death()
 			blinded = TRUE
 			silent = 0
@@ -121,7 +121,7 @@
 					silent = 1
 					if(!alert)//Sounds an alarm, but only once per 'level'
 						emote("alarm")
-						to_chat(src, "\red Major electrical distruption detected: System rebooting.")
+						to_chat(src, span_red("Major electrical distruption detected: System rebooting."))
 						alert = 1
 					if(prob(75))
 						emp_damage -= 1
@@ -137,7 +137,7 @@
 					ear_damage = 1
 					if(!alert)
 						emote("alert")
-						to_chat(src, "\red Primary systems are now online.")
+						to_chat(src, span_red("Primary systems are now online."))
 						alert = 1
 					if(prob(50))
 						emp_damage -= 1
@@ -149,13 +149,13 @@
 				if(2 to 9)//Low level of EMP damage, has few effects(handled elsewhere)
 					if(!alert)
 						emote("notice")
-						to_chat(src, "\red System reboot nearly complete.")
+						to_chat(src, span_red("System reboot nearly complete."))
 						alert = 1
 					if(prob(25))
 						emp_damage -= 1
 				if(1)
 					alert = 0
-					to_chat(src, "\red All systems restored.")
+					to_chat(src, span_red("All systems restored."))
 					emp_damage -= 1
 
 		//Other

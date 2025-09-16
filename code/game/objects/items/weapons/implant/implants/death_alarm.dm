@@ -9,7 +9,7 @@
 /obj/item/implant/death_alarm/get_data()
 	var/data = {"
 		<b>Implant Specifications:</b><BR>
-		<b>Name:</b> [company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
+		<b>Name:</b> [GLOB.company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
 		<b>Life:</b> Activates upon death.<BR>
 		<b>Important Notes:</b> Alerts crew to crewmember death.<BR>
 		<HR>
@@ -29,7 +29,7 @@
 	else if(M.stat == DEAD)
 		activate("death")
 
-/obj/item/implant/death_alarm/activate(var/cause)
+/obj/item/implant/death_alarm/activate(cause)
 	var/mob/M = wearer
 	var/area/t = get_area(M)
 	switch (cause)

@@ -91,7 +91,7 @@
 		visible_message("<b>[src]</b> starts to move!")
 		attempt_open = 1
 
-/mob/living/simple_animal/hostile/mimic/crate/adjustBruteLoss(var/damage)
+/mob/living/simple_animal/hostile/mimic/crate/adjustBruteLoss(damage)
 	trigger()
 	..(damage)
 
@@ -117,7 +117,7 @@
 	if(istype(L))
 		if(prob(15))
 			L.Weaken(2)
-			L.visible_message(SPAN_DANGER("\the [src] knocks down \the [L]!"))
+			L.visible_message(span_danger("\the [src] knocks down \the [L]!"))
 
 //
 // Copy Mimic
@@ -133,7 +133,7 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 	var/destroy_objects = 0
 	var/knockdown_people = 0
 
-/mob/living/simple_animal/hostile/mimic/copy/New(loc, var/obj/copy, var/mob/living/creator)
+/mob/living/simple_animal/hostile/mimic/copy/New(loc, obj/copy, mob/living/creator)
 	..(loc)
 	CopyObject(copy, creator)
 
@@ -148,7 +148,7 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 	. = ..()
 	return . - creator
 
-/mob/living/simple_animal/hostile/mimic/copy/proc/CopyObject(var/obj/O, var/mob/living/creator)
+/mob/living/simple_animal/hostile/mimic/copy/proc/CopyObject(obj/O, mob/living/creator)
 
 	if((istype(O, /obj/item) || istype(O, /obj/structure)) && !is_type_in_list(O, protected_objects))
 
@@ -191,4 +191,4 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 		if(istype(L))
 			if(prob(15))
 				L.Weaken(1)
-				L.visible_message(SPAN_DANGER("\the [src] knocks down \the [L]!"))
+				L.visible_message(span_danger("\the [src] knocks down \the [L]!"))

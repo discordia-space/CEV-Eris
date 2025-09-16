@@ -164,7 +164,7 @@
 		nutrition = 0
 		adjustToxLoss(rand(1,3))
 		if (client && prob(5))
-			to_chat(src, SPAN_DANGER("You are starving!"))
+			to_chat(src, span_danger("You are starving!"))
 
 	else if (nutrition >= get_grow_nutrition() && amount_grown < 10)
 		adjustNutrition(-20)
@@ -270,13 +270,13 @@
 			if (holding_still)
 				holding_still = max(holding_still - 1 - hungry, 0)
 			else if(canmove && isturf(loc) && prob(50))
-				step(src, pick(cardinal))
+				step(src, pick(GLOB.cardinal))
 
 		else
 			if (holding_still)
 				holding_still = max(holding_still - 1, 0)
 			else if(canmove && isturf(loc) && prob(33))
-				step(src, pick(cardinal))
+				step(src, pick(GLOB.cardinal))
 
 /mob/living/carbon/slime/proc/setAttackCooldown(value)
 	Atkcool = value
@@ -530,7 +530,7 @@
 	if (is_adult) return 300
 	else return 200
 
-/mob/living/carbon/slime/proc/will_hunt(var/hunger) // Check for being stopped from feeding and chasing
+/mob/living/carbon/slime/proc/will_hunt(hunger) // Check for being stopped from feeding and chasing
 	if (hunger == 2 || rabid || attacked) return 1
 	if (Leader) return 0
 	if (holding_still) return 0

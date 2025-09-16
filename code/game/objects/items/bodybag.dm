@@ -10,10 +10,10 @@
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_MEDICAL
 
-	attack_self(mob/user)
-		var/obj/structure/closet/body_bag/R = new /obj/structure/closet/body_bag(user.loc)
-		R.add_fingerprint(user)
-		qdel(src)
+/obj/item/bodybag/attack_self(mob/user)
+	var/obj/structure/closet/body_bag/R = new /obj/structure/closet/body_bag(user.loc)
+	R.add_fingerprint(user)
+	qdel(src)
 
 
 /obj/structure/closet/body_bag
@@ -32,7 +32,7 @@
 /obj/structure/closet/body_bag/attackby(W as obj, mob/user)
 	if (istype(W, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
-		if (user.get_active_hand() != W)
+		if (user.get_active_held_item() != W)
 			return
 		if (!in_range(src, user) && src.loc != user)
 			return
@@ -51,7 +51,7 @@
 		src.overlays.Cut()
 		return
 
-/obj/structure/closet/body_bag/store_mobs(var/stored_units)
+/obj/structure/closet/body_bag/store_mobs(stored_units)
 	contains_body = ..()
 	return contains_body
 
@@ -69,8 +69,7 @@
 		if(contents.len)	return 0
 		visible_message("[usr] folds up the [src.name]")
 		new item_path(get_turf(src))
-		spawn(0)
-			qdel(src)
+		QDEL_IN(src, 0)
 		return
 
 /obj/structure/closet/body_bag/update_icon()
@@ -169,7 +168,7 @@
 
 /obj/structure/closet/body_bag/cryobag/examine(mob/user, extra_description = "")
 	if(Adjacent(user)) //The bag's rather thick and opaque from a distance.
-		extra_description += "<span class='info'>You peer into \the [src].</span>"
+		extra_description += span_info("You peer into \the [src].")
 		..(user, extra_description)
 		for(var/mob/living/L in contents)
 			L.examine(user)

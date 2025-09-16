@@ -142,13 +142,13 @@
 	panel.open()
 
 /datum/mind/proc/edit_memory()
-	if(SSticker.current_state != GAME_STATE_PLAYING)
+	if(!SSticker.IsRoundInProgress())
 		alert("Not before round-start!", "Alert")
 		return
 
 	var/out = "<B>[name]</B>[(current&&(current.real_name!=name))?" (as [current.real_name])":""]<br>"
 	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
-	out += "Assigned role: [assigned_role]. <a href='?src=\ref[src];role_edit=1'>Edit</a><br>"
+	out += "Assigned role: [assigned_role]. <a href='byond://?src=\ref[src];role_edit=1'>Edit</a><br>"
 	out += "<hr>"
 	out += "Special roles:<br><table>"
 
@@ -156,18 +156,18 @@
 	for(var/A in GLOB.all_antag_selectable_types)
 		var/datum/antagonist/antag = GLOB.all_antag_selectable_types[A]
 		var/antag_name = (antag.bantype in GLOB.all_antag_selectable_types) ? antag.bantype : "<font color='red'>[antag.bantype]</font>"
-		out += "<a href='?src=\ref[src];add_antagonist=[antag.bantype]'>[antag_name]</a><br>"
+		out += "<a href='byond://?src=\ref[src];add_antagonist=[antag.bantype]'>[antag_name]</a><br>"
 	out += "<br>"
 
 	for(var/datum/antagonist/antag in antagonist)
-		out += "<br><b>[antag.role_text]</b> <a href='?src=\ref[antag]'>\[EDIT\]</a> <a href='?src=\ref[antag];remove_antagonist=1'>\[DEL\]</a>"
+		out += "<br><b>[antag.role_text]</b> <a href='byond://?src=\ref[antag]'>\[EDIT\]</a> <a href='byond://?src=\ref[antag];remove_antagonist=1'>\[DEL\]</a>"
 	out += "</table><hr>"
 	out += "<br>[memory]"
 
 	out += print_individualobjectives()
 
-	out += "<br><a href='?src=\ref[src];edit_memory=1'>"
-	usr << browse(out, "window=edit_memory[src]")
+	out += "<br><a href='byond://?src=\ref[src];edit_memory=1'>"
+	usr << browse(HTML_SKELETON_TITLE("Mind memory edit", out), "window=edit_memory[src]")
 
 /datum/mind/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))
@@ -198,7 +198,7 @@
 				if(antag.create_antagonist(src))
 					log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 				else
-					to_chat(usr, SPAN_WARNING("[src] could not be made into a [antag.role_text]!"))
+					to_chat(usr, span_warning("[src] could not be made into a [antag.role_text]!"))
 
 	else if(href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in GLOB.joblist
@@ -321,7 +321,7 @@
 	brigged_since =   -1
 
 //Antagonist role check
-/mob/living/proc/check_special_role(role)
+/mob/proc/check_special_role(role)
 	return role && mind && player_is_antag_id(mind, role)
 
 //Initialisation procs
@@ -334,6 +334,9 @@
 		SSticker.minds += mind
 	if(!mind.name)	mind.name = real_name
 	mind.current = src
+
+	RegisterSignal(src, COMSIG_ADMIN_DELETING, PROC_REF(ghost_before_admin_delete), override = TRUE)
+	SEND_SIGNAL(src, COMSIG_MOB_MIND_INITIALIZED, mind)
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
@@ -369,9 +372,12 @@
 	..()
 	mind.assigned_role = "Corgi"
 
+	/// Signal proc for [COMSIG_ADMIN_DELETING], to ghostize a mob beforehand if an admin is manually deleting it.
+/mob/proc/ghost_before_admin_delete(datum/source)
+	SIGNAL_HANDLER
+	ghostize(can_reenter_corpse = FALSE)
 
-
-/datum/mind/proc/manifest_status(var/datum/computer_file/report/crew_record/CR)
+/datum/mind/proc/manifest_status(datum/computer_file/report/crew_record/CR)
 	var/inactive_time = world.time - last_activity
 	if (inactive_time >= 60 MINUTES)
 		return null //The server hasn't seen us alive in an hour.

@@ -66,12 +66,12 @@ see multiz/movement.dm for some info.
 	var/turf/below = GetBelow(src)
 	return !below || below.is_space()
 
-/turf/open/Entered(var/atom/movable/mover)
+/turf/open/Entered(atom/movable/mover)
 	. = ..()
 	if(open)
 		fallThrough(mover)
 
-/turf/open/proc/updateFallability(var/obj/structure/catwalk/catwalk)
+/turf/open/proc/updateFallability(obj/structure/catwalk/catwalk)
 	var/wasOpen = open
 	open = isOpen(catwalk)
 	if(open && open != wasOpen)
@@ -81,7 +81,7 @@ see multiz/movement.dm for some info.
 /turf/open/is_solid_structure()
 	return !isOpen()
 
-/turf/open/proc/isOpen(var/obj/structure/catwalk/catwalk)
+/turf/open/proc/isOpen(obj/structure/catwalk/catwalk)
 	. = FALSE
 	// only fall down in defined areas (read: areas with artificial gravitiy)
 	if(!istype(below)) //make sure that there is actually something below
@@ -101,13 +101,13 @@ see multiz/movement.dm for some info.
 
 	return TRUE
 
-/turf/proc/fallThrough(var/atom/movable/mover)
+/turf/proc/fallThrough(atom/movable/mover)
 	return
 
-/turf/open/fallThrough(var/atom/movable/mover)
+/turf/open/fallThrough(atom/movable/mover)
 
 	// If the target is open space or a shadow, the projectile traverses down
-	if( config.z_level_shooting && istype(mover,/obj/item/projectile) )
+	if( CONFIG_GET(flag/z_level_shooting) && istype(mover,/obj/item/projectile) )
 		var/obj/item/projectile/P = mover
 		if(isnull(P.height) && ( istype(P.original, /turf/open) || (istype(mover, /mob/shadow)) ) && get_dist(P.starting, P.original) <= get_dist(P.starting, src))
 			P.Move(below) // We want proc/Enter to get called on the turf, so we can't use forcemove()
@@ -173,9 +173,9 @@ see multiz/movement.dm for some info.
 							var/mob/living/carbon/human/H = mover
 							if(H.a_intent == I_HURT && !(m == H))
 								M.visible_message(
-									SPAN_DANGER("\The [mover] falls from the deck above and slams elbow-first into [m]!"),
-									SPAN_DANGER("You slam elbow-first into [m]!"),
-									SPAN_NOTICE("You hear a soft whoosh and a crunch.")
+									span_danger("\The [mover] falls from the deck above and slams elbow-first into [m]!"),
+									span_danger("You slam elbow-first into [m]!"),
+									span_notice("You hear a soft whoosh and a crunch.")
 									)
 					else
 						M.visible_message(
@@ -226,7 +226,7 @@ see multiz/movement.dm for some info.
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
-			to_chat(user, SPAN_NOTICE("Constructing support lattice ..."))
+			to_chat(user, span_notice("Constructing support lattice ..."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			ReplaceWithLattice()
 		return
@@ -239,7 +239,7 @@ see multiz/movement.dm for some info.
 
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
-			to_chat(user, SPAN_NOTICE("You start constructing underplating on the lattice."))
+			to_chat(user, span_notice("You start constructing underplating on the lattice."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			if(do_after(user, (40 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT, src))))
 				qdel(L)
@@ -247,7 +247,7 @@ see multiz/movement.dm for some info.
 				ChangeTurf(/turf/floor/plating/under)
 			return
 		else
-			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
+			to_chat(user, span_warning("The plating is going to need some support."))
 
 	if(istype(C, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = C
@@ -258,7 +258,7 @@ see multiz/movement.dm for some info.
 
 //Add tracks is called when a mob with bloody feet walks across the tile.
 //Since there's no floor to walk on, this will simply not happen. Return without doing anything
-/turf/open/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+/turf/open/AddTracks(typepath,bloodDNA,comingdir,goingdir,bloodcolor="#A10808")
 	return
 
 
@@ -276,27 +276,27 @@ see multiz/movement.dm for some info.
 			return
 	return ..()
 
-/turf/open/proc/can_descend(var/mob/living/user, var/obj/structure/structure, post_descent_check = 0)
+/turf/open/proc/can_descend(mob/living/user, obj/structure/structure, post_descent_check = 0)
 	if(!structure || !structure.climbable || (!post_descent_check && (user in climbers)))
 		return
 
 	if(!user.Adjacent(src))
-		to_chat(user, SPAN_DANGER("You can't descend there, the way is blocked."))
+		to_chat(user, span_danger("You can't descend there, the way is blocked."))
 		return
 
 	var/obj/occupied = structure.turf_is_crowded()
 	if(occupied)
-		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
+		to_chat(user, span_danger("There's \a [occupied] in the way."))
 		return
 
 	return 1
 
-/turf/open/proc/do_descend(var/mob/living/user, var/obj/structure/structure)
+/turf/open/proc/do_descend(mob/living/user, obj/structure/structure)
 	if(!can_descend(user, structure))
 		return
 
-	user.visible_message(SPAN_WARNING("[user] starts descending onto [structure]!"))
-	structure.visible_message(SPAN_WARNING("Someone starts descending onto [structure]!"))
+	user.visible_message(span_warning("[user] starts descending onto [structure]!"))
+	structure.visible_message(span_warning("Someone starts descending onto [structure]!"))
 	climbers |= user
 
 	var/delay = (issmall(user) ? 32 : 60) * (user.stats.getPerk(PERK_PARKOUR) ? 0.5 : 1)
@@ -308,5 +308,5 @@ see multiz/movement.dm for some info.
 	user.forceMove(GetBelow(src))
 
 	if(get_turf(user) == GetBelow(src))
-		user.visible_message(SPAN_WARNING("[user] descends onto [structure]!"))
+		user.visible_message(span_warning("[user] descends onto [structure]!"))
 	climbers -= user

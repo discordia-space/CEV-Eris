@@ -52,7 +52,7 @@
 /obj/item/ammo_casing/proc/expend()
 	. = BB
 	BB = null
-	set_dir(pick(cardinal)) //spin spent casings
+	set_dir(pick(GLOB.cardinal)) //spin spent casings
 	update_icon()
 
 /// special case where is the location is specified as a ammo_Casing , it will clone all relevant vars
@@ -67,7 +67,7 @@
 
 
 /obj/item/ammo_casing/attack_hand(mob/user)
-	if((src.amount > 1) && (src == user.get_inactive_hand()))
+	if((src.amount > 1) && (src == user.get_inactive_held_item()))
 		src.amount -= 1
 		var/obj/item/ammo_casing/new_casing = new src.type(src)
 		new_casing.forceMove(get_turf(user))
@@ -80,29 +80,29 @@
 		var/obj/item/ammo_casing/merging_casing = I
 		if(isturf(src.loc))
 			if(merging_casing.amount == merging_casing.maxamount)
-				to_chat(user, SPAN_WARNING("[merging_casing] is fully stacked!"))
+				to_chat(user, span_warning("[merging_casing] is fully stacked!"))
 				return FALSE
 			if(merging_casing.mergeCasing(src, null, user))
 				return TRUE
 		else if (mergeCasing(I, 1, user))
 			return TRUE
 
-/obj/item/ammo_casing/proc/mergeCasing(var/obj/item/ammo_casing/AC, var/amountToMerge, var/mob/living/user, var/noMessage = FALSE, var/noIconUpdate = FALSE)
+/obj/item/ammo_casing/proc/mergeCasing(obj/item/ammo_casing/AC, amountToMerge, mob/living/user, noMessage = FALSE, noIconUpdate = FALSE)
 	if(!AC)
 		return FALSE
 	if(!user && noMessage == FALSE)
 		error("Passed no user to mergeCasing() when output messages is active.")
 	if(src.type != AC.type)
 		if(!noMessage)
-			to_chat(user, SPAN_WARNING("Ammo are different types."))
+			to_chat(user, span_warning("Ammo are different types."))
 		return FALSE
 	if(src.amount == src.maxamount)
 		if(!noMessage)
-			to_chat(user, SPAN_WARNING("[src] is fully stacked!"))
+			to_chat(user, span_warning("[src] is fully stacked!"))
 		return FALSE
 	if((!src.BB && AC.BB) || (src.BB && !AC.BB))
 		if(!noMessage)
-			to_chat(user, SPAN_WARNING("Fired and non-fired ammo wont stack."))
+			to_chat(user, span_warning("Fired and non-fired ammo wont stack."))
 		return FALSE
 
 	var/mergedAmount
@@ -131,7 +131,7 @@
 		src.pixel_x = 0
 		src.pixel_y = 0
 
-	for(var/icon_amount = 1; icon_amount < src.amount, icon_amount++)
+	for(var/icon_amount = 1, icon_amount < src.amount, icon_amount++)
 		var/image/temp_image = image(src.icon, src.icon_state)
 		var/coef = round(14 * icon_amount/src.maxamount)
 
@@ -149,7 +149,7 @@
 	..(user, extra_description)
 
 /obj/item/ammo_casing/get_item_cost(export)
-	. = round(..() * amount)
+	. = round(..() * amount, 0.1)
 	if(BB)
 		. *= 2 // being loaded increases the value by 100%
 
@@ -160,6 +160,9 @@
 	else if(amount > 1) // if there is only one, there is no need to multiply
 		for(var/mattertype in .)
 			.[mattertype] *= amount // multiply matter appropriately
+
+/obj/item/ammo_casing/get_fall_damage()
+	return (amount >= min(maxamount, 10))
 
 //An item that holds casings and can be used to put them inside guns
 /obj/item/ammo_magazine
@@ -226,19 +229,19 @@
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(stored_ammo.len >= max_ammo)
-			to_chat(user, SPAN_WARNING("\The [src] is full!"))
+			to_chat(user, span_warning("\The [src] is full!"))
 			return
 		if(C.caliber != caliber)
-			to_chat(user, SPAN_WARNING("\The [C] does not fit into \the [src]."))
+			to_chat(user, span_warning("\The [C] does not fit into \the [src]."))
 			return
 		insertCasing(C)
 	else if(istype(W, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/other = W
 		if(!src.stored_ammo.len)
-			to_chat(user, SPAN_WARNING("There is no ammo in \the [src]!"))
+			to_chat(user, span_warning("There is no ammo in \the [src]!"))
 			return
 		if(other.stored_ammo.len >= other.max_ammo)
-			to_chat(user, SPAN_NOTICE("\The [other] is already full."))
+			to_chat(user, span_notice("\The [other] is already full."))
 			return
 		var/diff = FALSE
 		for(var/obj/item/ammo in src.stored_ammo)
@@ -247,13 +250,13 @@
 				continue
 			break
 		if(diff)
-			to_chat(user, SPAN_NOTICE("You finish loading \the [other]. It now contains [other.stored_ammo.len] rounds, and \the [src] now contains [stored_ammo.len] rounds."))
+			to_chat(user, span_notice("You finish loading \the [other]. It now contains [other.stored_ammo.len] rounds, and \the [src] now contains [stored_ammo.len] rounds."))
 		else
-			to_chat(user, SPAN_WARNING("You fail to load anything into \the [other]"))
+			to_chat(user, span_warning("You fail to load anything into \the [other]"))
 	if(istype(W, /obj/item/gun/projectile))
 		var/obj/item/gun/projectile/gun_to_load = W
 		if(istype(W, /obj/item/gun/projectile/revolver))
-			to_chat(user, SPAN_WARNING("You can\'t reload [W] that way!"))
+			to_chat(user, span_warning("You can\'t reload [W] that way!"))
 			return
 		if(gun_to_load.can_dual && !gun_to_load.ammo_magazine)
 			if(!do_after(user, 0.5 SECONDS, src))
@@ -264,16 +267,16 @@
 				S.refresh_all()
 			else
 				gun_to_load.load_ammo(src, user)
-			to_chat(user, SPAN_NOTICE("It takes a bit of time for you to reload your [W] with [src] using only one hand!"))
+			to_chat(user, span_notice("It takes a bit of time for you to reload your [W] with [src] using only one hand!"))
 			visible_message("[user] tactically reloads [W] using only one hand!")
 
 /obj/item/ammo_magazine/attack_hand(mob/user)
-	if(user.get_inactive_hand() == src && stored_ammo.len)
+	if(user.get_inactive_held_item() == src && stored_ammo.len)
 		var/obj/item/ammo_casing/stack = removeCasing()
 		if(stack)
 			if(stored_ammo.len)
 				// We end on -1 since we already removed one
-				for(var/i = 1, i <= stack.maxamount - 1, i++)
+				for(var/i = 1; i <= stack.maxamount - 1; i++)
 					if(!stored_ammo.len)
 						break
 					var/obj/item/ammo_casing/AC = removeCasing()
@@ -285,15 +288,15 @@
 		return
 	..()
 
-/obj/item/ammo_magazine/AltClick(var/mob/living/user)
-	var/obj/item/W = user.get_active_hand()
+/obj/item/ammo_magazine/AltClick(mob/living/user)
+	var/obj/item/W = user.get_active_held_item()
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(stored_ammo.len >= max_ammo)
-			to_chat(user, SPAN_WARNING("[src] is full!"))
+			to_chat(user, span_warning("[src] is full!"))
 			return
 		if(C.caliber != caliber)
-			to_chat(user, SPAN_WARNING("[C] does not fit into [src]."))
+			to_chat(user, span_warning("[C] does not fit into [src]."))
 			return
 		if(stored_ammo.len)
 			var/obj/item/ammo_casing/T = removeCasing()
@@ -301,12 +304,12 @@
 				if(!C.mergeCasing(T, null, user))
 					insertCasing(T)
 	else if(!W)
-		if(user.get_inactive_hand() == src && stored_ammo.len)
+		if(user.get_inactive_held_item() == src && stored_ammo.len)
 			var/obj/item/ammo_casing/AC = removeCasing()
 			if(AC)
 				user.put_in_active_hand(AC)
 
-/obj/item/ammo_magazine/proc/insertCasing(var/obj/item/ammo_casing/C)
+/obj/item/ammo_magazine/proc/insertCasing(obj/item/ammo_casing/C)
 	if(!istype(C))
 		return FALSE
 	if(C.caliber != caliber)
@@ -357,19 +360,34 @@
 		return
 	dump_it(T, usr)
 
-/obj/item/ammo_magazine/proc/dump_it(var/turf/target) //bogpilled
+/obj/item/ammo_magazine/proc/dump_it(turf/target) //bogpilled
 	if(!istype(target))
 		return
 	if(!Adjacent(usr))
 		return
 	if(!stored_ammo.len)
-		to_chat(usr, SPAN_NOTICE("[src] is already empty!"))
+		to_chat(usr, span_notice("[src] is already empty!"))
 		return
-	to_chat(usr, SPAN_NOTICE("You take out ammo from [src]."))
-	for(var/i=1 to stored_ammo.len)
-		var/obj/item/ammo_casing/C = removeCasing()
-		C.forceMove(target)
-		C.set_dir(pick(cardinal))
+	to_chat(usr, span_notice("You take out ammo from [src]."))
+
+	while(LAZYLEN(stored_ammo))
+
+		var/obj/item/ammo_casing/stack = removeCasing()
+		stack.forceMove(target)
+		stack.set_dir(pick(GLOB.cardinal))
+
+		if(LAZYLEN(stored_ammo))
+			// We end on -1 since we already removed one
+			for(var/i = 1; i <= stack.maxamount - 1; i++)
+				if(!LAZYLEN(stored_ammo))
+					stack.update_icon()
+					break
+				var/obj/item/ammo_casing/AC = removeCasing()
+				if(!stack.mergeCasing(AC, null, null, TRUE, TRUE))
+					insertCasing(AC)
+					stack.update_icon()
+					break
+
 	update_icon()
 
 /obj/item/ammo_magazine/proc/get_label(value)

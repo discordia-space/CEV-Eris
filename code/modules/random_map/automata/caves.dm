@@ -9,7 +9,7 @@
 	var/list/ore_turfs = list()
 //	var/mineral_turf = /turf/mineral/random
 
-/datum/random_map/automata/cave_system/get_appropriate_path(var/value)
+/datum/random_map/automata/cave_system/get_appropriate_path(value)
 	switch(value)
 		if(DOOR_CHAR)
 			return mineral_sparse
@@ -20,7 +20,7 @@
 		if(WALL_CHAR)
 			return wall_type
 
-/datum/random_map/automata/cave_system/get_map_char(var/value)
+/datum/random_map/automata/cave_system/get_map_char(value)
 	switch(value)
 		if(DOOR_CHAR)
 			return "x"
@@ -28,18 +28,22 @@
 			return "X"
 	return ..(value)
 
-/datum/random_map/automata/cave_system/revive_cell(var/target_cell, var/list/use_next_map, var/final_iter)
+/datum/random_map/automata/cave_system/revive_cell(target_cell, list/use_next_map, final_iter)
 	..()
 	if(final_iter)
 		ore_turfs |= target_cell
 
-/datum/random_map/automata/cave_system/kill_cell(var/target_cell, var/list/use_next_map, var/final_iter)
+/datum/random_map/automata/cave_system/kill_cell(target_cell, list/use_next_map, final_iter)
 	..()
 	if(final_iter)
 		ore_turfs -= target_cell
 
 // Create ore turfs.
 /datum/random_map/automata/cave_system/cleanup()
+	if(!ore_data || !ore_data.len)
+		for(var/oretype in typesof(/ore)-/ore)
+			var/ore/OD = new oretype()
+			ore_data[OD.name] = OD
 	var/ore_count = round(map.len/20)
 	while((ore_count>0) && (ore_turfs.len>0))
 		if(!priority_process) sleep(-1)

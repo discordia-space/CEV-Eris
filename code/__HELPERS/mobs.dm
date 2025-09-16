@@ -11,7 +11,7 @@
 /mob/get_mob()
 	return src
 
-/proc/mobs_in_view(var/range, var/source)
+/proc/mobs_in_view(range, source)
 	var/list/mobs = list()
 	for(var/atom/movable/AM in view(range, source))
 		var/M = AM.get_mob()
@@ -23,7 +23,7 @@
 /proc/random_hair_style(gender, species = SPECIES_HUMAN)
 	var/h_style = "Bald"
 
-	var/datum/species/mob_species = all_species[species]
+	var/datum/species/mob_species = GLOB.all_species[species]
 	var/list/valid_hairstyles = mob_species.get_hair_styles()
 	if(valid_hairstyles.len)
 		h_style = pick(valid_hairstyles)
@@ -32,7 +32,7 @@
 
 /proc/random_facial_hair_style(gender, species = SPECIES_HUMAN)
 	var/f_style = "Shaved"
-	var/datum/species/mob_species = all_species[species]
+	var/datum/species/mob_species = GLOB.all_species[species]
 	var/list/valid_facialhairstyles = mob_species.get_facial_hair_styles(gender)
 	if(valid_facialhairstyles.len)
 		f_style = pick(valid_facialhairstyles)
@@ -41,7 +41,7 @@
 /proc/sanitize_name(name, species = SPECIES_HUMAN, max_length = MAX_NAME_LEN)
 	var/datum/species/current_species
 	if(species)
-		current_species = all_species[species]
+		current_species = GLOB.all_species[species]
 
 	return current_species ? current_species.sanitize_name(name) : sanitizeName(name, max_length)
 
@@ -49,7 +49,7 @@
 
 	var/datum/species/current_species
 	if(species)
-		current_species = all_species[species]
+		current_species = GLOB.all_species[species]
 
 	if(!current_species || current_species.name_language == null)
 		if(gender==FEMALE)
@@ -63,7 +63,7 @@
 
 	var/datum/species/current_species
 	if(species)
-		current_species = all_species[species]
+		current_species = GLOB.all_species[species]
 
 	if(!current_species || current_species.name_language == null)
 		if(gender==FEMALE)
@@ -77,7 +77,7 @@
 
 	var/datum/species/current_species
 	if(species)
-		current_species = all_species[species]
+		current_species = GLOB.all_species[species]
 
 	if(!current_species || current_species.name_language == null)
 		return capitalize(pick(GLOB.last_names))
@@ -150,7 +150,7 @@ Proc for attack log creation, because really why not
 6 is additional information, anything that needs to be added
 */
 
-/proc/add_logs(mob/user, mob/target, what_done, var/admin=1, var/object, var/addition)
+/proc/add_logs(mob/user, mob/target, what_done, admin=1, object, addition)
 	if(user && ismob(user))
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has [what_done] [target ? "[target.name][(ismob(target) && target.ckey) ? "([target.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition]</font>")
 	if(target && ismob(target))
@@ -159,13 +159,13 @@ Proc for attack log creation, because really why not
 		log_attack("<font color='red'>[user ? "[user.name][(ismob(user) && user.ckey) ? "([user.ckey])" : ""]" : "NON-EXISTANT SUBJECT"] [what_done] [target ? "[target.name][(ismob(target) && target.ckey)? "([target.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition]</font>")
 
 //checks whether this item is a module of the robot it is located in.
-/proc/is_robot_module(var/obj/item/thing)
+/proc/is_robot_module(obj/item/thing)
 	if (!thing || !isrobot(thing.loc))
 		return 0
 	var/mob/living/silicon/robot/R = thing.loc
 	return (thing in R.module.modules)
 
-/proc/get_exposed_defense_zone(var/atom/movable/target)
+/proc/get_exposed_defense_zone(atom/movable/target)
 	var/obj/item/grab/G = locate() in target
 	if(G && G.state >= GRAB_NECK) //works because mobs are currently not allowed to upgrade to NECK if they are grabbing two people.
 		return pick(BP_ALL_LIMBS - list(BP_CHEST, BP_GROIN))
@@ -178,7 +178,7 @@ Proc for attack log creation, because really why not
 	var/user_loc = user.loc
 	var/target_loc = target.loc
 
-	var/holding = user.get_active_hand()
+	var/holding = user.get_active_held_item()
 	var/datum/progressbar/progbar
 	if (progress)
 		progbar = new(user, time, target)
@@ -204,14 +204,14 @@ Proc for attack log creation, because really why not
 			. = 0
 			break
 
-		if(user.get_active_hand() != holding)
+		if(user.get_active_held_item() != holding)
 			. = 0
 			break
 
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, immobile = 1)
+/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, incapacitation_flags = INCAPACITATION_DEFAULT, immobile = 1)
 	if(!user)
 		return 0
 
@@ -221,7 +221,7 @@ Proc for attack log creation, because really why not
 
 	var/atom/original_loc = user.loc
 
-	var/holding = user.get_active_hand()
+	var/holding = user.get_active_held_item()
 
 	var/datum/progressbar/progbar
 
@@ -257,7 +257,7 @@ Proc for attack log creation, because really why not
 			break
 
 		if(needhand)
-			if(user.get_active_hand() != holding)
+			if(user.get_active_held_item() != holding)
 				. = 0
 				break
 
@@ -265,10 +265,10 @@ Proc for attack log creation, because really why not
 		qdel(progbar)
 
 //Defined at mob level for ease of use
-/mob/proc/body_part_covered(var/bodypart)
+/mob/proc/body_part_covered(bodypart)
 	return FALSE
 
-/mob/living/carbon/body_part_covered(var/bodypart)
+/mob/living/carbon/body_part_covered(bodypart)
 	var/list/bodyparts = list(
 	BP_HEAD = HEAD,
 	BP_CHEST = UPPER_TORSO,
@@ -322,14 +322,14 @@ Proc for attack log creation, because really why not
 
 	return FALSE
 
-/proc/is_excelsior(var/mob/M)
+/proc/is_excelsior(mob/M)
 	var/obj/item/implant/excelsior/E = locate(/obj/item/implant/excelsior) in M
 	if (E && E.wearer == M)
 		return TRUE
 
 	return FALSE
 
-/proc/mob_hearers(var/atom/movable/heard_atom, var/range = world.view)
+/proc/mob_hearers(atom/movable/heard_atom, range = world.view)
 	. = list()
 
 	for(var/mob/hmob in hearers(range, heard_atom))
@@ -385,7 +385,7 @@ Proc for attack log creation, because really why not
 	return GLOB.dead_mob_list.Remove(src)
 
 //Find a dead mob with a brain and client.
-/proc/find_dead_player(var/find_key, var/include_observers = 0)
+/proc/find_dead_player(find_key, include_observers = 0)
 	if(isnull(find_key))
 		return
 
@@ -441,6 +441,14 @@ Proc for attack log creation, because really why not
 /// You only need to use this if you know you're going to be mocking clients somewhere else.
 #define GET_CLIENT(mob) (##mob.client) //  || ##mob.mock_client
 
+///returns a mob type controlled by a specified ckey
+/proc/get_mob_by_ckey(key)
+	if(!key)
+		return
+	for(var/mob/mob in GLOB.mob_list)
+		if(mob.ckey == key)
+			return mob
+
 ///Makes a call in the context of a different usr. Use sparingly
 /world/proc/push_usr(mob/user_mob, datum/callback/invoked_callback, ...)
 	var/temp = usr
@@ -450,3 +458,105 @@ Proc for attack log creation, because really why not
 	else
 		. = invoked_callback.Invoke()
 	usr = temp
+
+//Version of view() which ignores darkness, because BYOND doesn't have it.
+/proc/dview(range = world.view, center, invis_flags = 0)
+	if(!center)
+		return
+
+	GLOB.dview_mob.loc = center
+	GLOB.dview_mob.see_invisible = invis_flags
+	. = view(range, GLOB.dview_mob)
+	GLOB.dview_mob.loc = null
+
+GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
+
+/mob/dview
+	invisibility = 101
+	density = FALSE
+
+	anchored = TRUE
+	simulated = FALSE
+
+	see_in_dark = 1e6
+
+/mob/dview/Destroy()
+	. = QDEL_HINT_LETMELIVE // Prevents destruction
+	CRASH("Prevented attempt to delete dview mob: [log_info_line(src)]")
+
+
+/atom/proc/get_light_and_color(atom/origin)
+	if(origin)
+		color = origin.color
+		set_light(origin.light_range, origin.light_power, origin.light_color)
+
+/mob/dview/Initialize() // Properly prevents this mob from gaining huds or joining any global lists
+	return INITIALIZE_HINT_NORMAL
+
+#define ISADVANCEDTOOLUSER(mob) (mob.IsAdvancedToolUser())
+
+// Displays a message in deadchat, sent by source. source is not linkified, message is, to avoid stuff like character names to be linkified.
+// Automatically gives the class deadsay to the whole message (message + source)
+/proc/deadchat_broadcast(message, source=null, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR, admin_only=FALSE)
+	message = span_deadsay("[source][span_linkify(message)]")
+
+	for(var/mob/M in GLOB.player_list)
+		// var/chat_toggles = TOGGLES_DEFAULT_CHAT
+		// var/toggles = TOGGLES_DEFAULT
+		var/list/ignoring = M.client?.prefs.ignored_players
+		var/speaker_ckey = ckey(speaker_key)
+		// if(M.client?.prefs)
+		// 	var/datum/preferences/prefs = M.client?.prefs
+		// 	chat_toggles = prefs.chat_toggles
+		// 	toggles = prefs.toggles
+		// 	ignoring = prefs.ignoring
+		if(admin_only)
+			if (!check_rights_for(M, R_ADMIN))
+				return
+			else
+				message += span_deadsay(" (This is viewable to admins only).")
+		var/override = FALSE
+		if(check_rights_for(M, R_ADMIN) && (M.client?.get_preference_value(/datum/client_preference/show_dsay)))
+			override = TRUE
+		// if(HAS_TRAIT(M, TRAIT_SIXTHSENSE) && message_type == DEADCHAT_REGULAR)
+		// 	override = TRUE
+		if(SSticker.current_state == GAME_STATE_FINISHED)
+			override = TRUE
+		if(isnewplayer(M) && !override)
+			continue
+		if(M.stat != DEAD && !override)
+			continue
+		if(speaker_ckey && (speaker_ckey in ignoring))
+			continue
+
+		switch(message_type)
+			// if(DEADCHAT_DEATHRATTLE)
+			// 	if(toggles & DISABLE_DEATHRATTLE)
+			// 		continue
+			// if(DEADCHAT_ARRIVALRATTLE)
+			// 	if(toggles & DISABLE_ARRIVALRATTLE)
+			// 		continue
+			if(DEADCHAT_LAWCHANGE)
+				if(!(M.client?.get_preference_value(/datum/client_preference/show_ghostlaws)))
+					continue
+			if(DEADCHAT_LOGIN_LOGOUT)
+				if(!(M.client?.get_preference_value(/datum/client_preference/show_loginout)))
+					continue
+
+		if(isobserver(M))
+			var/rendered_message = message
+
+			if(follow_target)
+				var/F
+				if(turf_target)
+					F = FOLLOW_OR_TURF_LINK(M, follow_target, turf_target)
+				else
+					F = FOLLOW_LINK(M, follow_target)
+				rendered_message = "[F] [message]"
+			else if(turf_target)
+				var/turf_link = TURF_LINK(M, turf_target)
+				rendered_message = "[turf_link] [message]"
+
+			to_chat(M, rendered_message, avoid_highlighting = speaker_ckey == M.key)
+		else
+			to_chat(M, message, avoid_highlighting = speaker_ckey == M.key)

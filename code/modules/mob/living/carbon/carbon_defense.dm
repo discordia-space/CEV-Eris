@@ -1,13 +1,15 @@
 
+#define SHAKE_ANIMATION_OFFSET 4
+
 //Called when the mob is hit with an item in combat.
-/mob/living/carbon/resolve_item_attack(obj/item/I, mob/living/user, var/hit_zone)
+/mob/living/carbon/resolve_item_attack(obj/item/I, mob/living/user, hit_zone)
 	if(check_attack_throat(I, user))
 		return null
 	if (!hit_zone)
 		hit_zone = "chest"
 	return ..(I, user, hit_zone)
 
-/mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, effective_force, hit_zone)
 
 	if(!effective_force)
 		return 0
@@ -64,7 +66,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 	if(!W.edge || !W.force || W.damtype != BRUTE)
 		return 0 //unsuitable weapon
 
-	user.visible_message(SPAN_DANGER("\The [user] begins to slit [src]'s throat with \the [W]!"))
+	user.visible_message(span_danger("\The [user] begins to slit [src]'s throat with \the [W]!"))
 
 	user.next_move = world.time + 50 //also should prevent user from triggering this repeatedly
 	if(!do_mob(user, src, 50, progress = 1))
@@ -72,8 +74,8 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 			return 0
 
 		damage_through_armor(W.force, W.damtype, BP_HEAD, wounding_multiplier = 2, sharp = W.sharp, edge = W.edge, used_weapon = W)
-		
-		user.visible_message(SPAN_DANGER("\The [user] cuts [src]'s neck with \the [W]!"), SPAN_DANGER("You cut [src]'s neck with \the [W]!"))
+
+		user.visible_message(span_danger("\The [user] cuts [src]'s neck with \the [W]!"), span_danger("You cut [src]'s neck with \the [W]!"))
 
 		if(W.hitsound)
 			playsound(loc, W.hitsound, 50, 1, -1)
@@ -88,3 +90,12 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 
 	else
 		return 0
+
+/mob/living/carbon/proc/jiggle()
+	if (incapacitated())
+		var/direction = prob(50) ? -1 : 1
+		animate(src, pixel_x = pixel_x + SHAKE_ANIMATION_OFFSET * direction, time = 1, easing = QUAD_EASING | EASE_OUT, flags = ANIMATION_PARALLEL)
+		animate(pixel_x = pixel_x - (SHAKE_ANIMATION_OFFSET * 2 * direction), time = 1)
+		animate(pixel_x = pixel_x + SHAKE_ANIMATION_OFFSET * direction, time = 1, easing = QUAD_EASING | EASE_IN)
+
+#undef SHAKE_ANIMATION_OFFSET

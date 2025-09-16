@@ -28,10 +28,10 @@
 		return 0
 	return round(cell.charge*(1 - damage/max_damage))
 
-/obj/item/organ/internal/cell/proc/check_charge(var/amount)
+/obj/item/organ/internal/cell/proc/check_charge(amount)
 	return get_charge() >= amount
 
-/obj/item/organ/internal/cell/proc/use(var/amount)
+/obj/item/organ/internal/cell/proc/use(amount)
 	if(check_charge(amount))
 		cell.use(amount)
 		return 1
@@ -54,7 +54,7 @@
 		cost *= 2
 	if(!use(cost))
 		if(!owner.lying && !owner.buckled)
-			to_chat(owner, SPAN_WARNING("You don't have enough energy to function!"))
+			to_chat(owner, span_warning("You don't have enough energy to function!"))
 		owner.Paralyse(3)
 
 /obj/item/organ/internal/cell/emp_act(severity)
@@ -66,32 +66,32 @@
 	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
 		if(open)
 			open = FALSE
-			to_chat(user, SPAN_NOTICE("You screw the battery panel in place."))
+			to_chat(user, span_notice("You screw the battery panel in place."))
 		else
 			open = TRUE
-			to_chat(user, SPAN_NOTICE("You unscrew the battery panel."))
+			to_chat(user, span_notice("You unscrew the battery panel."))
 
 	if(QUALITY_PRYING in W.tool_qualities)
 		if(open)
 			if(cell)
 				user.put_in_hands(cell)
-				to_chat(user, SPAN_NOTICE("You remove \the [cell] from \the [src]."))
+				to_chat(user, span_notice("You remove \the [cell] from \the [src]."))
 				cell = null
 
 	if (istype(W, /obj/item/cell))
 		if(open)
 			if(cell)
-				to_chat(user, SPAN_WARNING("There is a power cell already installed."))
+				to_chat(user, span_warning("There is a power cell already installed."))
 			else if(user.unEquip(W, src))
 				cell = W
-				to_chat(user, SPAN_NOTICE("You insert \the [cell]."))
+				to_chat(user, span_notice("You insert \the [cell]."))
 
 /obj/item/organ/internal/cell/replaced_mob(mob/living/carbon/human/target)
 	..()
 	// This is very ghetto way of rebooting an IPC. TODO better way.
 	if(owner.stat == DEAD)
 		owner.set_stat(CONSCIOUS)
-		owner.visible_message(SPAN_DANGER("\The [owner] twitches visibly!"))
+		owner.visible_message(span_danger("\The [owner] twitches visibly!"))
 
 
 /obj/item/organ/internal/optical_sensor
@@ -137,7 +137,7 @@
 	spawn(1)
 		if(owner && owner.stat == DEAD)
 			owner.stat = 0
-			owner.visible_message(SPAN_DANGER("\The [owner] twitches visibly!"))
+			owner.visible_message(span_danger("\The [owner] twitches visibly!"))
 
 /obj/item/organ/internal/mmi_holder/posibrain
 	nature = MODIFICATION_SILICON

@@ -3,7 +3,7 @@
 	var/hunger = 0
 	var/list/prey = list()
 
-/mob/living/simple_animal/hostile/retaliate/beast/ListTargets(var/dist = 7)
+/mob/living/simple_animal/hostile/retaliate/beast/ListTargets(dist = 7)
 	var/list/see = ..()
 	if(see.len)
 		return see
@@ -44,7 +44,7 @@
 	set category = "Exploration"
 	set src in view()
 
-	if(!config.use_overmap)
+	if(!CONFIG_GET(flag/use_overmap))
 		return
 	if(!CanInteract(usr, GLOB.conscious_state))
 		return
@@ -55,9 +55,9 @@
 			newname = sanitizeName(newname, allow_numbers = TRUE)
 			if(newname && CanInteract(usr, GLOB.conscious_state))
 				if(E.rename_species(type, newname))
-					to_chat(usr,"<span class='notice'>This species will be known from now on as '[newname]'.</span>")
+					to_chat(usr,span_notice("This species will be known from now on as '[newname]'."))
 				else
-					to_chat(usr,"<span class='warning'>This species has already been named!</span>")
+					to_chat(usr,span_warning("This species has already been named!"))
 			return
 /*
 /mob/living/simple_animal/hostile/retaliate/beast/samak

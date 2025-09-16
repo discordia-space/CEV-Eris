@@ -16,7 +16,7 @@ var/list/doppler_arrays = list()
 	doppler_arrays -= src
 	. = ..()
 
-/obj/machinery/doppler_array/proc/sense_explosion(var/x0,var/y0,var/z0,var/devastation_range,var/heavy_impact_range,var/light_impact_range,var/singe_impact_range,var/took)
+/obj/machinery/doppler_array/proc/sense_explosion(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,singe_impact_range,took)
 	if(stat & NOPOWER)	return
 	if(z != z0)			return
 
@@ -39,8 +39,8 @@ var/list/doppler_arrays = list()
 
 	var/message = "Explosive disturbance detected - Epicenter at: grid ([x0],[y0]). Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range] to [light_impact_range]. Shockwave radius: [singe_impact_range]. Temporal displacement of tachyons: [took] seconds."
 
-	for(var/mob/O in hearers(src, null))
-		O.show_message("<span class='game say'><span class='name'>[src]</span> states coldly, \"[message]\"</span>",2)
+	for(var/mob/O in hearers(get_turf(src)))
+		O.show_message("<span class='game say'>[span_name("[src]")] states coldly, \"[message]\"</span>",2)
 
 
 /obj/machinery/doppler_array/power_change()

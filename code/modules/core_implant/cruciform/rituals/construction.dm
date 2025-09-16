@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		if(!ispath(placeholder))
 			continue
 		listed_components += list("[blueprint.materials[placeholder]] [initial(placeholder.name)]")
-	to_chat(user, SPAN_NOTICE("[blueprint.name] requires: [english_list(listed_components)]."))
+	to_chat(user, span_notice("[blueprint.name] requires: [english_list(listed_components)]."))
 
 /datum/ritual/cruciform/priest/acolyte/construction
 	name = "Manifestation"
@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		fail("You cannot build a second Eye of the Protector in this area. The Last Shelter forbids it.")
 		return
 
-	user.visible_message(SPAN_NOTICE("You see as [user] passes his hands over something."),SPAN_NOTICE("You see your faith take physical form as you concentrate on [blueprint.name] image"))
+	user.visible_message(span_notice("You see as [user] passes his hands over something."),span_notice("You see your faith take physical form as you concentrate on [blueprint.name] image"))
 
 	var/obj/effect/overlay/nt_construction/effect = new(target_turf, blueprint.build_time)
 
@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 			qdel(t)
 
 	effect.success()
-	user.visible_message(SPAN_NOTICE("You hear a soft humming sound as [user] finishes his ritual."),SPAN_NOTICE("You take a deep breath as the divine manifestation finishes."))
+	user.visible_message(span_notice("You hear a soft humming sound as [user] finishes his ritual."),span_notice("You take a deep breath as the divine manifestation finishes."))
 	var/build_path = blueprint.build_path
 	new build_path(target_turf)
 
@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 	if(reclaimed.type == /obj/machinery/power/eotp && !(is_preacher(user) || is_inquisidor(user)))
 		fail("The power of moving such holy buildings is only placed in the power of the upmost faithful!")
 		return
-	user.visible_message(SPAN_NOTICE("[user] places one hand on their chest, and the other stretched forward."),SPAN_NOTICE("You take back what is, returning it to what was."))
+	user.visible_message(span_notice("[user] places one hand on their chest, and the other stretched forward."),span_notice("You take back what is, returning it to what was."))
 
 	var/obj/effect/overlay/nt_construction/effect = new(target_turf, 5 SECONDS)
 
@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 			scrap = new scrap(target_turf)
 
 	effect.success()
-	user.visible_message(SPAN_NOTICE("Clanking of parts hit the floor as [user] finishes their prayer and the machine falls apart."),SPAN_NOTICE("Collect the evidence, and begin to atone."))
+	user.visible_message(span_notice("Clanking of parts hit the floor as [user] finishes their prayer and the machine falls apart."),span_notice("Collect the evidence, and begin to atone."))
 
 	qdel(reclaimed)
 

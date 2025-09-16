@@ -10,12 +10,12 @@
 /music_track/New()
 	licence = decls_repository.get_decl(licence)
 
-/music_track/proc/play_to(var/listener)
-	to_chat(listener, "<span class='good'>Now Playing:</span>")
-	to_chat(listener, "<span class='good'>[title][artist ? " by [artist]" : ""][album ? " ([album])" : ""]</span>")
+/music_track/proc/play_to(listener)
+	to_chat(listener, span_good("Now Playing:"))
+	to_chat(listener, span_good("[title][artist ? " by [artist]" : ""][album ? " ([album])" : ""]"))
 	if(url)
 		to_chat(listener, url)
 
-	to_chat(listener, "<span class='good'>Licence: <a href='[licence.url]'>[licence.name]</a></span>")
+	to_chat(listener, span_good("Licence: <a href='[licence.url]'>[licence.name]</a>"))
 	sound_to(listener, sound(song, repeat = 1, wait = 0, volume = volume, channel = GLOB.lobby_sound_channel))
 

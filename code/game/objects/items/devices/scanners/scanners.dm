@@ -35,7 +35,7 @@
 
 /obj/item/device/scanner/attack_self(mob/user)
 	if(!scan_data)
-		to_chat(user, SPAN_NOTICE("[src]\'s data buffer is empty."))
+		to_chat(user, span_notice("[src]\'s data buffer is empty."))
 		return
 	show_results(user)
 
@@ -45,7 +45,7 @@
 	popup.open()
 
 /obj/item/device/scanner/proc/get_header()
-	return "<a href='?src=\ref[src];print=1'>Print Report</a><a href='?src=\ref[src];clear=1'>Clear data</a>"
+	return "<a href='byond://?src=\ref[src];print=1'>Print Report</a><a href='byond://?src=\ref[src];clear=1'>Clear data</a>"
 
 /obj/item/device/scanner/proc/can_use(mob/user)
 	if (user.incapacitated())
@@ -70,11 +70,11 @@
 
 	if(is_valid_scan_target(A) && A.simulated)
 		if(!is_virtual)
-			user.visible_message(SPAN_NOTICE("[user] runs \the [src] over \the [A]."), range = 2)
+			user.visible_message(span_notice("[user] runs \the [src] over \the [A]."), vision_distance = 2)
 			if(scan_sound)
 				playsound(src, scan_sound, 30)
 		else
-			user.visible_message(SPAN_NOTICE("[user] focuses on \the [A] for a moment."), range = 2)
+			user.visible_message(span_notice("[user] focuses on \the [A] for a moment."), vision_distance = 2)
 		if(use_delay && !do_after(user, use_delay, A))
 			if(!is_virtual)
 				to_chat(user, "You stop scanning \the [A] with \the [src].")
@@ -97,7 +97,7 @@
 		return
 	print_report(user)
 
-/obj/item/device/scanner/OnTopic(var/user, var/list/href_list)
+/obj/item/device/scanner/OnTopic(user, list/href_list)
 	if(href_list["print"])
 		print_report(user)
 		return 1

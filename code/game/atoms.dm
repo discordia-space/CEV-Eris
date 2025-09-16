@@ -9,24 +9,41 @@
 	var/last_bumped = 0
 	var/pass_flags = 0
 	var/throwpass = 0
-	var/simulated = TRUE //filter for actions - used by lighting overlays
-	var/fluorescent // Shows up under a UV light.
-	var/allow_spin = TRUE // prevents thrown atoms from spinning when disabled on thrown or target
-	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
+	/// Filter for actions - used by lighting overlays
+	var/simulated = TRUE
+	/// Shows up under a UV light.
+	var/fluorescent
+	/// Prevents thrown atoms from spinning when disabled on thrown or target
+	var/allow_spin = TRUE
+	/// For tools system, check for it should forbid to work on atom for more than one user at time
+	var/used_now = FALSE
 	var/auto_init = TRUE
 	var/initialized = FALSE
 	var/sanity_damage = 0
 
-	var/light_power = 1 // Intensity of the light.
-	var/light_range = 0 // Range in tiles of the light.
-	var/light_color     // Hexadecimal RGB string representing the colour of the light.
+	/// Last name used to calculate a color for the chatmessage overlays
+	var/chat_color_name
+	/// Last color calculated for the the chatmessage overlays
+	var/chat_color
+	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
+	var/chat_color_darkened
+
+	/// Intensity of the light.
+	var/light_power = 1
+	/// Range in tiles of the light.
+	var/light_range = 0
+	/// Hexadecimal RGB string representing the colour of the light.
+	var/light_color
 
 	var/can_buckle = FALSE
 	var/buckle_movable = 0
 	var/buckle_dir = 0
-	var/buckle_lying = -1 //bed-like behavior, forces mob.lying = buckle_lying if != -1
-	var/buckle_pixel_shift = "x=0;y=0" //where the buckled mob should be pixel shifted to, or null for no pixel shift control
-	var/buckle_require_restraints = 0 //require people to be handcuffed before being able to buckle. eg: pipes
+	/// Bed-like behavior, forces mob.lying = buckle_lying if != -1
+	var/buckle_lying = -1
+	/// Where the buckled mob should be pixel shifted to, or null for no pixel shift control
+	var/buckle_pixel_shift = "x=0;y=0"
+	/// Require people to be handcuffed before being able to buckle. eg: pipes
+	var/buckle_require_restraints = 0
 	var/mob/living/buckled_mob = null
 
 	var/was_bloodied
@@ -35,14 +52,17 @@
 	var/list/fingerprints
 	var/list/fingerprintshidden
 	var/list/blood_DNA
-	var/list/original_atom // Detective Work, used for the duplicate data points kept in the scanners
+	/// Detective Work, used for the duplicate data points kept in the scanners
+	var/list/original_atom
 	var/list/statverbs
-	var/list/atom_colours // Inherent color, the colored paint applied on it, special color effect etc...
+	/// Inherent color, the colored paint applied on it, special color effect etc...
+	var/list/atom_colours
 	var/list/preloaded_reagents
 	var/datum/reagents/reagents
-	var/tmp/list/light_sources       // Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
-	var/tmp/datum/light_source/light // Our light source. Don't fuck with this directly unless you have a good reason!
-
+	/// Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
+	var/tmp/list/light_sources
+	/// Our light source. Don't fuck with this directly unless you have a good reason!
+	var/tmp/datum/light_source/light
 
 /atom/proc/update_icon()
 	return
@@ -169,7 +189,7 @@
 	update_openspace()
 	return ..()
 
-///Generate a tag for this atom
+/// Generate a tag for this atom
 /atom/proc/GenerateTag()
 	return
 
@@ -188,8 +208,10 @@
 	else
 		return null
 
-//return flags that should be added to the viewer's sight var.
-//Otherwise return a negative number to indicate that the view should be cancelled.
+/**
+ * return flags that should be added to the viewer's sight var.
+ * Otherwise return a negative number to indicate that the view should be cancelled.
+ */
 /atom/proc/check_eye(user as mob)
 	if (isAI(user)) // WHYYYY
 		return 0
@@ -201,7 +223,7 @@
 /atom/proc/Bumped(AM as mob|obj)
 	return
 
-// Convenience procs to see if a container is open for chemistry handling
+/// Convenience procs to see if a container is open for chemistry handling
 /atom/proc/is_open_container()
 	return is_refillable() && is_drainable()
 
@@ -221,8 +243,10 @@
 /atom/proc/CheckExit()
 	return TRUE
 
-// If you want to use this, the atom must have the PROXMOVE flag, and the moving
-// atom must also have the PROXMOVE flag currently to help with lag. ~ ComicIronic
+/**
+ * If you want to use this, the atom must have the PROXMOVE flag, and the moving
+ * atom must also have the PROXMOVE flag currently to help with lag. ~ ComicIronic
+ */
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
 	return
 
@@ -245,12 +269,13 @@
 		return TRUE
 	return
 
-/*
- *	atom/proc/search_contents_for(path, list/filter_path=null)
+/**
+ * atom/proc/search_contents_for(path, list/filter_path=null)
+ *
  * Recursevly searches all atom contens (including contents contents and so on).
  *
  * ARGS: path - search atom contents for atoms of this type
- *	   list/filter_path - if set, contents of atoms not of types in this list are excluded from search.
+ * list/filter_path - if set, contents of atoms not of types in this list are excluded from search.
  *
  * RETURNS: list of found atoms
  */
@@ -276,15 +301,15 @@
 
 
 
-/*
-Beam code by Gunbuddy
-
-Beam() proc will only allow one beam to come from a source at a time.  Attempting to call it more than
-once at a time per source will cause graphical errors.
-Also, the icon used for the beam will have to be vertical and 32x32.
-The math involved assumes that the icon is vertical to begin with so unless you want to adjust the math,
-its easier to just keep the beam vertical.
-*/
+/**
+ * Beam code by Gunbuddy
+ *
+ * Beam() proc will only allow one beam to come from a source at a time.  Attempting to call it more than
+ * once at a time per source will cause graphical errors.
+ * Also, the icon used for the beam will have to be vertical and 32x32.
+ * The math involved assumes that the icon is vertical to begin with so unless you want to adjust the math,
+ * its easier to just keep the beam vertical.
+ */
 /atom/proc/Beam(atom/BeamTarget, icon_state="b_beam", icon='icons/effects/beam.dmi',time=50, maxdistance=10)
 	//BeamTarget represents the target for the beam, basically just means the other end.
 	//Time is the duration to draw the beam
@@ -309,7 +334,7 @@ its easier to just keep the beam vertical.
 		var/DY=(32*BeamTarget.y+BeamTarget.pixel_y)-(32*y+pixel_y)
 		var/N=0
 		var/length=round(sqrt((DX)**2+(DY)**2))
-		for(N, N<length, N+=32)
+		for(N; N<length; N+=32)
 			var/obj/effect/overlay/beam/X=new(loc)
 			X.BeamSource=src
 			if(N+32>length)
@@ -323,19 +348,19 @@ its easier to just keep the beam vertical.
 			if(DX==0) Pixel_x=0
 			if(DY==0) Pixel_y=0
 			if(Pixel_x>32)
-				for(var/a=0, a<=Pixel_x, a+=32)
+				for(var/a=0; a<=Pixel_x; a+=32)
 					X.x++
 					Pixel_x-=32
 			if(Pixel_x<-32)
-				for(var/a=0, a>=Pixel_x, a-=32)
+				for(var/a=0; a>=Pixel_x; a-=32)
 					X.x--
 					Pixel_x+=32
 			if(Pixel_y>32)
-				for(var/a=0, a<=Pixel_y, a+=32)
+				for(var/a=0; a<=Pixel_y; a+=32)
 					X.y++
 					Pixel_y-=32
 			if(Pixel_y<-32)
-				for(var/a=0, a>=Pixel_y, a-=32)
+				for(var/a=0; a>=Pixel_y; a-=32)
 					X.y--
 					Pixel_y+=32
 			X.pixel_x=Pixel_x
@@ -344,8 +369,14 @@ its easier to just keep the beam vertical.
 					//I've found that 3 ticks provided a nice balance for my use.
 	for(var/obj/effect/overlay/beam/O in orange(10, src)) if(O.BeamSource==src) qdel(O)
 
+/// Used by mobs to determine the name for someone wearing a mask, or with a disfigured or missing face. By default just returns the atom's name. add_id_name will control whether or not we append "(as [id_name])".
+/atom/proc/get_visible_name(add_id_name)
+	return name
 
-//All atoms
+/atom/proc/GetVoice()
+	return "[src]" //Returns the atom's name, prepended with 'The' if it's not a proper noun
+
+/// All atoms
 /atom/proc/examine(mob/user, extra_description = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/full_name = "\a [src]."
@@ -356,12 +387,11 @@ its easier to just keep the beam vertical.
 		else
 			full_name = "a "
 		if(blood_color != "#030303")
-			full_name += "<span class='danger'>blood-stained</span> [name]!"
+			full_name += "[span_danger("blood-stained")] [name]!"
 		else
 			full_name += "oil-stained [name]."
 
-	output += "<div id='examine'>"
-	output += "\icon[src] This is [full_name]"
+	output += "[icon2html(src, user)] This is [full_name]"
 	if(desc)
 		output += "\n[desc]"
 	if(extra_description)
@@ -371,36 +401,38 @@ its easier to just keep the beam vertical.
 		if(reagent_flags & TRANSPARENT)
 			if(LAZYLEN(reagents.reagent_list) > 1)
 				if(user.can_see_reagents())
-					output += SPAN_NOTICE("\nIt contains:")
+					output += span_notice("\nIt contains:")
 					for(var/datum/reagent/R in reagents.reagent_list)
-						output += SPAN_NOTICE("\n[R.volume] units of [R.name]")
+						output += span_notice("\n[R.volume] units of [R.name]")
 				else
-					output += SPAN_NOTICE("\nIt contains [reagents.total_volume] units of various reagents.")
+					output += span_notice("\nIt contains [reagents.total_volume] units of various reagents.")
+			else if(length(reagents.reagent_list))
+				output += span_notice("\nIt contains [reagents.total_volume] units of [user.can_see_reagents() ? reagents.reagent_list[1].name : "something"]")
 			else
-				output += SPAN_NOTICE("\nIt contains [reagents.total_volume] units of [user.can_see_reagents() ? reagents.reagent_list[1].name : "something"]")
+				output += span_notice("\nIt's dry.")
 		else if(reagent_flags & AMOUNT_VISIBLE)
-			output += SPAN_NOTICE("[reagents.total_volume ? "\nIt has [reagents.total_volume] units left." : "\nIt's empty."]")
+			output += span_notice("[reagents.total_volume ? "\nIt has [reagents.total_volume] units left." : "\nIt's empty."]")
 
 	var/desc_info = get_description_info()
 	if(desc_info)
-		output += "\n<font color='#084b8a'><b>[desc_info]</b></font>"
+		output += "\n[FONT_COLORED(COLOR_CYAN_BLUE, span_bold(desc_info))]"
 
 	var/desc_fluff = get_description_fluff()
 	if(desc_fluff)
-		output += "\n<font color='#298a08'><b>[desc_fluff]</b></font>"
+		output += "\n[FONT_COLORED("#298a08", span_bold(desc_fluff))]"
 
 	var/desc_antag = (isghost(user) || player_is_antag(user.mind)) ? get_description_antag() : null
 	if(desc_antag)
-		output += "\n<font color='#8a0808'><b>[desc_antag]</b></font>"
+		output += "\n[FONT_COLORED("#8a0808", span_bold(desc_antag))]"
 
-	output += "</div>"
+	var/statverbs = show_stat_verbs() //rewrite to show_stat_verbs(user)?
+	if (statverbs)
+		output += "\n[statverbs]"
 
 	if(isobserver(user))
-		to_chat(user, output)
+		to_chat(user, boxed_message("[span_infoplain(output)]"))
 	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", output)
-
-	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", boxed_message("[span_infoplain(output)]"), no_text_limit = TRUE)
 
 	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
@@ -410,12 +442,14 @@ its easier to just keep the beam vertical.
 
 	return (get_dist(src, user) <= world.view) || isobserver(user)
 
-// called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
-// see code/modules/mob/mob_movement.dm for more.
+/**
+ * called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
+ * see code/modules/mob/mob_movement.dm for more.
+ */
 /atom/proc/relaymove()
 	return
 
-//called to set the atom's dir and used to add behaviour to dir-changes
+/// called to set the atom's dir and used to add behaviour to dir-changes
 /atom/proc/set_dir(new_dir)
 	var/old_dir = dir
 	if(new_dir == old_dir)
@@ -430,8 +464,11 @@ its easier to just keep the beam vertical.
 /atom/proc/container_dir_changed(new_dir)
 	return
 
-// Explosion action proc , should never SLEEP, and should avoid icon updates , overlays and other visual stuff as much as possible , since they cause massive time delays
-// in explosion processing.
+/**
+ * Explosion action proc , should never SLEEP, and should avoid icon updates,
+ * overlays and other visual stuff as much as possible , since they cause massive time delays
+ * in explosion processing.
+ */
 /atom/proc/explosion_act(target_power, explosion_handler/handler)
 	return 0
 
@@ -595,7 +632,7 @@ its easier to just keep the beam vertical.
 		A.fingerprintshidden |= fingerprintshidden.Copy()    //admin	A.fingerprintslast = fingerprintslast
 
 
-//returns 1 if made bloody, returns 0 otherwise
+/// returns 1 if made bloody, returns 0 otherwise
 /atom/proc/add_blood(mob/living/carbon/human/M)
 	if(flags & NOBLOODY)
 		return FALSE
@@ -631,12 +668,12 @@ its easier to just keep the beam vertical.
 		return TRUE
 
 /atom/proc/get_global_map_pos()
-	if(!islist(global_map) || isemptylist(global_map)) return
+	if(!islist(GLOB.global_map) || isemptylist(GLOB.global_map)) return
 	var/cur_x
 	var/cur_y
 	var/list/y_arr
-	for(cur_x=1, cur_x<=global_map.len, cur_x++)
-		y_arr = global_map[cur_x]
+	for(cur_x=1; cur_x <= GLOB.global_map.len; cur_x++)
+		y_arr = GLOB.global_map[cur_x]
 		cur_y = y_arr.Find(src.z)
 		if(cur_y)
 			break
@@ -671,22 +708,61 @@ its easier to just keep the beam vertical.
 // Use for objects performing visible actions
 // message is output to anyone who can see, e.g. "The [src] does something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-/atom/proc/visible_message(message, blind_message, range = world.view)
+
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, atom/push_appearance)
 	var/turf/T = get_turf(src)
-	var/list/mobs = list()
-	var/list/objs = list()
-	get_mobs_and_objs_in_view_fast(T,range, mobs, objs, ONLY_GHOSTS_IN_VIEW)
+	if(!T)
+		return
 
-	for(var/obj/O as anything in objs)
-		if(!QDELETED(O))
-			O.show_message(message,1,blind_message,2)
+	if(!isnull(push_appearance) && !isatom(push_appearance))
+		stack_trace("push_appearance must be an atom, but got [push_appearance] instead")
 
-	for(var/m in mobs)
-		var/mob/M = m
-		if(M.see_invisible >= invisibility)
-			M.show_message(message,1,blind_message,2)
-		else if(blind_message)
-			M.show_message(blind_message, 2)
+	if(!islist(ignored_mobs))
+		ignored_mobs = list(ignored_mobs)
+	var/list/hearers = hearers(vision_distance, src) //caches the hearers and then removes ignored mobs.
+	hearers -= ignored_mobs
+
+	if(istext(self_message))
+		// Putting this here because there's a lot of visible_message calls
+		// and it would be pain to go through them all so ill just do this to make note of for the future
+		// stack_trace("ATOM/VISIBLE_MESSAGE_ALERT: [src] passed a string self_message on proc visible_message, when self_message should be a boolean! fix this!")
+		blind_message = self_message
+	else
+		hearers -= src
+
+	var/raw_msg = message
+	if(visible_message_flags & EMOTE_MESSAGE)
+		message = "<span class='emote'><b>[src]</b> [message]</span>"
+
+
+	for(var/mob/M in hearers)
+		if(!M.client)
+			continue
+
+		//This entire if/else chain could be in two lines but isn't for readibilties sake.
+		var/msg = message
+		var/msg_type = MSG_VISUAL
+
+		if(M.see_invisible < invisibility)//if src is invisible to M
+			msg = blind_message
+			msg_type = MSG_AUDIBLE
+		else if(T != loc && T != src) //if src is inside something and not a turf.
+			if(M != loc) // Only give the blind message to hearers that aren't the location
+				msg = blind_message
+				msg_type = MSG_AUDIBLE
+		else if( T.is_softly_lit() && !in_range(T,M)) //if it is too dark, unless we're right next to them.
+			msg = blind_message
+			msg_type = MSG_AUDIBLE
+		if(!msg)
+			continue
+
+		if(push_appearance)
+			M << output(push_appearance, "push_appearance_placeholder_id")
+
+		if(visible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, visible_message_flags) && !(M.blinded || M.disabilities & BLIND))
+			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = visible_message_flags)
+
+		M.show_message(msg, msg_type, blind_message, MSG_AUDIBLE)
 
 
 // Show a message to all mobs and objects in earshot of this atom
@@ -694,7 +770,7 @@ its easier to just keep the beam vertical.
 // message is the message output to anyone who can hear.
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
-/atom/proc/audible_message(message, deaf_message, hearing_distance)
+/atom/proc/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE)
 
 	var/range = world.view
 	if(hearing_distance)
@@ -706,6 +782,8 @@ its easier to just keep the beam vertical.
 
 	for(var/m in mobs)
 		var/mob/M = m
+		if(audible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, audible_message_flags) && (M.ear_deaf || M.disabilities & DEAF))
+			M.create_chat_message(src, raw_message = message, runechat_flags = audible_message_flags)
 		M.show_message(message,2,deaf_message,1)
 	for(var/o in objs)
 		var/obj/O = o
@@ -755,21 +833,23 @@ its easier to just keep the beam vertical.
 	if(density != new_density)
 		density = !!new_density
 
-//This proc is called when objects are created during the round by players.
-//This allows them to behave differently from objects that are mapped in, adminspawned, or purchased
+
+/**
+ * This proc is called when objects are created during the round by players.
+ * This allows them to behave differently from objects that are mapped in, adminspawned, or purchased
+ * Should be called when:
+ * 		An item is printed at an autolathe or protolathe **COMPLETE**
+ * 		Item is created at mech fab, organ printer, prosthetics builder, or any other machine which creates things
+ * 		An item is constructed from sheets or any similar crafting system
+ * Should NOT be called when:
+ * 		An item is mapped in
+ * 		An item is adminspawned
+ * 		An item is spawned by events
+ * 		An item is delivered on the cargo shuttle
+ * 		An item is purchased or dispensed from a vendor (Those things contain premade items and just release them)
+ */
 /atom/proc/Created(mob/user)
 	return
-	//Should be called when:
-		//An item is printed at an autolathe or protolathe **COMPLETE**
-		//Item is created at mech fab, organ printer, prosthetics builder, or any other machine which creates things
-		//An item is constructed from sheets or any similar crafting system
-
-	//Should NOT be called when:
-		//An item is mapped in
-		//An item is adminspawned
-		//An item is spawned by events
-		//An item is delivered on the cargo shuttle
-		//An item is purchased or dispensed from a vendor (Those things contain premade items and just release them)
 
 /atom/proc/get_cell()
 	return
@@ -782,7 +862,7 @@ its easier to just keep the beam vertical.
 /atom/proc/change_area(area/old_area, area/new_area)
 	return
 
-//Bullethole shit.
+/// Bullethole shit.
 /atom/proc/create_bullethole(obj/item/projectile/Proj)
 	var/p_x = Proj.p_x + rand(-8,8) // really ugly way of coding "sometimes offset Proj.p_x!"
 	var/p_y = Proj.p_y + rand(-8,8) // Used for bulletholes
@@ -805,7 +885,7 @@ its easier to just keep the beam vertical.
 		qdel(BM)
 
 
-//Returns a list of things in this atom, can be overridden for more nuanced behaviour
+/// Returns a list of things in this atom, can be overridden for more nuanced behaviour
 /atom/proc/get_contents()
 	return contents
 
@@ -826,14 +906,14 @@ its easier to just keep the beam vertical.
 		return null
 	return L.AllowDrop() ? L : L.drop_location()
 
-//Return flags that may be added as part of a mobs sight
+/// Return flags that may be added as part of a mobs sight
 /atom/proc/additional_sight_flags()
 	return 0
 
 /atom/proc/additional_see_invisible()
 	return 0
 /atom/proc/lava_act()
-	visible_message("<span class='danger'>\The [src] sizzles and melts away, consumed by the lava!</span>")
+	visible_message(span_danger("\The [src] sizzles and melts away, consumed by the lava!"))
 	playsound(src, 'sound/effects/flare.ogg', 100, 3)
 	if(ismob(src))
 		var/mob/M = src
@@ -841,7 +921,7 @@ its easier to just keep the beam vertical.
 	qdel(src)
 	. = TRUE
 
-// Passes Stat Panel clicks to the game and calls client click on an atom
+/// Passes Stat Panel clicks to the game and calls client click on an atom
 /atom/Topic(href, list/href_list)
 	. = ..()
 	if(!usr?.client)
@@ -858,6 +938,6 @@ its easier to just keep the beam vertical.
 		var/mouseparams = list2params(paramslist)
 		usr_client.Click(src, loc, null, mouseparams)
 
-// Called after we wrench/unwrench this object
+/// Called after we wrench/unwrench this object
 /obj/proc/wrenched_change()
 	return

@@ -1,7 +1,7 @@
 /datum/admin_secret_item/admin_secret/move_shuttle
 	name = "Move a Shuttle"
 
-/datum/admin_secret_item/admin_secret/move_shuttle/execute(var/mob/user)
+/datum/admin_secret_item/admin_secret/move_shuttle/execute(mob/user)
 	. = ..()
 	if(!.)
 		return
@@ -23,4 +23,4 @@
 	if (!destination || !istype(destination)) return
 
 	S.attempt_move(destination)
-	log_and_message_admins("moved the [shuttle_tag] shuttle to [destination] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[destination.x];Y=[destination.y];Z=[destination.z]'>JMP</a>)", user)
+	log_and_message_admins("moved the [shuttle_tag] shuttle to [destination] [ADMIN_JMP(destination)]", user)

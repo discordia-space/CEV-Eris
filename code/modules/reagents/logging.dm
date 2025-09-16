@@ -1,5 +1,5 @@
 
-/var/list/chemical_reaction_logs = list()
+var/list/chemical_reaction_logs = list()
 
 /proc/log_chemical_reaction(atom/A, datum/chemical_reaction/R, multiplier)
 	if(!A || !R)
@@ -25,4 +25,4 @@
 	for(var/entry in chemical_reaction_logs)
 		html += "[entry]<br>"
 
-	usr << browse(html, "window=chemlogs")
+	usr << browse(HTML_SKELETON_TITLE("Chemical Reactions", html), "window=chemlogs")

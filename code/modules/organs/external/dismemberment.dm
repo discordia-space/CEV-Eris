@@ -3,7 +3,7 @@
 ****************************************************/
 
 //Handles dismemberment
-/obj/item/organ/external/proc/droplimb(var/clean, var/disintegrate = DROPLIMB_EDGE, var/ignore_children = null)
+/obj/item/organ/external/proc/droplimb(clean, disintegrate = DROPLIMB_EDGE, ignore_children = null)
 
 	if(cannot_amputate || !owner)
 		return
@@ -13,22 +13,22 @@
 			if(!clean)
 				var/gore_sound = "[BP_IS_ROBOTIC(src) ? "tortured metal" : "ripping tendons and flesh"]"
 				owner.visible_message(
-					SPAN_DANGER("\The [owner]'s [src.name] flies off in an arc!"),\
-					"<span class='moderate'><b>Your [src.name] goes flying off!</b></span>",\
-					SPAN_DANGER("You hear a terrible sound of [gore_sound]."))
+					span_danger("\The [owner]'s [src.name] flies off in an arc!"),\
+					span_moderate("<b>Your [src.name] goes flying off!</b>"),\
+					span_danger("You hear a terrible sound of [gore_sound]."))
 		if(DROPLIMB_BURN)
 			var/gore = "[BP_IS_ROBOTIC(src) ? " of melting metal": " of burning flesh"]"
 			owner.visible_message(
-				SPAN_DANGER("\The [owner]'s [src.name] flashes away into ashes!"),\
-				"<span class='moderate'><b>Your [src.name] flashes away into ashes!</b></span>",\
-				SPAN_DANGER("You hear a crackling sound[gore]."))
+				span_danger("\The [owner]'s [src.name] flashes away into ashes!"),\
+				span_moderate("<b>Your [src.name] flashes away into ashes!</b>"),\
+				span_danger("You hear a crackling sound[gore]."))
 		if(DROPLIMB_BLUNT)
 			var/gore = BP_IS_ROBOTIC(src) ? " in shower of sparks": " in shower of gore"
 			var/gore_sound = BP_IS_ROBOTIC(src) ? "rending sound of tortured metal" : "sickening splatter of gore"
 			owner.visible_message(
-				SPAN_DANGER("\The [owner]'s [src.name] explodes[gore]!"),\
-				"<span class='moderate'><b>Your [src.name] explodes[gore]!</b></span>",\
-				SPAN_DANGER("You hear the [gore_sound]."))
+				span_danger("\The [owner]'s [src.name] explodes[gore]!"),\
+				span_moderate("<b>Your [src.name] explodes[gore]!</b>"),\
+				span_danger("You hear the [gore_sound]."))
 
 	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
 	var/obj/item/organ/external/parent_organ = parent
@@ -62,7 +62,7 @@
 			if(!clean)
 				// Throw limb around.
 				if(src && istype(loc,/turf))
-					throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+					throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),30)
 				dir = 2
 		if(DROPLIMB_BURN)
 			new /obj/effect/decal/cleanable/ash(get_turf(victim))
@@ -83,12 +83,12 @@
 			if(victim.species.blood_color)
 				gore.basecolor = victim.species.blood_color
 			gore.update_icon()
-			gore.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+			gore.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),30)
 
 			for(var/obj/item/organ/I in internal_organs)
 				I.removed()
 				I.forceMove(get_turf(src))
-				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+				I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),30)
 				I.status |= ORGAN_CUT_AWAY
 
 			for(var/mob/living/I in src) // check for mobs inside you... yeah
@@ -97,12 +97,12 @@
 					B.detach()
 					B.leave_host()
 					I.forceMove(get_turf(src))
-					I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+					I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),30)
 			for(var/obj/item/I in src)
 				if(I.w_class <= ITEM_SIZE_SMALL)
 					qdel(I)
 					continue
 				I.forceMove(get_turf(src))
-				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+				I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),30)
 
 			qdel(src)

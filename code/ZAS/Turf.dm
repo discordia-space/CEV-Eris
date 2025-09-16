@@ -44,7 +44,7 @@
 			add_ZAS_debug_overlay(ZAS_DEBUG_OVERLAY_AIR_FULLY_BLOCKED)
 			#endif
 			if(zone)
-				var/zone/z = zone
+				var/datum/zone/z = zone
 				if(can_safely_remove_from_zone()) //Helps normal airlocks avoid rebuilding zones all the time
 					c_copy_air()
 					z.remove(src)
@@ -56,9 +56,9 @@
 		open_directions = 0
 		var/list/postponed = list()
 		#ifdef ZLEVELS
-		for(var/d = 1, d < 64, d *= 2)
+		for(var/d = 1; d < 64; d *= 2)
 		#else
-		for(var/d = 1, d < 16, d *= 2)
+		for(var/d = 1; d < 16; d *= 2)
 		#endif
 
 			var/turf/neighbour_turf = get_step(src, d)
@@ -87,7 +87,7 @@
 			open_directions |= d
 
 			if(neighbour_turf.is_simulated)
-				neighbour_turf.open_directions |= reverse_dir[d]
+				neighbour_turf.open_directions |= GLOB.reverse_dir[d]
 				if(TURF_HAS_VALID_ZONE(neighbour_turf))
 					//Might have assigned a zone, since this happens for each direction.
 					if(!zone)
@@ -110,7 +110,7 @@
 				postponed.Add(neighbour_turf)
 
 		if(!TURF_HAS_VALID_ZONE(src)) //Still no zone, make a new one.
-			var/zone/newzone = new/zone()
+			var/datum/zone/newzone = new/datum/zone()
 			newzone.add(src)
 
 		#ifdef ZASDBG
@@ -131,9 +131,9 @@
 			return 1
 
 		#ifdef ZLEVELS
-		for(var/d = 1, d < 64, d *= 2)
+		for(var/d = 1; d < 64; d *= 2)
 		#else
-		for(var/d = 1, d < 16, d *= 2)
+		for(var/d = 1; d < 16; d *= 2)
 		#endif
 
 			var/turf/neighbour_turf = get_step(src, d)
@@ -195,7 +195,7 @@
 /turf/proc/get_zone_neighbours(turf/T)
 	. = 0
 	if(istype(T) && T.zone)
-		for(var/dir in cardinal)
+		for(var/dir in GLOB.cardinal)
 			var/turf/other = get_step(T, dir)
 			if(istype(other) && other.zone == T.zone && !(other.c_airblock(T) & AIR_BLOCKED) && get_dist(src, other) <= 1)
 				. |= dir
@@ -304,9 +304,9 @@
 /turf/proc/GetAtmosAdjacentTurfs(alldir = FALSE)
 	var/check_dirs
 	if(alldir)
-		check_dirs = alldirs
+		check_dirs = GLOB.alldirs
 	else
-		check_dirs = cardinal
+		check_dirs = GLOB.cardinal
 
 	var/list/adjacent_turfs = list()
 

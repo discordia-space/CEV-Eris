@@ -35,7 +35,7 @@
 /datum/preferences/proc/get_level_cost(datum/job/job, decl/hierarchy/skill/S, level)
 	var/min = get_min_skill(job, S)
 	. = 0
-	for(var/i=min+1, i <= level, i++)
+	for(var/i=min+1; i <= level; i++)
 		. += S.get_cost(i)
 
 /datum/preferences/proc/get_max_affordable(datum/job/job, decl/hierarchy/skill/S)
@@ -46,7 +46,7 @@
 	var/max = get_max_skill(job, S)
 	var/budget = points_by_job[job]
 	. = max
-	for(var/i=current_level+1, i <= max, i++)
+	for(var/i=current_level+1; i <= max; i++)
 		if(budget - S.get_cost(i) < 0)
 			return i-1
 		budget -= S.get_cost(i)
@@ -80,9 +80,9 @@
 			pref.skills_saved["[job.type]"] = L
 
 //Sets up skills_allocated
-/datum/preferences/proc/sanitize_skills(var/list/input)
+/datum/preferences/proc/sanitize_skills(list/input)
 	. = list()
-	var/datum/species/S = all_species[species]
+	var/datum/species/S = GLOB.all_species[species]
 	var/jobs_by_type = decls_repository.get_decls(GLOB.using_map.allowed_jobs)
 	for(var/job_type in jobs_by_type)
 		var/datum/job/job = jobs_by_type[job_type]
@@ -165,8 +165,8 @@
 			var/level = min + (allocation[S] || 0)				//the current skill level
 			var/cap = pref.get_max_affordable(job, S) //if selecting the skill would make you overspend, it won't be shown
 			dat += "<tr style='text-align:left;'>"
-			dat += "<th><a href='?src=\ref[src];skillinfo=\ref[S]'>[S.name] ([pref.get_spent_points(job, S)])</a></th>"
-			for(var/i = SKILL_MIN, i <= SKILL_MAX, i++)
+			dat += "<th><a href='byond://?src=\ref[src];skillinfo=\ref[S]'>[S.name] ([pref.get_spent_points(job, S)])</a></th>"
+			for(var/i = SKILL_MIN; i <= SKILL_MAX; i++)
 				dat += skill_to_button(S, job, level, i, min, cap)
 			dat += "</tr>"
 	dat += "</table>"
@@ -182,13 +182,13 @@
 	var/cost = skill.get_cost(selection_level)
 	var/button_label = "[level_name] ([cost])"
 	if(selection_level < min)
-		return "<th><span class='Unavailable'>[button_label]</span></th>"
+		return "<th>[span_Unavailable("[button_label]")]</th>"
 	else if(selection_level < current_level)
-		return "<th><a class='Current' href='?src=\ref[src];hit_skill_button=\ref[skill];at_job=\ref[job];newvalue=[selection_level]'>[button_label]</a></th>"
+		return "<th><a class='Current' href='byond://?src=\ref[src];hit_skill_button=\ref[skill];at_job=\ref[job];newvalue=[selection_level]'>[button_label]</a></th>"
 	else if(selection_level == current_level)
-		return "<th><span class='Current'>[button_label]</span></th>"
+		return "<th>[span_Current("[button_label]")]</th>"
 	else if(selection_level <= max)
-		return "<th><a class='Selectable' href='?src=\ref[src];hit_skill_button=\ref[skill];at_job=\ref[job];newvalue=[selection_level]'>[button_label]</a></th>"
+		return "<th><a class='Selectable' href='byond://?src=\ref[src];hit_skill_button=\ref[skill];at_job=\ref[job];newvalue=[selection_level]'>[button_label]</a></th>"
 	else
-		return "<th><span class='Toohigh'>[button_label]</span></th>"
+		return "<th>[span_Toohigh("[button_label]")]</th>"
 */

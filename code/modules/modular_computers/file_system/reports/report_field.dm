@@ -127,20 +127,20 @@ Basic field subtypes.
 	var/input_value = input(user, "[display_name()]:", "Form Input", get_value()) as null|num
 
 	if(input_value < 0)
-		to_chat(user,SPAN_WARNING("Value has to be positive."))
+		to_chat(user,span_warning("Value has to be positive."))
 		return
 	var/obj/item/card/id/held_card = user.GetIdCard()
 	if(!held_card)
-		to_chat(user, SPAN_WARNING("Your ID is missing."))
+		to_chat(user, span_warning("Your ID is missing."))
 		return
 	var/datum/money_account/used_account = get_account(held_card.associated_account_number)
 	var/datum/transaction/T_post = new(-input_value, used_account.owner_name, "Bounty Edited", "Bounty board system")
 	if(T_post.apply_to(used_account)) //Charges the new money
-		to_chat(user, SPAN_WARNING("Bounty modified. Your previous funds have been refunded."))
+		to_chat(user, span_warning("Bounty modified. Your previous funds have been refunded."))
 		var/datum/transaction/T_pre = new(value, used_account.owner_name, "Bounty Refund", "Bounty board system")
 		T_pre.apply_to(used_account) //Refunds the old money
 	else
-		to_chat(user, SPAN_WARNING("You don't have enough funds to do that!"))
+		to_chat(user, span_warning("You don't have enough funds to do that!"))
 		return
 
 	set_value(input_value)
@@ -186,7 +186,7 @@ Basic field subtypes.
 /datum/report_field/array
 	var/list/value_list = list()
 
-/datum/report_field/array/proc/get_raw(var/position)
+/datum/report_field/array/proc/get_raw(position)
 	if(position)
 		return value_list[position]
 	else
@@ -194,7 +194,7 @@ Basic field subtypes.
 
 /datum/report_field/array/get_value()
 	var/dat = ""
-	for(var/i = 1, i<=value_list.len, i++)
+	for(var/i = 1; i<=value_list.len; i++)
 		if(i > 1)
 			dat += "<br>"
 		dat += "[value_list[i]]"
@@ -204,10 +204,10 @@ Basic field subtypes.
 	error("Use add_value()")
 	return
 
-/datum/report_field/array/proc/add_value(var/given_value)
+/datum/report_field/array/proc/add_value(given_value)
 	value_list.Add(given_value)
 
-/datum/report_field/array/proc/remove_value(var/given_value)
+/datum/report_field/array/proc/remove_value(given_value)
 	value_list.Remove(given_value)
 
 /datum/report_field/array/ask_value(mob/user)

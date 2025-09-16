@@ -51,10 +51,10 @@
 //	plant.ChangeOpacity(hologram_opacity)
 	overlays += plant
 
-/obj/structure/cyberplant/proc/change_plant(var/state)
+/obj/structure/cyberplant/proc/change_plant(state)
 	plant = prepare_icon(state)
 
-/obj/structure/cyberplant/proc/change_color(var/color)
+/obj/structure/cyberplant/proc/change_color(color)
 	if (!plant)
 		return
 
@@ -82,11 +82,14 @@
 	var/color_of_choice = input("Choose a color.", "\"FluorescEnt\" configuration", custom_color) as color|null
 	custom_color = color_of_choice
 	if(!interference)
-		change_plant()
 		change_color()
 		update_icon()
 
-/obj/structure/cyberplant/proc/prepare_icon(var/state)
+/obj/structure/cyberplant/AltClick(atom/A, params)
+	change_plant()
+	update_icon()
+
+/obj/structure/cyberplant/proc/prepare_icon(state)
 	if(!state)
 		state = pick(possible_plants)
 

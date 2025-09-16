@@ -1,6 +1,6 @@
 /mob/living/carbon/slime/examine(mob/user, extra_description = "")
 	if(stat == DEAD)
-		extra_description += "<span class='deadsay'>It is limp and unresponsive.</span>\n"
+		extra_description += "[span_deadsay("It is limp and unresponsive.")]\n"
 	else
 		if(getBruteLoss())
 			extra_description += "<span class='warning'>"
@@ -16,9 +16,9 @@
 			if(4 to 5)
 				extra_description += "It is glowing gently with moderate levels of electrical activity.\n"
 			if(6 to 9)
-				extra_description += "<span class='warning'>It is glowing brightly with high levels of electrical activity.</span>\n"
+				extra_description += "[span_warning("It is glowing brightly with high levels of electrical activity.")]\n"
 			if(10)
-				extra_description += "<span class='warning'><B>It is radiating with massive levels of electrical activity!</B></span>\n"
+				extra_description += "[span_warning("<B>It is radiating with massive levels of electrical activity!</B>")]\n"
 
 	extra_description += "*---------*"
 	..(user, extra_description)

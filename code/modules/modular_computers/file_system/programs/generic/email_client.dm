@@ -86,7 +86,7 @@
 
 	var/mob/living/L = get(holder.holder2, /mob/living)
 	if(L)
-		var/open_app_link = "<a href='?src=\ref[holder.holder2];PC_runprogram=[filename];disk=\ref[holder]'>Open Email Client</a>"
+		var/open_app_link = "<a href='byond://?src=\ref[holder.holder2];PC_runprogram=[filename];disk=\ref[holder]'>Open Email Client</a>"
 		received_message.notify_mob(L, holder.holder2, open_app_link)
 
 
@@ -121,7 +121,7 @@
 /datum/nano_module/email_client/proc/mail_received(datum/computer_file/data/email_message/received_message)
 	var/mob/living/L = get(nano_host(), /mob/living)
 	if(L)
-		received_message.notify_mob(L, nano_host(), "<a href='?src=\ref[src];open;reply=[received_message.uid]'>Reply</a>")
+		received_message.notify_mob(L, nano_host(), "<a href='byond://?src=\ref[src];open;reply=[received_message.uid]'>Reply</a>")
 		log_and_message_admins("[usr] received email from [received_message.source]. \n Message title: [received_message.title]. \n [received_message.stored_data]")
 
 /datum/nano_module/email_client/Destroy()
@@ -175,7 +175,7 @@
 
 // Returns 0 if no new messages were received, 1 if there is an unread message but notification has already been sent.
 // and 2 if there is a new message that appeared in this tick (and therefore notification should be sent by the program).
-/datum/nano_module/email_client/proc/check_for_new_messages(var/messages_read = FALSE)
+/datum/nano_module/email_client/proc/check_for_new_messages(messages_read = FALSE)
 	if(!current_account)
 		return 0
 
@@ -300,7 +300,7 @@
 		data["stored_password"] = stars(stored_password, 0)
 	return data
 
-/datum/nano_module/email_client/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.default_state)
+/datum/nano_module/email_client/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 	var/list/data = nano_ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -312,7 +312,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/nano_module/email_client/proc/find_message_by_fuid(var/fuid)
+/datum/nano_module/email_client/proc/find_message_by_fuid(fuid)
 	if(!istype(current_account))
 		return
 
@@ -332,7 +332,7 @@
 	msg_attachment = null
 	current_message = null
 
-/datum/nano_module/email_client/proc/relayed_process(var/netspeed)
+/datum/nano_module/email_client/proc/relayed_process(netspeed)
 	download_speed = netspeed
 	if(!downloading)
 		return

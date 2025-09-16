@@ -55,6 +55,10 @@
 	name = "mounted energy shield generator"
 	build_path = /obj/item/mech_equipment/shield_generator
 
+/datum/design/research/item/exosuit/shield_generator/ui_icon()
+	var/obj/shield_type = build_path
+	return icon(shield_type::icon, "[shield_type::icon_state]_on")
+
 /datum/design/research/item/exosuit/shield_generator/ballistic
 	name = "mounted ballistic shield"
 	build_path = /obj/item/mech_equipment/shield_generator/ballistic
@@ -99,6 +103,10 @@
 /datum/design/research/item/exosuit/ion_thruster
 	name = "mounted ion thrusters"
 	build_path = /obj/item/mech_equipment/thrusters
+
+/datum/design/research/item/exosuit/ion_thruster/ui_icon()
+	var/obj/thruster_type = build_path
+	return icon(thruster_type::icon, "[thruster_type::icon_state]_on")
 
 /datum/design/research/item/exosuit/forklift
 	name = "forklift clamps"

@@ -1,23 +1,23 @@
-/mob/living/carbon/human/proc/change_appearance(var/flags = APPEARANCE_ALL_HAIR, var/location = src, var/mob/user = src, var/check_species_whitelist = 1, var/list/species_whitelist = list(), var/list/species_blacklist = list(), var/datum/nano_topic_state/state =GLOB.default_state)
-	var/datum/nano_module/appearance_changer/AC = new(location, src, check_species_whitelist, species_whitelist, species_blacklist)
+/mob/living/carbon/human/proc/change_appearance(flags = APPEARANCE_ALL_HAIR, location = src, mob/user = src, datum/nano_topic_state/state =GLOB.default_state)
+	var/datum/nano_module/appearance_changer/AC = new(location, src)
 	AC.flags = flags
 	AC.nano_ui_interact(user, state = state)
 
-/mob/living/carbon/human/proc/change_species(var/new_species)
+/mob/living/carbon/human/proc/change_species(new_species)
 	if(!new_species)
 		return
 
 	if(species == new_species)
 		return
 
-	if(!(new_species in all_species))
+	if(!(new_species in GLOB.all_species))
 		return
 
 	set_species(new_species)
 	reset_hair()
 	return 1
 
-/mob/living/carbon/human/proc/change_name(var/type)
+/mob/living/carbon/human/proc/change_name(type)
 	if (type == "random")
 		var/datum/language/L = get_default_language()
 		L.set_random_name(src)
@@ -25,9 +25,9 @@
 	else
 		var/newname = input("Choose a name for your character.","Your Name", real_name)
 		fully_replace_character_name(real_name, newname)
-	to_chat(src, SPAN_NOTICE("Your name is now [real_name]"))
+	to_chat(src, span_notice("Your name is now [real_name]"))
 
-/mob/living/carbon/human/proc/change_gender(var/gender)
+/mob/living/carbon/human/proc/change_gender(gender)
 	if(src.gender == gender)
 		return
 
@@ -37,7 +37,7 @@
 	//update_body()
 	return 1
 
-/mob/living/carbon/human/proc/change_hair(var/hair_style)
+/mob/living/carbon/human/proc/change_hair(hair_style)
 	if(!hair_style)
 		return
 
@@ -52,7 +52,7 @@
 	update_hair()
 	return 1
 
-/mob/living/carbon/human/proc/change_facial_hair(var/facial_hair_style)
+/mob/living/carbon/human/proc/change_facial_hair(facial_hair_style)
 	if(!facial_hair_style)
 		return
 
@@ -85,7 +85,7 @@
 
 	update_hair()
 
-/mob/living/carbon/human/proc/change_eye_color(var/color)
+/mob/living/carbon/human/proc/change_eye_color(color)
 	if(color == eyes_color)
 		return
 
@@ -95,7 +95,7 @@
 	update_body()
 	return 1
 
-/mob/living/carbon/human/proc/change_hair_color(var/color)
+/mob/living/carbon/human/proc/change_hair_color(color)
 	if(color == hair_color)
 		return
 
@@ -106,7 +106,7 @@
 	update_hair()
 	return 1
 
-/mob/living/carbon/human/proc/change_facial_hair_color(var/color)
+/mob/living/carbon/human/proc/change_facial_hair_color(color)
 	if(color == facial_color)
 		return
 
@@ -115,7 +115,7 @@
 	update_hair()
 	return 1
 
-/mob/living/carbon/human/proc/change_skin_color(var/color)
+/mob/living/carbon/human/proc/change_skin_color(color)
 	if(color == skin_color || !(species.appearance_flags & HAS_SKIN_COLOR))
 		return
 
@@ -125,7 +125,7 @@
 	update_body()
 	return 1
 
-/mob/living/carbon/human/proc/change_skin_tone(var/tone)
+/mob/living/carbon/human/proc/change_skin_tone(tone)
 	if(s_tone == tone || !(species.appearance_flags & HAS_SKIN_TONE))
 		return
 
@@ -135,26 +135,10 @@
 	update_body()
 	return 1
 
-/mob/living/carbon/human/proc/generate_valid_species(var/check_whitelist = 1, var/list/whitelist = list(), var/list/blacklist = list())
-	var/list/valid_species = new()
-	for(var/current_species_name in all_species)
-		var/datum/species/current_species = all_species[current_species_name]
+/mob/living/carbon/human/proc/generate_valid_species()
+	return GLOB.all_species
 
-		if(check_whitelist)// && !check_rights(R_ADMIN, 0, src)) //If we're using the whitelist, make sure to check it!
-			if(!(current_species.spawn_flags & CAN_JOIN))
-				continue
-			if(whitelist.len && !(current_species_name in whitelist))
-				continue
-			if(blacklist.len && (current_species_name in blacklist))
-				continue
-			if((current_species.spawn_flags & IS_WHITELISTED) && !is_alien_whitelisted(src, current_species_name))
-				continue
-
-		valid_species += current_species_name
-
-	return valid_species
-
-/mob/living/carbon/human/proc/generate_valid_hairstyles(var/check_gender = 1)
+/mob/living/carbon/human/proc/generate_valid_hairstyles(check_gender = 1)
 	. = list()
 	var/list/hair_styles = species.get_hair_styles()
 	for(var/hair_style in hair_styles)
@@ -185,7 +169,7 @@
 	var/gender = pick(MALE, FEMALE)
 	var/list/tts_voices = new()
 	if(gender == FEMALE) //defaults are MALE so check for FEMALE first, use MALE as default case
-		change_gender(gender) 
+		change_gender(gender)
 		tts_voices += TTS_SEED_DEFAULT_FEMALE //Failsafe voice
 	else
 		change_facial_hair(pick(GLOB.facial_hair_styles_list)) //pick a random facial hair

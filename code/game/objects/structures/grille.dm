@@ -59,7 +59,7 @@
 		else
 			return !density
 
-/obj/structure/grille/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/grille/bullet_act(obj/item/projectile/Proj)
 	if(!Proj)	return
 
 	//Flimsy grilles aren't so great at stopping projectiles. However they can absorb some of the impact
@@ -112,8 +112,8 @@
 			if(anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					anchored = !anchored
-					user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
-										 "<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
+					user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] the grille."), \
+										 span_notice("You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor."))
 					return
 			return
 
@@ -142,23 +142,23 @@
 					else
 						dir_to_set = 4
 			else
-				to_chat(user, SPAN_NOTICE("You can't reach."))
+				to_chat(user, span_notice("You can't reach."))
 				return //Only works for cardinal direcitons, diagonals aren't supposed to work like this.
 		for(var/obj/structure/window/WINDOW in loc)
 			if(WINDOW.dir == dir_to_set)
-				to_chat(user, SPAN_NOTICE("There is already a window facing this way there."))
+				to_chat(user, span_notice("There is already a window facing this way there."))
 				return
-		to_chat(user, SPAN_NOTICE("You start placing the window."))
+		to_chat(user, span_notice("You start placing the window."))
 		if(do_after(user,20,src))
 			for(var/obj/structure/window/WINDOW in loc)
 				if(WINDOW.dir == dir_to_set)//checking this for a 2nd time to check if a window was made while we were waiting.
-					to_chat(user, SPAN_NOTICE("There is already a window facing this way there."))
+					to_chat(user, span_notice("There is already a window facing this way there."))
 					return
 
 			var/wtype = ST.material.created_window
 			if (ST.use(1))
 				var/obj/structure/window/WD = new wtype(loc, dir_to_set, 1)
-				to_chat(user, SPAN_NOTICE("You place the [WD] on [src]."))
+				to_chat(user, span_notice("You place the [WD] on [src]."))
 				WD.update_icon()
 		return
 //window placing end
@@ -220,15 +220,15 @@
 			take_damage(1)
 	..()
 
-/obj/structure/grille/attack_generic(var/mob/user, var/damage, var/attack_verb)
-	visible_message(SPAN_DANGER("[user] [attack_verb] the [src]!"))
+/obj/structure/grille/attack_generic(mob/user, damage, attack_verb)
+	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	attack_animation(user)
 	take_damage(damage)
 	return TRUE
 
 /obj/structure/grille/hitby(AM as mob|obj)
 	..()
-	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
+	visible_message(span_danger("[src] was hit by [AM]."))
 	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
 	var/tforce = 0
 	if(ismob(AM))
@@ -243,9 +243,9 @@
 	destroyed = 1
 	icon_state = "grille-b"
 	density = FALSE
-	New()
-		..()
-		take_damage(rand(5,1))
+/obj/structure/grille/broken/New()
+	..()
+	take_damage(rand(5,1))
 
 /obj/structure/grille/cult
 	name = "cult grille"
@@ -258,7 +258,7 @@
 		return 0 //Make sure air doesn't drain
 	..()
 
-/obj/structure/grille/get_fall_damage(var/turf/from, var/turf/dest)
+/obj/structure/grille/get_fall_damage(turf/from, turf/dest)
 	var/damage = health * 0.4 * get_health_ratio()
 
 	if (from && dest)

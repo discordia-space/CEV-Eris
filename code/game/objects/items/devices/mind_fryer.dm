@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(active_mind_fryers)
 
 		// If in owner's inventory, give a signal that the break was registred and counted towards contract
 		if(src in owner.current.GetAllContents(includeSelf = FALSE))
-			to_chat(owner.current, SPAN_DANGER("[src] clicks."))
+			to_chat(owner.current, span_danger("[src] clicks."))
 
 	victims |= victim
 	if(contract && victims.len >= contract.count)

@@ -24,6 +24,7 @@
 			if(!D.name)
 				continue
 			GLOB.chemical_reagents_list[D.id] = D
+		sortList(GLOB.chemical_reagents_list)
 
 /datum/reagents/proc/get_price()
 	var/price = 0
@@ -130,6 +131,7 @@
 	var/list/eligible_reactions = list()
 
 	var/temperature = chem_temp
+	var/htmlicon = icon2html(my_atom, viewers(get_turf(src)))
 	for(var/thing in reagent_list)
 		var/datum/reagent/R = thing
 		if(R.custom_temperature_effects(temperature))
@@ -161,7 +163,7 @@
 
 			if(my_atom)
 				if(replace_message)
-					my_atom.visible_message("<span class='notice'>\icon[my_atom] [replace_message]</span>")
+					my_atom.visible_message(span_notice("[htmlicon] [replace_message]"))
 				if(replace_sound)
 					playsound(my_atom, replace_sound, 80, 1)
 
@@ -392,7 +394,7 @@
 /datum/reagents/proc/trans_to(datum/target, amount = 1, multiplier = 1, copy = 0, ignore_isinjectable = FALSE)
 	if(istype(target, /datum/reagents))
 		return trans_to_holder(target, amount, multiplier, copy)
-	else if(istype(target, /atom))
+	else if(isatom(target))
 		var/atom/A = target
 		touch(A)
 		if(ismob(target))

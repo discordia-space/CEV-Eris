@@ -32,10 +32,10 @@
 	for(var/stacktype in machine.stack_storage)
 		if(machine.stack_storage[stacktype] > 0)
 			var/display_name = material_display_name(stacktype) //Added to allow non-standard minerals to have proper names in the machine.
-			dat += "<tr><td width = 150><b>[capitalize(display_name)]:</b></td><td width = 30>[machine.stack_storage[stacktype]]</td><td width = 50><A href='?src=\ref[src];release_stack=[stacktype]'>\[release\]</a></td></tr>"
+			dat += "<tr><td width = 150><b>[capitalize(display_name)]:</b></td><td width = 30>[machine.stack_storage[stacktype]]</td><td width = 50><A href='byond://?src=\ref[src];release_stack=[stacktype]'>\[release\]</a></td></tr>"
 	dat += "</table><hr>"
-	dat += text("<br>Stacking: [machine.stack_amt] <A href='?src=\ref[src];change_stack=1'>\[change\]</a><br><br>")
-	user << browse("[dat]", "window=console_stacking_machine")
+	dat += text("<br>Stacking: [machine.stack_amt] <A href='byond://?src=\ref[src];change_stack=1'>\[change\]</a><br><br>")
+	user << browse(HTML_SKELETON_TITLE("Stacking Machine", dat), "window=console_stacking_machine")
 	onclose(user, "console_stacking_machine")
 
 
@@ -91,7 +91,7 @@
 	if(marker)
 		output_dir = get_dir(src, marker)
 
-/obj/machinery/mineral/stacking_machine/proc/outputMaterial(var/material_name, var/amount)
+/obj/machinery/mineral/stacking_machine/proc/outputMaterial(material_name, amount)
 	var/stored_amount = stack_storage[material_name] || 0
 	amount = min(stored_amount, amount)
 	if (amount > 0)

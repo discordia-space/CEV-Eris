@@ -22,7 +22,7 @@
 	var/base_icon = "bed"
 	var/applies_material_colour = 1
 
-/obj/structure/bed/New(var/newloc, var/new_material, var/new_padding_material)
+/obj/structure/bed/New(newloc, new_material, new_padding_material)
 	..(newloc)
 	color = null
 	if(!new_material)
@@ -83,16 +83,16 @@
 	else
 		return ..()
 
-/obj/structure/bed/affect_grab(var/mob/user, var/mob/target)
-	user.visible_message(SPAN_NOTICE("[user] attempts to buckle [target] into \the [src]!"))
+/obj/structure/bed/affect_grab(mob/user, mob/target)
+	user.visible_message(span_notice("[user] attempts to buckle [target] into \the [src]!"))
 	if(do_after(user, 20, src) && Adjacent(target))
 		target.forceMove(loc)
 		spawn(0)
 			if(buckle_mob(target))
 				target.visible_message(
-					SPAN_DANGER("[target] is buckled to [src] by [user]!"),
-					SPAN_DANGER("You are buckled to [src] by [user]!"),
-					SPAN_NOTICE("You hear metal clanking.")
+					span_danger("[target] is buckled to [src] by [user]!"),
+					span_danger("You are buckled to [src] by [user]!"),
+					span_notice("You hear metal clanking.")
 				)
 		return TRUE
 
@@ -143,12 +143,12 @@
 	else if(!istype(W, /obj/item/bedsheet))
 		..()
 
-/obj/structure/bed/attack_robot(var/mob/user)
+/obj/structure/bed/attack_robot(mob/user)
 	if(Adjacent(user)) // Robots can buckle/unbuckle but not the AI.
 		attack_hand(user)
 
 //If there's blankets on the bed, got to roll them down before you can unbuckle the mob
-/obj/structure/bed/attack_hand(var/mob/user)
+/obj/structure/bed/attack_hand(mob/user)
 	var/obj/item/bedsheet/blankets = (locate(/obj/item/bedsheet) in loc)
 	if (buckled_mob && blankets && !blankets.rolled && !blankets.folded)
 		if (!blankets.toggle_roll(user))
@@ -166,7 +166,7 @@
 	if(buckled_mob)
 		buckled_mob.forceMove(src.loc, glide_size_override = glide_size)
 
-/obj/structure/bed/forceMove(atom/destination, var/special_event, glide_size_override=0)
+/obj/structure/bed/forceMove(atom/destination, special_event, glide_size_override=0)
 	. = ..()
 	if(buckled_mob)
 		if(isturf(src.loc))
@@ -180,7 +180,7 @@
 		padding_material = null
 	update_icon()
 
-/obj/structure/bed/proc/add_padding(var/padding_type)
+/obj/structure/bed/proc/add_padding(padding_type)
 	padding_material = get_material_by_name(padding_type)
 	update_icon()
 
@@ -194,17 +194,17 @@
 	icon_state = "psychbed"
 	base_icon = "psychbed"
 
-/obj/structure/bed/psych/New(var/newloc)
+/obj/structure/bed/psych/New(newloc)
 	..(newloc, MATERIAL_WOOD, MATERIAL_LEATHER)
 
-/obj/structure/bed/padded/New(var/newloc)
+/obj/structure/bed/padded/New(newloc)
 	..(newloc, MATERIAL_PLASTIC, "cotton")
 
 /obj/structure/bed/alien
 	name = "resting contraption"
 	desc = "This looks similar to contraptions from earth. Could aliens be stealing our technology?"
 
-/obj/structure/bed/alien/New(var/newloc)
+/obj/structure/bed/alien/New(newloc)
 	..(newloc, MATERIAL_STEEL)
 
 /*
@@ -249,7 +249,7 @@
 
 
 
-/obj/item/roller/proc/deploy(var/mob/user)
+/obj/item/roller/proc/deploy(mob/user)
 	var/turf/T = get_turf(src) //When held, this will still find the user's location
 	if (istype(T))
 		var/obj/structure/bed/roller/R = new structure_form_type(user.loc)
@@ -287,32 +287,32 @@
 	held.Add(new /obj/item/roller(src))
 
 /obj/item/roller_holder/examine(mob/user, extra_description = "")
-	extra_description += SPAN_NOTICE("It contains [LAZYLEN(held)] stored beds")
+	extra_description += span_notice("It contains [LAZYLEN(held)] stored beds")
 	..(user, extra_description)
 
 /obj/item/roller_holder/attack_self(mob/user as mob)
 
 	if(!held.len)
-		to_chat(user, SPAN_NOTICE("The rack is empty."))
+		to_chat(user, span_notice("The rack is empty."))
 		return
 
 	if (!isturf(user.loc) || (locate(/obj/structure/bed/roller) in user.loc))
-		to_chat(user, SPAN_WARNING("You can't deploy that here!"))
+		to_chat(user, span_warning("You can't deploy that here!"))
 		return
 
-	to_chat(user, SPAN_NOTICE("You deploy the roller bed."))
+	to_chat(user, span_notice("You deploy the roller bed."))
 	var/obj/item/roller/r = pick_n_take(held)
 	r.forceMove(user.loc)
 	r.deploy(user)
 
 //Picking up rollerbeds
-/obj/item/roller_holder/afterattack(var/obj/target, var/mob/user, var/proximity)
+/obj/item/roller_holder/afterattack(obj/target, mob/user, proximity)
 	.=..()
 	if (istype(target,/obj/item/roller))
 		if (held.len >= max_stored)
-			to_chat(user, SPAN_WARNING("You can't fit anymore rollerbeds in \the [src]!"))
+			to_chat(user, span_warning("You can't fit anymore rollerbeds in \the [src]!"))
 			return
 
-		to_chat(user, SPAN_NOTICE("You scoop up \the [target] and store it in \the [src]!"))
+		to_chat(user, span_notice("You scoop up \the [target] and store it in \the [src]!"))
 		target.forceMove(src)
 		held.Add(target)

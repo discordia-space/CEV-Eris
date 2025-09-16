@@ -39,23 +39,23 @@
 	bad_type = /obj/item/clothing/suit/storage/toggle
 	var/icon_open
 	var/icon_closed
-	verb/toggle()
-		set name = "Toggle Coat Buttons"
-		set category = "Object"
-		set src in usr
-		if(!usr.canmove || usr.stat || usr.restrained())
-			return 0
+/obj/item/clothing/suit/storage/toggle/verb/toggle()
+	set name = "Toggle Coat Buttons"
+	set category = "Object"
+	set src in usr
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return 0
 
-		if(icon_state == icon_open) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
-			icon_state = icon_closed
-			to_chat(usr, "You button up the coat.")
-		else if(icon_state == icon_closed)
-			icon_state = icon_open
-			to_chat(usr, "You unbutton the coat.")
-		else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
-			to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
-			return
-		update_wear_icon()	//so our overlays update
+	if(icon_state == icon_open) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
+		icon_state = icon_closed
+		to_chat(usr, "You button up the coat.")
+	else if(icon_state == icon_closed)
+		icon_state = icon_open
+		to_chat(usr, "You unbutton the coat.")
+	else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
+		to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
+		return
+	update_wear_icon()	//so our overlays update
 
 //Outerwear with a hoodie, used to put it up or down, like the Ritual Robe, but not a voidsuit. Adopted much from voidsuit.
 /obj/item/clothing/suit/storage/toggle/robe
@@ -136,7 +136,7 @@
 	if(H.wear_suit != src) return
 
 	if(H.head == hood)
-		to_chat(H, SPAN_NOTICE("You lower your hood."))
+		to_chat(H, span_notice("You lower your hood."))
 		hood.canremove = 1
 		H.drop_from_inventory(hood)
 		hood.forceMove(src)
@@ -144,11 +144,11 @@
 		playsound(src.loc, "rustle", 75, 1)
 	else
 		if(H.head)
-			to_chat(H, SPAN_DANGER("You cannot raise your hood while wearing \the [H.head]."))
+			to_chat(H, span_danger("You cannot raise your hood while wearing \the [H.head]."))
 			return
 		if(H.equip_to_slot_if_possible(hood, slot_head))
 			hood.canremove = 0
-			to_chat(H, "<span class='info'>You raise your hood, obscuring your face.</span>")
+			to_chat(H, span_info("You raise your hood, obscuring your face."))
 			icon_state = icon_up
 			playsound(src.loc, "rustle", 75, 1)
 

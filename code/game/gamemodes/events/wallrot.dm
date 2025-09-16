@@ -21,7 +21,8 @@
 	endWhen = announceWhen + 1
 
 /datum/event/wallrot/announce()
-	command_announcement.Announce("Harmful fungi detected on ship. ship structures may be contaminated.", "Biohazard Alert", new_sound = pick('sound/AI/fungi.ogg', 'sound/AI/funguy.ogg', 'sound/AI/fun_guy.ogg', 'sound/AI/fun_gi.ogg'))
+	var/new_sound = pick('sound/AI/fungi.ogg', 'sound/AI/funguy.ogg', 'sound/AI/fun_guy.ogg', 'sound/AI/fun_gi.ogg')
+	priority_announce("Harmful fungi detected on ship. ship structures may be contaminated.", "Biohazard Alert", new_sound)
 
 /datum/event/wallrot/start()
 	set waitfor = FALSE
@@ -29,7 +30,7 @@
 	var/turf/wall/center = null
 
 	// 100 attempts
-	for(var/i=0, i<100, i++)
+	for(var/i = 0; i < 100; i++)
 		var/turf/candidate = locate(rand(1, world.maxx), rand(1, world.maxy), pick(GLOB.maps_data.station_levels))
 		if(istype(candidate, /turf/wall))
 			center = candidate //If necessary we'll settle for any wall
@@ -67,7 +68,7 @@
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		return
 	var/number_rots = rand(2,3)
-	for(var/i=0, i<number_rots, i++)
+	for(var/i = 0; i < number_rots; i++)
 		new/obj/effect/overlay/wallrot(src)
 
 

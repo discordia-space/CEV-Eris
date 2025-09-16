@@ -1,13 +1,15 @@
 
 //Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
 /proc/initialize_chemical_reagents()
-	var/paths = typesof(/datum/reagent) - /datum/reagent
-	GLOB.chemical_reagents_list = list()
+	var/list/reagent_list = list()
+
+	var/paths = subtypesof(/datum/reagent)
+
 	for(var/path in paths)
 		var/datum/reagent/D = new path()
-		if(!D.name)
-			continue
-		GLOB.chemical_reagents_list[D.id] = D
+		reagent_list[D.id] = D
+
+	. = reagent_list
 
 /datum/reagent
 	var/name = ""
@@ -115,7 +117,7 @@
 // "Removed" to multiplier
 // will return multiplier of how much value is more or less than default metabolism amount
 // all chem effects should be multiplied by return of this proc
-/datum/reagent/proc/RTM(var/removed, var/location)
+/datum/reagent/proc/RTM(removed, location)
 	if(ingest_met && location == CHEM_INGEST)
 		return removed/ingest_met
 	if(touch_met && location == CHEM_TOUCH)
@@ -123,7 +125,7 @@
 	return removed/metabolism
 
 // reverse convertion
-/datum/reagent/proc/MTR(var/RTM, var/location)
+/datum/reagent/proc/MTR(RTM, location)
 	if(ingest_met && location == CHEM_INGEST)
 		return ingest_met * RTM
 	if(touch_met && location == CHEM_TOUCH)
@@ -197,7 +199,7 @@
 	M.add_chemical_effect(CE_TOXIN, dose / 4)
 	return
 
-/datum/reagent/proc/create_overdose_wound(obj/item/organ/internal/I, mob/user, datum/component/internal_wound/base_type, wound_descriptor = "poisoning", silent = FALSE)
+/datum/reagent/proc/create_overdose_wound(obj/item/organ/internal/I, mob/user, datum/internal_wound/base_type, wound_descriptor = "poisoning", silent = FALSE)
 	if(!istype(I))
 		return
 	if(I.nature != initial(base_type.wound_nature))
@@ -207,7 +209,7 @@
 	var/wound_name = "[name] [wound_descriptor]"
 	I.add_wound(wound_path, wound_name)
 	if(!silent && BP_IS_ORGANIC(I))
-		to_chat(user, SPAN_WARNING("You feel a sharp pain in your [I.parent.name]."))
+		to_chat(user, span_warning("You feel a sharp pain in your [I.parent.name]."))
 
 /datum/reagent/proc/initialize_data(newdata) // Called when the reagent is created.
 	if(!isnull(newdata))
@@ -230,24 +232,24 @@
 // Addiction
 /datum/reagent/proc/addiction_act_stage1(mob/living/carbon/human/M)
 	if(prob(30))
-		to_chat(M, SPAN_NOTICE("You feel like having some [name] right about now."))
+		to_chat(M, span_notice("You feel like having some [name] right about now."))
 
 /datum/reagent/proc/addiction_act_stage2(mob/living/carbon/human/M)
 	if(prob(30))
-		to_chat(M, SPAN_NOTICE("You feel like you need [name]. You just can't get enough."))
+		to_chat(M, span_notice("You feel like you need [name]. You just can't get enough."))
 
 /datum/reagent/proc/addiction_act_stage3(mob/living/carbon/human/M)
 	if(prob(30))
-		to_chat(M, SPAN_DANGER("You have an intense craving for [name]."))
+		to_chat(M, span_danger("You have an intense craving for [name]."))
 		M.sanity.changeLevel(-5)
 
 /datum/reagent/proc/addiction_act_stage4(mob/living/carbon/human/M)
 	if(prob(30))
-		to_chat(M, SPAN_DANGER("You're not feeling good at all! You really need some [name]."))
+		to_chat(M, span_danger("You're not feeling good at all! You really need some [name]."))
 		M.sanity.changeLevel(-10)
 
 /datum/reagent/proc/addiction_end(mob/living/carbon/human/M)
-	to_chat(M, SPAN_NOTICE("You feel like you've gotten over your need for [name]."))
+	to_chat(M, span_notice("You feel like you've gotten over your need for [name]."))
 	M.sanity.changeLevel(15)
 
 // Withdrawal

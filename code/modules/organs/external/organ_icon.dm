@@ -12,7 +12,7 @@ var/global/list/limb_icon_cache = list()
 				overlays += child.mob_icon
 		overlays += organ.mob_icon
 
-/obj/item/organ/external/proc/sync_colour_to_human(var/mob/living/carbon/human/human)
+/obj/item/organ/external/proc/sync_colour_to_human(mob/living/carbon/human/human)
 	skin_tone = null
 	skin_col = null
 	hair_col = null
@@ -55,7 +55,7 @@ var/global/list/limb_icon_cache = list()
 			part_key += I.get_cache_key()
 	return part_key
 
-/obj/item/organ/external/head/sync_colour_to_human(var/mob/living/carbon/human/human)
+/obj/item/organ/external/head/sync_colour_to_human(mob/living/carbon/human/human)
 	..()
 	for(var/obj/item/organ/internal/eyes/eyes in owner.organ_list_by_process(OP_EYES))
 		eyes.update_colour()

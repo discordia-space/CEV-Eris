@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(atoms)
 	name = "Atoms"
 	init_order = INIT_ORDER_ATOMS
 	flags = SS_NO_FIRE
+	init_time_threshold = 1 MINUTE
 
 	var/old_initialized
 
@@ -157,6 +158,6 @@ SUBSYSTEM_DEF(atoms)
 	set desc = "Displays a list of things that didn't handle Initialize() properly."
 
 	if(!LAZYLEN(SSatoms.BadInitializeCalls))
-		to_chat(usr, SPAN_NOTICE("BadInit list is empty."))
+		to_chat(usr, span_notice("BadInit list is empty."))
 	else
-		usr << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
+		usr << browse(HTML_SKELETON(replacetext(SSatoms.InitLog(), "\n", "<br>")), "window=initlog")

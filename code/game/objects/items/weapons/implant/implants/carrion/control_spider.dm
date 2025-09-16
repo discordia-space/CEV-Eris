@@ -15,28 +15,28 @@
 	if(!owner_mob || !owner_mob?.mind)
 		return
 	if(!wearer)
-		to_chat(owner_mob, SPAN_WARNING("[src] doesn't have a host"))
+		to_chat(owner_mob, span_warning("[src] doesn't have a host"))
 		return
 	if(wearer.stat == DEAD)
-		to_chat(owner_mob, SPAN_WARNING("[wearer] is dead"))
+		to_chat(owner_mob, span_warning("[wearer] is dead"))
 		return
 	if(wearer == owner_mob)
-		to_chat(owner_mob, SPAN_DANGER("You feel dumb"))
+		to_chat(owner_mob, span_danger("You feel dumb"))
 		return
 	if(wearer.has_brain_worms() || is_carrion(wearer) || wearer.mind || ishuman(wearer))
-		to_chat(owner_mob, SPAN_DANGER("A strong mind inside this creature prevents activation"))
+		to_chat(owner_mob, span_danger("A strong mind inside this creature prevents activation"))
 		return
 	if(wearer.mob_classification == CLASSIFICATION_SYNTHETIC)
-		to_chat(owner_mob, SPAN_DANGER("This creature is robotic, you can't control it"))
+		to_chat(owner_mob, span_danger("This creature is robotic, you can't control it"))
 		return
 	if(last_use + cooldown > world.time)
-		to_chat(owner_mob, SPAN_WARNING("The mind control spider is spent, and needs 2 minutes to regenerate."))
+		to_chat(owner_mob, span_warning("The mind control spider is spent, and needs 2 minutes to regenerate."))
 		return
 
 	var/datum/mind/owner_mind = owner_mob.mind
 
-	to_chat(owner_mob, SPAN_NOTICE("You assume control of the host."))
-	to_chat(wearer, SPAN_DANGER("You feel a strange shifting sensation as another consciousness displaces yours."))
+	to_chat(owner_mob, span_notice("You assume control of the host."))
+	to_chat(wearer, span_danger("You feel a strange shifting sensation as another consciousness displaces yours."))
 	message_admins("[owner_mob] ([key_name_admin(owner_mob)]) took control of [wearer]([key_name_admin(wearer)]")
 	owner_mind_last = owner_mind
 	wearer_last = wearer
@@ -63,7 +63,7 @@
 	active = FALSE
 	if(owner_mob)
 		if(isghost(owner_mind_last.current))
-			to_chat(owner_mind_last.current, SPAN_NOTICE("You are yanked back to your body from beyond the void."))
+			to_chat(owner_mind_last.current, span_notice("You are yanked back to your body from beyond the void."))
 		owner_mind_last.transfer_to(owner_mob)
 	if(wearer_last && host_brain)
 		host_brain.mind?.transfer_to(wearer_last)

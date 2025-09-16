@@ -43,14 +43,14 @@
 
 /obj/structure/bs_crystal_structure/attackby(obj/item/I, mob/user)
 	if(user.a_intent == I_HELP && user.Adjacent(src) && I.has_quality(QUALITY_EXCAVATION))
-		src.visible_message(SPAN_NOTICE("[user] starts excavating crystals from [src]."), SPAN_NOTICE("You start excavating crystal from [src]."))
+		src.visible_message(span_notice("[user] starts excavating crystals from [src]."), span_notice("You start excavating crystal from [src]."))
 		if(do_after(user, WORKTIME_SLOW, src))
-			for(var/i = 0, i < crystal_amount, i++)
+			for(var/i = 0; i < crystal_amount; i++)
 				new /obj/item/bluespace_crystal(src.loc)
-			src.visible_message(SPAN_NOTICE("[user] excavates crystals from [src]."), SPAN_NOTICE("You excavate crystal from [src]."))
+			src.visible_message(span_notice("[user] excavates crystals from [src]."), span_notice("You excavate crystal from [src]."))
 			qdel(src)
 		else
-			to_chat(user, SPAN_WARNING("You must stay still to finish excavation."))
+			to_chat(user, span_warning("You must stay still to finish excavation."))
 
 	if(user.a_intent == I_HURT && user.Adjacent(src))
 		if(!(I.flags & NOBLUDGEON))
@@ -66,7 +66,7 @@
 			user.drop_item()
 			go_to_bluespace(get_turf(src), entropy_value, TRUE, I, src, aprecision=teleportation_range)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.75)
-			user.visible_message(SPAN_NOTICE("[user] hits [src] with [I] and it disappears!"), SPAN_NOTICE("You hit [src] with [I] and it disappears!"))
+			user.visible_message(span_notice("[user] hits [src] with [I] and it disappears!"), span_notice("You hit [src] with [I] and it disappears!"))
 
 /obj/structure/bs_crystal_structure/attack_hand(mob/user)
 	..()
@@ -82,7 +82,7 @@
 			qdel(AM)
 			qdel(src)
 	if(ismob(AM) || isobj(AM))
-		visible_message(SPAN_DANGER("[AM] smashes in [src] and disappears!"))
+		visible_message(span_danger("[AM] smashes in [src] and disappears!"))
 		go_to_bluespace(get_turf(src), entropy_value, TRUE, AM, src, aprecision=teleportation_range)
 
 /obj/structure/bs_crystal_structure/proc/teleport_random_item()

@@ -300,7 +300,7 @@
 
 	//Remove the seed if something is already planted.
 	if(seed) seed = null
-	seed = plant_controller.seeds[pick(list("reishi","nettles","amanita","mushrooms","plumphelmet","towercap","harebells","weeds"))]
+	seed = SSplants.seeds[pick(list("reishi","nettles","amanita","mushrooms","plumphelmet","towercap","harebells","weeds"))]
 	if(!seed) return //Weed does not exist, someone fucked up.
 
 	dead = 0
@@ -312,7 +312,7 @@
 	pestlevel = 0
 	sampled = 0
 	update_icon()
-	visible_message(SPAN_NOTICE("[src] has been overtaken by [seed.display_name]."))
+	visible_message(span_notice("[src] has been overtaken by [seed.display_name]."))
 
 	return
 
@@ -330,7 +330,7 @@
 	// We need to make sure we're not modifying one of the global seed datums.
 	// If it's not in the global list, then no products of the line have been
 	// harvested yet and it's safe to assume it's restricted to this tray.
-	if(!isnull(plant_controller.seeds[seed.name]))
+	if(!isnull(SSplants.seeds[seed.name]))
 		seed = seed.diverge()
 	seed.mutate(severity,get_turf(src))
 
@@ -385,8 +385,8 @@
 /obj/machinery/portable_atmospherics/hydroponics/proc/mutate_species()
 	var/previous_plant = seed.display_name
 	var/newseed = seed.get_mutant_variant()
-	if(newseed in plant_controller.seeds)
-		seed = plant_controller.seeds[newseed]
+	if(newseed in SSplants.seeds)
+		seed = SSplants.seeds[newseed]
 	else
 		return
 
@@ -399,7 +399,7 @@
 	weedlevel = 0
 
 	update_icon()
-	visible_message(SPAN_DANGER("The </span><span class='notice'>[previous_plant]</span><span class='danger'> has suddenly mutated into </span><span class='notice'>[seed.display_name]!"))
+	visible_message(span_danger("The </span>[span_notice("[previous_plant]")][span_danger(" has suddenly mutated into ")]<span class='notice'>[seed.display_name]!"))
 
 	return
 
@@ -409,17 +409,17 @@
 
 		if(QUALITY_SHOVELING)
 			if(weedlevel == 0)
-				to_chat(user, SPAN_WARNING("This plot is completely devoid of weeds. It doesn't need uprooting."))
+				to_chat(user, span_warning("This plot is completely devoid of weeds. It doesn't need uprooting."))
 				if(user.a_intent == I_HURT)
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_BIO))
-						user.visible_message(SPAN_DANGER("[user] starts damage the plants root."))
+						user.visible_message(span_danger("[user] starts damage the plants root."))
 						dead = 1
 						update_icon()
 					else
-						user.visible_message(SPAN_DANGER("[user] fails to kill the plant."))
+						user.visible_message(span_danger("[user] fails to kill the plant."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_BIO))
-				user.visible_message(SPAN_DANGER("[user] starts uprooting the weeds."), SPAN_DANGER("You remove the weeds from the [src]."))
+				user.visible_message(span_danger("[user] starts uprooting the weeds."), span_danger("You remove the weeds from the [src]."))
 				weedlevel = 0
 				update_icon()
 				return
@@ -428,20 +428,20 @@
 
 		if(QUALITY_WIRE_CUTTING)
 			if(!seed)
-				to_chat(user, SPAN_NOTICE("There is nothing to take a sample from in \the [src]."))
+				to_chat(user, span_notice("There is nothing to take a sample from in \the [src]."))
 				return
 
 			if(sampled > 2) //3 harvests. and the 4th one will kill the plant
-				to_chat(user, SPAN_NOTICE("You have already sampled from this plant."))
+				to_chat(user, span_notice("You have already sampled from this plant."))
 				if(user.a_intent == I_HURT)
-					to_chat(user, SPAN_NOTICE("You start killing it for one last sample."))
+					to_chat(user, span_notice("You start killing it for one last sample."))
 					seed.harvest(user,yield_mod,1)
 					dead = 1
 					update_icon()
 				return
 
 			if(dead)
-				to_chat(user, SPAN_WARNING("The plant is dead."))
+				to_chat(user, span_warning("The plant is dead."))
 				return
 
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_BIO))
@@ -462,23 +462,23 @@
 				if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)
 					if(connected_port)
 						disconnect()
-						to_chat(user, SPAN_NOTICE("You disconnect \the [src] from the port."))
+						to_chat(user, span_notice("You disconnect \the [src] from the port."))
 						update_icon()
 						return
 					else
 						var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 						if(possible_port)
 							if(connect(possible_port))
-								to_chat(user, SPAN_NOTICE("You connect \the [src] to the port."))
+								to_chat(user, span_notice("You connect \the [src] to the port."))
 								update_icon()
 								return
 							else
-								to_chat(user, SPAN_NOTICE("\The [src] failed to connect to the port."))
+								to_chat(user, span_notice("\The [src] failed to connect to the port."))
 								return
 						else
-							to_chat(user, SPAN_NOTICE("Nothing happens."))
+							to_chat(user, span_notice("Nothing happens."))
 							return
-				to_chat(user, SPAN_NOTICE("You [anchored ? "unwrench" : "wrench"] \the [src]."))
+				to_chat(user, span_notice("You [anchored ? "unwrench" : "wrench"] \the [src]."))
 				set_anchored(!anchored)
 				return
 			return
@@ -533,7 +533,7 @@
 			check_health()
 
 		else
-			to_chat(user, SPAN_DANGER("\The [src] already has seeds in it!"))
+			to_chat(user, span_danger("\The [src] already has seeds in it!"))
 
 	else if (istype(I, /obj/item/storage/bag/produce))
 
@@ -559,7 +559,7 @@
 
 	else if(I.force && seed)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		user.visible_message(SPAN_DANGER("\The [seed.display_name] has been attacked by [user] with \the [I]!"))
+		user.visible_message(span_danger("\The [seed.display_name] has been attacked by [user] with \the [I]!"))
 		if(!dead)
 			health -= I.force
 			check_health()
@@ -583,21 +583,21 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/examine(mob/user, extra_description = "")
 	if(seed)
-		extra_description += SPAN_NOTICE("[seed.display_name] are growing here.")
+		extra_description += span_notice("[seed.display_name] are growing here.")
 
 		if(get_dist(user, src) < 2)
 			extra_description += "Water: [round(waterlevel,0.1)]/100"
 			extra_description += "Nutrient: [round(nutrilevel,0.1)]/10"
 
 		if(weedlevel >= 5)
-			extra_description += "\The [src] is <span class='danger'>infested with weeds</span>!"
+			extra_description += "\The [src] is [span_danger("infested with weeds")]!"
 		if(pestlevel >= 5)
-			extra_description += "\The [src] is <span class='danger'>infested with tiny worms</span>!"
+			extra_description += "\The [src] is [span_danger("infested with tiny worms")]!"
 
 		if(dead)
-			extra_description += SPAN_DANGER("The plant is dead.")
+			extra_description += span_danger("The plant is dead.")
 		else if(health <= (seed.get_trait(TRAIT_ENDURANCE)/ 2))
-			extra_description += "\nThe plant looks [SPAN_DANGER("unhealthy")]."
+			extra_description += "\nThe plant looks [span_danger("unhealthy")]."
 
 		if(mechanical)
 			var/turf/T = loc
@@ -624,7 +624,7 @@
 			extra_description += "\nThe tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K."
 	else
 		extra_description += "[src] is empty."
-	
+
 	..(user, extra_description)
 
 

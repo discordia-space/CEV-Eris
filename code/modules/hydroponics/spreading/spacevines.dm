@@ -1,7 +1,7 @@
 //This has to be here because it uses defines in _hydro_setup.dm which are later undefined
 //It is used for the spacevine event
 
-/proc/spacevine_infestation(var/turf/T = null, var/potency_min=70, var/potency_max=100, var/maturation_min=5, var/maturation_max=15)
+/proc/spacevine_infestation(turf/T = null, potency_min=70, potency_max=100, maturation_min=5, maturation_max=15)
 	//Vines will spawn at a burrow
 	var/obj/structure/burrow/origin
 	var/list/burrows = GLOB.all_burrows.Copy()
@@ -31,7 +31,7 @@
 	origin.break_open()
 
 	T = get_turf(origin)
-	var/datum/seed/seed = plant_controller.create_random_seed(1)
+	var/datum/seed/seed = SSplants.create_random_seed(1)
 	seed.set_trait(TRAIT_SPREAD,3)             // So it will function properly as vines.
 	seed.set_trait(TRAIT_POTENCY,rand(potency_min, potency_max)) // 70-100 potency will help guarantee a wide spread and powerful effects.
 	seed.set_trait(TRAIT_MATURATION,rand(maturation_min, maturation_max))

@@ -1,7 +1,7 @@
 /datum/admin_secret_item/admin_secret/show_crew_manifest
 	name = "Show Crew Manifest"
 
-/datum/admin_secret_item/admin_secret/show_crew_manifest/execute(var/mob/user)
+/datum/admin_secret_item/admin_secret/show_crew_manifest/execute(mob/user)
 	. = ..()
 	if(!.)
 		return
@@ -9,4 +9,4 @@
 	dat += "<h4>Crew Manifest</h4>"
 	dat += data_core.get_manifest()
 
-	user << browse(dat, "window=manifest;size=370x420;can_close=1")
+	user << browse(HTML_SKELETON_TITLE("Crew Manifest", dat), "window=manifest;size=370x420;can_close=1")

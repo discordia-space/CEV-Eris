@@ -33,7 +33,7 @@
 // requests an appropriate tool
 /datum/surgery_step/proc/require_tool_message(mob/living/user)
 	if(required_tool_quality)
-		to_chat(user, SPAN_WARNING("You need a tool capable of [required_tool_quality] to complete this step."))
+		to_chat(user, span_warning("You need a tool capable of [required_tool_quality] to complete this step."))
 
 // checks whether this step can be applied to given target organ at all
 /datum/surgery_step/proc/is_valid_target(obj/item/organ/organ, target)
@@ -71,7 +71,7 @@
 
 	if(can_infect && prob(5) && istype(organ, /obj/item/organ/internal))
 		var/obj/item/organ/internal/I = organ
-		I.add_wound(pick(subtypesof(/datum/component/internal_wound/organic/infection)))
+		I.add_wound(pick(subtypesof(/datum/internal_wound/organic/infection)))
 
 	if(inflict_agony)
 		var/strength = inflict_agony
@@ -92,7 +92,7 @@
 		return FALSE
 
 	if(!tool)
-		tool = user.get_active_hand()
+		tool = user.get_active_held_item()
 
 	var/quality = S.tool_quality(tool)
 	if(!quality)
@@ -154,13 +154,13 @@
 	return TRUE
 
 
-proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery_status = CAN_OPERATE_ALL)
+/proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, surgery_status = CAN_OPERATE_ALL)
 	if(!istype(M))
 		return FALSE
 	if(user.a_intent != I_HELP)	//check for Hippocratic Oath
 		return FALSE
 
-	var/zone = user.targeted_organ
+	var/datum/zone = user.targeted_organ
 	var/obj/item/organ/external/affected
 
 	if(ishuman(M))
@@ -176,7 +176,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 			// Open or update surgery UI
 			affected.nano_ui_interact(user)
 
-			to_chat(user, SPAN_WARNING("You can't see any useful way to use [tool] on [M]."))
+			to_chat(user, span_warning("You can't see any useful way to use [tool] on [M]."))
 			return 1 //Prevents attacking the patient when trying to do surgery
 			//We check if tool qualities is populated here, so that, if it's not, we can return zero
 			//This will allow afterattack to be called for things which aren't exactly surgery tools, such as the autopsy scanner
@@ -184,7 +184,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 
 // Some surgery steps can be ran just by clicking a limb with a tool, old surgery style
 // Those are handled here
-/obj/item/organ/external/do_surgery(mob/living/user, obj/item/tool, var/surgery_status = CAN_OPERATE_ALL)
+/obj/item/organ/external/do_surgery(mob/living/user, obj/item/tool, surgery_status = CAN_OPERATE_ALL)
 	if(!tool)
 		if(is_open())
 			nano_ui_interact(user)
@@ -274,7 +274,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 			return TRUE
 
 		if(user.stats?.getStat(BP_IS_ROBOTIC(src) ? STAT_MEC : STAT_BIO) >= STAT_LEVEL_EXPERT)
-			to_chat(user, SPAN_NOTICE("One brief look at [get_surgery_name()] is enough for you to see all the issues immediately."))
+			to_chat(user, span_notice("One brief look at [get_surgery_name()] is enough for you to see all the issues immediately."))
 			diagnosed = TRUE
 			return TRUE
 

@@ -39,18 +39,18 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/atom/holder
 	var/setup = 0
 
-	proc/set_up(n = 3, c = 0, turf/loc)
-		if(n > 10)
-			n = 10
-		number = n
-		cardinals = c
-		location = loc
-		setup = 1
+/datum/effect/effect/system/proc/set_up(n = 3, c = 0, turf/loc)
+	if(n > 10)
+		n = 10
+	number = n
+	cardinals = c
+	location = loc
+	setup = 1
 
-	proc/attach(atom/atom)
-		holder = atom
+/datum/effect/effect/system/proc/attach(atom/atom)
+	holder = atom
 
-	proc/start()
+/datum/effect/effect/system/proc/start()
 
 
 /////////////////////////////////////////////
@@ -76,30 +76,29 @@ steam.start() -- spawns the effect
 
 /datum/effect/effect/system/steam_spread
 
-	set_up(n = 3, c = 0, turf/loc)
-		if(n > 10)
-			n = 10
-		number = n
-		cardinals = c
-		location = loc
+/datum/effect/effect/system/steam_spread/set_up(n = 3, c = 0, turf/loc)
+	if(n > 10)
+		n = 10
+	number = n
+	cardinals = c
+	location = loc
 
-	start()
-		var/i = 0
-		for(i=0, i<src.number, i++)
-			spawn(0)
-				if(holder)
-					src.location = get_turf(holder)
-				var/obj/effect/effect/steam/steam = new(location)
-				var/direction
-				if(src.cardinals)
-					direction = pick(cardinal)
-				else
-					direction = pick(alldirs)
-				for(var/j=0, j<pick(1,2,3), j++)
-					sleep(5)
-					step(steam,direction)
-				spawn(20)
-					qdel(steam)
+/datum/effect/effect/system/steam_spread/start()
+	var/i = 0
+	for(i = 0; i < src.number; i++)
+		spawn(0)
+			if(holder)
+				src.location = get_turf(holder)
+			var/obj/effect/effect/steam/steam = new(location)
+			var/direction
+			if(src.cardinals)
+				direction = pick(GLOB.cardinal)
+			else
+				direction = pick(GLOB.alldirs)
+			for(var/j = 0; j < pick(1,2,3); j++)
+				sleep(5)
+				step(steam,direction)
+			QDEL_IN(steam, 20)
 
 /////////////////////////////////////////////
 //SPARK SYSTEM (like steam system)
@@ -110,7 +109,7 @@ steam.start() -- spawns the effect
 
 /proc/do_sparks(n, c, source)
 	// n - number of sparks
-	// c - cardinals, bool, do the sparks only move in cardinal directions?
+	// c - cardinals, bool, do the sparks only move in GLOB.cardinal directions?
 	// source - source of the sparks.
 
 	var/datum/effect/effect/system/spark_spread/sparks = new
@@ -142,7 +141,7 @@ steam.start() -- spawns the effect
 		T.hotspot_expose(1000,100)
 	return ..()
 
-/obj/effect/sparks/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/effect/sparks/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	var/turf/T = src.loc
 	if (istype(T, /turf))
@@ -163,7 +162,7 @@ steam.start() -- spawns the effect
 
 /datum/effect/effect/system/spark_spread/start()
 	var/i = 0
-	for(i=0, i<src.number, i++)
+	for(i = 0; i<src.number; i++)
 		if(src.total_sparks > 20)
 			return
 		if(holder)
@@ -172,10 +171,10 @@ steam.start() -- spawns the effect
 		src.total_sparks++
 		var/direction
 		if(src.cardinals)
-			direction = pick(cardinal)
+			direction = pick(GLOB.cardinal)
 		else
-			direction = pick(alldirs)
-		for(var/j=0, j<pick(1,2,3), j++)
+			direction = pick(GLOB.alldirs)
+		for(var/j = 0; j < pick(1,2,3); j++)
 			addtimer(CALLBACK(src, PROC_REF(do_spark_movement), sparks, direction), rand(1,5) SECONDS)
 			//sleep(rand(1,5))
 			//step(sparks,direction)
@@ -231,12 +230,12 @@ steam.start() -- spawns the effect
 	if(istype(M))
 		affect(M)
 
-/obj/effect/effect/smoke/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/effect/effect/smoke/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	for(var/mob/living/carbon/M in get_turf(src))
 		affect(M)
 
-/obj/effect/effect/smoke/proc/affect(var/mob/living/carbon/M)
+/obj/effect/effect/smoke/proc/affect(mob/living/carbon/M)
 	if (istype(M))
 		return 0
 	if (M.internal != null)
@@ -251,7 +250,7 @@ steam.start() -- spawns the effect
 
 
 // Fades out the smoke smoothly using it's alpha variable.
-/obj/effect/effect/smoke/proc/fade_out(var/frames = 16)
+/obj/effect/effect/smoke/proc/fade_out(frames = 16)
 	if(!alpha) return //already transparent
 	fading = TRUE
 	frames = max(frames, 1) //We will just assume that by 0 frames, the coder meant "during one frame".
@@ -279,7 +278,7 @@ steam.start() -- spawns the effect
 	var/radius = 3
 	var/brightness = 2
 
-/obj/effect/effect/light/New(var/newloc, var/radius, var/brightness, color, selfdestruct_timer)
+/obj/effect/effect/light/New(newloc, radius, brightness, color, selfdestruct_timer)
 	..()
 
 	src.radius = radius
@@ -288,8 +287,7 @@ steam.start() -- spawns the effect
 	set_light(radius,brightness,color)
 
 	if(selfdestruct_timer)
-		spawn(selfdestruct_timer)
-		qdel(src)
+		QDEL_IN(src, selfdestruct_timer)
 
 /obj/effect/effect/light/set_light(l_range, l_power, l_color)
 	..()
@@ -303,7 +301,7 @@ steam.start() -- spawns the effect
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparks"
 
-/obj/effect/effect/smoke/illumination/New(var/newloc, var/brightness=15, var/lifetime=10, var/color=COLOR_WHITE)
+/obj/effect/effect/smoke/illumination/New(newloc, brightness=15, lifetime=10, color=COLOR_WHITE)
 	time_to_live=lifetime
 	..()
 	set_light(brightness, 1, color)
@@ -315,7 +313,7 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/bad
 	time_to_live = 200
 
-/obj/effect/effect/smoke/bad/affect(var/mob/living/carbon/M)
+/obj/effect/effect/smoke/bad/affect(mob/living/carbon/M)
 	if (!..())
 		return 0
 	M.drop_item()
@@ -369,7 +367,7 @@ steam.start() -- spawns the effect
 	icon_state = "mustard"
 
 
-/obj/effect/effect/smoke/mustard/affect(var/mob/living/carbon/human/R)
+/obj/effect/effect/smoke/mustard/affect(mob/living/carbon/human/R)
 	if (!..())
 		return 0
 	if (R.wear_suit != null)
@@ -409,15 +407,15 @@ steam.start() -- spawns the effect
 	var/i = 0
 	if(holder)
 		src.location = get_turf(holder)
-	for(i=0, i<src.number, i++)
+	for(i = 0; i<src.number; i++)
 		var/obj/effect/effect/smoke/smoke = new smoke_type(location)
 		var/direction
 		if(cardinals)
-			direction = pick(cardinal)
+			direction = pick(GLOB.cardinal)
 		else
-			direction = pick(alldirs)
+			direction = pick(GLOB.alldirs)
 		var/added_time = 1 SECOND
-		for(var/j=0, j<pick(0,1,1,1,2,2,2,3), j++)
+		for(var/j = 0; j < pick(0,1,1,1,2,2,2,3); j++)
 			addtimer(CALLBACK(src, PROC_REF(move_smoke), smoke, direction), added_time)
 			added_time += 1 SECOND
 
@@ -447,34 +445,47 @@ steam.start() -- spawns the effect
 	var/flashing = 0			// does explosion creates flash effect?
 	var/flashing_factor = 0		// factor of how powerful the flash effect relatively to the explosion
 
-	set_up (amt, loc, flash = 0, flash_fact = 0)
-		amount = amt
-		if(istype(loc, /turf/))
-			location = loc
-		else
-			location = get_turf(loc)
+/datum/effect/effect/system/reagents_explosion/set_up (amt, loc, flash = 0, flash_fact = 0)
+	amount = amt
+	if(istype(loc, /turf/))
+		location = loc
+	else
+		location = get_turf(loc)
 
-		flashing = flash
-		flashing_factor = flash_fact
+	flashing = flash
+	flashing_factor = flash_fact
 
+	return
+
+/datum/effect/effect/system/reagents_explosion/start()
+	if (amount <= 2)
+		var/datum/effect/effect/system/spark_spread/s = new
+		s.set_up(2, 1, location)
+		s.start()
+
+		for(var/mob/M in viewers(5, location))
+			to_chat(M, span_warning("The solution violently explodes."))
+		for(var/mob/M in viewers(1, location))
+			if (prob (50 * amount))
+				to_chat(M, span_warning("The explosion knocks you down."))
+				M.Weaken(rand(1,5))
 		return
+	else
+		var/explosion_power = amount
+		for(var/mob/M in viewers(8, location))
+			to_chat(M, span_warning("The solution violently explodes."))
 
-	start()
-		if (amount <= 2)
-			var/datum/effect/effect/system/spark_spread/s = new
-			s.set_up(2, 1, location)
-			s.start()
+		explosion(get_turf(location), explosion_power, explosion_power / 10)
 
-			for(var/mob/M in viewers(5, location))
-				to_chat(M, SPAN_WARNING("The solution violently explodes."))
-			for(var/mob/M in viewers(1, location))
-				if (prob (50 * amount))
-					to_chat(M, SPAN_WARNING("The explosion knocks you down."))
-					M.Weaken(rand(1,5))
-			return
-		else
-			var/explosion_power = amount
-			for(var/mob/M in viewers(8, location))
-				to_chat(M, SPAN_WARNING("The solution violently explodes."))
+///The abstract effect ignores even more effects and is often typechecked for atoms that should truly not be fucked with.
+/obj/effect/abstract/singularity_pull()
+	return
 
-			explosion(get_turf(location), explosion_power, explosion_power / 10)
+/obj/effect/abstract/singularity_act()
+	return
+
+/obj/effect/dummy/singularity_pull()
+	return
+
+/obj/effect/dummy/singularity_act()
+	return

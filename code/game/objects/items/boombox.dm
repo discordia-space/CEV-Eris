@@ -71,7 +71,7 @@
 	if(current_track && playing)
 		media_url = current_track.url
 		media_start_time = world.time
-		visible_message(SPAN_NOTICE("\The [src] begins to play [current_track.display()]."))
+		visible_message(span_notice("\The [src] begins to play [current_track.display()]."))
 	else
 		media_url = ""
 		media_start_time = 0
@@ -102,17 +102,17 @@
 
 	if(istype(W, /obj/item/music_tape))
 		if(my_tape)
-			to_chat(user, SPAN_NOTICE("There's already a tape inside [src]."))
+			to_chat(user, span_notice("There's already a tape inside [src]."))
 		else
 			my_tape = W
 			user.unEquip(my_tape, src)
 			my_tape.forceMove(src)
-			to_chat(user, SPAN_NOTICE("You insert the tape inside [src]."))
+			to_chat(user, span_notice("You insert the tape inside [src]."))
 			update_tape()
 	return ..()
 
 
-/obj/item/media/boombox/proc/update_tape(var/removed)
+/obj/item/media/boombox/proc/update_tape(removed)
 	if (!removed)
 		tracks.Add(get_tape_playlist())
 	else
@@ -154,7 +154,7 @@
 /obj/item/media/boombox/attack_self(mob/user)
 	nano_ui_interact(user)
 
-/obj/item/media/boombox/nano_ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/media/boombox/nano_ui_interact(mob/user, ui_key = "jukebox", datum/nanoui/ui = null, force_open = 1)
 	var/title = "Boombox - Space Style"
 	var/data[0]
 
@@ -243,4 +243,4 @@
 		my_tape.forceMove(get_turf(src))
 		my_tape = null
 	else
-		to_chat(usr, SPAN_NOTICE("There is no tape inside [src]."))
+		to_chat(usr, span_notice("There is no tape inside [src]."))

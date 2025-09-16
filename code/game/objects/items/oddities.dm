@@ -380,15 +380,15 @@
 /obj/item/oddity/broken_necklace/examine(mob/user, extra_description = "")
 	var/area/my_area = get_area(src)
 	if(my_area.bluespace_entropy < (my_area.bluespace_hazard_threshold * 0.75))
-		extra_description += SPAN_NOTICE("This feels cold to the touch.")
+		extra_description += span_notice("This feels cold to the touch.")
 	else
-		extra_description += SPAN_NOTICE("This feels warm to the touch.")
+		extra_description += span_notice("This feels warm to the touch.")
 
 	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
-		extra_description += SPAN_NOTICE("\nHas it always shone so brightly?")
+		extra_description += span_notice("\nHas it always shone so brightly?")
 
 	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)
-		extra_description += SPAN_NOTICE("\nYou can see an inscription in some language unknown to you.")
+		extra_description += span_notice("\nYou can see an inscription in some language unknown to you.")
 
 	..(user, extra_description)
 
@@ -404,7 +404,7 @@
 	if(world.time < cooldown)
 		return
 	cooldown = world.time + 3 SECONDS
-	user.visible_message(SPAN_WARNING("[user] crushes [src]!"), SPAN_DANGER("You crush [src]!"))
+	user.visible_message(span_warning("[user] crushes [src]!"), span_danger("You crush [src]!"))
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(3, 0, get_turf(user))
 	sparks.start()
@@ -418,7 +418,7 @@
 
 /obj/item/oddity/broken_necklace/throw_impact(atom/movable/hit_atom)
 	if(!..()) // not caught in mid-air
-		visible_message(SPAN_NOTICE("[src] fizzles upon impact!"))
+		visible_message(span_notice("[src] fizzles upon impact!"))
 		var/turf/T = get_turf(hit_atom)
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, T)
@@ -548,7 +548,7 @@
 
 /obj/item/oddity/pendant/Process()
 	if(world.time > produce_next)
-		visible_message(SPAN_NOTICE("[src] stops humming suddenly."))
+		visible_message(span_notice("[src] stops humming suddenly."))
 		src.desc = "An ornate golden necklace."
 		produce_ready = TRUE
 		STOP_PROCESSING(SSobj, src)
@@ -557,13 +557,13 @@
 /obj/item/oddity/pendant/attack_self(mob/user)
 	if(produce_ready)
 		new /obj/item/golden_leaf(get_turf(src))
-		user.visible_message(SPAN_NOTICE("[user] opens [src], and a little golden leaf falls from it. \The [src] closes shut right after."), SPAN_NOTICE("As you open [src], a little golden leaf falls from it. \The [src] closes shut right after and start to hum quietly."))
+		user.visible_message(span_notice("[user] opens [src], and a little golden leaf falls from it. \The [src] closes shut right after."), span_notice("As you open [src], a little golden leaf falls from it. \The [src] closes shut right after and start to hum quietly."))
 		src.desc = "An ornate golden necklace. It's closed and hums quietly."
 		produce_next = world.time + 10 MINUTES
 		produce_ready = FALSE
 		START_PROCESSING(SSobj, src)
 	else
-		user.visible_message(SPAN_NOTICE("[user] tries to open [src] without success."), SPAN_NOTICE("You fail to open [src]."))
+		user.visible_message(span_notice("[user] tries to open [src] without success."), span_notice("You fail to open [src]."))
 
 /hook/roundstart/proc/place_pendant()
 	var/obj/landmark/storyevent/potential_unique_oddity_spawn/L = pick_landmark(/obj/landmark/storyevent/potential_unique_oddity_spawn)
@@ -586,11 +586,11 @@
 
 	if(target.is_refillable())
 		if(!target.reagents.has_reagent("water", 30))
-			to_chat(user, SPAN_NOTICE("You need some water for that."))
+			to_chat(user, span_notice("You need some water for that."))
 		else
 			target.reagents.remove_reagent("water", 30)
 			target.reagents.add_reagent("oddity_tea", 30)
-			to_chat(user, SPAN_NOTICE("You drop \the [src] in the water, it dissolves slowly."))
+			to_chat(user, span_notice("You drop \the [src] in the water, it dissolves slowly."))
 			qdel(src)
 
 //Complex Functional Oddities (Spawn in maint too, but moving them up would eat quite a bit of the document)
@@ -639,14 +639,14 @@
 		if(alert(user, "Do you want to try and solve the equation on the scrap?", "Math problems!", "Yes", "No") == "Yes")
 			if(user.stat_check(STAT_COG, STAT_LEVEL_ADEPT))
 				if(prob(95))
-					user.visible_message(SPAN_WARNING("A bear appears out of nowhere!"), SPAN_DANGER("The equation results in a bear!"))
+					user.visible_message(span_warning("A bear appears out of nowhere!"), span_danger("The equation results in a bear!"))
 					var/turf/T = get_turf(pick(oview(2, user)))
 					var/mob/living/simple_animal/hostile/bear/B = new /mob/living/simple_animal/hostile/bear(T)
 					var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 					sparks.set_up(3, 0, get_turf(B.loc))
 					sparks.start()
 					if(prob(15))
-						user.visible_message(SPAN_WARNING("The paper disintegrates!"))
+						user.visible_message(span_warning("The paper disintegrates!"))
 						qdel(src)
 				else
 					new /obj/spawner/oddities(get_turf(pick(oview(2, user))))
@@ -655,7 +655,7 @@
 					var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 					sparks.set_up(3, 0, get_turf(user.loc))
 					sparks.start()
-					user.visible_message(SPAN_WARNING("A bunch of items appear out of nowhere!"), SPAN_DANGER("The equation results in several unique objects!"))
+					user.visible_message(span_warning("A bunch of items appear out of nowhere!"), span_danger("The equation results in several unique objects!"))
 					qdel(src)
 			else
 				to_chat(user, "You fail to solve the equation, did you carry the [rand(1, 9)]?")
@@ -709,8 +709,8 @@
 	if(istype(user))
 		if(alert(user, "Flip the coin?", "seven-sided coin", "Yes", "No") == "Yes")
 			if(prob(1))
-				user.visible_message(SPAN_NOTICE("[user] has thrown \the [src]. It lands on its side?! "), \
-						 SPAN_NOTICE("You throw \the [src]. It lands on its side?! "))
+				user.visible_message(span_notice("[user] has thrown \the [src]. It lands on its side?! "), \
+						 span_notice("You throw \the [src]. It lands on its side?! "))
 				if(!was_flipped)
 					oddity_stats = sideways_stats
 					desc = "An odd seven-sided coin with somewhat sharp edges and blank sides. Holding it gives you a strange sense of nonspecific closure."
@@ -728,8 +728,8 @@
 						desc = "An odd seven-sided coin with somewhat sharp edges. ONE DAY YOU WILL FORGIVE is stamped on the back."
 					comment = "heads"
 
-				user.visible_message(SPAN_NOTICE("[user] has thrown \the [src]. It lands on [comment]! "), \
-									 SPAN_NOTICE("You throw \the [src]. It lands on [comment]! "))
+				user.visible_message(span_notice("[user] has thrown \the [src]. It lands on [comment]! "), \
+									 span_notice("You throw \the [src]. It lands on [comment]! "))
 			was_flipped = TRUE
 			var/datum/component/inspiration/odd = GetComponent(/datum/component/inspiration)
 			odd.stats = oddity_stats
@@ -792,7 +792,7 @@
 				var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 				sparks.set_up(3, 0, get_turf(user.loc))
 				sparks.start()
-				user.visible_message(SPAN_WARNING("A collection of strange items appears out of nowhere!"), SPAN_DANGER("The card disintegrates, leaving behind several strange objects!"))
+				user.visible_message(span_warning("A collection of strange items appears out of nowhere!"), span_danger("The card disintegrates, leaving behind several strange objects!"))
 				qdel(src)
 
 /obj/item/oddity/onestar

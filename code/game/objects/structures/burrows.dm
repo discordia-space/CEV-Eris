@@ -1,7 +1,7 @@
-/*
-	A burrow is an entrance to an abstract network of tunnels inside the walls of eris. Animals and creatures of
-	all types, but mostly roaches, can travel from one burrow to another, bypassing all obstacles inbetween
-*/
+/**
+ * A burrow is an entrance to an abstract network of tunnels inside the walls of eris. Animals and creatures of
+ * all types, but mostly roaches, can travel from one burrow to another, bypassing all obstacles inbetween
+ */
 /obj/structure/burrow
 	name = "cracks"
 	desc = "Cracks on the tile."
@@ -14,51 +14,69 @@
 	layer = ABOVE_NORMAL_TURF_LAYER
 
 
-	var/isSealed = TRUE	// borrow spawns as cracks and becomes a hole when critters emerge
+	/// borrow spawns as cracks and becomes a hole when critters emerge
+	var/isSealed = TRUE
 
-	var/isRevealed = FALSE // when burrow is revealed it prevents interactions with turf and is not hiden anymore
+	/// when burrow is revealed it prevents interactions with turf and is not hiden anymore
+	var/isRevealed = FALSE
 
-	//A list of the mobs that are near this hole, and considered to be living here.
-	//Since this list is updated infrequently, it stores refs instead of direct pointers, to prevent GC issues
+    /**
+	 * A list of the mobs that are near this hole, and considered to be living here.
+	 * Since this list is updated infrequently, it stores refs instead of direct pointers, to prevent GC issues
+	 */
 	var/list/population = list()
 
 
-	//If true, this burrow is located in a maintenance tunnel. Most of them will be
-	//Ones located outside of maint are much less likely to be picked for migration
+	/**
+	 * If true, this burrow is located in a maintenance tunnel. Most of them will be
+	 * Ones located outside of maint are much less likely to be picked for migration
+	 */
 	var/maintenance = FALSE
 
-	//If true, this burrow is located near NT obelisk.
-	//those are much less likely to be picked for migration due cool NT magic
+	/**
+	 * If true, this burrow is located near NT obelisk.
+	 * those are much less likely to be picked for migration due cool NT magic
+	 */
 	var/obelisk_around = null
 
 
 	//Vars for migration
 	var/processing = FALSE
-	var/obj/structure/burrow/target //Burrow we're currently sending mobs to
-	var/obj/structure/burrow/recieving	//Burrow currently sending mobs to us
+	/// Burrow we're currently sending mobs to
+	var/obj/structure/burrow/target
+	/// Burrow currently sending mobs to us
+	var/obj/structure/burrow/recieving
+	/// For mob AI
+	var/datum/weakref/lastleader
 
 	var/list/sending_mobs = list()
-	var/migration_initiated //When a migration started
-	var/completion_time //Time that the mobs will actually arrive at the target
+	/// When a migration started
+	var/migration_initiated
+	/// Time that the mobs will actually arrive at the target
+	var/completion_time
 	var/duration
 
-	var/datum/seed/plant = null //Seed datum of the plant that spreads from here, if any
-	var/list/plantspread_burrows = list()
-	/*A list of burrow references. Either ones that we sent plants to,or one that sent plants to us.
-	As long as any burrow in this list still exists, our plants will keep regrowing,
-	and we cannot send plants to any other burrow.
-	If every burrow in this list is destroyed, we will send our plants somewhere new, if we still have them
-	*/
+	/// Seed datum of the plant that spreads from here, if any
+	var/datum/seed/plant = null
 
-	//Animation
+	/**
+	 * A list of burrow references. Either ones that we sent plants to,or one that sent plants to us.
+	 * As long as any burrow in this list still exists, our plants will keep regrowing,
+	 * and we cannot send plants to any other burrow.
+	 * If every burrow in this list is destroyed, we will send our plants somewhere new, if we still have them
+	 */
+	var/list/plantspread_burrows = list()
+
+
 	var/max_shake_intensity = 20
 
-	var/reinforcements = 2 //Maximum number of times this burrow may recieve reinforcements
+	/// Maximum number of times this burrow may recieve reinforcements
+	var/reinforcements = 2
 
-	var/deepmaint_entry_point = FALSE //Will this burrow turn into a deep maint entry point upon getting collapsed?
+	/// Will this burrow turn into a deep maint entry point upon getting collapsed?
+	var/deepmaint_entry_point = FALSE
 
-
-/obj/structure/burrow/New(var/loc, turf/anchor)
+/obj/structure/burrow/New(loc, turf/anchor)
 	.=..()
 	GLOB.all_burrows.Add(src)
 	var/obj/machinery/power/nt_obelisk/obelisk = locate(/obj/machinery/power/nt_obelisk) in range(7, src)
@@ -76,7 +94,7 @@
 	life_scan()
 
 	// apparently burrows should face walls
-	for (var/d in cardinal)
+	for (var/d in GLOB.cardinal)
 		var/turf/T = get_step(F, d)
 		if (T.is_wall)
 			dir = d
@@ -91,7 +109,7 @@
 		deepmaint_entry_point = TRUE
 
 
-//Lets remove ourselves from the global list and cleanup any held references
+/// Lets remove ourselves from the global list and cleanup any held references
 /obj/structure/burrow/Destroy()
 	GLOB.all_burrows.Remove(src)
 	populated_burrows -= src
@@ -108,8 +126,10 @@
 	plant = null
 	return ..()
 
-//This is called from the migration subsystem. It scans for nearby creatures
-//Any kind of simple or superior animal is valid, all of them are treated as population for this burrow
+/**
+ * This is called from the migration subsystem. It scans for nearby creatures
+ * Any kind of simple or superior animal is valid, all of them are treated as population for this burrow
+ */
 /obj/structure/burrow/proc/life_scan()
 	population.Cut()
 	for (var/mob/living/L in dview(14, loc))
@@ -124,9 +144,7 @@
 		unpopulated_burrows |= src
 
 
-/*
-	Returns true/false to indicate if the passed mob is valid to be considered population for this burrow
-*/
+/// Returns true/false to indicate if the passed mob is valid to be considered population for this burrow
 /obj/structure/burrow/proc/is_valid(mob/living/L)
 	if(QDELETED(L) || !istype(L))
 		return FALSE
@@ -162,17 +180,17 @@
 */
 
 
-/*
-Starts the process of sending mobs from one burrow to another
-_target is the burrow we will send our mobs to,
-time, is how long, in deciseconds, we will wait before putting them into the target.
-	During this time, we will suck up nearby mobs into this burrow, and at the end of the time only those inside
-	the burrow are sent
-percentage is a value in the range 0..1 that determines what portion of this mob's population to send.
-	It is possible for percentage to be zero, this is used by the infestation event.
-	Passing a percentage of zero is a special case, this burrow will not suck up any mobs.
-	The mobs it is to send should be placed inside it by the caller
-*/
+/**
+ * Starts the process of sending mobs from one burrow to another
+ * _target is the burrow we will send our mobs to,
+ * time, is how long, in deciseconds, we will wait before putting them into the target.
+ * During this time, we will suck up nearby mobs into this burrow, and at the end of the time only those inside
+ * the burrow are sent
+ * percentage is a value in the range 0..1 that determines what portion of this mob's population to send.
+ * It is possible for percentage to be zero, this is used by the infestation event.
+ * Passing a percentage of zero is a special case, this burrow will not suck up any mobs.
+ * The mobs it is to send should be placed inside it by the requester
+ */
 /obj/structure/burrow/proc/migrate_to(obj/structure/burrow/_target, time = 1, percentage = 1)
 	if (!_target)
 		return
@@ -209,7 +227,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	target.prepare_reception(migration_initiated, duration, src)
 
 
-//Summons some or all of the nearby population to this hole, where they will enter it and travel
+/// Summons some or all of the nearby population to this hole, where they will enter it and travel
 /obj/structure/burrow/proc/summon_mobs(percentage = 1)
 	var/list/candidates = population.Copy() //Make a copy of the population list so we can modify it
 	var/step = 1 / candidates.len //What percentage of the population is each mob worth?
@@ -241,7 +259,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 
 
-//Tells this burrow that it's soon to recieve new arrivals
+/// Tells this burrow that it's soon to recieve new arrivals
 /obj/structure/burrow/proc/prepare_reception(start_time, _duration, sender)
 	migration_initiated = start_time
 	duration = _duration
@@ -359,6 +377,16 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 			//We'll move all the mobs briefly onto our own turf, then shortly after, onto a surrounding one
 			for (var/mob/M in contents)
 				M.forceMove(loc)
+				if(lastleader) // then we resolve the overseer
+					if(issuperioranimal(M))
+						var/mob/living/carbon/superior_animal/tochain = M
+						tochain.commandchain(lastleader.resolve())
+					// don't bother with non-superior mobs
+				else
+					if(issuperioranimal(M))
+						if(isroach(M))
+							var/mob/living/carbon/superior_animal/roach/toalert = M
+							toalert.findOverseer()
 				spawn(rand(1,5))
 					var/turf/T = pick(floors)
 					M.forceMove(T)
@@ -366,6 +394,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 					//Emerging from a burrow will create rubble and mess
 					if(spawn_rubble(loc, 2, 80))
 						spawn_rubble(loc, 3, 30)
+			lastleader = null // only summon once, then don't let automatic migrations count
 
 
 	//Lets reset all these vars that we used during migration
@@ -381,12 +410,13 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 
 
-//Very rare, abort would mostly only happen in the case that one burrow is destroyed during the process
+/// Very rare, abort would mostly only happen in the case that one burrow is destroyed during the process
 /obj/structure/burrow/proc/abort_migration()
 	STOP_PROCESSING(SSobj, src)
 	processing = FALSE
 	target = null
 	recieving = null
+	lastleader = null
 
 	sending_mobs = list()
 	migration_initiated = 0
@@ -398,7 +428,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 
 
-//Called when an area becomes uninhabitable
+/// Called when an area becomes uninhabitable
 /obj/structure/burrow/proc/evacuate(force_nonmaint = TRUE)
 	//We're already busy sending or recieving a migration, can't start another or closed
 	if (target || recieving || isSealed)
@@ -420,7 +450,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		migrate_to(btarget, 10 SECONDS, 1)
 
 
-/obj/structure/burrow/proc/distress(immediate = FALSE)
+/obj/structure/burrow/proc/distress(immediate = FALSE, atom/requester)
 	//This burrow requests reinforcements from elsewhere
 	if (reinforcements <= 0)
 		return
@@ -428,6 +458,8 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	distressed_burrows |= src //Add ourselves to a global list.
 	//The migration subsystem will look at it and send things.
 	//It may take up to 30 seconds to tick and notice our request
+	if(ismob(requester))
+		lastleader = WEAKREF(requester)
 
 	if (immediate)
 		//Alternatively, we can demand things be sent right now
@@ -439,7 +471,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 ***********************************/
 
 
-//Called when things enter or leave this burrow
+/// Called when things enter or leave this burrow
 /obj/structure/burrow/proc/break_open(silent = FALSE)
 	if(isSealed)
 		reveal()
@@ -535,9 +567,9 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 				spawn_rubble(loc, 1, 100)
 
 				if (I.get_tool_quality(QUALITY_DIGGING) > 30)
-					to_chat(user, SPAN_NOTICE("The [src] crumbles a bit. Keep trying and you'll collapse it eventually"))
+					to_chat(user, span_notice("The [src] crumbles a bit. Keep trying and you'll collapse it eventually"))
 				else
-					to_chat(user, SPAN_NOTICE("This isn't working very well. Perhaps you should get a better digging tool?"))
+					to_chat(user, span_notice("This isn't working very well. Perhaps you should get a better digging tool?"))
 
 				//On failure, the hole takes some damage based on the digging quality of the tool.
 				//This will make things much easier next time
@@ -554,8 +586,8 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 	. = ..()
 
-//Collapses the burrow, making cracks instead
-/obj/structure/burrow/proc/collapse(var/clean = FALSE)
+/// Collapses the burrow, making cracks instead
+/obj/structure/burrow/proc/collapse(clean = FALSE)
 	if(!clean)
 		spawn_rubble(loc, 0, 100)
 	if(deepmaint_entry_point)
@@ -574,9 +606,11 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	desc = initial(desc)
 
 
-//Spawns some rubble on or near a target turf
-//Will only allow one rubble decal per tile
-/obj/structure/burrow/proc/spawn_rubble(var/turf/T, var/spread = 0, var/chance = 100)
+/**
+ * Spawns some rubble on or near a target turf
+ * Will only allow one rubble decal per tile
+ */
+/obj/structure/burrow/proc/spawn_rubble(turf/T, spread = 0, chance = 100)
 	if (!prob(chance))
 		return FALSE
 
@@ -596,8 +630,8 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	return TRUE
 
 
-//If underfloor, hide the burrow
-/obj/structure/burrow/hide(var/i)
+/// If underfloor, hide the burrow
+/obj/structure/burrow/hide(i)
 	invisibility = i ? INVISIBILITY_MAXIMUM : 0
 
 /obj/structure/burrow/hides_under_flooring()
@@ -608,15 +642,17 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 /****************************
 	Burrow entering
 ****************************/
-/obj/structure/burrow/proc/enter_burrow(var/mob/living/L)
+/obj/structure/burrow/proc/enter_burrow(mob/living/L)
 	break_open()
 	spawn()
 		L.do_pickup_animation(src, L.loc)
 		sleep(8)
 		L.forceMove(src)
 
-//Mobs that are summoned will walk up and attack this burrow
-//This will suck them in
+/**
+ * Mobs that are summoned will walk up and attack this burrow
+ * This will suck them in
+ */
 /obj/structure/burrow/attack_generic(mob/living/L)
 	if (is_valid(L))
 		enter_burrow(L)
@@ -636,8 +672,10 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	Plant Management
 ****************************/
 
-//This proc handles creation of a plant on this burrow
-//It relies on the plant seed already being set
+/**
+ * This proc handles creation of a plant on this burrow
+ * It relies on the plant seed already being set
+ */
 /obj/structure/burrow/proc/spread_plants()
 	reveal()
 	if(istype(plant, /datum/seed/wires))		//hivemind wireweeds handling
@@ -671,15 +709,18 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 /****************************
 	Audio Management
 ****************************/
-/obj/structure/burrow/proc/audio(var/soundtype, var/volume)
-	//All audio generated by burrows is run through this function
-	//If this burrow is located in maintenance, players care about it less, and as a result the sounds it makes
-	//will be quieter and not travel as far
+
+/**
+ * All audio generated by burrows is run through this function
+ * If this burrow is located in maintenance, players care about it less, and as a result the sounds it makes
+ * will be quieter and not travel as far
+ */
+/obj/structure/burrow/proc/audio(soundtype, volume)
 	playsound(src, soundtype, maintenance ? volume*0.5 : volume, TRUE,maintenance ? -3 : 0)
 
 /obj/structure/burrow/examine(mob/user, extra_description = "")
 	if(isSealed && recieving)
-		extra_description += SPAN_WARNING("You can see something move behind the cracks. You should weld them shut before it breaks through.")
+		extra_description += span_warning("You can see something move behind the cracks. You should weld them shut before it breaks through.")
 	..(user, extra_description)
 
 /obj/structure/burrow/explosion_act(target_power, explosion_handler/handler)

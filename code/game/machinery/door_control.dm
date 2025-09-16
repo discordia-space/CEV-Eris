@@ -25,7 +25,7 @@
 /obj/machinery/button/remote/attackby(obj/item/W, mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/button/remote/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/button/remote/emag_act(remaining_charges, mob/user)
 	if(req_access.len || req_one_access.len)
 		req_access = list()
 		req_one_access = list()
@@ -37,7 +37,7 @@
 		return 1
 
 	if(!allowed(user) && (wires & 1))
-		to_chat(user, SPAN_WARNING("Access Denied"))
+		to_chat(user, span_warning("Access Denied"))
 		flick("doorctrl-denied",src)
 		return
 
@@ -245,14 +245,14 @@
 			spawn(15)
 				update_icon()
 		else
-			to_chat(user, SPAN_WARNING("Access Denied"))
+			to_chat(user, span_warning("Access Denied"))
 			flick("doorid-denied",src)
 	else
-		to_chat(user, SPAN_WARNING("You need a id card to operate."))
+		to_chat(user, span_warning("You need a id card to operate."))
 		flick("doorid-denied",src)
 
 /obj/machinery/button/remote/blast_door/id_card/attack_hand(mob/user as mob)
-	to_chat(user, SPAN_WARNING("You need a id card to operate."))
+	to_chat(user, span_warning("You need a id card to operate."))
 	flick("doorid-denied",src)
 
 /obj/machinery/button/remote/blast_door/id_card/update_icon()

@@ -85,7 +85,7 @@
 					if (prob(75))
 						break//usually only kill one mouse per proc
 
-/mob/living/simple_animal/cat/beg(var/atom/thing, var/atom/holder)
+/mob/living/simple_animal/cat/beg(atom/thing, atom/holder)
 	visible_emote("licks its lips and hungrily glares at [holder]'s [thing.name]")
 
 /mob/living/simple_animal/cat/Released()
@@ -111,7 +111,7 @@
 		flee_target = A
 		turns_since_move = 5
 
-/mob/living/simple_animal/cat/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_animal/cat/attackby(obj/item/O, mob/user)
 	. = ..()
 	if(O.force)
 		set_flee_target(user? user : src.loc)
@@ -127,7 +127,7 @@
 		return
 	set_flee_target(get_turf(src))
 
-/mob/living/simple_animal/cat/bullet_act(var/obj/item/projectile/proj)
+/mob/living/simple_animal/cat/bullet_act(obj/item/projectile/proj)
 	. = ..()
 	set_flee_target(proj.firer? proj.firer : src.loc)
 
@@ -158,7 +158,7 @@
 /mob/living/simple_animal/cat/fluff/handle_movement_target()
 	if (friend)
 		var/follow_dist = 5
-		if (friend.stat >= DEAD || friend.health <= HEALTH_THRESHOLD_SOFTCRIT) //danger
+		if (friend.stat >= DEAD || friend.health <= CONFIG_GET(number/health_threshold_softcrit)) //danger
 			follow_dist = 1
 		else if (friend.stat || friend.health <= 50) //danger or just sleeping
 			follow_dist = 2
@@ -192,7 +192,7 @@
 	if (stat || !friend)
 		return
 	if (get_dist(src, friend) <= 1)
-		if (friend.stat >= DEAD || friend.health <= HEALTH_THRESHOLD_SOFTCRIT)
+		if (friend.stat >= DEAD || friend.health <= CONFIG_GET(number/health_threshold_softcrit))
 			if (prob((friend.stat < DEAD)? 50 : 15))
 				var/verb = pick("meows", "mews", "mrowls")
 				visible_emote(pick("[verb] in distress.", "[verb] anxiously."))
@@ -203,7 +203,7 @@
 								   "brushes against [friend].",
 								   "rubs against [friend].",
 								   "purrs."))
-				src.visible_message("<span class='name'>[src]</span> [msg5].")
+				src.visible_message("[span_name("[src]")] [msg5].")
 	else if (friend.health <= 50)
 		if (prob(10))
 			var/verb = pick("meows", "mews", "mrowls")
@@ -227,7 +227,7 @@
 			say("Meow!")
 			return
 
-	to_chat(usr, SPAN_NOTICE("[src] ignores you."))
+	to_chat(usr, span_notice("[src] ignores you."))
 	return
 
 
@@ -306,8 +306,7 @@ var/cat_number = 0
 	stats.addPerk(PERK_TERRIBLE_FATE)
 	cat_number += 1
 	playsound(loc, 'sound/effects/teleport.ogg', 50, 1)
-	spawn(cat_life_duration)
-		qdel(src)
+	QDEL_IN(src, cat_life_duration)
 
 /mob/living/simple_animal/cat/runtime/Destroy()
 	// We teleport Dusty in the corner of one of the ship zlevel for stylish disparition
@@ -315,8 +314,8 @@ var/cat_number = 0
 	cat_number -= 1
 	return ..()
 
-/mob/living/simple_animal/cat/runtime/attackby(var/obj/item/O, var/mob/user)
-	visible_message(SPAN_DANGER("[user]'s [O.name] harmlessly passes through \the [src]."))
+/mob/living/simple_animal/cat/runtime/attackby(obj/item/O, mob/user)
+	visible_message(span_danger("[user]'s [O.name] harmlessly passes through \the [src]."))
 	strike_back(user)
 
 /mob/living/simple_animal/cat/runtime/attack_hand(mob/living/carbon/human/M as mob)
@@ -324,10 +323,10 @@ var/cat_number = 0
 	switch(M.a_intent)
 
 		if(I_HELP)  // Pet the cat
-			M.visible_message(SPAN_NOTICE("[M] pets \the [src]."))
+			M.visible_message(span_notice("[M] pets \the [src]."))
 
 		if(I_DISARM)
-			M.visible_message(SPAN_NOTICE("[M]'s hand passes through \the [src]."))
+			M.visible_message(span_notice("[M]'s hand passes through \the [src]."))
 			M.do_attack_animation(src)
 
 		if(I_GRAB)
@@ -336,19 +335,19 @@ var/cat_number = 0
 			if (!(status_flags & CANPUSH))
 				return
 
-			M.visible_message(SPAN_NOTICE("[M]'s hand passes through \the [src]."))
+			M.visible_message(span_notice("[M]'s hand passes through \the [src]."))
 			M.do_attack_animation(src)
 
 		if(I_HURT)
 			var/datum/gender/G = gender_datums[M.gender]
-			M.visible_message(SPAN_WARNING("[M] tries to kick \the [src] but [G.his] foot passes through."))
+			M.visible_message(span_warning("[M] tries to kick \the [src] but [G.his] foot passes through."))
 			M.do_attack_animation(src)
-			visible_message(SPAN_WARNING("\The [src] hisses."))
+			visible_message(span_warning("\The [src] hisses."))
 			strike_back(M)
 
 	return
 
-/mob/living/simple_animal/cat/runtime/proc/strike_back(var/mob/target_mob)
+/mob/living/simple_animal/cat/runtime/proc/strike_back(mob/target_mob)
 	if(!Adjacent(target_mob))
 		return
 	if(isliving(target_mob))
@@ -367,7 +366,7 @@ var/cat_number = 0
 /mob/living/simple_animal/cat/runtime/set_flee_target(atom/A)
 	return
 
-/mob/living/simple_animal/cat/runtime/bullet_act(var/obj/item/projectile/proj)
+/mob/living/simple_animal/cat/runtime/bullet_act(obj/item/projectile/proj)
 	return PROJECTILE_FORCE_MISS
 
 /mob/living/simple_animal/cat/runtime/explosion_act(target_power)

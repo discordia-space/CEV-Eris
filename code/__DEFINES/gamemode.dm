@@ -1,9 +1,24 @@
 
+//SSticker.current_state values
+/// Game is loading
 #define GAME_STATE_STARTUP		0
+/// Game is loaded and in pregame lobby
 #define GAME_STATE_PREGAME		1
+/// Game is attempting to start the round
 #define GAME_STATE_SETTING_UP	2
+/// Game has round in progress
 #define GAME_STATE_PLAYING		3
+/// Game has round finished
 #define GAME_STATE_FINISHED		4
+
+// Used for SSticker.force_ending
+/// Default, round is not being forced to end.
+#define END_ROUND_AS_NORMAL 0
+/// End the round now as normal
+#define FORCE_END_ROUND 1
+/// For admin forcing roundend, can be used to distinguish the two
+#define ADMIN_FORCE_END_ROUND 2
+
 
 #define BE_PLANT "BE_PLANT"
 #define BE_SYNTH "BE_SYNTH"
@@ -39,29 +54,33 @@
 #define ROLE_BANTYPE_CREW_SIDED ROLE_MARSHAL
 #define ROLE_BANTYPE_BLITZ ROLE_BLITZ
 
-// antag template macros.
-#define ROLE_BORER "borer"
-#define ROLE_BORER_REPRODUCED "borer_r"
-#define ROLE_LOYALIST "loyalist"
-#define ROLE_MUTINEER "mutineer"
-#define ROLE_COMMANDO "commando"
-#define ROLE_DEATHSQUAD "deathsquad"
-#define ROLE_ARTIST "artist"
-#define ROLE_MERCENARY "mercenary"
-#define ROLE_PIRATE "pirate"
-#define ROLE_CARRION "carrion"
-#define ROLE_MONKEY "monkey"
-#define ROLE_MALFUNCTION "malf"
-#define ROLE_CONTRACTOR "contractor"
-#define ROLE_CONTRACTOR_SYNTH "robo_contractor"
-#define ROLE_MARSHAL "marshal"
+// antag template macros. commented out ones are leftover from baycode
+#define ROLE_BORER "Cortical Borer"
+#define ROLE_BORER_REPRODUCED "Cortical Borer (Reproduced)"
+// #define ROLE_LOYALIST "Loyalist"
+// #define ROLE_MUTINEER "Mutineer"
+// #define ROLE_COMMANDO "Commando"
+// #define ROLE_DEATHSQUAD "Death Squad"
+// #define ROLE_ARTIST "Artist"
+#define ROLE_MERCENARY "Serbian Mercenary"
+#define ROLE_PIRATE "Pirate"
+#define ROLE_CARRION "Carrion"
+#define ROLE_MONKEY "Monkey"
+#define ROLE_MALFUNCTION "Malf AI"
+#define ROLE_CONTRACTOR "Contractor"
+#define ROLE_CONTRACTOR_SYNTH "Robo Contractor"
+#define ROLE_MARSHAL "Ironhammer Marshal"
 
-#define ROLE_EXCELSIOR_REV "excelsior_rev"
+#define ROLE_EXCELSIOR_REV "Excelsior Infiltrator"
 
-#define ROLE_INQUISITOR "inquisitor"
-#define ROLE_SECDOC_DEFENDER "secdoc_defender"
+#define ROLE_INQUISITOR "Inquisitor"
+// #define ROLE_SECDOC_DEFENDER "Secdoc Defender"
 
-#define ROLE_BLITZ "blitzshell"
+
+#define ROLE_BLITZ "Blitzshell"
+#define ROLE_PAI "PAI"
+#define ROLE_DRONE "Drone"
+#define ROLE_POSIBRAIN "Positronic Brain"
 
 #define FACTION_EXCELSIOR "excelsior"
 #define FACTION_BORERS "borers"

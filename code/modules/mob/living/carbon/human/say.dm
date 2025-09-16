@@ -6,7 +6,7 @@
 		"You have no power over your body!",
 		"The only thing under your control is your senses!"
 	)
-	return SPAN_WARNING(pick(messages))
+	return span_warning(pick(messages))
 
 /mob/living/carbon/human/proc/get_language_blackout_message()
 	var/static/list/messages = list(
@@ -17,7 +17,7 @@
 		"Your brain forgot how to speak. Have you ever spoke for real?",
 		"You try to recall what is \"language\" but you can't."
 	)
-	return SPAN_WARNING(pick(messages))
+	return span_warning(pick(messages))
 
 /mob/living/carbon/human/say(message, datum/language/speaking)
 	if(language_blackout)
@@ -67,7 +67,7 @@
 					say(temp)
 				winset(client, "input", "text=[null]")
 
-/mob/living/carbon/human/say_understands(var/mob/other, var/datum/language/speaking = null)
+/mob/living/carbon/human/say_understands(mob/other, datum/language/speaking = null)
 
 	if(language_blackout)
 		return 0
@@ -122,7 +122,7 @@
 		return chem_effects[CE_VOICEMIMIC]
 	return real_name
 
-/mob/living/carbon/human/proc/SetSpecialVoice(var/new_voice)
+/mob/living/carbon/human/proc/SetSpecialVoice(new_voice)
 	if(new_voice)
 		special_voice = new_voice
 	return
@@ -144,25 +144,25 @@
    for it but just ignore it.
 */
 
-/mob/living/carbon/human/say_quote(var/message, var/datum/language/speaking = null)
-	var/verb = "says"
+/mob/living/carbon/human/say_quote(message, datum/language/speaking = null)
+	var/verb = verb_say
 	var/ending = copytext(message, length(message))
 
 	if(speaking)
-		verb = speaking.get_spoken_verb(ending)
+		verb = get_spoken_verb(ending)
 	else
 		if(ending == "!")
-			verb=pick("exclaims", "shouts", "yells")
+			verb=pick(verb_exclaim, verb_yell)
 		else if(ending == "?")
-			verb="asks"
+			verb=verb_ask
 
 	return verb
 
-/mob/living/carbon/human/handle_speech_problems(var/message, var/verb)
+/mob/living/carbon/human/handle_speech_problems(message, verb)
 	if(silent)
 		message = ""
 		speech_problem_flag = 1
-		to_chat(src, SPAN_WARNING("You can't speak!"))
+		to_chat(src, span_warning("You can't speak!"))
 	if(istype(wear_mask, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/M = wear_mask
 		if(M.voicechange)
@@ -178,9 +178,9 @@
 			speech_problem_flag = 1
 
 	var/list/returns[3]
-	returns[1] = message
-	returns[2] = verb
-	returns[3] = speech_problem_flag
+	returns[SPEECHPROBLEM_R_MESSAGE] = message
+	returns[SPEECHPROBLEM_R_VERB] = verb
+	returns[SPEECHPROBLEM_R_FLAG] = speech_problem_flag
 	return returns
 
 /mob/living/carbon/human/handle_message_mode(message_mode, message, verb, speaking, list/used_radios, alt_name, speech_volume)

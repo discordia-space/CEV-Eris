@@ -24,11 +24,11 @@
 	var/is_centcom = 0
 	var/show_assignments = 0
 
-/datum/nano_module/program/card_mod/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.default_state)
+/datum/nano_module/program/card_mod/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 	var/list/data = host.initial_data()
 
 	data["src"] = "\ref[src]"
-	data["station_name"] = station_name
+	data["station_name"] = station_name()
 	data["manifest"] = html_crew_manifest()
 	data["assignments"] = show_assignments
 	if(program && program.computer)
@@ -114,7 +114,7 @@
 
 	return formatted
 
-/datum/nano_module/program/card_mod/proc/get_accesses(var/is_centcom = 0)
+/datum/nano_module/program/card_mod/proc/get_accesses(is_centcom = 0)
 	return null
 
 
@@ -128,7 +128,7 @@
 	if (computer.card_slot)
 		id_card = computer.card_slot.stored_card
 	if (!user_id_card || !authorized(user_id_card))
-		to_chat(user, SPAN_WARNING("Access denied"))
+		to_chat(user, span_warning("Access denied"))
 		return
 
 	var/datum/nano_module/program/card_mod/module = NM
@@ -145,7 +145,7 @@
 				module.show_assignments = 1
 		if("print")
 			if(!authorized(user_id_card))
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, span_warning("Access denied."))
 				return
 			if(computer && computer.printer) //This option should never be called if there is no printer
 				if(module.mod_mode)
@@ -168,29 +168,29 @@
 								contents += "  [get_access_desc(A)]"
 
 						if(!computer.printer.print_text(contents,"access report"))
-							to_chat(user, SPAN_NOTICE("Hardware error: Printer was unable to print the file. It may be out of paper."))
+							to_chat(user, span_notice("Hardware error: Printer was unable to print the file. It may be out of paper."))
 							return
 						else
-							computer.visible_message(SPAN_NOTICE("\The [computer] prints out paper."))
+							computer.visible_message(span_notice("\The [computer] prints out paper."))
 				else
 					var/contents = {"<h4>Crew Manifest</h4>
 									<br>
 									[html_crew_manifest()]
 									"}
 					if(!computer.printer.print_text(contents,text("crew manifest ([])", stationtime2text())))
-						to_chat(user, SPAN_NOTICE("Hardware error: Printer was unable to print the file. It may be out of paper."))
+						to_chat(user, span_notice("Hardware error: Printer was unable to print the file. It may be out of paper."))
 						return
 					else
-						computer.visible_message(SPAN_NOTICE("\The [computer] prints out paper."))
+						computer.visible_message(span_notice("\The [computer] prints out paper."))
 		if("eject")
 			if(computer)
 				if(computer.card_slot && computer.card_slot.stored_card)
 					computer.proc_eject_id(user)
 				else
-					computer.attackby(user.get_active_hand(), user)
+					computer.attackby(user.get_active_held_item(), user)
 		if("terminate")
 			if(!authorized(user_id_card, ACCESS_REGION_COMMAND))
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, span_warning("Access denied."))
 				return
 			if(computer && can_run(user, 1))
 				id_card.assignment = "Terminated"
@@ -198,7 +198,7 @@
 				callHook("terminate_employee", list(id_card))
 		if("edit")
 			if(!authorized(user_id_card))
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, span_warning("Access denied."))
 				return
 			if(computer && can_run(user, 1))
 				if(href_list["name"])
@@ -208,7 +208,7 @@
 						id_card.formal_name_suffix = initial(id_card.formal_name_suffix)
 						id_card.formal_name_prefix = initial(id_card.formal_name_prefix)
 					else
-						computer.visible_message(SPAN_NOTICE("[computer] buzzes rudely."))
+						computer.visible_message(span_notice("[computer] buzzes rudely."))
 				else if(href_list["account"])
 					var/account_num = text2num(input("Enter account number.", "Account", id_card.associated_account_number))
 					id_card.associated_account_number = account_num
@@ -220,7 +220,7 @@
 					id_card.associated_email_login["password"] = email_password
 		if("assign")
 			if(!authorized(user_id_card))
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, span_warning("Access denied."))
 				return
 			if(computer && can_run(user, 1) && id_card)
 				var/t1 = href_list["assign_target"]
@@ -241,12 +241,12 @@
 								jobdatum = J
 								break
 						if(!jobdatum)
-							to_chat(user, SPAN_WARNING("No log exists for this job: [t1]"))
+							to_chat(user, span_warning("No log exists for this job: [t1]"))
 							return
 						access = jobdatum.get_access()
 						for(var/A in access)
 							if(!check_modify(user_id_card, A))
-								to_chat(user, SPAN_WARNING("Access denied"))
+								to_chat(user, span_warning("Access denied"))
 								return
 
 					remove_nt_access(id_card)
@@ -265,7 +265,7 @@
 						if(!access_allowed)
 							id_card.access += access_type
 					else
-						to_chat(user, SPAN_WARNING("Access denied"))
+						to_chat(user, span_warning("Access denied"))
 
 	if(id_card)
 		id_card.SetName(text("[id_card.registered_name]'s ID Card ([id_card.assignment])"))
@@ -273,16 +273,16 @@
 	SSnano.update_uis(NM)
 	return 1
 
-/datum/computer_file/program/card_mod/proc/remove_nt_access(var/obj/item/card/id/id_card)
+/datum/computer_file/program/card_mod/proc/remove_nt_access(obj/item/card/id/id_card)
 	id_card.access -= get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM)
 
-/datum/computer_file/program/card_mod/proc/apply_access(var/obj/item/card/id/id_card, var/list/accesses)
+/datum/computer_file/program/card_mod/proc/apply_access(obj/item/card/id/id_card, list/accesses)
 	id_card.access |= accesses
 
 // Function that checks if the user's id is allowed to use the id computer. Can optionally check for a specific access lookup.
-/datum/computer_file/program/card_mod/proc/authorized(var/obj/item/card/id/id_card, var/area)
+/datum/computer_file/program/card_mod/proc/authorized(obj/item/card/id/id_card, area)
 	if (id_card && !area)
-		for(var/i = 1, i <= access_lookup.len, i ++)
+		for(var/i = 1; i <= access_lookup.len; i ++)
 			if(access_lookup[i] in id_card.access)
 				return TRUE
 	else if (id_card && area)
@@ -291,7 +291,7 @@
 	return FALSE
 
 //New helper function to check if the type of access the user has matches the region it's allowed to change.
-/datum/computer_file/program/card_mod/proc/check_modify(var/obj/item/card/id/id_card, var/access_requested)
+/datum/computer_file/program/card_mod/proc/check_modify(obj/item/card/id/id_card, access_requested)
 	for(var/access in id_card.access)
 		var/region_type = get_access_region_by_id(access_requested)
 		if(access in GLOB.maps_data.access_modify_region[region_type])

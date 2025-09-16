@@ -14,11 +14,11 @@
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 
-/obj/item/borg/stun/apply_hit_effect(mob/living/M, mob/living/silicon/robot/user, var/hit_zone)
+/obj/item/borg/stun/apply_hit_effect(mob/living/M, mob/living/silicon/robot/user, hit_zone)
 	if(!istype(user))
 		return
 
-	user.visible_message(SPAN_DANGER("\The [user] has prodded \the [M] with \a [src]!"))
+	user.visible_message(span_danger("\The [user] has prodded \the [M] with \a [src]!"))
 
 	if(!user.cell || !user.cell.checked_use(1250)) //Slightly more than a baton.
 		return
@@ -30,7 +30,7 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.forcesay(hit_appends)
+		H.forcesay(GLOB.hit_appends)
 
 /obj/item/borg/overdrive
 	name = "overdrive"
@@ -62,8 +62,6 @@
 	..()
 	overlay = global_hud.thermal
 
-
-
 /obj/item/borg/sight/meson
 	name = "\proper meson vision"
 	sight_mode = BORGMESON
@@ -74,7 +72,6 @@
 	..()
 	overlay = global_hud.meson
 
-
 /obj/item/borg/sight/material
 	name = "\proper material scanner vision"
 	sight_mode = BORGMATERIAL
@@ -84,24 +81,22 @@
 	var/obj/item/clothing/glasses/hud/hud
 
 
-
 /obj/item/borg/sight/hud/med
 	name = "medical hud"
 	icon_state = "healthhud"
 	icon = 'icons/inventory/eyes/icon.dmi'
 
-	New()
-		..()
-		hud = new /obj/item/clothing/glasses/hud/health(src)
-		return
-
+/obj/item/borg/sight/hud/med/New()
+	..()
+	hud = new /obj/item/clothing/glasses/hud/health(src)
+	return
 
 /obj/item/borg/sight/hud/sec
 	name = "security hud"
 	icon_state = "securityhud"
 	icon = 'icons/inventory/eyes/icon.dmi'
 
-	New()
-		..()
-		hud = new /obj/item/clothing/glasses/hud/security(src)
-		return
+/obj/item/borg/sight/hud/med/New()
+	..()
+	hud = new /obj/item/clothing/glasses/hud/security(src)
+	return

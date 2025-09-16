@@ -9,7 +9,7 @@
 // UNLIKE THE DROP POD, this map deals ENTIRELY with strings and types.
 // Drop type is a string representing a mode rather than an atom or path.
 // supplied_drop_types is a list of types to spawn in the pod.
-/datum/random_map/droppod/supply/get_spawned_drop(var/turf/T)
+/datum/random_map/droppod/supply/get_spawned_drop(turf/T)
 	var/list/floor_tiles = list(T)
 	floor_tiles.Add(cardinal_turfs(T))
 

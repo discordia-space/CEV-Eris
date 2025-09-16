@@ -26,7 +26,7 @@
 /obj/item/flame/candle/attackby(obj/item/I, mob/user)
 	..()
 	if(QUALITY_WELDING in I.tool_qualities) //Badasses dont get blinded by lighting their candle with a welding tool
-		light(SPAN_NOTICE("\The [user] casually lights the [name] with [I]."))
+		light(span_notice("\The [user] casually lights the [name] with [I]."))
 	else if(istype(I, /obj/item/flame/lighter))
 		var/obj/item/flame/lighter/L = I
 		if(L.lit)
@@ -41,12 +41,11 @@
 			light()
 
 
-/obj/item/flame/candle/proc/light(var/flavor_text = SPAN_NOTICE("\The [usr] lights the [name]."))
+/obj/item/flame/candle/proc/light(flavor_text = span_notice("\The [usr] lights the [name]."))
 	if(!src.lit)
 		change_lit(TRUE)
 		//src.damtype = "fire"
-		for(var/mob/O in viewers(usr, null))
-			O.show_message(flavor_text, 1)
+		visible_message(flavor_text)
 
 
 /obj/item/flame/candle/Process()
@@ -56,7 +55,7 @@
 	if(!wax)
 		new/obj/item/trash/candle(src.loc)
 		if(ismob(loc))
-			src.dropped(usr)
+			src.dropped(loc)
 		qdel(src)
 	update_icon()
 	if(istype(loc, /turf)) //start a fire if possible

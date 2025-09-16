@@ -77,7 +77,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		//Is there a tool involved?
 		if (istype(I))
 			//Using a crowbar helps
-			to_chat(user, SPAN_NOTICE("\The [I] gives you extra leverage"))
+			to_chat(user, span_notice("\The [I] gives you extra leverage"))
 			var/reduction = I.get_tool_quality(QUALITY_PRYING)*0.5
 			if (user == buckled_mob)
 				reduction *= 0.66 //But it helps less if you don't have good leverage
@@ -99,15 +99,15 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	//Firstly a visible message
 	if (buckled_mob == user)
 		user.visible_message(
-			SPAN_NOTICE("\The [user] tries to free themselves from \the [src]."),
-			SPAN_NOTICE("You carefully begin to free yourself from \the [src]."),
-			SPAN_NOTICE("You hear metal creaking.")
+			span_notice("\The [user] tries to free themselves from \the [src]."),
+			span_notice("You carefully begin to free yourself from \the [src]."),
+			span_notice("You hear metal creaking.")
 			)
 	else
 		user.visible_message(
-			SPAN_NOTICE("\The [user] tries to free \the [buckled_mob] from \the [src]."),
-			SPAN_NOTICE("You carefully begin to free \the [buckled_mob] from \the [src]."),
-			SPAN_NOTICE("You hear metal creaking.")
+			span_notice("\The [user] tries to free \the [buckled_mob] from \the [src]."),
+			span_notice("You carefully begin to free \the [buckled_mob] from \the [src]."),
+			span_notice("You hear metal creaking.")
 			)
 
 	//Play a metal creaking sound
@@ -128,9 +128,9 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 	//You succeeded yay
 	user.visible_message(
-			SPAN_NOTICE("[user] successfully releases [buckled_mob] from \the [src]."),
-			SPAN_NOTICE("You successfully release [buckled_mob] from \the [src]."),
-			SPAN_DANGER("You hear metal creaking.")
+			span_notice("[user] successfully releases [buckled_mob] from \the [src]."),
+			span_notice("You successfully release [buckled_mob] from \the [src]."),
+			span_danger("You hear metal creaking.")
 			)
 	release_mob()
 
@@ -148,14 +148,14 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		return
 	if (deployed)
 		user.visible_message(
-			SPAN_DANGER("[user] starts to carefully disarm \the [src]."),
-			SPAN_DANGER("You begin to carefully disarm \the [src].")
+			span_danger("[user] starts to carefully disarm \the [src]."),
+			span_danger("You begin to carefully disarm \the [src].")
 			)
 
 		if (do_after(user, 25))
 			user.visible_message(
-				SPAN_DANGER("[user] has disarmed \the [src]."),
-				SPAN_DANGER("You have disarmed \the [src]!")
+				span_danger("[user] has disarmed \the [src]."),
+				span_danger("You have disarmed \the [src]!")
 				)
 			deployed = FALSE
 			anchored = FALSE
@@ -204,22 +204,22 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 /obj/item/beartrap/attack_self(mob/user as mob)
 	..()
 	if(locate(/obj/structure/multiz/ladder) in get_turf(user))
-		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, there is a ladder."))
+		to_chat(user, span_notice("You cannot place \the [src] here, there is a ladder."))
 		return
 	if(locate(/obj/structure/multiz/stairs) in get_turf(user))
-		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, it needs a flat surface."))
+		to_chat(user, span_notice("You cannot place \the [src] here, it needs a flat surface."))
 		return
 	if(!deployed && can_use(user))
 		user.visible_message(
-			SPAN_DANGER("[user] starts to deploy \the [src]."),
-			SPAN_DANGER("You begin deploying \the [src]!"),
+			span_danger("[user] starts to deploy \the [src]."),
+			span_danger("You begin deploying \the [src]!"),
 			"You hear the slow creaking of a spring."
 			)
 
 		if (do_after(user, 25))
 			user.visible_message(
-				SPAN_DANGER("[user] has deployed \the [src]."),
-				SPAN_DANGER("You have deployed \the [src]!"),
+				span_danger("[user] has deployed \the [src]."),
+				span_danger("You have deployed \the [src]!"),
 				"You hear a latch click loudly."
 				)
 
@@ -249,16 +249,16 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 	if (ishuman(L))
 		var/mob/living/carbon/human/H = L
-		visible_message(SPAN_DANGER("\The [src] snaps back, digging deeper into [buckled_mob.name]'s [H.get_organ(target_zone).name]"))
+		visible_message(span_danger("\The [src] snaps back, digging deeper into [buckled_mob.name]'s [H.get_organ(target_zone).name]"))
 	else
-		visible_message(SPAN_DANGER("\The [src] snaps back, digging deeper into [buckled_mob.name]"))
+		visible_message(span_danger("\The [src] snaps back, digging deeper into [buckled_mob.name]"))
 
 	playsound(src, 'sound/effects/impacts/beartrap_shut.ogg', 10, 1,-2,-2)//Fairly quiet snapping sound
 
 	if (difficulty)
-		to_chat(user, SPAN_NOTICE("You failed to release the trap. There was a [round(100 - difficulty)]% chance of success"))
+		to_chat(user, span_notice("You failed to release the trap. There was a [round(100 - difficulty)]% chance of success"))
 		if (user == buckled_mob)
-			to_chat(user, SPAN_NOTICE("Freeing yourself is very difficult. Perhaps you should call for help?"))
+			to_chat(user, span_notice("Freeing yourself is very difficult. Perhaps you should call for help?"))
 
 
 
@@ -292,7 +292,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	set_dir(L.dir)
 	can_buckle = TRUE
 	buckle_mob(L)
-	to_chat(L, SPAN_DANGER("The steel jaws of \the [src] bite into you, trapping you in place!"))
+	to_chat(L, span_danger("The steel jaws of \the [src] bite into you, trapping you in place!"))
 
 
 	//If the victim is nonhuman and has no client, start processing.
@@ -328,10 +328,10 @@ Very rarely it might escape
 /obj/item/beartrap/Crossed(AM as mob|obj)
 	if(deployed && isliving(AM))
 		if(locate(/obj/structure/multiz/ladder) in get_turf(loc))
-			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the ladder and does not go off."))
+			visible_message(span_danger("\The [src]'s triggering mechanism is disrupted by the ladder and does not go off."))
 			return ..()
 		if(locate(/obj/structure/multiz/stairs) in get_turf(loc))
-			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the slope and does not go off."))
+			visible_message(span_danger("\The [src]'s triggering mechanism is disrupted by the slope and does not go off."))
 			return ..()
 		var/mob/living/L = AM
 		var/true_prob_catch = prob_catch - L.skill_to_evade_traps()
@@ -343,8 +343,8 @@ Very rarely it might escape
 		if(!prob(true_prob_catch))
 			return ..()
 		L.visible_message(
-			SPAN_DANGER("[L] steps on \the [src]."),
-			SPAN_DANGER("You step on \the [src]!"),
+			span_danger("[L] steps on \the [src]."),
+			span_danger("You step on \the [src]!"),
 			"<b>You hear a loud metallic snap!</b>"
 			)
 
@@ -357,7 +357,7 @@ Very rarely it might escape
 
 /obj/item/beartrap/examine(mob/user, extra_description = "")
 	if(deployed && isliving(user) && !("\ref[user]" in aware_mobs))
-		extra_description += SPAN_NOTICE("You're aware of this trap, now. You won't set it off when walking carefully.")
+		extra_description += span_notice("You're aware of this trap, now. You won't set it off when walking carefully.")
 		aware_mobs |= "\ref[user]"
 	..(user, extra_description)
 
@@ -398,7 +398,7 @@ Very rarely it might escape
 		check_integrity()
 
 //Takes 1 damage every time they fail to open it
-/obj/item/beartrap/makeshift/fail_attempt(var/user, var/difficulty)
+/obj/item/beartrap/makeshift/fail_attempt(user, difficulty)
 	.=..()
 	integrity -= 0.8
 	spawn(5)
@@ -412,7 +412,7 @@ Very rarely it might escape
 
 
 /obj/item/beartrap/makeshift/proc/break_apart()
-	visible_message(SPAN_DANGER("\the [src] shatters into fragments!"))
+	visible_message(span_danger("\the [src] shatters into fragments!"))
 	new /obj/item/stack/material/steel(loc, 10)
 	new /obj/item/material/shard/shrapnel(loc)
 	new /obj/item/material/shard/shrapnel(loc)

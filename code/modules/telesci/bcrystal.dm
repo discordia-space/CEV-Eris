@@ -6,7 +6,7 @@
 	spawn_tags = null
 
 /obj/item/bluespace_dust/attack_hand(mob/user)
-	to_chat(user, SPAN_NOTICE("Dust disappears as you touch it"))
+	to_chat(user, span_notice("Dust disappears as you touch it"))
 	qdel(src)
 
 // Bluespace crystals, used in telescience and when crushed it will blink you to a random turf.
@@ -32,7 +32,7 @@
 //	reagents.add_reagent("bluespace_dust", blink_range)
 
 /obj/item/bluespace_crystal/attack_self(mob/user)
-	user.visible_message(SPAN_WARNING("[user] crushes [src]!"), SPAN_DANGER("You crush [src]!"))
+	user.visible_message(span_warning("[user] crushes [src]!"), span_danger("You crush [src]!"))
 	new /obj/item/bluespace_dust(user.loc)
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(5, 0, get_turf(user))
@@ -49,7 +49,7 @@
 
 /obj/item/bluespace_crystal/throw_impact(atom/hit_atom)
 	if(!..()) // not caught in mid-air
-		visible_message(SPAN_NOTICE("[src] fizzles and disappears upon impact!"))
+		visible_message(span_notice("[src] fizzles and disappears upon impact!"))
 		var/turf/T = get_turf(hit_atom)
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(5, 0, T)

@@ -51,10 +51,10 @@
 	if(usr.stat)
 		return
 	if(src.occupant)
-		to_chat(usr, SPAN_WARNING("The autodoc is already occupied!"))
+		to_chat(usr, span_warning("The autodoc is already occupied!"))
 		return
 	if(usr.abiotic())
-		to_chat(usr, SPAN_WARNING("The subject cannot have abiotic items on."))
+		to_chat(usr, span_warning("The subject cannot have abiotic items on."))
 		return
 	set_occupant(usr)
 	src.add_fingerprint(usr)
@@ -64,7 +64,7 @@
 	if (!occupant || locked)
 		return
 	if(autodoc_processor.active)
-		to_chat(usr, SPAN_WARNING("Autodoc is locked down! Abort all oberations if you need to go out or wait until all operations would be done."))
+		to_chat(usr, span_warning("Autodoc is locked down! Abort all oberations if you need to go out or wait until all operations would be done."))
 		return
 	for(var/obj/O in src)
 		O.forceMove(loc)
@@ -76,7 +76,7 @@
 	set_power_use(IDLE_POWER_USE)
 	update_icon()
 
-/obj/machinery/autodoc/proc/set_occupant(var/mob/living/L)
+/obj/machinery/autodoc/proc/set_occupant(mob/living/L)
 	L.forceMove(src)
 	src.occupant = L
 	src.add_fingerprint(usr)
@@ -90,35 +90,35 @@
 		L.set_machine(src)
 	update_icon()
 
-/obj/machinery/autodoc/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/autodoc/affect_grab(mob/user, mob/target)
 	if (src.occupant)
-		to_chat(user, SPAN_NOTICE("The autodoc is already occupied!"))
+		to_chat(user, span_notice("The autodoc is already occupied!"))
 		return
 	if(target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, span_notice("Unbuckle the subject before attempting to move them."))
 		return
 	if(target.abiotic())
-		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
+		to_chat(user, span_notice("Subject cannot have abiotic items on."))
 		return
 	set_occupant(target)
 	src.add_fingerprint(user)
 	return TRUE
 
-/obj/machinery/autodoc/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/autodoc/MouseDrop_T(mob/target, mob/user)
 	if(!ismob(target))
 		return
 	if (src.occupant)
-		to_chat(user, SPAN_WARNING("The autodoc is already occupied!"))
+		to_chat(user, span_warning("The autodoc is already occupied!"))
 		return
 	if (target.abiotic())
-		to_chat(user, SPAN_WARNING("Subject cannot have abiotic items on."))
+		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 	if (target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, span_notice("Unbuckle the subject before attempting to move them."))
 		return
 	user.visible_message(
-		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
-		SPAN_NOTICE("You start placing \the [target] into \the [src].")
+		span_notice("\The [user] begins placing \the [target] into \the [src]."),
+		span_notice("You start placing \the [target] into \the [src].")
 	)
 	if(!do_after(user, 30, src) || !Adjacent(target))
 		return
@@ -135,7 +135,7 @@
 		locked = autodoc_processor.active
 	update_icon()
 
-/obj/machinery/autodoc/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FORCE_OPEN, var/datum/nano_topic_state/state = GLOB.default_state)
+/obj/machinery/autodoc/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FORCE_OPEN, datum/nano_topic_state/state = GLOB.default_state)
 	autodoc_processor.nano_ui_interact(user, ui_key, ui, force_open, state)
 
 /obj/machinery/autodoc/Topic(href, href_list)

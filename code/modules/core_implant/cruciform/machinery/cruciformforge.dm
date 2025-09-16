@@ -42,7 +42,7 @@
 	for(var/_material in stored_material)
 		matter_count += " [stored_material[_material]] [_material]"
 
-	extra_description += SPAN_NOTICE("Materials required: [english_list(matter_count_need)].\nIt contains: [english_list(matter_count)].")
+	extra_description += span_notice("Materials required: [english_list(matter_count_need)].\nIt contains: [english_list(matter_count)].")
 	..(user, extra_description)
 
 /obj/machinery/neotheology/cruciformforge/attackby(obj/item/I, mob/user)
@@ -75,7 +75,7 @@
 /obj/machinery/neotheology/cruciformforge/proc/eat(mob/living/user, obj/item/eating)
 
 	if(!eating && istype(user))
-		eating = user.get_active_hand()
+		eating = user.get_active_held_item()
 
 	if(!istype(eating))
 		return FALSE
@@ -90,11 +90,11 @@
 		return FALSE
 
 	if(!istype(eating, /obj/item/stack/material))
-		to_chat(user, SPAN_WARNING("[src] does not support this type of recycling."))
+		to_chat(user, span_warning("[src] does not support this type of recycling."))
 		return FALSE
 
 	if(!length(eating.get_matter()))
-		to_chat(user, SPAN_WARNING("\The [eating] does not contain significant amounts of useful materials and cannot be accepted."))
+		to_chat(user, span_warning("\The [eating] does not contain significant amounts of useful materials and cannot be accepted."))
 		return FALSE
 
 	var/total_used = 0     // Amount of material used.
@@ -102,11 +102,11 @@
 	var/material = stack.default_type
 
 	if(!(material in needed_material))
-		to_chat(user, SPAN_WARNING("[src] does not support [material] recycle."))
+		to_chat(user, span_warning("[src] does not support [material] recycle."))
 		return FALSE
 
 	if(stored_material[material] >= storage_capacity)
-		to_chat(user, SPAN_WARNING("The [src] are full of [material]."))
+		to_chat(user, span_warning("The [src] are full of [material]."))
 		return FALSE
 
 	if(stored_material[material] + stack.amount > storage_capacity)
@@ -123,10 +123,10 @@
 
 	flick_anim(LOAD) // Play insertion animation.
 
-	to_chat(user, SPAN_NOTICE("You add [total_used] of [stack]\s to \the [src]."))
+	to_chat(user, span_notice("You add [total_used] of [stack]\s to \the [src]."))
 
 
-/obj/machinery/neotheology/cruciformforge/proc/flick_anim(var/animation)
+/obj/machinery/neotheology/cruciformforge/proc/flick_anim(animation)
 
 	if(animation == WORK)
 		flick("[initial(icon_state)]_start", src)

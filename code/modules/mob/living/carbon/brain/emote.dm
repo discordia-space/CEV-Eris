@@ -1,4 +1,4 @@
-/mob/living/carbon/brain/emote(var/act,var/m_type=1,var/message = null)
+/mob/living/carbon/brain/emote(act,m_type=1,message = null)
 	if(!(container && istype(container, /obj/item/device/mmi)))//No MMI, no emotes
 		return
 
@@ -17,7 +17,7 @@
 				return
 			if (src.client)
 				if (client.prefs.muted & MUTE_IC)
-					to_chat(src, "\red You cannot send IC messages (muted).")
+					to_chat(src, span_red("You cannot send IC messages (muted)."))
 					return
 				if (src.client.handle_spam_prevention(message,MUTE_IC))
 					return
@@ -62,7 +62,7 @@
 		if ("help")
 			to_chat(src, "alarm,alert,notice,flash,blink,whistle,beep,boop")
 		else
-			to_chat(src, "\blue Unusable emote '[act]'. Say *help for a list.")
+			to_chat(src, span_blue("Unusable emote '[act]'. Say *help for a list."))
 
 	if (message)
 		log_emote("[name]/[key] : [message]")

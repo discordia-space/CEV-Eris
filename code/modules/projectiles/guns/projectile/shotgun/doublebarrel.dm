@@ -59,29 +59,28 @@
 	bolt_open = !bolt_open
 	if(bolt_open)
 		playsound(src.loc, 'sound/weapons/guns/interact/shotgun_break.ogg', 75, 1)
-		to_chat(user, SPAN_NOTICE("You snap the barrel open."))
+		to_chat(user, span_notice("You snap the barrel open."))
 		unload_ammo(user, allow_dump=1)
 	else
 		playsound(src.loc, 'sound/weapons/guns/interact/shotgun_close.ogg', 75, 1)
-		to_chat(user, SPAN_NOTICE("You snap the barrel closed"))
-		bolt_open = 0
+		to_chat(user, span_notice("You snap the barrel closed"))
 	add_fingerprint(user)
 	update_icon()
 
 /obj/item/gun/projectile/shotgun/doublebarrel/special_check(mob/user)
 	if(bolt_open)
-		to_chat(user, SPAN_WARNING("You can't fire [src] while the barrel is open!"))
+		to_chat(user, span_warning("You can't fire [src] while the barrel is open!"))
 		return 0
 	return ..()
 
-/obj/item/gun/projectile/shotgun/doublebarrel/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/shotgun/doublebarrel/load_ammo(obj/item/A, mob/user)
 	if(!bolt_open)
-		to_chat(user, SPAN_WARNING("You can't load [src] while the barrel is closed!"))
+		to_chat(user, span_warning("You can't load [src] while the barrel is closed!"))
 		return
 	. = ..()
 
 
-/obj/item/gun/projectile/shotgun/doublebarrel/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/shotgun/doublebarrel/unload_ammo(mob/user, allow_dump=1)
 	if(!bolt_open)
 		return
 	..()

@@ -22,7 +22,7 @@
 
 /obj/machinery/computer/Destroy()
 	GLOB.computer_list -= src
-	..()
+	. = ..()
 
 /obj/machinery/computer/Process()
 	if(stat & (NOPOWER|BROKEN))
@@ -43,7 +43,7 @@
 		set_broken()
 	return 0
 
-/obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/computer/bullet_act(obj/item/projectile/Proj)
 	if(prob(Proj.get_structure_damage()))
 		if(!(stat & BROKEN))
 			var/datum/effect/effect/system/smoke_spread/S = new/datum/effect/effect/system/smoke_spread()
@@ -100,12 +100,12 @@
 			for (var/obj/C in src)
 				C.loc = src.loc
 			if (src.stat & BROKEN)
-				to_chat(user, SPAN_NOTICE("The broken glass falls out."))
+				to_chat(user, span_notice("The broken glass falls out."))
 				new /obj/item/material/shard(src.loc)
 				A.state = 3
 				A.icon_state = "3"
 			else
-				to_chat(user, SPAN_NOTICE("You disconnect the monitor."))
+				to_chat(user, span_notice("You disconnect the monitor."))
 				A.state = 4
 				A.icon_state = "4"
 			circuit.deconstruct(src)

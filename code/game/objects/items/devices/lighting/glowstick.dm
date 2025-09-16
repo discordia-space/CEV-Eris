@@ -54,16 +54,16 @@
 /obj/item/device/lighting/glowstick/attack_self(mob/user)
 	if(turn_on(user))
 		user.visible_message(
-			SPAN_NOTICE("[user] cracks and shakes the glowstick."),
-			SPAN_NOTICE("You crack and shake the glowstick, turning it on!")
+			span_notice("[user] cracks and shakes the glowstick."),
+			span_notice("You crack and shake the glowstick, turning it on!")
 		)
 
 /obj/item/device/lighting/glowstick/turn_on(mob/user)
 	if(fuel <= 0)
-		to_chat(user, SPAN_NOTICE("The [src] is spent."))
+		to_chat(user, span_notice("The [src] is spent."))
 		return
 	if(on)
-		to_chat(user, SPAN_NOTICE("The [src] is already lit."))
+		to_chat(user, span_notice("The [src] is already lit."))
 		return
 
 	. = ..()

@@ -3,7 +3,7 @@ copies what reagents will be taken out of the holder.
 catalogue the 'taste strength' of each one
 calculate text size per text.
 */
-/mob/living/carbon/proc/ingest(var/datum/reagents/from, var/datum/reagents/target, var/amount = 1, var/multiplier = 1, var/copy = 0) //we kind of 'sneak' a proc in here for ingesting stuff so we can play with it.
+/mob/living/carbon/proc/ingest(datum/reagents/from, datum/reagents/target, amount = 1, multiplier = 1, copy = 0) //we kind of 'sneak' a proc in here for ingesting stuff so we can play with it.
 	var/datum/reagents/temp = new() //temporary holder used to analyse what gets transfered.
 	var/list/tastes = list() //descriptor = strength
 	from.trans_to_holder(temp, amount, multiplier, 1)
@@ -23,6 +23,8 @@ calculate text size per text.
 				continue
 			if(R.id == "nutriment")
 				var/list/t = R.get_data()
+				if(!t) // no data, nutriment made from no source?
+					continue
 				for(var/i in 1 to t.len)
 					var/A = t[i]
 					if(!(A in tastes))
@@ -51,5 +53,5 @@ calculate text size per text.
 				else if(percent <= minimum_percent)
 					continue
 				out.Add("[size][tastes[i]]")
-	to_chat(src, "<span class='notice'>You can taste [english_list(out,"something indescribable")]</span>" ) //no taste means there are too many tastes and not enough flavor.
+	to_chat(src, span_notice("You can taste [english_list(out,"something indescribable")]") ) //no taste means there are too many tastes and not enough flavor.
 	from.trans_to_holder(target,amount,multiplier,copy) //complete transfer

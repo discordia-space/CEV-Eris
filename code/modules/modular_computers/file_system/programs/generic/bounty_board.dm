@@ -63,7 +63,7 @@
 		ui.open()
 
 
-/datum/nano_module/bounty_board/proc/get_record_access(var/mob/user)
+/datum/nano_module/bounty_board/proc/get_record_access(mob/user)
 	var/list/user_access = using_access || user.GetAccess()
 
 	var/obj/item/modular_computer/PC = nano_host()
@@ -73,14 +73,14 @@
 
 	return user_access
 
-/datum/nano_module/bounty_board/proc/edit_field(var/mob/user, var/field_ID)
+/datum/nano_module/bounty_board/proc/edit_field(mob/user, field_ID)
 	if(!selectedEntry)
 		return
 	var/datum/report_field/F = selectedEntry.field_from_ID(field_ID)
 	if(!F)
 		return
 	if(!F.verify_access_edit(get_record_access(user)))
-		to_chat(user, SPAN_WARNING("Access Denied"))
+		to_chat(user, span_warning("Access Denied"))
 		return
 	F.ask_value(user)
 
@@ -122,7 +122,7 @@
 		if(!selectedEntry)
 			return
 		if(!selectedEntry.publish(usr))
-			to_chat(usr, SPAN_WARNING("Insufficient Data"))
+			to_chat(usr, span_warning("Insufficient Data"))
 			return
 		selectedEntry = null
 		return 1
@@ -140,12 +140,12 @@
 			if(selectedEntry.remove(H))
 				selectedEntry = null
 			else
-				to_chat(usr, SPAN_WARNING("Error occured during reward transfer"))
+				to_chat(usr, span_warning("Error occured during reward transfer"))
 		else
 			if(selectedEntry.remove())
 				selectedEntry = null
 			else
-				to_chat(usr, SPAN_WARNING("Error occured during reward transfer"))
+				to_chat(usr, span_warning("Error occured during reward transfer"))
 
 		return 1
 

@@ -54,7 +54,7 @@
 /obj/item/biosyphon/Process()
 	if(world.time >= (last_produce + cooldown))
 		var/obj/item/storage/box/donut/D = new /obj/item/storage/box/donut(get_turf(src))
-		visible_message(SPAN_NOTICE("[name] drop [D]."))
+		visible_message(span_notice("[name] drop [D]."))
 		last_produce = world.time
 	if(donut_points >= production_cost)
 		if(touched_by_resus)
@@ -65,7 +65,7 @@
 		donut_points -= production_cost
 		var/specialdonut = pick(special_donuts)
 		var/obj/item/reagent_containers/food/snacks/donut/stat_buff/G = new specialdonut(get_turf(src))
-		visible_message(SPAN_NOTICE("[name] drop [G]."))
+		visible_message(span_notice("[name] drop [G]."))
 
 /obj/item/biosyphon/attackby(obj/item/I, mob/living/user, params)
 	if(nt_sword_attack(I, user))
@@ -75,14 +75,14 @@
 		qdel(I)
 		name = "Synthesizing bluespace biosyphon"
 		touched_by_resus = TRUE
-		to_chat(user, SPAN_NOTICE("You upgrade the [src] using the Enricher, it now produces syringes of powerful healing chemicals every time it produces special donuts!"))
+		to_chat(user, span_notice("You upgrade the [src] using the Enricher, it now produces syringes of powerful healing chemicals every time it produces special donuts!"))
 	if(istype(I, /obj/item/reagent_containers/food/snacks/meat/roachmeat/fuhrer))
 		donut_points += uncommon_meat_value
 		to_chat(user, "You insert [I] into the [src]. It produces a whirring noise.")
 		qdel(I)
 	else if(istype(I, /obj/item/reagent_containers/food/snacks/meat/roachmeat/kaiser))
 		donut_points += rare_meat_value
-		to_chat(user, SPAN_NOTICE("You insert [I] into the [src]. It emits a loud humming sound!"))
+		to_chat(user, span_notice("You insert [I] into the [src]. It emits a loud humming sound!"))
 		qdel(I)
 	else if(istype(I, /obj/item/reagent_containers/food/snacks/meat/roachmeat) || istype(I, /obj/item/reagent_containers/food/snacks/meat/spider))
 		donut_points += common_meat_value

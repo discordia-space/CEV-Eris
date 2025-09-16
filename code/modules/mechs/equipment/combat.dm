@@ -40,10 +40,10 @@
 
 /obj/item/mech_blade_assembly/examine(mob/user, extra_description = "")
 	if(sharpeners)
-		extra_description += SPAN_NOTICE("\nIt requires [sharpeners] sharpeners to be sharp enough.")
+		extra_description += span_notice("\nIt requires [sharpeners] sharpeners to be sharp enough.")
 	else
-		extra_description += SPAN_NOTICE("\nIt needs 5 sheets of a metal inserted to form the basic blade.")
-	extra_description += SPAN_NOTICE("\nUse a wrench to make this mountable. This is not reversible.")
+		extra_description += span_notice("\nIt needs 5 sheets of a metal inserted to form the basic blade.")
+	extra_description += span_notice("\nUse a wrench to make this mountable. This is not reversible.")
 	..(user, extra_description)
 
 /obj/item/mech_blade_assembly/attackby(obj/item/I, mob/living/user, params)
@@ -51,20 +51,20 @@
 		if(sharpeners)
 			user.remove_from_mob(I, TRUE)
 			I.forceMove(src)
-			to_chat(user ,SPAN_NOTICE("You sharpen the blade on \the [src]."))
+			to_chat(user ,span_notice("You sharpen the blade on \the [src]."))
 			sharpeners--
 		return
 	if(istool(I))
 		var/obj/item/tool/thing = I
 		if(thing.has_quality(QUALITY_BOLT_TURNING))
 			if(!blade_mat)
-				to_chat(user, SPAN_NOTICE("You can't tighten the blade-mechanism onto a blade of air!"))
+				to_chat(user, span_notice("You can't tighten the blade-mechanism onto a blade of air!"))
 				return
-			to_chat(user, SPAN_NOTICE("You start tightening \the [src] onto the blade made of [blade_mat.display_name]."))
+			to_chat(user, span_notice("You start tightening \the [src] onto the blade made of [blade_mat.display_name]."))
 			if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, 0, STAT_MEC, 150))
 				if(QDELETED(src))
 					return
-				to_chat(user, SPAN_NOTICE("You tighten the blade on \the [src], creating a mech-mountable blade."))
+				to_chat(user, span_notice("You tighten the blade on \the [src], creating a mech-mountable blade."))
 				var/obj/item/mech_equipment/mounted_system/sword/le_mech_comp = new /obj/item/mech_equipment/mounted_system/sword(get_turf(src))
 				var/obj/item/mech_equipment/mounted_system/sword/le_mech_sword = le_mech_comp.holding
 				// DULL BLADE gets DULL DAMAGE
@@ -77,15 +77,15 @@
 	if(!istype(I, /obj/item/stack/material))
 		return ..()
 	if(blade_mat)
-		to_chat(user, SPAN_NOTICE("There is already a blade formed! You can remove it by using it in hand."))
+		to_chat(user, span_notice("There is already a blade formed! You can remove it by using it in hand."))
 		return
 	var/obj/item/stack/material/mat = I
 	if(!mat.material.hardness)
-		to_chat(user, SPAN_NOTICE("This material can't be sharpened!"))
+		to_chat(user, span_notice("This material can't be sharpened!"))
 		return
 	if(mat.can_use(5))
 		if(mat.use(5))
-			to_chat(user , SPAN_NOTICE("You insert 5 sheets of \the [mat] into \the [src], creating a blade requiring [round((mat.material.hardness)/60)] sharpeners to not be dull."))
+			to_chat(user , span_notice("You insert 5 sheets of \the [mat] into \the [src], creating a blade requiring [round((mat.material.hardness)/60)] sharpeners to not be dull."))
 			blade_mat = mat.material
 			sharpeners = round(blade_mat.hardness/60)
 			matter[mat.material.name]+= 5
@@ -93,13 +93,13 @@
 
 /obj/item/mech_blade_assembly/attack_self(mob/user)
 	if(blade_mat)
-		to_chat(user, SPAN_NOTICE("You start removing the blade from \the [src]."))
+		to_chat(user, span_notice("You start removing the blade from \the [src]."))
 		if(do_after(user, 3 SECONDS, src, TRUE, TRUE))
 			// No duping!!
 			if(!blade_mat)
-				to_chat(user, SPAN_NOTICE("There is no material left to remove from \the [src]."))
+				to_chat(user, span_notice("There is no material left to remove from \the [src]."))
 				return
-			to_chat(user, SPAN_NOTICE("You remove 5 sheets of [blade_mat.display_name] from \the [src]'s blade attachment point."))
+			to_chat(user, span_notice("You remove 5 sheets of [blade_mat.display_name] from \the [src]'s blade attachment point."))
 			matter[blade_mat.name]-= 5
 			var/obj/item/stack/material/mat_stack = new blade_mat.stack_type(get_turf(user))
 			mat_stack.amount = 5
@@ -355,11 +355,11 @@
 	if(istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/ammo_casing))
 		switch(loadMagazine(I,user))
 			if(-1)
-				to_chat(user, SPAN_NOTICE("\The [src] does not accept this type of magazine."))
+				to_chat(user, span_notice("\The [src] does not accept this type of magazine."))
 			if(0)
-				to_chat(user, SPAN_NOTICE("\The [src] has no slots left in its ammunition storage."))
+				to_chat(user, span_notice("\The [src] has no slots left in its ammunition storage."))
 			if(1)
-				to_chat(user, SPAN_NOTICE("You load \the [I] into \the [src]."))
+				to_chat(user, span_notice("You load \the [I] into \the [src]."))
 		return
 	else
 		. = ..()
@@ -389,7 +389,7 @@
 
 
 /obj/item/mech_equipment/mounted_system/ballistic/examine(mob/user, extra_description = "")
-	extra_description += SPAN_NOTICE("Ammunition can be inserted inside, or removed by self-attacking.")
+	extra_description += span_notice("Ammunition can be inserted inside, or removed by self-attacking.")
 	..(user, extra_description)
 
 /obj/item/mech_equipment/mounted_system/ballistic/Initialize()
@@ -694,19 +694,19 @@
 
 /obj/item/gun/projectile/shotgun/pump/mech/afterattack(atom/A, mob/living/user)
 	if(loading)
-		to_chat(user, SPAN_NOTICE("\The [src] is currently reloading!"))
+		to_chat(user, span_notice("\The [src] is currently reloading!"))
 		return
 	..()
 	pump(user)
 	if(!chambered)
-		to_chat(user, SPAN_NOTICE("\The [src] has run out of shells! Reloading..."))
+		to_chat(user, span_notice("\The [src] has run out of shells! Reloading..."))
 		loading = TRUE
 		var/obj/item/mech_equipment/mounted_system/ballistic/hold = loc
 		spawn(8 SECONDS)
 			if(hold.reloadGun())
-				to_chat(user, SPAN_NOTICE("\The [src]'s chamber has been refilled with shells."))
+				to_chat(user, span_notice("\The [src]'s chamber has been refilled with shells."))
 			else
-				to_chat(user, SPAN_DANGER("\The [src]'s failed to load!"))
+				to_chat(user, span_danger("\The [src]'s failed to load!"))
 			loading = FALSE
 			pump(user)
 
@@ -716,13 +716,13 @@
 		if(reloading)
 			return
 		var/obj/item/mech_equipment/mounted_system/ballistic/hold = loc
-		to_chat(user, SPAN_NOTICE("\The [src] is now reloading!"))
+		to_chat(user, span_notice("\The [src] is now reloading!"))
 		reloading = TRUE
 		spawn(6 SECONDS)
 			if(hold.reloadGun())
-				to_chat(user, SPAN_NOTICE("\The [src]'s magazine has been reloaded."))
+				to_chat(user, span_notice("\The [src]'s magazine has been reloaded."))
 			else
-				to_chat(user, SPAN_DANGER("\The [src]'s failed to load!"))
+				to_chat(user, span_danger("\The [src]'s failed to load!"))
 			reloading = FALSE
 
 /obj/item/mech_equipment/mounted_system/ballistic/pk
@@ -777,9 +777,9 @@
 	// Dramatic gun cocking!
 	if(!cocked)
 		playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 300, 1)
-		to_chat(user, SPAN_NOTICE("You chamber the [src], preparing it for full-automatic fire."))
+		to_chat(user, span_notice("You chamber the [src], preparing it for full-automatic fire."))
 		// uh oh
-		visible_message(get_turf(src), SPAN_DANGER("The mech chambers the [src], preparing it for full automatic fire!"))
+		visible_message(get_turf(src), span_danger("The mech chambers the [src], preparing it for full automatic fire!"))
 		cocked = TRUE
 		safety = FALSE
 		return
@@ -788,15 +788,15 @@
 		reloading = TRUE
 		playsound(src.loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, 1)
 		var/obj/item/mech_equipment/mounted_system/ballistic/hold = loc
-		to_chat(user, SPAN_NOTICE("\The [src]'s magazine has run out. Reloading..."))
+		to_chat(user, span_notice("\The [src]'s magazine has run out. Reloading..."))
 		spawn(1 SECOND)
 			playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 150, 1)
 		spawn(2 SECOND)
 			playsound(src.loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, 1)
 			if(hold.reloadGun())
-				to_chat(user, SPAN_NOTICE("\The [src]'s magazine has been reloaded."))
+				to_chat(user, span_notice("\The [src]'s magazine has been reloaded."))
 			else
-				to_chat(user, SPAN_DANGER("\The [src]'s failed to load!"))
+				to_chat(user, span_danger("\The [src]'s failed to load!"))
 			reloading = FALSE
 			// recock your gun
 			cocked = FALSE
@@ -820,7 +820,7 @@
 	var/obj/item/tool/hammer/mace/mech/holdin = holding
 	holdin.wielded = TRUE
 
-obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
+/obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
 	var/obj/item/tool/hammer/mace/mech/mace = holding
 	if(mace.flail_mode)
 		icon_state = "mech_mace_flail"
@@ -875,11 +875,11 @@ obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
 				intensity = STAT_LEVEL_ADEPT / targ.stats.getStat(STAT_VIG)
 				hit_verb = (intensity > 0.6) ? "knocked" : "grazed"
 		if(flail_mode)
-			target.visible_message(SPAN_NOTICE("[target] gets [hit_verb] by [user]'s [src]!"), SPAN_DANGER("You get [hit_verb] by [user]'s [src]!"), "You hear something soft hit a metal plate!", 6)
+			target.visible_message(span_notice("[target] gets [hit_verb] by [user]'s [src]!"), span_danger("You get [hit_verb] by [user]'s [src]!"), "You hear something soft hit a metal plate!", 6)
 			target.Weaken(3 * intensity)
 			target.throw_at(get_turf_away_from_target_complex(target, user, 3), FLOOR(5 * intensity, 1), 1, user)
 		else
-			target.visible_message(SPAN_NOTICE("[target] gets [hit_verb] by [user]'s [src]!"), SPAN_DANGER("You get [hit_verb] by [user]'s [src]!"), "You hear something soft hit a metal plate!", 6)
+			target.visible_message(span_notice("[target] gets [hit_verb] by [user]'s [src]!"), span_danger("You get [hit_verb] by [user]'s [src]!"), "You hear something soft hit a metal plate!", 6)
 			target.damage_through_armor(20 * intensity, BRUTE, BP_CHEST, ARMOR_MELEE, ARMOR_PEN_HALF, src, FALSE, FALSE, 1)
 
 /obj/item/mech_equipment/mounted_system/bfg
@@ -937,22 +937,22 @@ obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
 
 	var/obj/item/gun/energy/crossbow_mech/CM = holding
 	if(CM.shots_amount == CROSSBOW_MAX_AMOUNT)
-		to_chat(user, SPAN_NOTICE("\The [CM] is full!"))
+		to_chat(user, span_notice("\The [CM] is full!"))
 		return
 
 	var/obj/item/stack/material/mat = I
 	if(!mat.material.hardness)
-		to_chat(user, SPAN_NOTICE("\The [mat] can't be used as a bolt!"))
+		to_chat(user, span_notice("\The [mat] can't be used as a bolt!"))
 		return
 
 	// precalc using amount to cut down on calculations. we use EITHER enough to fill up the slot OR the entire stack minus a remainder
 	var/using = min(CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT * (CROSSBOW_MAX_AMOUNT - CM.shots_amount), mat.amount - (mat.amount % CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT))
 
 	if(using == 0)
-		to_chat(user, SPAN_NOTICE("There aren't enough sheets in \the [mat]!"))
+		to_chat(user, span_notice("There aren't enough sheets in \the [mat]!"))
 		return
 
-	to_chat(user , SPAN_NOTICE("You pack [using] sheets of \the [mat] into \the [src]."))
+	to_chat(user , span_notice("You pack [using] sheets of \the [mat] into \the [src]."))
 	CM.shots_amount += using / CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT
 	CM.calculate_damage(mat.material)
 	mat.use(using)
@@ -1210,7 +1210,7 @@ obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
 		if(!do_after(user, 0.5 SECONDS, owner, FALSE))
 			performing_action = FALSE
 			return
-		owner.visible_message(SPAN_DANGER("\The [owner] [on ? "deploys" : "retracts"] \the [src]!"), "", "You hear the sound of a heavy metal plate hitting the floor!", 8)
+		owner.visible_message(span_danger("\The [owner] [on ? "deploys" : "retracts"] \the [src]!"), "", "You hear the sound of a heavy metal plate hitting the floor!", 8)
 
 	on = !on
 	playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 300, 8)
@@ -1242,15 +1242,15 @@ obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
 			if(ishuman(knockable))
 				var/mob/living/carbon/human/targ = knockable
 				if(targ.stats.getStat(STAT_VIG) > STAT_LEVEL_EXPERT)
-					targ.visible_message(SPAN_DANGER("[targ] dodges the shield slam!"), "You dodge [loc]'s shield slam!", "You hear a woosh.", 6)
+					targ.visible_message(span_danger("[targ] dodges the shield slam!"), "You dodge [loc]'s shield slam!", "You hear a woosh.", 6)
 					targets.Remove(knockable)
 					continue
-				targ.visible_message(SPAN_DANGER("[targ] gets slammed by [loc]'s [src]!"), SPAN_NOTICE("You get slammed by [loc]'s [src]!"), "You hear something soft hit a metal plate!", 6)
+				targ.visible_message(span_danger("[targ] gets slammed by [loc]'s [src]!"), span_notice("You get slammed by [loc]'s [src]!"), "You hear something soft hit a metal plate!", 6)
 				targ.Weaken(1)
 				targ.throw_at(get_turf_away_from_target_complex(target,user,3), 5, 1, loc)
 				targ.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 1, src, FALSE, FALSE, 1)
 			else
-				knockable.visible_message(SPAN_DANGER("[knockable] gets slammed by [loc]'s [src]!"), SPAN_NOTICE("You get slammed by [loc]'s [src]!"), "You hear something soft hit a metal plate!", 6)
+				knockable.visible_message(span_danger("[knockable] gets slammed by [loc]'s [src]!"), span_notice("You get slammed by [loc]'s [src]!"), "You hear something soft hit a metal plate!", 6)
 				knockable.Weaken(1)
 				knockable.throw_at(get_turf_away_from_target_complex(target,user,3), 3, 1, loc)
 				knockable.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 2, src, FALSE, FALSE, 1)
@@ -1320,13 +1320,13 @@ obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
 
 /obj/item/mech_equipment/mounted_system/sprayer/attackby(obj/item/I, mob/living/user, params)
 	if(I.is_drainable() && I.reagents.total_volume && user.a_intent != I_GRAB)
-		to_chat(user, SPAN_NOTICE("You transfer 10 units of substance from \the [I] to \the [src]'s internal chemical storage."))
+		to_chat(user, span_notice("You transfer 10 units of substance from \the [I] to \the [src]'s internal chemical storage."))
 		I.reagents.trans_to_holder(holding.reagents, 10, 1, FALSE)
 	else if(I.reagents && I.reagent_flags & REFILLABLE && user.a_intent == I_GRAB)
-		to_chat(user, SPAN_NOTICE("You drain 10 units of substance from \the [src] to \the [I]."))
+		to_chat(user, span_notice("You drain 10 units of substance from \the [src] to \the [I]."))
 		holding.reagents.trans_to_holder(I.reagents, 10, 1, FALSE)
 	else
-		to_chat(user, SPAN_NOTICE("You need to be on GRAB intent to drain from \the [src]."))
+		to_chat(user, span_notice("You need to be on GRAB intent to drain from \the [src]."))
 
 /obj/item/mech_equipment/mounted_system/sprayer/afterattack(atom/target, mob/living/user, inrange, params)
 	if(!ismech(user.loc))

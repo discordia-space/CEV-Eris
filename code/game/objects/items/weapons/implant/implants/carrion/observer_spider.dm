@@ -63,21 +63,21 @@
 	if(usr.incapacitated() || !Adjacent(usr) || !isturf(loc))
 		return
 	if(locate(/obj/item/implant/carrion_spider/observer) in orange(src,1))
-		to_chat(usr, SPAN_WARNING("Another spider in proximity prevents anchoring."))
+		to_chat(usr, span_warning("Another spider in proximity prevents anchoring."))
 		return
 	observing = TRUE
 	start()
 
 	var/spider_amount = length(get_local_spiders())
-	to_chat(usr, SPAN_NOTICE("Spider is observing. [spider_amount] spider\s active in the area."))
+	to_chat(usr, span_notice("Spider is observing. [spider_amount] spider\s active in the area."))
 	if(spider_amount >= 3 && timer)
-		to_chat(usr, SPAN_NOTICE("Data observation initiated."))
+		to_chat(usr, span_notice("Data observation initiated."))
 		if(owner_mind)
 			for(var/datum/antag_contract/recon/C in GLOB.various_antag_contracts)
 				if(C.completed)
 					continue
 				if(get_area(src) in C.targets)
-					to_chat(usr, SPAN_NOTICE("Recon contract locked in."))
+					to_chat(usr, span_notice("Recon contract locked in."))
 					return
 
 /obj/item/implant/carrion_spider/observer/proc/get_local_spiders()

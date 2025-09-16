@@ -36,16 +36,16 @@
 				playsound(src, I.hitsound, volume, 1, -1)
 
 			if (calc_damage > 0)
-				visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+				visible_message(span_danger("[src] has been hit by [user] with [I]."))
 				take_damage(I.force*I.structure_damage_factor, I.damtype)
 			else
-				visible_message(SPAN_DANGER("[user] ineffectually hits [src] with [I]"))
+				visible_message(span_danger("[user] ineffectually hits [src] with [I]"))
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			return TRUE
 
 	for(var/atom/movable/A in src)
 		if(A.preventsTurfInteractions())
-			to_chat(user, SPAN_NOTICE("[A] is in the way."))
+			to_chat(user, span_notice("[A] is in the way."))
 			A.attackby(I, user)
 			if(A.preventsTurfInteractions())
 				return
@@ -63,7 +63,7 @@
 	if (is_plating())
 		if(istype(I, /obj/item/stack))
 			if(is_damaged())
-				to_chat(user, SPAN_WARNING("This section is too damaged to support anything. Use a welder to fix the damage."))
+				to_chat(user, span_warning("This section is too damaged to support anything. Use a welder to fix the damage."))
 				return
 			var/obj/item/stack/S = I
 			var/decl/flooring/use_flooring
@@ -86,7 +86,7 @@
 				return
 			// Do we have enough?
 			if(use_flooring.build_cost && S.get_amount() < use_flooring.build_cost)
-				to_chat(user, SPAN_WARNING("You require at least [use_flooring.build_cost] [S.name] to complete the [use_flooring.descriptor]."))
+				to_chat(user, span_warning("You require at least [use_flooring.build_cost] [S.name] to complete the [use_flooring.descriptor]."))
 				return
 			// Stay still and focus...
 			if(use_flooring.build_time && !do_after(user, use_flooring.build_time, src))
@@ -118,7 +118,7 @@
 			if(QUALITY_SEALING)
 				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
 				if (I.use_tool(user, src, 50 + ((maxHealth - health)*2), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
-					to_chat(user, SPAN_NOTICE("The [src] looks pretty solid now!"))
+					to_chat(user, span_notice("The [src] looks pretty solid now!"))
 					health = maxHealth
 					broken = FALSE
 					burnt = FALSE
@@ -127,46 +127,46 @@
 			if(QUALITY_PRYING)
 				if(is_damaged())
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-						to_chat(user, SPAN_NOTICE("You remove the broken [flooring.descriptor]."))
-						make_plating()
+						to_chat(user, span_notice("You remove the broken [flooring.descriptor]."))
+						make_plating(TRUE, null, TRUE)
 					return
 				else if(flooring.flags & TURF_IS_FRAGILE)
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-						to_chat(user, SPAN_DANGER("You forcefully pry off the [flooring.descriptor], destroying them in the process."))
+						to_chat(user, span_danger("You forcefully pry off the [flooring.descriptor], destroying them in the process."))
 						make_plating()
 					return
 				else if(flooring.flags & TURF_REMOVE_CROWBAR)
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-						to_chat(user, SPAN_NOTICE("You lever off the [flooring.descriptor]."))
-						make_plating(1)
+						to_chat(user, span_notice("You lever off the [flooring.descriptor]."))
+						make_plating(TRUE)
 					return
 				return
 
 			if(QUALITY_SCREW_DRIVING)
 				if((!(is_damaged()) && !is_plating()) || flooring.flags & TURF_REMOVE_SCREWDRIVER)
 					if(I.use_tool(user, src, flooring.removal_time*1.5, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-						to_chat(user, SPAN_NOTICE("You unscrew and remove the [flooring.descriptor]."))
-						make_plating(1)
+						to_chat(user, span_notice("You unscrew and remove the [flooring.descriptor]."))
+						make_plating(TRUE)
 				return
 
 			if(QUALITY_BOLT_TURNING)
 				if(flooring.flags & TURF_REMOVE_WRENCH)
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-						to_chat(user, SPAN_NOTICE("You unwrench and remove the [flooring.descriptor]."))
-						make_plating(1)
+						to_chat(user, span_notice("You unwrench and remove the [flooring.descriptor]."))
+						make_plating(TRUE)
 				return
 
 			if(QUALITY_SHOVELING)
 				if(flooring.flags & TURF_REMOVE_SHOVEL)
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-						to_chat(user, SPAN_NOTICE("You shovel off the [flooring.descriptor]."))
-						make_plating(1)
+						to_chat(user, span_notice("You shovel off the [flooring.descriptor]."))
+						make_plating(TRUE)
 				return
 
 			if(QUALITY_WELDING)
 				if(is_damaged())
 					if(I.use_tool(user, src, maxHealth - health, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-						to_chat(user, SPAN_NOTICE("You fix some dents on the broken plating."))
+						to_chat(user, span_notice("You fix some dents on the broken plating."))
 						playsound(src, 'sound/items/Welder.ogg', 80, 1)
 						icon_state = "plating"
 						health = maxHealth
@@ -176,16 +176,16 @@
 						return
 
 				if(flooring.flags & TURF_REMOVE_WELDER)
-					to_chat(user, SPAN_NOTICE("You start cutting through the [flooring.descriptor]."))
+					to_chat(user, span_notice("You start cutting through the [flooring.descriptor]."))
 					if(I.use_tool(user, src, flooring.removal_time, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-						to_chat(user, SPAN_NOTICE("You cut through and remove the [flooring.descriptor]."))
-						make_plating(1)
+						to_chat(user, span_notice("You cut through and remove the [flooring.descriptor]."))
+						make_plating(TRUE)
 
 			if(ABORT_CHECK)
 				return
 
 		if(istype(I, /obj/item/stack/cable_coil) && (flooring.flags & TURF_HIDES_THINGS))
-			to_chat(user, SPAN_WARNING("You must remove the [flooring.descriptor] first."))
+			to_chat(user, span_warning("You must remove the [flooring.descriptor] first."))
 			return
 		else if (istype(I, /obj/item/frame))
 			var/obj/item/frame/F = I
@@ -198,9 +198,9 @@
 
 /turf/floor/can_build_cable(mob/user)
 	if(flooring && (flooring.flags & TURF_HIDES_THINGS))
-		to_chat(user, SPAN_WARNING("You must remove the [flooring.descriptor] first."))
+		to_chat(user, span_warning("You must remove the [flooring.descriptor] first."))
 		return FALSE
 	if(is_damaged())
-		to_chat(user, SPAN_WARNING("This section is too damaged to support anything. Use a welder to fix the damage."))
+		to_chat(user, span_warning("This section is too damaged to support anything. Use a welder to fix the damage."))
 		return FALSE
 	return TRUE

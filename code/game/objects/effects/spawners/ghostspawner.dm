@@ -86,11 +86,11 @@
 	if(user?.ckey)
 		M.ckey = user.ckey
 		if(show_flavour)
-			var/output_message = "<span class='infoplain'><span class='big bold'>[short_desc]</span></span>"
+			var/output_message = span_infoplain("<span class='big bold'>[short_desc]</span>")
 			if(flavour_text != "")
-				output_message += "\n<span class='infoplain'><b>[flavour_text]</b></span>"
+				output_message += "\n[span_infoplain("<b>[flavour_text]</b>")]"
 			if(important_info != "")
-				output_message += "\n<span class='userdanger'>[important_info]</span>"
+				output_message += "\n[span_userdanger("[important_info]")]"
 			to_chat(M, output_message)
 		var/datum/mind/MM = M.mind
 		if(assignedrole)
@@ -151,7 +151,7 @@
 	var/facial_haircolor
 	var/skin_tone
 
-/obj/effect/mob_spawn/human/proc/add_stats(var/mob/living/carbon/human/target)
+/obj/effect/mob_spawn/human/proc/add_stats(mob/living/carbon/human/target)
 	for(var/name in src.stat_modifiers)
 		target.stats.changeStat(name, stat_modifiers[name])
 	return TRUE
@@ -179,6 +179,6 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
 
-obj/effect/mob_spawn/human/Destroy()
+/obj/effect/mob_spawn/human/Destroy()
 	new/obj/structure/empty_sleeper(get_turf(src))
 	return ..()

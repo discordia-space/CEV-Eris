@@ -12,7 +12,7 @@
   - tweak: console screen can now be printed from means of production disk and crafted
       too
   - rscadd: adds njoy pills and a chemical to make the pills
-  Pink-Chink:
+  Pink-chunk:
   - bugfix: Fixed full auto click handler not being removed when a zoomed gun was
       dropped
   - rscdel: Removed virus event
@@ -85,7 +85,7 @@
   - bugfix: Hands being bugged due to MMI insertion
   - bugfix: Ghost-alert spam using MMI's
   - rscadd: Added extra-description to the MMI
-  Pink-Chink:
+  Pink-chunk:
   - code_imp: Re-organized corpse spawning code
   SirRichardFrancis:
   - rscadd: Added christmas-themed alternative to benzin roaches.

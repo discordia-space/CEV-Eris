@@ -75,21 +75,21 @@
 		set_light(0)
 	..()
 
-/mob/living/bot/secbot/attack_hand(var/mob/user)
+/mob/living/bot/secbot/attack_hand(mob/user)
 	user.set_machine(src)
 	var/dat
 	dat += "<TT><B>Automatic Security Unit v[bot_version]</B></TT><BR><BR>"
-	dat += "Status: <A href='?src=\ref[src];power=1'>[on ? "On" : "Off"]</A><BR>"
+	dat += "Status: <A href='byond://?src=\ref[src];power=1'>[on ? "On" : "Off"]</A><BR>"
 	dat += "Behaviour controls are [locked ? "locked" : "unlocked"]<BR>"
 	dat += "Maintenance panel is [open ? "opened" : "closed"]"
 	if(!locked || issilicon(user))
-		dat += "<BR>Check for Weapon Authorization: <A href='?src=\ref[src];operation=idcheck'>[idcheck ? "Yes" : "No"]</A><BR>"
-		dat += "Check Security Records: <A href='?src=\ref[src];operation=ignorerec'>[check_records ? "Yes" : "No"]</A><BR>"
-		dat += "Check Arrest Status: <A href='?src=\ref[src];operation=ignorearr'>[check_arrest ? "Yes" : "No"]</A><BR>"
-		dat += "Operating Mode: <A href='?src=\ref[src];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A><BR>"
-		dat += "Report Arrests: <A href='?src=\ref[src];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A><BR>"
-		dat += "Auto Patrol: <A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>"
-	user << browse("<HEAD><TITLE>Securitron v[bot_version] controls</TITLE></HEAD>[dat]", "window=autosec")
+		dat += "<BR>Check for Weapon Authorization: <A href='byond://?src=\ref[src];operation=idcheck'>[idcheck ? "Yes" : "No"]</A><BR>"
+		dat += "Check Security Records: <A href='byond://?src=\ref[src];operation=ignorerec'>[check_records ? "Yes" : "No"]</A><BR>"
+		dat += "Check Arrest Status: <A href='byond://?src=\ref[src];operation=ignorearr'>[check_arrest ? "Yes" : "No"]</A><BR>"
+		dat += "Operating Mode: <A href='byond://?src=\ref[src];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A><BR>"
+		dat += "Report Arrests: <A href='byond://?src=\ref[src];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A><BR>"
+		dat += "Auto Patrol: <A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>"
+	user << browse(HTML_SKELETON_TITLE("Securitron v[bot_version] controls", dat), "window=autosec")
 	onclose(user, "autosec")
 	return
 
@@ -123,7 +123,7 @@
 			declare_arrests = !declare_arrests
 	attack_hand(usr)
 
-/mob/living/bot/secbot/attackby(var/obj/item/O, var/mob/user)
+/mob/living/bot/secbot/attackby(obj/item/O, mob/user)
 	var/curhealth = health
 	..()
 	if(health < curhealth)
@@ -251,7 +251,7 @@
 				patrol_step()
 			return
 
-/mob/living/bot/secbot/UnarmedAttack(var/mob/M, var/proximity)
+/mob/living/bot/secbot/UnarmedAttack(mob/M, proximity)
 	if(!..())
 		return
 
@@ -276,10 +276,10 @@
 			spawn(2)
 				is_attacking = 0
 				update_icons()
-			visible_message(SPAN_WARNING("[C] was prodded by [src] with a stun baton!"))
+			visible_message(span_warning("[C] was prodded by [src] with a stun baton!"))
 		else
 			playsound(loc, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
-			visible_message(SPAN_WARNING("[src] is trying to put handcuffs on [C]!"))
+			visible_message(span_warning("[src] is trying to put handcuffs on [C]!"))
 			if(do_mob(src, C, 60))
 				if(!C.handcuffed)
 					C.handcuffed = new /obj/item/handcuffs(C)
@@ -297,10 +297,10 @@
 		spawn(2)
 			is_attacking = 0
 			update_icons()
-		visible_message(SPAN_WARNING("[M] was beaten by [src] with a stun baton!"))
+		visible_message(span_warning("[M] was beaten by [src] with a stun baton!"))
 
 /mob/living/bot/secbot/explode()
-	visible_message(SPAN_WARNING("[src] blows apart!"))
+	visible_message(span_warning("[src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
 	var/obj/item/secbot_assembly/Sa = new /obj/item/secbot_assembly(Tsec)
@@ -331,17 +331,17 @@
 		if(threat >= 4)
 			target = M
 			say("Level [threat] infraction alert!")
-			visible_message(SPAN_DANGER("[src] points at [M.name]!"))
+			visible_message(span_danger("[src] points at [M.name]!"))
 			mode = SECBOT_HUNT
 			break
 	return
 
-/mob/living/bot/secbot/proc/calc_path(var/turf/avoid = null)
+/mob/living/bot/secbot/proc/calc_path(turf/avoid = null)
 	path = AStar(loc, patrol_target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 120, id=botcard, exclude=avoid)
 	if(!path)
 		path = list()
 
-/mob/living/bot/secbot/proc/check_threat(var/mob/living/M)
+/mob/living/bot/secbot/proc/check_threat(mob/living/M)
 	if(!M || !istype(M) || M.stat || src == M)
 		return 0
 
@@ -397,10 +397,10 @@
 /obj/secbot_listener
 	var/mob/living/bot/secbot/secbot = null
 
-/obj/secbot_listener/proc/post_signal(var/freq, var/key, var/value) // send a radio signal with a single data key/value pair
+/obj/secbot_listener/proc/post_signal(freq, key, value) // send a radio signal with a single data key/value pair
 	post_signal_multiple(freq, list("[key]" = value))
 
-/obj/secbot_listener/proc/post_signal_multiple(var/freq, var/list/keyval) // send a radio signal with multiple data key/values
+/obj/secbot_listener/proc/post_signal_multiple(freq, list/keyval) // send a radio signal with multiple data key/values
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(freq)
 	if(!frequency)
 		return
@@ -477,7 +477,7 @@
 
 //Secbot Construction
 
-/obj/item/clothing/head/armor/helmet/attackby(var/obj/item/device/assembly/signaler/S, mob/user as mob)
+/obj/item/clothing/head/armor/helmet/attackby(obj/item/device/assembly/signaler/S, mob/user as mob)
 	..()
 	if(!issignaler(S))
 		..()

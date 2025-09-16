@@ -2,7 +2,7 @@
 GLOBAL_LIST_EMPTY(price_cache)
 SUBSYSTEM_DEF(trade)
 	name = "Trade"
-	priority = SS_PRIORITY_SUPPLY
+	priority = FIRE_PRIORITY_SUPPLY
 	flags = SS_NO_FIRE
 
 	var/trade_stations_budget = 7 // Currently unused. This is the budget for stations with spawn_always = FALSE
@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(trade)
 	init_stations_by_list(stations2init)
 
 // Add a random trading station after the start of the round among pool of stations not already spawned
-/datum/controller/subsystem/trade/proc/AddStation(var/turf/station_loc)
+/datum/controller/subsystem/trade/proc/AddStation(turf/station_loc)
 	var/list/availablestationlist = collect_available_trade_stations()
 
 	if(length(availablestationlist))
@@ -249,7 +249,7 @@ SUBSYSTEM_DEF(trade)
 		if(!current_container.reagents)								// If the previous check fails, we are looking for a container with reagents or a specific reagent
 			return FALSE											// If the container is empty, fail
 
-		for(var/datum/reagent/current_reagent in current_container.reagents?.reagent_list)											
+		for(var/datum/reagent/current_reagent in current_container.reagents?.reagent_list)
 			if(current_reagent.volume >= target_volume && istype(current_reagent, target_reagent))		// Check volume and reagent type
 				return TRUE
 
@@ -531,7 +531,7 @@ SUBSYSTEM_DEF(trade)
 		// The max is a soft cap
 		if(export_count > EXPORT_COUNT_MAXIMUM)
 			break
-	
+
 	senderBeacon.start_export()
 	var/datum/money_account/guild_account = department_accounts[DEPARTMENT_GUILD]
 	var/datum/transaction/T = new(cost, guild_account.get_name(), "Export", TRADE_SYSTEM_IC_NAME)
@@ -541,7 +541,7 @@ SUBSYSTEM_DEF(trade)
 		create_log_entry("Export", guild_account.get_name(), invoice_contents_info, cost, FALSE, get_turf(senderBeacon))
 
 /datum/controller/subsystem/trade/proc/get_export_price_multiplier(atom/movable/target)
-	if(!target || target.anchored)
+	if(!target || isturf(target) || target.anchored)
 		return NONEXPORTABLE
 
 	. = EXPORTABLE
@@ -552,7 +552,7 @@ SUBSYSTEM_DEF(trade)
 
 	// Junk tags override hockable tags and offer types override both
 	if(target_hockable_tags.len)
-		. = HOCKABLE				
+		. = HOCKABLE
 	if(target_junk_tags.len)
 		. = JUNK
 	for(var/offer_type in offer_types)

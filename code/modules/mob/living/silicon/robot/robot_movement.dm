@@ -2,7 +2,7 @@
 /// I've spent 2 hours looking for them , but hopefully you don't have to go through my pain of going over and over undocumented code.
 
 
-/mob/living/silicon/robot/slip_chance(var/prob_slip)
+/mob/living/silicon/robot/slip_chance(prob_slip)
 	if(module && module.no_slip)
 		return 0
 	..(prob_slip)

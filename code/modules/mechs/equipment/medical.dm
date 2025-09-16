@@ -16,7 +16,7 @@
 	sleeper.forceMove(src)
 
 /obj/item/mech_equipment/sleeper/Destroy()
-	sleeper.go_out() //If for any reason you weren't outside already.
+	sleeper?.go_out() //If for any reason you weren't outside already.
 	QDEL_NULL(sleeper)
 	. = ..()
 
@@ -24,12 +24,12 @@
 	. = ..()
 	sleeper.go_out()
 
-/obj/item/mech_equipment/sleeper/attack_self(var/mob/user)
+/obj/item/mech_equipment/sleeper/attack_self(mob/user)
 	. = ..()
 	if(.)
 		sleeper.nano_ui_interact(user)
 
-/obj/item/mech_equipment/sleeper/attackby(var/obj/item/I, var/mob/user)
+/obj/item/mech_equipment/sleeper/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers/glass))
 		sleeper.attackby(I, user)
 	else return ..()
@@ -39,9 +39,9 @@
 	. = ..()
 	if(.)
 		if(ishuman(target) && !sleeper.occupant)
-			owner.visible_message(SPAN_NOTICE("\The [src] is lowered down to load [target]"))
+			owner.visible_message(span_notice("\The [src] is lowered down to load [target]"))
 			sleeper.go_in(target, user)
-		else to_chat(user, SPAN_WARNING("You cannot load that in!"))
+		else to_chat(user, span_warning("You cannot load that in!"))
 
 /obj/item/mech_equipment/sleeper/get_hardpoint_maptext()
 	if(sleeper && sleeper.occupant)
@@ -67,16 +67,16 @@
 	return null
 
 //You cannot modify these, it'd probably end with something in nullspace. In any case basic meds are plenty for an ambulance
-/obj/machinery/sleeper/mounted/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/sleeper/mounted/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers/glass))
 		if(!user.unEquip(I, src))
 			return
 
 		if(beaker)
 			beaker.forceMove(get_turf(src))
-			user.visible_message("<span class='notice'>\The [user] removes \the [beaker] from \the [src].</span>", "<span class='notice'>You remove \the [beaker] from \the [src].</span>")
+			user.visible_message(span_notice("\The [user] removes \the [beaker] from \the [src]."), span_notice("You remove \the [beaker] from \the [src]."))
 		beaker = I
-		user.visible_message("<span class='notice'>\The [user] adds \a [I] to \the [src].</span>", "<span class='notice'>You add \a [I] to \the [src].</span>")
+		user.visible_message(span_notice("\The [user] adds \a [I] to \the [src]."), span_notice("You add \a [I] to \the [src]."))
 
 /obj/item/mech_equipment/sleeper/upgraded
 	name = "\improper MK2 mounted sleeper"
@@ -130,17 +130,17 @@
 	if(. && ishuman(target))
 		if(!trauma_charges_stored && mending_target)
 			mending_target = null
-			to_chat(user, SPAN_NOTICE("ERROR: Auto-mender stock is depleted. Refill required."))
+			to_chat(user, span_notice("ERROR: Auto-mender stock is depleted. Refill required."))
 			return
 		if(mending_target == target)
 			mending_target = null
-			to_chat(user, SPAN_NOTICE("You cancel \the [src]'s mending on [target]."))
+			to_chat(user, span_notice("You cancel \the [src]'s mending on [target]."))
 			return
 		if(mending_target)
-			to_chat(user, SPAN_NOTICE("You stop \the [src] from mending [mending_target]."))
+			to_chat(user, span_notice("You stop \the [src] from mending [mending_target]."))
 			mending_target = null
 		if(!target.Adjacent(mech))
-			to_chat(user, SPAN_NOTICE("You need to be next to \the [target] to start mending them!"))
+			to_chat(user, span_notice("You need to be next to \the [target] to start mending them!"))
 		mending_target = target
 		mending_loop()
 
@@ -151,10 +151,10 @@
 		var/substract = clamp(pack.amount, 0, trauma_storage_max - trauma_charges_stored)
 		if(substract && pack.use(substract))
 			trauma_charges_stored += substract
-			to_chat(user, SPAN_NOTICE("You restock \the [src]'s internal medicine storage with \the [I], using [substract] charges."))
+			to_chat(user, span_notice("You restock \the [src]'s internal medicine storage with \the [I], using [substract] charges."))
 
 		if(trauma_charges_stored >= trauma_storage_max)
-			to_chat(user, SPAN_NOTICE("The auto-mender's storage is full!"))
+			to_chat(user, span_notice("The auto-mender's storage is full!"))
 			return
 
 /obj/item/mech_equipment/auto_mender/installed(mob/living/exosuit/_owner, hardpoint)
@@ -174,7 +174,7 @@
 		return
 	var/obj/item/organ/external/checking
 	if(!affecting || (affecting && affecting.is_bandaged()))
-		for(var/zone in BP_ALL_LIMBS)
+		for(var/datum/zone in BP_ALL_LIMBS)
 			checking = mending_target.organs_by_name[zone]
 			if(checking.is_bandaged() && checking.damage < 1)
 				continue
@@ -199,11 +199,11 @@
 		if(W.damage < 1)
 			continue
 		if(!trauma_charges_stored)
-			to_chat(mech.get_mob(), SPAN_NOTICE("ERROR: Auto-mender stock is depleted. Refill required."))
+			to_chat(mech.get_mob(), span_notice("ERROR: Auto-mender stock is depleted. Refill required."))
 			playsound(src, 'sound/mechs/internaldmgalarm.ogg', 50, 1)
 			break
 		if(!do_mob(mech.get_mob(), mending_target, W.damage/5))
-			to_chat(mech.get_mob(), SPAN_NOTICE("You must stand still to bandage wounds."))
+			to_chat(mech.get_mob(), span_notice("You must stand still to bandage wounds."))
 			mending_target = null
 			affecting = null
 			break
@@ -211,18 +211,18 @@
 //			continue
 		if (W.current_stage <= W.max_bleeding_stage)
 			mech.visible_message(
-				SPAN_NOTICE("\The [mech] cleans \a [W.desc] on [mending_target]'s [affecting.name] and seals the edges with bioglue."),
-				SPAN_NOTICE("You clean and seal \a [W.desc] on [mending_target]'s [affecting.name].")
+				span_notice("\The [mech] cleans \a [W.desc] on [mending_target]'s [affecting.name] and seals the edges with bioglue."),
+				span_notice("You clean and seal \a [W.desc] on [mending_target]'s [affecting.name].")
 			)
 		else if (W.damage_type == BRUISE)
 			mech.visible_message(
-				SPAN_NOTICE("\The [mech] places a medical patch over \a [W.desc] on [mending_target]'s [affecting.name]."),
-				SPAN_NOTICE("You place a medical patch over \a [W.desc] on [mending_target]'s [affecting.name].")
+				span_notice("\The [mech] places a medical patch over \a [W.desc] on [mending_target]'s [affecting.name]."),
+				span_notice("You place a medical patch over \a [W.desc] on [mending_target]'s [affecting.name].")
 			)
 		else
 			mech.visible_message(
-				SPAN_NOTICE("\The [mech] smears some bioglue over \a [W.desc] on [mending_target]'s [affecting.name]."),
-				SPAN_NOTICE("You smear some bioglue over \a [W.desc] on [mending_target]'s [affecting.name].")
+				span_notice("\The [mech] smears some bioglue over \a [W.desc] on [mending_target]'s [affecting.name]."),
+				span_notice("You smear some bioglue over \a [W.desc] on [mending_target]'s [affecting.name].")
 			)
 		W.bandage()
 		W.heal_damage(10)

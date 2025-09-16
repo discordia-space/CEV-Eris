@@ -7,8 +7,8 @@
 
 // Get rid of those dumb little single-tile volcanic areas.
 /datum/random_map/noise/volcanism/cleanup()
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
+	for(var/x = 1; x <= limit_x; x++)
+		for(var/y = 1; y <= limit_y; y++)
 			var/current_cell = get_map_cell(x,y)
 			if(map[current_cell] < 178)
 				continue
@@ -32,10 +32,10 @@
 			if(!count)
 				map[current_cell] = 177
 
-/datum/random_map/noise/volcanism/get_appropriate_path(var/value)
+/datum/random_map/noise/volcanism/get_appropriate_path(value)
 	return
 
-/datum/random_map/noise/volcanism/get_additional_spawns(var/value, var/turf/T)
+/datum/random_map/noise/volcanism/get_additional_spawns(value, turf/T)
 	if(value>=178)
 		if(istype(T,/turf/floor/asteroid))
 			T.ChangeTurf(/turf/floor/airless/lava)

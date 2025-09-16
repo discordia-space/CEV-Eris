@@ -43,11 +43,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 /obj/machinery/telecomms/examine(mob/user, extra_description = "")
 	switch(integrity)
 		if(0 to 20)
-			extra_description += SPAN_WARNING("There is little life left in it.")
+			extra_description += span_warning("There is little life left in it.")
 		if(21 to 49)
-			extra_description += SPAN_WARNING("It is glitching incoherently.")
+			extra_description += span_warning("It is glitching incoherently.")
 		if(50 to 80)
-			extra_description += SPAN_WARNING("It is sparking and humming.")
+			extra_description += span_warning("It is sparking and humming.")
 	..(user, extra_description)
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/signal, filter, copysig, amount = 20)
@@ -145,7 +145,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		else
 			for(var/obj/machinery/telecomms/T in telecomms_list)
 				add_link(T)
-		
+
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/telecomms/Destroy()
@@ -185,7 +185,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 
 // Used in auto linking
-/obj/machinery/telecomms/proc/add_link(var/obj/machinery/telecomms/T)
+/obj/machinery/telecomms/proc/add_link(obj/machinery/telecomms/T)
 	var/turf/position = get_turf(src)
 	var/turf/T_position = get_turf(T)
 	if((position.z == T_position.z) || (src.long_range_link && T.long_range_link))
@@ -478,20 +478,19 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	circuit = /obj/item/electronics/circuitboard/telecomms/processor
 	var/process_mode = 1 // 1 = Uncompress Signals, 0 = Compress Signals
 
-	receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
+/obj/machinery/telecomms/processor/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
+	if(is_freq_listening(signal))
 
-		if(is_freq_listening(signal))
+		if(process_mode)
+			signal.data["compression"] = 0 // uncompress subspace signal
+		else
+			signal.data["compression"] = 100 // even more compressed signal
 
-			if(process_mode)
-				signal.data["compression"] = 0 // uncompress subspace signal
-			else
-				signal.data["compression"] = 100 // even more compressed signal
-
-			if(istype(machine_from, /obj/machinery/telecomms/bus))
-				relay_direct_information(signal, machine_from) // send the signal back to the machine
-			else // no bus detected - send the signal to servers instead
-				signal.data["slow"] += rand(5, 10) // slow the signal down
-				relay_information(signal, "/obj/machinery/telecomms/server")
+		if(istype(machine_from, /obj/machinery/telecomms/bus))
+			relay_direct_information(signal, machine_from) // send the signal back to the machine
+		else // no bus detected - send the signal to servers instead
+			signal.data["slow"] += rand(5, 10) // slow the signal down
+			relay_information(signal, "/obj/machinery/telecomms/server")
 
 
 /*
@@ -611,14 +610,14 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 /obj/machinery/telecomms/server/proc/update_logs()
 	// start deleting the very first log entry
 	if(logs >= 400)
-		for(var/i = 1, i <= logs, i++) // locate the first garbage collectable log entry and remove it
+		for(var/i = 1; i <= logs; i++) // locate the first garbage collectable log entry and remove it
 			var/datum/comm_log_entry/L = log_entries[i]
 			if(L.garbage_collector)
 				log_entries.Remove(L)
 				logs--
 				break
 
-/obj/machinery/telecomms/server/proc/add_entry(var/content, var/input)
+/obj/machinery/telecomms/server/proc/add_entry(content, input)
 	var/datum/comm_log_entry/log = new
 	var/identifier = num2text( rand(-1000,1000) + world.time )
 	log.name = "[input] ([md5(identifier)])"

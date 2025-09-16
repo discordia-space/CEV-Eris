@@ -68,21 +68,21 @@
 
 /obj/item/craft_frame/examine(user, extra_description = "")
 	if(req_parts > 0)
-		extra_description += SPAN_NOTICE("Requires [req_parts] gun parts to be complete.")
+		extra_description += span_notice("Requires [req_parts] gun parts to be complete.")
 	else
-		extra_description += SPAN_NOTICE("[src] is complete.")
+		extra_description += span_notice("[src] is complete.")
 	..(user, extra_description)
 
 /obj/item/craft_frame/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, suitable_part))
 		if(complete)
-			to_chat(user, SPAN_WARNING("[src] is complete"))
+			to_chat(user, span_warning("[src] is complete"))
 			return
 		else if(insert_item(I, user))
 			req_parts--
 			if(req_parts <= 0)
 				complete()
-				to_chat(user, SPAN_NOTICE("You have completed [src]."))
+				to_chat(user, span_notice("You have completed [src]."))
 			return
 	return ..()
 
@@ -104,7 +104,7 @@
 /obj/item/craft_frame/attack_self(mob/user)
 	. = ..()
 	if(!complete)
-		to_chat(user, SPAN_WARNING("[src] is not yet complete."))
+		to_chat(user, span_warning("[src] is not yet complete."))
 	else
 		view_only = round(total_items * (1 - user.stats.getMult(req_sat, 100))/2) +1 // 1 choice per 10 stat + 1
 		if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
@@ -160,7 +160,7 @@
 					continue
 				aditional_obj = new thing (T)
 		user.put_in_hands(aditional_obj)
-	to_chat(user, SPAN_NOTICE("You have used [src] to craft a [O.name]."))
+	to_chat(user, span_notice("You have used [src] to craft a [O.name]."))
 	spawn(1)
 		if(!QDELETED(src))
 			qdel(src)

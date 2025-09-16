@@ -24,7 +24,7 @@
   Kurgis:
   - balance: Makeshift hande-teles and tele-spears have been moved into the spawn
       pool.
-  Pink-Chink:
+  Pink-chunk:
   - rscadd: 'Added new trade offer type: modded items'
   - tweak: Fulfilling all offers has better logic for handling child types
   - tweak: Merged log app into main app
@@ -98,7 +98,7 @@
   - rscadd: rest points
   - rscadd: dumbbells
   - rscdel: insight stacking
-  Pink-Chink:
+  Pink-chunk:
   - bugfix: Fixed Bojevic disassembly
   - bugfix: Fixed OS laser turret using the wrong laser type
   - bugfix: Fixed backwards distance prioritization
@@ -195,7 +195,7 @@
 2022-10-22:
   Firefox13:
   - balance: Acolytes now can clone people without genetic damage
-  Pink-Chink:
+  Pink-chunk:
   - tweak: Handheld freezer can hold organ mods
   - bugfix: Fixed hivemind mobs processing after death
   - tweak: NT obelisks use line of sight for checking affected mobs

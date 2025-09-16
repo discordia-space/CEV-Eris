@@ -18,7 +18,7 @@
 
 /obj/structure/salvageable/attackby(obj/item/I, mob/user)
 	if(I.get_tool_type(usr, list(QUALITY_PRYING), src))
-		to_chat(user, SPAN_NOTICE("You start salvage anything useful from \the [src]."))
+		to_chat(user, span_notice("You start salvage anything useful from \the [src]."))
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PRYING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			dismantle()
 			qdel(src)
@@ -148,7 +148,7 @@
 		/obj/item/stack/material/silver{amount = 10} = 30
 	)
 
-obj/structure/salvageable/implant_container/Initialize()
+/obj/structure/salvageable/implant_container/Initialize()
 	. = ..()
 	icon_state = "implant_container[rand(0,1)]"
 
@@ -177,7 +177,7 @@ obj/structure/salvageable/implant_container/Initialize()
 		/obj/item/computer_hardware/network_card/advanced = 20
 	)
 
-obj/structure/salvageable/data/Initialize()
+/obj/structure/salvageable/data/Initialize()
 	. = ..()
 	icon_state = "data[rand(0,1)]"
 
@@ -208,7 +208,7 @@ obj/structure/salvageable/data/Initialize()
 		/obj/item/computer_hardware/network_card/advanced = 20
 	)
 
-obj/structure/salvageable/server/Initialize()
+/obj/structure/salvageable/server/Initialize()
 	. = ..()
 	icon_state = "server[rand(0,1)]"
 
@@ -238,7 +238,7 @@ obj/structure/salvageable/server/Initialize()
 		/obj/spawner/lathe_disk/advanced = 10,
 	)
 
-obj/structure/salvageable/personal/Initialize()
+/obj/structure/salvageable/personal/Initialize()
 	. = ..()
 	icon_state = "personal[rand(0,12)]"
 	new /obj/structure/table/reinforced (loc)
@@ -260,13 +260,13 @@ obj/structure/salvageable/personal/Initialize()
 		/obj/item/stock_parts/micro_laser/excelsior = 5
 	)
 
-obj/structure/salvageable/bliss/Initialize()
+/obj/structure/salvageable/bliss/Initialize()
 	. = ..()
 	icon_state = "bliss[rand(0,1)]"
 
 /obj/structure/salvageable/bliss/attackby(obj/item/I, mob/user)
 	if(I.get_tool_type(usr, list(QUALITY_PRYING), src))
-		to_chat(user, SPAN_NOTICE("You start salvage anything useful from \the [src]."))
+		to_chat(user, span_notice("You start salvage anything useful from \the [src]."))
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PRYING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			playsound(user, 'sound/machines/shutdown.ogg', 60, 1)
 			dismantle()

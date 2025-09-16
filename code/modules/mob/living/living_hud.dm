@@ -48,7 +48,7 @@
 //For HUD checking needs
 
 
-/mob/living/proc/recolor_HUD(var/_color, var/_alpha)
+/mob/living/proc/recolor_HUD(_color, _alpha)
 	for(var/i=1,i<=HUDneed.len,i++)
 		var/p = HUDneed[i]
 		var/obj/screen/HUDelm = HUDneed[p]

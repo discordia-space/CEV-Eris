@@ -33,11 +33,11 @@
 			margin: 0;
 			line-height: 1.2;
 		}
-		
+
 		.midnight .wrap {border-color: #2B2B33;}
 		.midnight .content {color: #6087A0; border-color: #2B2B33; background-color: #36363C;}
 
-		
+
 
 	</style>
 </head>
@@ -74,7 +74,7 @@
 					tilesShown 		= tooltip.client_view_w
 					realIconSize 	= mapWidth / tilesShown,
 					resizeRatio		= realIconSize / tooltip.tileSize,
-					//Calculate letterboxing offsets	
+					//Calculate letterboxing offsets
 					leftOffset 		= (map.size.x - mapWidth) / 2,
 					topOffset 		= (map.size.y - mapHeight) / 2;
 				//alert(realIconSize + ' | ' +tooltip.tileSize + ' | ' + resizeRatio); //DEBUG
@@ -142,27 +142,28 @@
 				var posX = Math.round(((left - 1) * realIconSize) + leftOffset + tooltip.padding); //-1 to position at the left of the target tile
 				var posY = Math.round(((tilesShown - top + 1) * realIconSize) + topOffset + tooltip.padding); //+1 to position at the bottom of the target tile
 				//alert(mapWidth+' | '+mapHeight+' | '+tilesShown+' | '+realIconSize+' | '+leftOffset+' | '+topOffset+' | '+left+' | '+top+' | '+posX+' | '+posY); //DEBUG
-				$('body').attr('class', tooltip.theme);
-				var $content = $('#content'),
-					$wrap 	 = $('#wrap');
-				$wrap.attr('style', '');
-				$content.off('mouseover');
-				$content.html(tooltip.text);
-				$wrap.width($wrap.width() + 2); //Dumb hack to fix a bizarre sizing bug
-				var docWidth	= $wrap.outerWidth(),
-					docHeight	= $wrap.outerHeight();
+				document.body.className = tooltip.theme;
+				var content = document.getElementById('content'),
+					wrap 	 = document.getElementById('wrap');
+				wrap.style = '';
+				content.removeEventListener('mouseover', tooltip.hide);
+				content.innerHTML = tooltip.text;
+				wrap.style.width = `${wrap.offsetWidth + 2}px`; // Dumb hack to fix a bizarre sizing bug
+
+				var docWidth = wrap.offsetWidth,
+					docHeight = wrap.offsetHeight;
 				if (posY + docHeight > map.size.y) { //Is the bottom edge below the window? Snap it up if so
 					posY = (posY - docHeight) - realIconSize - tooltip.padding;
 				}
 				//Actually size, move and show the tooltip box
 				window.location = 'byond://winset?id='+tooltip.control+';size='+docWidth+'x'+docHeight+';pos='+posX+','+posY+';is-visible=true';
-				$content.on('mouseover', function() {
+				content.addEventListener('mouseover', () => {
 					tooltip.hide();
 				});
 			},
 			update: function(params, client_vw , clien_vh , text, theme, special) {
 				//Assign our global object
-				tooltip.params = $.parseJSON(params);
+				tooltip.params = JSON.parse(params);;
 				tooltip.client_view_w = parseInt(client_vw);
 				tooltip.client_view_h = parseInt(clien_vh);
 				tooltip.text = text;

@@ -6,6 +6,8 @@ GLOBAL_LIST_EMPTY(average_icon_color)
 //see getFlatTypeIcon()
 GLOBAL_LIST_EMPTY(initialTypeIcon)
 
+GLOBAL_LIST_INIT(color_vars, list("color"))
+
 GLOBAL_DATUM(lobbyScreen, /datum/lobbyscreen)
 
 // WORLD TOPIC CACHING //
@@ -27,9 +29,8 @@ GLOBAL_LIST_INIT(custom_kits, list(
 		/obj/item/ammo_magazine/ihclrifle,
 		/obj/item/ammo_magazine/ihclrifle)))
 
-// LOGGING  MOVE ME //
-GLOBAL_VAR(log_directory)
-GLOBAL_PROTECT(log_directory)
-
 // TGUI MOVE ME //
 GLOBAL_DATUM(changelog_tgui, /datum/changelog)
+
+// FIXME FIXME FIXME TURN THIS BACK OFF WHEN YOU'RE DONE DIPSHIIIIIIIITTT!
+GLOBAL_VAR_INIT(Debug2, TRUE)

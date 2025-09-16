@@ -222,9 +222,9 @@
 /obj/machinery/multistructure/biogenerator_part/port/examine(mob/user, extra_description = "")
 	if(panel_open)
 		if(pipes_dirtiness)
-			extra_description += SPAN_WARNING("You see a layers of a solid biomass here.")
+			extra_description += span_warning("You see a layers of a solid biomass here.")
 		else
-			extra_description += SPAN_NOTICE("You didn't see any signs of biomass here. Pipes are clear.")
+			extra_description += span_notice("You didn't see any signs of biomass here. Pipes are clear.")
 	..(user, extra_description)
 
 /obj/machinery/multistructure/biogenerator_part/port/attackby(obj/item/I, mob/user)
@@ -232,7 +232,7 @@
 	switch(tool_type)
 		if(QUALITY_BOLT_TURNING)
 			if(panel_open)
-				to_chat(user, SPAN_WARNING("You should close cover first."))
+				to_chat(user, span_warning("You should close cover first."))
 				return
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_MEC))
 				var/set_canister = FALSE
@@ -243,7 +243,7 @@
 						tank.pixel_x = initial(tank.pixel_x)
 						tank = null
 						playsound(src, 'sound/machines/airlock_ext_open.ogg', 60, 1)
-						to_chat(user, SPAN_NOTICE("You detached [tank] from [src]."))
+						to_chat(user, span_notice("You detached [tank] from [src]."))
 				else
 					tank = locate(/obj/structure/reagent_dispensers) in get_turf(src)
 					if(tank)
@@ -252,17 +252,17 @@
 							tank.can_anchor = FALSE
 							tank.pixel_x = 8
 							playsound(src, 'sound/machines/airlock_ext_close.ogg', 60, 1)
-							to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))
+							to_chat(user, span_notice("You attached [tank] to [src]."))
 				if(!set_canister)
-					to_chat(user, SPAN_WARNING("Ugh. You done something wrong!"))
+					to_chat(user, span_warning("Ugh. You done something wrong!"))
 					tank = null
 		if(QUALITY_SCREW_DRIVING)
 			if(tank)
-				to_chat(user, SPAN_WARNING("You need to detach [tank] first."))
+				to_chat(user, span_warning("You need to detach [tank] first."))
 				return
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_SCREW_DRIVING))
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the panel."))
+				to_chat(user, span_notice("You [panel_open ? "open" : "close"] the panel."))
 
 	if(panel_open && (istype(I, /obj/item/soap) || istype(I, /obj/item/reagent_containers/glass/rag)))
 		if(pipes_dirtiness)
@@ -270,13 +270,13 @@
 			if(pipes_dirtiness < 0)
 				pipes_dirtiness = 0
 			if(pipes_dirtiness >= 4)
-				spill_biomass(loc, cardinal)
+				spill_biomass(loc, GLOB.cardinal)
 				toxin_attack(user, rand(20, 30))
-			to_chat(user, SPAN_NOTICE("You clean the pipes."))
+			to_chat(user, span_notice("You clean the pipes."))
 			if(!pipes_dirtiness)
 				working_cycles = 0
 		else
-			to_chat(user, SPAN_WARNING("Pipes are already clean."))
+			to_chat(user, span_warning("Pipes are already clean."))
 	update_icon()
 
 
@@ -346,17 +346,17 @@
 	if(panel_open)
 		if(wires)
 			if(!wires_integrity)
-				extra_description += SPAN_WARNING("All wiring is damaged and not functional.")
+				extra_description += span_warning("All wiring is damaged and not functional.")
 			else if(wires_integrity < 30)
-				extra_description += SPAN_WARNING("Wiring is completly burnt. But somehow it's still functional.")
+				extra_description += span_warning("Wiring is completly burnt. But somehow it's still functional.")
 			else if(wires_integrity < 50)
-				extra_description += SPAN_WARNING("Wiring is damaged, most of cables are burnt.")
+				extra_description += span_warning("Wiring is damaged, most of cables are burnt.")
 			else if(wires_integrity < 80)
-				extra_description += SPAN_NOTICE("Wiring is slightly damaged and some of them are burnt.")
+				extra_description += span_notice("Wiring is slightly damaged and some of them are burnt.")
 			else
-				extra_description += SPAN_NOTICE("Wiring looks like new.")
+				extra_description += span_notice("Wiring looks like new.")
 		else
-			extra_description += SPAN_WARNING("There are no wires here.")
+			extra_description += span_warning("There are no wires here.")
 
 
 /obj/machinery/atmospherics/binary/biogen_chamber/attackby(obj/item/I, mob/user)
@@ -365,7 +365,7 @@
 		if(QUALITY_SCREW_DRIVING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_SCREW_DRIVING))
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the cover."))
+				to_chat(user, span_notice("You [panel_open ? "open" : "close"] the cover."))
 
 		if(QUALITY_WIRE_CUTTING)
 			if(panel_open)
@@ -376,18 +376,18 @@
 						return
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_WIRECUTTING))
 						wires = FALSE
-						to_chat(user, SPAN_NOTICE("You cut old wires."))
+						to_chat(user, span_notice("You cut old wires."))
 				else
-					to_chat(user, SPAN_WARNING("There are no wires here."))
+					to_chat(user, span_warning("There are no wires here."))
 			else
-				to_chat(user, SPAN_WARNING("You need open cover first."))
+				to_chat(user, span_warning("You need open cover first."))
 
 	if(istype(I, /obj/item/stack/cable_coil))
 		if(!panel_open)
-			to_chat(user, SPAN_WARNING("Cover is closed."))
+			to_chat(user, span_warning("Cover is closed."))
 			return
 		if(wires)
-			to_chat(user, SPAN_WARNING("You should cut old wires first."))
+			to_chat(user, span_warning("You should cut old wires first."))
 			return
 		var/obj/item/stack/cable_coil/cables = I
 		if(cables.use(10))
@@ -395,7 +395,7 @@
 			working_cycles = 0
 			wires = TRUE
 		else
-			to_chat(user, SPAN_WARNING("You need atleast 10 cables to replace wiring."))
+			to_chat(user, span_warning("You need atleast 10 cables to replace wiring."))
 	update_icon()
 
 
@@ -450,15 +450,15 @@
 /obj/machinery/power/biogenerator_core/examine(mob/user, extra_description = "")
 	if(!coil_frame)
 		if(!coil_condition)
-			extra_description += SPAN_WARNING("Coil is completly burnt.")
+			extra_description += span_warning("Coil is completly burnt.")
 		else if(coil_condition < 30)
-			extra_description += SPAN_WARNING("Most of coil's sectors are burnt, but it's still functional.")
+			extra_description += span_warning("Most of coil's sectors are burnt, but it's still functional.")
 		else if(coil_condition < 50)
-			extra_description += SPAN_WARNING("Half of coil's sectors are damaged.")
+			extra_description += span_warning("Half of coil's sectors are damaged.")
 		else if(coil_condition < 80)
-			extra_description += SPAN_NOTICE("You can see damaged sectors at [src]'s coil.")
+			extra_description += span_notice("You can see damaged sectors at [src]'s coil.")
 		else
-			extra_description += SPAN_NOTICE("Coil looks like new.")
+			extra_description += span_notice("Coil looks like new.")
 	..(user, extra_description)
 
 
@@ -474,28 +474,28 @@
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_SCREW_DRIVING))
 				if(coil_frame)
 					coil_frame = FALSE
-					to_chat(user, SPAN_NOTICE("You carefully open frame of [src]."))
+					to_chat(user, span_notice("You carefully open frame of [src]."))
 				else
 					coil_frame = TRUE
-					to_chat(user, SPAN_NOTICE("You closed frame of [src] back."))
+					to_chat(user, span_notice("You closed frame of [src] back."))
 
 		if(QUALITY_WELDING)
 			if(coil_frame)
-				to_chat(user, SPAN_WARNING("You need to remove coil frame first!"))
+				to_chat(user, span_warning("You need to remove coil frame first!"))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL,  required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You fixed damaged sectors of [src]'s coil."))
+				to_chat(user, span_notice("You fixed damaged sectors of [src]'s coil."))
 				coil_condition = 100
 				working_cycles = 0
 
 		if(QUALITY_PRYING)
 			if(generator.chamber.panel_open && !coil_frame)
-				to_chat(user, SPAN_NOTICE("You begin deconstructing [generator]..."))
+				to_chat(user, span_notice("You begin deconstructing [generator]..."))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_REMOVING))
-					to_chat(user, SPAN_NOTICE("You deconstructed [generator]."))
+					to_chat(user, span_notice("You deconstructed [generator]."))
 					generator.dismantle()
 			else
-				to_chat(user, SPAN_WARNING("You need to open chamber panel and remove core's coil frame first!"))
+				to_chat(user, span_warning("You need to open chamber panel and remove core's coil frame first!"))
 
 	update_icon()
 

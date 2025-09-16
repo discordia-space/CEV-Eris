@@ -7,12 +7,11 @@ currently only humans get dizzy
 value of dizziness ranges from 0 to 1000
 below 100 is not dizzy
 */
-
-/mob/proc/make_dizzy(var/amount)
+/mob/proc/make_dizzy(amount)
 	return
 
 // for the moment, only humans get dizzy
-/mob/living/carbon/human/make_dizzy(var/amount)
+/mob/living/carbon/human/make_dizzy(amount)
 	dizziness = min(1000, dizziness + amount)	// store what will be new value
 													// clamped to max 1000
 	if(dizziness > 100 && !is_dizzy)
@@ -45,14 +44,14 @@ note dizziness decrements automatically in the mob's Life() proc.
 		client.pixel_y = 0
 
 // jitteriness - copy+paste of dizziness
-/mob/proc/make_jittery(var/amount)
+/mob/proc/make_jittery(amount)
 	return
 
 /mob/living/carbon
 	var/is_jittery = 0
 	var/jitteriness = 0
 
-/mob/living/carbon/human/make_jittery(var/amount)
+/mob/living/carbon/human/make_jittery(amount)
 	jitteriness = min(1000, jitteriness + amount)	// store what will be new value
 													// clamped to max 1000
 	if(jitteriness > 100 && !is_jittery)
@@ -79,9 +78,11 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/var/is_floating = 0
 /mob/var/floatiness = 0
 
-//You can pass in true or false in a case where you've already done the calculations and can skip some checking here
-//Its perfectly fine to call this proc with no input, it will figure out what it needs to do
-/mob/proc/update_floating(var/setstate = null)
+/**
+ * You can pass in true or false in a case where you've already done the calculations and can skip some checking here
+ * Its perfectly fine to call this proc with no input, it will figure out what it needs to do
+ */
+/mob/proc/update_floating(setstate = null)
 	if (!isnull(setstate))
 		make_floating(setstate)
 		return
@@ -97,7 +98,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	make_floating(1)
 	return
 
-/mob/proc/make_floating(var/n)
+/mob/proc/make_floating(n)
 	floatiness = n
 
 	if(floatiness && !is_floating)
@@ -109,8 +110,10 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	is_floating = 1
 
-	var/amplitude = 2 //maximum displacement from original position
-	var/period = 36 //time taken for the mob to go up >> down >> original position, in deciseconds. Should be multiple of 4
+	/// maximum displacement from original position
+	var/amplitude = 2
+	/// time taken for the mob to go up >> down >> original position, in deciseconds. Should be multiple of 4
+	var/period = 36
 
 	var/top = default_pixel_y + amplitude
 	var/bottom = default_pixel_y - amplitude
@@ -126,7 +129,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	//reset the pixel offsets to zero
 	is_floating = 0
 
-/atom/movable/proc/do_attack_animation(atom/A, var/use_item = TRUE, var/depth = 8)
+/atom/movable/proc/do_attack_animation(atom/A, use_item = TRUE, depth = 8)
 	var/prev_x = pixel_x
 	var/prev_y = pixel_y
 	var/pixel_x_diff = 0
@@ -156,7 +159,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
 	animate(pixel_x = prev_x, pixel_y = prev_y, time = 2)
 
-/mob/do_attack_animation(atom/A, var/use_item = TRUE)
+/mob/do_attack_animation(atom/A, use_item = TRUE)
 	..()
 	is_floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
 
@@ -166,7 +169,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	// What icon do we use for the attack?
 	var/image/I
-	var/obj/item/T = get_active_hand()
+	var/obj/item/T = get_active_held_item()
 	if (T && T.icon)
 		I = image(T.icon, A, T.icon_state, A.layer + 1)
 	else // Attacked with a fist?
@@ -199,27 +202,9 @@ note dizziness decrements automatically in the mob's Life() proc.
 	// And animate the attack!
 	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
 
-
-
-
-/atom/proc/SpinAnimation(speed = 10, loops = -1)
-	var/matrix/m120 = matrix(transform)
-	m120.Turn(120)
-	var/matrix/m240 = matrix(transform)
-	m240.Turn(240)
-	var/matrix/m360 = matrix(transform)
-	speed /= 3      //Gives us 3 equal time segments for our three turns.
-	                //Why not one turn? Because byond will see that the start and finish are the same place and do nothing
-	                //Why not two turns? Because byond will do a flip instead of a turn
-	animate(src, transform = m120, time = speed, loops)
-	animate(transform = m240, time = speed)
-	animate(transform = m360, time = speed)
-
-
-
 //Shakes the mob's camera
 //Strength is not recommended to set higher than 4, and even then its a bit wierd
-/proc/shake_camera(mob/M, duration, strength = 1, var/taper = 0.25)
+/proc/shake_camera(mob/M, duration, strength = 1, taper = 0.25)
 	if(!M || !M.client || M.shakecamera || M.stat || isEye(M) || isAI(M))
 		return
 
@@ -234,7 +219,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 			aiEyeFlag = 1
 
 		var/x
-		for(x=0; x<duration, x++)
+		for(x=0; x<duration; x++)
 			if(aiEyeFlag)
 				M.client.eye = locate(dd_range(1,oldeye.loc.x+rand(-strength,strength),world.maxx),dd_range(1,oldeye.loc.y+rand(-strength,strength),world.maxy),oldeye.loc.z)
 			else
@@ -260,21 +245,23 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 //Deprecated, use SpinAnimation when possible
 /mob/proc/spin(spintime, speed)
-	spawn()
-		var/D = dir
-		while(spintime >= speed)
-			sleep(speed)
-			switch(D)
-				if(NORTH)
-					D = EAST
-				if(SOUTH)
-					D = WEST
-				if(EAST)
-					D = SOUTH
-				if(WEST)
-					D = NORTH
-			set_dir(D)
-			spintime -= speed
+	set waitfor = 0
+	var/D = dir
+	if((spintime < 1) || (speed < 1) || !spintime || !speed)
+		return
+	while(spintime >= speed)
+		sleep(speed)
+		switch(D)
+			if(NORTH)
+				D = EAST
+			if(SOUTH)
+				D = WEST
+			if(EAST)
+				D = SOUTH
+			if(WEST)
+				D = NORTH
+		set_dir(D)
+		spintime -= speed
 	return
 
 /atom/movable/proc/do_pickup_animation(atom/target, atom/old_loc)
@@ -298,7 +285,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		I.pixel_x += old_loc.pixel_x
 		I.pixel_y += old_loc.pixel_y
 
-	flick_overlay(I, clients, 7)
+	flick_overlay(I, GLOB.clients, 7)
 
 	var/matrix/M = new
 	M.Turn(pick(30, -30))
@@ -336,7 +323,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		I.pixel_y = 0
 		if (ismob(target))
 			I.dir = target.dir
-		flick_overlay(I, clients, 4)
+		flick_overlay(I, GLOB.clients, 4)
 
 		var/to_x = (target.x - old_turf.x) * 32 + pixel_x
 		var/to_y = (target.y - old_turf.y) * 32 + pixel_y
@@ -364,7 +351,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	I.layer = ABOVE_MOB_LAYER
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 
-	flick_overlay(I, clients, 4)
+	flick_overlay(I, GLOB.clients, 4)
 
 	var/to_x = (target.x - old_turf.x) * 32 + pixel_x
 	var/to_y = (target.y - old_turf.y) * 32 + pixel_y

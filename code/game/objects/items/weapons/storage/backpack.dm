@@ -57,7 +57,7 @@
 		var/mob/living/L = loc
 		if (istype(L))
 			if(!no_message)
-				to_chat(L, "<span class='warning'>The [src] is too cumbersome to handle with one hand, you're going to have to set it down somewhere!</span>")
+				to_chat(L, span_warning("The [src] is too cumbersome to handle with one hand, you're going to have to set it down somewhere!"))
 		if (!no_message && use_sound)
 			playsound(loc, use_sound, 50, 1, -5)
 		return FALSE
@@ -66,7 +66,7 @@
 		var/mob/living/L = loc
 		if (istype(L))
 			if(!no_message)
-				to_chat(L, "<span class='warning'>Oh no! Your arms are not long enough to open [src] while it is on your back!</span>")
+				to_chat(L, span_warning("Oh no! Your arms are not long enough to open [src] while it is on your back!"))
 		if (!no_message && use_sound)
 			playsound(loc, use_sound, 50, 1, -5)
 		return FALSE
@@ -92,7 +92,7 @@
 
 /obj/item/storage/backpack/holding/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/storage/backpack/holding))
-		to_chat(user, SPAN_WARNING("The Bluespace interfaces of the two devices conflict and malfunction."))
+		to_chat(user, span_warning("The Bluespace interfaces of the two devices conflict and malfunction."))
 		qdel(W)
 		return
 	..()

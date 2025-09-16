@@ -16,9 +16,9 @@
 	var/det_time = 40
 	var/variance = 0 //How much the fuse time varies up or down. Punishes cooking with makeshift nades, proper ones should have 0
 
-/obj/item/grenade/proc/clown_check(var/mob/living/user)
+/obj/item/grenade/proc/clown_check(mob/living/user)
 /*	if((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, SPAN_WARNING("Huh? How does this thing work?"))
+		to_chat(user, span_warning("Huh? How does this thing work?"))
 
 		activate(user)
 		add_fingerprint(user)
@@ -39,7 +39,7 @@
 /obj/item/grenade/attack_self(mob/user as mob)
 	if(!active)
 		if(clown_check(user))
-			to_chat(user, SPAN_WARNING("You prime \the [name]! [det_time/10] seconds!"))
+			to_chat(user, span_warning("You prime \the [name]! [det_time/10] seconds!"))
 
 			activate(user)
 			add_fingerprint(user)
@@ -84,13 +84,13 @@
 			switch(det_time)
 				if (1)
 					det_time = 30
-					to_chat(user, SPAN_NOTICE("You set the [name] for 3 second detonation time."))
+					to_chat(user, span_notice("You set the [name] for 3 second detonation time."))
 				if (30)
 					det_time = 40
-					to_chat(user, SPAN_NOTICE("You set the [name] for 4 second detonation time."))
+					to_chat(user, span_notice("You set the [name] for 4 second detonation time."))
 				if (40)
 					det_time = 1
-					to_chat(user, SPAN_NOTICE("You set the [name] for instant detonation."))
+					to_chat(user, span_notice("You set the [name] for instant detonation."))
 			add_fingerprint(user)
 	..()
 	return
@@ -108,7 +108,7 @@
 		if(bonk.incapacitated(INCAPACITATION_GROUNDED))
 			return
 		bonk.apply_damage(2, BRUTE, BP_HEAD, sharp = FALSE, edge = FALSE, used_weapon = src)
-		bonk.visible_message(SPAN_DANGER("[src] falls from above and bonks [bonk.name] on \his head!"), SPAN_DANGER("[src] falls on your head and bounces to the side!"), "You hear a dull thud.", 5)
+		bonk.visible_message(span_danger("[src] falls from above and bonks [bonk.name] on \his head!"), span_danger("[src] falls on your head and bounces to the side!"), "You hear a dull thud.", 5)
 		var/turf/random = pick(orange(1, dest))
 		forceMove(random)
 

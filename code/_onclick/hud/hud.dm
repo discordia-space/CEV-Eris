@@ -124,7 +124,7 @@ var/list/global_huds
 	var/obj/screen/movable/action_button/hide_toggle/hide_actions_toggle
 	var/action_buttons_hidden = 0
 
-datum/hud/New(mob/owner)
+/datum/hud/New(mob/owner)
 	mymob = owner
 	instantiate()
 	..()
@@ -243,20 +243,20 @@ datum/hud/New(mob/owner)
 	mymob.instantiate_hud(src, ui_style, ui_color, ui_alpha)
 	mymob.HUD_create()
 */
-/mob/proc/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
+/mob/proc/instantiate_hud(datum/hud/HUD, ui_style, ui_color, ui_alpha)
 	return
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
-/mob/verb/button_pressed_F12(var/full = 0 as null)
+/mob/verb/button_pressed_F12(full = 0 as null)
 	set name = "F12"
 	set hidden = 1
 
 	if(!hud_used)
-		to_chat(usr, SPAN_WARNING("This mob type does not use a HUD."))
+		to_chat(usr, span_warning("This mob type does not use a HUD."))
 		return
 
 	if(!ishuman(src))
-		to_chat(usr, SPAN_WARNING("Inventory hiding is currently only supported for human mobs, sorry."))
+		to_chat(usr, span_warning("Inventory hiding is currently only supported for human mobs, sorry."))
 		return
 
 	if(!client) return

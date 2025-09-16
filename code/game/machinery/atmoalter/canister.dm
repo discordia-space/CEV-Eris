@@ -233,13 +233,13 @@ update_flag
 		return GM.return_pressure()
 	return 0
 
-/obj/machinery/portable_atmospherics/canister/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/portable_atmospherics/canister/bullet_act(obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
 		src.health -= round(Proj.get_structure_damage() / 2)
 		healthcheck()
 	..()
 
-/obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/portable_atmospherics/canister/attackby(obj/item/I, mob/user)
 
 	if(isrobot(user) && istype(I, /obj/item/tank/jetpack))
 		var/datum/gas_mixture/thejetpack = I:air_contents
@@ -261,7 +261,7 @@ update_flag
 	else if(QUALITY_PULSING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PULSING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			if(valve_open == 1)
-				to_chat(user, SPAN_WARNING("You can't seal the gasket while the valve is open!"))
+				to_chat(user, span_warning("You can't seal the gasket while the valve is open!"))
 				return
 			else if(sealed == FALSE)
 				to_chat(user, "You seal the gasket with a pulse of electricity.")
@@ -274,20 +274,20 @@ update_flag
 				return
 
 	else
-		visible_message(SPAN_WARNING("\The [user] hits \the [src] with \a [I]!"))
+		visible_message(span_warning("\The [user] hits \the [src] with \a [I]!"))
 		src.health -= I.force
 		src.add_fingerprint(user)
 		healthcheck()
 
 	SSnano.update_uis(src) // Update all NanoUIs attached to src
 
-/obj/machinery/portable_atmospherics/canister/attack_ai(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/canister/attack_hand(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attack_hand(mob/user as mob)
 	return src.nano_ui_interact(user)
 
-/obj/machinery/portable_atmospherics/canister/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/portable_atmospherics/canister/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if (src.destroyed)
 		return
 
@@ -333,7 +333,7 @@ update_flag
 
 	if(href_list["toggle"])
 		if (sealed == TRUE)
-			to_chat(usr, SPAN_WARNING("You can't turn the valve while the gasket is sealed!"))
+			to_chat(usr, span_warning("You can't turn the valve while the gasket is sealed!"))
 			return
 		else if (sealed == FALSE)
 			if (valve_open)

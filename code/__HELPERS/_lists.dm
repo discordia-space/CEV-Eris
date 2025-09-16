@@ -10,25 +10,66 @@
  */
 
 #define listequal(A, B) (A.len == B.len && !length(A^B))
+// Generic listoflist safe add and removal macros:
+///If value is a list, wrap it in a list so it can be used with list add/remove operations
+#define LIST_VALUE_WRAP_LISTS(value) (islist(value) ? list(value) : value)
+///Add an untyped item to a list, taking care to handle list items by wrapping them in a list to remove the footgun
+#define UNTYPED_LIST_ADD(list, item) (list += LIST_VALUE_WRAP_LISTS(item))
+///Remove an untyped item to a list, taking care to handle list items by wrapping them in a list to remove the footgun
+#define UNTYPED_LIST_REMOVE(list, item) (list -= LIST_VALUE_WRAP_LISTS(item))
 
-#define LAZYINITLIST(L) if (!L) L = list()
-
-#define LAZYLEN(L) length(L)
-#define UNSETEMPTY(L) if (L && !LAZYLEN(L)) L = null
-#define LAZYREMOVE(L, I) if(L) { L -= I; if(!LAZYLEN(L)) { L = null; } }
+///Initialize the lazylist
+#define LAZYINITLIST(L) if (!L) { L = list(); }
+///If the provided list is empty, set it to null
+#define UNSETEMPTY(L) if (L && !length(L)) L = null
+///If the provided key -> list is empty, remove it from the list
+#define ASSOC_UNSETEMPTY(L, K) if (!length(L[K])) L -= K;
+///Like LAZYCOPY - copies an input list if the list has entries, If it doesn't the assigned list is nulled
+#define LAZYLISTDUPLICATE(L) (L ? L.Copy() : null )
+///Remove an item from the list, set the list to null if empty
+#define LAZYREMOVE(L, I) if(L) { L -= I; if(!length(L)) { L = null; } }
+///Add an item to the list, if the list is null it will initialize it
 #define LAZYADD(L, I) if(!L) { L = list(); } L += I;
-#define LAZYINSERT(L, I, X) if(!L) { L = list(); } L.Insert(X, I);
-#define LAZYDISTINCTADD(L, I) if(!L) { L = list(); } L |= I;
+///Add an item to the list if not already present, if the list is null it will initialize it
 #define LAZYOR(L, I) if(!L) { L = list(); } L |= I;
-#define LAZYFIND(L, V) L ? L.Find(V) : 0
-#define LAZYISIN(L, I) (L ? (I in L) : FALSE)
-#define LAZYACCESS(L, I) (islist(L) ? (isnum(I) ? (I > 0 && I <= LAZYLEN(L) ? L[I] : null) : L[I]) : null)
+///Returns the key of the submitted item in the list
+#define LAZYFIND(L, V) (L ? L.Find(V) : 0)
+///returns L[I] if L exists and I is a valid index of L, runtimes if L is not a list
+#define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= length(L) ? L[I] : null) : L[I]) : null)
+///Sets the item K to the value V, if the list is null it will initialize it
+#define LAZYSET(L, K, V) if(!L) { L = list(); } L[K] = V;
+///Sets the length of a lazylist
+#define LAZYSETLEN(L, V) if (!L) { L = list(); } L.len = V;
+///Returns the length of the list
+#define LAZYLEN(L) length(L)
+///Sets a list to null
+#define LAZYNULL(L) L = null
+///Adds to the item K the value V, if the list is null it will initialize it
+#define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += V;
+///This is used to add onto lazy assoc list when the value you're adding is a /list/. This one has extra safety over lazyaddassoc because the value could be null (and thus cant be used to += objects)
+#define LAZYADDASSOCLIST(L, K, V) if(!L) { L = list(); } L[K] += list(V);
+///Removes the value V from the item K, if the item K is empty will remove it from the list, if the list is empty will set the list to null
+#define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }
+///Accesses an associative list, returns null if nothing is found
+#define LAZYACCESSASSOC(L, I, K) L ? L[I] ? L[I][K] ? L[I][K] : null : null : null
+///Qdel every item in the list before setting the list to null
+#define QDEL_LAZYLIST(L) for(var/I in L) qdel(I); L = null;
+///Qdel every value in an assoc list list before setting the list to null
+#define QDEL_LAZYASSOCLIST(L) for(var/I in L) qdel(L[I]); L = null;
+//These methods don't null the list
+///Use LAZYLISTDUPLICATE instead if you want it to null with no entries
+#define LAZYCOPY(L) (L ? L.Copy() : list() )
+/// Consider LAZYNULL instead
 #define LAZYCLEARLIST(L) if(L) L.Cut()
+/// Clears any nulls out of a list, and also turns the list itself null if its empty afterwards.
+#define LAZYCLEARNULLS(L) if(L) { list_clear_nulls(L); if(!length(L)) L = null };
+///Returns the list if it's actually a valid list, otherwise will initialize it
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
-#define reverseList(L) reverseRange(L.Copy())
-
-//Sets the value of a key in an assoc list
-#define LAZYSET(L,K,V) if(!L) { L = list(); } L[K] = V;
+/// Performs an insertion on the given lazy list with the given key and value. If the value already exists, a new one will not be made.
+#define LAZYORASSOCLIST(lazy_list, key, value) \
+	LAZYINITLIST(lazy_list); \
+	LAZYINITLIST(lazy_list[key]); \
+	lazy_list[key] |= value;
 
 //Adds value to the existing value of a key
 #define LAZYAPLUS(L,K,V) if(!L) { L = list(); } if (!L[K]) { L[K] = 0; } L[K] += V;
@@ -130,7 +171,7 @@
 			return TRUE
 	return FALSE
 
-/proc/instances_of_type_in_list(var/atom/A, var/list/L)
+/proc/instances_of_type_in_list(atom/A, list/L)
 	var/instances = 0
 	for(var/type in L)
 		if(istype(A, type))
@@ -214,13 +255,12 @@
 	if(istype(list))
 		list.len = 0
 
-//Removes any null entries from the list
-//Returns TRUE if the list had nulls, FALSE otherwise
-/proc/listclearnulls(list/L)
-	var/start_len = L.len
-	var/list/N = new(start_len)
-	L -= N
-	return L.len < start_len
+/**
+ * Removes any null entries from the list
+ * Returns TRUE if the list had nulls, FALSE otherwise
+**/
+/proc/list_clear_nulls(list/list_to_clear)
+	return (list_to_clear.RemoveAll(null) > 0)
 
 /*
  * Returns list containing all the entries from first list that are not present in second.
@@ -349,6 +389,12 @@
 		. = L[L.len]
 		L.len--
 
+/// Returns the top (last) element from the list, does not remove it from the list. Stack functionality.
+/proc/peek(list/target_list)
+	var/list_length = length(target_list)
+	if(list_length != 0)
+		return target_list[list_length]
+
 /proc/popleft(list/L)
 	if(L.len)
 		. = L[1]
@@ -413,24 +459,24 @@
 	if(!L)
 		return
 
-	for(var/i=1, i<L.len, ++i)
+	for(var/i=1; i<L.len; ++i)
 		L.Swap(i,rand(i,L.len))
 
-//Return a list with no duplicate entries
-/proc/uniquelist(list/L)
+///Return a list with no duplicate entries
+/proc/unique_list(list/inserted_list)
 	. = list()
-	for(var/i in L)
-		. |= i
+	for(var/i in inserted_list)
+		. |= LIST_VALUE_WRAP_LISTS(i)
 
-//same, but returns nothing and acts on list in place (also handles associated values properly)
-/proc/uniquelist_inplace(list/L)
-	var/temp = L.Copy()
-	L.len = 0
+///same as unique_list, but returns nothing and acts on list in place (also handles associated values properly)
+/proc/unique_list_in_place(list/inserted_list)
+	var/temp = inserted_list.Copy()
+	inserted_list.len = 0
 	for(var/key in temp)
 		if (isnum(key))
-			L |= key
+			inserted_list |= key
 		else
-			L[key] = temp[key]
+			inserted_list[key] = temp[key]
 
 // Return a list of the values in an assoc list (including null)
 /proc/list_values(list/L)
@@ -458,8 +504,8 @@
 	return sortTim(L.Copy(), cmp)
 
 //uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
-/proc/sortNames(list/L, order=1)
-	return sortTim(L, order >= 0 ? GLOBAL_PROC_REF(cmp_name_asc) : GLOBAL_PROC_REF(cmp_name_dsc))
+/proc/sortNames(list/list_to_sort, order=1)
+	return sortTim(list_to_sort.Copy(), order >= 0 ? GLOBAL_PROC_REF(cmp_name_asc) : GLOBAL_PROC_REF(cmp_name_dsc))
 
 //for sorting entries by their associated values, rather than keys.
 /proc/sortAssoc(list/L, order=1)
@@ -513,7 +559,7 @@
 				r += wordlist[i]
 			bit = bit << 1
 	else
-		for(var/bit=1, bit<=65535, bit = bit << 1)
+		for(var/bit=1; bit<=65535; bit = bit << 1)
 			if(bitfield & bit)
 				r += bit
 
@@ -652,7 +698,7 @@
 	return sorted_text
 
 
-proc/dd_sortedTextList(list/incoming)
+/proc/dd_sortedTextList(list/incoming)
 	var/case_sensitive = 1
 	return dd_sortedtextlist(incoming, case_sensitive)
 
@@ -669,8 +715,6 @@ proc/dd_sortedTextList(list/incoming)
 /datum/alarm/dd_SortValue()
 	return "[sanitize_old(last_name)]"
 
-/proc/subtypesof(prototype)
-	return (typesof(prototype) - prototype)
 
 //creates every subtype of prototype (excluding prototype) and adds it to list L.
 //if no list/L is provided, one is created.
@@ -731,7 +775,7 @@ proc/dd_sortedTextList(list/incoming)
 		else
 			fromIndex += len
 
-		for(var/i=0, i<distance, ++i)
+		for(var/i=0; i<distance; ++i)
 			L.Insert(fromIndex, null)
 			L.Swap(fromIndex, toIndex)
 			L.Cut(toIndex, toIndex+1)
@@ -741,7 +785,7 @@ proc/dd_sortedTextList(list/incoming)
 			toIndex = fromIndex
 			fromIndex = a
 
-		for(var/i=0, i<len, ++i)
+		for(var/i=0; i<len; ++i)
 			L.Swap(fromIndex++, toIndex++)
 
 /*
@@ -804,7 +848,7 @@ Checks if a list has the same entries and values as an element of big.
 			checked += value
 
 //Checks for specific paths in a list
-/proc/is_path_in_list(var/path, var/list/L)
+/proc/is_path_in_list(path, list/L)
 	for(var/type in L)
 		if(ispath(path, type))
 			return 1
@@ -831,7 +875,7 @@ Checks if a list has the same entries and values as an element of big.
 				types.Add(value)
 			else if(islist(value))
 				types.Add(parse_for_paths(value))
-	return uniquelist(types)
+	return unique_list(types)
 
 //return first thing in L which has var/varname == value
 //this is typecaste as list/L, but you could actually feed it an atom instead.
@@ -868,6 +912,21 @@ Checks if a list has the same entries and values as an element of big.
 			.[i] = key
 			.[key] = value
 
+/// A version of deep_copy_list that actually supports associative list nesting: list(list(list("a" = "b"))) will actually copy correctly.
+/proc/deep_copy_list_alt(list/inserted_list)
+	if(!islist(inserted_list))
+		return inserted_list
+	var/copied_list = inserted_list.Copy()
+	. = copied_list
+	for(var/key_or_value in inserted_list)
+		if(isnum(key_or_value) || !inserted_list[key_or_value])
+			continue
+		var/value = inserted_list[key_or_value]
+		var/new_value = value
+		if(islist(value))
+			new_value = deep_copy_list_alt(value)
+		copied_list[key_or_value] = new_value
+
 //takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate
 //use this for lists of things that might have the same name, like mobs or objects, that you plan on giving to a player as input
 /proc/avoid_assoc_duplicate_keys(input_key, list/used_key_list)
@@ -880,6 +939,13 @@ Checks if a list has the same entries and values as an element of big.
 		used_key_list[input_key] = 1
 	return input_key
 
+///Flattens a keyed list into a list of it's contents
+/proc/flatten_list(list/key_list)
+	if(!islist(key_list))
+		return null
+	. = list()
+	for(var/key in key_list)
+		. |= LIST_VALUE_WRAP_LISTS(key_list[key])
 
 /proc/make_associative(list/flat_list)
 	. = list()

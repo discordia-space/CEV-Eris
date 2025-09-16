@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 	add_field(/datum/report_field/signature/anon, "Employer")
 	add_field(/datum/report_field/array/signed_people, "People who signed for job")
 
-/datum/computer_file/report/bounty_entry/proc/publish(var/mob/user)
+/datum/computer_file/report/bounty_entry/proc/publish(mob/user)
 	if(user)
 		if(field_from_name("Title").get_value() && field_from_name("Job description").get_value() && field_from_name("Reward").get_value() && field_from_name("Employer").get_value())
 			if(!owner_id_card)
@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 				var/tried_account_num = input("Enter account number", "") as num
 				var/tried_pin = input("Enter PIN number", "") as num
 				if(!tried_account_num || !tried_pin)
-					to_chat(user, "<span class='warning'>You must enter a valid bank account + PIN to create a bounty!</span>")
+					to_chat(user, span_warning("You must enter a valid bank account + PIN to create a bounty!"))
 					return
 				authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card && held_card.associated_account_number == tried_account_num ? 2 : 1, TRUE)
 			if(authenticated_account)
@@ -46,12 +46,12 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 				var/charge = (reward + fee)*/
 				var/datum/transaction/T = new(-field_from_name("Reward").get_value(), authenticated_account.owner_name, "Bounty Placed", "Bounty board system")
 				if(T.apply_to(authenticated_account))
-					to_chat(user, "<span class='warning'>Bounty created. You will have to manually confirm completion by chosing right contractor from the list of all signed up people!</span>")
+					to_chat(user, span_warning("Bounty created. You will have to manually confirm completion by chosing right contractor from the list of all signed up people!"))
 				else
-					to_chat(user, "<span class='warning'>You don't have enough funds to do that!</span>")
+					to_chat(user, span_warning("You don't have enough funds to do that!"))
 					return
 			else
-				to_chat(user, "<span class='warning'>You must enter a valid bank account + PIN to create a bounty!</span>")
+				to_chat(user, span_warning("You must enter a valid bank account + PIN to create a bounty!"))
 				return
 			GLOB.all_bounty_entries += src
 			log_game("Bounty: [field_from_name("Title").get_value()] created by [user]")
@@ -117,7 +117,7 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 
 /datum/report_field/array/signed_people/get_value()
 	var/dat = ""
-	for(var/i = 2, i<=value_list.len, i++)
+	for(var/i = 2; i<=value_list.len; i++)
 		if(i > 2)
 			dat += "<br>"
 		dat += "[value_list[i]]"

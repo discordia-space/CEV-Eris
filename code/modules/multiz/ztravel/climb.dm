@@ -12,14 +12,14 @@
 	var/sound_interval = 20
 	slip_chance = 35 //Risky without something to hold you to the wall
 
-/datum/vertical_travel_method/climb/can_perform(var/mob/living/L, var/dir)
+/datum/vertical_travel_method/climb/can_perform(mob/living/L, dir)
 	.=..()
 	if (.)
 		if (isrobot(M))
-			to_chat(M, SPAN_NOTICE("You're a robot, you can't climb.")) //Robots can't climb
+			to_chat(M, span_notice("You're a robot, you can't climb.")) //Robots can't climb
 			return FALSE
 		else if (istype(M, /mob/living/exosuit))
-			to_chat(M, SPAN_NOTICE("Mecha can not climb, yet."))
+			to_chat(M, span_notice("Mecha can not climb, yet."))
 			return FALSE //Mechas can't climb, for now.
 			//Todo future: add some kind of var or function to allow certain mechs to climb
 
@@ -27,7 +27,7 @@
 			/*
 				Climbing under gravity not yet implemented. would need special powers or augments
 			*/
-			to_chat(M, SPAN_NOTICE("Gravity is keeping you down, you can't climb like this."))
+			to_chat(M, span_notice("Gravity is keeping you down, you can't climb like this."))
 			return FALSE
 
 
@@ -36,7 +36,7 @@
 		var/turf/wall/W = null
 
 		//Lets examine the walls around us
-		for (var/d in cardinal)
+		for (var/d in GLOB.cardinal)
 			var/turf/wall/WA = get_step(origin, d)
 			if (istype(WA))
 				//We've found a wall, now lets look at the destination floor
@@ -83,7 +83,7 @@
 
 
 
-/datum/vertical_travel_method/climb/mag/can_perform(var/dir)
+/datum/vertical_travel_method/climb/mag/can_perform(dir)
 	.=..()
 	if(.)
 		if (!ishuman(M))
@@ -98,10 +98,10 @@
 			if (istype(H.shoes, /obj/item/clothing/shoes/magboots))
 				var/obj/item/clothing/shoes/magboots/MB = H.shoes
 				if (!MB.magpulse)
-					to_chat(M, SPAN_NOTICE("You could use your [MB] to walk up the [surface] if they were turned on."))
+					to_chat(M, span_notice("You could use your [MB] to walk up the [surface] if they were turned on."))
 					return FALSE
 
-			to_chat(M, SPAN_NOTICE("Your shoes don't have enough grip to climb up."))
+			to_chat(M, span_notice("Your shoes don't have enough grip to climb up."))
 			return FALSE
 
 

@@ -1,20 +1,11 @@
-/proc/cmp_appearance_data(var/datum/appearance_data/a, var/datum/appearance_data/b)
-	return b.priority - a.priority
-
-/proc/cmp_camera_ctag_asc(var/obj/machinery/camera/a, var/obj/machinery/camera/b)
+/proc/cmp_camera_ctag_asc(obj/machinery/camera/a, obj/machinery/camera/b)
 	return sorttext(b.c_tag, a.c_tag)
 
-/proc/cmp_camera_ctag_dsc(var/obj/machinery/camera/a, var/obj/machinery/camera/b)
+/proc/cmp_camera_ctag_dsc(obj/machinery/camera/a, obj/machinery/camera/b)
 	return sorttext(a.c_tag, b.c_tag)
 
-/proc/cmp_crew_sensor_modifier(var/crew_sensor_modifier/a, var/crew_sensor_modifier/b)
+/proc/cmp_crew_sensor_modifier(datum/crew_sensor_modifier/a, datum/crew_sensor_modifier/b)
 	return b.priority - a.priority
-
-/proc/cmp_follow_holder(var/datum/follow_holder/a, var/datum/follow_holder/b)
-	if(a.sort_order == b.sort_order)
-		return sorttext(b.get_name(), a.get_name())
-
-	return a.sort_order - b.sort_order
 
 /proc/cmp_name_or_type_asc(atom/a, atom/b)
 	return sorttext(istype(b) || ("name" in b.vars) ? b.name : b.type, istype(a) || ("name" in a.vars) ? a.name : a.type)
@@ -60,3 +51,30 @@
 
 /proc/cmp_timer(datum/timedevent/a, datum/timedevent/b)
 	return a.timeToRun - b.timeToRun
+
+/proc/cmp_catalog_entry_asc(datum/catalog_entry/a, datum/catalog_entry/b)
+	return sorttext(b.title, a.title)
+
+/proc/cmp_catalog_entry_chem(datum/catalog_entry/reagent/a, datum/catalog_entry/reagent/b)
+	if(a.reagent_type != b.reagent_type)
+		return sorttext(b.reagent_type, a.reagent_type)
+	return cmp_catalog_entry_asc(a, b)
+
+GLOBAL_VAR_INIT(cmp_field, "name")
+/proc/cmp_records_asc(datum/data/record/a, datum/data/record/b)
+	return sorttext(b.fields[GLOB.cmp_field], a.fields[GLOB.cmp_field])
+
+/proc/cmp_records_dsc(datum/data/record/a, datum/data/record/b)
+	return sorttext(a.fields[GLOB.cmp_field], b.fields[GLOB.cmp_field])
+
+/proc/cmp_ckey_asc(client/a, client/b)
+	return sorttext(b.ckey, a.ckey)
+
+/proc/cmp_ckey_dsc(client/a, client/b)
+	return sorttext(a.ckey, b.ckey)
+
+/proc/cmp_smeslist_rcon_tag(list/A, list/B)
+	return sorttext(A["RCON_tag"], B["RCON_tag"])
+
+/proc/cmp_typepaths_asc(A, B)
+	return sorttext("[B]","[A]")

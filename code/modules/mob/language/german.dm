@@ -3,6 +3,7 @@
 	name = LANGUAGE_GERMAN
 	desc = "Language used by the inhabitants of Oberth."
 	colour = "german"
+	icon_state = "german"
 	key = "g"
 	space_chance = 80
 	shorthand = "GE"

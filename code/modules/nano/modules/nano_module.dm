@@ -15,7 +15,7 @@
 	var/catalog_browse_stage = CATALOG_BROWSE_STAGE_NONE
 	var/catalog_search = ""
 
-/datum/nano_module/New(var/datum/host, var/topic_manager)
+/datum/nano_module/New(datum/host, topic_manager)
 	..()
 	src.host = host
 	src.topic_manager = topic_manager
@@ -29,10 +29,10 @@
 	RETURN_TYPE(/datum)
 	return host ? host.nano_host() : src
 
-/datum/nano_module/proc/can_still_topic(var/datum/nano_topic_state/state = GLOB.default_state)
+/datum/nano_module/proc/can_still_topic(datum/nano_topic_state/state = GLOB.default_state)
 	return CanUseTopic(usr, state) == STATUS_INTERACTIVE
 
-/datum/nano_module/proc/check_eye(var/mob/user)
+/datum/nano_module/proc/check_eye(mob/user)
 	return -1
 
 //returns a list.
@@ -41,7 +41,7 @@
 	if(istype(user))
 		. |= user.GetAccess()
 
-/datum/nano_module/proc/check_access(var/mob/user, var/access)
+/datum/nano_module/proc/check_access(mob/user, access)
 	if(!access)
 		return 1
 	if(!islist(access))
@@ -63,7 +63,7 @@
 
 // refreshes catalog browsing
 // must be always called after creating nanoUI
-/datum/nano_module/proc/refresh_catalog_browsing(var/mob/user, var/datum/nanoui/ui)
+/datum/nano_module/proc/refresh_catalog_browsing(mob/user, datum/nanoui/ui)
 	if(selected_entry)
 		browse_catalog_entry(selected_entry, user, ui)
 		return
@@ -72,7 +72,7 @@
 		return
 
 // browses catalog entry and refreshes UI
-/datum/nano_module/proc/browse_catalog_entry(var/datum/catalog_entry/entry_to_browse, var/mob/user, var/datum/nanoui/_ui)
+/datum/nano_module/proc/browse_catalog_entry(datum/catalog_entry/entry_to_browse, mob/user, datum/nanoui/_ui)
 	if(!entry_to_browse)
 		return FALSE
 	var/datum/nanoui/ui = _ui ? _ui : SSnano.get_open_ui(user, src, "main")
@@ -91,7 +91,7 @@
 
 // browses catalog and refreshes UI
 // resets all entry history
-/datum/nano_module/proc/browse_catalog(var/datum/catalog/catalog_to_browse, var/mob/user, var/datum/nanoui/_ui)
+/datum/nano_module/proc/browse_catalog(datum/catalog/catalog_to_browse, mob/user, datum/nanoui/_ui)
 	if(!catalog_to_browse)
 		return FALSE
 	var/datum/nanoui/ui = _ui ? _ui : SSnano.get_open_ui(user, src, "main")
@@ -153,7 +153,7 @@
 	var/atom/host = nano_host()
 	return istype(host) ? get_z(host) : 0
 
-/datum/nano_module/proc/print_text(var/text, var/mob/user)
+/datum/nano_module/proc/print_text(text, mob/user)
 	var/obj/item/modular_computer/MC = nano_host()
 	if(istype(MC))
 		if(!MC.printer)
@@ -173,7 +173,7 @@
 	return FALSE
 
 //Allows computer programs to play sounds from the console
-/datum/nano_module/proc/playsound_host(soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/use_pressure = TRUE)
+/datum/nano_module/proc/playsound_host(soundin, vol as num, vary, extrarange as num, falloff, is_global, use_pressure = TRUE)
 	var/atom/nhost = nano_host()
 	if (!nhost)
 		return FALSE

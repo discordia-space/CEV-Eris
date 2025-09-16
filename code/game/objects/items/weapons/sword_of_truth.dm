@@ -48,16 +48,16 @@
 
 /obj/item/tool/sword/nt_sword/attack_self(mob/user)
 	if(isBroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		to_chat(user, span_warning("\The [src] is broken."))
 		return
 	if(!wielded)
-		to_chat(user, SPAN_WARNING("You cannot use [src] special ability with one hand!"))
+		to_chat(user, span_warning("You cannot use [src] special ability with one hand!"))
 		return
 	if(world.time <= last_use + flash_cooldown)
-		to_chat(user, SPAN_WARNING("[src] still charging!"))
+		to_chat(user, span_warning("[src] still charging!"))
 		return
 	if(!do_after(user, 2.5 SECONDS))
-		to_chat(src, SPAN_DANGER("You was interrupted!"))
+		to_chat(src, span_danger("You was interrupted!"))
 		return
 
 	var/bang_text = pick("HOLY LIGHT!", "GOD HAVE MERCY!", "HOLY HAVEN!", "YOU SEE THE LIGHT!")
@@ -118,7 +118,7 @@
 	breakable = FALSE
 	var/obj/item/tool/sword/nt_sword/sword
 
-/obj/structure/nt_pedestal/New(var/loc, var/turf/anchor)
+/obj/structure/nt_pedestal/New(loc, turf/anchor)
 	..()
 	sword = new /obj/item/tool/sword/nt_sword(src)
 	update_icon()
@@ -127,19 +127,19 @@
 	if(I.has_quality(QUALITY_BOLT_TURNING))
 		if(!anchored)
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You've secured the [src] assembly!"))
+				to_chat(user, span_notice("You've secured the [src] assembly!"))
 				anchored = TRUE
 		else if(anchored)
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You've unsecured the [src] assembly!"))
+				to_chat(user, span_notice("You've unsecured the [src] assembly!"))
 				anchored = FALSE
 	if(istype(I, /obj/item/tool/sword/nt_sword))
 		if(sword)
-			to_chat(user, SPAN_WARNING("[src] already has a sword in it!"))
+			to_chat(user, span_warning("[src] already has a sword in it!"))
 		insert_item(I, user)
 		sword = I
 		update_icon()
-		visible_message(SPAN_NOTICE("[user] placed [sword] into [src]."))
+		visible_message(span_notice("[user] placed [sword] into [src]."))
 
 /obj/structure/nt_pedestal/attack_hand(mob/user)
 	..()
@@ -148,22 +148,22 @@
 		var/obj/item/implant/core_implant/I = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(I && I.active && I.wearer)
 			H.put_in_hands(sword)
-			visible_message(SPAN_NOTICE("[user] removed [sword] from the [src]."))
+			visible_message(span_notice("[user] removed [sword] from the [src]."))
 			sword = null
 			update_icon()
 			return
 
-		visible_message(SPAN_WARNING("[user] is trying to remove [sword] from the [src]!"))
+		visible_message(span_warning("[user] is trying to remove [sword] from the [src]!"))
 		if(!do_after(user, 30 SECONDS))
-			to_chat(src, SPAN_DANGER("You were interrupted!"))
+			to_chat(src, span_danger("You were interrupted!"))
 			return
 		if(H.stats.getStat(STAT_ROB) >= 60)
 			H.put_in_hands(sword)
-			visible_message(SPAN_DANGER("[user] succsesufully removed [sword] from the [src]!"))
+			visible_message(span_danger("[user] succsesufully removed [sword] from the [src]!"))
 			sword = null
 			update_icon()
 		else
-			visible_message(SPAN_WARNING("[user] failed to remove [sword] from the [src]"))
+			visible_message(span_warning("[user] failed to remove [sword] from the [src]"))
 
 /obj/structure/nt_pedestal/update_icon()
 	icon_state = "nt_pedestal[sword?"1":"0"]"

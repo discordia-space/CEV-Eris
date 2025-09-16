@@ -66,7 +66,7 @@
 		t = "ERROR"
 	else
 		t = "[gps.serial_number]: [gps.get_coordinates_text()]"
-		t += "<BR><A href='?src=\ref[src];tag=1'>Set Tag</A>"
+		t += "<BR><A href='byond://?src=\ref[src];tag=1'>Set Tag</A>"
 		if(locked_location && locked_location.loc)
 			t += "<BR>Coordinates saved: [locked_location.loc]"
 			gps_window_height += 20
@@ -94,7 +94,7 @@
 			attack_self(usr)
 
 /obj/item/device/gps/examine(mob/user, extra_description = "")
-	extra_description += "<span class='notice'>\The [src]'s screen shows: <i>[gps.get_coordinates_text(default="ERROR")]</i>.</span>"
+	extra_description += span_notice("\The [src]'s screen shows: <i>[gps.get_coordinates_text(default="ERROR")]</i>.")
 	..(user, extra_description)
 
 /obj/item/device/gps/science

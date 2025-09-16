@@ -6,85 +6,84 @@
 
 	var/datum/pipe_network/network
 
-	New()
-		..()
-		initialize_directions = dir
-		air_contents = new
+/obj/machinery/atmospherics/unary/New()
+	..()
+	initialize_directions = dir
+	air_contents = new
 
-		air_contents.volume = 200
+	air_contents.volume = 200
 
 // Housekeeping and pipe network stuff below
-	network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
-		if(reference == node1)
-			network = new_network
+/obj/machinery/atmospherics/unary/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
+	if(reference == node1)
+		network = new_network
 
-		if(new_network.normal_members.Find(src))
-			return 0
+	if(new_network.normal_members.Find(src))
+		return 0
 
-		new_network.normal_members += src
+	new_network.normal_members += src
 
-		return null
+	return null
 
-	Destroy()
-		loc = null
+/obj/machinery/atmospherics/unary/Destroy()
+	loc = null
 
-		if(node1)
-			node1.disconnect(src)
-			QDEL_NULL(network)
-
+	if(node1)
+		node1.disconnect(src)
+		QDEL_NULL(network)
 		node1 = null
 
-		. = ..()
+	. = ..()
 
-	atmos_init()
-		if(node1) return
+/obj/machinery/atmospherics/unary/atmos_init()
+	if(node1) return
 
-		var/node1_connect = dir
+	var/node1_connect = dir
 
-		for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
-			if(target.initialize_directions & get_dir(target, src))
-				if (check_connect_types(target, src))
-					node1 = target
-					break
+	for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
+		if(target.initialize_directions & get_dir(target, src))
+			if (check_connect_types(target, src))
+				node1 = target
+				break
 
-		update_icon()
-		update_underlays()
+	update_icon()
+	update_underlays()
 
+/obj/machinery/atmospherics/unary/build_network()
+	if(!network && node1)
+		network = new /datum/pipe_network()
+		network.normal_members += src
+		network.build_network(node1, src)
+
+
+/obj/machinery/atmospherics/unary/return_network(obj/machinery/atmospherics/reference)
 	build_network()
-		if(!network && node1)
-			network = new /datum/pipe_network()
-			network.normal_members += src
-			network.build_network(node1, src)
 
+	if(reference==node1 || reference == src)
+		return network
 
-	return_network(obj/machinery/atmospherics/reference)
-		build_network()
+	return null
 
-		if(reference==node1 || reference == src)
-			return network
+/obj/machinery/atmospherics/unary/reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
+	if(network == old_network)
+		network = new_network
 
-		return null
+	return 1
 
-	reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
-		if(network == old_network)
-			network = new_network
+/obj/machinery/atmospherics/unary/return_network_air(datum/pipe_network/reference)
+	var/list/results = list()
 
-		return 1
+	if(network == reference)
+		results += air_contents
 
-	return_network_air(datum/pipe_network/reference)
-		var/list/results = list()
+	return results
 
-		if(network == reference)
-			results += air_contents
+/obj/machinery/atmospherics/unary/disconnect(obj/machinery/atmospherics/reference)
+	if(reference==node1)
+		qdel(network)
+		node1 = null
 
-		return results
+	update_icon()
+	update_underlays()
 
-	disconnect(obj/machinery/atmospherics/reference)
-		if(reference==node1)
-			qdel(network)
-			node1 = null
-
-		update_icon()
-		update_underlays()
-
-		return null
+	return null

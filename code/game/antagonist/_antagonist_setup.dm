@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(antag_bantypes)
 GLOBAL_LIST_EMPTY(faction_types)
 
 // Global procs.
-/proc/get_antag_data(var/antag_type)
+/proc/get_antag_data(antag_type)
 	if(GLOB.all_antag_types[antag_type])
 		return GLOB.all_antag_types[antag_type]
 	else
@@ -35,7 +35,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 			if(antag && antag.is_type(antag_type))
 				return antag
 
-/proc/clear_antagonist(var/datum/mind/player)
+/proc/clear_antagonist(datum/mind/player)
 	for(var/datum/antagonist/A in player.antagonist)
 		A.remove_antagonist()
 
@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 		var/atype = all_antag_types[a_id].type
 		return new atype
 
-/proc/make_antagonist_ghost(var/mob/M, var/a_id)
+/proc/make_antagonist_ghost(mob/M, a_id)
 	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
 	if(all_antag_types[a_id])
 		var/a_type = all_antag_types[a_id].type
@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 		if(A.create_from_ghost(M))
 			return A
 
-/proc/make_antagonist(var/datum/mind/M, var/a_id)
+/proc/make_antagonist(datum/mind/M, a_id)
 	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
 	if(all_antag_types[a_id])
 		var/a_type = all_antag_types[a_id].type
@@ -75,7 +75,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 
 		return A
 
-/proc/update_antag_icons(var/datum/mind/player)
+/proc/update_antag_icons(datum/mind/player)
 	for(var/datum/antagonist/antag in player.antagonist)
 		if(antag.faction)
 			antag.faction.update_icons(antag)
@@ -109,7 +109,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 		var/datum/faction/F = new faction_type
 		GLOB.faction_types[F.id] = F
 
-/proc/get_antags(var/id)
+/proc/get_antags(id)
 	var/list/L = list()
 	for(var/datum/antagonist/A in GLOB.current_antags)
 		if(A.id == id)
@@ -137,13 +137,13 @@ GLOBAL_LIST_EMPTY(faction_types)
 			return TRUE
 	return FALSE
 
-/proc/player_is_ship_antag(var/datum/mind/player)
+/proc/player_is_ship_antag(datum/mind/player)
 	for(var/datum/antagonist/antag in player.antagonist)
 		if(!antag.outer)
 			return TRUE
 	return FALSE
 
-/proc/player_is_antag_id(var/datum/mind/player, var/a_id)
+/proc/player_is_antag_id(datum/mind/player, a_id)
 	for(var/datum/antagonist/antag in player.antagonist)
 		if(!a_id || antag.id == a_id)
 			return TRUE
@@ -155,7 +155,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 			return TRUE
 	return FALSE
 
-/proc/get_antags_list(var/a_type)
+/proc/get_antags_list(a_type)
 	if(!a_type)
 		return GLOB.current_antags
 
@@ -165,7 +165,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 			L.Add(antag)
 	return L
 
-/proc/get_player_antags(var/datum/mind/player, var/a_type)
+/proc/get_player_antags(datum/mind/player, a_type)
 	if(!a_type)
 		return player.antagonist
 
@@ -175,14 +175,14 @@ GLOBAL_LIST_EMPTY(faction_types)
 			L.Add(antag)
 	return L
 
-/proc/get_dead_antags_count(var/a_type)
+/proc/get_dead_antags_count(a_type)
 	var/count = 0
 	for(var/datum/antagonist/antag in GLOB.current_antags)
 		if((!a_type || antag.id == a_type) && antag.is_dead())
 			count++
 	return count
 
-/proc/get_antags_count(var/a_type)
+/proc/get_antags_count(a_type)
 	if(!a_type)
 		return GLOB.current_antags.len
 
@@ -192,32 +192,32 @@ GLOBAL_LIST_EMPTY(faction_types)
 			count++
 	return count
 
-/proc/get_active_antag_count(var/a_type)
+/proc/get_active_antag_count(a_type)
 	var/active_antags = 0
 	for(var/datum/antagonist/antag in GLOB.current_antags)
 		if((!a_type || antag.id == a_type) && antag.is_active())
 			active_antags++
 	return active_antags
 
-/proc/get_faction_by_id(var/f_id)
+/proc/get_faction_by_id(f_id)
 	for(var/datum/faction/F in GLOB.current_factions)
 		if(F.id == f_id)
 			return F
 
-/proc/get_factions_by_id(var/f_id)
+/proc/get_factions_by_id(f_id)
 	var/list/L = list()
 	for(var/datum/faction/F in GLOB.current_factions)
 		if(F.id == f_id)
 			L.Add(F)
 	return L
 
-/proc/player_is_antag_faction(var/datum/mind/player, var/a_id, var/datum/faction/F)
+/proc/player_is_antag_faction(datum/mind/player, a_id, datum/faction/F)
 	for(var/datum/antagonist/antag in player.antagonist)
 		if((!a_id || antag.id == a_id) && antag.faction == F)
 			return TRUE
 	return FALSE
 
-/proc/create_or_get_faction(var/f_id)
+/proc/create_or_get_faction(f_id)
 	var/list/factions = list()
 	for(var/datum/faction/F in GLOB.current_factions)
 		if(F.id == f_id)

@@ -40,7 +40,7 @@
 	..()
 
 
-/datum/faction/mercenary/add_leader(var/datum/antagonist/member, var/announce = TRUE)
+/datum/faction/mercenary/add_leader(datum/antagonist/member, announce = TRUE)
 	.=..()
 	if (.)
 		//put the commander outfit on

@@ -142,7 +142,7 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 		var/annotation_text = replacetext(text, "%", "%25")
 		annotation_text = replacetext(annotation_text, "\n", "%0A")
 
-		log_world("::error file=[file],line=[line],title=[station_name]: [test_path]::[annotation_text]")
+		log_world("::error file=[file],line=[line],title=[station_name()]: [test_path]::[annotation_text]")
 
 		// Normal log message
 		log_entry += "\tREASON #[reasonID]: [text] at [file]:[line]"
@@ -166,7 +166,7 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 	if(length(focused_tests))
 		tests_to_run = focused_tests
 
-	tests_to_run = sortTim(tests_to_run, /proc/cmp_unit_test_priority)
+	sortTim(tests_to_run, /proc/cmp_unit_test_priority)
 
 	var/list/test_results = list()
 

@@ -54,15 +54,15 @@
 
 //No network connection. Robots can physically open it, but not remotely
 //AI can't open it at all, anything inside a morgue drawer is hidden from the AI
-/obj/structure/morgue/attack_ai(var/mob/living/user)
+/obj/structure/morgue/attack_ai(mob/living/user)
 	if(Adjacent(user))
 		toggle(user)
 
-/obj/structure/morgue/attack_hand(var/mob/living/user)
+/obj/structure/morgue/attack_hand(mob/living/user)
 	toggle(user)
 	add_fingerprint(user)
 
-/obj/structure/morgue/proc/toggle(var/mob/living/user)
+/obj/structure/morgue/proc/toggle(mob/living/user)
 	if(world.time < next_toggle)
 		return
 	next_toggle = world.time + 15 //Throttle toggling to reduce lag and potential exploits
@@ -103,7 +103,7 @@
 
 	current_storage = 0
 
-/obj/structure/morgue/proc/close(var/mob/living/user)
+/obj/structure/morgue/proc/close(mob/living/user)
 	//We only allow one mob or bodybag containing a mob, per morgue drawer
 	occupant = null
 	var/glidesize = DELAY2GLIDESIZE(5)
@@ -132,16 +132,16 @@
 		if (M.get_respawn_bonus("CORPSE_HANDLING"))
 			return // we got this one already
 		//We send a message to the occupant's current mob - probably a ghost, but who knows.
-		to_chat(M, SPAN_NOTICE("Your remains have been collected and properly stored. Your crew respawn time is reduced by [(MORGUE_RESPAWN_BONUS)/600] minutes."))
+		to_chat(M, span_notice("Your remains have been collected and properly stored. Your crew respawn time is reduced by [(MORGUE_RESPAWN_BONUS)/600] minutes."))
 
 		M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
 		M.set_respawn_bonus("CORPSE_HANDLING", MORGUE_RESPAWN_BONUS)
-		to_chat(user, SPAN_NOTICE("The corpse's spirit feels soothed and pleased."))
+		to_chat(user, span_notice("The corpse's spirit feels soothed and pleased."))
 
 
 
-/obj/structure/morgue/proc/store_atom(var/atom/movable/AM)
+/obj/structure/morgue/proc/store_atom(atom/movable/AM)
 	if (AM.anchored)
 		return
 		//Allowing it to suck up any non anchored object is probably open to exploits,
@@ -198,7 +198,7 @@
 /obj/structure/morgue/attackby(P as obj, mob/user as mob)
 	if (istype(P, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", name), null)  as text
-		if (user.get_active_hand() != P)
+		if (user.get_active_held_item() != P)
 			return
 		if ((!in_range(src, usr) && loc != user))
 			return
@@ -262,7 +262,7 @@
 	if (user != O)
 		for(var/mob/B in viewers(user, 3))
 			if ((B.client && !( B.blinded )))
-				to_chat(B, SPAN_WARNING("\The [user] stuffs [O] into [src]!"))
+				to_chat(B, span_warning("\The [user] stuffs [O] into [src]!"))
 	return
 
 
@@ -320,13 +320,13 @@
 
 /obj/structure/crematorium/attack_hand(mob/user as mob)
 //	if (cremating) AWW MAN! THIS WOULD BE SO MUCH MORE FUN ... TO WATCH
-//		user.show_message(SPAN_WARNING("Uh-oh, that was a bad idea."), 1)
+//		user.show_message(span_warning("Uh-oh, that was a bad idea."), 1)
 //		//usr << "Uh-oh, that was a bad idea."
 //		src:loc:poison += 20000000
 //		src:loc:firelevel = src:loc:poison
 //		return
 	if (cremating)
-		to_chat(usr, SPAN_WARNING("It's locked."))
+		to_chat(usr, span_warning("It's locked."))
 		return
 	if ((connected) && (locked == 0))
 		for(var/atom/movable/A as mob|obj in connected.loc)
@@ -356,7 +356,7 @@
 /obj/structure/crematorium/attackby(P as obj, mob/user as mob)
 	if (istype(P, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", name), null)  as text
-		if (user.get_active_hand() != P)
+		if (user.get_active_held_item() != P)
 			return
 		if ((!in_range(src, usr) > 1 && loc != user))
 			return
@@ -394,8 +394,8 @@
 		return //don't let you cremate something twice or w/e
 
 	if(contents.len <= 0)
-		for (var/mob/M in viewers(src))
-			M.show_message(SPAN_WARNING("You hear a hollow crackle."), 1)
+		for (var/mob/M in viewers(get_turf(src)))
+			M.show_message(span_warning("You hear a hollow crackle."), 1)
 			return
 
 	else
@@ -403,8 +403,8 @@
 			to_chat(usr, "You get the feeling that you shouldn't cremate one of the items in the cremator.")
 			return
 
-		for (var/mob/M in viewers(src))
-			M.show_message(SPAN_WARNING("You hear a roar as the crematorium activates."), 1)
+		for (var/mob/M in viewers(get_turf(src)))
+			M.show_message(span_warning("You hear a roar as the crematorium activates."), 1)
 
 		cremating = 1
 		locked = 1
@@ -482,7 +482,7 @@
 	if (user != O)
 		for(var/mob/B in viewers(user, 3))
 			if ((B.client && !( B.blinded )))
-				to_chat(B, (SPAN_WARNING("[user] stuffs [O] into [src]!")))
+				to_chat(B, (span_warning("[user] stuffs [O] into [src]!")))
 			//Foreach goto(99)
 	return
 
@@ -506,4 +506,4 @@
 				if (!C.cremating)
 					C.cremate(user)
 	else
-		to_chat(usr, SPAN_WARNING("Access denied."))
+		to_chat(usr, span_warning("Access denied."))

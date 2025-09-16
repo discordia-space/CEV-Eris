@@ -11,9 +11,9 @@
 	src.brainmob.name = "[pick(list("ADA","DOS","GNU","MAC","WIN"))]-[rand(1000, 9999)]"
 	src.brainmob.real_name = src.brainmob.name
 
-/obj/item/device/mmi/digital/robot/transfer_identity(var/mob/living/carbon/H)
+/obj/item/device/mmi/digital/robot/transfer_identity(mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = "Robotic Intelligence"
-	to_chat(brainmob, "<span class='notify'>You feel slightly disoriented. That's normal when you're little more than a complex circuit.</span>")
+	to_chat(brainmob, span_notice("You feel slightly disoriented. That's normal when you're little more than a complex circuit."))
 	return

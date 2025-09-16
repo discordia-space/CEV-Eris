@@ -8,7 +8,7 @@
 
 /obj/item/card/id/syndicate/New(mob/user as mob)
 	..()
-	access = syndicate_access.Copy()
+	access = GLOB.syndicate_access.Copy()
 
 /obj/item/card/id/syndicate/Destroy()
 	unset_registered_user(registered_user)
@@ -17,18 +17,18 @@
 /obj/item/card/id/syndicate/prevent_tracking()
 	return electronic_warfare
 
-/obj/item/card/id/syndicate/afterattack(var/obj/item/O as obj, mob/user as mob, proximity)
+/obj/item/card/id/syndicate/afterattack(obj/item/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
 	if(istype(O, /obj/item/card/id))
 		var/obj/item/card/id/I = O
 		src.access |= I.access
 		if(player_is_antag(user.mind))
-			to_chat(user, SPAN_NOTICE("The microscanner activates as you pass it over the ID, copying its access."))
+			to_chat(user, span_notice("The microscanner activates as you pass it over the ID, copying its access."))
 
 /obj/item/card/id/syndicate/attack_self(mob/user as mob)
 	// We use the fact that registered_name is not unset should the owner be vaporized, to ensure the id doesn't magically become unlocked.
 	if(!registered_user && register_user(user))
-		to_chat(user, SPAN_NOTICE("The microscanner marks you as its owner, preventing others from accessing its internals."))
+		to_chat(user, span_notice("The microscanner marks you as its owner, preventing others from accessing its internals."))
 	if(registered_user == user)
 		switch(alert("Would you like edit the ID, or show it?","Show or Edit?", "Edit","Show"))
 			if("Edit")
@@ -38,7 +38,7 @@
 	else
 		..()
 
-/obj/item/card/id/syndicate/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/card/id/syndicate/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 	var/entries[0]
 	entries[++entries.len] = list("name" = "Age", 				"value" = age)
@@ -60,7 +60,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/item/card/id/syndicate/proc/register_user(var/mob/user)
+/obj/item/card/id/syndicate/proc/register_user(mob/user)
 	if(!istype(user) || user == registered_user)
 		return FALSE
 	unset_registered_user()
@@ -69,7 +69,7 @@
 	GLOB.destroyed_event.register(user, src, /obj/item/card/id/syndicate/proc/unset_registered_user)
 	return TRUE
 
-/obj/item/card/id/syndicate/proc/unset_registered_user(var/mob/user)
+/obj/item/card/id/syndicate/proc/unset_registered_user(mob/user)
 	if(!registered_user || (user && user != registered_user))
 		return
 	GLOB.destroyed_event.unregister(registered_user, src)
@@ -80,14 +80,14 @@
 		return STATUS_CLOSE
 	return ..()
 
-/obj/item/card/id/syndicate/Topic(href, href_list, var/datum/nano_topic_state/state)
+/obj/item/card/id/syndicate/Topic(href, href_list, datum/nano_topic_state/state)
 	if(..())
 		return 1
 
 	var/user = usr
 	if(href_list["electronic_warfare"])
 		electronic_warfare = text2num(href_list["electronic_warfare"])
-		to_chat(user, "<span class='notice'>Electronic warfare [electronic_warfare ? "enabled" : "disabled"].</span>")
+		to_chat(user, span_notice("Electronic warfare [electronic_warfare ? "enabled" : "disabled"]."))
 	else if(href_list["set"])
 		switch(href_list["set"])
 			if("Age")
@@ -97,20 +97,20 @@
 						age = initial(age)
 					else
 						age = new_age
-					to_chat(user, SPAN_NOTICE("Age has been set to '[age]'."))
+					to_chat(user, span_notice("Age has been set to '[age]'."))
 					. = 1
 			if("Appearance")
 				var/datum/card_state/choice = input(user, "Select the appearance for this card.", "Agent Card Appearance") as null|anything in id_card_states()
 				if(choice && CanUseTopic(user, state))
 					icon_state = choice.icon_state
 					item_state = choice.item_state
-					to_chat(usr, SPAN_NOTICE("Appearance changed to [choice]."))
+					to_chat(usr, span_notice("Appearance changed to [choice]."))
 					. = 1
 			if("Assignment")
 				var/new_job = sanitize(input(user,"What assignment would you like to put on this card?\nChanging assignment will not grant or remove any access levels.","Agent Card Assignment", assignment) as null|text)
 				if(!isnull(new_job) && CanUseTopic(user, state))
 					assignment = new_job
-					to_chat(user, SPAN_NOTICE("Occupation changed to '[new_job]'."))
+					to_chat(user, span_notice("Occupation changed to '[new_job]'."))
 					update_name()
 					. = 1
 			if("Blood Type")
@@ -121,7 +121,7 @@
 				var/new_blood_type = sanitize(input(user,"What blood type would you like to be written on this card?","Agent Card Blood Type",default) as null|text)
 				if(!isnull(new_blood_type) && CanUseTopic(user, state))
 					blood_type = new_blood_type
-					to_chat(user, SPAN_NOTICE("Blood type changed to '[new_blood_type]'."))
+					to_chat(user, span_notice("Blood type changed to '[new_blood_type]'."))
 					. = 1
 			if("DNA Hash")
 				var/default = dna_hash
@@ -131,7 +131,7 @@
 				var/new_dna_hash = sanitize(input(user,"What DNA hash would you like to be written on this card?","Agent Card DNA Hash",default) as null|text)
 				if(!isnull(new_dna_hash) && CanUseTopic(user, state))
 					dna_hash = new_dna_hash
-					to_chat(user, SPAN_NOTICE("DNA hash changed to '[new_dna_hash]'."))
+					to_chat(user, span_notice("DNA hash changed to '[new_dna_hash]'."))
 					. = 1
 			if("Fingerprint Hash")
 				var/default = fingerprint_hash
@@ -141,29 +141,29 @@
 				var/new_fingerprint_hash = sanitize(input(user,"What fingerprint hash would you like to be written on this card?","Agent Card Fingerprint Hash",default) as null|text)
 				if(!isnull(new_fingerprint_hash) && CanUseTopic(user, state))
 					src.fingerprint_hash = new_fingerprint_hash
-					to_chat(user, SPAN_NOTICE("Fingerprint hash changed to '[new_fingerprint_hash]'."))
+					to_chat(user, span_notice("Fingerprint hash changed to '[new_fingerprint_hash]'."))
 					. = 1
 			if("Name")
 				var/new_name = sanitizeName(input(user,"What name would you like to put on this card?","Agent Card Name", registered_name) as null|text)
 				if(!isnull(new_name) && CanUseTopic(user, state))
 					src.registered_name = new_name
 					update_name()
-					to_chat(user, SPAN_NOTICE("Name changed to '[new_name]'."))
+					to_chat(user, span_notice("Name changed to '[new_name]'."))
 					. = 1
 			if("Photo")
 				set_id_photo(user)
-				to_chat(user, SPAN_NOTICE("Photo changed."))
+				to_chat(user, span_notice("Photo changed."))
 				. = 1
 			if("Sex")
 				var/new_sex = sanitize(input(user,"What sex would you like to put on this card?","Agent Card Sex", sex) as null|text)
 				if(!isnull(new_sex) && CanUseTopic(user, state))
 					src.sex = new_sex
-					to_chat(user, SPAN_NOTICE("Sex changed to '[new_sex]'."))
+					to_chat(user, span_notice("Sex changed to '[new_sex]'."))
 					. = 1
 			if("Factory Reset")
 				if(alert("This will factory reset the card, including access and owner. Continue?", "Factory Reset", "No", "Yes") == "Yes" && CanUseTopic(user, state))
 					age = initial(age)
-					access = syndicate_access.Copy()
+					access = GLOB.syndicate_access.Copy()
 					assignment = initial(assignment)
 					blood_type = initial(blood_type)
 					dna_hash = initial(dna_hash)
@@ -174,13 +174,13 @@
 					registered_name = initial(registered_name)
 					unset_registered_user()
 					sex = initial(sex)
-					to_chat(user, SPAN_NOTICE("All information has been deleted from \the [src]."))
+					to_chat(user, span_notice("All information has been deleted from \the [src]."))
 					. = 1
 
 	// Always update the UI, or buttons will spin indefinitely
 	SSnano.update_uis(src)
 
-/var/global/list/id_card_states
+var/global/list/id_card_states
 /proc/id_card_states()
 	if(!id_card_states)
 		id_card_states = list()

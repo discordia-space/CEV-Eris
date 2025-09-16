@@ -11,11 +11,11 @@
 	..()
 	if(wearer)
 		wearer.apply_damage(10, BRUTE, part)
-		to_chat(wearer, SPAN_WARNING("You feel something moving within [part]!"))
-		visible_message(SPAN_DANGER("[src] crawls out of [wearer] and flashes brightly!"))
+		to_chat(wearer, span_warning("You feel something moving within [part]!"))
+		visible_message(span_danger("[src] crawls out of [wearer] and flashes brightly!"))
 		src.uninstall()
 	else
-		visible_message(SPAN_DANGER("[src] flashes brightly!"))
+		visible_message(span_danger("[src] flashes brightly!"))
 	playsound(src, 'sound/voice/insect_battle_screeching.ogg', 80, 1, 5)
 	src.set_light(3,3, COLOR_ORANGE)
 	spawn(det_time)
@@ -30,5 +30,5 @@
 	die()
 
 /obj/item/implant/carrion_spider/explosive/proc/on_explosion(O)
-	visible_message(SPAN_DANGER("[src] explodes!"))
+	visible_message(span_danger("[src] explodes!"))
 	explosion(get_turf(src), explosion_power, explosion_falloff)

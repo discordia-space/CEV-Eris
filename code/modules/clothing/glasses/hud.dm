@@ -28,7 +28,7 @@
 		if(2)
 			timer = 3 MINUTES
 	addtimer(CALLBACK(src, PROC_REF(repair_self)), timer)
-	
+
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
@@ -47,10 +47,10 @@
 	icon_state = "healthhud"
 	prescription = TRUE
 
-	New()
-		..()
-		src.hud = new/obj/item/clothing/glasses/hud/health(src)
-		return
+/obj/item/clothing/glasses/sunglasses/medhud/New()
+	..()
+	src.hud = new/obj/item/clothing/glasses/hud/health(src)
+	return
 
 /obj/item/clothing/glasses/hud/security
 	name = "Security HUD"
@@ -79,10 +79,10 @@
 	icon_state = "sunhud"
 	prescription = TRUE
 
-	New()
-		..()
-		src.hud = new/obj/item/clothing/glasses/hud/security(src)
-		return
+/obj/item/clothing/glasses/sunglasses/sechud/New()
+	..()
+	src.hud = new/obj/item/clothing/glasses/hud/security(src)
+	return
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	name = "Ironhammer tactical HUD"
@@ -117,4 +117,4 @@
 		return
 
 	if(!is_excelsior(H))
-		to_chat(H, SPAN_WARNING("The hud fails to activate, a built-in speaker says, \"Failed to locate implant, please contact your nearest Excelsior representative immediately for assistance\"."))
+		to_chat(H, span_warning("The hud fails to activate, a built-in speaker says, \"Failed to locate implant, please contact your nearest Excelsior representative immediately for assistance\"."))

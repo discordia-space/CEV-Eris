@@ -52,13 +52,13 @@
 
 	dat += "<hr/><br/><b>[storage_name]</b><br/>"
 	dat += "<i>Welcome, [user.real_name].</i><br/><br/><hr/>"
-	dat += "<a href='?src=\ref[src];log=1'>View storage log</a>.<br>"
+	dat += "<a href='byond://?src=\ref[src];log=1'>View storage log</a>.<br>"
 	if(allow_items)
-		dat += "<a href='?src=\ref[src];view=1'>View objects</a>.<br>"
-		dat += "<a href='?src=\ref[src];item=1'>Recover object</a>.<br>"
-		dat += "<a href='?src=\ref[src];allitems=1'>Recover all objects</a>.<br>"
+		dat += "<a href='byond://?src=\ref[src];view=1'>View objects</a>.<br>"
+		dat += "<a href='byond://?src=\ref[src];item=1'>Recover object</a>.<br>"
+		dat += "<a href='byond://?src=\ref[src];allitems=1'>Recover all objects</a>.<br>"
 
-	user << browse(dat, "window=cryopod_console")
+	user << browse(HTML_SKELETON_TITLE("Cryogenic Oversight Control", dat), "window=cryopod_console")
 	onclose(user, "cryopod_console")
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
@@ -77,7 +77,7 @@
 			dat += "[person]<br/>"
 		dat += "<hr/>"
 
-		user << browse(dat, "window=cryolog")
+		user << browse(HTML_SKELETON_TITLE("Cryogenic Oversight Control", dat), "window=cryolog")
 
 	if(href_list["view"])
 		if(!allow_items) return
@@ -87,13 +87,13 @@
 			dat += "[I.name]<br/>"
 		dat += "<hr/>"
 
-		user << browse(dat, "window=cryoitems")
+		user << browse(HTML_SKELETON_TITLE("Cryogenic Oversight Control", dat), "window=cryoitems")
 
 	else if(href_list["item"])
 		if(!allow_items) return
 
 		if(frozen_items.len == 0)
-			to_chat(user, "<span class='notice'>There is nothing to recover from storage.</span>")
+			to_chat(user, span_notice("There is nothing to recover from storage."))
 			return
 
 		var/obj/item/I = input(usr, "Please choose which object to retrieve.","Object recovery",null) as null|anything in frozen_items
@@ -101,10 +101,10 @@
 			return
 
 		if(!(I in frozen_items))
-			to_chat(user, "<span class='notice'>\The [I] is no longer in storage.</span>")
+			to_chat(user, span_notice("\The [I] is no longer in storage."))
 			return
 
-		visible_message("<span class='notice'>The console beeps happily as it disgorges \the [I].</span>")
+		visible_message(span_notice("The console beeps happily as it disgorges \the [I]."))
 
 		I.forceMove(get_turf(src))
 		frozen_items -= I
@@ -113,10 +113,10 @@
 		if(!allow_items) return
 
 		if(frozen_items.len == 0)
-			to_chat(user, "<span class='notice'>There is nothing to recover from storage.</span>")
+			to_chat(user, span_notice("There is nothing to recover from storage."))
 			return
 
-		visible_message("<span class='notice'>The console beeps happily as it disgorges the desired objects.</span>")
+		visible_message(span_notice("The console beeps happily as it disgorges the desired objects."))
 
 		for(var/obj/item/I in frozen_items)
 			I.forceMove(get_turf(src))
@@ -353,7 +353,7 @@
 	log_and_message_admins("[key_name(occupant)]" + "[occupant.mind ? " ([occupant.mind.assigned_role])" : ""]" + " entered cryostorage.")
 
 	announce.autosay("[occupant.real_name]" + "[occupant.mind ? ", [occupant.mind.assigned_role]" : ""]" + ", [on_store_message]", "[on_store_name]")
-	visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>")
+	visible_message(span_notice("\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage."))
 
 	//When the occupant is put into storage, their respawn time is reduced.
 	//This check exists for the benefit of people who get put into cryostorage while SSD and come back later
@@ -363,28 +363,30 @@
 		if(istype(M) && !M.get_respawn_bonus("CRYOSLEEP"))
 			if(M.in_perfect_health())
 				//We send a message to the occupant's current mob - probably a ghost, but who knows.
-				to_chat(M, SPAN_NOTICE("Because your body was put into cryostorage in good health, your crew respawn time has been reduced by [(CRYOPOD_HEALTHY_RESPAWN_BONUS)/600] minutes."))
+				to_chat(M, span_notice("Because your body was put into cryostorage in good health, your crew respawn time has been reduced by [(CRYOPOD_HEALTHY_RESPAWN_BONUS)/600] minutes."))
 				M.set_respawn_bonus("CRYOSLEEP", CRYOPOD_HEALTHY_RESPAWN_BONUS)
 			else
-				to_chat(M, SPAN_NOTICE("Because your body was put into cryostorage in poor health, your crew respawn time has been reduced by [(CRYOPOD_WOUNDED_RESPAWN_BONUS)/600] minutes."))
+				to_chat(M, span_notice("Because your body was put into cryostorage in poor health, your crew respawn time has been reduced by [(CRYOPOD_WOUNDED_RESPAWN_BONUS)/600] minutes."))
 				M.set_respawn_bonus("CRYOSLEEP", CRYOPOD_WOUNDED_RESPAWN_BONUS)
 			M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
+
+	GLOB.joined_player_list -= occupant.ckey
 
 	// This despawn is not a gib() in this sense, it is used to remove objectives tied on these despawned mobs in cryos
 	occupant.despawn()
 	set_occupant(null)
 
-/obj/machinery/cryopod/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/cryopod/affect_grab(mob/user, mob/target)
 	try_put_inside(target, user)
 	return TRUE
 
-/obj/machinery/cryopod/MouseDrop_T(var/mob/living/L, mob/living/user)
+/obj/machinery/cryopod/MouseDrop_T(mob/living/L, mob/living/user)
 	if(istype(L) && istype(user))
 		try_put_inside(L, user)
 
-/obj/machinery/cryopod/proc/try_put_inside(var/mob/living/affecting, var/mob/living/user)
+/obj/machinery/cryopod/proc/try_put_inside(mob/living/affecting, mob/living/user)
 	if(occupant)
-		to_chat(user, "<span class='notice'>\The [src] is in use.</span>")
+		to_chat(user, span_notice("\The [src] is in use."))
 		return
 
 	if(!ismob(affecting) || !Adjacent(affecting) || !Adjacent(user))
@@ -419,8 +421,8 @@
 
 		// Book keeping!
 		var/turf/location = get_turf(src)
-		log_admin("[key_name_admin(affecting)] has entered a stasis pod. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
-		message_admins("<span class='notice'>[key_name_admin(affecting)] has entered a stasis pod.</span>")
+		log_admin("[key_name_admin(affecting)] has entered a stasis pod. [ADMIN_JMP(location)]")
+		message_admins(span_notice("[key_name_admin(affecting)] has entered a stasis pod."))
 		if(user == affecting)
 			src.add_fingerprint(affecting)
 
@@ -444,7 +446,7 @@
 	var/list/items = src.contents
 	if(occupant)
 		if(usr != occupant && !occupant.client && occupant.stat != DEAD)
-			to_chat(usr, SPAN_WARNING("It's locked inside!"))
+			to_chat(usr, span_warning("It's locked inside!"))
 			return
 		items -= occupant
 	if(announce)
@@ -469,7 +471,7 @@
 		return
 
 	if(src.occupant)
-		to_chat(usr, "<span class='notice'><B>\The [src] is in use.</B></span>")
+		to_chat(usr, span_notice("<B>\The [src] is in use.</B>"))
 		return
 
 	for(var/mob/living/carbon/slime/M in range(1,usr))
@@ -485,7 +487,7 @@
 			return
 
 		if(src.occupant)
-			to_chat(usr, "<span class='notice'><B>\The [src] is in use.</B></span>")
+			to_chat(usr, span_notice("<B>\The [src] is in use.</B>"))
 			return
 
 		usr.stop_pulling()
@@ -546,13 +548,13 @@
 							EA.wage = D.get_total_budget()
 
 		if(notifications)
-			to_chat(occupant, SPAN_NOTICE("[on_enter_occupant_message]"))
-			to_chat(occupant, SPAN_NOTICE("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>"))
+			to_chat(occupant, span_notice("[on_enter_occupant_message]"))
+			to_chat(occupant, span_notice("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>"))
 			if(occupant.in_perfect_health())
-				to_chat(occupant, SPAN_NOTICE("<b>Your respawn time will be reduced by [(CRYOPOD_HEALTHY_RESPAWN_BONUS)/600] minutes, allowing you to respawn as a crewmember much more quickly.</b>"))
+				to_chat(occupant, span_notice("<b>Your respawn time will be reduced by [(CRYOPOD_HEALTHY_RESPAWN_BONUS)/600] minutes, allowing you to respawn as a crewmember much more quickly.</b>"))
 			else
-				to_chat(occupant, SPAN_NOTICE("<b>Your respawn time will be reduced by [(CRYOPOD_WOUNDED_RESPAWN_BONUS)/600] minutes, allowing you to respawn as a crewmember much more quickly.</b>"))
-				to_chat(occupant, SPAN_DANGER("<b>Because you are not in perfect health, respawn time reduction is low. \
+				to_chat(occupant, span_notice("<b>Your respawn time will be reduced by [(CRYOPOD_WOUNDED_RESPAWN_BONUS)/600] minutes, allowing you to respawn as a crewmember much more quickly.</b>"))
+				to_chat(occupant, span_danger("<b>Because you are not in perfect health, respawn time reduction is low. \
 				If you wish to respawn as a different crewmember sooner, you should treat your injuries first</b>"))
 		occupant.forceMove(src)
 

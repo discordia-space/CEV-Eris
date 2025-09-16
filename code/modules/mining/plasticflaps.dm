@@ -7,8 +7,8 @@
 	anchored = TRUE
 	layer = 4
 /*
-/obj/structure/plasticflaps/CanAStarPass(obj/item/card/id/ID, to_dir, caller)
-	if(istype(caller, /obj/machinery/bot/mulebot))
+/obj/structure/plasticflaps/CanAStarPass(obj/item/card/id/ID, to_dir, requester)
+	if(istype(requester, /obj/machinery/bot/mulebot))
 		return TRUE
 */
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)

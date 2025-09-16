@@ -49,6 +49,8 @@ SUBSYSTEM_DEF(explosions)
 	priority = FIRE_PRIORITY_EXPLOSIONS
 	init_order = INIT_ORDER_EXPLOSIONS
 	flags = SS_KEEP_TIMING
+	init_time_threshold = 0.5 SECONDS
+
 	var/list/explode_queue = list()
 	var/list/current_run = list()
 	var/list/throwing_queue = list()
@@ -170,10 +172,10 @@ SUBSYSTEM_DEF(explosions)
 
 				explode_queue -= explodey
 				for(var/cleaner = 1; cleaner <= HASH_MODULO; cleaner++)
-					for(var/cur_z = explodey.minimum_z , cur_z <= explodey.maximum_z, cur_z++)
+					for(var/cur_z = explodey.minimum_z; cur_z <= explodey.maximum_z; cur_z++)
 						explodey.hashed_visited[cur_z][cleaner] = 0
 						explodey.hashed_power[cur_z][cleaner] = 0
-				for(var/cur_z = explodey.minimum_z , cur_z <= explodey.maximum_z, cur_z++)
+				for(var/cur_z = explodey.minimum_z; cur_z <= explodey.maximum_z; cur_z++)
 					SSexplosions.returnHashList(explodey.hashed_visited[cur_z])
 					SSexplosions.returnHashList(explodey.hashed_power[cur_z])
 				qdel(explodey)

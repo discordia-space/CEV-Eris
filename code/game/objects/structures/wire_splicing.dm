@@ -99,20 +99,20 @@
 			if(C.powernet)
 				C.powernet.trigger_warning()
 			if(user.stunned)
-				to_chat(user, SPAN_WARNING("You got electrocuted by wire splicing!"))
+				to_chat(user, span_warning("You got electrocuted by wire splicing!"))
 				return TRUE
 
 /obj/structure/wire_splicing/attackby(obj/item/I, mob/user)
 	if(QUALITY_WIRE_CUTTING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			if(!shock(user, 100))
-				to_chat(user, SPAN_NOTICE("You remove the splicing."))
+				to_chat(user, span_notice("You remove the splicing."))
 				qdel(src)
 
 	if(QUALITY_CUTTING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			if(!shock(user, 100))
-				to_chat(user, SPAN_NOTICE("You remove the splicing."))
+				to_chat(user, span_notice("You remove the splicing."))
 				qdel(src)
 
 	if(istype(I, /obj/item/stack/cable_coil) && user.a_intent == I_HURT)
@@ -121,13 +121,13 @@
 			return
 		if(messiness >= 10)
 			messiness = 10
-			to_chat(user, SPAN_WARNING("Enough."))
+			to_chat(user, span_warning("Enough."))
 			return
 		used_now = TRUE
 		// keep goin!
 		var/obj/item/stack/cable_coil/coil = I
 		if(coil.get_amount() >= 1)
-			to_chat(user, SPAN_NOTICE("You started to wire to this pile of wires..."))
+			to_chat(user, span_notice("You started to wire to this pile of wires..."))
 			if(shock(user)) //check if he got his insulation gloves
 				used_now = FALSE
 				return 		//he didn't
@@ -138,7 +138,7 @@
 				var/fail_chance = FAILCHANCE_HARD - user.stats.getStat(STAT_MEC) // 72 for assistant
 				if(prob(fail_chance))
 					if(!shock(user, FALSE)) //why not
-						to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up."))
+						to_chat(user, span_warning("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up."))
 					used_now = FALSE
 					return
 				if(messiness >= 10)
@@ -147,6 +147,6 @@
 				coil.use(1)
 				messiness += 1
 				icon_state = "wire_splicing[messiness]"
-				to_chat(user, SPAN_NOTICE("You added one more wire."))
+				to_chat(user, span_notice("You added one more wire."))
 				used_now = FALSE
 

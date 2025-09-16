@@ -40,13 +40,13 @@
 
 /obj/item/gun/projectile/automatic/lmg/special_check(mob/user)
 	if(cover_open)
-		to_chat(user, SPAN_WARNING("[src]'s cover is open! Close it before firing!"))
+		to_chat(user, span_warning("[src]'s cover is open! Close it before firing!"))
 		return 0
 	return ..()
 
 /obj/item/gun/projectile/automatic/lmg/proc/toggle_cover(mob/user)
 	cover_open = !cover_open
-	to_chat(user, SPAN_NOTICE("You [cover_open ? "open" : "close"] [src]'s cover."))
+	to_chat(user, span_notice("You [cover_open ? "open" : "close"] [src]'s cover."))
 	update_icon()
 	update_held_icon()
 
@@ -58,13 +58,13 @@
 		return ..() //once closed, behave like normal
 
 /obj/item/gun/projectile/automatic/lmg/attack_hand(mob/user as mob)
-	if(!cover_open && user.get_inactive_hand() == src)
+	if(!cover_open && user.get_inactive_held_item() == src)
 		toggle_cover(user) //open the cover
 		playsound(src.loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, 1)
 	else
 		return ..() //once open, behave like normal
 
-/obj/item/gun/projectile/automatic/lmg/equipped(var/mob/user, var/slot)
+/obj/item/gun/projectile/automatic/lmg/equipped(mob/user, slot)
 	.=..()
 	update_icon()
 
@@ -74,15 +74,15 @@
 	wielded_item_state = "_doble_[cover_open ? "open" : ""][ammo_magazine ? "mag" : ""]"
 	update_wear_icon()
 
-/obj/item/gun/projectile/automatic/lmg/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/automatic/lmg/load_ammo(obj/item/A, mob/user)
 	if(!cover_open)
-		to_chat(user, SPAN_WARNING("You need to open the cover to load [src]."))
+		to_chat(user, span_warning("You need to open the cover to load [src]."))
 		return
 	..()
 
-/obj/item/gun/projectile/automatic/lmg/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/automatic/lmg/unload_ammo(mob/user, allow_dump=1)
 	if(!cover_open)
-		to_chat(user, SPAN_WARNING("You need to open the cover to unload [src]."))
+		to_chat(user, span_warning("You need to open the cover to unload [src]."))
 		return
 	..()
 

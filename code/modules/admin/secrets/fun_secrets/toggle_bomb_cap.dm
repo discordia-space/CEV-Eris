@@ -2,7 +2,7 @@
 	name = "Toggle Bomb Cap"
 	permissions = R_SERVER
 
-/datum/admin_secret_item/fun_secret/toggle_bomb_cap/execute(var/mob/user)
+/datum/admin_secret_item/fun_secret/toggle_bomb_cap/execute(mob/user)
 	. = ..()
 	if(!.)
 		return
@@ -17,5 +17,5 @@
 	var/range_dev = max_explosion_range *0.25
 	var/range_high = max_explosion_range *0.5
 	var/range_low = max_explosion_range
-	message_admins(SPAN_DANGER("[key_name_admin(user)] changed the bomb cap to [range_dev], [range_high], [range_low]"), 1)
+	message_admins(span_danger("[key_name_admin(user)] changed the bomb cap to [range_dev], [range_high], [range_low]"), 1)
 	log_admin("[key_name_admin(user)] changed the bomb cap to [max_explosion_range]")

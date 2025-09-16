@@ -5,22 +5,27 @@
 	tts_seed = "Robot_1"
 	var/syndicate = 0
 	var/const/MAIN_CHANNEL = "Main Frequency"
-	var/lawchannel = MAIN_CHANNEL // Default channel on which to state laws
-	var/list/stating_laws = list()// Channels laws are currently being stated on
+	/// Default channel on which to state laws
+	var/lawchannel = MAIN_CHANNEL
+	/// Channels laws are currently being stated on
+	var/list/stating_laws = list()
 	var/obj/item/device/radio/common_radio
 	//plug before baymed arrives
 	var/obj/item/device/radio/silicon_radio
 
 	var/list/hud_list[10]
-	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
+	/// which languages can be vocalized by the speech synthesizer
+	var/list/speech_synthesizer_langs = list()
 
+	var/last_lawchange_announce = 0
 	//Used in say.dm.
 	var/speak_statement = "states"
 	var/speak_exclamation = "declares"
 	var/speak_query = "queries"
 	var/pose //Yes, now AIs can pose too.
 	var/obj/item/device/camera/siliconcam/aiCamera //photography
-	var/local_transmit //If set, can only speak to others of the same type within a short range.
+	/// If set, can only speak to others of the same type within a short range.
+	var/local_transmit
 
 	var/sensor_mode = 0 //Determines the current HUD.
 
@@ -86,14 +91,14 @@
 			confused = (min(confused + 2, 30))
 //	flick("noise", flash)
 	flash(0, FALSE , FALSE , FALSE)
-	to_chat(src, SPAN_DANGER("<B>*BZZZT*</B>"))
-	to_chat(src, SPAN_DANGER("Warning: Electromagnetic pulse detected."))
+	to_chat(src, span_danger("<B>*BZZZT*</B>"))
+	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
 	..()
 
-/mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
+/mob/living/silicon/stun_effect_act(stun_amount, agony_amount)
 	return	//immune
 
-/mob/living/silicon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1)
+/mob/living/silicon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1)
 
 	if (istype(source, /obj/machinery/containment_field))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -102,20 +107,20 @@
 
 		shock_damage *= 0.75	//take reduced damage
 		take_overall_damage(0, shock_damage)
-		visible_message("\red [src] was shocked by \the [source]!", \
-			"\red <B>Energy pulse detected, system damaged!</B>", \
-			"\red You hear an electrical crack")
+		visible_message(span_red("[src] was shocked by \the [source]!"), \
+			span_red("<B>Energy pulse detected, system damaged!</B>"), \
+			span_red("You hear an electrical crack"))
 		if(prob(20))
 			Stun(2)
 		return
 
-/mob/living/silicon/proc/damage_mob(var/brute = 0, var/fire = 0, var/tox = 0)
+/mob/living/silicon/proc/damage_mob(brute = 0, fire = 0, tox = 0)
 	return
 
 /mob/living/silicon/IsAdvancedToolUser()
 	return 1
 
-/mob/living/silicon/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/silicon/bullet_act(obj/item/projectile/Proj)
 	if (Proj.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 
@@ -129,10 +134,10 @@
 	updatehealth()
 	return 2
 
-/mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN, var/armor_value = 0, var/check_protection = 1)
+/mob/living/silicon/apply_effect(effect = 0,effecttype = STUN, armor_value = 0, check_protection = 1)
 	return FALSE//The only effect that can hit them atm is flashes and they still directly edit so this works for now
 
-/proc/islinked(var/mob/living/silicon/robot/bot, var/mob/living/silicon/ai/ai)
+/proc/islinked(mob/living/silicon/robot/bot, mob/living/silicon/ai/ai)
 	if(!istype(bot) || !istype(ai))
 		return FALSE
 	if(bot.connected_ai == ai)
@@ -147,9 +152,9 @@
 		. += list(list("Systems nonfunctional"))
 
 //can't inject synths
-/mob/living/silicon/can_inject(var/mob/user, var/error_msg, var/target_zone)
+/mob/living/silicon/can_inject(mob/user, error_msg, target_zone)
 	if(error_msg)
-		to_chat(user, "<span class='alert'>The armoured plating is too tough.</span>")
+		to_chat(user, span_alert("The armoured plating is too tough."))
 	return 0
 
 //Silicon mob language procs
@@ -157,8 +162,8 @@
 /mob/living/silicon/can_speak(datum/language/speaking)
 	return universal_speak || (speaking in speech_synthesizer_langs)	//need speech synthesizer support to vocalize a language
 
-/mob/living/silicon/add_language(var/language, var/can_speak=1)
-	var/datum/language/added_language = all_languages[language]
+/mob/living/silicon/add_language(language, can_speak=1)
+	var/datum/language/added_language = GLOB.all_languages[language]
 	if(!added_language)
 		return
 
@@ -167,8 +172,8 @@
 		speech_synthesizer_langs += added_language
 		return 1
 
-/mob/living/silicon/remove_language(var/rem_language)
-	var/datum/language/removed_language = all_languages[rem_language]
+/mob/living/silicon/remove_language(rem_language)
+	var/datum/language/removed_language = GLOB.all_languages[rem_language]
 	if(!removed_language)
 		return
 
@@ -180,10 +185,10 @@
 	switch(sensor_type)
 		if ("Security")
 			sensor_mode = SEC_HUD
-			to_chat(src, SPAN_NOTICE("Security records overlay enabled."))
+			to_chat(src, span_notice("Security records overlay enabled."))
 		if ("Medical")
 			sensor_mode = MED_HUD
-			to_chat(src, SPAN_NOTICE("Life signs monitor overlay enabled."))
+			to_chat(src, span_notice("Life signs monitor overlay enabled."))
 		if ("Disable")
 			sensor_mode = 0
 			to_chat(src, "Sensor augmentations disabled.")
@@ -211,7 +216,7 @@
 	updatehealth()
 	return 0
 
-/mob/living/silicon/proc/receive_alarm(var/datum/alarm_handler/alarm_handler, var/datum/alarm/alarm, was_raised)
+/mob/living/silicon/proc/receive_alarm(datum/alarm_handler/alarm_handler, datum/alarm/alarm, was_raised)
 	if(!next_alarm_notice)
 		next_alarm_notice = world.time + SecondsToTicks(10)
 
@@ -240,7 +245,7 @@
 					alarm_raised = 1
 					if(!reported)
 						reported = 1
-						to_chat(src, SPAN_WARNING("--- [AH.category] Detected ---"))
+						to_chat(src, span_warning("--- [AH.category] Detected ---"))
 					raised_alarm(A)
 
 		for(var/datum/alarm_handler/AH in queued_alarms)
@@ -250,23 +255,23 @@
 				if(alarms[A] == -1)
 					if(!reported)
 						reported = 1
-						to_chat(src, SPAN_NOTICE("--- [AH.category] Cleared ---"))
+						to_chat(src, span_notice("--- [AH.category] Cleared ---"))
 					to_chat(src, "\The [A.alarm_name()].")
 
 		if(alarm_raised)
-			to_chat(src, "<A HREF=?src=\ref[src];showalerts=1>\[Show Alerts\]</A>")
+			to_chat(src, "<A href='byond://?src=\ref[src];showalerts=1'>\[Show Alerts\]</A>")
 
 		for(var/datum/alarm_handler/AH in queued_alarms)
 			var/list/alarms = queued_alarms[AH]
 			alarms.Cut()
 
-/mob/living/silicon/proc/raised_alarm(var/datum/alarm/A)
+/mob/living/silicon/proc/raised_alarm(datum/alarm/A)
 	to_chat(src, "[A.alarm_name()]!")
 
-/mob/living/silicon/ai/raised_alarm(var/datum/alarm/A)
+/mob/living/silicon/ai/raised_alarm(datum/alarm/A)
 	var/cameratext = ""
 	for(var/obj/machinery/camera/C in A.cameras())
-		cameratext += "[(cameratext == "")? "" : "|"]<A HREF='?src=\ref[src];switchcamera=\ref[C]'>[C.c_tag]</A>"
+		cameratext += "[(cameratext == "")? "" : "|"]<A href='byond://?src=\ref[src];switchcamera=\ref[C]'>[C.c_tag]</A>"
 	to_chat(src, "[A.alarm_name()]! ([(cameratext)? cameratext : "No Camera"])")
 
 /mob/living/silicon/proc/is_malf_or_contractor()

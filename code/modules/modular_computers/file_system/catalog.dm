@@ -12,101 +12,29 @@
 GLOBAL_LIST_EMPTY(catalogs)
 GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 
-/hook/startup/proc/createCatalogs()
-	// Reagents
-	for(var/V in GLOB.chemical_reagents_list)
-		var/datum/reagent/D = GLOB.chemical_reagents_list[V]
-		if(D.appear_in_default_catalog)
-			create_catalog_entry(D, CATALOG_REAGENTS)
-			create_catalog_entry(D, CATALOG_ALL)
-			if(istype(D, /datum/reagent/drink) || istype(D, /datum/reagent/alcohol))
-				create_catalog_entry(D, CATALOG_DRINKS)
-			else
-				create_catalog_entry(D, CATALOG_CHEMISTRY)
-	// second run to add decompose results
-	for(var/V in GLOB.chemical_reagents_list)
-		var/datum/reagent/D = GLOB.chemical_reagents_list[V]
-		if(D.heating_products && D.heating_point)
-			for(var/id in D.heating_products)
-				var/datum/catalog_entry/reagent/E = get_catalog_entry(get_reagent_type_by_id(id))
-				if(E)
-					E.add_decomposition_from(D.type)
-
-		if(D.chilling_products && D.chilling_point)
-			for(var/id in D.chilling_point)
-				var/datum/catalog_entry/reagent/E = get_catalog_entry(D.type)
-				if(E)
-					E.add_decomposition_from(D.type)
-
-	var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
-	C.associated_template = "catalog_list_reagents.tmpl"
-	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
-	C = GLOB.catalogs[CATALOG_CHEMISTRY]
-	C.associated_template = "catalog_list_reagents.tmpl"
-	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_chem)
-	C = GLOB.catalogs[CATALOG_DRINKS]
-	C.associated_template = "catalog_list_drinks.tmpl"
-	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
-	C = GLOB.catalogs[CATALOG_ALL]
-	C.associated_template = "catalog_list_general.tmpl"
-	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
-	createCookingCatalogs()
-	return TRUE
-
-/proc/create_catalog_entry(var/datum/thing, var/catalog_id)
-	if(catalog_id && !GLOB.catalogs[catalog_id])
-		GLOB.catalogs[catalog_id] = new /datum/catalog(catalog_id)
-	if(!GLOB.all_catalog_entries_by_type[thing.type])
-		if(istype(thing, /datum/reagent))
-			if(istype(thing, /datum/reagent/drink) || (istype(thing, /datum/reagent/alcohol) && thing.type != /datum/reagent/alcohol))
-				GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/drink(thing)
-			else
-				GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/reagent(thing)
-		else if(istype(thing, /atom))
-			GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/atom(thing)
-		else
-			var/list/element = GLOB.catalogs[catalog_id]
-			if(!element.len)
-				qdel(element)
-				GLOB.catalogs.Remove(catalog_id)
-				return FALSE
-			error("Unsupported type passed to /proc/create_catalog_entry()")
-			return FALSE
-		if(catalog_id)
-			var/datum/catalog/C = GLOB.catalogs[catalog_id]
-			C.add_entry(GLOB.all_catalog_entries_by_type[thing.type])
-	else if(catalog_id)
-		var/datum/catalog/C = GLOB.catalogs[catalog_id]
-		if(!C.entry_list.Find(GLOB.all_catalog_entries_by_type[thing.type]))
-			C.add_entry(GLOB.all_catalog_entries_by_type[thing.type])
-	return TRUE
-
-/proc/get_catalog_entry(var/type)
-	if(GLOB.all_catalog_entries_by_type[type])
-		return GLOB.all_catalog_entries_by_type[type]
 
 /datum/catalog
 	var/id
 	var/list/datum/catalog_entry/entry_list = list()
 	var/associated_template
 
-/datum/catalog/New(var/_id)
+/datum/catalog/New(_id)
 	. = ..()
 	id = _id
 
 // accepts either type or datum
-/datum/catalog/proc/get_entry(var/datum/thing)
+/datum/catalog/proc/get_entry(datum/thing)
 	for(var/datum/catalog_entry/E in entry_list)
 		if(E.thing_type == ispath(thing) ? thing : thing.type)
 			return E
 
-/datum/catalog/proc/add_entry(var/datum/catalog_entry/entry)
+/datum/catalog/proc/add_entry(datum/catalog_entry/entry)
 	entry_list.Add(entry)
 
-/datum/catalog/proc/remove_entry(var/datum/catalog_entry/entry)
+/datum/catalog/proc/remove_entry(datum/catalog_entry/entry)
 	entry_list.Remove(entry)
 
-/datum/catalog/nano_ui_data(mob/user, ui_key = "main", var/search_value)
+/datum/catalog/nano_ui_data(mob/user, ui_key = "main", search_value)
 	var/list/data = list()
 	var/list/entries_data = list()
 	for(var/datum/catalog_entry/E in entry_list)
@@ -123,10 +51,10 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/associated_template
 	var/thing_nature 	// reagent/weapon/device/etc.
 
-/datum/catalog_entry/New(var/datum/V)
+/datum/catalog_entry/New(datum/V)
 	thing_type = V.type
 
-/datum/catalog_entry/proc/search_value(var/value)
+/datum/catalog_entry/proc/search_value(value)
 	if(findtext(title, value))
 		return TRUE
 	if(findtext(thing_nature, value))
@@ -171,13 +99,13 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/list/result_of_decomposition_in
 	var/list/can_be_used_in
 
-/datum/catalog_entry/reagent/search_value(var/value)
+/datum/catalog_entry/reagent/search_value(value)
 	if(..())
 		return TRUE
 	if(findtext(reagent_type, value))
 		return TRUE
 
-/datum/catalog_entry/reagent/proc/add_decomposition_from(var/reagent_type)
+/datum/catalog_entry/reagent/proc/add_decomposition_from(reagent_type)
 	if(!result_of_decomposition_in)
 		result_of_decomposition_in = list()
 	for(var/V in result_of_decomposition_in)
@@ -185,7 +113,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 			return
 	result_of_decomposition_in.Add(reagent_type)
 
-/datum/catalog_entry/reagent/proc/add_can_be_used_in(var/reagent_type)
+/datum/catalog_entry/reagent/proc/add_can_be_used_in(reagent_type)
 	if(!can_be_used_in)
 		can_be_used_in = list()
 	for(var/V in can_be_used_in)
@@ -283,7 +211,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 /datum/catalog_entry/atom
 	associated_template = "catalog_entry_atom.tmpl"
 
-/datum/catalog_entry/atom/New(var/atom/V)
+/datum/catalog_entry/atom/New(atom/V)
 	if(!istype(V))
 		error("wrong usage of [src.type]")
 		qdel(src)
@@ -316,7 +244,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/list/recipe_data
 	var/list/taste_tag
 
-/datum/catalog_entry/drink/search_value(var/value)
+/datum/catalog_entry/drink/search_value(value)
 	if(..())
 		return TRUE
 	if(findtext(strength, value))
@@ -325,7 +253,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		if(findtext(i, value))
 			return TRUE
 
-/datum/catalog_entry/drink/New(var/datum/reagent/V)
+/datum/catalog_entry/drink/New(datum/reagent/V)
 	if(!istype(V))
 		error("wrong usage of [src.type]")
 		qdel(src)

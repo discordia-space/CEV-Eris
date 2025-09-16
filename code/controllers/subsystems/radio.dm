@@ -1,8 +1,12 @@
 SUBSYSTEM_DEF(radio)
 	name = "Radio"
-	flags = SS_NO_FIRE|SS_NO_INIT
+	flags = SS_NO_FIRE
 
 	var/list/datum/radio_frequency/frequencies = list()
+
+/datum/controller/subsystem/radio/Initialize()
+	. = ..()
+	GLOB.announcer = new /obj/item/device/radio/intercom(null)
 
 /datum/controller/subsystem/radio/proc/add_object(obj/device, new_frequency as num, filter = null as text|null)
 	var/f_text = num2text(new_frequency)

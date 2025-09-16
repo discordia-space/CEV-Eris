@@ -33,7 +33,7 @@
 
 /obj/machinery/sleeper/sarcophagus/go_in(mob/M, mob/user)
 	if(horror_occupant)
-		to_chat(user, SPAN_WARNING("\The [src] is already occupied."))
+		to_chat(user, span_warning("\The [src] is already occupied."))
 		return
 	. = ..()
 
@@ -71,7 +71,7 @@
 	if(istool(I) && horror_occupant)
 		var/obj/item/tool/T = I
 		if(T.has_quality(QUALITY_PRYING))
-			user.visible_message(SPAN_NOTICE("[user] starts opening the [src]. Something stirs within the [src]..."), SPAN_NOTICE("You start opening \the [src]. Something stirs within the [src]..."))
+			user.visible_message(span_notice("[user] starts opening the [src]. Something stirs within the [src]..."), span_notice("You start opening \the [src]. Something stirs within the [src]..."))
 			if(!I.use_tool(user = user, target =  src, base_time = WORKTIME_NORMAL, required_quality = QUALITY_PRYING, fail_chance = FAILCHANCE_NORMAL, required_stat = STAT_ROB, forced_sound = WORKSOUND_EASY_CROWBAR))
 				return
 			go_out()

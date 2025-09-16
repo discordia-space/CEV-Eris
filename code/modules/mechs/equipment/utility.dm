@@ -26,45 +26,45 @@
 
 	if(.)
 		if(length(carrying) >= carrying_capacity)
-			to_chat(user, SPAN_WARNING("\The [src] is fully loaded!"))
+			to_chat(user, span_warning("\The [src] is fully loaded!"))
 			return
 
 		if (!inrange)
-			to_chat(user, SPAN_NOTICE("You must be adjacent to [target] to use the hydraulic clamp."))
+			to_chat(user, span_notice("You must be adjacent to [target] to use the hydraulic clamp."))
 		else
 			if(isobj(target))
 				var/obj/O = target
 				if(O.buckled_mob)
 					return
 				if(locate(/mob/living) in O)
-					to_chat(user, SPAN_WARNING("You can't load living things into the cargo compartment."))
+					to_chat(user, span_warning("You can't load living things into the cargo compartment."))
 					return
 
 				if(istype(target, /obj/structure/scrap_spawner))
-					owner.visible_message(SPAN_NOTICE("\The [owner] begins compressing \the [O] with \the [src]."))
+					owner.visible_message(span_notice("\The [owner] begins compressing \the [O] with \the [src]."))
 					playsound(src, 'sound/mechs/hydraulic.ogg', 50, 1)
 					if(do_after(owner, 20, O, 0, 1))
 						if(istype(O, /obj/structure/scrap_spawner))
 							var/obj/structure/scrap_spawner/S = O
 							S.make_cube()
-							owner.visible_message(SPAN_NOTICE("\The [owner] compresses \the [O] into a cube with \the [src]."))
+							owner.visible_message(span_notice("\The [owner] compresses \the [O] into a cube with \the [src]."))
 					return
 
 				if(O.anchored)
-					to_chat(user, SPAN_WARNING("[target] is firmly secured."))
+					to_chat(user, span_warning("[target] is firmly secured."))
 					return
 
-				owner.visible_message(SPAN_NOTICE("\The [owner] begins loading \the [O]."))
+				owner.visible_message(span_notice("\The [owner] begins loading \the [O]."))
 				playsound(src, 'sound/mechs/hydraulic.ogg', 50, 1)
 				if(do_after(owner, 20, O, 0, 1))
 					if(O in carrying || O.buckled_mob || O.anchored || (locate(/mob/living) in O)) //Repeat checks
 						return
 					if(length(carrying) >= carrying_capacity)
-						to_chat(user, SPAN_WARNING("\The [src] is fully loaded!"))
+						to_chat(user, span_warning("\The [src] is fully loaded!"))
 						return
 					O.forceMove(src)
 					carrying += O
-					owner.visible_message(SPAN_NOTICE("\The [owner] loads \the [O] into its cargo compartment."))
+					owner.visible_message(span_notice("\The [owner] loads \the [O] into its cargo compartment."))
 
 			//attacking - Cannot be carrying something, cause then your clamp would be full
 			else if(isliving(target))
@@ -73,19 +73,19 @@
 					admin_attack_log(user, M, "attempted to clamp [M] with [src] ", "Was subject to a clamping attempt.", ", using \a [src], attempted to clamp")
 					owner.setClickCooldown(owner.arms ? owner.arms.action_delay * 3 : 30) //This is an inefficient use of your powers
 //				if(prob(33))
-//					owner.visible_message(SPAN_DANGER("[owner] swings its [src] in a wide arc at [target] but misses completely!"))
+//					owner.visible_message(span_danger("[owner] swings its [src] in a wide arc at [target] but misses completely!"))
 //					return
 					M.attack_generic(owner, (owner.arms ? owner.arms.melee_damage * 1.5 : 0), "slammed") //Honestly you should not be able to do this without hands, but still
 					M.throw_at(get_edge_target_turf(owner ,owner.dir),5, 2)
-					to_chat(user, SPAN_WARNING("You slam [target] with [src.name]."))
-					owner.visible_message(SPAN_DANGER("[owner] slams [target] with the hydraulic clamp."))
+					to_chat(user, span_warning("You slam [target] with [src.name]."))
+					owner.visible_message(span_danger("[owner] slams [target] with the hydraulic clamp."))
 				else
 					step_away(M, owner)
 					to_chat(user, "You push [target] out of the way.")
 					owner.visible_message("[owner] pushes [target] out of the way.")
 
 
-/obj/item/mech_equipment/clamp/attack_self(var/mob/user)
+/obj/item/mech_equipment/clamp/attack_self(mob/user)
 	. = ..()
 	if(.)
 		drop_carrying(user, TRUE)
@@ -96,9 +96,9 @@
 	else
 		..()
 
-/obj/item/mech_equipment/clamp/proc/drop_carrying(var/mob/user, var/choose_object)
+/obj/item/mech_equipment/clamp/proc/drop_carrying(mob/user, choose_object)
 	if(!length(carrying))
-		to_chat(user, SPAN_WARNING("You are not carrying anything in \the [src]."))
+		to_chat(user, span_warning("You are not carrying anything in \the [src]."))
 		return
 	var/obj/chosen_obj = carrying[1]
 	if(choose_object)
@@ -108,10 +108,10 @@
 	if(chosen_obj.density)
 		for(var/atom/A in get_turf(src))
 			if(A != owner && A.density && !(A.atom_flags & ATOM_FLAG_CHECKS_BORDER))
-				to_chat(user, SPAN_WARNING("\The [A] blocks you from putting down \the [chosen_obj]."))
+				to_chat(user, span_warning("\The [A] blocks you from putting down \the [chosen_obj]."))
 				return */
 
-	owner.visible_message(SPAN_NOTICE("\The [owner] unloads \the [chosen_obj]."))
+	owner.visible_message(span_notice("\The [owner] unloads \the [chosen_obj]."))
 	playsound(src, 'sound/mechs/hydraulic.ogg', 50, 1)
 	chosen_obj.forceMove(get_turf(src))
 	carrying -= chosen_obj
@@ -160,7 +160,7 @@
 	var/l_outer_range = 9
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 
-/obj/item/mech_equipment/light/attack_self(var/mob/user)
+/obj/item/mech_equipment/light/attack_self(mob/user)
 	. = ..()
 	if(.)
 		on = !on
@@ -246,15 +246,15 @@
 	return string
 
 
-/obj/item/mech_equipment/catapult/attack_self(var/mob/user)
+/obj/item/mech_equipment/catapult/attack_self(mob/user)
 	. = ..()
 	if(.)
 		mode = mode == CATAPULT_SINGLE ? CATAPULT_AREA : CATAPULT_SINGLE
-		to_chat(user, SPAN_NOTICE("You set \the [src] to [mode == CATAPULT_SINGLE ? "single" : "multi"]-target mode."))
+		to_chat(user, span_notice("You set \the [src] to [mode == CATAPULT_SINGLE ? "single" : "multi"]-target mode."))
 		update_icon()
 
 
-/obj/item/mech_equipment/catapult/afterattack(var/atom/target, var/mob/living/user, var/inrange, var/params)
+/obj/item/mech_equipment/catapult/afterattack(atom/target, mob/living/user, inrange, params)
 	. = ..()
 	if(.)
 
@@ -263,10 +263,10 @@
 				if(!locked)
 					var/atom/movable/AM = target
 					if(!istype(AM) || AM.anchored || !AM.simulated)
-						to_chat(user, SPAN_NOTICE("Unable to lock on [target]."))
+						to_chat(user, span_notice("Unable to lock on [target]."))
 						return
 					locked = AM
-					to_chat(user, SPAN_NOTICE("Locked on [AM]."))
+					to_chat(user, span_notice("Locked on [AM]."))
 					return
 				else if(target != locked)
 					if(locked in view(owner))
@@ -280,7 +280,7 @@
 
 					else
 						locked = null
-						to_chat(user, SPAN_NOTICE("Lock on [locked] disengaged."))
+						to_chat(user, span_notice("Lock on [locked] disengaged."))
 			if(CATAPULT_AREA)
 
 				var/list/atoms = list()
@@ -317,18 +317,18 @@
 
 	//durability = 3 * (material ? material.integrity : 1)
 
-/obj/item/material/drill_head/Created(var/creator)
+/obj/item/material/drill_head/Created(creator)
 	ApplyDurability()
 
-/obj/item/material/drill_head/steel/New(var/newloc)
+/obj/item/material/drill_head/steel/New(newloc)
 	..(newloc,MATERIAL_STEEL)
 	ApplyDurability()
 
-/obj/item/material/drill_head/plasteel/New(var/newloc)
+/obj/item/material/drill_head/plasteel/New(newloc)
 	..(newloc,MATERIAL_PLASTEEL)
 	ApplyDurability()
 
-/obj/item/material/drill_head/diamond/New(var/newloc)
+/obj/item/material/drill_head/diamond/New(newloc)
 	..(newloc,MATERIAL_DIAMOND)
 	ApplyDurability()
 
@@ -354,11 +354,11 @@
 	drill_head = new /obj/item/material/drill_head(src, "steel")//You start with a basic steel head
 	drill_head.ApplyDurability()
 
-/obj/item/mech_equipment/drill/attack_self(var/mob/user)
+/obj/item/mech_equipment/drill/attack_self(mob/user)
 	. = ..()
 	if(.)
 		if(drill_head)
-			owner.visible_message(SPAN_WARNING("[owner] revs the [drill_head], menancingly."))
+			owner.visible_message(span_warning("[owner] revs the [drill_head], menancingly."))
 			playsound(src, 'sound/weapons/circsawhit.ogg', 50, 1)
 
 
@@ -379,12 +379,12 @@
 	if(adjacent && istype(target,/obj/item/material/drill_head))
 		var/obj/item/material/drill_head/unmounted_drill_head = target
 		if(drill_head)
-			owner.visible_message(SPAN_NOTICE("\The [owner] detaches the [drill_head] mounted on the [src]."))
+			owner.visible_message(span_notice("\The [owner] detaches the [drill_head] mounted on the [src]."))
 			drill_head.forceMove(owner.loc)
 
 		unmounted_drill_head.forceMove(src)
 		drill_head = unmounted_drill_head
-		owner.visible_message(SPAN_NOTICE("\The [owner] mounts the [drill_head] on the [src]."))
+		owner.visible_message(span_notice("\The [owner] mounts the [drill_head] on the [src]."))
 		return
 
 	if(!use_drill(target, user, adjacent, TRUE))
@@ -393,7 +393,7 @@
 	if(istype(target, /turf/wall) && target:is_simulated)
 		var/turf/wall/W = target
 		if(W.hardness > drill_head.material.hardness)
-			to_chat(user, SPAN_WARNING("\The [target] is too hard to drill through with this drill head."))
+			to_chat(user, span_warning("\The [target] is too hard to drill through with this drill head."))
 			return
 
 		target.explosion_act(100, null)
@@ -444,33 +444,33 @@
 		return FALSE
 
 	if(!adjacent)
-		to_chat(user, SPAN_NOTICE("You must be adjacent to [target] to use the mounted drill."))
+		to_chat(user, span_notice("You must be adjacent to [target] to use the mounted drill."))
 		return FALSE
 
 	if(isobj(target))
 		var/obj/target_obj = target
 		if(target_obj.unacidable)
-			to_chat(user, SPAN_WARNING("You can't drill [target]."))
+			to_chat(user, span_warning("You can't drill [target]."))
 			return FALSE
 
 	if(!drill_head)
-		to_chat(user, SPAN_WARNING("Your drill doesn't have a head!"))
+		to_chat(user, span_warning("Your drill doesn't have a head!"))
 		return FALSE
 
 	var/obj/item/cell/cell = owner.get_cell()
 	if(!cell?.checked_use(active_power_use * CELLRATE))
-		to_chat(user, SPAN_WARNING("Insufficient power!"))
+		to_chat(user, span_warning("Insufficient power!"))
 		return FALSE
 
 	playsound(src, 'sound/mechs/mechdrill.ogg', 50, 3)
 	if(show_message)
-		owner.visible_message(SPAN_DANGER("\The [owner] starts to drill \the [target]"), SPAN_WARNING("You hear a large drill."))
+		owner.visible_message(span_danger("\The [owner] starts to drill \the [target]"), span_warning("You hear a large drill."))
 	drilling = TRUE
 
 	//Better materials = faster drill! //
 	//Formula: 0.3 seconds base duration with each lower tier of hardness adding around a half second to the duration
 	if(!do_after(user, (0.5 + ((100 - drill_head.material.hardness) * 0.03)) SECONDS, owner, FALSE) || !drill_head || src != owner.selected_system)
-		to_chat(user, SPAN_WARNING("You must stay still while the drill is engaged!"))
+		to_chat(user, span_warning("You must stay still while the drill is engaged!"))
 		drilling = FALSE
 		return FALSE
 
@@ -499,7 +499,7 @@
 			for(var/obj/item/ore/ore in range(target, 1))
 				if(get_dir(owner, ore) & owner.dir)
 					ore.Move(ore_box)
-			to_chat(user, SPAN_NOTICE("The drill automatically loaded the ore into the ore box."))
+			to_chat(user, span_notice("The drill automatically loaded the ore into the ore box."))
 
 /obj/item/mech_equipment/mounted_system/extinguisher
 	icon_state = "mech_exting"
@@ -541,7 +541,7 @@
 		user.drop_from_inventory(I)
 		I.forceMove(src)
 		internal_cell = I
-		to_chat(user, SPAN_NOTICE("You replace [src]'s cell!"))
+		to_chat(user, span_notice("You replace [src]'s cell!"))
 		return
 
 /obj/item/mech_equipment/power_generator/pretick()
@@ -620,25 +620,25 @@
 				mode = 1
 				fuel_usage_per_tick = initial(fuel_usage_per_tick) * 0.1
 				generation_rate = initial(generation_rate) * 0.2
-				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to ECO. 10% Fuel usage, 20% power output."))
+				to_chat(user, span_notice("You switch \the [src]'s power production mode to ECO. 10% Fuel usage, 20% power output."))
 			/// Default
 			if(1)
 				mode = 2
 				fuel_usage_per_tick = initial(fuel_usage_per_tick)
 				generation_rate = initial(generation_rate)
-				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to NORMAL. 100% Fuel usage, 100% power output."))
+				to_chat(user, span_notice("You switch \the [src]'s power production mode to NORMAL. 100% Fuel usage, 100% power output."))
 			/// Turbo mode, 2x fuel usage at 1.6x power output
 			if(2)
 				mode = 3
 				fuel_usage_per_tick = initial(fuel_usage_per_tick) * 2
 				generation_rate = initial(generation_rate) * 1.6
-				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to TURBO. 200% Fuel usage, 160% power output."))
+				to_chat(user, span_notice("You switch \the [src]'s power production mode to TURBO. 200% Fuel usage, 160% power output."))
 			/// back to eco.
 			if(3)
 				mode = 0
 				fuel_usage_per_tick = initial(fuel_usage_per_tick)
 				generation_rate = initial(generation_rate)
-				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to OFF. 0% Fuel usage, 0% power output."))
+				to_chat(user, span_notice("You switch \the [src]'s power production mode to OFF. 0% Fuel usage, 0% power output."))
 		update_icon()
 
 
@@ -699,17 +699,17 @@
 	/// Only needed when we attack from outside
 	if(owner)
 		if(I.is_drainable() && I.reagents.total_volume)
-			to_chat(user, SPAN_NOTICE("You transfer 10 units of substance from \the [I] to \the [src]'s internal fuel storage."))
+			to_chat(user, span_notice("You transfer 10 units of substance from \the [I] to \the [src]'s internal fuel storage."))
 			I.reagents.trans_to_holder(reagents, 10, 1, FALSE)
 		else if(I.reagents && I.reagent_flags & REFILLABLE && user.a_intent == I_GRAB)
-			to_chat(user, SPAN_NOTICE("You drain 10 units of substance from \the [src] to \the [I]."))
+			to_chat(user, span_notice("You drain 10 units of substance from \the [src] to \the [I]."))
 			reagents.trans_to_holder(I.reagents, 10, 1, FALSE)
 		else
-			to_chat(user, SPAN_NOTICE("You need to be on GRAB intent to drain from \the [src]."))
+			to_chat(user, span_notice("You need to be on GRAB intent to drain from \the [src]."))
 	else if(I.is_refillable() && reagents.total_volume && user.a_intent == I_GRAB)
 		return FALSE
 	else
-		to_chat(user, SPAN_NOTICE("You need to be on GRAB intent to drain from \the [src]."))
+		to_chat(user, span_notice("You need to be on GRAB intent to drain from \the [src]."))
 
 
 /obj/item/mech_equipment/power_generator/fueled/welding/pretick()
@@ -783,7 +783,7 @@
 	if(newLocation.Adjacent(src))
 		return
 	UnregisterSignal(mover, list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
-	to_chat(owner.get_mob(), SPAN_NOTICE("You lose your hook ono \the [currentlyTowing]!"))
+	to_chat(owner.get_mob(), span_notice("You lose your hook ono \the [currentlyTowing]!"))
 	currentlyTowing = null
 
 /obj/item/mech_equipment/towing_hook/proc/onMechMove(atom/movable/mover, atom/oldLocation, atom/newLocation)
@@ -792,13 +792,13 @@
 		return
 	if(!oldLocation.Adjacent(currentlyTowing))
 		UnregisterSignal(currentlyTowing, list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
-		to_chat(owner.get_mob(), SPAN_NOTICE("You lose your hook ono \the [currentlyTowing]!"))
+		to_chat(owner.get_mob(), span_notice("You lose your hook ono \the [currentlyTowing]!"))
 		currentlyTowing = null
 		return
 	// Protection against move loops caused by 2 mechs towing eachother.
 	if(COMSIG_PULL_CANCEL == SEND_SIGNAL(src, COMSIG_ATTEMPT_PULLING))
 		UnregisterSignal(currentlyTowing, list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
-		to_chat(owner.get_mob(), SPAN_NOTICE("You lose your hook ono \the [currentlyTowing]!"))
+		to_chat(owner.get_mob(), span_notice("You lose your hook ono \the [currentlyTowing]!"))
 		currentlyTowing = null
 		return
 	// If we move up a z-level we want to instantly pull it up with us as to prevent possible abuse.
@@ -827,20 +827,20 @@
 	if(!owner || target == owner)
 		return
 	if(!istype(target))
-		to_chat(user, SPAN_NOTICE("You cannot hook onto this!"))
+		to_chat(user, span_notice("You cannot hook onto this!"))
 		return
 	if(!currentlyTowing)
 		if(target.Adjacent(src.owner) && !target.anchored)
-			to_chat(user, SPAN_NOTICE("You hook \the [src] onto \the [target]!"))
+			to_chat(user, span_notice("You hook \the [src] onto \the [target]!"))
 			currentlyTowing = target
 			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(onTowingMove))
 			RegisterSignal(target, COMSIG_ATTEMPT_PULLING, PROC_REF(onTowingPullAttempt))
 	else if(currentlyTowing == target)
-		to_chat(user, SPAN_NOTICE("You unhook \the [src] from \the [target]."))
+		to_chat(user, span_notice("You unhook \the [src] from \the [target]."))
 		UnregisterSignal(currentlyTowing,list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
 		currentlyTowing = null
 	else
-		to_chat(user, SPAN_NOTICE("You are already towing \the [currentlyTowing]. Unhook from it first by attacking it again!"))
+		to_chat(user, span_notice("You are already towing \the [currentlyTowing]. Unhook from it first by attacking it again!"))
 
 /obj/item/mech_equipment/mounted_system/toolkit
 	name = "mounted toolkit"
@@ -936,7 +936,7 @@
 	if(ismob(targ) && targ.client)
 		targ.client.perspective = EYE_PERSPECTIVE
 		targ.client.eye = src
-		to_chat(targ, SPAN_DANGER("You can resist out of the forklift to instantly get out!"))
+		to_chat(targ, span_danger("You can resist out of the forklift to instantly get out!"))
 	update_icon()
 
 /obj/item/mech_equipment/forklifting_system/uninstalled()
@@ -1021,23 +1021,23 @@
 			/// We are checking the turf above first
 			var/turf/aboveSpace = GetAbove(get_turf(owner))
 			if(!aboveSpace)
-				to_chat(user, SPAN_NOTICE("The universe runs out of fabric here! You cannot possibly elevate something here."))
+				to_chat(user, span_notice("The universe runs out of fabric here! You cannot possibly elevate something here."))
 				return
 			if(!istype(aboveSpace, /turf/open) || locate(/obj/structure/catwalk) in aboveSpace)
-				to_chat(user, SPAN_NOTICE("Something dense prevents lifting up."))
+				to_chat(user, span_notice("Something dense prevents lifting up."))
 				return
 			/// Then the one infront + above
 			aboveSpace = get_step(owner, owner.dir)
 			aboveSpace = GetAbove(aboveSpace)
 			if(!aboveSpace)
-				to_chat(user, SPAN_NOTICE("The universe runs out of fabric here! You cannot possibly elevate something here."))
+				to_chat(user, span_notice("The universe runs out of fabric here! You cannot possibly elevate something here."))
 				return
 			if(!istype(aboveSpace, /turf/open) || locate(/obj/structure/catwalk) in aboveSpace)
-				to_chat(user, SPAN_NOTICE("Something dense prevents lifting up."))
+				to_chat(user, span_notice("Something dense prevents lifting up."))
 				return
-			to_chat(user, SPAN_NOTICE("You start elevating \the [src] platform."))
+			to_chat(user, span_notice("You start elevating \the [src] platform."))
 			if(do_after(user, 2 SECONDS, owner, TRUE))
-				to_chat(user, SPAN_NOTICE("You elevate \the [src]'s platform"))
+				to_chat(user, span_notice("You elevate \the [src]'s platform"))
 				platform.dir = owner.dir
 				platform.forceMove(aboveSpace)
 				owner.update_icon()
@@ -1045,12 +1045,12 @@
 					ejectLifting(aboveSpace)
 				lifted = TRUE
 		else
-			to_chat(user, SPAN_NOTICE("You start retracting the forklift!"))
+			to_chat(user, span_notice("You start retracting the forklift!"))
 			var/turf/targ = get_turf(platform)
 			if(do_after(user, 2 SECONDS, owner, TRUE))
 				if(!platform)
 					return
-				to_chat(user, SPAN_NOTICE("You retract the forklift!"))
+				to_chat(user, span_notice("You retract the forklift!"))
 				lifted = FALSE
 				platform.forceMove(src)
 				owner.update_icon()
@@ -1068,7 +1068,7 @@
 				if(whoWeBringingBack)
 					startLifting(whoWeBringingBack)
 	else
-		to_chat(user, SPAN_NOTICE("You can't lift without a platform!"))
+		to_chat(user, span_notice("You can't lift without a platform!"))
 
 /obj/item/mech_equipment/forklifting_system/afterattack(atom/movable/target, mob/living/user, inrange, params)
 	. = ..()
@@ -1076,29 +1076,29 @@
 		if(currentlyLifting && isturf(target) && inrange)
 			for(var/atom/A in target)
 				if(A.density)
-					to_chat(user, SPAN_NOTICE("[A] is taking up space, preventing you from dropping \the [currentlyLifting] here!"))
+					to_chat(user, span_notice("[A] is taking up space, preventing you from dropping \the [currentlyLifting] here!"))
 					return
 			ejectLifting(target)
 			return
 		if(currentlyLifting)
-			to_chat(user, SPAN_NOTICE("You are already lifting something!"))
+			to_chat(user, span_notice("You are already lifting something!"))
 			return
 		if(!platform)
-			to_chat(user, SPAN_NOTICE("There is no forklift platform to lift on! You should get it replaced"))
+			to_chat(user, span_notice("There is no forklift platform to lift on! You should get it replaced"))
 			return
 		if(lifted)
-			to_chat(user, SPAN_NOTICE("You can't lift someone whilst the forklift is lifted!"))
+			to_chat(user, span_notice("You can't lift someone whilst the forklift is lifted!"))
 			return
 		if(inrange && istype(target))
 			if(target.anchored)
-				to_chat(user, SPAN_NOTICE("\The [target] is anchored!"))
+				to_chat(user, span_notice("\The [target] is anchored!"))
 				return
 			if(ismob(target))
 				var/mob/living/trg = target
 				if(trg.mob_size >= MOB_HUGE)
-					to_chat(user, SPAN_NOTICE("\The [target] is far too big to fit on the forklift clamps!"))
+					to_chat(user, span_notice("\The [target] is far too big to fit on the forklift clamps!"))
 					return
-			to_chat(user, SPAN_NOTICE("You start lifting \the [target] onto the hooks."))
+			to_chat(user, span_notice("You start lifting \the [target] onto the hooks."))
 			if(do_after(user, 2 SECONDS, target))
 				startLifting(target)
 			update_icon()

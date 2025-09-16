@@ -13,7 +13,7 @@
 		var/amount = min(M.get_amount(), round(max_stored_matter - stored_matter))
 		if(M.use(amount))
 			stored_matter += amount
-		to_chat(user, "<span class='notice'>You load [amount] [matter_type] into \the [src].</span>")
+		to_chat(user, span_notice("You load [amount] [matter_type] into \the [src]."))
 	else
 		..()
 

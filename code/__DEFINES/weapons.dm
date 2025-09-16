@@ -107,3 +107,4 @@
 #define RIFLE_RECOIL(x)        list(0.8 *x,  5, 2.4*x )
 #define LMG_RECOIL(x)          list(0.7 *x,  8, 3*x   )
 #define HMG_RECOIL(x)          list(0.6 *x, 12, 3.6*x )
+#define SLATE_RECOIL(x)     list(1 *x, 1, 1 *x)

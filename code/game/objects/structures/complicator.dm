@@ -27,10 +27,10 @@
 		var/rand_points = rand(10, 120)
 		GLOB.storyteller.points[mod] += rand_points
 		last_summon = world.time
-		visible_message(SPAN_DANGER("\the [user] presses \the [src]!"))
+		visible_message(span_danger("\the [user] presses \the [src]!"))
 		user.apply_effect((rand_points/10),IRRADIATE)
 	else
-		to_chat(user, SPAN_WARNING("\The [src] needs some time to reload!"))
+		to_chat(user, span_warning("\The [src] needs some time to reload!"))
 
 /obj/structure/complicator/attackby(obj/item/I, mob/living/user, params)
 	if(nt_sword_attack(I, user))

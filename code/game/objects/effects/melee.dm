@@ -1,4 +1,4 @@
-obj/effect/effect/melee/swing
+/obj/effect/effect/melee/swing
 	name = "swing"
 	icon = 'icons/effects/meleeeffects.dmi'
 	pixel_x = -32
@@ -6,7 +6,7 @@ obj/effect/effect/melee/swing
 	anchored = TRUE
 	layer = ABOVE_ALL_MOB_LAYER
 
-obj/effect/effect/melee/alert
+/obj/effect/effect/melee/alert
 	name = "READY TO STRIKE" //Making this REALLY OBVIOUS
 	icon = 'icons/effects/alerts.dmi'
 	icon_state = "ready"

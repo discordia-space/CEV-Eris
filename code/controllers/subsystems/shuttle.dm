@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(shuttle)
 	name = "Shuttle"
 	wait = 2 SECONDS
-	priority = SS_PRIORITY_SHUTTLE
+	priority = FIRE_PRIORITY_SHUTTLE
 	init_order = INIT_ORDER_SHUTTLE                // Should be initialized after all maploading is over and atoms are initialized, to ensure that landmarks have been initialized.
 
 	var/list/shuttles = list()                     // maps shuttle tags to shuttle datums, so that they can be looked up.
@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/stat_entry(msg)
 	msg += "S:[LAZYLEN(shuttles)], L:[LAZYLEN(registered_shuttle_landmarks)]"
 
-/datum/controller/subsystem/shuttle/proc/get_shuttle(var/needle)
+/datum/controller/subsystem/shuttle/proc/get_shuttle(needle)
 	for (var/S in shuttles)
 		if (S == needle)
 			return shuttles[S]

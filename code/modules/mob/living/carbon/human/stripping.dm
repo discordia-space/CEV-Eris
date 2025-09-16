@@ -13,19 +13,19 @@
 		// Handle things that are part of this interface but not removing/replacing a given item.
 		if("pockets")
 			if(!user.stats.getPerk(PERK_FAST_FINGERS))
-				visible_message(SPAN_DANGER("\The [user] is trying to empty \the [src]'s pockets!"))
+				visible_message(span_danger("\The [user] is trying to empty \the [src]'s pockets!"))
 			else
-				to_chat(user, SPAN_NOTICE("You silently try to empty \the [src]'s pockets."))	
+				to_chat(user, span_notice("You silently try to empty \the [src]'s pockets."))
 			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 1))
 				empty_pockets(user)
 			return
 		if("splints")
-			visible_message(SPAN_DANGER("\The [user] is trying to remove \the [src]'s splints!"))
+			visible_message(span_danger("\The [user] is trying to remove \the [src]'s splints!"))
 			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 1))
 				remove_splints(user)
 			return
 		if("internals")
-			visible_message(SPAN_DANGER("\The [usr] is trying to set \the [src]'s internals!"))
+			visible_message(span_danger("\The [usr] is trying to set \the [src]'s internals!"))
 			if(do_mob(user,src,HUMAN_STRIP_DELAY, progress = 1))
 				toggle_internals(user)
 			return
@@ -36,7 +36,7 @@
 			var/obj/item/clothing/accessory/A = suit.accessories[1]
 			if(!istype(A))
 				return
-			visible_message(SPAN_DANGER("\The [usr] is trying to remove \the [src]'s [A.name]!"))
+			visible_message(span_danger("\The [usr] is trying to remove \the [src]'s [A.name]!"))
 
 			if(!do_mob(user,src,HUMAN_STRIP_DELAY,progress=1))
 				return
@@ -45,7 +45,7 @@
 				return
 
 			if(istype(A, /obj/item/clothing/accessory/badge) || istype(A, /obj/item/clothing/accessory/medal))
-				user.visible_message(SPAN_DANGER("\The [user] tears off \the [A] from [src]'s [suit.name]!"))
+				user.visible_message(span_danger("\The [user] tears off \the [A] from [src]'s [suit.name]!"))
 			attack_log += "\[[time_stamp()]\] <font color='orange'>Has had \the [A] removed by [user.name] ([user.ckey])</font>"
 			user.attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [name]'s ([ckey]) [A.name]</font>"
 			A.on_removed(user)
@@ -55,30 +55,30 @@
 
 	// Are we placing or stripping?
 	var/stripping
-	var/obj/item/held = user.get_active_hand()
+	var/obj/item/held = user.get_active_held_item()
 	if(!istype(held) || is_robot_module(held))
 		if(!istype(target_slot))  // They aren't holding anything valid and there's nothing to remove, why are we even here?
 			return
 		if(!target_slot.canremove)
-			to_chat(user, SPAN_WARNING("You cannot remove \the [src]'s [target_slot.name]."))
+			to_chat(user, span_warning("You cannot remove \the [src]'s [target_slot.name]."))
 			return
 		stripping = TRUE
 
 	if(stripping)
 		if((target_slot == r_hand || target_slot == l_hand) && user.stats.getPerk(PERK_FAST_FINGERS))
-			to_chat(user, SPAN_NOTICE("You silently try to remove \the [src]'s [target_slot.name]."))
+			to_chat(user, span_notice("You silently try to remove \the [src]'s [target_slot.name]."))
 		else
-			visible_message(SPAN_DANGER("\The [user] is trying to remove \the [src]'s [target_slot.name]!"))
+			visible_message(span_danger("\The [user] is trying to remove \the [src]'s [target_slot.name]!"))
 	else
 		if((slot_to_strip == r_hand || slot_to_strip == l_hand) && user.stats.getPerk(PERK_FAST_FINGERS))
-			to_chat(user, SPAN_NOTICE("You silently try to put \a [held] on \the [src]."))
+			to_chat(user, span_notice("You silently try to put \a [held] on \the [src]."))
 		else
-			visible_message(SPAN_DANGER("\The [user] is trying to put \a [held] on \the [src]!"))
+			visible_message(span_danger("\The [user] is trying to put \a [held] on \the [src]!"))
 
 	if(!do_mob(user,src,HUMAN_STRIP_DELAY,progress = 1))
 		return
 
-	if(!stripping && user.get_active_hand() != held)
+	if(!stripping && user.get_active_held_item() != held)
 		return
 
 	if(stripping)
@@ -94,25 +94,25 @@
 // Empty out everything in the target's pockets.
 /mob/living/carbon/human/proc/empty_pockets(mob/living/user)
 	if(!r_store && !l_store)
-		to_chat(user, SPAN_WARNING("\The [src] has nothing in their pockets."))
+		to_chat(user, span_warning("\The [src] has nothing in their pockets."))
 		return
 	if(r_store)
 		unEquip(r_store)
 	if(l_store)
 		unEquip(l_store)
 	if(!user.stats.getPerk(PERK_FAST_FINGERS))
-		visible_message(SPAN_DANGER("\The [user] empties \the [src]'s pockets!"))
+		visible_message(span_danger("\The [user] empties \the [src]'s pockets!"))
 	else
-		to_chat(user, SPAN_NOTICE("You empty \the [src]'s pockets."))
+		to_chat(user, span_notice("You empty \the [src]'s pockets."))
 	SEND_SIGNAL_OLD(user, COMSIG_EMPTY_POCKETS, src)
 
 // Remove all splints.
-/mob/living/carbon/human/proc/remove_splints(var/mob/living/user)
+/mob/living/carbon/human/proc/remove_splints(mob/living/user)
 	var/can_reach_splints = 1
 	if(istype(wear_suit,/obj/item/clothing/suit/space))
 		var/obj/item/clothing/suit/space/suit = wear_suit
 		if(suit.supporting_limbs && suit.supporting_limbs.len)
-			to_chat(user, SPAN_WARNING("You cannot remove the splints - [src]'s [suit] is supporting some of the breaks."))
+			to_chat(user, span_warning("You cannot remove the splints - [src]'s [suit] is supporting some of the breaks."))
 			can_reach_splints = 0
 
 	if(can_reach_splints)
@@ -125,14 +125,14 @@
 				W.add_fingerprint(user)
 				removed_splint = 1
 		if(removed_splint)
-			visible_message(SPAN_DANGER("\The [user] removes \the [src]'s splints!"))
+			visible_message(span_danger("\The [user] removes \the [src]'s splints!"))
 		else
-			to_chat(user, SPAN_WARNING("\The [src] has no splints to remove."))
+			to_chat(user, span_warning("\The [src] has no splints to remove."))
 
 // Set internals on or off.
-/mob/living/carbon/human/proc/toggle_internals(var/mob/living/user)
+/mob/living/carbon/human/proc/toggle_internals(mob/living/user)
 	if(internal)
-		visible_message(SPAN_DANGER("\The [user] disables \the [src]'s internals!"))
+		visible_message(span_danger("\The [user] disables \the [src]'s internals!"))
 		internal.add_fingerprint(user)
 		internal = null
 	else
@@ -146,7 +146,7 @@
 			internal = s_store
 		else if(istype(belt, /obj/item/tank))
 			internal = belt
-		visible_message(SPAN_WARNING("\The [src] is now running on internals!"))
+		visible_message(span_warning("\The [src] is now running on internals!"))
 		internal.add_fingerprint(user)
 
 	if(HUDneed.Find("internal"))

@@ -100,7 +100,7 @@
 
 	// hide called by levelupdate if turf intact status changes
 	// change visibility status and force update of icon
-/obj/structure/disposalconstruct/hide(var/intact)
+/obj/structure/disposalconstruct/hide(intact)
 	invisibility = (intact && level == BELOW_PLATING_LEVEL) ? 101 : 0	// hide if floor is intact
 	update()
 
@@ -194,7 +194,7 @@
 	// wrench: (un)anchor
 	// weldingtool: convert to real pipe
 
-/obj/structure/disposalconstruct/attackby(var/obj/item/I, var/mob/user)
+/obj/structure/disposalconstruct/attackby(obj/item/I, mob/user)
 	var/nice_type = "pipe"
 	var/is_pipe = FALSE // Indicates if we should change the level of this pipe
 	src.add_fingerprint(user)

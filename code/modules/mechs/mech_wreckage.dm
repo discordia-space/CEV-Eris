@@ -41,9 +41,9 @@
 	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING, QUALITY_SAWING), src)
 	switch(tool_type)
 		if(QUALITY_WELDING, QUALITY_SAWING)
-			to_chat(user, SPAN_NOTICE("You start cutting \the [src] apart."))
+			to_chat(user, span_notice("You start cutting \the [src] apart."))
 			if(I.use_tool(user, src, WORKTIME_SLOW, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You dismantle \the [src]."))
+				to_chat(user, span_notice("You dismantle \the [src]."))
 				drop_materials(drop_location())
 				for(var/obj/thing in contents)
 					thing.forceMove(drop_location())
@@ -54,7 +54,7 @@
 			return
 
 	if(user.a_intent == I_HELP)
-		to_chat(user, SPAN_WARNING("You need something to cut \the [src] apart."))
+		to_chat(user, span_warning("You need something to cut \the [src] apart."))
 
 	return ..()
 

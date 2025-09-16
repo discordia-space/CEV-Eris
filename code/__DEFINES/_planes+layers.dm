@@ -176,8 +176,10 @@ What is the naming convention for planes or layers?
 #define ABOVE_HUD_PLANE 9920
 #define ABOVE_HUD_LAYER 20
 
+#define RUNECHAT_PLANE 9930
+
 #define CINEMATIC_PLANE 9950
-#define CINEMATIC_LAYER 21
+#define CINEMATIC_LAYER 22
 
 #define BELOW_PLATING_LEVEL 1
 #define ABOVE_PLATING_LEVEL 2

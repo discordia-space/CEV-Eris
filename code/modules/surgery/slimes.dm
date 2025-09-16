@@ -21,13 +21,13 @@
 	"You start cutting through [target]'s flesh with \the [tool].")
 
 /datum/old_surgery_step/slime/cut_flesh/end_step(mob/living/user, mob/living/carbon/slime/target, target_zone, obj/item/tool)
-	user.visible_message("\blue [user] cuts through [target]'s flesh with \the [tool].",	\
-	"\blue You cut through [target]'s flesh with \the [tool], revealing its silky innards.")
+	user.visible_message(span_blue("[user] cuts through [target]'s flesh with \the [tool]."),	\
+	span_blue("You cut through [target]'s flesh with \the [tool], revealing its silky innards."))
 	target.core_removal_stage = 1
 
 /datum/old_surgery_step/slime/cut_flesh/fail_step(mob/living/user, mob/living/carbon/slime/target, target_zone, obj/item/tool)
-	user.visible_message("\red [user]'s hand slips, tearing [target]'s flesh with \the [tool]!", \
-	"\red Your hand slips, tearing [target]'s flesh with \the [tool]!")
+	user.visible_message(span_red("[user]'s hand slips, tearing [target]'s flesh with \the [tool]!"), \
+	span_red("Your hand slips, tearing [target]'s flesh with \the [tool]!"))
 
 /datum/old_surgery_step/slime/cut_innards
 	required_tool_quality = QUALITY_CUTTING
@@ -42,13 +42,13 @@
 	"You start cutting [target]'s silky innards apart with \the [tool].")
 
 /datum/old_surgery_step/slime/cut_innards/end_step(mob/living/user, mob/living/carbon/slime/target, target_zone, obj/item/tool)
-	user.visible_message("\blue [user] cuts [target]'s innards apart with \the [tool], exposing the cores.",	\
-	"\blue You cut [target]'s innards apart with \the [tool], exposing the cores.")
+	user.visible_message(span_blue("[user] cuts [target]'s innards apart with \the [tool], exposing the cores."),	\
+	span_blue("You cut [target]'s innards apart with \the [tool], exposing the cores."))
 	target.core_removal_stage = 2
 
 /datum/old_surgery_step/slime/cut_innards/fail_step(mob/living/user, mob/living/carbon/slime/target, target_zone, obj/item/tool)
-	user.visible_message("\red [user]'s hand slips, tearing [target]'s innards with \the [tool]!", \
-	"\red Your hand slips, tearing [target]'s innards with \the [tool]!")
+	user.visible_message(span_red("[user]'s hand slips, tearing [target]'s innards with \the [tool]!"), \
+	span_red("Your hand slips, tearing [target]'s innards with \the [tool]!"))
 
 /datum/old_surgery_step/slime/saw_core
 	required_tool_quality = QUALITY_SAWING
@@ -64,8 +64,8 @@
 
 /datum/old_surgery_step/slime/saw_core/end_step(mob/living/user, mob/living/carbon/slime/target, target_zone, obj/item/tool)
 	target.cores--
-	user.visible_message("\blue [user] cuts out one of [target]'s cores with \the [tool].",,	\
-	"\blue You cut out one of [target]'s cores with \the [tool]. [target.cores] cores left.")
+	user.visible_message(span_blue("[user] cuts out one of [target]'s cores with \the [tool]."),,	\
+	span_blue("You cut out one of [target]'s cores with \the [tool]. [target.cores] cores left."))
 
 	if(target.cores >= 0)
 		new target.coretype(target.loc)
@@ -74,5 +74,5 @@
 
 
 /datum/old_surgery_step/slime/saw_core/fail_step(mob/living/user, mob/living/carbon/slime/target, target_zone, obj/item/tool)
-	user.visible_message("\red [user]'s hand slips, causing \him to miss the core!", \
-	"\red Your hand slips, causing you to miss the core!")
+	user.visible_message(span_red("[user]'s hand slips, causing \him to miss the core!"), \
+	span_red("Your hand slips, causing you to miss the core!"))

@@ -314,7 +314,7 @@
 			S.fail(1)
 
 
-/obj/machinery/power/shipside/shield_generator/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/power/shipside/shield_generator/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["running"] = running
@@ -366,13 +366,13 @@
 	mode_list.Add(temp)
 
 
-/obj/machinery/power/shipside/shield_generator/attack_hand(var/mob/user)
+/obj/machinery/power/shipside/shield_generator/attack_hand(mob/user)
 	nano_ui_interact(user)
 	if(panel_open)
 		wires.Interact(user)
 
 
-/obj/machinery/power/shipside/shield_generator/CanUseTopic(var/mob/user)
+/obj/machinery/power/shipside/shield_generator/CanUseTopic(mob/user)
 	if(issilicon(user) && !Adjacent(user) && ai_control_disabled)
 		return STATUS_UPDATE
 	return ..()
@@ -396,7 +396,7 @@
 
 	if(href_list["start_generator"])
 		if(tendrils_deployed == FALSE)
-			visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it needs to have it's conduits deployed first to operate"))
+			visible_message(span_danger("The [src] buzzes an insistent warning as it needs to have it's conduits deployed first to operate"))
 			playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 100, 1, 5)
 			return
 		running = SHIELD_RUNNING
@@ -680,12 +680,12 @@
 		prefix = "--CRITICAL WARNING!-- "
 		spanclass = "danger"
 
-	command_announcement.Announce(span(spanclass, "[prefix]Shield integrity at [round(field_integrity())]%"), "Shield Status Report", msg_sanitized = TRUE)
+	priority_announce(span(spanclass, "[prefix]Shield integrity at [round(field_integrity())]%"), "Shield Status Report")
 
 
 
 //This proc keeps an internal log of shield impacts, activations, deactivations, and a vague log of config changes
-/obj/machinery/power/shipside/shield_generator/log_event(var/event_type, var/atom/origin_atom)
+/obj/machinery/power/shipside/shield_generator/log_event(event_type, atom/origin_atom)
 	var/logstring = "[stationtime2text()]: "
 	switch (event_type)
 		if(EVENT_DAMAGE_PHYSICAL to EVENT_DAMAGE_SPECIAL)

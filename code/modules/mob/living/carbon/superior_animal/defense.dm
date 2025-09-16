@@ -6,13 +6,13 @@
 			var/obj/item/meat = new meat_type(get_turf(src))
 			meat.name = "[src.name] [meat.name]"
 		if(issmall(src))
-			user.visible_message(SPAN_DANGER("[user] chops up \the [src]!"))
+			user.visible_message(span_danger("[user] chops up \the [src]!"))
 			var/obj/effect/decal/cleanable/blood/blood_effect = new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			blood_effect.basecolor = bloodcolor
 			blood_effect.update_icon()
 			qdel(src)
 		else
-			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
+			user.visible_message(span_danger("[user] butchers \the [src] messily!"))
 			gib()
 
 /mob/living/carbon/superior_animal/update_lying_buckled_and_verb_status()
@@ -24,7 +24,7 @@
 	. = ..()
 	updatehealth()
 
-/mob/living/carbon/superior_animal/attackby(obj/item/I, mob/living/user, var/params)
+/mob/living/carbon/superior_animal/attackby(obj/item/I, mob/living/user, params)
 	if (meat_type && (stat == DEAD) && (QUALITY_CUTTING in I.tool_qualities))
 		if (I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_NORMAL, required_stat = STAT_BIO))
 			harvest(user)
@@ -32,7 +32,7 @@
 		. = ..()
 		updatehealth()
 
-/mob/living/carbon/superior_animal/resolve_item_attack(obj/item/I, mob/living/user, var/hit_zone)
+/mob/living/carbon/superior_animal/resolve_item_attack(obj/item/I, mob/living/user, hit_zone)
 	//mob.attackby -> item.attack -> mob.resolve_item_attack -> item.apply_hit_effect
 	return 1
 
@@ -49,12 +49,12 @@
 				return 0
 			for(var/obj/item/grab/G in src.grabbed_by)
 				if(G.assailant == M)
-					to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
+					to_chat(M, span_notice("You already grabbed [src]."))
 					return
 
 			var/obj/item/grab/G = new /obj/item/grab(M, src)
 			if(buckled)
-				to_chat(M, SPAN_NOTICE("You cannot grab [src], \he is buckled in!"))
+				to_chat(M, span_notice("You cannot grab [src], \he is buckled in!"))
 			if(!G) //the grab will delete itself in New if affecting is anchored
 				return
 
@@ -66,19 +66,19 @@
 
 			M.do_attack_animation(src)
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
+			visible_message(span_warning("[M] has grabbed [src] passively!"))
 
 			return 1
 
 		if (I_DISARM)
 			if (!weakened && prob(30))
-				M.visible_message("\red [M] has shoved \the [src]")
+				M.visible_message(span_red("[M] has shoved \the [src]"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 				Weaken(3)
 
 				return 1
 			else
-				M.visible_message("\red [M] failed to shove \the [src]")
+				M.visible_message(span_red("[M] failed to shove \the [src]"))
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 			M.do_attack_animation(src)
@@ -87,7 +87,7 @@
 			var/damage = 3
 			if ((stat == CONSCIOUS) && prob(10))
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				M.visible_message("\red [M] missed \the [src]")
+				M.visible_message(span_red("[M] missed \the [src]"))
 			else
 				if (istype(H))
 					damage += max(0, (H.stats.getStat(STAT_ROB) / 10))
@@ -95,7 +95,7 @@
 //						damage *= 2
 
 				playsound(loc, "punch", 25, 1, -1)
-				M.visible_message("\red [M] has punched \the [src]")
+				M.visible_message(span_red("[M] has punched \the [src]"))
 
 				adjustBruteLoss(damage)
 				updatehealth()
@@ -156,14 +156,14 @@
 
 	return 1
 
-/mob/living/carbon/superior_animal/adjustBruteLoss(var/amount)
+/mob/living/carbon/superior_animal/adjustBruteLoss(amount)
 	. = ..()
 	reagr_new_targets()
 	if (overkill_gib && (amount >= overkill_gib) && (getBruteLoss() >= maxHealth*2))
 		if (bodytemperature > T0C)
 			gib()
 
-/mob/living/carbon/superior_animal/adjustFireLoss(var/amount)
+/mob/living/carbon/superior_animal/adjustFireLoss(amount)
 	. = ..()
 	if (overkill_dust && (amount >= overkill_dust) && (getFireLoss() >= maxHealth*2))
 		dust()
@@ -177,27 +177,29 @@
 	. = ..() //health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 	if (health <= 0 && stat != DEAD)
 		death()
+	else if(stat != DEAD && AI_inactive)
+		activate_ai()
 
-/mob/living/carbon/superior_animal/gib(var/anim = icon_gib, var/do_gibs = 1)
+/mob/living/carbon/superior_animal/gib(anim = icon_gib, do_gibs = 1)
 	if (!anim)
 		anim = 0
 	for(var/obj/item/I in src)
 		drop_from_inventory(I)
-		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
+		I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)), rand(1,3), round(30/I.w_class))
 
 	playsound(src.loc, 'sound/effects/splat.ogg', max(10,min(50,maxHealth)), 1)
 	if (do_gibs)
 		gibs(src.loc, null, /obj/effect/gibspawner/generic, fleshcolor, bloodcolor)
 	. = ..(anim,FALSE)
 
-/mob/living/carbon/superior_animal/dust(var/anim = icon_dust, var/remains = dust_remains)
+/mob/living/carbon/superior_animal/dust(anim = icon_dust, remains = dust_remains)
 	if (!anim)
 		anim = 0
 
 	playsound(src.loc, 'sound/effects/Custom_flare.ogg', max(10,min(50,maxHealth)), 1)
 	. = ..(anim,remains)
 
-/mob/living/carbon/superior_animal/death(var/gibbed,var/message = deathmessage)
+/mob/living/carbon/superior_animal/death(gibbed,message = deathmessage)
 	if (stat != DEAD)
 		target_mob = null
 		stance = initial(stance)
@@ -219,10 +221,10 @@
 	. = ..()
 	adjustToxLoss(2)
 
-/mob/living/carbon/superior_animal/get_cold_protection(var/temperature)
+/mob/living/carbon/superior_animal/get_cold_protection(temperature)
 	return cold_protection
 
-/mob/living/carbon/superior_animal/get_heat_protection(var/temperature)
+/mob/living/carbon/superior_animal/get_heat_protection(temperature)
 	return heat_protection
 
 /mob/living/carbon/superior_animal/handle_environment(datum/gas_mixture/environment)
@@ -359,7 +361,7 @@
 	if (B)
 		B.evacuate()
 
-/mob/living/carbon/superior_animal/attack_generic(mob/user, var/damage, var/attack_message)
+/mob/living/carbon/superior_animal/attack_generic(mob/user, damage, attack_message)
 
 	if(!damage || !istype(user))
 		return
@@ -372,7 +374,7 @@
 	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armor_divisor=penetration)
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
-	src.visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
+	src.visible_message(span_danger("[user] has [attack_message] [src]!"))
 	user.do_attack_animation(src)
 	spawn(1) updatehealth()
 	return TRUE

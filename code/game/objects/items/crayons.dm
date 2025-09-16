@@ -73,7 +73,7 @@
 		var/drawtype = input("Choose what you'd like to draw.", "Crayon scribbles") in list("graffiti","rune","letter","arrow")
 		switch(drawtype)
 			if("letter")
-				drawtype = input("Choose the letter.", "Crayon scribbles") in list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
+				drawtype = input("Choose the letter.", "Crayon scribbles") in GLOB.alphabet
 				to_chat(user, "You start drawing a letter on the [target.name].")
 			if("graffiti")
 				to_chat(user, "You start drawing graffiti on the [target.name].")
@@ -89,7 +89,7 @@
 			if(uses)
 				uses--
 				if(!uses)
-					to_chat(user, SPAN_WARNING("You used up your crayon!"))
+					to_chat(user, span_warning("You used up your crayon!"))
 					qdel(src)
 	return
 
@@ -101,7 +101,7 @@
 		if(uses)
 			uses -= 5
 			if(uses <= 0)
-				to_chat(M, SPAN_WARNING("You ate your crayon!"))
+				to_chat(M, span_warning("You ate your crayon!"))
 				qdel(src)
 	else
 		..()

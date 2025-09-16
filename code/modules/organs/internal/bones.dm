@@ -34,24 +34,24 @@
 			if(!edge)
 				if(sharp)
 					if(is_organic)
-						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/bone_sharp))
+						LAZYADD(possible_wounds, subtypesof(/datum/internal_wound/organic/bone_sharp))
 					if(is_robotic)
-						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/sharp))
+						LAZYADD(possible_wounds, subtypesof(/datum/internal_wound/robotic/sharp))
 				else
 					if(is_organic)
-						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/bone_blunt))
+						LAZYADD(possible_wounds, subtypesof(/datum/internal_wound/organic/bone_blunt))
 					if(is_robotic)
-						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/blunt))
+						LAZYADD(possible_wounds, subtypesof(/datum/internal_wound/robotic/blunt))
 			else
 				if(is_organic)
-					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/bone_edge))
+					LAZYADD(possible_wounds, subtypesof(/datum/internal_wound/organic/bone_edge))
 				if(is_robotic)
-					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/edge))
+					LAZYADD(possible_wounds, subtypesof(/datum/internal_wound/robotic/edge))
 		if(BURN)
 			if(is_organic)
-				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/burn))
+				LAZYADD(possible_wounds, subtypesof(/datum/internal_wound/organic/burn))
 			if(is_robotic)
-				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/emp_burn))
+				LAZYADD(possible_wounds, subtypesof(/datum/internal_wound/robotic/emp_burn))
 
 	return possible_wounds
 
@@ -134,3 +134,12 @@
 	icon_state = "metal_left_leg"
 	nature = MODIFICATION_SILICON
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+
+/mob/living/carbon/human/has_hand_for_held_index(i)
+	var/hand_bodyparts = get_hand_organs()
+	if(!length(hand_bodyparts))
+		return FALSE
+	var/obj/item/organ/external/hand_instance = hand_bodyparts[i + 1]
+	if(hand_instance && !(hand_instance.status & ORGAN_DEAD))
+		return hand_instance
+	return FALSE

@@ -13,14 +13,14 @@
 	..()
 	update_icon()
 
-/obj/machinery/computer/aifixer/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/device/aicard/card, var/mob/user)
+/obj/machinery/computer/aifixer/proc/load_ai(mob/living/silicon/ai/transfer, obj/item/device/aicard/card, mob/user)
 
 	if(!transfer)
 		return
 
 	// Transfer over the AI.
 	to_chat(transfer, "You have been uploaded to a stationary terminal. Sadly, there is no remote access from here.")
-	to_chat(user, "<span class='notice'>Transfer successful:</span> [transfer.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
+	to_chat(user, "[span_notice("Transfer successful:")] [transfer.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
 
 	transfer.loc = src
 	transfer.cancel_camera()
@@ -46,7 +46,7 @@
 
 		if(istype(comp_ai))
 			if(active)
-				to_chat(user, "<span class='danger'>ERROR:</span> Reconstruction in progress.")
+				to_chat(user, "[span_danger("ERROR:")] Reconstruction in progress.")
 				return
 			card.grab_ai(comp_ai, user)
 			if(!(locate(/mob/living/silicon/ai) in src)) occupant = null
@@ -59,7 +59,7 @@
 	..()
 	return
 
-/obj/machinery/computer/aifixer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/aifixer/attack_hand(mob/user as mob)
 	if(..())
 		return
 
@@ -83,9 +83,9 @@
 			dat += {"<br><br><A href='byond://?src=\ref[src];fix=1'>Begin Reconstruction</A>"}
 		else
 			dat += "<br><br>Reconstruction in process, please wait.<br>"
-	dat += {" <A href='?src=\ref[user];mach_close=computer'>Close</A>"}
+	dat += {" <A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
-	user << browse(dat, "window=computer;size=400x500")
+	user << browse(HTML_SKELETON_TITLE("AI System Integrity Restorer", dat), "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
 

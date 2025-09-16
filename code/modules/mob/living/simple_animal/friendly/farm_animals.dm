@@ -25,7 +25,7 @@
 	udder.my_atom = src
 	..()
 
-/mob/living/simple_animal/hostile/retaliate/goat/beg(var/atom/thing, var/atom/holder)
+/mob/living/simple_animal/hostile/retaliate/goat/beg(atom/thing, atom/holder)
 	visible_emote("butts insistently at [holder]'s legs and reaches towards their [thing].")
 
 /mob/living/simple_animal/hostile/retaliate/goat/Life()
@@ -38,7 +38,7 @@
 		if(enemies.len && prob(10))
 			enemies = list()
 			LoseTarget()
-			src.visible_message("\blue [src] calms down.")
+			src.visible_message(span_blue("[src] calms down."))
 
 		if(stat == CONSCIOUS)
 			if(udder && prob(5))
@@ -62,23 +62,23 @@
 /mob/living/simple_animal/hostile/retaliate/goat/Retaliate()
 	..()
 	if(stat == CONSCIOUS)
-		visible_message(SPAN_WARNING("[src] gets an evil-looking gleam in their eye."))
+		visible_message(span_warning("[src] gets an evil-looking gleam in their eye."))
 
-/mob/living/simple_animal/hostile/retaliate/goat/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/simple_animal/hostile/retaliate/goat/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 	if(!stat)
 		for(var/obj/effect/plant/SV in loc)
 			SV.die_off(1)
 
-/mob/living/simple_animal/hostile/retaliate/goat/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/hostile/retaliate/goat/attackby(obj/item/O as obj, mob/user as mob)
 	var/obj/item/reagent_containers/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_refillable())
-		user.visible_message(SPAN_NOTICE("[user] milks [src] using \the [O]."))
+		user.visible_message(span_notice("[user] milks [src] using \the [O]."))
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
-			to_chat(user, "\red The [O] is full.")
+			to_chat(user, span_red("The [O] is full."))
 		if(!transfered)
-			to_chat(user, "\red The udder is dry. Wait a bit longer...")
+			to_chat(user, span_red("The udder is dry. Wait a bit longer..."))
 	else
 		..()
 //cow
@@ -108,15 +108,15 @@
 	udder.my_atom = src
 	..()
 
-/mob/living/simple_animal/cow/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/cow/attackby(obj/item/O as obj, mob/user as mob)
 	var/obj/item/reagent_containers/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_refillable())
-		user.visible_message(SPAN_NOTICE("[user] milks [src] using \the [O]."))
+		user.visible_message(span_notice("[user] milks [src] using \the [O]."))
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
-			to_chat(user, "\red The [O] is full.")
+			to_chat(user, span_red("The [O] is full."))
 		if(!transfered)
-			to_chat(user, "\red The udder is dry. Wait a bit longer...")
+			to_chat(user, span_red("The udder is dry. Wait a bit longer..."))
 	else
 		..()
 
@@ -128,7 +128,7 @@
 
 /mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M as mob)
 	if(!stat && M.a_intent == I_DISARM && icon_state != icon_dead)
-		M.visible_message(SPAN_WARNING("[M] tips over [src]."),SPAN_NOTICE("You tip over [src]."))
+		M.visible_message(span_warning("[M] tips over [src]."),span_notice("You tip over [src]."))
 		Weaken(30)
 		icon_state = icon_dead
 		spawn(rand(20,50))
@@ -222,17 +222,17 @@ var/global/chicken_count = 0
 	..()
 	chicken_count -= 1
 
-/mob/living/simple_animal/chicken/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/chicken/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/grown)) //feedin' dem chickens
 		var/obj/item/reagent_containers/food/snacks/grown/G = O
 		if(G.seed && G.seed.kitchen_tag == "wheat")
 			if(!stat && eggsleft < 8)
-				user.visible_message("\blue [user] feeds [O] to [name]! It clucks happily.","\blue You feed [O] to [name]! It clucks happily.")
+				user.visible_message(span_blue("[user] feeds [O] to [name]! It clucks happily."), span_blue("You feed [O] to [name]! It clucks happily."))
 				user.drop_item()
 				qdel(O)
 				eggsleft += rand(1, 4)
 			else
-				to_chat(user, "\blue [name] doesn't seem hungry!")
+				to_chat(user, span_blue("[name] doesn't seem hungry!"))
 		else
 			to_chat(user, "[name] doesn't seem interested in that.")
 	else

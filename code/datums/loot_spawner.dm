@@ -24,7 +24,7 @@
 	//var/list/bad_paths = list()
 	var/list/spawn_tags = list()
 	var/list/accompanying_objs = list()
-	var/generate_files = config.generate_loot_data
+	var/generate_files = CONFIG_GET(flag/generate_loot_data)
 	var/file_dir = "strings/loot_data"
 	var/source_dir = file("[file_dir]/")
 	var/loot_data = file("[file_dir]/all_spawn_data.txt")

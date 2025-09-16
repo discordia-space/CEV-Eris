@@ -7,19 +7,19 @@ var/global/universe_has_ended = 0
 
  	decay_rate = 5 // 5% chance of a turf decaying on lighting update/airflow (there's no actual tick for turfs)
 
-/datum/universal_state/supermatter_cascade/OnShuttleCall(var/mob/user)
+/datum/universal_state/supermatter_cascade/OnShuttleCall(mob/user)
 	if(user)
-		to_chat(user, "<span class='sinister'>The only thing you hear from the console is static. You are alone.</span>")
+		to_chat(user, span_sinister("The only thing you hear from the console is static. You are alone."))
 	return 0
 
-/datum/universal_state/supermatter_cascade/OnTurfChange(var/turf/T)
+/datum/universal_state/supermatter_cascade/OnTurfChange(turf/T)
 	var/turf/space/S = T
 	if(istype(S))
 		S.color = "#0066FF"
 	else
 		S.color = initial(S.color)
 
-/datum/universal_state/supermatter_cascade/DecayTurf(var/turf/T)
+/datum/universal_state/supermatter_cascade/DecayTurf(turf/T)
 	if(istype(T,/turf/wall))
 		var/turf/wall/W=T
 		W.melt()
@@ -46,7 +46,7 @@ var/global/universe_has_ended = 0
 		M.flash()
 
 	if(evacuation_controller.cancel_evacuation())
-		priority_announcement.Announce("The escape pod launch sequence has been aborted due to bluespace distortion.")
+		priority_announce("The escape pod launch sequence has been aborted due to bluespace distortion.", "Evacuation Procedures")
 
 	AreaSet()
 	MiscSet()
@@ -57,13 +57,13 @@ var/global/universe_has_ended = 0
 
 	spawn(rand(30,60) SECONDS)
 		var/txt = {"
-AUTOMATED ALERT: Attention [station_name], this is a high alert broadcast to all ships from the central communication hub of the [boss_name], a catastrophe has happened on the ship [station_name], information regarding the incident is classified.
+AUTOMATED ALERT: Attention [station_name()], this is a high alert broadcast to all ships from the central communication hub of the [GLOB.boss_name], a catastrophe has happened on the ship [station_name()], information regarding the incident is classified.
 
 We highly suggest, that all corporate owned, and free ships within listening range depart into Bluespace. Until the incident ends, all employees aboard HTU operated ships will have their pay-rolls will be frozen, and their have benefits cut, independent ships not included.
 
 AUTOMATED ALERT: Link to [command_name()] lost.
 "}
-		priority_announcement.Announce(txt,"SUPERMATTER CASCADE DETECTED")
+		priority_announce(txt,"SUPERMATTER CASCADE DETECTED", color_override = "red")
 
 		for(var/obj/machinery/computer/shuttle_control/C in GLOB.computer_list)
 			if(istype(C, /obj/machinery/computer/shuttle_control/research) || istype(C, /obj/machinery/computer/shuttle_control/mining))
@@ -76,7 +76,7 @@ AUTOMATED ALERT: Link to [command_name()] lost.
 		return
 
 /datum/universal_state/supermatter_cascade/proc/AreaSet()
-	for(var/area/A in all_areas)
+	for(var/area/A in GLOB.all_areas)
 		if(!istype(A,/area) || istype(A, /area/space))
 			continue
 
@@ -90,7 +90,7 @@ AUTOMATED ALERT: Link to [command_name()] lost.
 			else
 				L.update_overlay(0, 0.4, 1)
 
-		for(var/turf/space/T in turfs)
+		for(var/turf/space/T in GLOB.turfs)
 			OnTurfChange(T)
 
 /datum/universal_state/supermatter_cascade/proc/MiscSet()

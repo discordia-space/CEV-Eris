@@ -97,7 +97,7 @@ var/list/holder_mob_icon_cache = list()
 //is_unsafe_container should be checked before calling this
 //This function releases mobs into wherever the holder currently is. Its not safe to call from a lot of places
 //Use release_to_floor for a simple, safe release
-/obj/item/holder/proc/release_mob(var/des_self = TRUE)
+/obj/item/holder/proc/release_mob(des_self = TRUE)
 	for(var/mob/living/M in contents)
 		var/atom/movable/mob_container
 		mob_container = M
@@ -136,10 +136,8 @@ var/list/holder_mob_icon_cache = list()
 		//Repeat this check
 		//If we're still on the turf a few frames later, then we have actually been dropped or thrown
 		//Release the mob accordingly
-		//addtimer(CALLBACK(src, PROC_REF(post_drop)), 3)
+		addtimer(CALLBACK(src, PROC_REF(post_drop)), 3)
 		//TODO: Uncomment the above once addtimer is ported
-		spawn(3)
-			post_drop()
 		return
 
 	if (istype(loc, /obj/item/storage))	//The second drop reads the container its placed into as the location
@@ -149,11 +147,11 @@ var/list/holder_mob_icon_cache = list()
 	if (isturf(loc))
 		release_mob()
 
-/obj/item/holder/equipped(var/mob/user, var/slot)
+/obj/item/holder/equipped(mob/user, slot)
 	..()
 	update_location(slot)
 
-/obj/item/holder/proc/update_location(var/slotnumber)
+/obj/item/holder/proc/update_location(slotnumber)
 	if(!slotnumber)
 		if(ismob(loc))
 			slotnumber = get_equip_slot()
@@ -167,16 +165,16 @@ var/list/holder_mob_icon_cache = list()
 			var/mob/living/carbon/human/H = M
 			switch(H.a_intent)
 				if(I_HELP)
-					H.visible_message("<span class='notice'>[H] pets [contained].</span>")
+					H.visible_message(span_notice("[H] pets [contained]."))
 
 				if(I_HURT)
 					contained.adjustBruteLoss(3)
-					H.visible_message("<span class='alert'>[H] crushes [contained].</span>")
+					H.visible_message(span_alert("[H] crushes [contained]."))
 	else
 		to_chat(M, "[contained] is dead.")
 
 
-/obj/item/holder/show_message(var/message, var/m_type)
+/obj/item/holder/show_message(message, m_type)
 	for(var/mob/living/M in contents)
 		M.show_message(message,m_type)
 
@@ -184,7 +182,7 @@ var/list/holder_mob_icon_cache = list()
 /mob/living/var/holder_type
 
 
-/obj/item/holder/proc/held_death(var/show_deathmessage = 0)
+/obj/item/holder/proc/held_death(show_deathmessage = 0)
 	//This function is called when the mob in the holder dies somehow.
 	isalive = 0
 
@@ -206,16 +204,16 @@ var/list/holder_mob_icon_cache = list()
 	//update_icon()
 
 
-/mob/living/proc/get_scooped(var/mob/living/carbon/grabber, var/mob/user = null)
+/mob/living/proc/get_scooped(mob/living/carbon/grabber, mob/user = null)
 	if(!holder_type || buckled || pinned.len || !Adjacent(grabber))
 		return
 
 	if (user == src)
 		if (grabber.r_hand && grabber.l_hand)
-			to_chat(user, "<span class='warning'>They have no free hands!</span>")
+			to_chat(user, span_warning("They have no free hands!"))
 			return
 	else if ((grabber.hand == 0 && grabber.r_hand) || (grabber.hand == 1 && grabber.l_hand))//Checking if the hand is full
-		to_chat(grabber, "<span class='warning'>Your hand is full!</span>")
+		to_chat(grabber, span_warning("Your hand is full!"))
 		return
 
 	//This has to be before we move the mob into the holder
@@ -245,11 +243,11 @@ var/list/holder_mob_icon_cache = list()
 			if (isturf(old_loc))
 				src.do_pickup_animation(grabber,old_loc)
 			if (user == src)
-				to_chat(grabber, "<span class='notice'>[src.name] climbs up onto you.</span>")
-				to_chat(src, "<span class='notice'>You climb up onto [grabber].</span>")
+				to_chat(grabber, span_notice("[src.name] climbs up onto you."))
+				to_chat(src, span_notice("You climb up onto [grabber]."))
 			else
-				to_chat(grabber, "<span class='notice'>You scoop up [src].</span>")
-				to_chat(src, "<span class='notice'>[grabber] scoops you up.</span>")
+				to_chat(grabber, span_notice("You scoop up [src]."))
+				to_chat(src, span_notice("[grabber] scoops you up."))
 
 			H.sync(src)
 
@@ -279,7 +277,7 @@ var/list/holder_mob_icon_cache = list()
 	slot_flags = SLOT_BACK
 
 
-/obj/item/holder/proc/sync(var/mob/living/M)
+/obj/item/holder/proc/sync(mob/living/M)
 	dir = 2
 	overlays.Cut()
 	icon = M.icon
@@ -306,7 +304,7 @@ var/list/holder_mob_icon_cache = list()
 
 
 //This function provides a verbose message describing where something is on a person. Intended for mobs in holders
-/obj/proc/report_onmob_location(var/justmoved, var/slot = null, var/mob/reportto)
+/obj/proc/report_onmob_location(justmoved, slot = null, mob/reportto)
 	var/mob/living/carbon/human/H//The person who the item is on
 	var/newlocation
 	var/preposition= ""
@@ -433,9 +431,9 @@ var/list/holder_mob_icon_cache = list()
 			preposition = "inside"
 
 	if (justmoved)
-		reportto.visible_message("<span class='notice'>[H] [action3] [reportto] [preposition] their [newlocation]</span>", "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>", "")
+		reportto.visible_message(span_notice("[H] [action3] [reportto] [preposition] their [newlocation]"), span_notice("You are [action] [preposition] [H]'s [newlocation]"), "")
 	else
-		to_chat(reportto, "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>")
+		to_chat(reportto, span_notice("You are [action] [preposition] [H]'s [newlocation]"))
 
 
 
@@ -581,6 +579,18 @@ var/list/holder_mob_icon_cache = list()
 			return I
 	return null
 
+//Holders for mice
+/obj/item/holder/carrion
+	name = "spider core"
+	desc = "A horrifying face on spider-like legs."
+	desc_dead = "A dead bio-weapon, it probably tastes horrible."
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "spider_core"
+	slot_flags = SLOT_HEAD
+	origin_tech = list(TECH_BIO = 5)
+	w_class = ITEM_SIZE_NORMAL
+
+
 /*
 //Lizards
 
@@ -713,7 +723,7 @@ var/list/holder_mob_icon_cache = list()
 
 //The block below is for resomi, not currently relevant
 /*
-/obj/item/holder/human/sync(var/mob/living/M)
+/obj/item/holder/human/sync(mob/living/M)
 	cut_overlays()
 	// Generate appropriate on-mob icons.
 	var/mob/living/carbon/human/owner = M

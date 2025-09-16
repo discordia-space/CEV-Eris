@@ -9,7 +9,7 @@
 
 	category = /datum/shuttle/autodock/overmap
 
-/datum/shuttle/autodock/overmap/New(var/_name, var/obj/effect/shuttle_landmark/start_waypoint)
+/datum/shuttle/autodock/overmap/New(_name, obj/effect/shuttle_landmark/start_waypoint)
 	..(_name, start_waypoint)
 	refresh_fuel_ports_list()
 
@@ -42,7 +42,7 @@
 /datum/shuttle/autodock/overmap/can_force()
 	return ..() && can_go()
 
-/datum/shuttle/autodock/overmap/proc/set_destination(var/obj/effect/shuttle_landmark/A)
+/datum/shuttle/autodock/overmap/proc/set_destination(obj/effect/shuttle_landmark/A)
 	if(A != current_location)
 		next_location = A
 		move_time = initial(move_time) * (1 + 0.01 * get_dist(waypoint_sector(current_location),waypoint_sector(next_location)))

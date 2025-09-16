@@ -13,7 +13,7 @@
 	var/HUD_element/_middle_element
 	var/HUD_element/_end_element
 
-/HUD_element/threePartBox/New(var/icon/startIcon, var/icon/middleIcon, var/icon/endIcon)
+/HUD_element/threePartBox/New(icon/startIcon, icon/middleIcon, icon/endIcon)
 	..()
 	_start_element = add().setIcon(startIcon || start_icon)
 	_middle_element = _start_element.add().setIcon(middleIcon || middle_icon)
@@ -35,7 +35,7 @@
 /HUD_element/threePartBox/proc/getMinWidth() //minimum width element can achieve by resizing
 	return max(minTotalWidth, _start_element.getWidth() + _end_element.getWidth())
 
-/HUD_element/threePartBox/scaleToSize(var/width, var/height)
+/HUD_element/threePartBox/scaleToSize(width, height)
 	width = max(minTotalWidth, width - (_start_element.getWidth() + _end_element.getWidth()))
 
 	_middle_element.scaleToSize(width,height)
@@ -50,7 +50,7 @@
 /HUD_element/threePartBox/getHeight()
 	return max(_start_element.getHeight(), _middle_element.getHeight(), _end_element.getHeight())
 
-/HUD_element/threePartBox/setName(var/new_name, var/nameAllElements = FALSE)
+/HUD_element/threePartBox/setName(new_name, nameAllElements = FALSE)
 	_start_element.setName(new_name, nameAllElements)
 	_middle_element.setName(new_name, nameAllElements)
 	_end_element.setName(new_name, nameAllElements)

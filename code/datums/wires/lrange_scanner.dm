@@ -29,5 +29,5 @@ var/const/SCANNER_WIRE_NOTHING = 16		// A blank wire that doesn't have any speci
 		if(SCANNER_WIRE_AICONTROL)
 			S.ai_control_disabled = !mended
 
-/datum/wires/long_range_scanner/UpdatePulsed(var/index)
+/datum/wires/long_range_scanner/UpdatePulsed(index)
 	return

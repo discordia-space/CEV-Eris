@@ -23,13 +23,11 @@
 	var/nitrogen = MOLES_N2STANDARD
 	var/plasma = 0
 	// ZAS stuff
-	var/zone/zone
+	var/datum/zone/zone
 	var/open_directions
 	var/needs_air_update = FALSE
 	var/datum/gas_mixture/air
 
-	var/has_resources
-	var/list/resources // Mining resources (for the large drills)
 	var/list/initial_gas
 	var/list/decals
 	var/list/affecting_lights // List of light sources affecting this turf
@@ -55,7 +53,7 @@
 /turf/Initialize(mapload, ...)
 	if(opacity)
 		has_opaque_atom = TRUE
-	turfs += src
+	GLOB.turfs += src
 
 	// TODO: Check which areas are on the ship, but marked improperly, and remove this code
 	var/area/A = loc
@@ -65,7 +63,7 @@
 	. = ..() // Calls /atom/proc/Initialize()
 
 /turf/Destroy()
-	turfs -= src
+	GLOB.turfs -= src
 	updateVisibility(src)
 	..()
 	return QDEL_HINT_IWILLGC
@@ -121,7 +119,7 @@
 /turf/Enter(atom/movable/O, atom/oldloc)
 	ASSERT(O)
 	if(movement_disabled && ismob(usr) && usr.ckey != movement_disabled_exception)
-		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
+		to_chat(usr, span_warning("Movement is admin-disabled.")) //This is to identify lag problems
 		return
 
 //	..()
@@ -231,10 +229,10 @@
 							slip_stun = 4
 
 					if(locate(/obj/structure/multiz/ladder) in get_turf(M.loc))  // Avoid slipping on ladder tiles
-						visible_message(SPAN_DANGER("\The [M] supports themself with the ladder to avoid slipping."))
+						visible_message(span_danger("\The [M] supports themself with the ladder to avoid slipping."))
 
 					else if(locate(/obj/structure/multiz/stairs) in get_turf(M.loc))  // Avoid slipping on stairs tiles
-						visible_message(SPAN_DANGER("\The [M] supports themself with the handrail to avoid slipping."))
+						visible_message(span_danger("\The [M] supports themself with the handrail to avoid slipping."))
 
 					else if(M.slip("the [floor_type] floor",slip_stun))
 						for(var/i = 0;i<slip_dist;i++)
@@ -375,3 +373,10 @@
 
 /turf/AllowDrop()
 	return TRUE
+
+/// WARNING WARNING
+/// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+/// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+/// We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code
+/turf/_clear_signal_refs()
+	return

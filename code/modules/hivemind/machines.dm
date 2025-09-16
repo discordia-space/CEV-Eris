@@ -47,15 +47,15 @@
 
 /obj/machinery/hivemind_machine/examine(mob/user, extra_description = "")
 	if(health < maxHealth * 0.1)
-		extra_description += SPAN_DANGER("It's almost nothing but scrap!")
+		extra_description += span_danger("It's almost nothing but scrap!")
 	else if(health < maxHealth * 0.25)
-		extra_description += SPAN_DANGER("It's seriously fucked up!")
+		extra_description += span_danger("It's seriously fucked up!")
 	else if(health < maxHealth * 0.50)
-		extra_description += SPAN_DANGER("It's very damaged; you can almost see the components inside!")
+		extra_description += span_danger("It's very damaged; you can almost see the components inside!")
 	else if(health < maxHealth * 0.75)
-		extra_description += SPAN_WARNING("It has numerous dents and deep scratches.")
+		extra_description += span_warning("It has numerous dents and deep scratches.")
 	else if(health < maxHealth)
-		extra_description += SPAN_WARNING("It's a bit scratched and dented.")
+		extra_description += span_warning("It's a bit scratched and dented.")
 	..(user, extra_description)
 
 
@@ -76,7 +76,7 @@
 		return TRUE
 
 
-/obj/machinery/hivemind_machine/state(var/msg)
+/obj/machinery/hivemind_machine/state(msg)
 	. = ..()
 	playsound(src, "robot_talk_heavy", 50, 1)
 
@@ -86,7 +86,7 @@
 //Deleting things is a bad idea and cause lot of problems
 //So, now we just hide our assimilated machine and make it broken (temporary)
 //When our machine dies, assimilated machinery just unhide back
-/obj/machinery/hivemind_machine/proc/consume(var/obj/victim)
+/obj/machinery/hivemind_machine/proc/consume(obj/victim)
 	assimilated_machinery = victim
 	victim.alpha = 0
 	victim.anchored = TRUE
@@ -149,7 +149,7 @@
 			name = "[name] [hive_mind_ai.surname] - [rand(999)]"
 
 
-/obj/machinery/hivemind_machine/proc/start_rebuild(var/new_machine_path, var/time_in_seconds = 5)
+/obj/machinery/hivemind_machine/proc/start_rebuild(new_machine_path, time_in_seconds = 5)
 	stun()
 	var/obj/effect/overlay/rebuild_anim = new /obj/effect/overlay(loc)
 	rebuild_anim.icon = 'icons/obj/hivemind_machines.dmi'
@@ -160,7 +160,7 @@
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), rebuild_anim), time_in_seconds SECONDS)
 
 
-/obj/machinery/hivemind_machine/proc/finish_rebuild(var/new_machine_path)
+/obj/machinery/hivemind_machine/proc/finish_rebuild(new_machine_path)
 	var/obj/machinery/hivemind_machine/new_machine = new new_machine_path(get_turf(loc))
 	if(assimilated_machinery["path"])
 		new_machine.assimilated_machinery = assimilated_machinery
@@ -172,13 +172,13 @@
 
 
 //Returns list of mobs in range or hearers (include in vehicles)
-/obj/machinery/hivemind_machine/proc/targets_in_range(var/range = world.view, var/in_hear_range = FALSE)
+/obj/machinery/hivemind_machine/proc/targets_in_range(range = world.view, in_hear_range = FALSE)
 	var/list/range_list = list()
 	var/list/target_list = list()
 	if(in_hear_range)
-		range_list = hearers(range, src)
+		range_list = hearers(range, get_turf(src))
 	else
-		range_list = range(range, src)
+		range_list = range(range, get_turf(src))
 	for(var/atom/movable/M in range_list)
 		var/mob/target = M.get_mob()
 		if(target)
@@ -187,7 +187,7 @@
 
 
 /obj/machinery/hivemind_machine/proc/is_attackable(mob/living/target)
-	if(!target.stat || target.health >= (ishuman(target) ? HEALTH_THRESHOLD_CRIT : 0))
+	if(!target.stat || target.health >= (ishuman(target) ? CONFIG_GET(number/health_threshold_crit) : 0))
 		return TRUE
 	return FALSE
 
@@ -215,7 +215,7 @@
 		sparks.start()
 
 
-/obj/machinery/hivemind_machine/take_damage(var/amount, var/on_damage_react = TRUE)
+/obj/machinery/hivemind_machine/take_damage(amount, on_damage_react = TRUE)
 	health -= amount
 	time_until_regen = world.time + regen_cooldown_time
 	if(on_damage_react)
@@ -236,7 +236,7 @@
 
 //Stunned machines can't do anything
 //Amount must be a number in seconds
-/obj/machinery/hivemind_machine/proc/stun(var/amount)
+/obj/machinery/hivemind_machine/proc/stun(amount)
 	set_light(0)
 	stat |= EMPED
 	can_regenerate = FALSE
@@ -262,7 +262,7 @@
 	if(damage)
 		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		M.visible_message(span_danger("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
 		take_damage(damage)
 	else
@@ -278,7 +278,7 @@
 			. = ..()
 			take_damage(clear_damage)
 		else
-			to_chat(user, SPAN_WARNING("You trying to hit the [src] with [I], but it seems useless."))
+			to_chat(user, span_warning("You trying to hit the [src] with [I], but it seems useless."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 30, 1)
 		return
 
@@ -596,7 +596,7 @@
 		msg += pick(".", "!")
 		if(i != msg_cycles)
 			msg += " "
-	global_announcer.autosay(msg, "unknown")
+	GLOB.announcer.autosay(msg, "unknown")
 
 
 //SHRIEKER
@@ -638,12 +638,12 @@
 	if(istype(H))
 		if(prob(90 - H.stats.getStat(STAT_VIG)))
 			H.Weaken(6)
-			to_chat(H, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
+			to_chat(H, span_warning("A terrible howl tears through your mind, the voice senseless, soulless."))
 		else
-			to_chat(H, SPAN_NOTICE("A terrible howl tears through your mind, but you refuse to listen to it!"))
+			to_chat(H, span_notice("A terrible howl tears through your mind, but you refuse to listen to it!"))
 	else
 		target.Weaken(6)
-		to_chat(target, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
+		to_chat(target, span_warning("A terrible howl tears through your mind, the voice senseless, soulless."))
 
 
 
@@ -683,7 +683,7 @@
 
 
 /obj/machinery/hivemind_machine/supplicant/use_ability(mob/living/target)
-	to_chat(target, SPAN_NOTICE("<b>[pick(join_quotes)]</b>"))
+	to_chat(target, span_notice("<b>[pick(join_quotes)]</b>"))
 
 
 //PSI-MODULATOR
@@ -718,7 +718,7 @@
 		if(prob(100 - H.stats.getStat(STAT_VIG)))
 			H.adjust_hallucination(20, 20)
 		else
-			to_chat(H, SPAN_NOTICE("Reality flickers for a second, but you manage to focus!"))
+			to_chat(H, span_notice("Reality flickers for a second, but you manage to focus!"))
 	else if (istype(target))
 		target.adjust_hallucination(20, 20)
 	flick("[icon_state]-anim", src)

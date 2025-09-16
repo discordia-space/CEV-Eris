@@ -15,14 +15,14 @@
 	var/last_process_worldtime = 0
 	var/report_num = 0
 
-/obj/machinery/dnaforensics/attackby(var/obj/item/W, mob/user as mob)
+/obj/machinery/dnaforensics/attackby(obj/item/W, mob/user as mob)
 
 	if(bloodsamp)
-		to_chat(user, SPAN_WARNING("There is already a sample in the machine."))
+		to_chat(user, span_warning("There is already a sample in the machine."))
 		return
 
 	if(closed)
-		to_chat(user, SPAN_WARNING("Open the cover before inserting the sample."))
+		to_chat(user, span_warning("Open the cover before inserting the sample."))
 		return
 
 	var/obj/item/forensics/swab/swab = W
@@ -30,12 +30,12 @@
 		user.unEquip(W)
 		src.bloodsamp = swab
 		swab.loc = src
-		to_chat(user, SPAN_NOTICE("You insert \the [W] into \the [src]."))
+		to_chat(user, span_notice("You insert \the [W] into \the [src]."))
 	else
-		to_chat(user, SPAN_WARNING("\The [src] only accepts used swabs."))
+		to_chat(user, span_warning("\The [src] only accepts used swabs."))
 		return
 
-/obj/machinery/dnaforensics/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/dnaforensics/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(stat & (NOPOWER)) return
 	if(user.stat || user.restrained()) return
 	var/list/data = list()
@@ -67,12 +67,12 @@
 				if(closed == 1)
 					scanner_progress = 0
 					scanning = 1
-					to_chat(usr, SPAN_NOTICE("Scan initiated."))
+					to_chat(usr, span_notice("Scan initiated."))
 					update_icon()
 				else
-					to_chat(usr, SPAN_NOTICE("Please close sample lid before initiating scan."))
+					to_chat(usr, span_notice("Please close sample lid before initiating scan."))
 			else
-				to_chat(usr, SPAN_WARNING("Insert an item to scan."))
+				to_chat(usr, span_warning("Insert an item to scan."))
 
 	if(href_list["ejectItem"])
 		if(bloodsamp)
@@ -99,7 +99,7 @@
 	last_process_worldtime = world.time
 
 /obj/machinery/dnaforensics/proc/complete_scan()
-	src.visible_message(SPAN_NOTICE("\icon[src] makes an insistent chime."), 2)
+	src.visible_message(span_notice("[icon2html(src, hearers(get_turf(src)))] makes an insistent chime."), 2)
 	update_icon()
 	if(bloodsamp)
 		var/obj/item/paper/P = new(src)
@@ -111,7 +111,7 @@
 		if(bloodsamp.dna != null)
 			data = "Spectometric analysis on provided sample has determined the presence of [bloodsamp.dna.len] strings of DNA.<br><br>"
 			for(var/blood in bloodsamp.dna)
-				data += "\blue Blood type: [bloodsamp.dna[blood]]<br>\nDNA: [blood]<br><br>"
+				data += span_blue("Blood type: [bloodsamp.dna[blood]]<br>\nDNA: [blood]<br><br>")
 		else
 			data += "No DNA found.<br>"
 		P.info = "<b>[src] analysis report #[report_num]</b><br>"
@@ -134,7 +134,7 @@
 		return
 
 	if(scanning)
-		to_chat(usr, SPAN_WARNING("You can't do that while [src] is scanning!"))
+		to_chat(usr, span_warning("You can't do that while [src] is scanning!"))
 		return
 
 	closed = !closed

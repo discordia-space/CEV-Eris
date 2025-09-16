@@ -19,16 +19,16 @@
 
 /obj/machinery/power/smes/batteryrack/examine(mob/user, extra_description = "")
 	if(open_hatch)
-		extra_description += SPAN_NOTICE("\nIt currently hosts [cells_amount] cells.")
+		extra_description += span_notice("\nIt currently hosts [cells_amount] cells.")
 		if(get_dist(user, src) < 2)
-			extra_description += SPAN_NOTICE("\nClick any cell below to remove them from \the [src]:")
+			extra_description += span_notice("\nClick any cell below to remove them from \the [src]:")
 			for(var/obj/item/cell/battery in component_parts)
-				extra_description += SPAN_NOTICE("\n<a href='?src=\ref[src];remove_cell_in_hand=\ref[battery];user=\ref[user]'>\icon[battery] [battery.name]</a>")
+				extra_description += span_notice("\n<a href='byond://?src=\ref[src];remove_cell_in_hand=\ref[battery];user=\ref[user]'>[icon2html(battery, user)] [battery.name]</a>")
 	else
-		extra_description += SPAN_NOTICE("\nThe hatch needs to be opened with a screwdriver to interact with the cells inside!")
-	extra_description += SPAN_NOTICE("\nIt currently has [capacitors_amount] capacitors installed.")
-	extra_description += SPAN_NOTICE("\nIt has a LCD screen. Left side is for charging and right side for discharging. Green means operating. Yellow means not discharging/charging or no network.")
-	extra_description += SPAN_NOTICE("\nCan toggle input and output on/off with CtrlClick and AltClick. It is currently set to discharge at a maximum rate of [output_level] W, and recharge at a maximum rate of [input_level] W.")
+		extra_description += span_notice("\nThe hatch needs to be opened with a screwdriver to interact with the cells inside!")
+	extra_description += span_notice("\nIt currently has [capacitors_amount] capacitors installed.")
+	extra_description += span_notice("\nIt has a LCD screen. Left side is for charging and right side for discharging. Green means operating. Yellow means not discharging/charging or no network.")
+	extra_description += span_notice("\nCan toggle input and output on/off with CtrlClick and AltClick. It is currently set to discharge at a maximum rate of [output_level] W, and recharge at a maximum rate of [input_level] W.")
 	..(user, extra_description)
 
 /obj/machinery/power/smes/batteryrack/attack_hand(mob/living/user)
@@ -66,9 +66,9 @@
 			if(target.incapacitated(INCAPACITATION_DEFAULT))
 				return
 			if(!Adjacent(target))
-				to_chat(target, SPAN_NOTICE("You are too far away from \the [src]."))
+				to_chat(target, span_notice("You are too far away from \the [src]."))
 				return
-			to_chat(target, SPAN_NOTICE("You remove \the [battery] from \the [src]."))
+			to_chat(target, span_notice("You remove \the [battery] from \the [src]."))
 			component_parts.Remove(battery)
 			battery.forceMove(get_turf(target))
 			target.put_in_active_hand(battery)
@@ -128,7 +128,7 @@
 	return round(4 * charge/(capacity ? capacity : 5e6))
 
 
-/obj/machinery/power/smes/batteryrack/attackby(var/obj/item/W as obj, var/mob/user as mob) //these can only be moved by being reconstructed, solves having to remake the powernet.
+/obj/machinery/power/smes/batteryrack/attackby(obj/item/W as obj, mob/user as mob) //these can only be moved by being reconstructed, solves having to remake the powernet.
 	..() //SMES attackby for now handles screwdriver, cable coils and wirecutters, no need to repeat that here
 	// we need to update icon incase we get opened in the parent call
 	update_icon()
@@ -139,9 +139,9 @@
 					playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
 					dismantle()
 				else
-					to_chat(user, SPAN_WARNING("Turn off the [src] before dismantling it."))
+					to_chat(user, span_warning("Turn off the [src] before dismantling it."))
 			else
-				to_chat(user, SPAN_WARNING("Better let [src] discharge before dismantling it."))
+				to_chat(user, span_warning("Better let [src] discharge before dismantling it."))
 		else if ((istype(W, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/cell/large) && (cells_amount < 5)))
 			if (charge < (capacity / 100) || capacity == 0)
 				if (!output_attempt && !input_attempt)
@@ -149,12 +149,12 @@
 					component_parts += W
 					W.forceMove(src)
 					RefreshParts()
-					to_chat(user, SPAN_NOTICE("You upgrade the [src] with [W.name]."))
+					to_chat(user, span_notice("You upgrade the [src] with [W.name]."))
 					update_icon()
 				else
-					to_chat(user, SPAN_WARNING("Turn off the [src] before dismantling it."))
+					to_chat(user, span_warning("Turn off the [src] before dismantling it."))
 			else
-				to_chat(user, SPAN_WARNING("Better let [src] discharge before putting your hand inside it."))
+				to_chat(user, span_warning("Better let [src] discharge before putting your hand inside it."))
 		else
 			user.set_machine(src)
 			interact(user)

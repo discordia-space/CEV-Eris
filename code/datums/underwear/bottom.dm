@@ -94,8 +94,8 @@
 	name = "sport panties, cyan"
 	icon_state = "underwear_f_2c"
 
-/datum/category_item/underwear/bottom/boxers/black/is_default(var/gender)
+/datum/category_item/underwear/bottom/boxers/black/is_default(gender)
 	return gender != FEMALE
 
-/datum/category_item/underwear/bottom/panties/black/is_default(var/gender)
+/datum/category_item/underwear/bottom/panties/black/is_default(gender)
 	return gender == FEMALE

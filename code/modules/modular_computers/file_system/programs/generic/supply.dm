@@ -148,11 +148,11 @@
 	if(href_list["launch_shuttle"])
 		var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 		if(!shuttle)
-			to_chat(user, "<span class='warning'>Error connecting to the shuttle.</span>")
+			to_chat(user, span_warning("Error connecting to the shuttle."))
 			return
 		if(shuttle.at_station())
 			if (shuttle.forbidden_atoms_check())
-				to_chat(usr, "<span class='warning'>For safety reasons the automated supply shuttle cannot transport live organisms, classified nuclear weaponry or homing beacons.</span>")
+				to_chat(usr, span_warning("For safety reasons the automated supply shuttle cannot transport live organisms, classified nuclear weaponry or homing beacons."))
 			else
 				shuttle.launch(user)
 		else
@@ -174,7 +174,7 @@
 			if(SO.ordernum != id)
 				continue
 			if(SO.object.cost > SSsupply.points)
-				to_chat(usr, "<span class='warning'>Not enough points to purchase \the [SO.object.name]!</span>")
+				to_chat(usr, span_warning("Not enough points to purchase \the [SO.object.name]!"))
 				return 1
 			SSsupply.requestlist -= SO
 			SSsupply.shoppinglist += SO
@@ -238,7 +238,7 @@
 		return "Docked"
 	return "Docking/Undocking"
 
-/datum/nano_module/supply/proc/order_to_nanoui(var/datum/supply_order/SO)
+/datum/nano_module/supply/proc/order_to_nanoui(datum/supply_order/SO)
 	return list(list(
 		"id" = SO.ordernum,
 		"object" = SO.object.name,
@@ -253,12 +253,12 @@
 		return 0
 	return 1
 
-/datum/nano_module/supply/proc/print_order(var/datum/supply_order/O, var/mob/user)
+/datum/nano_module/supply/proc/print_order(datum/supply_order/O, mob/user)
 	if(!O)
 		return
 
 	var/t = ""
-	t += "<h3>[maps_data.station_name] Supply Requisition Reciept</h3><hr>"
+	t += "<h3>[maps_data.station_name()] Supply Requisition Reciept</h3><hr>"
 	t += "INDEX: #[O.ordernum]<br>"
 	t += "REQUESTED BY: [O.orderedby]<br>"
 	t += "RANK: [O.orderedrank]<br>"
@@ -270,9 +270,9 @@
 	t += "<hr>"
 	print_text(t, user)
 
-/datum/nano_module/supply/proc/print_summary(var/mob/user)
+/datum/nano_module/supply/proc/print_summary(mob/user)
 	var/t = ""
-	t += "<center><BR><b><large>[maps_data.station_name]</large></b><BR><i>[station_date]</i><BR><i>Export overview<field></i></center><hr>"
+	t += "<center><BR><b><large>[maps_data.station_name()]</large></b><BR><i>[station_date]</i><BR><i>Export overview<field></i></center><hr>"
 	for(var/source in SSsupply.point_source_descriptions)
 		t += "[SSsupply.point_source_descriptions[source]]: [SSsupply.point_sources[source] || 0]<br>"
 	print_text(t, user)

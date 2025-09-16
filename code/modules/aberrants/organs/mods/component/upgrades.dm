@@ -6,9 +6,9 @@
 /datum/component/modification/organ/stromal/on_examine(mob/user, list/reference)
 	var/function_info = get_function_info()
 	if(function_info)
-		reference.Add(SPAN_NOTICE(function_info))
+		reference.Add(span_notice(function_info))
 	if(examine_msg)
-		reference.Add(SPAN_WARNING(examine_msg))
+		reference.Add(span_warning(examine_msg))
 
 /datum/component/modification/organ/stromal/get_function_info()
 	var/function_info = "<i>"
@@ -172,7 +172,7 @@
 		blood_req_base 					+= round(organ_stats[4] * modifier, 0.01)
 		nutriment_req_base 				+= round(organ_stats[5] * modifier, 0.01)
 		oxygen_req_base 				+= round(organ_stats[6] * modifier, 0.01)
-	
+
 	modifications[ORGAN_SPECIFIC_SIZE_BASE] = specific_organ_size_base
 	modifications[ORGAN_MAX_BLOOD_STORAGE_BASE] = max_blood_storage_base
 	modifications[ORGAN_BLOOD_REQ_BASE] = blood_req_base

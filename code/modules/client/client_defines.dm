@@ -62,6 +62,11 @@
 
 	var/adminhelped = 0
 
+	/// Messages currently seen by this client
+	var/list/seen_messages
+
+	var/fullscreen = FALSE
+
 	/// List of Stat Panel tabs
 	var/list/verb_tabs = list()
 
@@ -88,16 +93,31 @@
 		////////////////////////////////////
 		//things that require the database//
 		////////////////////////////////////
-	var/id = -1
-	var/registration_date = ""
-	var/first_seen = ""
+	///Used to determine how old the account is - in days.
+	var/player_age = -1
+	///Date that this account was first seen in the server
+	var/player_join_date = null
+	///So admins know why it isn't working - Used to determine what other accounts previously logged in from this ip
+	var/related_accounts_ip = "Requires database"
+	///So admins know why it isn't working - Used to determine what other accounts previously logged in from this computer id
+	var/related_accounts_cid = "Requires database"
+	///Date of byond account creation in ISO 8601 format
+	var/account_join_date = null
+	///Age of byond account in days
+	var/account_age = -1
+
 	var/country = ""
 	var/country_code = ""
-	var/first_seen_days_ago
+
 	/* security shit from asset cache (what the fuck) */
 	var/VPN_whitelist //avoid vpn cheking
 	var/list/related_ip = list()
 	var/list/related_cid = list()
+
+	///Used to cache this client's bans to save on DB queries
+	var/ban_cache = null
+	///If we are currently building this client's ban cache, this var stores the timeofday we started at
+	var/ban_cache_start = 0
 
 	preload_rsc = PRELOAD_RSC
 
@@ -117,8 +137,6 @@
 	var/connection_realtime //world.realtime they connected
 	var/connection_timeofday //world.timeofday they connected
 
-	var/datum/chatOutput/chatOutput
-
 	// List of all asset filenames sent to this client by the asset cache, along with their assoicated md5s
 	var/list/sent_assets = list()
 	/// List of all completed blocking send jobs awaiting acknowledgement by send_asset
@@ -126,3 +144,5 @@
 	/// Last asset send job id.
 	var/last_asset_job = 0
 	var/last_completed_asset_job = 0
+	/// The DPI scale of the client. 1 is equivalent to 100% window scaling, 2 will be 200% window scaling
+	var/window_scaling = 1

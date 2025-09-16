@@ -22,7 +22,7 @@
 	var/surgery_operations = 0
 	var/obj/item/organ/organ = null
 
-/datum/autodoc_patchnote/proc/Copy(var/blank = TRUE)
+/datum/autodoc_patchnote/proc/Copy(blank = TRUE)
 	var/datum/autodoc_patchnote/copy = new()
 	copy.organ = organ
 	if(!blank)
@@ -47,12 +47,12 @@
 	. = ..()
 	holder = new_holder
 
-/datum/autodoc/proc/set_patient(var/mob/living/carbon/human/human = null)
+/datum/autodoc/proc/set_patient(mob/living/carbon/human/human = null)
 	patient = human
 
 /datum/autodoc/proc/scan_user()
 	if(active)
-		to_chat(usr, SPAN_WARNING("Autodoc already in use"))
+		to_chat(usr, span_warning("Autodoc already in use"))
 		return FALSE
 
 	scanned_patchnotes = new()
@@ -73,7 +73,7 @@
 		for(var/obj/item/organ/external/external in patient.organs)
 			if(external.number_internal_wounds)
 				for(var/obj/item/organ/internal/internal in external.internal_organs)
-					if(internal.GetComponent(/datum/component/internal_wound))
+					if(LAZYLEN(internal.wounddatums))
 						var/datum/autodoc_patchnote/patchnote = new()
 						patchnote.organ = internal
 						patchnote.surgery_operations |= AUTODOC_INTERNAL_WOUNDS
@@ -107,20 +107,21 @@
 			scanned_patchnotes.Add(patchnote)
 			picked_patchnotes.Add(patchnote.Copy())
 
-/datum/autodoc/proc/process_note(var/datum/autodoc_patchnote/patchnote)
+/datum/autodoc/proc/process_note(datum/autodoc_patchnote/patchnote)
 	if(!patchnote.surgery_operations)
-		to_chat(patient, SPAN_NOTICE("Treatment complete."))
+		to_chat(patient, span_notice("Treatment complete."))
 		return TRUE
 	var/obj/item/organ/external/external = patchnote.organ
 	if(!patchnote.organ)
 		if(patchnote.surgery_operations & AUTODOC_TOXIN)
-			to_chat(patient, SPAN_NOTICE("Administering anti-toxin to patient."))
+			to_chat(patient, span_notice("Administering anti-toxin to patient."))
 			patient.adjustToxLoss(-damage_heal_amount)
+			patient.add_chemical_effect(CE_ANTITOX, damage_heal_amount/10)
 			if(!patient.getToxLoss())
 				patchnote.surgery_operations &= ~AUTODOC_TOXIN
 
 		else if(patchnote.surgery_operations & AUTODOC_DIALYSIS)
-			to_chat(patient, SPAN_NOTICE("Performing dialysis on patient."))
+			to_chat(patient, span_notice("Performing dialysis on patient."))
 			var/pumped = 0
 			for(var/datum/reagent/x in patient.reagents.reagent_list)
 				patient.reagents.remove_any(AUTODOC_DIALYSIS_AMOUNT)
@@ -130,25 +131,25 @@
 				patchnote.surgery_operations &= ~AUTODOC_DIALYSIS
 
 		else if (patchnote.surgery_operations & AUTODOC_BLOOD)
-			to_chat(patient, SPAN_NOTICE("Administering blood IV to patient."))
+			to_chat(patient, span_notice("Administering blood IV to patient."))
 			var/datum/reagent/organic/blood/blood = patient.vessel.reagent_list[1]
-			blood.volume += damage_heal_amount
-			if(blood.volume >= patient.vessel.total_volume)
+			blood.volume = min(blood.volume + damage_heal_amount, patient.vessel.maximum_volume)
+			if(blood.volume == patient.vessel.maximum_volume)
 				patchnote.surgery_operations &= ~AUTODOC_BLOOD
 
 	else if(patchnote.surgery_operations & AUTODOC_DAMAGE)
-		to_chat(patient, SPAN_NOTICE("Treating damage on the patient's [external]."))
+		to_chat(patient, span_notice("Treating damage on the patient's [external]."))
 		external.heal_damage(damage_heal_amount, damage_heal_amount)
 		if(!external.brute_dam && !external.burn_dam) patchnote.surgery_operations &= ~AUTODOC_DAMAGE
 
 	else if(patchnote.surgery_operations & AUTODOC_EMBED_OBJECT)
-		to_chat(patient, SPAN_NOTICE("Removing embedded objects from the patient's [external]."))
+		to_chat(patient, span_notice("Removing embedded objects from the patient's [external]."))
 		for(var/obj/item/material/shard/shrapnel/shrap in external.implants)
 			external.remove_item(shrap, patient, FALSE)
 		patchnote.surgery_operations &= ~AUTODOC_EMBED_OBJECT
 
 	else if(patchnote.surgery_operations & AUTODOC_OPEN_WOUNDS)
-		to_chat(patient, SPAN_NOTICE("Closing wounds on the patient's [external]."))
+		to_chat(patient, span_notice("Closing wounds on the patient's [external]."))
 		for(var/datum/wound/wound in external.wounds)
 			wound.bandaged = TRUE
 			wound.clamped = TRUE
@@ -156,43 +157,44 @@
 		patchnote.surgery_operations &= ~AUTODOC_OPEN_WOUNDS
 
 	else if(patchnote.surgery_operations & AUTODOC_FRACTURE)
-		to_chat(patient, SPAN_NOTICE("Mending fractures in the patient's [external]."))
+		to_chat(patient, span_notice("Mending fractures in the patient's [external]."))
 		external.mend_fracture()
 		patchnote.surgery_operations &= ~AUTODOC_FRACTURE
 
 	else if(patchnote.surgery_operations & AUTODOC_INTERNAL_WOUNDS)
 		if(istype(patchnote.organ, /obj/item/organ/internal))
 			var/obj/item/organ/internal/I = patchnote.organ
-			to_chat(patient, SPAN_NOTICE("Treating internal wounds in the patient's [I.name]."))
-			SEND_SIGNAL_OLD(I, COMSIG_IWOUND_TREAT, TRUE, TRUE)
-			patchnote.surgery_operations &= ~AUTODOC_INTERNAL_WOUNDS
+			to_chat(patient, span_notice("Treating internal wounds in the patient's [I.name]."))
+			var/datum/internal_wound/wound = I.wounddatums[pick(I.wounddatums)]
+			if(istype(wound))
+				wound.treatment(TRUE, TRUE)
+			if(!length(I.wounddatums)) patchnote.surgery_operations &= ~AUTODOC_INTERNAL_WOUNDS
 
 /datum/autodoc/Process()
 	if(!patient)
 		stop()
+	else if(current_step > picked_patchnotes.len)
+		stop()
+		scan_user(patient)
+		return
 
 	while(!(picked_patchnotes[current_step].surgery_operations))
-		if(current_step + 1 > picked_patchnotes.len)
+		current_step++
+		if(current_step > picked_patchnotes.len)
 			stop()
 			scan_user(patient)
 			return
-		else
-			current_step++
 
 	if(world.time > (start_op_time + processing_speed))
 		start_op_time = world.time
 		patient.updatehealth()
 		if(process_note(picked_patchnotes[current_step]))
-			if(current_step + 1 > picked_patchnotes.len)
-				stop()
-				scan_user(patient)
-			else
-				current_step++
+			current_step++
 
 /datum/autodoc/proc/fail()
 	current_step++
 
-/datum/autodoc/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 2, var/datum/nano_topic_state/state)
+/datum/autodoc/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 2, datum/nano_topic_state/state)
 	if(!patient)
 		if(ui)
 			ui.close()
@@ -369,15 +371,15 @@
 
 	return data
 
-/datum/autodoc/capitalist_autodoc/proc/charge(var/amount = 100)
+/datum/autodoc/capitalist_autodoc/proc/charge(amount = 100)
 	if(linked_account && !linked_account.is_valid())
 		to_chat(patient, "Autodoc is out of service. Error code: #0x09")
 		return FALSE
 	if(!patient_account || !patient_account.is_valid())
-		to_chat(patient, SPAN_WARNING("Proper banking account is needed."))
+		to_chat(patient, span_warning("Proper banking account is needed."))
 		return
 	if(amount > patient_account.money)
-		to_chat(patient, SPAN_WARNING("Insufficient funds."))
+		to_chat(patient, span_warning("Insufficient funds."))
 		return
 	var/datum/transaction/T
 	T = new(-amount, linked_account.owner_name, "Autodoc surgery", "Autodoc")
@@ -391,7 +393,7 @@
 	custom_cost = 0
 	total_cost = recalc_costs(scanned_patchnotes)
 
-/datum/autodoc/capitalist_autodoc/proc/recalc_costs(var/list/notes)
+/datum/autodoc/capitalist_autodoc/proc/recalc_costs(list/notes)
 	var/cost = 0
 	for(var/datum/autodoc_patchnote/patchnote in notes)
 		if(patchnote.surgery_operations & AUTODOC_TOXIN)

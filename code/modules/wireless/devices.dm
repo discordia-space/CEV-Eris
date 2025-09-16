@@ -26,7 +26,7 @@
 //-------------------------------
 
 // Sender procs
-/datum/wifi/sender/door/activate(var/command)
+/datum/wifi/sender/door/activate(command)
 	if(!command)
 		return
 

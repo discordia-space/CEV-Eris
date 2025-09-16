@@ -26,7 +26,7 @@
 //////////////////////////////
 
 // common helper procs for all power machines
-/obj/machinery/power/drain_power(var/drain_check, var/surge, var/amount = 0)
+/obj/machinery/power/drain_power(drain_check, surge, amount = 0)
 	if(drain_check)
 		return 1
 
@@ -34,13 +34,13 @@
 		powernet.trigger_warning()
 		return powernet.draw_power(amount)
 
-/obj/machinery/power/proc/add_avail(var/amount)
+/obj/machinery/power/proc/add_avail(amount)
 	if(powernet)
 		powernet.newavail += amount
 		return 1
 	return 0
 
-/obj/machinery/power/proc/draw_power(var/amount)
+/obj/machinery/power/proc/draw_power(amount)
 	if(powernet)
 		return powernet.draw_power(amount)
 	return 0
@@ -62,7 +62,7 @@
 
 // returns true if the area has power on given channel (or doesn't require power).
 // defaults to power_channel
-/obj/machinery/proc/powered(var/chan = power_channel) // defaults to power_channel
+/obj/machinery/proc/powered(chan = power_channel) // defaults to power_channel
 	//Don't do this. It allows machines that set use_power to 0 when off (many machines) to
 	//be turned on again and used after a power failure because they never gain the NOPOWER flag.
 	//if(!use_power)
@@ -71,20 +71,20 @@
 	var/area/A = get_area(src)
 
 	if(A)
-		if(src.shipside_only && !(A in ship_areas))			// some machinery is only destined to work on Eris (excelsior)
+		if(src.shipside_only && !(A in GLOB.ship_areas))			// some machinery is only destined to work on Eris (excelsior)
 			return FALSE
 		return A.powered(chan)			// return power status of the area
 	return FALSE
 
 
 // increment the power usage stats for an area
-/obj/machinery/proc/use_power(var/amount, var/chan = power_channel) // defaults to power_channel
+/obj/machinery/proc/use_power(amount, chan = power_channel) // defaults to power_channel
 	var/area/A = get_area(src)		// make sure it's in an area
 	if(A && A.powered(chan))
 		A.use_power(amount, chan)
 
 //sets the use_power var and then forces an area power update
-/obj/machinery/proc/update_use_power(var/new_use_power)
+/obj/machinery/proc/update_use_power(new_use_power)
 	use_power = new_use_power
 
 /obj/machinery/proc/auto_use_power()
@@ -159,7 +159,7 @@
 	var/cdir
 	var/turf/T
 
-	for(var/card in cardinal)
+	for(var/card in GLOB.cardinal)
 		T = get_step(loc,card)
 		cdir = get_dir(T,loc)
 
@@ -178,7 +178,7 @@
 	var/cdir
 	var/turf/T
 
-	for(var/card in cardinal)
+	for(var/card in GLOB.cardinal)
 		T = get_step(loc,card)
 		cdir = get_dir(T,loc)
 
@@ -207,7 +207,7 @@
 /proc/power_list(turf/T, source, d, unmarked=0, cable_only = 0)
 	. = list()
 
-	var/reverse = d ? reverse_dir[d] : 0
+	var/reverse = d ? GLOB.reverse_dir[d] : 0
 	for(var/AM in T)
 		if(AM == source)	continue			//we don't want to return source
 

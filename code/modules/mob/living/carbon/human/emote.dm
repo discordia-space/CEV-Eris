@@ -1,4 +1,4 @@
-/mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
+/mob/living/carbon/human/emote(act,m_type=1,message = null)
 	var/param = null
 
 	if (findtext(act, "-", 1, null))
@@ -75,7 +75,7 @@
 
 			if (src.client)
 				if (client.prefs.muted & MUTE_IC)
-					to_chat(src, "\red You cannot send IC messages (muted).")
+					to_chat(src, span_red("You cannot send IC messages (muted)."))
 					return
 				if (src.client.handle_spam_prevention(message,MUTE_IC))
 					return
@@ -568,7 +568,7 @@ sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, tremble, twit
 wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag"})
 
 		else
-			to_chat(src, "\blue Unusable emote '[act]'. Say *help for a list.")
+			to_chat(src, span_blue("Unusable emote '[act]'. Say *help for a list."))
 
 
 
@@ -580,7 +580,7 @@ wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag"})
 
 	if(cloud_emote)
 		var/image/emote_bubble = image('icons/mob/emote.dmi', src, cloud_emote, ABOVE_MOB_LAYER)
-		flick_overlay(emote_bubble, clients, 30)
+		flick_overlay(emote_bubble, GLOB.clients, 30)
 		QDEL_IN(emote_bubble, 3 SECONDS)
 
 

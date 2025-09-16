@@ -80,7 +80,7 @@
 /obj/machinery/atmospherics/unary/heater/attack_hand(mob/user)
 	nano_ui_interact(user)
 
-/obj/machinery/atmospherics/unary/heater/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/atmospherics/unary/heater/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["on"] = use_power ? 1 : 0

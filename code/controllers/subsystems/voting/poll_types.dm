@@ -59,9 +59,9 @@
 /datum/poll/storyteller/init_choices()
 	master_storyteller = null
 	var/datum/vote_choice/storyteller/base = null
-	for(var/ch in GLOB.storyteller_cache)
+	for(var/ch in storyteller_cache)
 		var/datum/vote_choice/storyteller/CS = new
-		var/datum/storyteller/S = GLOB.storyteller_cache[ch]
+		var/datum/storyteller/S = storyteller_cache[ch]
 		CS.text = S.name
 		CS.desc = S.description
 		CS.new_storyteller = ch
@@ -87,13 +87,13 @@
 		to_chat(world, "<b>Voting aborted due to game start.</b>")
 	return
 
+/* Pre-game is already 5 minutes, don't need it to stall. */
 
-
-/datum/poll/storyteller/on_start()
-	if (SSticker.current_state == GAME_STATE_PREGAME)
-		pregame = TRUE
-		round_progressing = FALSE
-		to_chat(world, "<b>Game start has been delayed due to voting.</b>")
+// /datum/poll/storyteller/on_start()
+// 	if (SSticker.current_state == GAME_STATE_PREGAME)
+// 		pregame = TRUE
+// 		round_progressing = FALSE
+// 		to_chat(world, "<b>Game start has been delayed due to voting.</b>")
 
 //If one wins, on_end is called after on_win, so the new storyteller will be set in master_storyteller
 /datum/poll/storyteller/on_end()
@@ -108,8 +108,7 @@
 
 	set_storyteller(config.pick_storyteller(master_storyteller), announce = !(pregame)) //This does the actual work //Even if master storyteller is null, this will pick the default
 	if (pregame)
-		round_progressing = TRUE
-		to_chat(world, "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>")
+		to_chat(world, "<b>The game will start in [DisplayTimeText(SSticker.GetTimeLeft())].</b>")
 		spawn(10 SECONDS)
 			var/tipsAndTricks/T = SStips.getRandomTip()
 			if(T)
@@ -132,7 +131,7 @@
 					var/tipsAndTricks/jobs/JT = T
 					var/datum/job/J = pick(JT.jobs_list)
 					typeText = initial(J.title)
-				to_chat(world, SStips.formatTip(T, "Random Tip \[[typeText]\]: "))
+				to_chat(world, SStips.formatTip(T, "Random Tip \[[typeText]\]"))
 	pregame = FALSE
 
 /datum/vote_choice/storyteller
@@ -180,7 +179,7 @@
 	can_unvote = TRUE
 
 
-/datum/poll/evac/get_vote_power(var/client/C)
+/datum/poll/evac/get_vote_power(client/C)
 	if (!istype(C))
 		return 0 //Shouldnt be possible, but safety
 
@@ -244,7 +243,7 @@
 	only_admin = FALSE
 	can_revote = TRUE
 	can_unvote = TRUE
-	
+
 
 /datum/vote_choice/yes_chaos_level
 	text = "Increase the chaos level!"
@@ -252,7 +251,7 @@
 /datum/vote_choice/yes_chaos_level/on_win()
 	GLOB.chaos_level += 1
 	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
-		to_chat(M, "<br><center><span class='danger'><b><font size=4>Chaos Level Increased</font></b><br></span></center><br>")
+		to_chat(M, "<br><center>[span_danger("<b><font size=4>Chaos Level Increased</font></b><br>")]</center><br>")
 
 /datum/vote_choice/no_chaos_level
 	text = "We have enough chaos already!"

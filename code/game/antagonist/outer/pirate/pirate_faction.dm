@@ -26,7 +26,7 @@
 
 	..()
 
-/datum/faction/pirate/add_leader(var/datum/antagonist/member, var/announce = TRUE)
+/datum/faction/pirate/add_leader(datum/antagonist/member, announce = TRUE)
 	.=..()
 	if (.)
 		// Put the commander outfit on

@@ -95,7 +95,7 @@
 		I.loc = src
 		loaded_item = I
 		for(var/mob/M in viewers())
-			M.show_message(text(SPAN_NOTICE("[user] adds the [I] to the [src].")), 1)
+			M.show_message(span_notice(text("[user] adds the [I] to the [src].")), 1)
 		desc = initial(desc) + "<br>It is holding \the [loaded_item]."
 		flick("portable_analyzer_load", src)
 		icon_state = "portable_analyzer_full"
@@ -116,7 +116,7 @@
 	icon_state = "autoharvester"
 	bad_type = /obj/item/robot_harvester
 
-/obj/item/robot_harvester/afterattack(var/atom/target, var/mob/living/user, proximity)
+/obj/item/robot_harvester/afterattack(atom/target, mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)
@@ -172,7 +172,7 @@
 				overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer)
 				addedSomething = 1
 		if ( addedSomething )
-			user.visible_message("\blue [user] load some items onto their service tray.")
+			user.visible_message(span_blue("[user] load some items onto their service tray."))
 
 		return
 
@@ -206,15 +206,15 @@
 			if(!foundtable && isturf(dropspot))
 				// if no table, presume that the person just shittily dropped the tray on the ground and made a mess everywhere!
 				spawn()
-					for(var/i = 1, i <= rand(1,2), i++)
+					for(var/i = 1; i <= rand(1,2); i++)
 						if(I)
 							step(I, pick(NORTH,SOUTH,EAST,WEST))
 							sleep(rand(2,4))
 		if ( droppedSomething )
 			if ( foundtable )
-				user.visible_message("\blue [user] unloads their service tray.")
+				user.visible_message(span_blue("[user] unloads their service tray."))
 			else
-				user.visible_message("\blue [user] drops all the items on their tray.")
+				user.visible_message(span_blue("[user] drops all the items on their tray."))
 
 	return ..()
 
@@ -291,8 +291,8 @@
 /obj/item/form_printer/attack_self(mob/user)
 	deploy_paper(get_turf(src))
 
-/obj/item/form_printer/proc/deploy_paper(var/turf/T)
-	T.visible_message("\blue \The [src.loc] dispenses a sheet of crisp white paper.")
+/obj/item/form_printer/proc/deploy_paper(turf/T)
+	T.visible_message(span_blue("\The [src.loc] dispenses a sheet of crisp white paper."))
 	new /obj/item/paper(T)
 
 

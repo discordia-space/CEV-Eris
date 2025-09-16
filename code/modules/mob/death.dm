@@ -21,7 +21,7 @@
 		flick(anim, animation)
 	addtimer(CALLBACK(src, PROC_REF(check_delete), animation), 15)
 
-/mob/proc/check_delete(var/atom/movable/overlay/animation)
+/mob/proc/check_delete(atom/movable/overlay/animation)
 	if(animation)	qdel(animation)
 	if(src)			qdel(src)
 
@@ -68,7 +68,7 @@
 			O.forceMove(loc)
 		embedded = list()
 
-	for(var/mob/living/carbon/human/H in oviewers(src))
+	for(var/mob/living/carbon/human/H in oviewers(get_turf(src)))
 		H.sanity.onSeeDeath(src)
 		SEND_SIGNAL_OLD(H, COMSIG_MOB_DEATH, src)
 
@@ -114,21 +114,24 @@
 		mind.store_memory("Time of death: [stationtime2text()]", 0)
 	switch_from_living_to_dead_mob_list()
 	updateicon()
-	to_chat(src,"<span class='deadsay'>[show_dead_message]</span>")
+	var/death_block = ""
+	death_block += span_danger("<center><span style='font-size: 32px'>You have died!</font></center>")
+	death_block += "<hr>"
+	death_block += span_danger("Barring complete bodyloss, you can (in some cases) be revived by other players. This may not be the end. The respawn timer is 30 minutes unless your body is cremated, \
+		placed in the morgue, given burial in space, or melted down to biomatter. These methods will shorten the respawn timer. If you have a cruciform, it can be used to clone you. If you were a Full Body Prosthetic, this is the end. \
+		If you're human with an organic heart and brain, you might be resuscitated if the body is recovered within 10 minutes.")
+	to_chat(src, span_death_message(death_block))
 	return 1
 
-
-
-
 //This proc retrieves the relevant time of death from
-/mob/proc/get_death_time(var/which)
+/mob/proc/get_death_time(which)
 	var/datum/preferences/P = get_preferences(src)
 	if (!P)
 		return FALSE
 
 	return P.time_of_death[which]
 
-/mob/proc/set_death_time(var/which, var/value)
+/mob/proc/set_death_time(which, value)
 	var/datum/preferences/P = get_preferences(src)
 	if (!P)
 		return FALSE
@@ -139,7 +142,7 @@
 
 //These functions get and set the bonuses to respawn time
 //Bonuses can be applied by things like going to cryosleep
-/mob/proc/get_respawn_bonus(var/which)
+/mob/proc/get_respawn_bonus(which)
 	var/datum/preferences/P = get_preferences(src)
 	if (!P)
 		return FALSE
@@ -154,7 +157,7 @@
 			total += P.crew_respawn_bonuses[v]
 		return total
 
-/mob/proc/set_respawn_bonus(var/which, var/value)
+/mob/proc/set_respawn_bonus(which, value)
 	var/datum/preferences/P = get_preferences(src)
 	if (!P)
 		return FALSE

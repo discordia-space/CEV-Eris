@@ -49,15 +49,15 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	if(!active_dummy)
 		if(scan_item(target))
 			playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
-			to_chat(user, SPAN_NOTICE("Scanned [target]."))
+			to_chat(user, span_notice("Scanned [target]."))
 			saved_item = target.type
 			saved_icon = target.icon
 			saved_icon_state = target.icon_state
 			saved_overlays = target.overlays
 			return
-		to_chat(user, SPAN_WARNING("\The [target] is an invalid target."))
+		to_chat(user, span_warning("\The [target] is an invalid target."))
 
-/obj/item/device/chameleon/proc/scan_item(var/obj/item/I)
+/obj/item/device/chameleon/proc/scan_item(obj/item/I)
 	if(!istype(I))
 		return FALSE
 	if(GLOB.champroj_blacklist.Find(I.type))
@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, 1, -6)
 		qdel(active_dummy)
 		active_dummy = null
-		to_chat(usr, SPAN_NOTICE("You deactivate the [src]."))
+		to_chat(usr, span_notice("You deactivate the [src]."))
 		var/obj/effect/overlay/T = new(get_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse",T)
@@ -96,14 +96,14 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 		var/obj/effect/dummy/chameleon/C = new(usr.loc)
 		C.activate(O, usr, saved_icon, saved_icon_state, saved_overlays, src)
 		qdel(O)
-		to_chat(usr, SPAN_NOTICE("You activate the [src]."))
+		to_chat(usr, span_notice("You activate the [src]."))
 		var/obj/effect/overlay/T = new/obj/effect/overlay(get_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse",T)
 		START_PROCESSING(SSobj, src)
 		spawn(8) qdel(T)
 
-/obj/item/device/chameleon/proc/disrupt(var/delete_dummy = 1)
+/obj/item/device/chameleon/proc/disrupt(delete_dummy = 1)
 	if(active_dummy)
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
 		spark_system.set_up(5, 0, src)
@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	anchored = TRUE
 	var/obj/item/device/chameleon/master = null
 
-/obj/effect/dummy/chameleon/proc/activate(var/obj/O, var/mob/M, new_icon, new_iconstate, new_overlays, var/obj/item/device/chameleon/C)
+/obj/effect/dummy/chameleon/proc/activate(obj/O, mob/M, new_icon, new_iconstate, new_overlays, obj/item/device/chameleon/C)
 	name = O.name
 	desc = O.desc
 	icon = new_icon
@@ -143,26 +143,26 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 
 /obj/effect/dummy/chameleon/attackby()
 	for(var/mob/M in src)
-		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
+		to_chat(M, span_warning("Your chameleon-projector deactivates."))
 	master.disrupt()
 
 /obj/effect/dummy/chameleon/attack_hand()
 	for(var/mob/M in src)
-		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
+		to_chat(M, span_warning("Your chameleon-projector deactivates."))
 	master.disrupt()
 
 /obj/effect/dummy/chameleon/explosion_act(target_power, explosion_handler/handler)
 	for(var/mob/M in src)
-		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
+		to_chat(M, span_warning("Your chameleon-projector deactivates."))
 	master.disrupt()
 
 /obj/effect/dummy/chameleon/bullet_act()
 	for(var/mob/M in src)
-		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
+		to_chat(M, span_warning("Your chameleon-projector deactivates."))
 	..()
 	master.disrupt()
 
-/obj/effect/dummy/chameleon/relaymove(var/mob/user, direction)
+/obj/effect/dummy/chameleon/relaymove(mob/user, direction)
 	if(istype(loc, /turf/space)) return //No magical space movement!
 	var/move_delay = 0
 	switch(user.bodytemperature)

@@ -171,8 +171,8 @@
 
 			if(C.data == "Clown Land")
 				//whoops
-				for(var/mob/O in hearers(src, null))
-					O.show_message(SPAN_WARNING("Incoming bluespace portal detected, unable to lock in."), 2)
+				for(var/mob/O in hearers(get_turf(src)))
+					O.show_message(span_warning("Incoming bluespace portal detected, unable to lock in."), 2)
 
 				for(var/obj/machinery/teleport/hub/H in range(1))
 					var/amount = rand(2,5)
@@ -180,8 +180,8 @@
 						new /mob/living/simple_animal/hostile/carp(get_turf(H))
 				//
 			else
-				for(var/mob/O in hearers(src, null))
-					O.show_message(SPAN_NOTICE("Portal locked in"), 2)
+				for(var/mob/O in hearers(get_turf(src)))
+					O.show_message(span_notice("Portal locked in"), 2)
 				src.locked = L
 				one_time_use = 1
 
@@ -241,8 +241,8 @@
 		return
 
 	src.locked = L[desc]
-	for(var/mob/O in hearers(src, null))
-		O.show_message(SPAN_NOTICE("Portal locked in."), 2)
+	for(var/mob/O in hearers(get_turf(src)))
+		O.show_message(span_notice("Portal locked in."), 2)
 	src.add_fingerprint(usr)
 	return
 
@@ -289,8 +289,8 @@
 	if (!mconsole)
 		return
 	if (!mconsole.locked)
-		for(var/mob/O in hearers(src, null))
-			O.show_message(SPAN_WARNING("Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix."))
+		for(var/mob/O in hearers(get_turf(src)))
+			O.show_message(span_warning("Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix."))
 		return
 	if (istype(M, /atom/movable))
 		if(prob(5) && !accurate) //oh dear a problem, put em in deep space
@@ -306,8 +306,8 @@
 		s.set_up(5, 1, src)
 		s.start()
 		accurate = 1
-		for(var/mob/B in hearers(src, null))
-			B.show_message(SPAN_NOTICE("Test fire completed."))
+		for(var/mob/B in hearers(get_turf(src)))
+			B.show_message(span_notice("Test fire completed."))
 		spawn(3000) if(src) accurate = 0 //Accurate teleporting for 5 minutes
 	return
 
@@ -336,8 +336,8 @@
 		use_power(5000)
 		set_power_use(ACTIVE_POWER_USE)
 		mhub.set_power_use(ACTIVE_POWER_USE)
-		for(var/mob/O in hearers(src, null))
-			O.show_message(SPAN_NOTICE("Teleporter engaged!"), 2)
+		for(var/mob/O in hearers(get_turf(src)))
+			O.show_message(span_notice("Teleporter engaged!"), 2)
 	src.add_fingerprint(usr)
 
 	return
@@ -352,8 +352,8 @@
 		mhub.accurate = 0
 		mhub.set_power_use(IDLE_POWER_USE)
 		set_power_use(IDLE_POWER_USE)
-		for(var/mob/O in hearers(src, null))
-			O.show_message(SPAN_NOTICE("Teleporter disengaged!"), 2)
+		for(var/mob/O in hearers(get_turf(src)))
+			O.show_message(span_notice("Teleporter disengaged!"), 2)
 	src.add_fingerprint(usr)
 
 	return
@@ -368,8 +368,8 @@
 
 	if (mhub && !active)
 		active = 1
-		for(var/mob/O in hearers(src, null))
-			O.show_message(SPAN_NOTICE("Test firing!"), 2)
+		for(var/mob/O in hearers(get_turf(src)))
+			O.show_message(span_notice("Test firing!"), 2)
 		mhub.teleport()
 		use_power(5000)
 

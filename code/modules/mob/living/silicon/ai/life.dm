@@ -35,7 +35,7 @@
 		malf_process()
 
 		if(APU_power && (hardware_integrity() < 50))
-			to_chat(src, SPAN_NOTICE("<b>APU GENERATOR FAILURE! (System Damaged)</b>"))
+			to_chat(src, span_notice("<b>APU GENERATOR FAILURE! (System Damaged)</b>"))
 			stop_apu(1)
 
 		if (!is_blinded())
@@ -90,7 +90,7 @@
 						var/obj/machinery/power/apc/theAPC = null
 
 						var/PRP
-						for (PRP=1, PRP<=4, PRP++)
+						for(PRP=1; PRP<=4; PRP++)
 							for (var/obj/machinery/power/apc/APC in current_area)
 								if (!(APC.stat & BROKEN))
 									theAPC = APC

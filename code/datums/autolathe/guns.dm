@@ -136,6 +136,10 @@
 	name = "FS HG .35 \"Slaught-o-Matic\""
 	build_path = /obj/item/gun/projectile/automatic/slaught_o_matic
 
+/datum/design/autolathe/gun/slaught_o_matic/ui_icon()
+	var/obj/build_type = build_path
+	return icon(build_type::icon, "[build_type::icon_state]_purple") // i like purple
+
 // .20 Rifles
 
 /datum/design/autolathe/gun/vintorez
@@ -161,6 +165,10 @@
 	name = "FS BR .20 \"Kadmin\""
 	build_path = /obj/item/gun/projectile/boltgun/fs
 
+/datum/design/autolathe/gun/boltgun_fs/ui_icon()
+	var/obj/build_type = build_path
+	return icon(build_type::icon, "[build_type::icon_state]_closed")
+
 // .25 Rifles
 
 /datum/design/autolathe/gun/sol
@@ -178,9 +186,17 @@
 	name = "Excelsior .30 \"Kardashev-Mosin\""
 	build_path = /obj/item/gun/projectile/boltgun
 
+/datum/design/autolathe/gun/boltgun/ui_icon()
+	var/obj/build_type = build_path
+	return icon(build_type::icon, "[build_type::icon_state]_closed")
+
 /datum/design/autolathe/gun/boltgun_serbian
 	name = "SA BR .30 \"Novakovic\""
 	build_path = /obj/item/gun/projectile/boltgun/serbian
+
+/datum/design/autolathe/gun/boltgun_serbian/ui_icon()
+	var/obj/build_type = build_path
+	return icon(build_type::icon, "[build_type::icon_state]_closed")
 
 /datum/design/autolathe/gun/ak47
 	name = "Excelsior Car .30 Kalashnikov"
@@ -210,6 +226,10 @@
 	name = "SA AMR .60 \"Hristov\""
 	build_path = /obj/item/gun/projectile/heavysniper
 	minimum_quality = 2
+
+/datum/design/autolathe/gun/heavysniper/ui_icon()
+	var/obj/build_type = build_path
+	return icon(build_type::icon, "[build_type::icon_state]_closed")
 
 /datum/design/autolathe/gun/mg_pk
 	name = "SA MG .30 \"Pulemyot Kalashnikova\""

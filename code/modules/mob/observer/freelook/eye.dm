@@ -1,8 +1,9 @@
-// EYE
-//
-// A mob that another mob controls to look around the station with.
-// It streams chunks as it moves around, which will show it what the controller can and cannot see.
-
+/**
+ * EYE
+ *
+ * A mob that another mob controls to look around the station with.
+ * It streams chunks as it moves around, which will show it what the controller can and cannot see.
+ */
 /mob/observer/eye
 	name = "Eye"
 	icon = 'icons/mob/eye.dmi'
@@ -23,7 +24,7 @@
 
 	var/datum/visualnet/visualnet
 
-/mob/observer/eye/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/observer/eye/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	if(owner == src)
 		return EyeMove(NewLoc, Dir)
 	return 0
@@ -40,9 +41,11 @@
 
 /mob/observer/eye/examine(mob/user, extra_description = "")
 
-// Use this when setting the eye's location.
-// It will also stream the chunk that the new loc is in.
-/mob/observer/eye/proc/setLoc(var/T)
+/**
+ * Use this when setting the eye's location.
+ * It will also stream the chunk that the new loc is in.
+ */
+/mob/observer/eye/proc/setLoc(T)
 	if(owner)
 		T = get_turf(T)
 		if(T != loc)
@@ -103,7 +106,7 @@
 
 	return 1
 
-/mob/observer/eye/forceMove(atom/destination, var/special_event, glide_size_override=0)
+/mob/observer/eye/forceMove(atom/destination, special_event, glide_size_override=0)
 	. = ..()
 	if(owner && owner.hud_used)
 		owner.hud_used.updatePlaneMasters(owner)

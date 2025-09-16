@@ -1,4 +1,5 @@
-var/list/admin_ranks = list() //list of all ranks with associated rights
+GLOBAL_LIST_EMPTY(admin_ranks) //list of all admin_rank datums
+GLOBAL_PROTECT(admin_ranks)
 
 
 // This proc is using only without database connection
@@ -15,8 +16,8 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 		if(copytext(line,1,2) == "#")
 			continue
 
-		//Split the line at every "-"
-		var/list/List = splittext(line, "-")
+		//Split the line at every "="
+		var/list/List = splittext(line, "=")
 		if(!List.len)
 			continue
 
@@ -31,18 +32,18 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 			rank = ckeyEx(List[2])
 
 		//load permissions associated with this rank
-		var/rights = admin_ranks[rank]
+		var/rights = GLOB.admin_ranks[rank]
 
 		//create the admin datum and store it for later use
 		var/datum/admins/D = new /datum/admins(rank, rights, ckey)
 
 		//find the client for a ckey if they are connected and associate them with the new admin datum
-		D.associate(directory[ckey])
+		D.associate(GLOB.directory[ckey])
 
 
 // This proc is using only without database connection
 /proc/load_admin_ranks_legacy()
-	admin_ranks.Cut()
+	GLOB.admin_ranks.Cut()
 
 	var/previous_rights = 0
 
@@ -66,7 +67,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 				continue
 
 		var/rights = 0
-		for(var/i = 2, i <= List.len, i++)
+		for(var/i = 2; i <= List.len; i++)
 			switch(ckey(List[i]))
 
 				if("@", "prev")
@@ -82,52 +83,36 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 				if("permissions", "rights")
 					rights |= R_PERMISSIONS
 				if("everything", "host", "all")
-					rights = R_HOST
-				if("mod")
-					rights |= R_MOD
+					rights = R_EVERYTHING
+				if("ban")
+					rights |= R_BAN
 				if("mentor")
 					rights |= R_MENTOR
 
-		admin_ranks[rank] = rights
+		GLOB.admin_ranks[rank] = rights
 		previous_rights = rights
 
-
 /proc/clear_admin_datums()
-	admin_datums.Cut()
-	for(var/client/C in admins)
+	GLOB.admin_datums.Cut()
+	for(var/client/C in GLOB.admins)
 		C.remove_admin_verbs()
 		C.holder = null
-	admins.Cut()
+	GLOB.admins.Cut()
 
-
-/hook/startup/proc/loadAdmins()
+// TODO: Use modern admin ranking n shit for this garbage
+/proc/load_admins()
 	clear_admin_datums()
 
-	if(config.admin_legacy_system)
+	if(CONFIG_GET(flag/admin_legacy_system))
 		load_admins_legacy()
 		return TRUE
 
-	establish_db_connection()
-	if(!dbcon.IsConnected())
-		error("Failed to connect to database in load_admins(). Reverting to legacy system.")
-		log_misc("Failed to connect to database in load_admins(). Reverting to legacy system.")
+	if(!SSdbcore.IsConnected())
+		warning("Failed to connect to database in load_admins(). Reverting to legacy system.")
 		load_admins_legacy()
 		return FALSE
 
-	else
-		load_admins()
-
-		if(!LAZYLEN(admin_datums))
-			error("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
-			log_misc("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
-			config.admin_legacy_system = 1
-			load_admins_legacy()
-			return FALSE
-	
-	return TRUE
-
-/proc/load_admins()
-	var/DBQuery/query = dbcon.NewQuery("SELECT ckey, rank, flags FROM players WHERE rank != 'player'")
+	var/datum/db_query/query = SSdbcore.NewQuery("SELECT ckey, lastadminrank, flags FROM [format_table_name("player")] WHERE lastadminrank != 'player'")
 	query.Execute()
 	while(query.NextRow())
 		var/ckey = query.item[1]
@@ -137,26 +122,35 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 		if(istext(flags))
 			flags = text2num(flags)
 
-		// var/permissions = load_permissions(id) // Should be used only after permission db schema rework
+		// var/permissions = load_permissions(ckey) // Should be used only after permission db schema rework
 		var/datum/admins/D = new /datum/admins(rank, flags, ckey)
 
 		//find the client for a ckey if they are connected and associate them with the new admin datum
-		D.associate(directory[ckey])
+		D.associate(GLOB.directory[ckey])
 
 	//Clear profile access
 	for(var/A in world.GetConfig("admin"))
 		world.SetConfig("APP/admin", A, null)
 
+	if(!LAZYLEN(GLOB.admin_datums))
+		warning("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
+		CONFIG_SET(flag/admin_legacy_system, 1)
+		load_admins_legacy()
+		return FALSE
+
+	return TRUE
 
 // TODO: finally rework database schema with separate permissions table
-/proc/load_permissions(var/player_id)
+/proc/load_permissions(ckey)
 	var/flag = 0
 
-	establish_db_connection()
-	if(!dbcon.IsConnected())
+	if(!SSdbcore.Connect())
 		return flag
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT fun, server, debug, permissions, mentor, moderator, admin, host FROM permissions WHERE player_id = [player_id]")
+	var/datum/db_query/query = SSdbcore.NewQuery(
+		"SELECT fun, server, debug, permissions, mentor, ban, admin, host FROM [format_table_name("permissions")] WHERE ckey = :ckey",
+		list("ckey" = ckey)
+	)
 	if(!query.Execute())
 		return flag
 
@@ -168,7 +162,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 			"debug" = query.item[3],
 			"permissions" = query.item[4],
 			"mentor" = query.item[5],
-			"moderator" = query.item[6],
+			"ban" = query.item[6],
 			"admin" = query.item[7],
 			"host" = query.item[8],
 		)

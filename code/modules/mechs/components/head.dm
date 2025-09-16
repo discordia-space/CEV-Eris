@@ -20,11 +20,11 @@
 	QDEL_NULL(radio)
 	. = ..()
 
-/obj/item/mech_component/sensors/show_missing_parts(var/mob/user)
+/obj/item/mech_component/sensors/show_missing_parts(mob/user)
 	if(!radio)
-		to_chat(user, SPAN_WARNING("It is missing a radio."))
+		to_chat(user, span_warning("It is missing a radio."))
 	if(!camera)
-		to_chat(user, SPAN_WARNING("It is missing a camera."))
+		to_chat(user, span_warning("It is missing a camera."))
 
 /obj/item/mech_component/sensors/prebuild()
 	radio = new(src)
@@ -57,13 +57,13 @@
 /obj/item/mech_component/sensors/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/robot_parts/robot_component/radio))
 		if(radio)
-			to_chat(user, SPAN_WARNING("\The [src] already has a radio installed."))
+			to_chat(user, span_warning("\The [src] already has a radio installed."))
 			return
 		if(insert_item(I, user))
 			radio = I
 	else if(istype(I, /obj/item/robot_parts/robot_component/camera))
 		if(camera)
-			to_chat(user, SPAN_WARNING("\The [src] already has a camera installed."))
+			to_chat(user, span_warning("\The [src] already has a camera installed."))
 			return
 		if(insert_item(I, user))
 			camera = I
@@ -73,13 +73,13 @@
 /obj/item/mech_component/sensors/return_diagnostics(mob/user)
 	..()
 	if(radio)
-		to_chat(user, SPAN_NOTICE(" Radio Integrity: <b>[round((((radio.max_dam - radio.total_dam) / radio.max_dam)) * 100)]%</b>"))
+		to_chat(user, span_notice(" Radio Integrity: <b>[round((((radio.max_dam - radio.total_dam) / radio.max_dam)) * 100)]%</b>"))
 	else
-		to_chat(user, SPAN_WARNING(" Radio Missing or Non-functional."))
+		to_chat(user, span_warning(" Radio Missing or Non-functional."))
 	if(camera)
-		to_chat(user, SPAN_NOTICE(" Camera Integrity: <b>[round((((camera.max_dam - camera.total_dam) / camera.max_dam)) * 100)]%</b>"))
+		to_chat(user, span_notice(" Camera Integrity: <b>[round((((camera.max_dam - camera.total_dam) / camera.max_dam)) * 100)]%</b>"))
 	else
-		to_chat(user, SPAN_WARNING(" Camera Missing or Non-functional."))
+		to_chat(user, span_warning(" Camera Missing or Non-functional."))
 
 /obj/item/mech_component/sensors/cheap
 	name = "simple exosuit sensors"

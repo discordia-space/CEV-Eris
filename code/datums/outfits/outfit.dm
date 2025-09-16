@@ -2,7 +2,7 @@ var/list/outfits_decls_
 var/list/outfits_decls_root_
 var/list/outfits_decls_by_type_
 
-/proc/outfit_by_type(var/outfit_type)
+/proc/outfit_by_type(outfit_type)
 	if(!outfits_decls_root_)
 		init_outfit_decls()
 	return outfits_decls_by_type_[outfit_type]
@@ -62,11 +62,11 @@ var/list/outfits_decls_by_type_
 	outfits_decls_by_type_[type] = src
 	dd_insertObjectList(outfits_decls_, src)
 
-/decl/hierarchy/outfit/proc/pre_equip(mob/living/carbon/human/H, var/equip_adjustments)
+/decl/hierarchy/outfit/proc/pre_equip(mob/living/carbon/human/H, equip_adjustments)
 	if((flags & OUTFIT_RESET_EQUIPMENT) && !(equip_adjustments & OUTFIT_ADJUSTMENT_NO_RESET))
 		H.delete_inventory(TRUE)
 
-/decl/hierarchy/outfit/proc/post_equip(mob/living/carbon/human/H, var/equip_adjustments)
+/decl/hierarchy/outfit/proc/post_equip(mob/living/carbon/human/H, equip_adjustments)
 	if(flags & OUTFIT_HAS_JETPACK)
 		var/obj/item/tank/jetpack/J = locate(/obj/item/tank/jetpack) in H
 		if(!J)
@@ -74,7 +74,7 @@ var/list/outfits_decls_by_type_
 		J.toggle()
 		J.toggle_valve()
 
-/decl/hierarchy/outfit/proc/equip(mob/living/carbon/human/H, var/rank, var/assignment, var/equip_adjustments)
+/decl/hierarchy/outfit/proc/equip(mob/living/carbon/human/H, rank, assignment, equip_adjustments)
 	equip_base(H, equip_adjustments)
 
 	rank = id_pda_assignment || rank
@@ -98,7 +98,7 @@ var/list/outfits_decls_by_type_
 		H.set_id_info(W)
 	return 1
 
-/decl/hierarchy/outfit/proc/equip_base(mob/living/carbon/human/H, var/equip_adjustments)
+/decl/hierarchy/outfit/proc/equip_base(mob/living/carbon/human/H, equip_adjustments)
 	pre_equip(H, equip_adjustments)
 
 	//Start with uniform,suit,backpack for additional slots
@@ -161,13 +161,13 @@ var/list/outfits_decls_by_type_
 	if(H.species && !(OUTFIT_ADJUSTMENT_SKIP_SURVIVAL_GEAR & equip_adjustments))
 		H.species.equip_survival_gear(H, flags&OUTFIT_EXTENDED_SURVIVAL)
 
-/decl/hierarchy/outfit/proc/equip_id(var/mob/living/carbon/human/H, var/rank, var/assignment, var/equip_adjustments)
+/decl/hierarchy/outfit/proc/equip_id(mob/living/carbon/human/H, rank, assignment, equip_adjustments)
 	if(!id_slot || !id_type)
 		return
 	if(OUTFIT_ADJUSTMENT_SKIP_ID_PDA & equip_adjustments)
 		return
 	var/obj/item/card/id/W = new id_type(H)
-	if(H.mind)  // decorative corpses with ID do not have a mind 
+	if(H.mind)  // decorative corpses with ID do not have a mind
 		var/datum/job/job = SSjob.GetJob(H.mind.assigned_role)
 		W.access = job.get_access()
 	if(id_desc)
@@ -180,14 +180,14 @@ var/list/outfits_decls_by_type_
 	if(H.equip_to_slot_or_store_or_drop(W, id_slot)) // keeping this here to ensure that if no PDA, ID will end up in ID slot.
 		return W
 
-/decl/hierarchy/outfit/proc/equip_pda(var/mob/living/carbon/human/H, var/rank, var/assignment, var/equip_adjustments, var/obj/item/card/id/W)
+/decl/hierarchy/outfit/proc/equip_pda(mob/living/carbon/human/H, rank, assignment, equip_adjustments, obj/item/card/id/W)
 	if(!pda_slot || !pda_type)
 		return
 	if(OUTFIT_ADJUSTMENT_SKIP_ID_PDA & equip_adjustments)
 		return
 	var/obj/item/modular_computer/pda/pda = new pda_type(H)
 	if(W && pda) // ID's start in the PDA
-		pda.attackby(W,H,TRUE) // doing it this way ensures it passes through the attackby checks like looking for an ID slot etc instead of making unconnected checks here. Also gives the user a message so they know where it is.
+		pda.attackby(W,H, sound_mute = TRUE) // doing it this way ensures it passes through the attackby checks like looking for an ID slot etc instead of making unconnected checks here. Also gives the user a message so they know where it is.
 		H.equip_to_slot_or_store_or_drop(pda, id_slot) // Doing this here so that the ID stays in the ID slot if there is no PDA on spawn.
 	return pda
 

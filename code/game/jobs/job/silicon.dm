@@ -13,7 +13,7 @@
 	wage = WAGE_NONE
 	outfit_type = /decl/hierarchy/outfit/job/silicon/ai
 
-/datum/job/ai/equip(var/mob/living/carbon/human/H, var/alt_title)
+/datum/job/ai/equip(mob/living/carbon/human/H, alt_title)
 	return FALSE
 
 /datum/job/ai/is_position_available()
@@ -33,6 +33,7 @@
 /datum/job/cyborg
 	title = "Robot"
 	flag = CYBORG
+	department = DEPARTMENT_SILICON
 	department_flag = MISC
 	faction = "CEV Eris"
 	total_positions = 2
@@ -45,7 +46,7 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/silicon/cyborg
 
-/datum/job/cyborg/equip(var/mob/living/carbon/human/H, var/alt_title)
+/datum/job/cyborg/equip(mob/living/carbon/human/H, alt_title)
 	return FALSE
 
 /obj/landmark/join/start/cyborg

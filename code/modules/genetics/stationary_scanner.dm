@@ -41,15 +41,15 @@
 /obj/machinery/cryo_slab/verb/move_inside()
 	set src in view(1)
 	set category = "Object"
-	set name = "Enter [src]"
+	set name = "Enter Pod"
 
 	if(usr.incapacitated() || !ishuman(usr))
 		return
 	if(han_solo)
-		to_chat(usr, SPAN_WARNING("[src] is already occupied!"))
+		to_chat(usr, span_warning("[src] is already occupied!"))
 		return
 	if(usr.abiotic())
-		to_chat(usr, SPAN_WARNING("Subject cannot have abiotic items on."))
+		to_chat(usr, span_warning("Subject cannot have abiotic items on."))
 		return
 	set_occupant(usr)
 	add_fingerprint(usr)
@@ -83,13 +83,13 @@
 
 /obj/machinery/cryo_slab/affect_grab(mob/user, mob/target)
 	if(han_solo)
-		to_chat(user, SPAN_NOTICE("[src] is already occupied!"))
+		to_chat(user, span_notice("[src] is already occupied!"))
 		return
 	if(target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, span_notice("Unbuckle the subject before attempting to move them."))
 		return
 	if(target.abiotic())
-		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
+		to_chat(user, span_notice("Subject cannot have abiotic items on."))
 		return
 	set_occupant(target)
 	add_fingerprint(user)
@@ -100,17 +100,17 @@
 	if(!ishuman(target))
 		return
 	if(han_solo)
-		to_chat(user, SPAN_WARNING("[src] is already occupied!"))
+		to_chat(user, span_warning("[src] is already occupied!"))
 		return
 	if(target.abiotic())
-		to_chat(user, SPAN_WARNING("Subject cannot have abiotic items on."))
+		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 	if(target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, span_notice("Unbuckle the subject before attempting to move them."))
 		return
 	user.visible_message(
-		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
-		SPAN_NOTICE("You start placing \the [target] into \the [src]."))
+		span_notice("\The [user] begins placing \the [target] into \the [src]."),
+		span_notice("You start placing \the [target] into \the [src]."))
 	if(!do_after(user, 30, src) || !Adjacent(target))
 		return
 	set_occupant(target)

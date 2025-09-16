@@ -52,7 +52,7 @@
 		var/obj/screen/movable/exosuit/E = HUDneed[i]
 		if(E && istype(E)) E.on_handle_hud(src)
 
-/mob/living/exosuit/proc/update_mech_hud_4(var/mob/living/M)
+/mob/living/exosuit/proc/update_mech_hud_4(mob/living/M)
 	if(M.client && M != src && HUDneed.len)
 		if(M in pilots)
 			for(var/i in HUDneed)

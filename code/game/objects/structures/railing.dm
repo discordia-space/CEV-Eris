@@ -36,7 +36,7 @@
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 
-/obj/structure/railing/Created(var/mob/user)
+/obj/structure/railing/Created(mob/user)
 	anchored = FALSE
 	// this way its much easier to build it, and there is no need to update_icon after that, flip will take care of that
 	spawn()
@@ -66,11 +66,11 @@
 	if(health < maxHealth)
 		switch(health / maxHealth)
 			if(0 to 0.25)
-				extra_description += SPAN_WARNING("\nIt looks severely damaged!")
+				extra_description += span_warning("\nIt looks severely damaged!")
 			if(0.25 to 0.5)
-				extra_description += SPAN_WARNING("\nIt looks damaged!")
+				extra_description += span_warning("\nIt looks damaged!")
 			if(0.5 to 1)
-				extra_description += SPAN_NOTICE("\nIt has a few scrapes and dents.")
+				extra_description += span_notice("\nIt has a few scrapes and dents.")
 	if(reinforced)
 		var/reinforcement_text = "\nIt is reinforced with rods"
 		switch(reinforcement_security)
@@ -80,7 +80,7 @@
 				reinforcement_text += ", which are loosely attached"
 			if (20 to 30)
 				reinforcement_text += ", which are a bit loose"
-		extra_description += SPAN_NOTICE("[reinforcement_text].")
+		extra_description += span_notice("[reinforcement_text].")
 	..(user, extra_description)
 
 /obj/structure/railing/take_damage(amount)
@@ -88,7 +88,7 @@
 	. *= explosion_coverage
 	if (reinforced)
 		if (reinforcement_security == 0)
-			visible_message(SPAN_WARNING("[src]'s reinforcing rods fall off!"))
+			visible_message(span_warning("[src]'s reinforcing rods fall off!"))
 			reinforced = FALSE
 			var/obj/item/stack/rodtoedit = new /obj/item/stack/rods(src.loc)
 			rodtoedit.amount = 2
@@ -98,13 +98,13 @@
 		return
 	health -= amount
 	if(health <= 0)
-		visible_message(SPAN_WARNING("\The [src] breaks down!"))
+		visible_message(span_warning("\The [src] breaks down!"))
 		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
 		new /obj/item/stack/rods(get_turf(usr))
 		qdel(src)
 	return
 
-/obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = 1)
+/obj/structure/railing/proc/NeighborsCheck(UpdateNeighbors = 1)
 	check = 0
 	var/Rturn = turn(src.dir, -90)
 	var/Lturn = turn(src.dir, 90)
@@ -141,7 +141,7 @@
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
-/obj/structure/railing/update_icon(var/UpdateNeighbors = 1)
+/obj/structure/railing/update_icon(UpdateNeighbors = 1)
 	NeighborsCheck(UpdateNeighbors)
 	cut_overlays()
 	if (!check || !anchored)
@@ -175,7 +175,7 @@
 		return 0
 
 	if(anchored)
-		to_chat(usr, SPAN_NOTICE("It is fastened to the floor therefore you can't rotate it!"))
+		to_chat(usr, span_notice("It is fastened to the floor therefore you can't rotate it!"))
 		return 0
 
 	set_dir(turn(dir, 90))
@@ -191,14 +191,14 @@
 		return 0
 
 	if(anchored)
-		to_chat(usr, SPAN_NOTICE("It is fastened to the floor therefore you can't rotate it!"))
+		to_chat(usr, span_notice("It is fastened to the floor therefore you can't rotate it!"))
 		return 0
 
 	set_dir(turn(dir, -90))
 	update_icon()
 	return
 
-/obj/structure/railing/verb/flip(var/mob/living/user as mob) // This will help push railing to remote places, such as open space turfs
+/obj/structure/railing/verb/flip(mob/living/user as mob) // This will help push railing to remote places, such as open space turfs
 	set name = "Flip Railing"
 	set category = "Object"
 	set src in oview(1)
@@ -207,11 +207,11 @@
 		return 0
 
 	if(anchored)
-		to_chat(user, SPAN_NOTICE("It is fastened to the floor therefore you can't flip it!"))
+		to_chat(user, span_notice("It is fastened to the floor therefore you can't flip it!"))
 		return 0
 
 	if(!neighbor_turf_passable())
-		to_chat(user, SPAN_NOTICE("You can't flip the [src] because something blocking it."))
+		to_chat(user, span_notice("You can't flip the [src] because something blocking it."))
 		return 0
 
 	src.loc = get_step(src, src.dir)
@@ -228,10 +228,10 @@
 		return 0
 	return 1
 
-/obj/structure/railing/affect_grab(var/mob/user, var/mob/living/target, var/state)
+/obj/structure/railing/affect_grab(mob/user, mob/living/target, state)
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
+		to_chat(user, span_danger("There's \a [occupied] in the way."))
 		return
 	if (state < GRAB_AGGRESSIVE)
 		if(user.a_intent == I_HURT)
@@ -239,13 +239,13 @@
 				target.Weaken(5)
 			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			take_damage(8)
-			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
+			visible_message(span_danger("[user] slams [target]'s face against \the [src]!"))
 			target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been slammed by [user.name] ([user.ckey] against \the [src])</font>"
 			user.attack_log += "\[[time_stamp()]\] <font color='red'>Slammed [target.name] ([target.ckey] against over \the [src])</font>"
 			msg_admin_attack("[user] slammed a [target] against \the [src].")
 			playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
 		else
-			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
+			to_chat(user, span_danger("You need a better grip to do that!"))
 			return
 	else
 		if (get_turf(target) == get_turf(src))
@@ -253,7 +253,7 @@
 		else
 			target.forceMove(get_turf(src))
 		target.Weaken(5)
-		visible_message(SPAN_DANGER("[user] throws [target] over \the [src]!"))
+		visible_message(span_danger("[user] throws [target] over \the [src]!"))
 		target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been throwed by [user.name] ([user.ckey] over \the [src])</font>"
 		user.attack_log += "\[[time_stamp()]\] <font color='red'>Throwed [target.name] ([target.ckey] over \the [src])</font>"
 		msg_admin_attack("[user] throwed a [target] over \the [src].")
@@ -271,14 +271,14 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(reinforcement_security)
-				to_chat(user, SPAN_NOTICE("You cannot remove [src]'s reinforcement when it's this tightly secured."))
+				to_chat(user, span_notice("You cannot remove [src]'s reinforcement when it's this tightly secured."))
 			else if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				if(!reinforced)
-					to_chat(user, (anchored ? SPAN_NOTICE("You have unfastened \the [src] from the floor.") : SPAN_NOTICE("You have fastened \the [src] to the floor.")))
+					to_chat(user, (anchored ? span_notice("You have unfastened \the [src] from the floor.") : span_notice("You have fastened \the [src] to the floor.")))
 					anchored = !anchored
 					update_icon()
 				else if (!reinforcement_security)
-					to_chat(user, SPAN_NOTICE("You remove the reinforcing rods from [src]"))
+					to_chat(user, span_notice("You remove the reinforcing rods from [src]"))
 					var/obj/item/stack/rodtoedit = new /obj/item/stack/rods(get_turf(usr))
 					rodtoedit.amount = 2
 					reinforced = FALSE
@@ -289,23 +289,23 @@
 		if(QUALITY_WELDING)
 			if(health < maxHealth)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user.visible_message(SPAN_NOTICE("\The [user] repairs some damage to \the [src]."), SPAN_NOTICE("You repair some damage to \the [src]."))
+					user.visible_message(span_notice("\The [user] repairs some damage to \the [src]."), span_notice("You repair some damage to \the [src]."))
 					health = min(health+(maxHealth/5), maxHealth)//max(health+(maxHealth/5), maxHealth) // 20% repair per application
 			return
 
 		if(QUALITY_BOLT_TURNING)
 			if(!anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
+					user.visible_message(span_notice("\The [user] dismantles \the [src]."), span_notice("You dismantle \the [src]."))
 					drop_materials(get_turf(user), user)
 					qdel(src)
 			if(reinforced)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					if(reinforcement_security)
-						user.visible_message(SPAN_NOTICE("[user] unsecures [src]'s reinforcing rods."), SPAN_NOTICE("You unsecure [src]'s reinforcing rods."))
+						user.visible_message(span_notice("[user] unsecures [src]'s reinforcing rods."), span_notice("You unsecure [src]'s reinforcing rods."))
 						reinforcement_security = 0
 					else
-						user.visible_message(SPAN_NOTICE("[user] secures [src]'s reinforcing rods."), SPAN_NOTICE("You secure [src]'s reinforcing rods."))
+						user.visible_message(span_notice("[user] secures [src]'s reinforcing rods."), span_notice("You secure [src]'s reinforcing rods."))
 						reinforcement_security = 40
 
 			return
@@ -321,13 +321,13 @@
 				rod.use(2)
 				reinforced = TRUE
 				reinforcement_security = 40
-				user.visible_message(SPAN_NOTICE("[user] reinforces [src] with rods."), SPAN_NOTICE("You reinforce [src] with rods."))
+				user.visible_message(span_notice("[user] reinforces [src] with rods."), span_notice("You reinforce [src] with rods."))
 				update_icon()
 				return
 			else
-				to_chat(user, SPAN_NOTICE("This is not enough rods to reinforce [src], it requires two."))
+				to_chat(user, span_notice("This is not enough rods to reinforce [src], it requires two."))
 		else
-			to_chat(user, SPAN_NOTICE("In its current state, [src] is not valid to reinforce."))
+			to_chat(user, span_notice("In its current state, [src] is not valid to reinforce."))
 			return
 	playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
 	take_damage(I.force)
@@ -338,7 +338,7 @@
 	if(damage)
 		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		M.visible_message(span_danger("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		take_damage(damage)
 	else
@@ -348,7 +348,7 @@
 	if(!can_climb(user))
 		return
 
-	usr.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
+	usr.visible_message(span_warning("[user] starts climbing onto \the [src]!"))
 	climbers |= user
 
 	var/delay = (issmall(user) ? 20 : 34)
@@ -362,7 +362,7 @@
 		return
 
 	if(!neighbor_turf_passable())
-		to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
+		to_chat(user, span_danger("You can't climb there, the way is blocked."))
 		climbers -= user
 		return
 
@@ -371,11 +371,11 @@
 	else
 		user.forceMove(get_turf(src))
 
-	user.visible_message(SPAN_WARNING("[user] climbed over \the [src]!"))
+	user.visible_message(span_warning("[user] climbed over \the [src]!"))
 	if(!anchored)	take_damage(maxHealth) // Fatboy
 	climbers -= user
 
-/obj/structure/railing/get_fall_damage(var/turf/from, var/turf/dest)
+/obj/structure/railing/get_fall_damage(turf/from, turf/dest)
 	var/damage = health * 0.4
 
 	if (from && dest)

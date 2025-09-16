@@ -7,7 +7,7 @@
 	var/datum/malf_research_ability/next			// Next research (if applicable).
 
 
-/datum/malf_research_ability/Process(var/time = 0)
+/datum/malf_research_ability/Process(time = 0)
 	invested += time
 	if(invested >= price)
 		unlocked = 1

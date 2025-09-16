@@ -16,7 +16,7 @@
 		return 1
 
 /*
-/obj/item/projectile/forcebolt/strong/on_hit(var/atom/target)
+/obj/item/projectile/forcebolt/strong/on_hit(atom/target)
 
 	// NONE OF THIS WORKS. DO NOT USE.
 	var/throwdir = null

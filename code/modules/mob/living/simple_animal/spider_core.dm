@@ -24,6 +24,7 @@
 	hunger_enabled = FALSE
 	pass_flags = PASSTABLE
 	universal_understand = 1
+	holder_type = /obj/item/holder/carrion
 	density = TRUE //Should be 0, but then these things would be a nightmare to kill.
 	faction = "spiders"
 
@@ -35,27 +36,32 @@
 		/mob/living/simple_animal/spider_core/proc/generate_body))
 
 /mob/living/simple_animal/spider_core/death()
-	gibs(loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
+	var/obj/item/organ/internal/core = locate(/obj/item/organ/internal/carrion/core) in contents
+	if(core)
+		core.forceMove(loc)
+		core.status |= ORGAN_DEAD // todo: make wound somehow
+		core.refresh_damage()
+	playsound(loc, 'sound/voice/shriek1.ogg', 50)
 	qdel(src)
-	
+
 
 /mob/living/simple_animal/spider_core/proc/generate_body()
 	set name = "Build a Body"
 	set desc = "Build a new body for you to inhabit."
 	set category = "Abilities"
 
-	to_chat(src, SPAN_NOTICE("You start building a body"))
+	to_chat(src, span_notice("You start building a body"))
 
 	if(!do_after(src, time_to_generate_body, src))
-		to_chat(src, SPAN_NOTICE("The new body is not ready yet, it takes a little over a minute to make one. You have to stand still."))
+		to_chat(src, span_notice("The new body is not ready yet, it takes a little over a minute to make one. You have to stand still."))
 		return
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(loc)
 	H.randomize_appearance()
-	visible_message(SPAN_DANGER("[src] morphs into a human body!"))
+	visible_message(span_danger("[src] morphs into a human body!"))
 	gibs(loc, null)
 	var/obj/item/organ/internal/carrion/core/core = locate(/obj/item/organ/internal/carrion/core) in contents
-	
+
 	var/list/powers_to_buy = list()
 
 	H.faction = "spiders"

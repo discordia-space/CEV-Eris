@@ -116,7 +116,7 @@
 	for(var/mob/living/L in T)
 		if(L.anchored || horizontal && L.mob_size > 0 && L.density)
 			if(user)
-				to_chat(user, SPAN_DANGER("There's something large on top of [src], preventing it from opening."))
+				to_chat(user, span_danger("There's something large on top of [src], preventing it from opening."))
 			return FALSE
 	return TRUE
 
@@ -231,7 +231,7 @@
 
 /obj/structure/closet/proc/toggle(mob/living/user)
 	if(!(opened ? close(user) : open(user)))
-		to_chat(user, SPAN_NOTICE("It won't budge!"))
+		to_chat(user, span_notice("It won't budge!"))
 		return
 
 /obj/structure/closet/proc/togglelock(mob/user as mob)
@@ -240,24 +240,24 @@
 		return
 
 	if(src.opened)
-		to_chat(user, SPAN_NOTICE("Close the [ctype] first."))
+		to_chat(user, span_notice("Close the [ctype] first."))
 		return
 	if(src.broken)
-		to_chat(user, SPAN_WARNING("The [ctype] appears to be broken."))
+		to_chat(user, span_warning("The [ctype] appears to be broken."))
 		return
 	if(CanToggleLock(user))
 		set_locked(!locked, user)
 	else
-		to_chat(user, SPAN_NOTICE("Access Denied"))
+		to_chat(user, span_notice("Access Denied"))
 
 /obj/structure/closet/AltClick(mob/user as mob)
 	if(Adjacent(user))
 		src.togglelock(user)
 
-/obj/structure/closet/proc/CanToggleLock(var/mob/user)
+/obj/structure/closet/proc/CanToggleLock(mob/user)
 	return allowed(user)
 
-/obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
+/obj/structure/closet/proc/set_locked(newlocked, mob/user = null)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
 	if(!secure)
 		return
@@ -271,12 +271,11 @@
 	else
 		playsound(src.loc, lock_off_sound, 60, 1, -3)
 	if(user)
-		for(var/mob/O in viewers(user, 3))
-			O.show_message( SPAN_NOTICE("The [ctype] has been [locked ? null : "un"]locked by [user]."), 1)
+		user.visible_message(span_notice("The [ctype] has been [locked ? null : "un"]locked by [user]."), range = 3)
 	update_icon()
 
 //Cham Projector Exception
-/obj/structure/closet/proc/store_misc(var/stored_units)
+/obj/structure/closet/proc/store_misc(stored_units)
 	var/added_units = 0
 	for(var/obj/effect/dummy/chameleon/AD in src.loc)
 		if((stored_units + added_units) > storage_capacity)
@@ -285,7 +284,7 @@
 		added_units++
 	return added_units
 
-/obj/structure/closet/proc/store_items(var/stored_units)
+/obj/structure/closet/proc/store_items(stored_units)
 	var/added_units = 0
 	for(var/obj/item/I in src.loc)
 		var/item_size = CEILING(I.w_class / 2, 1)
@@ -296,7 +295,7 @@
 			added_units += item_size
 	return added_units
 
-/obj/structure/closet/proc/store_mobs(var/stored_units)
+/obj/structure/closet/proc/store_mobs(stored_units)
 	var/added_units = 0
 	for(var/mob/living/M in src.loc)
 		if(M.buckled || M.pinned.len)
@@ -372,13 +371,13 @@
 					welded = !welded
 					update_icon()
 					visible_message(
-						SPAN_NOTICE("[src] has been disassembled by [user]."),
+						span_notice("[src] has been disassembled by [user]."),
 						"You hear [tool_type]."
 					)
 			else
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					visible_message(
-						SPAN_NOTICE("\The [src] has been [tool_type == QUALITY_BOLT_TURNING ? "taken" : "cut"] apart by [user] with \the [I]."),
+						span_notice("\The [src] has been [tool_type == QUALITY_BOLT_TURNING ? "taken" : "cut"] apart by [user] with \the [I]."),
 						"You hear [tool_type]."
 					)
 					drop_materials(drop_location())
@@ -389,7 +388,7 @@
 			if(opened)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					visible_message(
-						SPAN_NOTICE("\The [src] has been [tool_type == QUALITY_BOLT_TURNING ? "taken" : "cut"] apart by [user] with \the [I]."),
+						span_notice("\The [src] has been [tool_type == QUALITY_BOLT_TURNING ? "taken" : "cut"] apart by [user] with \the [I]."),
 						"You hear [tool_type]."
 					)
 					drop_materials(drop_location())
@@ -398,7 +397,7 @@
 
 		if(QUALITY_WIRE_CUTTING)
 			if(rigged)
-				to_chat(user, SPAN_NOTICE("You cut away the wiring."))
+				to_chat(user, span_notice("You cut away the wiring."))
 				new /obj/item/stack/cable_coil(drop_location(), 1)
 				playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 				rigged = FALSE
@@ -407,8 +406,8 @@
 			if(!(secure && locked))
 				return
 			user.visible_message(
-			SPAN_WARNING("[user] picks in wires of the [src.name] with a multitool"), \
-			SPAN_WARNING("[pick("Picking wires in [src.name] lock", "Hacking [src.name] security systems", "Pulsing in locker controller")].")
+			span_warning("[user] picks in wires of the [src.name] with a multitool"), \
+			span_warning("[pick("Picking wires in [src.name] lock", "Hacking [src.name] security systems", "Pulsing in locker controller")].")
 			)
 			if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_MEC))
 				if(hack_stage < hack_require)
@@ -426,18 +425,18 @@
 				//Cognition can be used to speed up the proccess
 					if(prob (user.stats.getStat(STAT_COG)))
 						hack_stage = hack_require
-						to_chat(user, SPAN_NOTICE("You discover an exploit in [src]'s security system and it shuts down! Now you just need to pulse the lock."))
+						to_chat(user, span_notice("You discover an exploit in [src]'s security system and it shuts down! Now you just need to pulse the lock."))
 					else
 						hack_stage++
 
-					to_chat(user, SPAN_NOTICE("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen."))
+					to_chat(user, span_notice("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen."))
 				else if(hack_stage >= hack_require)
 					locked = FALSE
 					broken = TRUE
 					update_icon()
 					user.visible_message(
-					SPAN_WARNING("[user] [locked?"locks":"unlocks"] [name] with a multitool,"), \
-					SPAN_WARNING("You [locked? "locked" : "unlocked"] [name] with multitool")
+					span_warning("[user] [locked?"locks":"unlocks"] [name] with a multitool,"), \
+					span_warning("You [locked? "locked" : "unlocked"] [name] with multitool")
 					)
 				return
 
@@ -453,9 +452,9 @@
 			for(var/obj/item/II in LB.contents)
 				LB.remove_from_storage(II, T)
 			user.visible_message(
-				SPAN_NOTICE("[user] empties \the [LB] into \the [src]."), \
-				SPAN_NOTICE("You empty \the [LB] into \the [src]."), \
-				SPAN_NOTICE("You hear rustling of clothes.")
+				span_notice("[user] empties \the [LB] into \the [src]."), \
+				span_notice("You empty \the [LB] into \the [src]."), \
+				span_notice("You hear rustling of clothes.")
 			)
 			return
 		usr.unEquip(I, src.loc)
@@ -463,15 +462,15 @@
 	else if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = I
 		if(rigged)
-			to_chat(user, SPAN_NOTICE("[src] is already rigged!"))
+			to_chat(user, span_notice("[src] is already rigged!"))
 			return
 		if(C.use(1))
-			to_chat(user, SPAN_NOTICE("You rig [src]."))
+			to_chat(user, span_notice("You rig [src]."))
 			rigged = TRUE
 			return
 	else if(istype(I, /obj/item/device/radio/electropack))
 		if(rigged)
-			to_chat(user, SPAN_NOTICE("You attach [I] to [src]."))
+			to_chat(user, span_notice("You attach [I] to [src]."))
 			user.drop_item()
 			I.forceMove(src)
 			return
@@ -507,7 +506,7 @@
 			return
 	step_towards(O, src.loc)
 	if(user != O)
-		user.show_viewers(SPAN_DANGER("[user] stuffs [O] into [src]!"))
+		user.show_viewers(span_danger("[user] stuffs [O] into [src]!"))
 	src.add_fingerprint(user)
 
 /obj/structure/closet/attack_ai(mob/user)
@@ -519,7 +518,7 @@
 		return
 
 	if(!src.open())
-		to_chat(user, SPAN_NOTICE("It won't budge!"))
+		to_chat(user, span_notice("It won't budge!"))
 
 /obj/structure/closet/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
@@ -532,15 +531,15 @@
 /obj/structure/closet/attack_self_tk(mob/user as mob)
 	src.add_fingerprint(user)
 	if(!src.toggle())
-		to_chat(usr, SPAN_NOTICE("It won't budge!"))
+		to_chat(usr, span_notice("It won't budge!"))
 
-/obj/structure/closet/emag_act(var/remaining_charges, var/mob/user)
+/obj/structure/closet/emag_act(remaining_charges, mob/user)
 	if(!broken)
 		locked = FALSE
 		broken = TRUE
 		update_icon()
 		playsound(src.loc, "sparks", 60, 1)
-		to_chat(user, SPAN_NOTICE("You unlock \the [src]."))
+		to_chat(user, span_notice("You unlock \the [src]."))
 		return TRUE
 
 /obj/structure/closet/emp_act(severity)
@@ -568,7 +567,7 @@
 		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else
-		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
+		to_chat(usr, span_warning("This mob type can't use this verb."))
 
 /obj/structure/closet/verb/verb_togglelock()
 	set src in oview(1) // One square distance
@@ -582,7 +581,7 @@
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
-		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
+		to_chat(usr, span_warning("This mob type can't use this verb."))
 
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
@@ -615,7 +614,7 @@
 	if(damage)
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		attack_animation(M)
-		visible_message(SPAN_DANGER("[M] [attack_message] the [src]!"))
+		visible_message(span_danger("[M] [attack_message] the [src]!"))
 		damage(damage)
 	else
 		attack_hand(M)
@@ -627,7 +626,7 @@
 		return 0 //closed but not welded...
 	return 1
 
-/obj/structure/closet/proc/mob_breakout(var/mob/living/escapee)
+/obj/structure/closet/proc/mob_breakout(mob/living/escapee)
 	var/breakout_time = 2 //2 minutes by default
 
 	if(breakout || !req_breakout())
@@ -636,9 +635,9 @@
 	escapee.setClickCooldown(100)
 
 	//okay, so the closet is either welded or locked... resist!!!
-	to_chat(escapee, SPAN_WARNING("You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)"))
+	to_chat(escapee, span_warning("You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)"))
 
-	visible_message(SPAN_DANGER("\The [src] begins to shake violently!"))
+	visible_message(span_danger("\The [src] begins to shake violently!"))
 
 	breakout = 1 //can't think of a better way to do this right now.
 	for(var/i in 1 to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
@@ -659,8 +658,8 @@
 
 	//Well then break it!
 	breakout = 0
-	to_chat(escapee, SPAN_WARNING("You successfully break out!"))
-	visible_message(SPAN_DANGER("\The [escapee] successfully broke out of \the [src]!"))
+	to_chat(escapee, span_warning("You successfully break out!"))
+	visible_message(span_danger("\The [escapee] successfully broke out of \the [src]!"))
 	playsound(src.loc, 'sound/effects/grillehit.ogg', 100, 1)
 	break_open()
 	animate_shake()

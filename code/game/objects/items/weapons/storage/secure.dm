@@ -46,21 +46,21 @@
 		if (istype(W, /obj/item/tool/screwdriver))
 			if (do_after(user, 20, src))
 				src.open =! src.open
-				user.show_message(SPAN_NOTICE("You [src.open ? "open" : "close"] the service panel."))
+				user.show_message(span_notice("You [src.open ? "open" : "close"] the service panel."))
 			return
 		if ((istype(W, /obj/item/tool/multitool)) && (src.open == 1)&& (!src.l_hacking))
-			user.show_message(SPAN_NOTICE("Now attempting to reset internal memory, please hold."), 1)
+			user.show_message(span_notice("Now attempting to reset internal memory, please hold."), 1)
 			src.l_hacking = 1
 			if (do_after(usr, 100, src))
 				if (prob(40))
 					src.l_setshort = 1
 					src.l_set = 0
-					user.show_message(SPAN_NOTICE("Internal memory reset. Please give it a few seconds to reinitialize."), 1)
+					user.show_message(span_notice("Internal memory reset. Please give it a few seconds to reinitialize."), 1)
 					sleep(80)
 					src.l_setshort = 0
 					src.l_hacking = 0
 				else
-					user.show_message(SPAN_WARNING("Unable to reset internal memory."), 1)
+					user.show_message(span_warning("Unable to reset internal memory."), 1)
 					src.l_hacking = 0
 			else	src.l_hacking = 0
 			return
@@ -92,8 +92,8 @@
 	message = text("[]", src.code)
 	if (!src.locked)
 		message = "*****"
-	dat += text("<HR>\n>[]<BR>\n<A href='?src=\ref[];type=1'>1</A>-<A href='?src=\ref[];type=2'>2</A>-<A href='?src=\ref[];type=3'>3</A><BR>\n<A href='?src=\ref[];type=4'>4</A>-<A href='?src=\ref[];type=5'>5</A>-<A href='?src=\ref[];type=6'>6</A><BR>\n<A href='?src=\ref[];type=7'>7</A>-<A href='?src=\ref[];type=8'>8</A>-<A href='?src=\ref[];type=9'>9</A><BR>\n<A href='?src=\ref[];type=R'>R</A>-<A href='?src=\ref[];type=0'>0</A>-<A href='?src=\ref[];type=E'>E</A><BR>\n</TT>", message, src, src, src, src, src, src, src, src, src, src, src, src)
-	user << browse(dat, "window=caselock;size=300x280")
+	dat += text("<HR>\n>[]<BR>\n<A href='byond://?src=\ref[];type=1'>1</A>-<A href='byond://?src=\ref[];type=2'>2</A>-<A href='byond://?src=\ref[];type=3'>3</A><BR>\n<A href='byond://?src=\ref[];type=4'>4</A>-<A href='byond://?src=\ref[];type=5'>5</A>-<A href='byond://?src=\ref[];type=6'>6</A><BR>\n<A href='byond://?src=\ref[];type=7'>7</A>-<A href='byond://?src=\ref[];type=8'>8</A>-<A href='byond://?src=\ref[];type=9'>9</A><BR>\n<A href='byond://?src=\ref[];type=R'>R</A>-<A href='byond://?src=\ref[];type=0'>0</A>-<A href='byond://?src=\ref[];type=E'>E</A><BR>\n</TT>", message, src, src, src, src, src, src, src, src, src, src, src, src)
+	user << browse(HTML_SKELETON(dat), "window=caselock;size=300x280")
 
 /obj/item/storage/secure/Topic(href, href_list)
 	..()
@@ -128,7 +128,7 @@
 			return
 	return
 
-/obj/item/storage/secure/emag_act(var/remaining_charges, var/mob/user, var/feedback)
+/obj/item/storage/secure/emag_act(remaining_charges, mob/user, feedback)
 	if(!emagged)
 		emagged = 1
 		src.overlays += image('icons/obj/storage.dmi', icon_sparking)
@@ -155,7 +155,7 @@
 
 /obj/item/storage/secure/briefcase/attack_hand(mob/user as mob)
 	if ((src.loc == user) && (src.locked == 1))
-		to_chat(usr, SPAN_WARNING("[src] is locked and cannot be opened!"))
+		to_chat(usr, span_warning("[src] is locked and cannot be opened!"))
 	else if ((src.loc == user) && (!src.locked))
 		src.open(usr)
 	else

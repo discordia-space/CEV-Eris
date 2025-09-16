@@ -36,7 +36,7 @@
 			var/datum/computer/file/embedded_program/docking/C = locate(controller_tag)
 
 			if(!istype(C))
-				world << SPAN_DANGER("warning: shuttle with docking tag [controller_tag] could not find it's controller!")
+				world << span_danger("warning: shuttle with docking tag [controller_tag] could not find it's controller!")
 			else
 				destination_dock_controllers[destination] = C
 
@@ -47,7 +47,7 @@
 /datum/shuttle/multi_shuttle/current_dock_target()
 	return destination_dock_targets[last_location]
 
-/datum/shuttle/multi_shuttle/move(var/area/origin, var/area/destination)
+/datum/shuttle/multi_shuttle/move(area/origin, area/destination)
 	..()
 	last_move = world.time
 	if (destination == src.origin)
@@ -59,14 +59,14 @@
 	if(cloaked || isnull(departure_message))
 		return
 
-	command_announcement.Announce(departure_message,(announcer ? announcer : "[boss_name]"))
+	priority_announce(departure_message,(announcer || "[GLOB.boss_name]"))
 
 /datum/shuttle/multi_shuttle/proc/announce_arrival()
 
 	if(cloaked || isnull(arrival_message))
 		return
 
-	command_announcement.Announce(arrival_message,(announcer ? announcer : "[boss_name]"))
+	priority_announce(arrival_message,(announcer || "[GLOB.boss_name]"))
 
 
 /obj/machinery/computer/shuttle_control/multi
@@ -97,9 +97,9 @@
 	else
 		dat += "<font color='green'>Engines ready.</font><br>"
 
-	dat += "<br><b><A href='?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></b><br>"
-	dat += "<b><A href='?src=\ref[src];move_multi=[1]'>Move ship</A></b><br>"
-	dat += "<b><A href='?src=\ref[src];start=[1]'>Return to base</A></b></center>"
+	dat += "<br><b><A href='byond://?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></b><br>"
+	dat += "<b><A href='byond://?src=\ref[src];move_multi=[1]'>Move ship</A></b><br>"
+	dat += "<b><A href='byond://?src=\ref[src];start=[1]'>Return to base</A></b></center>"
 
 	//Docking
 	dat += "<center><br><br>"
@@ -122,16 +122,16 @@
 
 		if(override_en) dat += " <font color='red'>(Override Enabled)</font>"
 
-		dat += ". <A href='?src=\ref[src];refresh=[1]'>\[Refresh\]</A><br><br>"
+		dat += ". <A href='byond://?src=\ref[src];refresh=[1]'>\[Refresh\]</A><br><br>"
 
 		switch(docking_status)
 			if("undocked")
-				dat += "<b><A href='?src=\ref[src];dock_command=[1]'>Dock</A></b>"
+				dat += "<b><A href='byond://?src=\ref[src];dock_command=[1]'>Dock</A></b>"
 			if("docked")
-				dat += "<b><A href='?src=\ref[src];undock_command=[1]'>Undock</A></b>"
+				dat += "<b><A href='byond://?src=\ref[src];undock_command=[1]'>Undock</A></b>"
 	dat += "</center>"
 
-	user << browse("[dat]", "window=[shuttle_tag]shuttlecontrol;size=300x600")
+	user << browse(HTML_SKELETON_TITLE("Shuttle Control", dat), "window=[shuttle_tag]shuttlecontrol;size=300x600")
 
 //check if we're undocked, give option to force launch
 /obj/machinery/computer/shuttle_control/proc/check_docking(datum/shuttle/multi_shuttle/MS)
@@ -165,7 +165,7 @@
 		return
 
 	if (MS.moving_status != SHUTTLE_IDLE)
-		usr << "\blue [shuttle_tag] vessel is moving."
+		usr << span_blue("[shuttle_tag] vessel is moving.")
 		return
 
 	if(href_list["dock_command"])
@@ -178,11 +178,11 @@
 
 	if(href_list["start"])
 		if(MS.at_origin)
-			usr << "\red You are already at your home base."
+			usr << span_red("You are already at your home base.")
 			return
 
 		if((MS.last_move + MS.cooldown*10) > world.time)
-			usr << "\red The ship's drive is inoperable while the engines are charging."
+			usr << span_red("The ship's drive is inoperable while the engines are charging.")
 			return
 
 		if(!check_docking(MS))
@@ -190,7 +190,7 @@
 			return
 
 		if(!MS.return_warning)
-			usr << "\red Returning to your home base will end your mission. If you are sure, press the button again."
+			usr << span_red("Returning to your home base will end your mission. If you are sure, press the button again.")
 			//TODO: Actually end the mission.
 			MS.return_warning = 1
 			return
@@ -203,11 +203,11 @@
 	if(href_list["toggle_cloak"])
 
 		MS.cloaked = !MS.cloaked
-		usr << "\red Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival."
+		usr << span_red("Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival.")
 
 	if(href_list["move_multi"])
 		if((MS.last_move + MS.cooldown*10) > world.time)
-			usr << "\red The ship's drive is inoperable while the engines are charging."
+			usr << span_red("The ship's drive is inoperable while the engines are charging.")
 			return
 
 		if(!check_docking(MS))
@@ -217,7 +217,7 @@
 		var/choice = input("Select a destination.") as null|anything in MS.destinations
 		if(!choice) return
 
-		usr << "\blue [shuttle_tag] main computer recieved message."
+		usr << span_blue("[shuttle_tag] main computer recieved message.")
 
 		if(MS.at_origin)
 			MS.announce_arrival()

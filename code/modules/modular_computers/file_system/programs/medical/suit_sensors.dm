@@ -98,12 +98,12 @@
 	var/list/crewmembers = list()
 	for(var/z_level in GLOB.maps_data.station_levels)
 		crewmembers += crew_repository.health_data(z_level)
-	crewmembers = sortNames(crewmembers)
+	sortNames(crewmembers)
 	//now lets get problematic crewmembers in separate list so they could be shown first
 	var/list/crewmembers_problematic = list()
 	var/list/crewmembers_goodbois = list()
 
-	for(var/i = 1, i <=crewmembers.len, i++)
+	for(var/i = 1; i <=crewmembers.len; i++)
 		var/list/entry = crewmembers[i]
 		if(!search || findtext(entry["name"],search))
 			if(entry["alert"] || entry["isCriminal"])
@@ -120,7 +120,7 @@
 	data["search"] = search ? search : "Search"
 	return data
 
-/datum/nano_module/crew_monitor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.default_state)
+/datum/nano_module/crew_monitor/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 	var/list/data = nano_ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)

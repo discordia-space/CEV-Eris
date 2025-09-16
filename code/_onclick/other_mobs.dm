@@ -8,7 +8,7 @@
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity, params)
+/mob/living/carbon/human/UnarmedAttack(atom/A, proximity, params)
 
 	if(!..())
 		return
@@ -20,7 +20,9 @@
 	if(istype(G) && G.Touch(A, 1))
 		return
 
-	A.attack_hand(src, params)
+	. = A.attack_hand(src, params)
+	if (.)
+		animate_interact(A, INTERACT_GENERIC)
 
 /atom/proc/attack_hand(mob/user as mob, params)
 	. = FALSE
@@ -88,10 +90,10 @@
 	// 	return ui_interact(user)
 	// return FALSE
 
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
+/mob/living/carbon/human/RestrainedClickOn(atom/A)
 	return
 
-/mob/living/carbon/human/RangedAttack(var/atom/A)
+/mob/living/carbon/human/RangedAttack(atom/A)
 	if((istype(A, /turf/floor) || istype(A, /obj/structure/catwalk)) && isturf(loc) && shadow && !is_physically_disabled()) //Climbing through openspace
 		var/turf/T = get_turf(A)
 		if(T.Adjacent(shadow))
@@ -117,16 +119,16 @@
 				if(!helper)
 					return
 
-			visible_message(SPAN_WARNING("[src] starts climbing onto \the [A]!"))
-			shadow.visible_message(SPAN_WARNING("[shadow] starts climbing onto \the [A]!"))
+			visible_message(span_warning("[src] starts climbing onto \the [A]!"))
+			shadow.visible_message(span_warning("[shadow] starts climbing onto \the [A]!"))
 			var/delay = 50
 			if(do_after(src, max(delay * src.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66), helper))
-				visible_message(SPAN_WARNING("[src] climbs onto \the [A]!"))
-				shadow.visible_message(SPAN_WARNING("[shadow] climbs onto \the [A]!"))
+				visible_message(span_warning("[src] climbs onto \the [A]!"))
+				shadow.visible_message(span_warning("[shadow] climbs onto \the [A]!"))
 				src.Move(T)
 			else
-				visible_message(SPAN_WARNING("[src] gives up on trying to climb onto \the [A]!"))
-				shadow.visible_message(SPAN_WARNING("[shadow] gives up on trying to climb onto \the [A]!"))
+				visible_message(span_warning("[src] gives up on trying to climb onto \the [A]!"))
+				shadow.visible_message(span_warning("[shadow] gives up on trying to climb onto \the [A]!"))
 			return
 
 	//PERK_ABSOLUTE_GRAB
@@ -140,7 +142,7 @@
 	if(get_active_mutation(src, MUTATION_TELEKINESIS))
 		A.attack_tk(src)
 
-/mob/living/RestrainedClickOn(var/atom/A)
+/mob/living/RestrainedClickOn(atom/A)
 	return
 
 /*
@@ -148,10 +150,10 @@
 	Nothing happening here
 */
 
-/mob/living/carbon/slime/RestrainedClickOn(var/atom/A)
+/mob/living/carbon/slime/RestrainedClickOn(atom/A)
 	return
 
-/mob/living/carbon/slime/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/carbon/slime/UnarmedAttack(atom/A, proximity)
 
 	if(!..())
 		return
@@ -167,7 +169,7 @@
 
 		switch(src.a_intent)
 			if (I_HELP) // We just poke the other
-				M.visible_message(SPAN_NOTICE("[src] gently pokes [M]!"), SPAN_NOTICE("[src] gently pokes you!"))
+				M.visible_message(span_notice("[src] gently pokes [M]!"), span_notice("[src] gently pokes you!"))
 			if (I_DISARM) // We stun the target, with the intention to feed
 				var/stunprob = 1
 				var/power = max(0, min(10, (powerlevel + rand(0, 3))))
@@ -188,7 +190,7 @@
 
 				if(prob(stunprob))
 					powerlevel = max(0, powerlevel-3)
-					M.visible_message(SPAN_DANGER("[src] has shocked [M]!"), SPAN_DANGER("[src] has shocked you!"))
+					M.visible_message(span_danger("[src] has shocked [M]!"), span_danger("[src] has shocked you!"))
 					M.Weaken(power)
 					M.Stun(power)
 					M.stuttering = max(M.stuttering, power)
@@ -200,10 +202,10 @@
 					if(prob(stunprob) && powerlevel >= 8)
 						M.adjustFireLoss(powerlevel * rand(6, 10))
 				else if(prob(40))
-					M.visible_message(SPAN_DANGER("[src] has pounced at [M]!"), SPAN_DANGER("[src] has pounced at you!"))
+					M.visible_message(span_danger("[src] has pounced at [M]!"), span_danger("[src] has pounced at you!"))
 					M.Weaken(power)
 				else
-					M.visible_message(SPAN_DANGER("[src] has tried to pounce at [M]!"), SPAN_DANGER("[src] has tried to pounce at you!"))
+					M.visible_message(span_danger("[src] has tried to pounce at [M]!"), span_danger("[src] has tried to pounce at you!"))
 				M.updatehealth()
 			if (I_GRAB) // We feed
 				Wrap(M)
@@ -221,7 +223,7 @@
 /*
 	Animals
 */
-/mob/living/simple_animal/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/simple_animal/UnarmedAttack(atom/A, proximity)
 
 	if(!..())
 		return

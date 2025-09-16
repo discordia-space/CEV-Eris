@@ -92,7 +92,7 @@
 	if(RCon)
 		..()
 	else // RCON wire cut
-		to_chat(usr, SPAN_WARNING("Connection error: Destination Unreachable."))
+		to_chat(usr, span_warning("Connection error: Destination Unreachable."))
 
 	// Cyborgs standing next to the SMES can play with the wiring.
 	if(isrobot(usr) && Adjacent(usr) && open_hatch)
@@ -134,7 +134,7 @@
 // Proc: total_system_failure()
 // Parameters: 2 (intensity - how strong the failure is, user - person which caused the failure)
 // Description: Checks the sensors for alerts. If change (alerts cleared or detected) occurs, calls for icon update.
-/obj/machinery/power/smes/buildable/proc/total_system_failure(var/intensity = 0, var/mob/user as mob)
+/obj/machinery/power/smes/buildable/proc/total_system_failure(intensity = 0, mob/user as mob)
 	// SMESs store very large amount of power. If someone screws up (ie: Disables safeties and attempts to modify the SMES) very bad things happen.
 	// Bad things are based on charge percentage.
 	// Possible effects:
@@ -164,7 +164,7 @@
 		if(G.siemens_coefficient == 0)
 			user_protected = 1
 	log_game("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [usr.ckey], Intensity: [intensity]/100")
-	message_admins("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [usr.ckey], Intensity: [intensity]/100 - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>")
+	message_admins("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [usr.ckey], Intensity: [intensity]/100 - [ADMIN_JMP(src)]")
 
 
 	switch (intensity)
@@ -255,7 +255,7 @@
 // Proc: apcs_overload()
 // Parameters: 3 (failure_chance - chance to actually break the APC, overload_chance - Chance of breaking lights, reboot_chance - Chance of temporarily disabling the APC)
 // Description: Damages output powernet by power surge. Destroys few APCs and lights, depending on parameters.
-/obj/machinery/power/smes/buildable/proc/apcs_overload(var/failure_chance, var/overload_chance, var/reboot_chance)
+/obj/machinery/power/smes/buildable/proc/apcs_overload(failure_chance, overload_chance, reboot_chance)
 	if (!src.powernet)
 		return
 
@@ -282,10 +282,10 @@
 // Proc: attackby()
 // Parameters: 2 (W - object that was used on this machine, user - person which used the object)
 // Description: Handles tool interaction. Allows deconstruction/upgrading/fixing.
-/obj/machinery/power/smes/buildable/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/power/smes/buildable/attackby(obj/item/W as obj, mob/user as mob)
 	// No more disassembling of overloaded SMESs. You broke it, now enjoy the consequences.
 	if (failing)
-		to_chat(user, SPAN_WARNING("The [src]'s screen is flashing with alerts. It seems to be overloaded! Touching it now is probably not a good idea."))
+		to_chat(user, span_warning("The [src]'s screen is flashing with alerts. It seems to be overloaded! Touching it now is probably not a good idea."))
 		return
 	// If parent returned tool type or 1
 	// - Hatch is open, so we can modify the SMES
@@ -297,15 +297,15 @@
 			var/newtag = input(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system") as text
 			if(newtag)
 				RCon_tag = newtag
-				to_chat(user, SPAN_NOTICE("You changed the RCON tag to: [newtag]"))
+				to_chat(user, span_notice("You changed the RCON tag to: [newtag]"))
 			return
 		// Charged above 1% and safeties are enabled.
 		if((charge > (capacity/100)) && safeties_enabled)
-			to_chat(user, SPAN_WARNING("Safety circuit of [src] is preventing modifications while it's charged!"))
+			to_chat(user, span_warning("Safety circuit of [src] is preventing modifications while it's charged!"))
 			return
 
 		if (output_attempt || input_attempt)
-			to_chat(user, SPAN_WARNING("Turn off the [src] first!"))
+			to_chat(user, span_warning("Turn off the [src] first!"))
 			return
 
 		// Probability of failure if safety circuit is disabled (in %)
@@ -318,18 +318,18 @@
 		// Crowbar - Disassemble the SMES.
 		if(tool_type == QUALITY_PRYING)
 			if (terminal)
-				to_chat(user, SPAN_WARNING("You have to disassemble the terminal first!"))
+				to_chat(user, span_warning("You have to disassemble the terminal first!"))
 				return
 
 			playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
-			to_chat(user, SPAN_WARNING("You begin to disassemble the [src]!"))
+			to_chat(user, span_warning("You begin to disassemble the [src]!"))
 			if (do_after(usr, 100 * cur_coils, src)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s
 
 				if (failure_probability && prob(failure_probability))
 					total_system_failure(failure_probability, user)
 					return
 
-				to_chat(usr, SPAN_WARNING("You have disassembled the SMES cell!"))
+				to_chat(usr, span_warning("You have disassembled the SMES cell!"))
 				var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 				M.state = 2
 				M.icon_state = "box_1"
@@ -347,13 +347,13 @@
 					total_system_failure(failure_probability, user)
 					return
 
-				to_chat(usr, SPAN_NOTICE("You install the coil into the SMES unit."))
+				to_chat(usr, span_notice("You install the coil into the SMES unit."))
 				user.drop_item()
 				component_parts += W
 				W.loc = src
 				RefreshParts()
 			else
-				to_chat(usr, SPAN_WARNING("You can't insert more coils to this SMES unit!"))
+				to_chat(usr, span_warning("You can't insert more coils to this SMES unit!"))
 
 // SMESes that power ship sections
 // Output enabled,  partially charged

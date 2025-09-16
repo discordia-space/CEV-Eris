@@ -66,11 +66,11 @@
 		var/mob/living/carbon/human/H = L
 
 		if(!usb)
-			audible_message(SPAN_WARNING("[src] beeps: 'No data storage found.'"))
+			audible_message(span_warning("[src] beeps: 'No data storage found.'"))
 			return
 
 		if(!H.reagents.has_reagent("kognim"))
-			audible_message(SPAN_WARNING("[src] beeps: 'No catalyst reagent detected in test subject's bloodstream.'"))
+			audible_message(span_warning("[src] beeps: 'No catalyst reagent detected in test subject's bloodstream.'"))
 			flick("dnascanner_no_[color_key]", src)
 			return
 
@@ -87,7 +87,7 @@
 			if(usb.store_file(F))
 				stored_count++
 			else if(!(F in usb.stored_files)) // If it's just a duplicated file - no error needed
-				audible_message(SPAN_WARNING("[src] beeps: 'Sequencing failed.'"))
+				audible_message(span_warning("[src] beeps: 'Sequencing failed.'"))
 				flick("dnascanner_no_[color_key]", src)
 				break
 
@@ -100,12 +100,12 @@
 			if(usb.store_file(F))
 				stored_count++
 			else if(!(F in usb.stored_files))
-				audible_message(SPAN_WARNING("[src] beeps: 'Sequencing failed.'"))
+				audible_message(span_warning("[src] beeps: 'Sequencing failed.'"))
 				flick("dnascanner_no_[color_key]", src)
 				break
 
 		if(stored_count)
-			audible_message(SPAN_WARNING("[src] beeps: 'Sequencing complete, [stored_count] unique patterns recorded.'"))
+			audible_message(span_warning("[src] beeps: 'Sequencing complete, [stored_count] unique patterns recorded.'"))
 
 	else
 		..()

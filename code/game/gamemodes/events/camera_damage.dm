@@ -29,17 +29,17 @@
 				if(prob(5))
 					cam.wires.UpdateCut(CAMERA_WIRE_ALARM, 0)
 
-/datum/event/camera_damage/proc/acquire_random_camera(var/remaining_attempts = 5)
-	if(!cameranet.cameras.len)
+/datum/event/camera_damage/proc/acquire_random_camera(remaining_attempts = 5)
+	if(!GLOB.cameranet.cameras.len)
 		return
 	if(!remaining_attempts)
 		return
 
-	var/obj/machinery/camera/C = pick(cameranet.cameras)
+	var/obj/machinery/camera/C = pick(GLOB.cameranet.cameras)
 	if(is_valid_camera(C))
 		return C
 	return acquire_random_camera(remaining_attempts-1)
 
-/datum/event/camera_damage/proc/is_valid_camera(var/obj/machinery/camera/C)
+/datum/event/camera_damage/proc/is_valid_camera(obj/machinery/camera/C)
 	// Only return a functional camera, not installed in a silicon, and that exists somewhere players have access
 	return isOnPlayerLevel(C) && C.can_use() && !issilicon(C.loc)

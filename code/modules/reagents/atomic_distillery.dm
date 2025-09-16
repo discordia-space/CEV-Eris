@@ -42,16 +42,16 @@
 			return TRUE
 		if(is_drainable() && reagents.total_volume)
 			if(istype(A, /obj/structure/sink))
-				to_chat(user, SPAN_NOTICE("You pour the solution into [A]."))
+				to_chat(user, span_notice("You pour the solution into [A]."))
 				reagents.remove_any(reagents.total_volume)
 			else
 				playsound(src,'sound/effects/Splash_Small_01_mono.ogg',50,1)
-				to_chat(user, SPAN_NOTICE("You splash the solution onto [A]."))
+				to_chat(user, span_notice("You splash the solution onto [A]."))
 				reagents.splash(A, reagents.total_volume)
 			return TRUE
 	return ..()
 
-/obj/item/reagent_containers/atomic_distillery/afterattack(var/obj/target, var/mob/user, var/flag)
+/obj/item/reagent_containers/atomic_distillery/afterattack(obj/target, mob/user, flag)
 	if(!flag)
 		return
 	if(standard_pour_into(user, target))

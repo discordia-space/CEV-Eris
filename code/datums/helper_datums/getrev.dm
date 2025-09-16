@@ -1,44 +1,92 @@
-var/global/datum/getrev/revdata = new()
+GLOBAL_DATUM_INIT(revdata,/datum/getrev, new)
 
 /datum/getrev
-	var/branch
-	var/revision
+	var/commit  // git rev-parse HEAD
 	var/date
-	var/showinfo
+	var/originmastercommit  // git rev-parse origin/master
+	var/list/testmerge = list()
+
 
 /datum/getrev/New()
-	var/list/head_branch = file2list(".git/HEAD", "\n")
-	if(head_branch.len)
-		branch = copytext(head_branch[1], 17)
+	commit = rustg_git_revparse("HEAD")
+	if(commit)
+		date = rustg_git_commit_date(commit)
+	originmastercommit = rustg_git_revparse("origin/master")
 
-	var/list/head_log = file2list(".git/logs/HEAD", "\n")
-	for(var/line=head_log.len, line>=1, line--)
-		if(head_log[line])
-			var/list/last_entry = splittext(head_log[line], " ")
-			if(last_entry.len < 2)	continue
-			revision = last_entry[2]
-			// Get date/time
-			if(last_entry.len >= 5)
-				var/unix_time = text2num(last_entry[5])
-				if(unix_time)
-					date = unix2date(unix_time)
-			break
+/datum/getrev/proc/load_tgs_info()
+	testmerge = world.TgsTestMerges()
+	var/datum/tgs_revision_information/revinfo = world.TgsRevision()
+	if(revinfo)
+		commit = revinfo.commit
+		originmastercommit = revinfo.origin_commit
+		date = revinfo.timestamp || rustg_git_commit_date(commit)
 
-	log_world("Running revision:")
-	log_world(branch)
-	log_world(date)
-	log_world(revision)
+	// goes to DD log and config_error.txt
+	log_world(get_log_message())
 
-client/verb/showrevinfo()
+/datum/getrev/proc/get_log_message()
+	var/list/msg = list()
+	msg += "Running Eris revision: [date]"
+	if(originmastercommit)
+		msg += "origin/master: [originmastercommit]"
+
+	for(var/line in testmerge)
+		var/datum/tgs_revision_information/test_merge/tm = line
+		msg += "Test merge active of PR #[tm.number] commit [tm.head_commit]"
+
+	if(commit && commit != originmastercommit)
+		msg += "HEAD: [commit]"
+	else if(!originmastercommit)
+		msg += "No commit information"
+
+	msg += "Running rust-g version [rustg_get_version()]"
+
+	return msg.Join("\n")
+
+/datum/getrev/proc/GetTestMergeInfo(header = TRUE)
+	if(!testmerge.len)
+		return ""
+	. = header ? "The following pull requests are currently test merged:<br>" : ""
+	for(var/line in testmerge)
+		var/datum/tgs_revision_information/test_merge/tm = line
+		var/cm = tm.head_commit
+		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext_char(cm, 1, 11))
+		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a><br>"
+
+/client/verb/showrevinfo()
 	set category = "OOC"
 	set name = "Show Server Revision"
 	set desc = "Check the current server code revision"
 
-	if(revdata.revision)
-		to_chat(src, "<b>Server revision:</b> [revdata.branch] - [revdata.date]")
-		if(config.githuburl)
-			to_chat(src, "<a href='[config.githuburl]/commit/[revdata.revision]'>[revdata.revision]</a>")
-		else
-			to_chat(src, revdata.revision)
-	else
-		to_chat(src, "Revision unknown")
+	var/list/msg = list()
+	// Round ID
+	if(GLOB.round_id)
+		msg += "<b>Round ID:</b> [GLOB.round_id]"
+
+	msg += "<b>BYOND Version:</b> [world.byond_version].[world.byond_build]"
+	if(DM_VERSION != world.byond_version || DM_BUILD != world.byond_build)
+		msg += "<b>Compiled with BYOND Version:</b> [DM_VERSION].[DM_BUILD]"
+
+	// Revision information
+	msg += "<b>Server revision compiled on:</b> [GLOB.revdata.date]"
+	var/pc = GLOB.revdata.originmastercommit
+	if(pc)
+		msg += "<b>Master commit:</b> <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
+	if(length(GLOB.revdata.testmerge))
+		msg += GLOB.revdata.GetTestMergeInfo()
+	if(GLOB.revdata.commit && GLOB.revdata.commit != GLOB.revdata.originmastercommit)
+		msg += "<b>Local commit:</b> [GLOB.revdata.commit]"
+	else if(!pc)
+		msg += "No commit information"
+	if(world.TgsAvailable())
+		var/datum/tgs_version/version = world.TgsVersion()
+		msg += "<b>TGS version</b>: [version.raw_parameter]"
+		msg += "<b>DMAPI version</b>: [TGS_DMAPI_VERSION]"
+
+	// Game mode odds
+	msg += "<br><b>Current Informational Settings:</b>"
+	msg += "<b>Protect Authority Roles From Traitor:</b> [CONFIG_GET(flag/protect_roles_from_antagonist) ? "Yes" : "No"]"
+	// msg += "<b>Protect Assistant Role From Traitor:</b> [config.protect_assistant_from_antagonist ? "Yes" : "No"]"
+	// msg += "<b>Enforce Human Authority:</b> [config.enforce_human_authority ? "Yes" : "No"]"
+	// msg += "<b>Allow Latejoin Antagonists:</b> [config.allow_latejoin_antagonists ? "Yes" : "No"]"
+	to_chat(src, fieldset_block("Server Revision Info", span_infoplain(jointext(msg, "<br>")), "boxed_message"))

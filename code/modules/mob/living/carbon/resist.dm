@@ -47,8 +47,8 @@
 
 	if(istype(M))
 		M.drop_from_inventory(H)
-		to_chat(M, "<span class='warning'>\The [H] wriggles out of your grip!</span>")
-		to_chat(src, "<span class='warning'>You wriggle out of \the [M]'s grip!</span>")
+		to_chat(M, span_warning("\The [H] wriggles out of your grip!"))
+		to_chat(src, span_warning("You wriggle out of \the [M]'s grip!"))
 
 		// Update whether or not this mob needs to pass emotes to contents.
 		for(var/atom/A in M.contents)
@@ -69,16 +69,22 @@
 				qdel(G)
 			if(GRAB_AGGRESSIVE)
 				if(prob(max(60 + ((stats?.getStat(STAT_ROB)) - G.assailant?.stats.getStat(STAT_ROB) ** 0.8), 1))) // same scaling as cooldown increase and if you manage to be THAT BAD, 1% for luck
-					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
+					visible_message(span_warning("[src] has broken free of [G.assailant]'s grip!"))
 					qdel(G)
 			if(GRAB_NECK)
 				var/conditionsapply = (world.time - G.assailant.l_move_time < 30 || !stunned) ? 3 : 1 //If you move when grabbing someone then it's easier for them to break free. Same if the affected mob is immune to stun.
 				if(prob(conditionsapply * (5 + max((stats?.getStat(STAT_ROB)) - G.assailant.stats?.getStat(STAT_ROB), 1) ** 0.8))) // 4% minimal chance
-					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s headlock!</span>")
+					visible_message(span_warning("[src] has broken free of [G.assailant]'s headlock!"))
 					qdel(G)
+	for(var/mob/living/carbon/superior_animal/G_mob in grabbed_by) //grabs by non-humans work differently, as they have neither stats nor hands
+		resisting++
+		if(prob(max(((stats?.getStat(STAT_ROB) ** 0.9) / grabbed_by.len),20)))
+			G_mob.breakgrab()
+			visible_message(span_warning("[src] has broken free of [G_mob]'s grip!"))
+
 	if(resisting)
 		setClickCooldown(20)
-		visible_message("<span class='danger'>[src] resists!</span>")
+		visible_message(span_danger("[src] resists!"))
 
 /mob/living/carbon/resist_grab()
 	return !handcuffed && ..()
@@ -91,14 +97,14 @@
 		Weaken(4)
 		spin(32,2)
 		visible_message(
-			SPAN_DANGER("[src] rolls on the floor, trying to put themselves out!"),
-			SPAN_NOTICE("You stop, drop, and roll!")
+			span_danger("[src] rolls on the floor, trying to put themselves out!"),
+			span_notice("You stop, drop, and roll!")
 			)
 		sleep(30)
 		if(fire_stacks <= 0)
 			visible_message(
-				SPAN_DANGER("[src] has successfully extinguished themselves!"),
-				SPAN_NOTICE("You extinguish yourself.")
+				span_danger("[src] has successfully extinguished themselves!"),
+				span_notice("You extinguish yourself.")
 				)
 			ExtinguishMob()
 		return TRUE
@@ -136,28 +142,28 @@
 
 	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
 		visible_message(
-		SPAN_DANGER("\The [src] attempts to remove \the [HC]!"),
-		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [breakouttime / 10] seconds and you need to stand still)"))
+		span_danger("\The [src] attempts to remove \the [HC]!"),
+		span_warning("You attempt to remove \the [HC]. (This will take around [breakouttime / 10] seconds and you need to stand still)"))
 		if(!handcuffed || buckled)
 			return
 		visible_message(
-			SPAN_DANGER("\The [src] manages to remove \the [handcuffed]!"),
-			SPAN_NOTICE("You successfully remove \the [handcuffed].")
+			span_danger("\The [src] manages to remove \the [handcuffed]!"),
+			span_notice("You successfully remove \the [handcuffed].")
 			)
 		drop_from_inventory(handcuffed)
 
 	if(istype(buckled, /obj/item/beartrap))
 		breakouttime /= 2
 		visible_message(
-		SPAN_DANGER("\The [src] attempts to remove \the [HC] using the trap!"),
-		SPAN_WARNING("You attempt to remove \the [HC] using the trap. (This will take around [breakouttime / 10] seconds and you need to stand still)")
+		span_danger("\The [src] attempts to remove \the [HC] using the trap!"),
+		span_warning("You attempt to remove \the [HC] using the trap. (This will take around [breakouttime / 10] seconds and you need to stand still)")
 		)
 		if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_UNCONSCIOUS))
 			if(!handcuffed)
 				return
 			visible_message(
-			SPAN_DANGER("\The [src] manages to remove \the [handcuffed]!"),
-			SPAN_NOTICE("You successfully remove \the [handcuffed].")
+			span_danger("\The [src] manages to remove \the [handcuffed]!"),
+			span_notice("You successfully remove \the [handcuffed].")
 			)
 			drop_from_inventory(handcuffed)
 
@@ -180,16 +186,16 @@
 		breakouttime = HC.breakouttime
 
 	visible_message(
-		SPAN_DANGER("[usr] attempts to remove \the [HC]!"),
-		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [breakouttime / 10] seconds and you need to stand still)")
+		span_danger("[usr] attempts to remove \the [HC]!"),
+		span_warning("You attempt to remove \the [HC]. (This will take around [breakouttime / 10] seconds and you need to stand still)")
 		)
 
 	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
 		if(!legcuffed || buckled)
 			return
 		visible_message(
-			SPAN_DANGER("[src] manages to remove \the [legcuffed]!"),
-			SPAN_NOTICE("You successfully remove \the [legcuffed].")
+			span_danger("[src] manages to remove \the [legcuffed]!"),
+			span_notice("You successfully remove \the [legcuffed].")
 			)
 
 		drop_from_inventory(legcuffed)
@@ -204,8 +210,8 @@
 
 /mob/living/carbon/proc/break_handcuffs()
 	visible_message(
-		SPAN_DANGER("[src] is trying to break \the [handcuffed]!"),
-		SPAN_WARNING("You attempt to break your [handcuffed.name]. (This will take around 5 seconds and you need to stand still)")
+		span_danger("[src] is trying to break \the [handcuffed]!"),
+		span_warning("You attempt to break your [handcuffed.name]. (This will take around 5 seconds and you need to stand still)")
 		)
 
 	if(do_after(src, 5 SECONDS, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
@@ -213,8 +219,8 @@
 			return
 
 		visible_message(
-			SPAN_DANGER("<big>[src] manages to destroy \the [handcuffed]!</big>"),
-			SPAN_WARNING("You successfully break your [handcuffed.name].")
+			span_danger("<big>[src] manages to destroy \the [handcuffed]!</big>"),
+			span_warning("You successfully break your [handcuffed.name].")
 			)
 
 //		if(HULK in mutations)
@@ -228,16 +234,16 @@
 		update_inv_handcuffed()
 
 /mob/living/carbon/proc/break_legcuffs()
-	to_chat(src, SPAN_WARNING("You attempt to break your legcuffs. (This will take around 5 seconds and you need to stand still)"))
-	visible_message(SPAN_DANGER("[src] is trying to break the legcuffs!"))
+	to_chat(src, span_warning("You attempt to break your legcuffs. (This will take around 5 seconds and you need to stand still)"))
+	visible_message(span_danger("[src] is trying to break the legcuffs!"))
 
 	if(do_after(src, 5 SECONDS, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
 		if(!legcuffed || buckled)
 			return
 
 		visible_message(
-			SPAN_DANGER("<big>[src] manages to destroy the legcuffs!</big>"),
-			SPAN_WARNING("You successfully break your legcuffs.")
+			span_danger("<big>[src] manages to destroy the legcuffs!</big>"),
+			span_warning("You successfully break your legcuffs.")
 			)
 
 //		if(HULK in mutations)
@@ -253,7 +259,7 @@
 	return ..()
 
 //Returning anything but true will make the mob unable to resist out of this buckle
-/atom/proc/resist_buckle(var/mob/living/user)
+/atom/proc/resist_buckle(mob/living/user)
 	return TRUE
 
 /mob/living/proc/escape_buckle()
@@ -268,16 +274,16 @@
 	else
 		setClickCooldown(100)
 		visible_message(
-			SPAN_DANGER("[usr] attempts to unbuckle themself!"),
-			SPAN_WARNING("You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)")
+			span_danger("[usr] attempts to unbuckle themself!"),
+			span_warning("You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)")
 			)
 
 
 		if(do_after(usr, 2 MINUTES, incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
 			if(!buckled)
 				return
-			visible_message(SPAN_DANGER("\The [usr] manages to unbuckle themself!"),
-							SPAN_NOTICE("You successfully unbuckle yourself."))
+			visible_message(span_danger("\The [usr] manages to unbuckle themself!"),
+							span_notice("You successfully unbuckle yourself."))
 			buckled.user_unbuckle_mob(src)
 
 

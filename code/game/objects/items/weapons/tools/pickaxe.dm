@@ -36,12 +36,12 @@
 	.=..()
 	if(.)
 		mode = DIG
-		to_chat(user, SPAN_NOTICE("You tighten your grip on [src], and ready yourself to strike earth."))
+		to_chat(user, span_notice("You tighten your grip on [src], and ready yourself to strike earth."))
 
 /obj/item/tool/pickaxe/turn_off(mob/user)
 
 	mode = EXCAVATE
-	to_chat(user, SPAN_NOTICE("You loosen your grip on [src], and prepare to remove debris."))
+	to_chat(user, span_notice("You loosen your grip on [src], and prepare to remove debris."))
 	..()
 
 

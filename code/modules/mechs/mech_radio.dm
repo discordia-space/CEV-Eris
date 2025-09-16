@@ -14,13 +14,13 @@
 		return E
 	return null
 
-/obj/item/device/radio/exosuit/attack_self(var/mob/user)
+/obj/item/device/radio/exosuit/attack_self(mob/user)
 	var/mob/living/exosuit/exosuit = loc
 	if(istype(exosuit) && exosuit.head && exosuit.head.radio && exosuit.head.radio.is_functional())
 		user.set_machine(src)
 		interact(user)
 	else
-		to_chat(user, SPAN_WARNING("The radio is too damaged to function."))
+		to_chat(user, span_warning("The radio is too damaged to function."))
 
 /obj/item/device/radio/exosuit/CanUseTopic()
 	. = ..()

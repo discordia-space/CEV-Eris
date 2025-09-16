@@ -15,10 +15,10 @@ var/global/datum/repository/crew/crew_repository = new()
 	var/PriorityQueue/vital_modifiers = new/PriorityQueue(/proc/cmp_crew_sensor_modifier)
 	var/PriorityQueue/tracking_modifiers = new/PriorityQueue(/proc/cmp_crew_sensor_modifier)
 
-	general_modifiers.Enqueue(new/crew_sensor_modifier/general())
-	binary_modifiers.Enqueue(new/crew_sensor_modifier/binary())
-	vital_modifiers.Enqueue(new/crew_sensor_modifier/vital())
-	tracking_modifiers.Enqueue(new/crew_sensor_modifier/tracking())
+	general_modifiers.Enqueue(new/datum/crew_sensor_modifier/general())
+	binary_modifiers.Enqueue(new/datum/crew_sensor_modifier/binary())
+	vital_modifiers.Enqueue(new/datum/crew_sensor_modifier/vital())
+	tracking_modifiers.Enqueue(new/datum/crew_sensor_modifier/tracking())
 
 	modifier_queues = list()
 	modifier_queues[general_modifiers] = 0
@@ -27,10 +27,10 @@ var/global/datum/repository/crew/crew_repository = new()
 	modifier_queues[tracking_modifiers] = SUIT_SENSOR_TRACKING
 
 	modifier_queues_by_type = list()
-	modifier_queues_by_type[/crew_sensor_modifier/general] = general_modifiers
-	modifier_queues_by_type[/crew_sensor_modifier/binary] = binary_modifiers
-	modifier_queues_by_type[/crew_sensor_modifier/vital] = vital_modifiers
-	modifier_queues_by_type[/crew_sensor_modifier/tracking] = tracking_modifiers
+	modifier_queues_by_type[/datum/crew_sensor_modifier/general] = general_modifiers
+	modifier_queues_by_type[/datum/crew_sensor_modifier/binary] = binary_modifiers
+	modifier_queues_by_type[/datum/crew_sensor_modifier/vital] = vital_modifiers
+	modifier_queues_by_type[/datum/crew_sensor_modifier/tracking] = tracking_modifiers
 
 	..()
 
@@ -58,7 +58,7 @@ var/global/datum/repository/crew/crew_repository = new()
 				if(H.w_uniform != C)
 					continue
 
-				var/list/crewmemberData = list("sensor_type"=C.sensor_mode, "stat"=H.stat, "area"="", "x"=-1, "y"=-1, "z"=-1, "ref"="\ref[H]")
+				var/list/crewmemberData = list("name"=H.name,"sensor_type"=C.sensor_mode, "stat"=H.stat, "area"="", "x"=-1, "y"=-1, "z"=-1, "ref"="\ref[H]")
 				if(!(run_queues(H, C, pos, crewmemberData) & MOD_SUIT_SENSORS_REJECTED))
 					var/datum/computer_file/report/crew_record/CR = get_crewmember_record(crewmemberData["name"])
 					if(CR)
@@ -69,7 +69,7 @@ var/global/datum/repository/crew/crew_repository = new()
 					if (crewmemberData["alert"])
 						cache_data_alert[num2text(z_level)] = TRUE
 
-	crewmembers = sortNames(crewmembers)
+	sortNames(crewmembers)
 	cache_entry.timestamp = world.time + 5 SECONDS
 	cache_entry.data = crewmembers
 
@@ -77,7 +77,7 @@ var/global/datum/repository/crew/crew_repository = new()
 
 	return crewmembers
 
-/datum/repository/crew/proc/has_health_alert(var/z_level)
+/datum/repository/crew/proc/has_health_alert(z_level)
 	. = FALSE
 	if(!z_level)
 		return
@@ -101,11 +101,11 @@ var/global/datum/repository/crew/crew_repository = new()
 			if(. & MOD_SUIT_SENSORS_REJECTED)
 				return
 
-/datum/repository/crew/proc/process_crew_data(var/PriorityQueue/modifiers, var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
+/datum/repository/crew/proc/process_crew_data(PriorityQueue/modifiers, mob/living/carbon/human/H, obj/item/clothing/under/C, turf/pos, list/crew_data)
 	var/current_priority = INFINITY
 	var/list/modifiers_of_this_priority = list()
 
-	for(var/crew_sensor_modifier/csm in modifiers.L)
+	for(var/datum/crew_sensor_modifier/csm in modifiers.L)
 		if(csm.priority < current_priority)
 			. = check_queue(modifiers_of_this_priority, H, C, pos, crew_data)
 			if(. != MOD_SUIT_SENSORS_NONE)
@@ -114,9 +114,9 @@ var/global/datum/repository/crew/crew_repository = new()
 		modifiers_of_this_priority += csm
 	return check_queue(modifiers_of_this_priority, H, C, pos, crew_data)
 
-/datum/repository/crew/proc/check_queue(var/list/modifiers_of_this_priority, H, C, pos, crew_data)
+/datum/repository/crew/proc/check_queue(list/modifiers_of_this_priority, H, C, pos, crew_data)
 	while(modifiers_of_this_priority.len)
-		var/crew_sensor_modifier/pcsm = pick(modifiers_of_this_priority)
+		var/datum/crew_sensor_modifier/pcsm = pick(modifiers_of_this_priority)
 		modifiers_of_this_priority -= pcsm
 		if(pcsm.may_process_crew_data(H, C, pos))
 			. = pcsm.process_crew_data(H, C, pos, crew_data)
@@ -124,7 +124,7 @@ var/global/datum/repository/crew/crew_repository = new()
 				return
 	return MOD_SUIT_SENSORS_NONE
 
-/datum/repository/crew/proc/add_modifier(var/base_type, var/crew_sensor_modifier/csm)
+/datum/repository/crew/proc/add_modifier(base_type, datum/crew_sensor_modifier/csm)
 	if(!istype(csm, base_type))
 		CRASH("The given crew sensor modifier was not of the given base type.")
 	var/PriorityQueue/pq = modifier_queues_by_type[base_type]
@@ -135,7 +135,7 @@ var/global/datum/repository/crew/crew_repository = new()
 	pq.Enqueue(csm)
 	return TRUE
 
-/datum/repository/crew/proc/remove_modifier(var/base_type, var/crew_sensor_modifier/csm)
+/datum/repository/crew/proc/remove_modifier(base_type, datum/crew_sensor_modifier/csm)
 	if(!istype(csm, base_type))
 		CRASH("The given crew sensor modifier was not of the given base type.")
 	var/PriorityQueue/pq = modifier_queues_by_type[base_type]

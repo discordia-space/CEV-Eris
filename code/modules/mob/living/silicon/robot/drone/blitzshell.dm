@@ -60,24 +60,24 @@
 		/obj/item/stack/telecrystal //To reload the uplink
 		)
 
-/obj/item/gripper/antag/afterattack(atom/target, var/mob/living/user, proximity, params)
+/obj/item/gripper/antag/afterattack(atom/target, mob/living/user, proximity, params)
 	..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(H.stat == DEAD)
 			if(H.get_organ(BP_HEAD))
 				var/obj/item/organ/external/E = H.get_organ(BP_HEAD)
-				user.visible_message(SPAN_DANGER("[user] is beginning to rip the [H]'s head off!"),SPAN_DANGER("You are beginning to rip the [H]'s head off."))
+				user.visible_message(span_danger("[user] is beginning to rip the [H]'s head off!"),span_danger("You are beginning to rip the [H]'s head off."))
 				if(!do_mob(user, H, 16 SECONDS))
-					to_chat(user, SPAN_DANGER("You was interrupted!"))
+					to_chat(user, span_danger("You was interrupted!"))
 					return
-				user.visible_message(SPAN_DANGER("[user] is rip the [H]'s head off!"),SPAN_DANGER("You rip the [H]'s head off."))
+				user.visible_message(span_danger("[user] is rip the [H]'s head off!"),span_danger("You rip the [H]'s head off."))
 				E.droplimb(TRUE, DROPLIMB_EDGE)
 				grip_item(E, user)
 			else
-				to_chat(user, SPAN_DANGER("[H] missing his head!"))
+				to_chat(user, span_danger("[H] missing his head!"))
 		else
-			to_chat(user, SPAN_DANGER("You cannot rip someone head while they alive!"))
+			to_chat(user, span_danger("You cannot rip someone head while they alive!"))
 
 /obj/item/gripper/antag/New()
 	..()
@@ -93,27 +93,27 @@
 	var/cooldown
 
 /obj/item/device/nanite_container/examine(mob/user, extra_description = "")
-	extra_description += SPAN_NOTICE("It has [charges] charges left.")
+	extra_description += span_notice("It has [charges] charges left.")
 	..(user, extra_description)
 
-/obj/item/device/nanite_container/attack_self(var/mob/user)
+/obj/item/device/nanite_container/attack_self(mob/user)
 	if(istype(user, /mob/living/silicon))
 		if(charges)
 			if(cooldown > world.time)
-				to_chat(user, SPAN_NOTICE("Error: nanorepair system is on cooldown."))
+				to_chat(user, span_notice("Error: nanorepair system is on cooldown."))
 				return
-			to_chat(user, SPAN_NOTICE("You begin activating \the [src]."))
+			to_chat(user, span_notice("You begin activating \the [src]."))
 			if(!do_after(user, 3 SECONDS, src))
-				to_chat(user, SPAN_NOTICE("You need to stay still to fully activate \the [src]!"))
+				to_chat(user, span_notice("You need to stay still to fully activate \the [src]!"))
 				return
 			var/mob/living/silicon/S = user
 			S.adjustBruteLoss(-S.maxHealth)
 			S.adjustFireLoss(-S.maxHealth)
 			charges--
-			to_chat(user, SPAN_NOTICE("Charge consumed. Remaining charges: [charges]"))
+			to_chat(user, span_notice("Charge consumed. Remaining charges: [charges]"))
 			cooldown = world.time + 5 MINUTES
 			return
-		to_chat(user, SPAN_WARNING("Error: No charges remaining."))
+		to_chat(user, span_warning("Error: No charges remaining."))
 		return
 	..()
 
@@ -125,21 +125,21 @@
 	var/charges = 3
 
 /obj/item/device/smokescreen/examine(mob/user, extra_description = "")
-	extra_description += SPAN_NOTICE("It has [charges] charges left.")
+	extra_description += span_notice("It has [charges] charges left.")
 	..(user, extra_description)
 
-/obj/item/device/smokescreen/attack_self(var/mob/user)
+/obj/item/device/smokescreen/attack_self(mob/user)
 	if(istype(user, /mob/living/silicon))
 		if(charges)
-			to_chat(user, SPAN_NOTICE("You activate \the [src]."))
+			to_chat(user, span_notice("You activate \the [src]."))
 			var/datum/effect/effect/system/smoke_spread/S = new
 			S.set_up(5, 0, src)
 			S.start()
 			playsound(loc, 'sound/effects/turret/open.ogg', 50, 0)
 			charges--
-			to_chat(user, SPAN_NOTICE("Charge consumed. Remaining charges: [charges]"))
+			to_chat(user, span_notice("Charge consumed. Remaining charges: [charges]"))
 			return
-		to_chat(user, SPAN_WARNING("Error: No charges remaining."))
+		to_chat(user, span_warning("Error: No charges remaining."))
 		return
 	..()
 

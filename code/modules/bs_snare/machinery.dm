@@ -61,14 +61,14 @@
 	if(length(mobs) == 0)
 		playsound(src.loc, 'sound/machines/buzz-sigh.ogg')
 		playsound(src.loc, 'sound/voice/bfreeze.ogg', 50, 1)
-		audible_message(SPAN_WARNING("The [src.name] buzzes and state \'SNARE EITHER DISABLED OR NOT AVAILABLE, TRY TO PROBE IT AGAIN, IF YOU ARE SURE THAT THE SNARE IN A GOOD CONDITION OR CONNECTED TO USER.\'"),
-						SPAN_WARNING("The [src.name] buzzes and state something."),
+		audible_message(span_warning("The [src.name] buzzes and state \'SNARE EITHER DISABLED OR NOT AVAILABLE, TRY TO PROBE IT AGAIN, IF YOU ARE SURE THAT THE SNARE IN A GOOD CONDITION OR CONNECTED TO USER.\'"),
+						span_warning("The [src.name] buzzes and state something."),
 						hearing_distance = 5
 						)
 	return mobs
 
 /obj/machinery/bssilk_hub/proc/teleport_back(mob/target)
-	to_chat(target, SPAN_WARNING("You feel like something pull you in bluespace."))
+	to_chat(target, span_warning("You feel like something pull you in bluespace."))
 	//Creat animation and move  mob into it and mob will not walking. Camera will follow animation.
 	var/obj/effect/temporary/A = new(get_turf(target), 24.5, animation_icon, back_animation)
 	target.dir = 2
@@ -109,7 +109,7 @@
 	if(connected_hub) connected_hub.sync_with_parts()
 	nano_ui_interact(user)
 
-/obj/machinery/computer/bssilk_control/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/bssilk_control/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 	var/list/data = nano_ui_data()
 
 	if(!connected_hub)

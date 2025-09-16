@@ -22,7 +22,7 @@
 
 	var/list/msg = list()
 	msg += "*--*"
-	msg += SPAN_NOTICE("New mail received from [source]:")
+	msg += span_notice("New mail received from [source]:")
 	msg += "<b>Subject:</b> [title]"
 	msg += "<b>Message:</b>"
 	msg += pencode2html(stored_data)

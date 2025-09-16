@@ -13,22 +13,22 @@
 		return
 
 	if(docile)
-		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
+		to_chat(src, span_danger("You are feeling far too docile to do that."))
 		return
 
-	to_chat(src, SPAN_NOTICE("You begin disconnecting from [host]'s synapses and prodding at their internal ear canal."))
+	to_chat(src, span_notice("You begin disconnecting from [host]'s synapses and prodding at their internal ear canal."))
 
 	if(!host.stat)
-		to_chat(host, SPAN_WARNING("An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."))
+		to_chat(host, span_warning("An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."))
 
 	spawn(100)
 		if(!host || stat) return
 
-		to_chat(src, SPAN_DANGER("You wiggle out of [host]'s ear and plop to the ground."))
+		to_chat(src, span_danger("You wiggle out of [host]'s ear and plop to the ground."))
 		if(host.mind && !host.stat)
 			if(controlling)
-				to_chat(host, SPAN_DANGER("As though waking from a dream, you shake off the insidious mind control of the brain worm. Your thoughts are your own again."))
-			to_chat(host, SPAN_DANGER("Something slimy wiggles out of your ear and plops to the ground!"))
+				to_chat(host, span_danger("As though waking from a dream, you shake off the insidious mind control of the brain worm. Your thoughts are your own again."))
+			to_chat(host, span_danger("Something slimy wiggles out of your ear and plops to the ground!"))
 
 		detach()
 		leave_host()
@@ -42,7 +42,7 @@
 		return
 
 	if(host)
-		to_chat(src, SPAN_WARNING("You are already within a host."))
+		to_chat(src, span_warning("You are already within a host."))
 		return
 
 	var/list/choices = list()
@@ -51,7 +51,7 @@
 			choices += C
 
 	if(!choices.len)
-		to_chat(src, SPAN_WARNING("There are no viable hosts nearby."))
+		to_chat(src, span_warning("There are no viable hosts nearby."))
 		return
 
 	var/mob/living/carbon/M = input(src,"Who do you wish to infest?") in null|choices
@@ -61,14 +61,14 @@
 		return
 
 	if((ishuman(M) && !M.isMonkey()) && (!M.mind || !M.client))
-		to_chat(src, SPAN_WARNING("Host's body is in a state of hibernation, you are afraid to be crushed when they roll over in their sleep!"))
+		to_chat(src, span_warning("Host's body is in a state of hibernation, you are afraid to be crushed when they roll over in their sleep!"))
 		return
 	if(M.has_brain_worms())
-		to_chat(src, SPAN_WARNING("You cannot infest someone who is already infested!"))
+		to_chat(src, span_warning("You cannot infest someone who is already infested!"))
 		return
 
 	if(get_active_mutation(M, MUTATION_REJECT))
-		to_chat(src, SPAN_WARNING("Host's body actively rejects you."))
+		to_chat(src, span_warning("Host's body actively rejects you."))
 		return
 
 	if(ishuman(M))
@@ -76,42 +76,42 @@
 
 		var/obj/item/organ/external/E = H.organs_by_name[BP_HEAD]
 		if(!E || E.is_stump())
-			to_chat(src, SPAN_WARNING("\The [H] does not have a head!"))
+			to_chat(src, span_warning("\The [H] does not have a head!"))
 			return // Causes wonky behavior, although it does work in some cases.
 
 		if(!H.species.has_process[BP_BRAIN])
-			to_chat(src, SPAN_WARNING("\The [H] does not seem to have an ear canal to breach."))
+			to_chat(src, span_warning("\The [H] does not seem to have an ear canal to breach."))
 			return
 
 		if(H.check_head_coverage() && H.head && !(H.head.canremove))
-			to_chat(src, SPAN_WARNING("You cannot get through that host's protective gear."))
+			to_chat(src, span_warning("You cannot get through that host's protective gear."))
 			return
 
 	to_chat(M, "Something slimy begins probing at the opening of your ear canal...")
-	to_chat(src, SPAN_DANGER("You slither up [M] and begin probing at their ear canal..."))
+	to_chat(src, span_danger("You slither up [M] and begin probing at their ear canal..."))
 
 	var/infestation_delay = DEFAULT_INFESTATION_DELAY
 
 	// It's harder for a borer to infest NTs
 	if(is_neotheology_disciple(M))
-		to_chat(src, SPAN_DANGER("A nanofiber mesh implant inside [M]'s head tries to cut you off on your way in. You can work around it, but it will take time."))
+		to_chat(src, span_danger("A nanofiber mesh implant inside [M]'s head tries to cut you off on your way in. You can work around it, but it will take time."))
 		infestation_delay *= 3
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.check_head_coverage())
-			to_chat(src, SPAN_DANGER("That host's wearing protective gear. You can work around it, but it will take time."))
+			to_chat(src, span_danger("That host's wearing protective gear. You can work around it, but it will take time."))
 			infestation_delay *= 3
 
 	// Borer gets host abilities before actually getting inside the host
 	// Workaround for a BYOND bug: http://www.byond.com/forum/post/1833666 << We fix this in a better way
 	if(!do_mob(src, M, infestation_delay))
-		to_chat(src, SPAN_DANGER("As [M] moves away, you are dislodged and fall to the ground."))
+		to_chat(src, span_danger("As [M] moves away, you are dislodged and fall to the ground."))
 		return
 
-	to_chat(src, SPAN_NOTICE("You wiggle into [M]'s ear."))
+	to_chat(src, span_notice("You wiggle into [M]'s ear."))
 	if(!M.stat)
-		to_chat(M, SPAN_DANGER("Something disgusting and slimy wiggles into your ear!"))
+		to_chat(M, span_danger("Something disgusting and slimy wiggles into your ear!"))
 
 	if(invisibility)
 		src.invisibility = 0
@@ -119,7 +119,7 @@
 
 	if(sight & SEE_MOBS)
 		sight &= ~SEE_MOBS
-		to_chat(src, SPAN_NOTICE("You cannot see living being through walls for now."))
+		to_chat(src, span_notice("You cannot see living being through walls for now."))
 
 	host = M
 	host.status_flags |= PASSEMOTES
@@ -146,7 +146,7 @@
 		to_chat(src, "This host does not have a suitable brain.")
 		return
 
-	to_chat(src, SPAN_DANGER("You settle into the empty brainpan and begin to expand, fusing inextricably with the dead flesh of [H]."))
+	to_chat(src, span_danger("You settle into the empty brainpan and begin to expand, fusing inextricably with the dead flesh of [H]."))
 
 	H.add_language(LANGUAGE_CORTICAL)
 
@@ -203,15 +203,15 @@
 		return
 
 	if(!host)
-		to_chat(src, SPAN_WARNING("You are not inside a host body."))
+		to_chat(src, span_warning("You are not inside a host body."))
 		return
 
 	if(docile)
-		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
+		to_chat(src, span_danger("You are feeling far too docile to do that."))
 		return
 
 	if(chemicals < 50)
-		to_chat(src, SPAN_WARNING("You don't have enough chemicals!"))
+		to_chat(src, span_warning("You don't have enough chemicals!"))
 		return
 
 	var/list/chem_names = list()
@@ -226,7 +226,7 @@
 		return
 
 	host.reagents.add_reagent(chem, 10)
-	to_chat(src, SPAN_NOTICE("You secrete some chemicals from your reservoirs. There are [host.reagents.get_reagent_amount(chem)] units of [chem_name] in host's bloodstream now."))
+	to_chat(src, span_notice("You secrete some chemicals from your reservoirs. There are [host.reagents.get_reagent_amount(chem)] units of [chem_name] in host's bloodstream now."))
 	chemicals -= 50
 
 /mob/living/simple_animal/borer/proc/paralyze_victim()
@@ -238,15 +238,15 @@
 		return
 
 	if(world.time - used_dominate < 1 MINUTE) // a one minutes cooldown.
-		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds.")
+		to_chat(src, span_red("<B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds."))
 		return
 
 	if(is_ventcrawling)
-		to_chat(src, SPAN_WARNING("You cannot use that ability while in vent."))
+		to_chat(src, span_warning("You cannot use that ability while in vent."))
 		return
 
 	if(chemicals < 10)
-		to_chat(src, SPAN_WARNING("You don't have enough chemicals!"))
+		to_chat(src, span_warning("You don't have enough chemicals!"))
 		return
 
 	var/list/choices = list()
@@ -257,13 +257,13 @@
 		choices += C
 
 	if(!choices)
-		to_chat(src, SPAN_WARNING("No available creatures found in your radius."))
+		to_chat(src, span_warning("No available creatures found in your radius."))
 		return
 
 	var/mob/living/carbon/M = input(src,"Who do you wish to dominate?") in null|choices
 
 	if(world.time - used_dominate < 1 MINUTE)
-		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds.")
+		to_chat(src, span_red("<B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds."))
 		return
 
 	if(!M || !Adjacent(M)) return
@@ -271,7 +271,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(istype(H.wear_suit, /obj/item/clothing/suit/space))
-			to_chat(src, SPAN_WARNING("You cannot use that ability on someone, who wear a space suit."))
+			to_chat(src, span_warning("You cannot use that ability on someone, who wear a space suit."))
 			return
 
 	if(M.has_brain_worms())
@@ -280,9 +280,9 @@
 
 	if(invisibility)
 		invisible() //removes invisibility on using paralyze
-		to_chat(src, SPAN_NOTICE("You become visible again."))
-	to_chat(src, SPAN_WARNING("You focus your psychic lance on [M] and freeze their limbs with a wave of terrible dread."))
-	to_chat(M, SPAN_DANGER("You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing."))
+		to_chat(src, span_notice("You become visible again."))
+	to_chat(src, span_warning("You focus your psychic lance on [M] and freeze their limbs with a wave of terrible dread."))
+	to_chat(M, span_danger("You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing."))
 	var/duration = 10 + (borer_level*2)
 	M.Weaken(duration)
 	M.SetStunned(duration)
@@ -299,18 +299,18 @@
 		return
 
 	if(!host)
-		to_chat(src, SPAN_WARNING("You are not inside a host body."))
+		to_chat(src, span_warning("You are not inside a host body."))
 		return
 
 	if(docile)
-		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
+		to_chat(src, span_danger("You are feeling far too docile to do that."))
 		return
 
 	if(host.stat == DEAD)
-		to_chat(src, SPAN_WARNING("You can't control a dead host."))
+		to_chat(src, span_warning("You can't control a dead host."))
 		return
 
-	to_chat(src, SPAN_NOTICE("You begin delicately adjusting your connection to the host brain. This will take some time..."))
+	to_chat(src, span_notice("You begin delicately adjusting your connection to the host brain. This will take some time..."))
 
 	spawn(30 SECONDS + (host.brainloss * 5))
 
@@ -318,8 +318,8 @@
 			return
 		else
 
-			to_chat(src, SPAN_DANGER("You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system."))
-			to_chat(host, SPAN_DANGER("You feel a strange shifting sensation behind your eyes as another consciousness displaces yours."))
+			to_chat(src, span_danger("You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system."))
+			to_chat(host, span_danger("You feel a strange shifting sensation behind your eyes as another consciousness displaces yours."))
 			host.add_language(LANGUAGE_CORTICAL)
 
 			// host -> brain
@@ -369,14 +369,14 @@
 		return
 
 	if(chemicals < 500)
-		to_chat(src, SPAN_WARNING("You don't have enough chemicals!"))
+		to_chat(src, span_warning("You don't have enough chemicals!"))
 		return
 
 	if(host.getBrainLoss() >= 100)
-		to_chat(src, SPAN_WARNING("Host is brain dead!"))
+		to_chat(src, span_warning("Host is brain dead!"))
 		return
 
-	visible_message(SPAN_WARNING("With a hideous, rattling moan, [src] shudders back to life!"))
+	visible_message(span_warning("With a hideous, rattling moan, [src] shudders back to life!"))
 
 
 	var/all_damage = host.getBruteLoss() + host.getFireLoss() + host.getOxyLoss()
@@ -406,11 +406,11 @@
 		return
 
 	if(!host)
-		to_chat(src, SPAN_WARNING("You are not inside a host body."))
+		to_chat(src, span_warning("You are not inside a host body."))
 		return
 
 	if(docile)
-		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
+		to_chat(src, span_danger("You are feeling far too docile to do that."))
 		return
 
 	var/list/copied_stats = list()
@@ -435,12 +435,12 @@
 	if(copied_amount)
 		borer_add_exp((copied_amount*5))
 		if(length(copied_stats))
-			to_chat(src, SPAN_NOTICE("You extracted some knowledge on [english_list(copied_stats)]."))
+			to_chat(src, span_notice("You extracted some knowledge on [english_list(copied_stats)]."))
 
 		if(length(copied_languages))
-			to_chat(src, SPAN_NOTICE("You learned [english_list(copied_languages)]."))
+			to_chat(src, span_notice("You learned [english_list(copied_languages)]."))
 
-		to_chat(host, SPAN_DANGER("Your head spins, your memories thrown in disarray!"))
+		to_chat(host, span_danger("Your head spins, your memories thrown in disarray!"))
 		host.adjustBrainLoss(copied_amount * 4)
 		host?.sanity.onPsyDamage(copied_amount * 4)
 
@@ -457,11 +457,11 @@
 		return
 
 	if(!host)
-		to_chat(src, SPAN_WARNING("You are not inside a host body."))
+		to_chat(src, span_warning("You are not inside a host body."))
 		return
 
 	if(docile)
-		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
+		to_chat(src, span_danger("You are feeling far too docile to do that."))
 		return
 
 	var/list/copied_stats = list()
@@ -482,12 +482,12 @@
 	var/copied_amount = length(copied_stats) + length(copied_languages)
 	if(copied_amount)
 		if(length(copied_stats))
-			to_chat(src, SPAN_NOTICE("You put some knowledge on [english_list(copied_stats)] into your host's mind."))
+			to_chat(src, span_notice("You put some knowledge on [english_list(copied_stats)] into your host's mind."))
 
 		if(length(copied_languages))
-			to_chat(src, SPAN_NOTICE("You teach your host [english_list(copied_languages)]."))
+			to_chat(src, span_notice("You teach your host [english_list(copied_languages)]."))
 
-		to_chat(host, SPAN_DANGER("Your head spins as new information fills your mind!"))
+		to_chat(host, span_danger("Your head spins as new information fills your mind!"))
 		host.adjustBrainLoss(copied_amount * 2)
 		host?.sanity.onPsyDamage(copied_amount * 2)
 
@@ -503,11 +503,11 @@
 		return
 
 	if(!host)
-		to_chat(src, "\red <B>You cannot do this without a host.</B>")
+		to_chat(src, span_red("<B>You cannot do this without a host.</B>"))
 		return
 
 	if(docile)
-		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
+		to_chat(src, span_danger("You are feeling far too docile to do that."))
 		return
 
 	var/message = input("", "say (text)") as text
@@ -526,7 +526,7 @@
 		return
 
 	if(docile)
-		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
+		to_chat(src, span_danger("You are feeling far too docile to do that."))
 		return
 
 	var/message = input("", "whisper (text)") as text
@@ -541,23 +541,23 @@
 		return
 
 	if(world.time - used_dominate < 1 MINUTE)
-		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds.</B>")
+		to_chat(src, span_red("<B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds.</B>"))
 		return
 
 	if(host)
-		to_chat(src, "\red <B>You cannot do this inside a host.</B>")
+		to_chat(src, span_red("<B>You cannot do this inside a host.</B>"))
 		return
 
 	if(invisibility)
 		src.invisibility = 0
 		src.alpha = 255
 		used_dominate = world.time
-		to_chat(src, SPAN_NOTICE("You become visible again."))
+		to_chat(src, span_notice("You become visible again."))
 		return
 	else
 		src.invisibility = 26
 		src.alpha = 100
-		to_chat(src, SPAN_NOTICE("You become invisible for living being."))
+		to_chat(src, span_notice("You become invisible for living being."))
 		return
 
 /mob/living/simple_animal/borer/proc/biograde()
@@ -569,7 +569,7 @@
 		return
 
 	if(host)
-		to_chat(src, SPAN_WARNING("You cannot do this inside a host."))
+		to_chat(src, span_warning("You cannot do this inside a host."))
 		return
 
 	if(sight & SEE_MOBS)
@@ -588,29 +588,29 @@
 		return
 
 	if(docile)
-		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
+		to_chat(src, span_danger("You are feeling far too docile to do that."))
 		return
 
 	if(!host)
-		to_chat(src, "\red <B>You cannot do this without a host.</B>")
+		to_chat(src, span_red("<B>You cannot do this without a host.</B>"))
 		return
 	var/reproduce_cost = (round(max_chemicals_inhost * 0.75)) // literally max chems but 75% of it
 	if(chemicals >= reproduce_cost)
-		to_chat(host, "\red <B>Your host twitches and quivers as you rapidly excrete a larva from your sluglike body.</B>")
-		visible_message("\red <B>[host.name] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</B>")
+		to_chat(host, span_red("<B>Your host twitches and quivers as you rapidly excrete a larva from your sluglike body.</B>"))
+		visible_message(span_red("<B>[host.name] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</B>"))
 		has_reproduced = TRUE
 		chemicals -= reproduce_cost
 		if(istype(host, /mob/living/carbon/human/) && !host.isMonkey())
 			borer_add_exp(25)
 		else
-			to_chat(src, SPAN_WARNING("You do not have anything to learn from this host. Find a human!"))
+			to_chat(src, span_warning("You do not have anything to learn from this host. Find a human!"))
 
 		new /obj/effect/decal/cleanable/vomit(get_turf(host))
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 		new /mob/living/simple_animal/borer(get_turf(host))
 
 	else
-		to_chat(src, SPAN_NOTICE("You do not have enough chemicals stored to reproduce. (You need [reproduce_cost])."))
+		to_chat(src, span_notice("You do not have enough chemicals stored to reproduce. (You need [reproduce_cost])."))
 		return
 
 /mob/living/simple_animal/borer/proc/commune()
@@ -645,11 +645,11 @@
 
 	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
 
-	to_chat(M, "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]")
+	to_chat(M, span_blue("Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"))
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 
-		to_chat(H, SPAN_WARNING("Your nose begins to bleed..."))
+		to_chat(H, span_warning("Your nose begins to bleed..."))
 		H.drip_blood(1)
 
 #undef DEFAULT_INFESTATION_DELAY

@@ -24,7 +24,7 @@
 		master = null
 	return ..()
 
-/obj/machinery/power/terminal/hide(var/i)
+/obj/machinery/power/terminal/hide(i)
 	invisibility = i ? 101 : initial(invisibility)
 	icon_state = i ? "term-f" : "term"
 

@@ -176,7 +176,7 @@
 
 	return TRUE
 
-/obj/machinery/atmospherics/unary/vent_scrubber/hide(var/i) //to make the little pipe section invisible, the icon changes.
+/obj/machinery/atmospherics/unary/vent_scrubber/hide(i) //to make the little pipe section invisible, the icon changes.
 	update_icon()
 	update_underlays()
 
@@ -267,19 +267,19 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/unary/vent_scrubber/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/vent_scrubber/attackby(obj/item/I, mob/user as mob)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING, QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
 
 		if(QUALITY_WELDING)
-			to_chat(user, SPAN_NOTICE("Now welding the vent."))
+			to_chat(user, span_notice("Now welding the vent."))
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				if(!welded)
-					user.visible_message(SPAN_NOTICE("\The [user] welds the scrubber shut."), SPAN_NOTICE("You weld the vent scrubber."), "You hear welding.")
+					user.visible_message(span_notice("\The [user] welds the scrubber shut."), span_notice("You weld the vent scrubber."), "You hear welding.")
 					welded = 1
 					update_icon()
 				else
-					user.visible_message(SPAN_NOTICE("[user] unwelds the scrubber."), SPAN_NOTICE("You unweld the scrubber."), "You hear welding.")
+					user.visible_message(span_notice("[user] unwelds the scrubber."), span_notice("You unweld the scrubber."), "You hear welding.")
 					welded = 0
 					update_icon()
 					return
@@ -287,23 +287,23 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if (!(stat & NOPOWER) && use_power)
-				to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], turn it off first."))
+				to_chat(user, span_warning("You cannot unwrench \the [src], turn it off first."))
 				return 1
 			var/turf/T = src.loc
 			if (node1 && node1.level==1 && isturf(T) && !T.is_plating())
-				to_chat(user, SPAN_WARNING("You must remove the plating first."))
+				to_chat(user, span_warning("You must remove the plating first."))
 				return 1
 			var/datum/gas_mixture/int_air = return_air()
 			var/datum/gas_mixture/env_air = loc.return_air()
 			if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-				to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
+				to_chat(user, span_warning("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
 				add_fingerprint(user)
 				return 1
-			to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
+			to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				user.visible_message( \
-					SPAN_NOTICE("\The [user] unfastens \the [src]."), \
-					SPAN_NOTICE("You have unfastened \the [src]."), \
+					span_notice("\The [user] unfastens \the [src]."), \
+					span_notice("You have unfastened \the [src]."), \
 					"You hear a ratchet.")
 				new /obj/item/pipe(loc, make_from=src)
 				qdel(src)

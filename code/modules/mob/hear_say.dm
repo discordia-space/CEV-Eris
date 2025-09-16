@@ -1,8 +1,9 @@
 // At minimum every mob has a hear_say proc.
 
-/mob/proc/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol, var/speech_volume)
+/mob/proc/hear_say(message, verb = src.verb_say, datum/language/language = null, alt_name = "", italics = 0, mob/speaker = null, sound/speech_sound, sound_vol, speech_volume)
 	if(!client)
 		return
+
 
 	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_COP))
 		message = cop_codes.find_message(message) ? "[message] ([cop_codes.find_message(message)])" : message
@@ -18,8 +19,11 @@
 		if((get_dist(src, H) < 2) || stats?.getPerk(PERK_EAR_OF_QUICKSILVER))
 			speaker_name = H.rank_prefix_name(H.GetVoice(FALSE))
 
+	var/original_message = message
+
 	if(speech_volume)
 		message = "<FONT size='[speech_volume]'>[message]</FONT>"
+
 	if(italics)
 		message = "<i>[message]</i>"
 
@@ -32,14 +36,14 @@
 				speaker_name = "[speaker.real_name] ([speaker_name])"
 			else
 				speaker_name = "[speaker_name]"
-		track = "([ghost_follow_link(speaker, src)]) "
+		track = "[ghost_follow_link(speaker, src)] "
 		if(get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH && (speaker in view(src)))
 			message = "<b>[message]</b>"
 
 	if(language)
 		var/nverb = null
 		if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check to see if we can understand what the speaker is saying. If so, add the name of the language after the verb. Don't do this for Galactic Common.
-			on_hear_say("<span class='game say'>[track]<span class='name'>[speaker_name]</span>[alt_name] [language.format_message(message, verb)]</span>")
+			on_hear_say("<span class='game say'>[track][span_name("[speaker_name]")][alt_name] [language.format_message(message, verb)]</span>")
 		else //Check if the client WANTS to see language names.
 			switch(src.get_preference_value(/datum/client_preference/language_display))
 				if(GLOB.PREF_FULL) // Full language name
@@ -48,21 +52,27 @@
 					nverb = "[verb] ([language.shorthand])"
 				if(GLOB.PREF_OFF)//Regular output
 					nverb = verb
-			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][language.format_message(message, nverb)]</span>")
+			on_hear_say("<span class='game say'>[language.display_icon(src) ? language.get_icon() : ""][span_name("[speaker_name]")][alt_name] [track][language.format_message(message, nverb)]</span>")
 	else
-		on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='body'>\"[message]\"</span></span></span>")
+		on_hear_say("<span class='game say'>[span_name("[speaker_name]")][alt_name] [track][verb], [span_message("<span class='body'>\"[message]\"")]</span></span>")
+	// Create map text prior to modifying message for goonchat
+	if (client?.prefs.RC_enabled && !(stat == UNCONSCIOUS || stat == HARDCRIT) && (ismob(speaker) || client.prefs.RC_see_chat_non_mob) && !isdeaf(src))
+		if (italics)
+			create_chat_message(speaker, language, original_message, list(SPAN_ITALICS))
+		else
+			create_chat_message(speaker, language, original_message)
 	if(speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
 		var/turf/source = speaker ? get_turf(speaker) : get_turf(src)
 		src.playsound_local(source, speech_sound, sound_vol, 1)
 
-/mob/proc/on_hear_say(var/message)
+/mob/proc/on_hear_say(message)
 	to_chat(src, message)
 
-/mob/living/silicon/on_hear_say(var/message)
+/mob/living/silicon/on_hear_say(message)
 	var/time = say_timestamp()
 	to_chat(src,"[time] [message]")
 
-/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language,\
+/mob/proc/hear_radio(message, verb = src.verb_say, datum/language/language,\
 		var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/voice_name ="")
 
 	if(!client)
@@ -93,11 +103,11 @@
 					nverb = verb
 			message = language.format_message_radio(message, nverb)
 	else
-		message = "[verb], <span class=\"body\">\"[message]\"</span>"
+		message = "[verb], <span class='body'>\"[message]\"</span>"
 
 	on_hear_radio(part_a, speaker_name, part_b, message)
 
-/mob/proc/get_hear_name(var/mob/speaker, hard_to_hear, voice_name)
+/mob/proc/get_hear_name(mob/speaker, hard_to_hear, voice_name)
 	if(hard_to_hear)
 		return "Unknown"
 	if(!speaker)
@@ -164,7 +174,7 @@
 	else
 		return "<a href=\"byond://?src=\ref[src];trackname=[speaker_name];track=\ref[speaker]\">[speaker_name] ([jobname])</a>"
 
-/mob/observer/ghost/get_hear_name(var/mob/speaker, hard_to_hear, voice_name)
+/mob/observer/ghost/get_hear_name(mob/speaker, hard_to_hear, voice_name)
 	. = ..()
 	if(!speaker)
 		return .
@@ -172,7 +182,7 @@
 	if(. != speaker.real_name && !isAI(speaker))
 	 //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
 		. = "[speaker.real_name] ([.])"
-	return "[.] ([ghost_follow_link(speaker, src)])"
+	return "[.] [ghost_follow_link(speaker, src)]"
 
 /proc/say_timestamp()
 	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"
@@ -186,7 +196,7 @@
 	to_chat(src,"[time][part_a][speaker_name][part_b][message]")
 
 
-/mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)
+/mob/proc/hear_signlang(message, verb = "signs", datum/language/language, mob/speaker = null)
 	if(!client)
 		return
 

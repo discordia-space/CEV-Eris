@@ -20,7 +20,7 @@
 
 	var/last_dock_attempt_time = 0
 
-/datum/shuttle/ferry/short_jump(var/area/origin,var/area/destination)
+/datum/shuttle/ferry/short_jump(area/origin,area/destination)
 	if(isnull(location))
 		return
 
@@ -32,7 +32,7 @@
 	direction = !location
 	..(origin, destination)
 
-/datum/shuttle/ferry/long_jump(var/area/departing, var/area/destination, var/area/interim, var/travel_time, var/direction)
+/datum/shuttle/ferry/long_jump(area/departing, area/destination, area/interim, travel_time, direction)
 	//world << "shuttle/ferry/long_jump: departing=[departing], destination=[destination], interim=[interim], travel_time=[travel_time]"
 	if(isnull(location))
 		return
@@ -45,7 +45,7 @@
 	direction = !location
 	..(departing, destination, interim, travel_time, direction)
 
-/datum/shuttle/ferry/move(var/area/origin,var/area/destination)
+/datum/shuttle/ferry/move(area/origin,area/destination)
 	..(origin, destination)
 
 	if (destination == area_station) location = 0
@@ -109,7 +109,7 @@
 	return dock_target
 
 
-/datum/shuttle/ferry/proc/launch(var/user)
+/datum/shuttle/ferry/proc/launch(user)
 	if (!can_launch()) return
 
 	in_use = user	//obtain an exclusive lock on the shuttle
@@ -117,14 +117,14 @@
 	process_state = WAIT_LAUNCH
 	undock()
 
-/datum/shuttle/ferry/proc/force_launch(var/user)
+/datum/shuttle/ferry/proc/force_launch(user)
 	if (!can_force()) return
 
 	in_use = user	//obtain an exclusive lock on the shuttle
 
 	process_state = FORCE_LAUNCH
 
-/datum/shuttle/ferry/proc/cancel_launch(var/user)
+/datum/shuttle/ferry/proc/cancel_launch(user)
 	if (!can_cancel()) return
 
 	moving_status = SHUTTLE_IDLE

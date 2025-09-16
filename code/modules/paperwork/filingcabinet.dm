@@ -41,7 +41,7 @@
 
 /obj/structure/filingcabinet/attackby(obj/item/I, mob/user)
 	if(is_type_in_list(I, can_hold))
-		to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
+		to_chat(user, span_notice("You put [I] in [src]."))
 		user.drop_item()
 		I.loc = src
 		flick("[initial(icon_state)]-open",src)
@@ -49,20 +49,20 @@
 	else if(I.get_tool_type(usr, list(QUALITY_BOLT_TURNING), src))
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 			anchored = !anchored
-			to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+			to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 	else
-		to_chat(user, SPAN_NOTICE("You can't put [I] in [src]!"))
+		to_chat(user, span_notice("You can't put [I] in [src]!"))
 
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
 	if(contents.len <= 0)
-		to_chat(user, SPAN_NOTICE("\The [src] is empty."))
+		to_chat(user, span_notice("\The [src] is empty."))
 		return
 
 	user.set_machine(src)
 	var/dat = list("<center><table>")
 	for(var/obj/item/P in src)
-		dat += "<tr><td><a href='?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
+		dat += "<tr><td><a href='byond://?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
 	dat += "</table></center>"
 	user << browse("<html><head><title>[name]</title></head><body>[jointext(dat,null)]</body></html>", "window=filingcabinet;size=350x300")
 
@@ -79,13 +79,13 @@
 			I.loc = loc
 			if(prob(25))
 				step_rand(I)
-			to_chat(user, SPAN_NOTICE("You pull \a [I] out of [src] at random."))
+			to_chat(user, span_notice("You pull \a [I] out of [src] at random."))
 			return
-	to_chat(user, SPAN_NOTICE("You find nothing in [src]."))
+	to_chat(user, span_notice("You find nothing in [src]."))
 
 /obj/structure/filingcabinet/Topic(href, href_list)
 	if(href_list["retrieve"])
-		usr << browse("", "window=filingcabinet") // Close the menu
+		usr << browse(null, "window=filingcabinet") // Close the menu
 
 		//var/retrieveindex = text2num(href_list["retrieve"])
 		var/obj/item/P = locate(href_list["retrieve"])//contents[retrieveindex]

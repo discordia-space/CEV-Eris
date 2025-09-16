@@ -17,8 +17,8 @@
 		slot = slot_r_hand
 	if(H.equip_to_slot_if_possible(holding, slot))
 		H.visible_message(
-			SPAN_WARNING("[H] extend \his [holding.name] from [E]."),
-			SPAN_NOTICE("You extend your [holding.name] from [E].")
+			span_warning("[H] extend \his [holding.name] from [E]."),
+			span_notice("You extend your [holding.name] from [E].")
 		)
 
 /obj/item/organ_module/active/simple/proc/retract(mob/living/carbon/human/H, obj/item/organ/external/E)
@@ -29,8 +29,8 @@
 		var/mob/M = holding.loc
 		M.drop_from_inventory(holding)
 		M.visible_message(
-			SPAN_WARNING("[M] retracts \his [holding.name] into [E]."),
-			SPAN_NOTICE("You retract your [holding.name] into [E].")
+			span_warning("[M] retracts \his [holding.name] into [E]."),
+			span_notice("You retract your [holding.name] into [E].")
 		)
 	holding.forceMove(src)
 
@@ -47,7 +47,7 @@
 /obj/item/organ_module/active/simple/deactivate(mob/living/carbon/human/H, obj/item/organ/external/E)
 	retract(H, E)
 
-/obj/item/organ_module/active/simple/organ_removed(var/obj/item/organ/external/E, var/mob/living/carbon/human/H)
+/obj/item/organ_module/active/simple/organ_removed(obj/item/organ/external/E, mob/living/carbon/human/H)
 	retract(H, E)
 	..()
 

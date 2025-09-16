@@ -153,7 +153,7 @@
 			overlays += I
 
 	//wallhug
-	for(var/direction in cardinal + list(NORTHEAST, NORTHWEST)-SOUTH)
+	for(var/direction in GLOB.cardinal + list(NORTHEAST, NORTHWEST)-SOUTH)
 		//corners
 		if(direction == NORTHEAST || direction == NORTHWEST)
 			if(!is_wall(get_step(loc, NORTH)) || !is_wall(get_step(loc, direction-NORTH)))
@@ -243,7 +243,7 @@
 		return ..()
 
 
-/obj/effect/plant/hivemind/Adjacent(var/atom/neighbor)
+/obj/effect/plant/hivemind/Adjacent(atom/neighbor)
 	var/turf/T = get_turf(neighbor)
 	if(locate(/obj/machinery/door) in T)
 		for(var/obj/O in T)
@@ -265,7 +265,7 @@
 
 
 //assimilation process
-/obj/effect/plant/hivemind/proc/assimilate(var/atom/subject)
+/obj/effect/plant/hivemind/proc/assimilate(atom/subject)
 	//Machinery infestation
 	if(istype(subject, /obj/machinery) || istype(subject, /obj/item/modular_computer/console))
 		var/obj/machinery/hivemind_machine/created_machine
@@ -364,16 +364,16 @@
 
 		if(weapon_type)
 			if(W.use_tool(user, src, WORKTIME_FAST, weapon_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				user.visible_message(SPAN_DANGER("[user] cuts down [src]."), SPAN_DANGER("You cut down [src]."))
+				user.visible_message(span_danger("[user] cuts down [src]."), span_danger("You cut down [src]."))
 				die_off()
 				return
 			return
 		else
 			if(W.sharp && W.force >= 10)
 				health -= rand(W.force/2, W.force) //hm, maybe make damage based on player's robust stat?
-				user.visible_message(SPAN_DANGER("[user] slices [src]."), SPAN_DANGER("You slice [src]."))
+				user.visible_message(span_danger("[user] slices [src]."), span_danger("You slice [src]."))
 			else
-				to_chat(user, SPAN_DANGER("You try to slice [src], but it's useless!"))
+				to_chat(user, span_danger("You try to slice [src], but it's useless!"))
 		check_health()
 
 

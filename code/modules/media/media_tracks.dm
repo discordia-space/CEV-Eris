@@ -12,7 +12,7 @@
 	var/lobby		// Be one of the choices for lobby music?
 	var/playlist	//Song's playlist (used for tapes)
 
-/datum/track/New(var/url, var/title, var/duration, var/artist = "", var/secret = 0, var/lobby = 0, var/playlist)
+/datum/track/New(url, title, duration, artist = "", secret = 0, lobby = 0, playlist)
 	src.url = url
 	src.title = title
 	src.artist = artist

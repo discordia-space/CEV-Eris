@@ -35,7 +35,7 @@
 	if(istype(I, /obj/item/maneki_neko))
 		user.remove_from_mob(I)
 		qdel(I)
-		to_chat(user, SPAN_NOTICE("You upgrade the [src] using the Maneki Neko, its powers now allowing the oddity to synthethize plasma and carpotoxin ontop of resuscitator!"))
+		to_chat(user, span_notice("You upgrade the [src] using the Maneki Neko, its powers now allowing the oddity to synthethize plasma and carpotoxin ontop of resuscitator!"))
 		upgraded = TRUE
 	..()
 
@@ -56,7 +56,7 @@
 			var/obj/item/reagent_containers/glass/bottle/bottle = new /obj/item/reagent_containers/glass/bottle(get_turf(src))
 			bottle.reagents.add_reagent("resuscitator", resuscitator_amount)
 			bottle.name = "resuscitator bottle"
-			visible_message(SPAN_NOTICE("[src] drops [bottle]."))
+			visible_message(span_notice("[src] drops [bottle]."))
 			if(upgraded)
 				var/obj/item/reagent_containers/glass/bottle/plasma = new /obj/item/reagent_containers/glass/bottle(get_turf(src))
 				var/obj/item/reagent_containers/glass/bottle/carpotoxin = new /obj/item/reagent_containers/glass/bottle(get_turf(src))
@@ -76,16 +76,16 @@
 			return TRUE
 		if(is_drainable() && reagents.total_volume)
 			if(istype(A, /obj/structure/sink))
-				to_chat(user, SPAN_NOTICE("You pour the solution into [A]."))
+				to_chat(user, span_notice("You pour the solution into [A]."))
 				reagents.remove_any(reagents.total_volume)
 			else
 				playsound(src,'sound/effects/Splash_Small_01_mono.ogg',50,1)
-				to_chat(user, SPAN_NOTICE("You splash the solution onto [A]."))
+				to_chat(user, span_notice("You splash the solution onto [A]."))
 				reagents.splash(A, reagents.total_volume)
 			return TRUE
 	return ..()
 
-/obj/item/reagent_containers/enricher/afterattack(var/obj/target, var/mob/user, var/flag)
+/obj/item/reagent_containers/enricher/afterattack(obj/target, mob/user, flag)
 	if(!flag)
 		return
 	if(standard_pour_into(user, target))

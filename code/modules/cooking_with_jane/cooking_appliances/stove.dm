@@ -31,7 +31,7 @@
 
 	//if(on_fire)
 		//Do bad things if it is on fire.
-	for(var/i=1, i<=4, i++)
+	for(var/i=1; i<=4; i++)
 		if(switches[i])
 			handle_cooking(null, i, FALSE)
 
@@ -61,7 +61,7 @@
 	quality_mod = round(man_rating/2)
 
 //Process how a specific stove is interacting with material
-/obj/machinery/cooking_with_jane/stove/proc/cook_checkin(var/input)
+/obj/machinery/cooking_with_jane/stove/proc/cook_checkin(input)
 	#ifdef CWJ_DEBUG
 	log_debug("/cooking_with_jane/stove/proc/cook_checkin called on burner [input]")
 	#endif
@@ -127,7 +127,7 @@
 	#endif
 	return input
 
-/obj/machinery/cooking_with_jane/stove/attackby(var/obj/item/used_item, var/mob/user, params)
+/obj/machinery/cooking_with_jane/stove/attackby(obj/item/used_item, mob/user, params)
 	if(default_deconstruction(used_item, user))
 		return
 
@@ -138,7 +138,7 @@
 		container.process_item(used_item, params)
 
 	else if(istype(used_item, /obj/item/reagent_containers/cooking_with_jane/cooking_container))
-		to_chat(usr, SPAN_NOTICE("You put a [used_item] on the stove."))
+		to_chat(usr, span_notice("You put a [used_item] on the stove."))
 		if(usr.canUnEquip(used_item))
 			usr.unEquip(used_item, src)
 		else
@@ -162,12 +162,12 @@
 							burn_victim.adjustFireLoss(5)
 						if("Medium")
 							burn_victim.adjustFireLoss(2)
-					to_chat(burn_victim, SPAN_DANGER("You burn your hand a little taking the [items[input]] off of the stove."))
+					to_chat(burn_victim, span_danger("You burn your hand a little taking the [items[input]] off of the stove."))
 		user.put_in_hands(items[input])
 		items[input] = null
 		update_icon()
 
-/obj/machinery/cooking_with_jane/stove/CtrlClick(var/mob/user, params)
+/obj/machinery/cooking_with_jane/stove/CtrlClick(mob/user, params)
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
 
@@ -183,7 +183,7 @@
 			handle_timer(user, input)
 
 //Switch the cooking device on or off
-/obj/machinery/cooking_with_jane/stove/CtrlShiftClick(var/mob/user, params)
+/obj/machinery/cooking_with_jane/stove/CtrlShiftClick(mob/user, params)
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
 	var/input = getInput(params)
@@ -194,7 +194,7 @@
 	handle_switch(user, input)
 
 //Empty a container without a tool
-/obj/machinery/cooking_with_jane/stove/AltClick(var/mob/user, params)
+/obj/machinery/cooking_with_jane/stove/AltClick(mob/user, params)
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
 
@@ -230,7 +230,7 @@
 	update_icon()
 
 //input: 1 thru 4, depends on which burner was selected
-/obj/machinery/cooking_with_jane/stove/proc/timer_act(var/mob/user, var/input)
+/obj/machinery/cooking_with_jane/stove/proc/timer_act(mob/user, input)
 
 	timerstamp[input]=round(world.time)
 	#ifdef CWJ_DEBUG
@@ -271,7 +271,7 @@
 
 
 
-/obj/machinery/cooking_with_jane/stove/proc/handle_cooking(var/mob/user, var/input, set_timer=FALSE)
+/obj/machinery/cooking_with_jane/stove/proc/handle_cooking(mob/user, input, set_timer=FALSE)
 
 	if(!(items[input] && istype(items[input], /obj/item/reagent_containers/cooking_with_jane/cooking_container)))
 		return
@@ -318,7 +318,7 @@
 		icon_state="stove"
 
 	var/stove_on = FALSE
-	for(var/i=1, i<=4, i++)
+	for(var/i=1; i<=4; i++)
 		if(switches[i] == TRUE)
 			if(!stove_on)
 				stove_on = TRUE
@@ -328,7 +328,7 @@
 		add_overlay(image(src.icon, icon_state="indicator"))
 
 
-	for(var/i=1, i<=4, i++)
+	for(var/i=1; i<=4; i++)
 		if(!(items[i]))
 			continue
 		var/obj/item/our_item = items[i]
@@ -349,7 +349,7 @@
 		if(switches[i] == 1)
 			add_overlay(image(src.icon, icon_state="steam_[i]", layer=ABOVE_OBJ_LAYER))
 
-/obj/machinery/cooking_with_jane/stove/proc/add_to_visible(var/obj/item/our_item, input)
+/obj/machinery/cooking_with_jane/stove/proc/add_to_visible(obj/item/our_item, input)
 	our_item.vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
 	src.vis_contents += our_item
 	if(input == 2 || input == 4)
@@ -358,7 +358,7 @@
 		our_item.transform = M
 	our_item.transform *= 0.8
 
-/obj/machinery/cooking_with_jane/stove/proc/remove_from_visible(var/obj/item/our_item, input)
+/obj/machinery/cooking_with_jane/stove/proc/remove_from_visible(obj/item/our_item, input)
 	our_item.vis_flags = 0
 	our_item.blend_mode = 0
 	our_item.transform =  null

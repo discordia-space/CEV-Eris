@@ -9,10 +9,10 @@
 	var/list/allowed_languages
 	var/list/free_languages
 
-/datum/category_item/player_setup_item/background/languages/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/background/languages/load_character(savefile/S)
 	from_file(S["language"], pref.alternate_languages)
 
-/datum/category_item/player_setup_item/background/languages/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/background/languages/save_character(savefile/S)
 	to_file(S["language"],   pref.alternate_languages)
 
 /datum/category_item/player_setup_item/background/languages/sanitize_character()
@@ -31,7 +31,7 @@
 		. += "Your current species, faction or home system selection does not allow you to choose additional languages.<br>"
 	. = jointext(.,null)
 
-/datum/category_item/player_setup_item/background/languages/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/background/languages/OnTopic(href,list/href_list, mob/user)
 
 	if(href_list["remove_language"])
 		var/index = text2num(href_list["remove_language"])
@@ -55,7 +55,7 @@
 				return TOPIC_REFRESH
 	. = ..()
 
-/datum/category_item/player_setup_item/background/languages/proc/rebuild_language_cache(var/mob/user)
+/datum/category_item/player_setup_item/background/languages/proc/rebuild_language_cache(mob/user)
 
 	allowed_languages = list()
 	free_languages = list()
@@ -65,15 +65,15 @@
 
 	free_languages[LANGUAGE_COMMON] = TRUE
 
-	for(var/thing in all_languages)
-		var/datum/language/lang = all_languages[thing]
+	for(var/thing in GLOB.all_languages)
+		var/datum/language/lang = GLOB.all_languages[thing]
 		if(!(lang.flags & RESTRICTED))
 			allowed_languages[thing] = TRUE
 
-/datum/category_item/player_setup_item/background/languages/proc/is_allowed_language(var/mob/user, var/datum/language/lang)
+/datum/category_item/player_setup_item/background/languages/proc/is_allowed_language(mob/user, datum/language/lang)
 	if(isnull(allowed_languages) || isnull(free_languages))
 		rebuild_language_cache(user)
-	if(!user || ((lang.flags & RESTRICTED) && is_alien_whitelisted(user, lang)))
+	if(!user || ((lang.flags & RESTRICTED)))
 		return TRUE
 	return allowed_languages[lang.name]
 
@@ -83,7 +83,7 @@
 	var/preference_mob = preference_mob()
 	rebuild_language_cache(preference_mob)
 	for(var/L in pref.alternate_languages)
-		var/datum/language/lang = all_languages[L]
+		var/datum/language/lang = GLOB.all_languages[L]
 		if(!lang || !is_allowed_language(preference_mob, lang))
 			pref.alternate_languages -= L
 	if(LAZYLEN(free_languages))
@@ -91,7 +91,7 @@
 			pref.alternate_languages -= lang
 			pref.alternate_languages.Insert(1, lang)
 
-	pref.alternate_languages = uniquelist(pref.alternate_languages)
+	pref.alternate_languages = unique_list(pref.alternate_languages)
 	if(pref.alternate_languages.len > MAX_LANGUAGES)
 		pref.alternate_languages.Cut(MAX_LANGUAGES + 1)
 
@@ -103,9 +103,9 @@
 			if(free_languages[lang])
 				LAZYADD(., "- [lang] (required).<br>")
 			else
-				LAZYADD(., "- [lang] <a href='?src=\ref[src];remove_language=[i]'>Remove.</a><br>")
+				LAZYADD(., "- [lang] <a href='byond://?src=\ref[src];remove_language=[i]'>Remove.</a><br>")
 	if(pref.alternate_languages.len < MAX_LANGUAGES)
 		var/remaining_langs = MAX_LANGUAGES - pref.alternate_languages.len
-		LAZYADD(., "- <a href='?src=\ref[src];add_language=1'>add</a> ([remaining_langs] remaining)<br>")
+		LAZYADD(., "- <a href='byond://?src=\ref[src];add_language=1'>add</a> ([remaining_langs] remaining)<br>")
 
 #undef MAX_LANGUAGES

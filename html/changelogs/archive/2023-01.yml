@@ -46,7 +46,7 @@
   MLGTASTICa:
   - refactor: Refactored the code of  the guild mining shuttle smelter and gave it
       a TGUI.
-  Pink-Chink:
+  Pink-chunk:
   - tweak: Added MLGTASTICa's edits to Processor.js
   - tweak: Click cooldown from firing uses both burst delay and fire delay
   - code_imp: Changed the shooting loop to use sleep() instead of spawn(), uses Humonitarian's
@@ -64,7 +64,7 @@
   Humonitarian:
   - balance: when missing a roach in a cluster, the bullet will still attempt to hit
       the rest without missing all of them automatically
-  Pink-Chink:
+  Pink-chunk:
   - rscdel: Removed photon vortex from the pool
   - tweak: Space weather behavior is now tick-based
   - tweak: Space weather event weight reduced, limited to one per round for each event
@@ -96,12 +96,12 @@
   - tweak: njoy works when injected
   Hyperioo:
   - bugfix: Fix window grab interaction rework
-  Pink-Chink:
+  Pink-chunk:
   - bugfix: Removes pointless procs during cloning
   the-og-gear:
   - bugfix: You no longer retain your zoomed view when dropping your scoped weapon
 2023-01-29:
-  Pink-Chink:
+  Pink-chunk:
   - tweak: Renames ore icons to match the new defines
 2023-01-31:
   Firefox13:

@@ -6,7 +6,7 @@
 	rock_colors = list(COLOR_BEIGE, COLOR_PALE_YELLOW, COLOR_GRAY80, COLOR_BROWN)
 	plant_colors = list("#efdd6f","#7b4a12","#e49135","#ba6222","#5c755e","#420d22")
 	planet_colors = list(PIPE_COLOR_YELLOW, COLOR_AMBER)
-	map_generators = list(/datum/random_map/noise/exoplanet/desert, /datum/random_map/noise/ore/rich)
+	map_generators = list(/datum/random_map/noise/exoplanet/desert)
 	surface_color = "#d6cca4"
 	water_color = null
 
@@ -21,7 +21,7 @@
 		atmosphere.temperature = min(T20C + rand(20, 100), limit)
 		atmosphere.update_values()
 
-/obj/effect/overmap/sector/exoplanet/desert/adapt_seed(var/datum/seed/S)
+/obj/effect/overmap/sector/exoplanet/desert/adapt_seed(datum/seed/S)
 	..()
 	if(prob(90))
 		S.set_trait(TRAIT_REQUIRES_WATER,0)
@@ -45,7 +45,7 @@
 	//fauna_types = list(/mob/living/simple_animal/thinbug, /mob/living/simple_animal/tindalos, /mob/living/simple_animal/hostile/voxslug, /mob/living/simple_animal/hostile/antlion)
 	//megafauna_types = list(/mob/living/simple_animal/hostile/antlion/mega)
 
-/datum/random_map/noise/exoplanet/desert/get_additional_spawns(var/value, var/turf/T)
+/datum/random_map/noise/exoplanet/desert/get_additional_spawns(value, turf/T)
 	..()
 	if(is_edge_turf(T))
 		return
@@ -91,43 +91,43 @@
 /obj/structure/quicksand/user_unbuckle_mob(mob/user)
 	if(buckled_mob && !user.stat && !user.restrained())
 		if(busy)
-			to_chat(user, "<span class='wanoticerning'>[buckled_mob] is already getting out, be patient.</span>")
+			to_chat(user, span_warning("[buckled_mob] is already getting out, be patient."))
 			return
 		var/delay = 60
 		if(user == buckled_mob)
 			delay *=2
 			user.visible_message(
-				"<span class='notice'>\The [user] tries to climb out of \the [src].</span>",
-				"<span class='notice'>You begin to pull yourself out of \the [src].</span>",
-				"<span class='notice'>You hear water sloushing.</span>"
+				span_notice("\The [user] tries to climb out of \the [src]."),
+				span_notice("You begin to pull yourself out of \the [src]."),
+				span_notice("You hear water sloushing.")
 				)
 		else
 			user.visible_message(
-				"<span class='notice'>\The [user] begins pulling \the [buckled_mob] out of \the [src].</span>",
-				"<span class='notice'>You begin to pull \the [buckled_mob] out of \the [src].</span>",
-				"<span class='notice'>You hear water sloushing.</span>"
+				span_notice("\The [user] begins pulling \the [buckled_mob] out of \the [src]."),
+				span_notice("You begin to pull \the [buckled_mob] out of \the [src]."),
+				span_notice("You hear water sloushing.")
 				)
 		busy = 1
 		if(do_after(user, delay, src))
 			busy = 0
 			if(user == buckled_mob)
 				if(prob(80))
-					to_chat(user, "<span class='warning'>You slip and fail to get out!</span>")
+					to_chat(user, span_warning("You slip and fail to get out!"))
 					return
-				user.visible_message("<span class='notice'>\The [buckled_mob] pulls himself out of \the [src].</span>")
+				user.visible_message(span_notice("\The [buckled_mob] pulls himself out of \the [src]."))
 			else
-				user.visible_message("<span class='notice'>\The [buckled_mob] has been freed from \the [src] by \the [user].</span>")
+				user.visible_message(span_notice("\The [buckled_mob] has been freed from \the [src] by \the [user]."))
 			unbuckle_mob()
 		else
 			busy = 0
-			to_chat(user, "<span class='warning'>You slip and fail to get out!</span>")
+			to_chat(user, span_warning("You slip and fail to get out!"))
 			return
 
 /obj/structure/quicksand/unbuckle_mob()
 	..()
 	update_icon()
 
-/obj/structure/quicksand/buckle_mob(var/mob/L)
+/obj/structure/quicksand/buckle_mob(mob/L)
 	..()
 	update_icon()
 
@@ -145,7 +145,7 @@
 /obj/structure/quicksand/proc/expose()
 	if(exposed)
 		return
-	visible_message("<span class='warning'>The upper crust breaks, exposing treacherous quicksands underneath!</span>")
+	visible_message(span_warning("The upper crust breaks, exposing treacherous quicksands underneath!"))
 	name = "quicksand"
 	desc = "There is no candy at the bottom."
 	exposed = 1
@@ -157,7 +157,7 @@
 	else
 		..()
 
-/obj/structure/quicksand/Crossed(var/atom/movable/AM)
+/obj/structure/quicksand/Crossed(atom/movable/AM)
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L.throwing) //|| L.can_overcome_gravity()
@@ -165,4 +165,4 @@
 		buckle_mob(L)
 		if(!exposed)
 			expose()
-		to_chat(L, SPAN_DANGER("You fall into \the [src]!"))
+		to_chat(L, span_danger("You fall into \the [src]!"))

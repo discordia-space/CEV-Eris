@@ -53,7 +53,7 @@ var/list/shelter_blacklist = list(
 /obj/item/device/last_shelter/attackby(obj/item/I, mob/living/user, params)
 	if(I.get_tool_quality(QUALITY_SCREW_DRIVING) && !radio_broadcasting && user.a_intent == I_HELP)
 		radio_broadcasting = TRUE
-		to_chat(user, SPAN_NOTICE("You re-enable the radio inside of [src]."))
+		to_chat(user, span_notice("You re-enable the radio inside of [src]."))
 		return
 
 	if(nt_sword_attack(I, user))
@@ -65,7 +65,7 @@ var/list/shelter_blacklist = list(
 
 /obj/item/device/last_shelter/proc/active_effect(mob/user, alert = FALSE)
 	if(world.time >= (last_teleport + cooldown))
-		to_chat(user, SPAN_NOTICE("The [src] scans deep space for a cruciforms, it's will take a while..."))
+		to_chat(user, span_notice("The [src] scans deep space for a cruciforms, it's will take a while..."))
 		last_teleport = world.time
 		scan = TRUE
 		var/obj/item/implant/core_implant/cruciform/cruciform = get_cruciform()
@@ -73,12 +73,12 @@ var/list/shelter_blacklist = list(
 			scan = FALSE
 			if(istype(src.loc, /mob/living/carbon/human))
 				user.put_in_hands(cruciform)
-				to_chat(user, SPAN_NOTICE("The [src] has found the lost cruciform. Now this fate of the disciple rests in your hands."))
+				to_chat(user, span_notice("The [src] has found the lost cruciform. Now this fate of the disciple rests in your hands."))
 			else
-				visible_message(SPAN_NOTICE("[src] drops [cruciform]."))
+				visible_message(span_notice("[src] drops [cruciform]."))
 				cruciform.forceMove(get_turf(src))
 		else
-			to_chat(user, SPAN_WARNING("The [src] can't find any working cruciforms. You can try to use [src] again later."))
+			to_chat(user, span_warning("The [src] can't find any working cruciforms. You can try to use [src] again later."))
 			scan = FALSE
 
 		if(alert)
@@ -89,14 +89,14 @@ var/list/shelter_blacklist = list(
 
 			if(!preacher && length(disciples))
 				preacher = pick(disciples)
-			to_chat(preacher, SPAN_WARNING("[src] has been activated."))
+			to_chat(preacher, span_warning("[src] has been activated."))
 
 
 	else if(scan)
-		to_chat(user, SPAN_WARNING("The [src] is still woking! Wait a minute!"))
+		to_chat(user, span_warning("The [src] is still woking! Wait a minute!"))
 
 	else
-		to_chat(user, SPAN_WARNING("The [src] needs time to recharge!"))
+		to_chat(user, span_warning("The [src] needs time to recharge!"))
 
 /obj/item/device/last_shelter/proc/get_cruciform()
 	var/datum/mind/MN = request_player()
@@ -147,16 +147,16 @@ var/list/shelter_blacklist = list(
 	for(var/mob/observer/ghost/O in GLOB.player_list)
 		if(O.client)
 			O << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
-			if(alert(O, "Do you want to be cloned as NT disciple? Hurry up, you have 60 seconds to make choice!","Player Request","OH YES","No, I'm autist") == "OH YES")
+			if(alert(O, "Do you want to be cloned as NT disciple? Hurry up, you have 60 seconds to make choice!","Player Request","OH YES","No.") == "OH YES")
 				if(!agree_time_out)
 					if(MN)
-						to_chat(O, SPAN_WARNING("Somebody already took this place."))
+						to_chat(O, span_warning("Somebody already took this place."))
 						return
 
 					O.mind = new /datum/mind(O.ckey)
 					MN = O.mind
 				else
-					to_chat(O, SPAN_WARNING("You are too slow. Try to be faster next time."))
+					to_chat(O, span_warning("You are too slow. Try to be faster next time."))
 					return
 
 	sleep(request_timeout)

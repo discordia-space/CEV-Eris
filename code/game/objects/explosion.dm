@@ -1,6 +1,6 @@
 //TODO: Flash range does nothing currently
 
-proc/explosion(turf/epicenter, power, falloff, explosion_flags, adminlog = TRUE)
+/proc/explosion(turf/epicenter, power, falloff, explosion_flags, adminlog = TRUE)
 	if(falloff == 0)
 		falloff = power / 10
 	var/max_range = round(power / falloff)
@@ -29,12 +29,12 @@ proc/explosion(turf/epicenter, power, falloff, explosion_flags, adminlog = TRUE)
 		if(M.ear_deaf <= 0 || !M.ear_deaf) if(!istype(M.loc,/turf/space))
 			M << 'sound/effects/explosionfar.ogg'
 	if(adminlog)
-		message_admins("Explosion with power:[power] and falloff:[falloff] in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
+		message_admins("Explosion with power:[power] and falloff:[falloff] in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) [ADMIN_JMP(epicenter)]")
 		log_game("Explosion with size power:[power] and falloff:[falloff] in area [epicenter.loc.name] ")
 
 	/*
 	spawn(0)
-		if(config.use_recursive_explosions)
+		if(CONFIG_GET(flag/use_recursive_explosions))
 			var/power = devastation_range * 2 + heavy_impact_range + light_impact_range //The ranges add up, ie light 14 includes both heavy 7 and devestation 3. So this calculation means devestation counts for 4, heavy for 2 and light for 1 power, giving us a cap of 27 power.
 			explosion_rec(epicenter, power)
 			return
@@ -88,7 +88,7 @@ proc/explosion(turf/epicenter, power, falloff, explosion_flags, adminlog = TRUE)
 			if(M.ear_deaf <= 0 || !M.ear_deaf) if(!istype(M.loc,/turf/space))
 				M << 'sound/effects/explosionfar.ogg'
 		if(adminlog)
-			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [singe_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
+			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [singe_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) [ADMIN_JMP(epicenter)]")
 			log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [singe_impact_range]) in area [epicenter.loc.name] ")
 
 		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range + round(singe_impact_range / 2)
@@ -124,7 +124,7 @@ proc/explosion(turf/epicenter, power, falloff, explosion_flags, adminlog = TRUE)
 
 		var/took = (world.timeofday-start)/10
 		//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes  to explosion code using this please so we can compare
-		if(Debug2)	log_world("## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds.")
+		if(GLOB.Debug2)	log_world("## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds.")
 
 		//Machines which report explosions.
 		for(var/i,i<=doppler_arrays.len,i++)
@@ -143,11 +143,11 @@ proc/explosion(turf/epicenter, power, falloff, explosion_flags, adminlog = TRUE)
 
 
 
-proc/secondaryexplosion(turf/epicenter, range)
+/proc/secondaryexplosion(turf/epicenter, range)
 	for(var/turf/tile in range(range, epicenter))
 		tile.explosion_act(500, null)
 
-proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount = 100, var/f_damage = null, var/f_step = 2, var/same_turf_hit_chance = 20)
+/proc/fragment_explosion(turf/epicenter, range, f_type, f_amount = 100, f_damage = null, f_step = 2, same_turf_hit_chance = 20)
 	if(!isturf(epicenter))
 		epicenter = get_turf(epicenter)
 
@@ -176,7 +176,7 @@ proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount 
 
 
 // This is made to mimic the explosion that would happen when something gets pierced by a bullet ( a tank by a anti-armor shell , a armoured car by an .60 AMR,  etc, creates flying shrapnel on the other side!)
-proc/fragment_explosion_angled(atom/epicenter, turf/origin , projectile_type, projectile_amount)
+/proc/fragment_explosion_angled(atom/epicenter, turf/origin , projectile_type, projectile_amount)
 	var/turf/turf_t = get_turf_away_from_target_complex(get_turf(epicenter), origin, 3)
 	var/list/hittable_turfs  = RANGE_TURFS(1, turf_t)
 	var/proj_amount = projectile_amount
@@ -187,7 +187,7 @@ proc/fragment_explosion_angled(atom/epicenter, turf/origin , projectile_type, pr
 		pew_thingie.launch(pick(hittable_turfs))
 
 //Generic proc for spread of any projectile type.
-proc/projectile_explosion(turf/epicenter, range, p_type, p_amount = 10, list/p_damage = list())
+/proc/projectile_explosion(turf/epicenter, range, p_type, p_amount = 10, list/p_damage = list())
     if(!istype(epicenter))
         epicenter = get_turf(epicenter)
 

@@ -1,4 +1,6 @@
+// See initialization order in /code/game/world.dm
 GLOBAL_REAL(GLOB, /datum/controller/global_vars)
+GLOBAL_VAR(world_)
 
 /datum/controller/global_vars
 	name = "Global Variables"
@@ -12,26 +14,44 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 		CRASH("Multiple instances of global variable controller created")
 	GLOB = src
 
+	config.Load(world.params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
+
 	var/datum/controller/exclude_these = new
-	gvars_datum_in_built_vars = exclude_these.vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
+	// I know this is dumb but the nested vars list hangs a ref to the datum. This fixes that
+	// I have an issue report open, lummox has not responded. It might be a FeaTuRE
+	// Sooo we gotta be dumb
+	var/list/controller_vars = exclude_these.vars.Copy()
+	controller_vars["vars"] = null
+	gvars_datum_in_built_vars = controller_vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
+
 	QDEL_IN(exclude_these, 0) //signal logging isn't ready
 
 	log_world("[vars.len - gvars_datum_in_built_vars.len] global variables")
 
 	Initialize()
 
+	makeDatumRefLists()
+	GLOB.world_ = world
+
 /datum/controller/global_vars/Destroy(force)
 	// This is done to prevent an exploit where admins can get around protected vars
 	SHOULD_CALL_PARENT(FALSE)
 	return QDEL_HINT_IWILLGC
 
-/datum/controller/global_vars/VV_hidden()//Part of bay var viewer improvements
-	return ..() + gvars_datum_protected_varlist
+/datum/controller/global_vars/stat_entry(msg)
+	msg = "Edit"
+	return msg
 
-// /datum/controller/global_vars/vv_edit_var(var_name, var_value)
-// 	if(gvars_datum_protected_varlist[var_name])
-// 		return FALSE
-// 	return ..()
+/datum/controller/global_vars/vv_edit_var(var_name, var_value)
+	if(gvars_datum_protected_varlist[var_name])
+		return FALSE
+	return ..()
+
+/datum/controller/global_vars/vv_get_var(var_name)
+	switch(var_name)
+		if (NAMEOF(src, vars))
+			return debug_variable(var_name, list(), 0, src)
+	return debug_variable(var_name, vars[var_name], 0, src, display_flags = VV_ALWAYS_CONTRACT_LIST)
 
 /datum/controller/global_vars/Initialize()
 	gvars_datum_init_order = list()

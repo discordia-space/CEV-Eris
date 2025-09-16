@@ -8,8 +8,7 @@
 	var/net_type = /obj/effect/energy_net
 
 /obj/item/energy_net/dropped()
-	spawn(10)
-		if(src) qdel(src)
+	QDEL_IN(src, 10)
 
 /obj/item/energy_net/throw_impact(atom/hit_atom)
 	..()
@@ -30,8 +29,7 @@
 		qdel(src)
 
 	// If we miss or hit an obstacle, we still want to delete the net.
-	spawn(10)
-		if(src) qdel(src)
+	QDEL_IN(src, 10)
 
 /obj/effect/energy_net
 	name = "energy net"
@@ -92,7 +90,7 @@
 		countdown--
 		return
 
-/obj/effect/energy_net/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/energy_net/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	healthcheck()
 	return 0
@@ -101,7 +99,7 @@
 	health = 0
 	healthcheck()
 
-/obj/effect/energy_net/attack_hand(var/mob/user)
+/obj/effect/energy_net/attack_hand(mob/user)
 
 	var/mob/living/carbon/human/H = user
 	if(istype(H))
@@ -116,7 +114,7 @@
 	else
 		health -= rand(5,8)
 
-	to_chat(H, "<span class='danger'>You claw at the energy net.</span>")
+	to_chat(H, span_danger("You claw at the energy net."))
 
 	healthcheck()
 	return

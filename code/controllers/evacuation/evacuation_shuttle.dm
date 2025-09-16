@@ -3,9 +3,6 @@
 
 /datum/evacuation_controller/shuttle
 	name = "escape shuttle controller"
-	evac_waiting =  new(0, new_sound = sound('sound/AI/shuttledock.ogg'))
-	evac_called =   new(0, new_sound = sound('sound/AI/shuttlecalled.ogg'))
-	evac_recalled = new(0, new_sound = sound('sound/AI/shuttlerecalled.ogg'))
 
 	emergency_prep_additional_delay = 0 MINUTES
 	transfer_prep_additional_delay = 0 MINUTES
@@ -52,7 +49,7 @@
 			if (pod.arming_controller)
 				pod.arming_controller.arm()
 
-/datum/evacuation_controller/shuttle/call_evacuation(var/mob/user, var/_emergency_evac, var/forced, var/skip_announce, var/autotransfer)
+/datum/evacuation_controller/shuttle/call_evacuation(mob/user, _emergency_evac, forced, skip_announce, autotransfer)
 	if(..())
 		autopilot = 1
 		shuttle_launch_time = evac_no_return

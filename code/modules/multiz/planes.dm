@@ -4,11 +4,11 @@
 	if(!original_plane)
 		original_plane = plane
 
-/atom/proc/set_plane(var/new_plane)	//Changes plane
+/atom/proc/set_plane(new_plane)	//Changes plane
 	original_plane = new_plane
 	update_plane()
 
-/proc/calculate_plane(var/z,var/original_plane)
+/proc/calculate_plane(z,original_plane)
 	if(z <= 0 || z_levels.len < z)
 		return
 
@@ -23,5 +23,5 @@
 	else
 		plane = ABOVE_HUD_PLANE
 
-/atom/proc/get_relative_plane(var/plane)
+/atom/proc/get_relative_plane(plane)
 	return calculate_plane(z,plane)

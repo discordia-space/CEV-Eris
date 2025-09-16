@@ -15,7 +15,7 @@
 	ammo_type = /obj/item/ammo_casing/grenade
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher_fire.ogg'
 	fire_sound_text = "a metallic thunk"
-	bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'	//Placeholder, could use a new sound
+	bulletinsert_sound = 'sound/weapons/guns/interact/grenadelauncher_magin.ogg'
 	saw_off = FALSE
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_WOOD = 10)
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
@@ -39,7 +39,7 @@
 
 /obj/item/gun/projectile/shotgun/pump/grenade/proc/load_underslung(obj/item/ammo_casing/grenade/G, mob/user)
 	if(chambered)
-		to_chat(user, SPAN_WARNING("[src] is full!"))
+		to_chat(user, span_warning("[src] is full!"))
 		return
 	user.remove_from_mob(G)
 	G.forceMove(src)
@@ -114,7 +114,7 @@
 		..()
 
 /obj/item/gun/projectile/shotgun/pump/grenade/makeshift/attack_hand(mob/user)
-	if(user.get_inactive_hand() == src)
+	if(user.get_inactive_held_item() == src)
 		unload_underslung(user)
 	else
 		..()

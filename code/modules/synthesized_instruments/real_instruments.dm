@@ -18,11 +18,11 @@
 	maximum_line_length = GLOB.musical_config.max_line_length
 	instruments = what //This can be a list, or it can also not be one
 
-/datum/real_instrument/proc/Topic_call(href, href_list, usr)
+/datum/real_instrument/proc/Topic_call(href, href_list, mob/user)
 	var/target = href_list["target"]
 	var/value = text2num(href_list["value"])
 	if (href_list["value"] && !isnum(value))
-		to_chat(usr, "Non-numeric value was given")
+		to_chat(user, "Non-numeric value was given")
 		return 0
 
 
@@ -31,20 +31,20 @@
 		if ("play")
 			src.player.song.playing = value
 			if (src.player.song.playing)
-				src.player.song.play_song(usr)
+				src.player.song.play_song(user)
 		if ("newsong")
 			src.player.song.lines.Cut()
 			src.player.song.tempo = src.player.song.sanitize_tempo(5) // default 120 BPM
 		if ("import")
 			var/t = ""
 			do
-				t = html_encode(input(usr, "Please paste the entire song, formatted:", text("[]", owner.name), t)  as message)
-				if(!CanInteractWith(usr, owner, GLOB.physical_state))
+				t = html_encode(input(user, "Please paste the entire song, formatted:", text("[]", owner.name), t)  as message)
+				if(!CanInteractWith(user, owner, GLOB.physical_state))
 					return
 
 				if(length(t) >= 2*src.maximum_lines*src.maximum_line_length)
-					var/cont = input(usr, "Your message is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
-					if(!CanInteractWith(usr, owner, GLOB.physical_state))
+					var/cont = input(user, "Your message is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
+					if(!CanInteractWith(user, owner, GLOB.physical_state))
 						return
 					if(cont == "no")
 						break
@@ -60,24 +60,24 @@
 				else
 					src.player.song.tempo = src.player.song.sanitize_tempo(5) // default 120 BPM
 				if(src.player.song.lines.len > maximum_lines)
-					to_chat(usr,"Too many lines!")
+					to_chat(user,"Too many lines!")
 					src.player.song.lines.Cut(maximum_lines+1)
 				var/linenum = 1
 				for(var/l in src.player.song.lines)
 					if(length(l) > maximum_line_length)
-						to_chat(usr, "Line [linenum] too long!")
+						to_chat(user, "Line [linenum] too long!")
 						src.player.song.lines.Remove(l)
 					else
 						linenum++
 		if ("show_song_editor")
 			if (!src.song_editor)
 				src.song_editor = new (host = src.owner, song = src.player.song)
-			src.song_editor.nano_ui_interact(usr)
+			src.song_editor.nano_ui_interact(user)
 
 		if ("show_usage")
 			if (!src.usage_info)
 				src.usage_info = new (owner, src.player)
-			src.usage_info.nano_ui_interact(usr)
+			src.usage_info.nano_ui_interact(user)
 		if ("volume")
 			src.player.volume = min(max(min(player.volume+text2num(value), 100), 0), player.max_volume)
 		if ("transposition")
@@ -91,8 +91,8 @@
 		if ("sustain_timer")
 			src.player.song.sustain_timer = max(min(player.song.sustain_timer+value, GLOB.musical_config.longest_sustain_timer), 1)
 		if ("soft_coeff")
-			var/new_coeff = input(usr, "from [GLOB.musical_config.gentlest_drop] to [GLOB.musical_config.steepest_drop]") as num
-			if(!CanInteractWith(usr, owner, GLOB.physical_state))
+			var/new_coeff = input(user, "from [GLOB.musical_config.gentlest_drop] to [GLOB.musical_config.steepest_drop]") as num
+			if(!CanInteractWith(user, owner, GLOB.physical_state))
 				return
 			new_coeff = round(min(max(new_coeff, GLOB.musical_config.gentlest_drop), GLOB.musical_config.steepest_drop), 0.001)
 			src.player.song.soft_coeff = new_coeff
@@ -104,8 +104,8 @@
 				var/datum/instrument/instrument = instrumentsList[key]
 				categories |= instrument.category
 
-			var/category = input(usr, "Choose a category") as null|anything in categories
-			if(!CanInteractWith(usr, owner, GLOB.physical_state))
+			var/category = input(user, "Choose a category") as null|anything in categories
+			if(!CanInteractWith(user, owner, GLOB.physical_state))
 				return
 			var/list/instruments_available = list()
 			for (var/key in instrumentsList)
@@ -113,8 +113,8 @@
 				if (instrument.category == category)
 					instruments_available += key
 
-			var/new_instrument = input(usr, "Choose an instrument") as null|anything in instruments_available
-			if(!CanInteractWith(usr, owner, GLOB.physical_state))
+			var/new_instrument = input(user, "Choose an instrument") as null|anything in instruments_available
+			if(!CanInteractWith(user, owner, GLOB.physical_state))
 				return
 			if (new_instrument)
 				src.player.song.instrument_data = instrumentsList[new_instrument]
@@ -125,14 +125,14 @@
 			if (GLOB.musical_config.env_settings_available)
 				if (!src.env_editor)
 					src.env_editor = new (src.player)
-				src.env_editor.nano_ui_interact(usr)
+				src.env_editor.nano_ui_interact(user)
 			else
-				to_chat(usr, "Virtual environment is disabled")
+				to_chat(user, "Virtual environment is disabled")
 
 		if ("show_echo_editor")
 			if (!src.echo_editor)
 				src.echo_editor = new (src.player)
-			src.echo_editor.nano_ui_interact(usr)
+			src.echo_editor.nano_ui_interact(user)
 
 		if ("select_env")
 			if (value in -1 to 26)
@@ -144,7 +144,7 @@
 
 
 
-/datum/real_instrument/proc/ui_call(mob/user, ui_key, var/datum/nanoui/ui = null, var/force_open = 0)
+/datum/real_instrument/proc/ui_call(mob/user, ui_key, datum/nanoui/ui = null, force_open = 0)
 	var/list/data
 	data = list(
 		"playback" = list(
@@ -224,12 +224,12 @@
 	instruments = null
 	. = ..()
 
-/obj/structure/synthesized_instrument/attackby(var/obj/item/tool/tool, mob/user)
+/obj/structure/synthesized_instrument/attackby(obj/item/tool/tool, mob/user)
 	if (tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 		anchored = !anchored
 		user.visible_message( \
 					"[user] [anchored ? "tightens" : "loosens"] \the [src]'s casters.", \
-					SPAN_NOTICE("You have [anchored ? "tightened" : "loosened"] \the [src]."), \
+					span_notice("You have [anchored ? "tightened" : "loosened"] \the [src]."), \
 					"You hear ratchet.")
 	else
 		..()
@@ -242,7 +242,7 @@
 	src.nano_ui_interact(user)
 
 
-/obj/structure/synthesized_instrument/nano_ui_interact(mob/user, ui_key = "instrument", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/structure/synthesized_instrument/nano_ui_interact(mob/user, ui_key = "instrument", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	real_instrument.ui_call(user,ui_key,ui,force_open)
 
 
@@ -296,7 +296,7 @@
 	src.nano_ui_interact(user)
 
 
-/obj/item/device/synthesized_instrument/nano_ui_interact(mob/user, ui_key = "instrument", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/synthesized_instrument/nano_ui_interact(mob/user, ui_key = "instrument", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	real_instrument.ui_call(user,ui_key,ui,force_open)
 
 

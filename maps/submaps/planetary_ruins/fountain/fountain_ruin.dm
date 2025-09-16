@@ -28,10 +28,10 @@
 	if(.)
 		return
 	if(last_process + time_between_uses > world.time)
-		to_chat(user, "<span class='notice'>The fountain appears to be empty.</span>")
+		to_chat(user, span_notice("The fountain appears to be empty."))
 		return
 	last_process = world.time
-	to_chat(user, "<span class='notice'>The water feels warm and soothing as you touch it. The fountain immediately dries up shortly afterwards.</span>")
+	to_chat(user, span_notice("The water feels warm and soothing as you touch it. The fountain immediately dries up shortly afterwards."))
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

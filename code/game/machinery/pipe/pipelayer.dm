@@ -19,7 +19,7 @@
 	W = new(src)
 	..()
 
-/obj/machinery/pipelayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/pipelayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	. = ..()
 
 	if(on && a_dis)
@@ -31,13 +31,13 @@
 
 /obj/machinery/pipelayer/attack_hand(mob/user as mob)
 	if(!metal&&!on)
-		to_chat(user, SPAN_WARNING("\The [src] doesn't work without metal."))
+		to_chat(user, span_warning("\The [src] doesn't work without metal."))
 		return
 	on=!on
-	user.visible_message(SPAN_NOTICE("[user] has [!on?"de":""]activated \the [src]."), SPAN_NOTICE("You [!on?"de":""]activate \the [src]."))
+	user.visible_message(span_notice("[user] has [!on?"de":""]activated \the [src]."), span_notice("You [!on?"de":""]activate \the [src]."))
 	return
 
-/obj/machinery/pipelayer/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/pipelayer/attackby(obj/item/I, mob/user)
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_PRYING, QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
@@ -54,8 +54,8 @@
 					var/obj/item/stack/material/steel/MM = new (get_turf(src))
 					MM.amount = m
 					user.visible_message(
-						SPAN_NOTICE("[user] removes [m] sheet\s of metal from the \the [src]."),
-						SPAN_NOTICE("You remove [m] sheet\s of metal from \the [src]"))
+						span_notice("[user] removes [m] sheet\s of metal from the \the [src]."),
+						span_notice("You remove [m] sheet\s of metal from \the [src]"))
 			else
 				to_chat(user, "\The [src] is empty.")
 			return
@@ -65,8 +65,8 @@
 				return
 			a_dis=!a_dis
 			user.visible_message(
-				SPAN_NOTICE("[user] has [!a_dis?"de":""]activated auto-dismantling."),
-				SPAN_NOTICE("You [!a_dis?"de":""]activate auto-dismantling."))
+				span_notice("[user] has [!a_dis?"de":""]activated auto-dismantling."),
+				span_notice("You [!a_dis?"de":""]activate auto-dismantling."))
 			return
 
 		if(QUALITY_BOLT_TURNING)
@@ -75,8 +75,8 @@
 			P_type_t = input("Choose pipe type", "Pipe type") as null|anything in Pipes
 			P_type = Pipes[P_type_t]
 			user.visible_message(
-				SPAN_NOTICE("[user] has set \the [src] to manufacture [P_type_t]."),
-				SPAN_NOTICE("You set \the [src] to manufacture [P_type_t]."))
+				span_notice("[user] has set \the [src] to manufacture [P_type_t]."),
+				span_notice("You set \the [src] to manufacture [P_type_t]."))
 			return
 
 		if(ABORT_CHECK)
@@ -86,11 +86,11 @@
 
 		var/result = load_metal(I)
 		if(isnull(result))
-			to_chat(user, SPAN_WARNING("Unable to load [I] - no metal found."))
+			to_chat(user, span_warning("Unable to load [I] - no metal found."))
 		else if(!result)
-			to_chat(user, SPAN_NOTICE("\The [src] is full."))
+			to_chat(user, span_notice("\The [src] is full."))
 		else
-			user.visible_message(SPAN_NOTICE("[user] has loaded metal into \the [src]."), SPAN_NOTICE("You load metal into \the [src]"))
+			user.visible_message(span_notice("[user] has loaded metal into \the [src]."), span_notice("You load metal into \the [src]"))
 
 		return
 
@@ -104,7 +104,7 @@
 	on=0
 	return
 
-/obj/machinery/pipelayer/proc/load_metal(var/obj/item/stack/MM)
+/obj/machinery/pipelayer/proc/load_metal(obj/item/stack/MM)
 	if(istype(MM) && MM.get_amount())
 		var/cur_amount = metal
 		var/to_load = max(max_metal - round(cur_amount),0)
@@ -124,14 +124,14 @@
 	metal-=amount
 	return 1
 
-/obj/machinery/pipelayer/proc/dismantleFloor(var/turf/new_turf)
+/obj/machinery/pipelayer/proc/dismantleFloor(turf/new_turf)
 	if(istype(new_turf, /turf/floor))
 		var/turf/floor/T = new_turf
 		if(!T.is_plating())
 			T.make_plating(!(T.broken || T.burnt))
 	return new_turf.is_plating()
 
-/obj/machinery/pipelayer/proc/layPipe(var/turf/w_turf,var/M_Dir,var/old_dir)
+/obj/machinery/pipelayer/proc/layPipe(turf/w_turf,M_Dir,old_dir)
 	if(!on || !(M_Dir in list(1, 2, 4, 8)) || M_Dir==old_dir)
 		return reset()
 	if(!use_metal(0.25))

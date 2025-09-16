@@ -185,7 +185,7 @@
 	return ..()
 
 /obj/item/book/manual/wiki/proc/initialize_wikibook()
-	if(config.wikiurl)
+	if(CONFIG_GET(string/wikiurl))
 		dat = {"
 			<html><head>
 			<style>
@@ -202,7 +202,7 @@
     			}
 			</script>
 			<p id='loading'>You start skimming through the manual...</p>
-			<iframe width='100%' height='97%' onload="pageloaded(this)" src="[config.wikiurl]/[page_link]_Eris[config.language]?printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+			<iframe width='100%' height='97%' onload="pageloaded(this)" src="[CONFIG_GET(string/wikiurl)]/[page_link]_Eris[CONFIG_GET(string/language)]?printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 			</body>
 			</html>
 			"}

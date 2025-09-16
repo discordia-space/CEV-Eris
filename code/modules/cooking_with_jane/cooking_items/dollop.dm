@@ -7,7 +7,7 @@
 	var/reagent_id = "frosting"
 	preloaded_reagents = list("frosting" = 30)
 
-/obj/item/reagent_containers/food/snacks/dollop/New(var/loc, var/new_reagent_id = "frosting", var/new_amount = 30)
+/obj/item/reagent_containers/food/snacks/dollop/New(loc, new_reagent_id = "frosting", new_amount = 30)
 	. = ..()
 	if(new_reagent_id)
 		var/reagent_name = get_reagent_name_by_id(reagent_id)

@@ -5,7 +5,7 @@
 	var/contraband = FALSE
 	var/hacked = FALSE
 
-/datum/shuttle/ferry/supply/short_jump(var/area/origin,var/area/destination)
+/datum/shuttle/ferry/supply/short_jump(area/origin,area/destination)
 	if(moving_status != SHUTTLE_IDLE)
 		return
 

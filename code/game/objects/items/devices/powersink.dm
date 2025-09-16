@@ -42,7 +42,7 @@
 					else
 						anchored = TRUE
 						mode = 1
-						src.visible_message(SPAN_NOTICE("[user] attaches [src] to the cable!"))
+						src.visible_message(span_notice("[user] attaches [src] to the cable!"))
 						return
 				else
 					to_chat(user, "Device must be placed over an exposed cable to attach to it.")
@@ -52,7 +52,7 @@
 					STOP_PROCESSING(SSmachines, src)
 				anchored = FALSE
 				mode = 0
-				src.visible_message(SPAN_NOTICE("[user] detaches [src] from the cable!"))
+				src.visible_message(span_notice("[user] detaches [src] from the cable!"))
 				set_light(0)
 				icon_state = "powersink0"
 
@@ -63,17 +63,17 @@
 /obj/item/device/powersink/attack_ai()
 	return
 
-/obj/item/device/powersink/attack_hand(var/mob/user)
+/obj/item/device/powersink/attack_hand(mob/user)
 	switch(mode)
 		if(0)
 			..()
 		if(1)
-			src.visible_message(SPAN_NOTICE("[user] activates [src]!"))
+			src.visible_message(span_notice("[user] activates [src]!"))
 			mode = 2
 			icon_state = "powersink1"
 			START_PROCESSING(SSmachines, src)
 		if(2)  //This switch option wasn't originally included. It exists now. --NeoFite
-			src.visible_message(SPAN_NOTICE("[user] deactivates [src]!"))
+			src.visible_message(span_notice("[user] deactivates [src]!"))
 			mode = 1
 			set_light(0)
 			icon_state = "powersink0"

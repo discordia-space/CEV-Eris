@@ -109,7 +109,7 @@
 	icon_state = "satchel"
 	slot_flags = SLOT_BELT | SLOT_POCKET
 	w_class = ITEM_SIZE_NORMAL
-	max_storage_space = 200
+	max_storage_space = 400 //stores 200 ore, not 400.
 	max_w_class = ITEM_SIZE_NORMAL
 	can_hold = list(/obj/item/ore)
 
@@ -177,7 +177,7 @@
 		current += S.amount
 	if(capacity == current)//If it's full, you're done
 		if(!stop_messages)
-			to_chat(usr, SPAN_WARNING("The snatcher is full."))
+			to_chat(usr, span_warning("The snatcher is full."))
 		return 0
 	return 1
 

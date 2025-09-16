@@ -8,7 +8,7 @@
 #define INVESTIGATE_DIR "data/investigate/"
 
 //SYSTEM
-/proc/investigate_subject2file(var/subject)
+/proc/investigate_subject2file(subject)
 	return file("[INVESTIGATE_DIR][subject].html")
 
 /hook/startup/proc/resetInvestigate()
@@ -19,7 +19,7 @@
 	if(fdel(INVESTIGATE_DIR))	return 1
 	return 0
 
-/atom/proc/investigate_log(var/message, var/subject)
+/atom/proc/investigate_log(message, subject)
 	if(!message)	return
 	var/F = investigate_subject2file(subject)
 	if(!F)	return
@@ -27,25 +27,40 @@
 
 //ADMINVERBS
 //various admintools for investigation. Such as a singulo grief-log
-/client/proc/investigate_show(subject in list("hrefs","notes","singulo","telesci","atmos","chemistry"))
+/client/proc/investigate_show()
 	set name = "Investigate"
 	set category = "Admin"
 	if(!holder)	return
+
+	var/list/subjects = list("hrefs","singulo","telesci","atmos","chemistry", "---", "notes, memos, watchlist")
+
+	var/subject = tgui_input_list(src, "Investigate what?", "Investigation", subjects)
+
+	if(isnull(subject))
+		return
+	if(!(subject in subjects) || subject == "---")
+		return
+
 	switch(subject)
 		if("singulo", "telesci", "atmos", "chemistry")			//general one-round-only stuff
 			var/F = investigate_subject2file(subject)
 			if(!F)
-				to_chat(src, "<font color='red'>Error: admin_investigate: [INVESTIGATE_DIR][subject] is an invalid path or cannot be accessed.</font>")
+				to_chat(src, span_warning("Error: admin_investigate: [INVESTIGATE_DIR][subject] is an invalid path or cannot be accessed."))
 				return
 			src << browse(F,"window=investigate[subject];size=800x300")
-
+		if("notes, memos, watchlist")
+			if (!check_rights(R_ADMIN))
+				return
+			browse_messages()
+			return
 		if("hrefs")				//persistant logs and stuff
-			if(config && config.log_hrefs)
+			if(config && CONFIG_GET(flag/log_hrefs))
 				if(href_logfile)
 					src << browse(href_logfile,"window=investigate[subject];size=800x300")
 				else
-					to_chat(src, "<font color='red'>Error: admin_investigate: No href logfile found.</font>")
+					to_chat(src, span_warning("Error: admin_investigate: No href logfile found."))
 					return
 			else
-				to_chat(src, "<font color='red'>Error: admin_investigate: Href Logging is not on.</font>")
+				to_chat(src, span_warning("Error: admin_investigate: Href Logging is not on."))
 				return
+

@@ -4,7 +4,7 @@
 /datum/uplink_item/abstract/announcements
 	category = /datum/uplink_category/services
 
-/datum/uplink_item/abstract/announcements/buy(var/obj/item/device/uplink/U, var/mob/user)
+/datum/uplink_item/abstract/announcements/buy(obj/item/device/uplink/U, mob/user)
 	. = ..()
 	if(.)
 		log_and_message_admins("has triggered a falsified [src]", user)
@@ -16,11 +16,11 @@
 	desc = "Broadcasts a message anonymously to the entire vessel. Triggers immediately after supplying additional data."
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
-/datum/uplink_item/abstract/announcements/announce/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
+/datum/uplink_item/abstract/announcements/announce/get_goods(obj/item/device/uplink/U, loc, mob/user)
 	var/message = input(user, "What would you like the text of the announcement to be? Write as much as you like, The title will appear as Unknown Broadcast", "False Announcement") as text|null
 	if (!message)
 		return FALSE
-	command_announcement.Announce(message, "Unknown Broadcast", use_text_to_speech = TRUE)
+	priority_announce(message, "Unknown Broadcast", color_override = "red")
 	return 1
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival
@@ -33,7 +33,7 @@
 	..()
 	antag_roles = list(ROLE_MERCENARY)
 
-/datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
+/datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(obj/item/device/uplink/U, loc, mob/user)
 	if(!user)
 		return 0
 
@@ -88,7 +88,7 @@
 	item_cost = 2
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
-/datum/uplink_item/abstract/announcements/fake_ion_storm/get_goods(var/obj/item/device/uplink/U, var/loc)
+/datum/uplink_item/abstract/announcements/fake_ion_storm/get_goods(obj/item/device/uplink/U, loc)
 	ion_storm_announcement()
 	return 1
 
@@ -98,7 +98,7 @@
 	item_cost = 4
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
-/datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/device/uplink/U, var/loc)
+/datum/uplink_item/abstract/announcements/fake_radiation/get_goods(obj/item/device/uplink/U, loc)
 	var/datum/event/radiation_storm/syndicate/S =  new(null, EVENT_LEVEL_MODERATE)
 	S.Initialize()
 	return 1
@@ -109,8 +109,8 @@
 	item_cost = 3
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
-/datum/uplink_item/abstract/announcements/fake_serb/get_goods(var/obj/item/device/uplink/U, var/loc)
+/datum/uplink_item/abstract/announcements/fake_serb/get_goods(obj/item/device/uplink/U, loc)
 	var/datum/shuttle/autodock/multi/antag/mercenary/merc = /datum/shuttle/autodock/multi/antag/mercenary
-	command_announcement.Announce(initial(merc.arrival_message), initial(merc.announcer) || "[boss_name]")
+	priority_announce(initial(merc.arrival_message), sender_override = initial(merc.announcer) || "[GLOB.boss_name]")
 	qdel(merc)
 	return 1

@@ -29,7 +29,7 @@
 
 /obj/item/blueprints/Topic(href, href_list)
 	..()
-	if ((usr.restrained() || usr.stat || usr.get_active_hand() != src))
+	if ((usr.restrained() || usr.stat || usr.get_active_held_item() != src))
 		return
 	if (!href_list["action"])
 		return
@@ -47,20 +47,20 @@
 
 /obj/item/blueprints/interact()
 	var/area/A = get_area(usr)
-	var/text = {"<HTML><head><title>[src]</title></head><BODY>
-<h2>[station_name] blueprints</h2>
-<small>Property of [company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
+	var/text = {"
+<h2>[station_name()] blueprints</h2>
+<small>Property of [GLOB.company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
 "}
 	switch (get_area_type())
 		if (AREA_SPACE)
 			text += {"
 <p>According the blueprints, you are now in <b>outer space</b>.  Hold your breath.</p>
-<p><a href='?src=\ref[src];action=create_area'>Mark this place as new area.</a></p>
+<p><a href='byond://?src=\ref[src];action=create_area'>Mark this place as new area.</a></p>
 "}
 		if (AREA_STATION)
 			text += {"
 <p>According the blueprints, you are now in <b>\"[A.name]\"</b>.</p>
-<p>You may <a href='?src=\ref[src];action=edit_area'>
+<p>You may <a href='byond://?src=\ref[src];action=edit_area'>
 move an amendment</a> to the drawing.</p>
 "}
 		if (AREA_SPECIAL)
@@ -69,11 +69,10 @@ move an amendment</a> to the drawing.</p>
 "}
 		else
 			return
-	text += "</BODY></HTML>"
-	usr << browse(text, "window=blueprints")
+	usr << browse(HTML_SKELETON_TITLE("[src]", text), "window=blueprints")
 	onclose(usr, "blueprints")
 
-/obj/item/blueprints/proc/get_area_type(var/area/A = get_area(usr))
+/obj/item/blueprints/proc/get_area_type(area/A = get_area(usr))
 	if(istype(A, /area/space))
 		return AREA_SPACE
 	var/list/SPECIALS = list(
@@ -96,20 +95,20 @@ move an amendment</a> to the drawing.</p>
 	if(!istype(res,/list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
-				to_chat(usr, SPAN_WARNING("The new area must be completely airtight!"))
+				to_chat(usr, span_warning("The new area must be completely airtight!"))
 				return
 			if(ROOM_ERR_TOOLARGE)
-				to_chat(usr, SPAN_WARNING("The new area too large!"))
+				to_chat(usr, span_warning("The new area too large!"))
 				return
 			else
-				to_chat(usr, SPAN_WARNING("Error! Please notify administration!"))
+				to_chat(usr, span_warning("Error! Please notify administration!"))
 				return
 	var/list/turf/turfs = res
 	var/str = sanitizeSafe(input("New area name:","Blueprint Editing", ""), MAX_NAME_LEN)
 	if(!str || !length(str)) //cancel
 		return
 	if(length(str) > 50)
-		to_chat(usr, SPAN_WARNING("Name too long."))
+		to_chat(usr, span_warning("Name too long."))
 		return
 	var/area/A = new
 	A.name = str
@@ -120,7 +119,7 @@ move an amendment</a> to the drawing.</p>
 	interact()
 
 
-/obj/item/blueprints/proc/move_turfs_to_area(var/list/turf/turfs, var/area/A)
+/obj/item/blueprints/proc/move_turfs_to_area(list/turf/turfs, area/A)
 	A.contents.Add(turfs)
 		//oldarea.contents.Remove(usr.loc) // not needed
 		//T.loc = A //error: cannot change constant value
@@ -134,17 +133,17 @@ move an amendment</a> to the drawing.</p>
 	if(!str || !length(str) || str==prevname) //cancel
 		return
 	if(length(str) > 50)
-		to_chat(usr, SPAN_WARNING("Text too long."))
+		to_chat(usr, span_warning("Text too long."))
 		return
 	set_area_machinery_title(A,str,prevname)
 	A.name = str
-	to_chat(usr, SPAN_NOTICE("You set the area '[prevname]' title to '[str]'."))
+	to_chat(usr, span_notice("You set the area '[prevname]' title to '[str]'."))
 	interact()
 	return
 
 
 
-/obj/item/blueprints/proc/set_area_machinery_title(var/area/A,var/title,var/oldtitle)
+/obj/item/blueprints/proc/set_area_machinery_title(area/A,title,oldtitle)
 	if (!oldtitle) // or replacetext goes to infinite loop
 		return
 
@@ -160,7 +159,7 @@ move an amendment</a> to the drawing.</p>
 		M.name = replacetext(M.name,oldtitle,title)
 	//TODO: much much more. Unnamed airlocks, cameras, etc.
 
-/obj/item/blueprints/proc/check_tile_is_border(var/turf/T2,var/dir)
+/obj/item/blueprints/proc/check_tile_is_border(turf/T2,dir)
 	if (istype(T2, /turf/space))
 		return BORDER_SPACE //omg hull breach we all going to die here
 	if (istype(T2, /turf/shuttle))
@@ -185,7 +184,7 @@ move an amendment</a> to the drawing.</p>
 
 	return BORDER_NONE
 
-/obj/item/blueprints/proc/detect_room(var/turf/first)
+/obj/item/blueprints/proc/detect_room(turf/first)
 	var/list/turf/found = new
 	var/list/turf/pending = list(first)
 	while(pending.len)
@@ -193,7 +192,7 @@ move an amendment</a> to the drawing.</p>
 			return ROOM_ERR_TOOLARGE
 		var/turf/T = pending[1] //why byond havent list::pop()?
 		pending -= T
-		for (var/dir in cardinal)
+		for (var/dir in GLOB.cardinal)
 			var/skip = 0
 			for (var/obj/structure/window/W in T)
 				if(dir == W.dir || (W.dir in list(NORTHEAST,SOUTHEAST,NORTHWEST,SOUTHWEST)))

@@ -2,7 +2,7 @@
 	name = "limb stump"
 	nerve_struck = -1
 
-/obj/item/organ/external/stump/New(var/mob/living/carbon/holder, var/OD, var/obj/item/organ/external/limb)
+/obj/item/organ/external/stump/New(mob/living/carbon/holder, OD, obj/item/organ/external/limb)
 	if(istype(limb))
 		organ_tag = limb.organ_tag
 		body_part = limb.body_part

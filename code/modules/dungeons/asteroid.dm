@@ -49,7 +49,7 @@
 
 
 //Builds an empty map
-/datum/rogue/asteroid/New(var/core, var/tw, var/tu)
+/datum/rogue/asteroid/New(core, tw, tu)
 
 	if(core)
 		coresize = core
@@ -72,7 +72,7 @@
 /datum/rogue/asteroid/predef/New() //Basically just ignore what we're told.
 	map = new/list(width,width,0)
 
-/datum/rogue/asteroid/proc/spot_add(var/x,var/y,var/thing)
+/datum/rogue/asteroid/proc/spot_add(x,y,thing)
 	if(!x || !y || !thing)
 		return
 
@@ -84,28 +84,28 @@
 	type_wall	= /turf/wall/untinted/onestar
 	type_under	= /turf/floor/plating
 
-	New()
-		..()
-		spot_add(1,1,type_wall) //Bottom left corner
-		spot_add(1,2,type_wall)
-		spot_add(1,3,type_wall)
-		spot_add(2,1,type_wall)
-		spot_add(2,2,type_under) //Center floor
-		spot_add(2,2,/obj/spawner/contraband/) //Loot!
-		spot_add(2,3,type_wall)
-		spot_add(3,1,type_wall)
-		spot_add(3,2,type_wall)
-		spot_add(3,3,type_wall) //Bottom right corner
+/datum/rogue/asteroid/predef/cargo/New()
+	..()
+	spot_add(1,1,type_wall) //Bottom left corner
+	spot_add(1,2,type_wall)
+	spot_add(1,3,type_wall)
+	spot_add(2,1,type_wall)
+	spot_add(2,2,type_under) //Center floor
+	spot_add(2,2,/obj/spawner/contraband/) //Loot!
+	spot_add(2,3,type_wall)
+	spot_add(3,1,type_wall)
+	spot_add(3,2,type_wall)
+	spot_add(3,3,type_wall) //Bottom right corner
 
 //Abandoned 1-tile hollow cargo box (ANGRY).
 /datum/rogue/asteroid/predef/cargo/angry
 	type_wall	= /turf/wall/untinted/onestar
 	type_under	= /turf/floor/plating
 
-	New()
-		..()
-		spot_add(2,2,/obj/spawner/contraband) //EXTRA loot!
-		spot_add(2,2,/mob/living/simple_animal/hostile/alien) //GRRR
+/datum/rogue/asteroid/predef/cargo/angry/New()
+	..()
+	spot_add(2,2,/obj/spawner/contraband) //EXTRA loot!
+	spot_add(2,2,/mob/living/simple_animal/hostile/alien) //GRRR
 
 //Longer cargo container for higher difficulties
 /datum/rogue/asteroid/predef/cargo_large
@@ -113,52 +113,53 @@
 	type_wall	= /turf/wall/untinted/onestar
 	type_under	= /turf/floor/plating
 
-	New()
-		..()
-		spot_add(1,2,type_wall) //--
-		spot_add(1,3,type_wall) //Left end of cargo container
-		spot_add(1,4,type_wall) //--
+/datum/rogue/asteroid/predef/cargo_large/New()
+	..()
+	spot_add(1,2,type_wall) //--
+	spot_add(1,3,type_wall) //Left end of cargo container
+	spot_add(1,4,type_wall) //--
 
-		spot_add(5,2,type_wall) //--
-		spot_add(5,3,type_wall) //Right end of cargo container
-		spot_add(5,4,type_wall) //--
+	spot_add(5,2,type_wall) //--
+	spot_add(5,3,type_wall) //Right end of cargo container
+	spot_add(5,4,type_wall) //--
 
-		spot_add(2,4,type_wall) //--
-		spot_add(3,4,type_wall) //Top and
-		spot_add(4,4,type_wall) //bottom of
-		spot_add(2,2,type_wall) //cargo
-		spot_add(3,2,type_wall) //container
-		spot_add(4,2,type_wall) //--
+	spot_add(2,4,type_wall) //--
+	spot_add(3,4,type_wall) //Top and
+	spot_add(4,4,type_wall) //bottom of
+	spot_add(2,2,type_wall) //cargo
+	spot_add(3,2,type_wall) //container
+	spot_add(4,2,type_wall) //--
 
-		spot_add(2,3,type_under) //Left floor
-		spot_add(3,3,type_under) //Mid floor
-		spot_add(4,3,type_under) //Right floor
+	spot_add(2,3,type_under) //Left floor
+	spot_add(3,3,type_under) //Mid floor
+	spot_add(4,3,type_under) //Right floor
 
-		spot_add(2,3,/obj/spawner/contraband) //Left loot
-		spot_add(3,3,/obj/spawner/contraband) //Mid loot
-		spot_add(4,3,/obj/spawner/contraband) //Right loot
+	spot_add(2,3,/obj/spawner/contraband) //Left loot
+	spot_add(3,3,/obj/spawner/contraband) //Mid loot
+	spot_add(4,3,/obj/spawner/contraband) //Right loot
 
-		if(prob(30))
-			spot_add(3,3,/mob/living/simple_animal/hostile/alien) //And maybe a friend.
+	if(prob(30))
+		spot_add(3,3,/mob/living/simple_animal/hostile/alien) //And maybe a friend.
 
 
 /datum/rogue/asteroid/predef/teleporter
 	type_wall	= /turf/wall/untinted/onestar
 	type_under	= /turf/floor/plating
 
-	New()
-		..()
-		spot_add(1,1,type_under) //Bottom left corner
-		spot_add(1,2,type_under)
-		spot_add(1,3,type_under)
-		spot_add(2,1,type_under)
-		spot_add(2,2,type_under) //Center floor
-		spot_add(2,2,/obj/rogue/teleporter)
-		spot_add(2,2,/obj/crawler/teleport_marker)
-		spot_add(2,3,type_under)
-		spot_add(3,1,type_under)
-		spot_add(3,2,type_under)
-		spot_add(3,3,type_under) //Bottom right corner
+
+/datum/rogue/asteroid/predef/teleporter/New()
+	..()
+	spot_add(1,1,type_under) //Bottom left corner
+	spot_add(1,2,type_under)
+	spot_add(1,3,type_under)
+	spot_add(2,1,type_under)
+	spot_add(2,2,type_under) //Center floor
+	spot_add(2,2,/obj/rogue/teleporter)
+	spot_add(2,2,/obj/crawler/teleport_marker)
+	spot_add(2,3,type_under)
+	spot_add(3,1,type_under)
+	spot_add(3,2,type_under)
+	spot_add(3,3,type_under) //Bottom right corner
 
 /obj/asteroid_generator
 	name = "asteroid generator"
@@ -226,12 +227,12 @@
 	var/teleporter = pick(myarea.teleporter_spawns)
 	generate_teleporter(teleporter)
 
-/obj/asteroid_generator/proc/generate_teleporter(var/obj/asteroid_spawner/rogue_teleporter/TP)
+/obj/asteroid_generator/proc/generate_teleporter(obj/asteroid_spawner/rogue_teleporter/TP)
 	var/TPPREFAB = /datum/rogue/asteroid/predef/teleporter
 	var/TPBUILD = new TPPREFAB(null)
 	place_asteroid(TPBUILD, TP)
 
-/obj/asteroid_generator/proc/generate_asteroid(var/core_min = 2, var/core_max = 5)
+/obj/asteroid_generator/proc/generate_asteroid(core_min = 2, core_max = 5)
 	if(prob(15))
 		var/prefab = pick(prefabs)
 		var/prefabinst = new prefab(null)
@@ -239,8 +240,8 @@
 
 	var/datum/rogue/asteroid/A = new(rand(core_min,core_max))
 
-	for(var/x = 1; x <= A.coresize, x++)
-		for(var/y = 1; y <= A.coresize, y++)
+	for(var/x = 1; x <= A.coresize; x++)
+		for(var/y = 1; y <= A.coresize; y++)
 			A.spot_add(A.coresize+x, A.coresize+y, A.type_wall)
 
 
@@ -248,34 +249,34 @@
 
 	//Add the arms to the asteroid's map
 	//Vertical arms
-	for(var/x = A.coresize+1, x <= A.coresize*2, x++) //Start at leftmost side of core, work towards higher X.
+	for(var/x = A.coresize+1; x <= A.coresize*2; x++) //Start at leftmost side of core, work towards higher X.
 		var/B_arm = rand(0,max_armlen)
 		var/T_arm = rand(0,max_armlen)
 
 		//Bottom arm
-		for(var/y = A.coresize, y > A.coresize-B_arm, y--) //Start at bottom edge of the core, work towards lower Y.
+		for(var/y = A.coresize; y > A.coresize-B_arm; y--) //Start at bottom edge of the core, work towards lower Y.
 			A.spot_add(x,y,A.type_wall)
 		//Top arm
-		for(var/y = (A.coresize*2)+1, y < ((A.coresize*2)+1)+T_arm, y++) //Start at top edge of the core, work towards higher Y.
+		for(var/y = (A.coresize*2)+1; y < ((A.coresize*2)+1)+T_arm; y++) //Start at top edge of the core, work towards higher Y.
 			A.spot_add(x,y,A.type_wall)
 
 
 	//Horizontal arms
-	for(var/y = A.coresize+1, y <= A.coresize*2, y++) //Start at lower side of core, work towards higher Y.
+	for(var/y = A.coresize+1; y <= A.coresize*2; y++) //Start at lower side of core, work towards higher Y.
 		var/R_arm = rand(0,max_armlen)
 		var/L_arm = rand(0,max_armlen)
 
 		//Right arm
-		for(var/x = (A.coresize*2)+1, x <= ((A.coresize*2)+1)+R_arm, x++) //Start at right edge of core, work towards higher X.
+		for(var/x = (A.coresize*2)+1; x <= ((A.coresize*2)+1)+R_arm; x++) //Start at right edge of core, work towards higher X.
 			A.spot_add(x,y,A.type_wall)
 		//Left arm
-		for(var/x = A.coresize, x > A.coresize-L_arm, x--) //Start at left edge of core, work towards lower X.
+		for(var/x = A.coresize; x > A.coresize-L_arm; x--) //Start at left edge of core, work towards lower X.
 			A.spot_add(x,y,A.type_wall)
 
 	return A
 
 
-/obj/asteroid_generator/proc/place_asteroid(var/datum/rogue/asteroid/A,var/obj/asteroid_spawner/SP)
+/obj/asteroid_generator/proc/place_asteroid(datum/rogue/asteroid/A,obj/asteroid_spawner/SP)
 	ASSERT(SP && A)
 
 	SP.myasteroid = A
@@ -285,10 +286,10 @@
 	var/BLy = SP.y - (A.width/2)
 
 
-	for(var/Ix=1, Ix <= A.map.len, Ix++)
+	for(var/Ix=1; Ix <= A.map.len; Ix++)
 		var/list/curr_x = A.map[Ix]
 
-		for(var/Iy=1, Iy <= curr_x.len, Iy++)
+		for(var/Iy=1; Iy <= curr_x.len; Iy++)
 			var/list/curr_y = curr_x[Iy]
 
 			var/world_x = BLx+Ix

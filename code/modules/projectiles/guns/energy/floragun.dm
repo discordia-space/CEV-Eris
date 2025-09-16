@@ -24,7 +24,7 @@
 /obj/item/gun/energy/floragun/afterattack(obj/target, mob/user, adjacent_flag)
 	//allow shooting into adjacent hydrotrays regardless of intent
 	if(adjacent_flag && istype(target,/obj/machinery/portable_atmospherics/hydroponics))
-		user.visible_message(SPAN_DANGER("\The [user] fires \the [src] into \the [target]!"))
+		user.visible_message(span_danger("\The [user] fires \the [src] into \the [target]!"))
 		Fire(target,user)
 		return
 	..()

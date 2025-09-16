@@ -55,7 +55,7 @@
 
 /obj/machinery/power/port_gen/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
-		extra_description += SPAN_NOTICE("The generator is [active ? "on" : "off"].")
+		extra_description += span_notice("The generator is [active ? "on" : "off"].")
 	..(user, extra_description)
 
 /obj/machinery/power/port_gen/emp_act(severity)
@@ -148,9 +148,9 @@
 	if(!use_reagents_as_fuel)
 		extra_description += "\nThere [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
 	if(IsBroken())
-		extra_description += SPAN_WARNING("\n\The [src] seems to have broken down.")
+		extra_description += span_warning("\n\The [src] seems to have broken down.")
 	if(overheating)
-		extra_description += SPAN_DANGER("\n\The [src] is overheating!")
+		extra_description += span_danger("\n\The [src] is overheating!")
 	..(user, extra_description)
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
@@ -267,7 +267,7 @@
 
 	..()
 
-/obj/machinery/power/port_gen/pacman/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/power/port_gen/pacman/emag_act(remaining_charges, mob/user)
 	if (active && prob(25))
 		explode() //if they're foolish enough to emag while it's running
 
@@ -275,22 +275,22 @@
 		emagged = 1
 		return 1
 
-/obj/machinery/power/port_gen/pacman/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/power/port_gen/pacman/attackby(obj/item/I, mob/user)
 
 	if(!use_reagents_as_fuel && istype(I, sheet_path))
 		var/obj/item/stack/addstack = I
 		var/amount = min((max_fuel_volume - sheets), addstack.amount)
 		if(amount < 1)
-			to_chat(user, "\blue The [src.name] is full!")
+			to_chat(user, span_blue("The [src.name] is full!"))
 			return
-		to_chat(user, "\blue You add [amount] sheet\s to the [src.name].")
+		to_chat(user, span_blue("You add [amount] sheet\s to the [src.name]."))
 		sheets += amount
 		addstack.use(amount)
 		updateUsrDialog()
 		return
 
 	if(active)
-		to_chat(user, SPAN_NOTICE("You can't work with [src] while its running!"))
+		to_chat(user, span_notice("You can't work with [src] while its running!"))
 
 	else
 
@@ -319,17 +319,17 @@
 				var/used_sound = open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 					open = !open
-					to_chat(user, SPAN_NOTICE("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
+					to_chat(user, span_notice("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 					update_icon()
 					return
 				return
 
 			if(QUALITY_BOLT_TURNING)
 				if(istype(get_turf(src), /turf/space) && !anchored)
-					to_chat(user, SPAN_NOTICE("You can't anchor something to empty space. Idiot."))
+					to_chat(user, span_notice("You can't anchor something to empty space. Idiot."))
 					return
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You [anchored ? "un" : ""]anchor the brace with [I]."))
+					to_chat(user, span_notice("You [anchored ? "un" : ""]anchor the brace with [I]."))
 					anchored = !anchored
 					if(anchored)
 						connect_to_network()
@@ -345,7 +345,7 @@
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/power/port_gen/pacman/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/power/port_gen/pacman/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(IsBroken())
 		return
 
@@ -394,18 +394,18 @@
 
 	var/dat = text("<b>[name]</b><br>")
 	if (active)
-		dat += text("Generator: <A href='?src=\ref[src];action=disable'>On</A><br>")
+		dat += text("Generator: <A href='byond://?src=\ref[src];action=disable'>On</A><br>")
 	else
-		dat += text("Generator: <A href='?src=\ref[src];action=enable'>Off</A><br>")
-	dat += text("[capitalize(sheet_name)]: [sheets] - <A href='?src=\ref[src];action=eject'>Eject</A><br>")
+		dat += text("Generator: <A href='byond://?src=\ref[src];action=enable'>Off</A><br>")
+	dat += text("[capitalize(sheet_name)]: [sheets] - <A href='byond://?src=\ref[src];action=eject'>Eject</A><br>")
 	var/stack_percent = round(sheet_left * 100, 1)
 	dat += text("Current stack: [stack_percent]% <br>")
-	dat += text("Power output: <A href='?src=\ref[src];action=lower_power'>-</A> [power_gen * power_output] Watts<A href='?src=\ref[src];action=higher_power'>+</A><br>")
+	dat += text("Power output: <A href='byond://?src=\ref[src];action=lower_power'>-</A> [power_gen * power_output] Watts<A href='byond://?src=\ref[src];action=higher_power'>+</A><br>")
 	dat += text("Power current: [(powernet == null ? "Unconnected" : "[avail()]")]<br>")
 
 	var/tempstr = "Temperature: [temperature]&deg;C<br>"
-	dat += (overheating)? SPAN_DANGER("[tempstr]") : tempstr
-	dat += "<br><A href='?src=\ref[src];action=close'>Close</A>"
+	dat += (overheating)? span_danger("[tempstr]") : tempstr
+	dat += "<br><A href='byond://?src=\ref[src];action=close'>Close</A>"
 	user << browse("[dat]", "window=port_gen")
 	onclose(user, "port_gen")
 */

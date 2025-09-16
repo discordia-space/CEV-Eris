@@ -88,14 +88,14 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/return_air()
 	return air_contents
 
-/obj/machinery/portable_atmospherics/powered/scrubber/attack_ai(var/mob/user)
+/obj/machinery/portable_atmospherics/powered/scrubber/attack_ai(mob/user)
 	src.add_hiddenprint(user)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/attack_ghost(var/mob/user)
+/obj/machinery/portable_atmospherics/powered/scrubber/attack_ghost(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/attack_hand(var/mob/user)
+/obj/machinery/portable_atmospherics/powered/scrubber/attack_hand(mob/user)
 	nano_ui_interact(user)
 	return
 
@@ -166,8 +166,8 @@
 
 	name = "[name] (ID [id])"
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/attack_hand(var/mob/user as mob)
-		to_chat(usr, SPAN_NOTICE("You can't directly interact with this machine. Use the scrubber control console."))
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/attack_hand(mob/user as mob)
+		to_chat(usr, span_notice("You can't directly interact with this machine. Use the scrubber control console."))
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/update_icon()
 	src.overlays = 0
@@ -205,15 +205,15 @@
 		use_power(power_draw)
 		update_connected_network()
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(obj/item/I as obj, mob/user as mob)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(on)
-			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
+			to_chat(user, span_warning("Turn \the [src] off first!"))
 			return
 
 		anchored = !anchored
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 
 		return
 
@@ -233,9 +233,9 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary
 	name = "Stationary Air Scrubber"
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(obj/item/I as obj, mob/user as mob)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		to_chat(user, SPAN_WARNING("The bolts are too tight for you to unscrew!"))
+		to_chat(user, span_warning("The bolts are too tight for you to unscrew!"))
 		return
 
 	..()

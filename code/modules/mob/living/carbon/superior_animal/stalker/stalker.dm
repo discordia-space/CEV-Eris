@@ -91,7 +91,7 @@
 	pixel_x = 0
 	pixel_y = 0
 
-/mob/living/carbon/superior_animal/stalker/attackby(var/obj/item/O, var/mob/user)
+/mob/living/carbon/superior_animal/stalker/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/gripper))
 		return ..(O, user)
 
@@ -104,7 +104,7 @@
 				new /obj/item/stack/material/steel/random(src.loc)
 				new /obj/item/stack/material/plasteel/random(src.loc)
 				new /obj/item/stack/cable_coil(src.loc)
-				for(var/i = 1, i <= 2 + rand(0,2), i++)
+				for(var/i = 1; i <= 2 + rand(0,2); i++)
 					var/os_components_reward = pick(list(
 						/obj/item/stock_parts/capacitor/one_star,
 						/obj/item/stock_parts/scanning_module/one_star,

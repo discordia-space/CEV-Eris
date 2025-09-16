@@ -104,7 +104,7 @@
 
 	mob_classification = CLASSIFICATION_ORGANIC
 
-/mob/living/simple_animal/proc/beg(var/atom/thing, var/atom/holder)
+/mob/living/simple_animal/proc/beg(atom/thing, atom/holder)
 	visible_emote("gazes longingly at [holder]'s [thing]")
 
 /mob/living/simple_animal/New()
@@ -139,7 +139,7 @@
 	turns_since_move = turns_per_move
 	..()
 
-/mob/living/simple_animal/Initialize(var/mapload)
+/mob/living/simple_animal/Initialize(mapload)
 	.=..()
 	if (mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
@@ -202,19 +202,19 @@
 /mob/living/simple_animal/examine(mob/user, extra_description = "")
 	if(hunger_enabled)
 		if(!nutrition)
-			extra_description += SPAN_DANGER("\nIt looks starving!")
+			extra_description += span_danger("\nIt looks starving!")
 		else if(nutrition < max_nutrition *0.5)
-			extra_description += SPAN_NOTICE("\nIt looks hungry.")
+			extra_description += span_notice("\nIt looks hungry.")
 		else if((reagents.total_volume > 0 && nutrition > max_nutrition *0.75) || nutrition > max_nutrition *0.9)
 			extra_description += "\nIt looks full and contented."
 	if(health < maxHealth * 0.25)
-		extra_description += SPAN_DANGER("\nIt's grievously wounded!")
+		extra_description += span_danger("\nIt's grievously wounded!")
 	else if(health < maxHealth * 0.50)
-		extra_description += SPAN_DANGER("\nIt's badly wounded!")
+		extra_description += span_danger("\nIt's badly wounded!")
 	else if(health < maxHealth * 0.75)
-		extra_description += SPAN_WARNING("\nIt's wounded.")
+		extra_description += span_warning("\nIt's wounded.")
 	else if(health < maxHealth)
-		extra_description += SPAN_WARNING("\nIt's a bit wounded.")
+		extra_description += span_warning("\nIt's a bit wounded.")
 	..(user, extra_description)
 
 /mob/living/simple_animal/Life()
@@ -310,7 +310,7 @@
 					if(turns_since_move >= turns_per_move)
 						if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
 							var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
-							moving_to = pick(cardinal)
+							moving_to = pick(GLOB.cardinal)
 							set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
 							step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
 							turns_since_move = 0
@@ -321,7 +321,7 @@
 	if(islist(message))
 		message = safepick(message)
 	if(message)
-		visible_message("<span class='name'>[src]</span> [message]")
+		visible_message("[span_name("[src]")] [message]", visible_message_flags = EMOTE_MESSAGE)
 
 /mob/living/simple_animal/proc/handle_supernatural()
 	if(purge)
@@ -371,7 +371,7 @@
 /mob/living/simple_animal/gib()
 	..(icon_gib,1)
 
-/mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple_animal/bullet_act(obj/item/projectile/Proj)
 	if(!Proj)
 		return
 
@@ -396,10 +396,10 @@
 
 		if(I_HELP)
 			if (health > 0)
-				M.visible_message("\blue [M] [response_help] \the [src]")
+				M.visible_message(span_blue("[M] [response_help] \the [src]"))
 
 		if(I_DISARM)
-			M.visible_message("\blue [M] [response_disarm] \the [src]")
+			M.visible_message(span_blue("[M] [response_disarm] \the [src]"))
 			M.do_attack_animation(src)
 			//TODO: Push the mob away or something
 
@@ -417,18 +417,18 @@
 			G.affecting = src
 			LAssailant = M
 
-			M.visible_message("\red [M] has grabbed [src] passively!")
+			M.visible_message(span_red("[M] has grabbed [src] passively!"))
 			M.do_attack_animation(src)
 
 		if(I_HURT)
 			adjustBruteLoss(harm_intent_damage)
 			playsound(src, pick(punch_sound),60,1)
-			M.visible_message("\red [M] [response_harm] \the [src]")
+			M.visible_message(span_red("[M] [response_harm] \the [src]"))
 			M.do_attack_animation(src)
 
 	return
 
-/mob/living/simple_animal/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_animal/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/gripper))
 		return ..(O, user)
 
@@ -442,10 +442,10 @@
 	else
 		O.attack(src, user, user.targeted_organ)
 
-/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
 
 	if(effective_force <= resistance)
-		to_chat(user, SPAN_DANGER("This weapon is ineffective, it does no damage."))
+		to_chat(user, span_danger("This weapon is ineffective, it does no damage."))
 		return 2
 	effective_force -= resistance
 	.=..(O, user, effective_force, hit_zone)
@@ -494,7 +494,7 @@
 			var/mob/living/exosuit/M = _target_mob
 			if(length(M.pilots))
 				return FALSE
-		else if(!L.stat || L.health >= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0))
+		else if(!L.stat || L.health <= (ishuman(L) ? CONFIG_GET(number/health_threshold_crit) : TRUE))
 			return FALSE
 
 	if(istype(_target_mob, /obj/machinery/bot))
@@ -502,26 +502,26 @@
 		if(B.health > 0)
 			return FALSE
 
-/mob/living/simple_animal/get_speech_ending(verb, var/ending)
+/mob/living/simple_animal/get_speech_ending(verb, ending)
 	return verb
 
-/mob/living/simple_animal/put_in_hands(var/obj/item/W) // No hands.
+/mob/living/simple_animal/put_in_hands(obj/item/W) // No hands.
 	W.loc = get_turf(src)
 	return 1
 
 // Harvest an animal's delicious byproducts
-/mob/living/simple_animal/proc/harvest(var/mob/user)
+/mob/living/simple_animal/proc/harvest(mob/user)
 	var/actual_meat_amount = max(1,(meat_amount/2))
 	if(meat_type && actual_meat_amount>0 && (stat == DEAD))
 		for(var/i=0;i<actual_meat_amount;i++)
 			var/obj/item/meat = new meat_type(get_turf(src))
 			meat.name = "[src.name] [meat.name]"
 		if(issmall(src))
-			user.visible_message(SPAN_DANGER("[user] chops up \the [src]!"))
+			user.visible_message(span_danger("[user] chops up \the [src]!"))
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(src)
 		else
-			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
+			user.visible_message(span_danger("[user] butchers \the [src] messily!"))
 			gib()
 
 //Code to handle finding and nomming nearby food items
@@ -623,7 +623,7 @@
 
 //I wanted to call this proc alert but it already exists.
 //Basically makes the mob pay attention to the world, resets sleep timers, awakens it from a sleeping state sometimes
-/mob/living/simple_animal/proc/poke(var/force_wake = 0)
+/mob/living/simple_animal/proc/poke(force_wake = 0)
 	if (stat != DEAD)
 		if (force_wake || (!client && prob(30)))
 			wake_up()

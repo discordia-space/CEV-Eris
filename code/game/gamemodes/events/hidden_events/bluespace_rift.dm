@@ -28,17 +28,17 @@ They are unstable and be used only few times, and after that they die out on bot
 	prepare_event_areas(rift_number)
 
 /datum/event/bluespace_rift/start()
-	for(var/i=0, i<pair_number, i++)
+	for(var/i = 0; i < pair_number; i++)
 		var/area/enterence = pick_n_take(event_areas)
 		var/area/exit = pick_n_take(event_areas)
 		new /obj/effect/portal/wormhole/rift(enterence.random_space(), exit.random_space())
 
 
-/datum/event/bluespace_rift/proc/prepare_event_areas(var/number)
-	var/list/candidates = all_areas.Copy()
+/datum/event/bluespace_rift/proc/prepare_event_areas(number)
+	var/list/candidates = GLOB.all_areas.Copy()
 	var/area/candidate
 	for(candidate in candidates)
 		if(!candidate.is_maintenance)
 			candidates -= candidate
-	for(var/i=0, i<number, i++)
+	for(var/i = 0; i < number; i++)
 		event_areas.Add(pick_n_take(candidates))

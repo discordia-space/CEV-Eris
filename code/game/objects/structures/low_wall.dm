@@ -153,7 +153,7 @@
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /turf/wall/low/proc/check_cover(obj/item/projectile/P, turf/from)
-	if(config.z_level_shooting)
+	if(CONFIG_GET(flag/z_level_shooting))
 		if(P.height == HEIGHT_HIGH)
 			return TRUE // Bullet is too high to hit
 		P.height = (P.height == HEIGHT_LOW) ? HEIGHT_LOW : HEIGHT_CENTER
@@ -175,17 +175,17 @@
 			valid = TRUE			//Lying down covers your whole body
 
 	// Bullet is low enough to hit the wall
-	if(config.z_level_shooting && P.height == HEIGHT_LOW)
+	if(CONFIG_GET(flag/z_level_shooting) && P.height == HEIGHT_LOW)
 		valid = TRUE
 
 	if(valid)
 		var/pierce = P.check_penetrate(src)
 		take_damage(P.get_structure_damage()/2)
 		if (health > 0)
-			visible_message(SPAN_WARNING("[P] hits \the [src]!"))
+			visible_message(span_warning("[P] hits \the [src]!"))
 			return pierce
 		else
-			visible_message(SPAN_WARNING("[src] breaks down!"))
+			visible_message(span_warning("[src] breaks down!"))
 			qdel(src)
 			return 1
 	return 1
@@ -208,22 +208,22 @@
 			set_pixel_click_offset(O, params, animate=TRUE)
 			return
 		else
-			to_chat(user, SPAN_WARNING("[O] is too heavy for you to move!"))
+			to_chat(user, span_warning("[O] is too heavy for you to move!"))
 			return
 	// Climbing
 	if(A == user)
 		if(window_type)
-			to_chat(user, SPAN_WARNING("A window is in the way!"))
+			to_chat(user, span_warning("A window is in the way!"))
 			return
 		add_fingerprint(user)
 		if(user.stats.getPerk(PERK_PARKOUR))
 			user.forceMove(src)
-			user.visible_message(SPAN_WARNING("[user] hops onto \the [src]!"))
+			user.visible_message(span_warning("[user] hops onto \the [src]!"))
 		else
-			user.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
+			user.visible_message(span_warning("[user] starts climbing onto \the [src]!"))
 			if(do_after(user = user, delay = 3 SECONDS, target = src))
 				user.forceMove(src)
-				user.visible_message(SPAN_WARNING("[user] climbs onto \the [src]!"))
+				user.visible_message(span_warning("[user] climbs onto \the [src]!"))
 
 
 /turf/wall/low/adjacent_fire_act(turf/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
@@ -262,22 +262,22 @@
 
 /turf/wall/low/proc/affect_grab(mob/living/user, mob/living/target, state)
 	if(window_type)
-		to_chat(user, SPAN_DANGER("There's a window in the way."))
+		to_chat(user, span_danger("There's a window in the way."))
 		return
 	if(state < GRAB_AGGRESSIVE || target.loc == loc)
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
 			target.damage_through_armor(12, BRUTE, BP_HEAD, ARMOR_MELEE)
-			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
+			visible_message(span_danger("[user] slams [target]'s face against \the [src]!"))
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 50, 1)
 		else
-			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
+			to_chat(user, span_danger("You need a better grip to do that!"))
 			return
 	else
 		target.forceMove(src)
 		target.Weaken(5)
-		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))
+		visible_message(span_danger("[user] puts [target] on \the [src]."))
 		target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been put on \the [src] by [user.name] ([user.ckey] )</font>"
 		user.attack_log += "\[[time_stamp()]\] <font color='red'>Puts [target.name] ([target.ckey] on \the [src])</font>"
 		msg_admin_attack("[user] puts a [target] on \the [src].")

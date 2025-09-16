@@ -1,0 +1,76 @@
+2025-09-07:
+  flleeppyy:
+  - admin: Ported SQL messages/notes from Monkestation.
+2025-09-10:
+  Chickenish:
+  - rscadd: Added Plasteel Coin
+  - rscdel: Removed Iron Coin
+  - bugfix: Coins now moderately valuable for use and trade.
+  - spellcheck: Platinum coin no longer spelled as Platunum coin.
+  - code_imp: Moneybag no longer shoves coins in the person holding the moneybag.
+  - bugfix: flare shells now trigger when shooting yourself.
+  - tweak: Foam Darts now same class as Chemical Darts.
+  - refactor: visible_message more uniformly used.
+  - balance: Poison no longer kills as fast.
+  - refactor: stationary Tanks refactored to unique type
+  - bugfix: fixed Autodoc
+  - bugfix: Stacks can no longer be duped by splitting with an empty hand, no more
+      0 sheet stacks, icons update properly
+  - bugfix: Removed Organs should now process properly
+  - rscdel: Roach Ghosts no longer scream at you for smacking their dead bodies.
+  - code_imp: 'fix: fixed runtime on selecting IH in setup'
+  - bugfix: High intelligence characters can now comprehend the possibility of a beaker
+      not containing any reagents.
+  - rscadd: Liver now self-regenerates while under toxic capacity, at a rate boosted
+      by anti-tox.
+  - bugfix: 'config: guest mode no longer breaks job selection.'
+  - bugfix: fixed conveyors
+  - rscadd: Mice can now live.
+  - bugfix: bunch of roachmind fixes
+  - bugfix: Holding a candle as it runs out of wax now functions properly.
+  - bugfix: self-harm and hysteric breakdowns no longer cause a runtime when they
+      begin shortly before the associated human is obliterated.
+  - bugfix: non-tool tool no longer runtimes on failure
+  - balance: Clamped wounds do not stay clamped when re-opened.
+  - balance: Pressuring wounds now clamps the wound until re-opened.
+  - bugfix: mining generation
+  - bugfix: price scanning turfs no longer runtimes
+  - bugfix: Water tank explosion runtime
+  flleeppyy:
+  - tweak: Better death message
+2025-09-11:
+  VmpOS2NHSkhkejA9:
+  - bugfix: ore processors and unloaders not setting their input/output directions
+  - bugfix: deep drill caves spawning the wrong number of golems
+  - bugfix: platinum golems no longer delete ore boxes
+  - balance: silver, platinum and gold golems are weaker and less now
+  - balance: adjusted spawn weights for golems
+2025-09-12:
+  flleeppyy:
+  - rscdel: revert new announcer voices
+2025-09-14:
+  Chickenish:
+  - bugfix: dismantling walls no longer results in GC errors.
+  - code_imp: Qdel hints are now better
+  - bugfix: fixed a mistake with vague attack logic
+  - bugfix: Rigged flashlights no longer runtime during Process()
+  - rscadd: Eating another carrion's core with your maw gives you the other carrion's
+      disguises
+  - balance: carrion over-hunger is now punished by making your human form hungry
+  - tweak: carrion maw now works with holders.
+  - tweak: carrions now drop as an inert item if the core is killed.
+  - bugfix: eating with carrion maw provides proper chem value
+  - bugfix: nutriment made via roach chem decay is now fully drinkable.
+  - bugfix: Flat Dough and derivatives are now more edible.
+  - tweak: 'balance: Prying damaged flooring now produces scrap metal instead of deleting
+      the floor with no returns.'
+  - rscadd: Added modular bolt-gun config
+  - tweak: tweaked Riose cost
+  - bugfix: fixed clrifle bolt action ammo choice discrepancy
+  - imageadd: added modular boltgun parts
+  flleeppyy:
+  - tweak: Ship announcements and alerts have been converted to fancier boxes!
+  - admin: New "Create Command Report" UI, ported from Monke
+2025-09-15:
+  flleeppyy:
+  - rscdel: Removed IRC functionality, it was barely used.

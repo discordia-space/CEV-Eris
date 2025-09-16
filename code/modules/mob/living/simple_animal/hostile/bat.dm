@@ -49,7 +49,7 @@
 	if(.)
 		emote("flutters towards [.]")
 
-/mob/living/simple_animal/hostile/scarybat/Found(var/atom/A)//This is here as a potential override to pick a specific target if available
+/mob/living/simple_animal/hostile/scarybat/Found(atom/A)//This is here as a potential override to pick a specific target if available
 	if(istype(A) && A == owner)
 		return 0
 	return ..()
@@ -60,7 +60,7 @@
 	if(istype(L))
 		if(prob(15))
 			L.Stun(1)
-			L.visible_message(SPAN_DANGER("\the [src] scares \the [L]!"))
+			L.visible_message(span_danger("\the [src] scares \the [L]!"))
 
 /mob/living/simple_animal/hostile/scarybat/cult
 	faction = "cult"

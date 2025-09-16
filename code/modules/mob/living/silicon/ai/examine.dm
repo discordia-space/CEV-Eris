@@ -1,6 +1,6 @@
 /mob/living/silicon/ai/examine(mob/user, extra_description = "")
 	if(stat == DEAD)
-		extra_description += "<span class='deadsay'>It appears to be powered-down.</span>\n"
+		extra_description += "[span_deadsay("It appears to be powered-down.")]\n"
 	else
 		extra_description += "<span class='warning'>"
 		if(getBruteLoss())
@@ -32,9 +32,9 @@
 	..(user, extra_description)
 	user.showLaws(src)
 
-/mob/proc/showLaws(var/mob/living/silicon/S)
+/mob/proc/showLaws(mob/living/silicon/S)
 	return
 
-/mob/observer/ghost/showLaws(var/mob/living/silicon/S)
+/mob/observer/ghost/showLaws(mob/living/silicon/S)
 	if(antagHUD || is_admin(src))
 		S.laws.show_laws(src)

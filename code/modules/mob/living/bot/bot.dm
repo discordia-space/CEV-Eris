@@ -55,51 +55,51 @@
 /mob/living/bot/death()
 	explode()
 
-/mob/living/bot/attackby(var/obj/item/O, var/mob/user)
+/mob/living/bot/attackby(obj/item/O, mob/user)
 	if(O.GetIdCard())
 		if(access_scanner.allowed(user) && !open && !emagged)
 			locked = !locked
-			to_chat(user, "<span class='notice'>Controls are now [locked ? "locked." : "unlocked."]</span>")
+			to_chat(user, span_notice("Controls are now [locked ? "locked." : "unlocked."]"))
 			attack_hand(user)
 		else
 			if(emagged)
-				to_chat(user, SPAN_WARNING("ERROR"))
+				to_chat(user, span_warning("ERROR"))
 			if(open)
-				to_chat(user, SPAN_WARNING("Please close the access panel before locking it."))
+				to_chat(user, span_warning("Please close the access panel before locking it."))
 			else
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, span_warning("Access denied."))
 		return
 	else if(istype(O, /obj/item/tool/screwdriver))
 		if(!locked)
 			open = !open
-			to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
+			to_chat(user, span_notice("Maintenance panel is now [open ? "opened" : "closed"]."))
 		else
-			to_chat(user, SPAN_NOTICE("You need to unlock the controls first."))
+			to_chat(user, span_notice("You need to unlock the controls first."))
 		return
 	else if(istype(O, /obj/item/tool/weldingtool))
 		if(health < maxHealth)
 			if(open)
 				adjustBruteLoss(-10)
-				user.visible_message(SPAN_NOTICE("[user] repairs [src]."),SPAN_NOTICE("You repair [src]."))
+				user.visible_message(span_notice("[user] repairs [src]."),span_notice("You repair [src]."))
 			else
-				to_chat(user, SPAN_NOTICE("Unable to repair with the maintenance panel closed."))
+				to_chat(user, span_notice("Unable to repair with the maintenance panel closed."))
 		else
-			to_chat(user, SPAN_NOTICE("[src] does not need a repair."))
+			to_chat(user, span_notice("[src] does not need a repair."))
 		return
 	else
 		..()
 
-/mob/living/bot/attack_ai(var/mob/user)
+/mob/living/bot/attack_ai(mob/user)
 	return attack_hand(user)
 
-/mob/living/bot/say(var/message)
+/mob/living/bot/say(message)
 	var/verb = "beeps"
 
 	message = sanitize(message)
 
 	..(message, null, verb)
 
-/mob/living/bot/Bump(var/atom/A)
+/mob/living/bot/Bump(atom/A)
 	if(on && botcard && istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
 		if(!istype(D, /obj/machinery/door/firedoor) && !istype(D, /obj/machinery/door/blast) && D.check_access(botcard))
@@ -107,7 +107,7 @@
 	else
 		..()
 
-/mob/living/bot/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/bot/emag_act(remaining_charges, mob/user)
 	return 0
 
 /mob/living/bot/proc/turn_on()

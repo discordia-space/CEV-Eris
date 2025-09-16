@@ -210,13 +210,13 @@
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!charge_selected)
-		to_chat(H, SPAN_DANGER("You have not selected a beaker to inject from!"))
+		to_chat(H, span_danger("You have not selected a beaker to inject from!"))
 		return FALSE
 
 	var/datum/rig_charge/charge = charges[charge_selected]
 	var/obj/item/reagent_containers/beaker = locate(charge.product_type)
 	if(beaker.reagents.total_volume < injection_amount)
-		to_chat(H, SPAN_DANGER("Insufficient chems!"))
+		to_chat(H, span_danger("Insufficient chems!"))
 		return FALSE
 
 	var/mob/living/carbon/target_mob
@@ -229,8 +229,8 @@
 		target_mob = H
 
 	if(target_mob != H)
-		to_chat(H, SPAN_DANGER("You inject [target_mob] with [injection_amount] unit\s of [beaker.name]."))
-	to_chat(target_mob, "<span class='danger'>You feel a rushing in your veins as [injection_amount] unit\s are injected in your bloodstream.</span>")
+		to_chat(H, span_danger("You inject [target_mob] with [injection_amount] unit\s of [beaker.name]."))
+	to_chat(target_mob, span_danger("You feel a rushing in your veins as [injection_amount] unit\s are injected in your bloodstream."))
 	// Update display
 	beaker.reagents.trans_to_mob(target_mob, injection_amount, CHEM_BLOOD)
 	rebuild_charges()
@@ -317,7 +317,7 @@
 	rarity_value = 5
 	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
-/obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item, var/mob/living/user)
+/obj/item/rig_module/chem_dispenser/accepts_item(obj/item/input_item, mob/living/user)
 
 	if(!input_item.is_drainable())
 		return 0
@@ -347,7 +347,7 @@
 	if(total_transferred)
 		to_chat(user, "<font color='blue'>You transfer [total_transferred] units into the suit reservoir.</font>")
 	else
-		to_chat(user, SPAN_DANGER("None of the reagents seem suitable."))
+		to_chat(user, span_danger("None of the reagents seem suitable."))
 	return 1
 
 /obj/item/rig_module/chem_dispenser/engage(atom/target)
@@ -358,7 +358,7 @@
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!charge_selected)
-		to_chat(H, SPAN_DANGER("You have not selected a chemical type."))
+		to_chat(H, span_danger("You have not selected a chemical type."))
 		return 0
 
 	var/datum/rig_charge/charge = charges[charge_selected]
@@ -368,7 +368,7 @@
 
 	var/chems_to_use = 5
 	if(charge.charges <= 0)
-		to_chat(H, SPAN_DANGER("Insufficient chems!"))
+		to_chat(H, span_danger("Insufficient chems!"))
 		return 0
 	else if(charge.charges < chems_to_use)
 		chems_to_use = charge.charges
@@ -383,8 +383,8 @@
 		target_mob = H
 
 	if(target_mob != H)
-		to_chat(H, SPAN_DANGER("You inject [target_mob] with [chems_to_use] unit\s of [charge.display_name]."))
-	to_chat(target_mob, "<span class='danger'>You feel a rushing in your veins as [chems_to_use] unit\s of [charge.display_name] [chems_to_use == 1 ? "is" : "are"] injected.</span>")
+		to_chat(H, span_danger("You inject [target_mob] with [chems_to_use] unit\s of [charge.display_name]."))
+	to_chat(target_mob, span_danger("You feel a rushing in your veins as [chems_to_use] unit\s of [charge.display_name] [chems_to_use == 1 ? "is" : "are"] injected."))
 	target_mob.reagents.add_reagent(charge.display_name, chems_to_use)
 
 	charge.charges -= chems_to_use

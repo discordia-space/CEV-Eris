@@ -206,7 +206,7 @@
 		contract = C
 		victims = list()
 		if(src in owner.current.GetAllContents(includeSelf = FALSE))
-			to_chat(owner.current, SPAN_NOTICE("[src] has found new contract."))
+			to_chat(owner.current, span_notice("[src] has found new contract."))
 		break
 
 /obj/item/gun/energy/psychic/proc/reg_break(mob/living/carbon/human/victim)
@@ -222,12 +222,12 @@
 
 		// If in owner's inventory, give a signal that the break was registred and counted towards contract
 		if((src in owner.current.GetAllContents(includeSelf = FALSE)) && !(victim in victims))
-			to_chat(owner.current, SPAN_DANGER("[src] clicks."))
+			to_chat(owner.current, span_danger("[src] clicks."))
 
 	victims |= victim
 
 	if(contract.completed)
-		to_chat(owner.current, SPAN_DANGER("Somebody all ready have comleted targeted contract."))
+		to_chat(owner.current, span_danger("Somebody all ready have comleted targeted contract."))
 		contract = null
 		START_PROCESSING(SSobj, src)
 
@@ -280,7 +280,7 @@
 	twohanded = FALSE
 	init_recoil = HANDGUN_RECOIL(1)
 
-/obj/item/gun/energy/psychic/mindflayer/update_icon(var/ignore_inhands)
+/obj/item/gun/energy/psychic/mindflayer/update_icon(ignore_inhands)
 	if(charge_meter)
 		var/ratio = 0
 

@@ -40,10 +40,10 @@
 	if(usr.stat)
 		return
 	if(src.occupant)
-		to_chat(usr, SPAN_WARNING("The scanner is already occupied!"))
+		to_chat(usr, span_warning("The scanner is already occupied!"))
 		return
 	if(usr.abiotic())
-		to_chat(usr, SPAN_WARNING("The subject cannot have abiotic items on."))
+		to_chat(usr, span_warning("The subject cannot have abiotic items on."))
 		return
 	set_occupant(usr)
 	src.add_fingerprint(usr)
@@ -64,7 +64,7 @@
 	if(Adjacent(user))
 		eject()
 
-/obj/machinery/bodyscanner/proc/set_occupant(var/mob/living/L)
+/obj/machinery/bodyscanner/proc/set_occupant(mob/living/L)
 	L.forceMove(src)
 	src.occupant = L
 	set_power_use(ACTIVE_POWER_USE)
@@ -72,35 +72,35 @@
 	src.add_fingerprint(usr)
 
 
-/obj/machinery/bodyscanner/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/bodyscanner/affect_grab(mob/user, mob/target)
 	if (src.occupant)
-		to_chat(user, SPAN_NOTICE("The scanner is already occupied!"))
+		to_chat(user, span_notice("The scanner is already occupied!"))
 		return
 	if(target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, span_notice("Unbuckle the subject before attempting to move them."))
 		return
 	if(target.abiotic())
-		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
+		to_chat(user, span_notice("Subject cannot have abiotic items on."))
 		return
 	set_occupant(target)
 	src.add_fingerprint(user)
 	return TRUE
 
-/obj/machinery/bodyscanner/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/bodyscanner/MouseDrop_T(mob/target, mob/user)
 	if(!ismob(target))
 		return
 	if (src.occupant)
-		to_chat(user, SPAN_WARNING("The scanner is already occupied!"))
+		to_chat(user, span_warning("The scanner is already occupied!"))
 		return
 	if (target.abiotic())
-		to_chat(user, SPAN_WARNING("Subject cannot have abiotic items on."))
+		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 	if (target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, span_notice("Unbuckle the subject before attempting to move them."))
 		return
 	user.visible_message(
-		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
-		SPAN_NOTICE("You start placing \the [target] into \the [src].")
+		span_notice("\The [user] begins placing \the [target] into \the [src]."),
+		span_notice("You start placing \the [target] into \the [src].")
 	)
 	if(!do_after(user, 30, src) || !Adjacent(target))
 		return
@@ -140,7 +140,7 @@
 /obj/machinery/body_scanconsole/New()
 	..()
 	spawn(5)
-		for(var/dir in cardinal)
+		for(var/dir in GLOB.cardinal)
 			connected = locate(/obj/machinery/bodyscanner) in get_step(src, dir)
 			if(connected)
 				return
@@ -151,43 +151,43 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(!connected || (connected.stat & (NOPOWER|BROKEN)))
-		to_chat(user, SPAN_WARNING("This console is not connected to a functioning body scanner."))
+		to_chat(user, span_warning("This console is not connected to a functioning body scanner."))
 		return
 	if(!ishuman(connected.occupant))
-		to_chat(user, SPAN_WARNING("This device can only scan compatible lifeforms."))
+		to_chat(user, span_warning("This device can only scan compatible lifeforms."))
 		return
 
 	var/dat
 	if (src.delete && src.temphtml) //Window in buffer but its just simple message, so nothing
 		src.delete = src.delete
 	else if (!src.delete && src.temphtml) //Window in buffer - its a menu, dont add clear message
-		dat = text("[]<BR><BR><A href='?src=\ref[];clear=1'>Main Menu</A>", src.temphtml, src)
+		dat = text("[]<BR><BR><A href='byond://?src=\ref[];clear=1'>Main Menu</A>", src.temphtml, src)
 	else
 		if (src.connected) //Is something connected?
 			dat = format_occupant_data(src.connected.get_occupant_data())
-			dat += "<HR><A href='?src=\ref[src];print=1'>Print</A><BR>"
+			dat += "<HR><A href='byond://?src=\ref[src];print=1'>Print</A><BR>"
 		else
-			dat = SPAN_WARNING("Error: No Body Scanner connected.")
+			dat = span_warning("Error: No Body Scanner connected.")
 
-	dat += text("<BR><A href='?src=\ref[];mach_close=scanconsole'>Close</A>", user)
-	user << browse(dat, "window=scanconsole;size=430x600")
+	dat += text("<BR><A href='byond://?src=\ref[];mach_close=scanconsole'>Close</A>", user)
+	user << browse(HTML_SKELETON_TITLE("Body Scanner Console", dat), "window=scanconsole;size=430x600")
 	return
 
 
 /obj/machinery/body_scanconsole/Topic(href, href_list)
 	if (..())
 		return
-
+	var/htmlicon = icon2html(src, usr)
 	if (href_list["print"])
 		if (!src.connected)
-			to_chat(usr, "\icon[src]<span class='warning'>Error: No body scanner connected.</span>")
+			to_chat(usr, "[htmlicon][span_warning("Error: No body scanner connected.")]")
 			return
 		var/mob/living/carbon/human/occupant = src.connected.occupant
 		if (!src.connected.occupant)
-			to_chat(usr, "\icon[src]<span class='warning'>The body scanner is empty.</span>")
+			to_chat(usr, "[htmlicon][span_warning("The body scanner is empty.")]")
 			return
 		if (!ishuman(occupant))
-			to_chat(usr, "\icon[src]<span class='warning'>The body scanner cannot scan that lifeform.</span>")
+			to_chat(usr, "[htmlicon][span_warning("The body scanner cannot scan that lifeform.")]")
 			return
 		var/obj/item/paper/R = new(src.loc)
 		R.name = "[occupant.get_visible_name()] scan report"
@@ -229,7 +229,7 @@
 	return occupant_data
 
 
-/obj/machinery/body_scanconsole/proc/format_occupant_data(var/list/occ)
+/obj/machinery/body_scanconsole/proc/format_occupant_data(list/occ)
 	var/dat = "<font color='blue'><b>Scan performed at [occ["stationtime"]]</b></font><br>"
 	dat += "<font color='blue'><b>Occupant Statistics:</b></font><br>"
 	dat += text("ID Name: <i>[]</i><br>", occ["name"])
@@ -297,12 +297,12 @@
 				if(I.rejecting)
 					internal_wounds += "being rejected"
 
-				var/list/internal_wound_comps = I.GetComponents(/datum/component/internal_wound)
 
-				for(var/datum/component/internal_wound/IW in internal_wound_comps)
+				for(var/woundtype in I.wounddatums)
+					var/datum/internal_wound/IW = I.wounddatums[woundtype]
 					var/severity = IW.severity
 					internal_wounds += "[IW.name] ([severity]/[IW.severity_max])"
-					if(istype(IW, /datum/component/internal_wound/organic/burn) || istype(IW, /datum/component/internal_wound/robotic/emp_burn))
+					if(istype(IW, /datum/internal_wound/organic/burn) || istype(IW, /datum/internal_wound/robotic/emp_burn))
 						total_burn_damage += severity
 					else
 						total_brute_and_misc_damage += severity

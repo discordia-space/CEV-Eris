@@ -91,7 +91,7 @@
 			blood_DNA = list()
 		blood_DNA.Cut()
 		blood_DNA[C.dna_trace] = C.b_type
-		species = all_species[C.species.name]
+		species = GLOB.all_species[C.species.name]
 
 /obj/item/organ/proc/die()
 	if(BP_IS_ROBOTIC(src) || status & ORGAN_DEAD)
@@ -106,7 +106,7 @@
 		owner.death()
 
 /obj/item/organ/get_item_cost()
-	if((status & ORGAN_DEAD) || species != all_species[SPECIES_HUMAN]) //No dead or monkey organs!
+	if((status & ORGAN_DEAD) || species != GLOB.all_species[SPECIES_HUMAN]) //No dead or monkey organs!
 		return FALSE
 	return ..()
 
@@ -154,7 +154,7 @@
 			if(B && prob(40))
 				reagents.remove_reagent("blood",0.1)
 				blood_splatter(src,B,1)
-		if(config.organs_decay)
+		if(CONFIG_GET(flag/organs_can_decay))
 			if(prob(5))
 				take_damage(12, TOX)	// Will cause toxin accumulation wounds
 	else
@@ -162,7 +162,7 @@
 
 /obj/item/organ/examine(mob/user, extra_description = "")
 	if(status & ORGAN_DEAD)
-		extra_description += SPAN_NOTICE("The decay has set in.")
+		extra_description += span_notice("The decay has set in.")
 	..(user, extra_description)
 
 /obj/item/organ/proc/handle_rejection()
@@ -192,7 +192,7 @@
 	return (damage >= min_broken_damage || (status & ORGAN_CUT_AWAY) || (status & ORGAN_BROKEN))
 
 //Adds autopsy data for used_weapon.
-/obj/item/organ/proc/add_autopsy_data(var/used_weapon, var/damage)
+/obj/item/organ/proc/add_autopsy_data(used_weapon, damage)
 	var/datum/autopsy_data/W = autopsy_data[used_weapon]
 	if(!W)
 		W = new()

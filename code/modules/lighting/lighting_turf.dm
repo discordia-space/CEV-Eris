@@ -36,7 +36,7 @@
 			C.active = TRUE
 
 // Used to get a scaled lumcount.
-/turf/proc/get_lumcount(var/minlum = 0, var/maxlum = 1)
+/turf/proc/get_lumcount(minlum = 0, maxlum = 1)
 	if (!lighting_overlay)
 		return 0.5
 
@@ -51,6 +51,16 @@
 
 	return CLAMP01(totallums)
 
+// Returns a boolean whether the turf is on soft lighting.
+// Soft lighting being the threshold at which point the overlay considers
+// itself as too dark to allow sight and see_in_dark becomes useful.
+// So basically if this returns true the tile is unlit black.
+/turf/proc/is_softly_lit()
+	if (!lighting_overlay)
+		return FALSE
+
+	return !(luminosity || lighting_overlay.luminosity) // If we have a luminosity or an overlay we are not softly lit.
+
 // Can't think of a good name, this proc will recalculate the has_opaque_atom variable.
 /turf/proc/recalc_atom_opacity()
 	has_opaque_atom = FALSE
@@ -64,7 +74,7 @@
 	// If we are not then this is still faster than doing an explicit check.
 	has_opaque_atom = src.opacity
 
-/turf/change_area(var/area/old_area, var/area/new_area)
+/turf/change_area(area/old_area, area/new_area)
 	if(new_area.dynamic_lighting != old_area.dynamic_lighting)
 		if(new_area.dynamic_lighting)
 			lighting_build_overlay()
@@ -72,7 +82,7 @@
 		else
 			lighting_clear_overlay()
 
-/turf/proc/get_corners(var/dir)
+/turf/proc/get_corners(dir)
 	if(has_opaque_atom)
 		return null // Since this proc gets used in a for loop, null won't be looped though.
 

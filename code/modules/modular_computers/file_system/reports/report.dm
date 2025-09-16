@@ -76,7 +76,7 @@ If the override option is set to 0, the access supplied will instead be added as
 		return 0
 	for(var/datum/report_field/field in fields)
 		if(field.required && !field.get_value())
-			to_chat(user, "<span class='notice'>You are missing a required field!</span>")
+			to_chat(user, span_notice("You are missing a required field!"))
 			return 0
 	creator = user.name
 	file_time = time_stamp()
@@ -108,7 +108,7 @@ If the override option is set to 0, the access supplied will instead be added as
 	temp.file_time = file_time
 	temp.access_edit = access_edit
 	temp.access = access
-	for(var/i = 1, i <= length(fields), i++)
+	for(var/i = 1; i <= length(fields); i++)
 		var/datum/report_field/new_field = temp.fields[i]
 		new_field.copy_value(fields[i])
 	return temp

@@ -19,7 +19,7 @@
 	. = ..()
 	name = "robot [initial(name)]"
 
-/obj/item/robot_parts/proc/is_ready(var/mob/living/user)
+/obj/item/robot_parts/proc/is_ready(mob/living/user)
 	return TRUE
 
 /obj/item/robot_parts/l_arm
@@ -51,12 +51,12 @@
 	var/wires = 0
 	var/obj/item/cell/large/cell
 
-/obj/item/robot_parts/chest/is_ready(var/mob/living/user)
+/obj/item/robot_parts/chest/is_ready(mob/living/user)
 	if(!wires)
-		to_chat(user, SPAN_WARNING("You need to attach wires to it first!"))
+		to_chat(user, span_warning("You need to attach wires to it first!"))
 		return FALSE
 	else if(!cell)
-		to_chat(user, SPAN_WARNING("You need to attach a cell to it first!"))
+		to_chat(user, span_warning("You need to attach a cell to it first!"))
 		return FALSE
 	return TRUE
 
@@ -68,9 +68,9 @@
 	var/obj/item/device/flash/flash1 = null
 	var/obj/item/device/flash/flash2 = null
 
-/obj/item/robot_parts/head/is_ready(var/mob/living/user)
+/obj/item/robot_parts/head/is_ready(mob/living/user)
 	if(!flash1 || !flash2)
-		to_chat(user, SPAN_WARNING("You need to attach a flash to it first!"))
+		to_chat(user, span_warning("You need to attach a flash to it first!"))
 		return FALSE
 	return TRUE
 
@@ -120,13 +120,13 @@
 		if (M.use(1))
 			var/obj/item/secbot_assembly/ed209_assembly/B = new(loc)
 			B.forceMove(get_turf(src))
-			to_chat(user, SPAN_NOTICE("You armed the robot frame."))
-			if (user.get_inactive_hand() == src)
+			to_chat(user, span_notice("You armed the robot frame."))
+			if (user.get_inactive_held_item() == src)
 				user.remove_from_mob(src)
 				user.put_in_inactive_hand(B)
 			qdel(src)
 		else
-			to_chat(user, SPAN_WARNING("You need one sheet of metal to arm the robot frame."))
+			to_chat(user, span_warning("You need one sheet of metal to arm the robot frame."))
 
 	if(W.has_quality(QUALITY_BOLT_TURNING))
 		var/part = input("Select part for detach", "Detach") \
@@ -136,7 +136,7 @@
 
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		if(!W.use_tool(user, src, 30, QUALITY_BOLT_TURNING))
-			to_chat(user, SPAN_NOTICE("You stop detaching [selected]."))
+			to_chat(user, span_notice("You stop detaching [selected]."))
 			return
 
 		if(selected.loc == src)
@@ -147,19 +147,19 @@
 		selected.forceMove(get_turf(src))
 		src.update_icon()
 		user.visible_message(
-			SPAN_NOTICE("[user] detached [selected] from [src]."),
-			SPAN_NOTICE("You had successfuly detach [selected] from [src]."),
-			SPAN_WARNING("You have hear how something metallic hit the floor.")
+			span_notice("[user] detached [selected] from [src]."),
+			span_notice("You had successfuly detach [selected] from [src]."),
+			span_warning("You have hear how something metallic hit the floor.")
 		)
 		return
 
 	if(istype(W, /obj/item/robot_parts))
 		var/obj/item/robot_parts/RP = W
 		if(!req_parts.Find(RP.body_part))
-			to_chat(user, SPAN_WARNING("You can't attach that here!"))
+			to_chat(user, span_warning("You can't attach that here!"))
 			return
 		if(parts[RP.body_part])
-			to_chat(user, SPAN_WARNING("There is already one [parts[RP.body_part]] attached."))
+			to_chat(user, span_warning("There is already one [parts[RP.body_part]] attached."))
 			return
 		if(!RP.is_ready(user))
 			return
@@ -171,14 +171,14 @@
 	if(istype(W, /obj/item/device/mmi))
 		var/obj/item/device/mmi/M = W
 		if(!is_ready(user))
-			to_chat(user, SPAN_WARNING("The MMI must go in after everything else!"))
+			to_chat(user, span_warning("The MMI must go in after everything else!"))
 			return
 
 		if(!istype(loc,/turf))
-			to_chat(user, SPAN_WARNING("You can't put \the [W] in, the frame has to be standing on the ground to be perfectly precise."))
+			to_chat(user, span_warning("You can't put \the [W] in, the frame has to be standing on the ground to be perfectly precise."))
 			return
 		if(!M.brainmob)
-			to_chat(user, SPAN_WARNING("Sticking an empty [W] into the frame would sort of defeat the purpose."))
+			to_chat(user, span_warning("Sticking an empty [W] into the frame would sort of defeat the purpose."))
 			return
 		if(!M.brainmob.key)
 			var/ghost_can_reenter = 0
@@ -188,15 +188,15 @@
 						ghost_can_reenter = 1
 						break
 			if(!ghost_can_reenter)
-				to_chat(user, SPAN_NOTICE("\The [W] is completely unresponsive; there's no point."))
+				to_chat(user, span_notice("\The [W] is completely unresponsive; there's no point."))
 				return
 
 		if(M.brainmob.stat == DEAD)
-			to_chat(user, SPAN_WARNING("Sticking a dead [W] into the frame would sort of defeat the purpose."))
+			to_chat(user, span_warning("Sticking a dead [W] into the frame would sort of defeat the purpose."))
 			return
 
-		if(jobban_isbanned(M.brainmob, "Robot"))
-			to_chat(user, SPAN_WARNING("This [W] does not seem to fit."))
+		if(jobban_isbanned(M.brainmob.ckey, "Robot"))
+			to_chat(user, span_warning("This [W] does not seem to fit."))
 			return
 
 		var/mob/living/silicon/robot/O = new (get_turf(loc), unfinished = 1)
@@ -250,30 +250,30 @@
 /obj/item/robot_parts/chest/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/cell))
 		if(src.cell)
-			to_chat(user, SPAN_WARNING("You have already inserted a cell!"))
+			to_chat(user, span_warning("You have already inserted a cell!"))
 		else
 			user.drop_from_inventory(W, src)
 			src.cell = W
-			to_chat(user, SPAN_NOTICE("You insert the cell!"))
+			to_chat(user, span_notice("You insert the cell!"))
 	else if(istype(W, /obj/item/stack/cable_coil))
 		if(src.wires)
-			to_chat(user, SPAN_WARNING("You have already inserted wire!"))
+			to_chat(user, span_warning("You have already inserted wire!"))
 			return
 		else
 			var/obj/item/stack/cable_coil/coil = W
 			coil.use(1)
 			src.wires = W.color
-			to_chat(user, SPAN_NOTICE("You insert the wire!"))
+			to_chat(user, span_notice("You insert the wire!"))
 
 	var/tool_type = W.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING), src)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
 			if(cell)
-				to_chat(user, SPAN_WARNING("You eject the cell!"))
+				to_chat(user, span_warning("You eject the cell!"))
 				user.put_in_hands(cell)
 				cell = null
 			else
-				to_chat(user, SPAN_WARNING("There is nothing to eject."))
+				to_chat(user, span_warning("There is nothing to eject."))
 			return
 		if(QUALITY_WIRE_CUTTING)
 			if(wires)
@@ -281,18 +281,18 @@
 				C.color = wires
 				wires = 0
 				user.put_in_hands(C)
-				to_chat(user, SPAN_WARNING("You cut the wire!"))
+				to_chat(user, span_warning("You cut the wire!"))
 			else
-				to_chat(user, SPAN_WARNING("There is no wire inside!"))
+				to_chat(user, span_warning("There is no wire inside!"))
 
 
 /obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/device/flash))
 		if(isrobot(user))
-			var/current_module = user.get_active_hand()
+			var/current_module = user.get_active_held_item()
 			if(current_module == W)
-				to_chat(user, SPAN_WARNING("How do you propose to do that?"))
+				to_chat(user, span_warning("How do you propose to do that?"))
 				return
 			else
 				add_flashes(W,user)
@@ -302,17 +302,17 @@
 	else if(W.has_quality(QUALITY_SCREW_DRIVING))
 		if(flash2)
 			user.put_in_hands(flash2)
-			user.visible_message(SPAN_NOTICE("[user] eject [flash2] from [src]."))
+			user.visible_message(span_notice("[user] eject [flash2] from [src]."))
 			flash2 = null
 		else if(flash1)
 			user.put_in_hands(flash1)
-			user.visible_message(SPAN_NOTICE("[user] eject [flash1] from [src]."))
+			user.visible_message(span_notice("[user] eject [flash1] from [src]."))
 			flash1 = null
 		else
 			to_chat(user, "<span class='warning'There is nothing to eject.</span>")
 
 	else if(istype(W, /obj/item/stock_parts/manipulator))
-		to_chat(user, SPAN_NOTICE("You install some manipulators and modify the head, creating a functional spider-bot!"))
+		to_chat(user, span_notice("You install some manipulators and modify the head, creating a functional spider-bot!"))
 		new /mob/living/simple_animal/spiderbot(get_turf(loc))
 		user.drop_from_inventory(W)
 		qdel(W)
@@ -322,11 +322,11 @@
 //Made into a seperate proc to avoid copypasta
 /obj/item/robot_parts/head/proc/add_flashes(obj/item/W as obj, mob/user as mob)
 	if(src.flash1 && src.flash2)
-		to_chat(user, SPAN_NOTICE("You have already inserted the eyes!"))
+		to_chat(user, span_notice("You have already inserted the eyes!"))
 		return
 	else if(src.flash1)
 		src.flash2 = W
 	else
 		src.flash1 = W
 	user.drop_from_inventory(W, src)
-	to_chat(user, SPAN_NOTICE("You insert the flash into the eye socket!"))
+	to_chat(user, span_notice("You insert the flash into the eye socket!"))

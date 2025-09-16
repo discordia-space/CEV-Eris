@@ -115,7 +115,7 @@
 							items_to_spawn.Add(craft)
 							items_to_spawn[craft] = array[caliber_of_choice][craft][2]
 						else
-							to_chat(user, SPAN_NOTICE("Not enough materials."))
+							to_chat(user, span_notice("Not enough materials."))
 							continue
 
 			if("Craft picked")

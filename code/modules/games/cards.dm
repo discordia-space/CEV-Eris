@@ -161,7 +161,7 @@
 		return
 	..()
 
-/obj/item/deck/attack_self(var/mob/user as mob)
+/obj/item/deck/attack_self(mob/user as mob)
 
 	var/list/newcards = list()
 	while(cards.len)
@@ -193,7 +193,7 @@
 	var/list/cards = list()
 
 
-/obj/item/pack/attack_self(var/mob/user as mob)
+/obj/item/pack/attack_self(mob/user as mob)
 	user.visible_message("[user] rips open \the [src]!")
 	var/obj/item/hand/H = new()
 
@@ -242,7 +242,7 @@
 	if(!cards.len)
 		qdel(src)
 
-/obj/item/hand/attack_self(var/mob/user as mob)
+/obj/item/hand/attack_self(mob/user as mob)
 	concealed = !concealed
 	update_icon()
 	user.visible_message("\The [user] [concealed ? "conceals" : "reveals"] their hand.")
@@ -254,7 +254,7 @@
 			extra_description += "\nThe [P.name]."
 	..(user, extra_description)
 
-/obj/item/hand/update_icon(var/direction = 0)
+/obj/item/hand/update_icon(direction = 0)
 
 	if(!cards.len)
 		qdel(src)

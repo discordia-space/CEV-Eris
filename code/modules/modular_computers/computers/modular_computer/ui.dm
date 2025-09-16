@@ -1,5 +1,5 @@
 // Operates NanoUI
-/obj/item/modular_computer/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/modular_computer/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(!screen_on || !enabled || bsod)
 		if(ui)
 			ui.close()
@@ -86,7 +86,7 @@
 
 			if(PRG.filename == prog_name && (PRG in prog_disk.stored_files))
 				PRG.kill_program(forced=TRUE)
-				to_chat(usr, SPAN_NOTICE("Program [PRG.filename].[PRG.filetype] has been killed."))
+				to_chat(usr, span_notice("Program [PRG.filename].[PRG.filetype] has been killed."))
 				. = 1
 
 	if(href_list["PC_runprogram"])

@@ -28,7 +28,7 @@
 
 /obj/structure/strangebeacon/pods/proc/call_droppod()
 	if(nosignal == FALSE)
-		visible_message(SPAN_WARNING("Pod is called. Get a safe distance."))
+		visible_message(span_warning("Pod is called. Get a safe distance."))
 		var/drop_x = src.x-2
 		var/drop_y = src.y-2
 		var/drop_z = src.z

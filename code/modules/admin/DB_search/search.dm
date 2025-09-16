@@ -2,24 +2,24 @@
 	var/datum/browser/panel
 	var/empty = 1
 
-/datum/DB_search/verb/new_search_related(var/ckey as text)
+/datum/DB_search/verb/new_search_related(ckey as text)
 	set category = "Admin"
 	set name = "Search related accounts"
 	set desc = "Search players with same IP or CID"
 
 	var/list/ip_related_ckeys = list()
 	var/list/cid_related_ckeys = list()
-	var/DBQuery/search_query = dbcon.NewQuery("SELECT ip_related_ids, cid_related_ids FROM players WHERE ckey = '[sanitizeSQL(ckey)]'")
+	var/datum/db_query/search_query = SSdbcore.NewQuery("SELECT ip_related_ids, cid_related_ids FROM [format_table_name("player")] WHERE ckey = :ckey", list(ckey = ckey))
 	search_query.Execute()
 	if(search_query.NextRow())
 		ip_related_ckeys = splittext(search_query.item[1], ",")
 		cid_related_ckeys = splittext(search_query.item[2], ",")
-		search_query = dbcon.NewQuery("SELECT ckey FROM players WHERE id IN ([jointext(ip_related_ckeys, ",")])")
+		search_query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE id IN ([jointext(ip_related_ckeys, ",")])")
 		search_query.Execute()
 		ip_related_ckeys = list()
 		while(search_query.NextRow())
 			ip_related_ckeys += search_query.item[1]
-		search_query = dbcon.NewQuery("SELECT ckey FROM players WHERE id IN ([jointext(cid_related_ckeys, ",")])")
+		search_query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE id IN ([jointext(cid_related_ckeys, ",")])")
 		search_query.Execute()
 		cid_related_ckeys = list()
 		while(search_query.NextRow())
@@ -33,6 +33,7 @@
 	else
 		to_chat(usr,"No player with ckey = [ckey] found.")
 
+	qdel(search_query)
 
 /datum/DB_search/verb/new_search()
 	set category = "Admin"
@@ -40,13 +41,9 @@
 	set desc = "Search players in the DB"
 	db_search.DB_players_search()
 
-
-
 /datum/DB_search/proc/DB_players_search()
-
-	establish_db_connection()
-	if(!dbcon.IsConnected())
-		to_chat(usr, "\red Failed to establish database connection")
+	if(!SSdbcore.Connect())
+		to_chat(usr, span_red("Failed to establish database connection"))
 		return
 
 	var/output = {"
@@ -113,8 +110,11 @@
 		hsrc.empty = 1
 	if(dbsearchckey_search || dbsearchip_search || dbsearchcid_search)
 		hsrc.empty = 0
-		var/DBQuery/search_query = dbcon.NewQuery("SELECT ckey, ip, cid, last_seen FROM players WHERE ckey = '[sanitizeSQL(dbsearchckey_search)]' OR ip = '[sanitizeSQL(dbsearchip_search)]' OR cid = '[sanitizeSQL(dbsearchcid_search)]'")
-		search_query.Execute()
+		var/datum/db_query/search_query = SSdbcore.NewQuery(
+			"SELECT ckey, ip, computerid, lastseen FROM [format_table_name("player")] WHERE ckey = :ckey OR ip = :ip OR computerid = :cid",
+			list(ckey = dbsearchckey_search, ip = dbsearchip_search, cid = dbsearchcid_search)
+		)
+		search_query.warn_execute()
 		while(search_query.NextRow())
 			output = "<tr><th>[search_query.item[1]]</th><th>[search_query.item[2]]</th><th>[search_query.item[3]]</th><th>[search_query.item[4]]</th></tr>"
 			hsrc.panel.add_content(output)

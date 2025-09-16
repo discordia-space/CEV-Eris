@@ -15,10 +15,10 @@ GLOBAL_VAR_INIT(tts_error_raw, "")
 var/list/tts_seeds = list()
 
 /proc/initialize_text_to_speech()
-	if(!config.tts_key)
+	if(!CONFIG_GET(string/tts_key))
 		return
 
-	GLOB.tts_bearer = "Bearer [config.tts_key]"
+	GLOB.tts_bearer = "Bearer [CONFIG_GET(string/tts_key)]"
 
 	if(!fexists("config/tts_seeds.txt"))
 		return
@@ -69,7 +69,7 @@ var/list/tts_seeds = list()
 		fdel(.)
 		return null
 	GLOB.tts_request_succeeded++
-	if(!config.tts_cache)
+	if(!CONFIG_GET(flag/tts_cache))
 		GLOB.tts_death_row += .
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cleanup_tts_file), .), 20 SECONDS)
 
@@ -109,7 +109,7 @@ var/list/tts_seeds = list()
 		fdel(.)
 		return ""
 	GLOB.tts_request_succeeded++
-	if(!config.tts_cache)
+	if(!CONFIG_GET(flag/tts_cache))
 		GLOB.tts_death_row += .
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cleanup_tts_file), .), 20 SECONDS)
 

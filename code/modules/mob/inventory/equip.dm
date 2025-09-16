@@ -43,11 +43,11 @@
 			if(put_in_storage)	//trying to store item, if failed we delete it
 				var/obj/item/storage/S = equip_to_storage(old_item)
 				if(S)
-					to_chat(src, SPAN_NOTICE("Storing your \the [old_item] into \the [S]!"))
+					to_chat(src, span_notice("Storing your \the [old_item] into \the [S]!"))
 				else if (equip_to_slot_if_possible(old_item, slot_l_hand, disable_warning = TRUE))
-					to_chat(src, SPAN_NOTICE("Putting your \the [old_item] into your left hand!"))
+					to_chat(src, span_notice("Putting your \the [old_item] into your left hand!"))
 				else if (equip_to_slot_if_possible(old_item, slot_r_hand, disable_warning = TRUE))
-					to_chat(src, SPAN_NOTICE("Putting your \the [old_item] into your right hand!"))
+					to_chat(src, span_notice("Putting your \the [old_item] into your right hand!"))
 				else if (drop_if_unable_to_store)
 					var/turf/T = get_turf(src)
 					Item.forceMove(T)
@@ -126,7 +126,7 @@ var/list/slot_equipment_priority = list(
 			return backpack
 	return ..()
 /mob/living/carbon/human/proc/quick_equip_storage(obj/item/Item)
-	var/potential = src.get_inactive_hand()
+	var/potential = src.get_inactive_held_item()
 	if(istype(src.back,/obj/item/storage))
 		var/obj/item/storage/backpack = src.back
 		if(backpack.attackby(Item,src))
@@ -153,7 +153,7 @@ var/list/slot_equipment_priority = list(
 		if(equip_to_slot_if_possible(Item, slot_s_store))
 			return TRUE
 
-/mob/living/carbon/human/proc/equip_to_from_bag(var/obj/item/Item, obj/item/storage/store)
+/mob/living/carbon/human/proc/equip_to_from_bag(obj/item/Item, obj/item/storage/store)
 	if(Item)
 		store.attackby(Item,src)
 		return TRUE

@@ -49,25 +49,25 @@
 /obj/item/holyvacuum/proc/refill()
 	reagents.add_reagent("cleaner", 10)  // Need to have cleaner in it for /turf/proc/clean
 
-/obj/item/holyvacuum/attack_self(var/mob/user)
+/obj/item/holyvacuum/attack_self(mob/user)
 	.=..()
 	if(amount==0)
-		to_chat(user, SPAN_NOTICE("The storage tank of the [src] is already empty."))
+		to_chat(user, span_notice("The storage tank of the [src] is already empty."))
 	else
 		empty(user)
 
-/obj/item/holyvacuum/proc/empty(var/mob/user)
+/obj/item/holyvacuum/proc/empty(mob/user)
 	var/obj/item/compressedfilth/CF = new(user.loc)  // Drop the content of the vacuum cleaner on the ground
 	CF.matter[MATERIAL_BIOMATTER] = amount
 	amount = 0
-	to_chat(user, SPAN_NOTICE("You empty the storage tank of the [src]."))
+	to_chat(user, span_notice("You empty the storage tank of the [src]."))
 	update_icon()
 
 /obj/item/holyvacuum/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
 	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
 		if(amount >= max_amount)
-			to_chat(user, SPAN_NOTICE("The storage tank of the [src] is full!"))
+			to_chat(user, span_notice("The storage tank of the [src] is full!"))
 			return
 		var/turf/T = get_turf(A)
 		if(!T)
@@ -79,7 +79,7 @@
 		if(do_after(user, vacuum_time, T))
 			if(T)
 				amount += 0.1 * T.clean(src, user)  // Fill the vacuum cleaner with the cleaned filth
-			to_chat(user, SPAN_NOTICE("You have vacuumed all the filth!"))
+			to_chat(user, span_notice("You have vacuumed all the filth!"))
 			refill()
 			update_icon()
 

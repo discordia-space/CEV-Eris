@@ -83,21 +83,21 @@
 	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
 	bolt_open = !bolt_open
 	if(bolt_open)
-		if(contents.len)
+		if(length(loaded))
 			if(chambered)
-				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [chambered]!"))
+				to_chat(user, span_notice("You work the bolt open, ejecting [chambered]!"))
 				chambered.forceMove(get_turf(src))
 				loaded -= chambered
 				chambered = null
 			else
-				var/obj/item/ammo_casing/B = loaded[loaded.len]
-				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [B]!"))
+				var/obj/item/ammo_casing/B = loaded[1]
+				to_chat(user, span_notice("You work the bolt open, ejecting [B]!"))
 				B.forceMove(get_turf(src))
 				loaded -= B
 		else
-			to_chat(user, SPAN_NOTICE("You work the bolt open."))
+			to_chat(user, span_notice("You work the bolt open."))
 	else
-		to_chat(user, SPAN_NOTICE("You work the bolt closed."))
+		to_chat(user, span_notice("You work the bolt closed."))
 		playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, 1)
 		bolt_open = 0
 	add_fingerprint(user)
@@ -105,16 +105,16 @@
 
 /obj/item/gun/projectile/heavysniper/special_check(mob/user)
 	if(bolt_open)
-		to_chat(user, SPAN_WARNING("You can't fire [src] while the bolt is open!"))
+		to_chat(user, span_warning("You can't fire [src] while the bolt is open!"))
 		return 0
 	return ..()
 
-/obj/item/gun/projectile/heavysniper/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/heavysniper/load_ammo(obj/item/A, mob/user)
 	if(!bolt_open)
 		return
 	..()
 
-/obj/item/gun/projectile/heavysniper/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/heavysniper/unload_ammo(mob/user, allow_dump=1)
 	if(!bolt_open)
 		return
 	..()

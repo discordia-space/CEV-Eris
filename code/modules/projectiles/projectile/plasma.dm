@@ -111,13 +111,13 @@
 	heat_damage = 40
 	icon_state = "mech_plasma"
 
-/obj/item/projectile/plasma/check_penetrate(var/atom/A)
+/obj/item/projectile/plasma/check_penetrate(atom/A)
 	if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
 		var/loss = round(S.shield_integrity / 8)
 		block_damage(loss, A)
 
-		A.visible_message(SPAN_WARNING("\The [src] is weakened by the \the [A]!"))
+		A.visible_message(span_warning("\The [src] is weakened by the \the [A]!"))
 		playsound(A.loc, 'sound/weapons/shield/shielddissipate.ogg', 50, 1)
 		return 1
 	else if(istype(A, /obj/structure/barricade) || istype(A, /obj/structure/table) || istype(A, /turf/wall/low))

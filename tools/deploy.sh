@@ -13,6 +13,8 @@ mkdir -p \
     $1/maps \
     $1/strings \
 	$1/config \
+    $1/data/spritesheets \
+    $1/icons \
     $1/tgui/public \
     $1/tgui/packages/tgfont/dist
 
@@ -25,6 +27,7 @@ cp cev_eris.dmb cev_eris.rsc $1/
 cp -r maps/* $1/maps/
 cp -r strings/* $1/strings/
 cp -r config/names $1/config/
+cp -r icons/* $1/icons/
 cp -r tgui/public/* $1/tgui/public/
 cp -r tgui/packages/tgfont/dist/* $1/tgui/packages/tgfont/dist/
 

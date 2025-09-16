@@ -31,7 +31,7 @@ var/global/list/map_count = list()
 	// Test to see if rand_seed() can be used reliably.
 	var/priority_process
 
-/datum/random_map/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce)
+/datum/random_map/New(seed, tx, ty, tz, tlx, tly, do_not_apply, do_not_announce)
 	// Store this for debugging.
 	if(!map_count[descriptor])
 		map_count[descriptor] = 1
@@ -52,7 +52,7 @@ var/global/list/map_count = list()
 	set_map_size()
 
 	var/start_time = world.timeofday
-	if(!do_not_announce) admin_notice(SPAN_DANGER("Generating [name]."), R_DEBUG)
+	if(!do_not_announce) admin_notice(span_danger("Generating [name]."), R_DEBUG)
 	sleep(-1)
 
 	// Testing needed to see how reliable this is (asynchronous calls, called during worldgen), DM ref is not optimistic
@@ -61,18 +61,18 @@ var/global/list/map_count = list()
 
 	for(var/i = 0;i<max_attempts;i++)
 		if(generate())
-			if(!do_not_announce) admin_notice(SPAN_DANGER("[capitalize(name)] generation completed in [round(0.1*(world.timeofday-start_time),0.1)] seconds."), R_DEBUG)
+			if(!do_not_announce) admin_notice(span_danger("[capitalize(name)] generation completed in [round(0.1*(world.timeofday-start_time),0.1)] seconds."), R_DEBUG)
 			return
-	if(!do_not_announce) admin_notice(SPAN_DANGER("[capitalize(name)] failed to generate ([round(0.1*(world.timeofday-start_time),0.1)] seconds): could not produce sane map."), R_DEBUG)
+	if(!do_not_announce) admin_notice(span_danger("[capitalize(name)] failed to generate ([round(0.1*(world.timeofday-start_time),0.1)] seconds): could not produce sane map."), R_DEBUG)
 
-/datum/random_map/proc/get_map_cell(var/x,var/y)
+/datum/random_map/proc/get_map_cell(x,y)
 	if(!map)
 		set_map_size()
 	. = ((y-1)*limit_x)+x
 	if((. < 1) || (. > map.len))
 		return null
 
-/datum/random_map/proc/get_map_char(var/value)
+/datum/random_map/proc/get_map_char(value)
 	switch(value)
 		if(WALL_CHAR)
 			return "#"
@@ -97,8 +97,8 @@ var/global/list/map_count = list()
 		user = world
 
 	var/dat = "<code>+------+<br>"
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
+	for(var/x = 1; x <= limit_x; x++)
+		for(var/y = 1; y <= limit_y; y++)
 			var/current_cell = get_map_cell(x,y)
 			if(current_cell)
 				dat += get_map_char(map[current_cell])
@@ -110,8 +110,8 @@ var/global/list/map_count = list()
 	map.len = limit_x * limit_y
 
 /datum/random_map/proc/seed_map()
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
+	for(var/x = 1; x <= limit_x; x++)
+		for(var/y = 1; y <= limit_y; y++)
 			var/current_cell = get_map_cell(x,y)
 			if(prob(initial_wall_cell))
 				map[current_cell] = WALL_CHAR
@@ -120,8 +120,8 @@ var/global/list/map_count = list()
 			CHECK_TICK
 
 /datum/random_map/proc/clear_map()
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
+	for(var/x = 1; x <= limit_x; x++)
+		for(var/y = 1; y <= limit_y; y++)
 			map[get_map_cell(x,y)] = 0
 
 /datum/random_map/proc/generate()
@@ -141,7 +141,7 @@ var/global/list/map_count = list()
 /datum/random_map/proc/check_map_sanity()
 	return 1
 
-/datum/random_map/proc/set_origins(var/tx, var/ty, var/tz)
+/datum/random_map/proc/set_origins(tx, ty, tz)
 	origin_x = tx ? tx : 1
 	origin_y = ty ? ty : 1
 	origin_z = tz ? tz : 1
@@ -151,13 +151,13 @@ var/global/list/map_count = list()
 	if(!origin_y) origin_y = 1
 	if(!origin_z) origin_z = 1
 
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
+	for(var/x = 1; x <= limit_x; x++)
+		for(var/y = 1; y <= limit_y; y++)
 			if(!priority_process) sleep(-1)
 			apply_to_turf(x,y)
 			CHECK_TICK
 
-/datum/random_map/proc/apply_to_turf(var/x,var/y)
+/datum/random_map/proc/apply_to_turf(x,y)
 	var/current_cell = get_map_cell(x,y)
 	if(!current_cell)
 		return 0
@@ -173,27 +173,27 @@ var/global/list/map_count = list()
 /datum/random_map/proc/get_spawn_dir()
 	return 0
 
-/datum/random_map/proc/get_appropriate_path(var/value)
+/datum/random_map/proc/get_appropriate_path(value)
 	switch(value)
 		if(FLOOR_CHAR)
 			return floor_type
 		if(WALL_CHAR)
 			return wall_type
 
-/datum/random_map/proc/get_additional_spawns(var/value, var/turf/T)
+/datum/random_map/proc/get_additional_spawns(value, turf/T)
 	if(value == DOOR_CHAR)
 		new /obj/machinery/door/airlock(T)
 
 /datum/random_map/proc/cleanup()
 	return
 
-/datum/random_map/proc/overlay_with(var/datum/random_map/target_map, var/tx, var/ty)
+/datum/random_map/proc/overlay_with(datum/random_map/target_map, tx, ty)
 	if(!map.len || !istype(target_map))
 		return
 	tx-- // Update origin so that x/y index
 	ty-- // doesn't push it off-kilter by one.
-	for(var/x = 1, x <= limit_x, x++)
-		for(var/y = 1, y <= limit_y, y++)
+	for(var/x = 1; x <= limit_x; x++)
+		for(var/y = 1; y <= limit_y; y++)
 			var/current_cell = get_map_cell(x,y)
 			if(!current_cell)
 				continue
@@ -205,5 +205,5 @@ var/global/list/map_count = list()
 	handle_post_overlay_on(target_map,tx,ty)
 
 
-/datum/random_map/proc/handle_post_overlay_on(var/datum/random_map/target_map, var/tx, var/ty)
+/datum/random_map/proc/handle_post_overlay_on(datum/random_map/target_map, tx, ty)
 	return

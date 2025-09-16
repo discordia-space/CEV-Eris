@@ -13,7 +13,7 @@ Start small! Make your first couple of PRs focus on bugfixes or small balance tw
 
 Seek input before starting work on significant features. Your proposal may conflict with existing plans and need modified. Getting the approval of maintainers, and especially the head developer, is important for things which may affect game balance.
 
-Be flexible. Very few submissions are accepted as-is, almost every PR will have some required modifications during the review process, sometimes to how the code works, or often to balance out mechanics. 
+Be flexible. Very few submissions are accepted as-is, almost every PR will have some required modifications during the review process, sometimes to how the code works, or often to balance out mechanics.
 
 Finish what you start. A project is only done when it's merged, not just when the PR is up. After submitting something, try to make some time to be available over the next week or so to fix any requested changes after its reviewed. We won't merge unfinished work.
 
@@ -38,7 +38,7 @@ Values which affect game balance, such as movespeeds, health values and weapon d
 
 When designing new systems and features, try not to create an undue burden for future coders who will have to maintain your work.
 
-The following features or systems are deprecated and should not be used if at all possible. 
+The following features or systems are deprecated and should not be used if at all possible.
 Datacore: Use modular records instead
 /obj/item/device/pda, and PDA cartridges: Use modular PDAs instead.
 Single Function computer consoles: Use modular computers instead.
@@ -113,11 +113,11 @@ The . var stores the return of a function and will be returned even without a sp
 /proc/do_thing()
 	do_thing
 	return result_of_doing_thing
-	
+
 /proc/do_thing()
 	do_thing
 	. = result_of_doing_thing
-	
+
 /proc/do_thing()
 	do_thing
 	do_other_thing
@@ -128,7 +128,7 @@ The . var stores the return of a function and will be returned even without a sp
 	do_thing
 	. = result_of_doing_thing
 	return
-	
+
 /proc/do_thing()
 	do_thing
 	do_other_thing
@@ -224,7 +224,7 @@ Do not use src.var if it can be helped.
 ```
 /obj/set_name(newname)
 	name = newname
-	
+
 /obj/set_name(_name)
 	name = _name
 ```
@@ -232,13 +232,13 @@ Do not use src.var if it can be helped.
 ```
 /obj/set_name(name)
 	name = name
-	
+
 /obj/set_name(name)
 	src.name = name
 ```
 ***
 
-Variables, types and methods should be named in "snake case". Constant values should be named in uppercase. 
+Variables, types and methods should be named in "snake case". Constant values should be named in uppercase.
 
 ***Good:***
 ```
@@ -261,7 +261,7 @@ Procedure arguments should not contain `var/`. Specified input type e.g. `some_t
 ```
 ***Bad:***
 ```
-/proc/rename_area(var/mob/user as mob, var/area/A as area, var/new_name as text)
+/proc/rename_area(mob/user as mob, area/A as area, new_name as text)
 
 ```
 ***

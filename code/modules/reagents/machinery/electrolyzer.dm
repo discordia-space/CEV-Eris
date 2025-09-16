@@ -16,7 +16,7 @@
 
 
 // returns FALSE on errors TRUE on success and -1 if nothing to do
-/proc/electrolysis(var/obj/item/reagent_containers/primary_beaker, var/obj/item/reagent_containers/secondary_beaker, var/amount)
+/proc/electrolysis(obj/item/reagent_containers/primary_beaker, obj/item/reagent_containers/secondary_beaker, amount)
 	if(!primary_beaker || !secondary_beaker)
 		return FALSE
 	//check if has reagents
@@ -49,7 +49,7 @@
 
 	primary_beaker.reagents.remove_reagent(active_reagent, volumeToHandle)
 	primary_beaker.reagents.add_reagent(original_reaction.required_reagents[1], partVolume * original_reaction.required_reagents[original_reaction.required_reagents[1]])
-	for(var/i = 2 , i <= original_reaction.required_reagents.len, i++)
+	for(var/i = 2; i <= original_reaction.required_reagents.len; i++)
 		secondary_beaker.reagents.add_reagent(original_reaction.required_reagents[i], partVolume * original_reaction.required_reagents[original_reaction.required_reagents[i]])
 	return TRUE
 
@@ -81,15 +81,16 @@
 		return
 	if(on && beaker && beaker.reagents.total_volume)
 		var/state = electrolysis(beaker, separation_beaker, convertion_coefficient)
+		update_icon()
+		var/htmlicon = icon2html(src, hearers(get_turf(src)))
 		if(!state)
 			on = FALSE
 			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1, -3)
-			visible_message("\icon[src]\The [src] buzzes indicating that error has occured.")
+			visible_message("[htmlicon] \The [src] buzzes indicating that error has occured.")
 		else if(state == -1)
 			on = FALSE
 			playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
-			visible_message("\icon[src]\The [src] pings indicating that process is complete.")
-		update_icon()
+			visible_message("[htmlicon] \The [src] pings indicating that process is complete.")
 		SSnano.update_uis(src)
 
 
@@ -105,7 +106,7 @@
 			beaker = B
 		else if(!separation_beaker)
 			separation_beaker = B
-		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+		to_chat(user, span_notice("You add [B] to [src]."))
 		SSnano.update_uis(src)
 		update_icon()
 		return
@@ -127,7 +128,7 @@
 			beaker = B
 		else if(!separation_beaker)
 			separation_beaker = B
-		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+		to_chat(user, span_notice("You add [B] to [src]."))
 		SSnano.update_uis(src)
 		update_icon()
 		return
@@ -230,7 +231,7 @@
 	if(!Adjacent(user) || !C.Adjacent(user))
 		return ..()
 	if(istype(C, suitable_cell) && !cell)
-		to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
+		to_chat(user, span_notice("You add [C] to [src]."))
 		C.forceMove(src)
 		src.cell = C
 		SSnano.update_uis(src)
@@ -244,7 +245,7 @@
 			beaker = B
 		else if(!separation_beaker)
 			separation_beaker = B
-		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+		to_chat(user, span_notice("You add [B] to [src]."))
 		SSnano.update_uis(src)
 		return
 
@@ -269,7 +270,7 @@
 /obj/item/device/makeshift_electrolyser/Process()
 	if(on)
 		if(!cell_use_check(tick_cost))
-			visible_message(SPAN_NOTICE("[src]'s electrodes stopped bubbling."), range = 4)
+			visible_message(span_notice("[src]'s electrodes stopped bubbling."), vision_distance = 4)
 			turn_off()
 		if(beaker && beaker.reagents.total_volume)
 			var/state = electrolysis(beaker, separation_beaker, 2)
@@ -285,7 +286,7 @@
 
 /obj/item/device/makeshift_electrolyser/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
+		to_chat(user, span_notice("You add [C] to [src]."))
 		src.cell = C
 		SSnano.update_uis(src)
 		return
@@ -298,7 +299,7 @@
 			beaker = B
 		else if(!separation_beaker)
 			separation_beaker = B
-		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+		to_chat(user, span_notice("You add [B] to [src]."))
 		SSnano.update_uis(src)
 		return
 	return ..()

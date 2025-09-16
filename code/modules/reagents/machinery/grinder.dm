@@ -185,7 +185,7 @@
 			user.remove_from_mob(I)
 		I.forceMove(src)
 		beaker = I
-		to_chat(user, SPAN_NOTICE("You add [I] to [src]."))
+		to_chat(user, span_notice("You add [I] to [src]."))
 		SSnano.update_uis(src)
 		update_icon()
 		return 0
@@ -220,7 +220,7 @@
 
 /obj/machinery/reagentgrinder/portable/AltClick(mob/living/user)
 	if(user.incapacitated())
-		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		to_chat(user, span_warning("You can't do that right now!"))
 		return
 	if(!in_range(src, user))
 		return
@@ -354,7 +354,7 @@
 /obj/item/storage/makeshift_grinder/attack_self(mob/user)
 	var/time_to_finish = 60 - (40 * user.stats.getMult(STAT_TGH, STAT_LEVEL_ADEPT))
 	var/datum/repeating_sound/toolsound = new/datum/repeating_sound(8,time_to_finish,0.15, src, 'sound/effects/impacts/thud2.ogg', 50, 1)
-	user.visible_message(SPAN_NOTICE("[user] grind contents of \the [src]."), SPAN_NOTICE("You starting to grind contents of \the [src]."))
+	user.visible_message(span_notice("[user] grind contents of \the [src]."), span_notice("You starting to grind contents of \the [src]."))
 	if(do_after(user,time_to_finish))
 		grind()
 		update_icon()
@@ -401,7 +401,7 @@
 		var/obj/item/reagent_containers/container = I
 		if(!container.standard_pour_into(user, src)) . = ..()
 	else if (LAZYLEN(I.reagents)) . = ..()
-	else to_chat(user, SPAN_NOTICE("\icon[I] \the [I] seems that it is not suitable for a \icon[src] [src]."))
+	else to_chat(user, span_notice("[icon2html(I, user)] \the [I] seems that it is not suitable for a [icon2html(src, user)] [src]."))
 	update_icon()
 
 /obj/item/storage/makeshift_grinder/afterattack(atom/target, mob/user, flag)
@@ -411,12 +411,12 @@
 			return FALSE
 
 		if(!reagents.total_volume)
-			to_chat(user, SPAN_NOTICE("[src] is empty."))
+			to_chat(user, span_notice("[src] is empty."))
 			return TRUE
 
 		user.visible_message(
-			SPAN_DANGER("[target] has been splashed with something by [user]!"),
-			SPAN_NOTICE("You splash the solution onto [target].")
+			span_danger("[target] has been splashed with something by [user]!"),
+			span_notice("You splash the solution onto [target].")
 		)
 
 		reagents.splash(target, reagents.total_volume)
@@ -433,16 +433,16 @@
 				return ..()
 
 		if(!reagents.total_volume)
-			to_chat(user, SPAN_NOTICE("[src] is empty."))
+			to_chat(user, span_notice("[src] is empty."))
 			return TRUE
 
 		if(!target.reagents.get_free_space())
-			to_chat(user, SPAN_NOTICE("[target] is full."))
+			to_chat(user, span_notice("[target] is full."))
 			return TRUE
 
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 		playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)
-		to_chat(user, SPAN_NOTICE("You transfer [trans] units of the solution to [target]."))
+		to_chat(user, span_notice("You transfer [trans] units of the solution to [target]."))
 	update_icon()
 
 /obj/item/storage/makeshift_grinder/verb/set_APTFT() //set amount_per_transfer_from_this
@@ -456,9 +456,9 @@
 /obj/item/storage/makeshift_grinder/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
 		if(LAZYLEN(contents))
-			extra_description += SPAN_NOTICE("\nIt has something inside.")
+			extra_description += span_notice("\nIt has something inside.")
 		if(reagents.total_volume)
-			extra_description += SPAN_NOTICE("\nIt's filled with [reagents.total_volume]/[reagents.maximum_volume] units of reagents.")
+			extra_description += span_notice("\nIt's filled with [reagents.total_volume]/[reagents.maximum_volume] units of reagents.")
 	..(user, extra_description)
 
 /obj/item/storage/makeshift_grinder/update_icon()

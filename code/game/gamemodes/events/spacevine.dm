@@ -14,7 +14,7 @@
 
 	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE, TAG_COMBAT)
 
-/var/global/spacevines_spawned = 0
+var/global/spacevines_spawned = 0
 
 /datum/event/spacevine
 	announceWhen	= 120

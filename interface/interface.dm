@@ -3,21 +3,21 @@
 	set name = "wiki"
 	set desc = "Visit the wiki."
 	set hidden = TRUE
-	var/wikiurl = config.wikiurl
+	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(wikiurl)
 		src << link(wikiurl)
 	else
-		to_chat(src, SPAN_DANGER("The wiki URL is not set in the server configuration."))
+		to_chat(src, span_danger("The wiki URL is not set in the server configuration."))
 
 /client/verb/forum()
 	set name = "forum"
 	set desc = "Visit the forum."
 	set hidden = TRUE
-	var/forumurl = config.forumurl
+	var/forumurl = CONFIG_GET(string/forumurl)
 	if(forumurl)
 		src << link(forumurl)
 	else
-		to_chat(src, SPAN_DANGER("The forum URL is not set in the server configuration."))
+		to_chat(src, span_danger("The forum URL is not set in the server configuration."))
 
 /client/verb/rules()
 	set name = "rules"
@@ -27,27 +27,27 @@
 	if(rulesurl)
 		src << link(rulesurl)
 	else
-		to_chat(src, SPAN_DANGER("The rules URL is not set in the server configuration."))
+		to_chat(src, span_danger("The rules URL is not set in the server configuration."))
 
 /client/verb/github()
 	set name = "github"
 	set desc = "Visit Github"
 	set hidden = TRUE
-	var/githuburl = config.githuburl
+	var/githuburl = CONFIG_GET(string/githuburl)
 	if(githuburl)
 		src << link(githuburl)
 	else
-		to_chat(src, SPAN_DANGER("The github URL is not set in the server configuration."))
+		to_chat(src, span_danger("The github URL is not set in the server configuration."))
 
 /client/verb/discord()
 	set name = "discord"
 	set desc = "Visit Discord"
 	set hidden = TRUE
-	var/discordurl = config.discordurl
+	var/discordurl = CONFIG_GET(string/discordurl)
 	if(discordurl)
 		src << link(discordurl)
 	else
-		to_chat(src, SPAN_DANGER("The discord URL is not set in the server configuration."))
+		to_chat(src, span_danger("The discord URL is not set in the server configuration."))
 
 /client/verb/changelog()
 	set name = "Changelog"
@@ -57,10 +57,10 @@
 		GLOB.changelog_tgui = new /datum/changelog()
 
 	GLOB.changelog_tgui.ui_interact(mob)
-	if(prefs.lastchangelog != changelog_hash)
-		prefs.lastchangelog = changelog_hash
+	if(prefs.lastchangelog != GLOB.changelog_hash)
+		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
-		winset(src, "infowindow.changelog", "font-style=;")
+		winset(src, "infobuttons.changelog", "font-style=;")
 
 /client/verb/tickets()
 	set name = "tickets"
@@ -78,6 +78,8 @@
 
 	var/static/admin = {"<font color='purple'>
 	Admin:
+	\tF3 = Asay
+	\tF4 = Msay
 	\tF5 = Aghost (admin-ghost)
 	\tF6 = player-panel
 	\tF7 = admin-pm
@@ -103,9 +105,12 @@
 	\tShift+b = bag-equip
 	\tr = throw
 	\tt = say
-	\t5 = emote
+	\ty = radio
+	\tm = emote
+	\tu = LOOC
+	\to = OOC
 	\tx = swap-hand
-	\tz = activate held object (or y)
+	\tz = activate held object
 	\tl = toogle flashlight
 	\tj = toggle-aiming-mode
 	\tf = cycle-intents-left
@@ -127,15 +132,18 @@
 	\tw = up
 	\tq = unequip active module
 	\tt = say
+	\ty = radio
+	\tm = emote
+	\tu = LOOC
+	\to = OOC
 	\tx = cycle active modules
-	\tz = activate held object (or y)
+	\tz = activate held object
 	\tf = cycle-intents-left
 	\tg = cycle-intents-right
 	\t1 = activate module 1
 	\t2 = activate module 2
 	\t3 = activate module 3
 	\t4 = toggle intents
-	\t5 = emote
 	\tCtrl = drag
 	\tShift = examine
 	\tF11 = toggle fullscreen

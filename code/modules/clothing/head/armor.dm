@@ -81,6 +81,7 @@
 /obj/item/clothing/head/armor/helmet/technomancer
 	name = "insulated technomancer helmet"
 	desc = "A piece of armor used in hostile work conditions to protect the head. Comes with a built-in flashlight."
+	description_info = "The appearance of the visor can be changed with a wrench."
 	body_parts_covered = HEAD|EARS|EYES|FACE
 	item_flags = THICKMATERIAL
 	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
@@ -103,6 +104,18 @@
 /obj/item/clothing/head/armor/helmet/technomancer/New()
 	. = ..()
 	icon_state = pick(list("technohelmet_visor", "technohelmet_googles"))
+
+/obj/item/clothing/head/armor/helmet/technomancer/attackby(obj/item/W, mob/user)
+	if(QUALITY_BOLT_TURNING in W.tool_qualities)
+		if(icon_state == "technohelmet_visor")
+			icon_state = "technohelmet_googles"
+			to_chat(usr, "You reconfigure the [src]'s visor to look like a pair of goggles.")
+			return
+		else
+			icon_state = "technohelmet_visor"
+			to_chat(usr, "You reconfigure the [src]'s goggles to look like a visor.")
+			return
+	. = ..()
 
 /obj/item/clothing/head/armor/helmet/technomancer_old
 	name = "reinforced technomancer helmet"
@@ -237,7 +250,7 @@
 		update_icon()
 	usr.update_action_buttons()
 
-/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/dropped(usr)
+/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/dropped(mob/user)
 	..()
 	if(hud.loc != src)
 		if(ismob(hud.loc))
@@ -434,7 +447,7 @@
 		update_icon()
 	usr.update_action_buttons()
 
-/obj/item/clothing/head/armor/riot_hud/dropped(usr)
+/obj/item/clothing/head/armor/riot_hud/dropped(mob/user)
 	..()
 	if(hud.loc != src)
 		if(ismob(hud.loc))
@@ -729,14 +742,14 @@
 		crewmembers += crew_repository.health_data(z_level)
 
 	if(crewmembers.len)
-		for(var/i = 1, i <= crewmembers.len, i++)
+		for(var/i = 1; i <= crewmembers.len; i++)
 			var/list/entry = crewmembers[i]
 			if(entry["alert"] && !entry["muted"])
 				if(entry["name"] in crewmembers_recently_reported)
 					continue
 				crewmembers_recently_reported += entry["name"]
 				schedule_memory_cleanup(entry["name"])
-				to_chat(user, SPAN_WARNING("[src] beeps: '[entry["name"]]'s on-suit sensors broadcast an emergency signal. Access monitoring software for details.'"))
+				to_chat(user, span_warning("[src] beeps: '[entry["name"]]'s on-suit sensors broadcast an emergency signal. Access monitoring software for details.'"))
 
 	schedule_scan()
 
@@ -751,10 +764,10 @@
 	set src in usr
 
 	if(speaker_enabled)
-		to_chat(usr, SPAN_WARNING("[src] beeps: 'Notifications disabled.'"))
+		to_chat(usr, span_warning("[src] beeps: 'Notifications disabled.'"))
 		speaker_enabled = FALSE
 	else
-		to_chat(usr, SPAN_WARNING("[src] beeps: 'Notifications enabled.'"))
+		to_chat(usr, span_warning("[src] beeps: 'Notifications enabled.'"))
 		speaker_enabled = TRUE
 		report_health_alerts()
 		schedule_scan()

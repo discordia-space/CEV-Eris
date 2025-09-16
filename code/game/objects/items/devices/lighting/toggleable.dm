@@ -25,7 +25,7 @@
 	else
 		turn_on(user)
 
-/obj/item/device/lighting/toggleable/proc/turn_off(var/mob/living/user)
+/obj/item/device/lighting/toggleable/proc/turn_off(mob/living/user)
 	set_light(0)
 	if(turn_on_sound)
 		playsound(src.loc, turn_on_sound, 75, 1)

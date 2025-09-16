@@ -80,10 +80,10 @@
 	if(usr.incapacitated())
 		return
 	if(occupant)
-		to_chat(usr, SPAN_WARNING("The autodoc is already occupied!"))
+		to_chat(usr, span_warning("The autodoc is already occupied!"))
 		return
 	if(usr.abiotic())
-		to_chat(usr, SPAN_WARNING("The subject cannot have abiotic items on."))
+		to_chat(usr, span_warning("The subject cannot have abiotic items on."))
 		return
 	set_occupant(usr)
 	add_fingerprint(usr)
@@ -93,7 +93,7 @@
 	if (!occupant || cover_locked)
 		return
 	if(autodoc_processor.active)
-		to_chat(usr, SPAN_WARNING("Comrade, autodoc is locked down! Wait until all operations is done."))
+		to_chat(usr, span_warning("Comrade, autodoc is locked down! Wait until all operations is done."))
 		return
 	if(cover_closed)
 		open_cover()
@@ -125,7 +125,7 @@
 		cover_locked = TRUE
 		close_cover()
 		sleep(30)
-		to_chat(user, SPAN_DANGER("Autodoc is implanting you!"))
+		to_chat(user, span_danger("Autodoc is implanting you!"))
 		sleep(50)
 		var/obj/item/implant/excelsior/implant = new(user)
 		if (!implant.install(user, BP_HEAD))
@@ -143,13 +143,13 @@
 
 /obj/machinery/excelsior_autodoc/affect_grab(mob/user, mob/target)
 	if (occupant)
-		to_chat(user, SPAN_NOTICE("The autodoc is already occupied!"))
+		to_chat(user, span_notice("The autodoc is already occupied!"))
 		return
 	if(target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, span_notice("Unbuckle the subject before attempting to move them."))
 		return
 	if(target.abiotic())
-		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
+		to_chat(user, span_notice("Subject cannot have abiotic items on."))
 		return
 	set_occupant(target)
 	add_fingerprint(user)
@@ -159,17 +159,17 @@
 	if(!ismob(target))
 		return
 	if (occupant)
-		to_chat(user, SPAN_WARNING("The autodoc is already occupied!"))
+		to_chat(user, span_warning("The autodoc is already occupied!"))
 		return
 	if (target.abiotic())
-		to_chat(user, SPAN_WARNING("Subject cannot have abiotic items on."))
+		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 	if (target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, span_notice("Unbuckle the subject before attempting to move them."))
 		return
 	user.visible_message(
-		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
-		SPAN_NOTICE("You start placing \the [target] into \the [src].")
+		span_notice("\The [user] begins placing \the [target] into \the [src]."),
+		span_notice("You start placing \the [target] into \the [src].")
 	)
 	if(!do_after(user, 30, src) || !Adjacent(target))
 		return

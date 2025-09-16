@@ -84,7 +84,7 @@
 	if(open && cell)
 		cell.forceMove(get_turf(src))
 		if(ishuman(user))
-			if(!user.get_active_hand())
+			if(!user.get_active_held_item())
 				user.put_in_hands(cell)
 
 		cell.add_fingerprint(user)
@@ -121,11 +121,11 @@
 					if(open)
 						open = FALSE
 						overlays = null
-						to_chat(user, SPAN_NOTICE("You crowbar the battery panel in place."))
+						to_chat(user, span_notice("You crowbar the battery panel in place."))
 					else
 						if(unlocked)
 							open = TRUE
-							to_chat(user, SPAN_NOTICE("You remove the battery panel."))
+							to_chat(user, span_notice("You remove the battery panel."))
 					update_icon()
 				return
 			return
@@ -134,7 +134,7 @@
 			var/used_sound = unlocked ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 30, forced_sound = used_sound))
 				unlocked = !unlocked
-				to_chat(user, SPAN_NOTICE("You [unlocked ? "screw" : "unscrew"] the battery panel of \the [src] with [I]."))
+				to_chat(user, span_notice("You [unlocked ? "screw" : "unscrew"] the battery panel of \the [src] with [I]."))
 				update_icon()
 				return
 			return
@@ -145,10 +145,10 @@
 	if (istype(I, /obj/item/cell/large))
 		if(open)
 			if(cell)
-				to_chat(user, SPAN_WARNING("There is a power cell already installed."))
+				to_chat(user, span_warning("There is a power cell already installed."))
 			else
 				user.drop_item()
 				I.forceMove(src)
 				cell = I
-				to_chat(user, SPAN_NOTICE("You insert the power cell."))
+				to_chat(user, span_notice("You insert the power cell."))
 		update_icon()

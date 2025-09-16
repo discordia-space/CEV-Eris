@@ -67,18 +67,18 @@
 	return TRUE
 
 
-/mob/living/exosuit/proc/install_system(var/obj/item/mech_equipment/system, system_hardpoint, mob/user)
+/mob/living/exosuit/proc/install_system(obj/item/mech_equipment/system, system_hardpoint, mob/user)
 
 	if(hardpoints_locked || hardpoints[system_hardpoint])
-		if(user) to_chat(user, SPAN_WARNING("\The [src]'s hardpoints are locked, or that hardpoint is already occupied."))
+		if(user) to_chat(user, span_warning("\The [src]'s hardpoints are locked, or that hardpoint is already occupied."))
 		return FALSE
 
 	if(system.restricted_hardpoints && !(system_hardpoint in system.restricted_hardpoints))
-		if(user) to_chat(user, SPAN_WARNING("\The [system] can not be installed on that hardpoint."))
+		if(user) to_chat(user, span_warning("\The [system] can not be installed on that hardpoint."))
 		return FALSE
 
 	if(!check_equipment_software(system))
-		if(user) to_chat(user, SPAN_WARNING("The operating system of \the [src] is incompatible with \the [system]."))
+		if(user) to_chat(user, span_warning("The operating system of \the [src] is incompatible with \the [system]."))
 		return FALSE
 
 
@@ -86,10 +86,10 @@
 		var/mech_skill = user.stats.getStat(STAT_MEC) < 0 ? 0 : user.stats.getStat(STAT_MEC)
 		var/delay = 30 - sqrt(mech_skill * 3)
 		if(delay > 0)
-			user.visible_message(SPAN_NOTICE("\The [user] begins trying to install \the [system] into \the [src]."))
-			if(!do_after(user, delay, src) || user.get_active_hand() != system) return FALSE
+			user.visible_message(span_notice("\The [user] begins trying to install \the [system] into \the [src]."))
+			if(!do_after(user, delay, src) || user.get_active_held_item() != system) return FALSE
 			if(user.unEquip(system))
-				to_chat(user, SPAN_NOTICE("You install \the [system] in \the [src]'s [system_hardpoint]."))
+				to_chat(user, span_notice("You install \the [system] in \the [src]'s [system_hardpoint]."))
 				playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 			else return FALSE
 
@@ -125,7 +125,7 @@
 	if(user)
 		var/mech_skill = user.stats.getStat(STAT_MEC) < 0 ? 0 : user.stats.getStat(STAT_MEC)
 		var/delay = 30 - sqrt(mech_skill * 3)
-		user.visible_message(SPAN_NOTICE("\The [user] begins trying to remove \the [system] from \the [src]."))
+		user.visible_message(span_notice("\The [user] begins trying to remove \the [system] from \the [src]."))
 		if(!do_after(user, delay, src) || hardpoints[system_hardpoint] != system) return 0
 
 	if(system_hardpoint == selected_hardpoint) clear_selected_hardpoint()
@@ -151,7 +151,7 @@
 
 	if(user)
 		user.put_in_hands(system)
-		to_chat(user, SPAN_NOTICE("You remove \the [system] from \the [src]'s [system_hardpoint]."))
+		to_chat(user, span_notice("You remove \the [system] from \the [src]'s [system_hardpoint]."))
 		playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 
 	return 1

@@ -56,13 +56,13 @@
 		return C
 	return FALSE
 
-/mob/living/silicon/robot/heal_organ_damage(var/brute, var/burn)
+/mob/living/silicon/robot/heal_organ_damage(brute, burn)
 	var/list/datum/robot_component/parts = get_damaged_components(brute,burn)
 	if(!parts.len)	return
 	var/datum/robot_component/picked = pick(parts)
 	picked.heal_damage(brute,burn)
 
-/mob/living/silicon/robot/take_organ_damage(var/brute = 0, var/burn = 0, var/sharp = FALSE, var/edge = FALSE, var/emp = 0)
+/mob/living/silicon/robot/take_organ_damage(brute = 0, burn = 0, sharp = FALSE, edge = FALSE, emp = 0)
 	var/list/components = get_damageable_components()
 	if(!components.len)
 		return
@@ -75,13 +75,13 @@
 		var/absorb_burn_cost = (burn*shield.shield_level)*100
 
 		if(cell.is_empty())
-			to_chat(src, "\red Your shield has overloaded!")
+			to_chat(src, span_red("Your shield has overloaded!"))
 		else
 			var/absorb_brute = cell.use(absorb_brute_cost)/100
 			var/absorb_burn = cell.use(absorb_burn_cost)/100
 			brute -= absorb_brute
 			burn -= absorb_burn
-			to_chat(src, "\red Your shield absorbs some of the impact!")
+			to_chat(src, span_red("Your shield absorbs some of the impact!"))
 
 	if(!emp)
 		var/datum/robot_component/armour/A = get_armour()
@@ -92,7 +92,7 @@
 	var/datum/robot_component/C = pick(components)
 	C.take_damage(brute,burn,sharp,edge)
 
-/mob/living/silicon/robot/heal_overall_damage(var/brute, var/burn)
+/mob/living/silicon/robot/heal_overall_damage(brute, burn)
 	var/list/datum/robot_component/parts = get_damaged_components(brute,burn)
 
 	while(parts.len && (brute>0 || burn>0) )
@@ -120,13 +120,13 @@
 		var/absorb_burn_cost = (burn*shield.shield_level)*100
 
 		if(cell.is_empty())
-			to_chat(src, "\red Your shield has overloaded!")
+			to_chat(src, span_red("Your shield has overloaded!"))
 		else
 			var/absorb_brute = cell.use(absorb_brute_cost)/100
 			var/absorb_burn = cell.use(absorb_burn_cost)/100
 			brute -= absorb_brute
 			burn -= absorb_burn
-			to_chat(src, "\red Your shield absorbs some of the impact!")
+			to_chat(src, span_red("Your shield absorbs some of the impact!"))
 
 	var/datum/robot_component/armour/A = get_armour()
 	if(A)

@@ -1,4 +1,4 @@
-/var/decl/overmap_event_handler/overmap_event_handler = new()
+var/decl/overmap_event_handler/overmap_event_handler = new()
 
 /decl/overmap_event_handler
 	var/list/event_turfs_by_z_level
@@ -9,7 +9,7 @@
 	..()
 	event_turfs_by_z_level = list()
 
-/decl/overmap_event_handler/proc/create_events(var/z_level, var/overmap_size, var/number_of_events)
+/decl/overmap_event_handler/proc/create_events(z_level, overmap_size, number_of_events)
 	// Acquire the list of not-yet utilized overmap turfs on this Z-level
 	var/list/events_by_turf = get_event_turfs_by_z_level(z_level)
 	var/list/candidate_turfs = block(locate(OVERMAP_EDGE, OVERMAP_EDGE, z_level),locate(overmap_size - OVERMAP_EDGE, overmap_size - OVERMAP_EDGE,z_level))
@@ -50,7 +50,7 @@
 
 	spawn_points_of_interest(candidate_turfs)
 
-/decl/overmap_event_handler/proc/spawn_points_of_interest(var/list/candidate_turfs)
+/decl/overmap_event_handler/proc/spawn_points_of_interest(list/candidate_turfs)
 	var/list/pois = list(/obj/effect/overmap_event/poi/debris, /obj/effect/overmap_event/poi/station)
 	for(var/path in pois)
 		if(!candidate_turfs.len)
@@ -59,14 +59,14 @@
 		candidate_turfs -= poi_turf
 		new path(poi_turf)
 
-/decl/overmap_event_handler/proc/get_event_turfs_by_z_level(var/z_level)
+/decl/overmap_event_handler/proc/get_event_turfs_by_z_level(z_level)
 	var/z_level_text = num2text(z_level)
 	. = event_turfs_by_z_level[z_level_text]
 	if(!.)
 		. = list()
 		event_turfs_by_z_level[z_level_text] = .
 
-/decl/overmap_event_handler/proc/acquire_event_turfs(var/number_of_turfs, var/distance_from_origin, var/list/candidate_turfs, var/continuous = TRUE)
+/decl/overmap_event_handler/proc/acquire_event_turfs(number_of_turfs, distance_from_origin, list/candidate_turfs, continuous = TRUE)
 	number_of_turfs = min(number_of_turfs, candidate_turfs.len)
 	candidate_turfs = candidate_turfs.Copy() // Not this proc's responsibility to adjust the given lists
 
@@ -89,7 +89,7 @@
 
 	return selected_turfs
 
-/decl/overmap_event_handler/proc/get_random_neighbour(var/turf/origin_turf, var/list/candidate_turfs, var/continuous = TRUE, var/range)
+/decl/overmap_event_handler/proc/get_random_neighbour(turf/origin_turf, list/candidate_turfs, continuous = TRUE, range)
 	var/fitting_turfs
 	if(continuous)
 		fitting_turfs = origin_turf.CardinalTurfs(FALSE)
@@ -100,7 +100,7 @@
 		if(T in candidate_turfs)
 			return T
 
-/decl/overmap_event_handler/proc/on_turf_exited(var/turf/old_loc, var/obj/effect/overmap/ship/entering_ship, var/new_loc)
+/decl/overmap_event_handler/proc/on_turf_exited(turf/old_loc, obj/effect/overmap/ship/entering_ship, new_loc)
 	if(!istype(entering_ship))
 		return
 	if(new_loc == old_loc)
@@ -117,7 +117,7 @@
 			return
 		old_event.leave(entering_ship)
 
-/decl/overmap_event_handler/proc/on_turf_entered(var/turf/new_loc, var/obj/effect/overmap/ship/entering_ship, var/old_loc)
+/decl/overmap_event_handler/proc/on_turf_entered(turf/new_loc, obj/effect/overmap/ship/entering_ship, old_loc)
 	if(!istype(entering_ship))
 		return
 	if(new_loc == old_loc)
@@ -134,7 +134,7 @@
 			return
 		new_event.enter(entering_ship)
 
-/decl/overmap_event_handler/proc/scan_loc(var/obj/effect/overmap/ship/S, var/turf/new_loc, var/can_scan, var/stage_2_width = 1)
+/decl/overmap_event_handler/proc/scan_loc(obj/effect/overmap/ship/S, turf/new_loc, can_scan, stage_2_width = 1)
 
 	if(!can_scan) // No active scanner
 		// Everything is stage 2 (too far for sensors)
@@ -192,7 +192,7 @@
 	return
 
 // Reveal a point of interest if the ship is standing on it on the overmap
-/decl/overmap_event_handler/proc/scan_poi(var/obj/effect/overmap/ship/S, var/turf/my_loc)
+/decl/overmap_event_handler/proc/scan_poi(obj/effect/overmap/ship/S, turf/my_loc)
 	for(var/obj/effect/overmap_event/poi/E in get_turf(my_loc))
 		E.reveal()
 	return
@@ -226,16 +226,16 @@
 	var/list/event_icon_stage1 = list("object")
 	var/list/event_name_stages = list("name_stage0", "name_stage1", "name_stage2")
 
-/datum/overmap_event/proc/enter(var/obj/effect/overmap/ship/victim)
+/datum/overmap_event/proc/enter(obj/effect/overmap/ship/victim)
 //	world << "Ship [victim] encountered [name]"
 	if(!SSevent)
-		admin_notice("<span class='danger'>Event manager not setup.</span>")
+		admin_notice(span_danger("Event manager not setup."))
 		return
 	if(victim in victims)
 		if(!istype(src, /datum/overmap_event/meteor/comet_tail_core) && \
 		!istype(src, /datum/overmap_event/meteor/comet_tail_medium)  && \
 		!istype(src, /datum/overmap_event/meteor/comet_tail))
-			admin_notice("<span class='danger'>Multiple attempts to trigger the same event by [victim] detected.</span>")
+			admin_notice(span_danger("Multiple attempts to trigger the same event by [victim] detected."))
 			return
 	LAZYADD(victims, victim)
 	//var/datum/event_meta/EM = new(difficulty, "Overmap event - [name]", event, add_to_queue = FALSE, is_one_shot = TRUE)
@@ -293,7 +293,7 @@
 	event_icon_stage1 = list("object")
 	event_name_stages = list("comet core", "unknown object", "unknown spatial phenomenon")
 
-/datum/overmap_event/meteor/enter(var/obj/effect/overmap/ship/victim)
+/datum/overmap_event/meteor/enter(obj/effect/overmap/ship/victim)
 	..()
 	if(victims[victim])
 		var/datum/event/meteor_wave/overmap/E = victims[victim]
@@ -394,7 +394,7 @@
 /obj/effect/overmap_event/poi/blacksite
 	var/obj/effect/overmap/sector/blacksite/linked  // Linked blacksite sector
 
-/obj/effect/overmap_event/poi/blacksite/New(loc, var/obj/effect/overmap/sector/linked_sector)
+/obj/effect/overmap_event/poi/blacksite/New(loc, obj/effect/overmap/sector/linked_sector)
 	..(loc)
 	linked = linked_sector
 

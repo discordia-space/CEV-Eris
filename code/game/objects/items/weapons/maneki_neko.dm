@@ -49,7 +49,7 @@
 			new /obj/item/clothing/head/collectable/kitty(get_turf(src))
 			qdel(src)
 
-/obj/item/maneki_neko/afterattack(obj/target, mob/user, var/flag)
+/obj/item/maneki_neko/afterattack(obj/target, mob/user, flag)
 	if(user.a_intent == I_HURT)
 		playsound(src, "shatter", 70, 1)
 		new /obj/item/clothing/head/collectable/kitty(get_turf(src))
@@ -71,4 +71,4 @@
 		for(var/stat in ALL_STATS)
 			H.stats.changeStat(stat, -10)
 		var/neko = uppertext(src.name)
-		to_chat(H, SPAN_DANGER(pick("LIFE IS RUINED FOR ME! I CANNOT FIND [neko]!", "WHO STEAL MY [neko]!", "WHERE IS [neko]?!", "WHY I CANNOT FIND [neko]?!")))
+		to_chat(H, span_danger(pick("LIFE IS RUINED FOR ME! I CANNOT FIND [neko]!", "WHO STEAL MY [neko]!", "WHERE IS [neko]?!", "WHY I CANNOT FIND [neko]?!")))

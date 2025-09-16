@@ -41,7 +41,7 @@ default behaviour is:
  - passive mob checks to see if its mob_bump_flag is in the non-passive's mob_bump_flags
  - if si, the proc returns
 */
-/mob/living/proc/can_move_mob(var/mob/living/swapped, swapping = 0, passive = 0)
+/mob/living/proc/can_move_mob(mob/living/swapped, swapping = 0, passive = 0)
 	if(!swapped)
 		return TRUE
 	if(!passive)
@@ -69,12 +69,12 @@ default behaviour is:
 			for(var/mob/living/M in range(tmob, 1))
 				if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/grab, tmob.grabbed_by.len)) )
 					if ( !(world.time % 5) )
-						to_chat(src, "<span class='warning'>[tmob] is restrained, you cannot push past</span>")
+						to_chat(src, span_warning("[tmob] is restrained, you cannot push past"))
 					now_pushing = FALSE
 					return
 				if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0) )
 					if ( !(world.time % 5) )
-						to_chat(src, "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>")
+						to_chat(src, span_warning("[tmob] is restraining [M], you cannot push past"))
 					now_pushing = FALSE
 					return
 
@@ -138,7 +138,7 @@ default behaviour is:
 			return
 	return
 
-/proc/swap_density_check(var/mob/swapper, var/mob/swapee)
+/proc/swap_density_check(mob/swapper, mob/swapee)
 	var/turf/T = get_turf(swapper)
 	if(T.density)
 		return TRUE
@@ -148,7 +148,7 @@ default behaviour is:
 		if(!A.CanPass(swapee, T, 1))
 			return TRUE
 
-/mob/living/proc/can_swap_with(var/mob/living/tmob)
+/mob/living/proc/can_swap_with(mob/living/tmob)
 	if(tmob.buckled || buckled)
 		return FALSE
 	//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
@@ -170,7 +170,7 @@ default behaviour is:
 	if (health < 0)
 		adjustOxyLoss(health + maxHealth * 2) // Deal 2x health in OxyLoss damage, as before but variable.
 		health = -maxHealth
-		to_chat(src, "\blue You have given up life and succumbed to death.")
+		to_chat(src, span_blue("You have given up life and succumbed to death."))
 
 
 /mob/living/proc/updatehealth()
@@ -183,7 +183,7 @@ default behaviour is:
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
-/mob/living/proc/calculate_affecting_pressure(var/pressure)
+/mob/living/proc/calculate_affecting_pressure(pressure)
 	return
 
 
@@ -334,7 +334,7 @@ default behaviour is:
 
 
 //Recursive function to find everything a mob is holding.
-/mob/living/get_contents(var/obj/item/storage/Storage)
+/mob/living/get_contents(obj/item/storage/Storage)
 	var/list/L = list()
 
 	if(Storage) //If it called itself
@@ -381,7 +381,7 @@ default behaviour is:
 	return FALSE
 
 
-/mob/living/proc/can_inject(var/mob/user, var/error_msg, var/target_zone)
+/mob/living/proc/can_inject(mob/user, error_msg, target_zone)
 	return TRUE
 
 /mob/living/is_injectable(allowmobs = TRUE)
@@ -432,6 +432,7 @@ default behaviour is:
 	setToxLoss(0)
 	setOxyLoss(0)
 	setCloneLoss(0)
+	setHalLoss(0)
 	setBrainLoss(0)
 	SetParalysis(0)
 	SetStunned(0)
@@ -483,7 +484,7 @@ default behaviour is:
 		// them win or lose based on cryo is silly so we remove the objective.
 		if(O.target == src.mind)
 			if(O.owner && O.owner.current)
-				to_chat(O.owner.current, SPAN_WARNING("You get the feeling your target is no longer within your reach..."))
+				to_chat(O.owner.current, span_warning("You get the feeling your target is no longer within your reach..."))
 			qdel(O)
 
 	//Same for contract-based objectives.
@@ -520,7 +521,7 @@ default behaviour is:
 /mob/living/proc/UpdateDamageIcon()
 	return
 
-/mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	if (buckled)
 		return
 
@@ -560,9 +561,7 @@ default behaviour is:
 						if (prob(75))
 							var/obj/item/grab/G = pick(M.grabbed_by)
 							if (istype(G, /obj/item/grab))
-								for(var/mob/O in viewers(M, null))
-									O.show_message(text("\red [] has been pulled from []'s grip by []", G.affecting, G.assailant, src), 1)
-								//G = null
+								M.visible_message(span_danger("[G.affecting] has been pulled from [G.assailant]'s grip by [src]."))
 								qdel(G)
 						else
 							ok = 0
@@ -583,11 +582,11 @@ default behaviour is:
 								//pull damage with injured people
 									if(prob(25))
 										M.adjustBruteLoss(1)
-										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!</span>")
+										visible_message(span_danger("\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!"))
 								if(M.pull_damage())
 									if(prob(25))
 										M.adjustBruteLoss(2)
-										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
+										visible_message(span_danger("\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!"))
 										var/turf/location = M.loc
 										if(istype(location, /turf))
 											if(ishuman(M))
@@ -635,10 +634,17 @@ default behaviour is:
 
 	if(resting)
 		is_busy = TRUE
+		var/groinmult = 1
+		if(H)
+			var/obj/item/organ/external/groin = H.get_organ(BP_GROIN)
+			if(groin.limb_efficiency <= 0)
+				to_chat(src, span_warning("You are too damaged to be able to get up."))
+				return FALSE
+			groinmult =  100 / groin.limb_efficiency // smaller mult the bigger the efficiency
 
-		if(do_after(src, (stats.getPerk(PERK_PARKOUR) ? 0.2 SECONDS : 0.4 SECONDS), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
+		if(do_after(src, min((stats.getPerk(PERK_PARKOUR) ? 0.2 SECONDS : 0.4 SECONDS) * groinmult, 2 SECONDS), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
 			resting = FALSE
-			to_chat(src, SPAN_NOTICE("You are now getting up."))
+			to_chat(src, span_notice("You are now getting up."))
 			update_lying_buckled_and_verb_status()
 
 		is_busy = FALSE
@@ -648,11 +654,12 @@ default behaviour is:
 
 	else
 		resting = TRUE
-		to_chat(src, SPAN_NOTICE("You are now resting."))
+		to_chat(src, span_notice("You are now resting."))
+		playsound(loc, 'goon/sound/body_thud.ogg', ishuman(src) ? 40 : 15, 1, 0.3)
 		update_lying_buckled_and_verb_status()
 
 
-/mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+/mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(obj/item/carried_item)
 	if(carried_item == held_item)
 		return FALSE
 	return ..()
@@ -675,13 +682,14 @@ default behaviour is:
 		var/range = 1 //checks for move intent; dive one tile further if on run intent
 
 		// Diving
-		to_chat(src, SPAN_NOTICE("You dive onwards!"))
+		to_chat(src, span_notice("You dive onwards!"))
 		allow_spin = FALSE
 		if(istype(get_step(src, _dir), /turf/open))
 			range++
 		if(momentum_speed > 4)
 			range++
 		throw_at(get_edge_target_turf(src, _dir), range, 1, src, PASSTABLE) // If you dive over a table, your momentum is set to 0. If you dive over space, you are thrown 1 tile further.
+		playsound(loc, 'goon/sound/body_thud.ogg', ishuman(src) ? 40 : 15, 1, 0.3)
 		update_lying_buckled_and_verb_status()
 		allow_spin = TRUE
 
@@ -703,7 +711,7 @@ default behaviour is:
 /mob/living/proc/has_eyes()
 	return TRUE
 
-/mob/living/proc/slip(var/slipped_on,stun_duration=8)
+/mob/living/proc/slip(slipped_on,stun_duration=8)
 	return FALSE
 
 //damage/heal the mob ears and adjust the deaf amount
@@ -718,38 +726,38 @@ default behaviour is:
 	if(deaf >= 0)
 		ear_deaf = deaf
 
-/mob/proc/can_be_possessed_by(var/mob/observer/ghost/possessor)
+/mob/proc/can_be_possessed_by(mob/observer/ghost/possessor)
 	return istype(possessor) && possessor.client
 
-/mob/living/can_be_possessed_by(var/mob/observer/ghost/possessor, var/animal_check = TRUE)
+/mob/living/can_be_possessed_by(mob/observer/ghost/possessor, animal_check = TRUE)
 	if(!..())
 		return FALSE
 	if(!possession_candidate)
-		to_chat(possessor, "<span class='warning'>That animal cannot be possessed.</span>")
+		to_chat(possessor, span_warning("That animal cannot be possessed."))
 		return FALSE
-	if(jobban_isbanned(possessor, "Animal") && animal_check)
-		to_chat(possessor, "<span class='warning'>You are banned from animal roles.</span>")
+	if(jobban_isbanned(possessor.ckey, "Animal") && animal_check)
+		to_chat(possessor, span_warning("You are banned from animal roles."))
 		return FALSE
 	if(!possessor.MayRespawn(0 ,ANIMAL))
 		return FALSE
 	return TRUE
 
-/mob/living/proc/do_possession(var/mob/observer/ghost/possessor)
+/mob/living/proc/do_possession(mob/observer/ghost/possessor)
 
 	if(!(istype(possessor) && possessor.ckey))
 		return FALSE
 
 	if(src.ckey || src.client)
-		to_chat(possessor, "<span class='warning'>\The [src] already has a player.</span>")
+		to_chat(possessor, span_warning("\The [src] already has a player."))
 		return FALSE
 
-	message_admins("<span class='adminnotice'>[key_name_admin(possessor)] has taken control of \the [src].</span>")
+	message_admins(span_adminnotice("[key_name_admin(possessor)] has taken control of \the [src]."))
 	log_admin("[key_name(possessor)] took control of \the [src].")
 	src.ckey = possessor.ckey
 	qdel(possessor)
 
 	to_chat(src, "<b>You are now \the [src]!</b>")
-	to_chat(src, "<span class='notice'>Remember to stay in character for a mob of this type!</span>")
+	to_chat(src, span_notice("Remember to stay in character for a mob of this type!"))
 	return TRUE
 
 /mob/living/reset_layer()
@@ -771,7 +779,7 @@ default behaviour is:
 		var/obj/screen/HUDthrow/HUD = HUDneed["throw"]
 		HUD.update_icon()
 
-/mob/living/start_pulling(var/atom/movable/AM)
+/mob/living/start_pulling(atom/movable/AM)
 
 	if (!AM || !usr || src==AM || !isturf(src.loc))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
@@ -780,26 +788,26 @@ default behaviour is:
 		AM.add_fingerprint(usr)
 
 	if (AM.anchored)
-		to_chat(src, "<span class='warning'>It won't budge!</span>")
+		to_chat(src, span_warning("It won't budge!"))
 		return
 
 	var/mob/M = AM
 	if(ismob(AM))
 
 		if(M.mob_size >=  MOB_GIGANTIC)
-			to_chat(src, SPAN_WARNING("It won't budge!"))
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 		if(!can_pull_mobs || !can_pull_size)
-			to_chat(src, SPAN_WARNING("It won't budge!"))
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			to_chat(src, SPAN_WARNING("It won't budge!"))
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			to_chat(src, SPAN_WARNING("It won't budge!"))
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 		// If your size is larger than theirs and you have some
@@ -814,7 +822,7 @@ default behaviour is:
 	else if(isobj(AM))
 		var/obj/I = AM
 		if(!can_pull_size || can_pull_size < I.w_class)
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 	if(pulling)
@@ -834,7 +842,7 @@ default behaviour is:
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.pull_damage())
-			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
+			to_chat(src, span_red("<B>Pulling \the [H] in their current condition would probably be a bad idea.</B>"))
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -870,6 +878,8 @@ default behaviour is:
 	if(T)
 		update_z(T.z)
 
+	voice_type = pick(voice_type2sound)
+
 /mob/living/Destroy()
 	if(registered_z)
 		SSmobs.mob_living_by_zlevel[registered_z] -= src	// STOP_PROCESSING() doesn't remove the mob from this list
@@ -887,5 +897,36 @@ default behaviour is:
 	return FALSE
 
 //Makes a blood drop, leaking amt units of blood from the mob
-/mob/living/proc/drip_blood(var/amt as num)
+/mob/living/proc/drip_blood(amt as num)
 	blood_splatter(src,src)
+
+/mob/living/vv_get_header()
+	. = ..()
+	var/refid = REF(src)
+	. += {"
+		<br><font size='1'>[VV_HREF_TARGETREF(refid, VV_HK_GIVE_DIRECT_CONTROL, "[ckey || "no ckey"]")] / [VV_HREF_TARGETREF_1V(refid, VV_HK_BASIC_EDIT, "[real_name || "no real name"]", NAMEOF(src, real_name))]</font>
+		<br><font size='1'>
+			BRUTE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[getBruteLoss()]</a>
+			FIRE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[getFireLoss()]</a>
+			TOXIN:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[getToxLoss()]</a>
+			OXY:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[getOxyLoss()]</a>
+			CLONE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[getCloneLoss()]</a>
+			BRAIN:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[getBrainLoss()]</a>
+			HALLU:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=hallu' id='hallu'>[getHalLoss()]</a>
+		</font>
+	"}
+
+/mob/living/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if (NAMEOF(src, maxHealth))
+			if (!isnum(var_value) || var_value <= 0)
+				return FALSE
+
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
+	. = ..()
+	switch(var_name)
+		if(NAMEOF(src, maxHealth))
+			updatehealth()

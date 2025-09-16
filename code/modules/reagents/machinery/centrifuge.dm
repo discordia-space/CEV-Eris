@@ -76,7 +76,7 @@
 				mainBeaker = B
 			else
 				separationBeakers.Add(B)
-			to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+			to_chat(user, span_notice("You add [B] to [src]."))
 			SSnano.update_uis(src)
 			update_icon()
 			return
@@ -93,7 +93,7 @@
 				mainBeaker = C
 			else
 				separationBeakers.Add(C)
-			to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
+			to_chat(user, span_notice("You add [C] to [src]."))
 			SSnano.update_uis(src)
 			update_icon()
 	else
@@ -143,7 +143,7 @@
 	if(mainBeaker)
 		data["mainBeaker"] = mainBeaker.reagents.nano_ui_data()
 	var/list/beakersData = list()
-	for(var/i = 1, i <= beakerSlots, i++)
+	for(var/i = 1; i <= beakerSlots; i++)
 		var/list/beakerInfo = list()
 		if(i <= separationBeakers.len)
 			var/obj/item/reagent_containers/B = separationBeakers[i]
@@ -166,7 +166,7 @@
 /obj/machinery/centrifuge/proc/finish()
 	stop()
 	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
-	visible_message("\icon[src]\The [src] pings indicating that cycle is complete.")
+	visible_message("[icon2html(src, hearers(get_turf(src)))]\The [src] pings indicating that cycle is complete.")
 
 /obj/machinery/centrifuge/Topic(href, href_list)
 	if(..())
@@ -213,7 +213,7 @@
 /obj/item/device/makeshift_centrifuge/attack_self(mob/user)
 	on = TRUE
 	SSnano.update_uis(src)
-	user.visible_message(SPAN_NOTICE("[user] have started to turn handle on \the [src]."), SPAN_NOTICE("You started to turn handle on \the [src]."))
+	user.visible_message(span_notice("[user] have started to turn handle on \the [src]."), span_notice("You started to turn handle on \the [src]."))
 	if(do_after(user, 60 - (30 * user.stats.getMult(STAT_TGH, STAT_LEVEL_ADEPT))))
 		if(mainBeaker && mainBeaker.reagents.total_volume)
 			mainBeaker.reagents.handle_reactions()
@@ -232,7 +232,7 @@
 				mainBeaker = C
 			else
 				separationBeakers.Add(C)
-			to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
+			to_chat(user, span_notice("You add [C] to [src]."))
 			SSnano.update_uis(src)
 			update_icon()
 	else
@@ -246,7 +246,7 @@
 					mainBeaker = C
 				else
 					separationBeakers.Add(C)
-				to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
+				to_chat(user, span_notice("You add [C] to [src]."))
 				SSnano.update_uis(src)
 				update_icon()
 	else
@@ -281,7 +281,7 @@
 	if(mainBeaker)
 		data["mainBeaker"] = mainBeaker.reagents.nano_ui_data()
 	var/list/beakersData = list()
-	for(var/i = 1, i <= beakerSlots, i++)
+	for(var/i = 1; i <= beakerSlots; i++)
 		var/list/beakerInfo = list()
 		if(i <= separationBeakers.len)
 			var/obj/item/reagent_containers/B = separationBeakers[i]

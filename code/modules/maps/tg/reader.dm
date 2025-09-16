@@ -64,7 +64,7 @@ var/global/use_preloader = FALSE
 		z_offset = world.maxz + 1
 
 	// If it's not a single dir, default to north (Default orientation)
-	if(!(orientation in cardinal))
+	if(!(orientation in GLOB.cardinal))
 		orientation = SOUTH
 
 	var/list/bounds = list(1.#INF, 1.#INF, 1.#INF, -1.#INF, -1.#INF, -1.#INF)
@@ -362,7 +362,7 @@ var/global/use_preloader = FALSE
 		var/atom/instance
 		_preloader.setup(members_attributes[index])//preloader for assigning  set variables on atom creation
 		var/atype = members[index]
-		for(var/area/A in all_areas)
+		for(var/area/A in GLOB.all_areas)
 			if(A.type == atype)
 				instance = A
 				break

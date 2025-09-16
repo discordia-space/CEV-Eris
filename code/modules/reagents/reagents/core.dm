@@ -13,7 +13,7 @@
 	affects_dead = TRUE
 	nerve_system_accumulations = 0
 
-/datum/reagent/organic/blood/initialize_data(var/newdata)
+/datum/reagent/organic/blood/initialize_data(newdata)
 	..()
 	if(data && data["blood_colour"])
 		color = data["blood_colour"]
@@ -77,9 +77,9 @@
 		var/removed_heat = between(0, volume * WATER_LATENT_HEAT, -environment.get_thermal_energy_change(min_temperature))
 		environment.add_thermal_energy(-removed_heat)
 		if (prob(5))
-			T.visible_message(SPAN_WARNING("The water sizzles as it lands on \the [T]!"))
+			T.visible_message(span_warning("The water sizzles as it lands on \the [T]!"))
 
-	else if(volume >= 10)
+	else if(volume >= 10 && !QDELING(T))
 		T.wet_floor(1)
 	return TRUE
 
@@ -89,7 +89,7 @@
 		if(!cube.wrapped)
 			cube.Expand()
 
-/datum/reagent/water/touch_mob(mob/living/L, var/amount)
+/datum/reagent/water/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		L.fire_stacks = 0
 		L.ExtinguishMob()
@@ -113,7 +113,7 @@
 				S.Target = null
 				++S.Discipline
 		if(dose >= MTR(effect_multiplier, CHEM_TOUCH))
-			S.visible_message(SPAN_WARNING("[S]'s flesh sizzles where the water touches it!"), SPAN_DANGER("Your flesh burns in the water!"))
+			S.visible_message(span_warning("[S]'s flesh sizzles where the water touches it!"), span_danger("Your flesh burns in the water!"))
 
 /datum/reagent/toxin/fuel
 	name = "Welding fuel"
@@ -136,7 +136,7 @@
 /datum/reagent/toxin/fuel/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_TOXIN, 2 * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 
-/datum/reagent/toxin/fuel/touch_mob(mob/living/L, var/amount)
+/datum/reagent/toxin/fuel/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 10) // Splashing people with welding fuel to make them easy to ignite!
 

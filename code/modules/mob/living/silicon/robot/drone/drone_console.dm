@@ -14,12 +14,12 @@ GLOBAL_LIST_INIT(drones, list())
 	//Used to enable or disable drone fabrication.
 	var/obj/machinery/drone_fabricator/dronefab
 
-/obj/machinery/computer/drone_control/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/drone_control/attack_hand(mob/user as mob)
 	if(..())
 		return
 
 	if(!allowed(user))
-		to_chat(user, SPAN_DANGER("Access denied."))
+		to_chat(user, span_danger("Access denied."))
 		return
 
 	user.set_machine(src)
@@ -32,13 +32,13 @@ GLOBAL_LIST_INIT(drones, list())
 		dat += "<BR>[D.real_name] ([D.stat == 2 ? "<font color='red'>INACTIVE</FONT>" : "<font color='green'>ACTIVE</FONT>"])"
 		dat += "<font dize = 9><BR>Cell charge: [D.cell.charge]/[D.cell.maxcharge]."
 		dat += "<BR>Currently located in: [get_area(D)]."
-		dat += "<BR><A href='?src=\ref[src];resync=\ref[D]'>Resync</A> | <A href='?src=\ref[src];shutdown=\ref[D]'>Shutdown</A></font>"
+		dat += "<BR><A href='byond://?src=\ref[src];resync=\ref[D]'>Resync</A> | <A href='byond://?src=\ref[src];shutdown=\ref[D]'>Shutdown</A></font>"
 
-	dat += "<BR><BR><B>Request drone presence in area:</B> <A href='?src=\ref[src];setarea=1'>[drone_call_area]</A> (<A href='?src=\ref[src];ping=1'>Send ping</A>)"
+	dat += "<BR><BR><B>Request drone presence in area:</B> <A href='byond://?src=\ref[src];setarea=1'>[drone_call_area]</A> (<A href='byond://?src=\ref[src];ping=1'>Send ping</A>)"
 
 	dat += "<BR><BR><B>Drone fabricator</B>: "
-	dat += "[dronefab ? "<A href='?src=\ref[src];toggle_fab=1'>[(dronefab.produce_drones && !(dronefab.stat & NOPOWER)) ? "ACTIVE" : "INACTIVE"]</A>" : "<font color='red'><b>FABRICATOR NOT DETECTED.</b></font> (<A href='?src=\ref[src];search_fab=1'>search</a>)"]"
-	user << browse(dat, "window=computer;size=400x500")
+	dat += "[dronefab ? "<A href='byond://?src=\ref[src];toggle_fab=1'>[(dronefab.produce_drones && !(dronefab.stat & NOPOWER)) ? "ACTIVE" : "INACTIVE"]</A>" : "<font color='red'><b>FABRICATOR NOT DETECTED.</b></font> (<A href='byond://?src=\ref[src];search_fab=1'>search</a>)"]"
+	user << browse(HTML_SKELETON_TITLE("Drone control", dat), "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
 
@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(drones, list())
 		return
 
 	if(!allowed(usr))
-		to_chat(usr, SPAN_DANGER("Access denied."))
+		to_chat(usr, span_danger("Access denied."))
 		return
 
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
@@ -63,11 +63,11 @@ GLOBAL_LIST_INIT(drones, list())
 			return
 
 		drone_call_area = t_area
-		to_chat(usr, SPAN_NOTICE("You set the area selector to [drone_call_area]."))
+		to_chat(usr, span_notice("You set the area selector to [drone_call_area]."))
 
 	else if (href_list["ping"])
 
-		to_chat(usr, SPAN_NOTICE("You issue a maintenance request for all active drones, highlighting [drone_call_area]."))
+		to_chat(usr, span_notice("You issue a maintenance request for all active drones, highlighting [drone_call_area]."))
 		for(var/mob/living/silicon/robot/drone/D in GLOB.drones)
 			if(D.client && D.stat == 0)
 				to_chat(D, "-- Maintenance drone presence requested in: [drone_call_area].")
@@ -77,7 +77,7 @@ GLOBAL_LIST_INIT(drones, list())
 		var/mob/living/silicon/robot/drone/D = locate(href_list["resync"])
 
 		if(D.stat != 2)
-			to_chat(usr, SPAN_DANGER("You issue a law synchronization directive for the drone."))
+			to_chat(usr, span_danger("You issue a law synchronization directive for the drone."))
 			D.law_resync()
 
 	else if (href_list["shutdown"])
@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(drones, list())
 		var/mob/living/silicon/robot/drone/D = locate(href_list["shutdown"])
 
 		if(D.stat != 2)
-			to_chat(usr, SPAN_DANGER("You issue a kill command for the unfortunate drone."))
+			to_chat(usr, span_danger("You issue a kill command for the unfortunate drone."))
 			message_admins("[key_name_admin(usr)] issued kill order for drone [key_name_admin(D)] from control console.")
 			log_game("[key_name(usr)] issued kill order for [key_name(src)] from control console.")
 			D.shut_down()
@@ -100,10 +100,10 @@ GLOBAL_LIST_INIT(drones, list())
 				continue
 
 			dronefab = fab
-			to_chat(usr, SPAN_NOTICE("Drone fabricator located."))
+			to_chat(usr, span_notice("Drone fabricator located."))
 			return
 
-		to_chat(usr, SPAN_DANGER("Unable to locate drone fabricator."))
+		to_chat(usr, span_danger("Unable to locate drone fabricator."))
 
 	else if (href_list["toggle_fab"])
 
@@ -112,10 +112,10 @@ GLOBAL_LIST_INIT(drones, list())
 
 		if(get_dist(src,dronefab) > 3)
 			dronefab = null
-			to_chat(usr, SPAN_DANGER("Unable to locate drone fabricator."))
+			to_chat(usr, span_danger("Unable to locate drone fabricator."))
 			return
 
 		dronefab.produce_drones = !dronefab.produce_drones
-		to_chat(usr, "<span class='notice'>You [dronefab.produce_drones ? "enable" : "disable"] drone production in the nearby fabricator.</span>")
+		to_chat(usr, span_notice("You [dronefab.produce_drones ? "enable" : "disable"] drone production in the nearby fabricator."))
 
 	src.updateUsrDialog()

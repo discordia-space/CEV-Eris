@@ -11,7 +11,7 @@
 /obj/effect/temp_visual/Initialize()
 	. = ..()
 	if(randomdir)
-		dir = (pick(cardinal))
+		dir = (pick(GLOB.cardinal))
 
 	QDEL_IN(src, duration)
 
@@ -34,3 +34,7 @@
 	if(set_dir)
 		dir = set_dir
 	. = ..()
+
+/obj/effect/temp_visual/long //temp visual with longer duration
+	randomdir = FALSE
+	duration = 25

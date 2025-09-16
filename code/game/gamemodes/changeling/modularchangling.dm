@@ -216,7 +216,7 @@ var/list/datum/power/carrion/powerinstances = list()
 
 					if(!ownsthis)
 					{
-						body += "<a href='?src=\ref[src];P="+power+"'>Evolve</a>"
+						body += "<a href='byond://?src=\ref[src];P="+power+"'>Evolve</a>"
 					}
 
 					body += "</td><td align='center'>";
@@ -394,7 +394,7 @@ var/list/datum/power/carrion/powerinstances = list()
 
 	usr << browse(dat, "window=powers;size=900x480")
 
-/obj/item/organ/internal/carrion/core/proc/purchasePower(var/Pname, var/free = FALSE)
+/obj/item/organ/internal/carrion/core/proc/purchasePower(Pname, free = FALSE)
 	var/datum/power/carrion/Thepower = Pname
 
 	for (var/datum/power/carrion/P in powerinstances)

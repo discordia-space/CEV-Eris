@@ -24,10 +24,10 @@
 	temp_blade.max_upgrades = 5
 	temp_blade.attack_self()
 
-/obj/item/tool/cane/concealed/attack_self(var/mob/user)
+/obj/item/tool/cane/concealed/attack_self(mob/user)
 	if(concealed_blade)
 		user.visible_message(
-			SPAN_WARNING("[user] has unsheathed \a [concealed_blade] from \his [src]!"),
+			span_warning("[user] has unsheathed \a [concealed_blade] from \his [src]!"),
 			"You unsheathe \the [concealed_blade] from \the [src]."
 		)
 		// Calling drop/put in hands to properly call item drop/pickup procs
@@ -39,10 +39,10 @@
 	else
 		..()
 
-/obj/item/tool/cane/concealed/attackby(var/obj/item/tool/knife/switchblade/W, var/mob/user)
+/obj/item/tool/cane/concealed/attackby(obj/item/tool/knife/switchblade/W, mob/user)
 	if(!src.concealed_blade && istype(W))
 		user.visible_message(
-			SPAN_WARNING("[user] has sheathed \a [W] into \his [src]!"),
+			span_warning("[user] has sheathed \a [W] into \his [src]!"),
 			"You sheathe \the [W] into \the [src]."
 		)
 		user.drop_from_inventory(W)

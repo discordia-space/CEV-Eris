@@ -4,7 +4,7 @@
 	var/list/voters = list()	//assoc list of ckeys of voters and the voting power they contributed
 	var/datum/poll/poll //The poll we're assigned to
 
-/datum/vote_choice/New(var/datum/poll/_poll)
+/datum/vote_choice/New(datum/poll/_poll)
 	poll = _poll
 
 /datum/vote_choice/proc/on_win()

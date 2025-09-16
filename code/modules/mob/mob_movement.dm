@@ -3,7 +3,7 @@
 		return // Moved here to avoid nullrefs below
 	return mob.SelfMove(direction)
 
-/mob/proc/SelfMove(var/direction)
+/mob/proc/SelfMove(direction)
 	if(DoMove(direction, src) & MOVEMENT_HANDLED)
 		return TRUE // Doesn't necessarily mean the mob physically moved
 
@@ -12,7 +12,7 @@
 	var/moving           = FALSE
 
 
-/mob/proc/set_move_cooldown(var/timeout)
+/mob/proc/set_move_cooldown(timeout)
 	var/datum/movement_handler/mob/delay/delay = GetMovementHandler(/datum/movement_handler/mob/delay)
 	if(delay)
 		delay.SetDelay(timeout)
@@ -28,7 +28,7 @@
 	else
 		return (!mover.density || !density || lying)
 
-/mob/proc/add_move_cooldown(var/timeout)
+/mob/proc/add_move_cooldown(timeout)
 	var/datum/movement_handler/mob/delay/delay = GetMovementHandler(/datum/movement_handler/mob/delay)
 	if(delay)
 		delay.AddDelay(timeout)
@@ -58,28 +58,28 @@
 				var/mob/living/carbon/C = usr
 				C.toggle_throw_mode()
 			else
-				to_chat(usr, SPAN_WARNING("This mob type cannot throw items."))
+				to_chat(usr, span_warning("This mob type cannot throw items."))
 			return
 		if(NORTHWEST)
 			mob.hotkey_drop()
 
 /mob/proc/hotkey_drop()
-	to_chat(usr, SPAN_WARNING("This mob type cannot drop items."))
+	to_chat(usr, span_warning("This mob type cannot drop items."))
 
 /mob/living/carbon/hotkey_drop()
-	if(!get_active_hand())
-		to_chat(usr, SPAN_WARNING("You have nothing to drop in your hand."))
+	if(!get_active_held_item())
+		to_chat(usr, span_warning("You have nothing to drop in your hand."))
 	if (!isturf(loc))
 		return
 	else
-		unEquip(get_active_hand(), loc)
+		unEquip(get_active_held_item(), loc)
 
 //This gets called when you press the delete button.
 /client/verb/delete_key_pressed()
 	set hidden = 1
 
 	if(!usr.pulling)
-		to_chat(usr, SPAN_NOTICE("You are not pulling anything."))
+		to_chat(usr, span_notice("You are not pulling anything."))
 		return
 	usr.stop_pulling()
 
@@ -145,7 +145,7 @@
 //return 1 if slipped, 0 otherwise
 /mob/proc/handle_spaceslipping()
 	if(prob(1)) //Todo: Factor in future agility stat here
-		to_chat(src, SPAN_WARNING("You slipped!"))
+		to_chat(src, span_warning("You slipped!"))
 		src.inertia_dir = src.last_move
 		step(src, src.inertia_dir)
 		return 1
@@ -199,7 +199,7 @@
 /mob/proc/check_shoegrip()
 	return 0
 
-/mob/proc/slip_chance(var/prob_slip = 5)
+/mob/proc/slip_chance(prob_slip = 5)
 	if(stat)
 		return 0
 	if(check_shoegrip())

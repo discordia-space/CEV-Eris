@@ -53,9 +53,9 @@
 	desc = "Impact resistant server rack. You might be able to pry a disk out."
 	var/disk_looted
 
-/obj/structure/backup_server/attackby(obj/item/W, mob/user, var/click_params)
+/obj/structure/backup_server/attackby(obj/item/W, mob/user, click_params)
 	if(isCrowbar(W))
-		to_chat(user, SPAN_NOTICE("You pry out the data drive from \the [src]."))
+		to_chat(user, span_notice("You pry out the data drive from \the [src]."))
 		playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 		var/obj/item/stock_parts/computer/hard_drive/cluster/drive = new(get_turf(src))
 		drive.origin_tech = list(TECH_DATA = rand(4,5), TECH_ENGINEERING = rand(4,5), TECH_PLASMA = rand(4,5), TECH_COMBAT = rand(2,5), TECH_ESOTERIC = rand(0,6))

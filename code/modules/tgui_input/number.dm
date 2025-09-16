@@ -1,7 +1,7 @@
 /**
  * Creates a TGUI window with a number input. Returns the user's response as num | null.
  *
- * This proc should be used to create windows for number entry that the caller will wait for a response from.
+ * This proc should be used to create windows for number entry that the requester will wait for a response from.
  * If tgui fancy chat is turned off: Will return a normal input. If a max or min value is specified, will
  * validate the input inside the UI and ui_act.
  *
@@ -19,13 +19,13 @@
 	if (!user)
 		user = usr
 	if (!istype(user))
-		if (istype(user, /client))
+		if (isclient(user))
 			var/client/client = user
 			user = client.mob
 		else
 			return
 	// Client does NOT have tgui_input on: Returns regular input
-	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
+	if(!user.client.get_preference_value(/datum/client_preference/tgui_fancy) == GLOB.PREF_YES)
 		var/input_number = input(user, message, title, default) as null|num
 		return clamp(round_value ? round(input_number) : input_number, min_value, max_value)
 	var/datum/tgui_input_number/number_input = new(user, message, title, default, max_value, min_value, timeout, round_value)
@@ -113,11 +113,13 @@
 /datum/tgui_input_number/ui_static_data(mob/user)
 	var/list/data = list()
 	data["init_value"] = default // Default is a reserved keyword
-	data["large_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
+	// data["large_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
+	data["large_buttons"] = TRUE
 	data["max_value"] = max_value
 	data["message"] = message
 	data["min_value"] = min_value
-	data["swapped_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
+	// data["swapped_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
+	data["swapped_buttons"] = FALSE
 	data["title"] = title
 	return data
 

@@ -43,7 +43,7 @@
 	//Do a sort
 	var/datum/catalog/C = GLOB.catalogs[CATALOG_COOKING]
 	C.associated_template = "catalog_list_cooking.tmpl"
-	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_cook)
+	sortTim(C.entry_list, /proc/cmp_catalog_entry_cook)
 
 //Because I want it to be EXTREMELY ORGANIZED.
 /proc/cmp_catalog_entry_cook(datum/catalog_entry/cooking/a, datum/catalog_entry/cooking/b)
@@ -77,7 +77,7 @@
 
 	return cmp_catalog_entry_asc(a, b)
 
-/proc/create_cooking_catalog_entry(var/datum/cooking_with_jane/recipe/our_recipe)
+/proc/create_cooking_catalog_entry(datum/cooking_with_jane/recipe/our_recipe)
 	var/catalog_id = CATALOG_COOKING
 	if(!GLOB.catalogs[catalog_id])
 		GLOB.catalogs[catalog_id] = new /datum/catalog(catalog_id)
@@ -94,7 +94,7 @@
 	associated_template = "catalog_entry_cooking.tmpl"
 	var/datum/cooking_with_jane/recipe/recipe
 
-/datum/catalog_entry/cooking/New(var/datum/cooking_with_jane/recipe/our_recipe)
+/datum/catalog_entry/cooking/New(datum/cooking_with_jane/recipe/our_recipe)
 	thing_type = our_recipe.type
 	title = our_recipe.name
 	recipe = our_recipe
@@ -103,7 +103,7 @@
 	var/list/data = ..()
 	data["name"] = recipe.name
 	data["id"] = recipe.type
-	data["icon"] = SSassets.transport.get_asset_url(sanitizeFileName(recipe.icon_image_file))
+	data["icon"] = SSassets.transport.get_asset_url(SANITIZE_FILENAME(recipe.icon_image_file))
 	data["product_is_reagent"] = 0
 	if(recipe.product_name)
 		data["product_name"] = recipe.product_name
@@ -133,7 +133,7 @@
 	data["name"] = recipe.name
 	data["id"] = recipe.type
 
-	var/url = SSassets.transport.get_asset_url(sanitizeFileName(recipe.icon_image_file))
+	var/url = SSassets.transport.get_asset_url(SANITIZE_FILENAME(recipe.icon_image_file))
 	#ifdef CWJ_DEBUG
 	log_debug("Retrieved [url] for [recipe.icon_image_file]")
 	#endif
@@ -197,12 +197,12 @@
 		var/icon/I = null
 		var/filename = null
 		if(our_recipe.product_type)
-			filename = sanitizeFileName("[our_recipe.product_type].png")
+			filename = SANITIZE_FILENAME("[our_recipe.product_type].png")
 			I = getFlatTypeIcon(our_recipe.product_type)
 		else if(our_recipe.reagent_id)
 			var/obj/item/reagent_containers/food/snacks/dollop/test_dollop = new(null, our_recipe.reagent_id, 1)
 
-			filename = sanitizeFileName("[test_dollop.type][test_dollop.color].png")
+			filename = SANITIZE_FILENAME("[test_dollop.type][test_dollop.color].png")
 			I = getFlatIcon(test_dollop)
 			//I.Blend(test_dollop.color) --might not be needed
 		if(I)

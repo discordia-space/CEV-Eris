@@ -6,7 +6,7 @@
 	var/registered_name
 	var/list/access_occupy = list()
 
-/obj/structure/closet/secure_closet/personal/CanToggleLock(var/mob/user)
+/obj/structure/closet/secure_closet/personal/CanToggleLock(mob/user)
 	var/obj/item/card/id/id_card = user.GetIdCard()
 
 	if(id_card && id_card.registered_name == registered_name)
@@ -32,18 +32,18 @@
 		if(!src.registered_name && has_access(access_occupy, list(), I.GetAccess()))
 			src.registered_name = I.registered_name
 			name = "[initial(name)] ([registered_name])"
-			to_chat(user, SPAN_NOTICE("You occupied [src]."))
+			to_chat(user, span_notice("You occupied [src]."))
 			return
 
 	return ..()
 
-/obj/structure/closet/secure_closet/personal/emag_act(var/remaining_charges, var/mob/user, var/visual_feedback, var/audible_feedback)
+/obj/structure/closet/secure_closet/personal/emag_act(remaining_charges, mob/user, visual_feedback, audible_feedback)
 	if(!broken)
 		broken = TRUE
 		locked = FALSE
 		desc = "It appears to be broken."
 		if(visual_feedback)
-			visible_message(SPAN_WARNING("[visual_feedback]"), SPAN_WARNING("[audible_feedback]"))
+			visible_message(span_warning("[visual_feedback]"), span_warning("[audible_feedback]"))
 		update_icon()
 		return 1
 
@@ -57,9 +57,9 @@
 	if(ishuman(usr))
 		src.add_fingerprint(usr)
 		if (src.locked || !src.registered_name)
-			to_chat(usr, SPAN_WARNING("You need to unlock it first."))
+			to_chat(usr, span_warning("You need to unlock it first."))
 		else if (src.broken)
-			to_chat(usr, SPAN_WARNING("It appears to be broken."))
+			to_chat(usr, span_warning("It appears to be broken."))
 		else
 			if (src.opened)
 				if(!src.close())

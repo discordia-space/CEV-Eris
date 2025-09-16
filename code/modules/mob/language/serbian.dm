@@ -6,6 +6,7 @@
 	key = "x"
 	space_chance = 80
 	shorthand = "SB"
+	icon_state = "serbian"
 	syllables = list("zena", "rob", "macka", "tvoj", "ruke", "jebote", "placenik", "tsatsh", "da", "zivim", "cich", "jovan", "be", "ot", \
 					 "ja", "tamo", "moj", "za", "gdje", "su", "brodove", "noge", "da", "ne", "svemirskog", "pochemu", "zasto","ljubav", \
 					 "zajebavati", "krevet", "tabela", "za", "red", "dan", "voyna", "rat", "razmisljam", "bubasvaba", "zdravlje", "dan", "novac", \
@@ -268,7 +269,7 @@
 "Cubrilovic",
 "Cvijic",
 "Cvijovic",
-"Ðajic",
+"ï¿½ajic",
 "Damjenic",
 "Davidovic",
 "Djapic",
@@ -288,7 +289,7 @@
 "Gracanin",
 "Grba",
 "Grlic",
-"Grmuša",
+"Grmuï¿½a",
 "Grol",
 "Grujicic",
 "Horvat",
@@ -302,7 +303,7 @@
 "Jerkov",
 "Jigovic",
 "Jorgic",
-"Karadžic",
+"Karadï¿½ic",
 "Kadijevic",
 "Kajosevic",
 "Kalicanin",

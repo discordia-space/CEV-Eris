@@ -9,30 +9,30 @@
 	var/prob_catch = 100
 
 
-	examine(mob/user)
-		..(user)
-		if(armed)
-			to_chat(user, "It looks like it's armed.")
+/obj/item/device/assembly/mousetrap/examine(mob/user)
+	..(user)
+	if(armed)
+		to_chat(user, "It looks like it's armed.")
 
-	update_icon()
-		if(armed)
-			icon_state = "mousetraparmed"
-		else
-			icon_state = "mousetrap"
-		if(holder)
-			holder.update_icon()
+/obj/item/device/assembly/mousetrap/update_icon()
+	if(armed)
+		icon_state = "mousetraparmed"
+	else
+		icon_state = "mousetrap"
+	if(holder)
+		holder.update_icon()
 
-/obj/item/device/assembly/mousetrap/proc/triggered(var/mob/living/target, var/type = "feet")
+/obj/item/device/assembly/mousetrap/proc/triggered(mob/living/target, type = "feet")
 	if(!armed || !istype(target))
 		return
 
 	//var/types = target.get_classification()
 	if(ismouse(target))
 		var/mob/living/simple_animal/mouse/M = target
-		visible_message("<span class='danger'>SPLAT!</span>")
+		visible_message(span_danger("SPLAT!"))
 		M.splat()
 	else
-		var/zone = "chest"
+		var/datum/zone = "chest"
 		if(ishuman(target) && target.mob_size)
 			var/mob/living/carbon/human/H = target
 			switch(type)
@@ -58,18 +58,18 @@
 
 /obj/item/device/assembly/mousetrap/attack_self(mob/living/user as mob)
 	if(!armed)
-		to_chat(user, "<span class='notice'>You arm [src].</span>")
+		to_chat(user, span_notice("You arm [src]."))
 	else
 /*		if((CLUMSY in user.mutations)&& prob(50))
 			var/which_hand = "l_hand"
 			if(!user.hand)
 				which_hand = "r_hand"
 			triggered(user, which_hand)
-			user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
-								 "<span class='warning'>You accidentally trigger [src]!</span>")
+			user.visible_message(span_warning("[user] accidentally sets off [src], breaking their fingers."), \
+								 span_warning("You accidentally trigger [src]!"))
 			return
 */
-		to_chat(user, "<span class='notice'>You disarm [src].</span>")
+		to_chat(user, span_notice("You disarm [src]."))
 	armed = !armed
 	update_icon()
 	playsound(user.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -3)
@@ -82,8 +82,8 @@
 			if(!user.hand)
 				which_hand = "r_hand"
 			triggered(user, which_hand)
-			user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
-								 "<span class='warning'>You accidentally trigger [src]!</span>")
+			user.visible_message(span_warning("[user] accidentally sets off [src], breaking their fingers."), \
+								 span_warning("You accidentally trigger [src]!"))
 			return
 */
 	..()
@@ -99,16 +99,16 @@
 			if(!prob(true_prob_catch))
 				return ..()
 			triggered(L)
-			L.visible_message("<span class='warning'>[L] accidentally steps on [src].</span>", \
-							  "<span class='warning'>You accidentally step on [src]</span>")
+			L.visible_message(span_warning("[L] accidentally steps on [src]."), \
+							  span_warning("You accidentally step on [src]"))
 
 	..()
 
 
 /obj/item/device/assembly/mousetrap/on_found(mob/finder as mob)
 	if(armed)
-		finder.visible_message("<span class='warning'>[finder] accidentally sets off [src], breaking their fingers.</span>", \
-							   "<span class='warning'>You accidentally trigger [src]!</span>")
+		finder.visible_message(span_warning("[finder] accidentally sets off [src], breaking their fingers."), \
+							   span_warning("You accidentally trigger [src]!"))
 		triggered(finder, finder.hand ? "l_hand" : "r_hand")
 		return TRUE	//end the search!
 	return FALSE
@@ -117,7 +117,7 @@
 /obj/item/device/assembly/mousetrap/hitby(A as mob|obj)
 	if(!armed)
 		return ..()
-	visible_message("<span class='warning'>[src] is triggered by [A].</span>")
+	visible_message(span_warning("[src] is triggered by [A]."))
 	triggered(null)
 
 
@@ -139,4 +139,4 @@
 		return
 
 	layer = TURF_LAYER+0.2
-	to_chat(usr, "<span class='notice'>You hide [src].</span>")
+	to_chat(usr, span_notice("You hide [src]."))

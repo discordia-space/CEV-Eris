@@ -33,16 +33,25 @@
 /datum/tgui_say/proc/delegate_speech(entry, channel)
 	switch(channel)
 		if(SAY_CHANNEL)
-			client.mob.say(entry)
+			client.mob.say_verb(entry)
 			return TRUE
 		if(RADIO_CHANNEL)
-			client.mob.say(";" + entry)
+			client.mob.say_verb(";" + entry)
 			return TRUE
 		if(ME_CHANNEL)
-			client.mob.me(entry)
+			client.mob.me_verb(entry)
 			return TRUE
 		if(OOC_CHANNEL)
 			client.ooc(entry)
+			return TRUE
+		if(LOOC_CHANNEL)
+			client.looc(entry)
+			return TRUE
+		if(ADMIN_CHANNEL)
+			client.cmd_admin_say(entry)
+			return TRUE
+		if(MENTOR_CHANNEL)
+			client.cmd_mod_say(entry)
 			return TRUE
 	return FALSE
 
@@ -61,10 +70,11 @@
 	if(stat != CONSCIOUS || !client?.tgui_say?.window_open)
 		return FALSE
 	client.tgui_say.force_say()
-	if(client.typing_indicators)
+	if(get_preference_value(/datum/client_preference/show_typing_indicator) == GLOB.PREF_SHOW)
 		log_speech_indicators("[key_name(client)] FORCED to stop typing, indicators enabled.")
 	else
 		log_speech_indicators("[key_name(client)] FORCED to stop typing, indicators DISABLED.")
+	// SEND_SIGNAL(src, COMSIG_HUMAN_FORCESAY)
 
 /**
  * Handles text entry and forced speech.

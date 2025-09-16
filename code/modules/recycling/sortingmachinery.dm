@@ -30,7 +30,7 @@
 		var/obj/item/device/destTagger/O = W
 		if(O.currTag)
 			if(src.sortTag != O.currTag)
-				to_chat(user, SPAN_NOTICE("You have labeled the destination as [O.currTag]."))
+				to_chat(user, span_notice("You have labeled the destination as [O.currTag]."))
 				if(!src.sortTag)
 					src.sortTag = O.currTag
 					update_icon()
@@ -38,19 +38,19 @@
 					src.sortTag = O.currTag
 				playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
 			else
-				to_chat(user, SPAN_WARNING("The package is already labeled for [O.currTag]."))
+				to_chat(user, span_warning("The package is already labeled for [O.currTag]."))
 		else
-			to_chat(user, SPAN_WARNING("You need to set a destination first!"))
+			to_chat(user, span_warning("You need to set a destination first!"))
 
 	else if(istype(W, /obj/item/pen))
 		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 			if("Title")
 				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
 				if(!str || !length(str))
-					to_chat(usr, SPAN_WARNING(" Invalid text."))
+					to_chat(usr, span_warning(" Invalid text."))
 					return
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
-				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
+				span_notice("You title \the [src]: \"[str]\""),\
 				"You hear someone scribbling a note.")
 				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 				name = "[name] ([str])"
@@ -62,7 +62,7 @@
 			if("Description")
 				var/str = sanitize(input(usr,"Label text?","Set label",""))
 				if(!str || !length(str))
-					to_chat(usr, "\red Invalid text.")
+					to_chat(usr, span_red("Invalid text."))
 					return
 				if(!examtext && !nameset)
 					examtext = str
@@ -70,7 +70,7 @@
 				else
 					examtext = str
 				user.visible_message("\The [user] labels \the [src] with \a [W], scribbling down: \"[examtext]\"",\
-				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
+				span_notice("You label \the [src]: \"[examtext]\""),\
 				"You hear someone scribbling a note.")
 				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 	return
@@ -107,9 +107,9 @@
 /obj/structure/bigDelivery/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 5)
 		if(sortTag)
-			extra_description += SPAN_NOTICE("\nIt is labeled \"[sortTag]\"")
+			extra_description += span_notice("\nIt is labeled \"[sortTag]\"")
 		if(examtext)
-			extra_description += SPAN_NOTICE("\nIt has a note attached which reads, \"[examtext]\"")
+			extra_description += span_notice("\nIt has a note attached which reads, \"[examtext]\"")
 	..(user, extra_description)
 
 /obj/item/smallDelivery
@@ -139,7 +139,7 @@
 		var/obj/item/device/destTagger/O = W
 		if(O.currTag)
 			if(src.sortTag != O.currTag)
-				to_chat(user, SPAN_NOTICE("You have labeled the destination as [O.currTag]."))
+				to_chat(user, span_notice("You have labeled the destination as [O.currTag]."))
 				if(!src.sortTag)
 					src.sortTag = O.currTag
 					update_icon()
@@ -148,19 +148,19 @@
 				playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
 				playsound(src,'sound/effects/FOLEY_Gaffer_Tape_Tear_mono.ogg',100,2)
 			else
-				to_chat(user, SPAN_WARNING("The package is already labeled for [O.currTag]."))
+				to_chat(user, span_warning("The package is already labeled for [O.currTag]."))
 		else
-			to_chat(user, SPAN_WARNING("You need to set a destination first!"))
+			to_chat(user, span_warning("You need to set a destination first!"))
 
 	else if(istype(W, /obj/item/pen))
 		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 			if("Title")
 				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
 				if(!str || !length(str))
-					to_chat(usr, SPAN_WARNING(" Invalid text."))
+					to_chat(usr, span_warning(" Invalid text."))
 					return
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
-				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
+				span_notice("You title \the [src]: \"[str]\""),\
 				"You hear someone scribbling a note.")
 				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 				name = "[name] ([str])"
@@ -173,7 +173,7 @@
 			if("Description")
 				var/str = sanitize(input(usr,"Label text?","Set label",""))
 				if(!str || !length(str))
-					to_chat(usr, "\red Invalid text.")
+					to_chat(usr, span_red("Invalid text."))
 					return
 				if(!examtext && !nameset)
 					examtext = str
@@ -181,7 +181,7 @@
 				else
 					examtext = str
 				user.visible_message("\The [user] labels \the [src] with \a [W], scribbling down: \"[examtext]\"",\
-				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
+				span_notice("You label \the [src]: \"[examtext]\""),\
 				"You hear someone scribbling a note.")
 				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 	return
@@ -214,9 +214,9 @@
 /obj/item/smallDelivery/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 4)
 		if(sortTag)
-			extra_description += SPAN_NOTICE("\nIt is labeled \"[sortTag]\"")
+			extra_description += span_notice("\nIt is labeled \"[sortTag]\"")
 		if(examtext)
-			extra_description += SPAN_NOTICE("\nIt has a note attached which reads, \"[examtext]\"")
+			extra_description += span_notice("\nIt has a note attached which reads, \"[examtext]\"")
 	..(user, extra_description)
 
 /obj/item/packageWrap
@@ -230,7 +230,7 @@
 	var/amount = 25.0
 
 
-/obj/item/packageWrap/afterattack(var/obj/target as obj, mob/user as mob, proximity)
+/obj/item/packageWrap/afterattack(obj/target as obj, mob/user as mob, proximity)
 	if(!proximity) return
 	if(!istype(target))	//this really shouldn't be necessary (but it is).	-Pete
 		return
@@ -276,7 +276,7 @@
 			src.add_fingerprint(usr)
 			src.amount -= 1
 			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-			SPAN_NOTICE("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
+			span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
 			"You hear someone taping paper around a small object.")
 	else if (istype(target, /obj/structure/closet/crate))
 		var/obj/structure/closet/crate/O = target
@@ -287,10 +287,10 @@
 			O.forceMove(P)
 			src.amount -= 3
 			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-			SPAN_NOTICE("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
+			span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
 			"You hear someone taping paper around a large object.")
 		else if(src.amount < 3)
-			to_chat(user, SPAN_WARNING("You need more paper."))
+			to_chat(user, span_warning("You need more paper."))
 	else if (istype (target, /obj/structure/closet))
 		var/obj/structure/closet/O = target
 		if (src.amount > 3 && !O.opened)
@@ -300,12 +300,12 @@
 			O.forceMove(P)
 			src.amount -= 3
 			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-			SPAN_NOTICE("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
+			span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
 			"You hear someone taping paper around a large object.")
 		else if(src.amount < 3)
-			to_chat(user, SPAN_WARNING("You need more paper."))
+			to_chat(user, span_warning("You need more paper."))
 	else
-		to_chat(user, "\blue The object you are trying to wrap is unsuitable for the sorting machinery!")
+		to_chat(user, span_blue("The object you are trying to wrap is unsuitable for the sorting machinery!"))
 	if (src.amount <= 0)
 		new /obj/item/c_tube( src.loc )
 		qdel(src)
@@ -314,7 +314,7 @@
 
 /obj/item/packageWrap/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
-		extra_description += SPAN_NOTICE("\nThere are [amount] units of package wrap left!")
+		extra_description += span_notice("\nThere are [amount] units of package wrap left!")
 	..(user, extra_description)
 
 /obj/structure/bigDelivery/Destroy()
@@ -345,15 +345,15 @@
 	var/dat = "<tt><center><h1><b>TagMaster 2.3</b></h1></center>"
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
-	for(var/i = 1, i <= tagger_locations.len, i++)
-		dat += "<td><a href='?src=\ref[src];nextTag=[tagger_locations[i]]'>[tagger_locations[i]]</a></td>"
+	for(var/i = 1; i <= tagger_locations.len; i++)
+		dat += "<td><a href='byond://?src=\ref[src];nextTag=[tagger_locations[i]]'>[tagger_locations[i]]</a></td>"
 
 		if (i%4==0)
 			dat += "</tr><tr>"
 
 	dat += "</tr></table><br>Current Selection: [currTag ? currTag : "None"]</tt>"
-	dat += "<br><a href='?src=\ref[src];nextTag=CUSTOM'>Enter custom location.</a>"
-	user << browse(dat, "window=destTagScreen;size=450x375")
+	dat += "<br><a href='byond://?src=\ref[src];nextTag=CUSTOM'>Enter custom location.</a>"
+	user << browse(HTML_SKELETON_TITLE("Destination Tagger", dat), "window=destTagScreen;size=450x375")
 	onclose(user, "destTagScreen")
 
 /obj/item/device/destTagger/attack_self(mob/user as mob)
@@ -395,7 +395,7 @@
 /obj/machinery/disposal/deliveryChute/update()
 	return
 
-/obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
+/obj/machinery/disposal/deliveryChute/Bumped(atom/movable/AM) //Go straight into the chute
 	if(istype(AM, /obj/item/projectile) || istype(AM, /obj/effect))	return
 	if(AM.loc && src.loc)
 		switch(dir)
@@ -437,7 +437,7 @@
 /obj/machinery/disposal/deliveryChute/get_eject_turf()
 	return get_ranged_target_turf(src, dir, 10)
 
-/obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/disposal/deliveryChute/attackby(obj/item/I, mob/user)
 
 	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
 	if(c_mode == 1)

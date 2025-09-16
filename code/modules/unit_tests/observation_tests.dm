@@ -1,5 +1,5 @@
 // cringe comsigs.
-/proc/is_listening_to_movement(var/atom/movable/listening_to, var/listener)
+/proc/is_listening_to_movement(atom/movable/listening_to, listener)
 	return GLOB.moved_event.is_listening(listening_to, listener)
 
 /datum/unit_test/observation

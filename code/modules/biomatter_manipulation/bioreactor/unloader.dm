@@ -24,14 +24,14 @@
 	return ..()
 
 
-/obj/machinery/multistructure/bioreactor_part/unloader/proc/unload(atom/movable/waste, var/silent = FALSE)
+/obj/machinery/multistructure/bioreactor_part/unloader/proc/unload(atom/movable/waste, silent = FALSE)
 	waste.forceMove(get_turf(src))
 	if(!silent)
 		playsound(loc, 'sound/machines/vending_drop.ogg', 100, 1)
 	spawn(1)
 		waste.forceMove(get_step(src, dir_output))
 		if((MS_bioreactor.biotank_platform.pipes_cleanness <= 20) && prob(15))
-			spill_biomass(get_step(src, dir_output), cardinal)
+			spill_biomass(get_step(src, dir_output), GLOB.cardinal)
 
 
 #undef CLEANING_TIME

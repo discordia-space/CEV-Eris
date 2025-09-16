@@ -357,6 +357,10 @@
 	name = "NT Javelins (3)"
 	build_path = /obj/item/stack/thrown/nt/verutum/full
 
+/datum/design/autolathe/nt/sword/nt_verutum/ui_icon()
+	var/obj/item/stack/thrown/build_type = build_path
+	return icon(build_type::icon, "[build_type::icon_state]1")
+
 /datum/design/autolathe/nt/tool_upgrade/sanctifier
 	name = "sanctifier"
 	build_path = /obj/item/tool_upgrade/augment/sanctifier

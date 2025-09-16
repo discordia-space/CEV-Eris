@@ -60,7 +60,7 @@
 	set_item_state(itemstring)
 
 /obj/item/gun/projectile/automatic/slaught_o_matic/load_ammo(obj/item/A, mob/user)
-	to_chat(user, SPAN_WARNING("You try to reload the handgun, but the magazine that's already loaded won't come out!"))
+	to_chat(user, span_warning("You try to reload the handgun, but the magazine that's already loaded won't come out!"))
 
-/obj/item/gun/projectile/automatic/slaught_o_matic/unload_ammo(mob/user, var/allow_dump=1)
-	to_chat(user, SPAN_WARNING("You try to take out the handgun's magazine, but it won't budge!"))
+/obj/item/gun/projectile/automatic/slaught_o_matic/unload_ammo(mob/user, allow_dump=1)
+	to_chat(user, span_warning("You try to take out the handgun's magazine, but it won't budge!"))

@@ -19,7 +19,7 @@
 		ghostize()		//Ghostize checks for key so nothing else is necessary.
 	return ..()
 
-/mob/living/carbon/brain/say_understands(var/other)//Goddamn is this hackish, but this say code is so odd
+/mob/living/carbon/brain/say_understands(other)//Goddamn is this hackish, but this say code is so odd
 	if(isAI(other))
 		if(!(container && istype(container, /obj/item/device/mmi))) return 0
 		else return 1

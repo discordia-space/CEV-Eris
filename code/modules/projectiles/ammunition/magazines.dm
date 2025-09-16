@@ -753,7 +753,7 @@
 	. = ..()
 	update_icon()
 
-obj/item/ammo_magazine/m12/short/pellet
+/obj/item/ammo_magazine/m12/short/pellet
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
 
 /obj/item/ammo_magazine/m12/short/beanbag

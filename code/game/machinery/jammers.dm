@@ -27,7 +27,7 @@
 
 /obj/machinery/jammer/examine(mob/user, extra_description = "")
 	if(cell && (get_dist(user, src) < 2))
-		extra_description += SPAN_NOTICE("The terminal reads [round(cell.charge/power_usage*SSmachines.wait/10)] seconds of operation left.")
+		extra_description += span_notice("The terminal reads [round(cell.charge/power_usage*SSmachines.wait/10)] seconds of operation left.")
 	..(user, extra_description)
 
 /obj/machinery/jammer/attackby(obj/item/I, mob/living/user)
@@ -58,10 +58,10 @@
 		to_chat(user,  "You toggle the [src] off")
 		return TRUE
 	if(!cell)
-		to_chat(user, SPAN_NOTICE("There is no powercell inside of [src]"))
+		to_chat(user, span_notice("There is no powercell inside of [src]"))
 		return
 	if(cell.charge < power_usage)
-		to_chat(user, SPAN_NOTICE("The powercell inside of [src] is discharged"))
+		to_chat(user, span_notice("The powercell inside of [src] is discharged"))
 		return
 
 	overlay_manager.removeOverlay(OVERKEY_JAMMER_OFF)
@@ -92,7 +92,7 @@
 
 /obj/item/device/jammer/examine(mob/user, extra_description = "")
 	if(cell && (get_dist(user, src) < 2))
-		extra_description += SPAN_NOTICE("The terminal reads [round(cell.charge/power_usage*SSmachines.wait/10)] seconds of operation left.")
+		extra_description += span_notice("The terminal reads [round(cell.charge/power_usage*SSmachines.wait/10)] seconds of operation left.")
 	..(user, extra_description)
 
 /obj/item/device/jammer/Initialize(mapload)
@@ -126,9 +126,9 @@
 		STOP_PROCESSING(SSobj,src)
 		return
 	if(!cell)
-		to_chat(user, SPAN_NOTICE("There is no power cell inside of [src]"))
+		to_chat(user, span_notice("There is no power cell inside of [src]"))
 	if(cell.charge < power_usage)
-		to_chat(user , SPAN_NOTICE("The charge in [src]'s cell is too low to start jamming"))
+		to_chat(user , span_notice("The charge in [src]'s cell is too low to start jamming"))
 	overlay_manager.removeOverlay(OVERKEY_JAMMER_OFF)
 	overlay_manager.addOverlay(OVERKEY_JAMMER_ON, mutable_appearance(icon, "jammermobover_on"))
 	our_jammer.Toggle()

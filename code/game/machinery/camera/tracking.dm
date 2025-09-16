@@ -9,9 +9,9 @@
 	if(src.stat == 2)
 		return
 
-	cameranet.process_sort()
+	GLOB.cameranet.process_sort()
 	var/list/T = list()
-	for (var/obj/machinery/camera/C in cameranet.cameras)
+	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		var/list/tempnetwork = C.network&src.network
 		if (tempnetwork.len)
 			T[text("[][]", C.c_tag, (C.can_use() ? null : " (Deactivated)"))] = C
@@ -44,20 +44,20 @@
 
 	loc = sanitize(loc)
 	if(!loc)
-		to_chat(src, SPAN_WARNING("Must supply a location name"))
+		to_chat(src, span_warning("Must supply a location name"))
 		return
 
 	if(stored_locations.len >= max_locations)
-		to_chat(src, SPAN_WARNING("Cannot store additional locations. Remove one first"))
+		to_chat(src, span_warning("Cannot store additional locations. Remove one first"))
 		return
 
 	if(loc in stored_locations)
-		to_chat(src, SPAN_WARNING("There is already a stored location by this name"))
+		to_chat(src, span_warning("There is already a stored location by this name"))
 		return
 
 	var/L = src.eyeobj.getLoc()
 	if(!isOnPlayerLevel(L))
-		to_chat(src, SPAN_WARNING("Unable to store this location"))
+		to_chat(src, span_warning("Unable to store this location"))
 		return
 
 	stored_locations[loc] = L
@@ -72,7 +72,7 @@
 	set desc = "Returns to the selected camera location"
 
 	if (!(loc in stored_locations))
-		to_chat(src, SPAN_WARNING("Location [loc] not found"))
+		to_chat(src, span_warning("Location [loc] not found"))
 		return
 
 	var/L = stored_locations[loc]
@@ -84,7 +84,7 @@
 	set desc = "Deletes the selected camera location"
 
 	if (!(loc in stored_locations))
-		to_chat(src, SPAN_WARNING("Location [loc] not found"))
+		to_chat(src, span_warning("Location [loc] not found"))
 		return
 
 	stored_locations.Remove(loc)
@@ -141,7 +141,7 @@
 	src.track = null
 	ai_actual_track(target)
 
-/mob/living/silicon/ai/proc/ai_cancel_tracking(var/forced = 0)
+/mob/living/silicon/ai/proc/ai_cancel_tracking(forced = 0)
 	if(!cameraFollow)
 		return
 
@@ -183,7 +183,7 @@
 				return
 			sleep(10)
 
-/obj/machinery/camera/attack_ai(var/mob/living/silicon/ai/user as mob)
+/obj/machinery/camera/attack_ai(mob/living/silicon/ai/user as mob)
 	if (!istype(user))
 		return
 	if (!src.can_use())
@@ -191,14 +191,14 @@
 	user.eyeobj.setLoc(get_turf(src))
 
 
-/mob/living/silicon/ai/attack_ai(var/mob/user as mob)
+/mob/living/silicon/ai/attack_ai(mob/user as mob)
 	ai_camera_list()
 
 /proc/camera_sort(list/L)
 	var/obj/machinery/camera/a
 	var/obj/machinery/camera/b
 
-	for (var/i = L.len, i > 0, i--)
+	for(var/i = L.len; i > 0; i--)
 		for (var/j = 1 to i - 1)
 			a = L[j]
 			b = L[j + 1]
@@ -214,7 +214,7 @@
 /mob/living/proc/near_camera()
 	if (!isturf(loc))
 		return 0
-	else if(!cameranet.checkVis(src))
+	else if(!GLOB.cameranet.checkVis(src))
 		return 0
 	return 1
 
@@ -256,19 +256,19 @@
 		if(isOnStationLevel(src) && hassensorlevel(src, SUIT_SENSOR_TRACKING))
 			return TRACKING_POSSIBLE
 
-mob/living/proc/tracking_initiated()
+/mob/living/proc/tracking_initiated()
 
-mob/living/silicon/robot/tracking_initiated()
+/mob/living/silicon/robot/tracking_initiated()
 	tracking_entities++
 	if(tracking_entities == 1 && has_zeroth_law())
-		to_chat(src, SPAN_WARNING("Internal camera is currently being accessed."))
+		to_chat(src, span_warning("Internal camera is currently being accessed."))
 
-mob/living/proc/tracking_cancelled()
+/mob/living/proc/tracking_cancelled()
 
-mob/living/silicon/robot/tracking_cancelled()
+/mob/living/silicon/robot/tracking_cancelled()
 	tracking_entities--
 	if(!tracking_entities && has_zeroth_law())
-		to_chat(src, SPAN_NOTICE("Internal camera is no longer being accessed."))
+		to_chat(src, span_notice("Internal camera is no longer being accessed."))
 
 
 #undef TRACKING_POSSIBLE

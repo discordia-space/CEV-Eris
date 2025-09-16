@@ -29,19 +29,19 @@
 	network = list("MINE")
 	req_access = list()
 
-/obj/item/electronics/circuitboard/security/construct(var/obj/machinery/computer/security/C)
+/obj/item/electronics/circuitboard/security/construct(obj/machinery/computer/security/C)
 	if (..(C))
 		C.network = network.Copy()
 
-/obj/item/electronics/circuitboard/security/deconstruct(var/obj/machinery/computer/security/C)
+/obj/item/electronics/circuitboard/security/deconstruct(obj/machinery/computer/security/C)
 	if (..(C))
 		network = C.network.Copy()
 
-/obj/item/electronics/circuitboard/security/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/electronics/circuitboard/security/emag_act(remaining_charges, mob/user)
 	if(emagged)
 		user << "Circuit lock is already removed."
 		return
-	user << SPAN_NOTICE("You override the circuit lock and open controls.")
+	user << span_notice("You override the circuit lock and open controls.")
 	emagged = 1
 	locked = 0
 	return 1
@@ -49,16 +49,16 @@
 /obj/item/electronics/circuitboard/security/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/card/id))
 		if(emagged)
-			user << SPAN_WARNING("Circuit lock does not respond.")
+			user << span_warning("Circuit lock does not respond.")
 			return
 		if(check_access(I))
 			locked = !locked
-			user << "<span class='notice'>You [locked ? "" : "un"]lock the circuit controls.</span>"
+			user << span_notice("You [locked ? "" : "un"]lock the circuit controls.")
 		else
-			user << SPAN_WARNING("Access denied.")
+			user << span_warning("Access denied.")
 	else if(istype(I,/obj/item/tool/multitool))
 		if(locked)
-			user << SPAN_WARNING("Circuit controls are locked.")
+			user << span_warning("Circuit controls are locked.")
 			return
 		var/existing_networks = jointext(network,",")
 		var/input = sanitize(input(usr, "Which networks would you like to connect this camera console circuit to? Seperate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))

@@ -48,8 +48,8 @@
 /obj/item/melee/energy/attack_self(mob/living/user as mob)
 	if (active)
 /*		if ((CLUMSY in user.mutations) && prob(50))
-			user.visible_message(SPAN_DANGER("\The [user] accidentally cuts \himself with \the [src]."),\
-			SPAN_DANGER("You accidentally cut yourself with \the [src]."))
+			user.visible_message(span_danger("\The [user] accidentally cuts \himself with \the [src]."),\
+			span_danger("You accidentally cut yourself with \the [src]."))
 			user.take_organ_damage(5,5)	*/
 		deactivate(user)
 	else
@@ -80,12 +80,12 @@
 /obj/item/melee/energy/axe/activate(mob/living/user)
 	icon_state = "axe1"
 	..()
-	to_chat(user, SPAN_NOTICE("\The [src] is now energized."))
+	to_chat(user, span_notice("\The [src] is now energized."))
 
 /obj/item/melee/energy/axe/deactivate(mob/living/user)
 	icon_state = initial(icon_state)
 	..()
-	to_chat(user, SPAN_NOTICE("\The [src] is de-energized. It's just a regular axe now."))
+	to_chat(user, span_notice("\The [src] is de-energized. It's just a regular axe now."))
 
 /*
  * Energy Sword
@@ -111,7 +111,7 @@
 	edge = TRUE
 	var/blade_color
 
-/obj/item/melee/energy/sword/dropped(var/mob/user)
+/obj/item/melee/energy/sword/dropped(mob/user)
 	..()
 	deactivate(user)
 
@@ -140,7 +140,7 @@
 
 /obj/item/melee/energy/sword/activate(mob/living/user)
 	if(!active)
-		to_chat(user, SPAN_NOTICE("\The [src] is now energized."))
+		to_chat(user, span_notice("\The [src] is now energized."))
 	icon_state = "sword[blade_color]"
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -150,15 +150,15 @@
 
 /obj/item/melee/energy/sword/deactivate(mob/living/user)
 	if(active)
-		to_chat(user, SPAN_NOTICE("\The [src] deactivates!"))
+		to_chat(user, span_notice("\The [src] deactivates!"))
 	icon_state = initial(icon_state)
 	..()
 	attack_verb = list()
 	tool_qualities = initial(tool_qualities)
 
-/obj/item/melee/energy/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/energy/sword/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
-		user.visible_message(SPAN_DANGER("\The [user] parries [attack_text] with \the [src]!"))
+		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
@@ -284,9 +284,9 @@
 			affecting = H.get_organ(user.targeted_organ)
 
 		if(affecting)
-			target.visible_message(SPAN_DANGER("[target] has been punched in the [affecting.name] with [src] by [user]!"))
+			target.visible_message(span_danger("[target] has been punched in the [affecting.name] with [src] by [user]!"))
 		else
-			target.visible_message(SPAN_DANGER("[target] has been punched with [src] by [user]!"))
+			target.visible_message(span_danger("[target] has been punched with [src] by [user]!"))
 		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 		target.stun_effect_act(stun, agony, user.targeted_organ, src)
 		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
@@ -295,6 +295,6 @@
 
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
-			H.forcesay(hit_appends)
+			H.forcesay(GLOB.hit_appends)
 	else
 		..()

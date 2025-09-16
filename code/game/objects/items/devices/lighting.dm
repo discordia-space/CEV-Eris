@@ -8,10 +8,10 @@
 	var/brightness_on = 5 //luminosity when on
 	var/turn_on_sound
 
-/obj/item/device/lighting/attack_self(var/mob/living/user)
+/obj/item/device/lighting/attack_self(mob/living/user)
 	turn_on(user)
 
-/obj/item/device/lighting/proc/turn_on(var/mob/living/user)
+/obj/item/device/lighting/proc/turn_on(mob/living/user)
 	if(user && !isturf(user.loc))
 		//To prevent some lighting anomalities.
 		to_chat(user, "You cannot turn the light on while in this [user.loc].")

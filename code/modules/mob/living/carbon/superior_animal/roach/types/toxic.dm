@@ -32,7 +32,7 @@
 		rad = 100
 	)
 
-/mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(atom/A, var/proximity)
+/mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(atom/A, proximity)
 	. = ..()
 	if(prob(25))
 		if(isliving(A))
@@ -41,7 +41,7 @@
 			L.apply_effect(10, IRRADIATE)
 			L.damage_through_armor(damage, TOX, attack_flag = ARMOR_BIO)
 			playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
-			L.visible_message(SPAN_DANGER("\the [src] globs up some glowing bile all over \the [L]!"))
+			L.visible_message(span_danger("\the [src] globs up some glowing bile all over \the [L]!"))
 
 /obj/item/projectile/roach_spit
 	name = "Glowing bile"
@@ -63,3 +63,12 @@
 	if (isroach(target_mob))
 		return FALSE // so these pass through roaches
 	..()
+
+/mob/living/carbon/superior_animal/roach/toxic/joinOvermind(datum/overmind/roachmind/jointhis)
+	jointhis.addRanged(src) // Gestrahlte is Ranged
+	overseer = jointhis
+
+/mob/living/carbon/superior_animal/roach/toxic/leaveOvermind()
+	overseer?.removeRanged(src) // Ranged Gestrahlte
+	overseer?.casualties.Remove(src)
+	overseer = null

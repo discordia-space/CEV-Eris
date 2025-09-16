@@ -29,6 +29,15 @@
 
 #endif //ifdef REFERENCE_TRACKING
 
+// If this is uncommented, will attempt to load and initialize prof.dll/libprof.so by default.
+// Even if it's not defined, you can pass "tracy" via -params in order to try to load it.
+// We do not ship byond-tracy. Build it yourself here: https://github.com/mafemergency/byond-tracy,
+// or the fork which writes profiling data to a file: https://github.com/ParadiseSS13/byond-tracy
+// #define USE_BYOND_TRACY
+
+// If uncommented, will display info about byond-tracy's status in the MC tab.
+// #define MC_TAB_TRACY_INFO
+
 /*
 * Enables debug messages for every single reaction step. This is 1 message per 0.5s for a SINGLE reaction. Useful for tracking down bugs/asking me for help in the main reaction handiler (equilibrium.dm).
 *
@@ -52,18 +61,15 @@
 #endif
 
 //Update this whenever you need to take advantage of more recent byond features
-#define MIN_COMPILER_VERSION 514
-#define MIN_COMPILER_BUILD 1556
-#if (DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD) && !defined(SPACEMAN_DMM)
+#define MIN_COMPILER_VERSION 516
+#define MIN_COMPILER_BUILD 1666
+#if (!defined(OPENDREAM)) && (DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD) && !defined(SPACEMAN_DMM)
 //Don't forget to update this part
-#error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 514.1556 or higher
+#error Your version of BYOND is too out-of-date to compile this project. Go to secure.byond.com/download and update.
+#error You need version 516.1651 or higher
 #endif
-
-#if (DM_VERSION == 514 && DM_BUILD > 1575 && DM_BUILD <= 1577)
-#error Your version of BYOND currently has a crashing issue that will prevent you from running Dream Daemon test servers.
-#error We require developers to test their content, so an inability to test means we cannot allow the compile.
-#error Please consider downgrading to 514.1575 or lower.
+#if defined(OPENDREAM) && (DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD)
+#warn This version of OpenDream is below the minimum required for this project. Some linter errors may be incorrect.
 #endif
 
 //Additional code for the above flags.
@@ -84,33 +90,32 @@
 #define REFERENCE_TRACKING
 #define REFERENCE_TRACKING_DEBUG
 #define FIND_REF_NO_CHECK_TICK
+//Ensures all early assets can actually load early
+#define DO_NOT_DEFER_ASSETS
 #endif
 
 // Keep savefile compatibilty at minimum supported level
-#if DM_VERSION >= 515
+#if DM_VERSION >= 516
 /savefile/byond_version = MIN_COMPILER_VERSION
 #endif
 
 // 515 split call for external libraries into call_ext
-#if DM_VERSION < 515
+#if DM_VERSION < 516
 #define LIBCALL call
 #else
 #define LIBCALL call_ext
 #endif
 
-// So we want to have compile time guarantees these procs exist on local type, unfortunately 515 killed the .proc/procname syntax so we have to use nameof()
-#if DM_VERSION < 515
-/// Call by name proc reference, checks if the proc exists on this type or as a global proc
-#define PROC_REF(X) (.proc/##X)
-/// Call by name proc reference, checks if the proc exists on given type or as a global proc
-#define TYPE_PROC_REF(TYPE, X) (##TYPE.proc/##X)
-/// Call by name proc reference, checks if the proc is existing global proc
-#define GLOBAL_PROC_REF(X) (/proc/##X)
-#else
-/// Call by name proc reference, checks if the proc exists on this type or as a global proc
+/// Call by name proc references, checks if the proc exists on either this type or as a global proc.
 #define PROC_REF(X) (nameof(.proc/##X))
-/// Call by name proc reference, checks if the proc exists on given type or as a global proc
+/// Call by name verb references, checks if the verb exists on either this type or as a global verb.
+#define VERB_REF(X) (nameof(.verb/##X))
+
+/// Call by name proc reference, checks if the proc exists on either the given type or as a global proc
 #define TYPE_PROC_REF(TYPE, X) (nameof(##TYPE.proc/##X))
-/// Call by name proc reference, checks if the proc is existing global proc
+/// Call by name verb reference, checks if the verb exists on either the given type or as a global verb
+#define TYPE_VERB_REF(TYPE, X) (nameof(##TYPE.verb/##X))
+
+/// Call by name proc reference, checks if the proc is an existing global proc
 #define GLOBAL_PROC_REF(X) (/proc/##X)
-#endif
+

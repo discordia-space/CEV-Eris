@@ -98,7 +98,7 @@ var/list/lost_cruciforms = list()
 	if(get_active_mutation(wearer, MUTATION_GODBLOOD))
 		spawn(2 MINUTES)
 		for(var/mob/living/carbon/human/H in (disciples - wearer))
-			to_chat(H, SPAN_WARNING("A distant scream pierced your mind. You feel that a vile mutant sneaked among the faithful."))
+			to_chat(H, span_warning("A distant scream pierced your mind. You feel that a vile mutant sneaked among the faithful."))
 			playsound(wearer.loc, 'sound/hallucinations/veryfar_noise.ogg', 55, 1)
 	else if(wearer.get_species() != SPECIES_HUMAN || is_carrion(wearer))
 		if(wearer.get_species() == SPECIES_MONKEY)
@@ -123,12 +123,12 @@ var/list/lost_cruciforms = list()
 /obj/item/implant/core_implant/cruciform/examine(mob/user, extra_description = "")
 	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
 	if(data && data.mind) // if there is cloning data and it has a mind
-		extra_description += SPAN_NOTICE("This cruciform has been activated.")
+		extra_description += span_notice("This cruciform has been activated.")
 		if(isghost(user) || (user in disciples))
 			if(data.mind.name) // if there is a mind and it also has a name
-				extra_description += SPAN_NOTICE("It contains <b>[data.mind.name]</b>'s soul.")
+				extra_description += span_notice("It contains <b>[data.mind.name]</b>'s soul.")
 			else
-				extra_description += SPAN_DANGER("Something terrible has happened with this soul. Please notify somebody in charge.")
+				extra_description += span_danger("Something terrible has happened with this soul. Please notify somebody in charge.")
 	else // no cloning data
 		extra_description += "This cruciform has not yet been activated."
 	..(user, extra_description)
@@ -184,8 +184,8 @@ var/list/lost_cruciforms = list()
 
 			if(R.owner != wearer)
 				continue
-			wearer.visible_message(SPAN_DANGER("[wearer]'s [R.name] tears off."),
-			SPAN_DANGER("Your [R.name] tears off."))
+			wearer.visible_message(span_danger("[wearer]'s [R.name] tears off."),
+			span_danger("Your [R.name] tears off."))
 			R.droplimb()
 		if(istype(O, /obj/item/implant))
 			if(O == src)
@@ -195,8 +195,8 @@ var/list/lost_cruciforms = list()
 				continue
 			if(R.cruciform_resist)
 				continue
-			wearer.visible_message(SPAN_DANGER("[R.name] rips through [wearer]'s [R.part]."),\
-			SPAN_DANGER("[R.name] rips through your [R.part]."))
+			wearer.visible_message(span_danger("[R.name] rips through [wearer]'s [R.part]."),\
+			span_danger("[R.name] rips through your [R.part]."))
 			R.part.take_damage(rand(20,40))
 			R.uninstall()
 			R.malfunction = MALFUNCTION_PERMANENT
@@ -212,7 +212,7 @@ var/list/lost_cruciforms = list()
 				I.take_damage(rand(6,12), BRUTE)
 				if(I.parent)
 					I.parent.take_damage(rand(2,5))
-				wearer.visible_message(SPAN_NOTICE("<b>\The [AM]</b> rips through \the [wearer]'s flesh."), SPAN_NOTICE("<b>\The [AM]</b> rips through your flesh. Your [I.name] hurts."))
+				wearer.visible_message(span_danger("<b>\The [AM]</b> rips through \the [wearer]'s flesh."), span_danger("<b>\The [AM]</b> rips through your flesh. Your [I.name] hurts!"))
 	if(ishuman(wearer))
 		var/mob/living/carbon/human/H = wearer
 		H.update_implants()

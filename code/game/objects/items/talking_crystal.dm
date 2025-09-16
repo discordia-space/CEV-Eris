@@ -29,7 +29,7 @@
 	else if(heard_words.len >= 1 && world.time > last_talk_time + talk_interval && prob(talk_chance))
 		SaySomething()
 
-/datum/talking_atom/proc/catchMessage(var/msg, var/mob/source)
+/datum/talking_atom/proc/catchMessage(msg, mob/source)
 	if(!holder_atom)
 		return
 
@@ -61,7 +61,7 @@
 		var/list/options = list("[holder_atom] seems to be listening intently to [source]...",\
 			"[holder_atom] seems to be focusing on [source]...",\
 			"[holder_atom] seems to turn it's attention to [source]...")
-		holder_atom.loc.visible_message("\blue \icon[holder_atom] [pick(options)]")
+		holder_atom.loc.visible_message(span_blue("[icon2html(holder_atom, viewers(holder_atom))] [pick(options)]"))
 
 	if(prob(20))
 		spawn(2)
@@ -75,7 +75,7 @@
 		for(var/X in d)
 			to_chat(world, "[X]")*/
 
-/datum/talking_atom/proc/SaySomething(var/word = null)
+/datum/talking_atom/proc/SaySomething(word = null)
 	if(!holder_atom)
 		return
 
@@ -115,7 +115,7 @@
 		else
 			msg+="!"
 
-	var/list/listening = viewers(holder_atom)
+	var/list/listening = hearers(get_turf(holder_atom))
 	for(var/mob/M in SSmobs.mob_list)
 		if (!M.client)
 			continue //skip monkeys and leavers
@@ -124,6 +124,7 @@
 		if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 			listening|=M
 
+	var/htmlicon = icon2html(holder_atom, listening)
 	for(var/mob/M in listening)
-		to_chat(M, "\icon[holder_atom] <b>[holder_atom]</b> reverberates, \blue\"[msg]\"")
+		to_chat(M, "[] <b>[htmlicon]</b> reverberates, \blue\"[msg]\"")
 	last_talk_time = world.time

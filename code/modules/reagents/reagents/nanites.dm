@@ -20,11 +20,11 @@
 	if(B && B.volume)
 		B.remove_self(volume * NANOBOTS_BLOOD_DRAIN)
 
-/datum/reagent/nanites/proc/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/proc/will_occur(mob/living/carbon/M, alien, location)
 	if(location == CHEM_BLOOD)
 		return TRUE
 
-/datum/reagent/nanites/consumed_amount(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/consumed_amount(mob/living/carbon/M, alien, location)
 	if(will_occur(M, alien, location))
 		return ..()
 	else
@@ -48,7 +48,7 @@
 	heating_point = null
 	heating_products = null
 
-/datum/reagent/nanites/capped/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/capped/will_occur(mob/living/carbon/M, alien, location)
 	return FALSE
 
 /datum/reagent/nanites/dead
@@ -64,7 +64,7 @@
 /datum/reagent/nanites/dead/eat_blood(mob/living/carbon/M)
 	return
 
-/datum/reagent/nanites/dead/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/dead/will_occur(mob/living/carbon/M, alien, location)
 	return TRUE
 
 /datum/reagent/nanites/dead/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
@@ -78,7 +78,7 @@
 	heating_point = null
 	heating_products = null
 
-/datum/reagent/nanites/uncapped/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/uncapped/will_occur(mob/living/carbon/M, alien, location)
 	if(type == /datum/reagent/nanites/uncapped) // only derived classes are consumed
 		return FALSE
 	return TRUE
@@ -88,7 +88,7 @@
 	id = "arad nanites"
 	description = "Microscopic construction robots programmed to aid body with radiation effects."
 
-/datum/reagent/nanites/arad/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/arad/will_occur(mob/living/carbon/M, alien, location)
 	if(..() && M.radiation)
 		return TRUE
 
@@ -104,7 +104,7 @@
 	description = "Microscopic construction robots programmed to repair implants."
 
 
-/datum/reagent/nanites/implant_medics/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/implant_medics/will_occur(mob/living/carbon/M, alien, location)
 	if(..() && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		constant_metabolism = FALSE
@@ -143,7 +143,7 @@
 	id = "nantidotes"
 	description = "Microscopic construction robots programmed to purge bloodstream from any foreign bodies, except themselves."
 
-/datum/reagent/nanites/nantidotes/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/nantidotes/will_occur(mob/living/carbon/M, alien, location)
 	if(..() && M.bloodstr)
 		for(var/current in M.bloodstr.reagent_list)
 			if(!istype(current, /datum/reagent/nanites))
@@ -162,14 +162,14 @@
 	id = "nanosymbiotes"
 	description = "Microscopic construction robots programmed to heal body cells."
 
-/datum/reagent/nanites/nanosymbiotes/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/nanosymbiotes/will_occur(mob/living/carbon/M, alien, location)
 	if(..() && (M.getBruteLoss() || M.getFireLoss() || M.getOxyLoss()))
 		return TRUE
 
 /datum/reagent/nanites/nanosymbiotes/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(..())
 		M.add_chemical_effect(CE_ONCOCIDAL, 1)
-		M.adjustOxyLoss(-(1 + (M.getOxyLoss() * 0.03)) * effect_multiplier) 
+		M.adjustOxyLoss(-(1 + (M.getOxyLoss() * 0.03)) * effect_multiplier)
 		M.adjustFireLoss(-(1 + (M.getFireLoss() * 0.03)) * effect_multiplier)
 		M.adjustBruteLoss(-(1 + (M.getBruteLoss() * 0.03)) * effect_multiplier)
 
@@ -178,7 +178,7 @@
 	id = "oxyrush"
 	description = "Microscopic construction robots programmed to keep oxygenation level stable no matter what."
 
-/datum/reagent/nanites/oxyrush/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/oxyrush/will_occur(mob/living/carbon/M, alien, location)
 	if(..() && M.getOxyLoss())
 		return TRUE
 
@@ -192,7 +192,7 @@
 	id = "trauma_control_system"
 	description = "Microscopic construction robots programmed to restore vitality of damaged organs."
 
-/datum/reagent/nanites/trauma_control_system/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/trauma_control_system/will_occur(mob/living/carbon/M, alien, location)
 	if(..() && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/obj/item/organ/organ in H.organs) //Grab the organ holding the implant.
@@ -213,7 +213,7 @@
 	id = "nanopurgers"
 	description = "Microscopic construction robots programmed to purge bloodstream from any nanobots."
 
-/datum/reagent/nanites/purgers/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/purgers/will_occur(mob/living/carbon/M, alien, location)
 	if(..() && M.bloodstr)
 		for(var/current in M.bloodstr.reagent_list)
 			if(istype(current, /datum/reagent/nanites) && !istype(current, /datum/reagent/nanites/purgers))
@@ -295,7 +295,7 @@
 	id = "dont use these either"
 	constant_metabolism = TRUE
 
-/datum/reagent/nanites/fbp/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/fbp/will_occur(mob/living/carbon/M, alien, location)
 	if(location == CHEM_INGEST)
 		return TRUE
 

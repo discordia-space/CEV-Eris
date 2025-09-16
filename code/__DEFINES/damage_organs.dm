@@ -176,6 +176,7 @@
 #define IWOUND_PROGRESS_DEATH	(1<<2)
 #define IWOUND_SPREAD			(1<<3)
 #define IWOUND_HALLUCINATE		(1<<4)
+#define IWOUND_AGGRAVATION      (1<<5)
 
 #define IWOUND_INSIGNIFICANT_DAMAGE 0.05
 #define IWOUND_LIGHT_DAMAGE 0.1
@@ -187,6 +188,7 @@
 #define IWOUND_3_MINUTES 90
 #define IWOUND_4_MINUTES 120
 #define IWOUND_5_MINUTES 150
+#define IWOUND_HALF_MINUTE 15
 
 // Organ generation
 #define ORGAN_HAS_BONES			(1<<0)

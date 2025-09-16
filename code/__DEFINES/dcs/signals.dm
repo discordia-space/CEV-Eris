@@ -19,12 +19,17 @@
 #define COMSIG_COMPONENT_REMOVING "component_removing"
 /// before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
 /// you should only be using this if you want to block deletion
-/// that's the only functional difference between it and COMSIG_PARENT_QDELETING, outside setting QDELETING to detect
-#define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"
+/// that's the only functional difference between it and COMSIG_QDELETING, outside setting QDELETING to detect
+#define COMSIG_PREQDELETED "parent_preqdeleted"
 /// just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
-#define COMSIG_PARENT_QDELETING "parent_qdeleting"
+#define COMSIG_QDELETING "parent_qdeleting"
 /// after a datum's Destroy() is called: (force, qdel_hint), at this point none of the other components chose to interrupt qdel and Destroy has been called
-#define COMSIG_PARENT_QDELETED "parent_qdeleted"
+#define COMSIG_QDELETED "parent_qdeleted"
+/// Called whenever an admin manually deletes an object, via the "Delete" verb, before qdel() is called: (client/deleting_admin)
+#define COMSIG_ADMIN_DELETING "parent_admin_deleting"
+
+/// called after a successful var edit somewhere in the world: (list/args)
+#define COMSIG_GLOB_VAR_EDIT "!var_edit"
 
 #define COMSIG_SHUTTLE_SUPPLY "shuttle_supply"  //form sell()
 #define COMSIG_TRADE_BEACON "trade_beacon"
@@ -34,6 +39,27 @@
 
 #define COMSIG_NULL_TARGET "null_target"		// Used to null references created by targeting logic (mob targeting)
 #define COMSIG_NULL_SECONDARY_TARGET "null_secondary_target"
+
+///From base of datum/controller/subsystem/Initialize
+#define COMSIG_SUBSYSTEM_POST_INITIALIZE "subsystem_post_initialize"
+
+///Called when the ticker enters the pre-game phase
+#define COMSIG_TICKER_ENTER_PREGAME "comsig_ticker_enter_pregame"
+
+///Called when the ticker sets up the game for start
+#define COMSIG_TICKER_ENTER_SETTING_UP "comsig_ticker_enter_setting_up"
+
+///Called when the ticker fails to set up the game for start
+#define COMSIG_TICKER_ERROR_SETTING_UP "comsig_ticker_error_setting_up"
+
+/// Called when the round has started, but before GAME_STATE_PLAYING.
+#define COMSIG_TICKER_ROUND_STARTING "comsig_ticker_round_starting"
+
+// Point of interest signals
+/// Sent from base of /datum/controller/subsystem/points_of_interest/proc/on_poi_element_added : (atom/new_poi)
+#define COMSIG_ADDED_POINT_OF_INTEREST "added_point_of_interest"
+/// Sent from base of /datum/controller/subsystem/points_of_interest/proc/on_poi_element_removed : (atom/old_poi)
+#define COMSIG_REMOVED_POINT_OF_INTEREST "removed_point_of_interest"
 
 /// generic topic handler (usr, href_list)
 #define COMSIG_TOPIC "handle_topic"
@@ -54,6 +80,8 @@
 #define COMSIG_ATOM_UNFASTEN "atom_unfasten" // set_anchored()
 // Whenever we are put into a container of any sort , storage , closets , pockets. (atom/true_parent)
 #define COMSIG_ATOM_CONTAINERED "atom_containered"
+///When the transform or an atom is varedited through vv topic.
+#define COMSIG_ATOM_VV_MODIFY_TRANSFORM "atom_vv_modify_transform"
 
 // /area signals
 #define COMSIG_AREA_SANCTIFY "sanctify_area"
@@ -75,9 +103,13 @@
 #define COMSIG_MOB_LOGIN "mob_login"							//from mob/Login()
 #define COMSIG_MOB_DEATH "mob_death"							//from mob/death()
 #define COMSIG_MOB_INITIALIZED "mob_initialized"
+///from base of /mob/mind_initialize
+#define COMSIG_MOB_MIND_INITIALIZED "mob_mind_inited"
 #define COMSIG_SHIFTCLICK "shiftclick" // used for ai_like_control component
 #define COMSIG_CTRLCLICK "ctrlclick" // used for ai_like_control component
 #define COMSIG_ALTCLICK "altclick" // used for ai_like_control component
+/// Sent from /atom/movable/proc/say_quote() after say verb is chosen and before spans are applied.
+#define COMSIG_MOVABLE_SAY_QUOTE "movable_say_quote"
 
 // /mob/living signals
 #define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"			 //mob/living/proc/stun_effect_act()

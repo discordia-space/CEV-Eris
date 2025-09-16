@@ -79,12 +79,12 @@
 	return null
 
 
-proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
+/proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	// Old surgery steps all require tools
 	if(!tool)
 		return FALSE
 
-	var/zone = user.targeted_organ
+	var/datum/zone = user.targeted_organ
 
 	var/datum/old_surgery_step/selectedStep = null
 	var/list/possibleSteps = list()
@@ -132,7 +132,7 @@ proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			tool.handle_failure(user, M, required_stat = selectedStep.required_stat, required_quality = selectedStep.required_tool_quality)
 			selectedStep.fail_step(user, M, zone, tool)		//malpractice~
 		else
-			to_chat(user, SPAN_WARNING("You must remain close to your patient to conduct surgery."))
+			to_chat(user, span_warning("You must remain close to your patient to conduct surgery."))
 
 		if (ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -141,7 +141,7 @@ proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 	return 0
 
-proc/sort_surgeries()
+/proc/sort_surgeries()
 	var/gap = GLOB.old_surgery_steps.len
 	var/swapped = 1
 	while (gap > 1 || swapped)

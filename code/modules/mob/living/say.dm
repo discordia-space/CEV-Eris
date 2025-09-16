@@ -37,7 +37,7 @@ var/list/department_radio_keys = list(
 
 
 var/list/channel_to_radio_key = new
-/proc/get_radio_key_from_channel(var/channel)
+/proc/get_radio_key_from_channel(channel)
 	var/key = channel_to_radio_key[channel]
 	if(!key)
 		for(var/radio_key in department_radio_keys)
@@ -70,13 +70,10 @@ var/list/channel_to_radio_key = new
 		if(dongle.translate_binary)
 			return TRUE
 
-/mob/living/proc/get_default_language()
-	return default_language
-
 /mob/living/proc/is_muzzled()
 	return 0
 
-/mob/living/proc/handle_speech_problems(var/message, var/verb)
+/mob/living/proc/handle_speech_problems(message, verb)
 	var/list/returns[3]
 	var/speech_problem_flag = 0
 
@@ -100,9 +97,9 @@ var/list/channel_to_radio_key = new
 		if(BS)
 			message = BS.screw_up_the_text(message)
 
-	returns[1] = message
-	returns[2] = verb
-	returns[3] = speech_problem_flag
+	returns[SPEECHPROBLEM_R_MESSAGE] = message
+	returns[SPEECHPROBLEM_R_VERB] = verb
+	returns[SPEECHPROBLEM_R_FLAG] = speech_problem_flag
 	return returns
 
 /mob/living/proc/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name, speech_volume)
@@ -118,32 +115,28 @@ var/list/channel_to_radio_key = new
 	returns[2] = null
 	return returns
 
-/mob/living/proc/get_speech_ending(verb, var/ending)
+/mob/living/proc/get_speech_ending(verb, ending)
 	if(ending=="!")
-		return pick("exclaims", "shouts", "yells")
+		return pick(verb_exclaim, verb_yell)
 	else if(ending=="?")
-		return "asks"
+		return verb_ask
 
 	return verb
 
 // returns message
-/mob/living/proc/getSpeechVolume(var/message)
+/mob/living/proc/getSpeechVolume(message)
 	var/volume = chem_effects[CE_SPEECH_VOLUME] ? round(chem_effects[CE_SPEECH_VOLUME]) : 2	// 2 is default text size in byond chat
 	var/ending = copytext(message, length(message))
 	if(ending == "!")
 		volume ++
 	return volume
 
-/mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="")
+/mob/living/say(message, datum/language/speaking = null, verb = src.verb_say, alt_name="")
 	if(client)
 		if(client.prefs.muted&MUTE_IC)
-			to_chat(src, "\red You cannot speak in IC (Muted).")
+			to_chat(src, span_red("You cannot speak in IC (Muted)."))
 			return
 
-	if(stat)
-		if(stat == DEAD)
-			return say_dead(message)
-		return
 
 	if(GLOB.in_character_filter.len)
 		if(findtext(message, config.ic_filter_regex))
@@ -160,15 +153,27 @@ var/list/channel_to_radio_key = new
 
 
 			warning_message = trim(warning_message)
-			to_chat(src, SPAN_WARNING("[warning_message]&quot;"))
-			//log_and_message_admins("[src] just tried to say cringe: [cringe]", src) //Uncomment this if you want to keep tabs on who's saying cringe words.
+			to_chat(src, span_warning("[warning_message]&quot;"))
+			log_and_message_admins("[src] just tried to say cringe: [cringe]", src) //Uncomment this if you want to keep tabs on who's saying cringe words.
+			return
+
+	switch(stat)
+		// if(CRIT)
+		// 	message_mods[WHISPER_MODE] = MODE_WHISPER
+		if(UNCONSCIOUS)
+			return
+		// if(HARDCRIT)
+		// 	if(!message_mods[WHISPER_MODE])
+		// 		return
+		if(DEAD)
+			say_dead(message)
 			return
 
 //	if(HUSK in mutations)
 //		return
 
 	if(is_muzzled())
-		to_chat(src, SPAN_DANGER("You're muzzled and cannot speak!"))
+		to_chat(src, span_danger("You're muzzled and cannot speak!"))
 		return
 
 	var/prefix = copytext(message,1,2)
@@ -176,6 +181,8 @@ var/list/channel_to_radio_key = new
 		return emote(copytext(message,2))
 	if(prefix == get_prefix_key(/decl/prefix/visible_emote))
 		return custom_emote(1, copytext(message,2))
+	if(prefix == get_prefix_key(/decl/prefix/whisper))
+		return whisper(copytext(message,2))
 
 	//parse the radio code and consume it
 	var/message_mode = parse_message_mode(message, "headset")
@@ -184,6 +191,16 @@ var/list/channel_to_radio_key = new
 			message = copytext(message,2)//parse ;
 		else
 			message = copytext_char(message,3)//parse :s
+
+	// if(message_mods == MODE_SING)
+	// 	var/randomnote = pick("\u2669", "\u266A", "\u266B")
+	// 	message = "[randomnote] [message] [randomnote]"
+	// 	spans |= SPAN_SINGING
+
+	// if(message_mode[WHISPER_MODE])
+		// radios don't pick up whispers very well
+		// radio_message = stars(radio_message)
+		// spans |= SPAN_ITALICS
 
 	message = trim_left(message)
 
@@ -209,8 +226,8 @@ var/list/channel_to_radio_key = new
 	if(!(speaking && speaking.flags&NO_STUTTER))
 
 		var/list/handle_s = handle_speech_problems(message, verb)
-		message = handle_s[1]
-		verb = handle_s[2]
+		message = handle_s[SPEECHPROBLEM_R_MESSAGE]
+		verb = handle_s[SPEECHPROBLEM_R_VERB]
 
 	if(!message)
 		return 0
@@ -235,7 +252,7 @@ var/list/channel_to_radio_key = new
 			message_range = speaking.get_talkinto_msg_range(message)
 		var/msg
 		if(!speaking || !(speaking.flags&NO_TALK_MSG))
-			msg = SPAN_NOTICE("\The [src] talks into \the [used_radios[1]]")
+			msg = span_notice("\The [src] talks into \the [used_radios[1]]")
 		for(var/mob/living/M in hearers(5, src))
 			if((M != src) && msg)
 				M.show_message(msg)
@@ -248,7 +265,7 @@ var/list/channel_to_radio_key = new
 	if(speaking)
 		if(speaking.flags&(NONVERBAL|SIGNLANG))
 			if(prob(30))
-				src.custom_emote(1, "[pick(speaking.signlang_verb)].")
+				src.custom_emote(1, "[pick("gestures", "signs", "signals", "motions")].")
 
 	var/list/listening = list()
 	var/list/listening_obj = list()
@@ -267,25 +284,30 @@ var/list/channel_to_radio_key = new
 			sound_vol *= 0.5 //muffle the sound a bit, so it's like we're actually talking through contact
 		var/falloff = (message_range + round(3 * (chem_effects[CE_SPEECH_VOLUME] ? chem_effects[CE_SPEECH_VOLUME] : 1))) //A wider radius where you're heard, but only quietly. This means you can hear people offscreen.
 		//DO NOT FUCKING CHANGE THIS TO GET_OBJ_OR_MOB_AND_BULLSHIT() -- Hugs and Kisses ~Ccomp
-		var/list/hear = hear(message_range, T)
-		var/list/hear_falloff = hear(falloff, T)
 
-		for(var/X in SSmobs.mob_list | SShumans.mob_list)
-			if(!ismob(X))
-				continue
-			var/mob/M = X
+		if(speaking && ishuman(src) && !(speaking.flags & NONVERBAL || speaking.flags & SIGNLANG))
+			var/sound/speak_sound
+			var/ending = copytext_char(message, -1)
+			if(ending == "?")
+				speak_sound = voice_type2sound[voice_type]["?"]
+			else if(ending == "!")
+				speak_sound = voice_type2sound[voice_type]["!"]
+			else
+				speak_sound = voice_type2sound[voice_type][voice_type]
+
+			playsound(src, speak_sound, 400, TRUE, extrarange = world.view, falloff = 0, use_pressure = FALSE, ignore_walls = FALSE, is_ambiance = FALSE /*mixer_channel = CHANNEL_MOB_SOUNDS*/)
+
+		for(var/mob/M as anything in getMobsInRangeChunked(T, max(message_range, falloff), FALSE, TRUE) | GLOB.player_ghost_list)
 			if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				listening |= M
 				continue
-			if(M.locs.len && (M.locs[1] in hear))
+			var/turf/listenerTurf = get_turf(M)
+			if(DIST_EUCLIDIAN(T.x , T.y, listenerTurf.x, listenerTurf.y) <= message_range)
 				listening |= M
-				continue //To avoid seeing BOTH normal message and quiet message
-			else if(M.locs.len && (M.locs[1] in hear_falloff))
+			else
 				listening_falloff |= M
 
-			for(var/obj in GLOB.hearing_objects)
-				if(get_turf(obj) in hear)
-					listening_obj |= obj
+		listening_obj |= getHearersInRangeChunked(T, message_range)
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")
@@ -304,8 +326,8 @@ var/list/channel_to_radio_key = new
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol, 1)
 
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(animate_speechbubble), speech_bubble, speech_bubble_recipients, 30)
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, animate_chat), message, speaking, italics, speech_bubble_recipients, 40, verb)
-	if(config.tts_enabled && !message_mode && (!client || !BITTEST(client.prefs.muted, MUTE_TTS)) && (tts_seed || ishuman(src)))
+	// INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, animate_chat), message, speaking, italics, speech_bubble_recipients, 40, verb)
+	if(CONFIG_GET(flag/tts_enabled) && !message_mode && (!client || !BITTEST(client.prefs.muted, MUTE_TTS)) && (tts_seed || ishuman(src)))
 		//TO DO: Remove need for that damn copypasta
 		var/seed = tts_seed
 		if(istype(back, /obj/item/rig))
@@ -339,21 +361,21 @@ var/list/channel_to_radio_key = new
 	for(var/client/C in show_to)
 		C.images += I
 	animate(I, transform = 0, alpha = 255, time = 5, easing = ELASTIC_EASING)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_speechbubble), I), duration-5)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_speechbubble), I), duration-3)
 
 /proc/fade_speechbubble(image/I)
-	animate(I, alpha = 0, time = 5, easing = EASE_IN)
+	animate(I, alpha = 0, time = 1, easing = EASE_IN)
 
 
-/mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
-	for (var/mob/O in viewers(src, null))
+/mob/living/proc/say_signlang(message, verb="gestures", datum/language/language)
+	for (var/mob/O in viewers(get_turf(src)))
 		O.hear_signlang(message, verb, language, src)
 	return 1
 
 /obj/effect/speech_bubble
 	var/mob/parent
 
-/mob/living/proc/GetVoice()
+/mob/living/GetVoice()
 	return name
 
 /mob/living/hear_say(message, verb = "says", datum/language/language = null, alt_name = "", italics = FALSE,\
@@ -365,13 +387,13 @@ var/list/channel_to_radio_key = new
 		// INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
 		if(!language || !(language.flags & INNATE))
 			if(speaker == src)
-				to_chat(src, SPAN_WARNING("You cannot hear yourself speak!"))
+				to_chat(src, span_warning("You cannot hear yourself speak!"))
 			else
 				var/speaker_name = speaker.name
 				if(ishuman(speaker))
 					var/mob/living/carbon/human/H = speaker
 					speaker_name = H.rank_prefix_name(speaker_name)
-				to_chat(src,"<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him.")
+				to_chat(src,"[span_name("[speaker_name]")][alt_name] talks but you cannot hear \him.")
 		return
 */
 	//make sure the air can transmit speech - hearer's side
@@ -417,7 +439,7 @@ var/list/channel_to_radio_key = new
 /*
 	if(sdisabilities&DEAF || ear_deaf)
 		if(prob(20))
-			to_chat(src, SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!"))
+			to_chat(src, span_warning("You feel your headset vibrate but can hear nothing from it!"))
 		return
 */
 	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping
@@ -450,7 +472,7 @@ var/list/channel_to_radio_key = new
 
 	..()
 
-/mob/living/proc/hear_sleep(var/message)
+/mob/living/proc/hear_sleep(message)
 	var/heard = ""
 	if(prob(15))
 		var/list/punctuation = list(",", "!", ".", ";", "?")
