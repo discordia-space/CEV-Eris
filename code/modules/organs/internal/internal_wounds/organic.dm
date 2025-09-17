@@ -87,7 +87,8 @@
 /datum/internal_wound/organic/burn
 	treatments_item = list(/obj/item/stack/medical/advanced/ointment = 2)
 	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
-	treatments_chem = list(CE_STABLE = 1)	// Inaprov will only keep it from killing you
+	firstaid_type = list(WE_SALVE = WOUND_STABLE) //salving won't cure it, but it will stabilize it.
+	stabilizers_chem = list(CE_STABLE = 1)	// Inaprov will only keep it from killing you
 	scar = /datum/internal_wound/organic/necrosis_start
 	severity = 0
 	severity_max = 5
@@ -113,6 +114,8 @@
 
 /datum/internal_wound/organic/necrosis_start
 	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
+	firstaid_type = list(CE_STABLE = WOUND_STABLE)
+	stabilizers_chem = list(CE_STABLE, CE_ANTIBIOTIC)
 	severity = 0
 	severity_max = 1
 	next_wound = /datum/internal_wound/organic/necrosis
@@ -251,6 +254,7 @@
 /datum/internal_wound/organic/swelling
 	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_ANTIBIOTIC = 5) // Spaceacillin
+	firstaid_type = list(WE_SALVE = WOUND_RECOVER)
 	severity = 0
 	severity_max = 3
 	next_wound = /datum/internal_wound/organic/infection
