@@ -474,6 +474,7 @@
 	if(IW in wounddatums)
 		var/datum/internal_wound/old_wound = wounddatums[IW]
 		old_wound.progress()	// Getting a new wound of the same type as an existing wound will progress it
+		old_wound.characteristic_flag &= ~(IWOUND_STASIS) // and knock it out of stasis
 	else
 		var/datum/internal_wound/new_wound = new IW()
 		if(wound_name)
