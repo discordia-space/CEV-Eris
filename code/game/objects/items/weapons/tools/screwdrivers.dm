@@ -65,9 +65,9 @@
 	name = "One Star combi driver"
 	desc = "A One Star combi driver. Does better than the standard combi drivers on the market, but has less slots for tool mods."
 	icon_state = "one_star_combidriver"
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2)
+	matter = list(MATERIAL_PLASTEEL = 6, MATERIAL_PLATINUM = 3)
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 60, QUALITY_BOLT_TURNING = 60, QUALITY_DRILLING = 25)
-	origin_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2, TECH_ONESTAR = 1)
 	degradation = 0.6
 	workspeed = 1.7
 	use_power_cost = 0.3
