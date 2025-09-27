@@ -177,7 +177,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			return 1
 	return 0
 
-/proc/sign(x)
+/proc/sign_r(x)
 	return x!=0?x/abs(x):0
 
 /proc/getline(atom/M, atom/N)//Ultra-Fast Bresenham Line-Drawing Algorithm
@@ -188,8 +188,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/dy=N.y-py
 	var/dxabs=abs(dx)//Absolute value of x distance
 	var/dyabs=abs(dy)
-	var/sdx=sign(dx)	//Sign of x distance (+ or -)
-	var/sdy=sign(dy)
+	var/sdx=sign_r(dx)	//Sign of x distance (+ or -)
+	var/sdy=sign_r(dy)
 	var/x=dxabs>>1	//Counters for steps taken, setting to distance/2
 	var/y=dyabs>>1	//Bit-shifting makes me l33t.  It also makes getline() unnessecarrily fast.
 	var/j			//Generic integer for counting
@@ -276,26 +276,21 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		mind.name = newname
 
 	if(oldname)
-		//update the datacore records! This is goig to be a bit costly.
-		for(var/list/L in list(data_core.general, data_core.medical, data_core.security, data_core.locked))
-			for(var/datum/data/record/R in L)
-				if(R.fields["name"] == oldname)
-					R.fields["name"] = newname
-					break
+		for(var/datum/computer_file/report/crew_record/R in GLOB.all_crew_records)
+			if(R.get_name() == oldname)
+				R.set_name(newname)
 
 		//update our pda and id if we have them on our person
-		var/list/searching = GetAllContents(searchDepth = 3)
-		var/search_id = 1
-		var/search_pda = 1
-
-		for(var/A in searching)
-			if( search_id && istype(A,/obj/item/card/id) )
+		for(var/obj/A in GetAllContents(searchDepth = 3))
+			if(istype(A,/obj/item/card/id))
 				var/obj/item/card/id/ID = A
 				if(ID.registered_name == oldname)
 					ID.registered_name = newname
 					ID.name = "[newname]'s ID Card ([ID.assignment])"
-					if(!search_pda)	break
-					search_id = 0
+					if(istype(A.loc, /obj/item/modular_computer))
+						var/obj/item/modular_computer/tolabel = A.loc
+						tolabel.update_label()
+					break
 	return 1
 
 
@@ -648,39 +643,40 @@ proc/GaussRandRound(var/sigma, var/roundto)
 	if(A.vars.Find(lowertext(varname))) return 1
 	else return 0
 
-//Returns: all the areas in the world, sorted.
-/proc/return_sorted_areas()
-	return sortNames(GLOB.map_areas)
-
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all areas of that type in the world.
-/proc/get_areas(var/areatype)
-	if(!areatype) return null
-	if(istext(areatype)) areatype = text2path(areatype)
+/proc/get_areas(areatype)
+	if(!areatype)
+		return
+	if(istext(areatype))
+		areatype = text2path(areatype)
 	if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
 
-	var/list/areas = new/list()
-	for(var/area/N in GLOB.map_areas)
-		if(istype(N, areatype)) areas += N
-	return areas
+	. = list()
+	for(var/area/area as anything in SSmapping.all_areas)
+		if(istype(area, areatype))
+			. += area
+
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all atoms	(objs, turfs, mobs) in areas of that type of that type in the world.
-/proc/get_area_all_atoms(var/areatype)
-	if(!areatype) return null
-	if(istext(areatype)) areatype = text2path(areatype)
+/proc/get_area_all_atoms(areatype)
+	if(!areatype)
+		return
+	if(istext(areatype))
+		areatype = text2path(areatype)
 	if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
 
-	var/list/atoms = new/list()
-	for(var/area/N in GLOB.map_areas)
-		if(istype(N, areatype))
-			for(var/atom/A in N)
-				atoms += A
-	return atoms
+	. = list()
+	for(var/area/area in SSmapping.all_areas)
+		if(istype(area, areatype))
+			for(var/atom/atom in area)
+				. += atom
+
 
 /datum/coords //Simple datum for storing coordinates.
 	var/x_pos
@@ -701,10 +697,6 @@ proc/GaussRandRound(var/sigma, var/roundto)
 	var/displayed_x = "[x_pos]"
 	var/displayed_y = "[y_pos]"
 	var/displayed_z = "[z_pos]"
-
-	var/obj/map_data/M = GLOB.maps_data.all_levels[z_pos]
-	if(M.custom_z_names)
-		return "[displayed_x]:[displayed_y], [M.custom_z_name(z_pos)][displayed_area]"
 
 	return "[displayed_x]:[displayed_y]:[displayed_z][displayed_area]"
 

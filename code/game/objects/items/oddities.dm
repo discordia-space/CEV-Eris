@@ -567,8 +567,10 @@
 
 /hook/roundstart/proc/place_pendant()
 	var/obj/landmark/storyevent/potential_unique_oddity_spawn/L = pick_landmark(/obj/landmark/storyevent/potential_unique_oddity_spawn)
-	new /obj/item/oddity/pendant(L.get_loc())
-	return TRUE
+	if(L)
+		new /obj/item/oddity/pendant(L.get_loc())
+		return TRUE
+	return FALSE
 
 /obj/item/golden_leaf
 	name = "golden leaf"

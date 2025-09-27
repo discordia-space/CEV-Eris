@@ -9,13 +9,11 @@
 
 	var/datum/computer/file/embedded_program/docking/multi/docking_program
 
-/obj/machinery/embedded_controller/radio/docking_port_multi/New()
-	. = ..()
-	docking_program = new/datum/computer/file/embedded_program/docking/multi(src)
-	program = docking_program
 
 /obj/machinery/embedded_controller/radio/docking_port_multi/Initialize()
 	.=..()
+	docking_program = new/datum/computer/file/embedded_program/docking/multi(src)
+	program = docking_program
 	var/list/names = splittext(child_names_txt, ";")
 	var/list/tags = splittext(child_tags_txt, ";")
 
@@ -57,9 +55,9 @@
 	var/datum/computer/file/embedded_program/airlock/multi_docking/airlock_program
 	tag_secure = 1
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port_multi/Initialize()
-	. = ..()
-	airlock_program = new/datum/computer/file/embedded_program/airlock/multi_docking(src)
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi/LateInitialize()
+	..()
+	airlock_program = new /datum/computer/file/embedded_program/airlock/multi_docking(src)
 	program = airlock_program
 
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)

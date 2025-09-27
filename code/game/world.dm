@@ -402,10 +402,11 @@ proc/establish_db_connection()
 	else
 		return 1
 
-/world/proc/incrementMaxZ()
+/world/proc/incrementMaxZ(z_level_info)
 	SEND_SIGNAL(SSdcs, COMSIG_WORLD_MAXZ_INCREMENTING)
 	maxz++
 	SSmobs.MaxZChanged()
+	SSmapping.MaxZChanged(z_level_info)
 
 /world/proc/change_fps(new_value = 30)
 	if(new_value <= 0)

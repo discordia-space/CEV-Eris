@@ -26,9 +26,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	var/lights = 1 // bolt lights show by default
 	var/aiDisabledIdScanner = 0
 	var/aiHacking = 0
-	var/obj/machinery/door/airlock/closeOther
-	var/closeOtherId
-	var/lockdownbyai = 0
 	autoclose = 1
 	var/assembly_type = /obj/structure/door_assembly
 	var/mineral
@@ -1093,8 +1090,6 @@ There are 9 wires.
 	if (istype(T) && T.item_flags & HONKING)
 		playsound(loc, WORKSOUND_HONK, 70, 1, -2)
 
-	if(closeOther != null && istype(closeOther, /obj/machinery/door/airlock/) && !closeOther.density)
-		closeOther.close()
 	return ..()
 
 /obj/machinery/door/airlock/can_open(forced=0)
@@ -1267,7 +1262,7 @@ There are 9 wires.
 		return 0
 	return ..(M)
 
-/obj/machinery/door/airlock/New(var/newloc, var/obj/structure/door_assembly/assembly=null)
+/obj/machinery/door/airlock/New(atom/newloc, obj/structure/door_assembly/assembly)
 	..()
 
 	//if assembly is given, create the new door from the assembly
@@ -1296,27 +1291,34 @@ There are 9 wires.
 		set_dir(assembly.dir)
 
 	//wires
-	if(isOnAdminLevel(newloc))
+	if(IS_TECHNICAL_LEVEL(newloc.z))
 		secured_wires = 1
 	if (secured_wires)
 		wires = new/datum/wires/airlock/secure(src)
 	else
 		wires = new/datum/wires/airlock(src)
 
-/obj/machinery/door/airlock/Initialize()
-	if(src.closeOtherId != null)
-		for (var/obj/machinery/door/airlock/A in world)
-			if(A.closeOtherId == src.closeOtherId && A != src)
-				src.closeOther = A
-				break
+	set_frequency(frequency)
+
+/obj/machinery/door/airlock/LateInitialize()
+	if(frequency)
+		set_frequency(frequency)
+
+	if(_wifi_id)
+		wifi_receiver = new(_wifi_id, src)
+
 	verbs += /obj/machinery/door/airlock/proc/try_wedge_item
-	. = ..()
+	update_icon()
+	..() // Call /obj/machinery/door/LateInitialize()
+
 
 /obj/machinery/door/airlock/Destroy()
 	qdel(wires)
 	wires = null
 	qdel(wifi_receiver)
 	wifi_receiver = null
+	if(frequency)
+		SSradio.remove_object(src, frequency)
 	return ..()
 
 // Most doors will never be deconstructed over the course of a round,

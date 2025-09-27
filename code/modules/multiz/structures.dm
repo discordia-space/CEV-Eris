@@ -78,7 +78,7 @@
 	var/climb_delay = 30
 
 /obj/structure/multiz/ladder/find_target()
-	var/turf/targetTurf = istop ? GetBelow(src) : GetAbove(src)
+	var/turf/targetTurf = istop ? SSmapping.GetBelow(src) : SSmapping.GetAbove(src)
 	target = locate(/obj/structure/multiz/ladder) in targetTurf
 	..()
 
@@ -268,7 +268,7 @@
 	return TRUE // if mover is null (air movement)
 
 /obj/structure/multiz/stairs/active/find_target()
-	var/turf/targetTurf = istop ? GetBelow(src) : GetAbove(src)
+	var/turf/targetTurf = istop ? SSmapping.GetBelow(src) : SSmapping.GetAbove(src)
 	target = locate(/obj/structure/multiz/stairs/enter) in targetTurf
 	..()
 

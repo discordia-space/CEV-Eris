@@ -71,14 +71,13 @@
 		return
 
 	busy = 1
-	for(var/mob/O in viewers(user))
-		O.show_message(text("\red [user] started reprogramming [src]!"), 1)
+	user.visible_message(SPAN_DANGER("[user] started reprogramming [src]!"))
 
 	if(do_after(user, 50,src))
 		set_state(!on)
 		user.visible_message(\
-		"<span class='notice'>[user.name] [on ? "enabled" : "disabled"] the breaker box!</span>",\
-		"<span class='notice'>You [on ? "enabled" : "disabled"] the breaker box!</span>")
+		SPAN_NOTICE("[user.name] [on ? "enabled" : "disabled"] the breaker box!<"),\
+		SPAN_NOTICE("You [on ? "enabled" : "disabled"] the breaker box!"))
 		update_locked = 1
 		spawn(600)
 			update_locked = 0

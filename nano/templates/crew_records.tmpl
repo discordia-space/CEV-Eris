@@ -28,6 +28,27 @@
 				{{if value.needs_big_box}}
 					<div style="display: inline-block;">
 					{{:value.value}}
+					{{else}}
+						{{if value.list_value}}
+							{{for value.list_value}}
+								{{:value}}
+							{{/for}}
+						{{else}}
+							{{if value.list_clumps}}
+								{{for value.list_clumps}}
+									{{for value}}
+										{{:value}}
+									{{/for}}
+								{{/for}}
+							{{else}}
+								{{if value.links}}
+									{{for 1 to value.links.len}}
+										{{for value.links}}
+											
+								{{/if}}
+							{{/if}}
+						{{/if}}
+					{{/if}}
 					</div>
 				{{else}}
 					<div class='itemBody'>{{:value.value}}</div>

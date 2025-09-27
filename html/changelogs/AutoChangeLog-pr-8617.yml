@@ -1,0 +1,5 @@
+author: Chickenish
+delete-after: true
+changes:
+  - balance: Clamped wounds do not stay clamped when re-opened.
+  - balance: Pressuring wounds now clamps the wound until re-opened.

@@ -37,7 +37,7 @@
 /datum/event/spider_infestation/start()
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in world)
-		if(!temp_vent.welded && temp_vent.network && isOnStationLevel(temp_vent))
+		if(!temp_vent.welded && temp_vent.network && IS_SHIP_LEVEL(temp_vent.z))
 			if(temp_vent.network.normal_members.len > 50)
 				vents += temp_vent
 

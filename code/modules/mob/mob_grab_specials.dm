@@ -74,8 +74,8 @@
 		else
 			visible_message(SPAN_NOTICE("[user] finishes putting pressure on [H]'s wounds."))
 			for(var/datum/wound/W in bodypart.wounds)
-				W.current_stage++
-				W.bleed_timer -= 5
+				W.clamped = TRUE
+			bodypart.stopBleeding()
 	//do not kill the grab
 
 

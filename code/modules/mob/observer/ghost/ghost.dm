@@ -266,7 +266,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		M.antagHUD = 1
 		to_chat(src, "\blue <B>AntagHUD Enabled</B>")
 
-/mob/observer/ghost/proc/dead_tele(A in SSmapping.ghostteleportlocs)
+/mob/observer/ghost/proc/dead_tele(A in SSmapping.all_areas_by_name)
 	set category = "Ghost"
 	set name = "Teleport"
 	set desc= "Teleport to a location"
@@ -276,7 +276,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	remove_verb(usr, /mob/observer/ghost/proc/dead_tele)
 	spawn(30)
 		add_verb(usr, /mob/observer/ghost/proc/dead_tele)
-	var/area/thearea = SSmapping.ghostteleportlocs[A]
+	var/area/thearea = SSmapping.all_areas_by_name[A]
 	if(!thearea)
 		return
 
@@ -429,7 +429,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			return
 
 	var/turf/T = get_turf(src)
-	if(!T || !(T.z in GLOB.maps_data.station_levels))
+	if(!T || !IS_SHIP_LEVEL(T.z))
 		to_chat(src, "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>")
 		return
 

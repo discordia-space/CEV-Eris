@@ -18,7 +18,7 @@
 	// This makes sure that turfs are not changed to space when one side is part of a zone
 	if(new_turf_type == /turf/space)
 		force_lighting_update = TRUE
-		var/turf/below = GetBelow(src)
+		var/turf/below = SSmapping.GetBelow(src)
 		if(istype(below) && (TURF_HAS_VALID_ZONE(below) || TURF_HAS_VALID_ZONE(src)))
 			new_turf_type = /turf/open
 

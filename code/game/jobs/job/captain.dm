@@ -9,7 +9,6 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	department_flag = COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
-	spawn_positions = 1
 	supervisors = "your heart and wisdom"
 	selection_color = "#ccccff"
 	req_admin_notify = 1
@@ -78,7 +77,6 @@ Your second loyalty is to your command officers. The heads of each faction. List
 	department_flag = COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
-	spawn_positions = 1
 	supervisors = "the captain"
 	selection_color = "#ddddff"
 	req_admin_notify = 1

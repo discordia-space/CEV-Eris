@@ -45,8 +45,7 @@
 	if(!src.lit)
 		change_lit(TRUE)
 		//src.damtype = "fire"
-		for(var/mob/O in viewers(usr, null))
-			O.show_message(flavor_text, 1)
+		visible_message(flavor_text)
 
 
 /obj/item/flame/candle/Process()
@@ -56,7 +55,7 @@
 	if(!wax)
 		new/obj/item/trash/candle(src.loc)
 		if(ismob(loc))
-			src.dropped(usr)
+			src.dropped(loc)
 		qdel(src)
 	update_icon()
 	if(istype(loc, /turf)) //start a fire if possible

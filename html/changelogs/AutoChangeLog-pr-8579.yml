@@ -1,0 +1,6 @@
+author: chickenish
+delete-after: true
+changes:
+  - bugfix: Parenchyma no longer bugs out when multiple types are applied to the same
+      organ
+  - refactor: Internal Wounds no longer use Component code.

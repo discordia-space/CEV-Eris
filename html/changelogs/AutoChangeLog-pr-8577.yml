@@ -1,0 +1,5 @@
+author: flleeppyy
+delete-after: true
+changes:
+  - rscadd: You can now change the plant on a cyberplant by alt clicking it
+  - bugfix: Changing a cyber plant's color no longer changes the design with it

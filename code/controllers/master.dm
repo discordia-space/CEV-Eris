@@ -62,7 +62,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/datum/controller/subsystem/queue_tail //!End of queue linked list (used for appending to the list)
 	var/queue_priority_count = 0 //Running total so that we don't have to loop thru the queue each run to split up the tick
 	var/queue_priority_count_bg = 0 //Same, but for background subsystems
-	var/map_loading = FALSE //!Are we loading in a new map?
 
 	var/current_runlevel //!for scheduling different subsystems for different stages of the round
 	var/sleep_offline_after_initializations = TRUE
@@ -697,22 +696,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 /datum/controller/master/proc/laggy_byond_map_update_incoming()
 	if (!skip_ticks)
 		skip_ticks = 1
-
-/datum/controller/master/StartLoadingMap()
-	//disallow more than one map to load at once, multithreading it will just cause race conditions
-	while(map_loading)
-		stoplag()
-	for(var/S in subsystems)
-		var/datum/controller/subsystem/SS = S
-		SS.StartLoadingMap()
-	map_loading = TRUE
-
-/datum/controller/master/StopLoadingMap(bounds = null)
-	map_loading = FALSE
-	for(var/S in subsystems)
-		var/datum/controller/subsystem/SS = S
-		SS.StopLoadingMap()
-
 
 /datum/controller/master/proc/UpdateTickRate()
 	if (!processing)

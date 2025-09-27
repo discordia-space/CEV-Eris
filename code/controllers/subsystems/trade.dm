@@ -541,7 +541,7 @@ SUBSYSTEM_DEF(trade)
 		create_log_entry("Export", guild_account.get_name(), invoice_contents_info, cost, FALSE, get_turf(senderBeacon))
 
 /datum/controller/subsystem/trade/proc/get_export_price_multiplier(atom/movable/target)
-	if(!target || target.anchored)
+	if(!target || isturf(target) || target.anchored)
 		return NONEXPORTABLE
 
 	. = EXPORTABLE

@@ -73,7 +73,6 @@
 	req_access = list(access_engine_equip)
 	var/need_sound
 	var/area/area
-	var/areastring
 	var/obj/item/cell/large/cell
 	var/chargelevel = 0.0005  // Cap for how fast APC cells charge, as a percentage-per-tick (0.01 means cellcharge is capped to 1% per second)
 	var/start_charge = 90				// initial cell charge %
@@ -209,17 +208,7 @@
 		cell = new cell_type(src)
 		cell.charge = start_charge * cell.maxcharge / 100 // (convert percentage to actual value)
 
-	var/area/our_area = get_area(loc)
-
-	//if area isn't specified use current
-	if(areastring)
-		area = get_area_name(areastring)
-		if(!area && isarea(our_area))
-			area = our_area
-			stack_trace("Bad areastring path for [src], [areastring]")
-	else if(isarea(our_area) && areastring == null)
-		area = our_area
-
+	area = get_area(loc)
 	name = "\improper [get_area_name_litteral(area, TRUE)] APC"
 
 	if(area)

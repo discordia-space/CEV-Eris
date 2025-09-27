@@ -1,0 +1,4 @@
+author: Chickenish
+delete-after: true
+changes:
+  - balance: 'fix: Shotgun spreadshot now actually spreads rather than weakening.'

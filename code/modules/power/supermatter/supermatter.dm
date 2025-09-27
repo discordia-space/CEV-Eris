@@ -167,13 +167,13 @@
 /obj/machinery/power/supermatter/get_transit_zlevel()
 	//don't send it back to the station -- most of the time
 	if(prob(99))
-		var/list/candidates = GLOB.maps_data.accessable_levels.Copy()
-		for(var/zlevel in GLOB.maps_data.station_levels)
-			candidates.Remove("[zlevel]")
-		candidates.Remove("[src.z]")
+		var/list/candidates = SSmapping.playable_z_levels.Copy()
+		for(var/zlevel in SSmapping.main_ship_z_levels)
+			candidates.Remove(zlevel)
+		candidates.Remove(z)
 
-		if(candidates.len)
-			return text2num(pickweight(candidates))
+		if(LAZYLEN(candidates))
+			return pick(candidates)
 
 	return ..()
 

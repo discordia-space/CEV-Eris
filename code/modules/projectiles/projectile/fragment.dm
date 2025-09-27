@@ -3,7 +3,7 @@
 	range_step = 2
 
 	base_spread = 0 //causes it to be treated as a shrapnel explosion instead of cone
-	spread_step = 20
+	entropy = 20
 
 	silenced = TRUE //embedding messages are still produced so it's kind of weird when enabled.
 	no_attack_log = 1
@@ -24,6 +24,7 @@
 	damage_types = list(BRUTE = 8, HALLOSS = 12)
 	embed = FALSE
 	sharp = FALSE
+	matter = list(MATERIAL_PLASTIC = 0.1)
 
 /obj/item/projectile/bullet/pellet/fragment/rubber/weak
 	icon_state = "rubber"

@@ -63,7 +63,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/trinary/mixer/New()
+/obj/machinery/atmospherics/trinary/mixer/LateInitialize()
 	..()
 	air1.volume = ATMOS_DEFAULT_VOLUME_MIXER
 	air2.volume = ATMOS_DEFAULT_VOLUME_MIXER

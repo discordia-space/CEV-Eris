@@ -109,7 +109,7 @@
 	if(owner.current)
 		if(owner.current.stat == DEAD)
 			text += "died"
-		else if(isNotStationLevel(owner.current.z))
+		else if(!IS_SHIP_LEVEL(owner.current.z))
 			text += "fled the ship"
 		else
 			text += "survived"

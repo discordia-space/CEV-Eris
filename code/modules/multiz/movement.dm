@@ -54,7 +54,7 @@
 
 
 
-	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
+	var/turf/destination = (direction == UP) ? SSmapping.GetAbove(src) : SSmapping.GetBelow(src)
 	var/turf/start = get_turf(src)
 	if(!destination)
 		to_chat(src, SPAN_NOTICE("There is nothing of interest in this direction"))
@@ -265,7 +265,7 @@
 	if (CanAvoidGravity())
 		return FALSE
 	// can't fall on walls anymore
-	var/turf/true_below = GetBelow(src)
+	var/turf/true_below = SSmapping.GetBelow(src)
 	for(var/obj/structure/possible_blocker in true_below.contents)
 		if(possible_blocker.density)
 			if(possible_blocker.climbable)
@@ -316,7 +316,7 @@
 			for(var/obj/item/grab/G in list(H.r_hand, H.l_hand))
 				moveWithMob += G.affecting
 		if(moveWithMob.len)
-			var/turf/pull_target = istop ? GetBelow(ES) : GetAbove(ES)
+			var/turf/pull_target = istop ? SSmapping.GetBelow(ES) : SSmapping.GetAbove(ES)
 			if(target)
 				pull_target = get_turf(target)
 			if(!pull_target)

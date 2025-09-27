@@ -554,7 +554,7 @@
 
 /datum/asset/simple/images_map/register()
 	var/list/mapnames = list()
-	for(var/z in GLOB.maps_data.station_levels)
+	for(var/z in SSmapping.main_ship_z_levels)
 		mapnames += map_image_file_name(z)
 
 	var/list/filenames = flist(MAP_IMAGE_PATH)

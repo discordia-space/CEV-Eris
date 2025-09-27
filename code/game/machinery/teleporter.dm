@@ -207,7 +207,7 @@
 		var/turf/T = get_turf(R)
 		if (!T)
 			continue
-		if(!isPlayerLevel(T.z))
+		if(!IS_PLAYABLE_LEVEL(T.z))
 			continue
 		var/tmpname = T.loc.name
 		if(areaindex[tmpname])

@@ -82,9 +82,12 @@
 	var/color_of_choice = input("Choose a color.", "\"FluorescEnt\" configuration", custom_color) as color|null
 	custom_color = color_of_choice
 	if(!interference)
-		change_plant()
 		change_color()
 		update_icon()
+
+/obj/structure/cyberplant/AltClick(atom/A, params)
+	change_plant()
+	update_icon()
 
 /obj/structure/cyberplant/proc/prepare_icon(var/state)
 	if(!state)
