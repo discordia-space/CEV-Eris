@@ -432,39 +432,3 @@
 	)
 	organ.take_damage(0, tool.force*1.5)
 
-// sealing a wound with tape to allow it to heal
-/datum/surgery_step/seal_wound
-	required_tool_quality = QUALITY_SEALING
-	duration = 4 SECONDS
-	blood_level = 1 // get your hands ALL UP IN THERE
-
-/datum/surgery_step/seal_wound/can_use(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	return organ.owner && !organ.open && organ.status & ORGAN_BLEEDING
-
-/datum/surgery_step/seal_wound/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	user.visible_message(
-		SPAN_NOTICE("[user] is beginning to seal a wound on [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You are beginning to seal a wound on [organ.get_surgery_name()] with \the [tool].")
-	)
-	organ.owner_custom_pain("It stings!", 0)
-
-/datum/surgery_step/seal_wound/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	var/datum/wound/totarget
-	for (var/datum/wound/W in organ.wounds)
-		if(W.bleeding())
-			totarget = W
-			break
-	if(totarget)
-		user.visible_message(
-			SPAN_NOTICE("[user] seals a [totarget.desc] on [organ.get_surgery_name()] with \the [tool]."),
-			SPAN_NOTICE("You seal a [totarget.desc] on [organ.get_surgery_name()] with \the [tool].")
-		)
-		totarget.bandage()
-	else
-		to_chat(user, SPAN_NOTICE("No bleeding wounds are present on [organ.get_surgery_name()]!"))
-
-/datum/surgery_step/seal_wound/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	user.visible_message(
-		SPAN_WARNING("[user]'s fumbles with \the [tool], making no progress on sealing [organ.get_surgery_name()]!"),
-		SPAN_WARNING("Your hand slips, wasting all \the [tool] you were trying to seal [organ.get_surgery_name()] with!")
-	)

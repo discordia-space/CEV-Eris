@@ -55,6 +55,8 @@
 
 /obj/item/tool/tape_roll/attack(mob/living/carbon/human/H, mob/user)
 	if(istype(H))
+		if(user.a_intent != I_DISARM && user.a_intent != I_GRAB)
+			return // only disarm and grab intents can disable
 		if(user.targeted_organ == BP_EYES)
 
 			if(!H.organs_by_name[BP_HEAD])

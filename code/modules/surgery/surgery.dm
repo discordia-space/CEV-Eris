@@ -192,7 +192,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 		return FALSE
 	var/list/possible_steps
 	if(surgery_status == CAN_OPERATE_STANDING)
-		possible_steps = list(QUALITY_CUTTING, QUALITY_CAUTERIZING, QUALITY_SEALING)
+		possible_steps = list(QUALITY_CUTTING, QUALITY_CAUTERIZING)
 		var/tool_type = tool.get_tool_type(user, possible_steps, get_surgery_target())
 		switch(tool_type)
 			if(QUALITY_CUTTING)
@@ -200,13 +200,10 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 				return TRUE
 			if(QUALITY_CAUTERIZING)
 				try_surgery_step(/datum/surgery_step/close_wounds, user, tool)
-				return TRUE
-			if(QUALITY_SEALING)
-				try_surgery_step(/datum/surgery_step/seal_wound, user, tool)
-				return TRUE
+				return TRUE		
 		return FALSE
 	if(BP_IS_ROBOTIC(src))
-		possible_steps = list(QUALITY_SCREW_DRIVING, QUALITY_WELDING)
+		possible_steps = list(QUALITY_SCREW_DRIVING, QUALITY_WELDING, QUALITY_ADHESIVE)
 
 		var/tool_type = tool.get_tool_type(user, possible_steps, get_surgery_target())
 
@@ -217,6 +214,10 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 
 			if(QUALITY_WELDING)
 				if(try_surgery_step(/datum/surgery_step/robotic/fix_brute, user, tool))
+					return TRUE
+			
+			if(QUALITY_ADHESIVE)
+				if(try_surgery_step(/datum/surgery_step/robotic/patch_malfunction, user, tool))
 					return TRUE
 
 			if(ABORT_CHECK)
