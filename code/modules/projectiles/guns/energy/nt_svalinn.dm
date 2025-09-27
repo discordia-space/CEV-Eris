@@ -27,3 +27,13 @@
 	init_recoil = HANDGUN_RECOIL(1)
 	serial_type = "NT"
 
+/obj/item/gun/energy/nt_svalinn/reloadable
+	name = "NT LP \"Svalinn\" - R"
+	desc = "\"NeoTheology\" brand laser pistol. Small and easily concealable, it's still a reasonable punch for a laser weapon. \
+			This one is an older variant that can be reloaded, decorated with gold and a luxurious wooden grip."
+	icon = 'icons/obj/guns/energy/nt_svalinn_reloadable.dmi'
+	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_WOOD = 4, MATERIAL_SILVER = 2)
+	disposable = FALSE
+	price_tag = 2000 //twice the price of the old Svalinn, it's a unique gun now	
+	suitable_cell = /obj/item/cell/small
+	cell_type = /obj/item/cell/small
