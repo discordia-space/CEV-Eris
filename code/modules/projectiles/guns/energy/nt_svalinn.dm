@@ -34,6 +34,5 @@
 	icon = 'icons/obj/guns/energy/nt_svalinn_reloadable.dmi'
 	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_WOOD = 4, MATERIAL_SILVER = 2)
 	disposable = FALSE
-	price_tag = 2000 //twice the price of the old Svalinn, it's a unique gun now	
+	price_tag = 2000
 	suitable_cell = /obj/item/cell/small
-	cell_type = /obj/item/cell/small
