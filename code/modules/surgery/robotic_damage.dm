@@ -146,7 +146,7 @@
 	if(!istype(organ, /obj/item/organ/external/robotic))
 		return
 	var/obj/item/organ/external/robotic/tofix = organ
-	var/healpool = max(0, (tofix.max_damage - tofix.min_malfunction_damage) / 2) // amount of damage that can effectively be taken AFTER malfunction chance reaches +0, halved
+	var/healpool = max(0, tofix.max_damage / 2 - tofix.min_malfunction_damage) // amount of damage that can effectively be taken AFTER malfunction chance reaches +0, halved
 	var/brutepool = min(tofix.brute_dam, healpool) // brute is easier to fix with tape
 	healpool -= brutepool
 	var/burnpool = min(tofix.burn_dam, healpool/4) // only a quarter efficiency against burn
