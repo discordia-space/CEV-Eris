@@ -164,7 +164,7 @@
 
 	return cell.drain_power(drain_check, surge, amount)
 
-/obj/machinery/power/apc/New(turf/loc, ndir, building=0)
+/obj/machinery/power/apc/New(turf/loc, ndir, building = FALSE)
 	..()
 	GLOB.apc_list += src
 
@@ -180,6 +180,10 @@
 		update_icon()
 		addtimer(CALLBACK(src, PROC_REF(update)), 5)
 		set_dir(ndir)
+
+
+/obj/machinery/power/apc/Initialize(mapload)
+	. = ..()
 
 	switch(dir)
 		if(NORTH)
@@ -197,9 +201,6 @@
 
 	tdir = dir		// to fix Vars bug
 
-/obj/machinery/power/apc/Initialize(mapload)
-	. = ..()
-
 	if(!mapload)
 		return
 	has_electronics = 2
@@ -216,11 +217,16 @@
 			log_mapping("Duplicate APC created at [AREACOORD(src)]. Original at [AREACOORD(area.apc)].")
 		area.apc = src
 
+
+	addtimer(CALLBACK(src, PROC_REF(update)), 5)
+
+
+/obj/machinery/power/apc/LateInitialize()
+	. = ..()
+	
 	update_icon()
 
 	make_terminal()
-
-	addtimer(CALLBACK(src, PROC_REF(update)), 5)
 
 /obj/machinery/power/apc/Destroy()
 	GLOB.apc_list -= src
