@@ -42,10 +42,10 @@ jobs:
           bash tools/ci/check_changelogs.sh
           bash tools/ci/check_grep.sh
           bash tools/ci/check_misc.sh
-          tools/bootstrap/python tools/validate_dme.py <cev_eris.dme
+          python tools/validate_dme.py <cev_eris.dme
           tools/build/build --ci lint tgui-test
-          tools/bootstrap/python -m dmi.test
-          tools/bootstrap/python -m mapmerge2.dmm_test
+          python -m dmi.test
+          python -m mapmerge2.dmm_test
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
       - name: Annotate Lints
         uses: yogstation13/DreamAnnotate@v2
