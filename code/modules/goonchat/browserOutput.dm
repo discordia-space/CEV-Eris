@@ -227,7 +227,7 @@ GLOBAL_VAR_INIT(goonchatbasehtml, file2text('code/modules/goonchat/browserassets
 
 	if(islist(target))
 		// Do the double-encoding outside the loop to save nanoseconds
-		var/twiceEncoded = url_encode(url_encode(message))
+		var/twiceEncoded = url_encode("[url_encode(message)]")
 		for(var/I in target)
 			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
 
