@@ -16,6 +16,16 @@ jobs:
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v3
+      - name: Update apt and install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgit2-dev libjpeg62 libjpeg62-dev libpng-dev
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: 'tools/requirements.txt'
+      - uses: actions/checkout@v3
       - name: Restore SpacemanDMM cache
         uses: actions/cache@v3
         with:
@@ -32,10 +42,9 @@ jobs:
             ${{ runner.os }}-
       - name: Install Tools
         run: |
-          pip3 install setuptools
+          pip install -r tools/requirements.txt
           bash tools/ci/install_node.sh
           bash tools/ci/install_spaceman_dmm.sh dreamchecker
-          tools/bootstrap/python -c ''
       - name: Run Linters
         run: |
           bash tools/ci/check_filedirs.sh cev_eris.dme
