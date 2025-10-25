@@ -805,13 +805,25 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 			if ("address")
 				sqladdress = value
 			if ("port")
-				sqlport = value
+				sqlport = text2num(value)
 			if ("database")
 				sqldb = value
 			if ("login")
 				sqllogin = value
 			if ("password")
 				sqlpass = value
+			if ("sql_tableprefix")
+				sql_tableprefix = value
+			if ("async_query_timeout")
+				sql_async_query_timeout = text2num(value)
+			if ("blocking_query_timeout")
+				sql_blocking_query_timeout = text2num(value)
+			if ("pooling_min_sql_connections")
+				sql_pooling_min_sql_connections = text2num(value)
+			if ("pooling_max_sql_connections")
+				sql_pooling_max_sql_connections = text2num(value)
+			if ("max_concurrent_queries")
+				sql_max_concurrent_queries = text2num(value)
 			else
 				log_misc("Unknown setting in configuration: '[name]'")
 

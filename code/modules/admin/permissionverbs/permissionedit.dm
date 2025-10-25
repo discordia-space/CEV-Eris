@@ -61,9 +61,7 @@
 		to_chat(usr, SPAN_WARNING("You do not have permission to do this!"))
 		return
 
-	establish_db_connection()
-
-	if(!dbcon.IsConnected())
+	if(!SSdbcore.Connect())
 		to_chat(usr, SPAN_WARNING("Failed to establish database connection."))
 		return
 
@@ -78,22 +76,27 @@
 	if(!istext(admin_ckey) || !istext(new_rank))
 		return
 
-	var/DBQuery/select_query = dbcon.NewQuery("SELECT ckey FROM players WHERE ckey = '[admin_ckey]' AND rank != 'player'")
+	var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("players")] WHERE ckey = :ckey AND rank != 'player'", list("ckey" = admin_ckey))
 	select_query.Execute()
 
 	var/new_admin = TRUE
 	if(select_query.NextRow())
 		new_admin = FALSE
 
+	var/datum/db_query/insert_query = SSdbcore.NewQuery(
+		"UPDATE [format_table_name("players")] SET rank = :rank WHERE ckey = :ckey",
+		list(
+			"rank" = new_rank,
+			"ckey" = admin_ckey,
+		)
+	)
+	insert_query.Execute()
+
 	if(new_admin)
-		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET rank = '[new_rank]' WHERE ckey = '[admin_ckey]'")
-		insert_query.Execute()
 		message_admins("[key_name_admin(usr)] made [key_name_admin(admin_ckey)] an admin with the rank [new_rank]")
 		log_admin("[key_name(usr)] made [key_name(admin_ckey)] an admin with the rank [new_rank]")
 		to_chat(usr, SPAN_NOTICE("New admin added."))
 	else
-		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET rank = '[new_rank]' WHERE ckey = '[admin_ckey]'")
-		insert_query.Execute()
 		message_admins("[key_name_admin(usr)] changed [key_name_admin(admin_ckey)] admin rank to [new_rank]")
 		log_admin("[key_name(usr)] changed [key_name(admin_ckey)] admin rank to [new_rank]")
 		to_chat(usr, SPAN_NOTICE("Admin rank changed."))
@@ -109,8 +112,7 @@
 		to_chat(usr, SPAN_WARNING("You do not have permission to do this!"))
 		return
 
-	establish_db_connection()
-	if(!dbcon.IsConnected())
+	if(!SSdbcore.Connect())
 		to_chat(usr, SPAN_WARNING("Failed to establish database connection."))
 		return
 
@@ -128,7 +130,7 @@
 	if(!istext(admin_ckey) || !isnum(new_permission))
 		return
 
-	var/DBQuery/select_query = dbcon.NewQuery("SELECT ckey, flags FROM players WHERE ckey = '[admin_ckey]'")
+	var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT ckey, flags FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = admin_ckey))
 	select_query.Execute()
 	if(!select_query.NextRow())
 		to_chat(usr, SPAN_WARNING("Permissions edit for [admin_ckey] failed on retrieving related database record."))
@@ -137,13 +139,13 @@
 	var/admin_rights = text2num(select_query.item[2])
 
 	if(admin_rights & new_permission) //This admin already has this permission, so we are removing it.
-		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET flags = [admin_rights & ~new_permission] WHERE ckey = '[admin_ckey]'")
+		var/datum/db_query/insert_query = SSdbcore.NewQuery("UPDATE [format_table_name("players")] SET flags = :flags WHERE ckey = :ckey", list("flags" = admin_rights & ~new_permission, ckey = admin_ckey))
 		insert_query.Execute()
 		message_admins("[key_name_admin(usr)] removed the [nominal] permission of [admin_ckey]")
 		log_admin("[key_name(usr)] removed the [nominal] permission of [admin_ckey]")
 		to_chat(usr, SPAN_NOTICE("Permission removed."))
 	else //This admin doesn't have this permission, so we are adding it.
-		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET flags = '[admin_rights | new_permission]' WHERE ckey = '[admin_ckey]'")
+		var/datum/db_query/insert_query = SSdbcore.NewQuery("UPDATE [format_table_name("players")] SET flags = :flags WHERE ckey = :ckey", list("flags" = admin_rights | new_permission, ckey = admin_ckey))
 		insert_query.Execute()
 		message_admins("[key_name_admin(usr)] added the [nominal] permission of [admin_ckey]")
 		log_admin("[key_name(usr)] added the [nominal] permission of [admin_ckey]")

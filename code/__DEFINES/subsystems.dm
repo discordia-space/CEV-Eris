@@ -1,4 +1,13 @@
 
+//! ## DB defines
+/**
+ * DB schema version
+ *
+ * Update this whenever the db schema changes
+ */
+#define DB_SCHEMA_VERSION 1
+
+
 //! ## Timing subsystem
 /**
  * Don't run if there is an identical unique timer active
@@ -88,6 +97,7 @@
 // The numbers just define the ordering, they are meaningless otherwise.
 
 #define INIT_ORDER_GARBAGE 99
+#define INIT_ORDER_DBCORE 98
 #define INIT_ORDER_EXPLOSIONS 97
 #define INIT_ORDER_STATPANELS 96
 #define INIT_ORDER_MAPPING 15

@@ -42,6 +42,7 @@ GLOBAL_LIST_INIT(admin_verbs_server, list(
 	/client/proc/ToRban,
 	/client/proc/reload_admins,
 	/client/proc/reload_mentors,
+	/client/proc/reestablish_db_connection,
 	/client/proc/toggle_random_events))
 
 GLOBAL_LIST_INIT(admin_verbs_debug, list(

@@ -66,7 +66,7 @@ DEBUG
 			jobban_keylist=list()
 			log_admin("jobban_keylist was empty")
 	else
-		if(!establish_db_connection())
+		if(!SSdbcore.Connect())
 			error("Database connection failed. Reverting to the legacy ban system.")
 			log_misc("Database connection failed. Reverting to the legacy ban system.")
 			config.ban_legacy_system = 1
@@ -74,13 +74,13 @@ DEBUG
 			return
 
 		//Job permabans
-		var/DBQuery/perma_query = dbcon.NewQuery("SELECT target_id, job FROM bans WHERE type = 'JOB_PERMABAN' AND isnull(unbanned)")
+		var/datum/db_query/perma_query = SSdbcore.NewQuery("SELECT target_id, job FROM [format_table_name("bans")] WHERE type = 'JOB_PERMABAN' AND isnull(unbanned)")
 		perma_query.Execute()
 
 		while(perma_query.NextRow())
 			var/id = perma_query.item[1]
 			var/job = perma_query.item[2]
-			var/DBQuery/get_ckey = dbcon.NewQuery("SELECT ckey from players WHERE id = '[id]'")
+			var/datum/db_query/get_ckey = SSdbcore.NewQuery("SELECT ckey from players WHERE id = :id", list("id" = id))
 			get_ckey.Execute()
 			if(get_ckey.NextRow())
 				var/ckey = get_ckey.item[1]
@@ -89,13 +89,13 @@ DEBUG
 
 
 		//Job tempbans
-		var/DBQuery/query = dbcon.NewQuery("SELECT target_id, job FROM bans WHERE type = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
+		var/datum/db_query/query = SSdbcore.NewQuery("SELECT target_id, job FROM [format_table_name("bans")] WHERE type = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
 		query.Execute()
 
 		while(query.NextRow())
 			var/id = query.item[1]
 			var/job = query.item[2]
-			var/DBQuery/get_ckey = dbcon.NewQuery("SELECT ckey from players WHERE id = '[id]'")
+			var/datum/db_query/get_ckey = SSdbcore.NewQuery("SELECT ckey from players WHERE id = :id", list("id" = id))
 			get_ckey.Execute()
 			if(get_ckey.NextRow())
 				var/ckey = get_ckey.item[1]

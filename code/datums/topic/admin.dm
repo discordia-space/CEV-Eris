@@ -1353,6 +1353,24 @@
 	else
 		error_viewer.showTo(usr, null, input["viewruntime_linear"])
 
+/datum/admin_topic/slowquery
+	keyword = "slowquery"
+	require_perms = list(R_ADMIN)
+
+/datum/admin_topic/viewruntime/Run(list/input)
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/data = list("key" = usr.key)
+	var/answer = input["slowquery"]
+	if(answer == "yes")
+		if(alert(usr, "Did you just press any admin buttons?", "Query server hang report", list("Yes", "No")) == "Yes")
+			var/response = input(usr,"What were you just doing?","Query server hang report") as null|text
+			if(response)
+				data["response"] = response
+		log_misc("SQL: server hang - [json_encode(data)]")
+	else if(answer == "no")
+		log_misc("SQL: no server hang - [json_encode(data)]")
 
 /datum/admin_topic/admincaster
 	keyword = "admincaster"

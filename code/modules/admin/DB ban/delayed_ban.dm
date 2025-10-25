@@ -24,7 +24,20 @@ GLOBAL_LIST_EMPTY(delayed_bans)
 	banned_by_id = _banned_by_id
 
 /datum/delayed_ban/proc/execute()
-	var/DBQuery/query_insert = dbcon.NewQuery({"INSERT INTO bans (target_id, time, server, type, reason, job, duration, expiration_time, cid, ip, banned_by_id) VALUES ([target_id], Now(), '[server]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[computerid]', NULL, [banned_by_id])"})
+	var/datum/db_query/query_insert = SSdbcore.NewQuery(
+		"INSERT INTO [format_table_name("bans")] \
+		(target_id, time, server, type, reason, job, duration, expiration_time, cid, ip, banned_by_id) \
+		VALUES (:target_id, Now(), :server, :type, :reason, :job, [duration ? "[duration]" : "0"], Now() + INTERVAL [duration > 0 ? duration : 0] MINUTE, :cid, NULL, :banned_by_id)",
+		list(
+			"target_id" = target_id,
+			"server" = server,
+			"type" = bantype_str,
+			"reason" = reason,
+			"job" = job,
+			"cid" = computerid,
+			"banned_by_id" = banned_by_id,
+		)
+	)
 	query_insert.Execute()
 
 /hook/roundend/proc/explode()

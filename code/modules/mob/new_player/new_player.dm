@@ -46,13 +46,22 @@
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
 
 	if(!IsGuestKey(src.key))
-		establish_db_connection()
-		if(dbcon.IsConnected())
+		if(SSdbcore.Connect())
 			var/isadmin = FALSE
 			if(src.client && src.client.holder)
 				isadmin = TRUE
 			// TODO: reimplement database interaction
-			var/DBQuery/query = dbcon.NewQuery("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
+			var/datum/db_query/query = SSdbcore.NewQuery(
+				"SELECT id FROM erro_poll_question \
+				WHERE [(isadmin ? "" : "adminonly = false AND")] \
+				Now() BETWEEN starttime AND endtime \
+				AND id NOT IN (SELECT pollid FROM [format_table_name("erro_poll_vote")] WHERE ckey = :ckey) \
+				AND id NOT IN (SELECT pollid FROM [format_table_name("erro_poll_textreply")] WHERE ckey = :ckey)",
+				list(
+					"ckey" = ckey,
+				)
+			)
+
 			query.Execute()
 			var/newpoll = FALSE
 			while(query.NextRow())
