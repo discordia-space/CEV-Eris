@@ -839,7 +839,7 @@
 			shut_up = FALSE
 			if(!silenceid)
 				//Pitch to the people!  Really sell it!
-				var/timing =  0 - world.time - last_slogan + slogan_delay // slogan delay minus the amount of time that has passed since the last slogan
+				var/timing =  slogan_delay + last_slogan - world.time// slogan delay minus the amount of time that has passed since the last slogan
 				var/timing2 = max(timing + PROBABILITY_TO_CYCLES(0.95) * 2 SECONDS, 0) // above timing plus prob(5) and forbidden from going negative.
 				silenceid = addtimer(CALLBACK(src, PROC_REF(advertise)), timing2,TIMER_STOPPABLE)
 			
@@ -877,7 +877,7 @@
 		else
 			. = FALSE
 	// and again!
-	var/timing =  0 - world.time - last_slogan + slogan_delay // slogan delay minus the amount of time that has passed since the last slogan
+	var/timing =  slogan_delay + last_slogan - world.time  // slogan delay minus the amount of time that has passed since the last slogan
 	var/timing2 = max(timing + PROBABILITY_TO_CYCLES(0.95) * 2 SECONDS, 0) // above timing plus prob(5) and forbidden from going negative.
 	silenceid = addtimer(CALLBACK(src, PROC_REF(advertise)), timing2,TIMER_STOPPABLE)
 
