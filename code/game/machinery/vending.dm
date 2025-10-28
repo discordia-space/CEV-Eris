@@ -845,10 +845,10 @@
 			
 
 	if(throwit)
-		var/potentialrand = rand(10, 29)+rand(7, 20) // prob(2) shoddily bellcurvified
-		if(!shootid)
-			shootid = addtimer(CALLBACK(src, PROC_REF(pitch_check)), 2 SECONDS * potentialrand, TIMER_STOPPABLE)
 		shoot_inventory = TRUE
+		if(!shootid)
+			shootid = addtimer(CALLBACK(src, PROC_REF(pitch_check)), round(PROBABILITY_TO_CYCLES(0.98) * 2 SECONDS), TIMER_STOPPABLE)
+
 	else
 		if(isnull(throwit))
 			return
@@ -915,8 +915,7 @@
 /obj/machinery/vending/proc/pitch_check()
 	if(shoot_inventory && active && !(stat & (BROKEN|NOPOWER)))
 		throw_item()
-	var/potentialrand = rand(10, 29)+rand(7, 20)
-	shootid = addtimer(CALLBACK(src, PROC_REF(pitch_check)), 2 SECONDS * potentialrand, TIMER_STOPPABLE) // still need to repeat the loop when the machine has no power
+	shootid = addtimer(CALLBACK(src, PROC_REF(pitch_check)), round(PROBABILITY_TO_CYCLES(0.98) * 2 SECONDS), TIMER_STOPPABLE) // still need to repeat the loop when the machine has no power
 
 
 /obj/machinery/vending/proc/end_electric()
