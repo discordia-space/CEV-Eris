@@ -36,8 +36,6 @@
 
 	old_z = z
 
-	var/datum/level_data/LD = z_levels[z]
-
 	for(var/pmaster in plane_masters)
 		var/obj/screen/plane_master/instance = plane_masters[pmaster]
 		mymob.client.screen -= instance
@@ -52,11 +50,10 @@
 
 	openspace_overlays.Cut()
 
-	if(!LD)
-		return;
+	var/list/decoded_json = SSmapping.z_level_info_decoded[z]
+	var/lowest_connected_z = decoded_json["bottom_z"]
 
-
-	var/local_z = z-(LD.original_level-1)
+	var/local_z = z - lowest_connected_z + 1
 	for(var/zi in 1 to local_z)
 		for(var/mytype in subtypesof(/obj/screen/plane_master))
 			var/obj/screen/plane_master/instance = new mytype()
@@ -109,7 +106,7 @@
 		"glassesoverlay" = list("type" = /obj/screen/glasses_overlay, "loc" = "1,1:-32", "icon_state" = "blank"),
 	)
 
-	/* !!!! IF YOU WANT TO ADD A VERB TO THIS - ADD ITS NAME TO code\modules\mob\living\carbon\human\species\species_hud.dm 
+	/* !!!! IF YOU WANT TO ADD A VERB TO THIS - ADD ITS NAME TO code\modules\mob\living\carbon\human\species\species_hud.dm
 	PLEASE DON'T REPEAT MY MISTAKES, I'VE WASTED HOURS OF MY LIFE ON THIS - Kegdo 2022*/
 	HUDneed = list(
 //status

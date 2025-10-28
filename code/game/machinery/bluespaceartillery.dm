@@ -37,8 +37,8 @@
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
 		var/A
-		A = input("Area to jump bombard", "Open Fire", A) in SSmapping.teleportlocs
-		var/area/thearea = SSmapping.teleportlocs[A]
+		A = input("Area to jump bombard", "Open Fire", A) in SSmapping.main_ship_areas_by_name
+		var/area/thearea = SSmapping.main_ship_areas_by_name[A]
 		if (usr.stat || usr.restrained()) return
 		if(src.reload < 180) return
 		if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
@@ -50,16 +50,3 @@
 			var/loc = pick(L)
 			explosion(get_turf(loc), 1000, 75)
 			reload = 0
-
-/*mob/proc/openfire()
-	var/A
-	A = input("Area to jump bombard", "Open Fire", A) in SSmapping.teleportlocs
-	var/area/thearea = SSmapping.teleportlocs[A]
-	command_alert("Bluespace artillery fire detected. Brace for impact.")
-	spawn(30)
-	var/list/L = list()
-
-	for(var/turf/T in get_area_turfs(thearea.type))
-		L+=T
-	var/loc = pick(L)
-	explosion(loc,2,5,11)*/

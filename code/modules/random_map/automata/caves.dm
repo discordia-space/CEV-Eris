@@ -40,6 +40,10 @@
 
 // Create ore turfs.
 /datum/random_map/automata/cave_system/cleanup()
+	if(!ore_data || !ore_data.len)
+		for(var/oretype in typesof(/ore)-/ore)
+			var/ore/OD = new oretype()
+			ore_data[OD.name] = OD
 	var/ore_count = round(map.len/20)
 	while((ore_count>0) && (ore_turfs.len>0))
 		if(!priority_process) sleep(-1)

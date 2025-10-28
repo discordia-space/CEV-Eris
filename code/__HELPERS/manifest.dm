@@ -142,13 +142,13 @@
 		"sec" = filtered_nano_crew_manifest(security_positions),\
 		"eng" = filtered_nano_crew_manifest(engineering_positions),\
 		"med" = filtered_nano_crew_manifest(medical_positions),\
-		"sup" = filtered_nano_crew_manifest(cargo_positions),\
+		"sup" = filtered_nano_crew_manifest(guild_positions),\
 		"chr" = filtered_nano_crew_manifest(church_positions),\
-		"bot" = silicon_nano_crew_manifest(nonhuman_positions),\
+		"bot" = silicon_nano_crew_manifest(silicon_positions),\
 		"civ" = filtered_nano_crew_manifest(civilian_positions)\
 		)
 
 /proc/flat_nano_crew_manifest()
 	. = list()
 	. += filtered_nano_crew_manifest(null, TRUE)
-	. += silicon_nano_crew_manifest(nonhuman_positions)
+	. += silicon_nano_crew_manifest(silicon_positions)

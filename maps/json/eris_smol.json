@@ -1,0 +1,53 @@
+{
+	"map_name": "Small Eris",
+	"map_desc": "Smaller version of the original ship designed for low or medium population.",
+	"map_file": "maps/main_ship/eris_smol.dmm",
+	"map_size_x": 150,
+	"map_size_y": 151,
+	"map_size_z": 4,
+
+	"is_playable_level": true,
+	"is_main_ship_level": true,
+	"is_sealed_level": false,
+
+	"add_jobs":[
+		{"Captain":1},
+		{"First Officer":1},
+
+		{"Ironhammer Commander":1},
+		{"Ironhammer Gunnery Sergeant":1},
+		{"Ironhammer Inspector":1},
+		{"Ironhammer Medical Specialist":1},
+		{"Ironhammer Operative":2},
+
+		{"NeoTheology Preacher":1},
+		{"NeoTheology Acolyte":1},
+		{"NeoTheology Agrolyte":1},
+		{"NeoTheology Custodian":2},
+
+		{"Club Manager":1},
+		{"Club Worker":2},
+		{"Club Artist":1},
+
+		{"Technomancer Exultant":1},
+		{"Technomancer":3},
+
+		{"Guild Merchant":1},
+		{"Guild Technician":2},
+		{"Guild Miner":2},
+
+		{"Moebius Biolab Officer":1},
+		{"Moebius Doctor":2},
+		{"Moebius Chemist":1},
+		{"Moebius Paramedic":1},
+		{"Moebius Bio-Engineer":1},
+
+		{"Moebius Expedition Overseer":1},
+		{"Moebius Scientist":2},
+		{"Moebius Roboticist":1},
+		{"Moebius Psychiatrist":1},
+
+		{"AI":1},
+		{"Robot":1},
+		{"Vagabond":-1}]
+}

@@ -27,7 +27,7 @@ GLOBAL_LIST_INIT(drones, list())
 	dat += "<B>Maintenance Units</B><BR>"
 
 	for(var/mob/living/silicon/robot/drone/D in GLOB.drones)
-		if(isNotStationLevel(D.z))
+		if(!IS_SHIP_LEVEL(D.z))
 			continue
 		dat += "<BR>[D.real_name] ([D.stat == 2 ? "<font color='red'>INACTIVE</FONT>" : "<font color='green'>ACTIVE</FONT>"])"
 		dat += "<font dize = 9><BR>Cell charge: [D.cell.charge]/[D.cell.maxcharge]."

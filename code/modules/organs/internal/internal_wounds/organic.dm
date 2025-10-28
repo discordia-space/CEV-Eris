@@ -141,6 +141,7 @@
 	severity_max = 4
 	hal_damage = IWOUND_LIGHT_DAMAGE
 	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_AGGRAVATION
+	progression_threshold = IWOUND_HALF_MINUTE
 
 /datum/internal_wound/organic/poisoning/pustule
 	name = "pustule"
@@ -155,6 +156,32 @@
 /datum/internal_wound/organic/poisoning/accumulation
 	name = "foreign accumulation"
 	hal_damage = IWOUND_MEDIUM_DAMAGE
+
+/datum/internal_wound/organic/hepatitis
+	name = "inflammation"
+	characteristic_flag = IWOUND_AGGRAVATION
+	organ_efficiency_multiplier = -0.10 // not in top condition, not dying yet though
+	next_wound = /datum/internal_wound/organic/fibrosis
+	progression_threshold = IWOUND_HALF_MINUTE
+
+/datum/internal_wound/organic/fibrosis
+	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_AGGRAVATION
+	severity_max = 4
+	next_wound = /datum/internal_wound/organic/cirrhosis
+	progression_threshold = IWOUND_HALF_MINUTE
+
+/datum/internal_wound/organic/fibrosis/scarred
+	name = "scarring"
+
+
+/datum/internal_wound/organic/cirrhosis
+	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_AGGRAVATION
+	severity_max = 4
+	progression_threshold = IWOUND_1_MINUTE
+
+
+/datum/internal_wound/organic/cirrhosis/scarred
+	name = "severe scarring"
 
 /*
 /datum/internal_wound/organic/poisoning/swelling
@@ -359,12 +386,14 @@
 	name = "genetic damage"
 	treatments_chem = list(CE_GENEHEAL = 1)
 	characteristic_flag = IWOUND_AGGRAVATION // this wound is hidden
+	progression_threshold = IWOUND_5_MINUTES
 	next_wound = /datum/internal_wound/organic/catastrophicgenedamage
 
 /datum/internal_wound/organic/catastrophicgenedamage
 	name = "catastrophic genetic damage"
 	severity_max = IORGAN_STANDARD_HEALTH
 	characteristic_flag = IWOUND_AGGRAVATION | IWOUND_CAN_DAMAGE
+	progression_threshold = IWOUND_5_MINUTES
 	hal_damage = IWOUND_HEAVY_DAMAGE
 	treatments_chem = list(CE_GENEHEAL = 2)
 

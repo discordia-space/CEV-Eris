@@ -1,0 +1,6 @@
+author: Mycah142
+delete-after: true
+changes:
+  - tweak: clarified Sanctify group litany not needing an acolyte or preacher
+  - tweak: clarified Crusade group litany needing six participants
+  - bugfix: fixed Sanctify group litany from crashing

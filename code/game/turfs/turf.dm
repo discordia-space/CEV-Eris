@@ -58,7 +58,7 @@
 	// TODO: Check which areas are on the ship, but marked improperly, and remove this code
 	var/area/A = loc
 	if(!A.ship_area)
-		if(z in GLOB.maps_data.station_levels)
+		if(IS_SHIP_LEVEL(z))
 			A.set_ship_area()
 	. = ..() // Calls /atom/proc/Initialize()
 

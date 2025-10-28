@@ -64,6 +64,7 @@
 // This should be overridden to remove all references pointing to the object being destroyed.
 // Return the appropriate QDEL_HINT; in most cases this is QDEL_HINT_QUEUE.
 /datum/proc/Destroy(force=FALSE)
+	GLOB.destroyed_event && GLOB.destroyed_event.raise_event(src)
 	var/list/timers = active_timers
 	active_timers = null
 	tag = null
@@ -106,7 +107,16 @@
 
 	for(var/target in signal_procs)
 		UnregisterSignal(target, signal_procs[target])
-	//END: ECS SHIT
+
+	if(extensions)
+		for(var/expansion_key in extensions)
+			var/list/expansion = extensions[expansion_key]
+			if(islist(expansion))
+				expansion.Cut()
+			else
+				qdel(expansion)
+		extensions.Cut()
+	cleanup_events(src)
 
 	return QDEL_HINT_QUEUE
 

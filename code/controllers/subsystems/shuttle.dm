@@ -8,12 +8,15 @@ SUBSYSTEM_DEF(shuttle)
 	var/list/process_shuttles = list()             // simple list of shuttles, for processing
 	var/list/registered_shuttle_landmarks = list()
 	var/last_landmark_registration_time
-
+	var/list/destination_landmarks = list()
 	var/tmp/list/working_shuttles
 
 /datum/controller/subsystem/shuttle/Initialize()
 	last_landmark_registration_time = world.time
-	initialize_shuttles()
+	for(var/shuttle_type in subtypesof(/datum/shuttle))
+		var/datum/shuttle/shuttle = shuttle_type
+		if (!initial(shuttle.defer_initialisation))
+			initialise_shuttle(shuttle_type)
 	. = ..()
 
 /datum/controller/subsystem/shuttle/fire(resumed = FALSE)
@@ -29,31 +32,14 @@ SUBSYSTEM_DEF(shuttle)
 		if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/shuttle/proc/register_landmark(shuttle_landmark_tag, obj/effect/shuttle_landmark/shuttle_landmark)
-	if(istype(shuttle_landmark, /obj/effect/shuttle_landmark/automatic))
-		var/obj/effect/overmap/O = map_sectors["[shuttle_landmark.z]"]
-		O.add_landmark(shuttle_landmark)
-		last_landmark_registration_time = world.time
-		return
 
-	if (registered_shuttle_landmarks[shuttle_landmark_tag])
-		CRASH("Attempted to register shuttle landmark with tag [shuttle_landmark_tag], but it is already registered!")
+/datum/controller/subsystem/shuttle/proc/register_landmark(obj/effect/shuttle_landmark/shuttle_landmark)
+	if(shuttle_landmark in registered_shuttle_landmarks)
+		CRASH("Attempted to register shuttle landmark with tag [shuttle_landmark.landmark_tag], but it is already registered!")
 
-	if (istype(shuttle_landmark))
-		registered_shuttle_landmarks[shuttle_landmark_tag] = shuttle_landmark
-		last_landmark_registration_time = world.time
+	last_landmark_registration_time = world.time
+	registered_shuttle_landmarks += shuttle_landmark
 
-
-
-
-/datum/controller/subsystem/shuttle/proc/get_landmark(shuttle_landmark_tag)
-	return registered_shuttle_landmarks[shuttle_landmark_tag]
-
-/datum/controller/subsystem/shuttle/proc/initialize_shuttles()
-	for(var/shuttle_type in subtypesof(/datum/shuttle))
-		var/datum/shuttle/shuttle = shuttle_type
-		if (!initial(shuttle.defer_initialisation))
-			initialise_shuttle(shuttle_type)
 
 /datum/controller/subsystem/shuttle/proc/initialise_shuttle(shuttle_type)
 	var/datum/shuttle/shuttle = shuttle_type

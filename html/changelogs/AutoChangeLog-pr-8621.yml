@@ -1,0 +1,10 @@
+author: Chickenish
+delete-after: true
+changes:
+  - rscadd: Eating another carrion's core with your maw gives you the other 
+      carrion's disguises
+  - balance: carrion over-hunger is now punished by making your human form 
+      hungry
+  - tweak: carrion maw now works with holders.
+  - tweak: carrions now drop as an inert item if the core is killed.
+  - bugfix: eating with carrion maw provides proper chem value

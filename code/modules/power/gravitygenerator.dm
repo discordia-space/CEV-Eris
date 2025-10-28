@@ -274,8 +274,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	src.updateUsrDialog()
 
 /obj/machinery/gravity_generator/main/proc/grav_on()
-	if(!GLOB.maps_data.station_levels.len)
-		message_admins("GLOB.maps_data.station_levels is blank. Gravgen isn't properly established.")
+	if(!LAZYLEN(SSmapping.main_ship_z_levels))
+		message_admins("SSmapping.main_ship_z_levels is blank. Gravgen isn't properly established.")
 		return
 
 	gravity_is_on = 1
@@ -286,8 +286,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	message_admins("The gravity generator was brought fully online. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>[area.name]</a>)")
 
 /obj/machinery/gravity_generator/main/proc/grav_off()
-	if(!GLOB.maps_data.station_levels.len)
-		message_admins("GLOB.maps_data.station_levels is blank. Gravgen isn't properly established.")
+	if(!LAZYLEN(SSmapping.main_ship_z_levels))
+		message_admins("SSmapping.main_ship_z_levels is blank. Gravgen isn't properly established.")
 		return
 
 	gravity_is_on = 0
@@ -299,8 +299,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	shake_everyone()
 
 /obj/machinery/gravity_generator/main/proc/update_gravity(var/is_on)
-	for(var/area/A in world)
-		if(isStationLevel(A.z))
+	for(var/area/A in world) // What the fuck? --KIROV
+		if(IS_SHIP_LEVEL(A.z))
 			A.update_gravity()
 
 // Charge/Discharge and turn on/off gravity when you reach 0/100 percent.

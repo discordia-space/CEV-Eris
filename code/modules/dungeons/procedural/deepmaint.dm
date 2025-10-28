@@ -36,17 +36,13 @@ var/global/list/big_deepmaint_room_templates = list()
 	..()
 	my_map = pick(big_deepmaint_room_templates)
 
-
-/proc/check_deepmaint_list()
-	return (free_deepmaint_ladders.len)
-
 /obj/procedural/jp_DungeonGenerator/deepmaint
 	name = "Deep Maintenance Procedural Generator"
 /*
 	Finds a line of walls adjacent to the line of turfs given
 */
 
-/obj/procedural/jp_DungeonGenerator/deepmaint/proc/checkForWalls(var/list/line) 
+/obj/procedural/jp_DungeonGenerator/deepmaint/proc/checkForWalls(var/list/line)
 	var/turf/t1 = line[1]
 	var/turf/t2 = line[2]
 	var/direction = get_dir(t1, t2)
@@ -57,8 +53,8 @@ var/global/list/big_deepmaint_room_templates = list()
 		walls += T //Does not check if the adjacent tile in question is a wall, but includes it in the returned list anyways.
 		while(length > 0) //Iterates from the current adjacent tile through direction chosen in makeNiche to check if the next 4 tiles are walls. If they are, they are returned, otherwise the list is reset and returned.
 			length = length - 1
-			T = get_step(T, direction) 
-			if (T.is_wall) 
+			T = get_step(T, direction)
+			if (T.is_wall)
 				walls += T
 				if(walls.len == line.len)
 					return walls
@@ -142,7 +138,7 @@ var/global/list/big_deepmaint_room_templates = list()
 	var/list/wall_line = list()
 	if(nicheline.len > 3)
 	 wall_line = checkForWalls(nicheline) //Checks whether 4 turf tiles are walls in the chosen direction from tiles adjacent to the second tile. If this is not met in any direction, the function is functionally done
-	if(wall_line.len) 
+	if(wall_line.len)
 		for(var/turf/W in nicheline) //Every turf in the path returned by findNicheTurfs has a 30% chance of becoming a random deepmaint machine
 			if(prob(30))
 				new /obj/spawner/pack/deep_machine(W)
@@ -162,7 +158,7 @@ var/global/list/big_deepmaint_room_templates = list()
 /obj/procedural/jp_DungeonGenerator/deepmaint/proc/findNicheTurfs(var/list/turfs) //Checks turf type of turf list passed to it to make sure none of them are walls or nonexistant.
     var/list/L = list()
     for(var/turf/F in turfs)
-        if(F.is_wall || !(F in path_turfs)) 
+        if(F.is_wall || !(F in path_turfs))
             if(L.len < 3)  //Why is this check here? The function this list being returned to will discard any list that isn't length 5. Is the < operator meant to be an > operator? But if that was the case, the for loop would have ended before reaching this anyways?
                 L = list() //Resets the list to 0 and returns it if a tile in this direction was a wall or nonexistant, so that the makeNiche function will check another direction
             break
@@ -197,60 +193,48 @@ var/global/list/big_deepmaint_room_templates = list()
 /obj/procedural/dungenerator/deepmaint
 	name = "Deep Maint Gen"
 
-// Skip deepmaint. DO NOT REMOVE ELSE, it becomes unreachable
-#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
 /obj/procedural/dungenerator/deepmaint/New()
-	log_test("Skipping deepmaint generation for unit tests")
-	return
-#else
-/obj/procedural/dungenerator/deepmaint/New()
-	while(1)
-		if(Master.current_runlevel)
-			populateDeepMaintMapLists() //It's not a hook because mapping subsystem has to intialize first
-			break
-		else
-			sleep(150)
-	spawn()
-		testing_variable(start, REALTIMEOFDAY)
-		var/obj/procedural/jp_DungeonGenerator/deepmaint/generate = new /obj/procedural/jp_DungeonGenerator/deepmaint(src)
-		testing("Beginning procedural generation of [name] -  Z-level [z].")
-		generate.name = name
-		generate.setArea(locate(50, 50, z), locate(110, 110, z))
-		generate.setWallType(/turf/wall)
-		generate.setLightChance(2)
-		generate.setFloorType(/turf/floor/tiled/techmaint_perforated)
-		generate.setAllowedRooms(list(/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint/big))
-		generate.setNumRooms(1)
-		generate.setExtraPaths(0)
-		generate.setMinPathLength(0)
-		generate.setMaxPathLength(0)
-		generate.setMinLongPathLength(0)
-		generate.setLongPathChance(0)
-		generate.setPathEndChance(100)
-		generate.setRoomMinSize(10)
-		generate.setRoomMaxSize(10)
-		generate.setPathWidth(1)
-		generate.generate()
+	populateDeepMaintMapLists()
+	testing_variable(start, REALTIMEOFDAY)
+	var/obj/procedural/jp_DungeonGenerator/deepmaint/generate = new /obj/procedural/jp_DungeonGenerator/deepmaint(src)
+	testing("Beginning procedural generation of [name] -  Z-level [z].")
+	generate.name = name
+	generate.setArea(locate(50, 50, z), locate(110, 110, z))
+	generate.setWallType(/turf/wall)
+	generate.setLightChance(2)
+	generate.setFloorType(/turf/floor/tiled/techmaint_perforated)
+	generate.setAllowedRooms(list(/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint/big))
+	generate.setNumRooms(1)
+	generate.setExtraPaths(0)
+	generate.setMinPathLength(0)
+	generate.setMaxPathLength(0)
+	generate.setMinLongPathLength(0)
+	generate.setLongPathChance(0)
+	generate.setPathEndChance(100)
+	generate.setRoomMinSize(10)
+	generate.setRoomMaxSize(10)
+	generate.setPathWidth(1)
+	generate.generate()
 
-		sleep(90)
+	generate.setArea(locate(20, 20, z), locate(150, 150, z))
+	generate.setAllowedRooms(list(/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint))
+	generate.setNumRooms(15)
+	generate.setExtraPaths(5)
+	generate.setMinPathLength(0)
+	generate.setMaxPathLength(120)
+	generate.setMinLongPathLength(0)
+	generate.setLongPathChance(0)
+	generate.setPathEndChance(100)
+	generate.setRoomMinSize(5)
+	generate.setRoomMaxSize(5)
+	generate.setPathWidth(2)
+	generate.setUsePreexistingRegions(TRUE)
+	generate.setDoAccurateRoomPlacementCheck(TRUE)
+	generate.generate()
+	generate.populateCorridors()
+	generate.makeLadders()
 
-		generate.setArea(locate(20, 20, z), locate(150, 150, z))
-		generate.setAllowedRooms(list(/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint))
-		generate.setNumRooms(15)
-		generate.setExtraPaths(5)
-		generate.setMinPathLength(0)
-		generate.setMaxPathLength(120)
-		generate.setMinLongPathLength(0)
-		generate.setLongPathChance(0)
-		generate.setPathEndChance(100)
-		generate.setRoomMinSize(5)
-		generate.setRoomMaxSize(5)
-		generate.setPathWidth(2)
-		generate.setUsePreexistingRegions(TRUE)
-		generate.setDoAccurateRoomPlacementCheck(TRUE)
-		generate.generate()
-		generate.populateCorridors()
-		generate.makeLadders()
-		testing("Finished procedural generation of [name]. [generate.errString(generate.out_error)] -  Z-level [z], in [(REALTIMEOFDAY - start) / 10] seconds.")
-#endif
-
+	// We've skipped these procs when loading Z-level to allow this map to fully generate
+	SSmapping.on_map_loaded()
+	SSair.on_map_loaded()
+	testing("Finished procedural generation of [name]. [generate.errString(generate.out_error)] -  Z-level [z], in [(REALTIMEOFDAY - start) / 10] seconds.")

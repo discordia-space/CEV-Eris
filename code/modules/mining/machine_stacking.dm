@@ -123,4 +123,5 @@
 		if (stack_storage[material_name] >= stack_amt)
 			outputMaterial(material_name, stack_amt)
 
-	console.updateUsrDialog()
+	if(console)
+		console.updateUsrDialog()

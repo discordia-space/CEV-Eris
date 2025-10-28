@@ -1,0 +1,12 @@
+{
+	"map_name": "Technical Level",
+	"map_desc": "Here go all things that must be placed somewhere, but don't belong in regular playable areas.",
+	"map_file": "maps/submaps/centcomm.dmm",
+	"map_size_x": 200,
+	"map_size_y": 200,
+	"map_size_z": 1,
+
+	"is_playable_level": false,
+	"is_main_ship_level": false,
+	"is_sealed_level": true
+}

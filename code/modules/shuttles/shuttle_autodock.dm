@@ -18,6 +18,12 @@
 	var/obj/effect/shuttle_landmark/landmark_transition
 	var/move_time = 360		//the time spent in the transition area
 
+	var/list/destinations_cache = list()
+	var/last_cache_rebuild_time = 0
+
+	// If this shuttle is allowed to visit discovered overmap locations
+	var/can_do_exploration = FALSE
+
 	category = /datum/shuttle/autodock
 
 /datum/shuttle/autodock/New(var/_name, var/obj/effect/shuttle_landmark/start_waypoint)
@@ -36,7 +42,10 @@
 
 	//Optional transition area
 	if(landmark_transition)
-		landmark_transition = locate(landmark_transition)
+		var/transition_tag = landmark_transition
+		landmark_transition = locate(transition_tag)
+		if(!istype(landmark_transition)) // Failed to locate the transition area
+			landmark_transition = transition_tag
 
 /datum/shuttle/autodock/Destroy()
 	next_location = null
@@ -49,11 +58,8 @@
 	force_undock() //bye!
 	..()
 
-/datum/shuttle/autodock/proc/get_docking_target(var/obj/effect/shuttle_landmark/location)
-	if(location && location.special_dock_targets)
-		if(location.special_dock_targets[name])
-			return location.special_dock_targets[name]
-	else if (location.dock_target)
+/datum/shuttle/autodock/proc/get_docking_target(obj/effect/shuttle_landmark/location)
+	if(location.dock_target)
 		return location.dock_target
 
 /*
@@ -63,6 +69,7 @@
 	if(active_docking_controller)
 		active_docking_controller.initiate_docking(current_dock_target)
 		last_dock_attempt_time = world.time
+		build_destinations_cache()
 
 /datum/shuttle/autodock/proc/undock()
 	if(active_docking_controller)
@@ -124,7 +131,15 @@
 		process_state = IDLE_STATE
 		in_use = null
 		return
-	if (move_time && landmark_transition)
+
+	// Transit location wasn't found on initialization, try again
+	if(istext(landmark_transition))
+		var/transition_tag = landmark_transition
+		landmark_transition = locate(transition_tag)
+		if(!istype(landmark_transition))
+			landmark_transition = transition_tag
+
+	if (move_time && landmark_transition && istype(landmark_transition))
 		. = long_jump(next_location, landmark_transition, move_time)
 	else
 		. = short_jump(next_location)
@@ -180,4 +195,32 @@
 //This can be used by subtypes to do things when the shuttle arrives.
 //Note that this is called when the shuttle leaves the WAIT_FINISHED state, the proc name is a little misleading
 /datum/shuttle/autodock/proc/arrived()
-	return	//do nothing for now
+	build_destinations_cache()
+
+
+/datum/shuttle/autodock/proc/get_possible_destinations()
+	if(last_cache_rebuild_time < SSshuttle.last_landmark_registration_time)
+		build_destinations_cache()
+	return destinations_cache
+
+
+/datum/shuttle/autodock/proc/build_destinations_cache()
+	last_cache_rebuild_time = world.time
+	destinations_cache.Cut()
+
+	for(var/obj/effect/shuttle_landmark/landmark in SSshuttle.registered_shuttle_landmarks)
+		if(!landmark.is_valid_destination)
+			continue // Shouldn't manually target this landmark under any circumstances
+		if(landmark.shuttle_restricted && (landmark.shuttle_restricted != name))
+			continue // It belongs to a different shuttle, can't use
+		if(landmark.exploration_landmark && !can_do_exploration)
+			continue // Not all shuttles are meant to do exploration content
+		if(landmark == current_location)
+			continue // We're already on this landmark
+
+		destinations_cache["[landmark.name]"] = landmark
+
+
+/datum/shuttle/autodock/proc/set_destination(destination_key, mob/user)
+	if(moving_status == SHUTTLE_IDLE)
+		next_location = destinations_cache[destination_key]

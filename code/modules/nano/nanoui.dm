@@ -208,9 +208,9 @@ nanoui is used to open and update nano browser uis
 			"autoUpdateLayout" = auto_update_layout,
 			"autoUpdateContent" = auto_update_content,
 			"showMap" = show_map,
-			"mapName" = GLOB.maps_data.path,
+			"mapName" = "eris",
 			"mapZLevel" = map_z_level,
-			"mapZLevels" = GLOB.maps_data.station_levels,
+			"mapZLevels" = SSmapping.main_ship_z_levels,
 			"user" = list("name" = user.name)
 		)
 	return config_data
@@ -393,7 +393,7 @@ nanoui is used to open and update nano browser uis
 	initial_data_json = strip_improper(initial_data_json);
 
 	var/url_parameters_json = json_encode(list("src" = "\ref[src]"))
-	
+
 	// This prevents the so-called white screens
 	spawn(1)
 		retrieving_html = FALSE
@@ -551,7 +551,7 @@ nanoui is used to open and update nano browser uis
 
 	if(href_list["mapZLevel"])
 		var/map_z = text2num(href_list["mapZLevel"])
-		if(map_z in GLOB.maps_data.station_levels)
+		if(IS_SHIP_LEVEL(map_z))
 			set_map_z_level(map_z)
 			map_update = 1
 		else

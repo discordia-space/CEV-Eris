@@ -271,8 +271,7 @@
 	else
 		playsound(src.loc, lock_off_sound, 60, 1, -3)
 	if(user)
-		for(var/mob/O in viewers(user, 3))
-			O.show_message( SPAN_NOTICE("The [ctype] has been [locked ? null : "un"]locked by [user]."), 1)
+		user.visible_message(SPAN_NOTICE("The [ctype] has been [locked ? null : "un"]locked by [user]."), range = 3)
 	update_icon()
 
 //Cham Projector Exception

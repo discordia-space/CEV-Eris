@@ -67,7 +67,7 @@
 /obj/effect/pulsar_ship/proc/try_move(newdir)
 	var/turf/newloc = get_step(src, newdir)
 	if(newdir)
-		if(!newloc || newloc.x > GLOB.maps_data.pulsar_size - 1 || newloc.x < 1 || newloc.y > GLOB.maps_data.pulsar_size - 1 || newloc.y < 1) // If movement outside of the map, reverse decay dir
+		if(!newloc || newloc.x > PULSAR_SIZE - 1 || newloc.x < 1 || newloc.y > PULSAR_SIZE - 1 || newloc.y < 1) // If movement outside of the map, reverse decay dir
 			Move(get_step(src, turn(newdir, 180)))
 			shadow.Move(get_step(shadow, newdir))
 		else

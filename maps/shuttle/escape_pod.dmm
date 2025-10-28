@@ -1,0 +1,46 @@
+"a" = (/turf/shuttle/floor{icon_state = "cargofloor7"},/area/space)
+"c" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall14"},/area/space)
+"d" = (/obj/structure/shuttle_part/escpod{icon_state = "escpodwall10"},/turf/space,/area/space)
+"e" = (/turf/shuttle/wall/escpod,/area/space)
+"f" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall8"},/area/space)
+"h" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall12"},/area/space)
+"i" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall24"; opacity = 0},/area/space)
+"j" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall4"},/area/space)
+"k" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall5"; opacity = 0},/area/space)
+"l" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall6"; opacity = 0},/area/space)
+"m" = (/obj/structure/bed/chair/shuttle{dir = 1},/turf/shuttle/floor{icon_state = "cargofloor1"},/area/space)
+"n" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall25"},/area/space)
+"o" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall23"; opacity = 0},/area/space)
+"p" = (/obj/machinery/door/airlock/freezer{fluorescent = null; frequency = 1380; icon_state = "door_locked"; id_tag = "escape_pod_2_hatch"; locked = 1; name = "Escape Pod Hatch"; req_access = list(13)},/turf/shuttle/floor{icon_state = "cargofloor7"},/area/space)
+"q" = (/obj/structure/shuttle_part/escpod{icon_state = "escpodwall18"},/turf/space,/area/space)
+"r" = (/obj/structure/shuttle_part/escpod{icon_state = "escpodwall27"},/turf/space,/area/space)
+"s" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall20"},/area/space)
+"u" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall17"},/area/space)
+"y" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall22"},/area/space)
+"z" = (/obj/item/device/radio/intercom{dir = 4; pixel_x = -22},/obj/structure/bed/chair/shuttle{dir = 1},/turf/shuttle/floor{icon_state = "cargofloor1"},/area/space)
+"A" = (/obj/structure/bed/chair/shuttle,/obj/machinery/light{dir = 1},/turf/shuttle/floor{icon_state = "cargofloor1"},/area/space)
+"B" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall7"},/area/space)
+"C" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall11"},/area/space)
+"G" = (/obj/structure/shuttle_part/escpod{icon_state = "escpodwall15"},/turf/space,/area/space)
+"H" = (/obj/structure/bed/chair/shuttle{dir = 1},/obj/machinery/light,/turf/shuttle/floor{icon_state = "cargofloor1"},/area/space)
+"I" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall29"},/area/space)
+"J" = (/obj/structure/shuttle_part/escpod{icon_state = "escpodwall9"},/turf/space,/area/space)
+"K" = (/obj/structure/closet/wall_mounted/emcloset/escape_pods{dir = 1; pixel_y = -32},/obj/machinery/camera/network/crescent{dir = 8},/obj/structure/closet/wall_mounted/emcloset/escape_pods{pixel_y = 32},/turf/shuttle/floor{icon_state = "cargofloor1"},/area/space)
+"L" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall21"},/area/space)
+"N" = (/obj/structure/bed/chair/shuttle,/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{frequency = 1380; id_tag = "escape_pod_2"; pixel_x = -25; tag = "escape_pod_2_controller"; tag_door = "escape_pod_2_hatch"},/turf/shuttle/floor{icon_state = "cargofloor1"},/area/space)
+"O" = (/obj/structure/shuttle_part/escpod{icon_state = "escpodwall28"},/turf/space,/area/space)
+"P" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall16"},/area/space)
+"S" = (/obj/structure/shuttle_part/escpod{icon_state = "escpodwall13"},/turf/space,/area/space)
+"T" = (/obj/structure/bed/chair/shuttle,/turf/shuttle/floor{icon_state = "cargofloor1"},/area/space)
+"U" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall19"},/area/space)
+"W" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall26"},/area/space)
+"X" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall3"},/area/space)
+"Z" = (/turf/shuttle/wall/escpod{icon_state = "escpodwall2"},/area/space)
+
+(1,1,1) = {"
+UsLyoinWrO
+PNTATTTIuq
+paaaaaaKcG
+CzmHmmmIhS
+eZXjklBfJd
+"}

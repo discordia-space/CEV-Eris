@@ -12,11 +12,11 @@
 	var/obj/machinery/power/master = null
 
 
-/obj/machinery/power/terminal/New()
+/obj/machinery/power/terminal/LateInitialize()
+	var/turf/T = loc
+	if(level == 1 && T)
+		hide(!T.is_plating())
 	..()
-	var/turf/T = src.loc
-	if(level==1 && T) hide(!T.is_plating())
-	return
 
 /obj/machinery/power/terminal/Destroy()
 	if(master)

@@ -6,7 +6,6 @@
 	department_flag = IRONHAMMER | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
-	spawn_positions = 1
 	supervisors = "the Captain"
 	selection_color = "#97b0be"
 	req_admin_notify = 1
@@ -67,7 +66,6 @@
 	department_flag = IRONHAMMER
 	faction = "CEV Eris"
 	total_positions = 1
-	spawn_positions = 1
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
 	department_account_access = TRUE
@@ -120,8 +118,7 @@
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 1
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
 	wage = WAGE_PROFESSIONAL
@@ -178,8 +175,7 @@
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 1
 	supervisors = "the Ironhammer Commander, Ironhammer Sergeant"
 	selection_color = "#a7bbc6"
 	wage = WAGE_PROFESSIONAL
@@ -231,8 +227,7 @@
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
 	faction = "CEV Eris"
-	total_positions = 6
-	spawn_positions = 6
+	total_positions = 2
 	supervisors = "the Ironhammer Commander, Ironhammer Sergeant"
 	//alt_titles = list("Ironhammer Junior Operative")
 	selection_color = "#a7bbc6"

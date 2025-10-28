@@ -1,13 +1,7 @@
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core
 var/global/datum/DB_search/db_search = new()
-var/global/list/all_areas                = list()
-var/global/list/ship_areas               = list()
 
-//var/global/list/machines                 = list()		//Removed
-//var/global/list/processing_objects       = list()		//Removed
-//var/global/list/processing_power_items   = list()		//Removed
-var/global/list/active_diseases          = list()
 var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
 var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
 var/global/list/excel_hud_users          = list() // List of all entities using an excelsior HUD.

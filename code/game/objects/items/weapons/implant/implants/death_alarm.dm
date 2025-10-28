@@ -40,7 +40,7 @@
 			STOP_PROCESSING(SSobj, src)
 		if ("emp")
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
-			var/name = prob(50) ? t.name : pick(SSmapping.teleportlocs)
+			var/name = prob(50) ? t.name : pick(SSmapping.main_ship_areas_by_name)
 			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", use_text_to_speech = TRUE)
 			qdel(a)
 		else

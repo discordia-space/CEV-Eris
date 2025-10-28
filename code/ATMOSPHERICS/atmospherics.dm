@@ -33,7 +33,7 @@ Pipelines + Other Objects -> Pipe network
 	var/obj/machinery/atmospherics/node1
 	var/obj/machinery/atmospherics/node2
 
-/obj/machinery/atmospherics/New()
+/obj/machinery/atmospherics/LateInitialize()
 	if(!icon_manager)
 		icon_manager = new()
 
@@ -48,7 +48,7 @@ Pipelines + Other Objects -> Pipe network
 
 /obj/machinery/atmospherics/Destroy()
 	GLOB.atmos_machinery -= src
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/proc/atmos_init()
 	return

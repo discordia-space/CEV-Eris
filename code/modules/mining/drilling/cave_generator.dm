@@ -75,7 +75,7 @@
 	var/orecount = 0
 
 /obj/cave_generator/Initialize()
-	// Initialize and not New to ensure SSmapping.maploader has been created
+	// Initialize and not New to ensure SSmapping has been created
 	// before preloading the templates
 
 	// Get pool of points of interest

@@ -34,8 +34,9 @@
 /obj/machinery/autolathe/organ_fabricator/loaded
 	stored_material = list(MATERIAL_BIOMATTER = 480)
 
-/obj/machinery/autolathe/organ_fabricator/Initialize()
-	. = ..()
+// Initializing this late so it doesn't race condition
+// disgorger's initialization and creation of it's 'knowledge' datum
+/obj/machinery/autolathe/organ_fabricator/LateInitialize()
 	files = new /datum/research(src)
 
 	// Remove when actual organ research is made

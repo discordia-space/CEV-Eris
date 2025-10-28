@@ -1,0 +1,4 @@
+author: Chickenish
+delete-after: true
+changes:
+  - rscdel: Roach Ghosts no longer scream at you for smacking their dead bodies.

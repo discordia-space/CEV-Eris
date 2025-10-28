@@ -1,0 +1,6 @@
+author: Chickenish
+delete-after: true
+changes:
+  - bugfix: flare shells now trigger when shooting yourself.
+  - tweak: Foam Darts now same class as Chemical Darts.
+  - refactor: visible_message more uniformly used.

@@ -225,7 +225,7 @@
 	delete_self()
 
 /datum/vertical_travel_method/proc/get_destination()
-	destination = (direction == UP) ? GetAbove(origin) : GetBelow(origin)
+	destination = (direction == UP) ? SSmapping.GetAbove(origin) : SSmapping.GetBelow(origin)
 	return destination
 
 

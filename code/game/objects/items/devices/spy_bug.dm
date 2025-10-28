@@ -123,15 +123,15 @@
 	spawn(0)
 		while(selected_camera && Adjacent(user))
 			var/turf/T = get_turf(selected_camera)
-			if(!T || !is_on_same_plane_or_station(T.z, user.z) || !selected_camera.can_use())
+			if(selected_camera.can_use() && T && ((T.z != user.z) || (IS_SHIP_LEVEL(T.z) && IS_SHIP_LEVEL(user.z)))) // Located on the main ship or same Z-level
+				user.set_machine(selected_camera)
+				user.reset_view(selected_camera)
+			else
 				user.unset_machine()
 				user.reset_view(null)
 				to_chat(user, SPAN_NOTICE("[selected_camera] unavailable."))
-				sleep(90)
-			else
-				user.set_machine(selected_camera)
-				user.reset_view(selected_camera)
-			sleep(10)
+				sleep(9 SECONDS)
+			sleep(1 SECOND)
 		user.unset_machine()
 		user.reset_view(null)
 

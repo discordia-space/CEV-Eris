@@ -125,27 +125,6 @@
 		radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
 
 
-/obj/machinery/door/airlock/Initialize()
-	. = ..()
-	if(frequency)
-		set_frequency(frequency)
-
-	//wireless connection
-	if(_wifi_id)
-		wifi_receiver = new(_wifi_id, src)
-
-	update_icon()
-
-/obj/machinery/door/airlock/New()
-	..()
-
-	set_frequency(frequency)
-
-/obj/machinery/door/airlock/Destroy()
-	if(frequency)
-		SSradio.remove_object(src,frequency)
-	. = ..()
-
 /obj/machinery/airlock_sensor
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_sensor_off"

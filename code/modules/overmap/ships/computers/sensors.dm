@@ -20,7 +20,7 @@
 
 /obj/machinery/computer/sensors/proc/find_sensors()
 	for(var/obj/machinery/shipsensors/S in GLOB.machines)
-		if (S.z in GetConnectedZlevels(z))
+		if (S.z in SSmapping.GetConnectedZlevels(z))
 			sensors = S
 			break
 

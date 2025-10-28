@@ -293,7 +293,7 @@
 		return
 	var/list/modules = list()
 	modules.Add(robot_modules) //This is a global list in robot_modules.dm
-	var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
+	var/decl/security_state/security_state = decls_repository.get_decl(SSmapping.security_state)
 	if((crisis && security_state.current_security_level_is_same_or_higher_than(security_state.high_security_level)) || crisis_override) //Leaving this in until it's balanced appropriately.
 		to_chat(src, SPAN_DANGER("Crisis mode active. Combat module available."))
 		modules+="Combat"
@@ -590,8 +590,7 @@
 					adjustBruteLoss(-30)
 					updatehealth()
 					add_fingerprint(user)
-					for(var/mob/O in viewers(user, null))
-						O.show_message(text(SPAN_DANGER("[user] has fixed some of the dents on [src]!")), 1)
+					user.visible_message(SPAN_DANGER("[user] has fixed some of the dents on [src]!"))
 					return
 				return
 
@@ -711,8 +710,7 @@
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			adjustFireLoss(-30)
 			updatehealth()
-			for(var/mob/O in viewers(user, null))
-				O.show_message(text(SPAN_DANGER("[user] has fixed some of the burnt wires on [src]!")), 1)
+			user.visible_message(SPAN_DANGER("[user] has fixed some of the burnt wires on [src]!"))
 
 	else if (istype(I, /obj/item/stock_parts/matter_bin) && opened) // Installing/swapping a matter bin
 		if(storage)

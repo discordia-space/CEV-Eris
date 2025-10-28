@@ -57,11 +57,11 @@ proc/makejson()
 	var/xpath = "#include \"maps/[newpath].dmm\""
 	var/loc = findtext(text,path,1,0)
 	if(!loc)
-		path = "#include \"maps\\[oldmap].dmm\""
-		xpath = "#include \"maps\\[newpath].dmm\""
+		path = "#include \"_maps\\[oldmap].dmm\""
+		xpath = "#include \"_maps\\[newpath].dmm\""
 		loc = findtext(text,path,1,0)
 		if(!loc)
-			message_admins("Could not find '#include \"maps\\[oldmap].dmm\"' or '\"maps/[oldmap].dmm\"' in the bs12.dme. The mapinfo probably has an incorrect mapname var. Alternatively, could not find the .dme itself, at [dmepath].")
+			message_admins("Could not find '#include \"_maps\\[oldmap].dmm\"' or '\"maps/[oldmap].dmm\"' in the bs12.dme. The mapinfo probably has an incorrect mapname var. Alternatively, could not find the .dme itself, at [dmepath].")
 			return
 
 	var/rest = copytext(text, loc + length(path))

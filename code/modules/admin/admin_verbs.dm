@@ -68,14 +68,10 @@ GLOBAL_LIST_INIT(admin_verbs_debug, list(
 	/client/proc/spawn_disciple,
 	/client/proc/delete_npcs,
 	/client/proc/getruntimelog,
-	/client/proc/map_template_load,
-	/client/proc/map_template_load_on_new_z,
-	/client/proc/map_template_upload,
 	/client/proc/cmd_admin_delete,
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/SDQL2_query,
 	/client/proc/show_plant_genes,
-	/client/proc/test_MD,
 	/client/proc/print_random_map,
 	/client/proc/delete_random_map,
 	/client/proc/create_random_map,
@@ -681,7 +677,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
+	var/decl/security_state/security_state = decls_repository.get_decl(SSmapping.security_state)
 	var/decl/security_level/new_security_level = input(usr, "It's currently [security_state.current_security_level.name].", "Select Security Level")  as null|anything in (security_state.all_security_levels - security_state.current_security_level)
 	if(!new_security_level)
 		return

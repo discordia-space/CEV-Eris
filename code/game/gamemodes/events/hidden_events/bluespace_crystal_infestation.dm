@@ -22,7 +22,7 @@ Additionally, not harvested nest will periodically teleport items and people to 
 	var/area/event_area
 
 /datum/event/bluespace_crystal_infestation/setup()
-	var/list/candidates = all_areas.Copy()
+	var/list/candidates = SSmapping.all_areas.Copy()
 	var/area/candidate
 	if(!prob(10))  // 10% chance not to spawn in maints.
 		for(candidate in candidates)
