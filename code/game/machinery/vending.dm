@@ -840,8 +840,8 @@
 			if(!silenceid)
 				//Pitch to the people!  Really sell it!
 				var/timing =  0 - world.time - last_slogan + slogan_delay // slogan delay minus the amount of time that has passed since the last slogan
-				var/timing2 = max(timing + max(rand(3, 15) + rand(0, 10), 6), 0) // above timing plus prob(5) bellcurved badly, forbidden from going negative.
-				addtimer(CALLBACK(src, PROC_REF(advertise)), timing2,TIMER_STOPPABLE)
+				var/timing2 = max(timing + PROBABILITY_TO_CYCLES(0.95) * 2 SECONDS, 0) // above timing plus prob(5) and forbidden from going negative.
+				silenceid = addtimer(CALLBACK(src, PROC_REF(advertise)), timing2,TIMER_STOPPABLE)
 			
 
 	if(throwit)
@@ -878,7 +878,7 @@
 			. = FALSE
 	// and again!
 	var/timing =  0 - world.time - last_slogan + slogan_delay // slogan delay minus the amount of time that has passed since the last slogan
-	var/timing2 = max(timing + max(rand(3, 15) + rand(0, 10), 6), 0) // above timing plus prob(5) bellcurved badly, forbidden from going negative.
+	var/timing2 = max(timing + PROBABILITY_TO_CYCLES(0.95) * 2 SECONDS, 0) // above timing plus prob(5) and forbidden from going negative.
 	silenceid = addtimer(CALLBACK(src, PROC_REF(advertise)), timing2,TIMER_STOPPABLE)
 
 /obj/machinery/proc/speak(message)
