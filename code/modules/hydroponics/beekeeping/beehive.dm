@@ -5,9 +5,9 @@
 	density = TRUE
 	anchored = TRUE
 
-	var/closed = 0
+	var/closed = FALSE
 	var/bee_count = 0 // Percent
-	var/smoked = 0 // Timer
+	var/smoked = null // Timer
 	var/honeycombs = 0 // Percent
 	var/frames = 0
 	var/maxFrames = 5
@@ -50,18 +50,18 @@
 			to_chat(user, SPAN_NOTICE("You need to open \the [src] with a crowbar before smoking the bees."))
 			return
 		user.visible_message(SPAN_NOTICE("\The [user] smokes the bees in \the [src]."), SPAN_NOTICE("You smoke the bees in \the [src]."))
-		smoked = 30
+		smoked = addtimer(CALLBACK(PROC_REF(desmoke)), 1 MINUTE, TIMER_STOPPABLE)
 		update_icon()
 		return
-	else if(istype(I, /obj/item/honey_frame))
+	else if(istype(I, /obj/item/reagent_containers/honey_frame))
 		if(closed)
 			to_chat(user, SPAN_NOTICE("You need to open \the [src] with a crowbar before inserting \the [I]."))
 			return
 		if(frames >= maxFrames)
 			to_chat(user, SPAN_NOTICE("There is no place for an another frame."))
 			return
-		var/obj/item/honey_frame/H = I
-		if(H.honey)
+		var/obj/item/reagent_containers/honey_frame/H = I
+		if(H.reagents.total_volume)
 			to_chat(user, SPAN_NOTICE("\The [I] is full with beeswax and honey, empty it in the extractor first."))
 			return
 		++frames
@@ -116,7 +116,8 @@
 			return
 		user.visible_message(SPAN_NOTICE("\The [user] starts taking the honeycombs out of \the [src]."), SPAN_NOTICE("You start taking the honeycombs out of \the [src]..."))
 		while(honeycombs >= 100 && do_after(user, 30, src))
-			new /obj/item/honey_frame/filled(loc)
+			var/obj/item/reagent_containers/frame = new /obj/item/reagent_containers/honey_frame(loc)
+			frame.reagents.add_reagent("honey", 20)
 			honeycombs -= 100
 			--frames
 			update_icon()
@@ -124,12 +125,14 @@
 			to_chat(user, SPAN_NOTICE("You take all filled honeycombs out."))
 		return
 
+/obj/machinery/beehive/proc/desmoke()
+	deltimer(smoked)
+	smoked = null
+
 /obj/machinery/beehive/Process()
-	if(closed && !smoked && bee_count)
-		pollinate_flowers()
-		update_icon()
-	smoked = max(0, smoked - 1)
 	if(!smoked && bee_count)
+		if(closed)
+			pollinate_flowers()
 		bee_count = min(bee_count * 1.005, 100)
 		update_icon()
 
@@ -152,8 +155,11 @@
 	icon_state = "centrifuge"
 	circuit = /obj/item/electronics/circuitboard/honey_extractor
 
-	var/processing = 0
-	var/honey = 0
+	var/obj/item/reagent_containers/honey_frame/processing
+	var/datum/reagents/honey
+
+/obj/machinery/honey_extractor/Initialize()
+	honey = new(500, src) // slightly less than a Bidon
 
 /obj/machinery/honey_extractor/attackby(var/obj/item/I, var/mob/user)
 	if(default_deconstruction(I, user))
@@ -161,31 +167,34 @@
 	if(processing)
 		to_chat(user, SPAN_NOTICE("\The [src] is currently spinning, wait until it's finished."))
 		return
-	else if(istype(I, /obj/item/honey_frame))
-		var/obj/item/honey_frame/H = I
-		if(!H.honey)
+	else if(istype(I, /obj/item/reagent_containers/honey_frame))
+		if(honey.total_volume >= honey.maximum_volume)
+			to_chat(user, SPAN_NOTICE("\The [src] is full and \the [src] cannot extract further honey."))
+			return
+		var/obj/item/reagent_containers/honey_frame/H = I
+		if(!H.reagents.total_volume)
 			to_chat(user, SPAN_NOTICE("\The [H] is empty, put it into a beehive."))
 			return
 		user.visible_message(SPAN_NOTICE("\The [user] loads \the [H] into \the [src] and turns it on."), SPAN_NOTICE("You load \the [H] into \the [src] and turn it on."))
-		processing = H.honey
+		processing = H
+		H.forceMove(src)
 		icon_state = "centrifuge_moving"
-		qdel(H)
-		spawn(50)
-			new /obj/item/honey_frame(loc)
-			new /obj/item/stack/wax(loc)
-			honey += processing
-			processing = 0
-			icon_state = "centrifuge"
+		addtimer(CALLBACK(src, PROC_REF(finish)), 50, TIMER_UNIQUE)
 	else if(istype(I, /obj/item/reagent_containers/glass))
-		if(!honey)
+		if(!honey.total_volume)
 			to_chat(user, SPAN_NOTICE("There is no honey in \the [src]."))
 			return
 		var/obj/item/reagent_containers/glass/G = I
-		var/transferred = min(G.reagents.maximum_volume - G.reagents.total_volume, honey)
-		G.reagents.add_reagent("honey", transferred)
-		honey -= transferred
+		var/transferred = honey.trans_to_holder(G.reagents, honey.total_volume)
 		user.visible_message(SPAN_NOTICE("\The [user] collects honey from \the [src] into \the [G]."), SPAN_NOTICE("You collect [transferred] units of honey from \the [src] into \the [G]."))
 		return 1
+
+/obj/machinery/honey_extractor/proc/finish()
+	new /obj/item/stack/material/wax(loc)
+	processing.reagents.trans_to_holder(honey, processing.reagents.total_volume)
+	processing.forceMove(loc)
+	processing = null
+	icon_state = "centrifuge"
 
 /obj/item/bee_smoker
 	name = "bee smoker"
@@ -194,23 +203,25 @@
 	icon_state = "battererburnt"
 	w_class = ITEM_SIZE_SMALL
 
-/obj/item/honey_frame
+/obj/item/reagent_containers/honey_frame
 	name = "beehive frame"
-	desc = "A frame for the beehive that the bees will fill with honeycombs."
+	desc = "A frame for the beehive that the bees can fill with honeycombs."
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "honeyframe"
 	w_class = ITEM_SIZE_SMALL
+	volume = 20 // honey capacity 20
+	reagent_flags = AMOUNT_VISIBLE // you can see how full it is
+	filling_states = "15;50;75;100"
+	matter = list(MATERIAL_WOOD = 1)
 
-	var/honey = 0
+/obj/item/reagent_containers/honey_frame/update_icon()
+	cut_overlays()
+	if(reagents.total_volume)
+		overlays.Add("honeycomb_[get_filling_state()]")
 
-/obj/item/honey_frame/filled
-	name = "filled beehive frame"
-	desc = "A frame for the beehive that the bees have filled with honeycombs."
-	honey = 20
-
-/obj/item/honey_frame/filled/New()
-	..()
-	overlays += "honeycomb"
+/obj/item/reagent_containers/honey_frame/get_matter()
+	. = ..()
+	. |= list(MATERIAL_WAX = reagents.total_volume/20)
 
 /obj/item/beehive_assembly
 	name = "beehive assembly"
@@ -227,15 +238,16 @@
 		qdel(src)
 	return
 
-/obj/item/stack/wax
+/obj/item/stack/material/wax
 	name = "wax"
 	singular_name = "wax piece"
 	desc = "Soft substance produced by bees. Used to make candles."
 	icon = 'icons/obj/stack/material.dmi'
 	icon_state = "sheet-wax"
 	novariants = FALSE
+	default_type = MATERIAL_WAX
 
-/obj/item/stack/wax/New()
+/obj/item/stack/material/wax/New()
 	..()
 	recipes = wax_recipes
 
@@ -248,18 +260,20 @@ var/global/list/datum/stack_recipe/wax_recipes = list( \
 	desc = "Contains a queen bee and some worker bees. Everything you'll need to start a hive!"
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "beepack"
-	var/full = 1
+	var/full = TRUE
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 0.1, MATERIAL_SILVER = 0.2, MATERIAL_BIOMATTER = 1)
 
 /obj/item/bee_pack/New()
 	..()
 	overlays += "beepack-full"
 
 /obj/item/bee_pack/proc/empty()
-	full = 0
+	full = FALSE
 	name = "empty bee pack"
 	desc = "A stasis pack for moving bees. It's empty."
 	overlays.Cut()
 	overlays += "beepack-empty"
+	matter.Remove(MATERIAL_BIOMATTER)
 
 /obj/item/bee_pack/proc/fill()
 	full = initial(full)
@@ -267,3 +281,4 @@ var/global/list/datum/stack_recipe/wax_recipes = list( \
 	desc = initial(desc)
 	overlays.Cut()
 	overlays += "beepack-full"
+	matter[MATERIAL_BIOMATTER] = 1

@@ -141,7 +141,7 @@
 
 /datum/craft_recipe/beehive_frame
 	name = "beehive frame"
-	result = /obj/item/honey_frame
+	result = /obj/item/reagent_containers/honey_frame
 	steps = list(
 		list(CRAFT_MATERIAL, 1, MATERIAL_WOOD)
 	)

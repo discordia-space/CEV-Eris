@@ -26,6 +26,7 @@
 #define MATERIAL_WOOD "wood"
 #define MATERIAL_VOXALLOY "voxalloy"
 #define MATERIAL_CARPET "carpet"
+#define MATERIAL_WAX "wax"
 #define MATERIAL_BIOMATTER "biomatter"
 #define MATERIAL_COMPRESSED "compressed matter"
 
@@ -56,6 +57,7 @@
 	MATERIAL_WOOD,\
 	MATERIAL_VOXALLOY,\
 	MATERIAL_CARPET,\
+	MATERIAL_WAX,\
 	MATERIAL_BIOMATTER,\
 	MATERIAL_COMPRESSED)
 
