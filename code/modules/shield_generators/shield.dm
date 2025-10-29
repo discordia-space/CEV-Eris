@@ -13,7 +13,7 @@
 	density = FALSE
 
 /obj/effect/shield_impact/New()
-	addtimer(CALLBACK(src, PROC_REF(qdel_self)), 2 SECONDS)
+	QDEL_IN(src, 2 SECONDS)
 
 /obj/effect/shield
 	name = "energy shield"
