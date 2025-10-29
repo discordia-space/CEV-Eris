@@ -15,7 +15,7 @@
 
 /obj/item/flame/candle/get_matter()
 	. = ..()
-	. | list(MATERIAL_WAX = wax/1000) // some lost on crafting
+	. |= list(MATERIAL_WAX = wax/1000) // some lost on crafting
 
 /obj/item/flame/candle/update_icon()
 	var/i
