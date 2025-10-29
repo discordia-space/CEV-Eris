@@ -190,6 +190,7 @@
 		return 1
 
 /obj/machinery/honey_extractor/proc/finish()
+	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
 	new /obj/item/stack/material/wax(loc)
 	processing.reagents.trans_to_holder(honey, processing.reagents.total_volume)
 	processing.forceMove(loc)
