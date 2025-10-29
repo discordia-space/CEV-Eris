@@ -228,6 +228,7 @@
 	desc = "Contains everything you need to build a beehive."
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "apiary"
+	matter = list(MATERIAL_WOOD = 10)
 
 /obj/item/beehive_assembly/attack_self(var/mob/user)
 	to_chat(user, SPAN_NOTICE("You start assembling \the [src]..."))
