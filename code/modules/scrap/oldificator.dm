@@ -410,6 +410,11 @@
 	updatehealth()
 	*/
 
+/obj/item/pen/crayon/make_old()
+	. = ..()
+	if(uses > 0) // infinite use crayons are infinite use
+		uses = rand(1, initial(uses))
+
 /obj/item/gun/make_old(low_quality_oldification)
 	.=..()
 	if(. && prob(90))

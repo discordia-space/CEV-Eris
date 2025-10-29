@@ -52,7 +52,7 @@
 	var/have_recycling = TRUE
 	var/have_design_selector = TRUE
 
-	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
+	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER, MATERIAL_WAX)
 	var/list/suitable_materials //List that limits autolathes to eating mats only in that list.
 
 	var/list/selectively_recycled_types = list()
