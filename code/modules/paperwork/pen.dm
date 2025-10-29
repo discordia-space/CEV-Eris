@@ -191,7 +191,7 @@
 	attack_verb = list("attacked", "coloured")
 	colour = "#FF0000" //RGB
 	var/shadeColour = "#220000" //RGB
-	var/uses = 30 //0 for unlimited uses
+	var/uses = 32 //0 for unlimited uses
 	var/instant = 0
 	var/colourName = "red" //for updateIcon purposes
 	var/grindable = TRUE //normal crayons are grindable, rainbow and mime aren't
@@ -201,4 +201,12 @@
 		if(grindable)
 			create_reagents(20)
 			reagents.add_reagent("crayon_dust_[colourName]", 20)
+		if(uses == 0)
+			matter | list(MATERIAL_WAX, 2) // permanent means it doesn't change
 		..()
+
+/obj/item/pen/crayon/get_matter() // crayons can be spent
+	. = ..()
+	if(uses > 0)
+		. | list(MATERIAL_WAX = uses/64) // up to half a stack per crayon
+

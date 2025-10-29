@@ -13,6 +13,10 @@
 	wax = rand(800, 1000) // Enough for 27-33 minutes. 30 minutes on average.
 	..()
 
+/obj/item/flame/candle/get_matter()
+	. = ..()
+	. | list(MATERIAL_WAX = wax/1000) // some lost on crafting
+
 /obj/item/flame/candle/update_icon()
 	var/i
 	if(wax > 800)
