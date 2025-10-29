@@ -6,7 +6,7 @@
 	item_state = "candle1"
 	w_class = ITEM_SIZE_TINY
 	light_color = COLOR_LIGHTING_ORANGE_DARK
-	matter = list(MATERIAL_WAX, 2)
+	matter = list(MATERIAL_WAX = 1)
 	var/lit_sanity_damage = -0.5
 	var/drips = 0
 
