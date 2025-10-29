@@ -43,6 +43,8 @@
 		var/obj/item/flame/candle/C = I
 		if(C.lit)
 			light()
+	else if(istype(I, /obj/item/device/assembly/igniter))
+		light(SPAN_NOTICE("\The [user] ignites the [name]."))
 
 
 /obj/item/flame/candle/proc/light(var/flavor_text = SPAN_NOTICE("\The [usr] lights the [name]."))
@@ -64,7 +66,7 @@
 	update_icon()
 	if(istype(loc, /turf)) //start a fire if possible
 		var/turf/T = loc
-		T.hotspot_expose(700, 5)
+		T.hotspot_expose(700, 5) // refactor this during thermal update
 
 /obj/item/flame/candle/attack_self(mob/user as mob)
 	if(lit)
