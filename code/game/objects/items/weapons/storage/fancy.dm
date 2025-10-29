@@ -88,6 +88,7 @@
 	slot_flags = SLOT_BELT
 	storage_slots = 5
 	item_obj = /obj/item/flame/candle
+	matter = list(MATERIAL_CARDBOARD = 1)
 
 
 /obj/item/storage/fancy/candle_box/populate_contents()

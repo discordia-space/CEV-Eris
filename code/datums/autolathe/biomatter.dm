@@ -23,7 +23,6 @@
 /datum/design/bioprinter/candles
 	name = "Box of Candles"
 	build_path = /obj/item/storage/fancy/candle_box
-	materials = list(MATERIAL_BIOMATTER = 15, MATERIAL_CARDBOARD = 1)
 
 
 //[NUTRIMENTS]
