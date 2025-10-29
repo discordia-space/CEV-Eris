@@ -50,7 +50,7 @@
 			to_chat(user, SPAN_NOTICE("You need to open \the [src] with a crowbar before smoking the bees."))
 			return
 		user.visible_message(SPAN_NOTICE("\The [user] smokes the bees in \the [src]."), SPAN_NOTICE("You smoke the bees in \the [src]."))
-		smoked = addtimer(CALLBACK(PROC_REF(desmoke)), 1 MINUTE, TIMER_STOPPABLE)
+		smoked = addtimer(CALLBACK(src, PROC_REF(desmoke)), 1 MINUTE, TIMER_STOPPABLE)
 		update_icon()
 		return
 	else if(istype(I, /obj/item/reagent_containers/honey_frame))

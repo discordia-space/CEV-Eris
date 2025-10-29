@@ -202,7 +202,7 @@
 			create_reagents(20)
 			reagents.add_reagent("crayon_dust_[colourName]", 20)
 		if(uses == 0)
-			matter |= list(MATERIAL_WAX, 2) // permanent means it doesn't change
+			matter[MATERIAL_WAX] = 2 // permanent means it doesn't change
 		..()
 
 /obj/item/pen/crayon/get_matter() // crayons can be spent
