@@ -65,7 +65,7 @@
 				src.dropped(loc)
 			qdel(src)
 		update_icon()
-		drips = 0
+		drips = -1
 	drips ++
 	if(istype(loc, /turf)) //start a fire if possible
 		var/turf/T = loc
