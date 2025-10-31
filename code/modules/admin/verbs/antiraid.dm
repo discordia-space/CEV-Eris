@@ -14,14 +14,14 @@ GLOBAL_LIST_EMPTY(PB_bypass) //Handles ckey
 	config.panic_bunker = (!config.panic_bunker)
 
 	log_and_message_admins("[key_name(usr)] has toggled the Panic Bunker, it is now [(config.panic_bunker?"on":"off")].")
-	if (config.panic_bunker && (!dbcon || !dbcon.IsConnected()))
+	if (config.panic_bunker && !SSdbcore.Connect())
 		message_admins("The database is not connected! Panic bunker will not work until the connection is reestablished.")
 
 /client/proc/addbunkerbypass(ckeytobypass as text)
 	set category = "Server"
 	set name = "Add PB Bypass"
 	set desc = "Allows a given ckey to connect despite the panic bunker for a given round."
-	if(!dbcon.IsConnected())
+	if(!SSdbcore.Connect())
 		to_chat(usr, "<span class='adminnotice'>The Database is not enabled or not working!</span>")
 		return
 
@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(PB_bypass) //Handles ckey
 	set category = "Server"
 	set name = "Revoke PB Bypass"
 	set desc = "Revoke's a ckey's permission to bypass the panic bunker for a given round."
-	if(!dbcon.IsConnected())
+	if(!SSdbcore.Connect())
 		to_chat(usr, "<span class='adminnotice'>The Database is not enabled or not working!</span>")
 		return
 
@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY(PB_bypass) //Handles ckey
 	config.paranoia_logging = (!config.paranoia_logging)
 
 	log_and_message_admins("[key_name(usr)] has toggled Paranoia Logging, it is now [(config.paranoia_logging?"on":"off")].")
-	if (config.paranoia_logging && (!dbcon || !dbcon.IsConnected()))
+	if (config.paranoia_logging && !SSdbcore.Connect())
 		message_admins("The database is not connected! Paranoia logging will not be able to give 'player age' (time since first connection) warnings, only Byond account warnings.")
 
 /client/proc/ip_reputation()
@@ -64,26 +64,26 @@ GLOBAL_LIST_EMPTY(PB_bypass) //Handles ckey
 	config.ip_reputation = (!config.ip_reputation)
 
 	log_and_message_admins("[key_name(usr)] has toggled IP reputation checks, it is now [(config.ip_reputation?"on":"off")].")
-	if (config.ip_reputation && (!dbcon || !dbcon.IsConnected()))
+	if (config.ip_reputation && !SSdbcore.Connect())
 		message_admins("The database is not connected! IP reputation logging will not be able to allow existing players to bypass the reputation checks (if that is enabled).")
 
-/client/proc/toggle_vpn_white(var/ckey as text)
+/client/proc/toggle_vpn_white(ckey as text)
 	set category = "Server"
 	set name = "Whitelist ckey from VPN Checks"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	if (!dbcon || !dbcon.IsConnected())
+	if (!SSdbcore.IsConnected())
 		to_chat(usr,"The database is not connected!")
 		return
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[sanitizeSQL(ckey)]'")
+	var/datum/db_query/query = SSdbcore.NewQuery("SELECT id FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = ckey))
 	query.Execute()
 	if(query.NextRow())
 		var/temp_id = query.item[1]
 		log_and_message_admins("[key_name(usr)] has toggled VPN checks for [ckey].")
-		query = dbcon.NewQuery("UPDATE players SET VPN_check_white = !VPN_check_white WHERE id = '[temp_id]'")
+		query = SSdbcore.NewQuery("UPDATE [format_table_name("players")] SET VPN_check_white = !VPN_check_white WHERE id = :temp_id", list("temp_id" = temp_id))
 		query.Execute()
 	else
 		to_chat(usr,"Player [ckey] not found!")

@@ -66,15 +66,17 @@ var/sqlport
 var/sqldb
 var/sqllogin
 var/sqlpass
+var/sql_tableprefix
+var/sql_async_query_timeout = 10
+var/sql_blocking_query_timeout = 5
+var/sql_pooling_min_sql_connections = 1
+var/sql_pooling_max_sql_connections = 25
+var/sql_max_concurrent_queries = 25
 
 // For FTP requests. (i.e. downloading runtime logs.)
 // However it'd be ok to use for accessing attack logs and such too, which are even laggier.
 var/fileaccess_timer = 0
 var/custom_event_msg
-
-// Database connections. A connection is established on world creation.
-// Ideally, the connection dies when the server restarts (After feedback logging.).
-var/DBConnection/dbcon     = new() // Feedback    database (New database)
 
 // Reference list for disposal sort junctions. Filled up by sorting junction's New()
 /var/list/tagger_locations = list()
