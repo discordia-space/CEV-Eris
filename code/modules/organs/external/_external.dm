@@ -705,6 +705,12 @@ This function completely restores a damaged organ to perfect condition.
 	for(var/datum/wound/W in wounds)
 		rval |= !W.salved
 		W.salved = 1
+	if(rval)
+		for(var/obj/item/organ/internal/tofix in internal_organs)
+			for(var/grabthis in tofix.wounddatums)
+				if(istype(tofix.wounddatums[grabthis], /datum/internal_wound))
+					var/datum/internal_wound/patchthis = tofix.wounddatums[grabthis]
+					patchthis.first_aid(list(WE_SALVE))
 	return rval
 
 /obj/item/organ/external/proc/clamp_wounds()
