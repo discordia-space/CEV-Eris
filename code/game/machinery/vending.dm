@@ -137,7 +137,7 @@
 
 	// Stuff relating vocalizations
 	var/list/slogan_list = list()
-	var/shut_up = 0 //Let spouting those godawful pitches!
+	var/shut_up = FALSE //Let spouting those godawful pitches!
 	var/vend_reply //Thank you for shopping!
 	var/last_reply = 0
 	var/last_slogan = 0 //When did we last pitch?
@@ -145,8 +145,13 @@
 
 	// Things that can go wrong
 	emagged = 0 //Ignores if somebody doesn't have card access to that machine.
-	var/seconds_electrified = 0 //Shock customers like an airlock.
-	var/shoot_inventory = 0 //Fire items at customers! We're broken!
+	var/electrified = 0 //Shock customers like an airlock.
+	var/shoot_inventory = FALSE //Fire items at customers! We're broken!
+	var/silenceid = null
+	var/electricid = null // we ain't got one yet
+	var/shootid = null
+
+
 
 	var/custom_vendor = FALSE //If it's custom, it can be loaded with stuff as long as it's unlocked.
 	var/locked = TRUE
@@ -583,7 +588,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 
-	if(seconds_electrified != 0)
+	if(electrified != FALSE)
 		if(src.shock(user, 100))
 			return
 
@@ -762,7 +767,7 @@
 			if(!panel_open)
 				return TRUE
 
-			shut_up = !shut_up
+			update_state(null, !shut_up, null) 
 			return TRUE
 
 	add_fingerprint(usr)
@@ -808,18 +813,57 @@
 		vend_ready = 1
 		currently_vending = null
 
+/obj/machinery/vending/proc/update_state(electric, silence, throwit)
+	switch(electric)
+		if(TRUE)
+			electrified = TRUE
+			electricid = addtimer(CALLBACK(src, PROC_REF(end_electric)), 1 MINUTE, TIMER_STOPPABLE)
+		if(FALSE)
+			electrified = FALSE
+			if(electricid) // electri-cid? electric ID!
+				deltimer(electricid)
+				electricid = null
+		if(-1) // indefinite electric state
+			if(electrified != -1)
+				electrified = -1
+				deltimer(electricid)
+				electricid = null
+
+	if(!isnull(silence))
+		if(silence)
+			shut_up = TRUE
+			if(silenceid)
+				deltimer(silenceid)
+				silenceid = null
+		else
+			shut_up = FALSE
+			if(!silenceid)
+				//Pitch to the people!  Really sell it!
+				var/timing =  slogan_delay + last_slogan - world.time// slogan delay minus the amount of time that has passed since the last slogan
+				var/timing2 = max(timing + PROBABILITY_TO_CYCLES(0.95) * 2 SECONDS, 0) // above timing plus prob(5) and forbidden from going negative.
+				silenceid = addtimer(CALLBACK(src, PROC_REF(advertise)), timing2,TIMER_STOPPABLE)
+			
+
+	if(throwit)
+		shoot_inventory = TRUE
+		if(!shootid)
+			shootid = addtimer(CALLBACK(src, PROC_REF(pitch_check)), round(PROBABILITY_TO_CYCLES(0.98) * 2 SECONDS), TIMER_STOPPABLE)
+
+	else
+		if(isnull(throwit))
+			return
+		shoot_inventory = FALSE
+		if(shootid)
+			deltimer(shootid)
+			shootid = null
+
 /obj/machinery/vending/Process()
-	if(stat & (BROKEN|NOPOWER))
-		return
+	. = PROCESS_KILL // do NOT process
 
-	if(!active)
-		return
-
-	if(seconds_electrified > 0)
-		seconds_electrified--
-
-	//Pitch to the people!  Really sell it!
-	if(((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > 0 || custom_vendor) && (!shut_up) && prob(5))
+/obj/machinery/vending/proc/advertise()
+	if((last_slogan + slogan_delay) > world.time)
+		. = FALSE
+	else
 		if(slogan_list.len)
 			var/slogan = pick(slogan_list)
 			speak(slogan)
@@ -830,11 +874,12 @@
 				var/advertisement = "[pick("Come get","Come buy","Buy","Sale on","We have")] \an [advertised.product_name], [pick("for only","only","priced at")] [advertised.price] credits![pick(" What a deal!"," Can you believe it?","")]"
 				speak(advertisement)
 				last_slogan = world.time
-
-	if(shoot_inventory && prob(2))
-		throw_item()
-
-	return
+		else
+			. = FALSE
+	// and again!
+	var/timing =  slogan_delay + last_slogan - world.time  // slogan delay minus the amount of time that has passed since the last slogan
+	var/timing2 = max(timing + PROBABILITY_TO_CYCLES(0.95) * 2 SECONDS, 0) // above timing plus prob(5) and forbidden from going negative.
+	silenceid = addtimer(CALLBACK(src, PROC_REF(advertise)), timing2,TIMER_STOPPABLE)
 
 /obj/machinery/proc/speak(message)
 	if(stat & NOPOWER)
@@ -843,9 +888,7 @@
 	if(!message)
 		return
 
-	for(var/mob/O in hearers(src, null))
-		O.show_message("<span class='game say'><span class='name'>\The [src]</span> beeps, \"[message]\"</span>",2)
-	return
+	audible_message("<span class='game say'><span class='name'>\The [src]</span> beeps, \"[message]\"</span>")
 
 /obj/machinery/vending/power_change()
 	..()
@@ -868,6 +911,16 @@
 	stat |= BROKEN
 	icon_state = "[icon_type]-broken"
 	return
+
+/obj/machinery/vending/proc/pitch_check()
+	if(shoot_inventory && active && !(stat & (BROKEN|NOPOWER)))
+		throw_item()
+	shootid = addtimer(CALLBACK(src, PROC_REF(pitch_check)), round(PROBABILITY_TO_CYCLES(0.98) * 2 SECONDS), TIMER_STOPPABLE) // still need to repeat the loop when the machine has no power
+
+
+/obj/machinery/vending/proc/end_electric()
+	electrified = FALSE
+	electricid = null
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /obj/machinery/proc/throw_item()
