@@ -46,8 +46,8 @@
 		if(spawns.len)
 			burrow()
 			if(has_postspawn)
-				post_spawn(spawns)
-			if(editvar.len)
+				post_spawn(spawns, editvar)
+			if(length(editvar))
 				for(var/atom/tospawn in spawns)
 					for(var/replacewith in editvar)
 						if(hasvar(tospawn, replacewith)) //this broke roachcubes spawning near roaches somehow
@@ -170,7 +170,7 @@
 	aditional_object = SSspawn_data.all_accompanying_obj_by_path[selected]
 	return selected
 
-/obj/spawner/proc/post_spawn(list/spawns)
+/obj/spawner/proc/post_spawn(list/spawns, ...)
 	return
 
 /proc/check_spawn_point(turf/T, check_density=FALSE)
