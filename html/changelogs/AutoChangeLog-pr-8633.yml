@@ -1,0 +1,9 @@
+author: Chickenish
+delete-after: true
+changes:
+  - server: CI now has a UserAgent
+  - server: CI Ubuntu updated to 24.04
+  - server: CI Libssl updated to v3
+  - server: CI Python updated
+  - server: DB Process updated
+  - server: Dependencies updated
