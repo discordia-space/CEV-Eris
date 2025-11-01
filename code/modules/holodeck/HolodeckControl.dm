@@ -275,7 +275,7 @@
 	holographic_objs = A.copy_contents_to(linkedholodeck , 0)
 	for(var/obj/holo_obj in holographic_objs)
 		holo_obj.alpha *= 0.9 //give holodeck objs a slight transparency
-		holo_obj.plane = 63 //This makes all objects load on the plane that Eris's 3rd z-level uses for objects. This is not dynamic.
+		holo_obj.update_plane()
 
 	if(HP.ambience)
 		linkedholodeck.forced_ambience = HP.ambience
