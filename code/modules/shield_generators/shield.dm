@@ -13,9 +13,7 @@
 	density = FALSE
 
 /obj/effect/shield_impact/New()
-	spawn(2 SECONDS)
-		qdel(src)
-
+	QDEL_IN(src, 2 SECONDS)
 
 /obj/effect/shield
 	name = "energy shield"
