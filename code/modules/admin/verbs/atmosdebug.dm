@@ -30,12 +30,18 @@
 	next_turf:
 		for(var/turf/T in turfs)
 			for(var/dir in cardinal)
-				var/list/connect_types = list(1 = 0, 2 = 0, 3 = 0)
+				var/r1 = 0 // registries
+				var/r2 = 0
+				var/r3 = 0
 				for(var/obj/machinery/atmospherics/pipe in T)
 					if(dir & pipe.initialize_directions)
-						for(var/connect_type in pipe.connect_types)
-							connect_types[connect_type] += 1
-						if(connect_types[1] > 1 || connect_types[2] > 1 || connect_types[3] > 1)
+						if(pipe.connect_types[1])
+							r1 ++
+						if(pipe.connect_types[2])
+							r2 ++
+						if(pipe.connect_types[3])
+							r3 ++
+						if(r1 > 1 || r2 > 1 || r3 > 1)
 							to_chat(usr, "Overlapping pipe ([pipe.name]) located at [T.x],[T.y],[T.z] ([get_area(T)])")
 							continue next_turf
 	to_chat(usr, "Done")
