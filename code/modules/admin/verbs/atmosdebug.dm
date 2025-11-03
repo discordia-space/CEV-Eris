@@ -36,7 +36,7 @@
 						if(pipe.connect_types & typebuild)
 							to_chat(usr, "Overlapping pipe ([pipe.name]) located at [T.x],[T.y],[T.z] ([get_area(T)])")
 							continue next_turf
-						typebuild | pipe.connect_types
+						typebuild |= pipe.connect_types
 	to_chat(usr, "Done")
 
 /client/proc/powerdebug()
