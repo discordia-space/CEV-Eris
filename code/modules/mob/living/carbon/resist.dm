@@ -67,6 +67,10 @@
 		switch(G.state)
 			if(GRAB_PASSIVE)
 				qdel(G)
+			if(GRAB_FIRM)
+				if(prob(max(60 + ((stats?.getStat(STAT_ROB)) - ((G.assailant?.stats.getStat(STAT_ROB) ** 0.8)/2)), 1))) // half as difficult as aggressive
+					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
+					qdel(G)
 			if(GRAB_AGGRESSIVE)
 				if(prob(max(60 + ((stats?.getStat(STAT_ROB)) - G.assailant?.stats.getStat(STAT_ROB) ** 0.8), 1))) // same scaling as cooldown increase and if you manage to be THAT BAD, 1% for luck
 					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
