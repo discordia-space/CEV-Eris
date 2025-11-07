@@ -22,7 +22,7 @@ var/const/VENDING_WIRE_IDSCAN = 8
 /datum/wires/vending/CanUse(var/mob/living/L)
 	var/obj/machinery/vending/V = holder
 	if(!issilicon(L))
-		if(V.seconds_electrified)
+		if(V.electrified)
 			if(V.shock(L, 100))
 				return 0
 	if(V.panel_open)
@@ -32,7 +32,7 @@ var/const/VENDING_WIRE_IDSCAN = 8
 /datum/wires/vending/GetInteractWindow(mob/living/user)
 	var/obj/machinery/vending/V = holder
 	. += ..(user)
-	. += "<BR>The orange light is [V.seconds_electrified ? "off" : "on"].<BR>"
+	. += "<BR>The orange light is [V.electrified ? "off" : "on"].<BR>"
 	. += "The red light is [V.shoot_inventory ? "off" : "blinking"].<BR>"
 	. += "The green light is [(V.categories & CAT_HIDDEN) ? "on" : "off"].<BR>"
 	. += "The [V.scan_id ? "purple" : "yellow"] light is on.<BR>"
@@ -41,11 +41,11 @@ var/const/VENDING_WIRE_IDSCAN = 8
 	var/obj/machinery/vending/V = holder
 	switch(index)
 		if(VENDING_WIRE_THROW)
-			V.shoot_inventory = !V.shoot_inventory
+			V.update_state(null, null, !V.shoot_inventory)
 		if(VENDING_WIRE_CONTRABAND)
 			V.categories ^= CAT_HIDDEN
 		if(VENDING_WIRE_ELECTRIFY)
-			V.seconds_electrified = 30
+			V.update_state(TRUE, null, null)
 		if(VENDING_WIRE_IDSCAN)
 			V.scan_id = !V.scan_id
 
@@ -53,14 +53,14 @@ var/const/VENDING_WIRE_IDSCAN = 8
 	var/obj/machinery/vending/V = holder
 	switch(index)
 		if(VENDING_WIRE_THROW)
-			V.shoot_inventory = !mended
+			V.update_state(null, null, !mended)
 		if(VENDING_WIRE_CONTRABAND)
 			V.categories &= ~CAT_HIDDEN
 		if(VENDING_WIRE_ELECTRIFY)
 			if(mended)
-				V.seconds_electrified = 0
+				V.update_state(FALSE, null, null)
 			else
-				V.seconds_electrified = -1
+				V.update_state(-1, null, null)
 		if(VENDING_WIRE_IDSCAN)
 			V.scan_id = 1
 
@@ -120,9 +120,9 @@ var/const/VENDING_INT_WIRE_POWER = 64
 		var/obj/machinery/vending/V = holder
 		switch(index)
 			if(VENDING_INT_WIRE_THROW)
-				V.shoot_inventory = !V.shoot_inventory
+				V.update_state(throwit = !V.shoot_inventory)
 			if(VENDING_INT_WIRE_ELECTRIFY)
-				V.seconds_electrified = 30
+				V.update_state(TRUE)
 			if(VENDING_INT_WIRE_IDSCAN)
 				V.scan_id = !V.scan_id
 			if(VENDING_INT_WIRE_CONTRABAND)
@@ -138,10 +138,10 @@ var/const/VENDING_INT_WIRE_POWER = 64
 	switch(index)
 		if(VENDING_INT_WIRE_THROW)
 			if(is_powered)
-				V.shoot_inventory = !mended
+				V.update_state(null, null, !mended)
 		if(VENDING_INT_WIRE_ELECTRIFY)
 			if(is_powered)
-				V.seconds_electrified = mended ? 0 : -1
+				V.update_state(mended ? FALSE : -1, null, null)
 		if(VENDING_INT_WIRE_IDSCAN)
 			if(is_powered)
 				V.scan_id = 1
@@ -154,6 +154,6 @@ var/const/VENDING_INT_WIRE_POWER = 64
 			if(is_contraband_securely_pulsed)
 				is_contraband_securely_pulsed = FALSE
 		if(VENDING_INT_WIRE_POWER)
-			V.seconds_electrified = mended ? 0 : 30
+			V.update_state(mended ? FALSE : TRUE)
 
 	is_powered = IsIndexCut(VENDING_INT_WIRE_POWER | VENDING_INT_WIRE_GROUND) ? FALSE : TRUE
