@@ -434,6 +434,10 @@ Proc for attack log creation, because really why not
 	if(.)
 		return .
 	var/obj/item/organ/internal/eyes/eyes = random_organ_by_process(OP_EYES)
+
+	if(stats.getPerk(PERK_OBORIN_SYNDROME) && !is_dead())
+		return eyes.colourblind_matrix
+
 	if(eyes) //If they're not, check to see if their eyes got one of them there colour matrices. Will be null if eyes are robotic/the mob isn't colourblind and they have no default colour matrix.
 		return eyes.get_colourmatrix()
 
