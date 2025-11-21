@@ -881,7 +881,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 			all_vars[V] = original.vars[V]
 	return all_vars
 
-/area/proc/copy_contents_to(var/area/A , var/platingRequired = 0 )
+/area/proc/copy_contents_to(area/A , platingRequired = FALSE, noobjs = FALSE )
 	//Takes: Area. Optional: If it should copy to areas that don't have plating
 	//Returns: Nothing.
 	//Notes: Attempts to move the contents of one area to another area.
@@ -890,7 +890,8 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 
 	// Does *not* affect gases etc; copied turfs will be changed via ChangeTurf, and the dir, icon, and icon_state copied. All other vars will remain default.
 
-	if(!A || !src) return 0
+	if(!A || !src)
+		return FALSE
 
 	var/list/turfs_src = get_area_turfs(src.type)
 	var/list/turfs_trg = get_area_turfs(A.type)
@@ -958,15 +959,16 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 					var/list/mobs = new/list()
 					var/list/newmobs = new/list()
 
-					for(var/obj/O in T)
-						objs += O
+					if(!noobjs)
+						for(var/obj/O in T)
+							objs += O
 
-					for(var/obj/O in objs)
-						newobjs += DuplicateObject(O , 1)
+						for(var/obj/O in objs)
+							newobjs += DuplicateObject(O , 1)
 
 
-					for(var/obj/O in newobjs)
-						O.loc = X
+						for(var/obj/O in newobjs)
+							O.loc = X
 
 					for(var/mob/M in T)
 
@@ -979,7 +981,8 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 					for(var/mob/M in newmobs)
 						M.loc = X
 
-					copiedobjs += newobjs
+					if(!noobjs)
+						copiedobjs += newobjs
 					copiedobjs += newmobs
 
 //					var/area/AR = X.loc
