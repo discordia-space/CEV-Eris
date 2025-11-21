@@ -16,8 +16,8 @@
 	var/obj/machinery/mineral/processing_unit/machine = null
 	var/show_all_ores = 0
 
-/obj/machinery/mineral/processing_unit_console/New()
-	..()
+/obj/machinery/mineral/processing_unit_console/LateInitialize()
+	. = ..()
 	spawn()
 		src.machine = locate(/obj/machinery/mineral/processing_unit) in range(3, src)
 		if (machine)
@@ -144,24 +144,20 @@
 		alloy_data = list()
 		for(var/alloytype in typesof(/datum/alloy)-/datum/alloy)
 			alloy_data += new alloytype()
-
 	if(!ore_data || !ore_data.len)
 		for(var/oretype in typesof(/ore)-/ore)
 			var/ore/OD = new oretype()
 			ore_data[OD.name] = OD
-	for(var/ore/OD in ore_data)
-		ores_processing[OD.name] = 0
-		ores_stored[OD.name] = 0
+			to_chat(world, "[OD.name]")
+	for(var/orename in ore_data)
+		ores_processing[orename] = 0
+		ores_stored[orename] = 0
 
 	spawn()
-		//Locate our output and input machinery.
-		var/obj/marker = null
-		marker = locate(/obj/landmark/machinery/input) in range(1, loc)
-		if(marker)
-			input_dir = get_dir(src, marker)
-		marker = locate(/obj/landmark/machinery/output) in range(1, loc)
-		if(marker)
-			output_dir = get_dir(src, marker)
+		if(!input_dir)
+			input_dir = turn(dir, 180)
+		if(!output_dir)
+			output_dir = dir
 
 /obj/machinery/mineral/processing_unit/update_icon()
 	icon_state = "furnace[active ? "_on" : ""]"
