@@ -461,7 +461,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(SSdbcore.Connect())
 		// Get existing player from DB
 		QUERY_SETUP(query, "SELECT id from players WHERE ckey = :ckey", list("ckey" = src.ckey))
-		SAE_END
+		SAFE_END
 		if(!query.Execute())
 			log_world("Failed to get player record for user with ckey '[src.ckey]'. Error message: [query.ErrorMsg()].")
 
