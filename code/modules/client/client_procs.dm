@@ -339,6 +339,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/datum/db_query/query = SSdbcore.NewQuery("UPDATE [format_table_name("players")] SET lastseen = Now() WHERE ckey = :ckey", list("ckey" = ckey))
 		if(!query.Execute())
 			log_world("Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()].")
+		qdel(query)
 	Master.UpdateTickRate()
 	..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening
 	return QDEL_HINT_HARDDEL_NOW
@@ -406,8 +407,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	src.get_country()
 	src.get_byond_age() // Get days since byond join
 
-	var/datum/db_query/query_insert = SSdbcore.NewQuery(
-	"INSERT INTO [format_table_name("players")] \
+	QUERY_NOW("INSERT INTO [format_table_name("players")] \
 	(ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version, country) \
 	VALUES (:ckey, Now(), Now(), :registered, :ip, :cid, 'player', :byond_version, :country)",
 	list(
@@ -416,20 +416,18 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		"ip" = src.address,
 		"cid" = src.computer_id,
 		"byond_version" = src.byond_version,
-		"country" = src.country_code
-	)
-)
+		"country" = src.country_code))
 
-	if(!query_insert.Execute())
-		log_world("##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()].")
-		return
+	EXECUTE_OR_ERROR(query, "create player record for user [ckey]")
 
 	else
-		var/datum/db_query/get_player_id = SSdbcore.NewQuery("SELECT id, first_seen FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = src.ckey))
-		get_player_id.Execute()
-		if(get_player_id.NextRow())
-			src.id = get_player_id.item[1]
-			src.first_seen = get_player_id.item[2]
+		QUERY_FAST("SELECT id, first_seen FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = src.ckey))
+		query.Execute()
+		if(query.NextRow())
+			src.id = query.item[1]
+			src.first_seen = query.item[2]
+		qdel(query)
+		
 
 //Not actually age, but rather time since first seen in days
 /client/proc/get_player_age()
@@ -437,6 +435,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/datum/db_query/query_datediff = SSdbcore.NewQuery("SELECT DATEDIFF(Now(), :firstseen)", list("firstseen" = first_seen))
 		if(query_datediff.Execute() && query_datediff.NextRow())
 			src.first_seen_days_ago = text2num(query_datediff.item[1])
+		qdel(query_datediff)
 
 	if(config.paranoia_logging && isnum(src.first_seen_days_ago) && src.first_seen_days_ago == 0)
 		log_and_message_admins("PARANOIA: [key_name(src)] has connected here for the first time.")
@@ -450,6 +449,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/datum/db_query/query_datediff = SSdbcore.NewQuery("SELECT DATEDIFF(Now(),:reg_date)", list("reg_date" = registration_date))
 		if(query_datediff.Execute() && query_datediff.NextRow())
 			src.account_age_in_days = text2num(query_datediff.item[1])
+		qdel(query_datediff)
 	if(config.paranoia_logging && isnum(src.account_age_in_days) && src.account_age_in_days <= 2)
 		log_and_message_admins("PARANOIA: [key_name(src)] has a very new Byond account. ([src.account_age_in_days] days old)")
 	return src.account_age_in_days
@@ -460,14 +460,15 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if(SSdbcore.Connect())
 		// Get existing player from DB
-		var/datum/db_query/query = SSdbcore.NewQuery("SELECT id from players WHERE ckey = :ckey", list("ckey" = src.ckey))
+		QUERY_SETUP(query, "SELECT id from players WHERE ckey = :ckey", list("ckey" = src.ckey))
+		SAE_END
 		if(!query.Execute())
 			log_world("Failed to get player record for user with ckey '[src.ckey]'. Error message: [query.ErrorMsg()].")
 
 		// Not their first time here
 		else if(query.NextRow())
 			// client already registered so we fetch all needed data
-			query = SSdbcore.NewQuery("SELECT id, registered, first_seen, VPN_check_white FROM [format_table_name("players")] WHERE id = :id", list("id" = query.item[1]))
+			QUERY_AGAIN(query, "SELECT id, registered, first_seen, VPN_check_white FROM [format_table_name("players")] WHERE id = :id", list("id" = query.item[1]))
 			query.Execute()
 			if(query.NextRow())
 				src.id = query.item[1]
@@ -477,8 +478,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				src.get_country()
 
 				//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
-				var/datum/db_query/query_update = SSdbcore.NewQuery(
-					"UPDATE [format_table_name("players")] \
+				QUERY_AGAIN(query, "UPDATE [format_table_name("players")] \
 					SET last_seen = Now(), \
 						ip = :ip, \
 						cid = :cid, \
@@ -490,13 +490,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 						"cid" = src.computer_id,
 						"byond_version" = src.byond_version,
 						"country" = src.country_code,
-						"id" = src.id
-					)
-				)
+						"id" = src.id))
 
 
-				if(!query_update.Execute())
-					log_world("Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()].")
+				if(!query.Execute())
+					log_world("Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()].")
 
 		//Panic bunker - player not in DB, so they get kicked
 		else if(config.panic_bunker && !holder && !deadmin_holder && !(ckey in GLOB.PB_bypass))
@@ -505,19 +503,17 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			to_chat(src, "<span class='warning'>Sorry but the server is currently not accepting connections from never before seen players.</span>")
 			del(src) // Hard del the client. This terminates the connection.
 			return 0
-		query = SSdbcore.NewQuery("SELECT ip_related_ids, cid_related_ids FROM [format_table_name("players")] WHERE id = :id", list("id" = src.id))
+		QUERY_AGAIN(query, "SELECT ip_related_ids, cid_related_ids FROM [format_table_name("players")] WHERE id = :id", list("id" = src.id))
 		query.Execute()
 		if(query.NextRow())
 			related_ip = splittext(query.item[1], ",")
 			related_cid = splittext(query.item[2], ",")
-		query = SSdbcore.NewQuery(
+		QUERY_AGAIN(query,
 			"SELECT id, ip, cid FROM [format_table_name("players")] WHERE (ip = :ip OR cid = :cid) AND id <> :id",
 			list(
 				"ip" = address,
 				"cid" = computer_id,
-				"id" = src.id
-			)
-		)
+				"id" = src.id))
 		query.Execute()
 		var/changed = 0
 		while(query.NextRow())
@@ -531,14 +527,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				changed = 1
 				related_cid |= temp_id
 		if(changed)
-			query = SSdbcore.NewQuery(
+			QUERY_AGAIN(query,
 				"UPDATE [format_table_name("players")] SET cid_related_ids = :cid_related, ip_related_ids = :ip_related WHERE id = :id",
 				list(
 					"cid_related" = jointext(related_cid, ","),
 					"ip_related" = jointext(related_ip, ","),
-					"id" = src.id
-				),
-			)
+					"id" = src.id))
 			query.Execute()
 
 

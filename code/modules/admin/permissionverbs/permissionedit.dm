@@ -76,21 +76,16 @@
 	if(!istext(admin_ckey) || !istext(new_rank))
 		return
 
-	var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("players")] WHERE ckey = :ckey AND rank != 'player'", list("ckey" = admin_ckey))
-	select_query.Execute()
+	QUERY_NOW("SELECT ckey FROM [format_table_name("players")] WHERE ckey = :ckey AND rank != 'player'", list("ckey" = admin_ckey))
+	query.Execute()
 
 	var/new_admin = TRUE
-	if(select_query.NextRow())
+	if(query.NextRow())
 		new_admin = FALSE
 
-	var/datum/db_query/insert_query = SSdbcore.NewQuery(
-		"UPDATE [format_table_name("players")] SET rank = :rank WHERE ckey = :ckey",
-		list(
-			"rank" = new_rank,
-			"ckey" = admin_ckey,
-		)
-	)
-	insert_query.Execute()
+	QUERY_FAST(	"UPDATE [format_table_name("players")] SET rank = :rank WHERE ckey = :ckey", list("rank" = new_rank,"ckey" = admin_ckey))
+	query.Execute()
+	qdel(query)
 
 	if(new_admin)
 		message_admins("[key_name_admin(usr)] made [key_name_admin(admin_ckey)] an admin with the rank [new_rank]")
@@ -130,23 +125,24 @@
 	if(!istext(admin_ckey) || !isnum(new_permission))
 		return
 
-	var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT ckey, flags FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = admin_ckey))
-	select_query.Execute()
-	if(!select_query.NextRow())
+	QUERY_SETUP(query, "SELECT ckey, flags FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = admin_ckey))
+	SAFE_END
+	query.Execute()
+	if(!query.NextRow())
 		to_chat(usr, SPAN_WARNING("Permissions edit for [admin_ckey] failed on retrieving related database record."))
 		return
 
-	var/admin_rights = text2num(select_query.item[2])
+	var/admin_rights = text2num(query.item[2])
 
 	if(admin_rights & new_permission) //This admin already has this permission, so we are removing it.
-		var/datum/db_query/insert_query = SSdbcore.NewQuery("UPDATE [format_table_name("players")] SET flags = :flags WHERE ckey = :ckey", list("flags" = admin_rights & ~new_permission, ckey = admin_ckey))
-		insert_query.Execute()
+		QUERY_AGAIN(query, "UPDATE [format_table_name("players")] SET flags = :flags WHERE ckey = :ckey", list("flags" = admin_rights & ~new_permission, ckey = admin_ckey))
+		query.Execute()
 		message_admins("[key_name_admin(usr)] removed the [nominal] permission of [admin_ckey]")
 		log_admin("[key_name(usr)] removed the [nominal] permission of [admin_ckey]")
 		to_chat(usr, SPAN_NOTICE("Permission removed."))
 	else //This admin doesn't have this permission, so we are adding it.
-		var/datum/db_query/insert_query = SSdbcore.NewQuery("UPDATE [format_table_name("players")] SET flags = :flags WHERE ckey = :ckey", list("flags" = admin_rights | new_permission, ckey = admin_ckey))
-		insert_query.Execute()
+		QUERY_AGAIN(query, "UPDATE [format_table_name("players")] SET flags = :flags WHERE ckey = :ckey", list("flags" = admin_rights | new_permission, ckey = admin_ckey))
+		query.Execute()
 		message_admins("[key_name_admin(usr)] added the [nominal] permission of [admin_ckey]")
 		log_admin("[key_name(usr)] added the [nominal] permission of [admin_ckey]")
 		to_chat(usr, SPAN_NOTICE("Permission added."))

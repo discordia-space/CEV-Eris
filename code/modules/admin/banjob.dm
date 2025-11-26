@@ -74,13 +74,13 @@ DEBUG
 			return
 
 		//Job permabans
-		var/datum/db_query/perma_query = SSdbcore.NewQuery("SELECT target_id, job FROM [format_table_name("bans")] WHERE type = 'JOB_PERMABAN' AND isnull(unbanned)")
-		perma_query.Execute()
+		QUERY_SETUP(query, "SELECT target_id, job FROM [format_table_name("bans")] WHERE type = 'JOB_PERMABAN' AND isnull(unbanned)")
+		query.Execute()
 
-		while(perma_query.NextRow())
-			var/id = perma_query.item[1]
-			var/job = perma_query.item[2]
-			var/datum/db_query/get_ckey = SSdbcore.NewQuery("SELECT ckey from players WHERE id = :id", list("id" = id))
+		while(query.NextRow())
+			var/id = query.item[1]
+			var/job = query.item[2]
+			QUERY_CATEGORY(get_ckey, "SELECT ckey from players WHERE id = :id", list("id" = id))
 			get_ckey.Execute()
 			if(get_ckey.NextRow())
 				var/ckey = get_ckey.item[1]
@@ -89,18 +89,18 @@ DEBUG
 
 
 		//Job tempbans
-		var/datum/db_query/query = SSdbcore.NewQuery("SELECT target_id, job FROM [format_table_name("bans")] WHERE type = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
+		QUERY_AGAIN(query, "SELECT target_id, job FROM [format_table_name("bans")] WHERE type = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
 		query.Execute()
 
 		while(query.NextRow())
 			var/id = query.item[1]
 			var/job = query.item[2]
-			var/datum/db_query/get_ckey = SSdbcore.NewQuery("SELECT ckey from players WHERE id = :id", list("id" = id))
+			QUERY_CATEGORY(get_ckey, "SELECT ckey from players WHERE id = :id", list("id" = id))
 			get_ckey.Execute()
 			if(get_ckey.NextRow())
 				var/ckey = get_ckey.item[1]
 				jobban_keylist.Add("[ckey] - [job]")
-
+		END_QUERYING
 
 
 /proc/jobban_savebanfile()
