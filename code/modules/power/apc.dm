@@ -1054,7 +1054,7 @@
 
 /obj/machinery/power/apc/Process()
 	if(isnull(area))
-		log_debug("APC [src] at [x","y","z] processing in null area")
+		log_debug("APC [src] at [x],[y],[z] processing in null area")
 		return PROCESS_KILL
 	SEND_SIGNAL_OLD(area, COMSIG_AREA_APC_OPERATING, operating)
 	if(stat & (BROKEN|MAINT))
