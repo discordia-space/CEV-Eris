@@ -142,6 +142,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 		//find the client for a ckey if they are connected and associate them with the new admin datum
 		D.associate(directory[ckey])
 
+	qdel(query)
 	//Clear profile access
 	for(var/A in world.GetConfig("admin"))
 		world.SetConfig("APP/admin", A, null)
@@ -156,6 +157,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 
 	var/datum/db_query/query = SSdbcore.NewQuery("SELECT fun, server, debug, permissions, mentor, moderator, admin, host FROM [format_table_name("permissions")] WHERE player_id = :player_id", list("player_id" = player_id))
 	if(!query.Execute())
+		qdel(query)
 		return flag
 
 	var/list/permissions = list()
@@ -170,7 +172,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 			"admin" = query.item[7],
 			"host" = query.item[8],
 		)
-
+	qdel(query)
 	for(var/key in permissions)
 		if(permissions[key])
 			flag |= admin_permissions[key]

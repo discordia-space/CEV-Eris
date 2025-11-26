@@ -43,10 +43,10 @@ world/IsBanned(key, address, computer_id, real_bans_only=FALSE)
 			return
 
 		var/id
-		var/datum/db_query/get_id = SSdbcore.NewQuery("SELECT id FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = ckeytext))
-		get_id.Execute()
-		if(get_id.NextRow())
-			id = get_id.item[1]
+		QUERY_NOW("SELECT id FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = ckeytext))
+		query.Execute()
+		if(query.NextRow())
+			id = query.item[1]
 
 		var/failedcid = 1
 		var/failedip = 1
@@ -61,7 +61,7 @@ world/IsBanned(key, address, computer_id, real_bans_only=FALSE)
 			failedcid = 0
 			cidquery = " OR cid = :computer_id "
 
-		var/datum/db_query/query = SSdbcore.NewQuery(" \
+		QUERY_FAST(" \
 		SELECT target_id, banned_by_id, reason, expiration_time, duration, time, type \
 		FROM bans WHERE \
 		(\
@@ -75,9 +75,7 @@ world/IsBanned(key, address, computer_id, real_bans_only=FALSE)
 			AND isnull(unbanned)\
 			)", list("id" = id, "address" = address, "computer_id" = computer_id))
 
-		if(!query.Execute())
-			log_world("Trying to fetch ban record for [ckeytext] but got error: [query.ErrorMsg()].")
-			return
+		EXECUTE_OR_ERROR(query, "fetch ban record for [ckeytext]")
 
 		while(query.NextRow())
 			var/target_id = query.item[1]
@@ -105,9 +103,10 @@ world/IsBanned(key, address, computer_id, real_bans_only=FALSE)
 				expires = " The ban is for [duration] minutes and expires on [expiration] (server time)."
 
 			var/desc = "\nReason: You, or another user of this computer or connection ([banned_ckey]) is banned from playing here. The ban reason is:\n[reason]\nThis ban was applied by [banned_by_ckey] on [bantime], [expires]"
-
+			qdel(query)
 			return list("reason"="[bantype]", "desc"="[desc]")
 
+		qdel(query)
 		if (failedcid)
 			message_admins("[key] has logged in with a blank computer id in the ban check.")
 		if (failedip)

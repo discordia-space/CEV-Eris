@@ -122,4 +122,5 @@
 			output = "<tr><th>[search_query.item[1]]</th><th>[search_query.item[2]]</th><th>[search_query.item[3]]</th><th>[search_query.item[4]]</th></tr>"
 			hsrc.panel.add_content(output)
 		hsrc.panel.open()
+		qdel(search_query)
 	return

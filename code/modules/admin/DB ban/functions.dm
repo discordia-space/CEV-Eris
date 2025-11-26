@@ -1,7 +1,7 @@
 //Either pass the mob you wish to ban in the 'banned_mob' attribute, or the banckey, banip and bancid variables. If both are passed, the mob takes priority! If a mob is not passed, banckey is the minimum that needs to be passed! banip and bancid are optional.
 datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/banckey = null, var/banip = null, var/bancid = null, var/delayed_ban = 0)
 
-	if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN))
+	if(!check_rights(R_MOD,FALSE) && !check_rights(R_ADMIN))
 		return
 
 
@@ -45,6 +45,8 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 	var/banned_by_id
 
 	var/datum/db_query/query
+	QUERIES_INIT(queries)
+	SAFE_END
 
 	if(ismob(banned_mob))
 		ckey = banned_mob.ckey
@@ -58,18 +60,19 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		ip = banip
 
 	if(!target_id)
-		query = SSdbcore.NewQuery("SELECT id FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = ckey))
+		QUERY_FAST("SELECT id FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = ckey))
 		query.Execute()
 		if(!query.NextRow())
 			if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key)))
 				error("[key_name_admin(usr)] attempted to ban [ckey], but [ckey] has not been seen yet.")
+				qdel(query)
 				return
 
 		target_id = query.item[1]
 
 	banned_by_id = usr.client.id
 	if(!banned_by_id)
-		query = SSdbcore.NewQuery("SELECT id FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = usr.ckey))
+		QUERY_FAST("SELECT id FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = usr.ckey))
 		query.Execute()
 		if(!query.NextRow())
 			error("[key_name_admin(usr)] attempted to ban [ckey], but somehow [key_name_admin(usr)] record does not exist in database.")
@@ -79,17 +82,16 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 	reason = sql_sanitize_text(reason)
 
 	if(!computerid)
-		var/datum/db_query/get_cid = SSdbcore.NewQuery("SELECT cid FROM [format_table_name("players")] WHERE id = :id", list("id" = target_id))
-		get_cid.Execute()
-		if(get_cid.NextRow())
-			computerid = get_cid.item[1]
+		QUERY_FAST( "SELECT cid FROM [format_table_name("players")] WHERE id = :id", list("id" = target_id))
+		query.Execute()
+		if(query.NextRow())
+			computerid = query.item[1]
 	if(delayed_ban)
 		var/datum/delayed_ban/ban = new(target_id, server, bantype_str, reason, job, duration, computerid, banned_by_id, ip)
 		GLOB.delayed_bans += ban
 		return
 
-	var/datum/db_query/query_insert = SSdbcore.NewQuery(
-		"INSERT INTO [format_table_name("bans")] \
+	QUERY_FAST("INSERT INTO [format_table_name("bans")] \
 		(target_id, time, server, type, reason, job, duration, expiration_time, cid, ip, banned_by_id) \
 		VALUES (:target_id, Now(), :server, :type, :reason, :job, :duration, Now() + INTERVAL :duration_minutes MINUTE, :cid, '[banip == -1 ? "NULL" : ip]', :banned_by_id)",
 		list(
@@ -101,13 +103,9 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 			"duration" = duration ? duration : 0,
 			"duration_minutes" = duration > 0 ? duration : 0,
 			"cid" = computerid,
-			"banned_by_id" = banned_by_id
-		)
-	)
+			"banned_by_id" = banned_by_id))
 
-	if(!query_insert.Execute())
-		log_world("[key_name_admin(usr)] attempted to ban [ckey] but got error: [query_insert.ErrorMsg()].")
-		return
+	EXECUTE_OR_ERROR(query, "ban [ckey] on [key_name_admin(usr)]'s request") // finalizes the ban, or errors if it can't
 	message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.")
 
 
@@ -167,6 +165,7 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 	var/ban_id
 	var/ban_number = 0 //failsafe
 
+	qdel(query)
 	query = SSdbcore.NewQuery(sql, params)
 
 	if(!query.Execute())
@@ -175,7 +174,9 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 	while(query.NextRow())
 		ban_id = query.item[1]
 		ban_number++;
-
+	
+	qdel(query)
+	
 	if(ban_number == 0)
 		to_chat(usr, "\red Database update failed due to no bans fitting the search criteria. If this is not a legacy ban you should contact the database admin.")
 		return
@@ -218,14 +219,17 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 		reason = query.item[3]
 	else
 		error("[key_name_admin(usr)] attempted to edit ban record with id [banid], but matching record does not exist in database.")
+		qdel(query)
 		return
-
+	
+	qdel(query)
 	query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("players")] WHERE id = :id", list("id" = target_id))
 	query.Execute()
 	if(!query.NextRow())
 		error("[key_name_admin(usr)] attempted to edit [ckey]'s ban, but [ckey] has not been seen yet.")
 		return
 	ckey = query.item[1]
+	qdel(query)
 
 	reason = sql_sanitize_text(reason)
 	var/value
@@ -253,8 +257,10 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 			var/datum/db_query/update_query = SSdbcore.NewQuery("UPDATE [format_table_name("bans")] SET duration = :duration, expiration_time = DATE_ADD(time, INTERVAL :duration MINUTE) WHERE id = :id", list("duration" = value, "id" = banid))
 			if(!update_query.Execute())
 				log_world("[key_name_admin(usr)] tried to edit a ban duration for [ckey] but got error: [update_query.ErrorMsg()].")
+				qdel(update_query)
 				return
 			message_admins("[key_name_admin(usr)] has edited a ban for [ckey]'s duration from [duration] to [value]")
+			qdel(update_query)
 
 		if("unban")
 			if(alert("Unban [ckey]?", "Unban?", "Yes", "No") == "Yes")
@@ -284,6 +290,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 		ckey = query.item[1]
 	else
 		error("[key_name_admin(usr)] attempted to remove ban record with id [id], but record does not exist.")
+		qdel(query)
 		return
 
 	if(!src.owner || !istype(src.owner, /client))
@@ -295,11 +302,14 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 		error("[key_name_admin(usr)] attempted to remove ban record with id [id], but admin database record does not exist.")
 		return
 	var/admin_id = query.item[1]
+	qdel(query)
 
 	var/datum/db_query/query_update = SSdbcore.NewQuery("UPDATE [format_table_name("bans")] SET unbanned = 1, unbanned_time = Now(), unbanned_by_id = :admin_id WHERE id = :id", list("admin_id" = admin_id, "id" = id))
 	if(!query_update.Execute())
 		log_world("[key_name_admin(usr)] tried to unban [ckey] but got error: [query_update.ErrorMsg()].")
+		qdel(query_update)
 		return
+	qdel(query_update)
 	message_admins("[key_name_admin(usr)] has lifted [ckey]'s ban.")
 
 
@@ -412,13 +422,13 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 			output += "</tr>"
 
 			var/player_id
-			var/datum/db_query/query = SSdbcore.NewQuery("SELECT id FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = playerckey))
+			QUERY_SETUP(query, "SELECT id FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = playerckey))
 			query.Execute()
 			if(query.NextRow())
 				player_id = query.item[1]
 
 			var/admin_id
-			query = SSdbcore.NewQuery("SELECT id FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = adminckey))
+			QUERY_AGAIN(query, "SELECT id FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = adminckey))
 			query.Execute()
 			if(query.NextRow())
 				admin_id = query.item[1]
@@ -461,8 +471,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 					else
 						bantypesearch += "'PERMABAN' "
 
-			var/datum/db_query/select_query = SSdbcore.NewQuery(
-				"SELECT id, time, type, reason, job, duration, expiration_time, target_id, banned_by_id, unbanned, unbanned_by_id, unbanned_time, ip, cid \
+			QUERY_CATEGORY(select_query, "SELECT id, time, type, reason, job, duration, expiration_time, target_id, banned_by_id, unbanned, unbanned_by_id, unbanned_time, ip, cid \
 				FROM [format_table_name("bans")] WHERE 1 [playersearch] [adminsearch] [ipsearch] [cidsearch] [bantypesearch] ORDER BY time DESC LIMIT 100")
 			select_query.Execute()
 
@@ -486,18 +495,18 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 				var/target_ckey
 				var/banned_by_ckey
 				var/unbanned_by_ckey
-
-				query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("players")] WHERE id = :id", list("id" = target_id))
+				
+				QUERY_AGAIN(query, "SELECT ckey FROM [format_table_name("players")] WHERE id = :id", list("id" = target_id))
 				query.Execute()
 				if(query.NextRow())
 					target_ckey = query.item[1]
 
-				query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("players")] WHERE id = :id", list("id" = banned_by_id))
+				QUERY_AGAIN(query, "SELECT ckey FROM [format_table_name("players")] WHERE id = :id", list("id" = banned_by_id))
 				query.Execute()
 				if(query.NextRow())
 					banned_by_ckey = query.item[1]
 
-				query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("players")] WHERE id = :id", list("id" = unbanned_by_id))
+				QUERY_AGAIN(query, "SELECT ckey FROM [format_table_name("players")] WHERE id = :id", list("id" = unbanned_by_id))
 				query.Execute()
 				if(query.NextRow())
 					unbanned_by_ckey = query.item[1]
@@ -552,5 +561,6 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 				output += "</tr>"
 
 			output += "</table></div>"
-
+			END_QUERYING
 	usr << browse(output,"window=lookupbans;size=900x700")
+

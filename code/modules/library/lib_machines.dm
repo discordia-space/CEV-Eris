@@ -51,7 +51,7 @@
 				dat += {"<table>
 				<tr><td>AUTHOR</td><td>TITLE</td><td>CATEGORY</td><td>SS<sup>13</sup>BN</td></tr>"}
 
-				var/datum/db_query/query = SSdbcore.NewQuery(SQLquery)
+				QUERY_NOW(SQLquery)
 				query.Execute()
 
 				while(query.NextRow())
@@ -61,6 +61,7 @@
 					var/id = query.item[4]
 					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td>[id]</td></tr>"
 				dat += "</table><BR>"
+				qdel(query)
 			dat += "<A href='?src=\ref[src];back=1'>\[Go Back\]</A><BR>"
 	user << browse(dat, "window=publiclibrary")
 	onclose(user, "publiclibrary")
@@ -185,7 +186,7 @@
 				dat += {"<A href='byond://?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 				<table>
 				<tr><td><A href='byond://?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='byond://?src=\ref[src];sort=title>TITLE</A></td><td><A href='byond://?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
-				var/datum/db_query/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM [format_table_name("library")] ORDER BY :sortby", list("sortby" = sortby))
+				QUERY_NOW("SELECT id, author, title, category FROM [format_table_name("library")] ORDER BY :sortby", list("sortby" = sortby))
 				query.Execute()
 
 				while(query.NextRow())
@@ -195,6 +196,7 @@
 					var/category = query.item[4]
 					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='byond://?src=\ref[src];targetid=[id]'>\[Order\]</A></td></tr>"
 				dat += "</table>"
+				qdel(query)
 			dat += "<BR><A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 		if(5)
 			dat += "<H3>Upload a New Title</H3>"
@@ -261,17 +263,14 @@
 			if("5")
 				screenstate = 5
 			if("6")
-				if(!bibledelay)
+				if(bibledelay + 6 SECONDS <= world.time)
 
 					var/obj/item/book/ritual/cruciform/B = new /obj/item/book/ritual/cruciform()
 					B.loc=src.loc
-					bibledelay = 1
-					spawn(60)
-						bibledelay = 0
+					bibledelay = world.time
 
 				else
-					for (var/mob/V in hearers(get_turf(src)))
-						V.show_message("<b>[src]</b>'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\"")
+					audible_message("<b>[src]</b>'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\"")
 
 			if("7")
 				screenstate = 7
@@ -329,33 +328,30 @@
 							var/sqlcategory = upload_category
 
 							var/author_id = null
-							var/datum/db_query/get_author_id = SSdbcore.NewQuery("SELECT id FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = usr.ckey))
-							get_author_id.Execute()
-							if(get_author_id.NextRow())
-								author_id = get_author_id.item[1]
+							QUERY_NOW("SELECT id FROM [format_table_name("players")] WHERE ckey = :ckey", list("ckey" = usr.ckey))
+							query.Execute()
+							if(query.NextRow())
+								author_id = query.item[1]
 
-							var/datum/db_query/query = SSdbcore.NewQuery(
-								"INSERT INTO [format_table_name("library")] (author, title, content, category, author_id) VALUES (:sqlauthor, :sqltitle, :sqlcontent, :sqlcategory, :author_id)",
-								list("sqlauthor" = sqlauthor, "sqltitle" = sqltitle, "sqlcontent" = sqlcontent, "sqlcategory" = sqlcategory,"author_id" = author_id)
-							)
+							QUERY_FAST(query, \
+								"INSERT INTO [format_table_name("library")] (author, title, content, category, author_id) VALUES (:sqlauthor, :sqltitle, :sqlcontent, :sqlcategory, :author_id)", \
+								list("sqlauthor" = sqlauthor, "sqltitle" = sqltitle, "sqlcontent" = sqlcontent, "sqlcategory" = sqlcategory,"author_id" = author_id))
 							if(!query.Execute())
 								to_chat(usr, query.ErrorMsg())
 							else
 								log_and_message_admins("has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs")
 								log_game("[usr.name]/[usr.key] has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs")
 								alert("Upload Complete.")
+							qdel(query)
 
 	if(href_list["targetid"])
 		var/sqlid = href_list["targetid"]
 		if(!SSdbcore.Connect())
 			alert("Connection to Archive has been severed. Aborting.")
-		if(bibledelay)
-			for (var/mob/V in hearers(get_turf(src)))
-				V.show_message("<b>[src]</b>'s monitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\"")
+		if(bibledelay + 6 SECONDS > world.time)
+			audible_message("<b>[src]</b>'s monitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\"")
 		else
-			bibledelay = 1
-			spawn(60)
-				bibledelay = 0
+			bibledelay = world.time
 			var/datum/db_query/query = SSdbcore.NewQuery("SELECT * FROM [format_table_name("library")] WHERE id = :sqlid", list("sqlid" = sqlid))
 			query.Execute()
 
@@ -371,6 +367,7 @@
 				B.icon_state = "book[rand(1,7)]"
 				src.visible_message("[src]'s printer hums as it produces a completely bound book. How did it do that?")
 				break
+			qdel(query)
 	if(href_list["orderbyid"])
 		var/orderid = input("Enter your order:") as num|null
 		if(orderid)

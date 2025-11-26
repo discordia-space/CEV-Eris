@@ -24,7 +24,7 @@ GLOBAL_LIST_EMPTY(delayed_bans)
 	banned_by_id = _banned_by_id
 
 /datum/delayed_ban/proc/execute()
-	var/datum/db_query/query_insert = SSdbcore.NewQuery(
+	SSdbcore.FireAndForget(
 		"INSERT INTO [format_table_name("bans")] \
 		(target_id, time, server, type, reason, job, duration, expiration_time, cid, ip, banned_by_id) \
 		VALUES (:target_id, Now(), :server, :type, :reason, :job, [duration ? "[duration]" : "0"], Now() + INTERVAL [duration > 0 ? duration : 0] MINUTE, :cid, NULL, :banned_by_id)",
@@ -38,7 +38,6 @@ GLOBAL_LIST_EMPTY(delayed_bans)
 			"banned_by_id" = banned_by_id,
 		)
 	)
-	query_insert.Execute()
 
 /hook/roundend/proc/explode()
 	for(var/datum/delayed_ban/temp in GLOB.delayed_bans)
