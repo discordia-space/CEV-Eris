@@ -6,18 +6,22 @@
 	item_state = "candle1"
 	w_class = ITEM_SIZE_TINY
 	light_color = COLOR_LIGHTING_ORANGE_DARK
-	var/wax = 2000
+	matter = list(MATERIAL_WAX = 1)
 	var/lit_sanity_damage = -0.5
+	var/drips = 0
 
 /obj/item/flame/candle/New()
-	wax = rand(800, 1000) // Enough for 27-33 minutes. 30 minutes on average.
+	matter[MATERIAL_WAX] = rand(80, 100)/100 // Enough for 27-33 minutes. 30 minutes on average.
 	..()
+
+/obj/item/flame/candle/get_matter()
+	. = ..()
 
 /obj/item/flame/candle/update_icon()
 	var/i
-	if(wax > 800)
+	if(matter[MATERIAL_WAX] > 0.8)
 		i = 1
-	else if(wax > 600)
+	else if(matter[MATERIAL_WAX] > 0.6)
 		i = 2
 	else i = 3
 	icon_state = "candle[i][lit ? "_lit" : ""]"
@@ -39,6 +43,8 @@
 		var/obj/item/flame/candle/C = I
 		if(C.lit)
 			light()
+	else if(istype(I, /obj/item/device/assembly/igniter))
+		light(SPAN_NOTICE("\The [user] ignites the [name]."))
 
 
 /obj/item/flame/candle/proc/light(var/flavor_text = SPAN_NOTICE("\The [usr] lights the [name]."))
@@ -51,16 +57,19 @@
 /obj/item/flame/candle/Process()
 	if(!lit)
 		return
-	wax--
-	if(!wax)
-		new/obj/item/trash/candle(src.loc)
-		if(ismob(loc))
-			src.dropped(loc)
-		qdel(src)
-	update_icon()
+	if(drips == 9)
+		matter[MATERIAL_WAX] = max(0, matter[MATERIAL_WAX] - 0.01)
+		if(!matter[MATERIAL_WAX])
+			new/obj/item/trash/candle(src.loc)
+			if(ismob(loc))
+				src.dropped(loc)
+			qdel(src)
+		update_icon()
+		drips = -1
+	drips ++
 	if(istype(loc, /turf)) //start a fire if possible
 		var/turf/T = loc
-		T.hotspot_expose(700, 5)
+		T.hotspot_expose(700, 5) // refactor this during thermal update
 
 /obj/item/flame/candle/attack_self(mob/user as mob)
 	if(lit)
