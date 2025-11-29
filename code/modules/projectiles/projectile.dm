@@ -394,7 +394,9 @@
 	if(istype(src, /obj/item/projectile/beam/psychic) && istype(target_mob, /mob/living/carbon/human))
 		var/obj/item/projectile/beam/psychic/psy = src
 		var/mob/living/carbon/human/H = target_mob
-		if(psy.contractor && result && (H.sanity.level <= 0))
+		if(psy.psionic_user && result && (H.sanity.level <= 0))
+			psy.psionic_user.reg_break(H)
+		else if(psy.contractor && result && (H.sanity.level <= 0) && holder)
 			psy.holder.reg_break(H)
 
 	if(result == PROJECTILE_STOP)

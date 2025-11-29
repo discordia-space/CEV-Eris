@@ -110,7 +110,7 @@
 #define BP_IS_REMOVED(org) (org.nature == MODIFICATION_REMOVED)
 #define BP_IS_ASSISTED(org) (org.nature == MODIFICATION_ASSISTED)
 #define BP_IS_LIFELIKE(org) (org.nature == MODIFICATION_LIFELIKE)
-
+#define BP_IS_CRYSTAL(org) (org.nature == MODIFICATION_CRYSTAL)
 
 // Organ defines.
 #define ORGAN_CUT_AWAY	(1<<0)
@@ -139,6 +139,7 @@
 #define MODIFICATION_SILICON 2	// Fully robotic, no organic parts
 #define MODIFICATION_LIFELIKE 3	// Robotic, made to appear organic
 #define MODIFICATION_REMOVED 4	// Removed completly
+#define MODIFICATION_CRYSTAL 5	// Doesn't sound healthy
 
 // Damage above this value must be repaired with surgery.
 #define ROBOLIMB_SELF_REPAIR_CAP 30

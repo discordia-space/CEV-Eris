@@ -28,6 +28,8 @@
 #define MATERIAL_CARPET "carpet"
 #define MATERIAL_BIOMATTER "biomatter"
 #define MATERIAL_COMPRESSED "compressed matter"
+#define MATERIAL_NULLGLASS "nullglass"
+#define MATERIAL_CRYSTAL "crystal"
 
 #define MATERIAL_LIST list(\
 	MATERIAL_STEEL,\
@@ -57,7 +59,9 @@
 	MATERIAL_VOXALLOY,\
 	MATERIAL_CARPET,\
 	MATERIAL_BIOMATTER,\
-	MATERIAL_COMPRESSED)
+	MATERIAL_COMPRESSED,\
+	MATERIAL_NULLGLASS,\
+	MATERIAL_CRYSTAL)
 
 #define PLASTEEL_COLOUR "#8e9799"
 //Color to exactly match concept art #b0bcbe

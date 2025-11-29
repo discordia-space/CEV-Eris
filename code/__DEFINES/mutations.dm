@@ -14,6 +14,7 @@
 #define MUTATION_NOPRINTS			/datum/mutation/t2/noprints
 #define MUTATION_ROACH_PHEROMONES	/datum/mutation/t2/roach_pheromones
 #define MUTATION_SPIDER_PHEROMONES	/datum/mutation/t2/spider_pheromones
+#define MUTATION_PSI_LOW			/datum/mutation/t2/psionic_compatibility_low
 
 #define MUTATION_REJECT				/datum/mutation/t3/reject
 #define MUTATION_GREATER_HEALING	/datum/mutation/t3/healing_factor
@@ -29,6 +30,7 @@
 #define MUTATION_PHAZING			/datum/mutation/t4/phazing
 #define MUTATION_MORPH				/datum/mutation/t4/morph
 #define MUTATION_REMOTESEE			/datum/mutation/t4/remoteobserve
+#define MUTATION_PSI_HIGH			/datum/mutation/t4/psionic_compatibility_high
 
 // Sdisabilities. // TODO: To be replaced with status effects -- KIROV
 #define BLIND 0x1

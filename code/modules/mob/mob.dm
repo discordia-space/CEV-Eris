@@ -367,6 +367,8 @@
 	var/obj/item/W = get_active_hand()
 	if (W)
 		W.attack_self(src)
+	else
+		attack_empty_hand()
 
 
 /mob/verb/toggle_flashlight()

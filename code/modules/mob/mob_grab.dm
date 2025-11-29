@@ -38,8 +38,12 @@
 /obj/proc/affect_grab(var/mob/user, var/mob/target, var/state)
 	return FALSE
 
-/obj/item/grab/resolve_attackby(obj/O, mob/user, var/click_params)
-	if(ismob(O))
+/obj/item/grab/resolve_attackby(atom/A, mob/user, var/click_params)
+	if(ishuman(user) && affecting == A)
+		var/mob/living/carbon/human/H = user
+		if (H.check_psi_grab(src))
+			return TRUE
+	if(ismob(A))
 		return ..()
 	if(get_dist(O, affecting) > 1)
 		return TRUE
