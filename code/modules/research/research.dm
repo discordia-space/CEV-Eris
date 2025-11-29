@@ -258,6 +258,14 @@ Procs:
 	shown = FALSE
 	item_tech_req = TECH_COVERT // research any contractor item and this tech will show up
 
+/datum/tech/onestar
+	name = "OS Reverse-Engineered Research"
+	shortname = "One Star Tech"
+	desc = "The reconstruction of schematics long since lost to time."
+	rare = 4
+	shown = FALSE
+	item_tech_req = TECH_ONESTAR // research any one star item and this tech will show up
+
 /datum/technology
 	var/name = "name"
 	var/desc = "description"                // Not used because lazy

@@ -2623,6 +2623,7 @@
 #include "code\modules\research\nodes\combat.dm"
 #include "code\modules\research\nodes\engineering.dm"
 #include "code\modules\research\nodes\illegal.dm"
+#include "code\modules\research\nodes\onestar.dm"
 #include "code\modules\research\nodes\power.dm"
 #include "code\modules\research\nodes\robotics.dm"
 #include "code\modules\sanity\breakdown.dm"

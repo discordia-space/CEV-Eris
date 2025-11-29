@@ -8,6 +8,7 @@
 #define TECH_MAGNET "magnets"
 #define TECH_DATA "programming"
 #define TECH_COVERT "covert"
+#define TECH_ONESTAR "One Star" //not sure how to make it more like the others but if you know feel free to fix :)
 #define TECH_ARCANE "arcane"
 
 //used in design to specify which machine can build it
@@ -29,7 +30,7 @@
 #define RESEARCH_BLUESPACE     /datum/tech/bluespace
 #define RESEARCH_ROBOTICS      /datum/tech/robotics
 #define RESEARCH_COVERT        /datum/tech/covert
-
+#define RESEARCH_ONESTAR       /datum/tech/onestar
 
 // Design categories
 #define CAT_MISC        "Misc"
