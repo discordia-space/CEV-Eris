@@ -131,7 +131,7 @@
 		src.pixel_x = 0
 		src.pixel_y = 0
 
-	for(var/icon_amount = 1; icon_amount < src.amount, icon_amount++)
+	for(var/icon_amount = 1, icon_amount < src.amount, icon_amount++)
 		var/image/temp_image = image(src.icon, src.icon_state)
 		var/coef = round(14 * icon_amount/src.maxamount)
 
@@ -149,7 +149,7 @@
 	..(user, extra_description)
 
 /obj/item/ammo_casing/get_item_cost(export)
-	. = round(..() * amount)
+	. = round(..() * amount, 0.1)
 	if(BB)
 		. *= 2 // being loaded increases the value by 100%
 

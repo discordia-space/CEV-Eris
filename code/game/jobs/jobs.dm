@@ -78,7 +78,7 @@ var/list/science_positions = list(JOBS_SCIENCE)
 var/list/moebius_positions = list(JOBS_MOEBIUS)
 
 //BS12 EDIT
-var/list/cargo_positions = list(JOBS_CARGO)
+var/list/guild_positions = list(JOBS_GUILD)
 
 
 var/list/church_positions = list(JOBS_CHURCH)
@@ -88,10 +88,10 @@ var/list/civilian_positions = list(JOBS_CIVILIAN)
 
 
 var/list/security_positions = list(JOBS_SECURITY)
+var/list/armory_positions = list(JOBS_ARMORY)
 
-
-var/list/nonhuman_positions = list(JOBS_NONHUMAN)
+var/list/silicon_positions = list(JOBS_SILICON)
 
 
 /proc/guest_jobbans(var/job)
-	return ((job in command_positions) || (job in nonhuman_positions) || (job in security_positions))
+	return ((job in command_positions) || (job in silicon_positions) || (job in armory_positions))

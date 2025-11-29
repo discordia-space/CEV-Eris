@@ -43,6 +43,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/init_timeofday
 	var/init_time
 	var/tickdrift = 0
+	var/chronofailure = FALSE
 
 	/// How long is the MC sleeping between runs, read only (set by Loop() based off of anti-tick-contention heuristics)
 	var/sleep_delta = 1
@@ -62,7 +63,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/datum/controller/subsystem/queue_tail //!End of queue linked list (used for appending to the list)
 	var/queue_priority_count = 0 //Running total so that we don't have to loop thru the queue each run to split up the tick
 	var/queue_priority_count_bg = 0 //Same, but for background subsystems
-	var/map_loading = FALSE //!Are we loading in a new map?
 
 	var/current_runlevel //!for scheduling different subsystems for different stages of the round
 	var/sleep_offline_after_initializations = TRUE
@@ -101,6 +101,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			Recover()
 			qdel(Master)
 			Master = src
+			chronofailure = FALSE // presume time is stable before evidence otherwise
 		else
 			//Code used for first master on game boot or if existing master got deleted
 			Master = src
@@ -376,6 +377,23 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	while (1)
 		tickdrift = max(0, MC_AVERAGE_FAST(tickdrift, (((REALTIMEOFDAY - init_timeofday) - (world.time - init_time)) / world.tick_lag)))
 		var/starting_tick_usage = TICK_USAGE
+
+		if(REALTIMEOFDAY < init_timeofday || REALTIMEOFDAY < 0 || world.time < 0)
+			chronofailure = TRUE
+			log_game("CHRONOFAILURE: Time collapse with rollover number [midnight_rollovers].")
+			send2coders(message = "CHRONOFAILURE: Time is collapsing, rollover number [midnight_rollovers]. Attempting timeless reboot.", color = "#ff0000", admiralty = 1)
+			restart_timeout = 0 // time isn't trustworthy anymore
+			restart_clear = 0
+			switch(Recreate_MC()) // attempt reboot
+				if(-1)
+					log_game("CHRONOFAILURE: MC reboot failed.")
+					send2coders(message = "CHRONOFAILURE: Timeless reboot failed.", color = "#ff0000", admiralty = 1)
+				if(0)
+					log_game("CHRONOFAILURE: MC reboot failed beyond repair.")
+					send2coders(message = "CHRONOFAILURE: Timeless reboot failed beyond repair.", color = "#ff0000", admiralty = 1)
+				if(1)
+					log_game("CHRONOFAILURE: MC reboot successful.")
+					send2coders(message = "CHRONOFAILURE: Timeless reboot successful.", color = "#00ff00", admiralty = 1)
 
 		if (init_stage != init_stage_completed)
 			return MC_LOOP_RTN_NEWSTAGES
@@ -697,22 +715,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 /datum/controller/master/proc/laggy_byond_map_update_incoming()
 	if (!skip_ticks)
 		skip_ticks = 1
-
-/datum/controller/master/StartLoadingMap()
-	//disallow more than one map to load at once, multithreading it will just cause race conditions
-	while(map_loading)
-		stoplag()
-	for(var/S in subsystems)
-		var/datum/controller/subsystem/SS = S
-		SS.StartLoadingMap()
-	map_loading = TRUE
-
-/datum/controller/master/StopLoadingMap(bounds = null)
-	map_loading = FALSE
-	for(var/S in subsystems)
-		var/datum/controller/subsystem/SS = S
-		SS.StopLoadingMap()
-
 
 /datum/controller/master/proc/UpdateTickRate()
 	if (!processing)

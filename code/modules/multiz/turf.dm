@@ -55,15 +55,15 @@ see multiz/movement.dm for some info.
 
 /turf/open/LateInitialize()
 	. = ..()
-	below = GetBelow(src)
-	ASSERT(HasBelow(z))
+	below = SSmapping.GetBelow(src)
+	ASSERT(SSmapping.HasBelow(z))
 	update_icon()
 
 /turf/open/is_plating()
 	return TRUE
 
 /turf/open/is_space()
-	var/turf/below = GetBelow(src)
+	var/turf/below = SSmapping.GetBelow(src)
 	return !below || below.is_space()
 
 /turf/open/Entered(var/atom/movable/mover)
@@ -85,7 +85,7 @@ see multiz/movement.dm for some info.
 	. = FALSE
 	// only fall down in defined areas (read: areas with artificial gravitiy)
 	if(!istype(below)) //make sure that there is actually something below
-		below = GetBelow(src)
+		below = SSmapping.GetBelow(src)
 		if(!below)
 			return
 
@@ -258,7 +258,7 @@ see multiz/movement.dm for some info.
 
 //Add tracks is called when a mob with bloody feet walks across the tile.
 //Since there's no floor to walk on, this will simply not happen. Return without doing anything
-/turf/open/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+/turf/open/AddTracks(typepath, bloodDNA, comingdir, goingdir, bloodcolor="#A10808")
 	return
 
 
@@ -270,7 +270,7 @@ see multiz/movement.dm for some info.
 
 /turf/open/MouseDrop_T(mob/target, mob/user)
 	var/mob/living/H = user
-	for(var/obj/structure/S in GetBelow(src))
+	for(var/obj/structure/S in SSmapping.GetBelow(src))
 		if(istype(H) && can_descend(H, S) && target == user)
 			do_descend(target, S)
 			return
@@ -291,7 +291,7 @@ see multiz/movement.dm for some info.
 
 	return 1
 
-/turf/open/proc/do_descend(var/mob/living/user, var/obj/structure/structure)
+/turf/open/proc/do_descend(mob/living/user, obj/structure/structure)
 	if(!can_descend(user, structure))
 		return
 
@@ -305,8 +305,8 @@ see multiz/movement.dm for some info.
 		climbers -= user
 		return
 
-	user.forceMove(GetBelow(src))
+	user.forceMove(SSmapping.GetBelow(src))
 
-	if(get_turf(user) == GetBelow(src))
+	if(get_turf(user) == SSmapping.GetBelow(src))
 		user.visible_message(SPAN_WARNING("[user] descends onto [structure]!"))
 	climbers -= user

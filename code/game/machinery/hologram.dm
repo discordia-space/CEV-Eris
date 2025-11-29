@@ -98,7 +98,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 				last_request = world.time
 				var/list/holopadlist = list()
 				for(var/obj/machinery/hologram/holopad/H in GLOB.machines)
-					if(isStationLevel(H.z) && H.operable())
+					if(IS_SHIP_LEVEL(H.z) && H.operable())
 						holopadlist["[H.loc.loc.name]"] = H	//Define a list and fill it with the area of every holopad in the world
 				holopadlist = sortAssoc(holopadlist)
 				var/temppad = input(user, "Which holopad would you like to contact?", "holopad list") as null|anything in holopadlist
@@ -241,9 +241,8 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	var/obj/effect/overlay/hologram = new(T)//Spawn a blank effect at the location.
 	if(caller_id)
 		var/icon/tempicon = new
-		for(var/datum/data/record/t in data_core.locked)
-			if(t.fields["name"]==caller_id.name)
-				tempicon = t.fields["image"]
+		var/datum/computer_file/report/crew_record/t = get_crewmember_record(caller_id.name)
+		tempicon = t.photo_front
 		hologram.overlays += getHologramIcon(icon(tempicon)) // Add the callers image as an overlay to keep coloration!
 	else
 		hologram.overlays += A.holo_icon // Add the AI's configured holo Icon

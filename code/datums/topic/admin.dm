@@ -387,8 +387,8 @@
 	body += source.formatJobGroup(M, "Church Positions", "ecd37d", "churchdept", church_positions)
 	//Civilian (Grey)
 	body += source.formatJobGroup(M, "Civilian Positions", "dddddd", "civiliandept", civilian_positions)
-	//Non-Human (Green)
-	body += source.formatJobGroup(M, "Non-human Positions", "ccffcc", "nonhumandept", nonhuman_positions + "Antag HUD")
+	//Silicon (Green)
+	body += source.formatJobGroup(M, "Non-human Positions", "ccffcc", "silicondept", silicon_positions + "Antag HUD")
 	//Antagonist (Orange)
 
 	var/jobban_list = list()
@@ -459,9 +459,9 @@
 				var/datum/job/temp = SSjob.GetJob(jobPos)
 				if(!temp) continue
 				joblist += temp.title
-		if("nonhumandept")
+		if("silicondept")
 			joblist += "pAI"
-			for(var/jobPos in nonhuman_positions)
+			for(var/jobPos in silicon_positions)
 				if(!jobPos)	continue
 				var/datum/job/temp = SSjob.GetJob(jobPos)
 				if(!temp) continue
@@ -1353,6 +1353,24 @@
 	else
 		error_viewer.showTo(usr, null, input["viewruntime_linear"])
 
+/datum/admin_topic/slowquery
+	keyword = "slowquery"
+	require_perms = list(R_ADMIN)
+
+/datum/admin_topic/viewruntime/Run(list/input)
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/data = list("key" = usr.key)
+	var/answer = input["slowquery"]
+	if(answer == "yes")
+		if(alert(usr, "Did you just press any admin buttons?", "Query server hang report", list("Yes", "No")) == "Yes")
+			var/response = input(usr,"What were you just doing?","Query server hang report") as null|text
+			if(response)
+				data["response"] = response
+		log_misc("SQL: server hang - [json_encode(data)]")
+	else if(answer == "no")
+		log_misc("SQL: no server hang - [json_encode(data)]")
 
 /datum/admin_topic/admincaster
 	keyword = "admincaster"

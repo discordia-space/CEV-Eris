@@ -73,7 +73,6 @@
 	req_access = list(access_engine_equip)
 	var/need_sound
 	var/area/area
-	var/areastring
 	var/obj/item/cell/large/cell
 	var/chargelevel = 0.0005  // Cap for how fast APC cells charge, as a percentage-per-tick (0.01 means cellcharge is capped to 1% per second)
 	var/start_charge = 90				// initial cell charge %
@@ -165,7 +164,7 @@
 
 	return cell.drain_power(drain_check, surge, amount)
 
-/obj/machinery/power/apc/New(turf/loc, ndir, building=0)
+/obj/machinery/power/apc/New(turf/loc, ndir, building = FALSE)
 	..()
 	GLOB.apc_list += src
 
@@ -181,6 +180,10 @@
 		update_icon()
 		addtimer(CALLBACK(src, PROC_REF(update)), 5)
 		set_dir(ndir)
+
+
+/obj/machinery/power/apc/Initialize(mapload)
+	. = ..()
 
 	switch(dir)
 		if(NORTH)
@@ -198,9 +201,6 @@
 
 	tdir = dir		// to fix Vars bug
 
-/obj/machinery/power/apc/Initialize(mapload)
-	. = ..()
-
 	if(!mapload)
 		return
 	has_electronics = 2
@@ -209,17 +209,7 @@
 		cell = new cell_type(src)
 		cell.charge = start_charge * cell.maxcharge / 100 // (convert percentage to actual value)
 
-	var/area/our_area = get_area(loc)
-
-	//if area isn't specified use current
-	if(areastring)
-		area = get_area_name(areastring)
-		if(!area && isarea(our_area))
-			area = our_area
-			stack_trace("Bad areastring path for [src], [areastring]")
-	else if(isarea(our_area) && areastring == null)
-		area = our_area
-
+	area = get_area(loc)
 	name = "\improper [get_area_name_litteral(area, TRUE)] APC"
 
 	if(area)
@@ -227,11 +217,16 @@
 			log_mapping("Duplicate APC created at [AREACOORD(src)]. Original at [AREACOORD(area.apc)].")
 		area.apc = src
 
+
+	addtimer(CALLBACK(src, PROC_REF(update)), 5)
+
+
+/obj/machinery/power/apc/LateInitialize()
+	. = ..()
+	
 	update_icon()
 
 	make_terminal()
-
-	addtimer(CALLBACK(src, PROC_REF(update)), 5)
 
 /obj/machinery/power/apc/Destroy()
 	GLOB.apc_list -= src

@@ -23,7 +23,7 @@
 
 	var/list/mixing_inputs = list()
 
-/obj/machinery/atmospherics/omni/mixer/New()
+/obj/machinery/atmospherics/omni/mixer/LateInitialize()
 	..()
 	if(mapper_set())
 		var/con = 0

@@ -57,18 +57,12 @@
 	heating_point = 723 // supposedly amatoxin is heat resistant so I raised its heat temp by 200 - vode-code
 	heating_products = list("toxin")
 
-/datum/reagent/toxin/amatoxin/on_mob_add(mob/living/L)
-	data["timestart"] = REALTIMEOFDAY
-	data["effectcount"] = 0
-
 /datum/reagent/toxin/amatoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	. = ..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/poorsap = M
-		if(REALTIMEOFDAY > (data["timestart"] + (data["effectcount"] * 5 MINUTES)))
-			for(var/obj/item/organ/internal/tokill in poorsap.organ_list_by_process(OP_LIVER) | poorsap.organ_list_by_process(OP_KIDNEYS)) // amanitin is slow but it kills HARD.
-				tokill.add_wound(/datum/component/internal_wound/organic/genedamage)
-			data["effectcount"] += 1
+		for(var/obj/item/organ/internal/tokill in poorsap.organ_list_by_process(OP_LIVER) | poorsap.organ_list_by_process(OP_KIDNEYS)) // amanitin is slow but it kills HARD.
+			tokill.add_wound(/datum/internal_wound/organic/genedamage)
 
 /datum/reagent/toxin/amatoxin/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	affect_blood(M, alien, effect_multiplier)	// amanitin doesn't metabolize in the digestive tract, instead absorbing nearly perfectly.
@@ -159,10 +153,10 @@
 		M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
 		M.AdjustSleeping(20)
 	if(istype(O)) //STAGE 1: CRUSH LUNGS
-		create_overdose_wound(O, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+		create_overdose_wound(O, M, /datum/internal_wound/organic/heavy_poisoning, "accumulation")
 		M.adjustOxyLoss(5)
 	if(istype(S) && (!istype(O) || (O.status & ORGAN_DEAD))) //STAGE 2: NO LUNGS? FUCK YOUR HEART
-		create_overdose_wound(S, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+		create_overdose_wound(S, M, /datum/internal_wound/organic/heavy_poisoning, "accumulation")
 		M.adjustHalLoss(20)
 		M.vomit()
 
@@ -570,7 +564,7 @@
 				to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
 				for(var/obj/item/W in H) //Check all items on the person
 					if(istype(W, /obj/item/organ/external/robotic) || istype(W, /obj/item/implant)) //drop prosthetic limbs and implants, you are a slime now.
-						W.dropped()
+						W.dropped(M)
 				H.set_species(SPECIES_SLIME)
 
 /datum/reagent/toxin/aslimetoxin
@@ -601,7 +595,7 @@
 			if(istype(W, /obj/item/implant) || istype(W, /obj/item/organ/external/robotic))  //Check if item is implant or prosthetic
 				if(istype(W, /obj/item/implant/core_implant/cruciform)) //If cruciform is present victim is gibbed instead of transformed
 					cruciformed = TRUE
-				W.dropped() //use the baseline dropped()
+				W.dropped(M) //use the baseline dropped()
 				continue
 			W.layer = initial(W.layer)
 			W.loc = M.loc
@@ -673,7 +667,7 @@
 		if(LAZYLEN(C.internal_organs) && C.bloodstr && C.bloodstr.has_reagent("pararein"))
 			var/obj/item/organ/internal/I = pick(C.internal_organs)
 			to_chat(C, "Something burns inside your [I.parent.name]...")
-			create_overdose_wound(I, C, /datum/component/internal_wound/organic/heavy_poisoning, "rot", TRUE)
+			create_overdose_wound(I, C, /datum/internal_wound/organic/heavy_poisoning, "rot", TRUE)
 
 /datum/reagent/toxin/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()

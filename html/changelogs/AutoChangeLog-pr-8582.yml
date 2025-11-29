@@ -1,0 +1,8 @@
+author: Chickenish
+delete-after: true
+changes:
+  - rscadd: Destructive Analyzer now drops 1x material input on tile
+  - tweak: machine parts of Destructive Analyzer now responsible for speed of 
+      analysis
+  - balance: machine parts of Destructive Analyzer no longer responsible for 
+      feeding Protolathe.

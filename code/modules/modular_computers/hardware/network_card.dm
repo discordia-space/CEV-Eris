@@ -122,13 +122,13 @@ var/global/ntnet_card_uid = 1
 		var/turf/T = get_turf(holder2)
 		if(!istype(T)) //no reception in nullspace
 			return 0
-		if(T.z in GLOB.maps_data.station_levels)
+		if(IS_SHIP_LEVEL(T.z))
 			// Computer is on station. Low/High signal depending on what type of network card you have
 			if(long_range)
 				return 2
 			else
 				return 1
-		if(T.z in GLOB.maps_data.contact_levels) //not on station, but close enough for radio signal to travel
+		if(IS_PLAYABLE_LEVEL(T.z)) // Not on the ship, but close enough for radio signal to travel
 			if(long_range) // Computer is not on station, but it has upgraded network card. Low signal.
 				return 1
 

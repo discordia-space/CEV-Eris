@@ -1,0 +1,6 @@
+author: Chickenish
+delete-after: true
+changes:
+  - bugfix: Hulk ore processing should work fine now.
+  - bugfix: Disposals should work fine now.
+  - bugfix: APCs should work fine now.

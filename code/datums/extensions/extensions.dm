@@ -42,17 +42,6 @@
 /datum
 	var/list/datum/extension/extensions
 
-/datum/Destroy()
-	if(extensions)
-		for(var/expansion_key in extensions)
-			var/list/expansion = extensions[expansion_key]
-			if(islist(expansion))
-				expansion.Cut()
-			else
-				qdel(expansion)
-		extensions.Cut()
-	return ..()
-
 /proc/set_extension(var/datum/source, var/base_type, var/expansion_type, var/host_predicates, var/user_predicates, var/list/additional_argments)
 	if(!source.extensions)
 		source.extensions = list()

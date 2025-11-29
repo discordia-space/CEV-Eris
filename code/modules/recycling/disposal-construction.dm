@@ -18,7 +18,7 @@
 	var/base_state = "pipe-s"
 
 /obj/structure/disposalconstruct/can_fall()
-	var/turf/below = GetBelow(get_turf(src))
+	var/turf/below = SSmapping.GetBelow(get_turf(src))
 	var/pipe_below = istype(below)
 	if(pipe_below)
 		pipe_below = locate(/obj/structure/disposalpipe/up) in below

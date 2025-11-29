@@ -12,9 +12,9 @@
 	var/tag_shuttle_mech_sensor
 	var/tag_secure = 0
 
-/obj/machinery/embedded_controller/radio/airlock/New()
-	. = ..()
-	program = new/datum/computer/file/embedded_program/airlock(src)
+/obj/machinery/embedded_controller/radio/airlock/LateInitialize()
+	program = new /datum/computer/file/embedded_program/airlock(src)
+	..()
 
 //Advanced airlock controller for when you want a more versatile airlock controller - useful for turning simple access control rooms into airlocks
 /obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller

@@ -38,7 +38,7 @@
 /obj/machinery/atmospherics/valve/hide(var/i)
 	update_underlays()
 
-/obj/machinery/atmospherics/valve/New()
+/obj/machinery/atmospherics/valve/LateInitialize()
 	switch(dir)
 		if(NORTH, SOUTH)
 			initialize_directions = NORTH|SOUTH

@@ -11,11 +11,11 @@
 	if (roundstart_update)
 		if (_initialized_transparency)
 			return
-		var/turf/testBelow = GetBelow(src)
+		var/turf/testBelow = SSmapping.GetBelow(src)
 		if (testBelow && testBelow.is_transparent && !testBelow._initialized_transparency)
 			return //turf below will update this one
 
-	var/turf/below = GetBelow(src)
+	var/turf/below = SSmapping.GetBelow(src)
 	if (!below || istype(below, /turf/space))
 		ChangeTurf(/turf/space)
 		return
@@ -36,12 +36,12 @@
 	if (roundstart_update)
 		if (_initialized_transparency)
 			return
-		var/turf/testBelow = GetBelow(src)
+		var/turf/testBelow = SSmapping.GetBelow(src)
 		if (testBelow && testBelow.is_transparent && !testBelow._initialized_transparency)
 			return //turf below will update this one
 
 	overlays.Cut()
-	var/turf/below = GetBelow(src)
+	var/turf/below = SSmapping.GetBelow(src)
 	if (istype(below, /turf/open))
 		ChangeTurf(/turf/open)
 		return
@@ -60,6 +60,6 @@
 	return TRUE
 
 /atom/proc/update_openspace()
-	var/turf/T = GetAbove(src)
+	var/turf/T = SSmapping.GetAbove(src)
 	if (T && T.is_transparent)
 		T.update_icon()

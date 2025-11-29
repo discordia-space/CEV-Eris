@@ -1,0 +1,6 @@
+author: Chickenish
+delete-after: true
+changes:
+  - tweak: internal wound pain messages should be slightly more consistent
+  - bugfix: Salves and Inaprovaline should be somewhat viable now.
+  - code_imp: removed a branch in medical code

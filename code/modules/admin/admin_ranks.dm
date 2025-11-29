@@ -107,8 +107,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 		load_admins_legacy()
 		return TRUE
 
-	establish_db_connection()
-	if(!dbcon.IsConnected())
+	if(!SSdbcore.Connect())
 		error("Failed to connect to database in load_admins(). Reverting to legacy system.")
 		log_misc("Failed to connect to database in load_admins(). Reverting to legacy system.")
 		load_admins_legacy()
@@ -123,11 +122,11 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 			config.admin_legacy_system = 1
 			load_admins_legacy()
 			return FALSE
-	
+
 	return TRUE
 
 /proc/load_admins()
-	var/DBQuery/query = dbcon.NewQuery("SELECT ckey, rank, flags FROM players WHERE rank != 'player'")
+	var/datum/db_query/query = SSdbcore.NewQuery("SELECT ckey, rank, flags FROM [format_table_name("players")] WHERE rank != 'player'")
 	query.Execute()
 	while(query.NextRow())
 		var/ckey = query.item[1]
@@ -152,11 +151,10 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 /proc/load_permissions(var/player_id)
 	var/flag = 0
 
-	establish_db_connection()
-	if(!dbcon.IsConnected())
+	if(!SSdbcore.Connect())
 		return flag
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT fun, server, debug, permissions, mentor, moderator, admin, host FROM permissions WHERE player_id = [player_id]")
+	var/datum/db_query/query = SSdbcore.NewQuery("SELECT fun, server, debug, permissions, mentor, moderator, admin, host FROM [format_table_name("permissions")] WHERE player_id = :player_id", list("player_id" = player_id))
 	if(!query.Execute())
 		return flag
 

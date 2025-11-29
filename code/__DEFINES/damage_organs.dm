@@ -177,17 +177,26 @@
 #define IWOUND_SPREAD			(1<<3)
 #define IWOUND_HALLUCINATE		(1<<4)
 #define IWOUND_AGGRAVATION      (1<<5)
+#define IWOUND_RECOVER              (1<<6)
+#define IWOUND_STASIS               (1<<7) // disables certain automatic flag changes
 
 #define IWOUND_INSIGNIFICANT_DAMAGE 0.05
 #define IWOUND_LIGHT_DAMAGE 0.1
 #define IWOUND_MEDIUM_DAMAGE 0.25
 #define IWOUND_HEAVY_DAMAGE 0.5
 
+#define WE_SALVE "salve" // salves
+#define WE_BANDAGE "bandage" // bandaging
+
+#define WOUND_STABLE 1
+#define WOUND_RECOVER 2
+
 #define IWOUND_1_MINUTE	30
 #define IWOUND_2_MINUTES 60
 #define IWOUND_3_MINUTES 90
 #define IWOUND_4_MINUTES 120
 #define IWOUND_5_MINUTES 150
+#define IWOUND_HALF_MINUTE 15
 
 // Organ generation
 #define ORGAN_HAS_BONES			(1<<0)

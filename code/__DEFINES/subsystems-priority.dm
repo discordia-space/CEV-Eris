@@ -16,7 +16,8 @@ var/list/bitflags = list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096
 #define SS_PRIORITY_TICKER			200	// Gameticker processing.
 #define FIRE_PRIORITY_TGUI 110
 #define FIRE_PRIORITY_EXPLOSIONS 105 // Explosions!
-#define FIRE_PRIORITY_THROWING 106 // Throwing! after explosions since they influence throw direction
+#define FIRE_PRIORITY_DATABASE 104
+#define FIRE_PRIORITY_THROWING 103 // Throwing! after explosions since they influence throw direction
 #define SS_PRIORITY_HUMAN			101	// Human Life().
 #define SS_PRIORITY_MOB				100	// Non-human Mob Life().
 #define SS_PRIORITY_CHAT			100 // Chat subsystem.

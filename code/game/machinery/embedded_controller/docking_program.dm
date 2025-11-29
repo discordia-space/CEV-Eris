@@ -73,11 +73,9 @@
 
 /datum/computer/file/embedded_program/docking/New()
 	..()
-
 	var/datum/existing = locate(id_tag) //in case a datum already exists with our tag
 	if(existing)
 		existing.tag = null //take it from them
-
 
 	tag = id_tag //Greatly simplifies shuttle initialization
 

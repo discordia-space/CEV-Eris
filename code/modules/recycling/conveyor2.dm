@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 
 
 // create a conveyor
-/obj/machinery/conveyor/New(loc, new_dir, new_id)
+/obj/machinery/conveyor/Initialize(loc, new_dir, new_id)
 	..(loc)
 	GLOB.conveyor_belts += src
 	if(new_id)
@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	// DEPRECATED: remove once map is updated
 	var/convdir
 
-/obj/machinery/conveyor_switch/New(newloc, new_id)
+/obj/machinery/conveyor_switch/Initialize(newloc, new_id)
 	..(newloc)
 	GLOB.conveyor_switches += src
 	if(!id)

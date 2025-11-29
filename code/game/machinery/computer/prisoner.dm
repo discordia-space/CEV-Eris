@@ -22,7 +22,7 @@
 		var/turf/Tr = null
 		for(var/obj/item/implant/chem/C in world)
 			Tr = get_turf(C)
-			if((Tr) && isNotStationLevel(Tr.z)) continue //Out of range
+			if((Tr) && !IS_SHIP_LEVEL(Tr.z)) continue //Out of range
 			if(!C.implanted) continue
 			dat += "[C.wearer.name] | Remaining Units: [C.reagents.total_volume] | Inject: "
 			dat += "<A href='?src=\ref[src];inject=\ref[C];amount=1'>(<font color=red>(1)</font>)</A>"
@@ -32,15 +32,15 @@
 		dat += "<HR>Tracking Implants<BR>"
 		for(var/obj/item/implant/tracking/T in world)
 			Tr = get_turf(T)
-			if((Tr) && isNotStationLevel(Tr.z)) continue //Out of range
+			if((Tr) && !IS_SHIP_LEVEL(Tr.z)) continue //Out of range
 			if(!T.implanted) continue
 			var/loc_display = "Unknown"
 			var/mob/living/carbon/M = T.wearer
-			if(isStationLevel(M.z) && !istype(M.loc, /turf/space))
+			if(IS_SHIP_LEVEL(M.z) && !istype(M.loc, /turf/space))
 				var/turf/mob_loc = get_turf(M)
 				loc_display = mob_loc.loc
 			if(T.malfunction)
-				loc_display = pick(SSmapping.teleportlocs)
+				loc_display = pick(SSmapping.main_ship_areas_by_name)
 			dat += "ID: [T.gps.serial_number] | Location: [loc_display]<BR>"
 			dat += "<A href='?src=\ref[src];warn=\ref[T]'>(<font color=red><i>Message Holder</i></font>)</A> |<BR>"
 			dat += "********************************<BR>"

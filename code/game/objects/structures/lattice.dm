@@ -13,7 +13,7 @@
 /obj/structure/lattice/Initialize()
 	. = ..()
 ///// Z-Level Stuff
-	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/open) || istype(src.loc, /turf/floor/hull) ||  istype(src.loc, /turf/floor/exoplanet))) // || istype(src.loc, /turf/floor/open)
+	if(!(istype(loc, /turf/space) || istype(loc, /turf/open) || istype(loc, /turf/floor/hull)))
 ///// Z-Level Stuff
 		return INITIALIZE_HINT_QDEL
 	for(var/obj/structure/lattice/LAT in src.loc)

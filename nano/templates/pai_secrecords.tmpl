@@ -16,10 +16,6 @@ code/modules/mob/living/silicon/pai/software_modules.dm
 		<div class="itemContent">{{:data.general.name}}</div>
 	</div>
 	<div class="item">
-		<div class="itemLabel">Record ID</div>
-		<div class="itemContent">{{:data.general.id}}</div>
-	</div>
-	<div class="item">
 		<div class="itemLabel">Sex</div>
 		<div class="itemContent">{{:data.general.sex}}</div>
 	</div>
@@ -32,40 +28,24 @@ code/modules/mob/living/silicon/pai/software_modules.dm
 		<div class="itemContent">{{:data.general.age}}</div>
 	</div>
 	<div class="item">
-		<div class="itemLabel">Rank</div>
-		<div class="itemContent">{{:data.general.rank}}</div>
+		<div class="itemLabel">Job Title</div>
+		<div class="itemContent">{{:data.general.job}}</div>
 	</div>
 	<div class="item">
 		<div class="itemLabel">Fingerprint</div>
 		<div class="itemContent">{{:data.general.fingerprint}}</div>
 	</div>
 	<div class="item">
-		<div class="itemLabel">Physical Status</div>
-		<div class="itemContent">{{:data.general.p_stat}}</div>
+		<div class="itemLabel">Status</div>
+		<div class="itemContent">{{:data.general.status}}</div>
 	</div>
-	<div class="item">
-		<div class="itemLabel">Mental Status</div>
-		<div class="itemContent">{{:data.general.m_stat}}</div>
-	</div>
-{{/if}}
-{{if data.security}}
 	<div class="item">
 		<div class="itemLabel">Criminal Status</div>
-		<div class="itemContent">{{:data.security.criminal}}</div>
-	</div>
-	<div class="item">
-		<div class="itemLabel">Minor Crimes</div>
-		<div class="itemContent">{{:data.security.mi_crim}}</div>
-		<div class="itemContent">{{:data.security.mi_crim_d}}</div>
-	</div>
-	<div class="item">
-		<div class="itemLabel">Major Crimes</div>
-		<div class="itemContent">{{:data.security.ma_crim}}</div>
-		<div class="itemContent">{{:data.security.ma_crim_d}}</div>
-	</div>
+		<div class="itemContent">{{:data.general.criminalStatus }}</div>
+	</div>	
 	<div class="item">
 		<div class="itemLabel">Important Notes</div>
-		<div class="itemContent">{{:data.security.notes}}</div>
+		<div class="itemContent">{{:data.general.secNotes}}</div>
 	</div>
 {{/if}}
 

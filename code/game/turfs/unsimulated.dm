@@ -1,3 +1,8 @@
+// Special turf for use in .dmm chunks that compose randomly generated maps
+/turf/template_noop
+	name = "Turf Passthrough"
+	icon_state = "template_void"
+
 /turf/wall/dummy
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'

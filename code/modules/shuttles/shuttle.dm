@@ -99,8 +99,6 @@
 
 		arrive_time = world.time + travel_time*10
 		moving_status = SHUTTLE_INTRANSIT
-		spawn(0)  // So that the landmark is processed in parallel
-			destination.trigger_landmark()
 		if(attempt_move(interim))
 			var/fwooshed = 0
 			while (world.time < arrive_time)
@@ -154,9 +152,9 @@
 	var/list/powernets = list()
 	for(var/area/A in shuttle_area)
 		// if there was a zlevel above our origin, erase our ceiling now we're leaving
-		if(HasAbove(current_location.z))
+		if(SSmapping.HasAbove(current_location.z))
 			for(var/turf/TO in A.contents)
-				var/turf/TA = GetAbove(TO)
+				var/turf/TA = SSmapping.GetAbove(TO)
 				if(istype(TA, ceiling_type))
 					TA.ChangeTurf(get_base_turf_by_area(TA), 1, 1)
 		if(knockdown)
@@ -187,10 +185,10 @@
 	current_location = destination
 
 	// if there's a zlevel above our destination, paint in a ceiling on it so we retain our air
-	if(HasAbove(current_location.z))
+	if(SSmapping.HasAbove(current_location.z))
 		for(var/area/A in shuttle_area)
 			for(var/turf/TD in A.contents)
-				var/turf/TA = GetAbove(TD)
+				var/turf/TA = SSmapping.GetAbove(TD)
 				if(istype(TA, get_base_turf_by_area(TA)) || istype(TA, /turf/open))
 					TA.ChangeTurf(ceiling_type, 1, 1)
 

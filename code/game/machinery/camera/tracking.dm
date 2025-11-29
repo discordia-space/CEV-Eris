@@ -55,12 +55,12 @@
 		to_chat(src, SPAN_WARNING("There is already a stored location by this name"))
 		return
 
-	var/L = src.eyeobj.getLoc()
-	if(!isOnPlayerLevel(L))
+	var/atom/eyeobj_location = eyeobj.getLoc()
+	if(!IS_PLAYABLE_LEVEL(eyeobj_location.z))
 		to_chat(src, SPAN_WARNING("Unable to store this location"))
 		return
 
-	stored_locations[loc] = L
+	stored_locations[loc] = eyeobj_location
 	to_chat(src, "Location '[loc]' stored")
 
 /mob/living/silicon/ai/proc/sorted_stored_locations()
@@ -224,7 +224,7 @@
 	var/obj/item/card/id/id = GetIdCard()
 	if(id && id.prevent_tracking())
 		return TRACKING_TERMINATE
-	if(!isOnPlayerLevel(src))
+	if(!IS_PLAYABLE_LEVEL(z))
 		return TRACKING_TERMINATE
 	if(invisibility >= INVISIBILITY_LEVEL_ONE) //cloaked
 		return TRACKING_TERMINATE
@@ -253,7 +253,7 @@
 		return
 
 	if(. == TRACKING_NO_COVERAGE)
-		if(isOnStationLevel(src) && hassensorlevel(src, SUIT_SENSOR_TRACKING))
+		if(IS_SHIP_LEVEL(z) && hassensorlevel(src, SUIT_SENSOR_TRACKING))
 			return TRACKING_POSSIBLE
 
 mob/living/proc/tracking_initiated()

@@ -76,7 +76,7 @@ AUTOMATED ALERT: Link to [command_name()] lost.
 		return
 
 /datum/universal_state/supermatter_cascade/proc/AreaSet()
-	for(var/area/A in all_areas)
+	for(var/area/A as anything in SSmapping.all_areas)
 		if(!istype(A,/area) || istype(A, /area/space))
 			continue
 
@@ -85,7 +85,7 @@ AUTOMATED ALERT: Link to [command_name()] lost.
 /datum/universal_state/supermatter_cascade/OverlayAndAmbientSet()
 	spawn(0)
 		for(var/atom/movable/lighting_overlay/L in world)
-			if(isAdminLevel(L.z))
+			if(IS_TECHNICAL_LEVEL(L.z))
 				L.update_overlay(1,1,1)
 			else
 				L.update_overlay(0, 0.4, 1)

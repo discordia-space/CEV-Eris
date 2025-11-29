@@ -17,9 +17,7 @@
 	show_results(user)
 
 /proc/mining_scan_action(turf/source, mob/user)
-
-	if(istype(source, /turf/floor/asteroid) || istype(source, /turf/floor/exoplanet))
+	if(istype(source, /turf/floor/asteroid))
 		var/turf/source_simulated = source
 		return "Seismic activity (from 1 up to 6): [source_simulated.seismic_activity]"
-
 	return "Seismic activity: N/A - The deep drill cannot mine this ground."

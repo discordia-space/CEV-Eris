@@ -432,6 +432,7 @@ default behaviour is:
 	setToxLoss(0)
 	setOxyLoss(0)
 	setCloneLoss(0)
+	setHalLoss(0)
 	setBrainLoss(0)
 	SetParalysis(0)
 	SetStunned(0)
@@ -499,17 +500,8 @@ default behaviour is:
 
 	// Delete them from datacore.
 
-	if(PDA_Manifest.len)
-		PDA_Manifest.Cut()
-	for(var/datum/data/record/R in data_core.medical)
-		if ((R.fields["name"] == src.real_name))
-			qdel(R)
-	for(var/datum/data/record/T in data_core.security)
-		if ((T.fields["name"] == src.real_name))
-			qdel(T)
-	for(var/datum/data/record/G in data_core.general)
-		if ((G.fields["name"] == src.real_name))
-			qdel(G)
+	var/datum/todelete = get_crewmember_record(name)
+	qdel(todelete)
 
 	//This should guarantee that ghosts don't spawn.
 	src.ckey = null
@@ -560,9 +552,7 @@ default behaviour is:
 						if (prob(75))
 							var/obj/item/grab/G = pick(M.grabbed_by)
 							if (istype(G, /obj/item/grab))
-								for(var/mob/O in viewers(M, null))
-									O.show_message(text("\red [] has been pulled from []'s grip by []", G.affecting, G.assailant, src), 1)
-								//G = null
+								M.visible_message(SPAN_DANGER("[G.affecting] has been pulled from [G.assailant]'s grip by [src]."))
 								qdel(G)
 						else
 							ok = 0

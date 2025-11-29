@@ -81,7 +81,11 @@
 	ASSERT(A)
 	..()
 	// Okay, so let's make it so that people can travel z levels
-	if(A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE + 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE + 1))
+	var/min_x_check = A.x <= TRANSITIONEDGE
+	var/max_x_check = A.x >= (world.maxx - TRANSITIONEDGE + 1)
+	var/min_y_check = A.y <= TRANSITIONEDGE
+	var/max_y_check = A.y >= (world.maxy - TRANSITIONEDGE + 1)
+	if(min_x_check || max_x_check || min_y_check || max_y_check)
 		A.touch_map_edge()
 
 

@@ -108,9 +108,8 @@
 		var/mob/living/carbon/human/H = speaker
 		if(H.voice)
 			speaker_name = H.voice
-		for(var/datum/data/record/G in data_core.general)
-			if(G.fields["name"] == speaker_name)
-				return H.rank_prefix_name(speaker_name)
+		if(get_crewmember_record(speaker_name))
+			return H.rank_prefix_name(speaker_name)
 	return voice_name ? voice_name : speaker_name
 
 

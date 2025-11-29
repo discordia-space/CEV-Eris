@@ -104,9 +104,6 @@
 	var/obj/item/stack/flag/F = locate() in get_turf(src)
 
 	var/turf/T = get_turf(src)
-	if(!(istype(T,/turf/floor/asteroid) || istype(T, /turf/floor/exoplanet)))
-		to_chat(user, "The flag won't stand up in this terrain.")
-		return
 
 	if(F && F.upright)
 		to_chat(user, "There is already a flag here.")

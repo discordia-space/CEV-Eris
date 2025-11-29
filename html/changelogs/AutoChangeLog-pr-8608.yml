@@ -1,0 +1,4 @@
+author: Chickenish
+delete-after: true
+changes:
+  - bugfix: 'config: guest mode no longer breaks job selection.'

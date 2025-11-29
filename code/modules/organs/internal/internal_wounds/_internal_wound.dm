@@ -1,11 +1,13 @@
-/datum/component/internal_wound
+/datum/internal_wound
 	var/name = "internal injury"
-	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
+	var/obj/item/organ/internal/parent
 
 	var/list/treatments_item = list()	// list(/obj/item = amount)
 	var/list/treatments_tool = list()	// list(QUALITY_TOOL = FAILCHANCE)
 	var/list/treatments_chem = list()	// list(CE_CHEMEFFECT = strength)
-	var/datum/component/scar			// If defined, applies this wound type when successfully treated
+	var/list/stabilizers_chem = list()	 // like the above, but for stabilizing the wound.
+	var/list/firstaid_type = list()			//list(WE_TREATMENTTYPE = TREATEFFECT)
+	var/datum/internal_wound/scar			// If defined, applies this wound type when successfully treated
 
 	var/diagnosis_stat					// BIO for organic, MEC for robotic
 	var/diagnosis_difficulty			// basic - 25, adv - 40
@@ -17,12 +19,14 @@
 	// IWOUND_SPREAD - Allows the wound to spread to another organ
 	// IWOUND_HALLUCINATE - Causes hallucinations
 	// IWOUND_AGGRAVATION - inheritance increases severity gradually if progress IW flag is not present
+	//IWOUND_RECOVER - recovers over time
+	//IWOUND_STASIS - disables certain automatic changes
 	var/characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_PROGRESS
 
 	var/severity = 0					// How much the wound contributes to internal organ damage
 	var/severity_max = 3				// How far the wound can progress, default is 2
 
-	var/datum/component/next_wound					// If defined, applies a wound of this type when severity is at max
+	var/datum/internal_wound/next_wound					// If defined, applies a wound of this type when severity is at max
 	var/progression_threshold = IWOUND_4_MINUTES	// How many ticks until the wound progresses, default is 3 minutes
 	var/current_progression_tick					// Current tick towards progression
 
@@ -50,7 +54,7 @@
 	// Parent organ adjustments
 	var/status_flag = ORGAN_WOUNDED		// Causes the parent limb to start processing
 
-/datum/component/internal_wound/RegisterWithParent()
+/datum/internal_wound/proc/Finalize()
 	// Internal organ parent
 	RegisterSignal(parent, COMSIG_IWOUND_EFFECTS, PROC_REF(apply_effects))
 	RegisterSignal(parent, COMSIG_IWOUND_LIMB_EFFECTS, PROC_REF(apply_limb_effects))
@@ -70,7 +74,7 @@
 	if(((characteristic_flag & IWOUND_CAN_DAMAGE) || hal_damage) && H)
 		H.custom_pain("Something inside your [E.name] hurts a lot.", 0)
 
-/datum/component/internal_wound/UnregisterFromParent()
+/datum/internal_wound/Destroy()
 	UnregisterSignal(parent, COMSIG_IWOUND_EFFECTS)
 	UnregisterSignal(parent, COMSIG_IWOUND_LIMB_EFFECTS)
 	UnregisterSignal(parent, COMSIG_IWOUND_FLAGS_ADD)
@@ -81,21 +85,21 @@
 
 	if(LAZYACCESS(SSinternal_wounds.processing, src))
 		STOP_PROCESSING(SSinternal_wounds, src)
+	. = ..()
 
-/datum/component/internal_wound/InheritComponent()	// Getting a new wound of the same type as an existing wound will progress it
-	progress()
 
-/datum/component/internal_wound/Process(delta_time)
+/datum/internal_wound/Process(delta_time)
 	var/obj/item/organ/O = parent
-	var/obj/item/organ/external/E = parent ? O.parent : null
 	var/mob/living/carbon/human/H = parent ? O.owner : null
 
 	// Don't process when the parent limb or owner is dead. Organs don't process in corpses and won't die from wounds.
 	if((!parent || O.status & ORGAN_DEAD) && !(characteristic_flag & IWOUND_PROGRESS_DEATH))
 		return PROCESS_KILL
 
-	// Progress if not in a cryo tube or in stasis
-	if(characteristic_flag & IWOUND_PROGRESS && (H && !(H.bodytemperature < 170 || H.in_stasis)))
+	// Progress if not recovering or in a cryo tube or in stasis
+	if(characteristic_flag & IWOUND_RECOVER)
+		treatment_slow()
+	else if(characteristic_flag & IWOUND_PROGRESS && (H && !(H.bodytemperature < 170 || H.in_stasis)))
 		++current_progression_tick
 		if(current_progression_tick >= progression_threshold)
 			current_progression_tick = 0
@@ -104,6 +108,7 @@
 	if(!H)
 		return
 
+	var/stabilized = characteristic_flag & IWOUND_STASIS
 	// Chemical treatment handling
 	var/list/owner_ce = H.chem_effects
 	for(var/chem_effect in owner_ce)
@@ -112,6 +117,12 @@
 			owner_ce[chem_effect] -= treatment_threshold
 			treatment(FALSE)
 			return
+		if(chem_effect in stabilizers_chem)
+			stabilized = TRUE
+	if(stabilized)
+		characteristic_flag &= ~(IWOUND_PROGRESS|IWOUND_PROGRESS_DEATH) // gotta do this somehow
+	else if(severity < severity_max)
+		characteristic_flag |= (initial(characteristic_flag) & (IWOUND_PROGRESS|IWOUND_PROGRESS_DEATH)) // re-add if not stabilized/stasis
 
 	// Spread once
 	if(characteristic_flag & IWOUND_SPREAD)
@@ -140,25 +151,34 @@
 					H.sanity.effect_hallucination()
 			current_hallucination_tick = 0
 
-/datum/component/internal_wound/proc/progress()
-	if(!((characteristic_flag & IWOUND_PROGRESS) || (characteristic_flag & IWOUND_AGGRAVATION)))
-		return
+/datum/internal_wound/proc/progress()
+	if(!(characteristic_flag & IWOUND_AGGRAVATION) ) // if the aggravation flag is not present
+		if(!(characteristic_flag & IWOUND_PROGRESS)) // and the progress tag is not present
+			return // then return
+	else if(!(characteristic_flag & IWOUND_PROGRESS)) // but if the aggravation tag IS present, but progress tag isn't, then custom process
+		++current_progression_tick
+		if(current_progression_tick >= progression_threshold || severity == severity_max)
+			current_progression_tick = 0
+		else
+			return
+	// and if both are present, progress tag has priority.
+
 	var/obj/item/organ/O = parent
 	var/obj/item/organ/external/E = parent ? O.parent : null
 	var/mob/living/carbon/human/H = parent ? O.owner : null
-	if(((characteristic_flag & IWOUND_CAN_DAMAGE) || hal_damage) && H)
-		H.custom_pain("Something inside your [E.name] hurts a lot.", 0)
 	if(severity < severity_max)
 		++severity
+		if(((characteristic_flag & IWOUND_CAN_DAMAGE) || hal_damage) && H)
+			H.custom_pain("Something inside your [E.name] hurts a lot.", 0)
 	else
 		characteristic_flag &= ~(IWOUND_PROGRESS|IWOUND_PROGRESS_DEATH)	// Lets us remove the wound from processing
-		if(next_wound && ispath(next_wound, /datum/component))
+		if(next_wound && ispath(next_wound, /datum/internal_wound))
 			var/chosen_wound_type = pick(subtypesof(next_wound))
 			SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_ADD_WOUND, chosen_wound_type)
 
 	SEND_SIGNAL(parent, COMSIG_IORGAN_REFRESH_SELF)
 
-/datum/component/internal_wound/proc/apply_tool(obj/item/I, mob/user)
+/datum/internal_wound/proc/apply_tool(obj/item/I, mob/user)
 	var/success = FALSE
 	var/obj/item/organ/internal/organ = parent
 	var/obj/item/organ/limb = organ.parent
@@ -216,18 +236,39 @@
 
 	return success
 
-/datum/component/internal_wound/proc/treatment(used_tool, used_autodoc = FALSE)
+/datum/internal_wound/proc/treatment(used_tool, used_autodoc = FALSE)
 	if(severity > 0 && !used_tool)
 		--severity
 		// If it was turned off by reaching the max, turn it on again.
-		if(initial(characteristic_flag) & IWOUND_PROGRESS)
-			characteristic_flag |= IWOUND_PROGRESS
+		characteristic_flag |= (initial(characteristic_flag) & (IWOUND_PROGRESS|IWOUND_PROGRESS_DEATH))
 	else
-		if(!used_autodoc && scar && ispath(scar, /datum/component))
+		if(!used_autodoc && scar && ispath(scar, /datum/internal_wound))
 			SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_ADD_WOUND, pick(subtypesof(scar)))
 		SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_REMOVE_WOUND, src)
 
-/datum/component/internal_wound/proc/apply_effects()
+/datum/internal_wound/proc/treatment_slow(amount = 1)
+	var/treatmentamount = min(amount, current_progression_tick)
+	current_progression_tick = current_progression_tick - treatmentamount
+	if(current_progression_tick <= 0)
+		current_progression_tick = progression_threshold-1
+		treatment()
+	if(!QDELING(src) && treatmentamount < amount)
+		treatment_slow(amount - treatmentamount)
+
+/datum/internal_wound/proc/first_aid(list/aideffects = list())
+	parent?.owner.visible_message("aid attempt")
+	for(var/totest in aideffects)
+		if(firstaid_type[totest])
+			switch(firstaid_type[totest])
+				if(WOUND_STABLE)
+					characteristic_flag &= ~(IWOUND_PROGRESS|IWOUND_PROGRESS_DEATH)
+					characteristic_flag |= IWOUND_STASIS
+				if(WOUND_RECOVER)
+					characteristic_flag |= IWOUND_RECOVER
+					break // most potent effect should end the loop
+
+
+/datum/internal_wound/proc/apply_effects()
 	var/obj/item/organ/internal/O = parent
 
 	if(!islist(O.organ_efficiency))
@@ -264,7 +305,7 @@
 	if(oxygen_req_multiplier)
 		O.oxygen_req *= 1 + round(oxygen_req_multiplier, 0.01)
 
-/datum/component/internal_wound/proc/apply_limb_effects()
+/datum/internal_wound/proc/apply_limb_effects()
 	var/obj/item/organ/internal/O = parent
 
 	if(!O.parent)
@@ -273,7 +314,7 @@
 	if(hal_damage)
 		O.parent.internal_wound_hal_dam += hal_damage * severity
 
-/datum/component/internal_wound/proc/apply_flags()
+/datum/internal_wound/proc/apply_flags()
 	var/obj/item/organ/internal/O = parent
 
 	if(!O.parent)
@@ -282,7 +323,7 @@
 	if(status_flag)
 		O.parent.status |= status_flag
 
-/datum/component/internal_wound/proc/remove_flags()
+/datum/internal_wound/proc/remove_flags()
 	var/obj/item/organ/internal/O = parent
 
 	if(!O.parent)
@@ -291,7 +332,7 @@
 	if(status_flag)
 		O.parent.status &= ~status_flag
 
-/datum/component/internal_wound/proc/apply_damage()
+/datum/internal_wound/proc/apply_damage()
 	if(!(characteristic_flag & IWOUND_CAN_DAMAGE))
 		return
 

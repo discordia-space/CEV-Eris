@@ -41,9 +41,12 @@
 		visible_message(SPAN_NOTICE("Opening the coffin has disrupted the fire!"))
 
 //The coffin processes when there's a mob inside
-/obj/structure/closet/coffin/lost_in_space()
+/obj/structure/closet/coffin/touch_map_edge()
+	if(z in SSmapping.sealed_z_levels)
+		return
+
 	//The coffin has left the ship. Burial at space
-	if (occupant && occupant.is_dead())
+	if(occupant && occupant.is_dead())
 		var/mob/M = key2mob(occupant.mind.key)
 		//We send a message to the occupant's current mob - probably a ghost, but who knows.
 		to_chat(M, SPAN_NOTICE("Your remains have been committed to the void. Your crew respawn time has been reduced by [(COFFIN_RESPAWN_BONUS)/600] minutes."))
@@ -54,8 +57,9 @@
 
 		qdel(occupant)
 		qdel(src)
+		return
+	..()
 
-	return TRUE
 
 /obj/structure/closet/coffin/proc/pyre()
 	if(opened)

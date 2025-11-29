@@ -1,4 +1,13 @@
 
+//! ## DB defines
+/**
+ * DB schema version
+ *
+ * Update this whenever the db schema changes
+ */
+#define DB_SCHEMA_VERSION 1
+
+
 //! ## Timing subsystem
 /**
  * Don't run if there is an identical unique timer active
@@ -88,23 +97,19 @@
 // The numbers just define the ordering, they are meaningless otherwise.
 
 #define INIT_ORDER_GARBAGE 99
-#define INIT_ORDER_CHUNKS 98
+#define INIT_ORDER_DBCORE 98
 #define INIT_ORDER_EXPLOSIONS 97
 #define INIT_ORDER_STATPANELS 96
-#define INIT_ORDER_SKYBOX 20
-#define INIT_ORDER_DBCORE 19
-#define INIT_ORDER_BLACKBOX 18
-#define INIT_ORDER_SERVER_MAINT 17
-#define INIT_ORDER_JOBS 16
-#define INIT_ORDER_EVENTS 15
-#define INIT_ORDER_TICKER 14
-#define INIT_ORDER_SPAWN_DATA 13
-#define INIT_ORDER_MAPPING 12
-#define INIT_ORDER_LANGUAGE 11
-#define INIT_ORDER_INVENTORY 10
-#define INIT_ORDER_CHAR_SETUP 9
-#define INIT_ORDER_ATOMS 8
-#define INIT_ORDER_MACHINES 7
+#define INIT_ORDER_MAPPING 15
+#define INIT_ORDER_JOBS 14
+#define INIT_ORDER_TICKER 13
+#define INIT_ORDER_SPAWN_DATA 12
+#define INIT_ORDER_CHUNKS 11
+#define INIT_ORDER_LANGUAGE 10
+#define INIT_ORDER_INVENTORY 9
+#define INIT_ORDER_CHAR_SETUP 8
+#define INIT_ORDER_ATOMS 7
+#define INIT_ORDER_MACHINES 6
 #define INIT_ORDER_TIMER 1
 #define INIT_ORDER_DEFAULT 0
 #define INIT_ORDER_AIR -1
