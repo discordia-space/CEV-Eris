@@ -1097,3 +1097,27 @@ var/list/name_to_material
 		bio = 0,
 		rad = 0
 	)
+
+/material/wax
+	name = MATERIAL_WAX
+	flags = MATERIAL_BRITTLE
+	sheet_singular_name = "piece"
+	sheet_plural_name = "clump"
+
+	// Shards/tables/structures
+	shard_type = SHARD_STONE_PIECE       // Path of debris object.
+	destruction_desc = "crumbles" // Fancy string for barricades/tables/objects exploding.
+
+	icon_colour = "#D9C179" // close enough
+	stack_origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1) // Research level for stacks.
+
+	ignition_point = T0C+204  // generic wax flashpoint
+	melting_point = T0C+64     //generic wax melting point
+	heat_resistance = 0.5
+	integrity = 25          
+	conductive = FALSE           // Objects with this var add CONDUCTS to flags on spawn.
+
+	hardness = 1
+	weight = 4
+
+	stack_type = /obj/item/stack/material/wax
