@@ -635,7 +635,7 @@
 	if(istype(eating, /obj/item/stack))
 		res_load(get_material_by_name(main_material)) // Play insertion animation.
 		var/obj/item/stack/stack = eating
-		var/used_sheets = min(stack.get_amount(), round(total_used))
+		var/used_sheets = min(stack.get_amount(), total_used)
 
 		to_chat(user, SPAN_NOTICE("You add [used_sheets] [main_material] [stack.singular_name]\s to \the [src]."))
 

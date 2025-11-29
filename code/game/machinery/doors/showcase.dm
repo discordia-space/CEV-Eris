@@ -18,7 +18,11 @@
 
 /obj/machinery/door/blast/shutters/glass/attackby(obj/item/I, mob/user, params)
 	if(density)
-		if(QUALITY_WELDING in I.tool_qualities)
+		if ((QUALITY_PRYING in I.tool_qualities) && user.a_intent == I_DISARM)
+			if (do_after(user, 20, src))
+				open()
+			return
+		else if(QUALITY_WELDING in I.tool_qualities)
 			if((stat&BROKEN) && have_glass)
 				if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					have_glass = FALSE
@@ -53,8 +57,8 @@
 		to_chat(user, SPAN_WARNING("It must be closed!"))
 
 /obj/machinery/door/blast/shutters/glass/attack_hand(mob/user)
-	return
-
+	if (!density)
+		close()
 
 
 /obj/machinery/door/blast/shutters/glass/bullet_act(var/obj/item/projectile/Proj)
