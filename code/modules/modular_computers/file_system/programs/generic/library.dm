@@ -48,6 +48,7 @@ The answer was five and a half years -ZeroBits
 				"title" = query.item[3],
 				"category" = query.item[4]
 			)))
+			qdel(query)
 		data["book_list"] = all_entries
 		data["scanner"] = istype(scanner)
 

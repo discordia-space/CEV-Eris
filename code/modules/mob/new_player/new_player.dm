@@ -67,6 +67,7 @@
 			while(query.NextRow())
 				newpoll = TRUE
 				break
+			qdel(query)
 
 			if(newpoll)
 				output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"

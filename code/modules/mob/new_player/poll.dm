@@ -5,9 +5,7 @@
 /mob/new_player/proc/handle_player_polling()
 	if(SSdbcore.Connect())
 		var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT id, question FROM [format_table_name("polls")] WHERE Now() BETWEEN start AND end")
-		if(!select_query.Execute())
-			log_world("Failed to retrieve active player polls. Error message: [select_query.ErrorMsg()].")
-			return
+		EXECUTE_OR_ERROR(select_query, "retrieve active player polls")
 
 		var/output = "<div align='center'><B>Player polls</B>"
 		output +="<hr>"
@@ -25,7 +23,8 @@
 			poll_question = select_query.item[2]
 			output += "<tr bgcolor='[ (i % 2 == 1) ? color1 : color2 ]'><td><a href=\"byond://?src=\ref[src];poll_id=[poll_id]\"><b>[poll_question]</b></a></td></tr>"
 			i++
-
+		
+		qdel(select_query)
 		output += "</table>"
 
 		src << browse(output,"window=playerpolllist;size=500x300")
@@ -41,9 +40,7 @@
 			"SELECT start, end, question, type, FROM [format_table_name("polls")] WHERE id = :poll_id",
 			list("poll_id" = poll_id)
 		)
-		if(!select_query.Execute())
-			log_world("Failed to get poll with id [poll_id]. Error message: [select_query.ErrorMsg()].")
-			return
+		EXECUTE_OR_ERROR(select_query, "get poll with id [poll_id]")
 
 		var/start_time = ""
 		var/end_time = ""
@@ -55,8 +52,10 @@
 			end_time = select_query.item[2]
 			question = select_query.item[3]
 			type = select_query.item[4]
+			qdel(select_query)
 		else
 			to_chat(usr, SPAN_DANGER("Poll question details not found."))
+			qdel(select_query)
 			return
 
 		switch(type)
@@ -128,9 +127,7 @@
 					"SELECT text FROM [format_table_name("poll_text_replies")] WHERE poll_id = :poll_id AND ckey = :ckey",
 					list("poll_id" = poll_id, "ckey" = client.ckey)
 				)
-				if(!voted_query.Execute())
-					log_world("Failed to get votes from text poll [poll_id] for user [client.id]. Error message: [voted_query.ErrorMsg()].")
-					return
+				EXECUTE_OR_ERROR(voted_query, "get votes from text poll [poll_id] for user [client.id]")
 
 				var/voted = FALSE
 				var/vote_text = ""
@@ -138,6 +135,7 @@
 					vote_text = voted_query.item[1]
 					voted = TRUE
 					break
+				qdel(voted_query)
 
 				var/output = "<div align='center'><B>Player poll</B>"
 				output +="<hr>"
