@@ -249,15 +249,14 @@
 			to_chat(mob, "<span class='notice'>You're pinned down by \a [mob.pinned[1]]!</span>")
 		return MOVEMENT_STOP
 
-	if(length(mob.grabbed_by))
-		return MOVEMENT_STOP
-		/* TODO: Bay grab system
-		if(G.stop_move())
-			if(mover == mob)
-				to_chat(mob, "<span class='notice'>You're stuck in a grab!</span>")
-			mob.ProcessGrabs()
+	for(var/tograb in mob.grabbed_by)
+		if(istype(tograb, /obj/item/grab))
+			var/obj/item/grab/realgrab = tograb
+			if(realgrab.state == GRAB_PASSIVE)
+				continue // this grab won't stop us
 			return MOVEMENT_STOP
-		*/
+		else
+			return MOVEMENT_STOP // no passive grabs here
 	if(mob.restrained())
 		for(var/mob/M in range(mob, 1))
 			if(M.pulling == mob)
