@@ -290,6 +290,13 @@
 		T.use_fuel_cost *= tool_upgrades[UPGRADE_FUELCOST_MULT]
 	if(tool_upgrades[UPGRADE_POWERCOST_MULT])
 		T.use_power_cost *= tool_upgrades[UPGRADE_POWERCOST_MULT]
+	if(tool_upgrades[UPGRADE_QUALITY])
+		if(T.toggleable)
+			T.switched_on_qualities |= UPGRADE_QUALITY
+			if(T.switched_on)
+				T.tool_qualities |= UPGRADE_QUALITY
+		else
+			T.tool_qualities |= UPGRADE_QUALITY
 	if(tool_upgrades[UPGRADE_BULK])
 		T.extra_bulk += tool_upgrades[UPGRADE_BULK]
 	if(tool_upgrades[UPGRADE_HEALTH_THRESHOLD])
