@@ -43,6 +43,6 @@
 
 	var/vecX = A.x - B.x
 	var/vecY = A.y - B.y
-	var/vecZ = (A.y - B.y)*DECK_HEIGHT
+	var/vecZ = (A.z - B.z)*DECK_HEIGHT
 
 	return abs(sqrt((vecX*vecX) + (vecY*vecY) +(vecZ*vecZ)))
