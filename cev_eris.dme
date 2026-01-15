@@ -792,6 +792,8 @@
 #include "code\game\machinery\excelsior\emplacement.dm"
 #include "code\game\machinery\excelsior\ex_teleporter.dm"
 #include "code\game\machinery\excelsior\ex_turret.dm"
+#include "code\game\machinery\excelsior\excelsior_debug_tools.dm"
+#include "code\game\machinery\excelsior\excelsior_researches.dm"
 #include "code\game\machinery\excelsior\field.dm"
 #include "code\game\machinery\excelsior\implantmaker.dm"
 #include "code\game\machinery\excelsior\node.dm"

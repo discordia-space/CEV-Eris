@@ -99510,6 +99510,13 @@
 "jyw" = (
 /turf/floor/wood,
 /area/eris/neotheology/churchbarracks)
+"jyO" = (
+/obj/structure/cyberplant,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/floor/tiled/steel,
+/area/eris/crew_quarters/sleep/cryo)
 "jze" = (
 /obj/structure/multiz/stairs/enter{
 	dir = 8
@@ -99766,6 +99773,9 @@
 	},
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5port)
+"jXN" = (
+/turf/floor/tiled/steel,
+/area/space)
 "jYy" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -100071,9 +100081,6 @@
 	},
 /turf/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
-"kul" = (
-/turf/floor/tiled/steel,
-/area/space)
 "kvL" = (
 /obj/structure/sign/faction/neotheology_cross/gold{
 	pixel_y = 32
@@ -100325,10 +100332,6 @@
 /area/eris/engineering/atmos)
 "lgY" = (
 /obj/item/machinery_crate/excelsior/shield,
-/turf/floor/tiled/steel,
-/area/eris/crew_quarters/sleep/cryo)
-"lhN" = (
-/obj/machinery/door/firedoor,
 /turf/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
 "liy" = (
@@ -101750,6 +101753,10 @@
 	},
 /turf/floor/carpet/bcarpet,
 /area/eris/neotheology/storage)
+"nUS" = (
+/obj/machinery/door/firedoor,
+/turf/floor/tiled/steel,
+/area/eris/crew_quarters/sleep/cryo)
 "nVf" = (
 /obj/structure/catwalk,
 /turf/open,
@@ -102597,6 +102604,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/floor/tiled/dark/golden,
 /area/eris/crew_quarters/janitor)
+"pzb" = (
+/obj/structure/cyberplant,
+/obj/machinery/light{
+	dir = 3
+	},
+/turf/floor/tiled/steel,
+/area/eris/crew_quarters/sleep/cryo)
 "pAf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -103276,6 +103290,10 @@
 	},
 /turf/floor/tiled/dark/techfloor,
 /area/eris/engineering/wastingroom)
+"qQj" = (
+/obj/item/nodeexceldebuggerlalala,
+/turf/floor/tiled/steel,
+/area/eris/crew_quarters/sleep/cryo)
 "qRa" = (
 /obj/machinery/button/remote/blast_door{
 	id = "ClubTotalLockdown";
@@ -103422,13 +103440,6 @@
 	},
 /turf/floor/tiled/white/golden,
 /area/eris/neotheology/churchbooth)
-"rih" = (
-/obj/structure/cyberplant,
-/obj/machinery/light{
-	dir = 3
-	},
-/turf/floor/tiled/steel,
-/area/eris/crew_quarters/sleep/cryo)
 "ris" = (
 /obj/structure/closet/boxinggloves,
 /turf/floor/tiled/white,
@@ -104072,6 +104083,12 @@
 /obj/landmark/join/start/janitor,
 /turf/floor/tiled/dark/golden,
 /area/eris/crew_quarters/janitor)
+"sqv" = (
+/obj/machinery/light{
+	dir = 3
+	},
+/turf/floor/tiled/steel,
+/area/eris/crew_quarters/sleep/cryo)
 "sss" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
@@ -106494,13 +106511,6 @@
 	},
 /turf/floor/tiled/dark/techfloor,
 /area/eris/hallway/side/section3starboard)
-"wxi" = (
-/obj/structure/cyberplant,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/floor/tiled/steel,
-/area/eris/crew_quarters/sleep/cryo)
 "wxp" = (
 /obj/structure/table/rack,
 /obj/spawner/pack/tech_loot,
@@ -106538,12 +106548,6 @@
 	},
 /turf/floor/tiled/white/techfloor_grid,
 /area/eris/rnd/mixing)
-"wBj" = (
-/obj/machinery/light{
-	dir = 3
-	},
-/turf/floor/tiled/steel,
-/area/eris/crew_quarters/sleep/cryo)
 "wBz" = (
 /obj/structure/toilet{
 	dir = 4
@@ -107159,10 +107163,6 @@
 	dir = 8;
 	pixel_x = 32
 	},
-/turf/floor/tiled/steel,
-/area/eris/crew_quarters/sleep/cryo)
-"xPz" = (
-/obj/item/nodeexceldebuggerlalala,
 /turf/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
 "xQh" = (
@@ -126465,7 +126465,7 @@ aaa
 aaa
 aaa
 aaa
-kul
+jXN
 aaa
 aaa
 aaa
@@ -167061,13 +167061,13 @@ bfA
 bfA
 bfA
 bfA
-wBj
+sqv
 bfA
 bfA
 bfA
 bfA
 bfA
-rih
+pzb
 bON
 aaa
 aaa
@@ -167864,7 +167864,7 @@ bPR
 bUv
 bON
 bON
-wxi
+jyO
 bfA
 bfA
 bfA
@@ -167875,7 +167875,7 @@ bfA
 bfA
 bfA
 bfA
-rih
+pzb
 bON
 aaa
 aaa
@@ -168065,9 +168065,9 @@ bnC
 bsE
 btn
 btD
-lhN
+nUS
 bfA
-xPz
+qQj
 bfA
 bfA
 bfA
@@ -168470,7 +168470,7 @@ bPR
 bUw
 bON
 bON
-wxi
+jyO
 bfA
 bfA
 bfA
@@ -168481,7 +168481,7 @@ bfA
 bfA
 bfA
 bfA
-rih
+pzb
 bON
 aaa
 aaa
@@ -169283,13 +169283,13 @@ bfA
 bfA
 bfA
 bfA
-wBj
+sqv
 bfA
 bfA
 bfA
 bfA
 bfA
-rih
+pzb
 bON
 aaa
 aaa
@@ -171292,7 +171292,7 @@ aaa
 bON
 bNG
 bfA
-rVw
+bfA
 bfA
 bNG
 bON
@@ -207255,19 +207255,19 @@ cZz
 bON
 bON
 bON
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -207457,19 +207457,19 @@ cZz
 cZz
 cZz
 bUn
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -207659,19 +207659,19 @@ cZz
 cZz
 cZz
 bUn
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -207861,19 +207861,19 @@ cZz
 cZz
 cZz
 bUn
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -208063,19 +208063,19 @@ cZz
 cZz
 cZz
 bUn
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -208265,19 +208265,19 @@ bON
 bON
 bON
 bON
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -208467,19 +208467,19 @@ cZz
 cZz
 cZz
 bUn
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -208669,19 +208669,19 @@ cZz
 cZz
 cZz
 bUn
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -208871,19 +208871,19 @@ bON
 bON
 bON
 bON
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -209073,19 +209073,19 @@ cZz
 cZz
 cZz
 bUn
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -209275,19 +209275,19 @@ cZz
 cZz
 cZz
 bUn
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -209477,19 +209477,19 @@ cZz
 cZz
 cZz
 bUn
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -209679,19 +209679,19 @@ cZz
 cZz
 cZz
 bUn
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -209881,19 +209881,19 @@ cZz
 bON
 bON
 bON
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -210478,13 +210478,13 @@ aaa
 aaa
 aaa
 aaa
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -210680,13 +210680,13 @@ aaa
 aaa
 aaa
 aaa
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -210882,13 +210882,13 @@ aaa
 aaa
 aaa
 aaa
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -211088,9 +211088,9 @@ cZB
 daf
 daD
 daU
-kul
-kul
-kul
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -211291,8 +211291,8 @@ dag
 daE
 daV
 dbr
-kul
-kul
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -211493,8 +211493,8 @@ nZP
 dah
 daW
 dbs
-kul
-kul
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -211696,7 +211696,7 @@ daF
 daX
 dbt
 dbI
-kul
+jXN
 aaa
 aaa
 aaa
@@ -213514,7 +213514,7 @@ cIc
 dbg
 dbC
 dbR
-kul
+jXN
 aaa
 aaa
 aaa
@@ -213715,8 +213715,8 @@ das
 cMv
 dbh
 dbD
-kul
-kul
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -213917,8 +213917,8 @@ dat
 daQ
 dbi
 dbE
-kul
-kul
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -214118,9 +214118,9 @@ cZP
 dau
 daR
 dbj
-kul
-kul
-kul
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -214316,13 +214316,13 @@ aaa
 aaa
 aaa
 aaa
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -214518,13 +214518,13 @@ aaa
 aaM
 aaa
 aaa
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -214720,13 +214720,13 @@ aaa
 aaa
 aaa
 aaa
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
@@ -214922,13 +214922,13 @@ aaa
 aaa
 aaa
 aaa
-kul
-kul
-kul
-kul
-kul
-kul
-kul
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
+jXN
 aaa
 aaa
 aaa
