@@ -49,10 +49,12 @@ var/list/global/excelsior_nodes = list()
 	for(var/obj/machinery/machine in neighbours)
 		to_chat(user, "[machine.name] [dist3D(src, machine)]m away")
 
+//This is for structures that are inactive UNTIL they are connected to any node.  (e.g. emplacements)
 /obj/machinery/node/proc/search_for_machines()
 	for(var/obj/machinery/machine in orange(EX_NODE_DISTANCE))
 		SEND_SIGNAL(machine, COMSIG_EX_CONNECT)
 
+//Tries to connect to other nodes EVEN BETWEEN Z LEVELS and tells nodes to spread the net
 /obj/machinery/node/proc/search_for_nodes()
 	for(var/obj/machinery/node/N in excelsior_nodes)
 		if(dist3D(src, N) <= EX_NODE_DISTANCE && N != src)
@@ -61,6 +63,8 @@ var/list/global/excelsior_nodes = list()
 			if(N.core)
 				src.spread_signal(N.core)
 
+//Adds machine to ether list of connected nodes or list of connected machines as specified by is_node argument
+//Checks if machine is on the list before adding to avoid dupes
 /obj/machinery/node/proc/connect(var/obj/machinery/M, var/is_node = FALSE)
 	if(is_node)
 		if(!neighbours.Find(M))
@@ -69,6 +73,8 @@ var/list/global/excelsior_nodes = list()
 		if(!linked.Find(M))
 			linked.Add(M)
 
+//Removes machine from list of nodes or list of machines as specifed by is_node argument
+//Checks if machine is on the list before deletion
 /obj/machinery/node/proc/disconnect(var/obj/machinery/M, var/is_node = FALSE)
 	if(is_node)
 		if(neighbours.Find(M))
@@ -77,8 +83,10 @@ var/list/global/excelsior_nodes = list()
 		if(linked.Find(M))
 			linked.Remove(M)
 
+//When nodes recieve this proc they check if they are connected to Centor
+//and if not - they connect to it and send this proc to other nodes nearby
 /obj/machinery/node/proc/spread_signal(var/center)
-	if(core)
+	if(core)	//checks if already connected to avoid infinite recursion
 		return
 	core = center
 	core.antennas_to_heaven.Add(src)
