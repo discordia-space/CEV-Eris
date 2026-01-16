@@ -7,10 +7,10 @@ Contents:
 #######################
 */
 
-/* < ERASE THIS LINE TO ADD ALL DEBUG TOOLS
 
 
-/obj/item/exceldebugtoolspawnertoolbox/ <FUCKING UNFINISHED
+
+// /obj/item/exceldebugtoolspawnertoolbox/ //FUCKING UNFINISHED
 
 /obj/item/nodespawner
 	name = "\improper Node spawner"
@@ -38,8 +38,5 @@ Contents:
 
 	to_chat(user, "Spawned node YEAAAAAH")
 	new /obj/machinery/node(get_turf(A))
-
-
-
 
 */
