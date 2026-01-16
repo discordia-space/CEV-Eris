@@ -1,15 +1,35 @@
 /*
-[INFO] Every file that interacts with Excelsior network anyhow:
-#####################################
-[CODE]
-_excelsior_defines.dm								- defines placed above cuz byond
-centor.dm 											- core that spreads the signal through nodes
-emplacement.dm 										-
-excelsior_node.tmpl 								- Network UI code
-node.dm 											- retranslator of the core's signal
-excelsior_researches.dm 							- research tree
-excelsior_items.dm 									- KPK, drones
+											###################################################################################
+											###################################################################################
+												For your convenience, below are structurized contents of Excelsior Code
+											###################################################################################
+											###################################################################################
+
+
+
+[NEW CODE]----------------------------------------------[EXPLANATION]
+_excelsior_defines.dm									- defines placed above cuz byond
+
+
+centor.dm 												- core that spreads the signal through nodes
+emplacement.dm 											-
+excelsior_node.tmpl 									- Network UI code
+node.dm 												- retranslator of the core's signal
+excelsior_researches.dm 								- research tree
+excelsior_items.dm 										- NEW items, like KPK
+
+
 excelsior_debug_tools.dm 							- all debug tools we made and used in case you need it
+--------------------------------------------------------
+
+
+[OLD CODE]----------------------------------------------
+ex_teleporter.dm
+ex_turret
+implantmaker
+redirector
+boombox
+
 
 [SPRITES]
 

@@ -1,8 +1,3 @@
-var/list/global/excelsior_teleporters = list() //This list is used to make turrets more efficient
-var/global/excelsior_energy
-var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
-var/global/excelsior_conscripts = 0
-var/global/excelsior_last_draft = 0
 
 /obj/machinery/complant_teleporter
 	name = "excelsior long-range teleporter"
@@ -145,11 +140,11 @@ var/global/excelsior_last_draft = 0
 		return
 
 	if(excelsior_energy < (excelsior_max_energy - energy_gain))
-		excelsior_energy += energy_gain
+		//excelsior_energy += energy_gain moved to centor.dm
 		SSnano.update_uis(src)
 		set_power_use(ACTIVE_POWER_USE)
 	else
-		excelsior_energy = excelsior_max_energy
+		//excelsior_energy = excelsior_max_energy
 		set_power_use(IDLE_POWER_USE)
 
  /**
