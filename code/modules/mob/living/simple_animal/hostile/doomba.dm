@@ -66,6 +66,7 @@
 	. = ..()
 	if(.)
 		playsound(src, pick('sound/weapons/melee/heavystab.ogg', 'sound/weapons/melee/lightstab.ogg', 'sound/weapons/melee/sharphit.ogg'), 50, 1)
+		spawn(5) AttackTarget() // yes I am aware what that does with perfect clarity of mind dont fucking kill me
 
 /mob/living/simple_animal/hostile/roomba/boomba
 	name = "One Star RMB-A unit"
@@ -81,7 +82,7 @@
 /mob/living/simple_animal/hostile/roomba/boomba/AttackTarget()
 	. = ..()
 	if(.) // If we succeeded in hitting.
-		src.visible_message(SPAN_DANGER("\The [src] makes an odd warbling noise, fizzles, and explodes!"))
+		src.visible_message(span_danger("\The [src] makes an odd warbling noise, fizzles, and explodes!"))
 		explosion(get_turf(src), 250, 75)
 		death()
 
