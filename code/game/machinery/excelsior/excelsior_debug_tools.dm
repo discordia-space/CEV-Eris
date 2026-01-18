@@ -39,4 +39,5 @@ Contents:
 	to_chat(user, "Spawned node YEAAAAAH")
 	new /obj/machinery/node(get_turf(A))
 
-*/
+
+

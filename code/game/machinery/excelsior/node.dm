@@ -1,10 +1,12 @@
-var/list/global/excelsior_nodes = list()
+//	>>>Better info in centor.dm <<<	//
+
 
 /obj/machinery/node
 	name = "Excelsior \"Tochka\" node"
 	icon = 'icons/obj/machines/excelsior/redirector.dmi'
 	desc = "A retranslator node that amplifies signal from the teleporter"
 	icon_state = "redirector_finished"
+	anchored = TRUE
 	density = TRUE
 	circuit = /obj/item/electronics/circuitboard/excelsior_node
 	health = 300
@@ -13,11 +15,15 @@ var/list/global/excelsior_nodes = list()
 	var/list/obj/machinery/node/neighbours = list()
 	var/obj/machinery/centor/core
 
+	var/list/localturflist = list() // on destroy will remove the whole list from global one
+	var/list/localmarkerlist = list() // if a node got turned off it shouldnt generate power from marked territory
+
 /obj/machinery/node/Initialize(mapload, d)
 	. = ..()
 	excelsior_nodes.Add(src)
 	search_for_machines()
 	search_for_nodes()
+	define_influence()
 	if(excelsior_centor)
 		var/obj/machinery/centor/C = excelsior_centor
 		C.load_network()
@@ -25,6 +31,8 @@ var/list/global/excelsior_nodes = list()
 
 /obj/machinery/node/Destroy()
 	. = ..()
+	cleanup_influence()
+
 	excelsior_nodes.Remove(src)
 	for(var/obj/machinery/machine in linked)
 		SEND_SIGNAL(machine, COMSIG_EX_CONNECT)
@@ -32,6 +40,36 @@ var/list/global/excelsior_nodes = list()
 		N.disconnect(src, TRUE)
 	if(core)
 		core.load_network()
+
+
+/obj/machinery/node/proc/update_influence()
+	cleanup_influence()
+	spawn(1)
+	define_influence()
+
+
+/obj/machinery/node/proc/cleanup_influence() 					// REMOVE INFLUENCE
+	localturflist = list()
+
+	for(var/marker in localmarkerlist)
+		QDEL_NULL(marker)
+	localmarkerlist = list()
+
+
+/obj/machinery/node/proc/define_influence() // ADD INFLUENCE
+	for(var/turf/floor/selected in orange(EX_NODE_DISTANCE, src))
+		var/obj/item/clothing/head/preacher/influence_marker = new /obj/item/clothing/head/preacher(selected)
+		if(influence_marker) // prevent adding NULL to the list
+			localmarkerlist.Add(influence_marker)
+		if(selected)
+			localturflist.Add(selected)
+	if(core)
+		excelsior_globalturflist += localturflist
+		excelsior_globalmarkerlist += localmarkerlist
+
+
+/obj/machinery/node/Process() // WATCH OUT A MINE BLYAT...
+	update_influence()
 
 /obj/machinery/node/update_icon()
 	. = ..()

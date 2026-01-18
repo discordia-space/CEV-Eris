@@ -8,7 +8,7 @@
 
 
 [NEW CODE]----------------------------------------------[EXPLANATION]
-_excelsior_defines.dm									- defines placed above cuz byond
+_excelsior_defines.dm									- defines placed above cuz byond + convenience (sI HOPE)
 
 
 centor.dm 												- core that spreads the signal through nodes
@@ -25,10 +25,10 @@ excelsior_debug_tools.dm 							- all debug tools we made and used in case you n
 
 [OLD CODE]----------------------------------------------
 ex_teleporter.dm
-ex_turret
-implantmaker
-redirector
-boombox
+ex_turret.dm
+implantmaker.dm
+redirector.dm
+boombox.dm
 
 
 [SPRITES]
@@ -64,6 +64,17 @@ var/global/excelsior_centor
 		if(dist3D(src, node) <= EX_NODE_DISTANCE)
 			node.spread_signal(null)
 	excelsior_centor = null
+
+/obj/machinery/centor/Process()
+	collect_tax()
+
+/obj/machinery/centor/proc/collect_tax()
+	excelsior_energy += excelsior_globalmarkerlist.len
+	excelsior_globalmarkerlist = list() 			// WIPE LIST AND REBUILD
+	excelsior_globalturflist = list()				//watchout							//watchout
+	if(excelsior_energy >= excelsior_max_energy)
+		excelsior_energy = excelsior_max_energy
+		return
 
 /obj/machinery/centor/attack_hand(mob/user)
 	. = ..()
