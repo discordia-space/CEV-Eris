@@ -20,6 +20,7 @@
 	var/nanoui_menu = 0 	// Based on Uplink
 	var/mob/current_user
 	var/time_until_scan
+	var/old_energy
 
 	var/reinforcements_delay = 5 MINUTES
 	var/reinforcements_cost = 2000
@@ -178,6 +179,7 @@
 	data["menu"] = nanoui_menu
 	data["excel_user"] = is_excelsior(current_user)
 	data["time_until_scan"] = time_until_scan
+	data["old_energy"] = round(old_energy)
 	data["conscripts"] = excelsior_conscripts
 	data["reinforcements_ready"] = reinforcements_check()
 	data += nanoui_data
