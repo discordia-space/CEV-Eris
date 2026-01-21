@@ -18,6 +18,7 @@
 
 	var/list/localturflist = list() // on destroy will remove the whole list from global one
 	var/list/localmarkerlist = list() // if a node got turned off it shouldnt generate power from marked territory
+	var/what_is_marker = /obj/effect/effect/excelsior_influence
 
 /obj/machinery/node/Initialize(mapload, d)
 	. = ..()
@@ -45,7 +46,6 @@
 
 /obj/machinery/node/proc/update_influence()
 	cleanup_influence() // remove influence
-	spawn(1)
 	define_influence() // add influence
 
 
@@ -59,8 +59,8 @@
 
 /obj/machinery/node/proc/define_influence() 					// ADD INFLUENCE //
 	for(var/turf/floor/selected in orange(EX_NODE_DISTANCE, src))																//
-		if(!locate(/obj/effect/effect/excelsior_influence) in selected)															//
-			var/obj/effect/effect/excelsior_influence/influence_marker = new /obj/effect/effect/excelsior_influence(selected)	//
+		if(!locate(what_is_marker) in selected)															//
+			var/influence_marker = new what_is_marker(selected)	//
 			if(influence_marker) 																								// prevent adding NULL to the list
 				localmarkerlist.Add(influence_marker)
 			if(selected)

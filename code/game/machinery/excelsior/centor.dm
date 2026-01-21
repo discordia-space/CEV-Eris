@@ -66,14 +66,18 @@ var/global/excelsior_centor
 	excelsior_centor = null
 
 /obj/machinery/centor/Process()
-	collect_tax()
+	collect_tax()																	// Only collects energy, the thinking is on node.dm
 
 /obj/machinery/centor/proc/collect_tax()
-	for(var/obj/machinery/complant_teleporter/tele in excelsior_teleporters)
-		tele.old_energy = excelsior_energy
-	excelsior_energy += excelsior_globalmarkerlist.len
-	excelsior_globalmarkerlist = list() 			// WIPE LIST AND REBUILD
-	excelsior_globalturflist = list()				//watchout							//watchout
+	for(var/obj/machinery/complant_teleporter/tele in excelsior_teleporters)		// !! Debug - Remove on release
+		tele.old_energy = excelsior_energy											// !! Debug - Remove on release
+	for(var/obj/machinery/node/node in antennas_to_heaven)
+		excelsior_energy += node.localmarkerlist.len
+	//for(var/i in excelsior_globalmarkerlist)										// Uncomment later
+	//	excelsior_energy++															// Uncomment later
+	//excelsior_energy += excelsior_globalmarkerlist.len							// sussy!
+	excelsior_globalmarkerlist = list() 											// WIPE LIST AND REBUILD
+	excelsior_globalturflist = list()												//watchout
 	if(excelsior_energy >= excelsior_max_energy)
 		excelsior_energy = excelsior_max_energy
 		return
