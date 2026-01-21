@@ -1,5 +1,6 @@
-//	>>>Better info in centor.dm <<<	//
-
+//__________________________________//
+//		Better info in centor.dm 	// << !
+//__________________________________//
 
 /obj/machinery/node
 	name = "Excelsior \"Tochka\" node"
@@ -17,6 +18,7 @@
 
 	var/list/localturflist = list() // on destroy will remove the whole list from global one
 	var/list/localmarkerlist = list() // if a node got turned off it shouldnt generate power from marked territory
+	var/what_is_marker = /obj/effect/effect/excelsior_influence
 
 /obj/machinery/node/Initialize(mapload, d)
 	. = ..()
@@ -43,12 +45,11 @@
 
 
 /obj/machinery/node/proc/update_influence()
-	cleanup_influence()
-	spawn(1)
-	define_influence()
+	cleanup_influence() // remove influence
+	define_influence() // add influence
 
 
-/obj/machinery/node/proc/cleanup_influence() 					// REMOVE INFLUENCE
+/obj/machinery/node/proc/cleanup_influence() 					// REMOVE INFLUENCE //
 	localturflist = list()
 
 	for(var/marker in localmarkerlist)
@@ -56,16 +57,19 @@
 	localmarkerlist = list()
 
 
-/obj/machinery/node/proc/define_influence() // ADD INFLUENCE
-	for(var/turf/floor/selected in orange(EX_NODE_DISTANCE, src))
-		var/obj/item/clothing/head/preacher/influence_marker = new /obj/item/clothing/head/preacher(selected)
-		if(influence_marker) // prevent adding NULL to the list
-			localmarkerlist.Add(influence_marker)
-		if(selected)
-			localturflist.Add(selected)
-	if(core)
-		excelsior_globalturflist += localturflist
-		excelsior_globalmarkerlist += localmarkerlist
+/obj/machinery/node/proc/define_influence() 					// ADD INFLUENCE //
+	for(var/turf/floor/selected in orange(EX_NODE_DISTANCE, src))																//
+		if(!locate(what_is_marker) in selected)															//
+			var/influence_marker = new what_is_marker(selected)	//
+			if(influence_marker) 																								// prevent adding NULL to the list
+				localmarkerlist.Add(influence_marker)
+			if(selected)
+				localturflist.Add(selected)
+			if(core)
+				excelsior_globalturflist += localturflist
+				excelsior_globalmarkerlist += localmarkerlist
+		else
+			continue
 
 
 /obj/machinery/node/Process() // WATCH OUT A MINE BLYAT...
@@ -131,4 +135,17 @@
 	update_icon()
 	for(var/obj/machinery/node/N in neighbours)
 		N.spread_signal(center)
+//obj/machinery/node/proc/spread_signal
+//_____________________________________________________________________________________________________________________________
+//												//	HUD - Visualized Influence //
+//_____________________________________________________________________________________________________________________________
 
+/obj/effect/effect/excelsior_influence/ 		// # It's shown on Excel HUD. To find the logic do either:
+												// 		> SEARCH by "process_excel_hud" [line 60 as of now]
+												// 		> OR hud.dm in procs
+
+/obj/effect/effect/excelsior_influence/New()
+	..()
+	icon = null
+	icon_state = null
+// - All the thinking is done at define_influence()
