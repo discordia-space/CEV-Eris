@@ -1,14 +1,14 @@
 /*
-											###################################################################################
-											###################################################################################
+
+
 												For your convenience, below are structurized contents of Excelsior Code
-											###################################################################################
-											###################################################################################
+
+
 
 
 
 [NEW CODE]----------------------------------------------[EXPLANATION]
-_excelsior_defines.dm									- defines placed above cuz byond + convenience (sI HOPE)
+_excelsior_defines.dm									- defines placed above cuz byond + convenience (I HOPE)
 
 
 centor.dm 												- core that spreads the signal through nodes
