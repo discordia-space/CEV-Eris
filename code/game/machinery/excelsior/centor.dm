@@ -69,6 +69,8 @@ var/global/excelsior_centor
 	collect_tax()
 
 /obj/machinery/centor/proc/collect_tax()
+	for(var/obj/machinery/complant_teleporter/tele in excelsior_teleporters)
+		tele.old_energy = excelsior_energy
 	excelsior_energy += excelsior_globalmarkerlist.len
 	excelsior_globalmarkerlist = list() 			// WIPE LIST AND REBUILD
 	excelsior_globalturflist = list()				//watchout							//watchout
