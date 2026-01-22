@@ -72,7 +72,7 @@ var/global/excelsior_centor
 	for(var/obj/machinery/complant_teleporter/tele in excelsior_teleporters)		// !! Debug - Remove on release
 		tele.old_energy = excelsior_energy											// !! Debug - Remove on release
 	for(var/obj/machinery/node/node in antennas_to_heaven)
-		excelsior_energy += node.localmarkerlist.len
+		excelsior_energy += node.activemarkerlist.len
 	//for(var/i in excelsior_globalmarkerlist)										// Uncomment later
 	//	excelsior_energy++															// Uncomment later
 	//excelsior_energy += excelsior_globalmarkerlist.len							// sussy!
