@@ -16,9 +16,10 @@
 	var/list/obj/machinery/node/neighbours = list()
 	var/obj/machinery/centor/core
 
-	var/list/localturflist = list() // on destroy will remove the whole list from global one
-	var/list/localmarkerlist = list() // if a node got turned off it shouldnt generate power from marked territory
+	var/list/localturflist = list() 								// on destroy will remove the whole local list from global one
+	var/list/localmarkerlist = list() 								// if a node got turned off it shouldnt generate excelsior power, thus we count locally
 	var/what_is_marker = /obj/effect/effect/excelsior_influence
+	var/debug_number = 5											// debug. REMOVE
 
 /obj/machinery/node/Initialize(mapload, d)
 	. = ..()
@@ -34,6 +35,7 @@
 /obj/machinery/node/Destroy()
 	. = ..()
 	cleanup_influence()
+	UnregisterSignal(src, COMSIG_TURF_LEVELUPDATE)
 
 	excelsior_nodes.Remove(src)
 	for(var/obj/machinery/machine in linked)
@@ -58,10 +60,10 @@
 
 
 /obj/machinery/node/proc/define_influence() 					// ADD INFLUENCE //
-	for(var/turf/floor/selected in orange(EX_NODE_DISTANCE, src))																//
+	for(var/turf/floor/selected in circlerangeturfs(src, EX_NODE_DISTANCE))								// replace from debug_number back to
 		if(!locate(what_is_marker) in selected)															//
 			var/influence_marker = new what_is_marker(selected)	//
-			if(influence_marker) 																								// prevent adding NULL to the list
+			if(influence_marker) 																		// prevent adding NULL to the list
 				localmarkerlist.Add(influence_marker)
 			if(selected)
 				localturflist.Add(selected)
@@ -71,9 +73,10 @@
 		else
 			continue
 
-
-/obj/machinery/node/Process() // WATCH OUT A MINE BLYAT...
+/*
+/obj/machinery/node/Process() 																			// Yeah let's not do the lagfest
 	update_influence()
+*/
 
 /obj/machinery/node/update_icon()
 	. = ..()
@@ -93,7 +96,7 @@
 
 //This is for structures that are inactive UNTIL they are connected to any node.  (e.g. emplacements)
 /obj/machinery/node/proc/search_for_machines()
-	for(var/obj/machinery/machine in orange(EX_NODE_DISTANCE))
+	for(var/obj/machinery/machine in circlerangeturfs(src, EX_NODE_DISTANCE))
 		SEND_SIGNAL(machine, COMSIG_EX_CONNECT)
 
 //Tries to connect to other nodes EVEN BETWEEN Z LEVELS and tells nodes to spread the net
@@ -148,4 +151,6 @@
 	..()
 	icon = null
 	icon_state = null
+	RegisterSignal(src, COMSIG_TURF_LEVELUPDATE, PROC_REF(update_influence))
 // - All the thinking is done at define_influence()
+

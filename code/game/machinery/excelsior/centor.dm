@@ -39,9 +39,9 @@ boombox.dm
 var/global/excelsior_centor
 
 /obj/machinery/centor
-	name = "Excelsior \"Centor\" node"
+	name = "Excelsior \"Centor\" node"													// review
 	icon = 'icons/obj/machines/excelsior/central.dmi'
-	desc = "Central antenna of the Excelsior group connecting far into the Haven"
+	desc = "Central antenna of the Excelsior group connecting far into the Haven"		// review
 	icon_state = "centor"
 	density = TRUE
 	anchored = TRUE
