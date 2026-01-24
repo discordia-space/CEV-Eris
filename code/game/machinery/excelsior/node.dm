@@ -18,6 +18,7 @@
 
 	var/list/localturflist = list() 								// on destroy will remove the whole local list from global one
 	var/list/localmarkerlist = list() 								// if a node got turned off it shouldnt generate excelsior power, thus we count locally
+	var/list/activemarkerlist = list()
 	var/what_is_marker = /obj/effect/effect/excelsior_influence
 	var/debug_number = 5											// debug. REMOVE
 
@@ -57,12 +58,13 @@
 	for(var/marker in localmarkerlist)
 		QDEL_NULL(marker)
 	localmarkerlist = list()
+	activemarkerlist = list()
 
 
 /obj/machinery/node/proc/define_influence() 					// ADD INFLUENCE //
 	for(var/turf/floor/selected in circlerangeturfs(src, EX_NODE_DISTANCE))								// replace from debug_number back to
-		if(!locate(what_is_marker) in selected)															//
-			var/influence_marker = new what_is_marker(selected)	//
+		if(!locate(/obj/effect/effect/excelsior_influence) in selected)															//
+			var/influence_marker = new /obj/effect/effect/excelsior_influence(loc = selected, creator = src)
 			if(influence_marker) 																		// prevent adding NULL to the list
 				localmarkerlist.Add(influence_marker)
 			if(selected)
@@ -143,14 +145,33 @@
 //												//	HUD - Visualized Influence //
 //_____________________________________________________________________________________________________________________________
 
-/obj/effect/effect/excelsior_influence/ 		// # It's shown on Excel HUD. To find the logic do either:
-												// 		> SEARCH by "process_excel_hud" [line 60 as of now]
-												// 		> OR hud.dm in procs
+/obj/effect/effect/excelsior_influence 		// # It's shown on Excel HUD. To find the logic do either:
+	var/active = FALSE							// 		> SEARCH by "process_excel_hud" [line 60 as of now]
+	var/obj/machinery/node/node					// 		> OR hud.dm in procs
 
-/obj/effect/effect/excelsior_influence/New()
-	..()
+/obj/effect/effect/excelsior_influence/New(loc, var/obj/machinery/node/creator)
+	..(loc)
 	icon = null
 	icon_state = null
-	RegisterSignal(src, COMSIG_TURF_LEVELUPDATE, PROC_REF(update_influence))
+	node = creator
+	validate()
+	RegisterSignal(src, COMSIG_TURF_LEVELUPDATE, PROC_REF(validate))
+
+/obj/effect/effect/excelsior_influence/Destroy()
+	. = ..()
+	UnregisterSignal(src, COMSIG_TURF_LEVELUPDATE)
+
+/obj/effect/effect/excelsior_influence/proc/validate()
+	if(!node)	//this... shouldn't happen
+		Destroy()
+		return
+	if(istype(get_turf(src), /turf/floor))
+		active = TRUE
+		node.activemarkerlist.Add(src)
+	else
+		active = FALSE
+		if(node.activemarkerlist.Find(src))
+			node.activemarkerlist.Remove(src)
+
 // - All the thinking is done at define_influence()
 
