@@ -62,7 +62,7 @@
 
 
 /obj/machinery/node/proc/define_influence() 					// ADD INFLUENCE //
-	for(var/turf/floor/selected in circlerangeturfs(src, EX_NODE_DISTANCE))								// replace from debug_number back to
+	for(var/turf/selected in circlerangeturfs(src, EX_NODE_DISTANCE))								// replace from debug_number back to
 		if(!locate(/obj/effect/effect/excelsior_influence) in selected)															//
 			var/influence_marker = new /obj/effect/effect/excelsior_influence(loc = selected, creator = src)
 			if(influence_marker) 																		// prevent adding NULL to the list
@@ -167,7 +167,8 @@
 		return
 	if(istype(get_turf(src), /turf/floor))
 		active = TRUE
-		node.activemarkerlist.Add(src)
+		if(!node.activemarkerlist.Find(src))
+			node.activemarkerlist.Add(src)
 	else
 		active = FALSE
 		if(node.activemarkerlist.Find(src))
