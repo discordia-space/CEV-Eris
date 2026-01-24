@@ -47,12 +47,12 @@
 		core.load_network()
 
 
-/obj/machinery/node/proc/update_influence()
-	cleanup_influence() // remove influence
-	define_influence() // add influence
+/obj/machinery/node/proc/update_influence()																	// ADD INFLUENCE//
+	cleanup_influence() 		// remove influence tiles produced by ONE node that it calls
+	define_influence() 			// force node to count tiles around for power generation
 
 
-/obj/machinery/node/proc/cleanup_influence() 					// REMOVE INFLUENCE //
+/obj/machinery/node/proc/cleanup_influence() 																// REMOVE INFLUENCE //
 	localturflist = list()
 
 	for(var/marker in localmarkerlist)
@@ -96,12 +96,12 @@
 	for(var/obj/machinery/machine in neighbours)
 		to_chat(user, "[machine.name] [dist3D(src, machine)]m away")
 
-//This is for structures that are inactive UNTIL they are connected to any node.  (e.g. emplacements)
+// Some structures need node in radius to power up and work, this is the proc that searches (e.g. emplacements)
 /obj/machinery/node/proc/search_for_machines()
 	for(var/obj/machinery/machine in circlerangeturfs(src, EX_NODE_DISTANCE))
 		SEND_SIGNAL(machine, COMSIG_EX_CONNECT)
 
-//Tries to connect to other nodes EVEN BETWEEN Z LEVELS and tells nodes to spread the net
+//Searches for other nodes EVEN BETWEEN Z LEVELS.
 /obj/machinery/node/proc/search_for_nodes()
 	for(var/obj/machinery/node/N in excelsior_nodes)
 		if(dist3D(src, N) <= EX_NODE_DISTANCE && N != src)
@@ -110,7 +110,7 @@
 			if(N.core)
 				src.spread_signal(N.core)
 
-//Adds machine to ether list of connected nodes or list of connected machines as specified by is_node argument
+//Adds machine to either list of connected nodes or list of connected machines as specified by is_node argument
 //Checks if machine is on the list before adding to avoid dupes
 /obj/machinery/node/proc/connect(var/obj/machinery/M, var/is_node = FALSE)
 	if(is_node)
@@ -130,8 +130,8 @@
 		if(linked.Find(M))
 			linked.Remove(M)
 
-//When nodes recieve this proc they check if they are connected to Centor
-//and if not - they connect to it and send this proc to other nodes nearby
+//Nodes check if they are connected to Centor. If not - connect to Centor, then pass the order like a disease to other nodes.
+//	Why? -> Core+Node gameplay is in territorial control, "cut off" nodes shouldn't be active.
 /obj/machinery/node/proc/spread_signal(var/center)
 	if(core)	//checks if already connected to avoid infinite recursion
 		return
@@ -142,14 +142,14 @@
 		N.spread_signal(center)
 //obj/machinery/node/proc/spread_signal
 //_____________________________________________________________________________________________________________________________
-//												//	HUD - Visualized Influence //
+//													| Excelsior HUD - Visual Influence |
 //_____________________________________________________________________________________________________________________________
 
-/obj/effect/effect/excelsior_influence 		// # It's shown on Excel HUD. To find the logic do either:
-	var/active = FALSE							// 		> SEARCH by "process_excel_hud" [line 60 as of now]
-	var/obj/machinery/node/node					// 		> OR hud.dm in procs
+/obj/effect/effect/excelsior_influence 												//	# It's shown on Excel HUD. To find the code do either of these:
+	var/active = FALSE																	//	> Find by "process_excel_hud"
+	var/obj/machinery/node/node															//	> hud.dm [code\defines\procs][line 60 as of now]
 
-/obj/effect/effect/excelsior_influence/New(loc, var/obj/machinery/node/creator)
+/obj/effect/effect/excelsior_influence/New(loc, var/obj/machinery/node/creator)		// - All the thinking is done at define_influence()
 	..(loc)
 	icon = null
 	icon_state = null
@@ -162,7 +162,7 @@
 	UnregisterSignal(src, COMSIG_TURF_LEVELUPDATE)
 
 /obj/effect/effect/excelsior_influence/proc/validate()
-	if(!node)	//this... shouldn't happen
+	if(!node)											// this... shouldn't happen
 		Destroy()
 		return
 	if(istype(get_turf(src), /turf/floor))
@@ -173,5 +173,4 @@
 		if(node.activemarkerlist.Find(src))
 			node.activemarkerlist.Remove(src)
 
-// - All the thinking is done at define_influence()
 
