@@ -37,6 +37,9 @@
 	. = ..()
 	cleanup_influence()
 	UnregisterSignal(src, COMSIG_TURF_LEVELUPDATE)
+	for(var/obj/machinery/node/noder in neighbours)
+		noder.update_influence()
+
 
 	excelsior_nodes.Remove(src)
 	for(var/obj/machinery/machine in linked)
