@@ -1,12 +1,15 @@
-//__________________________________//
-//		Better info in centor.dm 	// << !
-//__________________________________//
+//______________________________________________//
+//		Better info in centor.dm 				// << !!!
+// Don't get spooked there's comments below		//
+//______________________________________________//
 
 /obj/machinery/node
 	name = "Excelsior \"Tochka\" node"
 	icon = 'icons/obj/machines/excelsior/redirector.dmi'
-	desc = "A retranslator node that amplifies signal from the teleporter"
+	desc = "A retranslator node that amplifies Excelsior's Core signal."
 	icon_state = "redirector_finished"
+	description_info = "Nodes help Haven send Excelsior resources."
+	description_antag = ""
 	anchored = TRUE
 	density = TRUE
 	circuit = /obj/item/electronics/circuitboard/excelsior_node
@@ -16,7 +19,7 @@
 	var/list/obj/machinery/node/neighbours = list()
 	var/obj/machinery/centor/core
 
-	var/emplacement_storage = 4
+	//var/emplacement_storage = 4
 	var/list/localturflist = list() 								// on destroy will remove the whole local list from global one
 	var/list/localmarkerlist = list() 								// if a node got turned off it shouldnt generate excelsior power, thus we count locally
 	var/list/activemarkerlist = list()
@@ -29,12 +32,47 @@
 	var/report_cooldown
 
 
+/obj/machinery/node/proc/make_name()
+	var/list/namelist = list(
+	"Zvezda",
+	"Barrikada",
+	"Volna",
+	"Abzats",
+	"Pioner",
+	"Dyatel",
+	"Malyutka",
+	"Durak",
+	"Vampir",
+	"Kolobok",
+	"Udav",
+	"Zenit",
+	"Sport",
+	"Spidola",
+	"Mayak",
+	"Zorkiy",
+	"Iskra",
+	"Montana",
+	"Lider",
+	"Sirius",
+	"Yunost",
+	"Melodiya",
+	"Vega",
+	"Rondo",
+	"Korvet",
+	"Kantata",
+	"Serenada",
+	"Arktur",
+	"Ilga")
+
+
+	return  "Excelsior \"[pick(namelist)]-[rand(100, 999)]\" node"
 
 
 
 
 /obj/machinery/node/Initialize(mapload, d)
 	. = ..()
+	name = make_name()
 	excelsior_nodes.Add(src)
 	search_for_machines()
 	search_for_nodes()
@@ -76,15 +114,15 @@
 
 
 
-/obj/machinery/node/proc/update_influence()																	// BOTH	//
-	cleanup_influence() 		// remove influence tiles produced by ONE node that it calls
-	define_influence() 			// force node to count tiles around for power generation
+/obj/machinery/node/proc/update_influence()
+	cleanup_influence() 						// remove influence tiles the node made
+	define_influence() 							// spawn influence around the node
 
 
 
 
 
-/obj/machinery/node/proc/define_influence() 	// ADD INFLUENCE //
+/obj/machinery/node/proc/define_influence() 	// spawn influence around the node
 	for(var/turf/selected in circlerangeturfs(src, EX_NODE_DISTANCE))								// replace from debug_number back to
 		if(!locate(/obj/effect/effect/excelsior_influence) in selected)															//
 			var/influence_marker = new /obj/effect/effect/excelsior_influence(loc = selected, creator = src)
@@ -103,7 +141,7 @@
 
 
 
-/obj/machinery/node/proc/cleanup_influence() 	// REMOVE INFLUENCE //
+/obj/machinery/node/proc/cleanup_influence() 	// remove influence tiles the node made
 	localturflist = list()
 
 	for(var/marker in localmarkerlist)
@@ -116,13 +154,13 @@
 
 
 
-/obj/machinery/node/proc/pick_up_emplacement(var/mob/living/carbon/human/user)
+/*/obj/machinery/node/proc/pick_up_emplacement(var/mob/living/carbon/human/user)
 	if(emplacement_storage >= 1)
 		var/obj/item/unemplacement/emplacement = /obj/item/unemplacement	// item that will then become the machinery
 		user.put_in_active_hand(new emplacement)
 		emplacement_storage--
-		//add ability to put it back in - delete comment if done
-
+															//!!!!add ability to put it back in - delete comment if done
+*/
 
 
 
@@ -133,7 +171,7 @@
 
 
 /*
-/obj/machinery/node/Process() 		// Yeah let's not do the lagfest
+/obj/machinery/node/Process() 		// Yeah let's not do the lagfest that was debug
 	update_influence()
 */
 
@@ -162,7 +200,7 @@
 	to_chat(user, "Linked nodes:")
 	for(var/obj/machinery/machine in neighbours)
 		to_chat(user, "[machine.name] [dist3D(src, machine)]m away")
-	pick_up_emplacement(user)
+	//pick_up_emplacement(user)		// later
 
 
 
@@ -171,7 +209,7 @@
 
 // Some structures need node in radius to power up and work, this is the proc that searches (e.g. emplacements)
 /obj/machinery/node/proc/search_for_machines()
-	for(var/obj/machinery/machine in circlerangeturfs(src, EX_NODE_DISTANCE))
+	for(var/obj/machinery/machine in circlerange(src, EX_NODE_DISTANCE))
 		SEND_SIGNAL(machine, COMSIG_EX_CONNECT)
 
 
@@ -182,7 +220,7 @@
 //Searches for other nodes EVEN BETWEEN Z LEVELS.
 /obj/machinery/node/proc/search_for_nodes()
 	for(var/obj/machinery/node/N in excelsior_nodes)
-		if(dist3D(src, N) <= EX_NODE_DISTANCE && N != src)
+		if(dist3D(src, N) <= EX_NODE_DISTANCE+1 && N != src)
 			connect(N, TRUE)
 			N.connect(src, TRUE)
 			if(N.core)
@@ -193,15 +231,15 @@
 
 
 
-//Adds machine to either list of connected nodes or list of connected machines as specified by is_node argument
+//	# Adds machine to either list of connected nodes or list of connected machines as specified by is_node argument
 //Checks if machine is on the list before adding to avoid dupes
 /obj/machinery/node/proc/connect(var/obj/machinery/M, var/is_node = FALSE)
 	if(is_node)
-		if(!neighbours.Find(M))
+		if(!neighbours.Find(M)) // > Connect to node
 			neighbours.Add(M)
 	else
-		if(!linked.Find(M))
-			linked.Add(M)
+		if(!linked.Find(M))		// > Connect to emplacements, for example.
+			linked.Add(M)		//	- If such machinery demands Node's connection to work
 
 
 
@@ -223,17 +261,18 @@
 
 
 
-//Nodes check if they are connected to Centor. If not - connect to Centor, then pass the order like a disease to other nodes.
-//	Why? -> Core+Node gameplay is defined by territorial control, "cut off" nodes shouldn't be active.
-/obj/machinery/node/proc/spread_signal(var/center)
-	if(core)	//checks if already connected to avoid infinite recursion
-		return
+
+
+/obj/machinery/node/proc/spread_signal(var/center)	// # Nodes check if they are connected to Centor, directly or not
+	if(core)										//	1.	If not - connect to Centor
+		return										//	2.	Pass "core connected" status through the chain
 	core = center
-	core.antennas_to_haven.Add(src)
 	update_icon()
+	core.antennas_to_haven.Add(src)
 	for(var/obj/machinery/node/N in neighbours)
 		N.spread_signal(center)
-
+													//	> "Core+Node gameplay is defined by territorial control of excelsior
+													//	"cut off" nodes shouldn't be active (by design)" - me
 
 
 
@@ -264,8 +303,8 @@
 
 /obj/machinery/node/proc/intruder_alert(var/mob/living/intruder)
 																// TO IMPLEMENT: Ask Node what the human has in weapons through KPK
-	if(world.time - report_cooldown >= 15 SECONDS)			// Don't report the same person twice in x seconds
-		intruder_list = list()								//!!! TEST THE COOLDOWN. DELETE AFTER TEST
+	if(world.time - report_cooldown >= 15 SECONDS)				// Don't report the same person twice in x seconds
+		intruder_list = list()									//!!! TEST THE COOLDOWN. DELETE AFTER TEST
 		report_cooldown = world.time
 
 	if(intruder_list.Find(intruder))	// We don't need the same guy reported
@@ -297,27 +336,35 @@
 //															| Influence |
 //_____________________________________________________________________________________________________________________________
 
-/* [?] INFLUENCE is a tile, captured by a NODE into a local list.
-		1.	Influence tile Destroy() itself if tile is occupied by another influence
-		1.	Core counts all captured by node tiles into local list
+/* [?] INFLUENCE is an invisible zone, that produces Excelsior energy for Excelsior
+		1.	NODE spawns around itself excelsior_influence in a radius, defined by EX_NODE_DISTANCE
+							[_excelsior_defines.dm]
+		2.	INFLUENCE checks the turf it stands on, if it has whitelisted turfs (floortiles & low walls)
+
+			- by design walls and space aren't rewarded as owning territory
+
+		3.	CORE gives Excelsior energy
 */
 
-/obj/effect/effect/excelsior_influence 												//	# It's shown on Excel HUD. To find the code do either:
-	var/active = FALSE																	//	> Search by "process_excel_hud" in
-	var/obj/machinery/node/node															//	> hud.dm [code\defines\procs]		[line 60 as of now]
+/obj/effect/effect/excelsior_influence	//zone								//	# Visible on Excel HUD. (voidsuit)
+	var/active = FALSE														// 	- To find the HUD code do either:
+	var/obj/machinery/node/node												//		> Search by "process_excel_hud" in
+																			//		> hud.dm [code\defines\procs][line 60~]
 
 
 
 
-
-
-/obj/effect/effect/excelsior_influence/New(loc, var/obj/machinery/node/creator)		// - All the thinking is done at define_influence()
+/obj/effect/effect/excelsior_influence/New(loc, var/obj/machinery/node/creator)		// > All the thinking is done at define_influence()
 	..(loc)
 	icon = null
 	icon_state = null
 	node = creator
 	validate()
-	RegisterSignal(src, COMSIG_TURF_LEVELUPDATE, PROC_REF(validate))
+	RegisterSignal(src, COMSIG_TURF_LEVELUPDATE, PROC_REF(validate))				// # Any tile on map built/destroyed:
+																					//	1.	Sends a COMSIG_TURF_LEVELUPDATE signal
+																					//	To every obj standing on top
+																					//	2.	It's up to obj to receive that signal
+																					//	3.	Marker receives that node >> validate()
 
 
 
@@ -326,21 +373,21 @@
 
 /obj/effect/effect/excelsior_influence/Destroy()
 	. = ..()
-	UnregisterSignal(src, COMSIG_TURF_LEVELUPDATE)
+	UnregisterSignal(src, COMSIG_TURF_LEVELUPDATE)															// no phantom pain sry
 
 
 
 
 
-/obj/effect/effect/excelsior_influence/proc/validate()	// # Checks if marker is "active" from core's connection.
-    if(!node)                                            // this... shouldn't happen
+/obj/effect/effect/excelsior_influence/proc/validate()	// # Checks if influence is "active".
+    if(!node)                                           //	 It's active if...
         Destroy()
         return
     var/turf/my_turf = get_turf(src)
-    for(var/type in excelsior_turf_whitelist)				//	1.	Is whitelist tile?
-        if(istype(my_turf, type))
-            active = TRUE
-            if(!node.activemarkerlist.Find(src))
+    for(var/type in excelsior_turf_whitelist)				//	...It's inside whitelist?
+        if(istype(my_turf, type))							//		Everything inside whitelist is influence items/tiles/whatever
+            active = TRUE									//		We chose it to be floors and low walls. Walls are punished we hate walls.
+            if(!node.activemarkerlist.Find(src))			//		That may change because of you, that's why it exists.
                 node.activemarkerlist.Add(src)
             return TRUE
     active = FALSE

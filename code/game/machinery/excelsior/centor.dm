@@ -1,6 +1,8 @@
 /*
-
-
+	Stage 1 - Foundation	<- YOU ARE HERE
+	Stage 2 - Production
+	S@*&#...
+																			ATTENTION!
 												For your convenience, below are structurized contents of Excelsior Code
 
 
@@ -8,15 +10,21 @@
 
 
 [NEW CODE]----------------------------------------------[EXPLANATION]
-_excelsior_defines.dm									- defines placed above cuz byond + convenience (I HOPE)
+_excelsior_defines.dm									- defines placed above cuz byond
 
 
-centor.dm 												- core that spreads the signal through nodes
-emplacement.dm 											-
+centor.dm 												- Excelsior AI core, generates excelsior power
+node.dm 												- amplifies excelsior power generation,
+															> controls: turrets.
+
+
+emplacement.dm											- Machinery transport system
 excelsior_node.tmpl 									- Network UI code
-node.dm 												- retranslator of the core's signal
-excelsior_researches.dm 								- research tree
+excelsior_researches.dm 								- Research tree, duh.  			(Well, you have all the blueprints...
+																									...it's just a weak Wi-Fi.)
 excelsior_items.dm 										- NEW items, like KPK
+															- "Why here?"
+															> New items that will be related to the update
 
 
 excelsior_debug_tools.dm 							- all debug tools we made and used in case you need it

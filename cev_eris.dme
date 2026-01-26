@@ -798,6 +798,7 @@
 #include "code\game\machinery\excelsior\implantmaker.dm"
 #include "code\game\machinery\excelsior\node.dm"
 #include "code\game\machinery\excelsior\redirector.dm"
+#include "code\game\machinery\excelsior\excelsior_items\KPK.dm"
 #include "code\game\machinery\kitchen\gibber.dm"
 #include "code\game\machinery\kitchen\microwave.dm"
 #include "code\game\machinery\kitchen\smartfridge.dm"

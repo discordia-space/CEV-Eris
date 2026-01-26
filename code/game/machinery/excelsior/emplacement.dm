@@ -1,10 +1,11 @@
+/*
 
+stage 2
 
 /obj/machinery/emplacement
 	name = "Excelsior emplacement"
 	icon = 'icons/obj/machines/excelsior/emplacement.dmi'
 	description_info = "It won't work without the screened coaxial cable leading to Excelsior Node. T-ray scanners can detect one under the floor for easy cutting."
-	// DEBUG DEBUG DEBUG ABOVE AAAAAAAAA CHECK IT
 	description_antag = "This contraption transports Excelsior buildings, standing on top of it."
 	desc = "A new era trapdoor. It's dangerous now."
 	icon_state = "pol"
@@ -60,3 +61,4 @@
 	slowdown_hold = 0.5
 	throw_range = 2
 	matter = list(MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 10)
+*/

@@ -1,3 +1,4 @@
+/* 		Stage 1...
 /obj/item/centor_kpk/
 	name = "\improper Excelsior KPK"
 	desc = "Comrade's second best friend, besides his first best friend."
@@ -8,3 +9,5 @@
 	anchored = FALSE
 	var/mode = 1 //watch out a mine
 	w_class = ITEM_SIZE_NORMAL
+*/
+
