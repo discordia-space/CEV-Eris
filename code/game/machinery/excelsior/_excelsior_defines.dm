@@ -10,3 +10,7 @@ var/list/global/excelsior_globalturflist = list()
 var/list/global/excelsior_globalmarkerlist = list()
 var/list/global/excelsior_nodes = list()
 var/list/global/excelsior_marker_list = list()
+var/list/global/excelsior_turf_whitelist = list(
+	/turf/floor,
+	/turf/wall/low
+)

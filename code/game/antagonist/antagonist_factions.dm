@@ -162,7 +162,7 @@
 		return
 
 	message = capitalize(sanitize(message))
-	var/text = "<span class='revolution'>Unit [user.name]: \"[message]\"</span>"
+	var/text = "<span class='revolution'>[message]</span>"
 	for(var/i in SShumans.mob_list)
 		if(is_excelsior(i))
 			to_chat(i, text)
