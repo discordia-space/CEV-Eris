@@ -157,7 +157,7 @@
 
 	log_say("[user.name]/[user.key] (REV [name]) : [message]")
 
-/datum/faction/proc/communicate_inanimate(var/user, var/message)
+/datum/faction/proc/communicate_inanimate(var/obj/user, var/message)
 	if(!message)
 		return
 
