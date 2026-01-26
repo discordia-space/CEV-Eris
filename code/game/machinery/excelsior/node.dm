@@ -332,19 +332,22 @@
 
 
 
-
 /obj/effect/effect/excelsior_influence/proc/validate()	// # Checks if marker is "active" from core's connection.
-	if(!node)	// this... shouldn't happen
-		Destroy()
-		return
-	if(istype(get_turf(src), /turf/floor))				//	1.	Is floor?
-		active = TRUE
-		if(!node.activemarkerlist.Find(src))
-			node.activemarkerlist.Add(src)
-	else												//	2.	Don't count anything else (space, walls, etc...)
-		active = FALSE
-		if(node.activemarkerlist.Find(src))
-			node.activemarkerlist.Remove(src)
+    if(!node)                                            // this... shouldn't happen
+        Destroy()
+        return
+    var/turf/my_turf = get_turf(src)
+    for(var/type in excelsior_turf_whitelist)				//	1.	Is whitelist tile?
+        if(istype(my_turf, type))
+            active = TRUE
+            if(!node.activemarkerlist.Find(src))
+                node.activemarkerlist.Add(src)
+            return TRUE
+    active = FALSE
+    if(node.activemarkerlist.Find(src))
+        node.activemarkerlist.Remove(src)
+    return FALSE
+
 
 
 
