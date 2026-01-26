@@ -20,7 +20,7 @@ excelsior_items.dm 										- NEW items, like KPK
 
 
 excelsior_debug_tools.dm 							- all debug tools we made and used in case you need it
---------------------------------------------------------
+
 
 
 [OLD CODE]----------------------------------------------
@@ -48,7 +48,7 @@ var/global/excelsior_centor
 	circuit = /obj/item/electronics/circuitboard/centor
 	health = 300
 	shipside_only = TRUE
-	var/list/obj/machinery/node/antennas_to_heaven = list()
+	var/list/obj/machinery/node/antennas_to_haven = list()
 
 /obj/machinery/centor/Initialize(mapload, d)
 	if(excelsior_centor)
@@ -71,7 +71,7 @@ var/global/excelsior_centor
 /obj/machinery/centor/proc/collect_tax()
 	for(var/obj/machinery/complant_teleporter/tele in excelsior_teleporters)		// !! Debug - Remove on release
 		tele.old_energy = excelsior_energy											// !! Debug - Remove on release
-	for(var/obj/machinery/node/node in antennas_to_heaven)
+	for(var/obj/machinery/node/node in antennas_to_haven)
 		excelsior_energy += node.activemarkerlist.len
 	//for(var/i in excelsior_globalmarkerlist)										// Uncomment later
 	//	excelsior_energy++															// Uncomment later
@@ -88,7 +88,7 @@ var/global/excelsior_centor
 	nano_ui_interact(user)
 
 /obj/machinery/centor/proc/load_network()
-	antennas_to_heaven = list()
+	antennas_to_haven = list()
 	for(var/obj/machinery/node/node in excelsior_nodes)
 		node.core = null
 		node.update_icon()
