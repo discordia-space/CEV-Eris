@@ -1,5 +1,5 @@
 /*
-	Stage 1 - Foundation	<- YOU ARE HERE
+	Stage 1 - Foundation	<- YOU ARE HERE :)
 	Stage 2 - Production
 	S@*&#...
 																			ATTENTION!
@@ -13,16 +13,17 @@
 _excelsior_defines.dm									- defines placed above cuz byond
 
 
-centor.dm 												- Excelsior AI core, generates excelsior power
-node.dm 												- amplifies excelsior power generation,
-															> controls: turrets.
+centor.dm 												- Excelsior AI core, generates excelsior power from Nodes
+node.dm 												- Generate power if connected to core,
+														be that directly or through the chain of them
+
 
 
 emplacement.dm											- Machinery transport system
 excelsior_node.tmpl 									- Network UI code
 excelsior_researches.dm 								- Research tree, duh.  			(Well, you have all the blueprints...
 																									...it's just a weak Wi-Fi.)
-excelsior_items.dm 										- NEW items, like KPK
+excelsior_items.dm 										- NEW items, like COMPAQ
 															- "Why here?"
 															> New items that will be related to the update
 
@@ -49,7 +50,7 @@ var/global/excelsior_centor
 /obj/machinery/centor
 	name = "Excelsior \"Centor\" node"													// review
 	icon = 'icons/obj/machines/excelsior/central.dmi'
-	desc = "Central antenna of the Excelsior group connecting far into the Haven"		// review
+	desc = "An Excelsior AI, reaching far away for the Haven."		// review
 	icon_state = "centor"
 	density = TRUE
 	anchored = TRUE
@@ -84,14 +85,12 @@ var/global/excelsior_centor
 	//for(var/i in excelsior_globalmarkerlist)										// Uncomment later
 	//	excelsior_energy++															// Uncomment later
 	//excelsior_energy += excelsior_globalmarkerlist.len							// sussy!
-	excelsior_globalmarkerlist = list() 											// WIPE LIST AND REBUILD
-	excelsior_globalturflist = list()												//watchout
 	if(excelsior_energy >= excelsior_max_energy)
 		excelsior_energy = excelsior_max_energy
 		return
 
 /obj/machinery/centor/attack_hand(mob/user)
-	. = ..()
+//	. = ..()		//uncomment to give power consumption :)		(I dont want it now)
 	load_network()
 	nano_ui_interact(user)
 

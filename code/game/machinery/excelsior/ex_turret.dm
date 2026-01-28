@@ -23,8 +23,9 @@
 	var/obj/machinery/node/my_node
 
 /obj/machinery/porta_turret/excelsior/proc/has_power_source_nearby()
-	if(my_node.core)
-		return TRUE
+	if(my_node)
+		if(my_node.core)
+			return TRUE
 	return FALSE
 /*	for (var/a in excelsior_teleporters)
 		if (dist3D(src, a) <= working_range) //The turret and teleporter can be on a different zlevel

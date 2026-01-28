@@ -1,13 +1,12 @@
 /* 		Stage 1...
 /obj/item/centor_kpk/
-	name = "\improper Excelsior KPK"
-	desc = "Comrade's second best friend, besides his first best friend."
-	icon = 'icons/obj/machines/excelsior/central.dmi' //watch out a mine
-	icon_state = "rcd" //watch out a mine
+	name = "\improper Excelsior KOMPAK"
+	desc = "Comrade's second best friend, besides their first best friend."
+	icon = 'icons/obj/machines/excelsior/central.dmi'   // get new
+	icon_state = "rcd" 									// get new
 	opacity = 0
 	density = FALSE
 	anchored = FALSE
-	var/mode = 1 //watch out a mine
 	w_class = ITEM_SIZE_NORMAL
 */
 

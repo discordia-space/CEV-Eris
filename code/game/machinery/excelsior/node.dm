@@ -1,15 +1,20 @@
-//______________________________________________//
-//		Better info in centor.dm 				// << !!!
-// Don't get spooked there's comments below		//
-//______________________________________________//
+//_______________________________________________//
+//		Better info in centor.dm 				 // << !!!
+// Don't get spooked - there's comments below	 //
+//_______________________________________________//
+
+
+
+
+
 
 /obj/machinery/node
 	name = "Excelsior \"Tochka\" node"
 	icon = 'icons/obj/machines/excelsior/redirector.dmi'
-	desc = "A retranslator node that amplifies Excelsior's Core signal."
+	desc = "Nodes both amplify Centor's signals sent to Haven, providing consistent resupplies, and grant it control over turrets far away."
 	icon_state = "redirector_finished"
-	description_info = "Nodes help Haven send Excelsior resources."
-	description_antag = ""
+	description_info = "Nodes chain from Centor outwards, the more \"ship ground\" they cover - the better."
+	description_antag = "Node surface coverage can be seen with Excelsior HUD."
 	anchored = TRUE
 	density = TRUE
 	circuit = /obj/item/electronics/circuitboard/excelsior_node
@@ -19,17 +24,19 @@
 	var/list/obj/machinery/node/neighbours = list()
 	var/obj/machinery/centor/core
 
-	//var/emplacement_storage = 4
+	//var/emplacement_storage = 4									// stage 2
 	var/list/localturflist = list() 								// on destroy will remove the whole local list from global one
 	var/list/localmarkerlist = list() 								// if a node got turned off it shouldnt generate excelsior power, thus we count locally
 	var/list/activemarkerlist = list()
 	var/what_is_marker = /obj/effect/effect/excelsior_influence
 
-
-
-	//cooldowns
+	//# Cooldowns
 	var/list/intruder_list = list()
 	var/report_cooldown
+
+
+
+
 
 
 /obj/machinery/node/proc/make_name()
@@ -51,7 +58,6 @@
 	"Mayak",
 	"Zorkiy",
 	"Iskra",
-	"Montana",
 	"Lider",
 	"Sirius",
 	"Yunost",
@@ -62,10 +68,13 @@
 	"Kantata",
 	"Serenada",
 	"Arktur",
-	"Ilga")
+	"Ilga",
+	"Tochka",
+	"Sovet")
 
 
 	return  "Excelsior \"[pick(namelist)]-[rand(100, 999)]\" node"
+
 
 
 
@@ -81,6 +90,7 @@
 		var/obj/machinery/centor/C = excelsior_centor
 		C.load_network()
 	update_icon()
+
 
 
 
@@ -193,7 +203,7 @@
 
 
 /obj/machinery/node/attack_hand(mob/user)
-	. = ..()
+//	. = ..()		//uncomment to give power consumption :)		(I dont want it now)
 	to_chat(user, "Linked machinery:")
 	for(var/obj/machinery/machine in linked)
 		to_chat(user, machine.name)
