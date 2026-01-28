@@ -40,7 +40,7 @@
 //
 /obj/item/centor_kpk/Topic(href, href_list)
 	if(href_list["give_candy"])
-		start_pathfind(null, usr)//zero nodes given at the moment
+		start_pathfind(null, usr)	// TODO: save path between a node and his neighbor aka remove the fucking null - V from Katana Zero or smth
 
 	add_fingerprint(usr)
 	return TOPIC_HANDLED // update UIs attached to this object
