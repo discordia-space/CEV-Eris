@@ -126,7 +126,8 @@
 	text-align: center;
 }
 
-.ex-nowrap {
+.ex-logo {
+	color: #FF5F1F;
 	white-space: nowrap;
 }
 
