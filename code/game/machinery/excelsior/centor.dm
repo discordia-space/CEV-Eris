@@ -48,9 +48,9 @@ boombox.dm
 var/global/excelsior_centor
 
 /obj/machinery/centor
-	name = "Excelsior \"Centor\" node"													// review
+	name = "Excelsior \"Centor\" node"								// TODO consider changing a name just in case
 	icon = 'icons/obj/machines/excelsior/central.dmi'
-	desc = "An Excelsior AI, reaching far away for the Haven."		// review
+	desc = "An Excelsior AI, reaching far away for the Haven."		// TODO ensure this is fine
 	icon_state = "centor"
 	density = TRUE
 	anchored = TRUE
@@ -58,6 +58,10 @@ var/global/excelsior_centor
 	health = 300
 	shipside_only = TRUE
 	var/list/obj/machinery/node/antennas_to_haven = list()
+
+
+
+
 
 /obj/machinery/centor/Initialize(mapload, d)
 	if(excelsior_centor)
@@ -67,6 +71,10 @@ var/global/excelsior_centor
 	. = ..()
 	load_network()
 
+
+
+
+
 /obj/machinery/centor/Destroy()
 	. = ..()
 	for(var/obj/machinery/node/node in excelsior_nodes)
@@ -74,8 +82,16 @@ var/global/excelsior_centor
 			node.spread_signal(null)
 	excelsior_centor = null
 
+
+
+
+
 /obj/machinery/centor/Process()
 	collect_tax()																	// Only collects energy, the thinking is on node.dm
+
+
+
+
 
 /obj/machinery/centor/proc/collect_tax()
 	for(var/obj/machinery/complant_teleporter/tele in excelsior_teleporters)		// !! Debug - Remove on release
@@ -89,10 +105,18 @@ var/global/excelsior_centor
 		excelsior_energy = excelsior_max_energy
 		return
 
+
+
+
+
 /obj/machinery/centor/attack_hand(mob/user)
 //	. = ..()		//uncomment to give power consumption :)		(I dont want it now)
 	load_network()
 	nano_ui_interact(user)
+
+
+
+
 
 /obj/machinery/centor/proc/load_network()
 	antennas_to_haven = list()
@@ -102,6 +126,11 @@ var/global/excelsior_centor
 	for(var/obj/machinery/node/node in excelsior_nodes)
 		if(dist3D(src, node) <= EX_NODE_DISTANCE)
 			node.spread_signal(src)
+
+
+
+
+
 
 /obj/machinery/centor/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(user.stat || user.restrained() || stat & (BROKEN|NOPOWER))
@@ -113,7 +142,11 @@ var/global/excelsior_centor
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/machinery/centor/nano_ui_data()
+
+
+
+
+/obj/machinery/centor/nano_ui_data()		// TODO check this at the finishing line, there's test stuff
 	var/list/data = list()
 	var/list/node_list = list()
 	for(var/obj/machinery/node/node in excelsior_nodes)
@@ -128,8 +161,8 @@ var/global/excelsior_centor
 		)
 	data["test"] = "ITS WORKING"
 	data["node_list"] = node_list
-									//Создаёт в пустом списке пункт test и задаёт значение ITS WORKING этому пункту
-	return data										//Возвращает список data тому, кто спрашивал
+
+	return data
 
 
 

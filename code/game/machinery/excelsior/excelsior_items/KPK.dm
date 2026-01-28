@@ -10,6 +10,7 @@
 	desc = "Comrade's second best friend, besides their first best friend."
 	icon = 'icons/obj/modular_tablet.dmi' 						 					// get new sproite
 	icon_state = "tabletsol" 														// get new sproite
+
 	opacity = 0
 	density = FALSE
 	anchored = FALSE
@@ -48,14 +49,9 @@
 //
 
 /obj/item/centor_kpk/proc/start_pathfind(/obj/machinery/node/my_node, mob/user as mob)
-	var/obj/effect/effect/pathfinder_arrow/arrow = new /obj/effect/effect/pathfinder_arrow(user)
+	var/obj/effect/effect/pathfinder_arrow/first/arrow = new /obj/effect/effect/pathfinder_arrow/first(user)
 
 /obj/item/centor_kpk/proc/end_pathfind()
-
-
-
-
-
 
 
 
@@ -71,23 +67,26 @@
 		> Or you can manually lead the path if the first failed (only a matter of time)
 		NOTE: In the future, other entities will use the pathfinder.
 */
-
-/obj/effect/effect/pathfinder_arrow
+/obj/effect/effect/pathfinder_arrow/first
 	var/list/snake = list()
-	var/original
+/obj/effect/effect/pathfinder_arrow
+	var/obj/effect/effect/pathfinder_arrow/first/original
 	var/counter = 1
 
 /obj/effect/effect/pathfinder_arrow/New(loc, var/obj/effect/effect/pathfinder_arrow/previous)
 	..(loc)
 	counter = previous.counter++
-	snake.Add(src)
+	original.snake.Add(src)
+	return
 
 /obj/effect/effect/pathfinder_arrow/Uncrossed(var/atom/movable/badguy)
 	new /obj/effect/effect/pathfinder_arrow(badguy.loc, src)
 
 
-
-
+/obj/effect/effect/pathfinder_arrow/Crossed(var/atom/movable/badguy)
+	for(var/obj/effect/effect/pathfinder_arrow/item in original.snake)
+		if(item.counter > counter)
+			qdel(item)
 
 
 
