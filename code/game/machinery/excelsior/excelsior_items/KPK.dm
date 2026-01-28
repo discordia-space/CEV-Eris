@@ -48,8 +48,8 @@
 //END TOPIC
 //
 
-/obj/item/centor_kpk/proc/start_pathfind(/obj/machinery/node/my_node, mob/user as mob)
-	var/obj/effect/effect/pathfinder_arrow/first/arrow = new /obj/effect/effect/pathfinder_arrow/first(user)
+/obj/item/centor_kpk/proc/start_pathfind(obj/machinery/node/my_node, mob/user as mob)
+	var/obj/effect/effect/pathfinder_arrow/first/arrow = new /obj/effect/effect/pathfinder_arrow/first(user.loc)
 
 /obj/item/centor_kpk/proc/end_pathfind()
 
