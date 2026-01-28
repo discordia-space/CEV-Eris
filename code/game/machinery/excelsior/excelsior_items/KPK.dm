@@ -10,7 +10,6 @@
 	desc = "Comrade's second best friend, besides their first best friend."
 	icon = 'icons/obj/modular_tablet.dmi' 						 					// get new sproite
 	icon_state = "tabletsol" 														// get new sproite
-
 	opacity = 0
 	density = FALSE
 	anchored = FALSE
