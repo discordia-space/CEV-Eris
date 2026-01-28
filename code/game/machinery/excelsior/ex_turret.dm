@@ -23,7 +23,7 @@
 	var/obj/machinery/node/my_node
 
 /obj/machinery/porta_turret/excelsior/proc/has_power_source_nearby()
-	if(my_node)
+	if(my_node)				// we don't need one more runtime in this neighborhood
 		if(my_node.core)
 			return TRUE
 	return FALSE
@@ -36,7 +36,7 @@
 	if(get_dist(user, src) < 2)
 		extra_description += "There [(ammo == 1) ? "is" : "are"] [ammo] round\s left!"
 		if(!has_power_source_nearby())
-			extra_description += "\nSeems to be powered down. No excelsior node found nearby."
+			extra_description += "\n<b>Seems to be powered down.</b> No active excelsior node found nearby."
 	..(user, extra_description)
 
 

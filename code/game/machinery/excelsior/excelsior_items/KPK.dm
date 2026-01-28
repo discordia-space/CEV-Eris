@@ -1,12 +1,21 @@
-/obj/item/centor_kpk
+#define MODE_NONE 1
+#define MODE_PATHFINDER 2
+
+
+
+
+
+/obj/item/centor_kpk/
 	name = "\improper Excelsior KOMPAK"
 	desc = "Comrade's second best friend, besides their first best friend."
-	icon = 'icons/obj/modular_tablet.dmi' 				//get new
-	icon_state = "tabletsol" 							//get new
+	icon = 'icons/obj/modular_tablet.dmi' 						 					// get new sproite
+	icon_state = "tabletsol" 														// get new sproite
 	opacity = 0
 	density = FALSE
 	anchored = FALSE
 	w_class = ITEM_SIZE_NORMAL
+	var/mode = MODE_PATHFINDER	// TODO return to MODE_NONE
+								// TO BE USED BY GUI DON'T FORGET
 
 /obj/item/centor_kpk/attack_self(mob/user)
 	. = ..()
@@ -22,13 +31,71 @@
 		ui.set_initial_data(data)
 		ui.open()
 
+/*************************************
+*				Programs			 *
+**************************************/
+//
+//START TOPIC
+//
 /obj/item/centor_kpk/Topic(href, href_list)
 	if(href_list["give_candy"])
-		give_candy(usr)
+		start_pathfind(null, usr)//zero nodes given at the moment
 
 	add_fingerprint(usr)
 	return TOPIC_HANDLED // update UIs attached to this object
+//
+//END TOPIC
+//
 
-/obj/item/centor_kpk/proc/give_candy(mob/living/user)
-	var/obj/item/reagent_containers/food/snacks/candy_corn = new /obj/item/reagent_containers/food/snacks/candy_corn()
-	user.put_in_inactive_hand(candy_corn)
+/obj/item/centor_kpk/proc/start_pathfind(/obj/machinery/node/my_node, mob/user as mob)
+	var/obj/effect/effect/pathfinder_arrow/arrow = new /obj/effect/effect/pathfinder_arrow(user)
+
+/obj/item/centor_kpk/proc/end_pathfind()
+
+
+
+
+
+
+
+
+
+
+
+/*
+ PATHFINDER
+	[?] Pathfinder is created for situations when:
+		- new members join in and lack territorial info
+		- or when the node network gets too big to react to threats normally.
+		> You can choose to autobuild pathfinder if on same Z-level between 2 nodes
+		> Or you can manually lead the path if the first failed (only a matter of time)
+		NOTE: In the future, other entities will use the pathfinder.
+*/
+
+/obj/effect/effect/pathfinder_arrow
+	var/list/snake = list()
+	var/original
+	var/counter = 1
+
+/obj/effect/effect/pathfinder_arrow/New(loc, var/obj/effect/effect/pathfinder_arrow/previous)
+	..(loc)
+	counter = previous.counter++
+	snake.Add(src)
+
+/obj/effect/effect/pathfinder_arrow/Uncrossed(var/atom/movable/badguy)
+	new /obj/effect/effect/pathfinder_arrow(badguy.loc, src)
+
+
+
+
+
+
+
+
+
+
+
+
+
+#undef MODE_NONE
+#undef MODE_PATHFINDER

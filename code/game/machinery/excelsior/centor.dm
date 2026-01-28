@@ -23,9 +23,9 @@ emplacement.dm											- Machinery transport system
 excelsior_node.tmpl 									- Network UI code
 excelsior_researches.dm 								- Research tree, duh.  			(Well, you have all the blueprints...
 																									...it's just a weak Wi-Fi.)
-excelsior_items.dm 										- NEW items, like COMPAQ
-															- "Why here?"
-															> New items that will be related to the update
+excelsior_items[folder] 										- NEW items, like COMPAQ and something else in the future
+															- "Why excelsior_items?"
+															> New items that will be related to the updates
 
 
 excelsior_debug_tools.dm 							- all debug tools we made and used in case you need it
@@ -42,7 +42,7 @@ boombox.dm
 
 [SPRITES]
 
-#####################################
+
 */
 
 var/global/excelsior_centor

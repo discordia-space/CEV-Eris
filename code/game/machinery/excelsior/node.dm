@@ -1,18 +1,22 @@
-//_______________________________________________//
-//		Better info in centor.dm 				 // << !!!
-// Don't get spooked - there's comments below	 //
-//_______________________________________________//
-
-
-
+/*
+Better info in centor.dm
+Don't get spooked - there's comments below
+*/
+/*
+Small Dictionary:
+	# Node chain
+		- Node chain is when Centor picks up the first node in proximity, tells it it's "powered", making it produce energy,
+		control turrets, THEN pass that "powered" status to other nodes they are connected to.
+		[Note] The "powered" status is checked with node.core.
+*/
 
 
 
 /obj/machinery/node
 	name = "Excelsior \"Tochka\" node"
-	icon = 'icons/obj/machines/excelsior/redirector.dmi'
+	icon = 'icons/obj/machines/excelsior/redirector.dmi'	// TODO replace on finish
 	desc = "Nodes both amplify Centor's signals sent to Haven, providing consistent resupplies, and grant it control over turrets far away."
-	icon_state = "redirector_finished"
+	icon_state = "redirector_finished"						// TODO replace on finish
 	description_info = "Nodes chain from Centor outwards, the more \"ship ground\" they cover - the better."
 	description_antag = "Node surface coverage can be seen with Excelsior HUD."
 	anchored = TRUE
@@ -24,9 +28,10 @@
 	var/list/obj/machinery/node/neighbours = list()
 	var/obj/machinery/centor/core
 
-	//var/emplacement_storage = 4									// stage 2
-	var/list/localturflist = list() 								// on destroy will remove the whole local list from global one
-	var/list/localmarkerlist = list() 								// if a node got turned off it shouldnt generate excelsior power, thus we count locally
+	//var/emplacement_storage = 4
+	var/list/localmarkerlist = list() 	/* On destroy() or "turning off" (only if disconnected from Centor's node chain) will...
+											> remove the whole local list (node) from global one (Centor interacts with it)
+											- Feature, cut off Excelsior's "logistics" and forward bases won't work */
 	var/list/activemarkerlist = list()
 	var/what_is_marker = /obj/effect/effect/excelsior_influence
 
@@ -125,24 +130,19 @@
 
 
 /obj/machinery/node/proc/update_influence()
-	cleanup_influence() 						// remove influence tiles the node made
+	cleanup_influence() 						// remove influence the node made
 	define_influence() 							// spawn influence around the node
 
 
 
 
 
-/obj/machinery/node/proc/define_influence() 	// spawn influence around the node
-	for(var/turf/selected in circlerangeturfs(src, EX_NODE_DISTANCE))								// replace from debug_number back to
-		if(!locate(/obj/effect/effect/excelsior_influence) in selected)															//
+/obj/machinery/node/proc/define_influence()
+	for(var/turf/selected in circlerangeturfs(src, EX_NODE_DISTANCE))
+		if(!locate(/obj/effect/effect/excelsior_influence) in selected)
 			var/influence_marker = new /obj/effect/effect/excelsior_influence(loc = selected, creator = src)
-			if(influence_marker) 																		// prevent adding NULL to the list
+			if(influence_marker)
 				localmarkerlist.Add(influence_marker)
-			if(selected)
-				localturflist.Add(selected)
-//			if(core)
-//				excelsior_globalturflist += localturflist
-//				excelsior_globalmarkerlist += localmarkerlist
 		else
 			continue
 
@@ -151,9 +151,7 @@
 
 
 
-/obj/machinery/node/proc/cleanup_influence() 	// remove influence tiles the node made
-	localturflist = list()
-
+/obj/machinery/node/proc/cleanup_influence()
 	for(var/marker in localmarkerlist)
 		QDEL_NULL(marker)
 	localmarkerlist = list()
@@ -273,9 +271,9 @@
 
 
 
-/obj/machinery/node/proc/spread_signal(var/center)	// # Nodes check if they are connected to Centor, directly or not
-	if(core)										//	1.	If not - connect to Centor
-		return										//	2.	Pass "core connected" status through the chain
+/obj/machinery/node/proc/spread_signal(var/center)	// 	# Nodes check if they are connected to Centor, directly or not (node chain)
+	if(core)										//	 1.	If not - connect to Centor
+		return										//	 2.	Pass "core connected" status through the chain
 	core = center
 	update_icon()
 	core.antennas_to_haven.Add(src)
@@ -288,10 +286,10 @@
 
 
 
-//_____________________________________________________________________________________________________________________________
-//													| Node Radio responses |
-//_____________________________________________________________________________________________________________________________
 
+											/*****************************
+											 *	      Node Radio		 *
+											 *****************************/
 
 
 
@@ -314,7 +312,7 @@
 /obj/machinery/node/proc/intruder_alert(var/mob/living/intruder)
 																// TO IMPLEMENT: Ask Node what the human has in weapons through KPK
 	if(world.time - report_cooldown >= 15 SECONDS)				// Don't report the same person twice in x seconds
-		intruder_list = list()									//!!! TEST THE COOLDOWN. DELETE AFTER TEST
+		intruder_list = list()
 		report_cooldown = world.time
 
 	if(intruder_list.Find(intruder))	// We don't need the same guy reported
@@ -342,9 +340,9 @@
 
 
 
-//_____________________________________________________________________________________________________________________________
-//															| Influence |
-//_____________________________________________________________________________________________________________________________
+												/******************************
+ 														   Influence
+ 												*******************************/
 
 /* [?] INFLUENCE is an invisible zone, that produces Excelsior energy for Excelsior
 		1.	NODE spawns around itself excelsior_influence in a radius, defined by EX_NODE_DISTANCE
