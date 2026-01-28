@@ -76,6 +76,35 @@ NanoBaseHelpers = function ()
 
 				return '<div unselectable="on" class="link linkActive ' + iconClass + ' ' + elementClass + '" data-href="' + NanoUtility.generateHref(parameters) + '" ' + elementIdHtml + '>' + iconHtml + text + '</div>';
 			},
+			// Generate a Byond link but more commie
+			komulink: function( text, icon, parameters, status, elementClass, elementId) {
+
+				var iconHtml = '';
+				var iconClass = 'noIcon';
+				if (typeof icon != 'undefined' && icon)
+				{
+					iconHtml = '<div class="uiLinkPendingIcon"></div><div class="uiIcon16 icon-' + icon + '"></div>';
+					iconClass = text ? 'hasIcon' : 'onlyIcon';
+				}
+
+				if (typeof elementClass == 'undefined' || !elementClass)
+				{
+					elementClass = 'komulink';
+				}
+
+				var elementIdHtml = '';
+				if (typeof elementId != 'undefined' && elementId)
+				{
+					elementIdHtml = 'id="' + elementId + '"';
+				}
+
+				if (typeof status != 'undefined' && status)
+				{
+					return '<div unselectable="on" class="komulink ' + iconClass + ' ' + elementClass + ' ' + status + '" ' + elementIdHtml + '>' + iconHtml + text + '</div>';
+				}
+
+				return '<div unselectable="on" class="komulink linkActive ' + iconClass + ' ' + elementClass + '" data-href="' + NanoUtility.generateHref(parameters) + '" ' + elementIdHtml + '>' + iconHtml + text + '</div>';
+			},
 			// Round a number to the nearest integer
 			round: function(number) {
 				return Math.round(number);
