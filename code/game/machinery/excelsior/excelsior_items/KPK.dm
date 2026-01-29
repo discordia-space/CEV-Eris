@@ -74,7 +74,11 @@
 
 /obj/effect/effect/pathfinder_arrow/New(loc, var/obj/effect/effect/pathfinder_arrow/previous)
 	..(loc)
-	counter = previous.counter++
+	if(!previous)
+		original = src
+	else
+		original = previous.original
+		counter = previous.counter + 1
 	original.snake.Add(src)
 	return
 
@@ -87,6 +91,13 @@
 		if(item.counter > counter)
 			qdel(item)
 
+/datum/excelsior_junction
+// get names of the nodes
+	var/obj/machinery/node/first
+	var/obj/machinery/node/second
+
+	//road itself consisting
+	var/list/track = list()
 
 
 
