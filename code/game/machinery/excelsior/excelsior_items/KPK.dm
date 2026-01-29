@@ -19,6 +19,7 @@
 	//GUI WAR ZONE
 	var/path_diologe = FALSE
 	var/obj/machinery/node/chosen_node
+	var/obj/effect/effect/pathfinder_arrow/first/current_route
 
 /obj/item/centor_kpk/attack_self(mob/user)
 	. = ..()
@@ -36,8 +37,8 @@
 /obj/item/centor_kpk/nano_ui_data()
 	var/list/data = list()
 	data["path_diologe"] = path_diologe
-	data["current_path"] = chosen_node ? 1 : 0
-	data["current_node"] = chosen_node.name
+	data["current_path"] = current_route ? 1 : 0
+	data["current_node"] = chosen_node ? chosen_node.name : "ERR: NODE NOT FOUND"
 
 	return data
 
@@ -79,11 +80,11 @@
 	if(href_list["close_path_dio"])
 		path_diologe = FALSE
 
-	if(herf_list["start_pathfind"])
+	if(href_list["start_pathfind"])
 		start_pathfind(usr)
 
-	if(herf_list["end_pathfind"])
-		end_pathfind()
+	if(href_list["end_pathfind"])
+		end_pathfind(usr)
 
 	if(href_list["cancel_pathfind"])
 		cancel_pathfind()
@@ -100,17 +101,24 @@
 
 //	Act of creating a path
 /obj/item/centor_kpk/proc/start_pathfind(mob/user as mob)
-	var/obj/machinery/node/closest = locate() in orange(1, src) //TODO insert alert for the guy to come closer btw in GUI
+	var/obj/machinery/node/closest = locate(/obj/machinery/node) in orange(1, user.loc) //TODO insert alert for the guy to come closer btw in GUI
 	var/obj/effect/effect/pathfinder_arrow/first/arrow = new /obj/effect/effect/pathfinder_arrow/first(user.loc)
+	current_route = arrow
 	arrow.kpk = src
-
+	path_diologe = FALSE
 	chosen_node = closest
 
-/obj/item/centor_kpk/proc/end_pathfind()
-	var/obj/machinery/node/closest = locate() in orange(1, src)	//TODO insert alert for the guy to come closer btw in GUI
+/obj/item/centor_kpk/proc/end_pathfind(mob/user as mob)
+	var/obj/machinery/node/closest = locate(/obj/machinery/node) in orange(1, user.loc)	//TODO insert alert for the guy to come closer btw in GUI
+	new /datum/excelsior_junction(chosen_node, closest, current_route.snake)
+	chosen_node = null
+	current_route = null
 
-
-	new /datum/excelsior_junction(chosen_node, closest)
+/obj/item/centor_kpk/proc/cancel_pathfind()
+	chosen_node = null
+	for(var/tile in current_route.snake)
+		qdel(tile)
+	current_route = null
 
 
 
@@ -150,12 +158,17 @@
 
 
 /obj/effect/effect/pathfinder_arrow/Uncrossed(var/atom/movable/badguy)
+	if(original.kpk.current_route != original)
+		return
 	new /obj/effect/effect/pathfinder_arrow(badguy.loc, src)
 
 
 /obj/effect/effect/pathfinder_arrow/Crossed(var/atom/movable/badguy)
+	if(original.kpk.current_route != original)
+		return
 	for(var/obj/effect/effect/pathfinder_arrow/item in original.snake)
 		if(item.counter > counter)
+			original.snake.Remove(item)
 			qdel(item)
 
 
@@ -172,9 +185,10 @@
 	var/list/track = list()
 
 
-/datum/excelsior_junction/New(obj/machinery/node/A as obj, obj/machinery/node/B as obj) // pass the info about 2 points of the path
+/datum/excelsior_junction/New(obj/machinery/node/A as obj, obj/machinery/node/B as obj, list/route) // pass the info about 2 points of the path
 	first = A
 	second = B
+	track = route
 	excelsior_junctions.Add(src)
 
 

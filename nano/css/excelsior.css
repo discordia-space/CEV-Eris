@@ -107,6 +107,7 @@
 	margin-left: 10%;
 	text-align: left;
 	line-height: 16px;
+	font-size: 10px;
 }
 
 .ex-button {
@@ -141,7 +142,6 @@
 }
 
 .file-tree ul {
-  font-family: courier;
   margin: 0;
   padding-left: 3rem;
   list-style: none;
@@ -165,7 +165,6 @@
 }
 
 .file-tree li {
-  background: #fff;
   position: relative;
 }
 
