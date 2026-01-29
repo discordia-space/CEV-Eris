@@ -16,6 +16,8 @@
 	w_class = ITEM_SIZE_NORMAL
 	var/mode = MODE_PATHFINDER	// TODO return to MODE_NONE
 								// TO BE USED BY GUI DON'T FORGET
+	//GUI WAR ZONE
+	var/path_diologe = FALSE
 
 /obj/item/centor_kpk/attack_self(mob/user)
 	. = ..()
