@@ -387,15 +387,15 @@ Small Dictionary:
 
 
 
-/obj/effect/effect/excelsior_influence/proc/validate()	// # Checks if influence is "active".
+/obj/effect/effect/excelsior_influence/proc/validate()	// # Checks if influence zone is "active".
     if(!node)                                           //	 It's active if...
         Destroy()
         return
     var/turf/my_turf = get_turf(src)
-    for(var/type in excelsior_turf_whitelist)				//	...It's inside whitelist?
-        if(istype(my_turf, type))							//		Everything inside whitelist is influence items/tiles/whatever
+    for(var/type in excelsior_turf_whitelist)				//	...It's insides match whitelist?
+        if(istype(my_turf, type))							//		Everything inside whitelist is "influence tiles"
             active = TRUE									//		We chose it to be floors and low walls. Walls are punished we hate walls.
-            if(!node.activemarkerlist.Find(src))			//		That may change because of you, that's why it exists.
+            if(!node.activemarkerlist.Find(src))			//		That may change because of YOU you stinky game designer, that's why it exists.
                 node.activemarkerlist.Add(src)
             return TRUE
     active = FALSE

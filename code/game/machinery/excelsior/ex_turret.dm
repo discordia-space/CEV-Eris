@@ -27,11 +27,7 @@
 		if(my_node.core)
 			return TRUE
 	return FALSE
-/*	for (var/a in excelsior_teleporters)
-		if (dist3D(src, a) <= working_range) //The turret and teleporter can be on a different zlevel
-			return TRUE
-	return FALSE
-*/
+
 /obj/machinery/porta_turret/excelsior/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
 		extra_description += "There [(ammo == 1) ? "is" : "are"] [ammo] round\s left!"

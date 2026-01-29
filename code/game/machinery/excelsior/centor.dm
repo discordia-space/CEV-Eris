@@ -98,9 +98,6 @@ var/global/excelsior_centor
 		tele.old_energy = excelsior_energy											// !! Debug - Remove on release
 	for(var/obj/machinery/node/node in antennas_to_haven)
 		excelsior_energy += node.activemarkerlist.len
-	//for(var/i in excelsior_globalmarkerlist)										// Uncomment later
-	//	excelsior_energy++															// Uncomment later
-	//excelsior_energy += excelsior_globalmarkerlist.len							// sussy!
 	if(excelsior_energy >= excelsior_max_energy)
 		excelsior_energy = excelsior_max_energy
 		return
