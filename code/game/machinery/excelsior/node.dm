@@ -433,13 +433,13 @@ Small Dictionary:
 
 //noda.sendPath("Artem-123", list())
 
-/obj/machinery/node/proc/sendPath(var/obj/machinery/node/end, var/list/doroga)
+/obj/machinery/node/proc/sendPath(var/obj/machinery/node/end, var/list/doroga, var/obj/item/centor_kpk/kpk)
 	if(src in doroga)
 		return
 	doroga.Add(src)
 	if(src == end)
-		return doroga
+		kpk.ihaveplacestobe = doroga
+		return
 	for(var/obj/machinery/node/noda in neighbours)
 		noda.sendPath(end, doroga)
-	return
 

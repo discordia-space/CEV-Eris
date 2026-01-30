@@ -20,6 +20,7 @@
 	var/path_diologe = FALSE
 	var/obj/machinery/node/chosen_node
 	var/obj/effect/effect/pathfinder_arrow/first/current_route
+	var/list/ihaveplacestobe = list()	//kpk receives a list from node to make a long fucking road
 
 /obj/item/centor_kpk/attack_self(mob/user)
 	. = ..()
@@ -186,12 +187,13 @@
 //------------------------------------------| PATHFINDER - The act of finding |------------------------------------------
 //	/obj/item/centor_kpk/build_path(src, destination) ;*  <-- GUI
 /obj/item/centor_kpk/proc/build_path(mob/user as mob, var/obj/machinery/destination)
-	to_chat(user, SPAN_NOTICE(get_path(user, destination)))
+	var/path_result = get_path(user, destination)
+	to_chat(user, SPAN_NOTICE(path_result))
 //	get_path()
 
 /obj/item/centor_kpk/proc/get_path(mob/user as mob, var/obj/machinery/destination)
 	var/obj/machinery/node/closest = locate(/obj/machinery/node) in orange(1, user.loc)
-	closest.sendPath(destination)
+	closest.sendPath(destination, list(), src)
 	return
 
 
