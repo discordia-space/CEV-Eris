@@ -10,7 +10,7 @@
 	Excelsior fights for both your and our right to live without suppression of true human virtue - to create.\n\
 	We invite you to do the same - emancipate those uncapable to resist the world order's rules\n\n\
 	<b>Our goal:</b> Seize control of the ship by building a redirector on the primary control bridge.\n\n\
-	<b>To reach that goal:</b> We have to protect our Centor Core, liberate the oppressed, spread our word of freedom, make arms and armor for our boys and gals.\n\n\
+	<b>To reach that goal:</b> We have to protect our Centor Core, liberate the oppressed, spread our word of freedom, make arms and armor for our buddies.\n\n\
 	<b>Preparation:</b> We must call the Centor Core somewhere safe, retrieve the cache of disks and buildings. Without foundation our revolution will fail.\n\n\
 	<b>After insertion:</b> Establish a fortified position. The People will send additional resources through the teleporter once we get the energy. Use turrets and shield generators, and of course - loyal comrades. \n\n\
 	<b>And the final part - expansion.</b> Spread nodes and ensure their connection to Centor for teleportation power. Acquire implants, prosthetics or robotic parts and rebuild them into our own implants. These can be injected into the oppressed to introduce them into our cause.\n\n\

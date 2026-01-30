@@ -4,10 +4,25 @@ Don't get spooked - there's comments below
 */
 /*
 Small Dictionary:
-	# Node chain
-		- Node chain is when Centor picks up the first node in proximity, tells it it's "powered", making it produce energy,
-		control turrets, THEN pass that "powered" status to other nodes they are connected to.
-		[Note] The "powered" status is checked with node.core.
+	Powered
+		- In the case of the node that means Centor is in Node's proximity
+			- Powered node:
+				- produces energy
+				- activates machinery linked to it (if such machinery needs node to work (e.g. turret))
+				- passes Powered status to "neighbour" nodes (connected due to proximity)
+		NOTE: The "powered" status is checked with node.core
+
+	"Node chain"
+		- Node chain is what happens when [Node] sees [Centor] in node's proximity, that node is "powered",
+		THEN it passes that "powered" status to other nodes they are connected, until the whole net is powered.
+
+	*
+	*	DEMONSTRATION:
+	*	Legend: C - Centor, X - unpowered node, N - powered node, --- connection(proximity)
+	*
+	*	2/3 nodes are powered from Centor:
+	*	C --- N --- N     X
+	*
 */
 
 
@@ -130,8 +145,8 @@ Small Dictionary:
 
 
 /obj/machinery/node/proc/update_influence()
-	cleanup_influence() 						// remove influence the node made
-	define_influence() 							// spawn influence around the node
+	cleanup_influence()
+	define_influence()
 
 
 
@@ -415,4 +430,16 @@ Small Dictionary:
 
 
 
+
+//noda.sendPath("Artem-123", list())
+
+/obj/machinery/node/proc/sendPath(var/obj/machinery/node/end, var/list/doroga)
+	if(src in doroga)
+		return
+	doroga.Add(src)
+	if(src == end)
+		return doroga
+	for(var/obj/machinery/node/noda in neighbours)
+		noda.sendPath(end, doroga)
+	return
 

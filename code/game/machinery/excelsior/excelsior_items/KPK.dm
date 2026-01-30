@@ -46,13 +46,6 @@
 *				Programs			 *
 **************************************/
 
-/* Dear Alt, please don't forget the following when moving this shit into GUI:
-	- KOMPAK needs to choose a node, I am NOT picking the closest node, user's intent is important here for me
-	- Ok I may do it but just because I'm too fucking dumb right now
-		- I'm killing you if a newbie will cry 2 nodes hes hugging arent pathfinding properly in my DMs
-*/
-
-
 
 
 
@@ -65,13 +58,11 @@
 		> You can choose to autobuild pathfinder if on same Z-level between 2 nodes
 		> Or you can manually lead the path if the first failed (only a matter of time)
 		NOTE: In the future, other entities will use the pathfinder.
+
+
+
+------------------------------------------| PATHFINDER - Building the path |------------------------------------------
 */
-
-
-
-
-
-//START TOPIC
 
 /obj/item/centor_kpk/Topic(href, href_list)
 	if(href_list["open_path_dio"])
@@ -92,7 +83,7 @@
 	add_fingerprint(usr)
 	return TOPIC_HANDLED // update UIs attached to this object
 
-//END TOPIC
+//> END TOPIC
 
 
 
@@ -190,6 +181,25 @@
 	second = B
 	track = route
 	excelsior_junctions.Add(src)
+
+
+//------------------------------------------| PATHFINDER - The act of finding |------------------------------------------
+//	/obj/item/centor_kpk/build_path(src, destination) ;*  <-- GUI
+/obj/item/centor_kpk/proc/build_path(mob/user as mob, var/obj/machinery/destination)
+	to_chat(user, SPAN_NOTICE(get_path(user, destination)))
+//	get_path()
+
+/obj/item/centor_kpk/proc/get_path(mob/user as mob, var/obj/machinery/destination)
+	var/obj/machinery/node/closest = locate(/obj/machinery/node) in orange(1, user.loc)
+	closest.sendPath(destination)
+	return
+
+
+
+/obj/item/centor_kpk/proc/finish_forming()
+	chosen_node = null
+
+
 
 
 
