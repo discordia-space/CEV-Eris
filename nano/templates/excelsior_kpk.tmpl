@@ -14,7 +14,7 @@ Used In File(s): code\game\machinery\excelsior\excelsior_items\KPK.dm
 	<ul>
 		<li>PROGRAMS:
 			<ul>
-				<li>{{:helper.komulink('Pathfinder', null, {'open_path_dio' : 1}, null)}}
+				<li>{{:helper.komulink('Build path', null, {'open_path_dio' : 1}, null)}}
 					{{if data.path_diologe}}
 					<ul>
 						<li>Start mapping a new path?</li>
@@ -31,6 +31,9 @@ Used In File(s): code\game\machinery\excelsior\excelsior_items\KPK.dm
 					</ul>
 					{{/if}}
 				</li>
+				{{for data.node_list}}
+				<li>{{:helper.komulink(value.name_n, null, value.commands_n, null)}}</li>
+				{{/for}}
 			</ul>
 		</li>
 	</ul>

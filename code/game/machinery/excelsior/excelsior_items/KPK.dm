@@ -41,6 +41,17 @@
 	data["current_path"] = current_route ? 1 : 0
 	data["current_node"] = chosen_node ? chosen_node.name : "ERR: NODE NOT FOUND"
 
+	var/list/node_list = list()
+	for(var/obj/machinery/node/noda in excelsior_nodes)
+		node_list += list(
+			list(
+				"name_n" = noda.name,
+				"commands_n" = list("see_path" = noda.uid)
+			)
+		)
+
+	data["node_list"] = node_list
+
 	return data
 
 /*************************************
@@ -80,6 +91,11 @@
 
 	if(href_list["cancel_pathfind"])
 		cancel_pathfind()
+
+	if(href_list["see_path"])
+		for(var/obj/machinery/node/noda in excelsior_nodes)
+			if(noda.uid == text2num(href_list["see_path"]))
+				build_path(usr, noda)
 
 	add_fingerprint(usr)
 	return TOPIC_HANDLED // update UIs attached to this object
@@ -185,7 +201,7 @@
 
 
 //------------------------------------------| PATHFINDER - The act of finding |------------------------------------------
-//	/obj/item/centor_kpk/build_path(src, destination) ;*  <-- GUI
+//	/obj/item/centor_kpk/build_path(usr, destination) ;*  <-- GUI
 /obj/item/centor_kpk/proc/build_path(mob/user as mob, var/obj/machinery/destination)
 	var/path_result = get_path(user, destination)
 	to_chat(user, SPAN_NOTICE(path_result))

@@ -96,12 +96,14 @@ Small Dictionary:
 	return  "Excelsior \"[pick(namelist)]-[rand(100, 999)]\" node"
 
 
-
+/obj/machinery/node/assign_uid()
+	uid = rand(1, 3000)
 
 
 /obj/machinery/node/Initialize(mapload, d)
 	. = ..()
 	name = make_name()
+	assign_uid()
 	excelsior_nodes.Add(src)
 	search_for_machines()
 	search_for_nodes()
@@ -441,5 +443,5 @@ Small Dictionary:
 		kpk.ihaveplacestobe = doroga
 		return
 	for(var/obj/machinery/node/noda in neighbours)
-		noda.sendPath(end, doroga)
+		noda.sendPath(end, doroga, kpk)
 
