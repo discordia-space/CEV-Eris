@@ -442,6 +442,9 @@ Small Dictionary:
 	if(src == end)
 		kpk.ihaveplacestobe = doroga
 		return
-	for(var/obj/machinery/node/noda in neighbours)
-		noda.sendPath(end, doroga, kpk)
+	for(var/datum/excelsior_junction/route in excelsior_junctions)
+		if(route.first == src) //there's a route coming FROM us to other node
+			route.second.sendPath(end, doroga, kpk) //send pathfinding signal to this other node
+		if(route.second == src) //there's a route coming TO us from other node
+			route.first.sendPath(end, doroga, kpk) //send pathfinding signal to this other node
 
