@@ -21,6 +21,7 @@
 	var/obj/machinery/node/chosen_node
 	var/obj/effect/effect/pathfinder_arrow/first/current_route
 	var/list/ihaveplacestobe = list()	//kpk receives a list from node to make a long fucking road
+	var/list/errors = list()
 
 /obj/item/centor_kpk/attack_self(mob/user)
 	. = ..()
@@ -40,6 +41,20 @@
 	data["path_diologe"] = path_diologe
 	data["current_path"] = current_route ? 1 : 0
 	data["current_node"] = chosen_node ? chosen_node.name : "ERR: NODE NOT FOUND"
+
+	var/list/error_list = list()
+	var/z_err = 10
+	for(var/error in errors)
+		z_err++
+		error_list += list(
+			list(
+				"z_err" = "style=\"z-index: [z_err];\"",
+				"text_err" = error,
+				"commands_err" = list("ok_error" = error)
+			)
+		)
+
+	data["error_list"] = error_list
 
 	var/list/node_list = list()
 	for(var/obj/machinery/node/noda in excelsior_nodes)
@@ -91,6 +106,9 @@
 
 	if(href_list["cancel_pathfind"])
 		cancel_pathfind()
+
+	if(href_list["ok_error"])
+		errors.Remove(href_list["ok_error"])
 
 	if(href_list["see_path"])
 		for(var/obj/machinery/node/noda in excelsior_nodes)

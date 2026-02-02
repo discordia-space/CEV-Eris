@@ -2,6 +2,15 @@
 Used In File(s): code\game\machinery\excelsior\excelsior_items\KPK.dm
  -->
 <div class="foreground scanlines biosfont">
+{{for data.error_list}}
+<div {{:value.z_err}} class="ex-popup">
+	<div class="ex-popup-content">
+		Error!<br><br>
+		{{:value.text_err}}<br><br>
+		{{:helper.komulink('OK', null, value.commands_err, null)}}
+	</div>
+</div>
+{{/for}}
 <div class="ex-border">
 	<div class="ex-title">
 	Welcome, Infiltrator
