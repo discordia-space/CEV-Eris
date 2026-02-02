@@ -237,19 +237,19 @@
 			var/order_energy_cost = materials_list[ordered_item]["price"]
 			var/order_path = material_stack_type(ordered_item)
 			var/order_amount = materials_list[ordered_item]["amount"]
-			send_order(order_path, order_energy_cost, order_amount)
+			send_order(order_path, order_energy_cost, order_amount, usr)
 
 	if(href_list["order_p"])
 		var/ordered_item = text2path(href_list["order_p"])
 		if (parts_list.Find(ordered_item))
 			var/order_energy_cost = parts_list[ordered_item]
-			send_order(ordered_item, order_energy_cost, 1)
+			send_order(ordered_item, order_energy_cost, 1, usr)
 
 	if(href_list["order_i"])
 		var/ordered_item = text2path(href_list["order_i"])
 		if (IKEA_list.Find(ordered_item))
 			var/order_energy_cost = IKEA_list[ordered_item]
-			send_order(ordered_item, order_energy_cost, 1)
+			send_order(ordered_item, order_energy_cost, 1, usr)
 
 	if(href_list["open_menu"])
 		nanoui_menu = 1
@@ -284,7 +284,7 @@
 		nanoui_data["available_mandates"] = available_mandates
 		nanoui_data["completed_mandates"] = completed_mandates
 
-/obj/machinery/complant_teleporter/proc/send_order(order_path, order_cost, amount)
+/obj/machinery/complant_teleporter/proc/send_order(order_path, order_cost, amount, mob/user)
 	if(order_cost > excelsior_energy)
 		to_chat(usr, SPAN_WARNING("Not enough energy."))
 		return
@@ -293,11 +293,13 @@
 	excelsior_energy = max(excelsior_energy - order_cost, 0)
 	flick("teleporting", src)
 	spawn(17)
-		complete_order(order_path, amount)
+		complete_order(order_path, amount, user)
 
-/obj/machinery/complant_teleporter/proc/complete_order(order_path, amount)
+/obj/machinery/complant_teleporter/proc/complete_order(order_path, amount, mob/user)
 	use_power(active_power_usage * 3)
-	new order_path(loc, amount)
+	var/obj/item/item = new order_path(loc, amount)
+	if(!user.put_in_hands(item))
+		item.forceMove(get_turf(src))
 	bluespace_entropy(entropy_value, get_turf(src))
 	processing_order = FALSE
 
