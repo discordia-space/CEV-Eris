@@ -424,7 +424,10 @@ Small Dictionary:
 
 
 
-/obj/effect/effect/excelsior_influence/Crossed(var/mob/living/intruder)		// # If a living mob steps on influence...
+/obj/effect/effect/excelsior_influence/Crossed(atom/movable/O)
+	var/mob/living/intruder = O												// # If a living mob steps on influence...
+	if(!intruder)
+		return
 	if(!is_excelsior(intruder))												// 	1.	If EXCELSIOR = STOP
 		if(!intruder.restrained() && !intruder.lying)						//	2.	Arrested/Unconcious/Crawling people? - don't care 					(intentional)
 			node.intruder_alert(intruder)									// 	3.	All good? report the good guy get his ass!!
