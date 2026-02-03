@@ -1,11 +1,11 @@
 /*
 Better info in centor.dm
 Don't get spooked - there's comments below
-*/
-/*
-Small Dictionary:
+
+
+# DICTIONARY:
 	Powered
-		- In the case of the node that means Centor is in Node's proximity
+		- In the case of the node that means Centor is in Node's spread_signal()
 			- Powered node:
 				- produces energy
 				- activates machinery linked to it (if such machinery needs node to work (e.g. turret))
@@ -20,7 +20,7 @@ Small Dictionary:
 	*	DEMONSTRATION:
 	*	Legend: C - Centor, X - unpowered node, N - powered node, --- connection(proximity)
 	*
-	*	2/3 nodes are powered from Centor:
+	*	2/3 existing nodes are powered from Centor, and one X is disconnected due to distance from core's appendage:
 	*	C --- N --- N     X
 	*
 */
@@ -30,9 +30,9 @@ Small Dictionary:
 /obj/machinery/node
 	name = "Excelsior \"Tochka\" node"
 	icon = 'icons/obj/machines/excelsior/redirector.dmi'	// TODO replace on finish
-	desc = "Nodes both amplify Centor's signals sent to Haven, providing consistent resupplies, and grant it control over turrets far away."
+	desc = "Glorified serverboxes put in a bulletproof shell, passing Centor's orders through a network chain."
 	icon_state = "redirector_finished"						// TODO replace on finish
-	description_info = "Nodes chain from Centor outwards, the more \"ship ground\" they cover - the better."
+	description_info = "Nodes provide teleportation power and activate turrets in a radius. They report any non-Excelsior units."
 	description_antag = "Node surface coverage can be seen with Excelsior HUD."
 	anchored = TRUE
 	density = TRUE
@@ -44,9 +44,10 @@ Small Dictionary:
 	var/obj/machinery/centor/core
 
 	//var/emplacement_storage = 4
-	var/list/localmarkerlist = list() 	/* On destroy() or "turning off" (only if disconnected from Centor's node chain) will...
-											> remove the whole local list (node) from global one (Centor interacts with it)
-											- Feature, cut off Excelsior's "logistics" and forward bases won't work */
+	var/list/localmarkerlist = list() 	/* On destroy() or "turning off" (if disconnected from Centor's node chain) will...
+											> remove the whole local list (node's) from global one (Centor interacts with it)
+											- Is Feature, cut off Excelsior's "logistics" and forward bases won't work :)
+										 */
 	var/list/activemarkerlist = list()
 	var/what_is_marker = /obj/effect/effect/excelsior_influence
 
@@ -55,7 +56,9 @@ Small Dictionary:
 	var/report_cooldown
 
 
-
+/*
+*	Basics
+*/
 
 
 
@@ -90,7 +93,13 @@ Small Dictionary:
 	"Arktur",
 	"Ilga",
 	"Tochka",
-	"Sovet")
+	"Sovet",
+	"Sakhar",
+	"Krona",
+	"Praktik",
+	"Kozyol",
+	""
+	)
 
 
 	return  "Excelsior \"[pick(namelist)]-[rand(100, 999)]\" node"
@@ -218,7 +227,7 @@ Small Dictionary:
 
 
 /obj/machinery/node/attack_hand(mob/user)
-//	. = ..()		//uncomment to give power consumption :)		(I dont want it now)
+//	. = ..()		// DONT uncomment, unless you wanna give it power consumption :)		(P.S. I DONT want that)
 	to_chat(user, "Linked machinery:")
 	for(var/obj/machinery/machine in linked)
 		to_chat(user, machine.name)
@@ -245,7 +254,7 @@ Small Dictionary:
 //Searches for other nodes EVEN BETWEEN Z LEVELS.
 /obj/machinery/node/proc/search_for_nodes()
 	for(var/obj/machinery/node/N in excelsior_nodes)
-		if(dist3D(src, N) <= EX_NODE_DISTANCE+1 && N != src)
+		if(dist3D(src, N) <= EX_NODE_DISTANCE*2 && N != src)
 			connect(N, TRUE)
 			N.connect(src, TRUE)
 			if(N.core)
@@ -296,17 +305,16 @@ Small Dictionary:
 	core.antennas_to_haven.Add(src)
 	for(var/obj/machinery/node/N in neighbours)
 		N.spread_signal(center)
-													//	> "Core+Node gameplay is defined by territorial control of excelsior
-													//	"cut off" nodes shouldn't be active (by design)" - me
+													// NOTE: "Core+Node gameplay is defined by territorial control of excelsior
 
 
 
 
 
 
-											/*****************************
-											 *	      Node Radio		 *
-											 *****************************/
+									/*
+									*	      Nodes speak into Excelsior comms
+									*/
 
 
 
@@ -316,10 +324,10 @@ Small Dictionary:
 
 //		- The act of yapping itself
 
-/obj/machinery/node/proc/talk(message)										// the act of yapping
+/obj/machinery/node/proc/talk(message)							// the act of yapping
 	var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
-	//if(!F)							//DEBUG REMOVE LATER AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-	//	return							//DEBUG REMOVE LATER AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+	//if(!F)							//DEBUG REMOVE COMMENT LATER AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+	//	return							//DEBUG REMOVE COMMENT LATER AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	F.communicate_inanimate(src, message)
 
 
@@ -328,14 +336,14 @@ Small Dictionary:
 
 /obj/machinery/node/proc/intruder_alert(var/mob/living/intruder)
 																// TO IMPLEMENT: Ask Node what the human has in weapons through KPK
-	if(world.time - report_cooldown >= 15 SECONDS)				// Don't report the same person twice in x seconds
+	if(world.time - report_cooldown >= 15 SECONDS)	// Don't report the same person twice in x seconds
 		intruder_list = list()
 		report_cooldown = world.time
 
 	if(intruder_list.Find(intruder))	// We don't need the same guy reported
-		return						//
+		return
 	if(istype(intruder, /mob/living/carbon/human))
-		if(intruder.stats.getPerk(PERK_VAGABOND) || intruder.name == "Unknown")	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!WARNINGWARNINGWARNING FUCKING CHECK THIS IN GAME ACTUALLY		//vagabonds have long job titles
+		if(intruder.stats.getPerk(PERK_VAGABOND) || intruder.name == "Unknown")
 			talk("A non-crew enemy human [intruder.name] spotted at [name]")
 			intruder_list.Add(intruder)
 			return
@@ -358,7 +366,7 @@ Small Dictionary:
 
 
 												/******************************
- 														   Influence
+ 												*		   Influence		  *
  												*******************************/
 
 /* [?] INFLUENCE is an invisible zone, that produces Excelsior energy for Excelsior
@@ -366,12 +374,12 @@ Small Dictionary:
 							[_excelsior_defines.dm]
 		2.	INFLUENCE checks the turf it stands on, if it has whitelisted turfs (floortiles & low walls)
 
-			- by design walls and space aren't rewarded as owning territory
+			- by design walls and space aren't rewarded as owning territory.
 
 		3.	CORE gives Excelsior energy
 */
 
-/obj/effect/effect/excelsior_influence	//zone								//	# Visible on Excel HUD. (voidsuit)
+/obj/effect/effect/excelsior_influence	//zone make excel energy :)			//	# Visible on Excel HUD. (voidsuit)
 	var/active = FALSE														// 	- To find the HUD code do either:
 	var/obj/machinery/node/node												//		> Search by "process_excel_hud" in
 																			//		> hud.dm [code\defines\procs][line 60~]
@@ -379,7 +387,7 @@ Small Dictionary:
 
 
 
-/obj/effect/effect/excelsior_influence/New(loc, var/obj/machinery/node/creator)		// > All the thinking is done at define_influence()
+/obj/effect/effect/excelsior_influence/New(loc, var/obj/machinery/node/creator)		// > Code 1 layer above is define_influence()
 	..(loc)
 	icon = null
 	icon_state = null
@@ -389,7 +397,7 @@ Small Dictionary:
 																					//	1.	Sends a COMSIG_TURF_LEVELUPDATE signal
 																					//	To every obj standing on top
 																					//	2.	It's up to obj to receive that signal
-																					//	3.	Marker receives that node >> validate()
+																					//	3.	Marker receives that signal >> validate()
 
 
 
@@ -409,10 +417,10 @@ Small Dictionary:
         Destroy()
         return
     var/turf/my_turf = get_turf(src)
-    for(var/type in excelsior_turf_whitelist)				//	...It's insides match whitelist?
+    for(var/type in excelsior_turf_whitelist)				//	...It's insides match whitelist
         if(istype(my_turf, type))							//		Everything inside whitelist is "influence tiles"
             active = TRUE									//		We chose it to be floors and low walls. Walls are punished we hate walls.
-            if(!node.activemarkerlist.Find(src))			//		That may change because of YOU you stinky game designer, that's why it exists.
+            if(!node.activemarkerlist.Find(src))			//		That may change because of YOU, you stinky game designer, that's why the list exists.
                 node.activemarkerlist.Add(src)
             return TRUE
     active = FALSE
@@ -425,8 +433,10 @@ Small Dictionary:
 
 
 /obj/effect/effect/excelsior_influence/Crossed(atom/movable/O)
-	var/mob/living/intruder = O												// # If a living mob steps on influence...
+	var/mob/living/intruder = O
 	if(!intruder)
+		return
+	if(!istype(intruder, /mob))												//apparently var above didnt cut out flying cigarettes somehow
 		return
 	if(!is_excelsior(intruder))												// 	1.	If EXCELSIOR = STOP
 		if(!intruder.restrained() && !intruder.lying)						//	2.	Arrested/Unconcious/Crawling people? - don't care 					(intentional)

@@ -14,7 +14,7 @@ Contents:
 
 /obj/item/nodespawner
 	name = "\improper Node spawner"
-	desc = "Fuck my femboy life mane..."
+	desc = "Spawns Excelsior nodes wherever you click. Epic!!! Also can delete nodes if you click one"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcd"
 	opacity = 0

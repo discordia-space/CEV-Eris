@@ -1,8 +1,10 @@
 /*
-	Stage 1 - Foundation	<- YOU ARE HERE :)
-	Stage 2 - Production
-	S@*&#...
-																			ATTENTION!
+	................................................
+	.	ROADMAP - UPDATE: "STAGNANT DREAM"
+	.		Stage I - Foundation	<- YOU ARE HERE :)
+	.		Stage II - Production
+	.		S@*&#... - ...
+	................................................				ATTENTION!
 												For your convenience, below are structurized contents of Excelsior Code
 
 
@@ -14,25 +16,23 @@ _excelsior_defines.dm									- defines placed above cuz byond
 
 
 centor.dm 												- Excelsior AI core, generates excelsior power from Nodes
-node.dm 												- Generate power if connected to core,
-														be that directly or through the chain of them
+node.dm 												- Generate power if connected to core
 
 
 
-emplacement.dm											- Machinery transport system
+emplacement.dm											- Machinery transportation system
 excelsior_node.tmpl 									- Network UI code
 excelsior_researches.dm 								- Research tree, duh.  			(Well, you have all the blueprints...
 																									...it's just a weak Wi-Fi.)
-excelsior_items[folder] 										- NEW items, like COMPAQ and something else in the future
-															- "Why excelsior_items?"
-															> New items that will be related to the updates
-
-
-excelsior_debug_tools.dm 							- all debug tools we made and used in case you need it
+excelsior_items[folder] 										- NEW items, like KOMPAK and something else in the future
 
 
 
-[OLD CODE]----------------------------------------------
+excelsior_debug_tools.dm 							- all debug tools we made and used in case you need it dear slopper
+
+
+
+[OLD CODE]----------------------------------------------[NOTES]
 ex_teleporter.dm
 ex_turret.dm
 implantmaker.dm
@@ -58,6 +58,7 @@ var/global/excelsior_centor
 	health = 300
 	shipside_only = TRUE
 	var/list/obj/machinery/node/antennas_to_haven = list()
+	var/timer_set = world.time
 
 
 
@@ -87,7 +88,8 @@ var/global/excelsior_centor
 
 
 /obj/machinery/centor/Process()
-	collect_tax()																	// Only collects energy, the thinking is on node.dm
+	collect_tax()				// this is where we get energy :]
+	spawn_compact_node()
 
 
 
@@ -97,17 +99,22 @@ var/global/excelsior_centor
 	for(var/obj/machinery/complant_teleporter/tele in excelsior_teleporters)		// !! Debug - Remove on release
 		tele.old_energy = excelsior_energy											// !! Debug - Remove on release
 	for(var/obj/machinery/node/node in antennas_to_haven)
-		excelsior_energy += node.activemarkerlist.len
+		excelsior_energy += (node.activemarkerlist.len / node.localmarkerlist.len)	// +1 energy if all markers (influence) are active, see more at [node.dm]
 	if(excelsior_energy >= excelsior_max_energy)
 		excelsior_energy = excelsior_max_energy
 		return
+
+/obj/machinery/centor/proc/spawn_contact_node()
+	if(world.time > timer_set + EX_NODE_SPAWN_COOLDOWN)
+		//create node here
+		timer_set = world.time
 
 
 
 
 
 /obj/machinery/centor/attack_hand(mob/user)
-//	. = ..()		//uncomment to give power consumption :)		(I dont want it now)
+//	. = ..()		//uncomment to give power consumption :)	(I dont want it...)
 	load_network()
 	nano_ui_interact(user)
 
