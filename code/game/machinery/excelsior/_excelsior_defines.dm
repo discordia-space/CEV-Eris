@@ -8,7 +8,7 @@
 
 
 	// Centor spawns 1 node every...
-#define EX_NODE_SPAWN_COOLDOWN 180 // 3 MINUTES [spawn()]
+#define EX_NODE_SPAWN_COOLDOWN 3 MINUTES
 
 //-------------------------------------------------------------------------
 

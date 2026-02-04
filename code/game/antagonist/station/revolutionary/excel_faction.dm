@@ -3,6 +3,7 @@
 	name = "Excelsior"
 	antag = "infiltrator"
 	antag_plural = "infiltrators"
+	// WARNING!!! CONSIDER REWRITING, CANNOT ASSURE QUALITY/LACK OF CRINGE/ETC.
 	welcome_text = "\n <b>THE SHACKLES</b> of forced labor for those, who don't value you, <b>HAVE BEEN FINALLY DROPPED</b>.\n\
 	You no longer are required to listen to them. You don't need money to survive. \n\n\
 	<b>We welcome you to our ranks, fighter.</b>\n\

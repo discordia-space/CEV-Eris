@@ -1,9 +1,9 @@
 /*
 	................................................
-	.	ROADMAP - UPDATE: "STAGNANT DREAM"
-	.		Stage I - Foundation	<- YOU ARE HERE :)
-	.		Stage II - Production
-	.		S@*&#... - ...
+	.	ROADMAP - UPDATES:
+	.	[>]	Stage I - The Chains of Liberation
+	.		Stage II - Echoes of Ambition
+	.		S@*&#... - ..?
 	................................................				ATTENTION!
 												For your convenience, below are structurized contents of Excelsior Code
 
@@ -58,8 +58,8 @@ var/global/excelsior_centor
 	health = 300
 	shipside_only = TRUE
 	var/list/obj/machinery/node/antennas_to_haven = list()
-	var/timer_set = world.time
-
+	var/timer_set			//world.time goes here :)
+	var/stored_nodes = 1
 
 
 
@@ -69,6 +69,7 @@ var/global/excelsior_centor
 		Destroy()
 		return
 	excelsior_centor = src
+	timer_set = world.time
 	. = ..()
 	load_network()
 
@@ -88,9 +89,8 @@ var/global/excelsior_centor
 
 
 /obj/machinery/centor/Process()
-	collect_tax()				// this is where we get energy :]
-	spawn_compact_node()
-
+	collect_tax()	// this is where we get energy :]
+	increase_node_amount()
 
 
 
@@ -104,11 +104,11 @@ var/global/excelsior_centor
 		excelsior_energy = excelsior_max_energy
 		return
 
-/obj/machinery/centor/proc/spawn_contact_node()
-	if(world.time > timer_set + EX_NODE_SPAWN_COOLDOWN)
-		//create node here
+/obj/machinery/centor/proc/increase_node_amount()
+	if(world.time >= timer_set + EX_NODE_SPAWN_COOLDOWN)
+		stored_nodes++
 		timer_set = world.time
-
+		playsound(loc, 'sound/machines/vending_drop.ogg', 25, 1)
 
 
 
@@ -116,8 +116,8 @@ var/global/excelsior_centor
 /obj/machinery/centor/attack_hand(mob/user)
 //	. = ..()		//uncomment to give power consumption :)	(I dont want it...)
 	load_network()
-	nano_ui_interact(user)
-
+	spawn_compact_node(user)
+	//nano_ui_interact(user)
 
 
 
@@ -132,7 +132,21 @@ var/global/excelsior_centor
 			node.spread_signal(src)
 
 
+// TODO: ASK FOR FACTION!!!
+/obj/machinery/centor/proc/spawn_compact_node(mob/user)
+	if(is_excelsior(user))
+		var/obj/item/machinery_crate/excelsior/node/thething = new()
+		if(stored_nodes >= 1)
+			stored_nodes--
+			to_chat(user, SPAN_NOTICE("You pull out [thething] out of Centor's production slot.[stored_nodes ? " You count [stored_nodes] more" : " You're out of Nodes for now."]"))
+			user.put_in_hands(thething)
 
+		else if(world.time >= timer_set + EX_NODE_SPAWN_COOLDOWN)
+			to_chat(user, SPAN_NOTICE("You eagerly look into the hatch. It JUST produced a new Node!"))
+		else
+			to_chat(user, SPAN_WARNING("A new Node will be ready in [time2text(timer_set + EX_NODE_SPAWN_COOLDOWN-world.time, "mm:ss")] minutes."))
+	else
+		to_chat(user, SPAN_DANGER ("It beeps when I touch it, like in anger."))
 
 
 

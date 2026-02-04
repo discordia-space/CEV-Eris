@@ -461,3 +461,12 @@ Don't get spooked - there's comments below
 		if(route.second == src) //there's a route coming TO us from other node
 			route.first.sendPath(end, doroga, kpk) //send pathfinding signal to this other node
 
+/*
+*	Packaged Node
+*/
+
+
+/obj/item/machinery_crate/excelsior/node/
+    name = "Excelsior Node Package"
+    machine_name = "Excelsior Node Package"
+    constructing_machine = /obj/machinery/node
