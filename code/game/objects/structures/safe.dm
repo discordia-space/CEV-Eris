@@ -134,7 +134,7 @@ FLOOR SAFES
 		return
 
 	if(href_list["retrieve"])
-		user << browse("", "window=safe") // Close the menu
+		user << browse(null, "window=safe") // Close the menu
 
 		var/obj/item/P = locate(href_list["retrieve"]) in src
 		if(open)
