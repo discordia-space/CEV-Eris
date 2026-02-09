@@ -79,7 +79,7 @@
 		if(mode == i)
 			t += "<b>[reagent_names[i]]</b>"
 		else
-			t += "<a href='?src=\ref[src];reagent=[reagent_ids[i]]'>[reagent_names[i]]</a>"
+			t += "<a href='byond://?src=\ref[src];reagent=[reagent_ids[i]]'>[reagent_names[i]]</a>"
 	t = "Available reagents: [t]."
 	to_chat(user, t)
 

@@ -3,7 +3,7 @@
 
 /datum/objective/assassinate/marshal/get_panel_entry()
 	var/target = src.target ? "[src.target.current.real_name], the [src.target.assigned_role]" : "no_target"
-	return "You are after the fugitive <a href='?src=\ref[src];switch_target=1'>[target]</a>."
+	return "You are after the fugitive <a href='byond://?src=\ref[src];switch_target=1'>[target]</a>."
 
 /datum/objective/assassinate/marshal/get_info()
 	if(target)

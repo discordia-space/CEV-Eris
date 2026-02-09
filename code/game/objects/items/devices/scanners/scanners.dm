@@ -45,7 +45,7 @@
 	popup.open()
 
 /obj/item/device/scanner/proc/get_header()
-	return "<a href='?src=\ref[src];print=1'>Print Report</a><a href='?src=\ref[src];clear=1'>Clear data</a>"
+	return "<a href='byond://?src=\ref[src];print=1'>Print Report</a><a href='byond://?src=\ref[src];clear=1'>Clear data</a>"
 
 /obj/item/device/scanner/proc/can_use(mob/user)
 	if (user.incapacitated())

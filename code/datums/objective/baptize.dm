@@ -2,7 +2,7 @@
 
 /datum/objective/baptize/get_panel_entry()
 	var/target = src.target ? "[src.target.current.real_name], the [src.target.assigned_role]" : "no_target"
-	return "Baptize <a href='?src=\ref[src];switch_target=1'>[target]</a>."
+	return "Baptize <a href='byond://?src=\ref[src];switch_target=1'>[target]</a>."
 
 /datum/objective/baptize/update_explanation()
 	if(target && target.current)

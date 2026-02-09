@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 			continue
 
 		if(O.client)
-			to_chat(O, "[request_string] <a href='?src=\ref[src];candidate=\ref[O];target=\ref[target]'>(Occupy)</a> ([ghost_follow_link(target, O)])")
+			to_chat(O, "[request_string] <a href='byond://?src=\ref[src];candidate=\ref[O];target=\ref[target]'>(Occupy)</a> ([ghost_follow_link(target, O)])")
 
 /datum/ghosttrap/proc/target_destroyed(var/destroyed_target)
 	request_timeouts -= destroyed_target

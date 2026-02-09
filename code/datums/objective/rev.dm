@@ -4,7 +4,7 @@
 
 /datum/objective/faction/excelsior/get_panel_entry()
 	var/target = src.target ? "[src.target.current.real_name], the [src.target.assigned_role]" : "no_target"
-	return "Assassinate, capture or convert <a href='?src=\ref[src];switch_target=1'>[target]</a>."
+	return "Assassinate, capture or convert <a href='byond://?src=\ref[src];switch_target=1'>[target]</a>."
 
 /datum/objective/faction/excelsior/update_explanation()
 	if(target && target.current)

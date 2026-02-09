@@ -103,9 +103,9 @@
 			if(free_languages[lang])
 				LAZYADD(., "- [lang] (required).<br>")
 			else
-				LAZYADD(., "- [lang] <a href='?src=\ref[src];remove_language=[i]'>Remove.</a><br>")
+				LAZYADD(., "- [lang] <a href='byond://?src=\ref[src];remove_language=[i]'>Remove.</a><br>")
 	if(pref.alternate_languages.len < MAX_LANGUAGES)
 		var/remaining_langs = MAX_LANGUAGES - pref.alternate_languages.len
-		LAZYADD(., "- <a href='?src=\ref[src];add_language=1'>add</a> ([remaining_langs] remaining)<br>")
+		LAZYADD(., "- <a href='byond://?src=\ref[src];add_language=1'>add</a> ([remaining_langs] remaining)<br>")
 
 #undef MAX_LANGUAGES

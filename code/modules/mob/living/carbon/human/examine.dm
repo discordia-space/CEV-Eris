@@ -293,9 +293,9 @@
 			var/datum/computer_file/report/crew_record/R = get_crewmember_record(perpname)
 			criminal = R ? R.get_criminalStatus() : "None"
 
-			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
-			msg += {"<span class = 'deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];viewbrief=`'>\[View Brief\]</a>
-			  <a href='?src=\ref[src];secnoteadd=`'>\[Add Note\]</a>\n"}
+			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='byond://?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
+			msg += {"<span class = 'deptradio'>Security records:</span> <a href='byond://?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='byond://?src=\ref[src];viewbrief=`'>\[View Brief\]</a>
+			  <a href='byond://?src=\ref[src];secnoteadd=`'>\[Add Note\]</a>\n"}
 
 	if(hasHUD(user, "medical"))
 		var/perpname = "wot"
@@ -310,8 +310,8 @@
 		var/datum/computer_file/report/crew_record/E = get_crewmember_record(perpname)
 		medical = E.get_status()
 
-		msg += "<span class = 'deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>\n"
-		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a>\n"
+		msg += "<span class = 'deptradio'>Physical status:</span> <a href='byond://?src=\ref[src];medical=1'>\[[medical]\]</a>\n"
+		msg += "<span class = 'deptradio'>Medical records:</span> <a href='byond://?src=\ref[src];medrecord=`'>\[View\]</a>\n"
 
 		var/obj/item/clothing/under/U = w_uniform
 		if(U && istype(U) && U.sensor_mode >= 2)

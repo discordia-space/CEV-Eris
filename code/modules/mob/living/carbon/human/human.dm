@@ -252,31 +252,32 @@
 		if(slot in list(slot_l_store, slot_r_store))
 			continue
 		var/obj/item/thing_in_slot = get_equipped_item(slot)
-		dat += "<BR><B>[entry]:</b> <a href='?src=\ref[src];item=[slot]'>[istype(thing_in_slot) ? thing_in_slot : "nothing"]</a>"
+		dat += "<BR><B>[entry]:</b> <a href='byond://?src=\ref[src];item=[slot]'>[istype(thing_in_slot) ? thing_in_slot : "nothing"]</a>"
 
 	dat += "<BR><HR>"
 
 /*	if(species.hud.has_hands)
-		dat += "<BR><b>Left hand:</b> <A href='?src=\ref[src];item=[slot_l_hand]'>[istype(l_hand) ? l_hand : "nothing"]</A>"
-		dat += "<BR><b>Right hand:</b> <A href='?src=\ref[src];item=[slot_r_hand]'>[istype(r_hand) ? r_hand : "nothing"]</A>"*/
+		dat += "<BR><b>Left hand:</b> <a href='byond://?src=\ref[src];item=[slot_l_hand]'>[istype(l_hand) ? l_hand : "nothing"]</A>"
+		dat += "<BR><b>Right hand:</b> <a href='byond://?src=\ref[src];item=[slot_r_hand]'>[istype(r_hand) ? r_hand : "nothing"]</A>"
+		*/
 
 	// Do they get an option to set internals?
 	if(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/space))
 		if(istype(back, /obj/item/tank) || istype(belt, /obj/item/tank) || istype(s_store, /obj/item/tank))
-			dat += "<BR><A href='?src=\ref[src];item=internals'>Toggle internals.</A>"
+			dat += "<BR><a href='byond://?src=\ref[src];item=internals'>Toggle internals.</A>"
 
 	// Other incidentals.
 	if(handcuffed)
-		dat += "<BR><A href='?src=\ref[src];item=[slot_handcuffed]'>Handcuffed</A>"
+		dat += "<BR><a href='byond://?src=\ref[src];item=[slot_handcuffed]'>Handcuffed</A>"
 	if(legcuffed)
-		dat += "<BR><A href='?src=\ref[src];item=[slot_legcuffed]'>Legcuffed</A>"
+		dat += "<BR><a href='byond://?src=\ref[src];item=[slot_legcuffed]'>Legcuffed</A>"
 
 	if(suit && suit.accessories.len)
-		dat += "<BR><A href='?src=\ref[src];item=tie'>Remove accessory</A>"
-	dat += "<BR><A href='?src=\ref[src];item=splints'>Remove splints</A>"
-	dat += "<BR><A href='?src=\ref[src];item=pockets'>Empty pockets</A>"
-	dat += "<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>"
-	dat += "<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>"
+		dat += "<BR><a href='byond://?src=\ref[src];item=tie'>Remove accessory</A>"
+	dat += "<BR><a href='byond://?src=\ref[src];item=splints'>Remove splints</A>"
+	dat += "<BR><a href='byond://?src=\ref[src];item=pockets'>Empty pockets</A>"
+	dat += "<BR><a href='byond://?src=\ref[user];refresh=1'>Refresh</A>"
+	dat += "<BR><a href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>"
 
 	var/datum/browser/panel = new(user, "mob[name]", "Mob", 340, 540)
 	panel.set_content(dat)
@@ -461,8 +462,8 @@ var/list/rank_prefix = list(\
 					for(var/iterator = min(Briefing.len-1, 3), iterator > -1, iterator -= 1)
 						combined.Add(Briefing[Briefing.len - iterator])
 					to_chat(usr, "Briefing latest: "+combined.Join(", "))
-				to_chat(usr, "<a href='?src=\ref[src];secnoteadd=`'>\[Add to Brief\]</a>")
-				to_chat(usr, "<a href='?src=\ref[src];viewbrief=1'>\[View Full Brief\]</a>")
+				to_chat(usr, "<a href='byond://?src=\ref[src];secnoteadd=`'>\[Add to Brief\]</a>")
+				to_chat(usr, "<a href='byond://?src=\ref[src];viewbrief=1'>\[View Full Brief\]</a>")
 				read = 1
 
 			if(!read)

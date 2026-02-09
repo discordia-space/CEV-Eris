@@ -2,7 +2,7 @@
 	explanation_text = "Only gods know what you should do."
 
 /datum/objective/custom/get_panel_entry()
-	return "[explanation_text]</br><a href='?src=\ref[src];set_explane=1'>Change explanation text</a>"
+	return "[explanation_text]</br><a href='byond://?src=\ref[src];set_explane=1'>Change explanation text</a>"
 
 /datum/objective/custom/Topic(href, href_list)
 	if(..())

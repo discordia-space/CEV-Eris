@@ -60,7 +60,7 @@
 					</td>
 					<td width='50%'>
 						<div align='center'>
-							<a href='?_src_=vars;datumrefresh=\ref[D]'>Refresh</a>
+							<a href='byond://?_src_=vars;datumrefresh=\ref[D]'>Refresh</a>
 							<form>
 								<select name='file'
 								        size='1'
@@ -136,12 +136,12 @@
 	else if(istype(value, /datum))
 		var/datum/DA = value
 		if("[DA]" == "[DA.type]" || !"[DA]")
-			vtext = "<a href='?_src_=vars;Vars=\ref[DA]'>\ref[DA]</a> - [DA.type]"
+			vtext = "<a href='byond://?_src_=vars;Vars=\ref[DA]'>\ref[DA]</a> - [DA.type]"
 		else
-			vtext = "<a href='?_src_=vars;Vars=\ref[DA]'>\ref[DA]</a> - [DA] ([DA.type])"
+			vtext = "<a href='byond://?_src_=vars;Vars=\ref[DA]'>\ref[DA]</a> - [DA] ([DA.type])"
 	else if(istype(value, /client))
 		var/client/C = value
-		vtext = "<a href='?_src_=vars;Vars=\ref[C]'>\ref[C]</a> - [C] ([C.type])"
+		vtext = "<a href='byond://?_src_=vars;Vars=\ref[C]'>\ref[C]</a> - [C] ([C.type])"
 	else if(islist(value))
 		var/list/L = value
 		vtext = "/list ([L.len])"
@@ -164,9 +164,9 @@
 
 	if(D)
 		ecm = {"
-			(<a href='?_src_=vars;datumedit=\ref[D];varnameedit=[varname]'>E</a>)
-			(<a href='?_src_=vars;datumchange=\ref[D];varnamechange=[varname]'>C</a>)
-			(<a href='?_src_=vars;datummass=\ref[D];varnamemass=[varname]'>M</a>)
+			(<a href='byond://?_src_=vars;datumedit=\ref[D];varnameedit=[varname]'>E</a>)
+			(<a href='byond://?_src_=vars;datumchange=\ref[D];varnamechange=[varname]'>C</a>)
+			(<a href='byond://?_src_=vars;datummass=\ref[D];varnamemass=[varname]'>M</a>)
 			"}
 
 	var/valuestr = make_view_variables_value(value, varname)

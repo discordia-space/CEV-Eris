@@ -11,7 +11,7 @@ var/savefile/Banlist
 	. = list()
 	var/appeal
 	if(config && config.banappeals)
-		appeal = "\nFor more information on your ban, or to appeal, head to <a href='[config.banappeals]'>[config.banappeals]</a>"
+		appeal = "\nFor more information on your ban, or to appeal, head to <a href='byond://[config.banappeals]'>[config.banappeals]</a>"
 	Banlist.cd = "/base"
 	if( "[ckey][id]" in Banlist.dir )
 		Banlist.cd = "[ckey][id]"
@@ -189,7 +189,7 @@ var/savefile/Banlist
 			if(!expiry)		expiry = "Removal Pending"
 		else				expiry = "Permaban"
 
-		dat += text("<tr><td><A href='?src=[ref];unbanf=[key][id]'>(U)</A><A href='?src=[ref];unbane=[key][id]'>(E)</A> Key: <B>[key]</B></td><td>ComputerID: <B>[id]</B></td><td>IP: <B>[ip]</B></td><td> [expiry]</td><td>(By: [by])</td><td>(Reason: [reason])</td></tr>")
+		dat += text("<tr><td><a href='byond://?src=[ref];unbanf=[key][id]'>(U)</A><a href='byond://?src=[ref];unbane=[key][id]'>(E)</A> Key: <B>[key]</B></td><td>ComputerID: <B>[id]</B></td><td>IP: <B>[ip]</B></td><td> [expiry]</td><td>(By: [by])</td><td>(Reason: [reason])</td></tr>")
 
 	dat += "</table>"
 	dat = "<HR><B>Bans:</B> <FONT COLOR=blue>(U) = Unban , (E) = Edit Ban</FONT> - <FONT COLOR=green>([count] Bans)</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"

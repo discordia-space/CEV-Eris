@@ -25,15 +25,15 @@
 	else
 		if(pref.med_record)
 			. += "Medical Records: "
-			. += "<a href='?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br>"
+			. += "<a href='byond://?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br>"
 		if(pref.gen_record)
 			. += "Employment Records: "
-			. += "<a href='?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record,40)]</a><br>"
+			. += "<a href='byond://?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record,40)]</a><br>"
 		if(pref.sec_record)
 			. += "Security Records: "
-			. += "<a href='?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br>"
+			. += "<a href='byond://?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br>"
 		. += "Memory: "
-		. += "<a href='?src=\ref[src];set_memory=1'>[TextPreview(pref.memory,40)]</a><br>"
+		. += "<a href='byond://?src=\ref[src];set_memory=1'>[TextPreview(pref.memory,40)]</a><br>"
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/background/records/OnTopic(var/href,var/list/href_list, var/mob/user)

@@ -74,7 +74,7 @@ SUBSYSTEM_DEF(statverbs)
 	if(statverbs && statverbs.len)
 		. = "Apply: "
 		for(var/stat in statverbs)
-			. += " <a href='?src=\ref[src];statverb=[stat];obj_name=[src]'>[stat]</a>"
+			. += " <a href='byond://?src=\ref[src];statverb=[stat];obj_name=[src]'>[stat]</a>"
 
 /atom/Topic(href, href_list)
 	. = ..()

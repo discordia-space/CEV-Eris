@@ -200,7 +200,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 
 /proc/storyteller_button()
 	if(GLOB.storyteller)
-		return "<a href='?src=\ref[GLOB.storyteller];panel=1'>\[STORY\]</a>"
+		return "<a href='byond://?src=\ref[GLOB.storyteller];panel=1'>\[STORY\]</a>"
 	else
 		return "<s>\[STORY\]</s>"
 

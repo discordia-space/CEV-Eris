@@ -249,11 +249,11 @@
 	if(key)
 		if(C?.holder && C.holder.fakekey && !include_name)
 			if(include_link)
-				. += "<a href='?priv_msg=[REF(C)]'>"
+				. += "<a href='byond://?priv_msg=[REF(C)]'>"
 			. += "Administrator"
 		else
 			if(include_link)
-				. += "<a href='?priv_msg=[REF(ckey)]'>"
+				. += "<a href='byond://?priv_msg=[REF(ckey)]'>"
 			. += key
 		if(!C)
 			. += "\[DC\]"

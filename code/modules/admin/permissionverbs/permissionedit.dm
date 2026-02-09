@@ -38,7 +38,7 @@
 
 		output += "<tr>"
 		output += "<td style='text-align:right;'>[admin_ckey] <a class='small' href='?src=\ref[src];editrights=remove;ckey=[admin_ckey]'>\[-\]</a></td>"
-		output += "<td><a href='?src=\ref[src];editrights=rank;ckey=[admin_ckey]'>[rank]</a></td>"
+		output += "<td><a href='byond://?src=\ref[src];editrights=rank;ckey=[admin_ckey]'>[rank]</a></td>"
 		output += "<td><a class='small' href='?src=\ref[src];editrights=permissions;ckey=[admin_ckey]'>[rights]</a></td>"
 		output += "</tr>"
 

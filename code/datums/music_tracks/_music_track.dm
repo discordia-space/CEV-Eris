@@ -16,6 +16,6 @@
 	if(url)
 		to_chat(listener, url)
 
-	to_chat(listener, "<span class='good'>Licence: <a href='[licence.url]'>[licence.name]</a></span>")
+	to_chat(listener, "<span class='good'>Licence: <a href='byond://[licence.url]'>[licence.name]</a></span>")
 	sound_to(listener, sound(song, repeat = 1, wait = 0, volume = volume, channel = GLOB.lobby_sound_channel))
 
