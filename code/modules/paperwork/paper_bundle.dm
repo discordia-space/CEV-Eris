@@ -166,7 +166,7 @@
 			to_chat(usr, SPAN_NOTICE("You remove the [W.name] from the bundle."))
 
 			if(pages.len <= 1)
-				var/obj/item/paper/P = src[1]
+				var/obj/item/paper/P = pages[1]
 				usr.drop_from_inventory(src)
 				usr.put_in_hands(P)
 				qdel(src)
