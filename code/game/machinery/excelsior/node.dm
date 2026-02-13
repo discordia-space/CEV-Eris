@@ -30,7 +30,7 @@ Don't get spooked - there's comments below
 /obj/machinery/node
 	name = "Excelsior \"Tochka\" node"
 	icon = 'icons/obj/machines/excelsior/redirector.dmi'	// TODO replace on finish
-	desc = "Glorified serverboxes put in a bulletproof shell, passing Centor's orders through a network chain."
+	desc = "Glorified serverboxes put in a bulletproof shell, passing Centor's orders through a network chain." // TODO: Replace desc
 	icon_state = "redirector_finished"						// TODO replace on finish
 	description_info = "Nodes provide teleportation power and activate turrets in a radius. They report any non-Excelsior units."
 	description_antag = "Node surface coverage can be seen with Excelsior HUD."
