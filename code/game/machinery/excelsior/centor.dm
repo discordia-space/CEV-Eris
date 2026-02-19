@@ -1,9 +1,9 @@
 /*
 	................................................
 	.	ROADMAP - UPDATES:
-	.	[>]	Stage I - The Chains of Liberation
-	.		Stage II - Echoes of Ambition
-	.		S@*&#... - ..?
+	.	[>]	Stage I
+	.		Stage II
+	.		S@*&#...
 	................................................				ATTENTION!
 												For your convenience, below are structurized contents of Excelsior Code
 
@@ -48,10 +48,12 @@ boombox.dm
 var/global/excelsior_centor
 
 /obj/machinery/centor
-	name = "Excelsior \"Centor\" node"								// TODO consider changing a name just in case
-	icon = 'icons/obj/machines/excelsior/central.dmi'
-	desc = "An Excelsior AI, reaching far away for the Haven."		// TODO ensure this is fine
-	icon_state = "centor"
+	name = "Excelsior \"Centor\" core"								// TODO consider changing a name just in case
+	icon = 'icons/obj/machines/excelsior/corenode/centor.dmi'
+	desc = "Metallic mind, it's silent thoughts reaching far away to the Haven."		// TODO ensure this is fine
+	description_info = "Source of power for teleporters, "
+	description_antag = "But with it - find strenght to keep going."
+	icon_state = "static"
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/electronics/circuitboard/centor
@@ -60,14 +62,82 @@ var/global/excelsior_centor
 	var/list/obj/machinery/node/antennas_to_haven = list()
 	var/timer_set			//world.time goes here :)
 	var/stored_nodes = 1
+	layer = 5
+	var/cutscene = FALSE // if false = add eye overlay
 
 
+// FLUFFY ANIMATION :3 //
+/obj/machinery/centor/proc/start_cutscene()
+	cutscene = TRUE
+	update_icon()
+
+/obj/machinery/centor/update_icon()
+	overlays.Cut()
+	if(!cutscene)
+		overlays += "idle_anim"
+	else
+		overlays.Cut()
+
+/obj/machinery/centor/proc/deploy_animation()	// pop up from the hatch
+	start_cutscene()
+	icon_state = "static"
+	flick("deployment", src)
+	spawn(1 SECOND)
+		end_cutscene()
+
+/obj/machinery/centor/proc/give_me_nodes_animation()
+	var/many_nodes = stored_nodes + 1 SECOND
+	if(!cutscene && stored_nodes >= 1)			// !cutscene is anti-spamclick
+		start_cutscene()
+		icon_state = "undeployed"
+		flick("hide", src)
+		spawn(2 SECONDS)
+			flick("open_hatch", src)
+			icon_state = "hatch"
+			spawn(1 SECOND)
+				for(var/i = 0, i < stored_nodes, i++)
+					spawn(i)
+						var/obj/item/machinery_crate/excelsior/node/goodbye = new(loc)
+						goodbye.throw_at(get_edge_target_turf(goodbye, rand(1, 10)), 2, 1)
+						stored_nodes--
+			spawn(many_nodes)
+				flick("close_hatch", src)
+				icon_state = "undeployed"
+				spawn(1 SECOND)
+					flick("deployment", src)
+					icon_state = "static"
+					end_cutscene()
+		return 1
+	return 0
+
+/obj/machinery/centor/proc/looking_around()
+	if(!cutscene)
+		overlays += "idle_anim"
+		spawn(17)	// ^ anim lenght
+			update_icon()
+
+/obj/machinery/centor/proc/investigating(atom/overhere) // someone's down... what? what was that? whawasat? hey you okay? BREACHING THE DOOR!!!
+	if(!cutscene)
+		start_cutscene()
+		overlays += image(icon, loc, "dirs", 5, get_dir(src, overhere))
+		spawn(1 SECOND)
+			end_cutscene()
+
+
+
+
+/obj/machinery/centor/proc/end_cutscene()
+	cutscene = FALSE
+	update_icon()
+
+// YOUR ANIMATIONS END HERE //
 
 
 /obj/machinery/centor/Initialize(mapload, d)
 	if(excelsior_centor)
 		Destroy()
 		return
+	deploy_animation()
 	excelsior_centor = src
 	timer_set = world.time
 	. = ..()
@@ -89,6 +159,8 @@ var/global/excelsior_centor
 
 
 /obj/machinery/centor/Process()
+	if(prob(5))
+		looking_around()
 	collect_tax()	// this is where we get energy :]
 	increase_node_amount()
 
@@ -135,18 +207,23 @@ var/global/excelsior_centor
 // TODO: ASK FOR FACTION!!!
 /obj/machinery/centor/proc/spawn_compact_node(mob/user)
 	if(is_excelsior(user))
-		var/obj/item/machinery_crate/excelsior/node/thething = new()
-		if(stored_nodes >= 1)
-			stored_nodes--
-			to_chat(user, SPAN_NOTICE("You pull out [thething] out of Centor's production slot.[stored_nodes ? " You count [stored_nodes] more" : " You're out of Nodes for now."]"))
-			user.put_in_hands(thething)
-
-		else if(world.time >= timer_set + EX_NODE_SPAWN_COOLDOWN)
-			to_chat(user, SPAN_NOTICE("You eagerly look into the hatch. It JUST produced a new Node!"))
+		if(cutscene)
+			to_chat(user, SPAN_EXCEL_NOTIF("Please, wait... Can't pay attention now."))
+			return
+		if(!give_me_nodes_animation())
+			if(world.time >= timer_set + EX_NODE_SPAWN_COOLDOWN)
+				to_chat(user, SPAN_NOTICE("<h1>Come on, come on, give me the damn thing already!</h1>"))	// resolves a bug with timer :)
+			else
+				to_chat(user, SPAN_WARNING("A new node will be ready in [time2text(timer_set + EX_NODE_SPAWN_COOLDOWN-world.time, "mm:ss")] minutes."))
+				investigating(user)
+//		else
+//
 		else
-			to_chat(user, SPAN_WARNING("A new Node will be ready in [time2text(timer_set + EX_NODE_SPAWN_COOLDOWN-world.time, "mm:ss")] minutes."))
+			to_chat(user, SPAN_NOTICE("You pat Centor - it understands, and goes away to give you equipment..."))
+			visible_message()
 	else
-		to_chat(user, SPAN_DANGER ("It beeps when I touch it, like in anger."))
+		to_chat(user, SPAN_NOTICE ("It doesn't want me harm."))
+		investigating(user)
 
 
 
