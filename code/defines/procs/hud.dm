@@ -56,11 +56,6 @@ proc/process_excel_hud(mob/M, mob/Alt)
 			continue
 
 		P.Client.images += comrade.hud_list[EXCELSIOR_HUD]
-	for(var/obj/effect/effect/excelsior_influence/influence in P.Mob.in_view(P.Turf))
-		if(influence.active)
-			P.Client.images += image('icons/mob/hud.dmi', loc = influence, icon_state = "hudinfluence", layer = ON_MOB_HUD_LAYER)
-		else
-			P.Client.images += image('icons/mob/hud.dmi', loc = influence, icon_state = "hudinfluence_red", layer = ON_MOB_HUD_LAYER)
 
 datum/arranged_hud_process
 	var/client/Client
