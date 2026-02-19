@@ -44,7 +44,8 @@
 	if(anim)
 		invisibility = INVISIBILITY_MAXIMUM
 		var/atom/movable/overlay/animation = new(loc)
-		animation.icon = 'icons/obj/machinery_crates.dmi'
+		animation.icon = icon
+		animation.layer = layer
 		animation.master = src
 		animation.density = TRUE
 		flick(anim, animation)

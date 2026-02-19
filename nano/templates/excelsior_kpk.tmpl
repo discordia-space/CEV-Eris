@@ -40,9 +40,24 @@ Used In File(s): code\game\machinery\excelsior\excelsior_items\KPK.dm
 					</ul>
 					{{/if}}
 				</li>
+				<li>{{:helper.komulink('Find path', null, {'open_viewpath_dio' : 1}, null)}}
+				{{if data.viewpath_dio}}
+				<ul>
+				<li>{{:helper.komulink('Cancel', null, {'close_viewpath_dio' : 1}, null)}}</li>
 				{{for data.node_list}}
 				<li>{{:helper.komulink(value.name_n, null, value.commands_n, null)}}</li>
 				{{/for}}
+				</ul>
+				{{/if}}
+				</li>
+				<li>Mappings:
+					<ul>
+						<li>{{:helper.komulink('Toggle mappings', null, {'toggle_overlay' : 1}, null)}}</li>
+						<li>{{:helper.komulink('Clear mode', null, {'clear_overlay' : 1}, null)}}</li>
+						<li>{{:helper.komulink('Influence mode', null, {'influence_overlay' : 1}, null)}}</li>
+						<li>{{:helper.komulink('Pathfind mode', null, {'pathfind_overlay' : 1}, null)}}</li>
+					</ul>
+				</li>
 			</ul>
 		</li>
 	</ul>

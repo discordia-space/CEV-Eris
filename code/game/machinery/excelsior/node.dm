@@ -29,16 +29,19 @@ Don't get spooked - there's comments below
 
 /obj/machinery/node
 	name = "Excelsior \"Tochka\" node"
-	icon = 'icons/obj/machines/excelsior/redirector.dmi'	// TODO replace on finish
+	var/shortname = "Tochka-123"
+	icon = 'icons/obj/machines/excelsior/corenode/node.dmi'	// TODO replace on finish
 	desc = "Glorified serverboxes put in a bulletproof shell, passing Centor's orders through a network chain." // TODO: Replace desc
-	icon_state = "redirector_finished"						// TODO replace on finish
+	icon_state = "on"						// TODO replace on finish
 	description_info = "Nodes provide teleportation power and activate turrets in a radius. They report any non-Excelsior units."
 	description_antag = "Node surface coverage can be seen with Excelsior HUD."
 	anchored = TRUE
 	density = TRUE
 	circuit = /obj/item/electronics/circuitboard/excelsior_node
 	health = 300
+	maxHealth = 300
 	shipside_only = TRUE
+	layer = 5
 	var/list/obj/machinery/linked = list()
 	var/list/obj/machinery/node/neighbours = list()
 	var/obj/machinery/centor/core
@@ -97,12 +100,13 @@ Don't get spooked - there's comments below
 	"Sakhar",
 	"Krona",
 	"Praktik",
-	"Kozyol",
-	""
+	"Kozyol"
 	)
 
-
-	return  "Excelsior \"[pick(namelist)]-[rand(100, 999)]\" node"
+	var/newname = pick(namelist)
+	var/cifra = rand(100, 999)
+	name = "Excelsior \"[newname]-[cifra]\" node"
+	shortname = "[newname]-[cifra]"
 
 
 /obj/machinery/node/assign_uid()
@@ -111,7 +115,7 @@ Don't get spooked - there's comments below
 
 /obj/machinery/node/Initialize(mapload, d)
 	. = ..()
-	name = make_name()
+	make_name()
 	assign_uid()
 	excelsior_nodes.Add(src)
 	search_for_machines()
@@ -215,11 +219,18 @@ Don't get spooked - there's comments below
 
 
 /obj/machinery/node/update_icon()
-	. = ..()
+	overlays.Cut()
 	if(!core)
-		icon_state = "redirector_bent"
-	else
-		icon_state = "redirector_finished"
+		overlays += "off_overlay"
+	if(health <= max_health * 0.25)
+		icon_state = "damaged_heavy"
+		return
+	if(health <= max_health * 0.5)
+		icon_state = "damaged_moderate"
+		return
+	if(health <= max_health * 0.75)
+		icon_state = "damaged_light"
+		return
 
 
 
@@ -448,25 +459,32 @@ Don't get spooked - there's comments below
 
 //noda.sendPath("Artem-123", list())
 
-/obj/machinery/node/proc/sendPath(var/obj/machinery/node/end, var/list/doroga, var/obj/item/centor_kpk/kpk)
+/obj/machinery/node/proc/sendPath(var/obj/machinery/node/end, var/list/doroga, var/obj/item/centor_kpk/kpk, var/list/way_to_go = list())
 	if(src in doroga)
 		return
 	doroga.Add(src)
 	if(src == end)
-		kpk.ihaveplacestobe = doroga
+		kpk.ihaveplacestobe += way_to_go
 		return
 	for(var/datum/excelsior_junction/route in excelsior_junctions)
 		if(route.first == src) //there's a route coming FROM us to other node
-			route.second.sendPath(end, doroga, kpk) //send pathfinding signal to this other node
+			way_to_go.Add(route)
+			route.second.sendPath(end, doroga, kpk, way_to_go) //send pathfinding signal to this other node
 		if(route.second == src) //there's a route coming TO us from other node
-			route.first.sendPath(end, doroga, kpk) //send pathfinding signal to this other node
+			way_to_go.Add(route)
+			route.first.sendPath(end, doroga, kpk, way_to_go) //send pathfinding signal to this other node
 
 /*
 *	Packaged Node
 */
 
 
-/obj/item/machinery_crate/excelsior/node/
-    name = "Excelsior Node Package"
-    machine_name = "Excelsior Node Package"
-    constructing_machine = /obj/machinery/node
+/obj/item/machinery_crate/excelsior/node
+	name = "Excelsior Node Package"
+	machine_name = "Excelsior Node"
+	icon = 'icons/obj/machines/excelsior/corenode/node.dmi'
+	icon_state = "node_item"
+	anim = "deployment"
+	animation_duration = 17
+	layer = 5
+	constructing_machine = /obj/machinery/node
