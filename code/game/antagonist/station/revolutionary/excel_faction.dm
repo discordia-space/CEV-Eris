@@ -1,3 +1,5 @@
+var/global/was_centor_spawned = FALSE
+
 /datum/faction/excelsior
 	id = FACTION_EXCELSIOR
 	name = "Excelsior"
@@ -23,7 +25,7 @@
 
 	possible_antags = list(ROLE_EXCELSIOR_REV)
 	faction_datum_verbs = list(/datum/faction/excelsior/proc/communicate_verb,
-				/datum/faction/excelsior/proc/summon_stash)
+				/datum/faction/excelsior/proc/summon_centor)
 
 	var/stash_holder = null
 
@@ -72,6 +74,19 @@
 
 	F.communicate(usr)
 
+
+/datum/faction/excelsior/proc/summon_centor()
+
+	set name = "Summon Centor"
+	set category = "Cybernetics"
+
+	if(!was_centor_spawned)
+		/obj/machinery/centor.New(usr)
+		was_centor_spawned = TRUE
+	else
+		to_chat(usr, SPAN_EXCEL_NOTIF("You've already used the Centor assigned to you..."))
+
+/*
 /datum/faction/excelsior/proc/summon_stash()
 
 	set name = "Summon stash"
@@ -101,3 +116,5 @@
 
 	H.put_in_hands(stash)
 	F.stash_holder = H.real_name
+*/
+
