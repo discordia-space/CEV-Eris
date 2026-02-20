@@ -190,6 +190,8 @@ var/global/excelsior_centor
 		tele.old_energy = excelsior_energy											// !! Debug - Remove on release
 	for(var/obj/machinery/node/node in antennas_to_haven)
 		excelsior_energy += (node.activemarkerlist.len / node.localmarkerlist.len)	// +1 energy if all markers (influence) are active, see more at [node.dm]
+	for(var/route in excelsior_junctions)
+		excelsior_energy += 0.25
 	if(excelsior_energy >= excelsior_max_energy)
 		excelsior_energy = excelsior_max_energy
 		return
