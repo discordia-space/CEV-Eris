@@ -38,13 +38,14 @@ Don't get spooked - there's comments below
 	anchored = TRUE
 	density = TRUE
 	circuit = /obj/item/electronics/circuitboard/excelsior_node
-	health = 300
-	maxHealth = 300
+	health = 1200
+	maxHealth = 1200
 	shipside_only = TRUE
 	layer = 5
 	var/list/obj/machinery/linked = list()
 	var/list/obj/machinery/node/neighbours = list()
 	var/obj/machinery/centor/core
+	var/damage_report_cooldown = FALSE
 
 	//var/emplacement_storage = 4
 	var/list/localmarkerlist = list() 	/* On destroy() or "turning off" (if disconnected from Centor's node chain) will...
@@ -213,22 +214,68 @@ Don't get spooked - there's comments below
 	update_influence()
 */
 
+/obj/machinery/node/attackby(obj/item/I, mob/user)
+	if(user.a_intent == I_HELP)
+		if((QUALITY_WELDING in I.tool_qualities) && (health < maxHealth))
+			if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+				health += 200
+				if(health > maxHealth)
+					health = maxHealth
+				update_icon()
+		return 1
+	if (!(I.flags & NOBLUDGEON) && I.force)
+		//if the turret was attacked with the intention of harming it:
+		user.do_attack_animation(src)
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
+		/* Commented at the time for the lack of better sounds
+		if (take_damage(I.force * I.structure_damage_factor))
+			playsound(src, 'sound/weapons/smash.ogg', 70, 1)
+		else
+			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+		*/
+		take_damage(I.force * I.structure_damage_factor)
 
+	..()
 
+/obj/machinery/node/bullet_act(obj/item/projectile/Proj)
+	var/damage = Proj.get_structure_damage()
+	..()
+	take_damage(damage*Proj.structure_damage_factor)
 
+/obj/machinery/node/take_damage(amount)
+	if(!damage_report_cooldown)
+		talk("Node [shortname] reports an attack. Please assess the threat and respond if needed.")
+		damage_report_cooldown = TRUE
+		spawn(1 MINUTE)
+			if(src)
+				damage_report_cooldown = FALSE
+	if(!amount)
+		return FALSE	//No damage done. Used in attackby()
+	health -= amount
+	if(health <= 0)
+		die()
+	update_icon()
+	return TRUE	//Actual damage delt. Used in attackby()
+
+/obj/machinery/node/proc/die()
+	talk("Node [shortname] reported demolished at [get_area(src)]")
+	explosion(get_turf(src), 100, 50)
+	Destroy()
 
 /obj/machinery/node/update_icon()
 	overlays.Cut()
+	icon_state = "on"
+
 	if(!core)
 		overlays += "off_overlay"
-	if(health <= max_health * 0.25)
+	if(health <= maxHealth * 0.25)
 		icon_state = "damaged_heavy"
 		return
-	if(health <= max_health * 0.5)
+	if(health <= maxHealth * 0.5)
 		icon_state = "damaged_moderate"
 		return
-	if(health <= max_health * 0.75)
+	if(health <= maxHealth * 0.75)
 		icon_state = "damaged_light"
 		return
 

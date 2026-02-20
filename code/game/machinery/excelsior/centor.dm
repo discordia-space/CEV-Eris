@@ -148,11 +148,11 @@ var/global/excelsior_centor
 
 
 /obj/machinery/centor/Destroy()
-	. = ..()
 	for(var/obj/machinery/node/node in excelsior_nodes)
 		if(dist3D(src, node) <= EX_NODE_DISTANCE)
 			node.spread_signal(null)
 	excelsior_centor = null
+	. = ..()
 
 
 
