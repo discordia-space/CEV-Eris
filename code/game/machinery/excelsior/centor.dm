@@ -24,6 +24,7 @@ emplacement.dm											- Machinery transportation system
 excelsior_node.tmpl 									- Network UI code
 excelsior_researches.dm 								- Research tree, duh.  			(Well, you have all the blueprints...
 																									...it's just a weak Wi-Fi.)
+
 excelsior_items[folder] 										- NEW items, like KOMPAK and something else in the future
 
 
@@ -57,11 +58,12 @@ var/global/excelsior_centor
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/electronics/circuitboard/centor
-	health = 300
+	health = 1200
+	maxHealth = 1200
 	shipside_only = TRUE
 	var/list/obj/machinery/node/antennas_to_haven = list()
 	var/timer_set			//world.time goes here :)
-	var/stored_nodes = 1
+	var/stored_list = list()
 	layer = 5
 	var/cutscene = FALSE // if false = add eye overlay
 
@@ -86,8 +88,8 @@ var/global/excelsior_centor
 		end_cutscene()
 
 /obj/machinery/centor/proc/give_me_nodes_animation()
-	var/many_nodes = stored_nodes + 1 SECOND
-	if(!cutscene && stored_nodes >= 1)			// !cutscene is anti-spamclick
+	var/many_nodes = stored_list + 1 SECOND
+	if(!cutscene && stored_list)			// !cutscene is anti-spamclick
 		start_cutscene()
 		icon_state = "undeployed"
 		flick("hide", src)
@@ -95,11 +97,11 @@ var/global/excelsior_centor
 			flick("open_hatch", src)
 			icon_state = "hatch"
 			spawn(1 SECOND)
-				for(var/i = 0, i < stored_nodes, i++)
-					spawn(i)
-						var/obj/item/machinery_crate/excelsior/node/goodbye = new(loc)
-						goodbye.throw_at(get_edge_target_turf(goodbye, rand(1, 10)), 2, 1)
-						stored_nodes--
+				for(var/obj/item in stored_list)
+					spawn(5)
+						item = new(loc)
+						stored_list -= item
+						item.throw_at(get_edge_target_turf(item, rand(1, 10)), 2, 1)
 			spawn(many_nodes)
 				flick("close_hatch", src)
 				icon_state = "undeployed"
@@ -123,7 +125,12 @@ var/global/excelsior_centor
 		spawn(1 SECOND)
 			end_cutscene()
 
-
+/obj/machinery/centor/die()
+	start_cutscene()
+	icon_state = "death_loop"
+	sleep(5 SECONDS)
+	icon_state = "death"
+	sleep(1 SECOND)
 
 
 /obj/machinery/centor/proc/end_cutscene()
@@ -137,6 +144,15 @@ var/global/excelsior_centor
 	if(excelsior_centor)
 		Destroy()
 		return
+
+	var/obj/item/storage/deferred/stash/sack/stash = new
+	new /obj/item/computer_hardware/hard_drive/portable/design(stash)
+	new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/core(stash)
+	new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/weapons(stash)
+	new /obj/item/machinery_crate/excelsior/autolathe(stash)
+	new /obj/item/electronics/circuitboard/excelsior_teleporter(stash)
+	stored_list += stash
+
 	deploy_animation()
 	excelsior_centor = src
 	timer_set = world.time
@@ -148,10 +164,12 @@ var/global/excelsior_centor
 
 
 /obj/machinery/centor/Destroy()
+	if(src == excelsior_centor)
 	for(var/obj/machinery/node/node in excelsior_nodes)
 		if(dist3D(src, node) <= EX_NODE_DISTANCE)
 			node.spread_signal(null)
 	excelsior_centor = null
+	die()
 	. = ..()
 
 
@@ -178,7 +196,7 @@ var/global/excelsior_centor
 
 /obj/machinery/centor/proc/increase_node_amount()
 	if(world.time >= timer_set + EX_NODE_SPAWN_COOLDOWN)
-		stored_nodes++
+		stored_list += /obj/item/machinery_crate/excelsior/node
 		timer_set = world.time
 		playsound(loc, 'sound/machines/vending_drop.ogg', 25, 1)
 
@@ -208,7 +226,7 @@ var/global/excelsior_centor
 /obj/machinery/centor/proc/spawn_compact_node(mob/user)
 	if(is_excelsior(user))
 		if(cutscene)
-			to_chat(user, SPAN_EXCEL_NOTIF("Please, wait... Can't pay attention now."))
+			to_chat(user, SPAN_WARNING("Please, wait. Can't pay attention now."))
 			return
 		if(!give_me_nodes_animation())
 			if(world.time >= timer_set + EX_NODE_SPAWN_COOLDOWN)

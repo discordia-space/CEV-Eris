@@ -38,6 +38,7 @@
 /datum/antagonist/excelsior/create_antagonist(datum/mind/target, datum/faction/new_faction, doequip = TRUE, announce = TRUE, update = TRUE, check = TRUE)
 	. = ..()
 	BITSET(owner.current.hud_updateflag, EXCELSIOR_HUD)
+	was_centor_spawned = FALSE
 
 /datum/antagonist/excelsior/remove_antagonist()
 	. = ..()
