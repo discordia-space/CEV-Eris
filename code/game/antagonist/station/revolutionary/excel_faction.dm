@@ -81,7 +81,7 @@ var/global/was_centor_spawned = FALSE
 	set category = "Cybernetics"
 
 	if(!was_centor_spawned)
-		/obj/machinery/centor.New(usr)
+		new /obj/machinery/centor(usr.loc)
 		was_centor_spawned = TRUE
 	else
 		to_chat(usr, SPAN_EXCEL_NOTIF("You've already used the Centor assigned to you..."))

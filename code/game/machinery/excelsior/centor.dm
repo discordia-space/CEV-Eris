@@ -125,7 +125,7 @@ var/global/excelsior_centor
 		spawn(1 SECOND)
 			end_cutscene()
 
-/obj/machinery/centor/die()
+/obj/machinery/centor/proc/die()
 	start_cutscene()
 	icon_state = "death_loop"
 	sleep(5 SECONDS)
@@ -164,12 +164,12 @@ var/global/excelsior_centor
 
 
 /obj/machinery/centor/Destroy()
-	if(src == excelsior_centor)
 	for(var/obj/machinery/node/node in excelsior_nodes)
 		if(dist3D(src, node) <= EX_NODE_DISTANCE)
 			node.spread_signal(null)
 	excelsior_centor = null
-	die()
+	if(src == excelsior_centor)
+		die()							// TEST 2 DELETE CASES: USUAL AND IF CENTOR IS TRIED TO SPAWN WHILE ONE EXISTS ALREADY
 	. = ..()
 
 
@@ -279,3 +279,27 @@ var/global/excelsior_centor
 
 
 
+/obj/machinery/centor/attackby(obj/item/I, mob/user)
+	investigating(user)
+	if(user.a_intent == I_HELP)
+		if((QUALITY_WELDING in I.tool_qualities) && (health < maxHealth))
+			if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+				health += 200
+				if(health > maxHealth)
+					health = maxHealth
+				update_icon()
+		return 1
+	if (!(I.flags & NOBLUDGEON) && I.force)
+		//if the turret was attacked with the intention of harming it:
+		user.do_attack_animation(src)
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+
+		/* Commented at the time for the lack of better sounds
+		if (take_damage(I.force * I.structure_damage_factor))
+			playsound(src, 'sound/weapons/smash.ogg', 70, 1)
+		else
+			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+		*/
+		take_damage(I.force * I.structure_damage_factor)
+
+	..()
