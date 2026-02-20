@@ -217,12 +217,12 @@
 
 /obj/machinery/complant_teleporter/nano_ui_data()
 	var/list/data = list()
-	data["energy"] = round(excelsior_energy)
+	data["energy"] = round(excelsior_energy, 0.01)
 	data["maxEnergy"] = round(excelsior_max_energy)
 	data["menu"] = nanoui_menu
 	data["excel_user"] = is_excelsior(current_user)
 	data["time_until_scan"] = time_until_scan
-	data["old_energy"] = round(old_energy)
+	data["old_energy"] = round(old_energy, 0.01)
 	data["conscripts"] = excelsior_conscripts
 	data["reinforcements_ready"] = reinforcements_check()
 	data += nanoui_data

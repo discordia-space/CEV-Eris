@@ -7,7 +7,7 @@ Used In File(s): code/game/machinery/excelsior/ex_teleporter.dm
 	<div class="item">
 		<div class="itemLabel">
 			Energy:
-			Energy income: {{:data.energy - data.old_energy}}
+			Energy income: {{:helper.round(data.energy*10 - data.old_energy*10)/10}}
 		</div>
 		<div class="itemContent">
 			{{:helper.displayBar(data.energy, 0, data.maxEnergy, 'good', data.energy + ' Power')}}
