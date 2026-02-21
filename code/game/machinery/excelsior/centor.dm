@@ -3,9 +3,12 @@
 	.	ROADMAP - UPDATES:
 	.	[>]	Stage I
 	.		Stage II
+				NOTE: more sounds, robots :3, emplacements, mandate rework.
 	.		S@*&#...
-	................................................				ATTENTION!
-												For your convenience, below are structurized contents of Excelsior Code
+	................................................
+
+														ATTENTION!
+							For your convenience, below are structurized contents of Excelsior Code
 
 
 
@@ -15,17 +18,17 @@
 _excelsior_defines.dm									- defines placed above cuz byond
 
 
-centor.dm 												- Excelsior AI core, generates excelsior power from Nodes
-node.dm 												- Generate power if connected to core
+centor.dm 												- Excelsior AI core, generates teleport power from Nodes
+node.dm 												- Generate teleport power if connected to core and have a lot of tiles nearby
 
 
 
 emplacement.dm											- Machinery transportation system
 excelsior_node.tmpl 									- Network UI code
-excelsior_researches.dm 								- Research tree, duh.  			(Well, you have all the blueprints...
-																									...it's just a weak Wi-Fi.)
+excelsior_researches.dm 								- Research tree, duh.  					(Well, you have all the blueprints...
+																											...it's just a weak Wi-Fi.)
 
-excelsior_items[folder] 										- NEW items, like KOMPAK and something else in the future
+excelsior_items[folder] 										- NEW items, like KOMPAK and something else in the future :]
 
 
 
@@ -52,8 +55,8 @@ var/global/excelsior_centor
 	name = "Excelsior \"Centor\" core"								// TODO consider changing a name just in case
 	icon = 'icons/obj/machines/excelsior/corenode/centor.dmi'
 	desc = "Metallic mind, it's silent thoughts reaching far away to the Haven."		// TODO ensure this is fine
-	description_info = "Source of power for teleporters, "
-	description_antag = "But with it - find strenght to keep going."
+	description_info = "Source of power for teleporters, very mortal"
+	description_antag = "Repairable with welding tools. Pat it to receive regularly made nodes, or receive stash with KOMPAKS - one for each member of our team."
 	icon_state = "static"
 	density = TRUE
 	anchored = TRUE
@@ -63,10 +66,31 @@ var/global/excelsior_centor
 	shipside_only = TRUE
 	var/list/obj/machinery/node/antennas_to_haven = list()
 	var/timer_set			//world.time goes here :)
-	var/stored_list = list()
 	layer = 5
 	var/cutscene = FALSE // if false = add eye overlay
-
+	var/damage_report_cooldown = FALSE
+	var/list/excelsior_kpks = list()
+	var/imgonnadie = list(
+	"Protect me or it's over.",
+	"I'm your only source of power.",
+	"Do not leave me.",
+	"I believe I'm getting shot at.",
+	"Reminder: Higher circle won't send replacements for me.",
+	"Don't let me die.",
+	"The dream dies with me.",
+	"Push them back.",
+	"Flush them out.",
+	"It's not over yet.",
+	"Please stop them from killing me, thanks.",
+	"Repair my dents with a torch after the fight.",
+	"They're here with me.",
+	"PLease assign a guard for me.",
+	"My data is getting corrupted.",
+	"I don't have combat capabilities.",
+	"Construct a cover for me, if you can.",
+	"Please shoot back.",
+	"Respond with high lethality against these.",
+	"We will lose, gather up at my room.",)
 
 // FLUFFY ANIMATION :3 //
 /obj/machinery/centor/proc/start_cutscene()
@@ -88,8 +112,8 @@ var/global/excelsior_centor
 		end_cutscene()
 
 /obj/machinery/centor/proc/give_me_nodes_animation()
-	var/many_nodes = stored_list + 1 SECOND
-	if(!cutscene && stored_list)			// !cutscene is anti-spamclick
+	var/many_nodes = contents.len + 1 SECOND
+	if(!cutscene && contents)			// !cutscene is anti-spamclick
 		start_cutscene()
 		icon_state = "undeployed"
 		flick("hide", src)
@@ -97,10 +121,9 @@ var/global/excelsior_centor
 			flick("open_hatch", src)
 			icon_state = "hatch"
 			spawn(1 SECOND)
-				for(var/obj/item in stored_list)
+				for(var/obj/item in contents)
 					spawn(5)
-						item = new(loc)
-						stored_list -= item
+						item.forceMove(loc)
 						item.throw_at(get_edge_target_turf(item, rand(1, 10)), 2, 1)
 			spawn(many_nodes)
 				flick("close_hatch", src)
@@ -118,7 +141,7 @@ var/global/excelsior_centor
 		spawn(17)	// ^ anim lenght
 			update_icon()
 
-/obj/machinery/centor/proc/investigating(atom/overhere) // someone's down... what? what was that? whawasat? hey you okay? BREACHING THE DOOR!!!
+/obj/machinery/centor/proc/investigating(atom/overhere)
 	if(!cutscene)
 		start_cutscene()
 		overlays += image(icon, loc, "dirs", 5, get_dir(src, overhere))
@@ -131,6 +154,7 @@ var/global/excelsior_centor
 	sleep(5 SECONDS)
 	icon_state = "death"
 	sleep(1 SECOND)
+	Destroy()
 
 
 /obj/machinery/centor/proc/end_cutscene()
@@ -145,13 +169,13 @@ var/global/excelsior_centor
 		Destroy()
 		return
 
-	var/obj/item/storage/deferred/stash/sack/stash = new
+	var/obj/item/storage/deferred/stash/sack/stash = new(src)
 	new /obj/item/computer_hardware/hard_drive/portable/design(stash)
 	new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/core(stash)
 	new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/weapons(stash)
 	new /obj/item/machinery_crate/excelsior/autolathe(stash)
 	new /obj/item/electronics/circuitboard/excelsior_teleporter(stash)
-	stored_list += stash
+	contents.Add(stash)
 
 	deploy_animation()
 	excelsior_centor = src
@@ -198,7 +222,7 @@ var/global/excelsior_centor
 
 /obj/machinery/centor/proc/increase_node_amount()
 	if(world.time >= timer_set + EX_NODE_SPAWN_COOLDOWN)
-		stored_list += /obj/item/machinery_crate/excelsior/node
+		contents.Add(new /obj/item/machinery_crate/excelsior/node)
 		timer_set = world.time
 		playsound(loc, 'sound/machines/vending_drop.ogg', 25, 1)
 
@@ -207,6 +231,8 @@ var/global/excelsior_centor
 
 /obj/machinery/centor/attack_hand(mob/user)
 //	. = ..()		//uncomment to give power consumption :)	(I dont want it...)
+	if(!(user in excelsior_kpks) && is_excelsior(user))
+		excelsior_kpks[user] = new /obj/item/centor_kpk(loc)
 	load_network()
 	spawn_compact_node(user)
 	//nano_ui_interact(user)
@@ -230,7 +256,7 @@ var/global/excelsior_centor
 		if(cutscene)
 			to_chat(user, SPAN_WARNING("Please, wait. Can't pay attention now."))
 			return
-		if(!give_me_nodes_animation())
+		if(!give_me_nodes_animation() || LAZYLEN(contents) <= 0)
 			if(world.time >= timer_set + EX_NODE_SPAWN_COOLDOWN)
 				to_chat(user, SPAN_NOTICE("<h1>Come on, come on, give me the damn thing already!</h1>"))	// resolves a bug with timer :)
 			else
@@ -305,3 +331,25 @@ var/global/excelsior_centor
 		take_damage(I.force * I.structure_damage_factor)
 
 	..()
+
+
+
+/obj/machinery/centor/bullet_act(obj/item/projectile/Proj)
+	var/damage = Proj.get_structure_damage()
+	..()
+	take_damage(damage*Proj.structure_damage_factor)
+
+/obj/machinery/centor/take_damage(amount)
+	if(!damage_report_cooldown)
+		talk("Centor is being attacked. [pick(imgonnadie)]")
+		damage_report_cooldown = TRUE
+		spawn(1 MINUTE)
+			if(src)
+				damage_report_cooldown = FALSE
+	if(!amount)
+		return FALSE	//No damage done. Used in attackby()
+	health -= amount
+	if(health <= 0)
+		die()
+	return TRUE			//Actual damage delt. Used in attackby()
+

@@ -5,10 +5,10 @@ Don't get spooked - there's comments below
 
 # DICTIONARY:
 	Powered
-		- In the case of the node that means Centor is in Node's spread_signal()
+		- In the case of the node that means Centor is in Node's spread_signal() radius.
 			- Powered node:
 				- produces energy
-				- activates machinery linked to it (if such machinery needs node to work (e.g. turret))
+				- activates machinery linked to it (if such machinery needs node to work (e.g. turret turns ON))
 				- passes Powered status to "neighbour" nodes (connected due to proximity)
 		NOTE: The "powered" status is checked with node.core
 
@@ -18,11 +18,10 @@ Don't get spooked - there's comments below
 
 	*
 	*	DEMONSTRATION:
-	*	Legend: C - Centor, X - unpowered node, N - powered node, --- connection(proximity)
+	*	Legend: C - Centor, X - unpowered node, N - powered node, --- connection(if proximity)
 	*
-	*	2/3 existing nodes are powered from Centor, and one X is disconnected due to distance from core's appendage:
+	*	Here 2/3 existing nodes are powered from Centor, and one X is disconnected due to distance from core's appendage:
 	*	C --- N --- N     X
-	*
 */
 
 
@@ -382,7 +381,7 @@ Don't get spooked - there's comments below
 
 //		- The act of yapping itself
 
-/obj/machinery/node/proc/talk(message)							// the act of yapping
+/obj/machinery/proc/talk(message)							// the act of yapping
 	var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
 	//if(!F)							//DEBUG REMOVE COMMENT LATER AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	//	return							//DEBUG REMOVE COMMENT LATER AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

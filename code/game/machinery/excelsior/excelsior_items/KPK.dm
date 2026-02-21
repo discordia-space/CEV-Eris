@@ -8,33 +8,45 @@
 
 /obj/item/centor_kpk/
 	name = "\improper Excelsior KOMPAK"
-	desc = "Comrade's second best friend, besides their first best friend."
+	desc = "A lightweight PDA, that could be your grandfather if it was animated. Compatriot's second best friend."
+	description_info = "Every Excelsior agent gets one from Centor, but better not lose it."
+	description_antag = "Creates paths between nodes, picking a desired node constructs a route out of them."
 	icon = 'icons/obj/machines/excelsior/corenode/pda.dmi'
 	icon_state = "kompak_off"
 	opacity = 0
 	density = FALSE
 	anchored = FALSE
 	w_class = ITEM_SIZE_NORMAL
-	var/mode = MODE_NONE		// TODO return to MODE_NONE
-								// TO BE USED BY GUI DON'T FORGET
+	var/mode = MODE_NONE
+	var/code_crutch = TRUE	// TODO: DELETE IF STAGE 2.
+								//	- This is here cuz no drones yet, but paths are fundamental design so uhm... Smeakpeek?
+	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_GLASS = 1, MATERIAL_PLASMA = 2)
 
-	var/list/active_scanned = list() //assoc list of objects being scanned, mapped to their overlay
-	var/datum/event_source //When listening for movement, this is the source we're listening to
-	var/mob/current_user //The last mob who interacted with us. We'll try to fetch the client from them
-	var/client/user_client //since making sure overlays are properly added and removed is pretty important, so we track the current user explicitly
-	var/enabled = FALSE
+	var/list/active_scanned = list()
+	var/datum/event_source
+	var/mob/current_user
+
+	var/client/user_client
+	var/enabled = FALSE		// visual, no mechanics
 	var/active
 	var/list/objects_to_overlay = list()
 	var/global/list/excelsior_overlay_cache = list()
 	var/turn_on_sound = 'sound/effects/Custom_flashlight.ogg'
-
-	//GUI WAR ZONE
 	var/path_diologe = FALSE
 	var/viewpath_diologe = FALSE
 	var/obj/machinery/node/chosen_node
 	var/obj/effect/effect/pathfinder_arrow/first/current_route
-	var/list/ihaveplacestobe = list()	//kpk receives a list from node to make a long fucking road
+	var/list/ihaveplacestobe = list()	//list of roads from node-to-node, combined into a long road.
 	var/list/errors = list()
+	//
+
+
+// CRUTCH DETECTOR SCREAMS "DELETE ME I BEG YOU" but I say no... you must be here for now until we release a second update.
+/obj/item/centor_kpk/Initialize()
+	. = ..()
+	if(code_crutch)
+		description_antag += " Each path made grants 0.25 energy gain to teleporters."		// Guh...  Т_Т
+
 
 /obj/item/centor_kpk/update_icon()
 	if(current_user)
@@ -91,7 +103,7 @@
 
 /obj/item/centor_kpk/proc/set_user(mob/living/newuser)
 	if(current_user == newuser)
-		return //Do nothing
+		return
 
 	//If there's an existing user we may need to unregister them first
 	if(current_user)
@@ -141,7 +153,7 @@
 	update_overlay()
 
 /obj/item/centor_kpk/proc/set_enabled(targetstate)
-	//Check power here#
+
 	if(targetstate == FALSE && enabled)
 		playsound(loc, turn_on_sound, 55, 1,-2)
 	enabled = FALSE
@@ -149,12 +161,12 @@
 		enabled = TRUE
 		playsound(loc, turn_on_sound, 55, 1, -2)
 
-//	if(enabled)							no power for KPK for now so let's comment this for now
+//	if(enabled)							no power/battery need for KPK for now so let's comment this for now
 //		START_PROCESSING(SSobj, src)
 //	else
 //		STOP_PROCESSING(SSobj, src)
 	check_active(enabled)
-//	update_icon()						when you sprite it lmao
+//	update_icon()
 
 /obj/item/centor_kpk/proc/check_location()
 	//This proc checks that the scanner is where it needs to be.
@@ -439,13 +451,13 @@
 
 /* # Path as DATA
 	- holds 2 nodes as vars
+	- list/track contains
 */
 /datum/excelsior_junction	// Let's write the path down somewhere once we end_...
 // get names of the nodes
 	var/obj/machinery/node/first	// node chosen at start_pathfind()
 	var/obj/machinery/node/second	// and at the end_pathfind(), duh...
 
-	//road itself consisting
 	var/list/track = list()
 
 

@@ -1,16 +1,11 @@
 // # Node+Centor related [centor.dm]
-	// Node radius
+//	- KPK
+//	- Node
 #define EX_NODE_DISTANCE 7
-
-
-	// How many markers a node produces (aka influence)
-#define EX_NODE_EXPECTED_MARKERS 169						// [!!!] CONSIDER removing
-
-
-	// Centor spawns 1 node every...
+//	- Centor
 #define EX_NODE_SPAWN_COOLDOWN 3 MINUTES
 
-//-------------------------------------------------------------------------
+
 
 
 var/global/excelsior_energy
@@ -23,7 +18,10 @@ var/list/global/excelsior_turf_whitelist = list(	//  <<< see more at [node.dm]
 )
 
 
-//  Old code
+
+//-------------------------------------------------------------------------
+
+//  Old, still used code
 var/global/excelsior_max_energy //Maximum combined energy of all teleporters
 var/global/excelsior_conscripts = 0
 var/global/excelsior_last_draft = 0
