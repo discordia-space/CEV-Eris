@@ -7,7 +7,7 @@
 	if (objectives.len)
 		text = "<b>Your [role_text] current objectives:</b>"
 
-	if(faction)
+	if(faction && objectives.len)
 		text = "<b>Your [faction.name] faction current objectives:</b>"
 
 	text += print_objectives(FALSE)

@@ -16,7 +16,7 @@
 	opacity = 0
 	density = FALSE
 	anchored = FALSE
-	w_class = ITEM_SIZE_NORMAL
+	w_class = ITEM_SIZE_SMALL
 	var/mode = MODE_NONE
 	var/code_crutch = TRUE	// TODO: DELETE IF STAGE 2.
 								//	- This is here cuz no drones yet, but paths are fundamental design so uhm... Smeakpeek?
@@ -37,6 +37,7 @@
 	var/obj/machinery/node/chosen_node
 	var/obj/effect/effect/pathfinder_arrow/first/current_route
 	var/list/ihaveplacestobe = list()	//list of roads from node-to-node, combined into a long road.
+	var/obj/machinery/node/viewpath_slot
 	var/list/errors = list()
 	//
 
@@ -102,6 +103,8 @@
 	return data
 
 /obj/item/centor_kpk/proc/set_user(mob/living/newuser)
+	if(newuser && !is_excelsior(newuser))
+		return //Unautharized access
 	if(current_user == newuser)
 		return
 
@@ -187,9 +190,18 @@
 		if(MODE_NONE)
 			return .
 		if(MODE_PATHFINDER)
-			for(var/datum/excelsior_junction/route in ihaveplacestobe)
-				for(var/arrow in route.track)
-					. += arrow
+			for(var/i = LAZYLEN(ihaveplacestobe), i > 0, i--)
+				var/datum/excelsior_junction/route = ihaveplacestobe[i]
+				if(viewpath_slot)
+					if(route.first == viewpath_slot)
+						for(var/arrow in route.track)
+							. += arrow
+						viewpath_slot = route.second
+					if(route.second == viewpath_slot)
+						for(var/arrow in route.track)
+							. += arrow
+						viewpath_slot = route.first
+					return .
 		if(MODE_INFLUENCE)
 			for(var/obj/effect/effect/excelsior_influence/influence in view(loc))
 				. += influence
@@ -262,8 +274,31 @@
 	set_user(null)
 	.=..()
 
+/obj/item/centor_kpk/proc/reverse_arrow(var/curDir)
+	switch(curDir)
+		if("1-4")
+			return "8-2"
+		if("8-2")
+			return "1-4"
+
+		if("8-1")
+			return "2-4"
+		if("2-4")
+			return "8-1"
+
+		if("1-8")
+			return "4-2"
+		if("4-2")
+			return "1-8"
+
+		if("2-8")
+			return "4-1"
+		if("4-1")
+			return "2-8"
+
+
 //creates a new overlay for a scanned object, if needed
-/obj/item/centor_kpk/proc/get_overlay(obj/scanned)
+/obj/item/centor_kpk/proc/get_overlay(obj/scanned, reversing)
 	//Use a cache so we don't create a whole bunch of new images just because someone's walking back and forth in a room.
 	//Also means that images are reused if multiple people are using t-rays to look at the same objects.
 	if(scanned in excelsior_overlay_cache)
@@ -278,7 +313,12 @@
 				I = image('icons/obj/machines/excelsior/corenode/pda.dmi', loc = influence, icon_state = "influence_red", layer = ON_MOB_HUD_LAYER)
 		if(istype(scanned, /obj/effect/effect/pathfinder_arrow))
 			I = image('icons/obj/machines/excelsior/corenode/pda.dmi', loc = scanned, icon_state = "[scanned.icon_state]", layer = BELOW_MOB_LAYER)
-			I.dir = scanned.dir
+			if(reversing)
+				I.dir = reverse_direction(scanned.dir)
+				if(I.icon_state != "straight")
+					I.icon_state = reverse_arrow(I.icon_state)
+			else
+				I.dir = scanned.dir
 		I.mouse_opacity = 0
 		.=I
 
@@ -353,6 +393,9 @@
 		for(var/obj/machinery/node/noda in excelsior_nodes)
 			if(noda.uid == text2num(href_list["see_path"]))
 				build_path(usr, noda)
+				viewpath_diologe = FALSE
+				mode = MODE_PATHFINDER
+				update_overlay()
 
 	add_fingerprint(usr)
 	return TOPIC_HANDLED // update UIs attached to this object
@@ -367,6 +410,9 @@
 //	Act of creating a path
 /obj/item/centor_kpk/proc/start_pathfind(mob/user as mob)
 	var/obj/machinery/node/closest = locate(/obj/machinery/node) in orange(1, user.loc) //TODO insert alert for the guy to come closer btw in GUI
+	if(get_dir(user, closest) in list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		throw_error("Please approach node from a straight angle.")
+		return
 	var/obj/effect/effect/pathfinder_arrow/first/arrow = new /obj/effect/effect/pathfinder_arrow/first(user.loc)
 	current_route = arrow
 	arrow.kpk = src
@@ -375,6 +421,11 @@
 
 /obj/item/centor_kpk/proc/end_pathfind(mob/user as mob)
 	var/obj/machinery/node/closest = locate(/obj/machinery/node) in orange(1, user.loc)	//TODO insert alert for the guy to come closer btw in GUI
+	for(var/datum/excelsior_junction/route in excelsior_junctions)
+		if(route.first == chosen_node || route.second == chosen_node)
+			if(route.first == closest || route.second == closest)
+				throw_error("There's already a route between those two points. Cannot create duplicates.")
+				return
 	new /datum/excelsior_junction(chosen_node, closest, current_route.snake)
 	var/obj/arrow = current_route.snake[current_route.snake.len]
 	var/dir_to_node = get_dir(arrow, closest)
@@ -388,6 +439,10 @@
 	for(var/tile in current_route.snake)
 		qdel(tile)
 	current_route = null
+
+/obj/item/centor_kpk/proc/throw_error(var/context)
+	errors.Add(context)
+	SSnano.update_uis(src)
 
 
 
@@ -436,11 +491,15 @@
 /obj/effect/effect/pathfinder_arrow/Uncrossed(var/atom/movable/badguy)
 	if(original.kpk.current_route != original)
 		return
+	if(original.kpk.get_holding_mob() != badguy)
+		return
 	new /obj/effect/effect/pathfinder_arrow(badguy.loc, src)
 
 
 /obj/effect/effect/pathfinder_arrow/Crossed(var/atom/movable/badguy)
 	if(original.kpk.current_route != original)
+		return
+	if(original.kpk.get_holding_mob() != badguy)
 		return
 	for(var/obj/effect/effect/pathfinder_arrow/item in original.snake)
 		if(item.counter > counter)
@@ -472,7 +531,16 @@
 //	/obj/item/centor_kpk/build_path(usr, destination) ;*  <-- GUI
 /obj/item/centor_kpk/proc/build_path(mob/user as mob, var/obj/machinery/destination)
 	var/obj/machinery/node/closest = locate(/obj/machinery/node) in orange(1, user.loc)
-	closest.sendPath(destination, list(), src)
+	if(!closest)
+		throw_error("You need to stand next to a node")
+	else
+		ihaveplacestobe.Cut()
+		closest.sendPath(destination, list(), src)
+		spawn(3 SECONDS)
+			if(!ihaveplacestobe.len)
+				throw_error("No routes found, try building one.")
+				mode = MODE_NONE
+				update_overlay()
 
 
 

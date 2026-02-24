@@ -510,14 +510,17 @@ Don't get spooked - there's comments below
 		return
 	doroga.Add(src)
 	if(src == end)
-		kpk.ihaveplacestobe += way_to_go
+		kpk.ihaveplacestobe = way_to_go
+		kpk.viewpath_slot = end
 		return
 	for(var/datum/excelsior_junction/route in excelsior_junctions)
 		if(route.first == src) //there's a route coming FROM us to other node
-			way_to_go.Add(route)
+			if(!(route in way_to_go))
+				way_to_go.Add(route)
 			route.second.sendPath(end, doroga, kpk, way_to_go) //send pathfinding signal to this other node
 		if(route.second == src) //there's a route coming TO us from other node
-			way_to_go.Add(route)
+			if(!(route in way_to_go))
+				way_to_go.Add(route)
 			route.first.sendPath(end, doroga, kpk, way_to_go) //send pathfinding signal to this other node
 
 /*
