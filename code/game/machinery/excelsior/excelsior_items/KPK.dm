@@ -10,7 +10,7 @@
 	name = "\improper Excelsior KOMPAK"
 	desc = "A lightweight PDA, that could be your grandfather if it was animated. Compatriot's second best friend."
 	description_info = "Every Excelsior agent gets one from Centor, but better not lose it."
-	description_antag = "Creates paths between nodes, picking a desired node constructs a route out of them."
+	description_antag = "Creates paths between nodes. Choosing a node on KPK constructs a route to it, from the closest node to chosen one."
 	icon = 'icons/obj/machines/excelsior/corenode/pda.dmi'
 	icon_state = "kompak_off"
 	opacity = 0

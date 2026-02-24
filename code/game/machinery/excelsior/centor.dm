@@ -90,7 +90,8 @@ var/global/excelsior_centor
 	"Construct a cover for me, if you can.",
 	"Please shoot back.",
 	"Respond with high lethality against these.",
-	"We will lose, gather up at my room.",)
+	"We will lose, gather up at my room.",
+	"They will come for you next.",)
 
 // FLUFFY ANIMATION :3 //
 /obj/machinery/centor/proc/start_cutscene()
@@ -112,6 +113,7 @@ var/global/excelsior_centor
 		end_cutscene()
 
 /obj/machinery/centor/proc/give_me_nodes_animation()
+	var/i = 0
 	var/many_nodes = contents.len + 1 SECOND
 	if(!cutscene && contents)			// !cutscene is anti-spamclick
 		start_cutscene()
@@ -122,7 +124,8 @@ var/global/excelsior_centor
 			icon_state = "hatch"
 			spawn(1 SECOND)
 				for(var/obj/item in contents)
-					spawn(5)
+					i++
+					spawn(i)
 						item.forceMove(loc)
 						item.throw_at(get_edge_target_turf(item, rand(1, 10)), 2, 1)
 			spawn(many_nodes)
@@ -170,11 +173,12 @@ var/global/excelsior_centor
 		return
 
 	var/obj/item/storage/deferred/stash/sack/stash = new(src)
-	new /obj/item/computer_hardware/hard_drive/portable/design(stash)
 	new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/core(stash)
 	new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/weapons(stash)
 	new /obj/item/machinery_crate/excelsior/autolathe(stash)
-	new /obj/item/electronics/circuitboard/excelsior_teleporter(stash)
+	new /obj/item/machinery_crate/excelsior/excelsior_teleporter(stash)
+	new /obj/item/storage/toolbox/mechanical(stash)
+
 	contents.Add(stash)
 
 	deploy_animation()
@@ -232,7 +236,8 @@ var/global/excelsior_centor
 /obj/machinery/centor/attack_hand(mob/user)
 //	. = ..()		//uncomment to give power consumption :)	(I dont want it...)
 	if(!(user in excelsior_kpks) && is_excelsior(user))
-		excelsior_kpks[user] = new /obj/item/centor_kpk(loc)
+		contents.Add(new /obj/item/centor_kpk(src))
+		excelsior_kpks.Add(user)
 	load_network()
 	spawn_compact_node(user)
 	//nano_ui_interact(user)
@@ -250,13 +255,12 @@ var/global/excelsior_centor
 			node.spread_signal(src)
 
 
-// TODO: ASK FOR FACTION!!!
 /obj/machinery/centor/proc/spawn_compact_node(mob/user)
 	if(is_excelsior(user))
 		if(cutscene)
-			to_chat(user, SPAN_WARNING("Please, wait. Can't pay attention now."))
+			to_chat(user, SPAN_WARNING("Please, wait. Centor can't pay attention now."))
 			return
-		if(!give_me_nodes_animation() || LAZYLEN(contents) <= 0)
+		if(LAZYLEN(contents) <= 0)
 			if(world.time >= timer_set + EX_NODE_SPAWN_COOLDOWN)
 				to_chat(user, SPAN_NOTICE("<h1>Come on, come on, give me the damn thing already!</h1>"))	// resolves a bug with timer :)
 			else
@@ -267,6 +271,7 @@ var/global/excelsior_centor
 		else
 			to_chat(user, SPAN_NOTICE("You pat Centor - it understands, and goes away to give you equipment..."))
 			visible_message()
+			give_me_nodes_animation()
 	else
 		to_chat(user, SPAN_NOTICE ("It doesn't want me harm."))
 		investigating(user)

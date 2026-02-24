@@ -1,6 +1,7 @@
 /obj/item/machinery_crate
 	name = "IKEA"
 	desc = "Integrated Kit of Engineering Assembly."
+	description_info = "To turn on construction - tigthen the bolts and activate it."
 	icon = 'icons/obj/machinery_crates.dmi'
 	icon_state = "standart"
 
@@ -73,6 +74,11 @@
 /obj/item/machinery_crate/excelsior
 	icon_state = "excelsior"
 	bad_type = /obj/item/machinery_crate/excelsior
+
+/obj/item/machinery_crate/excelsior/excelsior_teleporter
+	name = "Packaged Excelsior Teleporter"
+	machine_name = "Excelsior Teleporter"
+	constructing_machine = /obj/machinery/complant_teleporter
 
 /obj/item/machinery_crate/excelsior/shield
 	name = "shield generator IKEA"
