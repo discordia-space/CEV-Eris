@@ -100,7 +100,8 @@ Don't get spooked - there's comments below
 	"Sakhar",
 	"Krona",
 	"Praktik",
-	"Kozyol"
+	"Kozyol",
+	"Partisan",
 	)
 
 	var/newname = pick(namelist)
