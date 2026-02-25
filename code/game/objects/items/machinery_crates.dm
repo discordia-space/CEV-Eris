@@ -13,10 +13,11 @@
 
 	var/machine_name
 	var/constructing_machine
-	var/constructing_duration = 50
+	var/constructing_duration = 10
 	var/anim
 	var/animation_duration = 5
 	var/activated
+	var/animation_sound				// insert sound path that will play during animation
 	var/can_place_on_table = FALSE
 
 /obj/item/machinery_crate/examine(mob/user, extra_description = "")
@@ -70,6 +71,14 @@
 		to_chat(usr, "You can't fasten \the [name] here because of \the [I.name] in the way.")
 		return TRUE
 	return FALSE
+
+/obj/item/machinery_crate/proc/anim_sound()
+	if(animation_sound)
+		if(stealth)
+			for(var/mob/M in view(7))
+				M.playsound_local(loc, animation_sound, 100, 1, get_rand_frequency())
+		else
+			playsound(src, animation_sound, 100, 1)
 
 /obj/item/machinery_crate/excelsior
 	icon_state = "excelsior"
@@ -159,3 +168,19 @@
 	name = "oven IKEA"
 	machine_name = "oven"
 	constructing_machine = /obj/machinery/cooking_with_jane/oven
+
+/obj/item/machinery_crate/excelsior/node
+	name = "Excelsior Node Package"
+	machine_name = "Excelsior Node"
+	animation_sound = 'sound/machines/excelsior/node_deploy.ogg'
+	icon = 'icons/obj/machines/excelsior/corenode/node.dmi'
+	icon_state = "node_item"
+	anim = "deployment"
+	animation_duration = 17
+	layer = 5
+	constructing_machine = /obj/machinery/node
+
+/obj/item/machinery_crate/excelsior/node/activate_constructing()
+	for(var/mob/M in view(7))
+		spawn(5) M.playsound_local(loc, animation_sound, 100, 0, ignore_walls = FALSE)
+	..()
