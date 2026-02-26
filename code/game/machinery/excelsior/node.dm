@@ -286,12 +286,11 @@ Don't get spooked - there's comments below
 
 /obj/machinery/node/attack_hand(mob/user)
 //	. = ..()		// DONT uncomment, unless you wanna give it power consumption :)		(P.S. I DONT want that)
-	to_chat(user, "Linked machinery:")
-	for(var/obj/machinery/machine in linked)
-		to_chat(user, machine.name)
+	to_chat(user, "Node's screen blinks for a brief momnet revealing it's statistics")
 	to_chat(user, "Linked nodes:")
 	for(var/obj/machinery/machine in neighbours)
 		to_chat(user, "[machine.name] [dist3D(src, machine)]m away")
+	to_chat(user, "Current coverage is at [round(activemarkerlist.len / localmarkerlist.len * 100, 0.1)]%")
 	//pick_up_emplacement(user)		// later
 
 
@@ -365,9 +364,39 @@ Don't get spooked - there's comments below
 		N.spread_signal(center)
 													// NOTE: "Core+Node gameplay is defined by territorial control of excelsior
 
+/obj/machinery/node/verb/pack()
+	set name = "Pack node"
+	set category = "Object"
+	set src in oview(1)
+
+	if(usr.stat || !usr.canmove || usr.restrained())
+		return
+	if(!is_excelsior(usr))
+		to_chat(usr, "It doesn't listen to you.")
+		return
+	to_chat(usr, "You're start packing node back into compact mode.")
+	if(do_after(usr, 2 SECONDS, src))
+		new /obj/item/machinery_crate/excelsior/node(loc)
+		Destroy()
 
 
+/obj/machinery/node/centor_node	//special variant of node that spawns under Centor and gives it influence
+	icon = null
+	icon_state = null
+	density = FALSE
+	mouse_opacity = 0
 
+/obj/machinery/node/centor_node/die()
+	return
+
+/obj/machinery/node/centor_node/take_damage(amount)
+	return
+
+/obj/machinery/node/centor_node/bullet_act(obj/item/projectile/Proj)
+	return
+
+/obj/machinery/node/centor_node/attackby(obj/item/I, mob/user)
+	return
 
 
 									/*
@@ -536,5 +565,4 @@ Don't get spooked - there's comments below
 	icon_state = "node_item"
 	anim = "deployment"
 	animation_duration = 17
-	layer = 5
 	constructing_machine = /obj/machinery/node

@@ -1,7 +1,6 @@
 #define MODE_NONE 1
 #define MODE_PATHFINDER 2
 #define MODE_INFLUENCE 3
-#define OVERLAY_CACHE_LEN 200
 
 
 
@@ -30,10 +29,10 @@
 	var/enabled = FALSE		// visual, no mechanics
 	var/active
 	var/list/objects_to_overlay = list()
-	var/global/list/excelsior_overlay_cache = list()
 	var/turn_on_sound = 'sound/effects/Custom_flashlight.ogg'
 	var/path_diologe = FALSE
 	var/viewpath_diologe = FALSE
+	var/mappings_diologe = FALSE
 	var/obj/machinery/node/chosen_node
 	var/obj/effect/effect/pathfinder_arrow/first/current_route
 	var/list/ihaveplacestobe = list()	//list of roads from node-to-node, combined into a long road.
@@ -74,6 +73,18 @@
 	data["current_path"] = current_route ? 1 : 0
 	data["current_node"] = chosen_node ? chosen_node.shortname : "ERR: NODE NOT FOUND"
 	data["viewpath_dio"] = viewpath_diologe
+	data["mappings_dio"] = mappings_diologe
+
+	if(enabled)
+		switch(mode)
+			if(MODE_NONE)
+				data["overlay_enabled"] = "Online: Avaiting mode"
+			if(MODE_INFLUENCE)
+				data["overlay_enabled"] = "Online: Influence"
+			if(MODE_PATHFINDER)
+				data["overlay_enabled"] = "Online: Pathfinder"
+	else
+		data["overlay_enabled"] = "Offline"
 
 	var/list/error_list = list()
 	var/z_err = 10
@@ -192,16 +203,8 @@
 		if(MODE_PATHFINDER)
 			for(var/i = LAZYLEN(ihaveplacestobe), i > 0, i--)
 				var/datum/excelsior_junction/route = ihaveplacestobe[i]
-				if(viewpath_slot)
-					if(route.first == viewpath_slot)
-						for(var/arrow in route.track)
-							. += arrow
-						viewpath_slot = route.second
-					if(route.second == viewpath_slot)
-						for(var/arrow in route.track)
-							. += arrow
-						viewpath_slot = route.first
-					return .
+				for(var/arrow in route.track)
+					. += arrow
 		if(MODE_INFLUENCE)
 			for(var/obj/effect/effect/excelsior_influence/influence in view(loc))
 				. += influence
@@ -211,11 +214,27 @@
 	var/list/scanned = get_scanned_objects()
 	var/list/update_add = scanned - active_scanned
 	var/list/update_remove = active_scanned - scanned
+	var/temp_slot = viewpath_slot
+	var/current_route
+	var/do_reversed
+
+	for(var/obj/effect/effect/pathfinder_arrow/arrow in update_add)
+		if(arrow.my_route != current_route)//first arrow of it's route
+			do_reversed = FALSE//reset flag for next cycle
+			current_route = arrow.my_route
+			if(temp_slot in orange(1, arrow))//if FIRST arrow in near our ENDpoint
+				do_reversed = TRUE
+				temp_slot = arrow.my_route.second
+			else
+				temp_slot = arrow.my_route.first
+
+		var/mutable_appearance/overlay = get_overlay(arrow, do_reversed)
+		active_scanned[arrow] = overlay
+		user_client.images += overlay
 
 	//Add new overlays
-	for(var/obj/O in update_add)
+	for(var/obj/effect/effect/excelsior_influence/O in update_add)
 		var/mutable_appearance/overlay = get_overlay(O)
-		//var/image/overlay = get_overlay(O)
 
 		active_scanned[O] = overlay
 		user_client.images += overlay
@@ -297,35 +316,26 @@
 			return "2-8"
 
 
-//creates a new overlay for a scanned object, if needed
+//creates a new overlay for a scanned object
 /obj/item/centor_kpk/proc/get_overlay(obj/scanned, reversing)
-	//Use a cache so we don't create a whole bunch of new images just because someone's walking back and forth in a room.
-	//Also means that images are reused if multiple people are using t-rays to look at the same objects.
-	if(scanned in excelsior_overlay_cache)
-		. = excelsior_overlay_cache[scanned]
-	else
-		var/image/I = image(loc = scanned)
-		if(istype(scanned, /obj/effect/effect/excelsior_influence))
-			var/obj/effect/effect/excelsior_influence/influence = scanned
-			if(influence.active)
-				I = image('icons/obj/machines/excelsior/corenode/pda.dmi', loc = influence, icon_state = "influence", layer = ON_MOB_HUD_LAYER)
-			else
-				I = image('icons/obj/machines/excelsior/corenode/pda.dmi', loc = influence, icon_state = "influence_red", layer = ON_MOB_HUD_LAYER)
-		if(istype(scanned, /obj/effect/effect/pathfinder_arrow))
-			I = image('icons/obj/machines/excelsior/corenode/pda.dmi', loc = scanned, icon_state = "[scanned.icon_state]", layer = BELOW_MOB_LAYER)
-			if(reversing)
-				I.dir = reverse_direction(scanned.dir)
-				if(I.icon_state != "straight")
-					I.icon_state = reverse_arrow(I.icon_state)
-			else
-				I.dir = scanned.dir
-		I.mouse_opacity = 0
-		.=I
+	var/image/I = image(loc = scanned)
+	if(istype(scanned, /obj/effect/effect/excelsior_influence))
+		var/obj/effect/effect/excelsior_influence/influence = scanned
+		if(influence.active)
+			I = image('icons/obj/machines/excelsior/corenode/pda.dmi', loc = influence, icon_state = "influence", layer = ON_MOB_HUD_LAYER)
+		else
+			I = image('icons/obj/machines/excelsior/corenode/pda.dmi', loc = influence, icon_state = "influence_red", layer = ON_MOB_HUD_LAYER)
+	if(istype(scanned, /obj/effect/effect/pathfinder_arrow))
+		I = image('icons/obj/machines/excelsior/corenode/pda.dmi', loc = scanned, icon_state = "[scanned.icon_state]", layer = BELOW_MOB_LAYER)
+		if(reversing)
+			I.dir = reverse_direction(scanned.dir)
+			if(I.icon_state != "straight")
+				I.icon_state = reverse_arrow(I.icon_state)
+		else
+			I.dir = scanned.dir
+	I.mouse_opacity = 0
+	.=I
 
-	// Add it to cache, cutting old entries if the list is too long
-	excelsior_overlay_cache[scanned] = .
-	if(excelsior_overlay_cache.len > OVERLAY_CACHE_LEN)
-		excelsior_overlay_cache.Cut(1, excelsior_overlay_cache.len-OVERLAY_CACHE_LEN-1)
 
 /*************************************
 *				Programs			 *
@@ -362,11 +372,18 @@
 	if(href_list["close_viewpath_dio"])
 		viewpath_diologe = FALSE
 
+	if(href_list["open_mappings_dio"])
+		mappings_diologe = TRUE
+
+	if(href_list["close_mappings_dio"])
+		mappings_diologe = FALSE
+
 	if(href_list["toggle_overlay"])
 		set_enabled(!enabled)
 
 	if(href_list["clear_overlay"])
 		mode = MODE_NONE
+		ihaveplacestobe.Cut()
 		update_overlay()
 
 	if(href_list["influence_overlay"])
@@ -426,7 +443,9 @@
 			if(route.first == closest || route.second == closest)
 				throw_error("There's already a route between those two points. Cannot create duplicates.")
 				return
-	new /datum/excelsior_junction(chosen_node, closest, current_route.snake)
+	var/datum/excelsior_junction/write_this_down = new /datum/excelsior_junction(chosen_node, closest, current_route.snake)
+	for(var/obj/effect/effect/pathfinder_arrow/arr in write_this_down.track)
+		arr.my_route = write_this_down
 	var/obj/arrow = current_route.snake[current_route.snake.len]
 	var/dir_to_node = get_dir(arrow, closest)
 	if(arrow.dir != dir_to_node)
@@ -460,6 +479,7 @@
 /obj/effect/effect/pathfinder_arrow			// # This is created by [pathifnder_arrow/first] above.
 	var/obj/effect/effect/pathfinder_arrow/first/original
 	var/counter = 1
+	var/datum/excelsior_junction/my_route
 
 
 
@@ -551,4 +571,3 @@
 #undef MODE_NONE
 #undef MODE_PATHFINDER
 #undef MODE_INFLUENCE
-#undef OVERLAY_CACHE_LEN

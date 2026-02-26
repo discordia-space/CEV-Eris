@@ -70,6 +70,7 @@ var/global/excelsior_centor
 	var/cutscene = FALSE // if false = add eye overlay
 	var/damage_report_cooldown = FALSE
 	var/list/excelsior_kpks = list()
+	var/obj/machinery/node/centor_node/my_invisible_node
 	var/imgonnadie = list(
 	"Protect me or it's over.",
 	"I'm your only source of power.",
@@ -157,6 +158,7 @@ var/global/excelsior_centor
 	sleep(5 SECONDS)
 	icon_state = "death"
 	sleep(1 SECOND)
+	explosion(get_turf(src), 400, 100)
 	Destroy()
 
 
@@ -180,6 +182,7 @@ var/global/excelsior_centor
 	new /obj/item/storage/toolbox/mechanical(stash)
 
 	contents.Add(stash)
+	my_invisible_node = new(loc)
 
 	deploy_animation()
 	excelsior_centor = src
@@ -196,8 +199,7 @@ var/global/excelsior_centor
 		if(dist3D(src, node) <= EX_NODE_DISTANCE)
 			node.spread_signal(null)
 	excelsior_centor = null
-	if(src == excelsior_centor)
-		die()							// TEST 2 DELETE CASES: USUAL AND IF CENTOR IS TRIED TO SPAWN WHILE ONE EXISTS ALREADY
+	my_invisible_node.Destroy()
 	. = ..()
 
 

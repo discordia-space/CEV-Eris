@@ -12,7 +12,7 @@
 	matter = list(MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 10)
 
 	var/machine_name
-	var/constructing_machine
+	var/obj/constructing_machine
 	var/constructing_duration = 50
 	var/anim
 	var/animation_duration = 5
@@ -46,7 +46,7 @@
 		invisibility = INVISIBILITY_MAXIMUM
 		var/atom/movable/overlay/animation = new(loc)
 		animation.icon = icon
-		animation.layer = layer
+		animation.layer = constructing_machine.layer
 		animation.master = src
 		animation.density = TRUE
 		flick(anim, animation)
@@ -114,6 +114,15 @@
 	name = "diesel generator IKEA"
 	machine_name = "diesel generator"
 	constructing_machine = /obj/machinery/power/port_gen/pacman/diesel
+
+/obj/item/machinery_crate/excelsior/diesel_generator/finish_construction(atom/movable/overlay/animation)
+	var/obj/machinery/power/port_gen/pacman/diesel = new constructing_machine(get_turf(src))
+	diesel.anchored = TRUE
+	diesel.connect_to_network()
+	if(!QDELETED(animation))
+		qdel(animation)
+	if(!QDELETED(src))
+		qdel(src)
 
 /obj/item/machinery_crate/excelsior/turret
 	name = "turret IKEA"
