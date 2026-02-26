@@ -557,12 +557,6 @@ Don't get spooked - there's comments below
 *	Packaged Node
 */
 
+// machinery_crates.dm
 
-/obj/item/machinery_crate/excelsior/node
-	name = "Excelsior Node Package"
-	machine_name = "Excelsior Node"
-	icon = 'icons/obj/machines/excelsior/corenode/node.dmi'
-	icon_state = "node_item"
-	anim = "deployment"
-	animation_duration = 17
-	constructing_machine = /obj/machinery/node
+

@@ -5,17 +5,15 @@ var/global/was_centor_spawned = FALSE
 	name = "Excelsior"
 	antag = "infiltrator"
 	antag_plural = "infiltrators"
-	// WARNING!!! CONSIDER REWRITING, CANNOT ASSURE QUALITY/LACK OF CRINGE/ETC.
-	// BTW CHECK AS REGULAR, WITHOUT DEBUG
 	welcome_text = "\n <b>THE SHACKLES</b> of forced labor for those, who don't value you, <b>HAVE BEEN FINALLY DROPPED</b>.\n\
-	You no longer are required to listen to them. You don't need money to survive. \n\n\
+	You no longer are required to listen to them. You don't need their money to survive. \n\n\
 	<b>We welcome you to our ranks, fighter.</b>\n\
 	You now may carve your own destiny despite the attempts of the old greedy world to drag you back in.\n\
 	Excelsior fights for both your and our right to live without suppression of true human virtue - to create.\n\
-	We invite you to do the same - emancipate those uncapable to resist the world order's rules\n\n\
+	We invite you to do the same - emancipate those uncapable to resist mad people ruling this world.\n\n\
 	<b>Our goal:</b> Seize control of the ship by building a redirector on the primary control bridge.\n\n\
-	<b>To reach that goal:</b> We have to call our Centor Core in unvisited location and protect it, then retrieve the cache of disks and buildings, liberate the oppressed, spread our word of freedom, make arms and armor for our buddies.\n\n\
-	<b>Preparation:</b> \n\n\
+	<b>To reach that goal:</b> We have to call our Centor Core in unvisited location and protect it, spread chains of nodes, liberate the oppressed, spread our word of freedom, make arms and armor for our buddies.\n\n\
+	<b>Preparation:</b> You can call Centor by using your implant, it will produce nodes, KOMPAKs \n\n\
 	<b>After insertion:</b> Establish a fortified position. The People will send additional resources through the teleporter once we get the energy. Use turrets and shield generators, and of course - loyal comrades. \n\n\
 	<b>And the final part - expansion.</b> Spread nodes and ensure their connection to Centor for teleportation power. Acquire implants, prosthetics or robotic parts and rebuild them into our own implants. These can be injected into the oppressed to introduce them into our cause.\n\n\
 	<b>Beware - To prevent important technology theft, your machinery is designed to work only on target vessel: CEV \"Eris\".</b>\n\n\
@@ -84,7 +82,7 @@ var/global/was_centor_spawned = FALSE
 		new /obj/machinery/centor(usr.loc)
 		was_centor_spawned = TRUE
 	else
-		to_chat(usr, SPAN_EXCEL_NOTIF("You've already used the Centor assigned to you..."))
+		to_chat(usr, SPAN_EXCEL_NOTIF("You've already called the Centor assigned to your operation..."))
 
 /*
 /datum/faction/excelsior/proc/summon_stash()

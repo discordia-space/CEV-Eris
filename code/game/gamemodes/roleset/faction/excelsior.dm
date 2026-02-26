@@ -7,9 +7,12 @@
 	//min_cost = 10
 	//max_cost = 20
 
-	min_quantity = 3	// Don't fire unless we have at least 3 candidates in the pool
-	base_quantity = 3 //They're a group antag, we want a few of em
+	//min_quantity = 2	// Don't fire unless we have at least 2 candidates in the pool
+	//base_quantity = 3 // try to spawn this amount, but if not it's ok we spawn [min_quantity]"
 	scaling_threshold = 8
+	min_quantity = 1						// TODO REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE
+	base_quantity = 2
 
-	req_crew = 6
+	//req_crew = 6
+	req_crew = 1
 	leaders = -1 //Every excelsior spawned directly is a leader. Non leaders are those recruited during gameplay
