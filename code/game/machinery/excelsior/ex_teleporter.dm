@@ -68,6 +68,7 @@
 		MATERIAL_GLASS = list("amount" = 30, "price" = 5),
 		MATERIAL_PLASTIC = list("amount" = 30, "price" = 5),
 		MATERIAL_STEEL = list("amount" = 30, "price" = 10),
+		/obj/item/stack/cable_coil/orange = ("amount" = 30, "price" = 30),
 		MATERIAL_BIOMATTER = list("amount" = 30, "price" = 30),
 		MATERIAL_CARDBOARD = list("amount" = 30, "price" = 30),
 		MATERIAL_PLASTEEL = list("amount" = 30, "price" = 150),
@@ -80,7 +81,6 @@
 	var/list/parts_list = list(
 		// # Computer parts
 		/obj/item/stock_parts/console_screen = 1,
-		/obj/item/stack/cable_coil/orange = 25,
 		/obj/item/computer_hardware/processor_unit/adv = 25,		// exists only for redirector here consider removing
 		/obj/item/computer_hardware/hard_drive/advanced = 25,		// exists only for redirector here consider removing
 		/obj/item/stock_parts/capacitor/excelsior = 25,				//
