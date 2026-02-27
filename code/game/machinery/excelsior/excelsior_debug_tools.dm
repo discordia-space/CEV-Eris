@@ -12,6 +12,11 @@ Contents:
 
 // /obj/item/exceldebugtoolspawnertoolbox/ //FUCKING UNFINISHED
 
+
+
+
+// Node spawner (spawns nodes... duh...)
+/*
 /obj/item/nodespawner
 	name = "\improper Node spawner"
 	desc = "Spawns Excelsior nodes wherever you click. Epic!!! Also can delete nodes if you click one"
@@ -39,5 +44,5 @@ Contents:
 	to_chat(user, "Spawned node YEAAAAAH")
 	new /obj/machinery/node(get_turf(A))
 
-
+*/
 
