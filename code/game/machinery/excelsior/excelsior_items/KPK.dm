@@ -384,17 +384,14 @@
 		set_enabled(!enabled)
 		mode = MODE_NONE
 		ihaveplacestobe.Cut()
-		update_overlay()
 
 	if(href_list["influence_overlay"])
 		mode = MODE_INFLUENCE
 		set_enabled(TRUE)
-		update_overlay()
 
 	if(href_list["pathfind_overlay"])
 		mode = MODE_PATHFINDER
 		set_enabled(TRUE)
-		update_overlay()
 
 	if(href_list["start_pathfind"])
 		start_pathfind(usr)
