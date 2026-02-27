@@ -78,11 +78,12 @@ var/global/was_centor_spawned = FALSE
 	set name = "Summon Centor"
 	set category = "Cybernetics"
 
-	if(!was_centor_spawned)
+	if(was_centor_spawned)
+		to_chat(usr, SPAN_EXCEL_NOTIF("You've already called the Centor assigned to your operation..."))
+		return
+	if(alert(usr, "Centor, your main weapon of revolution will be summoned at your exact position.\nIf you lose it - everything will be over.","Are you sure?","Yes, summon it here","Cancel") == "Yes, summon it here")
 		new /obj/machinery/centor(usr.loc)
 		was_centor_spawned = TRUE
-	else
-		to_chat(usr, SPAN_EXCEL_NOTIF("You've already called the Centor assigned to your operation..."))
 
 /*
 /datum/faction/excelsior/proc/summon_stash()
