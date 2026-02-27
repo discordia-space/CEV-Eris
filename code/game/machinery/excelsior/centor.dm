@@ -101,7 +101,7 @@ var/global/excelsior_centor
 /obj/machinery/centor/update_icon()
 	overlays.Cut()
 	if(!cutscene)
-		overlays += "idle_anim"
+		overlays += "eye_static"
 	else
 		overlays.Cut()
 
@@ -112,6 +112,7 @@ var/global/excelsior_centor
 	playsound(src, 'sound/machines/excelsior/centor_open.ogg', 100, 1, ignore_walls = FALSE)
 	spawn(1 SECOND)
 		end_cutscene()
+		looking_around()
 
 /obj/machinery/centor/proc/give_me_nodes_animation()
 	var/i = 0
@@ -140,9 +141,10 @@ var/global/excelsior_centor
 
 /obj/machinery/centor/proc/looking_around()
 	if(!cutscene)
+		start_cutscene()
 		overlays += "idle_anim"
-		spawn(17)	// ^ anim lenght
-			update_icon()
+		spawn(17)
+			end_cutscene()
 
 /obj/machinery/centor/proc/investigating(atom/overhere)
 	if(!cutscene)
@@ -204,7 +206,7 @@ var/global/excelsior_centor
 
 
 /obj/machinery/centor/Process()
-	if(prob(5))
+	if(prob(25))
 		looking_around()
 	collect_tax()	// this is where we get energy :]
 	increase_node_amount()
