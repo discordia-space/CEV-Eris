@@ -10,11 +10,12 @@ Don't get spooked - there's comments below
 				- produces energy
 				- activates machinery linked to it (if such machinery needs node to work (e.g. turret turns ON))
 				- passes Powered status to "neighbour" nodes (connected due to proximity)
-		NOTE: The "powered" status is checked with node.core
+
 
 	"Node chain"
-		- Node chain is what happens when [Node] sees [Centor] in node's proximity, that node is "powered",
+		- Node chain is what happens when [Node] sees [Centor] in node's proximity, that node is "powered by centor",
 		THEN it passes that "powered" status to other nodes they are connected, until the whole net is powered.
+			NOTE: The "powered" status is checked with node.core
 
 	*
 	*	DEMONSTRATION:
@@ -29,11 +30,11 @@ Don't get spooked - there's comments below
 /obj/machinery/node
 	name = "Excelsior \"Tochka\" node"
 	var/shortname = "Tochka-123"
-	icon = 'icons/obj/machines/excelsior/corenode/node.dmi'	// TODO replace on finish
-	desc = "Glorified serverboxes put in a bulletproof shell, passing Centor's orders through a network chain." // TODO: Replace desc
-	icon_state = "on"						// TODO replace on finish
-	description_info = "Nodes provide teleportation power and activate turrets in a radius. They report any non-Excelsior units."
-	description_antag = "Node surface coverage can be seen with Excelsior HUD."
+	icon = 'icons/obj/machines/excelsior/corenode/node.dmi'
+	desc = "Bullet resistant transmission receiver. It catches teleportation signals sent by Haven."
+	icon_state = "on"
+	description_info = "Nodes provide teleportation power and activate turrets in a radius. They report any non-Excelsior humans and robots in a radius."
+	description_antag = "Nodes connect to Centor and pass his orders to other nodes in a radius. Node surface coverage can be seen with Influence Mode on KOMPAK."
 	anchored = TRUE
 	density = TRUE
 	circuit = /obj/item/electronics/circuitboard/excelsior_node
