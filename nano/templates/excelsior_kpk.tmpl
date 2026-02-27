@@ -50,14 +50,19 @@ Used In File(s): code\game\machinery\excelsior\excelsior_items\KPK.dm
 				</ul>
 				{{/if}}
 				</li>
-				<li>Mappings:
+				{{if data.mappings_dio}}
+				<li>{{:helper.komulink('Mappings:', null, {'close_mappings_dio' : 1}, null)}}
 					<ul>
+						<li>Current status: {{:data.overlay_enabled}}</li>
 						<li>{{:helper.komulink('Toggle mappings', null, {'toggle_overlay' : 1}, null)}}</li>
 						<li>{{:helper.komulink('Clear mappings', null, {'clear_overlay' : 1}, null)}}</li>
 						<li>{{:helper.komulink('Influence mode', null, {'influence_overlay' : 1}, null)}}</li>
 						<li>{{:helper.komulink('Pathfind mode', null, {'pathfind_overlay' : 1}, null)}}</li>
 					</ul>
 				</li>
+				{{else}}
+				<li>{{:helper.komulink('Mappings:', null, {'open_mappings_dio' : 1}, null)}}</li>
+				{{/if}}
 			</ul>
 		</li>
 	</ul>
