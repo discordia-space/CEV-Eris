@@ -68,7 +68,7 @@
 		MATERIAL_GLASS = list("amount" = 30, "price" = 5),
 		MATERIAL_PLASTIC = list("amount" = 30, "price" = 5),
 		MATERIAL_STEEL = list("amount" = 30, "price" = 10),
-		/obj/item/stack/cable_coil/orange = list("amount" = 30, "price" = 30),
+		"/obj/item/stack/cable_coil/orange" = list("amount" = 30, "price" = 30),
 		MATERIAL_BIOMATTER = list("amount" = 30, "price" = 30),
 		MATERIAL_CARDBOARD = list("amount" = 30, "price" = 30),
 		MATERIAL_PLASTEEL = list("amount" = 30, "price" = 150),

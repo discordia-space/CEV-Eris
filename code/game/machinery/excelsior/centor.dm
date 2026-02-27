@@ -109,6 +109,7 @@ var/global/excelsior_centor
 	start_cutscene()
 	icon_state = "static"
 	flick("deployment", src)
+	playsound(src, 'sound/machines/excelsior/centor_open.ogg', 100, 1, ignore_walls = FALSE)
 	spawn(1 SECOND)
 		end_cutscene()
 
@@ -119,6 +120,7 @@ var/global/excelsior_centor
 		start_cutscene()
 		icon_state = "undeployed"
 		flick("hide", src)
+		playsound(src, 'sound/machines/excelsior/centor_close.ogg', 100, 1, ignore_walls = FALSE)	// yes you can crush my head legally speaking
 		spawn(2 SECONDS)
 			flick("open_hatch", src)
 			icon_state = "hatch"
@@ -132,9 +134,7 @@ var/global/excelsior_centor
 				flick("close_hatch", src)
 				icon_state = "undeployed"
 				spawn(1 SECOND)
-					flick("deployment", src)
-					icon_state = "static"
-					end_cutscene()
+					deploy_animation()
 		return 1
 	return 0
 
@@ -227,7 +227,7 @@ var/global/excelsior_centor
 	if(world.time >= timer_set + EX_NODE_SPAWN_COOLDOWN)
 		contents.Add(new /obj/item/machinery_crate/excelsior/node)
 		timer_set = world.time
-		playsound(loc, 'sound/machines/vending_drop.ogg', 25, 1)
+		playsound(loc, 'sound/machines/vending_drop.ogg', 100, 1, ignore_walls = FALSE)
 
 
 
@@ -261,7 +261,7 @@ var/global/excelsior_centor
 			return
 		if(LAZYLEN(contents) <= 0)
 			if(world.time >= timer_set + EX_NODE_SPAWN_COOLDOWN)
-				to_chat(user, SPAN_NOTICE("<h1>Come on, come on, give me the damn thing already!</h1>"))	// resolves a bug with timer :)
+				to_chat(user, SPAN_WARNING("<h1>Come on, come on, give me the damn thing already!</h1>"))	// resolves a bug with timer :)
 			else
 				to_chat(user, SPAN_WARNING("A new node will be ready in [time2text(timer_set + EX_NODE_SPAWN_COOLDOWN-world.time, "mm:ss")] minutes."))
 				investigating(user)
