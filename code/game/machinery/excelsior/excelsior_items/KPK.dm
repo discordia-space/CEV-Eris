@@ -197,6 +197,8 @@
 
 /obj/item/centor_kpk/proc/get_scanned_objects()
 	. = list()
+	if(!enabled)
+		return .
 	switch(mode)
 		if(MODE_NONE)
 			return .
@@ -380,18 +382,18 @@
 
 	if(href_list["toggle_overlay"])
 		set_enabled(!enabled)
-
-	if(href_list["clear_overlay"])
 		mode = MODE_NONE
 		ihaveplacestobe.Cut()
 		update_overlay()
 
 	if(href_list["influence_overlay"])
 		mode = MODE_INFLUENCE
+		set_enabled(TRUE)
 		update_overlay()
 
 	if(href_list["pathfind_overlay"])
 		mode = MODE_PATHFINDER
+		set_enabled(TRUE)
 		update_overlay()
 
 	if(href_list["start_pathfind"])
