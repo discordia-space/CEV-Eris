@@ -213,8 +213,8 @@ var/global/excelsior_centor
 
 
 /obj/machinery/centor/proc/collect_tax()
-	for(var/obj/machinery/complant_teleporter/tele in excelsior_teleporters)		// !! Debug - Remove on release
-		tele.old_energy = excelsior_energy											// !! Debug - Remove on release
+	for(var/obj/machinery/complant_teleporter/tele in excelsior_teleporters)
+		tele.old_energy = excelsior_energy
 	for(var/obj/machinery/node/node in antennas_to_haven)
 		excelsior_energy += (node.activemarkerlist.len / node.localmarkerlist.len)	// +1 energy if all markers (influence) are active, see more at [node.dm]
 	for(var/route in excelsior_junctions)

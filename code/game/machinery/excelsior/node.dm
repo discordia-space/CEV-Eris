@@ -406,16 +406,16 @@ Don't get spooked - there's comments below
 
 /obj/machinery/proc/talk(message)							// the act of yapping
 	var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
-	//if(!F)							//DEBUG REMOVE COMMENT LATER AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-	//	return							//DEBUG REMOVE COMMENT LATER AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+	if(!F)
+		return
 	F.communicate_inanimate(src, message)
 
 
 
 //		- The thinking behind reporting a bypasser
 
-/obj/machinery/node/proc/intruder_alert(var/mob/living/intruder)
-																// TO IMPLEMENT: Ask Node what the human has in weapons through KPK
+/obj/machinery/node/proc/intruder_alert(var/mob/living/intruder)// TODO: Move to KOMPAK logs
+																// TODO: Ask Node what the human has in weapons through KPK
 	if(world.time - report_cooldown >= 15 SECONDS)	// Don't report the same person twice in x seconds
 		intruder_list = list()
 		report_cooldown = world.time
@@ -459,7 +459,7 @@ Don't get spooked - there's comments below
 		3.	CORE gives Excelsior energy
 */
 
-/obj/effect/effect/excelsior_influence	//zone make excel energy :)			//	# Visible on Excel HUD. (voidsuit)
+/obj/effect/effect/excelsior_influence	//zone make excel energy :)			//	# Visible on Influence Mode.
 	var/active = FALSE														// 	- To find the HUD code do either:
 	var/obj/machinery/node/node												//		> Search by "process_excel_hud" in
 																			//		> hud.dm [code\defines\procs][line 60~]
