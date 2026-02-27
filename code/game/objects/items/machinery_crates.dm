@@ -18,6 +18,8 @@
 	var/activated
 	var/animation_sound				// insert sound path that will play during animation
 	var/can_place_on_table = FALSE
+	var/stealth = FALSE				// if TRUE - deploy sound will NOT play through walls
+	var/sound_delay = 0
 
 /obj/item/machinery_crate/examine(mob/user, extra_description = "")
 	extra_description += "The piece of paper on the side reads: [machine_name]"
@@ -49,6 +51,8 @@
 		animation.layer = constructing_machine.layer
 		animation.master = src
 		animation.density = TRUE
+		spawn(sound_delay)
+			anim_sound()
 		flick(anim, animation)
 		activated = TRUE
 		addtimer(CALLBACK(src, PROC_REF(finish_construction), animation), animation_duration)
@@ -73,11 +77,7 @@
 
 /obj/item/machinery_crate/proc/anim_sound()
 	if(animation_sound)
-		if(stealth)
-			for(var/mob/M in view(7))
-				M.playsound_local(loc, animation_sound, 100, 1, get_rand_frequency())
-		else
-			playsound(src, animation_sound, 100, 1)
+		playsound(src, animation_sound, 100, 1, ignore_walls = !stealth)
 
 /obj/item/machinery_crate/excelsior
 	icon_state = "excelsior"
@@ -186,8 +186,6 @@
 	anim = "deployment"
 	animation_duration = 17
 	constructing_machine = /obj/machinery/node
+	stealth = TRUE
+	sound_delay = 5
 
-/obj/item/machinery_crate/excelsior/node/activate_constructing()
-	for(var/mob/M in view(7))
-		spawn(5) M.playsound_local(loc, animation_sound, 100, 0, ignore_walls = FALSE)
-	..()

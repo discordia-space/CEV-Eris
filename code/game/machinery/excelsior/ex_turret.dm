@@ -32,7 +32,7 @@
 	if(get_dist(user, src) < 2)
 		extra_description += "There [(ammo == 1) ? "is" : "are"] [ammo] round\s left!"
 		if(!has_power_source_nearby())
-			extra_description += "\n<b>Seems to be powered down.</b> No active excelsior node found nearby."
+			extra_description += "\n<b>Seems to be powered down.</b> No active Excelsior node found nearby."
 	..(user, extra_description)
 
 

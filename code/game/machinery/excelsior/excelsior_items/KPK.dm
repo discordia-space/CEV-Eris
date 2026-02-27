@@ -212,8 +212,6 @@
 /obj/item/centor_kpk/proc/update_overlay()
 	//get all objects in scan range
 	var/list/scanned = get_scanned_objects()
-	var/list/scanned_normal = list()
-	var/list/scanned_reverse = list()
 	var/list/update_add = scanned - active_scanned
 	var/list/update_remove = active_scanned - scanned
 	var/temp_slot = viewpath_slot

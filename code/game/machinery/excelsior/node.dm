@@ -64,6 +64,11 @@ Don't get spooked - there's comments below
 */
 
 
+/obj/machinery/node/examine(mob/user, extra_description)
+	if(!core)
+		extra_description += "\n<b>Seems to be powered down.</b> No active Excelsior node or Centor found nearby."
+	. = ..()
+
 
 /obj/machinery/node/proc/make_name()
 	var/list/namelist = list(
@@ -380,23 +385,6 @@ Don't get spooked - there's comments below
 		Destroy()
 
 
-/obj/machinery/node/centor_node	//special variant of node that spawns under Centor and gives it influence
-	icon = null
-	icon_state = null
-	density = FALSE
-	mouse_opacity = 0
-
-/obj/machinery/node/centor_node/die()
-	return
-
-/obj/machinery/node/centor_node/take_damage(amount)
-	return
-
-/obj/machinery/node/centor_node/bullet_act(obj/item/projectile/Proj)
-	return
-
-/obj/machinery/node/centor_node/attackby(obj/item/I, mob/user)
-	return
 
 
 									/*
