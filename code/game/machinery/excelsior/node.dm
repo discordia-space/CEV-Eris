@@ -140,11 +140,15 @@ Don't get spooked - there's comments below
 
 
 /obj/machinery/node/Destroy()
-	. = ..()
+	for(var/datum/excelsior_junction/route in excelsior_junctions)
+		if(route.first == src || route.second == src)
+			excelsior_junctions.Remove(route)
+			route.Destroy()
 	cleanup_influence()
 	UnregisterSignal(src, COMSIG_TURF_LEVELUPDATE)
 	for(var/obj/machinery/node/noder in neighbours)
 		noder.update_influence()
+	. = ..()
 
 
 

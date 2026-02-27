@@ -443,13 +443,16 @@
 			if(route.first == closest || route.second == closest)
 				throw_error("There's already a route between those two points. Cannot create duplicates.")
 				return
+	var/obj/arrow = current_route.snake[current_route.snake.len]
+	var/dir_to_node = get_dir(arrow, closest)
+	if(dir_to_node in list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		throw_error("Please approach node from a straight angle.")
+		return
+	if(arrow.dir != dir_to_node)
+		arrow.icon_state = "[arrow.dir]-[dir_to_node]"
 	var/datum/excelsior_junction/write_this_down = new /datum/excelsior_junction(chosen_node, closest, current_route.snake)
 	for(var/obj/effect/effect/pathfinder_arrow/arr in write_this_down.track)
 		arr.my_route = write_this_down
-	var/obj/arrow = current_route.snake[current_route.snake.len]
-	var/dir_to_node = get_dir(arrow, closest)
-	if(arrow.dir != dir_to_node)
-		arrow.icon_state = "[arrow.dir]-[dir_to_node]"
 	chosen_node = null
 	current_route = null
 
