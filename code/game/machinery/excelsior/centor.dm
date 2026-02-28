@@ -141,10 +141,9 @@ var/global/excelsior_centor
 
 /obj/machinery/centor/proc/looking_around()
 	if(!cutscene)
-		start_cutscene()
 		overlays += "idle_anim"
-		spawn(17)
-			end_cutscene()
+		spawn(12) update_icon()
+
 
 /obj/machinery/centor/proc/investigating(atom/overhere)
 	if(!cutscene)
