@@ -3,7 +3,7 @@
 	.	ROADMAP - UPDATES:
 	.	[>]	Stage I
 	.		Stage II
-				NOTE: more sounds, robots :3, emplacements, mandate rework.
+				NOTE: more sounds, robots :3, emplacements, mandate rework, and
 	.		S@*&#...
 	................................................
 
@@ -347,7 +347,7 @@ var/global/excelsior_centor
 
 /obj/machinery/centor/take_damage(amount)
 	if(!damage_report_cooldown)
-		talk("Centor is being attacked. [pick(imgonnadie)]")
+		talk("CENTOR :: Centor lost integrity. [pick(imgonnadie)]")
 		damage_report_cooldown = TRUE
 		spawn(1 MINUTE)
 			if(src)

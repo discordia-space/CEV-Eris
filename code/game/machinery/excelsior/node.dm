@@ -255,7 +255,7 @@ Don't get spooked - there's comments below
 
 /obj/machinery/node/take_damage(amount)
 	if(!damage_report_cooldown)
-		talk("Node [shortname] reports an attack. Please assess the threat and respond if needed.")
+		talk("DAMAGED :: Node [shortname] lost integrity. ")
 		damage_report_cooldown = TRUE
 		spawn(1 MINUTE)
 			if(src)
@@ -269,7 +269,7 @@ Don't get spooked - there's comments below
 	return TRUE	//Actual damage delt. Used in attackby()
 
 /obj/machinery/node/proc/die()
-	talk("Node [shortname] reported demolished at [get_area(src)]")
+	talk("DESTROYED :: [shortname] reported demolished at [get_area(src)]")
 	explosion(get_turf(src), 100, 50)
 	Destroy()
 
@@ -424,14 +424,14 @@ Don't get spooked - there's comments below
 		return
 	if(istype(intruder, /mob/living/carbon/human))
 		if(intruder.stats.getPerk(PERK_VAGABOND) || intruder.name == "Unknown")
-			talk("A non-crew enemy human [intruder.name] spotted at [name]")
+			talk("SPOTTED: Non-crew [intruder.name] spotted at [name]")
 			intruder_list.Add(intruder)
 			return
-		talk("Enemy human [intruder.name] spotted at [name]")
+		talk("SPOTTED :: Human [intruder.name] spotted at [name]")
 		intruder_list.Add(intruder)
 		return
 	if(istype(intruder, /mob/living/silicon/robot))
-		talk("Enemy robot [intruder.name] spotted at [name]")
+		talk("SPOTTED :: Robot [intruder.name] spotted at [name]")
 		intruder_list += intruder
 		return
 
