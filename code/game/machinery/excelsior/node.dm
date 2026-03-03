@@ -1,32 +1,3 @@
-/*
-Better info in centor.dm
-Don't get spooked - there's comments below
-
-
-# DICTIONARY:
-	Powered
-		- In the case of the node that means Centor is in Node's spread_signal() radius.
-			- Powered node:
-				- produces energy
-				- activates machinery linked to it (if such machinery needs node to work (e.g. turret turns ON))
-				- passes Powered status to "neighbour" nodes (connected due to proximity)
-
-
-	"Node chain"
-		- Node chain is what happens when [Node] sees [Centor] in node's proximity, that node is "powered by centor",
-		THEN it passes that "powered" status to other nodes they are connected, until the whole net is powered.
-			NOTE: The "powered" status is checked with node.core
-
-	*
-	*	DEMONSTRATION:
-	*	Legend: C - Centor, X - unpowered node, N - powered node, --- connection(if proximity)
-	*
-	*	Here 2/3 existing nodes are powered from Centor, and one X is disconnected due to distance from core's appendage:
-	*	C --- N --- N     X
-*/
-
-
-
 /obj/machinery/node
 	name = "Excelsior \"Tochka\" node"
 	var/shortname = "Tochka-123"
