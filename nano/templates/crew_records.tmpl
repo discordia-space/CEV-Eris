@@ -27,32 +27,25 @@
 				{{/if}}
 				{{if value.needs_big_box}}
 					<div style="display: inline-block;">
+				{{else}}
+					<div class='itemBody'>
+				{{/if}}
+				{{if value.value}}
 					{{:value.value}}
-					{{else}}
-						{{if value.list_value}}
-							{{for value.list_value}}
-								{{:value}}
-							{{/for}}
+				{{else}}
+					{{if value.list_value}}
+						{{if value.list_value[0]}}
+							{{:value.list_value}}
 						{{else}}
-							{{if value.list_clumps}}
-								{{for value.list_clumps}}
-									{{for value}}
-										{{:value}}
-									{{/for}}
-								{{/for}}
-							{{else}}
-								{{if value.links}}
-									{{for 1 to value.links.len}}
-										{{for value.links}}
-											
-								{{/if}}
-							{{/if}}
+							Unset
+						{{/if}}
+					{{else}}
+						{{if value.list_clumps}}
+							{{:jQuery.map(value.list_clumps, function(index, mapped){return [mapped,": ", index.join(", ")].join("")}).join("<br>")}}
 						{{/if}}
 					{{/if}}
-					</div>
-				{{else}}
-					<div class='itemBody'>{{:value.value}}</div>
 				{{/if}}
+				</div>
 			</div>
 		{{/if}}
 	{{/for}}
