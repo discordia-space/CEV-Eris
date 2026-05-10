@@ -6,9 +6,11 @@
 	icon_state = "body_m_s"
 
 	var/list/hud_list[10]
-	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
+	var/embedded_flag  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
 	var/using_scope // This is not very good either, because I've copied it. Sorry.
+	var/datum/social_data/social = /datum/social_data/none
+
 
 /mob/living/carbon/human/Initialize(new_loc, new_species)
 	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100", ON_MOB_HUD_LAYER)
@@ -518,7 +520,7 @@ var/list/rank_prefix = list(\
 				return
 
 			var/datum/report_field/array/recordnote = E.get_linkage_secNotes()
-			
+
 			if(recordnote)
 				recordnote.add_value(t1)
 
@@ -533,7 +535,7 @@ var/list/rank_prefix = list(\
 				perpname = src.name
 
 			var/datum/computer_file/report/crew_record/E = get_crewmember_record(perpname)
-			if(E)	
+			if(E)
 				var/setmedical = input(usr, "Specify a new medical status for this person.", "Medical HUD", E.get_status()) in GLOB.physical_statuses
 
 				if(hasHUD(usr,"medical"))
@@ -563,7 +565,7 @@ var/list/rank_prefix = list(\
 				perpname = src.name
 				var/datum/computer_file/report/crew_record/E = get_crewmember_record(perpname)
 				var/datum/report_field/arrayclump/M = E.get_linkage_medRecord()
-				if(E)	
+				if(E)
 					to_chat(usr, "<b>Name:</b> [E.get_name()]	<b>Blood Type:</b> [E.get_bloodtype()]")
 					to_chat(usr, "<b>DNA:</b> [E.get_dna()]")
 					to_chat(usr, "<b>Prosthetics:</b> [M.value["prosthetics"]]")
