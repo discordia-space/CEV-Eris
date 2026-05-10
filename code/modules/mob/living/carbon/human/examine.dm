@@ -178,10 +178,7 @@
 	//Noble or lowborn
 	if(ishuman(user) && !wear_mask)
 		var/mob/living/carbon/human/H = user
-		if(H.stats.getPerk(PERK_NOBLE))
-			msg += "[T.He] [T.has] a noble demeanour.\n"
-		if(H.stats.getPerk(PERK_LOWBORN))
-			msg += "[T.He] [T.has] a lowborn demeanour.\n"
+		msg += src.social.get_feedback_string(src.social, H.social)
 
 	//crazy
 	if(ishuman(user) && !wear_mask)
