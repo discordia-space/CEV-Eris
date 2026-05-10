@@ -7,6 +7,7 @@ Used In File(s): code/game/machinery/excelsior/ex_teleporter.dm
 	<div class="item">
 		<div class="itemLabel">
 			Energy:
+			Energy income: {{:helper.round(data.energy*10 - data.old_energy*10)/10}}
 		</div>
 		<div class="itemContent">
 			{{:helper.displayBar(data.energy, 0, data.maxEnergy, 'good', data.energy + ' Power')}}
@@ -80,7 +81,41 @@ Used In File(s): code/game/machinery/excelsior/ex_teleporter.dm
 			</tr>
 		{{/for}}
 	</table>
-	<div class="item">
+ <div class="item">
+        <div class="itemLabel" style="width: 100%;">
+            Circuits:
+        </div>
+    </div>
+    <table class='itemContent' style="width: 100%;">
+        <tr>
+            <td><b>Name</b></td>
+            <td><b>Energy Cost</b></td>
+        </tr>
+        {{for data.circuits}}
+            <tr>
+            <td>{{:value.name_c}}</td>
+            <td>{{:helper.link(value.price_c, 'circle-arrow-s', value.commands_c, null, 'fixedLeft')}}</td>
+            </tr>
+        {{/for}}
+    </table>
+ <div class="item">
+        <div class="itemLabel" style="width: 100%;">
+            Equipment:
+        </div>
+    </div>
+    <table class='itemContent' style="width: 100%;">
+        <tr>
+            <td><b>Name</b></td>
+            <td><b>Energy Cost</b></td>
+        </tr>
+        {{for data.excelsior_kits}}
+            <tr>
+            <td>{{:value.name_e}}</td>
+            <td>{{:helper.link(value.price_e, 'circle-arrow-s', value.commands_e, null, 'fixedLeft')}}</td>
+            </tr>
+        {{/for}}
+    </table>
+<div class="item">
 		<div class="itemLabel" style="width: 100%;">
 			Crates:
 		</div>

@@ -120,6 +120,9 @@
 #define COMSIG_DOOR_OPENED "door_opened"
 #define COMSIG_DOOR_CLOSED "door_closed"
 
+//excelsior
+#define COMSIG_EX_CONNECT "excelsior_connect"
+
 // /obj/item signals
 #define COMSIG_IATTACK "item_attack"									//from /mob/ClickOn(): (/atom, /src, /params) If any reply to this returns TRUE, overrides attackby and afterattack
 #define COMSIG_ATTACKBY "attack_by"										//from /mob/ClickOn():

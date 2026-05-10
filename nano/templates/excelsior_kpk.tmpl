@@ -1,0 +1,75 @@
+<!--
+Used In File(s): code\game\machinery\excelsior\excelsior_items\KPK.dm
+ -->
+<div class="foreground scanlines biosfont">
+{{for data.error_list}}
+<div {{:value.z_err}} class="ex-popup">
+	<div class="ex-popup-content">
+		Error!<br><br>
+		{{:value.text_err}}<br><br>
+		{{:helper.komulink('OK', null, value.commands_err, null)}}
+	</div>
+</div>
+{{/for}}
+<div class="ex-border">
+	<div class="ex-title">
+	Welcome, Infiltrator
+	<hr class="ex-line">
+	<hr class="ex-underline">
+	</div>
+
+	<div class="ex-content file-tree">
+	ROOT
+	<ul>
+		<li>PROGRAMS:
+			<ul>
+				<li>{{:helper.komulink('Build path', null, {'open_path_dio' : 1}, null)}}
+					{{if data.path_diologe}}
+					<ul>
+						<li>Start mapping a new path?</li>
+						<li>{{:helper.komulink('Yes', null, {'start_pathfind' : 1}, null)}}</li>
+						<li>{{:helper.komulink('No', null, {'close_path_dio' : 1}, null)}}</li>
+					</ul>
+					{{/if}}
+					{{if data.current_path}}
+					<ul>
+						<li>PATH RECORDING IN PROGRESS</li>
+						<li>Current node: {{:data.current_node}}</li>
+						<li>{{:helper.komulink('Finish path', null, {'end_pathfind' : 1}, null)}}</li>
+						<li>{{:helper.komulink('Cancel', null, {'cancel_pathfind' : 1}, null)}}</li>
+					</ul>
+					{{/if}}
+				</li>
+				<li>{{:helper.komulink('Find path', null, {'open_viewpath_dio' : 1}, null)}}
+				{{if data.viewpath_dio}}
+				<ul>
+				<li>{{:helper.komulink('Cancel', null, {'close_viewpath_dio' : 1}, null)}}</li>
+				{{for data.node_list}}
+				<li>{{:helper.komulink(value.name_n, null, value.commands_n, null)}}</li>
+				{{/for}}
+				</ul>
+				{{/if}}
+				</li>
+				{{if data.mappings_dio}}
+				<li>{{:helper.komulink('Mappings:', null, {'close_mappings_dio' : 1}, null)}}
+					<ul>
+						<li>Current status: {{:data.overlay_enabled}}</li>
+						<li>{{:helper.komulink('Toggle mappings', null, {'toggle_overlay' : 1}, null)}}</li>
+						<li>{{:helper.komulink('Influence mode', null, {'influence_overlay' : 1}, null)}}</li>
+						<li>{{:helper.komulink('Pathfind mode', null, {'pathfind_overlay' : 1}, null)}}</li>
+					</ul>
+				</li>
+				{{else}}
+				<li>{{:helper.komulink('Mappings:', null, {'open_mappings_dio' : 1}, null)}}</li>
+				{{/if}}
+			</ul>
+		</li>
+	</ul>
+	</div>
+
+	<div class="ex-bottom-text">
+	<h1 class="ex-logo">KOMPAK</h1><br>
+	Made by Stalov
+	</div>
+</div>
+</div>

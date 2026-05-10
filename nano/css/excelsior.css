@@ -1,0 +1,194 @@
+
+@font-face {
+  font-family: "IBM BIOS";
+  src: url(WebPlus_IBM_BIOS.woff);
+}
+
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+.scanlines:before, .scanlines:after {
+  display: block;
+  pointer-events: none;
+  content: "";
+  position: absolute;
+}
+.scanlines:before {
+  width: 100%;
+  height: 2px;
+  z-index: 2147483649;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0.75;
+  animation: scanline 6s linear infinite;
+}
+.scanlines:after {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2147483648;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.3) 51%);
+  background-size: 100% 4px;
+  animation: scanlines 1s steps(60) infinite;
+}
+
+/* ANIMATE UNIQUE SCANLINE */
+@keyframes scanline {
+  0% {
+    transform: translate3d(0, 200000%, 0);
+  }
+}
+@keyframes scanlines {
+  0% {
+    background-position: 0 50%;
+  }
+}
+
+.biosfont {
+	font-family: "IBM BIOS";
+	font-size: 8px;
+	line-height: 8px;
+	color: #FF5F1F;
+}
+
+.foreground {
+	background: #190903;
+
+	position:fixed;
+    padding:0;
+    margin:0;
+
+    top:0;
+    left:0;
+
+    width: 100%;
+    height: 100%;
+}
+
+.ex-border {
+	border-style: solid dashed solid dashed;
+	border-width: 3px;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top: 1%;
+	height: 75%;
+}
+
+.ex-title {
+	align-self: top;
+	text-align: center;
+	margin-top: 3%;
+	font-size: 12px;
+	line-height: 12px;
+}
+
+.ex-line {
+	position: absolute;
+	left: 15%;
+	border: 1px solid #FF5F1F;
+	width: 66%;
+	height: 0px;
+	background-color: #FF5F1F;
+}
+
+.ex-underline {
+	position: absolute;
+	left: 10.5%;
+	border: 1px dashed #FF5F1F;
+	width: 75%;
+	height: 0px;
+	background-color: #190903;
+	z-index: -1;
+}
+
+.ex-content {
+	margin-top: 10%;
+	margin-left: 10%;
+	text-align: left;
+	line-height: 8px;
+	font-size: 8px;
+}
+
+.ex-button {
+	float: left;
+}
+
+.ex-button:hover {
+	background-color: #FF5F1F;
+	color: #190903;
+}
+
+.ex-bottom-text {
+	position: absolute;
+	margin-left: 10%;
+	width: 70%;
+	bottom: 5%;
+	text-align: center;
+}
+
+.ex-logo {
+	color: #FF5F1F;
+	white-space: nowrap;
+}
+
+.komulink {
+	display: inline-block;
+}
+
+.komulink:hover {
+	background-color: #FF5F1F;
+	color: #190903;
+}
+
+.file-tree ul {
+  margin: 0;
+  padding-left: 3rem;
+  list-style: none;
+  line-height: 1.25;
+  position: relative;
+  overflow: hidden;
+}
+
+.file-tree li:not(:last-child) > ul::before {
+  content: '\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1em;
+}
+
+.file-tree > ul {
+  margin: 0;
+  padding: 0;
+}
+
+.file-tree li {
+  position: relative;
+}
+
+.file-tree li::before {
+  content: '\251C\2500\2500\0020';
+}
+
+.file-tree li:last-child::before {
+  content: '\2514\2500\2500\0020';
+}
+
+.ex-popup {
+  display: flex;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #190903;
+  justify-content: center;
+  align-items: center;
+}
+
+.ex-popup-content {
+  background-color: #FF5F1F;
+  color: #190903;
+  padding: 3%;
+  text-align: center;
+}

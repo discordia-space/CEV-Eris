@@ -353,7 +353,7 @@ var/list/rummage_sound = list(\
 
 		sound_to(listener, output)
 
-
+// :: test tool for playsound() at the end of the file ::
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance, ignore_walls = TRUE, \
 	zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
 
@@ -609,3 +609,107 @@ var/const/FALLOFF_SOUNDS = 0.5
 	if (timer_handle)
 		deltimer(timer_handle)
 	qdel(src)
+
+
+
+
+/* DEBUG AND TEST TOOLS */
+
+// :: playsound() test tool ::
+// 		uncomment for test
+// 		comment after you're done
+
+/*
+
+/obj/item/playsound
+	name = "\improper Playsound test tool"
+	desc = "Use to open menu, click on turf to create a sound."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "rcd"
+	opacity = 0
+	density = FALSE
+	anchored = FALSE
+
+	var/how_many_tests						// how many times are you gonna play the sound before new test inputs?
+	var/delay = 0							// delay the sound after you click somewhere
+	var/soundin = 'sound/machines/excelsior/node_deploy.ogg'	// INSERT SOUND FOR TEST HERE BEFORE COMPILING
+	var/vol = 100
+	var/vary = 1
+	var/extrarange
+	var/falloff
+	var/is_global
+	var/frequency
+	var/is_ambiance
+	var/ignore_walls						// TRUE/FALSE  (this means if you cant see sound src then its NOT PLAYING. FIND OUT THE HARD WAY THANK ME FUCKING LATER)
+	var/zrange								// default 2
+	var/override_env
+	var/envdry
+	var/envwet
+	var/use_pressure
+
+/obj/item/playsound/afterattack(atom/A, mob/user as mob)
+
+	if(istype(A, /turf))
+		to_chat(user, "Playing with [delay].")
+		spawn(delay) playsound(A, soundin, vol, vary, extrarange, falloff, is_global, frequency, is_ambiance, ignore_walls, \
+	zrange, override_env, envdry, envwet, use_pressure)
+	else
+		to_chat(user, SPAN_WARNING("Click on turf motherfucker."))
+
+/obj/item/playsound/attack_self()
+	configure()
+/obj/item/playsound/proc/configure()
+	var/setting
+	var/list/setting_types = list("delay", "soundin", "vol", "vary", "extrarange", "falloff", "is_global", "frequency", "is_ambiance", "ignore_walls",
+    "zrange", "override_env", "envdry", "envwet", "use_pressure")
+
+	setting = input("What kind of setting?","Setting Type") as null|anything in setting_types
+
+	if(!setting)
+		return
+
+	switch(setting)
+		if("delay")
+			delay = input("Set delay for spawn()","Num") as num
+			playsound()
+
+		if("soundin")
+			soundin = input("Pick file:","File") as file
+
+		if("vol")
+			vol = input("Enter new number:","Num") as num
+
+		if("vary")
+			vary = input("Enter new number:","Num") as num
+
+		if("extrarange")
+			extrarange = input("Enter new number:","Num") as num
+
+		if("falloff")
+			falloff = input("Enter new number:","Num") as num
+
+		if("is_global")
+			is_global = input("Enter new number:","Num") as num
+
+		if("frequency")
+			frequency = input("Enter new number:","Num") as num
+
+		if("is_ambiance")
+			is_ambiance = input("Enter new number:","Num") as num
+
+		if("ignore_walls")
+			ignore_walls = input("Enter new number:","Num") as num
+
+		if("zrange")
+			zrange = input("Enter new number:","Num") as num
+
+		if("envdry")
+			envdry = input("Enter new number:","Num") as num
+
+		if("envwet")
+			envwet = input("Enter new number:","Num") as num
+
+		if("use_pressure")
+			use_pressure = input("Enter new number:","Num") as num
+
+*/

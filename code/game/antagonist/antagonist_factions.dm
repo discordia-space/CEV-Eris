@@ -157,6 +157,23 @@
 
 	log_say("[user.name]/[user.key] (REV [name]) : [message]")
 
+/datum/faction/proc/communicate_inanimate(var/obj/user, var/message)
+	if(!message)
+		return
+
+	message = capitalize(sanitize(message))
+	var/text = "<span class='revolution'>[message]</span>"
+	for(var/i in SShumans.mob_list)
+		if(is_excelsior(i))
+			to_chat(i, text)
+
+	//ghosts
+	for(var/mob/observer/ghost/M in GLOB.dead_mob_list)	//does this include players who joined as observers as well?
+		if(!M.client)
+			continue
+		if((M.antagHUD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH) || is_admin(M))
+			to_chat(M, "[text] ([ghost_follow_link(user, M)])")
+
 /datum/faction/proc/is_member(mob/user)
 	for(var/datum/antagonist/A in members)
 		if(A.owner.current == user)

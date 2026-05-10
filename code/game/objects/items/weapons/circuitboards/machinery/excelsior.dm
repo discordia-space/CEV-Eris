@@ -113,3 +113,25 @@
 		/obj/item/cell/medium = 1
 	)
 	spawn_blacklisted = TRUE
+
+/obj/item/electronics/circuitboard/excelsior_node
+	name = T_BOARD("excelsior node")
+	build_path = /obj/machinery/node
+	board_type = "machine"
+	origin_tech = list(TECH_MAGNET = 4, TECH_COVERT = 2)
+	req_components = list(
+		/obj/item/device/assembly/prox_sensor = 1,
+		/obj/item/cell/medium = 1
+	)
+	spawn_blacklisted = TRUE
+
+/obj/item/electronics/circuitboard/centor
+	name = T_BOARD("excelsior centor")
+	build_path = /obj/machinery/centor
+	board_type = "machine"
+	origin_tech = list(TECH_MAGNET = 4, TECH_COVERT = 2)
+	req_components = list(
+		/obj/item/device/assembly/prox_sensor = 1,
+		/obj/item/cell/medium = 1
+	)
+	spawn_blacklisted = TRUE

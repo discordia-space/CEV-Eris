@@ -1,6 +1,7 @@
 /obj/item/machinery_crate
 	name = "IKEA"
 	desc = "Integrated Kit of Engineering Assembly."
+	description_info = "To turn on construction - tigthen the bolts and activate it."
 	icon = 'icons/obj/machinery_crates.dmi'
 	icon_state = "standart"
 
@@ -9,14 +10,16 @@
 	slowdown_hold = 0.5
 	throw_range = 2
 	matter = list(MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 10)
-
 	var/machine_name
-	var/constructing_machine
-	var/constructing_duration = 50
+	var/obj/constructing_machine
+	var/constructing_duration = 10
 	var/anim
 	var/animation_duration = 5
 	var/activated
+	var/animation_sound				// insert sound path that will play during animation
 	var/can_place_on_table = FALSE
+	var/stealth = FALSE				// if TRUE - deploy sound will NOT play through walls
+	var/sound_delay = 0
 
 /obj/item/machinery_crate/examine(mob/user, extra_description = "")
 	extra_description += "The piece of paper on the side reads: [machine_name]"
@@ -44,9 +47,12 @@
 	if(anim)
 		invisibility = INVISIBILITY_MAXIMUM
 		var/atom/movable/overlay/animation = new(loc)
-		animation.icon = 'icons/obj/machinery_crates.dmi'
+		animation.icon = icon
+		animation.layer = constructing_machine.layer
 		animation.master = src
 		animation.density = TRUE
+		spawn(sound_delay)
+			anim_sound()
 		flick(anim, animation)
 		activated = TRUE
 		addtimer(CALLBACK(src, PROC_REF(finish_construction), animation), animation_duration)
@@ -69,9 +75,18 @@
 		return TRUE
 	return FALSE
 
+/obj/item/machinery_crate/proc/anim_sound()
+	if(animation_sound)
+		playsound(src, animation_sound, 100, 1, ignore_walls = !stealth)
+
 /obj/item/machinery_crate/excelsior
 	icon_state = "excelsior"
 	bad_type = /obj/item/machinery_crate/excelsior
+
+/obj/item/machinery_crate/excelsior/excelsior_teleporter
+	name = "Packaged Excelsior Teleporter"
+	machine_name = "Excelsior Teleporter"
+	constructing_machine = /obj/machinery/complant_teleporter
 
 /obj/item/machinery_crate/excelsior/shield
 	name = "shield generator IKEA"
@@ -107,6 +122,15 @@
 	name = "diesel generator IKEA"
 	machine_name = "diesel generator"
 	constructing_machine = /obj/machinery/power/port_gen/pacman/diesel
+
+/obj/item/machinery_crate/excelsior/diesel_generator/finish_construction(atom/movable/overlay/animation)
+	var/obj/machinery/power/port_gen/pacman/diesel = new constructing_machine(get_turf(src))
+	diesel.anchored = TRUE
+	diesel.connect_to_network()
+	if(!QDELETED(animation))
+		qdel(animation)
+	if(!QDELETED(src))
+		qdel(src)
 
 /obj/item/machinery_crate/excelsior/turret
 	name = "turret IKEA"
@@ -152,3 +176,16 @@
 	name = "oven IKEA"
 	machine_name = "oven"
 	constructing_machine = /obj/machinery/cooking_with_jane/oven
+
+/obj/item/machinery_crate/excelsior/node
+	name = "Excelsior Node Package"
+	machine_name = "Excelsior Node"
+	animation_sound = 'sound/machines/excelsior/node_deploy.ogg'
+	icon = 'icons/obj/machines/excelsior/corenode/node.dmi'
+	icon_state = "node_item"
+	anim = "deployment"
+	animation_duration = 17
+	constructing_machine = /obj/machinery/node
+	stealth = TRUE
+	sound_delay = 5
+

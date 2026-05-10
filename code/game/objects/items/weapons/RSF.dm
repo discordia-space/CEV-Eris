@@ -101,3 +101,7 @@ RSF
 	else
 		stored_matter--
 		to_chat(user, "The RSF now holds [stored_matter]/30 fabrication-units.")
+
+
+
+
