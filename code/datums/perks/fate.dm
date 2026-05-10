@@ -1,3 +1,11 @@
+#define CASTE_NONE 0
+#define CASTE_LOWBORN 1
+#define CASTE_NOBLE 2
+
+#define STATUS_LOW 1
+#define STATUS_MEDIUM 1
+#define STATUS_HIGH 3
+
 /datum/perk/fate/paper_worm
 	name = "Paper Worm"
 	desc = "You were a clerk and bureaucrat for all your life. Cramped offices with angry people is where your personality was forged. \
@@ -122,12 +130,24 @@
 	name = "Noble"
 	icon_state = "family" //https://game-icons.net
 	desc = "You are a descendant of a long-lasting family, bearing a name of high status that can be traced back to the early civilization of your domain. \
-			Start with an heirloom weapon, higher chance to be on contractor contracts and removed sanity cap. Stay clear of filth and danger."
+			Start with an heirloom weapon, higher chance to be on contractor contracts and removed sanity cap. Stay clear of filth and danger. \
+			You have varying chances to be a low, normal or high ranking noble, with all of the resulting respect."
 
 /datum/perk/fate/noble/assign(mob/living/carbon/human/H)
 	if(!..())
 		return
 	holder.sanity.environment_cap_coeff -= 1
+	holder.social.caste = CASTE_NOBLE
+	if(prob(75))
+		if(prob(15))
+			holder.social.status = STATUS_HIGH //heh... look at me... king of nobody gives a shi
+			to_chat(holder, "I am a high-ranking noble.")
+		else
+			holder.social.status = STATUS_MEDIUM
+			to_chat(holder, "I am a noble.")
+	else
+		holder.social.status = STATUS_LOW
+		to_chat(holder, "I am a noble! \n... Not a very prestigious one, but still a noble.")
 	if(!holder.last_name)
 		holder.stats.removePerk(src.type)
 		return
@@ -176,6 +196,7 @@
 /datum/perk/fate/noble/remove()
 	if(holder)
 		holder.sanity.environment_cap_coeff += 1
+		holder.social.caste = CASTE_NONE
 	..()
 
 /datum/perk/fate/rat
@@ -250,8 +271,10 @@
 /datum/perk/fate/lowborn/assign(mob/living/carbon/human/H)
 	if(..())
 		holder.sanity.max_level += 10
+		holder.social.caste = CASTE_LOWBORN
 
 /datum/perk/fate/lowborn/remove()
 	if(holder)
 		holder.sanity.max_level -= 10
+		holder.social.caste = CASTE_NONE
 	..()

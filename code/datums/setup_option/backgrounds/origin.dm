@@ -6,6 +6,9 @@
 
 /datum/category_item/setup_option/background/origin
 
+/datum/category_item/setup_option/background/origin/apply(mob/living/carbon/human/character)
+	character.social.set_origin(src)
+
 /datum/category_item/setup_option/background/origin/oberth
 	name = "Oberth"
 	desc = "An independent colony founded by German immigrants from old Earth and consisting of one giant hive city on a barren desert planet. \

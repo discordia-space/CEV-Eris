@@ -41,8 +41,6 @@
 	msg += "!\n"
 
 
-
-
 	//uniform
 	if(w_uniform && !skipjumpsuit)
 		//Ties
@@ -178,10 +176,8 @@
 	//Noble or lowborn
 	if(ishuman(user) && !wear_mask)
 		var/mob/living/carbon/human/H = user
-		if(H.stats.getPerk(PERK_NOBLE))
-			msg += "[T.He] [T.has] a noble demeanour.\n"
-		if(H.stats.getPerk(PERK_LOWBORN))
-			msg += "[T.He] [T.has] a lowborn demeanour.\n"
+		var/nobility_string = H.social.get_feedback_string(H.social, src.social)
+		msg += nobility_string
 
 	//crazy
 	if(ishuman(user) && !wear_mask)
