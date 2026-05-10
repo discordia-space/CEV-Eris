@@ -98,8 +98,13 @@
 #define GUN_UPGRADE_DEFINE_GRIP "grip"
 #define GUN_UPGRADE_DEFINE_LOADER "loadtype"
 #define GUN_UPGRADE_DENY_MAG "no_mag"
-#define GUN_UPGRADE_DEFINE_WCLASS "add_wclass"
+#define GUN_UPGRADE_DEFINE_WCLASS "wclass"
 #define GUN_UPGRADE_SCOPE_POWER "scope_power"
+#define GUN_UPGRADE_SET_FIRESOUND "sound_fire"
+#define GUN_UPGRADE_SET_SILENT_FIRESOUND "sound_fire_silent"
+#define GUN_UPGRADE_SET_RELOADSOUND "sound_reload"
+#define GUN_UPGRADE_SET_COCKEDSOUND "sound_cocked"
+#define GUN_UPGRADE_SET_INSERTSOUND "sound_insert"
 
 //Gun Interaction flags
 #define GI_ATTACKSELF 1

@@ -38,7 +38,7 @@
 			/obj/item/gun/projectile/selfload,
 			/obj/item/gun/projectile/olivaw,
 			/obj/item/gun/projectile/revolver/havelock,
-			/obj/item/gun/projectile/automatic/modular/ak/frozen_star,
+			/obj/item/gun/projectile/modular/ak/frozen_star,
 			/obj/item/gun/projectile/automatic/atreides,
 			/obj/item/gun/projectile/shotgun/pump
 		),
@@ -95,11 +95,11 @@
 		/obj/item/part/armor/artwork = offer_data("artistic armor part", 1000, 1),
 		/obj/item/part/gun/artwork = offer_data("artistic gun part", 1000, 1),
 		//obj/item/gun = offer_data_mods("modified gun (3 upgrades)", 3200, 2, OFFER_MODDED_GUN, 3),	// Stops guns from exporting
-		/obj/item/gun/projectile/automatic/modular/ak = offer_data("AK frame", 800, 1),
+		/obj/item/gun/projectile/modular/ak = offer_data("AK frame", 800, 1),
 		/obj/item/part/gun/frame/boltgun  = offer_data("boltgun frame", 800, 1),
 		/obj/item/part/gun/frame/sol = offer_data("Sol frame", 2000, 1),
 		/obj/item/part/gun/frame/straylight = offer_data("Straylight frame", 2000, 1),
-		/obj/item/gun/projectile/automatic/modular/wintermute = offer_data("Wintermute frame", 2000, 1),
+		/obj/item/gun/projectile/modular/wintermute = offer_data("Wintermute frame", 2000, 1),
 		/obj/item/part/gun/frame/kadmin = offer_data("Kadmin frame", 2000, 1),
 		/obj/item/part/gun/frame/bull = offer_data("Bull frame", 2000, 1),
 		/obj/item/part/gun/frame/gladstone = offer_data("Gladstone frame", 1000, 1),

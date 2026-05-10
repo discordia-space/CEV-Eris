@@ -1,5 +1,5 @@
 /datum/guninteraction
-	var/obj/item/gun/projectile/automatic/modular/parentgun
+	var/obj/item/gun/projectile/modular/parentgun
 	var/obj/item/part/gun/modular/parentpart
 	var/priority = 0
 	var/interactionflags

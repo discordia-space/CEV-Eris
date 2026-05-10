@@ -29,17 +29,17 @@
 
 /datum/design/autolathe/gun/mk58
 	name = "NT HG .35 \"Mk-58 B\""
-	build_path = /obj/item/gun/projectile/automatic/modular/mk58/gray/stock
+	build_path = /obj/item/gun/projectile/modular/mk58/gray/stock
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mk58_wood
 	name = "NT HG .35 \"Mk-58 C\""
-	build_path = /obj/item/gun/projectile/automatic/modular/mk58/gray/wood
+	build_path = /obj/item/gun/projectile/modular/mk58/gray/wood
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mk58_army
 	name = "NT HG .35 \"Mk-58 e\""
-	build_path = /obj/item/gun/projectile/automatic/modular/mk58/black/army
+	build_path = /obj/item/gun/projectile/modular/mk58/black/army
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/colt
@@ -150,7 +150,7 @@
 
 /datum/design/autolathe/gun/wintermute
 	name = "FS AR .20 \"Wintermute\""
-	build_path = /obj/item/gun/projectile/automatic/modular/wintermute/finished
+	build_path = /obj/item/gun/projectile/modular/wintermute/finished
 	minimum_quality = 2
 
 /datum/design/autolathe/gun/kovacs
@@ -184,20 +184,20 @@
 
 /datum/design/autolathe/gun/ak47
 	name = "Excelsior Car .30 Kalashnikov"
-	build_path = /obj/item/gun/projectile/automatic/modular/ak/excelsior
+	build_path = /obj/item/gun/projectile/modular/ak/excelsior
 	minimum_quality = 2
 
 /datum/design/autolathe/gun/ak47_fs
 	name = "FS AR .30 \"Vipr\""
-	build_path = /obj/item/gun/projectile/automatic/modular/ak/frozen_star
+	build_path = /obj/item/gun/projectile/modular/ak/frozen_star
 
 /datum/design/autolathe/gun/ak47_fs_ih
 	name = "FS AR .30 \"Venger\""
-	build_path = /obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities
+	build_path = /obj/item/gun/projectile/modular/ak/ironhammer_securities
 
 /datum/design/autolathe/gun/ak47_sa
 	name = "SA AR .30 \"Krinkov\""
-	build_path = /obj/item/gun/projectile/automatic/modular/ak/serbian_arms/printed
+	build_path = /obj/item/gun/projectile/modular/ak/serbian_arms/printed
 
 /datum/design/autolathe/gun/sts35
 	name = "OR SDF AR .30 \"STS-35\""

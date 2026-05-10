@@ -1,13 +1,11 @@
-/obj/item/gun/projectile/automatic/modular/wintermute // Frame
+/obj/item/gun/projectile/modular/wintermute // Frame
 	name = "\"Wintermute\""
 	desc = "A high end military grade assault rifle, designed as a modern ballistic infantry weapon. Primarily used by and produced for IH troops. Uses IH .20 Rifle magazines. \
 			The design was made to be able to fit long magazine alongside the standard ones."
 	icon = 'icons/obj/guns/projectile/modular/wintermute.dmi'
 	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 1) // Parts can give better tech
 	slot_flags = SLOT_BACK
-	load_method = MAGAZINE // So far not modular
 	magazine_type = /obj/item/ammo_magazine/srifle // Default magazine, only relevant for spawned AKs, not crafted or printed ones
 	matter = list(MATERIAL_PLASTEEL = 5)
 	price_tag = 1000 // Same reason as matter, albeit this is where the license points matter
@@ -29,7 +27,7 @@
 
 	required_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/determined = 0, /obj/item/part/gun/modular/barrel = 0, /obj/item/part/gun/modular/grip = 0, /obj/item/part/gun/modular/stock = 0)
 
-/obj/item/gun/projectile/automatic/modular/wintermute/get_initial_name()
+/obj/item/gun/projectile/modular/wintermute/get_initial_name()
 	if(grip_type)
 		switch(grip_type)
 			if("wood")
@@ -47,7 +45,7 @@
 	else
 		return "AR [caliber] \"Winter\""
 
-/obj/item/gun/projectile/automatic/modular/wintermute/finished // Total points: 7, as Wintermute has 2 from damage multiplier
+/obj/item/gun/projectile/modular/wintermute/finished // Total points: 7, as Wintermute has 2 from damage multiplier
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/determined = 0, /obj/item/part/gun/modular/barrel/srifle = 0, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/stock = 0)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE

@@ -174,7 +174,7 @@
 	name = "rifleman crate"
 	desc = "A crate containing six SA AK-47 rifles, and plenty of magazines."
 	icon_state = "serbcrate_deferred_green"
-	initial_contents = list(/obj/item/gun/projectile/automatic/modular/ak/serbian_arms  = 6,
+	initial_contents = list(/obj/item/gun/projectile/modular/ak/serbian_arms  = 6,
 	/obj/item/ammo_magazine/lrifle = 12, /obj/item/ammo_magazine/lrifle/drum = 6)
 
 /obj/item/storage/deferred/crate/kovacs
@@ -383,7 +383,7 @@
 	desc = "The start of a revolutionary career in Haven's space corps."
 	icon_state = "Excel_crate"
 	initial_contents = list(
-	/obj/item/gun/projectile/automatic/modular/ak/excelsior = 1,
+	/obj/item/gun/projectile/modular/ak/excelsior = 1,
 	/obj/item/clothing/under/excelsior = 1,
 	/obj/item/clothing/gloves/thick = 1,
 	/obj/item/ammo_magazine/lrifle = 4,

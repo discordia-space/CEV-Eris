@@ -347,7 +347,7 @@
 	if (load_method & MAGAZINE)
 		if(ammo_magazine)
 			bullets += ammo_magazine.max_ammo
-	if (load_method & SPEEDLOADER)
+	if (load_method & (SPEEDLOADER|SINGLE_CASING))
 		bullets += max_shells
 	return bullets
 

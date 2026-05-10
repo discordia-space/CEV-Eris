@@ -1024,13 +1024,13 @@
 		for(var/propname in custom_default) // taken from gun_firemode.dm
 			if(propname in vars)
 				vars[propname] = custom_default[propname]
-	initialize_scope()
 	initialize_firemodes()
 
 	//Now lets have each upgrade reapply its modifications
 	SEND_SIGNAL_OLD(src, COMSIG_ADDVAL, src)
 	SEND_SIGNAL_OLD(src, COMSIG_APPVAL, src)
 
+	initialize_scope()
 	initialize_firemode_actions()
 
 	if(LAZYLEN(firemodes))

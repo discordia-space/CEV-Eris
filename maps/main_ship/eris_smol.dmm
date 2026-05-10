@@ -73414,9 +73414,9 @@
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
-/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
-/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
-/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
+/obj/item/gun/projectile/modular/ak/ironhammer_securities,
+/obj/item/gun/projectile/modular/ak/ironhammer_securities,
+/obj/item/gun/projectile/modular/ak/ironhammer_securities,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
@@ -76435,8 +76435,8 @@
 /area/eris/security/armory)
 "dBv" = (
 /obj/structure/table/rack,
-/obj/item/gun/projectile/automatic/modular/wintermute/finished,
-/obj/item/gun/projectile/automatic/modular/wintermute/finished,
+/obj/item/gun/projectile/modular/wintermute/finished,
+/obj/item/gun/projectile/modular/wintermute/finished,
 /obj/machinery/camera/network/security,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";

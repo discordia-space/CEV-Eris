@@ -68,8 +68,8 @@
 			/obj/item/gun/energy/nt_svalinn
 		),
 		"Ballistic Weapons" = list(
-			/obj/item/gun/projectile/automatic/modular/mk58/gray/stock,
-			/obj/item/gun/projectile/automatic/modular/mk58/gray/wood,
+			/obj/item/gun/projectile/modular/mk58/gray/stock,
+			/obj/item/gun/projectile/modular/mk58/gray/wood,
 			/obj/item/gun/projectile/shotgun/pump/regulator
 		),
 		"Neotheology Cells" = list(

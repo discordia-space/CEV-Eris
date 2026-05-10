@@ -20,7 +20,7 @@
 	inventory = list(
 		"Guns" = list(
 			/obj/item/gun/projectile/boltgun/serbian = custom_good_amount_range(list(1, 10)),
-			/obj/item/gun/projectile/automatic/modular/ak/serbian_arms = custom_good_amount_range(list(1, 3)),
+			/obj/item/gun/projectile/modular/ak/serbian_arms = custom_good_amount_range(list(1, 3)),
 			/obj/item/gun/projectile/kovacs = custom_good_amount_range(list(1, 3)),
 			/obj/item/ammo_magazine/sllrifle,
 			/obj/item/ammo_magazine/lrifle,
@@ -64,7 +64,7 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/gun/projectile/automatic/modular/ak = offer_data("AK frame", 800, 1),
+		/obj/item/gun/projectile/modular/ak = offer_data("AK frame", 800, 1),
 		/obj/item/part/gun/frame/kovacs = offer_data("Kovacs frame", 1400, 2),
 		/obj/item/part/gun/frame/zoric = offer_data("Zoric frame", 2000, 1),
 		/obj/item/part/gun/frame/bojevic = offer_data("Bojevic frame", 6000, 1),

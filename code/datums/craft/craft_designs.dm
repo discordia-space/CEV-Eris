@@ -348,7 +348,7 @@ Based on /datum/design of \code\datums\autolathe\autolathe_datums.dm
 /datum/design/makeshift/sermak
 	category = "firearm frames"
 	name = "\"Sermak\" rifle frame"
-	build_path = /obj/item/gun/projectile/automatic/modular/ak/makeshift
+	build_path = /obj/item/gun/projectile/modular/ak/makeshift
 	minimum_quality = 0
 
 // misc

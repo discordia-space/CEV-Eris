@@ -309,6 +309,7 @@ semi accepts weird caliber - +1 points
 	..(quality)
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_GRIP] = type_of_grip
 	I.weapon_upgrades[GUN_UPGRADE_OFFSET] = -15 // Without a grip the gun shoots funny, players are legally allowed to not use a grip
+	I.weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE] = WEAPON_FORCE_WEAK - 1
 	I.gun_loc_tag = PART_GRIP
 
 /obj/item/part/gun/modular/grip/set_quality(var/quality = 0)
@@ -378,7 +379,7 @@ semi accepts weird caliber - +1 points
 	price_tag = 100
 	rarity_value = 6
 	var/list/accepted_calibers = list(CAL_PISTOL, CAL_MAGNUM, CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE, CAL_SHOTGUN)
-	var/loader = MAGAZINE
+	var/loader = SINGLE_CASING
 	var/mag_well = MAG_WELL_GENERIC
 	var/divisor_bonus = 0
 	var/recoil_bonus = 0
@@ -387,7 +388,9 @@ semi accepts weird caliber - +1 points
 	var/max_shells = 0
 	var/list/bonus_firemodes = list()
 	var/no_internal_mag = FALSE
-
+	var/sound_reload
+	var/sound_cocked
+	var/sound_insert
 
 
 /obj/item/part/gun/modular/mechanism/New(location, var/quality = 0)
@@ -405,7 +408,14 @@ semi accepts weird caliber - +1 points
 		I.weapon_upgrades[GUN_UPGRADE_MAGUP] = max_shells
 	if(no_internal_mag)
 		I.weapon_upgrades[GUN_UPGRADE_DENY_MAG] = TRUE
-
+	if(damage_bonus)
+		I.weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS] = damage_bonus
+	if(sound_reload)
+		I.weapon_upgrades[GUN_UPGRADE_SET_RELOADSOUND] = sound_reload
+	if(sound_cocked)
+		I.weapon_upgrades[GUN_UPGRADE_SET_COCKEDSOUND] = sound_cocked
+	if(sound_insert)
+		I.weapon_upgrades[GUN_UPGRADE_SET_INSERTSOUND] = sound_insert
 	I.gun_loc_tag = PART_MECHANISM
 
 /obj/item/part/gun/modular/mechanism/set_quality(var/quality = 0)
@@ -431,6 +441,7 @@ semi accepts weird caliber - +1 points
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	accepted_calibers = list(CAL_PISTOL, CAL_MAGNUM, CAL_SRIFLE, CAL_CLRIFLE)
 	part_overlay = "mechanism_pistol"
+	loader = MAGAZINE
 
 /obj/item/part/gun/modular/mechanism/revolver
 	name = "revolver mechanism"
@@ -453,6 +464,8 @@ semi accepts weird caliber - +1 points
 	desc = "All the bits that makes the bullet go bang, in a speedy package."
 	icon_state = "mechanism_smg"
 	mag_well = MAG_WELL_SMG
+	loader = MAGAZINE
+	sound_reload = 'sound/weapons/guns/interact/smg_magin.ogg'
 
 /obj/item/part/gun/modular/mechanism/autorifle
 	name = "generic self-loading mechanism"
@@ -460,6 +473,8 @@ semi accepts weird caliber - +1 points
 	icon_state = "mechanism_autorifle"
 	matter = list(MATERIAL_PLASTEEL = 10)
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D|MAG_WELL_IH
+	sound_reload = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
+	loader = MAGAZINE
 
 // Basic - semiauto with high damage. Total point value: +4
 /obj/item/part/gun/modular/mechanism/autorifle/basic
@@ -555,6 +570,7 @@ semi accepts weird caliber - +1 points
 	matter = list(MATERIAL_PLASTEEL = 16)
 	rarity_value = 8
 	mag_well = MAG_WELL_BOX
+	loader = MAGAZINE
 
 // steel mechanisms
 /obj/item/part/gun/modular/mechanism/pistol/steel
@@ -592,6 +608,7 @@ semi accepts weird caliber - +1 points
 	max_shells = 10
 	divisor_bonus = 0.3
 	damage_bonus = 0.4
+	sound_reload = 'sound/weapons/guns/interact/rifle_load.ogg'
 
 /obj/item/part/gun/modular/mechanism/boltgun/power
 	accepted_calibers = list(CAL_SRIFLE, CAL_MAGNUM)
@@ -607,6 +624,7 @@ semi accepts weird caliber - +1 points
 	part_overlay = "big_" // the full entry is handled by the guninteraction
 	loader = SINGLE_CASING
 	max_shells = 1
+	no_internal_mag = TRUE
 	divisor_bonus = 0
 	damage_bonus = 1
 
@@ -646,9 +664,11 @@ semi accepts weird caliber - +1 points
 	var/recoilbuildup
 	var/pierce
 	var/basemove
+	var/fire_sound
+	var/fire_silenced_sound
 
 /obj/item/part/gun/modular/barrel/New(location, var/quality = 0)
-	..(quality)
+	..()
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER] = caliber
 	if(!isnull(speed))
 		I.weapon_upgrades[GUN_UPGRADE_STEPDELAY_MULT] = speed
@@ -660,6 +680,10 @@ semi accepts weird caliber - +1 points
 		I.weapon_upgrades[GUN_UPGRADE_PIERC_MULT] = pierce
 	if(basemove)
 		I.weapon_upgrades[GUN_UPGRADE_BASESLOW] = basemove
+	if(fire_sound)
+		I.weapon_upgrades[GUN_UPGRADE_SET_FIRESOUND] = fire_sound
+	if(fire_silenced_sound)
+		I.weapon_upgrades[GUN_UPGRADE_SET_SILENT_FIRESOUND] = fire_silenced_sound
 	I.gun_loc_tag = PART_BARREL
 
 
@@ -696,6 +720,7 @@ semi accepts weird caliber - +1 points
 	price_tag = 100
 	caliber = CAL_MAGNUM
 	part_overlay = "well_magnum"
+	fire_sound = 'sound/weapons/guns/fire/revolver_fire.ogg'
 
 /obj/item/part/gun/modular/barrel/srifle
 	name = ".20 barrel"
@@ -711,6 +736,7 @@ semi accepts weird caliber - +1 points
 	onehandpenalty = 1.2
 	recoilbuildup = 1.2
 	speed = 0.8
+	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 
 /obj/item/part/gun/modular/barrel/clrifle
 	name = ".25 barrel"
@@ -727,6 +753,7 @@ semi accepts weird caliber - +1 points
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_LRIFLE
 	part_overlay = "well_lrifle"
+	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
 
 /obj/item/part/gun/modular/barrel/lrifle/forged
 	name = "forged .30 barrel"
@@ -746,6 +773,7 @@ semi accepts weird caliber - +1 points
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_SHOTGUN
 	part_overlay = "well_shotgun"
+	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 
 /obj/item/part/gun/modular/barrel/antim
 	name = ".60 barrel"
@@ -754,6 +782,8 @@ semi accepts weird caliber - +1 points
 	matter = list(MATERIAL_PLASTEEL = 10)
 	caliber = CAL_ANTIM
 	part_overlay = "well_amr"
+	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
+	fire_silenced_sound = 'sound/weapons/guns/fire/smg_fire.ogg'
 
 /obj/item/part/gun/modular/barrel/antim/long
 	name = "long .60 barrel"
@@ -816,6 +846,7 @@ semi accepts weird caliber - +1 points
 	var/movementcost
 	var/onehandpenalty
 	var/wclassmod = 1
+	var/damagedone = 8
 
 /obj/item/part/gun/modular/stock/New(location, var/quality = 0)
 	..() // No stat change, so no need for price change either
@@ -829,6 +860,7 @@ semi accepts weird caliber - +1 points
 	if(onehandpenalty)
 		I.weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY] = onehandpenalty
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS] = wclassmod
+	I.weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE] = damagedone
 
 /obj/item/part/gun/modular/stock/heavy
 	recoilbuildup = 0.7
@@ -839,6 +871,7 @@ semi accepts weird caliber - +1 points
 	recoilbuildup = 0.8
 	movementcost = 5
 	onehandpenalty = 2.4
+	damagedone = 13 // total goal of 20, frame 1, grip 6
 
 /obj/item/part/gun/modular/sights
 	name = "ironsights"
@@ -923,7 +956,7 @@ semi accepts weird caliber - +1 points
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_BAYONET = TRUE,
 		GUN_UPGRADE_MELEEDAMAGE = damagedone,
-		GUN_UPGRADE_MELEEPENETRATION = ARMOR_PEN_MODERATE,
+		GUN_UPGRADE_MELEEPENETRATION = (ARMOR_PEN_MODERATE-1),
 		GUN_UPGRADE_OFFSET = 4
 		)
 

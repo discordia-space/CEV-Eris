@@ -1,7 +1,7 @@
-#define MODULAR_VERBS list(/obj/item/gun/projectile/automatic/modular/proc/quick_fold)
+#define MODULAR_VERBS list(/obj/item/gun/projectile/modular/proc/quick_fold)
 
 
-/obj/item/gun/projectile/automatic/modular // Parent type
+/obj/item/gun/projectile/modular // Parent type
 	name = "\"Kalashnikov\"" // Names are also used by vendors. When making a specific gun, make sure it contains the right name.
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 		 This is a copy of an ancient semi-automatic rifle. If it won't fire, percussive maintenance should get it working again. \
@@ -10,7 +10,7 @@
 	icon_state = "frame"
 	item_state = "" // I do not believe this affects anything
 	w_class = ITEM_SIZE_BULKY // Stock increases it by 1
-	force = WEAPON_FORCE_PAINFUL
+	force = 1 // it's a fragile piece of material, it isn't forceful by default
 	caliber = null // Determined by barrel
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1) // Parts can give better tech
 	slot_flags = SLOT_BACK
@@ -23,8 +23,10 @@
 
 	damage_multiplier = 1 // Mechanism + Barrel can modify
 	penetration_multiplier = 0 // Mechanism + Barrel can modify
+	burst_delay = 2 // carried over from former Parent
 	spawn_blacklisted = TRUE
-	bad_type = /obj/item/gun/projectile/automatic/modular
+	zoom_factors = list() //Default zoom factor
+	bad_type = /obj/item/gun/projectile/modular
 
 	// Parts generated when the item spawns. Keep empty for parent objects. Associated value determines quality.
 	gun_parts = list()
@@ -54,7 +56,7 @@
 	var/list/scope_damage_adds = list()
 	var/datum/gunoverrides/overridedatum
 
-/obj/item/gun/projectile/automatic/modular/Initialize()
+/obj/item/gun/projectile/modular/Initialize()
 
 	gun_tags += GUN_MODULAR
 	for(var/partPath in gun_parts)
@@ -67,17 +69,17 @@
 	. = ..()
 	update_icon()
 
-/obj/item/gun/projectile/automatic/modular/set_quality(var/new_quality = 0, doesReset = TRUE)
+/obj/item/gun/projectile/modular/set_quality(var/new_quality = 0, doesReset = TRUE)
 	for(var/part_path in required_parts)
 		var/obj/item/part/gun/modular/gun_part = locate(part_path) in contents
 		if(gun_part)
 			gun_part.set_quality(doesReset ? new_quality : min(gun_part.old_quality + new_quality))
 	return TRUE
 
-/obj/item/gun/projectile/automatic/modular/proc/get_initial_name()
+/obj/item/gun/projectile/modular/proc/get_initial_name()
 	return "gun"
 
-/obj/item/gun/projectile/automatic/modular/refresh_upgrades()
+/obj/item/gun/projectile/modular/refresh_upgrades()
 	caliber = initial(caliber)
 	mag_well = initial(mag_well)
 	spriteTags = initial(spriteTags)
@@ -92,7 +94,7 @@
 	overridedatum?.cycle() // then use an assignment sort
 	name = get_initial_name()
 
-/obj/item/gun/projectile/automatic/modular/update_icon() // V2
+/obj/item/gun/projectile/modular/update_icon() // V2
 	cut_overlays() // This is where the fun begins
 
 	// Determine base using the current stock status
@@ -135,7 +137,7 @@
 	wielded_item_state = itemstring // Hacky solution to a hacky system. Reere forgive us. V3 will fix this.
 	set_item_state(itemstring)
 
-/obj/item/gun/projectile/automatic/modular/set_item_state(state, hands = TRUE, back = TRUE, onsuit = TRUE) // TODO: check why a billion procs call set_item_state with no state provided
+/obj/item/gun/projectile/modular/set_item_state(state, hands = TRUE, back = TRUE, onsuit = TRUE) // TODO: check why a billion procs call set_item_state with no state provided
 
 	if(!state)
 		state = itemstring
@@ -202,27 +204,27 @@
 		slate["[number]"] = priorities["[number]"] ? priorities["[number]"] : null
 	priorities = slate.Copy()
 
-/obj/item/gun/projectile/automatic/modular/attack_self(mob/user)
+/obj/item/gun/projectile/modular/attack_self(mob/user)
 	if(!overridedatum.call_Flag(user = user, flag = GI_ATTACKSELF))
 		. = ..()
 
-/obj/item/gun/projectile/automatic/modular/load_ammo(obj/item/A, mob/user)
+/obj/item/gun/projectile/modular/load_ammo(obj/item/A, mob/user)
 	if(!overridedatum.call_Flag(load = A, user = user, flag = GI_LOAD))
 		. = ..()
 	
 
-/obj/item/gun/projectile/automatic/modular/unload_ammo(mob/user, allow_dump)
+/obj/item/gun/projectile/modular/unload_ammo(mob/user, allow_dump)
 	if(!overridedatum.call_Flag(user = user, flag = GI_UNLOAD))
 		. = ..()
 
-/obj/item/gun/projectile/automatic/modular/special_check(mob/user)
+/obj/item/gun/projectile/modular/special_check(mob/user)
 	if(!overridedatum.call_Flag(user = user, flag = GI_SPECIAL))
 		. = ..()
 
-/obj/item/gun/projectile/automatic/modular/hand_spin(mob/living/carbon/caller)
+/obj/item/gun/projectile/modular/hand_spin(mob/living/carbon/caller)
 	overridedatum.call_Flag(user = caller, flag = GI_SPIN)
 	
-/obj/item/gun/projectile/automatic/modular/proc/reset_action_buttons()
+/obj/item/gun/projectile/modular/proc/reset_action_buttons()
 	for(var/key in overridedatum.priorities)
 		var/list/priority = overridedatum.priorities[key]
 		for(var/datum/guninteraction/tocheck in priority) // highest numbers first.
@@ -235,7 +237,7 @@
 	action_button_proc = initial(action_button_proc)
 	qdel(action)
 
-/obj/item/gun/projectile/automatic/modular/can_interact(mob/user)
+/obj/item/gun/projectile/modular/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
 		return 1
 	if(istype(loc, /obj/item/storage))
@@ -243,7 +245,7 @@
 	return 0
 
 
-/obj/item/gun/projectile/automatic/modular/CtrlShiftClick(mob/user)
+/obj/item/gun/projectile/modular/CtrlShiftClick(mob/user)
 	. = ..()
 
 	var/able = can_interact(user)
@@ -259,7 +261,7 @@
 	if(PARTMOD_FOLDING_STOCK & spriteTags)
 		fold()
 
-/obj/item/gun/projectile/automatic/modular/proc/quick_fold(mob/user)
+/obj/item/gun/projectile/modular/proc/quick_fold(mob/user)
 	set name = "Fold or Unfold Stock"
 	set category = "Object"
 	set src in view(1)
@@ -269,7 +271,7 @@
 
 	fold(user)
 
-/obj/item/gun/projectile/automatic/modular/proc/fold(user)
+/obj/item/gun/projectile/modular/proc/fold(user)
 
 	if(PARTMOD_FOLDING_STOCK & spriteTags)
 		for(var/obj/item/part/gun/modular/stock/toedit in gun_parts) // only gonna edit one, doing this to find it
@@ -288,7 +290,7 @@
 		playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 		update_icon()
 
-/obj/item/gun/projectile/automatic/modular/attackby(obj/item/I, mob/living/user, params)
+/obj/item/gun/projectile/modular/attackby(obj/item/I, mob/living/user, params)
 	var/tool_type = I.get_tool_type(user, list(serial_type ? QUALITY_HAMMERING : null), src)
 	switch(tool_type)
 		if(QUALITY_HAMMERING)
@@ -300,7 +302,7 @@
 	load_ammo(I, user)
 	update_held_icon()
 
-/obj/item/gun/projectile/automatic/modular/zoom(tileoffset, viewsize, stayzoomed)
+/obj/item/gun/projectile/modular/zoom(tileoffset, viewsize, stayzoomed)
 	..()
 	refresh_upgrades()
 	if(zoom)
