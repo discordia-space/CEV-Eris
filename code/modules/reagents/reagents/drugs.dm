@@ -13,13 +13,8 @@
 		H.sanity.onDrug(src, effect_multiplier)
 	SEND_SIGNAL_OLD(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 
-/datum/reagent/drug/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	if(sanity_gain && ishuman(M))
-		var/mob/living/carbon/human/H = M
-		H.sanity.onDrug(src, effect_multiplier)
-	SEND_SIGNAL_OLD(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
-
 /datum/reagent/drug/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	..()
 	if(sanity_gain && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.sanity.onDrug(src, effect_multiplier)
