@@ -25,6 +25,8 @@
 	hud_list[EXCELSIOR_HUD]   = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
 
 	GLOB.human_mob_list |= src
+	social = new /datum/social_data
+	social.holder = src
 
 	if(!species)
 		if(new_species)
@@ -51,6 +53,7 @@
 
 /mob/living/carbon/human/Destroy()
 	GLOB.human_mob_list -= src
+	QDEL_NULL(social)
 
 	// Prevent death from organ removal
 	status_flags |= REBUILDING_ORGANS

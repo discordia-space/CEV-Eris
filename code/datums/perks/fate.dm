@@ -133,10 +133,6 @@
 			Start with an heirloom weapon, higher chance to be on contractor contracts and removed sanity cap. Stay clear of filth and danger. \
 			You have varying chances to be a low, normal or high ranking noble, with all of the resulting respect."
 
-#define STATUS_LOW 1
-#define STATUS_MEDIUM 1
-#define STATUS_HIGH 3
-
 /datum/perk/fate/noble/assign(mob/living/carbon/human/H)
 	if(!..())
 		return
@@ -145,13 +141,13 @@
 	if(prob(75))
 		if(prob(15))
 			holder.social.status = STATUS_HIGH //heh... look at me... king of nobody gives a shi
-			to_chat(H, "I am a high-ranking noble.")
+			to_chat(holder, "I am a high-ranking noble.")
 		else
 			holder.social.status = STATUS_MEDIUM
-			to_chat(H, "I am a noble.")
+			to_chat(holder, "I am a noble.")
 	else
 		holder.social.status = STATUS_LOW
-		to_chat(H, "I am a noble! \n... Not a very prestigious one, but still a noble!")
+		to_chat(holder, "I am a noble! \n... Not a very prestigious one, but still a noble.")
 	if(!holder.last_name)
 		holder.stats.removePerk(src.type)
 		return

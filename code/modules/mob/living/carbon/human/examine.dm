@@ -41,8 +41,6 @@
 	msg += "!\n"
 
 
-
-
 	//uniform
 	if(w_uniform && !skipjumpsuit)
 		//Ties
@@ -178,7 +176,8 @@
 	//Noble or lowborn
 	if(ishuman(user) && !wear_mask)
 		var/mob/living/carbon/human/H = user
-		msg += src.social.get_feedback_string(src.social, H.social)
+		var/nobility_string = H.social.get_feedback_string(H.social, src.social)
+		msg += nobility_string
 
 	//crazy
 	if(ishuman(user) && !wear_mask)
