@@ -31,12 +31,12 @@
 		"sugar","sacid","tungsten"
 	)
 	var/list/tiered_reagents = list(
-		1 = list(),
-		2 = list("inaprovaline","anti_toxin","kelotane"), // basic upgrade
-		3 = list("tricordrazine","spaceacillin","dermaline"), // max moebius tech
-		4 = list("blattedin", "polystem"), // excel tech
-		5 = list("carpotoxin", "bicaridine"),// one-star
-		6 = list("meralyne", "nanites") // alien
+		"1" = list(),
+		"2" = list("inaprovaline","anti_toxin","kelotane"), // basic upgrade
+		"3" = list("tricordrazine","spaceacillin","dermaline"), // max moebius tech
+		"4" = list("blattedin", "polystem"), // excel tech
+		"5" = list("carpotoxin", "bicaridine"),// one-star
+		"6" = list("meralyne", "nanites") // alien
 	)
 	var/list/tiered_reagents_cost = list(
 		"inaprovaline" = 8,
@@ -101,7 +101,7 @@
 	if(has_tiered_reagents)
 		for(var/index in 2 to tiered_reagents.len)
 			if(index <= maximum_reagent_tier)
-				for(var/re in tiered_reagents[index])
+				for(var/re in tiered_reagents["[index]"])
 					var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 					if(temp)
 						chemicals.Add(list(list("title" = temp.name, "id" = temp.id, "commands" = list("dispense" = temp.id)))) // list in a list because Byond merges the first list...
