@@ -50,7 +50,7 @@
 /datum/multistructure
 	var/list/structure = list()
 	var/list/elements = list()
-
+	var/use_power = TRUE // Does this machine need power to work?
 
 /datum/multistructure/Destroy()
 	disconnect_elements()
@@ -92,7 +92,7 @@
 
 /datum/multistructure/proc/is_operational()
 	for(var/obj/machinery/multistructure/part in elements)
-		if((part.stat & BROKEN) || (part.stat & EMPED) || (part.stat & NOPOWER))
+		if((part.stat & BROKEN) || (use_power ? (part.stat & EMPED) : FALSE) || (use_power ? (part.stat & NOPOWER) : FALSE))
 			return FALSE
 	return TRUE
 

@@ -28,6 +28,7 @@
 	var/chamber_breached = FALSE
 	var/obj/effect/overlay/bioreactor_solution/solution
 
+	use_power = FALSE
 
 /datum/multistructure/bioreactor/connect_elements()
 	..()

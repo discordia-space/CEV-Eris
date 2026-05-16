@@ -17,6 +17,7 @@
 
 	var/working = FALSE
 	var/last_output_power = 0		//used at UI
+	use_power = FALSE
 
 
 /datum/multistructure/biogenerator/init()
