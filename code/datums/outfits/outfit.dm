@@ -167,7 +167,7 @@ var/list/outfits_decls_by_type_
 	if(OUTFIT_ADJUSTMENT_SKIP_ID_PDA & equip_adjustments)
 		return
 	var/obj/item/card/id/W = new id_type(H)
-	if(H.mind)  // decorative corpses with ID do not have a mind 
+	if(H.mind)  // decorative corpses with ID do not have a mind
 		var/datum/job/job = SSjob.GetJob(H.mind.assigned_role)
 		W.access = job.get_access()
 	if(id_desc)
@@ -187,7 +187,7 @@ var/list/outfits_decls_by_type_
 		return
 	var/obj/item/modular_computer/pda/pda = new pda_type(H)
 	if(W && pda) // ID's start in the PDA
-		pda.attackby(W,H,TRUE) // doing it this way ensures it passes through the attackby checks like looking for an ID slot etc instead of making unconnected checks here. Also gives the user a message so they know where it is.
+		pda.attackby(W,H, sound_mute = TRUE) // doing it this way ensures it passes through the attackby checks like looking for an ID slot etc instead of making unconnected checks here. Also gives the user a message so they know where it is.
 		H.equip_to_slot_or_store_or_drop(pda, id_slot) // Doing this here so that the ID stays in the ID slot if there is no PDA on spawn.
 	return pda
 
