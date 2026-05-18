@@ -139,7 +139,7 @@
 				/obj/item/tool/sword/nt/shortsword = 0.5,
 				/obj/item/tool/sword/nt/scourge = 0.1,
 				/obj/item/tool/knife/dagger/nt = 0.5,
-				/obj/item/gun/energy/nt_svalinn = 0.4,
+				/obj/item/gun/energy/nt_svalinn/reloadable = 0.4,
 				/obj/item/gun/energy/stunrevolver = 0.1))
 	else
 		W = pickweight(list(
