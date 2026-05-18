@@ -157,12 +157,15 @@
 		to_chat(src, SPAN_WARNING("You cannot use \the [W] while lying down!"))
 		return 1
 
+	message_admins("Turf check") // TODOPSI: REMOVE
 	//Atoms on turfs (not on your person)
 	// A is a turf or is on a turf, or in something on a turf (pen in a box); but not something in something on a turf (pen in a box in a backpack)
 	sdepth = A.storage_depth_turf()
 	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
+		message_admins("Passed check") // TODOPSI: REMOVE
 		var/adjacent = A.Adjacent(src)
 		if(adjacent) // see adjacent.dm
+			message_admins("Click is adjacent") // TODOPSI: REMOVE
 			if(W)
 				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
 				var/resolved = (SEND_SIGNAL_OLD(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL_OLD(A, COMSIG_ATTACKBY, W, src, params))
@@ -178,9 +181,11 @@
 			return
 		else // non-adjacent click
 			if(W)
+				message_admins("Hand is occupied") // TODOPSI: REMOVE
 				if(W.double_tact(src, A))
 					W.afterattack(A, src, 0, params) // 0: not Adjacent
 			else
+				message_admins("We are trying a ranged attack") // TODOPSI: REMOVE
 				setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // no ranged spam
 				RangedAttack(A, params)
 	return 1

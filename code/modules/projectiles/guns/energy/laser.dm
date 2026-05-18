@@ -246,7 +246,7 @@
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	item_charge_meter = FALSE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3, TECH_COVERT = 5)
-	projectile_type = /obj/item/projectile/beam/psychic/heavylaser
+	projectile_type = /obj/item/projectile/beam/psychic/heavy
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
 	slot_flags = SLOT_BELT|SLOT_BACK

@@ -50,3 +50,8 @@
 /datum/mutation/t4/morph/cleanse(mob/living/carbon/user)
 	if(..())
 		remove_verb(user, /mob/living/carbon/human/proc/morph)
+
+/datum/mutation/t4/psionic_compatibility_high
+	name = "Total Psionic Harmony"
+	desc = "Attunes the body to Psionic powers, unlocking Master level Psionic powers without the need for psionic drugs."
+	NSA_load = 0
