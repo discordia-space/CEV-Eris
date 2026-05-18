@@ -65,6 +65,7 @@
 	name = "candle"
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle4"
+	matter = list(MATERIAL_WAX = 0.1)
 
 /obj/item/trash/liquidfood
 	name = "\improper \"LiquidFood\" ration"
