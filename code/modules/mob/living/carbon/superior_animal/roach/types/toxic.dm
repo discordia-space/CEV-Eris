@@ -12,7 +12,7 @@
 
 	melee_damage_lower = 5
 	melee_damage_upper = 9 // Lacks penetration and wounding multiplier compared to hunter
-	rarity_value = 22.5
+	rarity_value = 11.25
 
 	ranged = 1
 	projectiletype = /obj/item/projectile/roach_spit
