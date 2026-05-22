@@ -373,7 +373,7 @@
 	throwpass = 1
 
 /obj/structure/holohoop/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
-	if(state == GRAB_PASSIVE)
+	if(state < GRAB_AGGRESSIVE)
 		to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
 		return FALSE
 	target.forceMove(src.loc)

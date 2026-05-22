@@ -113,7 +113,7 @@
 		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
 		return
 	if(state < GRAB_AGGRESSIVE || target.loc==src.loc)
-		if(user.a_intent == I_HURT)
+		if(user.a_intent == I_HURT && state == GRAB_FIRM)
 			if(prob(15))
 				target.Weaken(5)
 			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
