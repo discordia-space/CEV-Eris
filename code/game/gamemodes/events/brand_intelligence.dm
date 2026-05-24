@@ -40,8 +40,7 @@
 
 	originMachine = pick(vendingMachines)
 	vendingMachines.Remove(originMachine)
-	originMachine.shut_up = 0
-	originMachine.shoot_inventory = 1
+	originMachine.update_state(null, FALSE, TRUE)
 	originMachine.categories = 7 //This unlocks coin/contraband content
 	infectedVendingMachines.Add(originMachine)
 	log_and_message_admins("Brand Intelligence started on [jumplink(originMachine)],")
@@ -57,8 +56,7 @@
 		var/obj/machinery/vending/infectedMachine = pick(vendingMachines)
 		vendingMachines.Remove(infectedMachine)
 		infectedVendingMachines.Add(infectedMachine)
-		infectedMachine.shut_up = 0
-		infectedMachine.shoot_inventory = 1
+		infectedMachine.update_state(null, FALSE, TRUE)
 		infectedMachine.categories = 7 //This unlocks coin/contraband content
 		if(ISMULTIPLE(activeFor, 12))
 			originMachine.speak(pick("Try our aggressive new marketing strategies!", \
