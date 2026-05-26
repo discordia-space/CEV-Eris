@@ -47,7 +47,7 @@
 	if(..())
 		if(organ.brute_dam <= 0)
 			to_chat(user, SPAN_NOTICE("The hull of [organ.get_surgery_name()] is undamaged!"))
-			return SURGERY_FAILURE
+			return FALSE
 
 		return TRUE
 
@@ -113,3 +113,53 @@
 		SPAN_WARNING("You cause a short circuit in [organ.get_surgery_name()]!")
 	)
 	organ.take_damage(0, rand(5, 10))
+
+/datum/surgery_step/robotic/patch_malfunction
+	required_tool_quality = QUALITY_ADHESIVE
+
+	duration = 60
+
+/datum/surgery_step/robotic/patch_malfunction/can_use(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	if(..())
+		if(!istype(organ, /obj/item/organ/external/robotic))
+			return FALSE
+		var/obj/item/organ/external/robotic/tofix = organ
+		if(organ.brute_dam + organ.burn_dam <= tofix.min_malfunction_damage)
+			to_chat(user, SPAN_NOTICE("[organ.get_surgery_name()] isn't damaged enough!"))
+			return FALSE
+
+		return TRUE
+
+	return FALSE
+
+/datum/surgery_step/robotic/patch_malfunction/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_NOTICE("[user] begins to glue [organ.get_surgery_name()] back together with [tool]."),
+		SPAN_NOTICE("You begin to glue [organ.get_surgery_name()] back together with [tool].")
+	)
+
+/datum/surgery_step/robotic/patch_malfunction/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_NOTICE("[user] finishes gluing [organ.get_surgery_name()] together with [tool]."),
+		SPAN_NOTICE("You finish glueing [organ.get_surgery_name()] together with [tool].")
+	)
+	if(!istype(organ, /obj/item/organ/external/robotic))
+		return
+	var/obj/item/organ/external/robotic/tofix = organ
+	var/healpool = max(0, tofix.max_damage / 2 - tofix.min_malfunction_damage) // amount of damage that can effectively be taken AFTER malfunction chance reaches +0, halved
+	var/brutepool = min(tofix.brute_dam, healpool) // brute is easier to fix with tape
+	healpool -= brutepool
+	var/burnpool = min(tofix.burn_dam, healpool/4) // only a quarter efficiency against burn
+	var/excess = brutepool + burnpool - tofix.brute_dam - tofix.burn_dam + tofix.min_malfunction_damage // cannot heal past malfunction +0
+	var/oldbrutepool = brutepool
+	brutepool = max( 0, brutepool-excess)
+	excess = max(0, excess - oldbrutepool)
+	burnpool = max(0, burnpool - excess)
+	organ.heal_damage(brutepool, burnpool, TRUE)
+
+/datum/surgery_step/robotic/patch_malfunction/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_WARNING("[user] fails to patch [organ.get_surgery_name()]!"),
+		SPAN_WARNING("You waste your efforts attempting to glue [organ.get_surgery_name()] back together with [tool]!")
+	)
+	
