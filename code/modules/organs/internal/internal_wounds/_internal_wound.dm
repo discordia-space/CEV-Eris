@@ -96,17 +96,21 @@
 	if((!parent || O.status & ORGAN_DEAD) && !(characteristic_flag & IWOUND_PROGRESS_DEATH))
 		return PROCESS_KILL
 
+	if(!H)
+		return
+
 	// Progress if not recovering or in a cryo tube or in stasis
-	if(characteristic_flag & IWOUND_RECOVER)
+	if((H.bodytemperature < 170 || H.in_stasis))
+		// no processing 
+	else if(characteristic_flag & IWOUND_RECOVER)
 		treatment_slow()
-	else if(characteristic_flag & IWOUND_PROGRESS && (H && !(H.bodytemperature < 170 || H.in_stasis)))
+	else if(characteristic_flag & IWOUND_PROGRESS)
 		++current_progression_tick
 		if(current_progression_tick >= progression_threshold)
 			current_progression_tick = 0
 			progress()
 
-	if(!H)
-		return
+
 
 	var/stabilized = characteristic_flag & IWOUND_STASIS
 	// Chemical treatment handling
