@@ -591,8 +591,10 @@
 	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = -0.1,
 	UPGRADE_HEALTH_THRESHOLD = 5,
-	tool_qualities = list(QUALITY_HAMMERING = 10)
+	UPGRADE_QUALITY = list(QUALITY_HAMMERING = 10)
 	)
+	I.required_qualities = list(QUALITY_SAWING, QUALITY_SHOVELING, QUALITY_WIRE_CUTTING, QUALITY_BOLT_TURNING)
+	I.negative_qualities = list(QUALITY_WELDING, QUALITY_HAMMERING)
 	I.prefix = "flattened"
 
 //Vastly reduces tool sounds, for stealthy hacking
