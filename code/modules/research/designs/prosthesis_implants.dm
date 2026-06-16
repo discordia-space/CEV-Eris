@@ -50,6 +50,22 @@
 /datum/design/research/item/mechfab/prosthesis_moebius/head
 	build_path = /obj/item/organ/external/robotic/moebius/reinforced/head
 
+//One Star prosthesis =======================
+/datum/design/research/item/mechfab/prosthesis_one_star
+	category = CAT_PROSTHESIS
+
+/datum/design/research/item/organ/external/robotic/one_star/l_arm
+	build_path = /obj/item/organ/external/robotic/one_star/l_arm
+
+/datum/design/research/item/organ/external/robotic/one_star/r_arm
+	build_path = /obj/item/organ/external/robotic/one_star/r_arm
+
+/datum/design/research/item/organ/external/robotic/one_star/l_leg
+	build_path = /obj/item/organ/external/robotic/one_star/l_leg
+
+/datum/design/research/item/organ/external/robotic/one_star/r_leg
+	build_path = /obj/item/organ/external/robotic/one_star/r_leg
+
 //Modules ====================================
 
 /datum/design/research/item/mechfab/modules
@@ -80,6 +96,9 @@
 	build_path = /obj/item/organ_module/active/multitool/miner
 	name = "Embedded mining multitool"
 
+/datum/design/research/item/mechfab/modules/multitool/ossurgical
+	build_path = /obj/item/tool/medmultitool
+	name = "One Star surgical multitool"
 //Implants
 /datum/design/research/item/implant
 	build_type = PROTOLATHE | MECHFAB
