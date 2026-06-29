@@ -392,7 +392,7 @@ var/list/datum/power/carrion/powerinstances = list()
 	</body></html>
 	"}
 
-	usr << browse(dat, "window=powers;size=900x480")
+	SHOW_BROWSER(usr, dat, "window=powers;size=900x480")
 
 /obj/item/organ/internal/carrion/core/proc/purchasePower(var/Pname, var/free = FALSE)
 	var/datum/power/carrion/Thepower = Pname

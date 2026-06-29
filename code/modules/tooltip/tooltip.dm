@@ -42,7 +42,7 @@ Notes:
 /datum/tooltip/New(client/C)
 	if (C)
 		owner = C
-		owner << browse(file2text('code/modules/tooltip/tooltip.html'), "window=[control]")
+		SHOW_BROWSER(owner, file2text('code/modules/tooltip/tooltip.html'), "window=[control]")
 
 	..()
 

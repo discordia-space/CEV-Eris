@@ -105,7 +105,7 @@
 		to_chat(user, "You clear data buffer on [src].")
 		scan_data = null
 		scan_title = null
-		user << browse(null, "window=scanner")
+		CLOSE_BROWSER(user, "window=scanner")
 		return 1
 
 /obj/item/device/scanner/proc/print_report(mob/living/user)

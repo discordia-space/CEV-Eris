@@ -52,7 +52,7 @@ GLOBAL_VAR_INIT(goonchatbasehtml, file2text('code/modules/goonchat/browserassets
 	var/html = GLOB.goonchatbasehtml
 	html = replacetextEx(html, "%FONTAWESOME%", SSassets.transport.get_asset_url("font-awesome.css"))
 
-	owner << browse(html, "window=browseroutput")
+	SHOW_BROWSER(owner, html, "window=browseroutput")
 
 /datum/chatOutput/Topic(href, list/href_list)
 	if(usr.client != owner)

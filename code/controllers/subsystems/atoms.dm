@@ -159,4 +159,4 @@ SUBSYSTEM_DEF(atoms)
 	if(!LAZYLEN(SSatoms.BadInitializeCalls))
 		to_chat(usr, SPAN_NOTICE("BadInit list is empty."))
 	else
-		usr << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
+		SHOW_BROWSER(usr, replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")

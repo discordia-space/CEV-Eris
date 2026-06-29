@@ -10,4 +10,4 @@
 		dat += "<li>[l]</li>"
 	if(!admin_log.len)
 		dat += "No-one has done anything this round!"
-	user << browse(dat, "window=admin_log")
+	SHOW_BROWSER(user, dat, "window=admin_log")

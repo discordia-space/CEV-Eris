@@ -113,7 +113,7 @@
 		inline_css = "<style>\n[isfile(inline_css) ? file2text(inline_css) : inline_css]\n</style>"
 		html = replacetextEx(html, "<!-- tgui:inline-css -->", inline_css)
 	// Open the window
-	client << browse(html, "window=[id];[options]")
+	SHOW_BROWSER(client, html, "window=[id];[options]")
 	// Detect whether the control is a browser
 	is_browser = winexists(client, id) == "BROWSER"
 	// Instruct the client to signal UI when the window is closed.
@@ -238,7 +238,7 @@
 	// Do not close the window to give user some time
 	// to read the error message.
 	if(!fatally_errored)
-		client << browse(null, "window=[id]")
+		CLOSE_BROWSER(client, "window=[id]")
 
 /**
  * public

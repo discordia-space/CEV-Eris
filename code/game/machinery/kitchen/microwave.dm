@@ -251,7 +251,7 @@
 <a href='byond://?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
 "}
 
-	user << browse("<HEAD><TITLE>[src] Controls</TITLE></HEAD><TT>[dat]</TT>", "window=[src]")
+	SHOW_BROWSER(user, "<HEAD><TITLE>[src] Controls</TITLE></HEAD><TT>[dat]</TT>", "window=[src]")
 	onclose(user, "[src]")
 	return
 

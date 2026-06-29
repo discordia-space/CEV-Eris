@@ -242,7 +242,7 @@
 	if((get_dist(src, user) > 1) || (stat & (BROKEN|NOPOWER)))
 		if(!isAI(user))
 			user.unset_machine()
-			user << browse(null, "window=AMcontrol")
+			CLOSE_BROWSER(user, "window=AMcontrol")
 			return
 	user.set_machine(src)
 
@@ -272,7 +272,7 @@
 		dat += "- <a href='byond://?src=\ref[src];strengthdown=1'>--</A>|<a href='byond://?src=\ref[src];strengthup=1'>++</A><BR><BR>"
 
 
-	user << browse(dat, "window=AMcontrol;size=420x500")
+	SHOW_BROWSER(user, dat, "window=AMcontrol;size=420x500")
 	onclose(user, "AMcontrol")
 	return
 
@@ -282,11 +282,11 @@
 	//Ignore input if we are broken or guy is not touching us, AI can control from a ways away
 	if(stat & (BROKEN|NOPOWER) || (get_dist(src, usr) > 1 && !isAI(usr)))
 		usr.unset_machine()
-		usr << browse(null, "window=AMcontrol")
+		CLOSE_BROWSER(usr, "window=AMcontrol")
 		return
 
 	if(href_list["close"])
-		usr << browse(null, "window=AMcontrol")
+		CLOSE_BROWSER(usr, "window=AMcontrol")
 		usr.unset_machine()
 		return
 

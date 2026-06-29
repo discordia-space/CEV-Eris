@@ -56,7 +56,7 @@
 	for(var/datum/category_group/underwear/UWC in GLOB.underwear.categories)
 		dat += "[UWC.name] <a href='byond://?src=\ref[src];select_underwear=[UWC.name]'>(Select)</a><br>"
 	dat = jointext(dat,null)
-	show_browser(H, dat, "window=wardrobe;size=400x250")
+	SHOW_BROWSER(H, dat, "window=wardrobe;size=400x250")
 
 /obj/structure/undies_wardrobe/proc/human_who_can_use_underwear(var/mob/living/carbon/human/H)
 	if(!istype(H) || !H.species || !(H.species.appearance_flags & HAS_UNDERWEAR))

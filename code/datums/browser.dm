@@ -123,7 +123,7 @@
 		SSassets.transport.send_assets(user, stylesheets)
 	if (scripts.len)
 		SSassets.transport.send_assets(user, scripts)
-	user << browse(get_content(), "window=[window_id];[window_size][window_options]")
+	SHOW_BROWSER(user, get_content(), "window=[window_id];[window_size][window_options]")
 	if (use_onclose)
 		setup_onclose()
 
@@ -141,7 +141,7 @@
 
 /datum/browser/proc/close()
 	if(!isnull(window_id))//null check because this can potentially nuke goonchat
-		user << browse(null, "window=[window_id]")
+		CLOSE_BROWSER(user, "window=[window_id]")
 	else
 		WARNING("Browser [title] tried to close with a null ID")
 

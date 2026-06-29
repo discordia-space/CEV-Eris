@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	//byond bug ID:2256651
 	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
 		to_chat(src, span_danger("An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)"))
-		src << browse("...", "window=asset_cache_browser")
+		SHOW_BROWSER(src, "...", "window=asset_cache_browser")
 		return
 	if (href_list["asset_cache_preload_data"])
 		asset_cache_preload_data(href_list["asset_cache_preload_data"])
@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				return
 
 	// Initialize tgui panel
-	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+	SHOW_BROWSER(src, file('html/statbrowser.html'), "window=statbrowser")
 	// addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 30 SECONDS)
 	// Starts the chat
 	chatOutput.start()
@@ -608,7 +608,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	spawn (10) //removing this spawn causes all clients to not get verbs.
 
 		//load info on what assets the client has
-		src << browse('code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
+		SHOW_BROWSER(src, 'code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
 
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
 		// if (CONFIG_GET(flag/asset_simple_preload))

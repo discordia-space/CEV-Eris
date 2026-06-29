@@ -105,7 +105,7 @@
 
 	dat += "</font>"
 	temp = ""
-	user << browse(dat, "window=tcommachine;size=520x500;can_resize=0")
+	SHOW_BROWSER(user, dat, "window=tcommachine;size=520x500;can_resize=0")
 	onclose(user, "dormitory")
 
 

@@ -64,7 +64,7 @@
 	for(var/obj/item/P in src)
 		dat += "<tr><td><a href='byond://?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
 	dat += "</table></center>"
-	user << browse("<html><head><title>[name]</title></head><body>[jointext(dat,null)]</body></html>", "window=filingcabinet;size=350x300")
+	SHOW_BROWSER(user, "<html><head><title>[name]</title></head><body>[jointext(dat,null)]</body></html>", "window=filingcabinet;size=350x300")
 
 /obj/structure/filingcabinet/attack_tk(mob/user)
 	if(anchored)
@@ -85,7 +85,7 @@
 
 /obj/structure/filingcabinet/Topic(href, href_list)
 	if(href_list["retrieve"])
-		usr << browse(null, "window=filingcabinet") // Close the menu
+		CLOSE_BROWSER(usr, "window=filingcabinet") // Close the menu
 
 		//var/retrieveindex = text2num(href_list["retrieve"])
 		var/obj/item/P = locate(href_list["retrieve"])//contents[retrieveindex]

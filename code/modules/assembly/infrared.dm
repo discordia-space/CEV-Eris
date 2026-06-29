@@ -109,14 +109,14 @@
 		<br><br><a href='byond://?src=\ref[src];refresh=1'>Refresh</a>
 		<br><br><a href='byond://?src=\ref[src];close=1'>Close</a>
 	"}
-	user << browse(dat, "window=infra")
+	SHOW_BROWSER(user, dat, "window=infra")
 	onclose(user, "infra")
 
 
 /obj/item/device/assembly/infra/Topic(href, href_list)
 	if(..()) return 1
 	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		usr << browse(null, "window=infra")
+		CLOSE_BROWSER(usr, "window=infra")
 		onclose(usr, "infra")
 		return
 
@@ -131,7 +131,7 @@
 				first.vis_spread(visible)
 
 	if(href_list["close"])
-		usr << browse(null, "window=infra")
+		CLOSE_BROWSER(usr, "window=infra")
 		return
 
 	if(usr)

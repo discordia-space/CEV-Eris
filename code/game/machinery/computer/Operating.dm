@@ -29,7 +29,7 @@
 	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
 		if (!issilicon(user))
 			user.unset_machine()
-			user << browse(null, "window=op")
+			CLOSE_BROWSER(user, "window=op")
 			return
 
 	user.set_machine(src)
@@ -69,7 +69,7 @@
 <BR>
 <B>No Patient Detected</B>
 "}
-	user << browse(dat, "window=op")
+	SHOW_BROWSER(user, dat, "window=op")
 	onclose(user, "op")
 
 

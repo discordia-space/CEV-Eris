@@ -58,7 +58,7 @@
 		dat += "<a href='byond://?src=\ref[src];item=1'>Recover object</a>.<br>"
 		dat += "<a href='byond://?src=\ref[src];allitems=1'>Recover all objects</a>.<br>"
 
-	user << browse(dat, "window=cryopod_console")
+	SHOW_BROWSER(user, dat, "window=cryopod_console")
 	onclose(user, "cryopod_console")
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
@@ -77,7 +77,7 @@
 			dat += "[person]<br/>"
 		dat += "<hr/>"
 
-		user << browse(dat, "window=cryolog")
+		SHOW_BROWSER(user, dat, "window=cryolog")
 
 	if(href_list["view"])
 		if(!allow_items) return
@@ -87,7 +87,7 @@
 			dat += "[I.name]<br/>"
 		dat += "<hr/>"
 
-		user << browse(dat, "window=cryoitems")
+		SHOW_BROWSER(user, dat, "window=cryoitems")
 
 	else if(href_list["item"])
 		if(!allow_items) return

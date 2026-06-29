@@ -127,7 +127,7 @@
 	else
 		dat +=	"<br><b>Headset:</b> <a href='byond://?src=\ref[src];add_inv=ears'>Nothing</a>"
 
-	user << browse(dat, text("window=mob[];size=325x500", name))
+	SHOW_BROWSER(user, dat, text("window=mob[];size=325x500", name))
 	onclose(user, "mob[real_name]")
 	return
 

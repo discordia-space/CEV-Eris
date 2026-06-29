@@ -551,7 +551,7 @@
 	if(href_list["mach_close"])
 		var/t1 = text("window=[href_list["mach_close"]]")
 		unset_machine()
-		src << browse(null, t1)
+		CLOSE_BROWSER(src, t1)
 
 	if(href_list["flavor_more"])
 		if(src in view(usr))
@@ -560,7 +560,7 @@
 				<body><tt>[replacetext(flavor_text, "\n", "<br>")]</tt></body>
 				</html>
 			"}
-			usr << browse(dat, "window=[name];size=500x200")
+			SHOW_BROWSER(usr, dat, "window=[name];size=500x200")
 			onclose(usr, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()

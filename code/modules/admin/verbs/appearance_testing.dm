@@ -34,7 +34,7 @@ var/datum/appearance_test/appearance_test = new
 	dat += " (<a href='byond://?src=\ref[src];test_cache=1;draw_icons=1'>Output icons</a>)<br>."
 	dat += "</body></html>"
 
-	user << browse(jointext(dat, null), "window=test_sprite;size=330x220")
+	SHOW_BROWSER(user, jointext(dat, null), "window=test_sprite;size=330x220")
 
 /datum/appearance_test/proc/output_cachelist(var/mob/user, var/draw_icons = FALSE)
 	var/list/dat = list()
@@ -48,7 +48,7 @@ var/datum/appearance_test/appearance_test = new
 			dat += "<img src = \"[elem].png\"><br>"
 	dat += "</body></html>"
 
-	user << browse(jointext(dat, null), "window=cache_list;size=1270x770")
+	SHOW_BROWSER(user, jointext(dat, null), "window=cache_list;size=1270x770")
 
 /datum/appearance_test/proc/Log(string)
 	if(log_sprite_gen)
@@ -57,7 +57,7 @@ var/datum/appearance_test/appearance_test = new
 			to_chat(world, string)
 
 /datum/appearance_test/proc/show_log(var/mob/user)
-	user << browse(cache_generation_log, "window=cache_log;size=1270x770")
+	SHOW_BROWSER(user, cache_generation_log, "window=cache_log;size=1270x770")
 
 /client/proc/debug_human_sprite()
 	set name = "Debug human sprites"

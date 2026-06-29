@@ -153,7 +153,7 @@
 
 	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && (!isAI(user)) )
 		user.machine = null
-		user << browse(null, "window=turbine")
+		CLOSE_BROWSER(user, "window=turbine")
 		return
 
 	user.machine = src
@@ -169,7 +169,7 @@
 	t += "</PRE><HR><a href='byond://?src=\ref[src];close=1'>Close</A>"
 
 	t += "</TT>"
-	user << browse(t, "window=turbine")
+	SHOW_BROWSER(user, t, "window=turbine")
 	onclose(user, "turbine")
 
 	return
@@ -184,7 +184,7 @@
 		return
 	if(get_dist(src, usr) <= 1 || isAI(usr))
 		if( href_list["close"] )
-			usr << browse(null, "window=turbine")
+			CLOSE_BROWSER(usr, "window=turbine")
 			usr.machine = null
 			return
 
@@ -197,7 +197,7 @@
 					src.interact(M)
 
 	else
-		usr << browse(null, "window=turbine")
+		CLOSE_BROWSER(usr, "window=turbine")
 		usr.machine = null
 
 	return
@@ -241,7 +241,7 @@
 	else
 		dat += SPAN_DANGER("No compatible attached compressor found.")
 
-	user << browse(dat, "window=computer;size=400x500")
+	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
 
@@ -268,7 +268,7 @@
 					D.close()
 					door_status = 0
 	else if( href_list["close"] )
-		usr << browse(null, "window=computer")
+		CLOSE_BROWSER(usr, "window=computer")
 		usr.machine = null
 		return
 

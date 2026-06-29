@@ -237,9 +237,9 @@ log transactions
 				dat += "<input type='submit' value='Submit'><br>"
 				dat += "</form>"
 
-		user << browse(dat,"window=atm;size=600x650")
+		SHOW_BROWSER(user, dat,"window=atm;size=600x650")
 	else
-		user << browse(null,"window=atm")
+		CLOSE_BROWSER(user, "window=atm")
 
 /obj/machinery/atm/Topic(var/href, var/href_list)
 	if (..())

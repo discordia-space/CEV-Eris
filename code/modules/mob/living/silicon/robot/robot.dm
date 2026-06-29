@@ -444,7 +444,7 @@
 	if (!cell_use_power(CO.active_usage))
 		to_chat(src, SPAN_DANGER("Low Power."))
 	var/dat = self_diagnosis()
-	src << browse(dat, "window=robotdiagnosis")
+	SHOW_BROWSER(src, dat, "window=robotdiagnosis")
 
 
 /mob/living/silicon/robot/verb/toggle_component()
@@ -895,7 +895,7 @@
 		else
 			dat += text("[obj]: \[<A HREF=?src=\ref[src];act=\ref[obj]>Activate</A> | <B>Deactivated</B>\]<BR>")
 */
-	src << browse(dat, "window=robotmod")
+	SHOW_BROWSER(src, dat, "window=robotmod")
 
 
 /mob/living/silicon/robot/Topic(href, href_list)

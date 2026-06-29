@@ -115,7 +115,7 @@ obj/structure/windoor_assembly/Destroy()
 		if(QUALITY_PRYING)
 			if(state == 1 && electronics)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					usr << browse(null, "window=windoor_access")
+					CLOSE_BROWSER(usr, "window=windoor_access")
 					density = TRUE //Shouldn't matter but just incase
 					to_chat(user, SPAN_NOTICE("You finish the windoor!"))
 

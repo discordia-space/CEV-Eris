@@ -150,7 +150,7 @@
 				<a href='byond://?src=\ref[src];node2_c=0.1'>+</a>
 				"}
 
-	user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_mixer")
+	SHOW_BROWSER(user, "<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_mixer")
 	onclose(user, "atmo_mixer")
 	return
 
