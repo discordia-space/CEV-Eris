@@ -134,7 +134,7 @@
 	else
 		dat += "<BR>\n<a href='byond://?src=\ref[src];door=1'>Toggle Outer Door</A><BR>"
 	dat += "<BR><BR><a href='byond://?src=\ref[user];mach_close=computer'>Close</A></TT></BODY></HTML>"
-	user << browse(dat, "window=computer;size=400x500")
+	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	add_fingerprint(usr)
 	onclose(user, "computer")
 	return

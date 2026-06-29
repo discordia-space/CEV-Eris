@@ -45,7 +45,7 @@
 		if(W.has_quality(QUALITY_ADHESIVE))
 			return 0
 		if(istype(W, /obj/item/pen))
-			usr << browse(null, "window=[name]") //Closes the dialog
+			CLOSE_BROWSER(usr, "window=[name]") //Closes the dialog
 		var/obj/P = pages[page]
 		P.attackby(W, user)
 
@@ -125,7 +125,7 @@
 			dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>"
 		else
 			dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>"
-		user << browse(dat, "window=[name]")
+		SHOW_BROWSER(user, dat, "window=[name]")
 	else if(istype(pages[page], /obj/item/photo))
 		var/obj/item/photo/P = W
 		user << browse_rsc(P.img, "tmp_photo.png")

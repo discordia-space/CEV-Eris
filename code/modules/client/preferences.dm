@@ -290,4 +290,4 @@
 	if(panel)
 		panel.close()
 		panel = null
-	user << browse(null, "window=saves")
+	CLOSE_BROWSER(user, "window=saves")

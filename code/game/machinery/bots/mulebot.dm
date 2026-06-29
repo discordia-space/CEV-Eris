@@ -243,7 +243,7 @@
 		else
 			dat += "The bot is in maintenance mode and cannot be controlled.<BR>"
 
-	user << browse("<HEAD><TITLE>Mulebot [suffix ? "([suffix])" : ""]</TITLE></HEAD>[dat]", "window=mulebot;size=350x500")
+	SHOW_BROWSER(user, "<HEAD><TITLE>Mulebot [suffix ? "([suffix])" : ""]</TITLE></HEAD>[dat]", "window=mulebot;size=350x500")
 	onclose(user, "mulebot")
 	return
 
@@ -361,12 +361,12 @@
 
 			if("close")
 				usr.unset_machine()
-				usr << browse(null,"window=mulebot")
+				CLOSE_BROWSER(usr, "window=mulebot")
 
 		updateDialog()
 		//src.updateUsrDialog()
 	else
-		usr << browse(null, "window=mulebot")
+		CLOSE_BROWSER(usr, "window=mulebot")
 		usr.unset_machine()
 	return
 

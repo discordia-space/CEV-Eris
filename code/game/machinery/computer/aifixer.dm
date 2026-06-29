@@ -85,7 +85,7 @@
 			dat += "<br><br>Reconstruction in process, please wait.<br>"
 	dat += {" <a href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
-	user << browse(dat, "window=computer;size=400x500")
+	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
 

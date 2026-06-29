@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(pai)
 			if(pai.mind) update_antag_icons(pai.mind)
 
 			pai_candidates -= candidate
-			usr << browse(null, "window=findPai")
+			CLOSE_BROWSER(usr, "window=findPai")
 
 	if(href_list["new"])
 		var/datum/paiCandidate/candidate = locate(href_list["candidate"])
@@ -72,7 +72,7 @@ SUBSYSTEM_DEF(pai)
 					for(var/obj/item/device/paicard/p in world)
 						if(p.looking_for_personality == 1)
 							p.alertUpdate()
-				usr << browse(null, "window=paiRecruit")
+				CLOSE_BROWSER(usr, "window=paiRecruit")
 				return
 
 		recruitWindow(usr, href_list["allow_submit"] != "0")
@@ -207,7 +207,7 @@ SUBSYSTEM_DEF(pai)
 	<body>
 	"}
 
-	M << browse(dat, "window=paiRecruit;size=580x580;")
+	SHOW_BROWSER(M, dat, "window=paiRecruit;size=580x580;")
 
 /datum/controller/subsystem/pai/proc/findPAI(obj/item/device/paicard/p, mob/user)
 	requestRecruits(user)
@@ -323,7 +323,7 @@ SUBSYSTEM_DEF(pai)
 		</html>
 	"}
 
-	user << browse(dat, "window=findPai")
+	SHOW_BROWSER(user, dat, "window=findPai")
 
 
 /datum/controller/subsystem/pai/proc/requestRecruits(mob/user)

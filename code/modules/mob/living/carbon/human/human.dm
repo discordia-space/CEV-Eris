@@ -412,7 +412,7 @@ var/list/rank_prefix = list(\
 	if(href_list["mach_close"])
 		var/t1 = text("window=[]", href_list["mach_close"])
 		unset_machine()
-		src << browse(null, t1)
+		CLOSE_BROWSER(src, t1)
 
 	if(href_list["item"])
 		handle_strip(href_list["item"],usr)

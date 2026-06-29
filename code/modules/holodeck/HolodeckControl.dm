@@ -44,13 +44,13 @@
 
 	if(!linkedholodeck)
 		dat += SPAN_DANGER("Warning: Unable to locate holodeck.<br>")
-		user << browse(dat, "window=computer;size=400x500")
+		SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 		onclose(user, "computer")
 		return
 
 	if(!supported_programs.len)
 		dat += SPAN_DANGER("Warning: No supported holo-programs loaded.<br>")
-		user << browse(dat, "window=computer;size=400x500")
+		SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 		onclose(user, "computer")
 		return
 
@@ -90,7 +90,7 @@
 	else
 		dat += "Gravity is <a href='byond://?src=\ref[src];gravity=1'><font color=blue>(OFF)</font></A><BR>"
 
-	user << browse(dat, "window=computer;size=400x500")
+	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
 

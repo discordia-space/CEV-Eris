@@ -228,7 +228,7 @@
 	dat += "<br/><br/><a href='byond://?src=\ref[user];mach_close=computer'>Close</a>"
 	dat += "</TT></BODY></HTML>"
 
-	user << browse(dat, "window=computer;size=400x500")
+	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
 

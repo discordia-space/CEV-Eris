@@ -453,11 +453,11 @@
 
 /obj/machinery/power/solar_control/Topic(href, href_list)
 	if(..())
-		usr << browse(null, "window=solcon")
+		CLOSE_BROWSER(usr, "window=solcon")
 		usr.unset_machine()
 		return 0
 	if(href_list["close"] )
-		usr << browse(null, "window=solcon")
+		CLOSE_BROWSER(usr, "window=solcon")
 		usr.unset_machine()
 		return 0
 

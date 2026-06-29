@@ -46,7 +46,7 @@
 			dat += "********************************<BR>"
 		dat += "<HR><a href='byond://?src=\ref[src];lock=1'>Lock Console</A>"
 
-	user << browse(dat, "window=computer;size=400x500")
+	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
 

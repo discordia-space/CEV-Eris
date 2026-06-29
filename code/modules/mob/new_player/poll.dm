@@ -28,7 +28,7 @@
 
 		output += "</table>"
 
-		src << browse(output,"window=playerpolllist;size=500x300")
+		SHOW_BROWSER(src, output,"window=playerpolllist;size=500x300")
 
 
 /mob/new_player/proc/poll_player(var/poll_id = -1)
@@ -120,7 +120,7 @@
 
 				output += "</div>"
 
-				src << browse(output,"window=playerpoll;size=500x250")
+				SHOW_BROWSER(src, output,"window=playerpoll;size=500x250")
 
 			//Polls with a text input
 			if("TEXT")
@@ -166,7 +166,7 @@
 				else
 					output += "[vote_text]"
 
-				src << browse(output,"window=playerpoll;size=500x500")
+				SHOW_BROWSER(src, output,"window=playerpoll;size=500x500")
 
 
 /mob/new_player/proc/vote_on_poll(var/poll_id = -1, var/option_id = -1)
@@ -227,7 +227,7 @@
 			return
 
 		to_chat(usr, SPAN_NOTICE("Vote successful."))
-		usr << browse(null,"window=playerpoll")
+		CLOSE_BROWSER(usr, "window=playerpoll")
 
 
 /mob/new_player/proc/log_text_poll_reply(var/poll_id = -1, var/reply_text = "")
@@ -283,4 +283,4 @@
 			return
 
 		to_chat(usr, SPAN_NOTICE("Vote successful."))
-		usr << browse(null,"window=playerpoll")
+		CLOSE_BROWSER(usr, "window=playerpoll")

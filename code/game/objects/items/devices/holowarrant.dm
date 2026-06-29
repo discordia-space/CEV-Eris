@@ -101,7 +101,7 @@
 		</BODY></HTML>
 		"}
 
-		show_browser(user, output, "window=Warrant for the arrest of [active.fields["namewarrant"]]")
+		SHOW_BROWSER(user, output, "window=Warrant for the arrest of [active.fields["namewarrant"]]")
 	if(active.fields["arrestsearch"] ==  "search")
 		var/output= {"
 		<HTML><HEAD><TITLE>Search Warrant: [active.fields["namewarrant"]]</TITLE></HEAD>
@@ -131,4 +131,4 @@
 		All confiscated items must be filed and taken to Evidence!</small></i></center></br>
 		</BODY></HTML>
 		"}
-		show_browser(user, output, "window=Search warrant for [active.fields["namewarrant"]]")
+		SHOW_BROWSER(user, output, "window=Search warrant for [active.fields["namewarrant"]]")

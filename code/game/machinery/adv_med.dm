@@ -170,7 +170,7 @@
 			dat = SPAN_WARNING("Error: No Body Scanner connected.")
 
 	dat += text("<BR><a href='byond://?src=\ref[];mach_close=scanconsole'>Close</A>", user)
-	user << browse(dat, "window=scanconsole;size=430x600")
+	SHOW_BROWSER(user, dat, "window=scanconsole;size=430x600")
 	return
 
 

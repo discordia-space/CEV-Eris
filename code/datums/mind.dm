@@ -167,7 +167,7 @@
 	out += print_individualobjectives()
 
 	out += "<br><a href='byond://?src=\ref[src];edit_memory=1'>"
-	usr << browse(out, "window=edit_memory[src]")
+	SHOW_BROWSER(usr, out, "window=edit_memory[src]")
 
 /datum/mind/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))

@@ -40,7 +40,7 @@
 		var/dat = "<B>Noticeboard</B><BR>"
 		for(var/obj/item/paper/P in src)
 			dat += "<a href='byond://?src=\ref[src];read=\ref[P]'>[P.name]</A> <a href='byond://?src=\ref[src];write=\ref[P]'>Write</A> <a href='byond://?src=\ref[src];remove=\ref[P]'>Remove</A><BR>"
-		user << browse("<HEAD><TITLE>Notices</TITLE></HEAD>[dat]","window=noticeboard")
+		SHOW_BROWSER(user, "<HEAD><TITLE>Notices</TITLE></HEAD>[dat]","window=noticeboard")
 		onclose(user, "noticeboard")
 	else
 		..(user, extra_description)
@@ -75,6 +75,6 @@
 	if(href_list["read"])
 		var/obj/item/paper/P = locate(href_list["read"])
 		if((P && P.loc == src))
-			usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY><TT>[P.info]</TT></BODY></HTML>", "window=[P.name]")
+			SHOW_BROWSER(usr, "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY><TT>[P.info]</TT></BODY></HTML>", "window=[P.name]")
 			onclose(usr, "[P.name]")
 	return

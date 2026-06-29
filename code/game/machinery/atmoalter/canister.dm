@@ -327,7 +327,7 @@ update_flag
 		return 0
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr)) // exploit protection -walter0o
-		usr << browse(null, "window=canister")
+		CLOSE_BROWSER(usr, "window=canister")
 		onclose(usr, "canister")
 		return
 

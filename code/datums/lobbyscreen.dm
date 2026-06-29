@@ -60,8 +60,8 @@
 
 /datum/lobbyscreen/proc/show_titlescreen(client/C)
 	winset(C, "mapwindow.lobbybrowser", "is-disabled=false;is-visible=true")
-	C << browse(image_file, "file=titlescreen.png;display=0")
-	C << browse(file('html/lobby_titlescreen.html'), "window=lobbybrowser")
+	SHOW_BROWSER(C, image_file, "file=titlescreen.png;display=0")
+	SHOW_BROWSER(C, file('html/lobby_titlescreen.html'), "window=lobbybrowser")
 
 /datum/lobbyscreen/proc/hide_titlescreen(client/C)
 	if(C.mob) // Check if the client is still connected to something

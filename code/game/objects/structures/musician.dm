@@ -304,13 +304,13 @@
 		else
 			dat += "<a href='byond://?src=\ref[src];help=2'>Show Help</A><BR>"
 	dat += "</BODY></HTML>"
-	user << browse(dat, "window=piano;size=700x300")
+	SHOW_BROWSER(user, dat, "window=piano;size=700x300")
 	onclose(user, "piano")
 
 /obj/structure/device/piano/Topic(href, href_list)
 
 	if(!in_range(src, usr) || issilicon(usr) || !anchored || !usr.canmove || usr.restrained())
-		usr << browse(null, "window=piano;size=700x300")
+		CLOSE_BROWSER(usr, "window=piano;size=700x300")
 		onclose(usr, "piano")
 		return
 

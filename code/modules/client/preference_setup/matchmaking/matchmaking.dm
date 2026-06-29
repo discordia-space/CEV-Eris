@@ -226,9 +226,9 @@ var/global/datum/matchmaker/matchmaker = new()
 			var/list/relations = matchmaker.get_relationships(mind)
 			for(var/datum/relation/R in relations)
 				R.finalize()
-			show_browser(usr,null, "window=relations")
+			CLOSE_BROWSER(usr, "window=relations")
 		else
-			show_browser(usr,null, "window=relations")
+			CLOSE_BROWSER(usr, "window=relations")
 		return 1
 	if(href_list["show_relations"])
 		var/mob/living/L = usr

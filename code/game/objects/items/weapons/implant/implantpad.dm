@@ -54,7 +54,7 @@
 			dat += "The implant casing is empty."
 	else
 		dat += "Please insert an implant casing!"
-	user << browse(dat, "window=implantpad")
+	SHOW_BROWSER(user, dat, "window=implantpad")
 	onclose(user, "implantpad")
 	return
 
@@ -73,6 +73,6 @@
 					src.attack_self(M)
 		src.add_fingerprint(usr)
 	else
-		usr << browse(null, "window=implantpad")
+		CLOSE_BROWSER(usr, "window=implantpad")
 		return
 	return

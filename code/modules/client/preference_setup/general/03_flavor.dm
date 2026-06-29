@@ -72,5 +72,5 @@
 		HTML += "<br>"
 	HTML += "<hr />"
 	HTML += "<tt>"
-	user << browse(HTML, "window=flavour_text_robot;size=430x300")
+	SHOW_BROWSER(user, HTML, "window=flavour_text_robot;size=430x300")
 	return

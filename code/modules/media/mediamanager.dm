@@ -125,8 +125,8 @@
 			playerstyle = PLAYER_WMP_HTML
 		if(2)
 			playerstyle = PLAYER_HTML5_HTML
-	owner << browse(null, "window=[WINDOW_ID]")
-	owner << browse(playerstyle, "window=[WINDOW_ID]")
+	CLOSE_BROWSER(owner, "window=[WINDOW_ID]")
+	SHOW_BROWSER(owner, playerstyle, "window=[WINDOW_ID]")
 	send_update()
 
 // Tell the player to play something via JS.

@@ -116,7 +116,7 @@
 
 	dellog += "</ol>"
 
-	usr << browse(dellog.Join(), "window=dellog")
+	SHOW_BROWSER(usr, dellog.Join(), "window=dellog")
 
 /client/proc/cmd_debug_make_powernets()
 	set category = "Debug"

@@ -177,7 +177,7 @@ SUBSYSTEM_DEF(vote)
 	if(href_list["close"])
 		if(usr && usr.client)
 			voters.Remove(usr.client)
-			usr.client << browse(null,"window=Vote")
+			CLOSE_BROWSER(usr.client, "window=Vote")
 			return
 
 	usr.vote()

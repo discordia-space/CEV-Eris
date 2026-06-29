@@ -113,7 +113,7 @@
 ///// Z-Level stuff
 //What number the make points to is in the define # at the top of construction.dm in same folder
 
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
+	SHOW_BROWSER(user, "<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
 	onclose(user, "pipedispenser")
 	return
 

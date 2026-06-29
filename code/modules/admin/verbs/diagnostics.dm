@@ -52,7 +52,7 @@
 				else
 					output += "&nbsp;&nbsp;&nbsp;&nbsp;[device]<br>"
 
-	usr << browse(output,"window=radioreport")
+	SHOW_BROWSER(usr, output,"window=radioreport")
 
 /client/proc/reload_admins()
 	set name = "Reload Admins"

@@ -366,7 +366,7 @@
 			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
 
 	dat += "</center>"
-	src << browse(dat, "window=latechoices;size=400x640;can_close=1")
+	SHOW_BROWSER(src, dat, "window=latechoices;size=400x640;can_close=1")
 
 
 /mob/new_player/proc/create_character()
@@ -441,7 +441,7 @@
 	return 0
 
 /mob/new_player/proc/close_spawn_windows()
-	src << browse(null, "window=latechoices") //closes late choices window
+	CLOSE_BROWSER(src, "window=latechoices") //closes late choices window
 	panel.close()
 
 /mob/new_player/proc/is_species_whitelisted(datum/species/S)
